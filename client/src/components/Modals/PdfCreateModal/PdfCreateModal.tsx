@@ -4,6 +4,7 @@ import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ReactToPrint from "react-to-print";
 import styles from "./PdfCreateModal.module.scss";
+import { assetsOnServer } from "assets/assetsOnServer";
 
 interface Props {
   toggle: () => void;
@@ -86,8 +87,7 @@ export class PdfCreateModal extends Component<Props> {
               fonts={[
                 {
                   family: "CircularStdMedium",
-                  source:
-                    "/fonts/CircularStd/CircularStd-Medium.WOFF",
+                  source: assetsOnServer + "CircularStd-Medium.WOFF",
                 },
               ]}
               trigger={() => (

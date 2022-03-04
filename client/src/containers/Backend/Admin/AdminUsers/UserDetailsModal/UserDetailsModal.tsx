@@ -300,7 +300,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
             <Structure
               key={structure._id.toString()}
               nom={structure.nom}
-              picture={structure.picture}
+              picture={structure.picture || null}
               role={structure.role ? structure.role[0] : null}
               onClick={() => {
                 //@ts-ignore

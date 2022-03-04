@@ -778,7 +778,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         >
           <input
             autoFocus={true}
-            className="  new_size  form-control"
+            className="new_size form-control"
             id="value"
             onChange={[Function]}
             style={Object {}}

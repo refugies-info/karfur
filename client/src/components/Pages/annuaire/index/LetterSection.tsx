@@ -14,7 +14,7 @@ interface Props {
 interface StructureCardProps {
   nom: string;
   acronyme: string;
-  picture: Picture;
+  picture: Picture | null;
   onStructureCardClick: (id: ObjectId) => void;
   id: ObjectId;
 }
@@ -33,7 +33,7 @@ const StructureCard = (props: StructureCardProps) => {
           height={100}
         />
       </div>
-      {!props?.picture?.secure_url && <div></div>}
+      {!props.picture?.secure_url && <div></div>}
 
       <LinesEllipsis
         text={
@@ -77,7 +77,7 @@ export const LetterSection = (props: Props) => {
           <StructureCard
             key={"structure_" + key}
             nom={structure.nom}
-            picture={structure.picture || {}}
+            picture={structure.picture || null}
             acronyme={structure.acronyme}
             onStructureCardClick={props.onStructureCardClick}
             id={structure._id}

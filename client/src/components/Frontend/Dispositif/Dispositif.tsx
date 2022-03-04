@@ -15,7 +15,7 @@ import { isMobile } from "react-device-detect";
 import styled from "styled-components";
 import API from "utils/API";
 // components
-import Sponsors from "components/Frontend/Dispositif/Sponsors/Sponsors";
+import Sponsors from "components/Frontend/Dispositif/Sponsors";
 import ContenuDispositif from "components/Frontend/Dispositif/ContenuDispositif";
 import {
   BookmarkedModal,
@@ -867,12 +867,14 @@ const Dispositif = (props: Props) => {
   };
 
   // SPONSORS
-  const addSponsor = (sponsor: Structure) => {
+  const addSponsor = (sponsor: Partial<Structure>) => {
     const newSponsors = [...(dispositif?.sponsors || []), sponsor];
+    //@ts-ignore
     dispatch(updateSelectedDispositifActionCreator({ sponsors: newSponsors }))
   };
-  const editSponsor = (key: number, sponsor: Structure) => {
+  const editSponsor = (key: number, sponsor: Partial<Structure>) => {
     const newItems = [...(dispositif?.sponsors || [])];
+    //@ts-ignore
     newItems[key] = sponsor;
     dispatch(updateSelectedDispositifActionCreator({ sponsors: newItems }))
   };
@@ -1090,7 +1092,7 @@ const Dispositif = (props: Props) => {
         }
       }
     }
-    let newDispositif: IDispositif = {
+    let newDispositif: Partial<IDispositif> = {
       ...dispositif,
       ...content,
       contenu: generateContenu(menu),
@@ -1104,6 +1106,10 @@ const Dispositif = (props: Props) => {
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
       newDispositif.timeSpent = time;
+    }
+
+    if (newDispositif?._id?.toString() === "") { // for creation
+      delete newDispositif._id;
     }
 
     const cardElement = menu.find((x) => x.title === "C'est pour qui ?")?.children || [];
@@ -1794,7 +1800,7 @@ const Dispositif = (props: Props) => {
                 disableEdit={disableEdit}
                 addSponsor={addSponsor}
                 deleteSponsor={deleteSponsor}
-                addMainSponsor={(sponsor: Structure) => dispatch(updateSelectedDispositifActionCreator({mainSponsor: sponsor}))}
+                addMainSponsor={(sponsor: any) => dispatch(updateSelectedDispositifActionCreator({mainSponsor: sponsor}))}
                 deleteMainSponsor={deleteMainSponsor}
                 editSponsor={editSponsor}
                 admin={admin}
@@ -1804,10 +1810,10 @@ const Dispositif = (props: Props) => {
                 toggleTutorielModal={toggleTutorielModal}
                 displayTuto={displayTuto}
                 updateUIArray={updateUIArray}
-                dispositif={dispositif}
                 typeContenu={dispositif?.typeContenu}
                 toggleDispositifValidateModal={toggleDispositifValidateModal}
                 mainTag={mainTag}
+                locale={router.locale}
               />
             </Col>
             {!isMobile && (

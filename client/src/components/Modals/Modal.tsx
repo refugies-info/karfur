@@ -1,3 +1,4 @@
+import { cls } from "lib/classname";
 import React from "react";
 import { Modal, ModalHeader } from "reactstrap";
 
@@ -15,7 +16,7 @@ const modal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className={["custom-modal", props.className || ""].join(" ")}
+      className={cls("custom-modal", props.className || "")}
       ref={props.modalRef}
     >
       {props.modalHeader && <ModalHeader toggle={props.toggle}>{props.modalHeader}</ModalHeader>}

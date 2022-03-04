@@ -8,6 +8,7 @@ import Streamline from "assets/streamline";
 import styles from "./Tags.module.scss";
 import { tags } from "data/tags";
 import { useTranslation } from "next-i18next";
+import { cls } from "lib/classname";
 
 interface Props {
   tags: Tag[];
@@ -61,10 +62,10 @@ const Tags = (props: Props) => {
                 <div className={styles.btn_container}>
                   {tagIcon ? (
                     <div
-                      className={[
+                      className={cls(
                         styles.icon_container,
-                        props.isRTL ? styles.rtl : "",
-                      ].join(" ")}
+                        props.isRTL && styles.rtl,
+                      )}
                     >
                       <Streamline
                         name={tagIcon.icon}
@@ -84,7 +85,7 @@ const Tags = (props: Props) => {
       })}
       {!props.disableEdit && (props.tags || []).length > 0 ? (
         <Button
-          className={[styles.plus_btn, styles.icon, "ml-10"].join(" ")}
+          className={cls(styles.plus_btn, styles.icon, "ml-10")}
           onClick={props.openTag}
           onMouseEnter={() => props.updateUIArray(-6)}
         >

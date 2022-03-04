@@ -8,6 +8,7 @@ import FButton from "components/UI/FButton/FButton";
 import { SimplifiedStructure } from "types/interface";
 import Autocomplete from "react-google-autocomplete";
 import styles from "./SearchBarAnnuaire.module.scss";
+import { cls } from "lib/classname";
 interface Props {
   t: any;
   filteredStructures: SimplifiedStructure[] | null;
@@ -222,11 +223,11 @@ export const SearchBarAnnuaire = (props: Props) => {
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
-          className={[
+          className={cls(
             styles.type_btn,
             (props.typeSelected && props.typeSelected.length === 0
               ? "" : styles.selected)
-            ].join(" ")
+            )
           }
         >
           {props.typeSelected && props.typeSelected.length === 1

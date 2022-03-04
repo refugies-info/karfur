@@ -27,7 +27,7 @@ export interface SimplifiedStructure {
   nom: string;
   structureTypes?: string[];
   departments?: string[];
-  picture: Picture;
+  picture: Picture | null;
   role?: string[];
   disposAssociesLocalisation?: string[];
 }
@@ -255,7 +255,7 @@ export interface Structure {
   siret: string;
   status: string;
   updatedAt: Moment;
-  picture: Picture;
+  picture: Picture | null;
   structureTypes?: string[];
   websites?: string[];
   facebook?: string;
@@ -270,6 +270,7 @@ export interface Structure {
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];
+  alt?: string;
 }
 
 export interface AudienceAge {

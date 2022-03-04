@@ -174,7 +174,7 @@ const API = {
   },
 
   // Dispositif
-  addDispositif: (query: IDispositif) => {
+  addDispositif: (query: Partial<IDispositif>) => {
     const headers = getHeaders();
     return instance.post("/dispositifs/addDispositif", query, {
       headers,

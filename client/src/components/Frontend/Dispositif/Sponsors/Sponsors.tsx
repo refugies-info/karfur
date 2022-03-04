@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import {
   Row,
   Input,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  InputGroup,
   FormGroup,
   Label,
   Spinner,
@@ -19,7 +15,6 @@ import _ from "lodash";
 import API from "utils/API";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
-import FInput from "components/UI/FInput/FInput";
 import SearchBar from "components/UI/SearchBar/SearchBar";
 import { structure_definie } from "assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
@@ -30,14 +25,16 @@ import { SponsorSection } from "./SponsorSection/SponsorSection";
 import CustomModal from "./CustomModal";
 import ImgModal from "./ImgModal";
 import styles from "./Sponsors.module.scss";
-import { withRouter } from "next/router";
+import { Router, withRouter } from "next/router";
 import { getBaseUrl } from "lib/getBaseUrl";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { Structure, Tag, User, Picture } from "types/interface";
+import { RootState } from "services/rootReducer";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
-  border-left: ${(props) => (props.left ? "2px solid #FFFFFF" : null)};
+  border-left: ${(props: {left?: boolean}) => (props.left ? "2px solid #FFFFFF" : null)};
 `;
 const SponsorListContainer = styled.div`
   display: flex;
@@ -158,6 +155,12 @@ const AddSponsorDescription = styled.p`
   line-height: 20px;
 `;
 
+interface SponsorCardProps {
+  disableEdit?: boolean
+  add?: boolean
+  nolink?: boolean
+  isMobile?: boolean
+}
 const SponsorCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -165,27 +168,85 @@ const SponsorCard = styled.div`
   align-items: center;
   padding: 24px;
   width: 214px;
-  height: ${(props) => (props.disableEdit ? "303px" : "345px")};
-  background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
+  height: ${(props: SponsorCardProps) => (props.disableEdit ? "303px" : "345px")};
+  background: ${(props: SponsorCardProps) => (props.add ? "#F9EF99" : "#eaeaea")};
   border-radius: 12px;
-  cursor: ${(props) =>
+  cursor: ${(props: SponsorCardProps) =>
     (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
   &:hover {
-    border: ${(props) => (props.add ? "2px solid #212121" : "none")};
+    border: ${(props: SponsorCardProps) => (props.add ? "2px solid #212121" : "none")};
   }
-  margin-left: ${(props) => (props.isMobile ? "32px" : "0px")};
-  margin-right: ${(props) => (props.isMobile ? "32px" : "16px")};
+  margin-left: ${(props: SponsorCardProps) => (props.isMobile ? "32px" : "0px")};
+  margin-right: ${(props: SponsorCardProps) => (props.isMobile ? "32px" : "16px")};
 `;
 const MobileSponsorSection = styled.div`
   display: flex;
   overflow-x: auto;
-  margin-left: ${(props) => !props.isRTL && "32px"};
-  margin-right: ${(props) => props.isRTL && "32px"};
+  margin-left: ${(props: {isRTL: boolean}) => !props.isRTL && "32px"};
+  margin-right: ${(props: {isRTL: boolean}) => props.isRTL && "32px"};
 `;
 
 const burl = getBaseUrl();
-class Sponsors extends Component {
-  state = {
+
+interface State {
+  showModals: { name: string, show: boolean }[]
+  checked: boolean,
+  banner: boolean,
+  authorBelongs: boolean,
+  tooltipOpen: boolean,
+  selected: Partial<Structure> | null
+  mesStructures: (Structure & {checked: boolean})[]
+  imgData: Picture | null
+  link: string,
+  nom: string,
+  sponsorLoading: boolean,
+  edit: boolean,
+  sponsorKey: string
+  isMyStructureSelected: boolean,
+  structure: {
+    nom: string
+    acronyme: string
+    link: string
+    contact: string
+    mail_contact: string
+    phone_contact: string
+    authorBelongs: boolean
+  }
+  activeIndex: number
+  animating: boolean
+}
+
+interface Props {
+  sponsors: Structure[]
+  mainSponsor: Structure|undefined
+  disableEdit: boolean
+  addSponsor: (param: Partial<Structure>) => void
+  deleteSponsor: (key: number) => void
+  addMainSponsor: (param: any) => void
+  deleteMainSponsor: () => void
+  editSponsor: (key: number, edit: Partial<Structure>) => void
+  admin: boolean
+  validate: () => void
+  finalValidation: boolean
+  toggleFinalValidation: () => void
+  toggleTutorielModal: (section: string) => void
+  displayTuto: boolean
+  updateUIArray: (key: number, subkey?: number | null, node?: string, value?: boolean) => void
+  typeContenu?: "dispositif" | "demarche"
+  toggleDispositifValidateModal: () => void
+  mainTag: Tag
+  locale: string | undefined
+
+  user: User
+  userStructure: Structure
+  structures: Structure[]
+  isLoadingStructures: boolean
+  updateUserActionCreator: any
+  fetchActiveStructuresActionCreator: any
+}
+
+class Sponsors extends Component<Props, State> {
+  state: State = {
     showModals: [
       { name: "responsabilite", show: false },
       { name: "etVous", show: false },
@@ -197,14 +258,14 @@ class Sponsors extends Component {
     banner: true,
     authorBelongs: false,
     tooltipOpen: false,
-    selected: {},
+    selected: null,
     mesStructures: [],
-    imgData: {},
+    imgData: null,
     link: "",
     nom: "",
     sponsorLoading: false,
     edit: false,
-    sponsorKey: null,
+    sponsorKey: "",
     isMyStructureSelected: false,
     structure: {
       nom: "",
@@ -219,7 +280,7 @@ class Sponsors extends Component {
     animating: false,
   };
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (
       prevProps.disableEdit && !this.props.disableEdit
       && this.props.structures.length === 0
@@ -229,40 +290,17 @@ class Sponsors extends Component {
     }
   }
 
-  next = (totalSponsor) => {
-    if (this.state.animating) return;
-    const nextIndex =
-      this.state.activeIndex === totalSponsor.length - 1
-        ? 0
-        : this.state.activeIndex + 1;
-    this.setState({ activeIndex: nextIndex });
-  };
-
-  previous = (totalSponsor) => {
-    if (this.state.animating) return;
-    const nextIndex =
-      this.state.activeIndex === 0
-        ? totalSponsor.length - 1
-        : this.state.activeIndex - 1;
-    this.setState({ activeIndex: nextIndex });
-  };
-
-  goToIndex = (newIndex) => {
-    if (this.state.animating) return;
-    this.setState({ activeIndex: newIndex });
-  };
-
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.user && nextProps.userStructure) {
-      const structure = nextProps.userStructure;
+      const structure = {...nextProps.userStructure, checked: false};
       this.setState({ mesStructures: [structure] });
     }
   }
   resetImg = () => {
-    this.setState({ imgData: {} });
+    this.setState({ imgData: null });
   };
-  toggleModal = (name) =>
+  toggleModal = (name?: string) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
         ...x,
@@ -274,10 +312,10 @@ class Sponsors extends Component {
   toggleIsMyStructureSelected = () => {
     this.setState({ isMyStructureSelected: !this.state.isMyStructureSelected });
   };
-  handleFileInputChange = (event) => {
+  handleFileInputChange = (event: any) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
-    formData.append(0, event.target.files[0]);
+    formData.append("0", event.target.files[0]);
 
     API.set_image(formData).then((data_res) => {
       const imgData = data_res.data.data;
@@ -292,11 +330,12 @@ class Sponsors extends Component {
     });
   };
 
-  handleImgChange = (ev) => {
+  handleImgChange = (ev: any) => {
+    //@ts-ignore
     this.setState({ [ev.currentTarget.id]: ev.target.value });
   };
 
-  handleChange = (ev) =>
+  handleChange = (ev: any) =>
     this.setState({
       structure: {
         ...this.state.structure,
@@ -304,7 +343,7 @@ class Sponsors extends Component {
       },
     });
 
-  handleChangeValueEntered = (newValue) => {
+  handleChangeValueEntered = (newValue: string) => {
     this.setState({
       structure: {
         ...this.state.structure,
@@ -312,37 +351,31 @@ class Sponsors extends Component {
       },
     });
   };
-  handleUserChange = (e) =>
+  handleUserChange = (e: any) =>
     this.props.updateUserActionCreator({
       ...this.props.user,
       [e.target.id]: e.target.value,
     });
 
-  handleBelongsChange = () =>
-    this.setState((pS) => ({
-      structure: {
-        ...pS.structure,
-        authorBelongs: !pS.structure.authorBelongs,
-      },
-    }));
   handleBelongsSChange = () =>
     this.setState((pS) => ({ authorBelongs: !pS.authorBelongs }));
-  handleStructChange = (id) =>
+  handleStructChange = (id: string) =>
     this.setState((pS) => ({
       mesStructures: pS.mesStructures.map((x) => ({
         ...x,
-        checked: x._id === id ? !x.checked : false,
+        checked: x._id.toString() === id ? !x.checked : false,
       })),
       checked: false,
     }));
 
-  selectItem = (suggestion) => {
+  selectItem = (suggestion: Partial<Structure>) => {
     this.setState({ selected: suggestion });
     this.setState({
-      imgData: suggestion.picture || {},
+      imgData: suggestion.picture || null,
       link: suggestion.link || "",
       nom: "",
     });
+    //@ts-ignore
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
 
@@ -361,30 +394,27 @@ class Sponsors extends Component {
       });
       return;
     }
-    let structure = {},
-      fields = [
-        "nom",
-        "acronyme",
-        "link",
-        "contact",
-        "mail_contact",
-        "phone_contact",
-        "authorBelongs",
-        "picture",
-      ];
-    fields.forEach((x) =>
-      this.state.structure[x] !== ""
-        ? (structure[x] = this.state.structure[x])
-        : false
-    );
+    let newStructure: Partial<Structure> = {
+      nom: "",
+      acronyme: "",
+      link: "",
+      contact: "",
+      mail_contact: "",
+      phone_contact: "",
+      authorBelongs: false,
+    };
+    Object.keys(newStructure).forEach((x) => {
+      //@ts-ignore
+      if (!!this.state.structure[x]) newStructure[x] = this.state.structure[x]
+    });
     if (this.state.imgData) {
-      structure.picture = this.state.imgData;
+      newStructure.picture = this.state.imgData;
     }
-    API.createStructure({ query: structure }).then((data) => {
+    API.createStructure({ query: newStructure }).then((data) => {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });
-    this.setState({ imgData: {} });
+    this.setState({ imgData: null });
   };
 
   validerRespo = () => {
@@ -392,8 +422,7 @@ class Sponsors extends Component {
       let user = { ...this.props.user };
       let userInfo = { _id: user._id, email: user.email, phone: user.phone };
       this.props.addMainSponsor(
-        { type: "Not found", user: { ...userInfo, username: user.username } },
-        false
+        { type: "Not found", user: { ...userInfo, username: user.username } }
       );
       this.toggleModal();
       API.set_user_info(userInfo);
@@ -411,7 +440,7 @@ class Sponsors extends Component {
   addSponsor = () => {
     if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
       this.props.addSponsor({
-        picture: { ...this.state.imgData },
+        picture: this.state.imgData ? { ...this.state.imgData } : null,
         link: this.state.link,
         nom: this.state.nom,
       });
@@ -419,13 +448,13 @@ class Sponsors extends Component {
       this.props.validate();
     } else {
       this.props.addSponsor({
-        picture: { ...this.state.imgData },
+        picture: this.state.imgData ? { ...this.state.imgData } : null,
         link: this.state.link,
         nom: this.state.nom,
       });
       this.toggleModal();
     }
-    this.setState({ imgData: {} });
+    this.setState({ imgData: null });
   };
 
   setStructureContactAsMe = () => {
@@ -434,25 +463,25 @@ class Sponsors extends Component {
         structure: {
           ...this.state.structure,
           contact: this.props.user.username,
-          phone_contact: this.props.user.phone,
-          mail_contact: this.props.user.email,
+          phone_contact: this.props.user.phone || "",
+          mail_contact: this.props.user.email || "",
         },
       });
     }
   };
 
-  editSponsor = (key) => {
+  editSponsor = (key: number) => {
     this.toggleModal();
     this.setState({ edit: false });
-    var sponsor = {
-      picture: { ...this.state.imgData },
+    var sponsor: Partial<Structure> = {
+      picture: this.state.imgData ? { ...this.state.imgData } : null,
       link: this.state.link,
       nom: this.state.nom,
     };
     this.props.editSponsor(key, sponsor);
   };
 
-  createCarouselObject = (mainSponsor, deduplicatedSponsors) => {
+  createCarouselObject = (mainSponsor: Structure|undefined, deduplicatedSponsors: Structure[]) => {
     var allSponsor = [{ type: "mainSponsor", object: mainSponsor }];
     deduplicatedSponsors.map((item) => {
       allSponsor.push({ type: "deduplicatedSponsors", object: item });
@@ -503,7 +532,7 @@ class Sponsors extends Component {
       mainSponsor,
       deduplicatedSponsors
     );
-    const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
+    const isRTL = ["ar", "ps", "fa"].includes(this.props.locale || "fr");
     return (
       <div
         className={styles.container}
@@ -540,7 +569,7 @@ class Sponsors extends Component {
                 <SponsorSection
                   totalNumberOfSponsor={totalSponsor.length}
                   index={index}
-                  key={sponsor}
+                  key={index}
                   sponsor={sponsor}
                   burl={burl}
                   isRTL={isRTL}
@@ -562,14 +591,16 @@ class Sponsors extends Component {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Image
-                      className={styles.sponsor_img}
-                      src={(mainSponsor.picture || {}).secure_url}
-                      alt={mainSponsor.acronyme}
-                      width={160}
-                      height={110}
-                      objectFit="contain"
-                    />
+                    {mainSponsor?.picture?.secure_url &&
+                      <Image
+                        className={styles.sponsor_img}
+                        src={mainSponsor.picture.secure_url}
+                        alt={mainSponsor.acronyme}
+                        width={160}
+                        height={110}
+                        objectFit="contain"
+                      />
+                    }
                   </ImageLink>
                   <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
                   {!disableEdit ? (
@@ -612,7 +643,6 @@ class Sponsors extends Component {
                         this.props.toggleFinalValidation();
                         this.toggleModal("img-modal");
                         this.setState({
-                          picture: {},
                           link: "",
                           nom: "",
                         });
@@ -679,11 +709,11 @@ class Sponsors extends Component {
                               onClick={() => {
                                 this.setState(
                                   {
-                                    imgData: sponsor.picture || {},
+                                    imgData: sponsor.picture || null,
                                     link: sponsor.link || "",
                                     nom: sponsor.nom || "",
                                     edit: true,
-                                    sponsorKey: key,
+                                    sponsorKey: key.toString()
                                   },
                                   () => {
                                     this.props.toggleFinalValidation();
@@ -724,7 +754,6 @@ class Sponsors extends Component {
                       this.props.toggleFinalValidation();
                       this.toggleModal("img-modal");
                       this.setState({
-                        picture: {},
                         link: "",
                         nom: "",
                       });
@@ -751,7 +780,7 @@ class Sponsors extends Component {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={modal}
-          keyValue={0}
+          keyValue={"0"}
           title="Responsabilité de la fiche"
           lowerLeftBtn={
             <FButton
@@ -817,6 +846,7 @@ class Sponsors extends Component {
             loupe
             className="search-bar inner-addon right-addon mb-16 mt-8"
             placeholder="Rechercher une structure..."
+            //@ts-ignore
             array={structuresArray}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
@@ -830,7 +860,7 @@ class Sponsors extends Component {
               <FormGroup
                 check
                 className={styles.structure}
-                key={struct._id}
+                key={struct._id.toString()}
                 style={
                   struct.checked
                     ? {
@@ -851,7 +881,7 @@ class Sponsors extends Component {
                     type="checkbox"
                     checked={struct.checked}
                     style={{ cursor: "pointer" }}
-                    onChange={() => this.handleStructChange(struct._id)}
+                    onChange={() => this.handleStructChange(struct._id.toString())}
                   />{" "}
                   <b>Ma structure : </b>
                   {struct.nom}
@@ -864,7 +894,7 @@ class Sponsors extends Component {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={{ name: "etVous" }}
-          keyValue={1}
+          keyValue={"1"}
           title="Responsabilité de la fiche"
           lowerLeftBtn={
             <FButton
@@ -899,7 +929,7 @@ class Sponsors extends Component {
                 onClick={() => {
                   this.props.addMainSponsor(this.state.selected);
                   this.toggleModal("envoye");
-                  this.setState({ imgData: {} });
+                  this.setState({ imgData: null });
                 }}
                 className="ml-auto"
               >
@@ -916,7 +946,7 @@ class Sponsors extends Component {
             </p>
 
             <div className={styles.selection_wrapper + " bg-white mb-10"}>
-              {selected.picture && selected.picture.secure_url && (
+              {selected && selected?.picture?.secure_url && (
                 <Image
                   src={selected.picture.secure_url}
                   className={styles.selection_logo}
@@ -926,9 +956,11 @@ class Sponsors extends Component {
                   objectFit="contain"
                 />
               )}
-              <span>
-                {selected.acronyme} - {selected.nom}
-              </span>
+              {selected &&
+                <span>
+                  {selected.acronyme || ""} - {selected.nom || ""}
+                </span>
+              }
             </div>
           </ConfirmationStructureContainer>
           <FormGroup check className={styles.author + " mb-10"}>
@@ -980,7 +1012,7 @@ class Sponsors extends Component {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={{ name: "creation" }}
-          keyValue={2}
+          keyValue={"2"}
           title="Création d'une structure"
           lowerLeftBtn={
             <FButton
@@ -1028,36 +1060,21 @@ class Sponsors extends Component {
         >
           <CreationContent
             handleChange={this.handleChange}
-            handleBelongsChange={this.handleBelongsChange}
             setStructureContactAsMe={this.setStructureContactAsMe}
             mainTag={this.props.mainTag}
             nom={this.state.structure.nom}
             contact={this.state.structure.contact}
             phone_contact={this.state.structure.phone_contact}
             mail_contact={this.state.structure.mail_contact}
-            adminView={this.state.structure.adminView}
-            _id={this.state.structure._id}
-            createur={this.state.structure.createur}
-            administrateur={this.state.structure.administrateur}
-            users={this.state.structure.users}
-            siren={this.state.structure.siren}
-            siret={this.state.structure.siret}
-            adresse={this.state.structure.adresse}
-            mail_generique={this.state.structure.mail_generique}
-            picture={this.state.structure.picture}
-            handleFileInputChange={this.state.structure.handleFileInputChange}
-            acronyme={this.state.structure.acronyme}
-            uploading={this.state.structure.uploading}
-            alt={this.state.structure.alt}
           />
           <div className={`${styles.input} ${styles.inline}`}>
             <span style={{ fontSize: 22 }}>Ajouter un logo</span>
-            {this.state.imgData.secure_url ? (
+            {this.state.imgData?.secure_url ? (
               <div className={styles.image_wrapper}>
                 <Image
                   className={styles.sponsor_img}
                   src={this.state.imgData.secure_url}
-                  alt={this.state.imgData.alt}
+                  alt={""}
                   width={160}
                   height={110}
                   objectFit="contain"
@@ -1110,7 +1127,7 @@ class Sponsors extends Component {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={{ name: "envoye" }}
-          keyValue={3}
+          keyValue={"3"}
           title={"Chouette !"}
           lowerRightBtn={
             <FButton
@@ -1153,7 +1170,7 @@ class Sponsors extends Component {
                 </h5>
                 <MyStructureContainer>
                   {" "}
-                  {mainSponsor.picture && mainSponsor.picture.secure_url && (
+                  {mainSponsor?.picture?.secure_url && (
                     <Image
                       src={mainSponsor.picture.secure_url}
                       className={styles.selection_logo}
@@ -1164,7 +1181,7 @@ class Sponsors extends Component {
                     />
                   )}
                   <span>
-                    {mainSponsor.acronyme} - {mainSponsor.nom}
+                    {mainSponsor?.acronyme || ""} - {mainSponsor?.nom || ""}
                   </span>
                 </MyStructureContainer>
                 <div className="mb-10">
@@ -1175,14 +1192,14 @@ class Sponsors extends Component {
                   </b>
                 </div>
               </>
-            ) : selected.nom ? (
+            ) : selected?.nom ? (
               authorBelongs ? (
                 <>
                   <h5 className="mb-10">
                     Votre demande est soumise aux reponsables de :
                   </h5>
                     <div className={styles.selection_wrapper + " mb-10"}>
-                    {selected.picture && selected.picture.secure_url && (
+                    {selected?.picture?.secure_url && (
                       <Image
                         src={selected.picture.secure_url}
                         className={styles.selection_logo}
@@ -1193,7 +1210,7 @@ class Sponsors extends Component {
                       />
                     )}
                     <span>
-                      {selected.acronyme} - {selected.nom}
+                      {selected?.acronyme || ""} - {selected?.nom || ""}
                     </span>
                   </div>
                   <div>
@@ -1273,7 +1290,7 @@ class Sponsors extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState) => {
   return {
     user: state.user.user,
     userStructure: state.userStructure,
@@ -1291,4 +1308,5 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,
-})(withRouter(Sponsors));
+  //@ts-ignore
+})(Sponsors);
