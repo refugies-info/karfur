@@ -20,14 +20,29 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}"]
 
+  # Deploy container image to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      [
+        "run", "deploy", "${_COMPONENT}-${_ENV}",
+        "--project", "$PROJECT_ID",
+        "--region", "${_REGION}",
+        "--platform", "managed",
+        "--image", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
+        "--port", 3000,
+        "--memory", "1G",
+        "--allow-unauthenticated"
+      ]
+
 options:
     dynamic_substitutions: true
 
 substitutions:
-    _REGISTRY: "registry-${_ENV}"
-    _REGISTRY_URL: europe-west1-docker.pkg.dev
-    _APP_SERVER_URL: "https://backend-${_ENV}-4rok5wopuq-ew.a.run.app"
     _COMPONENT: frontend
+    _REGION: europe-west1
+    _REGISTRY: "registry-${_ENV}"
+    _REGISTRY_URL: "${_REGION}-docker.pkg.dev"
+    _APP_SERVER_URL: "https://backend-${_ENV}-4rok5wopuq-ew.a.run.app"
 
 timeout: 1200s
-
