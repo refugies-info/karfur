@@ -27,7 +27,7 @@ import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./UserTranslation.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
 
-const availableLanguages = activatedLanguages.map(l => l.i18nCode);
+const availableLanguages = activatedLanguages.map(l => l.i18nCode).filter(ln => ln !== "fr");
 const getLangueName = (
   langueId: ObjectId | null,
   userTradLanguages: UserLanguage[]

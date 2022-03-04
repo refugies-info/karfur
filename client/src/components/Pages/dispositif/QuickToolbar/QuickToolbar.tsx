@@ -4,12 +4,13 @@ import h2p from "html2plaintext";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./QuickToolbar.module.scss";
-import { DispositifContent } from "types/interface";
+import { DispositifContent, AvailableLanguageI18nCode } from "types/interface";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { languei18nSelector } from "services/Langue/langue.selectors";
+import { hasTTSAvailable } from "data/activatedLanguages";
 
 interface Props {
   show: boolean;
@@ -29,7 +30,7 @@ const QuickToolbar = (props: Props) => {
   const [isVoiceActiv, setIsVoiceActiv] = useState(false);
 
   const ttsActive = useSelector(ttsActiveSelector);
-  const activeLangue = useSelector(languei18nSelector);
+  const activeLangue = useSelector(languei18nSelector) as AvailableLanguageI18nCode;
 
   const _hoverOn = (key: number) => {
     setFill(fill.map((_, i) => key === i));
@@ -108,7 +109,7 @@ const QuickToolbar = (props: Props) => {
     }
   };
 
-  const showLanguageButton = ["fr", "en", "ar", "ru", "uk"].includes(activeLangue);
+  const showLanguageButton = hasTTSAvailable.includes(activeLangue);
   if (props.show) {
     if (props.disableEdit) {
       return (
