@@ -11,7 +11,13 @@ const UkrainePopup = () => {
         <span>Portail d’information unique</span>
       </p>
 
-      <FButton type="login" className={styles.btn}>
+      <FButton
+        type="login"
+        className={styles.btn}
+        tag="a"
+        href="https://parrainage.refugies.info/"
+        target="_blank"
+      >
         ukraine.refugies.info
         <EVAIcon name="arrow-forward" className={styles.icon} />
       </FButton>

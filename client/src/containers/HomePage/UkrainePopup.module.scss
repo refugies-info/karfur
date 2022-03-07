@@ -5,12 +5,12 @@
   background: white;
   display: inline-flex;
   text-align: left;
-  padding: 16px;
+  padding: 24px;
   border-radius: 12px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
   max-width: 90%;
   position: absolute;
-  top: 80px;
+  top: 75px;
   left: 0;
   margin-left: 50%;
   transform: translateX(-50%);
@@ -32,10 +32,6 @@
   margin-right: 10px;
   margin-bottom: 0;
 
-  @include media-max("tablet-up") {
-    display: block;
-  }
-
   span {
     display: block;
   }
@@ -49,18 +45,12 @@
   margin-left: 24px;
 
   @include media-max("tablet-up") {
-    width: 100% !important;
-    text-align: center !important;
-    display: inline !important;
+    display: inline-block !important;
     margin-left: 0;
     margin-top: 12px;
   }
 }
 .icon {
   margin-left: 8px;
-
-  @include media-max("tablet-up") {
-    display: none;
-  }
 }
 
