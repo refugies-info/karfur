@@ -12,15 +12,18 @@ import {
   StyledTextSmall,
 } from "../../components/StyledText";
 import { activatedLanguages } from "../../data/languagesData";
-import { RowContainer } from "../../components/BasicComponents";
+import { RowContainer, RTLView } from "../../components/BasicComponents";
 import { Flag } from "../../components/Language/Flag";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { CustomButton } from "../../components/CustomButton";
 import { AvailableLanguageI18nCode } from "../../types/interface";
+import { ChoiceButton } from "../../components/UI/ChoiceButton";
+import { Icon } from "react-native-eva-icons";
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
+  hideRadio?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -29,29 +32,17 @@ const styles = StyleSheet.create({
     margin: 0,
   },
 });
-const MainContainer = styled.TouchableOpacity`
-  padding: ${theme.margin * 2}px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.black : theme.colors.lightGrey};
-  border-radius: ${theme.radius * 2}px;
-`;
-
 const StyledTextBold = styled(StyledTextSmallBold)`
-  text-align: left;
-  margin-left: ${theme.margin}px;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
+  margin-left: ${(props: { isRTL: boolean }) =>
+    !props.isRTL ? theme.margin * 2 : 0}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? theme.margin * 2 : 0}px;
+  color: ${theme.colors.black};
 `;
 
 const StyledText = styled(StyledTextSmall)`
   text-align: left;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
+  color: ${theme.colors.darkGrey};
 `;
 
 const ModalView = styled.View`
@@ -63,9 +54,9 @@ const ModalView = styled.View`
   border-top-left-radius: ${theme.radius * 2}px;
 `;
 
-const TitleText = styled(StyledTextNormalBold)`
+const TitleContainer = styled(RTLView)`
+  justify-content: center;
   margin-top: ${theme.margin * 3}px;
-  align-self: center;
 `;
 
 const LanguagesContainer = styled.ScrollView`
@@ -89,7 +80,7 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${theme.shadows.lg}
+  ${theme.shadows.sm}
 `;
 const Backdrop = styled.View`
   flex: 1;
@@ -97,7 +88,7 @@ const Backdrop = styled.View`
 `;
 
 export const LanguageChoiceModal = (props: Props) => {
-  const { t, i18n } = useTranslationWithRTL();
+  const { t, i18n, isRTL } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
@@ -128,34 +119,48 @@ export const LanguageChoiceModal = (props: Props) => {
       }
     >
       <ModalView style={{ paddingBottom: insets.bottom }}>
-        <TitleText>{t("global.language", "Langue de l'application")}</TitleText>
+        <TitleContainer>
+          <Icon
+            name="globe-2-outline"
+            width={24}
+            height={24}
+            fill={theme.colors.black}
+            style={{
+              marginLeft: isRTL ? theme.margin : 0,
+              marginRight: !isRTL ? theme.margin : 0
+            }}
+          />
+          <StyledTextNormalBold>{t("global.language", "Langue de l'application")}</StyledTextNormalBold>
+        </TitleContainer>
+
         <LanguagesContainer>
           {activatedLanguages.map((language, index) => {
             const isSelected = selectedLanguageI18nCode === language.i18nCode;
             return (
               <View key={language.langueFr}>
-                <MainContainer
+                <ChoiceButton
                   onPress={() => changeLanguage(language.i18nCode)}
                   testID={"test-language-button-" + language.langueFr}
                   isSelected={isSelected}
                   accessibilityRole="button"
+                  flatStyle={true}
                 >
-                  <RowContainer>
+                  <RTLView>
                     <FlagBackground>
                       <Flag langueFr={language.langueFr} />
                     </FlagBackground>
-                    <StyledTextBold isSelected={isSelected}>
+                    <StyledTextBold isRTL={isRTL}>
                       {language.langueLoc}
                     </StyledTextBold>
                     {language.langueFr !== "Français" && (
                       <RowContainer>
-                        <StyledText isSelected={isSelected}>
-                          {" - "}{language.langueFr}
+                        <StyledText>
+                          {!isRTL ? " - " + language.langueFr : language.langueFr + " - "}
                         </StyledText>
                       </RowContainer>
                     )}
-                  </RowContainer>
-                </MainContainer>
+                  </RTLView>
+                </ChoiceButton>
                 {index !== activatedLanguages.length - 1 && <Separator />}
               </View>
             );

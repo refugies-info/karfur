@@ -12,7 +12,7 @@ export const activatedLanguages: {
   },
   {
     langueFr: "Ukrainien",
-    langueLoc: "українська мова",
+    langueLoc: "Українська",
     i18nCode: "uk"
   },
   {

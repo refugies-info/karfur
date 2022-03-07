@@ -57,6 +57,7 @@ export const LanguageChoiceScreen = ({
             key={index}
             langueLoc={language.langueLoc}
             onPress={() => changeLanguage(language.i18nCode)}
+            hideRadio={true}
           />
         ))}
       </ScrollView>

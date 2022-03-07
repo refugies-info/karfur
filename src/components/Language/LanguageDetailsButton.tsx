@@ -3,33 +3,22 @@ import styled from "styled-components/native";
 import { StyledTextSmallBold, StyledTextSmall } from "../StyledText";
 import { theme } from "../../theme";
 import { Flag } from "./Flag";
-import { RowContainer } from "../BasicComponents";
-
-const MainContainer = styled.TouchableOpacity`
-  background: ${(props: { isSelected: any }) =>
-    props.isSelected ? theme.colors.black : theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
-  padding: ${theme.margin * 2}px;
-  margin-vertical: ${theme.margin * 1.5}px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  ${theme.shadows.lg}
-`;
+import { RowContainer, RTLView } from "../BasicComponents";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { ChoiceButton } from "../UI/ChoiceButton";
 
 const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
-  margin-left: ${theme.margin * 2}px;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
+  margin-left: ${(props: { isRTL: boolean }) =>
+  !props.isRTL ? theme.margin * 2 : 0}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+  props.isRTL ? theme.margin * 2 : 0}px;
+  color: ${theme.colors.black};
 `;
 
 const StyledText = styled(StyledTextSmall)`
   text-align: left;
-  color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.black};
+  color: ${theme.colors.darkGrey};
 `;
 
 const FlagBackground = styled.View`
@@ -41,7 +30,7 @@ const FlagBackground = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${theme.shadows.lg}
+  ${theme.shadows.sm}
 `;
 
 interface Props {
@@ -49,28 +38,34 @@ interface Props {
   langueLoc: string;
   onPress: () => void;
   isSelected?: boolean;
+  hideRadio?: boolean;
 }
-export const LanguageDetailsButton = (props: Props) => (
-  <MainContainer
+export const LanguageDetailsButton = (props: Props) => {
+  const { isRTL } = useTranslationWithRTL();
+
+  return (
+  <ChoiceButton
     onPress={props.onPress}
     testID={"test-language-button-" + props.langueFr}
-    isSelected={props.isSelected}
+    isSelected={!!props.isSelected}
     accessibilityRole="button"
+    hideRadio={props.hideRadio}
   >
-    <RowContainer>
+    <RTLView>
       <FlagBackground>
         <Flag langueFr={props.langueFr} />
       </FlagBackground>
       <RowContainer>
-        <StyledTextBold isSelected={props.isSelected}>
+        <StyledTextBold isRTL={isRTL}>
           {props.langueLoc}
         </StyledTextBold>
       </RowContainer>
       {props.langueFr !== "Français" && (
-        <StyledText isSelected={props.isSelected}>
-          {" - "}{props.langueFr}
+        <StyledText>
+          {!isRTL ? " - " + props.langueFr : props.langueFr + " - "}
         </StyledText>
       )}
-    </RowContainer>
-  </MainContainer>
-);
+    </RTLView>
+  </ChoiceButton>
+  )
+}
