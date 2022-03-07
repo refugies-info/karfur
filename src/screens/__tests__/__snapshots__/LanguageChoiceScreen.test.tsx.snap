@@ -194,20 +194,21 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "alignItems": "center",
             "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
             "borderRadius": 12,
+            "borderWidth": 2,
             "display": "flex",
             "elevation": 6,
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "space-between",
-            "marginVertical": 12,
+            "marginBottom": 24,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
             "shadowColor": "rgba(33, 33, 33, 0.16)",
             "shadowOffset": Object {
               "height": 1,
@@ -227,117 +228,9 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 "display": "flex",
                 "flexDirection": "row",
               },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              Français
-            </Text>
-          </View>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Persan/Dari"
-      >
-        <View
-          style={
-            Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
+                "flex": 1,
+                "justifyContent": "space-between",
               },
             ]
           }
@@ -347,78 +240,75 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               Array [
                 Object {
                   "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
                   "display": "flex",
                   "flexDirection": "row",
                 },
               ]
             }
           >
-            <Text
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
                   },
                 ]
               }
             >
-              فارسی/ دری
-            </Text>
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Français
+              </Text>
+            </View>
           </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Persan/Dari
-          </Text>
         </View>
       </View>
       <View
@@ -434,660 +324,21 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "alignItems": "center",
             "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
             "borderRadius": 12,
+            "borderWidth": 2,
             "display": "flex",
             "elevation": 6,
             "flexDirection": "row",
             "flexWrap": "wrap",
             "justifyContent": "space-between",
-            "marginVertical": 12,
+            "marginBottom": 24,
             "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Arabe"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              العربية
-            </Text>
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Arabe
-          </Text>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Anglais"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              English
-            </Text>
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Anglais
-          </Text>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Pachto"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              پښتو
-            </Text>
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Pachto
-          </Text>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Russe"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              Русский
-            </Text>
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Russe
-          </Text>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 8,
-          }
-        }
-        testID="test-language-button-Tigrinya"
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-              },
-            ]
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-              ]
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 16,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              ትግርኛ
-            </Text>
-          </View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-             - 
-            Tigrinya
-          </Text>
-        </View>
-      </View>
-      <View
-        accessibilityRole="button"
-        accessible={true}
-        focusable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "display": "flex",
-            "elevation": 6,
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "space-between",
-            "marginVertical": 12,
-            "opacity": 1,
-            "paddingBottom": 16,
-            "paddingLeft": 16,
-            "paddingRight": 16,
-            "paddingTop": 16,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
             "shadowColor": "rgba(33, 33, 33, 0.16)",
             "shadowOffset": Object {
               "height": 1,
@@ -1107,41 +358,13 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                 "display": "flex",
                 "flexDirection": "row",
               },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
             ]
           }
         >
-          <View
-            style={
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 4,
-                  "display": "flex",
-                  "elevation": 6,
-                  "height": 17,
-                  "justifyContent": "center",
-                  "marginBottom": 4,
-                  "marginLeft": 4,
-                  "marginRight": 4,
-                  "marginTop": 4,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 1,
-                  "shadowRadius": 8,
-                  "width": 22,
-                },
-              ]
-            }
-          >
-            <react-native-svg
-              height={15}
-              width={20}
-            />
-          </View>
           <View
             style={
               Array [
@@ -1153,40 +376,954 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               ]
             }
           >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Українська
+              </Text>
+            </View>
             <Text
               style={
                 Array [
                   Object {
-                    "color": "#212121",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
                     "fontSize": 16,
                     "lineHeight": 20,
-                    "marginLeft": 16,
                     "textAlign": "left",
                   },
                 ]
               }
             >
-              українська мова
+               - Ukrainien
             </Text>
           </View>
-          <Text
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Persan/Dari"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
                 },
               ]
             }
           >
-             - 
-            Ukrainien
-          </Text>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                فارسی/ دری
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Persan/Dari
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Arabe"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                العربية
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Arabe
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Anglais"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                English
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Anglais
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Pachto"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                پښتو
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Pachto
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Russe"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Русский
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Russe
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityRole="button"
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderRadius": 12,
+            "borderWidth": 2,
+            "display": "flex",
+            "elevation": 6,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "space-between",
+            "marginBottom": 24,
+            "opacity": 1,
+            "paddingBottom": 14,
+            "paddingLeft": 14,
+            "paddingRight": 14,
+            "paddingTop": 14,
+            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowOffset": Object {
+              "height": 1,
+              "width": 1,
+            },
+            "shadowOpacity": 1,
+            "shadowRadius": 8,
+          }
+        }
+        testID="test-language-button-Tigrinya"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+                "flexDirection": "row",
+              },
+              Object {
+                "flex": 1,
+                "justifyContent": "space-between",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 4,
+                    "display": "flex",
+                    "elevation": 2,
+                    "height": 17,
+                    "justifyContent": "center",
+                    "marginBottom": 4,
+                    "marginLeft": 4,
+                    "marginRight": 4,
+                    "marginTop": 4,
+                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 1,
+                    "shadowRadius": 2,
+                    "width": 22,
+                  },
+                ]
+              }
+            >
+              <react-native-svg
+                height={15}
+                width={20}
+              />
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                ትግርኛ
+              </Text>
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+               - Tigrinya
+            </Text>
+          </View>
         </View>
       </View>
     </View>
