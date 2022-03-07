@@ -11,6 +11,11 @@ export const activatedLanguages: {
     i18nCode: "fr",
   },
   {
+    langueFr: "Ukrainien",
+    langueLoc: "українська мова",
+    i18nCode: "uk"
+  },
+  {
     langueFr: "Persan/Dari",
     langueLoc: "فارسی/ دری",
     i18nCode: "fa",
@@ -39,10 +44,5 @@ export const activatedLanguages: {
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     i18nCode: "ti-ER",
-  },
-  {
-    langueFr: "Ukrainien",
-    langueLoc: "українська мова",
-    i18nCode: "uk"
   }
 ];
