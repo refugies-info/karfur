@@ -17,10 +17,10 @@ const UkrainePopup = () => {
         type="login"
         className={styles.btn}
         tag="a"
-        href="https://parrainage.refugies.info/"
+        href="https://parrainage.refugies.info/?utm_source=popup&utm_medium=baniere&utm_campaign=ukraine"
         target="_blank"
       >
-        ukraine.refugies.info
+        parrainage.refugies.info
         <EVAIcon name="arrow-forward" className={styles.icon} />
       </FButton>
     </div>
