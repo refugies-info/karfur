@@ -448,7 +448,6 @@
     "Revenir à l'accueil": "Return to home"
   },
   "Dispositif": {
-    "fiabilite_faible": "Information is not certain and has not yet been verified",
     "cliquez": "Click \"?\" to learn more",
     "informations_utiles": "Have you found useful information?",
     "remerciez": "Thank people who wrote them for you",
@@ -516,7 +515,6 @@
     "jai": "I have",
     "Personnalisation disponible": "Customization available!",
     "Comment y accéder": "How to get there",
-    "Dispositifs connexes": "Related devices",
     "Retours d'expérience": "Feedback",
     "Pourquoi ça m'intéresse": "Why I'm interested",
     "Détail de l'offre": "Offer details",
