@@ -16,6 +16,10 @@
   transform: translateX(-50%);
   white-space: nowrap;
 
+  [dir="rtl"] & {
+    text-align: right;
+  }
+
   @include media-max("tablet-up") {
     margin-top: -40px;
     display: inline-block;
@@ -32,22 +36,42 @@
   margin-right: 10px;
   margin-bottom: 0;
 
-  span {
-    display: block;
+  [dir="rtl"] & {
+    margin-right: 0;
+    margin-left: 10px;
   }
 
-  .blue {
+  .title {
+    display: flex;
     color: $bleuCharte;
+
+    span {
+      margin-left: 4px;
+
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 4px;
+      }
+    }
   }
 }
 .btn {
   box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
   margin-left: 24px;
 
+  [dir="rtl"] & {
+    margin-left: 0;
+    margin-right: 24px;
+  }
+
   @include media-max("tablet-up") {
     display: inline-block !important;
     margin-left: 0;
     margin-top: 12px;
+
+    [dir="rtl"] & {
+      margin-right: 0;
+    }
   }
 }
 .icon {
