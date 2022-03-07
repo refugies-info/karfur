@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Table, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";

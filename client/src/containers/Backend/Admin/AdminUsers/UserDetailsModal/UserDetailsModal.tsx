@@ -7,7 +7,8 @@ import {
 } from "types/interface";
 import Image from "next/image";
 import { Modal, Spinner } from "reactstrap";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
 import { userSelector } from "services/AllUsers/allUsers.selector";

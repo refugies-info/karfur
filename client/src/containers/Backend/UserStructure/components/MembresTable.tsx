@@ -11,7 +11,8 @@ import styled from "styled-components";
 import { colors } from "../../../../colors";
 // import "./MembresTable.scss";
 import { ObjectId } from "mongodb";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 
 moment.locale("fr");
 const RowContainer = styled.div`

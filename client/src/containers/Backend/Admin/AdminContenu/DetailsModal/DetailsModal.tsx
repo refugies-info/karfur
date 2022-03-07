@@ -9,7 +9,8 @@ import {
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import {
   SimplifiedDispositif,
   SimplifiedStructureForAdmin,

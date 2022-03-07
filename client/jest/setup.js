@@ -18,7 +18,7 @@ jest.mock("moment", () => {
   return fn;
 });
 
-jest.mock("moment/min/moment-with-locales", () => {
+jest.mock("moment", () => {
   // Here we are able to mock chain builder pattern
   const mMoment = {
     format: jest.fn(() => "12/07/1998"),
@@ -33,6 +33,7 @@ jest.mock("moment/min/moment-with-locales", () => {
     return mMoment;
   });
   fn.locale = jest.fn();
+  fn.defineLocale = jest.fn();
 
   return fn;
 });

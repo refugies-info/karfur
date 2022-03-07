@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import API from "utils/API";
 import _ from "lodash";
 import { targetByTag } from "./data";

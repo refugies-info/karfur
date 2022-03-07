@@ -25,7 +25,8 @@ import {
   StyledStatus,
   FilterButton,
 } from "../sharedComponents/SubComponents";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,

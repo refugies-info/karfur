@@ -1,6 +1,7 @@
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import { useDispatch } from "react-redux";
 import {
   SearchBarContainer,
