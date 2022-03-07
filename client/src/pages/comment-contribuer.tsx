@@ -214,6 +214,13 @@ const CommentContribuer = (props: Props) => {
                 isRTL={isRTL}
               />
             </div>
+            <div className={styles.langues_cards}>
+              <Langue
+                langue={activeLangues[6] || {}}
+                key={activeLangues[6] && activeLangues[6].i18nCode}
+                isRTL={isRTL}
+              />
+            </div>
           </div>
         </div>
       </div>
