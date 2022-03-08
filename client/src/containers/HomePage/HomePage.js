@@ -20,6 +20,7 @@ import { HomeCard } from "./HomeCard";
 import { HomePageMobile } from "./HomePageMobile/HomePageMobile";
 import { SubscribeNewsletterModal } from "../Footer/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { BecomeTesterModal } from "./BecomeTesterModal";
+import UkrainePopup from "./UkrainePopup";
 import { MobileSearchFilterModal } from "../AdvancedSearch/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import {
   illustration_homeCard_dispositif,
@@ -104,9 +105,10 @@ export class HomePage extends Component {
     overlay: false,
     showGoToDesktopModal: false,
     showTagModal: false,
-    showNewslettreModal: false,
+    showNewslettreModal: new URLSearchParams(window.location.search).get("newsletter") === "",
     showBecomeTesterModal: false,
-    parrainage: true,
+    parrainage: false,
+    ukraine: true,
   };
   _isMounted = false;
 
@@ -155,6 +157,9 @@ export class HomePage extends Component {
   };
   closeParrainage = () => {
     this.setState({ parrainage: false });
+  };
+  closeUkraine = () => {
+    this.setState({ ukraine: false });
   };
 
   toggleOverlay = () => {
@@ -222,6 +227,7 @@ export class HomePage extends Component {
                 </CloseParrainage>
               </div>
             ) : null}
+            {this.state.ukraine && <UkrainePopup />}
             <MainTitleContainer>
               {t("Dispositifs.Header", "Construire sa vie en France")}
             </MainTitleContainer>

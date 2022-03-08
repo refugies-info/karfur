@@ -1,0 +1,80 @@
+@import "src/scss/colors";
+@import "src/scss/global.scss";
+
+.ukraine {
+  background: white;
+  display: inline-flex;
+  text-align: left;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+  position: absolute;
+  top: 75px;
+  left: 0;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+
+  [dir="rtl"] & {
+    text-align: right;
+  }
+
+  @include media-max("tablet-up") {
+    margin-top: -40px;
+    display: inline-block;
+    position: relative;
+    top: inherit;
+    transform: none;
+    margin-left: 0;
+  }
+}
+.text {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-right: 10px;
+  margin-bottom: 0;
+
+  [dir="rtl"] & {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .title {
+    display: flex;
+    color: $bleuCharte;
+
+    span {
+      margin-left: 4px;
+
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+.btn {
+  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
+  margin-left: 24px;
+
+  [dir="rtl"] & {
+    margin-left: 0;
+    margin-right: 24px;
+  }
+
+  @include media-max("tablet-up") {
+    display: inline-block !important;
+    margin-left: 0;
+    margin-top: 12px;
+
+    [dir="rtl"] & {
+      margin-right: 0;
+    }
+  }
+}
+.icon {
+  margin-left: 8px;
+}
+

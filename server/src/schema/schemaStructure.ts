@@ -99,7 +99,6 @@ var structureSchema = new mongoose.Schema(
       required: false,
     },
   },
-  // @ts-ignore : https://github.com/Automattic/mongoose/issues/9606
   { timestamps: { createdAt: "created_at" } }
 );
 

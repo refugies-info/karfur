@@ -10,6 +10,7 @@ import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
 import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
 import CommentContribuer from "./containers/CommentContribuer/CommentContribuer";
 import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
+import DeclarationAccessibilite from "./containers/DeclarationAccessibilite/DeclarationAccessibilite";
 import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
 import { AnnuaireCreate } from "./containers/Annuaire/AnnuaireCreate";
 import {
@@ -81,6 +82,12 @@ const routes = [
     path: "/mentions-legales",
     name: "Réfugiés.info - Mentions Légales",
     component: MentionsLegales,
+    restriction: [],
+  },
+  {
+    path: "/declaration-accessibilite",
+    name: "Réfugiés.info - Mentions Légales",
+    component: DeclarationAccessibilite,
     restriction: [],
   },
   {

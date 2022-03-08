@@ -1,5 +1,5 @@
 # Use a node 12 base image
-ARG NODE_VERSION=10
+ARG NODE_VERSION=12
 FROM node:${NODE_VERSION}-alpine
 
 WORKDIR /usr/src/app
