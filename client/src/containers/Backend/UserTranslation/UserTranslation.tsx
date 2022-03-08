@@ -124,10 +124,12 @@ const UserTranslation = () => {
     }
     const loadIndicators = async () => {
       if (user && user.user) {
-        const data = await API.get_progression({
-          userId: user.user._id,
-        });
-        setIndicators(data.data);
+        try {
+          const data = await API.get_progression({
+            userId: user.user._id,
+          });
+          setIndicators(data.data);
+        }catch(e) { }
       }
     };
 
