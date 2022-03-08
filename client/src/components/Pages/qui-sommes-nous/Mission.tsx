@@ -64,7 +64,7 @@ const MissionDispositif = () => {
           "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives."
         )}
       </MissionDetailDescription>
-      <Link href="/advanced-search" passHref>
+      <Link href="/advanced-search?filter=dispositifs" passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher un dispositif", "Explorer un dispositif")}
         </FButton>
@@ -97,7 +97,7 @@ const MissionDemarche = () => {
           "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration."
         )}
       </MissionDetailDescription>
-      <Link href="/advanced-search" passHref>
+      <Link href="/advanced-search?filter=demarches" passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher une démarche", "Explorer les démarches")}
         </FButton>

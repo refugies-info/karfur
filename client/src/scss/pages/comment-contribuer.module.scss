@@ -34,6 +34,7 @@
   background: $white;
   padding-bottom: 106px;
   height: 720px;
+  position: relative;
 }
 
 .traduction {
@@ -45,6 +46,7 @@
   line-height: 40px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .redaction_cards {
@@ -201,4 +203,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.anchor{
+  position: absolute;
+  top: -60px;
 }

@@ -45,7 +45,6 @@ import { wrapper } from "services/configureStore";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { RootState } from "services/rootReducer";
 import { IDispositif, IUserFavorite, Language, Tag, User } from "types/interface";
-import { t } from "i18next";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/advanced-search.module.scss";
 import moment from "moment";

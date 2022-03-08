@@ -106,7 +106,8 @@ const CommentContribuer = (props: Props) => {
         </div>
         <div id="ecrire" style={{marginTop: 150}} />
       </div>
-      <div id="ecrire-card" className={styles.redaction}>
+      <div className={styles.redaction}>
+        <span id="ecrire-card" className={styles.anchor}></span>
         {t("CommentContribuer.Redaction", "Rédiger de nouveaux contenus")}
         <div className={styles.redaction_cards}>
           <DispositifCard
@@ -125,13 +126,13 @@ const CommentContribuer = (props: Props) => {
         <div id="traduire" style={{marginTop: 50}} />
       </div>
       <div
-        id="traduire-card"
         className={styles.traduction}
         style={{
           paddingRight: isRTL ? 0 : 120,
           paddingLeft: isRTL ? 120 : 0,
         }}
       >
+        <span id="traduire-card" className={styles.anchor}></span>
         <div
           style={{
             marginLeft: isRTL ? 0 : 120,
@@ -217,7 +218,8 @@ const CommentContribuer = (props: Props) => {
           </div>
         </div>
       </div>
-      <div id="deployer-card" className={styles.deployons}>
+      <div className={styles.deployons}>
+        <span id="deployer-card" className={styles.anchor}></span>
         <br />
         <h2 className={styles.deployons_header}>
           {t(
@@ -328,7 +330,8 @@ const CommentContribuer = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className={styles.correction} id="corriger">
+      <div className={styles.correction}>
+        <span id="corriger" className={styles.anchor}></span>
         <h2>
           {t(
             "CommentContribuer.Corriger",

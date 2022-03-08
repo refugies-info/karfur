@@ -11,6 +11,7 @@ import type { Member } from "data/members";
 import SEO from "components/Seo";
 import { NextPage } from "next";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import styles from "scss/pages/qui-sommes-nous.module.scss";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -225,11 +226,13 @@ const QuiSommesNous: NextPage = () => {
           </NavBarText>
         </a>
       </NavBarContainer>
-      <MissionContainer id="mission">
+      <MissionContainer className={styles.container}>
+        <span id="mission" className={styles.anchor}></span>
         <SectionHeader>{t("QuiSommesNous.Missions", "Missions")}</SectionHeader>
         <Mission />
       </MissionContainer>
-      <TeamContainer id="equipe" onClick={closeSide}>
+      <TeamContainer onClick={closeSide} className={styles.container}>
+        <span id="equipe" className={styles.anchor}></span>
         <SectionHeader>
           {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
         </SectionHeader>
@@ -252,19 +255,22 @@ const QuiSommesNous: NextPage = () => {
           type="former_members"
         />
       </TeamContainer>
-      <ProblematicContainer id="problematic">
+      <ProblematicContainer className={styles.container}>
+        <span id="problematic" className={styles.anchor}></span>
         <SectionHeader>
           {t("QuiSommesNous.Problématiques", "Problématiques")}
         </SectionHeader>
         <Problematic />
       </ProblematicContainer>
-      <ContributionContainer id="contribution">
+      <ContributionContainer className={styles.container}>
+        <span id="contribution" className={styles.anchor}></span>
         <SectionHeader>
           {t("QuiSommesNous.Approche contributive", "Approche contributive")}
         </SectionHeader>
         <Contribution />
       </ContributionContainer>
-      <PartnersContainer id="partners">
+      <PartnersContainer className={styles.container}>
+        <span id="partners" className={styles.anchor}></span>
         <SectionHeader>
           {t("QuiSommesNous.Partenaires", "Partenaires")}
         </SectionHeader>

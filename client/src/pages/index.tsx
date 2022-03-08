@@ -33,17 +33,6 @@ import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 
-const CoronaAlert = styled.div`
-  display: flex;
-  border-radius: 12px 12px 12px 12px;
-  background-color: #ffcecb;
-  width: 100%;
-  justify-content: center;
-  padding: 15px;
-  top: 0px;
-  margin-top: -70px;
-`;
-
 const AlertText = styled.div`
   color: white;
 `;
@@ -98,7 +87,6 @@ const ButtonSeparator = styled.div`
 interface Props {}
 
 const Homepage = (props: Props) => {
-  const [corona, setCorona] = useState(false);
   const [popup, setPopup] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
@@ -121,7 +109,6 @@ const Homepage = (props: Props) => {
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleBecomeTesterModal = () => setShowBecomeTesterModal(!showBecomeTesterModal);
-  const closeCorona = () => setCorona(false);
   const closeParrainage = () => setParrainage(false);
   const toggleOverlay = () => setOverlay(!overlay);
 
@@ -133,25 +120,6 @@ const Homepage = (props: Props) => {
       {overlay ? <div className="overlay" /> : null}
       <section className={styles.hero}>
         <div className="hero-container">
-          {corona ? (
-            <CoronaAlert>
-              <div style={{ padding: 10 }}>
-                <EVAIcon fill={"#f44336"} name="alert-triangle" />
-              </div>
-              <div style={{ padding: 10 }}>
-                <AlertText>
-                  {t("Homepage.Covid alert")}
-                  <br />
-                  <Link href="/advanced-search?tag=Santé" passHref>
-                    <AlertTextLink>{t("Homepage.Covid link")}</AlertTextLink>
-                  </Link>
-                </AlertText>
-              </div>
-              <CloseCorona onClick={closeCorona}>
-                <EVAIcon fill={"#f44336"} name="close-outline" />
-              </CloseCorona>
-            </CoronaAlert>
-          ) : null}
           {parrainage ? (
             <div className="parrainage-alert">
               <AlertText>
@@ -229,7 +197,7 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: "/advanced-search",
-                search: isMobile ? null : "?filter=Dispositifs",
+                search: isMobile ? null : "?filter=dispositifs",
               });
             }}
           />
@@ -246,7 +214,7 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: "/advanced-search",
-                search: isMobile ? null : "?filter=Démarches",
+                search: isMobile ? null : "?filter=demarches",
               });
             }}
           />
