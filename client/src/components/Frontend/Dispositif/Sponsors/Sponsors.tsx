@@ -1080,7 +1080,7 @@ class Sponsors extends Component<Props, State> {
                   objectFit="contain"
                 />
                 <FButton
-                  className={styles.upload_btn}
+                  className="position-relative"
                   type="theme"
                   name="upload-outline"
                   theme={this.props.mainTag.darkColor}
@@ -1101,7 +1101,7 @@ class Sponsors extends Component<Props, State> {
               </div>
             ) : (
               <FButton
-                className={styles.upload_btn}
+                className="position-relative"
                 type="theme"
                 name="upload-outline"
                 theme={this.props.mainTag.darkColor}

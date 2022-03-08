@@ -22,6 +22,7 @@ const ReactionLectureModal = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggle}
       className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <div
         className={styles.close}

@@ -87,7 +87,7 @@ const UserContributions = (props: Props) => {
       );
     }
     window.scrollTo(0, 0);
-  }, [dispatch, userStructure]);
+  }, [dispatch]);
 
   const contributions = formatContributions(
     userContributions,

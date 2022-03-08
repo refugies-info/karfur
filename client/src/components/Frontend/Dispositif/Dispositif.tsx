@@ -91,8 +91,6 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { userDetailsSelector } from "services/User/user.selectors";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 // style
 import styles from "scss/pages/dispositif.module.scss";
 
@@ -174,7 +172,7 @@ interface Props {
 }
 
 const Dispositif = (props: Props) => {
-  const newRef = createRef<HTMLDivElement>();
+  const newRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = createRef<any>();
 
   const [accordion, setAccordion] = useState(new Array(1).fill(false));
@@ -219,7 +217,6 @@ const Dispositif = (props: Props) => {
 
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
-  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -228,7 +225,7 @@ const Dispositif = (props: Props) => {
   const timer = useRef<number|undefined>();
 
   useEffect(() => {
-    if (!user && !isUserLoading) dispatch(fetchUserActionCreator());
+    if (API.isAuth() && !user) return;
 
     if (props.type === "detail") { // DETAIL
       if (dispositif) {
@@ -308,14 +305,14 @@ const Dispositif = (props: Props) => {
             };
           })
         );
-        dispatch(setSelectedDispositifActionCreator(emptyDispositif));
+        dispatch(setSelectedDispositifActionCreator(emptyDispositif, true));
         dispatch(setUiArrayActionCreator(generateUiArray(menuContenu, true)));
       } else {
         router.push({ pathname: "/login" });
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user]);
 
   // Auto-save
   useEffect(() => {

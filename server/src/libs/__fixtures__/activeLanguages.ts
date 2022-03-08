@@ -66,7 +66,7 @@ export const activeLanguages = [
   {
     _id: "aaabbbccc",
     langueFr: "Ukrainien",
-    langueLoc: "українська мова",
+    langueLoc: "Українська",
     langueCode: "ua",
     i18nCode: "uk",
     avancement: 0,

@@ -52,7 +52,7 @@ const InfoRight = (props: InfoProps) => (
       {props.title}
     </h3>
     <p className={styles.subtitle}>{props.subTitle}</p>
-    <div className={styles.right}>
+    <div className={styles.infos_footer}>
       <EVAIcon
         size={10}
         name={props.footerIcon}

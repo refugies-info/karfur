@@ -10,12 +10,12 @@ import { Picture, UserStructureMembre } from "types/interface";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
-import { NavLink } from "react-router-dom";
 import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
 import { AddMemberModal } from "./AddMemberModal";
 import { EditMemberModal } from "./EditMemberModal";
 import styles from "./UserStructureDetails.module.scss";
+import Link from "next/link";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -112,14 +112,18 @@ export const UserStructureDetails = (props: Props) => {
         />
         <StructureName>{props.name}</StructureName>
         {isMember && (
-          <FButton
-            type="dark"
-            name="book-outline"
-            tag={NavLink}
-            to={"/annuaire/" + props.structureId}
+          <Link
+            href={"/annuaire/" + props.structureId}
+            passHref
           >
-            Voir dans l'annuaire
-          </FButton>
+            <FButton
+              type="dark"
+              name="book-outline"
+              tag="a"
+            >
+              Voir dans l'annuaire
+            </FButton>
+          </Link>
         )}
       </StructurePictureContainer>
       <StructureContainer>

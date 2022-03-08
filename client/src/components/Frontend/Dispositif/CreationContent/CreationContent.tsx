@@ -151,7 +151,7 @@ const CreationContent = (props: Props) => {
               checked={isChecked}
               style={{ cursor: "pointer" }}
               onChange={() => {
-                props.setStructureContactAsMe();
+                if (!isChecked) props.setStructureContactAsMe();
                 setIsChecked(!isChecked);
               }}
             />{" "}

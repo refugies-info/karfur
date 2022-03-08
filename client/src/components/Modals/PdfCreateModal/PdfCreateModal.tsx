@@ -76,9 +76,9 @@ export class PdfCreateModal extends Component<Props> {
               {this.props.t("Annuler", "Annuler")}
             </FButton>
             <ReactToPrint
-              onBeforeGetContent={async () => {
-                await this.props.createPdf();
-                await this.props.toggle();
+              onBeforeGetContent={() => {
+                this.props.createPdf();
+                this.props.toggle();
               }}
               onAfterPrint={() => {
                 this.props.closePdf();

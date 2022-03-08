@@ -2137,7 +2137,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c16"
                       disabled={true}
-                      onClick={[Function]}
                     >
                       <div
                         style={
@@ -2288,7 +2287,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c16"
                       disabled={true}
-                      onClick={[Function]}
                     >
                       <div
                         style={
@@ -2596,7 +2594,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     <div
                       className="c16"
                       disabled={true}
-                      onClick={[Function]}
                     >
                       <div
                         style={

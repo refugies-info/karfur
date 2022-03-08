@@ -55,7 +55,7 @@ const ImgModal = (props: Props) => {
               objectFit="contain"
             />
             <FButton
-              className={styles.upload_btn}
+              className="position-relative"
               type="theme"
               theme={props.mainTag.darkColor}
               name="upload-outline"
@@ -76,7 +76,7 @@ const ImgModal = (props: Props) => {
           </div>
         ) : (
           <FButton
-            className={styles.upload_btn}
+            className="position-relative"
             type="theme"
             theme={props.mainTag.darkColor}
             name="upload-outline"

@@ -164,7 +164,6 @@ const CommentContribuer = (props: Props) => {
                     "traducteurs actifs"
                   )}
                   isRTL={isRTL}
-                  width={181}
                 />
               </Link>
               <Link href="/backend/user-translation" passHref>
@@ -174,7 +173,6 @@ const CommentContribuer = (props: Props) => {
                     "CommentContribuer.experts en traduction",
                     "experts en traduction"
                   )}
-                  width={326}
                   isRTL={isRTL}
                 />
               </Link>

@@ -30,7 +30,6 @@ exports[`should render DeleteButton disabled 1`] = `
 <div
   className="c0"
   disabled={true}
-  onClick={[Function]}
 >
   <div
     style={

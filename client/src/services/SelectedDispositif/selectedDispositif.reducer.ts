@@ -29,24 +29,26 @@ export const selectedDispositifReducer = createReducer<
   SelectedDispositifState | null,
   SelectedDispositifActions
 >(initialSelectedDispositifState, {
-  SET_SELECTED_DISPOSITIF: (state, action) =>
-    ({... state,
-      ...action.payload,
+  SET_SELECTED_DISPOSITIF: (state, action) => {
+    return {
+      ...(action.payload.reset ? {} : state),
+      ...action.payload.value,
       // @ts-ignore
-      uiArray: _.get(action.payload, "contenu", []).map(
+      uiArray: _.get(action.payload.value, "contenu", []).map(
         (x: DispositifContent) => {
           return {
             ...uiElement,
             ...(x.children && {
               children: new Array(x.children.length).fill({
                 ...uiElement,
-                accordion: action.payload.status === "Accepté structure",
+                accordion: action.payload.value.status === "Accepté structure",
               }),
             }),
           };
         }
       ),
-    }),
+    }
+  },
   // @ts-ignore
   UPDATE_UI_ARRAY: (state, action) =>
     ({...state,

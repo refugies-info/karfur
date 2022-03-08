@@ -1,3 +1,4 @@
+@import "src/scss/colors";
 @import "src/scss/variables";
 
 .checkbox {
@@ -8,6 +9,15 @@
   cursor: pointer;
   font-size: $text-normal;
   user-select: none;
+
+  &.reverse {
+    input:checked ~ .checkmark {
+      background-color: $white;
+    }
+    .checkmark:after {
+      border-color: #4caf51;
+    }
+  }
 
   input {
     position: absolute;

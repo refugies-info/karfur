@@ -8,8 +8,6 @@ import qs from "query-string";
 import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
-import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { wrapper } from "services/configureStore";
 import { SimplifiedStructure } from "types/interface";
 import { NoResult } from "components/Pages/annuaire/index/NoResult";

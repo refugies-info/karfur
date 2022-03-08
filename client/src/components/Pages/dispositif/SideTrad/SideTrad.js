@@ -23,6 +23,7 @@ import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./SideTrad.module.scss";
 import Image from "next/image";
+import { cls } from "lib/classname";
 
 const Editor = dynamic(
   () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
@@ -1109,11 +1110,7 @@ class SideTrad extends Component {
             <ConditionalSpinner show={!(translated || {}).body} />
 
             {isInBrowser() && <Editor
-              toolbarClassName={
-                isRTL
-                  ? styles.toolbar_editeur
-                  : `${styles.toolbar_editeur} ${styles.toolbar_editeur_droite}`
-              }
+              toolbarClassName={cls("toolbar-editeur", styles.toolbar_editeur, !isRTL && styles.toolbar_editeur_droite)}
               editorClassName={
                 validated && !modifiedNew && !modified
                   ? `${styles.editor_editeur} ${styles.editor_validated}`

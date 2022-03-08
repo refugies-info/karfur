@@ -149,7 +149,8 @@ const EditableParagraph = (props: Props) => {
             }}
             editorState={props.editorState}
             toolbarCustomButtons={[
-              <CustomOption key={1} editorState={props.editorState} />,
+              //@ts-ignore
+              <CustomOption key={1} />,
             ]}
             // blockRendererFn={myBlockRenderer}
             customBlockRenderFunc={myBlockRenderer}

@@ -34,19 +34,6 @@ import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 
-const CardContainer = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
-  justify-content: ${isMobile ? "" : "center"};
-  margin: ${(props: {isRTL: boolean}) => (props.isRTL ? "0 0 0 20px" : "0 20px 0 0")};
-`;
-
-const MainTitleContainer = styled.div`
-  font-size: ${isMobile ? "28px" : "52px"};
-  font-weight: bold;
-  padding: 0 60px;
-`;
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,9 +85,9 @@ const Homepage = (props: Props) => {
       <section className={styles.hero}>
         <div className="hero-container">
           {ukraine && <UkrainePopup />}
-          <MainTitleContainer>
+          <h1 className={styles.title}>
             {t("Dispositifs.Header", "Construire sa vie en France")}
-          </MainTitleContainer>
+          </h1>
           <h5>{t("Homepage.title")}</h5>
 
           <div className="search-row">
@@ -131,7 +118,7 @@ const Homepage = (props: Props) => {
       </section>
 
       <section id="plan" className={`${styles.section} ${styles.triptique}`}>
-        <CardContainer isRTL={isRTL}>
+        <div className={styles.cards_container}>
           <HomeCard
             text="Homepage.Trouver une initiative"
             defaultText="Trouver un programme ou une formation"
@@ -200,7 +187,7 @@ const Homepage = (props: Props) => {
             isDisabled={true}
             onClick={() => {}}
           />
-        </CardContainer>
+        </div>
       </section>
 
       {isMobile ? (

@@ -29,6 +29,7 @@ const MainContainer = styled.div`
   justify-content: center;
   text-align: center;
   position: relative;
+  flex-shrink: 0;
 `;
 
 interface TextContainerProps {

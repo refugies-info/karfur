@@ -309,7 +309,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             </LogoWrapper>
             <RightLogoContainer>
               <FButton
-                className="upload-btn"
+                className="position-relative"
                 type="theme"
                 name="upload-outline"
               >

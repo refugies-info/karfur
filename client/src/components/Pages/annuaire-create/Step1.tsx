@@ -158,7 +158,7 @@ export const Step1 = (props: Props) => {
           <FButton
             type="theme"
             name="upload-outline"
-            style={{position: "relative"}}
+            className="position-relative"
           >
             <FileInput
               className="file-input"

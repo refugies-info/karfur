@@ -266,7 +266,7 @@ export const DeleteButton = (props: {
   testID?: any;
 }) => (
   <ButtonContainer
-    onClick={props.onClick}
+    onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
     //@ts-ignore

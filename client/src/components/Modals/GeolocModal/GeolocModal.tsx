@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { filtres } from "data/dispositif";
 import FButton from "components/UI/FButton/FButton";
@@ -26,6 +25,15 @@ const GeolocModal = (props: Props) => {
     props.departments || []
   );
   const [departmentInput, setDepartmentInput] = useState("");
+
+  useEffect(() => {
+    setFranceSelected((props?.departments || []).includes("All"));
+    return () => {
+      setSelectedDepartments([]);
+      setDepartments([]);
+    }
+  }, [props.departments]);
+
   const onDepartmentChange = (e: any) => {
     setDepartmentInput(e.target.value);
     if (e.target.value === "") {
