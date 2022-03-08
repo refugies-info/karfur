@@ -12,6 +12,7 @@ import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterM
 import { MobileSearchFilterModal } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
 import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
+import UkrainePopup from "components/Pages/homepage/UkrainePopup";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
 import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
@@ -32,29 +33,6 @@ import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
-
-const AlertText = styled.div`
-  color: white;
-`;
-
-const AlertTextLink = styled.a`
-  color: white;
-  text-decoration: underline;
-  margin-bottom: 0px;
-`;
-
-const CloseCorona = styled.div`
-  margin-right: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-`;
-
-const CloseParrainage = styled.div`
-  cursor: pointer;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-`;
 
 const CardContainer = styled.div`
   display: flex;
@@ -94,7 +72,7 @@ const Homepage = (props: Props) => {
     isInBrowser() ? new URLSearchParams(window.location.search).get("newsletter") === "" : false
   );
   const [showBecomeTesterModal, setShowBecomeTesterModal] = useState(false);
-  const [parrainage, setParrainage] = useState(false);
+  const [ukraine, setUkraine] = useState(true);
 
   const { t } = useTranslation();
   const router = useRouter();
@@ -109,7 +87,6 @@ const Homepage = (props: Props) => {
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleBecomeTesterModal = () => setShowBecomeTesterModal(!showBecomeTesterModal);
-  const closeParrainage = () => setParrainage(false);
   const toggleOverlay = () => setOverlay(!overlay);
 
   const isRTL = useRTL();
@@ -120,36 +97,7 @@ const Homepage = (props: Props) => {
       {overlay ? <div className="overlay" /> : null}
       <section className={styles.hero}>
         <div className="hero-container">
-          {parrainage ? (
-            <div className="parrainage-alert">
-              <AlertText>
-                <span style={{ fontWeight: "bold" }}>
-                  Parrainez une personne réfugiée&nbsp;!
-                </span>{" "}
-                Découvrez les actions par thématique&nbsp;:
-                <div style={{ flexDirection: "row" }}>
-                  <Link href="/dispositif/616581b863933e00148153fe" passHref>
-                    <AlertTextLink>Rencontres et loisirs</AlertTextLink>
-                  </Link>
-                  <span> / </span>
-                  <Link href="/dispositif/61680552e389a200141c1c44" passHref>
-                    <AlertTextLink>Éducation</AlertTextLink>
-                  </Link>
-                  <span> / </span>
-                  <Link href="/dispositif/616ec622c8e422001419a0cd" passHref>
-                    <AlertTextLink>Hébergement citoyen</AlertTextLink>
-                  </Link>
-                  <span> / </span>
-                  <Link href="/dispositif/61681cafe389a200141c27e3" passHref>
-                    <AlertTextLink>Insertion professionnelle</AlertTextLink>
-                  </Link>
-                </div>
-              </AlertText>
-              <CloseParrainage onClick={closeParrainage}>
-                <EVAIcon fill={"white"} name="close-outline" />
-              </CloseParrainage>
-            </div>
-          ) : null}
+          {ukraine && <UkrainePopup />}
           <MainTitleContainer>
             {t("Dispositifs.Header", "Construire sa vie en France")}
           </MainTitleContainer>
