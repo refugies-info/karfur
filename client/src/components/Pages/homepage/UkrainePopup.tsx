@@ -9,8 +9,8 @@ const UkrainePopup = () => {
   return (
     <div className={styles.ukraine}>
       <p className={styles.text}>
-        <span className={styles.title}>{t("ukraine_popup_title", "Solidarité avec l’Ukraine")} <span>🇺🇦</span></span>
-        <span>{t("ukraine_popup_subtitle", "Portail de mobilisation et d’information")}</span>
+        <span className={styles.title}>{t("Homepage.ukraine_popup_title", "Solidarité avec l’Ukraine")} <span>🇺🇦</span></span>
+        <span>{t("Homepage.ukraine_popup_subtitle", "Portail de mobilisation et d’information")}</span>
       </p>
 
       <FButton

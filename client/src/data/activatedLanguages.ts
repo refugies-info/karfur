@@ -11,7 +11,7 @@ export const activatedLanguages: Language[] = [
   },
   {
     langueFr: "Ukrainien",
-    langueLoc: "українська мова",
+    langueLoc: "Українська",
     langueCode: "ua",
     i18nCode: "uk",
     avancement: 1,
