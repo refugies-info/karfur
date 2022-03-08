@@ -199,8 +199,8 @@ const LeftSideDispositif = (props: Props) => {
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
             </FButton>
             <ReactToPrint
-              onBeforeGetContent={async () => {
-                await props.createPdf();
+              onBeforeGetContent={() => {
+                props.createPdf();
               }}
               onAfterPrint={() => {
                 props.closePdf();

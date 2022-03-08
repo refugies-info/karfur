@@ -174,7 +174,7 @@ interface Props {
 }
 
 const Dispositif = (props: Props) => {
-  const newRef = createRef<HTMLDivElement>();
+  const newRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = createRef<any>();
 
   const [accordion, setAccordion] = useState(new Array(1).fill(false));
