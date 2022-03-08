@@ -1,49 +1,11 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import styles from "./Footer.module.scss";
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
-  justify-content: center;
-`;
-
-const ColumnContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: ${isMobile ? "wrap" : "no-wrap"};
-`;
-
-const TextContainer = styled.div`
-  display: flex;
-  max-width: ${isMobile ? "" : "400px"};
-  margin-right: 20px;
-`;
-
-const LinkContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 20px;
-  margin-left: ${isMobile ? "0px" : "20px"};
-  margin-top: ${isMobile ? "25px" : ""};
-  font-size: ${isMobile ? "18px" : "16px"};
-  white-space: ${isMobile ? "" : "nowrap"}; ;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: ${isMobile ? "" : "40px"};
-  margin-top: ${isMobile ? "30px" : ""};
-  width: ${isMobile ? "100%" : "auto"};
-`;
 
 const Footer = () => {
   const [showSubscribeNewsletterModal, setShowSubscribeNewsletterModal] =
@@ -55,9 +17,9 @@ const Footer = () => {
 
   return (
     <div className={styles.footer + " animated fadeIn"}>
-      <MainContainer>
-        <ColumnContainer>
-          <TextContainer>
+      <div className={styles.container}>
+        <div className={styles.column}>
+          <div className={styles.text}>
             <h5 className={styles.header}>
               {t(
                 "Footer.description",
@@ -83,8 +45,8 @@ const Footer = () => {
                 {"Mednum"}
               </a>
             </h5>
-          </TextContainer>
-          <LinkContainer>
+          </div>
+          <div className={styles.links}>
             {!isMobile && (
               <Link href="/comment-contribuer">
                 <a className={styles.link}>
@@ -120,8 +82,8 @@ const Footer = () => {
                 "Rejoindre le réseau des contributeurs"
               )}
             </a>
-          </LinkContainer>
-          <LinkContainer>
+          </div>
+          <div className={styles.links}>
             {!isMobile && (
               <Link href="/qui-sommes-nous">
                 <a className={styles.link}>
@@ -154,9 +116,9 @@ const Footer = () => {
                 {t("Footer.accessibility_link", "Accessibilité : non conforme")}
               </a>
             </Link>
-          </LinkContainer>
-        </ColumnContainer>
-        <ButtonContainer>
+          </div>
+        </div>
+        <div className={styles.buttons}>
           <div>
             <FButton
               onClick={() => toggleSubscribeNewsletterModal()}
@@ -203,8 +165,8 @@ const Footer = () => {
               {t("Footer.Centre d'aide", "Consulter le centre d'aide")}
             </FButton>
           </div>
-        </ButtonContainer>
-      </MainContainer>
+        </div>
+      </div>
       <SubscribeNewsletterModal
         show={showSubscribeNewsletterModal}
         toggle={toggleSubscribeNewsletterModal}
