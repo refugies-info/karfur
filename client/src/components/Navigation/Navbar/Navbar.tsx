@@ -34,6 +34,8 @@ import { isMobile } from "react-device-detect";
 import styles from "./Navbar.module.scss";
 import marioProfile from "assets/mario-profile.jpg";
 import useRTL from "hooks/useRTL";
+import { hasTTSAvailable } from "data/activatedLanguages";
+import { AvailableLanguageI18nCode } from "types/interface";
 
 interface Props {
   history: string[]
@@ -146,7 +148,7 @@ const Navbar = (props: Props) => {
 
       <div className={styles.center_buttons}>
         <AudioBtn
-          enabled={["fr", "en", "ar", "ru"].includes(router.locale || "fr")}
+          enabled={hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode)}
           toggleAudio={() => dispatch(toggleTTSActionCreator())}
           ttsActive={ttsActive}
           ttsLoading={ttsLoading}

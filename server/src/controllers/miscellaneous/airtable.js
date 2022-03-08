@@ -10,6 +10,7 @@ var base = new Airtable({
     : process.env.AIRTABLE_BASE_TRAD
 );
 const logger = require("../../logger");
+const getFormattedLocale = require("../../libs/getFormattedLocale");
 
 const addDispositifInContenusAirtable = (title, link, tagsList, type) => {
   logger.info("[addDispositifInContenusAirtable] adding a new line", {
@@ -71,17 +72,8 @@ const removeDispositifInContenusAirtable = (recordId) => {
   ]);
 };
 
-const getFormattedLocale = (locale) => {
-  if (locale === "en") return "Anglais";
-  if (locale === "ar") return "Arabe";
-  if (locale === "ru") return "Russe";
-  if (locale === "ti-ER") return "Tigrynia";
-  if (locale === "ps") return "Pachto";
-  if (locale === "fa") return "Persan";
-  return "locale not found";
-};
 const addTraductionDispositifInContenusAirtable = ({ id, trad }, locale) => {
-  const formattedLocale = getFormattedLocale(locale);
+  const formattedLocale = getFormattedLocale(locale, "short");
   logger.info(
     "[addTraductionDispositifInContenusAirtable] update line for record and locale",
     {

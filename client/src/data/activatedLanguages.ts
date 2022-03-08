@@ -1,4 +1,4 @@
-import { Language } from "types/interface";
+import { Language, AvailableLanguageI18nCode } from "types/interface";
 
 export const activatedLanguages: Language[] = [
   {
@@ -6,6 +6,14 @@ export const activatedLanguages: Language[] = [
     langueLoc: "Français",
     langueCode: "fr",
     i18nCode: "fr",
+    avancement: 1,
+    avancementTrad: 0,
+  },
+  {
+    langueFr: "Ukrainien",
+    langueLoc: "українська мова",
+    langueCode: "ua",
+    i18nCode: "uk",
     avancement: 1,
     avancementTrad: 0,
   },
@@ -58,3 +66,5 @@ export const activatedLanguages: Language[] = [
     avancementTrad: 0,
   },
 ]
+
+export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk"];

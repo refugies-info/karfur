@@ -62,5 +62,14 @@ export const activeLanguages = [
     i18nCode: "ar",
     avancement: 0.9894785882273115,
     avancementTrad: 0.9883381924198251
+  },
+  {
+    _id: "aaabbbccc",
+    langueFr: "Ukrainien",
+    langueLoc: "українська мова",
+    langueCode: "ua",
+    i18nCode: "uk",
+    avancement: 0,
+    avancementTrad: 0
   }
 ]

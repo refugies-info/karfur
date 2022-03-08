@@ -237,7 +237,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         {langues
           .filter(
             // @ts-ignore
-            (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
+            (langue) => /* langue.avancement > 0.8 &&  */langue.i18nCode !== "fr"
           )
           .map((langue) => {
             const isLangueSelected =

@@ -27,13 +27,14 @@ const convertCsvToJson = async (language) => {
 };
 
 const main = async () => {
-  // langues : en, ar, fa, ps, ru, ti-ER
+  // langues : en, ar, fa, ps, ru, ti-ER, uk
   await convertCsvToJson("ar");
   await convertCsvToJson("ru");
   await convertCsvToJson("en");
   await convertCsvToJson("ti-ER");
   await convertCsvToJson("ps");
   await convertCsvToJson("fa");
+  await convertCsvToJson("uk");
 };
 
 main();
