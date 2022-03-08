@@ -462,10 +462,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         structureTest
       </div>
       <a
-        aria-current={null}
         className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
@@ -1369,10 +1369,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         structureTest
       </div>
       <a
-        aria-current={null}
         className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
@@ -2319,10 +2319,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         structureTest
       </div>
       <a
-        aria-current={null}
         className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
@@ -3733,10 +3733,10 @@ exports[`UserStructure should render correctly when structure with membres when 
         structureTest
       </div>
       <a
-        aria-current={null}
         className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
@@ -4326,10 +4326,10 @@ exports[`UserStructure should render correctly when structure with membres when 
         structureTest
       </div>
       <a
-        aria-current={null}
         className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"

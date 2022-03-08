@@ -322,7 +322,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         username
       </div>
       <button
-        className="btn  dark upload_btn  mb-16 "
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
@@ -990,7 +990,7 @@ exports[`UserProfile should render correctly 1`] = `
         username
       </div>
       <button
-        className="btn  dark upload_btn  mb-16 "
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
@@ -1489,7 +1489,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         username
       </div>
       <button
-        className="btn  dark upload_btn  mb-16 "
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
