@@ -4,6 +4,7 @@ import Image from "next/image";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import { Picture } from "types/interface";
 import checkStyles from "scss/components/checkbox.module.scss";
+import { cls } from "lib/classname";
 interface RoleProps {
   role: string;
 }
@@ -119,7 +120,7 @@ interface RoleCheckBoxProps {
 
 export const RoleCheckBox = (props: RoleCheckBoxProps) => (
   <MainContainer isSelected={props.isSelected}>
-    <label className={checkStyles.checkbox}>
+    <label className={cls(checkStyles.checkbox, checkStyles.reverse)}>
       <input
         onChange={() => props.handleCheckBoxChange(props.name)}
         type="checkbox"
