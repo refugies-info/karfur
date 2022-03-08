@@ -177,10 +177,10 @@ const DispositifValidateModal = (props: Props) => {
               onClick={() => selectTag1(subi)}
               className={
                 !tag1
-                  ? "mr-10 mt-10"
+                  ? "d-inline-block mr-10 mt-10"
                   : tag1.short === subi.short
-                  ? "mr-10 mt-10"
-                  : "mr-10 mt-10 bg-dark-gris"
+                  ? "d-inline-block mr-10 mt-10"
+                  : "d-inline-block mr-10 mt-10 bg-dark-gris"
               }
               color={
                 tag1 && tag1.short === subi.short
@@ -249,6 +249,7 @@ const DispositifValidateModal = (props: Props) => {
                   ? true
                   : false
               }
+              className="d-inline-block"
               withMargins
               smallFont
             >
