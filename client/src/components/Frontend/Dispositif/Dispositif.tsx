@@ -308,7 +308,7 @@ const Dispositif = (props: Props) => {
             };
           })
         );
-        dispatch(setSelectedDispositifActionCreator(emptyDispositif));
+        dispatch(setSelectedDispositifActionCreator(emptyDispositif, true));
         dispatch(setUiArrayActionCreator(generateUiArray(menuContenu, true)));
       } else {
         router.push({ pathname: "/login" });

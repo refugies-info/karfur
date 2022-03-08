@@ -10,6 +10,7 @@ import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
+import { Tag, User } from "types/interface";
 
 const Step = ({ ...props }) => {
   return (
@@ -48,18 +49,18 @@ const StyledSub = (props: SubProps) => {
 interface Props {
   show: boolean;
   toggle: any;
-  tags: any[];
+  tags: Tag[];
   validate: any;
-  categories: any[];
+  categories: Tag[];
   toggleTutorielModal: any;
-  user: any;
+  user: User | null;
   dispositifId: string;
 }
 
 const DispositifValidateModal = (props: Props) => {
-  const [tag1, setTag1] = useState<any>(null);
-  const [tag2, setTag2] = useState<any>(null);
-  const [tag3, setTag3] = useState<any>(null);
+  const [tag1, setTag1] = useState<Tag|null>(null);
+  const [tag2, setTag2] = useState<Tag|null>(null);
+  const [tag3, setTag3] = useState<Tag|null>(null);
   const [noTag, setNoTag] = useState(false);
   const router = useRouter();
 
@@ -69,6 +70,12 @@ const DispositifValidateModal = (props: Props) => {
       if (props.tags[1]) setTag2(props.tags[1]);
       if (props.tags[2]) setTag3(props.tags[2]);
       if (!props.tags[1] && !props.tags[2]) setNoTag(true);
+    }
+    return () => {
+      setTag1(null);
+      setTag2(null);
+      setTag3(null);
+      setNoTag(false);
     }
   }, [props.tags]);
 
@@ -143,7 +150,7 @@ const DispositifValidateModal = (props: Props) => {
   };
 
   const isAdmin = props.user
-    ? props.user.roles.find((element: any) => element.nom === "Admin")
+    ? (props.user?.roles || []).find((element: any) => element.nom === "Admin")
       ? true
       : false
     : false;
