@@ -67,7 +67,7 @@
 .container {
   display: flex;
   flex-direction: row;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
   justify-content: center;
 
   @include media-max("tablet-up") {
@@ -77,7 +77,7 @@
 .column {
   display: flex;
   flex-direction: row;
-  flex-wrap: no-wrap;
+  flex-wrap: nowrap;
 
   @include media-max("tablet-up") {
     flex-wrap: wrap;

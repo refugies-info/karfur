@@ -11,7 +11,6 @@ const NumberTraductionContainer = styled.a`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  width: ${(props: {width: number}) => props.width}px;
   margin-right: 32px;
 `;
 const NumberContainer = styled.div`
@@ -28,16 +27,19 @@ const NumberContainer = styled.div`
 
 interface Props {
   isRTL: boolean
-  width: number
   amount: number
   text: string
+  href?: string
 }
 
-const NumberTraduction = (props: Props) => (
-  <NumberTraductionContainer width={props.width}>
+const NumberTraduction = React.forwardRef((props: Props, ref: any) => (
+  <NumberTraductionContainer ref={ref} href={props.href}>
     <NumberContainer isRTL={props.isRTL}>{props.amount}</NumberContainer>
     {props.text}
   </NumberTraductionContainer>
-);
+));
+
+NumberTraduction.displayName = "NumberTraduction";
+
 
 export default NumberTraduction
