@@ -5,6 +5,7 @@ import { convertFromHTML } from "draft-convert";
 
 interface Props {
   editorState: EditorState
+  onChange: any
 }
 
 const CustomOption = (props: Props) => {
@@ -41,8 +42,9 @@ const CustomOption = (props: Props) => {
     const newContentState = convertFromRaw(newDraftArray);
 
     if (props.editorState) {
-      // onChange(newState);
-      EditorState.push(props.editorState, newContentState, "insert-characters")
+      props.onChange(
+        EditorState.push(props.editorState, newContentState, "insert-characters")
+      )
     }
   };
 
