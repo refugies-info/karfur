@@ -240,7 +240,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
           />
         </LogoWrapper>
         <RightLogoContainer>
-          <FButton className="upload-btn" type="theme" name="upload-outline">
+          <FButton className="position-relative" type="theme" name="upload-outline">
             <Input
               className="file-input"
               type="file"

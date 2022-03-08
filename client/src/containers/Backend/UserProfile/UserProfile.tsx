@@ -394,7 +394,7 @@ export const UserProfile = () => {
           <FButton
             type="dark"
             name="upload-outline"
-            className={styles.upload_btn +"  mb-16"}
+            className="position-relative mb-16"
           >
             <Input
               className="file-input"
