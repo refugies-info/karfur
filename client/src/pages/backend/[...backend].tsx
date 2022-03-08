@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
   Switch,
 } from "react-router-dom";
 import { Spinner } from "reactstrap";
@@ -36,7 +35,8 @@ const Backend = () => {
     }
 
     if (!API.isAuth()) { // Restriction and no auth: NOK
-      return <Redirect to={{ pathname: "/login" }} />;
+      router.push("/login");
+      return false;
     }
 
     // Restriction and role: CHECK
