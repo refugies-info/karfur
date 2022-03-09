@@ -173,7 +173,7 @@ const menuDemarche: DispositifContent[] = [
   },
   {
     title: "Comment faire ?",
-    content: "",
+    content: null,
     type: "",
 
     children: [
@@ -205,7 +205,7 @@ const menuDemarche: DispositifContent[] = [
   },
   {
     title: "Et après ?",
-    content: "",
+    content: null,
     type: "",
 
     children: [
