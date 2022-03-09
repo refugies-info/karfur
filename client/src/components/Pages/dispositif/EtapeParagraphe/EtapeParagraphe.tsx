@@ -31,7 +31,7 @@ import styles from "./EtapeParagraphe.module.scss";
 import { DispositifContent, Tag} from "types/interface";
 import { demarcheSteps, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
-import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import useRTL from "hooks/useRTL";
 
 interface AccordeonProps {
@@ -102,7 +102,7 @@ interface Props {
   updateUIArray: (
     key: number,
     arg: number | null,
-    variante: string,
+    variante: UiElementNodes,
     option?: boolean
   ) => void;
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;

@@ -91,6 +91,7 @@ import { selectedDispositifSelector } from "services/SelectedDispositif/selected
 import { userDetailsSelector } from "services/User/user.selectors";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
+import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 // style
 import styles from "scss/pages/dispositif.module.scss";
 
@@ -411,11 +412,16 @@ const Dispositif = (props: Props) => {
   const updateUIArray = (
     key: number,
     subkey: number | null = null,
-    node = "isHover",
+    node: UiElementNodes = "isHover",
     value = true
   ) => {
     if (!dispositif) return;
     let newUiArray = [...dispositif.uiArray];
+
+    // return if no changes
+    if (subkey === null && newUiArray[key][node] === value) return; // if no subkey
+    if (subkey !== null && (newUiArray[key].children || [])[subkey][node] === value) return; // if subkey
+
     const updateOthers =
       node !== "varianteSelected" && (disableEdit || node !== "accordion");
     newUiArray = newUiArray.map((x, idx) => {
@@ -1100,6 +1106,7 @@ const Dispositif = (props: Props) => {
       dispositifId: dispositif._id,
       //@ts-ignore
       avancement: 1,
+      status: status
     };
 
     if (dispositif._id && dispositif.status !== "Brouillon") {

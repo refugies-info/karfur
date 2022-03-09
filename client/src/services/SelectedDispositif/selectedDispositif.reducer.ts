@@ -3,6 +3,12 @@ import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import _ from "lodash";
 import { DispositifContent, IDispositif } from "../../types/interface";
 
+
+export type UiElementNodes = "isHover"
+  | "accordion"
+  | "cardDropdown"
+  | "addDropdown"
+  | "varianteSelected";
 export interface UiElement {
   isHover: boolean;
   accordion: boolean;

@@ -25,12 +25,12 @@ import { SponsorSection } from "./SponsorSection/SponsorSection";
 import CustomModal from "./CustomModal";
 import ImgModal from "./ImgModal";
 import styles from "./Sponsors.module.scss";
-import { Router, withRouter } from "next/router";
 import { getBaseUrl } from "lib/getBaseUrl";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { Structure, Tag, User, Picture } from "types/interface";
 import { RootState } from "services/rootReducer";
+import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -231,7 +231,12 @@ interface Props {
   toggleFinalValidation: () => void
   toggleTutorielModal: (section: string) => void
   displayTuto: boolean
-  updateUIArray: (key: number, subkey?: number | null, node?: string, value?: boolean) => void
+  updateUIArray: (
+    key: number,
+    subkey?: number | null,
+    node?: UiElementNodes,
+    value?: boolean
+  ) => void
   typeContenu?: "dispositif" | "demarche"
   toggleDispositifValidateModal: () => void
   mainTag: Tag
