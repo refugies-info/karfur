@@ -1106,6 +1106,7 @@ const Dispositif = (props: Props) => {
       dispositifId: dispositif._id,
       //@ts-ignore
       avancement: 1,
+      status: status
     };
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
