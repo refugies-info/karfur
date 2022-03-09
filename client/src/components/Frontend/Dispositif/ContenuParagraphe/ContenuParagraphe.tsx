@@ -23,7 +23,7 @@ import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
 import { DispositifContent, Tag } from "types/interface";
 import { EditorState } from "draft-js";
-import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { useRouter } from "next/router";
 
 interface AccordeonProps {
@@ -91,7 +91,7 @@ interface Props {
   updateUIArray: (
     key: number,
     arg: number|null,
-    variante: string,
+    variante: UiElementNodes,
     option?: boolean
   ) => void;
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;

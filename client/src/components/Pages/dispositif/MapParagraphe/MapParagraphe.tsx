@@ -35,10 +35,10 @@ const MapParagraphe = (props: Props) => {
 
   const { t } = useTranslation();
 
-  const { showMapButton } = props;
   useEffect(() => {
-    showMapButton(false);
-  }, [showMapButton]);
+    props.showMapButton(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onSearchBoxMounted = (ref: any) => (refs.searchBox = ref);
 

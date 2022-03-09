@@ -4,18 +4,18 @@ import { useTranslation } from "next-i18next";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe";
-import { DispositifContent, Tag, UiObject } from "types/interface";
+import { DispositifContent, Tag } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
 import { isMobile } from "react-device-detect";
 import { ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
-import { UiElement } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 interface Props {
   updateUIArray: (
     key: number,
     arg: number|null,
-    variante: string,
+    variante: UiElementNodes,
     option?: boolean
   ) => void;
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;

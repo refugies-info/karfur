@@ -26,6 +26,7 @@ import { CardHeaderContent } from "./components/CardHeaderContent";
 import { isMobile } from "react-device-detect";
 import styles from "./CardParagraphe.module.scss";
 import { cls } from "lib/classname";
+import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 
 // difficult to type
 type Element = any;
@@ -37,7 +38,7 @@ interface Props {
   updateUIArray: (
     key: number,
     arg: number | null,
-    variante: string,
+    variante: UiElementNodes,
     option?: boolean
   ) => void;
   handleMenuChange: (ev: any, value?: any) => any;
