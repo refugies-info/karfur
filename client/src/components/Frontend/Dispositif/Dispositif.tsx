@@ -419,8 +419,10 @@ const Dispositif = (props: Props) => {
     let newUiArray = [...dispositif.uiArray];
 
     // return if no changes
-    if (subkey === null && newUiArray[key][node] === value) return; // if no subkey
-    if (subkey !== null && (newUiArray[key].children || [])[subkey][node] === value) return; // if subkey
+    if (newUiArray[key]) {
+      if (subkey === null && newUiArray[key][node] === value) return; // if no subkey
+      if (subkey !== null && (newUiArray[key].children || [])[subkey][node] === value) return; // if subkey
+    }
 
     const updateOthers =
       node !== "varianteSelected" && (disableEdit || node !== "accordion");
@@ -453,27 +455,29 @@ const Dispositif = (props: Props) => {
     editable: boolean,
     subkey: number | undefined = undefined
   ) => {
-    const newMenu = handleContentClickInComponent(
-      menu,
-      disableEdit,
-      key,
-      editable,
-      subkey
-    );
-    if (newMenu) {
-      let right_node = newMenu[key];
-      if (
-        subkey !== undefined &&
-        (newMenu[key]?.children || []).length > subkey
-      ) {
-        right_node = (newMenu[key]?.children || [])[subkey];
+    setMenu(menu => {
+      const newMenu = handleContentClickInComponent(
+        menu,
+        disableEdit,
+        key,
+        editable,
+        subkey
+      );
+      if (newMenu) {
+        let right_node = newMenu[key];
+        if (
+          subkey !== undefined &&
+          (newMenu[key]?.children || []).length > subkey
+        ) {
+          right_node = (newMenu[key]?.children || [])[subkey];
+        }
+        if (right_node.type === "accordion") {
+          updateUIArray(key, subkey, "accordion", true);
+        }
+        return newMenu;
       }
-      if (right_node.type === "accordion") {
-        updateUIArray(key, subkey, "accordion", true);
-      }
-
-      setMenu(newMenu);
-    }
+      return menu;
+    });
   };
 
   const onEditorStateChange = (
