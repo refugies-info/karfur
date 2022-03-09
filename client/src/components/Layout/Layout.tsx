@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Navbar from "components/Navigation/Navbar/Navbar";
+import { isMobileOnly } from "react-device-detect";
+import { useRouter } from "next/router";
 
 // actions
 import {
@@ -19,15 +20,15 @@ import { showLangModalSelector, allLanguesSelector } from "services/Langue/langu
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
+import Navbar from "components/Navigation/Navbar/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
 import { readAudio, stopAudio } from "lib/readAudio";
 import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { useRouter } from "next/router";
-import useRTL from "hooks/useRTL";
 import { userDetailsSelector } from "services/User/user.selectors";
+import useRTL from "hooks/useRTL";
 
 interface Props {
   children: any
@@ -35,7 +36,8 @@ interface Props {
 }
 
 const Layout = (props: Props) => {
-  const [showMobileModal, setShowMobileModal] = useState(false);
+  const [showMobileModal, setShowMobileModal] = useState<boolean|null>(null);
+  const [languageLoaded, setLanguageLoaded] = useState(false);
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -47,12 +49,45 @@ const Layout = (props: Props) => {
     dispatch(toggleLangueActionCreator(lng));
 
     const { pathname, asPath, query } = router;
-    router.push({ pathname, query }, asPath, { locale: lng });
+    router.replace({ pathname, query }, asPath, { locale: lng }).then(() => {
+      setLanguageLoaded(true);
+    });
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
   };
+
+  const toggleMobileAppModal = () => {
+    setShowMobileModal(!showMobileModal);
+  }
+
+  useEffect(() => {
+    // Language popup
+    const storedLanguei18nCode = localStorage.getItem("languei18nCode");
+    if (storedLanguei18nCode && storedLanguei18nCode !== "fr") {
+      changeLanguage(storedLanguei18nCode);
+    } else if (!storedLanguei18nCode) {
+      dispatch(toggleLangueModalActionCreator());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    // Mobile popup
+    if (languageLoaded
+      && isMobileOnly
+      && !localStorage.getItem("hideMobileAppModal")
+      && !showLangModal
+      && showMobileModal === null
+    ) {
+      localStorage.setItem("hideMobileAppModal", "true");
+      toggleMobileAppModal();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showLangModal, languageLoaded])
+
   // USER
   const user = useSelector(userDetailsSelector);
   const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -132,10 +167,6 @@ const Layout = (props: Props) => {
     }
   };
 
-  const toggleMobileAppModal = () => {
-    setShowMobileModal(!showMobileModal);
-  }
-
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
       <Navbar history={props.history} />
@@ -156,7 +187,7 @@ const Layout = (props: Props) => {
         isLanguagesLoading={isLanguagesLoading}
       />
       <MobileAppModal
-        show={showMobileModal}
+        show={!!showMobileModal}
         toggle={toggleMobileAppModal}
       />
     </div>

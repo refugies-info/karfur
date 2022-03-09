@@ -71,7 +71,6 @@ const LanguageModal = (props: Props) => {
                 <ListGroupItem
                   action
                   key={ln.i18nCode}
-                  disabled={!ln.avancement}
                   onClick={() => {
                     Event("CHANGE_LANGUAGE", ln.i18nCode, "label");
                     props.changeLanguage(ln.i18nCode);
