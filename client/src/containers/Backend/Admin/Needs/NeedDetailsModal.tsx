@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
-import "./NeedDetailsModal.scss";
-import { Need } from "../../../../types/interface";
+import { Need } from "types/interface";
 import styled from "styled-components";
 import { getTagColor } from "./lib";
-import { jsUcfirst } from "../../../../lib/index";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { jsUcfirst } from "lib/index";
+import FInput from "components/UI/FInput/FInput";
+import FButton from "components/UI/FButton/FButton";
 import { useDispatch } from "react-redux";
-import { saveNeedActionCreator } from "../../../../services/Needs/needs.actions";
+import { saveNeedActionCreator } from "services/Needs/needs.actions";
+import styles from "./NeedDetailsModal.module.scss";
+
 interface Props {
   show: boolean;
   toggleModal: () => void;
@@ -76,7 +77,8 @@ export const NeedDetailsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="need-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <div>Erreur</div>
       </Modal>
@@ -87,7 +89,8 @@ export const NeedDetailsModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="need-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <Title>Modifier un besoin existant</Title>
       <SubTitle>Thème actuel (non modifiable)</SubTitle>
@@ -96,6 +99,7 @@ export const NeedDetailsModal = (props: Props) => {
       </StyledTagContainer>
       <SubTitle>Nom du besoin*</SubTitle>
       <FInput
+        id="need-name"
         autoFocus={false}
         value={value}
         onChange={onValueChange}

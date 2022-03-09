@@ -30,7 +30,6 @@ exports[`should render DeleteButton disabled 1`] = `
 <div
   className="c0"
   disabled={true}
-  onClick={[Function]}
 >
   <div
     style={
@@ -41,10 +40,11 @@ exports[`should render DeleteButton disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash"
-        data-eva-fill="#ffffff"
-        data-eva-height="20px"
-        data-eva-width="20px"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "",
+          }
+        }
       />
     </span>
   </div>
@@ -92,10 +92,11 @@ exports[`should render DeleteButton not disabled 1`] = `
   >
     <span>
       <i
-        data-eva="trash"
-        data-eva-fill="#ffffff"
-        data-eva-height="20px"
-        data-eva-width="20px"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+          }
+        }
       />
     </span>
   </div>
@@ -200,10 +201,11 @@ exports[`should render SeeButton 1`] = `
     >
       <span>
         <i
-          data-eva="eye"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+            }
+          }
         />
       </span>
     </div>
@@ -494,6 +496,7 @@ exports[`should render StyledStatus Accepté structure  1`] = `
 <div
   className="c0"
   color="#FF9800"
+  disabled={false}
 >
   Accepté
 </div>
@@ -518,6 +521,7 @@ exports[`should render StyledStatus Brouillon  1`] = `
 <div
   className="c0"
   color="#FFEB3B"
+  disabled={false}
 >
   Brouillon
 </div>
@@ -542,6 +546,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
 <div
   className="c0"
   color="#8BC34A"
+  disabled={false}
 >
   À valider
 </div>
@@ -566,6 +571,7 @@ exports[`should render StyledStatus En attente non prioritaire  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Sans structure
 </div>
@@ -590,6 +596,7 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Rejeté
 </div>
@@ -614,6 +621,7 @@ exports[`should render StyledStatus Supprimé  1`] = `
 <div
   className="c0"
   color="#F44336"
+  disabled={false}
 >
   Supprimé
 </div>
@@ -638,6 +646,7 @@ exports[`should render StyledStatus actif  1`] = `
 <div
   className="c0"
   color="#4CAF50"
+  disabled={false}
 >
   Publié
 </div>
@@ -662,6 +671,7 @@ exports[`should render StyledStatus en attente  1`] = `
 <div
   className="c0"
   color="#FF9800"
+  disabled={false}
 >
   En attente
 </div>
@@ -686,6 +696,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
 <div
   className="c0"
   color="#0421b1"
+  disabled={false}
 >
   Nouveau !
 </div>
@@ -710,6 +721,7 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
 <div
   className="c0"
   color="color"
+  disabled={false}
 >
   test
 </div>
@@ -734,6 +746,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
 <div
   className="c0"
   color="#828282"
+  disabled={false}
 >
   test
 </div>
@@ -754,15 +767,16 @@ exports[`should render TabHeader down 1`] = `
 
 <div
   className="c0"
-  order="true"
+  order={true}
 >
   test
   <span>
     <i
-      data-eva="chevron-down"
-      data-eva-fill="#212121"
-      data-eva-height="20px"
-      data-eva-width="20px"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+        }
+      }
     />
   </span>
 </div>
@@ -782,7 +796,7 @@ exports[`should render TabHeader no order 1`] = `
 
 <div
   className="c0"
-  order={null}
+  order={false}
 >
   test
 </div>
@@ -803,15 +817,16 @@ exports[`should render TabHeader up 1`] = `
 
 <div
   className="c0"
-  order="true"
+  order={true}
 >
   test
   <span>
     <i
-      data-eva="chevron-up"
-      data-eva-fill="#212121"
-      data-eva-height="20px"
-      data-eva-width="20px"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "",
+        }
+      }
     />
   </span>
 </div>
@@ -1005,10 +1020,11 @@ exports[`should render ValidateButton disabled 1`] = `
   >
     <span>
       <i
-        data-eva="checkmark-outline"
-        data-eva-fill="#ffffff"
-        data-eva-height="20px"
-        data-eva-width="20px"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "",
+          }
+        }
       />
     </span>
   </div>
@@ -1056,10 +1072,11 @@ exports[`should render ValidateButton not disabled 1`] = `
   >
     <span>
       <i
-        data-eva="checkmark-outline"
-        data-eva-fill="#ffffff"
-        data-eva-height="20px"
-        data-eva-width="20px"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+          }
+        }
       />
     </span>
   </div>

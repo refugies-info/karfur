@@ -1,0 +1,245 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.advanced-search {
+  background: $gray40;
+  flex: 1 1;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: -75px;
+
+  .search-bar {
+    background: $white;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+    margin-left: 68px;
+    margin-right: 68px;
+    padding: 16px;
+    display: flex;
+    border-radius: 12px 12px 12px 12px;
+    margin-top: 24px;
+    flex-wrap: nowrap;
+    z-index: 3;
+
+    @include media-max("sm-limit") {
+      font-size: 12px;
+    }
+  }
+  .search-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .mt-250 {
+    padding-top: 225px;
+    transition: top 0.6s;
+  }
+  .mt-250-hidden {
+    transition: top 0.6s;
+    padding-top: 150px !important;
+  }
+  .close-arrow {
+    cursor: pointer;
+  }
+  .responsive-footer {
+    z-index: 2;
+    position: absolute;
+    bottom: -45px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+  }
+  .options-dropdown {
+    background: $gray70;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    .btn > span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &.active {
+      background: $gray90;
+    }
+  }
+
+  .side-col {
+    display: flex;
+    justify-content: center;
+
+    .right-side {
+      font-size: $text-large;
+      max-width: 100%;
+    }
+
+    .side-options {
+      color: $gray70;
+      font-size: $text-large;
+      line-height: 26px;
+      cursor: pointer;
+      .side-option {
+        &.right {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        &:hover {
+          color: $gray90;
+        }
+        &.active {
+          color: $gray90;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .side-option.dropdown-item.active {
+    color: $gray90;
+    font-weight: bold;
+    background-color: transparent;
+  }
+  .results-wrapper {
+    .row {
+      margin: 0 -10px;
+    }
+    .card-col {
+      padding: 0 10px;
+    }
+  }
+
+  .bookmark-icon {
+    position: absolute;
+    opacity: 0;
+    top: -8px;
+    right: 5px;
+    &:active {
+    }
+    &:hover {
+    }
+    &:focus {
+      svg {
+        fill: $gray90;
+      }
+    }
+  }
+
+  .pinned {
+    opacity: 1;
+  }
+
+  p {
+    margin-bottom: 0;
+    line-height: 20px;
+  }
+
+  .card {
+    border-radius: $radius;
+    height: 250px;
+    cursor: pointer;
+    &:hover {
+      .bookmark-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  .card-col {
+    .card {
+      //border: none;
+      border-radius: $radius;
+      width: 252px;
+      height: 252px;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: auto;
+      padding: 16px;
+      //overflow: scroll;
+    }
+  }
+
+  .card-col,
+  .no-result-card,
+  .create-card {
+    .card-body {
+      -ms-overflow-style: none;
+      scrollbar-width: 0;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px; /* remove scrollbar space */
+      background: transparent; /* optional: just make scrollbar invisible */
+    }
+  }
+  .no-result {
+    .no-result-card {
+      cursor: pointer;
+      border-radius: $radius;
+      font-size: $text-normal;
+      line-height: 21px;
+      height: 250px;
+      scrollbar-width: 0;
+      border: none;
+      background: $white;
+
+      @include media-max("desktop-up") {
+        font-size: 12px;
+      }
+      color: $gray90;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px; /* remove scrollbar space */
+      background: transparent; /* optional: just make scrollbar invisible */
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: 0;
+      padding: 16px;
+    }
+  }
+}
+.grid-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  //width: 100%;
+  padding-left: 24px;
+}
+.grid-list {
+  grid-template-columns: repeat(5, minmax(260px, 300px));
+}
+
+.language-filter-button {
+  cursor: pointer;
+  background-color: $gray20;
+  padding: 8px;
+  margin: 0px 8px 0px 0px;
+  border-radius: 8px;
+  color: black;
+  &:hover > span {
+    background-color: $gray90;
+    color: white !important;
+  }
+  &:hover {
+    background-color: $gray90;
+    color: white !important;
+  }
+}
+
+.bs-tooltip-auto[x-placement^="bottom"] span.arrow::before,
+.bs-tooltip-bottom .arrow::before {
+  border-bottom-color: white !important;
+}

@@ -23,17 +23,18 @@ const convertCsvToJson = async (language) => {
   });
 
   const stringify = JSON.stringify(finalJson);
-  fs.writeFileSync("../" + language + "/translation.json", stringify);
+  fs.writeFileSync("../" + language + "/common.json", stringify);
 };
 
 const main = async () => {
-  // langues : en, ar, fa, ps, ru, ti-ER
+  // langues : en, ar, fa, ps, ru, ti-ER, uk
   await convertCsvToJson("ar");
   await convertCsvToJson("ru");
   await convertCsvToJson("en");
   await convertCsvToJson("ti-ER");
   await convertCsvToJson("ps");
   await convertCsvToJson("fa");
+  await convertCsvToJson("uk");
 };
 
 main();

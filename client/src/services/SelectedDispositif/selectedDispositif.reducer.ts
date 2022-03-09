@@ -1,10 +1,15 @@
 import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
-import { updateObject } from "../utility";
 import _ from "lodash";
 import { DispositifContent, IDispositif } from "../../types/interface";
 
-interface UiElement {
+
+export type UiElementNodes = "isHover"
+  | "accordion"
+  | "cardDropdown"
+  | "addDropdown"
+  | "varianteSelected";
+export interface UiElement {
   isHover: boolean;
   accordion: boolean;
   cardDropdown: boolean;
@@ -30,26 +35,29 @@ export const selectedDispositifReducer = createReducer<
   SelectedDispositifState | null,
   SelectedDispositifActions
 >(initialSelectedDispositifState, {
-  SET_SELECTED_DISPOSITIF: (state, action) =>
-    updateObject(state, {
-      ...action.payload,
+  SET_SELECTED_DISPOSITIF: (state, action) => {
+    return {
+      ...(action.payload.reset ? {} : state),
+      ...action.payload.value,
       // @ts-ignore
-      uiArray: _.get(action.payload, "contenu", []).map(
+      uiArray: _.get(action.payload.value, "contenu", []).map(
         (x: DispositifContent) => {
           return {
             ...uiElement,
             ...(x.children && {
               children: new Array(x.children.length).fill({
                 ...uiElement,
-                accordion: action.payload.status === "Accepté structure",
+                accordion: action.payload.value.status === "Accepté structure",
               }),
             }),
           };
         }
       ),
-    }),
+    }
+  },
+  // @ts-ignore
   UPDATE_UI_ARRAY: (state, action) =>
-    updateObject(state, {
+    ({...state,
       uiArray:
         state &&
         state.uiArray &&
@@ -79,11 +87,15 @@ export const selectedDispositifReducer = createReducer<
             }),
           };
         }),
-    }),
+  }),
+  //@ts-ignore
+  SET_UI_ARRAY: (state, action) => ({...state, uiArray: action.payload }),
+  //@ts-ignore
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
-    updateObject(state, { ...action.payload }),
+    ({ ...state, ...action.payload }),
+  //@ts-ignore
   DELETE_TAG: (state, action) =>
-    updateObject(state, {
+    ({...state,
       tags: state ? state.tags.filter((_, i) => i !== action.payload) : [],
     }),
 });

@@ -71,7 +71,7 @@ export const validateTranslations = async (
       );
 
       try {
-        addOrUpdateDispositifInContenusAirtable(
+        await addOrUpdateDispositifInContenusAirtable(
           "",
           "",
           insertedDispositif.id,
@@ -91,7 +91,7 @@ export const validateTranslations = async (
 
       try {
         logger.info("[validateTranslations] updating avancement");
-        updateLanguagesAvancement();
+        await updateLanguagesAvancement();
       } catch (error) {
         logger.error("[validateTranslations] error while updating avancement", {
           error,

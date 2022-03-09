@@ -5,13 +5,14 @@ import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
-import { push } from "connected-react-router";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
+import mockRouter from "next-router-mock";
+jest.mock("next/router",  () => require("next-router-mock"));
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -80,12 +81,7 @@ describe("[Saga] User", () => {
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
-        .put(
-          push({
-            pathname: "/backend/user-translation",
-            state: { user: testUser },
-          })
-        )
+        .call(mockRouter.push, "/backend/user-translation")
         .next()
         .isDone();
     });

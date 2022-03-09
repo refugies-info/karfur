@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
-import "./NeedDetailsModal.scss";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import { filtres } from "../../../Dispositif/data";
+import FButton from "components/UI/FButton/FButton";
+import FInput from "components/UI/FInput/FInput";
 import { TagButton } from "./TagButton";
 import { useDispatch } from "react-redux";
-import { createNeedActionCreator } from "../../../../services/Needs/needs.actions";
+import { createNeedActionCreator } from "services/Needs/needs.actions";
+import { tags } from "data/tags";
+import styles from "./NeedDetailsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -69,12 +69,13 @@ export const AddNeedModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="need-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <Title>Ajouter un nouveau besoin</Title>
       <SubTitle>Choix du thème*</SubTitle>
       <TagsContainer>
-        {filtres.tags.map((tag) => (
+        {tags.map((tag) => (
           <TagButton
             key={tag.short}
             name={tag.short}
@@ -88,6 +89,7 @@ export const AddNeedModal = (props: Props) => {
 
       <SubTitle>Nom du besoin*</SubTitle>
       <FInput
+        id="need-name"
         autoFocus={false}
         value={value}
         onChange={onValueChange}

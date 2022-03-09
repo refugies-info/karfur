@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/responsive";
+
+.btn {
+  background-color: white;
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  display: flex;
+  flex-direction: row;
+  border-radius: $radius;
+  height: 68px;
+  width: 100%;
+  padding: 24px;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  margin-top: 10px;
+  align-items: center;
+}

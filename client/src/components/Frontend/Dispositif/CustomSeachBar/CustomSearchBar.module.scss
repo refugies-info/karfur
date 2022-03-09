@@ -1,0 +1,49 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border: 0.5px solid $white;
+  border-radius: $radius;
+  padding-right: 12px;
+  padding-left: 15px;
+  margin-right: 10px;
+  font-size: $text-normal;
+  font-weight: normal;
+  width: 18%;
+  min-width: 180px;
+  height: 52px;
+  color: #000000;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+  }
+  &:focus {
+    outline: none !important;
+  }
+  @include media-min("widescreen-up") {
+    width: 240px
+  }
+  &.no_margin {
+    margin-right: 0;
+  }
+}
+
+.input {
+  background: $white;
+  border: 0.5px solid $white;
+  border-radius: $radius;
+  margin-right: 10px;
+  font-size: $text-normal;
+  font-weight: normal;
+  width: 100%;
+  color: #000000;
+
+  &:focus {
+    outline: none !important;
+  }
+}

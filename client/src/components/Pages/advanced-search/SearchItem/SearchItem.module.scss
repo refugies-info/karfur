@@ -1,0 +1,77 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+$placeholderColor: $gray10;
+
+.search_col {
+  padding-right: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .title {
+    font-size: $text-large;
+    font-weight: bold;
+    white-space: nowrap;
+
+    @include media-min("big-desktop") {
+      font-size: 22px;
+    }
+  }
+
+  .dropdown {
+    // display: flex;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+    background: $gray10;
+    border-radius: $radius;
+    padding: 10px;
+    z-index: 3;
+    flex-direction: row;
+  }
+
+  .options {
+    margin-top: -10px;
+    flex-direction: row;
+    display: flex;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+
+    &.tags {
+      flex-wrap: wrap;
+      min-width: 700px;
+    }
+  }
+
+  .search_autocomplete {
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    &::-webkit-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &:-moz-placeholder {
+      color: $placeholderColor;
+      opacity: 1;
+      text-align: center;
+    }
+    &::-moz-placeholder {
+      color: $placeholderColor;
+      opacity: 1;
+      text-align: center;
+    }
+    &:-ms-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &::-ms-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &::placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+  }
+}

@@ -1,20 +1,26 @@
 // @ts-nocheck
-import { UserFavoritesComponent } from "../UserFavorites.component";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
+import UserFavorites from "../UserFavorites";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
   updateUserFavoritesActionCreator,
   fetchUserFavoritesActionCreator,
-} from "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
-import i18n from "../../../../i18n";
+} from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { act } from "react-test-renderer";
+import routerMock from "next/router";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
+
 import "jest-styled-components";
 
 jest.mock(
-  "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
+  "services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
   () => {
     const actions = jest.requireActual(
-      "../../../../services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
+      "services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
     );
 
     return {
@@ -28,11 +34,6 @@ jest.mock(
   }
 );
 
-jest.mock("../../../../i18n", () => ({
-  __esModule: true, // this property makes it work
-  default: { language: "fr" },
-}));
-
 describe("UserFavorites", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -42,7 +43,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
@@ -60,7 +61,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
       });
     });
@@ -131,7 +132,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -145,7 +146,7 @@ describe("UserFavorites", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -162,13 +163,13 @@ describe("UserFavorites", () => {
   });
 
   it("should dispatch updateUserFavoritesActionCreator when click on Tout supprimer and language is en", () => {
-    i18n.language = "en";
+    routerMock.locale = "en";
     window.scrollTo = jest.fn();
 
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });
@@ -185,14 +186,14 @@ describe("UserFavorites", () => {
     });
   });
 
-  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is en", () => {
-    i18n.language = "ps";
+  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is ps", () => {
+    routerMock.locale = "ps";
     window.scrollTo = jest.fn();
 
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserFavoritesComponent,
+        Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
         reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
       });

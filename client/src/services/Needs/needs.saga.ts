@@ -28,8 +28,9 @@ export function* fetchNeeds(): SagaIterator {
 
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
   } catch (error) {
+    const { message } = error as Error;
     logger.error("Error while fetching needs ", {
-      error: error.message,
+      error: message,
     });
     yield put(setNeedsActionCreator([]));
   }
@@ -46,8 +47,9 @@ export function* saveNeed(
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {
+    const { message } = error as Error;
     logger.error("Error while saving need ", {
-      error: error.message,
+      error: message,
       need: action.payload,
     });
     yield put(setNeedsActionCreator([]));
@@ -65,8 +67,9 @@ export function* createNeed(
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {
+    const { message } = error as Error;
     logger.error("Error while creating need ", {
-      error: error.message,
+      error: message,
       need: action.payload,
     });
     yield put(setNeedsActionCreator([]));

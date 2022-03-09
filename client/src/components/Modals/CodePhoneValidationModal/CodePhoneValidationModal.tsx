@@ -2,11 +2,11 @@ import React from "react";
 import { ModalBody } from "reactstrap";
 import styled from "styled-components";
 
-import FButton from "../../FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import Modal from "../Modal";
 
 import { colors } from "colors";
-import FInput from "components/FigmaUI/FInput/FInput";
+import FInput from "components/UI/FInput/FInput";
 
 const Title = styled.h2`
   margin-top: 20px;
@@ -34,7 +34,7 @@ interface Props {
   code: string
   phone: string
   isLoading: boolean
-  error: string|undefined
+  error: string|undefined|null
   onChange: any
   onValidate: any
   toggle: any
@@ -58,7 +58,7 @@ export const CodePhoneValidationModal = (props: Props) => {
           prependName="lock-outline"
           id="code"
           type="number"
-          error={props.error}
+          error={!!props.error}
           placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
           newSize
           disabled={props.isLoading}

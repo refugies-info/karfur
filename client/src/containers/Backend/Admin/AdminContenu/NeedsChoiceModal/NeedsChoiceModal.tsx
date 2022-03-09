@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Spinner, Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import FButton from "components/UI/FButton/FButton";
 import { ObjectId } from "mongodb";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
-import "./NeedsChoiceModal.scss";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { TagButton } from "../../Needs/TagButton";
 import { getTagColor, getTag } from "../../Needs/lib";
-import { jsUcfirst, removeAccents } from "../../../../../lib";
-import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import { needsSelector } from "../../../../../services/Needs/needs.selectors";
+import { jsUcfirst, removeAccents } from "lib";
+import FInput from "components/UI/FInput/FInput";
+import { needsSelector } from "services/Needs/needs.selectors";
 import { DeleteButton } from "../../sharedComponents/SubComponents";
-import { colors } from "../../../../../colors";
-import API from "../../../../../utils/API";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { colors } from "colors";
+import API from "utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import styles from "./NeedsChoiceModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -80,7 +80,7 @@ const SubTitle = styled.div`
 const PossibleNeedsContainer = styled.div`
   max-height: 350px;
   overflow-y: auto;
-  background-color: ${colors.grey};
+  background-color: ${colors.gray60};
   margin-top: -10px;
   border-radius: 12px;
 `;
@@ -170,7 +170,12 @@ export const NeedsChoiceModal = (props: Props) => {
     : [];
   if (isLoading) {
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className="needs-modal">
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
         <Spinner />
       </Modal>
     );
@@ -178,17 +183,23 @@ export const NeedsChoiceModal = (props: Props) => {
 
   if (!dispositif) {
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className="needs-modal">
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
         <div>Erreur</div>
       </Modal>
     );
   }
   return (
     <Modal
-      className="needs-modal"
-      isOpen={props.show}
-      size="lg"
-      toggle={props.toggle}
+    isOpen={props.show}
+    size="lg"
+    toggle={props.toggle}
+    className={styles.modal}
+    contentClassName={styles.modal_content}
     >
       <Content>
         <div>
@@ -218,6 +229,7 @@ export const NeedsChoiceModal = (props: Props) => {
 
           <SubTitle>Ajouter un besoin</SubTitle>
           <FInput
+            id="need-input"
             autoFocus={false}
             value={value}
             onChange={onValueChange}

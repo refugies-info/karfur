@@ -1,31 +1,17 @@
 import React from "react";
-import styled from "styled-components";
-import Streamline from "../../../../assets/streamline";
+import Streamline from "assets/streamline";
+import { iconName } from "types/interface";
+import styles from "./TagButton.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   name: string;
-  icon?: string;
+  icon?: iconName;
   isSelected: boolean;
   color: string;
   onClick?: () => void;
 }
 
-const TagContainer = styled.div`
-  border-radius: 8px;
-  padding: 10px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  background-color: ${(props) => props.color};
-  width: fit-content;
-  margin: 4px;
-  cursor: ${(props) => (props.isClickable ? "pointer" : "default")};
-  opacity: ${(props) => (props.isSelected ? 1 : 0.5)};
-  align-items: center;
-`;
 export const TagButton = (props: Props) => {
   const onTagClick = () => {
     if (props.onClick) {
@@ -34,21 +20,17 @@ export const TagButton = (props: Props) => {
     return;
   };
   return (
-    <TagContainer
-      color={props.color}
+    <button
       onClick={onTagClick}
-      isSelected={props.isSelected}
-      isClickable={!!props.onClick}
+      className={cls(
+        styles.btn,
+        !!props.isSelected && styles.selected,
+        !!props.onClick && styles.clickable
+      )}
+      style={{ backgroundColor: props.color }}
     >
       {props.icon ? (
-        <div
-          style={{
-            display: "flex",
-            marginRight: 10,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <div className={styles.inner}>
           <Streamline
             name={props.icon}
             stroke={"white"}
@@ -58,6 +40,6 @@ export const TagButton = (props: Props) => {
         </div>
       ) : null}
       <div>{props.name}</div>
-    </TagContainer>
+    </button>
   );
 };

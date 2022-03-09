@@ -1,0 +1,13 @@
+@import "src/scss/colors";
+
+.modal {
+  .modal_content {
+    box-shadow: 0 0 40px #3c3434;
+    box-sizing: border-box;
+    border-radius: 8px;
+    background: #fbfbfb;
+    color: #3d3d3d;
+    border: none;
+    padding: 50px 0 50px 0;
+  }
+}

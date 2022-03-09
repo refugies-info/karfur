@@ -49,7 +49,7 @@ export const LoadingAdminContenu = () => {
                     <EVAIcon
                       // @ts-ignore
                       name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={colors.noir}
+                      fill={colors.gray90}
                       className="sort-btn"
                     />
                   )}
@@ -60,7 +60,7 @@ export const LoadingAdminContenu = () => {
           <tbody>
             {arrayLines.map((_, key) => {
               return (
-                <tr key={key} className={"bg-blancSimple"}>
+                <tr key={key} className={"bg-white"}>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={50} count={1} />

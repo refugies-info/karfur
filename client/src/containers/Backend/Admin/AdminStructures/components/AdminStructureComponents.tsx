@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Responsable } from "types/interface";
 import React from "react";
+import Image from "next/image";
 import marioProfile from "assets/mario-profile.jpg";
-import "./AdminStructureComponents.scss";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
+import styles from "./AdminStructureComponents.module.scss";
 
 export const RowContainer = styled.div`
   display: flex;
@@ -37,7 +38,14 @@ export const ResponsableComponent = (props: Props) => {
     return (
       <RowContainer style={{ marginBottom: "8px" }}>
         {props.responsable && (
-          <img className="respo-img mr-8" src={responsableSecureUrl} />
+          <Image
+            className={styles.respo_img + " mr-8"}
+            src={responsableSecureUrl}
+            alt=""
+            width={70}
+            height={40}
+            objectFit="contain"
+          />
         )}
         {props.responsable ? (
           <div
@@ -76,7 +84,14 @@ export const ResponsableComponent = (props: Props) => {
   return (
     <RowContainer>
       {props.responsable && (
-        <img className="respo-img mr-8" src={responsableSecureUrl} />
+        <Image
+          className={styles.respo_img + " mr-8"}
+          src={responsableSecureUrl}
+          alt=""
+          width={70}
+          height={40}
+          objectFit="contain"
+        />
       )}
       {props.responsable ? props.responsable.username : "Aucun responsable"}
     </RowContainer>

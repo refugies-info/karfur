@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { UserStructureLoading } from "./components/UserStructureLoading";
 import { UserStructureDetails } from "./components/UserStructureDetails";
-import { colors } from "../../../colors";
-import { userSelector } from "../../../services/User/user.selectors";
+import { colors } from "colors";
+import { userSelector } from "services/User/user.selectors";
 import { ObjectId } from "mongodb";
-import API from "../../../utils/API";
-import { UserStructure } from "../../../types/interface";
+import API from "utils/API";
+import { UserStructure } from "types/interface";
 import Swal from "sweetalert2";
 
 declare const window: Window;
 
-interface Props {
+export interface Props {
   location: any;
 }
 
@@ -23,8 +23,10 @@ export const UserStructureAdminComponent = (props: Props) => {
   const toggleReload = () => setReload(!reload);
   const user = useSelector(userSelector);
 
-  const structureId = props.location.state.structure;
   useEffect(() => {
+    const searchParams = (new URL(document.location.href)).searchParams;
+    const structureId = searchParams.get("id");
+
     const loadStructure = async () => {
       if (structureId) {
         setIsLoading(true);
@@ -33,6 +35,7 @@ export const UserStructureAdminComponent = (props: Props) => {
         setIsLoading(false);
       }
     };
+
     loadStructure();
     window.scrollTo(0, 0);
   }, [reload]);

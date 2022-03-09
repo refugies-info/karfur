@@ -1,0 +1,74 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  width: 300px;
+  overflow: scroll;
+  padding: 32px;
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    padding-top: 71px;
+
+    h2 {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: 51px;
+      margin-right: 8px;
+    }
+  }
+
+  .dispositifs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(../../../../assets/no_results.svg);
+    width: 223px;
+    height: 158px;
+    margin-top: 24px;
+  }
+
+  .figure {
+    background: $white;
+    box-shadow: 0 4px 8px rgba(33, 33, 33, 0.25);
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: $text-normal;
+    line-height: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 4px;
+    color: $gray90;
+
+    &.red {
+      color: #F44336;
+    }
+  }
+
+  .card {
+    width: 248px;
+    height: 248px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 24px;
+    margin-left: 24px;
+    z-index: 0;
+  }
+
+  .empty_text {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+    color: $gray70;
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+}

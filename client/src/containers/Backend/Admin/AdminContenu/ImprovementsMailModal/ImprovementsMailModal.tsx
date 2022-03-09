@@ -1,24 +1,25 @@
 import { ObjectId } from "mongodb";
 import React, { useState } from "react";
 import { Modal, Spinner } from "reactstrap";
-import "./ImprovementsMailModal.scss";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import Image from "next/image";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { correspondingStatus } from "../data";
-import { activeUsersSelector } from "../../../../../services/AllUsers/allUsers.selector";
-import { allStructuresSelector } from "../../../../../services/AllStructures/allStructures.selector";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { getUsersToSendMail } from "./functions";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
-import { SimplifiedCreator } from "../../../../../types/interface";
-import marioProfile from "../../../../../assets/mario-profile.jpg";
-import { colors } from "../../../../../colors";
+import { SimplifiedCreator } from "types/interface";
+import marioProfile from "assets/mario-profile.jpg";
+import { colors } from "colors";
 import { Category } from "./Components";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
-import API from "../../../../../utils/API";
+import FButton from "components/UI/FButton/FButton";
+import API from "utils/API";
 import Swal from "sweetalert2";
+import styles from "./ImprovementsMailModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -65,7 +66,7 @@ const EmailText = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.hasEmail ? colors.darkColor : colors.error)};
+  color: ${(props: {hasEmail: boolean}) => (props.hasEmail ? colors.gray90 : colors.error)};
   margin-left: 5px;
 `;
 
@@ -128,7 +129,8 @@ export const ImprovementsMailModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="improvements-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -140,7 +142,8 @@ export const ImprovementsMailModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="improvements-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         <Header>Erreur</Header>
@@ -148,7 +151,7 @@ export const ImprovementsMailModal = (props: Props) => {
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+  // eslint-disable-next-line
   const usersToDisplay = getUsersToSendMail(
     dispositif.status,
     dispositif.creatorId,
@@ -239,7 +242,8 @@ export const ImprovementsMailModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="improvements-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="lg"
     >
       <Header>Demande d'informations complémentaires pour la fiche :</Header>
@@ -261,12 +265,19 @@ export const ImprovementsMailModal = (props: Props) => {
         <Title>Créateur de la fiche</Title>
       )}
 
-      {usersToDisplay.map((user) => {
+      {usersToDisplay.map((user, index) => {
         const hasEmail = !!user.email;
         const email = user.email || "pas d'email renseigné";
         return (
-          <UserContainer key={user._id}>
-            <img className="user-img" src={getUserImage(user)} />
+          <UserContainer key={index}>
+            <Image
+              className={styles.user_img}
+              src={getUserImage(user)}
+              alt=""
+              width={70}
+              height={40}
+              objectFit="contain"
+            />
             {user.username + " - "}
             <EmailText hasEmail={hasEmail}>{email}</EmailText>
           </UserContainer>

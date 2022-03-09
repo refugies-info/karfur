@@ -1,0 +1,1317 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.card_col {
+  padding: 0 5px 0 5px;
+  margin-top: 40px;
+
+  &:last-child {
+    @include media-max("tablet-up") {
+      padding: 0 10px 0 5px;
+    }
+  }
+
+  &:first-child {
+    @include media-max("tablet-up") {
+      padding: 0 5px 0 10px;
+    }
+  }
+
+  .card {
+    margin-top: -40px;
+    min-height: 230px;
+    border-radius: $radius;
+    border: none;
+    height: 300px;
+    background-color: $gray50;
+
+    @include media-max("tablet-up") {
+      height: 290px;
+      width: 250px;
+    }
+
+    &.Public-visé-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Public-visé-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
+    &.Âge-requis-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Durée-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Durée-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_francais.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_formationpro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_sante.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_rencontres.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_mobilite.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_insertionpro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_benevolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_francais.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_formationpro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_sante.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_rencontres.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_mobilite.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_insertionpro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_benelovat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_loisirs.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Acte-de-naissance-OFPRA-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
+    &.Niveau-de-français-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Combien-ça-coûte-noImage-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Français-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Formation-pro-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Santé-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Rencontre-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Administratif-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Logement-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Mobilité-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Insertion-pro-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Études-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Bénévolat-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Loisir-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Culture-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-noImage-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Français-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Formation-pro-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Santé-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Rencontre-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Administratif-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Logement-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Mobilité-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Insertion-pro-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Études-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Bénévolat-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Loisir-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Culture-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Justificatif-demandé-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
+    &.Zone-d-action-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Zone-d-action-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
+    &.Important-Français {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Français.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 50px) 170px, center;
+    }
+
+    &.Important-noImage {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Formation-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Formation-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Santé {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Santé.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Rencontre {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Rencontre.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Administratif {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Administratif.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Logement {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Logement.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Mobilité {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Mobilité.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Insertion-pro {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Insertion-pro.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Études {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Etudes.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Bénévolat {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Bénévolat.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+  }
+
+  .card_title {
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    line-height: 38px;
+  }
+
+  .card_header {
+    display: inline-flex;
+    align-items: center;
+    background-color: $gray90;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    color: $white;
+    padding: 10px 15px;
+
+    :global(.form-control) {
+      background-color: inherit;
+    }
+    :global(.btn-group) {
+      width: 100%;
+    }
+    :global(.dropdown-menu.show) {
+      border-radius: 0;
+    }
+  }
+  .card_body {
+    padding-bottom: 12px;
+    line-height: 20px;
+    color: $gray90;
+
+    :global(.dropdown-menu.show) {
+      border-radius: 0;
+    }
+
+    .card_title {
+      color: inherit;
+    }
+
+    .content_title {
+      :global(.dropdown-toggle.btn),
+      :global(.btn){
+        color: inherit;
+        background-color: inherit;
+        border-color: inherit;
+        font-weight: inherit;
+        font-size: inherit;
+        border: none;
+        padding: 0;
+        white-space: normal;
+      }
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  .card_footer {
+    background: transparent;
+    border-radius: 0 0 12px 12px;
+    border: none;
+
+    .btn {
+      border-radius: $radius;
+      font-size: $text-normal;
+      font-weight: bold;
+    }
+    .footer-content {
+      margin-left: 8px;
+    }
+    .footer-input {
+      font-style: italic;
+      font-size: $text-normal;
+      opacity: 0.6;
+      color: $white;
+      background: transparent;
+    }
+  }
+  .card_icons {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    cursor: pointer;
+    z-index: 2;
+    svg {
+      fill: $error;
+    }
+    &:hover {
+      svg {
+        fill: $gray90;
+      }
+    }
+  }
+  &:hover .card-icons {
+    display: inherit;
+  }
+}
+.age_input {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0;
+  border: none;
+  text-align: center;
+  margin: 0;
+  width: 40px;
+  color: $gray90;
+  height: 40px;
+  background-color: $lightYellow;
+  &:active,
+  &:focus {
+    background-color: $gray20;
+  }
+}
+
+:global(.tooltip){
+  .show {
+    opacity: 1 !important;
+    .tooltip-inner {
+      background: $gray90;
+      opacity: 1;
+      padding: 20px;
+      text-align: left;
+      max-width: 260px;
+
+      .arrow {
+        border-top-color: $gray90;
+      }
+    }
+  }
+}
+
+.bs-tooltip-bottom .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
+  border-bottom-color: $gray90;
+}
