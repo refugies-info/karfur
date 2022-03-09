@@ -1,0 +1,53 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  min-width: 600px;
+  background: $gray20;
+  border: hidden;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  border-radius: $radius;
+  color: $gray90;
+  padding: 40px;
+
+  .title {
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  .input_container {
+    width: 520px;
+  }
+
+  .explaination {
+    width: 520px;
+    background-color: $focus;
+    border-radius: $radius;
+    padding: 16px;
+    color: white;
+    font-size: $text-normal;
+    margin-top: 8px;
+
+    .title_container {
+      font-weight: bold;
+    }
+  }
+
+  .btn_container {
+    display: flex;
+    margin-top: 16px;
+    justify-content: flex-end;
+  }
+
+  .error {
+    color: $error;
+    font-size: $text-normal;
+    line-height: 20px;
+    margin-top: 16px;
+  }
+
+  .modal_content {
+    background: $gray20;
+    border: hidden;
+  }
+}

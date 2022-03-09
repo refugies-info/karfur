@@ -7,10 +7,12 @@ import {
   SimplifiedDispositif,
 } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./StructureDetailsModal.scss";
-import FInput from "components/FigmaUI/FInput/FInput";
-import moment from "moment/min/moment-with-locales";
-import FButton from "components/FigmaUI/FButton/FButton";
+import Image from "next/image";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import FInput from "components/UI/FInput/FInput";
+import moment from "moment";
+import "moment/locale/fr";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";
@@ -19,19 +21,20 @@ import {
   RowContainer,
 } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
-import { allDispositifsSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
-import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { colors } from "colors";
+import styles from "./StructureDetailsModal.module.scss";
+
 moment.locale("fr");
 
 const Title = styled.div`
@@ -72,19 +75,19 @@ const ColumnContainer = styled.div`
 
 const FichesColumnContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 16px;
   padding-bottom: 8px;
 `;
 const TitleFichesContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 18px;
   text-decoration: underline;
   padding-bottom: 5px;
   max-width: 450px;
   cursor: pointer;
-  color: ${(props) => props.color};
+  color: ${(props: {color: string}) => props.color};
 `;
 const TextInfoFichesContainer = styled.div`
   padding-left: 32px;
@@ -93,8 +96,8 @@ const TextInfoFichesContainer = styled.div`
 
 const TextNoFicheContainer = styled.div`
   padding-left: 32px;
-  font-weight: 700;
-color:${colors.grisFonce}
+  font-weight: bold;
+color:${colors.gray70}
   font-size: 22px;
 `;
 
@@ -255,7 +258,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="structure-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -267,7 +271,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="structure-details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         Erreur
       </Modal>
@@ -276,7 +281,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      className="structure-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       style={{ maxWidth: "950px" }}
     >
       <ColumnContainer>
@@ -292,11 +298,18 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </InputContainer>
           <LogoContainer>
             <LogoWrapper>
-              <img className="sponsor-img" src={secureUrl || noStructure} />
+              <Image
+                className={styles.sponsor_img}
+                src={secureUrl || noStructure}
+                alt=""
+                width={140}
+                height={60}
+                objectFit="contain"
+              />
             </LogoWrapper>
             <RightLogoContainer>
               <FButton
-                className="upload-btn"
+                className="position-relative"
                 type="theme"
                 name="upload-outline"
               >
@@ -397,7 +410,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             : "Non connue"}
         </div>
         <div>
-          <FichesColumnContainer>Fiche de la structure</FichesColumnContainer>
+          <FichesColumnContainer>Fiche(s) de la structure</FichesColumnContainer>
           {structure.dispositifsSimplified &&
           structure.dispositifsSimplified.length ? (
             structure.dispositifsSimplified.map((dispositif, index) => {
@@ -405,7 +418,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 <>
                   <TitleFichesContainer
                     color={dispositif.color}
-                    key={dispositif._id}
+                    key={index}
                     onClick={() => {
                       props.toggleModal();
                       props.setSelectedContentIdAndToggleModal(
@@ -425,7 +438,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                   <DetailsFichesContainer>
                     <TextInfoFichesContainer>
                       {index === 0 && (
-                        <div style={{ fontWeight: 700 }}>
+                        <div style={{ fontWeight: "bold" }}>
                           Fiche ayant créé la structure
                         </div>
                       )}
@@ -475,10 +488,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             onClick={() => {
               props.history.push({
                 pathname: "/backend/user-dash-structure-selected",
-                state: {
-                  admin: true,
-                  structure: structure._id,
-                },
+                search: `?id=${structure._id}`,
               });
             }}
           >

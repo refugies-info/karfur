@@ -1,0 +1,37 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  min-width: 650px;
+
+  .modal_content {
+    background: $gray10;
+    border: hidden;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    color: $gray90;
+    padding: 40px;
+
+    .modal_header {
+      padding: 0;
+      border: none;
+      margin-bottom: 24px;
+
+      :global(.close) {
+        color: $gray90;
+      }
+
+      h5 {
+        font-size: 40px;
+        line-height: 51px;
+      }
+    }
+
+    .modal_footer {
+      margin-top: 20px;
+      border: none;
+      padding: 0;
+      justify-content: space-between;
+    }
+  }
+}

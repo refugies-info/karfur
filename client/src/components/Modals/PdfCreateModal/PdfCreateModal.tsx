@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
-import Icon from "react-eva-icons";
-import FButton from "../../FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ReactToPrint from "react-to-print";
+import styles from "./PdfCreateModal.module.scss";
+import { assetsOnServer } from "assets/assetsOnServer";
 
 interface Props {
   toggle: () => void;
   show: boolean;
-  t: (a: string, b: string) => void;
+  t: (a: string, b: string) => string;
   createPdf: () => void;
   printPdf: () => void;
   closePdf: () => void;
@@ -18,54 +19,6 @@ interface Props {
 const getIFrameSrc = () => {
   return "https://www.loom.com/embed/b3493cec4f8f4ac3b59b11adabeb244a";
 };
-const IconContainer = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-`;
-
-const Header = styled.div`
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-`;
-
-const MainContainer = styled.div`
-  padding: 40px;
-  border-radius: 12px;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 24px;
-`;
-
-const Subtitle = styled.div`
-  font-size: 16px;
-  line-height: 28px;
-`;
-
-const VideoContainer = styled.div`
-  background: #d2edfc;
-  border-radius: 12px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 24px;
-  margin-bottom: 24px;
-`;
 
 export class PdfCreateModal extends Component<Props> {
   render() {
@@ -73,29 +26,30 @@ export class PdfCreateModal extends Component<Props> {
       <Modal
         isOpen={this.props.show}
         toggle={this.props.toggle}
-        className="dispo-create"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
-        <MainContainer>
-          <IconContainer onClick={this.props.toggle}>
-            <Icon name="close-outline" fill="#3D3D3D" size="large" />
-          </IconContainer>
-          <HeaderContainer>
-            <Header>
+        <div className={styles.container}>
+          <div onClick={this.props.toggle} className={styles.icon}>
+            <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
+          </div>
+          <div className={styles.header}>
+            <h2>
               {this.props.t(
                 "Dispositif.Télécharger la fiche en PDF",
                 "Télécharger la fiche en PDF"
               )}
-            </Header>
-          </HeaderContainer>
+            </h2>
+          </div>
 
-          <Subtitle>
+          <p className={styles.subtitle}>
             {this.props.t(
               "Dispositif.Enregistrez la fiche depuis la fenêtre d’impression de votre navigateur",
               "Enregistrez la fiche depuis la fenêtre d’impression de votre navigateur."
             )}
-          </Subtitle>
+          </p>
 
-          <VideoContainer>
+          <div className={styles.video}>
             <iframe
               src={getIFrameSrc()}
               frameBorder="0"
@@ -108,10 +62,11 @@ export class PdfCreateModal extends Component<Props> {
                 borderRadius: "12px",
               }}
             ></iframe>
-          </VideoContainer>
-          <ButtonsContainer>
+          </div>
+          <div className={styles.btn_container}>
             <FButton
-              type="white mr-10"
+              type="white"
+              className="mr-10"
               name="close-outline"
               onClick={() => {
                 this.props.toggle();
@@ -121,9 +76,9 @@ export class PdfCreateModal extends Component<Props> {
               {this.props.t("Annuler", "Annuler")}
             </FButton>
             <ReactToPrint
-              onBeforeGetContent={async () => {
-                await this.props.createPdf();
-                await this.props.toggle();
+              onBeforeGetContent={() => {
+                this.props.createPdf();
+                this.props.toggle();
               }}
               onAfterPrint={() => {
                 this.props.closePdf();
@@ -132,8 +87,7 @@ export class PdfCreateModal extends Component<Props> {
               fonts={[
                 {
                   family: "CircularStdMedium",
-                  source:
-                    "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF",
+                  source: assetsOnServer + "CircularStd-Medium.WOFF",
                 },
               ]}
               trigger={() => (
@@ -151,8 +105,8 @@ export class PdfCreateModal extends Component<Props> {
               )}
               content={() => this.props.newRef.current}
             />
-          </ButtonsContainer>
-        </MainContainer>
+          </div>
+        </div>
       </Modal>
     );
   }

@@ -1,0 +1,65 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 0;
+  cursor: pointer;
+  font-size: $text-normal;
+  user-select: none;
+
+  &.reverse {
+    input:checked ~ .checkmark {
+      background-color: $white;
+    }
+    .checkmark:after {
+      border-color: #4caf51;
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .checkmark {
+      background-color: #4caf51;
+      border-width: 0;
+
+      &:after {
+        display: block;
+      }
+    }
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: solid #ccc;
+    border-width: 1px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 13px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+}

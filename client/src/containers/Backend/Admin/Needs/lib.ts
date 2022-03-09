@@ -1,10 +1,10 @@
-import { filtres } from "../../../Dispositif/data";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
+import { tags } from "data/tags";
 
 export const getTagColor = (tagName: string) => {
-  const data = filtres.tags.filter((tag) => tag.name === tagName.toLowerCase());
+  const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
 
   if (data && data.length > 0) {
     return data[0].darkColor;
@@ -13,7 +13,7 @@ export const getTagColor = (tagName: string) => {
 };
 
 export const getTag = (tagName: string) => {
-  const data = filtres.tags.filter((tag) => tag.name === tagName.toLowerCase());
+  const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
 
   if (data && data.length > 0) {
     return data[0];

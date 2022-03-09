@@ -1,21 +1,22 @@
 import { ContribContainer } from "./SubComponents";
 import React from "react";
-import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { NavHashLink } from "react-router-hash-link";
+import styled from "styled-components";
+import FButton from "../../../../components/UI/FButton/FButton";
 import { colors } from "../../../../colors";
+import Link from "next/link";
 
 const Header = styled.div`
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   align-self: center;
-  color: ${colors.noir};
+  color: ${colors.gray90};
   margin-bottom: 40px;
 `;
 
 const WhiteContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 100%;
   height: 300px;
@@ -59,15 +60,19 @@ export const NoContribution = (props: {
       </SubTitle>
       <SubTitle>Lancez-vous !</SubTitle>
       <RowContainer>
-        <FButton
-          tag={NavHashLink}
-          to="/comment-contribuer#ecrire"
-          type="dark"
-          name="file-add-outline"
-          className="mr-10"
+        <Link
+          href="/comment-contribuer#ecrire"
+          passHref
         >
-          Créer une nouvelle fiche
-        </FButton>
+          <FButton
+            tag="a"
+            type="dark"
+            name="file-add-outline"
+            className="mr-10"
+          >
+            Créer une nouvelle fiche
+          </FButton>
+        </Link>
         <FButton
           type="tuto"
           name="video-outline"

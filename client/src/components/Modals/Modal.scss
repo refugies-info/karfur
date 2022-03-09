@@ -1,5 +1,6 @@
-@import "src/scss/colors.scss";
-@import "src/scss/global.scss";
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
 
 .modal.show .modal-dialog.custom-modal {
   overflow: scroll;
@@ -7,12 +8,13 @@
   max-height: 100vh;
   width: 650px;
   max-width: 60vw;
-  background: $blanc;
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
-  border-radius: 12px;
+  background: $gray10;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  border-radius: $radius;
   display: flex;
   -ms-overflow-style: none;
   scrollbar-width: 0;
+
   @include media-min("tablet-up") {
     min-width: 650px;
   }
@@ -26,12 +28,6 @@
 
   &.bg-grey {
     background: #EDEBEB;
-  }
-
-  ::-webkit-scrollbar {
-    display: none;
-    width: 0px; /* remove scrollbar space */
-    background: transparent; /* optional: just make scrollbar invisible */
   }
 
   .modal-content {
@@ -70,12 +66,12 @@
 .modal.show {
   *::-webkit-scrollbar {
     display: none;
-    width: 0px; /* remove scrollbar space */
+    width: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
   ::-webkit-scrollbar {
     display: none;
-    width: 0px; /* remove scrollbar space */
+    width: 0; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
 }

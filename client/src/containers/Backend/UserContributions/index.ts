@@ -1,1 +1,3 @@
-export { UserContributionsComponent as UserContributions } from "../UserContributions/UserContributions.component";
+import UserContributions from "./UserContributions";
+
+export default UserContributions;

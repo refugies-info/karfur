@@ -1,0 +1,44 @@
+@import "src/scss/variables";
+
+.modal {
+  min-width: 100px;
+
+  .modal_content {
+    background: #e0e0e0;
+    border: hidden;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+    border-radius: $radius;
+    mix-blend-mode: normal; /* Shadow autour */
+  }
+
+  .container {
+    padding: 40px;
+    border-radius: $radius;
+  }
+
+  .header {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+
+  .btn_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 40px;
+    top: 30px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+}

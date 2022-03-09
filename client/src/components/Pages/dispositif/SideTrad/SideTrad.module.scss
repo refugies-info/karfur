@@ -1,0 +1,221 @@
+@import "src/scss/colors";
+
+.side_trad {
+  display: flex;
+  flex-direction: column;
+  height: 94vh;
+  background: $gray20;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 50px;
+  position: fixed;
+  width: 33%;
+  min-width: 450px;
+  z-index: 3;
+  overflow: auto;
+  box-shadow: 4px 40px rgba(0, 0, 0, 0.25); /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+
+  .flag_margin {
+    margin-left: 10px !important;
+  }
+
+  .nav_btns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+  .langue_data {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .align_right {
+    margin-left: auto;
+  }
+  .content_data_french {
+    min-height: 100px;
+    overflow: scroll;
+    z-index: 3;
+    border-radius: 12px 12px 12px 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: $bgfocus;
+
+    &.no_margin_modified {
+      margin-bottom: 0;
+      background-color: #fcd497 !important;
+      border-radius: 12px 12px 0 0;
+    }
+    &.no_margin_abstract {
+      margin-bottom: 0;
+      background-color: $attention !important;
+      border-radius: 12px 12px 0 0;
+    }
+    &.no_margin_validated {
+      margin-bottom: 0;
+      background-color: $lightgreen !important;
+      border-radius: 12px 12px 0 0;
+    }
+  }
+  .content_data {
+    overflow: none;
+    display: flex;
+    position: relative;
+    min-height: 180px;
+    flex: 1;
+    border-radius: 12px 12px 12px 12px;
+    padding: 0 0 0 20px;
+    border: 0.5px solid $gray90;
+    background: $white;
+    flex-direction: column;
+
+    &.no_margin_validated {
+      background-color: $lightgreen !important;
+      border: none;
+    }
+    &.editor_validated {
+      background-color: $lightgreen !important;
+    }
+    .body {
+      flex: 1;
+      background: transparent;
+    }
+    .editeur_sidebar {
+      position: relative;
+      overflow: none;
+      border: none;
+      border-radius: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+
+      .editor_editeur {
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        padding: 0;
+        margin-top: 40px;
+        flex: 1;
+
+        :global(.public-DraftEditor-content) {
+          background: transparent;
+        }
+
+        &.editor_validated {
+          background-color: $lightgreen !important;
+        }
+      }
+
+      .toolbar_editeur {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        position: absolute;
+        z-index: 1000;
+        right: 5px;
+        top: -7px;
+      }
+      .toolbar_editeur_droite {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: absolute;
+        z-index: 1000;
+        left: 5px;
+        top: -7px;
+      }
+    }
+  }
+
+  .notrounded {
+    border-radius: 12px 12px 0 0;
+  }
+
+  .footer_btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 100px;
+
+    .right_footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-right: -10px;
+    }
+  }
+
+  .expert_bloc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .score {
+      display: flex;
+      flex: 1;
+      font-weight: bold;
+    }
+
+    .proposition {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex: 1;
+      font-weight: bold;
+      border: 0.5px solid $gray90;
+      border-width: 0 0.5px 0.5px 0.5px;
+      border-radius: 0 0 12px 0;
+      padding: 10px;
+      color: #909090;
+      height: 60px;
+
+      &.no_margin_validated {
+        background-color: white;
+        border: none;
+      }
+    }
+
+    .propositions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex: 1;
+      font-weight: bold;
+      border: 0.5px solid $gray90;
+      border-width: 0 0.5px 0.5px 0.5px;
+      border-radius: 0 0 12px 0;
+      padding: 10px;
+      color: #909090;
+      height: 60px;
+      &.no_margin_validated {
+        background-color: white;
+        border: none;
+      }
+    }
+    .trad_info {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      background: $gray90;
+      color: $white;
+      border-radius: 0 0 0 12px;
+      padding: 10px;
+      height: 60px;
+      font-weight: 600;
+      font-size: 16;
+    }
+  }
+
+  .google_suggest {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 12px;
+    line-height: 15px;
+    color: $gray50;
+  }
+}

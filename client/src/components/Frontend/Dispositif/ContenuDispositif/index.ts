@@ -1,1 +1,3 @@
-export { ContenuDispositifContainer as ContenuDispositif } from "./ContenuDispositif.container";
+import ContenuDispositif from "./ContenuDispositif";
+
+export default ContenuDispositif;

@@ -14,6 +14,60 @@ export interface Indicator {
   wordsCount: number;
   timeSpent: number;
 }
+
+export interface Picture {
+  imgId: ObjectId;
+  public_id: string;
+  secure_url: string;
+}
+
+export interface SimplifiedStructure {
+  _id: ObjectId;
+  acronyme: string;
+  nom: string;
+  structureTypes?: string[];
+  departments?: string[];
+  picture: Picture | null;
+  role?: string[];
+  disposAssociesLocalisation?: string[];
+}
+
+export interface UiObject {
+  accordion: boolean;
+  addDropdown: boolean;
+  cardDropdown: boolean;
+  isHover: boolean;
+  varianteSelected: boolean;
+  children: any
+}
+
+// TAGS
+type iconName = "house" |
+  "elearning" |
+  "briefcase" |
+  "measure" |
+  "glasses" |
+  "bus" |
+  "triumph" |
+  "heartBeat" |
+  "couple" |
+  "soccer" |
+  "flag" |
+  "office" |
+  "search" |
+  "message" |
+  "menu" |
+  "tag" |
+  "";
+export interface Tag {
+  darkColor: string;
+  hoverColor: string;
+  illustrationColor: string;
+  lightColor: string;
+  name: string;
+  short: string;
+  icon: iconName;
+}
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
@@ -67,11 +121,6 @@ export interface SimplifiedDispositif {
   needs?: ObjectId[];
   tags: Tag[];
 }
-export interface Picture {
-  imgId: ObjectId;
-  public_id: string;
-  secure_url: string;
-}
 
 export interface Role {
   _id: ObjectId;
@@ -84,8 +133,9 @@ export interface Language {
   langueLoc: string;
   langueCode: string;
   i18nCode: string;
-  _id: ObjectId;
+  _id?: ObjectId;
   avancement: number;
+  avancementTrad?: number;
 }
 
 export interface UserLanguage {
@@ -94,6 +144,11 @@ export interface UserLanguage {
   langueCode: string;
   i18nCode: string;
   _id: ObjectId;
+}
+
+export interface DispositifPinned {
+  _id: string
+  datePin: Moment
 }
 
 export interface User {
@@ -115,7 +170,9 @@ export interface User {
   contributions?: ObjectId[];
   noteTraduction?: number;
   status?: string;
-  cookies?: any;
+  cookies?: {
+    dispositifsPinned?: DispositifPinned[]
+  };
   structures?: ObjectId[];
   last_connected?: Moment;
   updatedAt: Moment;
@@ -124,10 +181,10 @@ export interface User {
 }
 
 export interface DispositifContent {
-  type: string;
-  title: string;
-  editable: boolean;
-  content: string;
+  type?: string;
+  title?: string;
+  content?: string|null;
+  editable?: boolean;
   children?: DispositifContent[];
   placeholder?: string;
   tutoriel?: Record<string, string>;
@@ -148,16 +205,72 @@ export interface DispositifContent {
   contentBody?: string;
   ageTitle?: string;
   noContent?: boolean;
+  editorState?: any;
+  isMapLoaded?: boolean;
+  papiers?: any[];
+  duree?: string;
+  delai?: string;
+  timeStepDuree?: string;
+  timeStepDelai?: string;
+  tooltipFooter?: string;
+  option?: any;
+  markers?: any[];
 }
 
-export interface Tag {
-  darkColor: string;
-  hoverColor: string;
-  illustrationColor: string;
-  lightColor: string;
-  name: string;
-  short: string;
-  icon: string;
+interface Membre {
+  userId: ObjectId;
+  roles: string[];
+}
+
+export interface DetailedOpeningHours {
+  day: string;
+  from0?: string;
+  to0?: string;
+  from1?: string;
+  to1?: string;
+}
+export interface OpeningHours {
+  details: DetailedOpeningHours[];
+  noPublic: boolean;
+  precisions?: string;
+}
+export interface Structure {
+  _id: ObjectId;
+  membres: Membre[];
+  acronyme: string;
+  administrateur: ObjectId;
+  adresse: string;
+  authorBelongs: boolean;
+  contact: string;
+  created_at: Moment;
+  createur: ObjectId;
+  // eslint-disable-next-line no-use-before-define
+  dispositifsAssocies: ObjectId[] | IDispositif[];
+  link: string;
+  mail_contact: string;
+  mail_generique: string;
+  nom: string;
+  phone_contact: string;
+  siren: string;
+  siret: string;
+  status: string;
+  updatedAt: Moment;
+  picture: Picture | null;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  onlyWithRdv?: boolean;
+  description?: string;
+  hasResponsibleSeenNotification?: boolean;
+  mailsPublic?: string[];
+  alt?: string;
 }
 
 export interface AudienceAge {
@@ -200,60 +313,8 @@ export interface IDispositif {
   updatedAt: Moment;
   nbVues: number;
   nbMercis: number;
-}
-
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic: boolean;
-  precisions?: string;
-}
-
-interface Membre {
-  userId: ObjectId;
-  roles: string[];
-}
-export interface Structure {
-  _id: ObjectId;
-  membres: Membre[];
-  acronyme: string;
-  administrateur: ObjectId;
-  adresse: string;
-  authorBelongs: boolean;
-  contact: string;
-  created_at: Moment;
-  createur: ObjectId;
-  dispositifsAssocies: ObjectId[] | Dispositif[];
-  link: string;
-  mail_contact: string;
-  mail_generique: string;
-  nom: string;
-  phone_contact: string;
-  siren: string;
-  siret: string;
-  status: string;
-  updatedAt: Moment;
-  picture: Picture;
-  structureTypes?: string[];
-  websites?: string[];
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
-  activities?: string[];
-  departments?: string[];
-  phonesPublic?: string[];
-  adressPublic?: string;
-  openingHours?: OpeningHours;
-  onlyWithRdv?: boolean;
-  description?: string;
-  hasResponsibleSeenNotification?: boolean;
-  mailsPublic?: string[];
+  timeSpent?: number;
+  lastModificationDate?: number;
 }
 
 export interface UserStructureMembre {
@@ -268,18 +329,6 @@ export interface UserStructureMembre {
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];
 }
-
-export interface SimplifiedStructure {
-  _id: ObjectId;
-  acronyme: string;
-  nom: string;
-  structureTypes?: string[];
-  departments?: string[];
-  picture: Picture;
-  role?: string[];
-  disposAssociesLocalisation?: string[];
-}
-
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
@@ -392,10 +441,11 @@ export interface Need {
   fr: NeedDetail;
   ar?: NeedDetail;
   en?: NeedDetail;
-  "ti-ER"?: NeedDetail;
+  ti?: NeedDetail;
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
+  uk?: NeedDetail;
   _id: ObjectId;
   tagName: string;
   created_at: Moment;
@@ -407,6 +457,7 @@ export type AvailableLanguageI18nCode =
   | "en"
   | "ps"
   | "ar"
-  | "ti-ER"
+  | "ti"
   | "ru"
+  | "uk"
   | "fa";

@@ -1,4 +1,4 @@
-import { SelectedPage } from "./Navigation.component";
+import { SelectedPage } from "./Navigation";
 
 export const navigationData: {
   type: SelectedPage;

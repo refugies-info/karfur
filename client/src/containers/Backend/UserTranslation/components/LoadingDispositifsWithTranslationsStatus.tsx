@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
 import { FilterButton, TypeContenuFilterButton } from "./SubComponents";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
@@ -35,7 +35,7 @@ const FilterBarContainer = styled.div`
 `;
 
 const TableContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   padding: 32px;
 `;
@@ -61,7 +61,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
     <MainContainer>
       <RowContainer>
         <Row>
-          <SkeletonTheme color={colors.blancSimple}>
+          <SkeletonTheme color={colors.white}>
             <Skeleton width={120} height={50} count={1} />
           </SkeletonTheme>
         </Row>
@@ -128,7 +128,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           <tbody>
             {arrayLines.map((_, key) => {
               return (
-                <tr key={key} className={"bg-blancSimple"}>
+                <tr key={key} className={"bg-white"}>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={50} count={1} />

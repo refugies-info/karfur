@@ -13,6 +13,7 @@ import { asyncForEach } from "../../../libs/asyncForEach";
 import { getUserById } from "../../../modules/users/users.repository";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { Moment } from "moment";
+import { availableLanguagesWithFr } from "../../../libs/getFormattedLocale";
 
 interface Query {
   id: ObjectId;
@@ -117,15 +118,7 @@ export const getStructureById = async (
     const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
     const withMembresBoolean = castToBoolean(withMembres);
 
-    const withLocalizedDispositifsBoolean = [
-      "fr",
-      "en",
-      "ru",
-      "ps",
-      "ar",
-      "fa",
-      "ti-ER",
-    ].includes(localeOfLocalizedDispositifsAssocies);
+    const withLocalizedDispositifsBoolean = availableLanguagesWithFr.includes(localeOfLocalizedDispositifsAssocies);
 
     logger.info("[getStructureById] get structure with id", {
       id,

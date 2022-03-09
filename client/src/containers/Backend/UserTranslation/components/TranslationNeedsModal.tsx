@@ -1,21 +1,21 @@
-import "./TranslationNeedsModal.scss";
 import React, { useEffect, useState } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import { Need, AvailableLanguageI18nCode } from "../../../../types/interface";
-import { needsSelector } from "../../../../services/Needs/needs.selectors";
+import { Need, AvailableLanguageI18nCode } from "types/interface";
+import { needsSelector } from "services/Needs/needs.selectors";
 import { getTag } from "../../Admin/Needs/lib";
 import { TagButton } from "../../Admin/Needs/TagButton";
-import { jsUcfirst } from "../../../../lib";
-import { fetchNeedsActionCreator } from "../../../../services/Needs/needs.actions";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { colors } from "../../../../colors";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { jsUcfirst } from "lib";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { colors } from "colors";
+import FButton from "components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { FrameModal } from "../../../../components/Modals/FrameModal/FrameModal";
+import FrameModal from "components/Modals/FrameModal/FrameModal";
+import styles from "./TranslationNeedsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -32,7 +32,7 @@ const Header = styled.div`
 `;
 
 const StatusContainer = styled.div`
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   border-radius: 8px;
   padding: 10px;
   font-weight: bold;
@@ -110,7 +110,8 @@ export const TranslationNeedsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-besoins"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         Erreur
@@ -122,7 +123,8 @@ export const TranslationNeedsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-besoins"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
         size="lg"
       >
         <Header>{"Traduction des besoins"}</Header>
@@ -141,7 +143,7 @@ export const TranslationNeedsModal = (props: Props) => {
           <tbody>
             {arrayLines.map((_, key) => {
               return (
-                <tr key={key} className={"bg-blancSimple"}>
+                <tr key={key} className={"bg-white"}>
                   <td>
                     <SkeletonTheme color="#CDCDCD">
                       <Skeleton width={170} count={1} />
@@ -183,7 +185,8 @@ export const TranslationNeedsModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="modal-besoins"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="lg"
     >
       <Header>{"Traduction des besoins en " + props.langueSelectedFr}</Header>

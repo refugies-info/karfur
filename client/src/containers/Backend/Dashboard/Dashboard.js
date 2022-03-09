@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import moment from "moment/min/moment-with-locales";
-import API from "../../../utils/API";
-import "./Dashboard.scss";
-import { filtres } from "../../Dispositif/data";
+import moment from "moment";
+import "moment/locale/fr";
+import API from "utils/API";
 import _ from "lodash";
 import { targetByTag } from "./data";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
+import styles from "./Dashboard.module.scss";
+import { tags } from "data/tags";
 
 moment.locale("fr");
 
@@ -56,7 +58,7 @@ class Dashboard extends Component {
       });
     });
 
-    filtres.tags.map((tag) => {
+    tags.map((tag) => {
       API.count_dispositifs({
         "tags.0.name": tag.name,
         status: "Actif",
@@ -136,8 +138,9 @@ class Dashboard extends Component {
     );
 
     return (
-      <div className="dashboard-container animated fadeIn">
+      <div className={styles.container + " animated fadeIn"}>
         <div className="unformatted-data mb-10 ml-12">
+          <NavLink to="backend/admin">Admin</NavLink>
           <ul>
             <b>
               Contenus par thème (nombre de dispositifs/démarches avec tag

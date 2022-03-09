@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { IDispositifTranslation } from "../../../../types/interface";
+import { IDispositifTranslation } from "types/interface";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import { Table } from "reactstrap";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import Swal from "sweetalert2";
-import API from "../../../../utils/API";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { fetchDispositifsWithTranslationsStatusActionCreator } from "../../../../services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
+import API from "utils/API";
+import FButton from "components/UI/FButton/FButton";
+import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import "./TranslationAvancementTable.scss";
 import { sortData } from "./functions";
-import { User } from "../../../../types/interface";
+import { User } from "types/interface";
+import styles from "scss/components/adminTable.module.scss";
 
 moment.locale("fr");
 
@@ -32,7 +33,7 @@ interface Props {
 }
 
 const TableContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   padding: 32px;
 `;
@@ -74,12 +75,11 @@ export const TranslationAvancementTable = (props: Props) => {
       if (!props.isExpert && element.tradStatus === "Validée") return;
       return props.history.push({
         pathname:
+          "/backend" +
           (props.isExpert ? "/validation" : "/traduction") +
           "/" +
-          (element.typeContenu || "dispositif") +
-          "/" +
-          element._id,
-        search: "?id=" + props.langueId,
+          (element.typeContenu || "dispositif"),
+        search: `?language=${props.langueId}&dispositif=${element._id}`
       });
     }
   };
@@ -189,11 +189,11 @@ export const TranslationAvancementTable = (props: Props) => {
               <tr
                 key={key}
                 onClick={() => goToTraduction(element)}
-                className="line"
+                className={styles.line}
                 // @ts-ignore
                 testID={`test-line-${element._id}`}
               >
-                <td className="align-middle first">
+                <td className={styles.first + " align-middle"}>
                   <TypeContenu
                     type={element.typeContenu || "dispositif"}
                     isDetailedVue={false}
@@ -240,7 +240,7 @@ export const TranslationAvancementTable = (props: Props) => {
                 </td>
                 <td
                   className={
-                    props.isAdmin ? "align-middle " : "align-middle last"
+                    props.isAdmin ? "align-middle " : styles.last + " align-middle"
                   }
                 >
                   {element.lastTradUpdatedAt
@@ -248,7 +248,7 @@ export const TranslationAvancementTable = (props: Props) => {
                     : "Non disponible"}
                 </td>
                 {props.isAdmin && (
-                  <td className="align-middle last">
+                  <td className={styles.last + " align-middle"}>
                     <FButton
                       type="error"
                       name="trash-2"

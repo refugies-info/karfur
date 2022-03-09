@@ -1,0 +1,53 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.bookmark_modal {
+  width: 400px;
+  max-width: 90vw;
+
+  .modal_content {
+    background: $gray20;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    font-size: $text-large;
+    line-height: 23px;
+    border: none;
+  }
+  .modal_header {
+    border: none;
+    padding: 30px 30px 0;
+
+    h5 {
+      font-size: 40px;
+      line-height: 51px;
+      font-weight: 600;
+      background: inherit;
+    }
+  }
+  .modal_body {
+    padding: 30px;
+    a {
+      font-weight: 600;
+      color: inherit;
+    }
+  }
+  .modal_footer {
+    border: none;
+  }
+  .bookmark_icon {
+    border-radius: 50%;
+    &.success {
+      background: $validationHover;
+    }
+    &.oups {
+      background: $bleuCharte;
+    }
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 7px;
+    margin-bottom: 20px;
+  }
+}

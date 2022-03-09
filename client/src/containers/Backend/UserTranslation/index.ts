@@ -1,1 +1,3 @@
-export { UserTranslationContainer as UserTranslation } from "./UserTranslation.container";
+import UserTranslation from "./UserTranslation";
+
+export default UserTranslation;

@@ -20,7 +20,7 @@ export const hasErroredSelector = (key: LoadingStatusKey) => (
 
 export const errorSelector = (key: LoadingStatusKey) => (
   state: RootState
-): string | undefined => {
+): string | null | undefined => {
   const loadingStatus = loadingStatusSelector(state, key);
-  return loadingStatus ? loadingStatus.error : undefined;
+  return loadingStatus ? loadingStatus.error : null;
 };

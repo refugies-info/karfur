@@ -1,0 +1,18 @@
+.container {
+  .user_img {
+    max-width: 70px;
+    max-height: 40px;
+    border-radius: 50%;
+  }
+
+  td {
+    cursor: pointer;
+  }
+}
+
+.item_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 150px;
+}

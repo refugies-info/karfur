@@ -1,12 +1,13 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styled from "styled-components";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { colors } from "../../../../colors";
+import FButton from "components/UI/FButton/FButton";
+import { colors } from "colors";
 
 const Container = styled.div`
-  background: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
+  background: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -17,10 +18,10 @@ const Container = styled.div`
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props) => (props.read ? colors.blancSimple : colors.focus)};
+  border-color: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
 
   &:hover {
-    border-color: ${colors.noir};
+    border-color: ${colors.gray90};
   }
 `;
 const RowContainer = styled.div`
@@ -33,7 +34,7 @@ const TextContainer = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props) => (props.read ? colors.noir : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.gray90 : colors.white)};
   margin-left: 20px;
 `;
 
@@ -51,7 +52,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.read ? colors.error : colors.blancSimple)};
+  color: ${(props: {read: boolean}) => (props.read ? colors.error : colors.white)};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -84,6 +85,7 @@ const getFormattedDate = (createdAt: Moment) => {
   return "Depuis " + nbDays + " jours";
 };
 export const Notification = (props: Props) => {
+  const router = useRouter();
   const onNotifClick = (event: any) => {
     event.stopPropagation();
     if (props.type === "reaction") {
@@ -92,12 +94,13 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return props.history.push("/annuaire-create");
+      return router.push("/annuaire-create");
     }
 
-    if (props.type === "new content") {
-      return props.history.push(props.link);
+    if (props.type === "new content" && props.link) {
+      return router.push(props.link);
     }
+    return;
   };
 
   const onReactionDeleteClick = (event: any) => {
@@ -114,12 +117,13 @@ export const Notification = (props: Props) => {
     <Container
       read={props.read}
       onClick={(event: any) => onNotifClick(event)}
+      //@ts-ignore
       testID={"test-notif-" + props.type}
     >
       <RowContainer>
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
-          fill={props.read ? colors.noir : colors.blancSimple}
+          fill={props.read ? colors.gray90 : colors.white}
         />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
         {props.type === "reaction" && props.title && (
