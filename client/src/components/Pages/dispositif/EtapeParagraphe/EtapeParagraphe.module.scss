@@ -1,0 +1,169 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.etape {
+  .etape_title {
+    display: inline-block;
+  }
+  .delete_icon {
+    position: absolute;
+    right: 16px;
+    top: 20px;
+    cursor: pointer;
+  }
+  .etapes_data {
+    display: inline-flex;
+    justify-content: space-between;
+
+    &.editing {
+      cursor: pointer;
+
+      .etape_data {
+        background: $attention;
+      }
+    }
+  }
+  .etape_data {
+    border-right: 1px solid $gray70;
+    color: $gray70;
+    padding: 10px;
+    &:last-child {
+      border: none;
+    }
+  }
+  .bloc_configuration {
+    background: $attention;
+    border-radius: $radius;
+    padding: 20px;
+    margin-top: 20px;
+
+    .row_config {
+      background: $gray10;
+      border-radius: $radius;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      &.direction_colonne {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      &.validated {
+        background: $validation;
+
+        .col_config.active {
+          background: $validationDefault;
+          color: $white;
+          border: none;
+          svg {
+            fill: $white;
+          }
+        }
+      }
+    }
+    .options_wrapper {
+      display: flex;
+    }
+    .col_config {
+      background: $gray20;
+      border: 0.5px solid $gray20;
+      border-radius: $radius;
+      padding: 10px;
+      font-weight: bold;
+      cursor: pointer;
+
+      &.active {
+        background: $gray90;
+        border: 0.5px solid $gray90;
+        color: $white;
+        svg {
+          fill: $white;
+        }
+      }
+    }
+    .etape_dropdown {
+      display: block;
+    }
+    .negative_padding {
+      padding-bottom: 0;
+
+      .etape_dropdown {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+    .etape_input {
+      width: 60px;
+      text-align: center;
+      margin-left: 10px;
+    }
+    .etape_input,
+    .etape_dropdown :global(.dropdown-toggle) {
+      padding: 10px;
+      background: $gray20;
+      border-radius: $radius;
+      border: none;
+      color: $gray70;
+
+      &.docs_dropdown {
+        padding-left: 0;
+      }
+    }
+    .etape_dropdown :global(.dropdown-menu) {
+      max-height: 60vh;
+      overflow: scroll;
+    }
+    :global(.form-group) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+    label {
+      font-weight: bold;
+    }
+    .plus_btn_docs {
+      background: $gray70;
+      padding: 10px;
+      border-radius: 12px 0px 0px 12px;
+      margin-right: 10px;
+    }
+    .idx_docs {
+      background: $gray90;
+      color: $white;
+      padding: 10px;
+      border-radius: 12px 0 0 12px;
+      margin-right: 10px;
+    }
+    .footer_btns {
+      display: flex;
+      justify-content: space-between;
+    }
+    .footer_form {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .no_info {
+      color: $gray70;
+      label {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .realisation_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: $gray20;
+    border-radius: $radius;
+    margin-bottom: 20px;
+
+    .real_btns :global(.figma-btn) {
+      padding: 20px;
+    }
+  }
+}

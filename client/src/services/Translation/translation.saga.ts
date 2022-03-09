@@ -27,7 +27,8 @@ export function* fetchTranslations(action: any): SagaIterator {
       yield put(setTranslationsActionCreator(data.data.data));
     }
   } catch (error) {
-    logger.error("Error while fetching translation", { error: error.message });
+    const { message } = error as Error;
+    logger.error("Error while fetching translation", { error: message });
   }
 }
 
@@ -42,7 +43,8 @@ export function* addTranslation(action: any): SagaIterator {
       )
     );
   } catch (error) {
-    logger.error("Error while fetching translation", { error: error.message });
+    const { message } = error as Error;
+    logger.error("Error while fetching translation", { error: message });
   }
 }
 
@@ -57,7 +59,8 @@ export function* updateTranslation(action: any): SagaIterator {
       )
     );
   } catch (error) {
-    logger.error("Error while fetching translation", { error: error.message });
+    const { message } = error as Error;
+    logger.error("Error while fetching translation", { error: message });
   }
 }
 

@@ -1,0 +1,91 @@
+@import "src/scss/colors";
+
+.back_image {
+  background-image: url(../../../../assets/annuaire/annuaire_cover.svg);
+  background-repeat: no-repeat;
+  background-position: 20px 0;
+  height: 290px;
+  width: 100%;
+  position: absolute;
+  top: 70px;
+  left: 30px;
+}
+.container {
+  margin-left: 30px;
+  margin-top: 145px;
+  position: sticky;
+  top: 80px;
+  z-index: 1;
+
+  .title {
+    height: 74px;
+    padding: 4px 8px 4px 8px;
+    background: $white;
+    width: fit-content;
+    margin-left: 72px;
+    color: $bleuCharte;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
+
+    &.rtl {
+      margin-left: 0;
+      margin-right: 72px;
+    }
+  }
+
+  .letters {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 44px;
+    flex-direction: row;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.25));
+    z-index: -1;
+
+    &.rtl {
+      margin-right: 72px;
+    }
+  }
+}
+
+.grey_block {
+  position: fixed;
+  width: 100%;
+  height: 400px;
+  margin-top: -90px;
+  background: linear-gradient(#e6e6e6, rgba(246, 246, 246, 0));
+}
+
+.letter {
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+  z-index: 25;
+  cursor: default;
+  background: $white;
+  color: #C6C6C6;
+  margin: 4px;
+
+  &:hover {
+    color: #C6C6C6;
+    background: $white;
+  }
+
+  &.clickable {
+    cursor: pointer;
+    color: $gray90;
+
+    &:hover {
+      background: $gray90;
+      color: $white;
+    }
+  }
+}

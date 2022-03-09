@@ -1,0 +1,37 @@
+@import 'src/scss/colors.scss';
+@import "src/scss/variables";
+
+.switch {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $gray90;
+  font-weight: bold;
+  font-size: $text-normal;
+
+  :global(.switch-input:checked + .switch-slider){
+    background-color: $validationHover !important;
+    border-color: $validationHover !important;
+
+    &:before{
+      background: $white;
+      border-color: $white;
+    }
+  }
+  :global(.switch-slider){
+    background: #edebeb;
+    border-color: #edebeb;
+
+    &:before{
+      background: #5e5e5e;
+      border-color: #5e5e5e;
+    }
+  }
+
+  &.large{
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    line-height: 38px;
+  }
+}

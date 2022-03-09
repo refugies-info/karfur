@@ -452,6 +452,18 @@ exports.data = [
     name: "Microsoft Server Speech Text to Speech Voice (tr-TR, SedaRUS)",
   },
   {
+    locale: "uk-UA",
+    langue: "Ukrainian",
+    gender: "Female",
+    name: "Microsoft Server Speech Text to Speech Voice (uk-UA, PolinaNeural)",
+  },
+  {
+    locale: "uk",
+    langue: "Ukrainian",
+    gender: "Female",
+    name: "Microsoft Server Speech Text to Speech Voice (uk-UA, PolinaNeural)",
+  },//Cas générique dupliqué
+  {
     locale: "vi-VN",
     langue: "Vietnamese",
     gender: "Male",

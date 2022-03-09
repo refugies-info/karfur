@@ -245,7 +245,7 @@ function reset_password(req, res) {
             reset_password_expires: Date.now() + 1 * 60 * 60 * 1000,
           })
           .exec();
-        const newUrl = url + "reset/" + token;
+        const newUrl = url + "reset?token=" + token;
 
         sendResetPasswordMail(username, newUrl, user.email);
 

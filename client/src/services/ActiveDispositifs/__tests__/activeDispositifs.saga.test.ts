@@ -9,6 +9,7 @@ import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
+  setError,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { setActiveDispositifsActionsCreator } from "../activeDispositifs.actions";
 import { languei18nSelector } from "../../Langue/langue.selectors";
@@ -62,7 +63,7 @@ describe("[Saga] Active dispositifs", () => {
         .throw(new Error("error"))
         .put(setActiveDispositifsActionsCreator([]))
         .next()
-        .put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS))
+        .put(setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"))
         .next()
         .isDone();
     });

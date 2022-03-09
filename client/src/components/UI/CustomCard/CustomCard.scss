@@ -1,5 +1,6 @@
-@import "src/scss/global.scss";
-@import "src/scss/colors.scss";
+@import "src/scss/mixins/responsive";
+@import "src/scss/colors";
+@import "src/scss/variables";
 
 .card {
   margin-bottom: 15px;
@@ -16,8 +17,8 @@
 
 .custom-card.card {
   cursor: pointer;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: $radius;
+  font-size: $text-normal;
   line-height: 21px;
   height: 250px;
   scrollbar-width: 0;
@@ -70,11 +71,11 @@
   h3 {
     font-size: 24px;
     font-weight: 600;
-    color: $noir;
+    color: $gray90;
     margin-bottom: 8px;
 
     @include media-max("desktop-up") {
-      font-size: 16px;
+      font-size: $text-normal;
     }
   }
 
@@ -83,25 +84,36 @@
   }
 
   p {
-    //color: $noir;
+    //color: $gray90;
     margin-bottom: 0;
   }
 
   .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border: none;
+    text-align: right;
+    color: $white;
+    padding: 15px;
+
     &.bg-null {
-      background-color: $noir;
+      background-color: $gray90;
+    }
+    &.no-icon {
+      justify-content: flex-end;
     }
   }
 
   &.add-card {
-    padding-right: 0px;
+    padding-right: 0;
     width: 100%;
-    background-color: $gris;
+    background-color: $gray20;
+
     .card-footer {
-      background-color: $grisFonce;
+      background-color: $gray70;
     }
     &:hover {
       .add-sign {

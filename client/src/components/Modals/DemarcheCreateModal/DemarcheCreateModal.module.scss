@@ -1,0 +1,127 @@
+@import 'src/scss/mixins/responsive';
+@import 'src/scss/colors.scss';
+@import "src/scss/variables";
+
+.modal {
+  .modal_content{
+    background: $white;
+    height: 680px;
+
+    .modal_header{
+      border: none;
+      padding-top: 0;
+
+      h5{
+        font-size: 40px;
+        line-height: 51px;
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .close{
+      outline: none;
+      text-shadow: none;
+      position: absolute;
+      opacity: 1;
+      top: 20px;
+      right: 20px;
+    }
+    .content {
+      color: $gray90;
+      margin-bottom: 10px;
+    }
+    h5{
+      font-size: 24px;
+      line-height: 30px;
+      margin-bottom: 15px;
+    }
+    .list {
+      background: $gray10;
+      border-radius: $radius;
+      margin-bottom: 0;
+      padding: 20px;
+      padding-left: 40px;
+
+      li{
+        margin-bottom: 5px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .image{
+      box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+      border-radius: $radius;
+      padding: 30px;
+      margin-bottom: 30px;
+      margin-top: 14px;
+    }
+
+    .modal_footer{
+      border:none;
+      display: inline-flex;
+      flex: 1;
+      justify-content: space-between;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .btn{
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+        background: #FBFBFB;
+        border-radius: $radius;
+        color:$gray90;
+        font-size: $text-large;
+        line-height: 23px;
+        i{
+          margin-right:10px;
+        }
+      }
+
+      :global(.nav-tabs) {
+        position: relative;
+        flex: 1;
+        border:none;
+
+        & > li {
+          margin-right: 5px;
+          line-height: 10px;
+        }
+      }
+
+      .round_tab {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0.5px solid $gray90;
+
+        .active & {
+          background: $gray90;
+        }
+        .active.ended &{
+          background: $validationDefault;
+          border: 0.5px solid $validationDefault;
+        }
+      }
+    }
+  }
+
+  .temps_right{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $text-normal;
+    line-height: 20px;
+    font-weight: bold;
+    padding: 20px;
+    background: $gray10;
+    border-radius: $radius;
+
+    .inline_custom{
+      display: inline-flex;
+    }
+  }
+}

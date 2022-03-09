@@ -1,0 +1,22 @@
+.container {
+  .user_img {
+    max-width: 160px;
+    height: 160px;
+    border-radius: 50%;
+  }
+
+  [type="file"] {
+    z-index: 2;
+    cursor: pointer;
+    display: block;
+    filter: alpha(opacity=0);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    background-color: red;
+  }
+}

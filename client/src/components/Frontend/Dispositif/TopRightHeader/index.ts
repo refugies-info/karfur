@@ -1,1 +1,3 @@
-export { TopRightHeaderContainer as TopRightHeader } from "./TopRightHeader.container";
+import TopRightHeader from "./TopRightHeader";
+
+export default TopRightHeader;

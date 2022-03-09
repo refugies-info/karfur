@@ -1,19 +1,25 @@
 // @ts-nocheck
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import { act } from "react-test-renderer";
 import "jest-styled-components";
-import { UserNotificationsComponent } from "../UserNotifications.component";
+import UserNotifications from "../UserNotifications";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../../services/UserStructure/userStructure.actions";
-import { updateDispositifReactionActionCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
+} from "services/UserStructure/userStructure.actions";
+import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
+import Router from "next/router";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
 
-jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
+jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual(
-    "../../../../services/UserStructure/userStructure.actions"
+    "services/UserStructure/userStructure.actions"
   );
   return {
     fetchUserStructureActionCreator: jest.fn(
@@ -29,10 +35,10 @@ jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
 });
 
 jest.mock(
-  "../../../../services/ActiveDispositifs/activeDispositifs.actions",
+  "services/ActiveDispositifs/activeDispositifs.actions",
   () => {
     const actions = jest.requireActual(
-      "../../../../services/ActiveDispositifs/activeDispositifs.actions"
+      "services/ActiveDispositifs/activeDispositifs.actions"
     );
     return {
       updateDispositifReactionActionCreator: jest.fn(
@@ -51,7 +57,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
@@ -72,7 +78,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -132,7 +138,7 @@ describe("UserNotifications", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -158,10 +164,9 @@ describe("UserNotifications", () => {
   it("should link to dispositif when click on new content notif", () => {
     window.scrollTo = jest.fn();
     let component;
-    const push = jest.fn();
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -171,7 +176,6 @@ describe("UserNotifications", () => {
             dispositifsAssocies: [notifNewContent],
           },
         },
-        compProps: { history: { push } },
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
@@ -181,16 +185,15 @@ describe("UserNotifications", () => {
     component.root
       .findByProps({ testID: "test-notif-new content" })
       .props.onClick({ stopPropagation: jest.fn() });
-    expect(push).toHaveBeenCalledWith("/dispositif/id");
+    expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
 
   it("should link to dispositif when click on annuaire notif", () => {
     window.scrollTo = jest.fn();
     let component;
-    const push = jest.fn();
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -200,7 +203,6 @@ describe("UserNotifications", () => {
             dispositifsAssocies: [],
           },
         },
-        compProps: { history: { push } },
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
@@ -210,16 +212,15 @@ describe("UserNotifications", () => {
     component.root
       .findByProps({ testID: "test-notif-annuaire" })
       .props.onClick({ stopPropagation: jest.fn() });
-    expect(push).toHaveBeenCalledWith("/annuaire-create");
+    expect(Router).toMatchObject({ asPath: "/annuaire-create" });
   });
 
   it("should delete notif reaction", () => {
     window.scrollTo = jest.fn();
     let component;
-    const push = jest.fn();
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -229,7 +230,6 @@ describe("UserNotifications", () => {
             dispositifsAssocies: [notifReactionRead],
           },
         },
-        compProps: { history: { push } },
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
@@ -253,10 +253,9 @@ describe("UserNotifications", () => {
   it("should delete notif annuaire", () => {
     window.scrollTo = jest.fn();
     let component;
-    const push = jest.fn();
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserNotificationsComponent,
+        Component: UserNotifications,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
@@ -266,7 +265,6 @@ describe("UserNotifications", () => {
             dispositifsAssocies: [],
           },
         },
-        compProps: { history: { push } },
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({

@@ -1,33 +1,24 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import { appReducer } from "./rootReducer";
-import { sagaMiddleware, middlewares } from "./middlewares";
+import { createStore, applyMiddleware, Store } from "redux";
+import { appReducer, RootState } from "./rootReducer";
 import { rootSaga } from "./sagas";
-import { createBrowserHistory } from "history";
-import { routerMiddleware } from "connected-react-router";
-import ReactGA from "react-ga";
+import createSagaMiddleware from "redux-saga";
+import { createWrapper } from "next-redux-wrapper";
 
-export const history = createBrowserHistory();
+const bindMiddleware = (middleware: any) => {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") {
+    const { composeWithDevTools } = require("@redux-devtools/extension")
+    return composeWithDevTools(applyMiddleware(...middleware))
+  }
+  return applyMiddleware(...middleware)
+}
 
-history.listen((location) => {
-  ReactGA.pageview(location.pathname + location.search);
-});
+export const makeStore = () => {
+  const sagaMiddleware = createSagaMiddleware()
+  const store = createStore(appReducer, bindMiddleware([sagaMiddleware]))
 
-const reactRouterMiddleware = routerMiddleware(history);
+  store.sagaTask = sagaMiddleware.run(rootSaga)
 
-// @ts-ignore
-middlewares.push(reactRouterMiddleware);
+  return store
+}
 
-export const store = createStore(
-  appReducer(history),
-  compose(
-    applyMiddleware(...middlewares),
-    (process.env.REACT_APP_ENV === "development" &&
-      // @ts-ignore : TO DO type window
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      // @ts-ignore
-      window.__REDUX_DEVTOOLS_EXTENSION__()) ||
-      compose
-  )
-);
-
-sagaMiddleware.run(rootSaga);
+export const wrapper = createWrapper<Store<RootState>>(makeStore, { debug: false })

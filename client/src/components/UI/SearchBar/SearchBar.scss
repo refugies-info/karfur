@@ -1,0 +1,214 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.react-autosuggest__container {
+  position: relative;
+  width: 100%;
+
+  .react-autosuggest__input {
+    width: 240px;
+    height: 30px;
+    padding: 10px 20px;
+    font-size: $text-normal;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    &:hover {
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    }
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+    }
+  }
+
+  .react-autosuggest__input--focused {
+    outline: none;
+  }
+
+  .react-autosuggest__input--open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .react-autosuggest__suggestions-container {
+    display: none;
+  }
+
+  .react-autosuggest__suggestions-container--open {
+    display: block;
+    position: absolute;
+    top: 51px;
+    width: 100%;
+    font-size: $text-normal;
+    z-index: 2;
+    border-radius: $radius;
+    border: none;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+  }
+
+  .react-autosuggest__suggestions-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: scroll;
+    height: 300px;
+    max-height: 100%;
+    text-align: left;
+    background-color: $gray20;
+  }
+
+  .react-autosuggest__suggestion {
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+
+  .react-autosuggest__suggestion--highlighted {
+    background-color: #ddd;
+  }
+
+  .react-autosuggest__section-container {
+    border-top: 1px dashed #ccc;
+    overflow: scroll;
+  }
+
+  .react-autosuggest__section-container--first {
+    border-top: 0;
+  }
+
+  .react-autosuggest__section-title {
+    padding: 10px 0 0 10px;
+    font-size: 12px;
+    color: #777;
+  }
+
+  .highlight {
+    color: $gray90;
+    font-weight: bold;
+  }
+
+  .react-autosuggest__suggestion--focused .highlight {
+    color: #120000;
+  }
+
+  .plus-btn {
+    padding: 12px;
+    background: $gray70;
+    border-radius: 1000px;
+    display: inline-block;
+    line-height: 18px;
+  }
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  @include media-max("phone-down") {
+    display: none;
+  }
+
+  .react-autosuggest__container input {
+    background: $white;
+    border: 0.5px solid $white;
+    border-radius: $radius;
+    padding-right: 42px;
+    padding-left: 15px;
+    font-size: $text-normal;
+    font-weight: normal;
+    height: 40px;
+    width: 100%;
+    &:hover {
+      background-color: $gray20;
+    }
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+    }
+
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $gray90;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: $gray90;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: $gray90;
+    }
+  }
+
+  .loupe-btn {
+    position: absolute;
+    padding: 10px;
+    right: 5px;
+    font-size: 24px;
+    transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
+    color: $gray90;
+    top: 25px;
+
+    &.icon-only {
+      position: relative;
+      right: 0;
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+    &:hover {
+      color: rgba(0, 0, 0, 0.1);
+    }
+    &:active {
+      display: none;
+    }
+    &:focus {
+      display: none;
+    }
+  }
+
+  &.isArray {
+    .react-autosuggest__suggestions-container--open {
+      background: transparent;
+      box-shadow: none;
+      border-radius: $radius;
+      position: relative;
+      top: 0;
+    }
+    .react-autosuggest__suggestions-list {
+      background: transparent;
+      border-radius: $radius;
+    }
+    .react-autosuggest__suggestion {
+      padding: 10px 15px;
+      background: $white;
+      border-radius: $radius;
+      margin-top: 10px;
+      &:hover {
+        background: $validation;
+      }
+    }
+    .name {
+      color: $gray70;
+    }
+    .selection-logo {
+      max-width: 40px;
+      max-height: 40px;
+    }
+  }
+  .suggestion-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .oeil-btn {
+    padding: 10px;
+    background: $gray20;
+    border-radius: 10px;
+  }
+}

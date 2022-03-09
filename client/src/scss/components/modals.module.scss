@@ -1,0 +1,13 @@
+@import "src/scss/variables";
+
+.modal {
+  min-width: 100px;
+
+  .modal_content {
+    background: #e0e0e0;
+    border: hidden;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+    border-radius: $radius;
+    mix-blend-mode: normal;
+  }
+}

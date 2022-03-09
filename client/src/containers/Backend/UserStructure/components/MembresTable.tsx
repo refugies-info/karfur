@@ -1,5 +1,6 @@
 import { Table } from "reactstrap";
 import React from "react";
+import Image from "next/image";
 import { UserStructureMembre } from "../../../../types/interface";
 import {
   EditButtonWithoutNavigation,
@@ -8,9 +9,10 @@ import {
 import marioProfile from "assets/mario-profile.jpg";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
-import "./MembresTable.scss";
+// import "./MembresTable.scss";
 import { ObjectId } from "mongodb";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 
 moment.locale("fr");
 const RowContainer = styled.div`
@@ -23,22 +25,22 @@ const UserName = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
 `;
 
 const RoleContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   width: fit-content;
 `;
 
 const DateContainer = styled.div`
-  color: ${(props) => (props.isUser ? colors.bleuCharte : colors.noir)};
+  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   max-width: 190px;
 `;
 interface Props {
@@ -73,7 +75,14 @@ export const MembresTable = (props: Props) => (
           <tr key={key} className="membres-table">
             <td className="align-middle">
               <RowContainer>
-                <img className="user-img mr-8" src={secureUrl} />
+                <Image
+                  className="user-img mr-8"
+                  src={secureUrl}
+                  alt=""
+                  width={70}
+                  height={40}
+                  objectFit="contain"
+                />
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>

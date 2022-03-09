@@ -18,7 +18,7 @@ import {
 } from "../LoadingStatus/loadingStatus.actions";
 import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
-import { push } from "connected-react-router";
+import Router from "next/router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 
 export function* fetchUserStructure(
@@ -28,9 +28,10 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
+    if (!structureId) return;
     const data = yield call(
       API.getStructureById,
-      structureId,
+      structureId.toString(),
       true,
       "fr",
       true
@@ -50,7 +51,7 @@ export function* fetchUserStructure(
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
     if (shouldRedirect && !isUserContribOrAdmin) {
-      yield put(push("/"));
+      yield call(Router.push, "/");
     }
 
     logger.info("[fetchUserStructure] successfully fetched user structure");

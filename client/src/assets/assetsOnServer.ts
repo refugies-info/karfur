@@ -5,6 +5,8 @@ const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
 const bucketUrlPartners = bucketUrl + "logosPartenaires/";
 const bucketUrlMiddleOffice = bucketUrl + "middle-office/";
 
+export const fontUrl = "https://storage.googleapis.com/refugies-info-assets/fonts/CircularStd/";
+
 export const assetsOnServer = {
   quiSommesNous: {
     codeOuvert: bucketUrlQSN + "code_ouvert.svg",

@@ -6,3 +6,6 @@ export const languei18nSelector = (state: RootState): string =>
 
 export const allLanguesSelector = (state: RootState): Language[] =>
   state.langue.langues;
+
+export const showLangModalSelector = (state: RootState): boolean =>
+  state.langue.showLangModal;

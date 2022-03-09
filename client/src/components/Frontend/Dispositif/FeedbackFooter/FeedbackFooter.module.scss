@@ -1,0 +1,47 @@
+
+  @import "src/scss/colors";
+  @import "src/scss/mixins/responsive";
+  @import "src/scss/variables";
+
+  .container {
+    background: $gray10;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 20px 35px 40px;
+    font-size: $text-large;
+
+    h5 {
+      @include media-max("tablet-up") {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include media-max("tablet-up") {
+        font-size: $text-large;
+        text-align: center;
+      }
+    }
+    .btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+      font-weight: bold;
+      font-size: $text-normal;
+      border-radius: $radius;
+      border: 0.5px solid;
+      padding: 15px 20px;
+      &:hover {
+        background: darken($color: $gray20, $amount: 0);
+      }
+      &:active {
+        background: $validationHover;
+        color: $white;
+        border: none;
+      }
+      &::after {
+        background: $validationHover;
+      }
+    }
+  }

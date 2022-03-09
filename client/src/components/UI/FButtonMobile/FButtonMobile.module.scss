@@ -1,0 +1,27 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.btn {
+  display:flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  padding: 20px;
+  border-radius: $radius;
+  align-items:center;
+  background-color: $gray60;
+  font-size: $text-normal;
+  color: white;
+  font-weight: bold;
+  border: none;
+
+  .icon {
+    margin-right: 10px;
+
+    &.rtl {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+}

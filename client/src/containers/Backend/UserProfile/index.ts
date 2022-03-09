@@ -1,1 +1,3 @@
-export { UserProfileContainer as UserProfile } from "./UserProfile.container";
+import UserProfile from "./UserProfile";
+
+export default UserProfile;

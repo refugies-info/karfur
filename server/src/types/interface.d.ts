@@ -158,6 +158,7 @@ export interface Need {
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
+  uk?: NeedDetail;
   _id: ObjectId;
   tagName: string;
   created_at: Moment;
@@ -172,6 +173,7 @@ export interface AlgoliaObject {
   title_fa?: string;
   title_ar?: string;
   title_ps?: string;
+  title_uk?: string;
   "title_ti-ER"?: string;
   name_fr?: string;
   name_ru?: string;
@@ -179,6 +181,7 @@ export interface AlgoliaObject {
   name_fa?: string;
   name_ar?: string;
   name_ps?: string;
+  name_uk?: string;
   "name_ti-ER"?: string;
   abstract_fr?: string;
   abstract_ar?: string;
@@ -186,6 +189,7 @@ export interface AlgoliaObject {
   abstract_fa?: string;
   abstract_ru?: string;
   abstract_ps?: string;
+  abstract_uk?: string;
   "abstract_ti-ER"?: string;
   sponsorName?: string;
   sponsorUrl?: string;

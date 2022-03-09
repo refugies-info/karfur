@@ -1,19 +1,25 @@
 // @ts-nocheck
-import { UserContributionsComponent } from "../UserContributions.component";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
+import UserContributions from "../UserContributions";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import Swal from "sweetalert2";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 import { act } from "react-test-renderer";
-import { fetchUserContributionsActionCreator } from "../../../../services/UserContributions/userContributions.actions";
-import { fetchUserStructureActionCreator } from "../../../../services/UserStructure/userStructure.actions";
+import { fetchUserContributionsActionCreator } from "services/UserContributions/userContributions.actions";
+import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import "jest-styled-components";
+import Router from "next/router";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
 
 jest.mock(
-  "../../../../services/UserContributions/userContributions.actions",
+  "services/UserContributions/userContributions.actions",
   () => {
     const actions = jest.requireActual(
-      "../../../../services/UserContributions/userContributions.actions"
+      "services/UserContributions/userContributions.actions"
     );
 
     return {
@@ -24,9 +30,9 @@ jest.mock(
   }
 );
 
-jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
+jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual(
-    "../../../../services/UserStructure/userStructure.actions"
+    "services/UserStructure/userStructure.actions"
   );
   return {
     fetchUserStructureActionCreator: jest.fn(
@@ -42,7 +48,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
@@ -59,7 +65,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
       });
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
@@ -138,7 +144,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions,
@@ -156,12 +162,10 @@ describe("userContributions", () => {
 
   it("should render correctly when clicks", () => {
     window.scrollTo = jest.fn();
-    const push = jest.fn();
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
-        compProps: { history: { push } },
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions,
@@ -175,19 +179,17 @@ describe("userContributions", () => {
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     component.root.findByProps({ testID: "test_id1" }).props.onClick();
-    expect(push).toHaveBeenCalledWith("/dispositif/id1");
+    expect(Router).toMatchObject({ asPath: "/dispositif/id1" });
     component.root.findByProps({ testID: "test_id2" }).props.onClick();
-    expect(push).toHaveBeenCalledWith("/demarche/id2");
+    expect(Router).toMatchObject({ asPath: "/demarche/id2" });
   });
 
   it("should render correctly when click on delete", () => {
     window.scrollTo = jest.fn();
-    const push = jest.fn();
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributionsComponent,
-        compProps: { history: { push } },
+        Component: UserContributions,
         reduxState: {
           ...initialMockStore,
           userContributions: [userContributions[0]],

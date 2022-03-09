@@ -1,7 +1,7 @@
 import React from "react";
 import { ObjectId } from "mongodb";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
+import styles from "./NoGeolocModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -9,13 +9,9 @@ interface Props {
   dispositifsWithoutGeoloc: ObjectId[];
 }
 
-const Content = styled.div`
-  padding: 24px;
-`;
-
 export const NoGeolocModal = (props: Props) => (
   <Modal isOpen={props.show} toggle={props.toggle}>
-    <Content>
+    <div className={styles.content}>
       <b>Dispositifs sans geolocalisation :</b>
       {props.dispositifsWithoutGeoloc &&
         props.dispositifsWithoutGeoloc.map((dispoId) => {
@@ -28,6 +24,6 @@ export const NoGeolocModal = (props: Props) => (
             </li>
           );
         })}
-    </Content>
+    </div>
   </Modal>
 );

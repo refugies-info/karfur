@@ -1,0 +1,36 @@
+@import "src/scss/mixins/responsive";
+div.app-body {
+  @include media-min("tablet-up") {
+    overflow-x: inherit;
+  }
+
+  @media (min-width: 992px) {
+    .header-fixed & {
+      margin-top: 55px;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    margin-top: 0;
+  }
+
+  &.pdf-print {
+    @media print {
+      html,
+      body {
+        direction: rtl;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    min-height: 90vh;
+    min-width: 0;
+    height: 100%;
+    margin-top: 75px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

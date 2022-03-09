@@ -1,0 +1,61 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/responsive";
+
+.audio_btn {
+  position: relative;
+  height: 52px;
+  background: $gray10;
+  box-sizing: border-box;
+  border: 0.5px solid $gray10;
+  border-radius: $radius;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  min-width: 50px;
+  transition: all 0.2s ease;
+  outline: none;
+
+  @include media-max("phone-down") {
+    margin-right: 5px;
+  }
+  @include media-max("tablet-up") {
+    height: 50px;
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background: $gray90;
+    border-color: $gray90;
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+    color: $gray10;
+    svg {
+      fill: $gray10;
+    }
+  }
+
+  &.pressed {
+    background: $vert;
+    border: none;
+    color: $gray10;
+  }
+
+  .text {
+    display: flex;
+    flex: 1;
+    font-weight: bold;
+    font-size: $text-normal;
+    line-height: 20px;
+    margin-left: 10px;
+
+    @include media-max("desktop-up") {
+      display: none;
+    }
+  }
+
+  .icon {
+    line-height: 20px;
+  }
+}
