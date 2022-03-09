@@ -48,9 +48,7 @@ const CommentContribuer = (props: Props) => {
   };
 
   const getActiveLangues = () => {
-    return langues.filter(
-      (langue) => langue.avancement > 0 && langue.langueCode !== "fr"
-    );
+    return langues.filter((langue) => langue.langueCode !== "fr");
   };
   const activeLangues = getActiveLangues();
   const isRTL = useRTL();

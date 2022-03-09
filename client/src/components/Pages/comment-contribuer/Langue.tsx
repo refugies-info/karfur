@@ -57,14 +57,14 @@ const Langue = (props: Props) => (
         : props.langue.langueFr}
       <ProgressContainer isRTL={props.isRTL}>
         <Progress
-          color={colorAvancement(props.langue.avancement)}
-          value={props.langue.avancement * 100}
+          color={colorAvancement(props.langue.avancementTrad || 0)}
+          value={(props.langue.avancementTrad || 0) * 100}
         />
       </ProgressContainer>
       <AvancementContainer
-        className={"text-" + colorAvancement(props.langue.avancement)}
+        className={"text-" + colorAvancement(props.langue.avancementTrad || 0)}
       >
-        {Math.round((props.langue.avancement || 0) * 100)}%
+        {Math.round((props.langue.avancementTrad || 0) * 100)}%
       </AvancementContainer>
     </LangueContainer>
   </Link>

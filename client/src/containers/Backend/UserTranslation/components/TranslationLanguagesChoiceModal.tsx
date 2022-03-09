@@ -235,10 +235,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
       <LanguesContainer>
         {langues
-          .filter(
-            // @ts-ignore
-            (langue) => /* langue.avancement > 0.8 &&  */langue.i18nCode !== "fr"
-          )
+          .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
             const isLangueSelected =
               selectedLangues.filter(
