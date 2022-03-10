@@ -13,9 +13,8 @@ interface Props {
     sauvegarde: boolean,
     saveAndEdit: boolean,
     continueEditing: boolean,
-    redirectAfterSave: boolean,
+    routeAfterSave?: string,
   ) => void;
-  navigateToMiddleOffice: () => void;
   status: string;
   toggleIsModified: (arg: boolean) => void;
   toggleIsSaved: (arg: boolean) => void;
@@ -107,12 +106,11 @@ export const DraftModal = (props: Props) => (
               true,
               false,
               false,
-              false
+              "/backend/user-dash-contrib"
             );
             props.toggle();
             props.toggleIsModified(false);
             props.toggleIsSaved(true);
-            props.navigateToMiddleOffice();
           }}
         >
           Finir plus tard
@@ -124,7 +122,6 @@ export const DraftModal = (props: Props) => (
             props.saveDispositif(
               props.status || "Brouillon",
               false,
-              true,
               true,
               true,
               true

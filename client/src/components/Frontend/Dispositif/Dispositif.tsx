@@ -92,6 +92,8 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 // style
 import styles from "scss/pages/dispositif.module.scss";
 
@@ -188,7 +190,6 @@ const Dispositif = (props: Props) => {
   const [suggestion, setSuggestion] = useState("");
   const [tKeyValue, setTKeyValue] = useState(-1);
   const [tSubkey, setTSubkey] = useState<number|null>(-1);
-  const [isDispositifLoading, setIsDispositifLoading] = useState(false);
   const [withHelp, setWithHelp] = useState(process.env.NODE_ENV !== "development");
   const [inputBtnClicked, setInputBtnClicked] = useState(false);
   const [time, setTime] = useState(0);
@@ -198,6 +199,7 @@ const Dispositif = (props: Props) => {
   const [tutorielSection, setTutorielSection] = useState("");
   const [displayTuto, setDisplayTuto] = useState(true);
   const [addMapBtn, setAddMapBtn] = useState(true);
+  const [routeAfterSave, setRouteAfterSave] = useState("");
 
   // Modals
   const [showModals, setShowModals] = useState(initialShowModals);
@@ -218,6 +220,7 @@ const Dispositif = (props: Props) => {
 
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -1066,10 +1069,9 @@ const Dispositif = (props: Props) => {
     sauvegarde = false,
     saveAndEdit = false,
     continueEditing = true,
-    redirectAfterSave = true,
+    routeAfterSave = "",
   ) => {
     if (!dispositif) return;
-    setIsDispositifLoading(!auto);
 
     let content: ShortContent = {
       titreInformatif: h2p(dispositif.titreInformatif),
@@ -1185,6 +1187,11 @@ const Dispositif = (props: Props) => {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           dispatch(fetchUserActionCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
+
+          if (!continueEditing) {
+            setRouteAfterSave(routeAfterSave || "/" + newDispositif.typeContenu + "/" + newDispo._id);
+          }
+
           setDisableEdit([
             "En attente admin",
             "En attente",
@@ -1192,10 +1199,6 @@ const Dispositif = (props: Props) => {
             "En attente non prioritaire",
             "Actif",
           ].includes(status) && !saveAndEdit);
-          setIsDispositifLoading(false);
-          if (redirectAfterSave) {
-            router.push("/" + newDispositif.typeContenu + "/" + newDispo._id);
-          }
         });
       } else {
         if (isInBrowser()) {
@@ -1216,6 +1219,14 @@ const Dispositif = (props: Props) => {
       dispatch(setSelectedDispositifActionCreator(newDispo));
     });
   };
+
+  // when finish loading user after save, redirect
+  useEffect(() => {
+    if (routeAfterSave !== "" && !isUserLoading && user) {
+      router.push(routeAfterSave);
+      setRouteAfterSave("");
+    }
+  }, [routeAfterSave, router, isUserLoading, user]);
 
   const upcoming = () =>
     Swal.fire({
@@ -1948,9 +1959,6 @@ const Dispositif = (props: Props) => {
             show={showDraftModal}
             toggle={() => setShowDraftModal(!showDraftModal)}
             saveDispositif={saveDispositif}
-            navigateToMiddleOffice={() =>
-              router.push("/backend/user-dash-contrib")
-            }
             status={dispositif?.status || ""}
             toggleIsModified={(val: boolean) => setIsModified(val)}
             toggleIsSaved={(val: boolean) => setIsSaved(val)}
@@ -1968,15 +1976,6 @@ const Dispositif = (props: Props) => {
           {isInBrowser() && NotificationContainer !== null &&
             <NotificationContainer />
           }
-
-          {isDispositifLoading && (
-            <div className="ecran-protection no-main">
-              <div className="content-wrapper">
-                <h1 className="mb-3">{t("Chargement", "Chargement")}...</h1>
-                <Spinner color="success" />
-              </div>
-            </div>
-          )}
         </Col>
       </Row>
     </div>
