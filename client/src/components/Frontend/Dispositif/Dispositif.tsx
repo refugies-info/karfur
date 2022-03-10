@@ -1061,7 +1061,7 @@ const Dispositif = (props: Props) => {
   };
 
   const saveDispositif = (
-    status = "En attente",
+    status: string,
     auto = false,
     sauvegarde = false,
     saveAndEdit = false,
@@ -1139,7 +1139,17 @@ const Dispositif = (props: Props) => {
       newDispositif.titreMarque = "";
     }
     if (status !== "Brouillon") {
-      if (newDispositif.mainSponsor && user) {
+      if (
+        dispositif?.status &&
+        ![
+          "",
+          "En attente non prioritaire",
+          "Brouillon",
+          "Accepté structure",
+        ].includes(dispositif.status)
+      ) {
+        newDispositif.status = dispositif.status;
+      } else if (newDispositif.mainSponsor && user) {
         const membre = (dispositif.mainSponsor?.membres || []).find(
           (x) => x.userId === user._id
         );
@@ -1899,6 +1909,7 @@ const Dispositif = (props: Props) => {
             titreInformatif={dispositif?.titreInformatif || ""}
             titreMarque={dispositif?.titreMarque || ""}
             saveDispositif={saveDispositif}
+            status={dispositif?.status}
             toggleTutorielModal={toggleTutorielModal}
             tags={dispositif?.tags || []}
             mainSponsor={dispositif?.mainSponsor}
