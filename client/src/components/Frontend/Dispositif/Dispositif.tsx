@@ -1065,7 +1065,8 @@ const Dispositif = (props: Props) => {
     auto = false,
     sauvegarde = false,
     saveAndEdit = false,
-    continueEditing = true
+    continueEditing = true,
+    redirectAfterSave = true,
   ) => {
     if (!dispositif) return;
     setIsDispositifLoading(!auto);
@@ -1181,10 +1182,10 @@ const Dispositif = (props: Props) => {
             "En attente non prioritaire",
             "Actif",
           ].includes(status) && !saveAndEdit);
-          setIsDispositifLoading(false)
-          router.push(
-            "/" + newDispositif.typeContenu + "/" + newDispo._id
-          );
+          setIsDispositifLoading(false);
+          if (redirectAfterSave) {
+            router.push("/" + newDispositif.typeContenu + "/" + newDispo._id);
+          }
         });
       } else {
         if (isInBrowser()) {

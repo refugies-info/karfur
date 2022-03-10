@@ -9,10 +9,11 @@ interface Props {
   show: boolean;
   saveDispositif: (
     arg: string,
-    arg1: boolean,
-    arg2: boolean,
-    arg3: boolean,
-    arg4: boolean
+    auto: boolean,
+    sauvegarde: boolean,
+    saveAndEdit: boolean,
+    continueEditing: boolean,
+    redirectAfterSave: boolean,
   ) => void;
   navigateToMiddleOffice: () => void;
   status: string;
@@ -105,6 +106,7 @@ export const DraftModal = (props: Props) => (
               false,
               true,
               false,
+              false,
               false
             );
             props.toggle();
@@ -122,6 +124,7 @@ export const DraftModal = (props: Props) => (
             props.saveDispositif(
               props.status || "Brouillon",
               false,
+              true,
               true,
               true,
               true
