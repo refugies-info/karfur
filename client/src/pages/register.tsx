@@ -81,7 +81,7 @@ const Register = () => {
   }, [dispatch, router])
 
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const togglePasswordVisibility = () => setPasswordVisible(!setPasswordVisible)
+  const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible)
 
   const goBack = () => {
     setStep(0);
