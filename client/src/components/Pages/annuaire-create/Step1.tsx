@@ -156,7 +156,7 @@ export const Step1 = (props: Props) => {
         </LogoWrapper>
         <RightLogoContainer>
           <FButton
-            type="theme"
+            type="fill-dark"
             name="upload-outline"
             className="position-relative"
           >

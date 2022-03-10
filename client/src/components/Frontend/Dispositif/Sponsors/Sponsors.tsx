@@ -1086,9 +1086,8 @@ class Sponsors extends Component<Props, State> {
                 />
                 <FButton
                   className="position-relative"
-                  type="theme"
+                  type="fill-dark"
                   name="upload-outline"
-                  theme={this.props.mainTag.darkColor}
                 >
                   <Input
                     className={styles.file_input}
@@ -1107,9 +1106,8 @@ class Sponsors extends Component<Props, State> {
             ) : (
               <FButton
                 className="position-relative"
-                type="theme"
+                type="fill-dark"
                 name="upload-outline"
-                theme={this.props.mainTag.darkColor}
               >
                 <Input
                   className={styles.file_input}
