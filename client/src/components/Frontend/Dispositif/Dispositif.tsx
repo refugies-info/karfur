@@ -374,38 +374,39 @@ const Dispositif = (props: Props) => {
   };
 
   const handleMenuChange = (ev: any, value: any = null) => {
-    const node = ev.currentTarget;
-    let newMenu = [...menu];
-    newMenu[node.id] = {
-      ...newMenu[node.id],
-      ...(!node.dataset.subkey && {
-        [(node.dataset || {}).target || "content"]:
-          value || (value === null && ev.target.value),
-        isFakeContent: false,
-      }),
-      ...(node.dataset.subkey &&
-        (newMenu[node.id].children || []).length > node.dataset.subkey && {
-          children: (newMenu[node.id]?.children || []).map((y, subidx) => {
-            return {
-              ...y,
-              ...(subidx === parseInt(node.dataset.subkey) && {
-                [node.dataset.target || "content"]:
-                  value ||
-                  // in infocards we want to limit the number of caracters
-                  (value === null && y.type === "card"
-                    ? ev.target.value.substring(
-                        0,
-                        MAX_NUMBER_CHARACTERS_INFOCARD
-                      )
-                    : ev.target.value),
-                isFakeContent: false,
-              }),
-            };
-          }),
+    setMenu(menu => {
+      const node = ev.currentTarget;
+      let newMenu = [...menu];
+      newMenu[node.id] = {
+        ...newMenu[node.id],
+        ...(!node.dataset.subkey && {
+          [(node.dataset || {}).target || "content"]:
+            value || (value === null && ev.target.value),
+          isFakeContent: false,
         }),
-    };
-
-    setMenu(newMenu);
+        ...(node.dataset.subkey &&
+          (newMenu[node.id].children || []).length > node.dataset.subkey && {
+            children: (newMenu[node.id]?.children || []).map((y, subidx) => {
+              return {
+                ...y,
+                ...(subidx === parseInt(node.dataset.subkey) && {
+                  [node.dataset.target || "content"]:
+                    value ||
+                    // in infocards we want to limit the number of caracters
+                    (value === null && y.type === "card"
+                      ? ev.target.value.substring(
+                          0,
+                          MAX_NUMBER_CHARACTERS_INFOCARD
+                        )
+                      : ev.target.value),
+                  isFakeContent: false,
+                }),
+              };
+            }),
+          }),
+      };
+      return newMenu
+    });
     setIsModified(true);
   };
 
