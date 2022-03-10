@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -24,6 +24,12 @@ const Backend = () => {
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
   const router = useRouter();
+
+  // fix for: https://github.com/vercel/next.js/discussions/17443#discussioncomment-637879
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!user && !isLoading) dispatch(fetchUserActionCreator());
@@ -59,7 +65,7 @@ const Backend = () => {
           <Spinner color="success" />
         </div>
       ) : (
-        isInBrowser() && (
+        isInBrowser() && mounted && (
           <Router>
             <Switch>
               {routes.map((route, idx) =>
