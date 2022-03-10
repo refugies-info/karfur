@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import {
@@ -23,6 +23,7 @@ interface Props {
 const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
 
 const MapComponent = (props: Props) => {
+  const [maxZoom, setMaxZoom] = useState(12);
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || "",
@@ -43,6 +44,9 @@ const MapComponent = (props: Props) => {
       }
     });
     map.fitBounds(bounds);
+    setTimeout(() => {
+      setMaxZoom(25);
+    }, 500);
   }, [props.markers]);
 
   const onUnmount = useCallback(function callback() { }, []);
@@ -58,6 +62,7 @@ const MapComponent = (props: Props) => {
         mapTypeControl: false,
         fullscreenControl: false,
         streetViewControl: false,
+        maxZoom: maxZoom
       }}
       onClick={props.onClose}
     >
