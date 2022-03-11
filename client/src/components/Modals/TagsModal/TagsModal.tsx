@@ -8,6 +8,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
+import { cls } from "lib/classname";
 import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
 import { Tag, User } from "types/interface";
@@ -92,14 +93,6 @@ const DispositifValidateModal = (props: Props) => {
     //this.toggle();
   };
 
-  const tagCheck = () => {
-    if (!noTag) {
-      setTag2(null);
-      setTag3(null);
-    }
-    setNoTag(!noTag);
-  };
-
   const selectTag2 = (subi: any) => {
     if (tag2 && subi.short === tag2.short) {
       setTag2(null);
@@ -119,7 +112,8 @@ const DispositifValidateModal = (props: Props) => {
     //this.toggle();
   };
 
-  const handleCheckboxChange = () => {
+  const handleCheckboxChange = (e: any) => {
+    e.stopPropagation();
     setNoTag(!noTag);
     setTag2(null);
     setTag3(null);
@@ -285,29 +279,18 @@ const DispositifValidateModal = (props: Props) => {
             </FSearchBtn>
           );
         })}
-        <div
-          style={{
-            backgroundColor: noTag ? "#def6c2" : "#f2f2f2",
-            borderRadius: 10,
-            padding: 2,
-            paddingTop: 18,
-            marginTop: 30,
-            paddingLeft: 14,
-            cursor: "pointer",
-          }}
-          onClick={handleCheckboxChange}
-        >
+        <div className={cls(styles.no_tag, noTag && styles.enabled)}>
           <label className={checkStyles.checkbox}>
             <input
               onChange={handleCheckboxChange}
               type="checkbox"
               checked={noTag}
             />
-            <span className={checkStyles.checkmark}></span>
+            <span className={cls(checkStyles.checkmark, styles.checkmark)}></span>
+            <p className={styles.label}>
+              Je ne souhaite pas ajouter de thèmes supplémentaires
+            </p>
           </label>
-          <p style={{ marginLeft: 30, fontSize: 14 }}>
-            Je ne souhaite pas ajouter de thèmes supplémentaires
-          </p>
         </div>
       </ModalBody>
       <ModalFooter className={styles.modal_footer}>

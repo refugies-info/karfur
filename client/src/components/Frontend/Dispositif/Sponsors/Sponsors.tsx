@@ -31,6 +31,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { Structure, Tag, User, Picture } from "types/interface";
 import { RootState } from "services/rootReducer";
 import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { isValidPhone } from "lib/validateFields";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -212,6 +213,7 @@ interface State {
     phone_contact: string
     authorBelongs: boolean
   }
+  phoneError: boolean
   activeIndex: number
   animating: boolean
 }
@@ -250,6 +252,16 @@ interface Props {
   fetchActiveStructuresActionCreator: any
 }
 
+const emptyStructure = {
+  nom: "",
+  acronyme: "",
+  link: "",
+  contact: "",
+  mail_contact: "",
+  phone_contact: "",
+  authorBelongs: false,
+}
+
 class Sponsors extends Component<Props, State> {
   state: State = {
     showModals: [
@@ -272,26 +284,30 @@ class Sponsors extends Component<Props, State> {
     edit: false,
     sponsorKey: "",
     isMyStructureSelected: false,
-    structure: {
-      nom: "",
-      acronyme: "",
-      link: "",
-      contact: "",
-      mail_contact: "",
-      phone_contact: "",
-      authorBelongs: false,
-    },
+    structure: emptyStructure,
+    phoneError: false,
     activeIndex: 0,
     animating: false,
   };
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props, prevState: State) {
     if (
       prevProps.disableEdit && !this.props.disableEdit
       && this.props.structures.length === 0
       && !this.props.isLoadingStructures
     ) {
       this.props.fetchActiveStructuresActionCreator();
+    }
+
+    if (prevProps.mainSponsor && !this.props.mainSponsor) { // sponsor deleted
+      this.setState({structure: emptyStructure})
+    }
+
+    if (prevState.structure.phone_contact !== this.state.structure.phone_contact) { // check phone format
+      const phone = this.state.structure.phone_contact;
+      this.setState({
+        phoneError: !(phone === "" || isValidPhone(phone))
+      })
     }
   }
 
@@ -1053,7 +1069,8 @@ class Sponsors extends Component<Props, State> {
                   !this.state.structure.nom ||
                   !this.state.structure.contact ||
                   !this.state.structure.mail_contact ||
-                  !this.state.structure.phone_contact
+                  !this.state.structure.phone_contact ||
+                  this.state.phoneError
                 }
                 onClick={this.createStructure}
                 className="ml-auto"
@@ -1071,6 +1088,7 @@ class Sponsors extends Component<Props, State> {
             contact={this.state.structure.contact}
             phone_contact={this.state.structure.phone_contact}
             mail_contact={this.state.structure.mail_contact}
+            phoneError={this.state.phoneError}
           />
           <div className={`${styles.input} ${styles.inline}`}>
             <span style={{ fontSize: 22 }}>Ajouter un logo</span>
@@ -1086,9 +1104,8 @@ class Sponsors extends Component<Props, State> {
                 />
                 <FButton
                   className="position-relative"
-                  type="theme"
+                  type="fill-dark"
                   name="upload-outline"
-                  theme={this.props.mainTag.darkColor}
                 >
                   <Input
                     className={styles.file_input}
@@ -1107,9 +1124,8 @@ class Sponsors extends Component<Props, State> {
             ) : (
               <FButton
                 className="position-relative"
-                type="theme"
+                type="fill-dark"
                 name="upload-outline"
-                theme={this.props.mainTag.darkColor}
               >
                 <Input
                   className={styles.file_input}

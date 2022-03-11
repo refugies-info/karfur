@@ -26,6 +26,7 @@ import { colors } from "colors";
 import Navigation from "../Navigation";
 import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
+import { isValidPhone } from "lib/validateFields";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -273,9 +274,7 @@ export const UserProfile = () => {
   const [codePhoneModalVisible, setCodePhoneModalVisible] = useState(false);
   // show modal to validate phone
   const onPhoneModificationValidate = () => {
-    const regex = /^(?:0|\+33 ?|0033 ?)([1-9] ?(?:[0-9] ?){8})$/;
-    const isPhone = phone ? !!phone.match(regex) : false;
-    if (!isPhone) {
+    if (!isValidPhone(phone)) {
       setNotPhoneError(true);
       return;
     }

@@ -1,4 +1,4 @@
-@import 'src/scss/colors.scss';
+@import 'src/scss/colors';
 @import "src/scss/variables";
 
 .container {
@@ -99,4 +99,12 @@
       margin-bottom: 10px;
     }
   }
+}
+
+.error {
+  color: $error;
+  font-size: $text-small;
+  line-height: 16px;
+  position: absolute;
+  bottom: -60px;
 }

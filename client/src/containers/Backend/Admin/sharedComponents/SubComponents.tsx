@@ -316,7 +316,7 @@ const StyledTabHeader = styled.div`
 
 export const TabHeader = (props: {
   name: string;
-  order: string | null;
+  order: string | boolean | null;
   isSortedHeader: boolean;
   sens: string;
 }) => (

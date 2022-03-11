@@ -7,6 +7,7 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
+import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
@@ -22,11 +23,14 @@ interface Props {
   mail_contact: string
   setStructureContactAsMe: () => void
   mainTag: Tag
+  phoneError: boolean
 }
 
 const CreationContent = (props: Props) => {
+  const { t } = useTranslation();
   const [banner, setBanner] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
+
   return (
     <div className={styles.container}>
       <div className={styles.form_field}>
@@ -101,11 +105,18 @@ const CreationContent = (props: Props) => {
               <FInput
                 id="phone_contact"
                 placeholder="Numéro de téléphone"
+                type="tel"
                 value={props.phone_contact || ""}
                 onChange={props.handleChange}
                 name="structure"
                 newSize={true}
+                error={props.phoneError}
               />
+               {props.phoneError && (
+                  <p className={styles.error}>
+                    {t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                  </p>
+                )}
             </InputGroup>
           </Col>
         </Row>

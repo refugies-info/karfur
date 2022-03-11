@@ -67,10 +67,12 @@ export const Step1 = (props: Props) => {
 
   const { structure, setStructure } = props;
   useEffect(() => {
-    setStructure({
-      ...structure,
-      hasResponsibleSeenNotification: true,
-    });
+    if (!structure?.hasResponsibleSeenNotification) {
+      setStructure({
+        ...structure,
+        hasResponsibleSeenNotification: true,
+      });
+    }
   }, [structure, setStructure]);
 
   const onChange = (e: any) => {
@@ -156,7 +158,7 @@ export const Step1 = (props: Props) => {
         </LogoWrapper>
         <RightLogoContainer>
           <FButton
-            type="theme"
+            type="fill-dark"
             name="upload-outline"
             className="position-relative"
           >

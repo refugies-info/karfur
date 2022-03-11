@@ -152,10 +152,7 @@ class SideTrad extends Component {
         this.goChange();
       }
     }
-    if (
-      this.state.initialize === false &&
-      prevProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
+    if (this.state.initialize === false && !!this.props.content.titreInformatif) {
       this._initializeComponent(this.props);
       this.setState({ initialize: true });
     }

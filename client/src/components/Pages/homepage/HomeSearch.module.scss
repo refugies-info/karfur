@@ -37,3 +37,48 @@
     z-index: 4;
   }
 }
+
+.icon {
+  display: flex;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+
+  [dir="rtl"] & {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}
+
+$flippy_width: 280px;
+$flippy_height: 50px;
+.flippy {
+  width: $flippy_width;
+  height: $flippy_height;
+}
+.flippy_side{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: $flippy_width;
+  height: $flippy_height;
+  border-radius: 10px;
+}
+.flippy_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 10px;
+  padding: 0;
+  font-weight: 600;
+}
+.flippy_btn_open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 10px;
+  background: $gray70;
+}
