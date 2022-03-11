@@ -25,6 +25,7 @@ export const requestSMSLogin = async (
 ) => {
   try {
     const service = await twilioService;
+    logger.info("[Login] using twilio service", {sid: service.sid});
     await client.verify.services(service.sid)
       .verifications.create({ to: `+33${phone}`, channel: "sms" })
   } catch (e) {
@@ -45,6 +46,7 @@ export const verifyCode = async(
   code: string
 ) => {
   const service = await twilioService;
+  logger.info("[Login] using twilio service", {sid: service.sid});
   const check = await client.verify.services(service.sid)
     .verificationChecks.create({ to: `+33${phone}`, code: code });
 
