@@ -27,6 +27,8 @@ const AnnuaireDetail = (props: Props) => {
   const structure = useSelector(selectedStructureSelector);
   const user = useSelector(userSelector);
 
+  const [isMember, setIsMember] = useState(false);
+
   const dispatch = useDispatch();
   const router = useRouter()
   const structureId = router.query.id as string;
@@ -36,7 +38,7 @@ const AnnuaireDetail = (props: Props) => {
 
   // Reload structure if locale change
   useEffect(() => {
-    if (structureId && currentLoadedLocale !== locale) {
+    if (structureId) {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: structureId as string,
@@ -47,10 +49,9 @@ const AnnuaireDetail = (props: Props) => {
     }
   }, [dispatch, locale, currentLoadedLocale, structureId]);
 
-  const isMember =
-    structure && structure.membres && structure.membres.find((el: any) => el._id === user.userId)
-      ? true
-      : false;
+  useEffect(() => {
+    setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId))
+  }, [structure, user.userId])
 
   return (
     <div className={styles.container}>

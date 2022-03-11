@@ -92,6 +92,8 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 // style
 import styles from "scss/pages/dispositif.module.scss";
 
@@ -188,7 +190,6 @@ const Dispositif = (props: Props) => {
   const [suggestion, setSuggestion] = useState("");
   const [tKeyValue, setTKeyValue] = useState(-1);
   const [tSubkey, setTSubkey] = useState<number|null>(-1);
-  const [isDispositifLoading, setIsDispositifLoading] = useState(false);
   const [withHelp, setWithHelp] = useState(process.env.NODE_ENV !== "development");
   const [inputBtnClicked, setInputBtnClicked] = useState(false);
   const [time, setTime] = useState(0);
@@ -198,6 +199,7 @@ const Dispositif = (props: Props) => {
   const [tutorielSection, setTutorielSection] = useState("");
   const [displayTuto, setDisplayTuto] = useState(true);
   const [addMapBtn, setAddMapBtn] = useState(true);
+  const [routeAfterSave, setRouteAfterSave] = useState("");
 
   // Modals
   const [showModals, setShowModals] = useState(initialShowModals);
@@ -218,6 +220,7 @@ const Dispositif = (props: Props) => {
 
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
+  const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -374,38 +377,39 @@ const Dispositif = (props: Props) => {
   };
 
   const handleMenuChange = (ev: any, value: any = null) => {
-    const node = ev.currentTarget;
-    let newMenu = [...menu];
-    newMenu[node.id] = {
-      ...newMenu[node.id],
-      ...(!node.dataset.subkey && {
-        [(node.dataset || {}).target || "content"]:
-          value || (value === null && ev.target.value),
-        isFakeContent: false,
-      }),
-      ...(node.dataset.subkey &&
-        (newMenu[node.id].children || []).length > node.dataset.subkey && {
-          children: (newMenu[node.id]?.children || []).map((y, subidx) => {
-            return {
-              ...y,
-              ...(subidx === parseInt(node.dataset.subkey) && {
-                [node.dataset.target || "content"]:
-                  value ||
-                  // in infocards we want to limit the number of caracters
-                  (value === null && y.type === "card"
-                    ? ev.target.value.substring(
-                        0,
-                        MAX_NUMBER_CHARACTERS_INFOCARD
-                      )
-                    : ev.target.value),
-                isFakeContent: false,
-              }),
-            };
-          }),
+    setMenu(menu => {
+      const node = ev.currentTarget;
+      let newMenu = [...menu];
+      newMenu[node.id] = {
+        ...newMenu[node.id],
+        ...(!node.dataset.subkey && {
+          [(node.dataset || {}).target || "content"]:
+            value || (value === null && ev.target.value),
+          isFakeContent: false,
         }),
-    };
-
-    setMenu(newMenu);
+        ...(node.dataset.subkey &&
+          (newMenu[node.id].children || []).length > node.dataset.subkey && {
+            children: (newMenu[node.id]?.children || []).map((y, subidx) => {
+              return {
+                ...y,
+                ...(subidx === parseInt(node.dataset.subkey) && {
+                  [node.dataset.target || "content"]:
+                    value ||
+                    // in infocards we want to limit the number of caracters
+                    (value === null && y.type === "card"
+                      ? ev.target.value.substring(
+                          0,
+                          MAX_NUMBER_CHARACTERS_INFOCARD
+                        )
+                      : ev.target.value),
+                  isFakeContent: false,
+                }),
+              };
+            }),
+          }),
+      };
+      return newMenu
+    });
     setIsModified(true);
   };
 
@@ -1060,14 +1064,14 @@ const Dispositif = (props: Props) => {
   };
 
   const saveDispositif = (
-    status = "En attente",
+    status: string,
     auto = false,
     sauvegarde = false,
     saveAndEdit = false,
-    continueEditing = true
+    continueEditing = true,
+    routeAfterSave = "",
   ) => {
     if (!dispositif) return;
-    setIsDispositifLoading(!auto);
 
     let content: ShortContent = {
       titreInformatif: h2p(dispositif.titreInformatif),
@@ -1137,7 +1141,17 @@ const Dispositif = (props: Props) => {
       newDispositif.titreMarque = "";
     }
     if (status !== "Brouillon") {
-      if (newDispositif.mainSponsor && user) {
+      if (
+        dispositif?.status &&
+        ![
+          "",
+          "En attente non prioritaire",
+          "Brouillon",
+          "Accepté structure",
+        ].includes(dispositif.status)
+      ) {
+        newDispositif.status = dispositif.status;
+      } else if (newDispositif.mainSponsor && user) {
         const membre = (dispositif.mainSponsor?.membres || []).find(
           (x) => x.userId === user._id
         );
@@ -1173,6 +1187,11 @@ const Dispositif = (props: Props) => {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           dispatch(fetchUserActionCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
+
+          if (!continueEditing) {
+            setRouteAfterSave(routeAfterSave || "/" + newDispositif.typeContenu + "/" + newDispo._id);
+          }
+
           setDisableEdit([
             "En attente admin",
             "En attente",
@@ -1180,10 +1199,6 @@ const Dispositif = (props: Props) => {
             "En attente non prioritaire",
             "Actif",
           ].includes(status) && !saveAndEdit);
-          setIsDispositifLoading(false)
-          router.push(
-            "/" + newDispositif.typeContenu + "/" + newDispo._id
-          );
         });
       } else {
         if (isInBrowser()) {
@@ -1204,6 +1219,14 @@ const Dispositif = (props: Props) => {
       dispatch(setSelectedDispositifActionCreator(newDispo));
     });
   };
+
+  // when finish loading user after save, redirect
+  useEffect(() => {
+    if (routeAfterSave !== "" && !isUserLoading && user) {
+      router.push(routeAfterSave);
+      setRouteAfterSave("");
+    }
+  }, [routeAfterSave, router, isUserLoading, user]);
 
   const upcoming = () =>
     Swal.fire({
@@ -1897,6 +1920,7 @@ const Dispositif = (props: Props) => {
             titreInformatif={dispositif?.titreInformatif || ""}
             titreMarque={dispositif?.titreMarque || ""}
             saveDispositif={saveDispositif}
+            status={dispositif?.status}
             toggleTutorielModal={toggleTutorielModal}
             tags={dispositif?.tags || []}
             mainSponsor={dispositif?.mainSponsor}
@@ -1935,9 +1959,6 @@ const Dispositif = (props: Props) => {
             show={showDraftModal}
             toggle={() => setShowDraftModal(!showDraftModal)}
             saveDispositif={saveDispositif}
-            navigateToMiddleOffice={() =>
-              router.push("/backend/user-dash-contrib")
-            }
             status={dispositif?.status || ""}
             toggleIsModified={(val: boolean) => setIsModified(val)}
             toggleIsSaved={(val: boolean) => setIsSaved(val)}
@@ -1955,15 +1976,6 @@ const Dispositif = (props: Props) => {
           {isInBrowser() && NotificationContainer !== null &&
             <NotificationContainer />
           }
-
-          {isDispositifLoading && (
-            <div className="ecran-protection no-main">
-              <div className="content-wrapper">
-                <h1 className="mb-3">{t("Chargement", "Chargement")}...</h1>
-                <Spinner color="success" />
-              </div>
-            </div>
-          )}
         </Col>
       </Row>
     </div>

@@ -13,8 +13,9 @@ interface Props {
   onChange: any
   titreInformatif: string
   titreMarque: string
+  status: string | undefined
   saveDispositif: (
-    arg?: string,
+    arg: string,
     arg1?: boolean,
     arg2?: boolean,
     arg3?: boolean,
@@ -32,7 +33,7 @@ interface Props {
 
 const DispositifValidateModal = (props: Props) => {
   const validateAndClose = () => {
-    props.saveDispositif();
+    props.saveDispositif(props.status || "En attente");
     props.toggle();
   };
   let geoloc = false;

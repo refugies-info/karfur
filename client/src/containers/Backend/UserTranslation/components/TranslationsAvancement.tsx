@@ -160,13 +160,15 @@ export const TranslationsAvancement = (props: Props) => {
           >
             Explications
           </FButton>
-          <FButton
-            type={props.isOneNeedNonTranslated ? "error" : "dark"}
-            onClick={props.toggleNeedsModal}
-            className="mr-8"
-          >
-            Besoins
-          </FButton>
+          {props.isExpert &&
+            <FButton
+              type={props.isOneNeedNonTranslated ? "error" : "dark"}
+              onClick={props.toggleNeedsModal}
+              className="mr-8"
+            >
+              Besoins
+            </FButton>
+          }
           <FButton
             type="dark"
             onClick={props.toggleTraducteurModal}

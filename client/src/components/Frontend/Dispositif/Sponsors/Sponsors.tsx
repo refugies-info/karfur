@@ -250,6 +250,16 @@ interface Props {
   fetchActiveStructuresActionCreator: any
 }
 
+const emptyStructure = {
+  nom: "",
+  acronyme: "",
+  link: "",
+  contact: "",
+  mail_contact: "",
+  phone_contact: "",
+  authorBelongs: false,
+}
+
 class Sponsors extends Component<Props, State> {
   state: State = {
     showModals: [
@@ -272,15 +282,7 @@ class Sponsors extends Component<Props, State> {
     edit: false,
     sponsorKey: "",
     isMyStructureSelected: false,
-    structure: {
-      nom: "",
-      acronyme: "",
-      link: "",
-      contact: "",
-      mail_contact: "",
-      phone_contact: "",
-      authorBelongs: false,
-    },
+    structure: emptyStructure,
     activeIndex: 0,
     animating: false,
   };
@@ -292,6 +294,10 @@ class Sponsors extends Component<Props, State> {
       && !this.props.isLoadingStructures
     ) {
       this.props.fetchActiveStructuresActionCreator();
+    }
+
+    if (prevProps.mainSponsor && !this.props.mainSponsor) { // sponsor deleted
+      this.setState({structure: emptyStructure})
     }
   }
 
@@ -1086,9 +1092,8 @@ class Sponsors extends Component<Props, State> {
                 />
                 <FButton
                   className="position-relative"
-                  type="theme"
+                  type="fill-dark"
                   name="upload-outline"
-                  theme={this.props.mainTag.darkColor}
                 >
                   <Input
                     className={styles.file_input}
@@ -1107,9 +1112,8 @@ class Sponsors extends Component<Props, State> {
             ) : (
               <FButton
                 className="position-relative"
-                type="theme"
+                type="fill-dark"
                 name="upload-outline"
-                theme={this.props.mainTag.darkColor}
               >
                 <Input
                   className={styles.file_input}
