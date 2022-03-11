@@ -90,3 +90,25 @@
   justify-content: center;
   align-items: center;
 }
+.no_tag {
+  background-color: $gray20;
+  border-radius: $radius;
+  padding-left: 15px;
+  margin-top: 30px;
+  cursor: pointer;
+
+  &.enabled {
+    background-color: $lightgreen;
+  }
+
+  .checkmark {
+    top: 15px;
+  }
+  .label {
+    margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: $text-small !important;
+    line-height: inherit !important;
+  }
+}
