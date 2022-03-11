@@ -6,8 +6,19 @@ import { getStructureFromDB } from "../structure/structure.repository";
 import { ObjectId } from "mongoose";
 import formatPhoneNumber from "../../libs/formatPhoneNumber";
 const { accountSid, authToken } = process.env;
+
+// Init Twilio service
 const client = require("twilio")(accountSid, authToken);
-const twilioService = client.verify.services.create({ friendlyName: "Réfugiés.info" });
+const twilioService: any = new Promise((resolve) => {
+  client.verify.services.list({ limit: 1 }).then((existingServices: any) => {
+    if (existingServices.length === 0) {
+      client.verify.services.create({ friendlyName: "Réfugiés.info" })
+        .then((res: any) => resolve(res));
+    } else {
+      resolve(existingServices[0])
+    }
+  })
+});
 
 export const requestSMSLogin = async (
   phone: string
