@@ -4,7 +4,7 @@ import { NavButton } from "./components/NavButton";
 import API from "utils/API";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { fetchUserActionCreator } from "services/User/user.actions";
+import { setUserActionCreator } from "services/User/user.actions";
 import { userSelector } from "services/User/user.selectors";
 import {
   userStructureDisposAssociesSelector,
@@ -50,9 +50,9 @@ const NavigationComponent: React.FunctionComponent<Props> = (
   const dispatch = useDispatch();
   const disconnect = () => {
     API.logout();
-    dispatch(fetchUserActionCreator());
+    dispatch(setUserActionCreator(null));
     dispatch(setUserStructureActionCreator(null));
-    router.push("/");
+    window.location.href = "/";
   };
   const onButtonClick = (type: SelectedPage) => {
     if (type === "traductions") {

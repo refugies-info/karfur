@@ -3145,12 +3145,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             Explications
           </button>
           <button
-            className="btn  dark mr-8 "
-            onClick={[Function]}
-          >
-            Besoins
-          </button>
-          <button
             className="btn  dark  "
             onClick={[Function]}
           >

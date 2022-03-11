@@ -9,12 +9,12 @@ interface Props {
   show: boolean;
   saveDispositif: (
     arg: string,
-    arg1: boolean,
-    arg2: boolean,
-    arg3: boolean,
-    arg4: boolean
+    auto: boolean,
+    sauvegarde: boolean,
+    saveAndEdit: boolean,
+    continueEditing: boolean,
+    routeAfterSave?: string,
   ) => void;
-  navigateToMiddleOffice: () => void;
   status: string;
   toggleIsModified: (arg: boolean) => void;
   toggleIsSaved: (arg: boolean) => void;
@@ -105,12 +105,12 @@ export const DraftModal = (props: Props) => (
               false,
               true,
               false,
-              false
+              false,
+              "/backend/user-dash-contrib"
             );
             props.toggle();
             props.toggleIsModified(false);
             props.toggleIsSaved(true);
-            props.navigateToMiddleOffice();
           }}
         >
           Finir plus tard

@@ -441,7 +441,7 @@ export class TranslationHOC extends Component {
     });
 
   render() {
-    if (this.state.type === "dispositif") {
+    if (this.state.type === "dispositif" && this.props.selectedDispositif) {
       return (
         <Dispositif
           type="translation"
@@ -454,7 +454,6 @@ export class TranslationHOC extends Component {
           getTrads={this.get_trads}
           history={[]}
 
-          dispositif={this.props.selectedDispositif}
           typeContenu={this.props.selectedDispositif?.typeContenu || "dispositif"}
           translated={this.state.translated}
           isExpert={this.state.isExpert}

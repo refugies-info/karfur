@@ -134,10 +134,7 @@ class SideTrad extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
     this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
-    if (
-      this.state.initialize === false &&
-      prevProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
+    if (this.state.initialize === false && !!this.props.content.titreInformatif) {
       this._initializeComponent(this.props);
       this.setState({ initialize: true });
     }

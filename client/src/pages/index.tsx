@@ -352,6 +352,7 @@ const Homepage = (props: Props) => {
                     name="email-outline"
                     onClick={() => toggleShowNewsletterModal()}
                     type="white"
+                    className="text-wrap text-left"
                   >
                     {t(
                       "Homepage.informé du lancement",
