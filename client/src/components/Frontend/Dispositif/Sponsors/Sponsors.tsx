@@ -250,6 +250,16 @@ interface Props {
   fetchActiveStructuresActionCreator: any
 }
 
+const emptyStructure = {
+  nom: "",
+  acronyme: "",
+  link: "",
+  contact: "",
+  mail_contact: "",
+  phone_contact: "",
+  authorBelongs: false,
+}
+
 class Sponsors extends Component<Props, State> {
   state: State = {
     showModals: [
@@ -272,15 +282,7 @@ class Sponsors extends Component<Props, State> {
     edit: false,
     sponsorKey: "",
     isMyStructureSelected: false,
-    structure: {
-      nom: "",
-      acronyme: "",
-      link: "",
-      contact: "",
-      mail_contact: "",
-      phone_contact: "",
-      authorBelongs: false,
-    },
+    structure: emptyStructure,
     activeIndex: 0,
     animating: false,
   };
@@ -292,6 +294,10 @@ class Sponsors extends Component<Props, State> {
       && !this.props.isLoadingStructures
     ) {
       this.props.fetchActiveStructuresActionCreator();
+    }
+
+    if (prevProps.mainSponsor && !this.props.mainSponsor) { // sponsor deleted
+      this.setState({structure: emptyStructure})
     }
   }
 
