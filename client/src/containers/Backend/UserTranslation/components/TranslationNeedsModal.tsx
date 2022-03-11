@@ -40,6 +40,7 @@ const StatusContainer = styled.div`
   line-height: 20px;
   color: #ffffff;
   width: fit-content;
+  white-space: nowrap;
 `;
 
 const getStatusColorAndText = (
