@@ -63,7 +63,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <>
       <Script src="https://client.crisp.chat/l.js" strategy="lazyOnload" />
-      <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />
+      <Script src="//static.axept.io/sdk.js" strategy="beforeInteractive" />
 
       {getLayout(<Component history={history} {...pageProps} />)}
     </>

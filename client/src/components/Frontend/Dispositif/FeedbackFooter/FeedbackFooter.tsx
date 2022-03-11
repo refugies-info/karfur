@@ -87,12 +87,12 @@ const FeedbackFooter = (props: Props) => {
           type="error"
           onClick={() => {
             if (!isInBrowser()) return;
-            (window as any).$crisp.push([
+            window.$crisp.push([
               "set",
               "session:event",
               ["no-thanks-btn"],
             ]);
-            (window as any).$crisp.push(["do", "chat:open"]);
+            window.$crisp.push(["do", "chat:open"]);
           }}
         >
           <span role="img" aria-label="thanks">
