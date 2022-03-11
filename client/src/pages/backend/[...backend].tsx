@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -19,6 +15,17 @@ import API from "utils/API";
 import styles from "scss/pages/backend.module.scss";
 import { useRouter } from "next/router";
 
+const Redirect = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/login")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <></>
+}
+
 const Backend = () => {
   const user = useSelector(userDetailsSelector);
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -29,33 +36,33 @@ const Backend = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
+    return () => setMounted(false);
   }, []);
 
   useEffect(() => {
-    if (!user && !isLoading) dispatch(fetchUserActionCreator());
+    if (!user && !isLoading && API.isAuth()) dispatch(fetchUserActionCreator());
   }, [user, isLoading, dispatch]);
 
   const isAuthorized = (route: RouteType) => {
-    if ((route.restriction || []).length === 0) { // No restriction: OK
+    if ((route.restriction || []).length === 0) {
+      // No restriction: OK
       return true;
-    }
-
-    if (!API.isAuth()) { // Restriction and no auth: NOK
-      router.push("/login");
-      return false;
     }
 
     // Restriction and role: CHECK
     const roles = (user && user.roles) || [];
-    const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
-    const hasRouteRestrictionHasStructure = route.restriction.includes("hasStructure");
+    const hasAuthorizedRole =
+      roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
+    const hasRouteRestrictionHasStructure =
+      route.restriction.includes("hasStructure");
     const hasUserStructure = (user?.structures || []).length > 0 ? true : false;
     return (
       hasAuthorizedRole || (hasRouteRestrictionHasStructure && hasUserStructure)
     );
   };
 
-  const locale = router.locale && router.locale !== "fr" ? "/" + router.locale : "";
+  const locale =
+    router.locale && router.locale !== "fr" ? "/" + router.locale : "";
 
   return (
     <>
@@ -66,6 +73,7 @@ const Backend = () => {
         </div>
       ) : (
         isInBrowser() && mounted && (
+        user ? (
           <Router>
             <Switch>
               {routes.map((route, idx) =>
@@ -87,8 +95,8 @@ const Backend = () => {
               )}
             </Switch>
           </Router>
-        )
-      )}
+        ) : <Redirect />
+      ))}
     </>
   );
 };
