@@ -288,7 +288,6 @@ const Dispositif = (props: Props) => {
           tags: [],
           titreInformatif: contenu.titreInformatif,
           titreMarque: contenu.titreMarque,
-          traductions: [],
           typeContenu: props.typeContenu,
           updatedAt: moment(),
           nbVues: 0,
@@ -425,7 +424,7 @@ const Dispositif = (props: Props) => {
     // return if no changes
     if (newUiArray[key]) {
       if (subkey === null && newUiArray[key][node] === value) return; // if no subkey
-      if (subkey !== null && (newUiArray[key].children || [])[subkey][node] === value) return; // if subkey
+      if (subkey !== null && (newUiArray[key].children || [])[subkey]?.[node] === value) return; // if subkey
     }
 
     const updateOthers =
@@ -520,7 +519,7 @@ const Dispositif = (props: Props) => {
   const addItem = (
     key: number,
     type = "paragraphe",
-    subkey: string | null = null
+    subkey: string | number | null = null
   ) => {
     if (!dispositif) return;
     let prevState = [...menu];
