@@ -67,10 +67,12 @@ export const Step1 = (props: Props) => {
 
   const { structure, setStructure } = props;
   useEffect(() => {
-    setStructure({
-      ...structure,
-      hasResponsibleSeenNotification: true,
-    });
+    if (!structure?.hasResponsibleSeenNotification) {
+      setStructure({
+        ...structure,
+        hasResponsibleSeenNotification: true,
+      });
+    }
   }, [structure, setStructure]);
 
   const onChange = (e: any) => {

@@ -1,25 +1,14 @@
-//@ts-nocheck
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "next-i18next";
-//@ts-ignore
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
-import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import { Tag } from "types/interface";
 import styles from "./HomeSearch.module.scss";
-import useRTL from "hooks/useRTL";
 import { SearchItemType } from "data/searchFilters";
-
-const IconContainer = styled.div`
-  display: flex;
-  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
-  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
-  justify-content: center;
-  align-items: center;
-`;
+import { cls } from "lib/classname";
 
 interface Props {
   searchItem: SearchItemType;
@@ -31,19 +20,21 @@ const HomeSearch = (props: Props) => {
   const [flip, setFlip] = useState(true);
   const [indexFront, setIndexFront] = useState(0);
   const [indexBack, setIndexBack] = useState(1);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  const isRTL = useRTL();
   const { t } = useTranslation();
   const flippy: any = useRef();
 
-  const showFront = useRef();
-  const flipFunc = useRef();
+  const showFront = useRef<boolean|undefined>();
+  const flipFunc = useRef<number|undefined>();
+  const timeoutFunc = useRef<number|undefined>();
   useEffect(() => {
     if (flip) {
+      setIsLoaded(true);
       flipFunc.current = setInterval(() => {
         if (flippy.current) {
           flippy.current.toggle();
-          setTimeout(() => {
+          timeoutFunc.current = setTimeout(() => {
             if (showFront.current) {
               setIndexBack((i) => (i === 9 ? 1 : i + 2));
               showFront.current = false;
@@ -54,11 +45,10 @@ const HomeSearch = (props: Props) => {
           }, 500);
         }
       }, 2000);
-    } else {
-      clearInterval(flipFunc.current)
     }
 
-    return(() => {
+    return (() => {
+      clearTimeout(timeoutFunc.current)
       clearInterval(flipFunc.current)
     })
   }, [flip]);
@@ -69,6 +59,8 @@ const HomeSearch = (props: Props) => {
       props.toggleModal();
     } else {
       setFlip(!flip);
+      clearInterval(flipFunc.current)
+      clearTimeout(timeoutFunc.current)
       props.togglePopup();
       props.toggleOverlay();
     }
@@ -82,7 +74,7 @@ const HomeSearch = (props: Props) => {
   };
 
   const { searchItem } = props;
-  const tags: Tag[] = searchItem.children;
+  const tags: Tag[] = searchItem.children as Tag[];
 
   return (
     <div onClick={open} className={styles.col}>
@@ -94,112 +86,67 @@ const HomeSearch = (props: Props) => {
           flipOnClick={false}
           flipDirection="vertical"
           ref={flippy}
-          style={{ width: "280px", height: "50px" }}
+          className={styles.flippy}
         >
-          <FrontSide
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              width: "280px",
-              height: "50px",
-              borderRadius: 10,
-            }}
-          >
+          <FrontSide className={styles.flippy_side}>
             <button
               onClick={open}
               className={
-                "search-home " +
+                styles.flippy_btn +
+                " search-home " +
                 "bg-" +
                 (tags[indexFront].short || "").replace(/ /g, "-")
               }
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "row",
-                borderRadius: 10,
-                padding: 0,
-                fontWeight: 600,
-              }}
             >
               {tags[indexFront].icon ? (
-                <IconContainer isRTL={isRTL}>
+                <div className={styles.icon}>
                   <Streamline
                     name={tags[indexFront].icon}
                     stroke={"white"}
                     width={22}
                     height={22}
                   />
-                </IconContainer>
+                </div>
               ) : null}
               {t("Tags." + tags[indexFront].name, tags[indexFront].name)}
             </button>
           </FrontSide>
-          <BackSide
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              width: "280px",
-              height: "50px",
-              borderRadius: 10,
-            }}
-          >
-            <button
-              onClick={open}
-              className={
-                "search-home " +
-                "bg-" +
-                (tags[indexBack].short || "").replace(/ /g, "-")
-              }
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "row",
-                borderRadius: 10,
-                padding: 0,
-                fontWeight: 600,
-              }}
-            >
-              {tags[indexBack].icon ? (
-                <IconContainer isRTL={isRTL}>
-                  <Streamline
-                    name={tags[indexBack].icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
-                </IconContainer>
-              ) : null}
-              {t("Tags." + tags[indexBack].name, tags[indexBack].name)}
-            </button>
-          </BackSide>
+          {isLoaded &&
+            <BackSide className={styles.flippy_side}>
+              <button
+                onClick={open}
+                className={
+                  styles.flippy_btn +
+                  " search-home " +
+                  "bg-" +
+                  (tags[indexBack].short || "").replace(/ /g, "-")
+                }
+              >
+                {tags[indexBack].icon ? (
+                  <div className={styles.icon}>
+                    <Streamline
+                      name={tags[indexBack].icon}
+                      stroke={"white"}
+                      width={22}
+                      height={22}
+                    />
+                  </div>
+                ) : null}
+                {t("Tags." + tags[indexBack].name, tags[indexBack].name)}
+              </button>
+            </BackSide>
+          }
         </Flippy>
       ) : (
         <Ripples>
           <button
             onClick={close}
-            className="search-home"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "row",
-              borderRadius: 10,
-              backgroundColor: colors.gray70,
-              // fontWeight: "600",
-            }}
+            className={cls("search-home", styles.flippy_btn_open)}
           >
-            <IconContainer isRTL={isRTL}>
+            <div className={styles.icon}>
               <Streamline name="search" width={20} height={20} />
-            </IconContainer>
-            {searchItem.value
-              ? t("Tags." + searchItem.value, searchItem.value)
-              : t("Tags." + searchItem.placeholder, searchItem.placeholder)}
+            </div>
+            {t("Tags." + searchItem.placeholder, searchItem.placeholder)}
           </button>
         </Ripples>
       )}

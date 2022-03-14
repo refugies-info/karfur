@@ -78,7 +78,7 @@ const Reset = () => {
     }
     API.get_users({
       query: {
-        token,
+        reset_password_token: token,
         reset_password_expires: { $gt: Date.now() },
       },
     })
