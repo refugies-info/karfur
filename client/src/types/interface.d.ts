@@ -308,7 +308,6 @@ export interface IDispositif {
   tags: Tag[];
   titreInformatif: string;
   titreMarque: string;
-  traductions: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   updatedAt: Moment;
   nbVues: number;

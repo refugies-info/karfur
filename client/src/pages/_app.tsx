@@ -25,11 +25,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const router = useRouter();
 
   if (isInBrowser()) {
-    // CRISP
-    window.$crisp = [["safe", true]];
-    window.CRISP_WEBSITE_ID = "74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
-
-    // AXEPTION
+    // AXEPTIO
     window.axeptioSettings = {
       clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
     };
@@ -62,8 +58,23 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
-      <Script src="https://client.crisp.chat/l.js" strategy="lazyOnload" />
       <Script src="//static.axept.io/sdk.js" strategy="beforeInteractive" />
+      <Script
+        id="crisp-widget"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.$crisp=[["safe", true]];
+            window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
+            (function(){
+              const d = document;
+              const s = d.createElement("script");
+              s.src = "https://client.crisp.chat/l.js";
+              s.async = 1;
+              d.getElementsByTagName("head")[0].appendChild(s);
+            })();`,
+        }}
+      />
 
       {getLayout(<Component history={history} {...pageProps} />)}
     </>
