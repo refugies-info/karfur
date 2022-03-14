@@ -288,7 +288,6 @@ const Dispositif = (props: Props) => {
           tags: [],
           titreInformatif: contenu.titreInformatif,
           titreMarque: contenu.titreMarque,
-          traductions: [],
           typeContenu: props.typeContenu,
           updatedAt: moment(),
           nbVues: 0,
