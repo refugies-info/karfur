@@ -108,7 +108,7 @@ interface Props {
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
   handleMenuChange: (ev: any, value?: any) => any
   onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
-  addItem: (key: any, type?: string, subkey?: string | null) => void;
+  addItem: (key: any, type?: string, subkey?: string | number | null) => void;
   toggleModal: (show: boolean, name: string) => void
   removeItem: any;
   mainTag: Tag;
@@ -918,7 +918,7 @@ const EtapeParagraphe = (props: Props) => {
               type="dark"
               name="plus-circle-outline"
               className="mt-10"
-              onClick={() => props.addItem(keyValue, "etape", subkey + "")}
+              onClick={() => props.addItem(keyValue, "etape", subkey)}
             >
               Ajouter une étape
             </FButton>
