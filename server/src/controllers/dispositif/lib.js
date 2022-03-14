@@ -83,9 +83,9 @@ async function get_dispositif(req, res) {
         //On n'autorise pas les populate en API externe
         populate = "";
       } else if (populate && populate.constructor === Object) {
-        populate.select = "-password";
+        populate.select = "-password -traductions -traductionsFaites";
       } else if (populate) {
-        populate = { path: populate, select: "-password" };
+        populate = { path: populate, select: "-password -traductions -traductionsFaites" };
       } else {
         populate = "";
       }

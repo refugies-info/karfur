@@ -97,7 +97,7 @@ interface Props {
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
   handleMenuChange: (ev: any, value?: any) => any;
   onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
-  addItem: (key: any, type?: string, subkey?: string | null) => void
+  addItem: (key: any, type?: string, subkey?: string | number | null) => void
   admin: boolean
   content: ShortContent
   showGeolocModal: boolean
