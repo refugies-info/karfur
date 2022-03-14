@@ -283,7 +283,7 @@ const Dispositif = (props: Props) => {
           participants: [],
           signalements: [],
           sponsors: [],
-          status: "Brouillon",
+          status: "",
           suggestions: [],
           tags: [],
           titreInformatif: contenu.titreInformatif,
