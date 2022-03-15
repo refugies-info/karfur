@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -14,6 +14,8 @@ import SEO from "components/Seo";
 import API from "utils/API";
 import styles from "scss/pages/backend.module.scss";
 import { useRouter } from "next/router";
+import history from "utils/backendHistory";
+import { createBrowserHistory } from "history";
 
 const Redirect = () => {
   const router = useRouter();
@@ -36,7 +38,9 @@ const Backend = () => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
+    history?.push(router.asPath);
     return () => setMounted(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -74,7 +78,7 @@ const Backend = () => {
       ) : (
         isInBrowser() && mounted && (
         user ? (
-          <Router>
+          <Router history={history || createBrowserHistory()}>
             <Switch>
               {routes.map((route, idx) =>
                 route.component ? (

@@ -3,13 +3,13 @@ import { colors } from "colors";
 import {
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
-  iphone,
 } from "assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
+import MobileAppSection from "../MobileAppSection";
 
 interface Props {
 }
@@ -38,6 +38,7 @@ export const HomePageMobile = () => {
 
   return (
     <div className="position-relative">
+      <MobileAppSection />
       <HomePageMobileSection
         image={illustration_connaitre_initiative}
         title="Homepage.Faites connaître votre initiative"
@@ -71,24 +72,6 @@ export const HomePageMobile = () => {
         onClick={toggleShowHelpToTranslateModal}
         buttonColor={colors.gray90}
         buttonTextColor={colors.gray10}
-      />
-
-      <HomePageMobileSection
-        image={iphone}
-        title="Homepage.Bientôt dans votre smartphone"
-        defaultTitle="Bientôt dans votre smartphone"
-        text="Homepage.Une application mobile adaptée"
-        defaultText="Une application mobile adaptée aux besoins des personnes réfugiées sera bientôt disponible."
-        iconType="eva"
-        iconName="email-outline"
-        buttonTitle="Homepage.Je veux être informé"
-        defaultBoutonTitle="Je veux être informé"
-        backgroundColor={colors.bleuCharte}
-        textColor={colors.white}
-        isDisabled={false}
-        onClick={toggleShowNewsletterModal}
-        buttonColor={colors.gray10}
-        buttonTextColor={colors.gray90}
       />
       <GoToDesktopModal
         toggle={toggleGoToDesktopModal}

@@ -15,7 +15,7 @@ import { logger } from "../../logger";
 
 export function* fetchTranslations(action: any): SagaIterator {
   try {
-    const data = yield call(API.get_tradForReview, {
+    const response = yield call(API.get_tradForReview, {
       query: {
         articleId: action.payload.itemId,
         langueCible: action.payload.locale,
@@ -23,8 +23,8 @@ export function* fetchTranslations(action: any): SagaIterator {
       sort: { updatedAt: -1 },
       populate: "userId",
     });
-    if (data.data.data.constructor === Array && data.data.data.length > 0) {
-      yield put(setTranslationsActionCreator(data.data.data));
+    if (Array.isArray(response.data.data)) {
+      yield put(setTranslationsActionCreator(response.data.data));
     }
   } catch (error) {
     const { message } = error as Error;

@@ -153,14 +153,12 @@ interface Props {
   valider?: (tradData?: {}) => Promise<void>
   onEditorStateChange?: (editorState: any, target?: string) => void
   onSkip?: () => void
-  getTrads?: () => void
   fwdSetState?: (fn: any, cb: any) => false | void
   isExpert?: boolean
   translated?: {
     body: string
     title: string
   }
-  itemId?: string
   locale?: string
   langue?: any
   traduction?: {
@@ -283,7 +281,7 @@ const Dispositif = (props: Props) => {
           participants: [],
           signalements: [],
           sponsors: [],
-          status: "Brouillon",
+          status: "",
           suggestions: [],
           tags: [],
           titreInformatif: contenu.titreInformatif,
@@ -1310,7 +1308,6 @@ const Dispositif = (props: Props) => {
                     updateUIArray={updateUIArray}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                     translated={props.translated}
-                    itemId={props.itemId}
                     isExpert={props.isExpert}
                     locale={props.locale}
                     langue={props.langue}
@@ -1326,7 +1323,6 @@ const Dispositif = (props: Props) => {
                     valider={props.valider}
                     onEditorStateChange={props.onEditorStateChange}
                     onSkip={props.onSkip}
-                    getTrads={props.getTrads}
                     user={user}
                   />
                 ) : (
@@ -1336,7 +1332,7 @@ const Dispositif = (props: Props) => {
                     updateUIArray={updateUIArray}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                     translated={props.translated}
-                    itemId={props.itemId}
+                    dispositifId={dispositif?._id}
                     isExpert={props.isExpert}
                     locale={props.locale}
                     langue={props.langue}
@@ -1352,7 +1348,6 @@ const Dispositif = (props: Props) => {
                     valider={props.valider}
                     onEditorStateChange={props.onEditorStateChange}
                     onSkip={props.onSkip}
-                    getTrads={props.getTrads}
                     user={user}
                   />
                 ))
@@ -1940,7 +1935,7 @@ const Dispositif = (props: Props) => {
             toggle={() => setShowTagsModal(!showTagsModal)}
             toggleTutorielModal={toggleTutorielModal}
             user={user}
-            dispositifId={dispositif?._id.toString() || ""}
+            dispositifId={dispositif?._id?.toString() || ""}
           />
           <FrameModal
             show={showTutorielModal}

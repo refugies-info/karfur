@@ -27,7 +27,7 @@ const LanguageModal = (props: Props) => {
     >
       <ModalBody className={styles.modal_body}>
         <section>
-          <a href={storeLink}>
+          <a href={storeLink} className={styles.link}>
             <Image src={illuMobileApp} width={268} height={232} alt="mobile app" />
           </a>
           <h1>
