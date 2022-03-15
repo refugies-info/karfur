@@ -25,7 +25,7 @@ const MobileAppSection = () => {
 
   const copyLink = () => {
     navigator.clipboard.writeText(
-      "http://refugies.info/download-app?utm_source=page-accueil&utm_medium=bouton-partage-app&utm_campaign=nouveau-page"
+      "https://refugies.info/download-app?utm_source=page-accueil&utm_medium=bouton-partage-app&utm_campaign=nouveau-page"
     );
   }
 
