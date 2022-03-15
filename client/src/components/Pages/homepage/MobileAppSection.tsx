@@ -30,7 +30,7 @@ const MobileAppSection = () => {
   }
 
   return (
-    <section className={styles.smartphone}>
+    <section id="mobile-app-section" className={styles.smartphone}>
       <div className={styles.container}>
         <div className={cls(styles.row, "row align-items-center")}>
           <div className={cls(styles.mockup, "col")}>
