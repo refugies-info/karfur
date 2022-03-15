@@ -82,8 +82,6 @@ export const HomePageMobileSection = (props: Props) => {
         style={
           props.text === "Homepage.Contribuer à la traduction"
             ? { marginLeft: "-15px" }
-            : props.text === "Homepage.Une application mobile adaptée"
-            ? { marginLeft: "40px" }
             : undefined
         }
       >

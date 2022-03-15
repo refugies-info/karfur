@@ -15,11 +15,11 @@ interface Props {
   titreMarque: string
   status: string | undefined
   saveDispositif: (
-    arg: string,
-    arg1?: boolean,
-    arg2?: boolean,
-    arg3?: boolean,
-    arg4?: boolean
+    status: string,
+    auto?: boolean,
+    sauvegarde?: boolean,
+    saveAndEdit?: boolean,
+    continueEditing?: boolean
   ) => void;
   toggleTutorielModal: any
   tags: any[]
@@ -33,7 +33,13 @@ interface Props {
 
 const DispositifValidateModal = (props: Props) => {
   const validateAndClose = () => {
-    props.saveDispositif(props.status || "En attente");
+    props.saveDispositif(
+      "En attente",
+      false,
+      false,
+      false,
+      false,
+    );
     props.toggle();
   };
   let geoloc = false;

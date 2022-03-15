@@ -117,21 +117,4 @@
       bottom: 0;
     }
   }
-
-  &.smartphone {
-    padding-top: 100px;
-    padding-bottom: 0;
-    background: linear-gradient($bleuCharte, rgba(4, 33, 177, 0.6496));
-    background-repeat: no-repeat;
-    color: $white;
-    display: flex;
-    justify-content: center;
-
-    .img {
-      width: 25%;
-      height: 100%;
-      left: 15%;
-      position: absolute;
-    }
-  }
 }

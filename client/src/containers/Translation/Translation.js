@@ -14,7 +14,10 @@ import {
   addTradActionCreator,
 } from "../../services/Translation/translation.actions";
 import { withRouter } from "react-router-dom";
-import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
+import {
+  fetchSelectedDispositifActionCreator,
+  setSelectedDispositifActionCreator
+} from "services/SelectedDispositif/selectedDispositif.actions";
 import isInBrowser from "lib/isInBrowser";
 
 let last_target = null;
@@ -120,6 +123,7 @@ export class TranslationHOC extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    this.props.setSelectedDispositif(null, true);
   }
   // eslint-disable-next-line react/no-deprecated
   componentWillUpdate(_, nextState) {
@@ -154,11 +158,6 @@ export class TranslationHOC extends Component {
       //...(!isExpert && userId && {userId})
       this.props.fetchTranslations(itemId, locale);
     }
-  };
-
-  get_trads = () => {
-    const { itemId, locale } = this.state;
-    this.props.fetchTranslations(itemId, locale);
   };
 
   _setLangue = async (languageId) => {
@@ -486,6 +485,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchTranslations: fetchTranslationsActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
+  setSelectedDispositif: setSelectedDispositifActionCreator,
   addTranslation: addTradActionCreator,
 };
 

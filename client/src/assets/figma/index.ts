@@ -17,7 +17,6 @@ import illustration_homeCard_demarche from "./illustration_homeCard_demarche.svg
 import illustration_homeCard_lexique from "./illustration_homeCard_lexique.svg";
 import illustration_connaitre_initiative from "./illustration_connaitre_initiative.svg";
 import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
-import iphone from "./iphone.svg";
 import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 import home_mobile from "./home_mobile.svg";
 import icon_France from "./icon_France.svg";
@@ -43,7 +42,6 @@ export {
   illustration_homeCard_lexique,
   illustration_connaitre_initiative,
   illustration_aidez_traduire,
-  iphone,
   rendez_vous_ordinateur,
   home_mobile,
   icon_France,
