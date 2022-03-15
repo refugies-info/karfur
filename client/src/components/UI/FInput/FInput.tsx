@@ -10,7 +10,7 @@ interface Props {
   id: string;
   value?: string;
   placeholder?: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   autoComplete?: string;
   disabled?: boolean;
   inputClassName?: string;
@@ -63,6 +63,7 @@ const FInput = (props: Props) => {
         placeholder={props.placeholder}
         value={props.value}
         onChange={props.onChange}
+        readOnly={!props.onChange}
         autoComplete={props.autoComplete}
         disabled={props.disabled}
         name={props.name}

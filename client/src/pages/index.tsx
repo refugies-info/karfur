@@ -11,14 +11,13 @@ import { searchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { MobileSearchFilterModal } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
-import { BecomeTesterModal } from "components/Pages/homepage/BecomeTesterModal";
 import UkrainePopup from "components/Pages/homepage/UkrainePopup";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
+import MobileAppSection from "components/Pages/homepage/MobileAppSection";
 import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/UI/FButton/FButton";
-import iphone from "assets/figma/iphone.svg";
+import FButton from "components/UI/FButton";
 import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
@@ -34,11 +33,6 @@ import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-top: 0px;
-`;
 const ButtonContainerRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,7 +52,6 @@ const Homepage = (props: Props) => {
   const [showNewslettreModal, setShowNewslettreModal] = useState(
     isInBrowser() ? new URLSearchParams(window.location.search).get("newsletter") === "" : false
   );
-  const [showBecomeTesterModal, setShowBecomeTesterModal] = useState(false);
   const [ukraine, setUkraine] = useState(true);
 
   const { t } = useTranslation();
@@ -73,7 +66,6 @@ const Homepage = (props: Props) => {
   const togglePopup = () => setPopup(!popup);
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
-  const toggleBecomeTesterModal = () => setShowBecomeTesterModal(!showBecomeTesterModal);
   const toggleOverlay = () => setOverlay(!overlay);
 
   const isRTL = useRTL();
@@ -194,6 +186,7 @@ const Homepage = (props: Props) => {
         <HomePageMobile />
       ) : (
         <>
+          <MobileAppSection />
           <section id="contribution" className={`${styles.section} ${styles.contribution}`}>
             <div className="section-container half-width right-side">
               <div className="section-body">
@@ -323,56 +316,6 @@ const Homepage = (props: Props) => {
               }}
             ></div>
           </section>
-            <section id="smartphone" className={`${styles.section} ${styles.smartphone}`}>
-              <div className={styles.img}>
-                <Image
-                  src={iphone}
-                  alt="iphone mockup"
-                  width={480}
-                  height={500}
-                  objectFit="contain"
-                />
-              </div>
-            <div className="section-container half-width right-side smartphone">
-              <div className="section-body smartphone">
-                <h2>
-                  {t(
-                    "Homepage.Bientôt sur smartphone",
-                    "Bientôt sur smartphone"
-                  )}
-                </h2>
-                <p>
-                  {t("Homepage.Bientôt sur smartphone subheader")}
-                </p>
-                {/*<LanguageBtn />*/}
-              </div>
-              <ButtonContainer>
-                <p>
-                  <FButton
-                    name="email-outline"
-                    onClick={() => toggleShowNewsletterModal()}
-                    type="white"
-                    className="text-wrap text-left"
-                  >
-                    {t(
-                      "Homepage.informé du lancement",
-                      "Je veux être informé du lancement"
-                    )}
-                  </FButton>
-                </p>
-                <FButton
-                  name="eye-outline"
-                  onClick={() => toggleBecomeTesterModal()}
-                  type="white"
-                >
-                  {t(
-                    "Homepage.Je veux tester l'application mobile",
-                    "Je veux tester l'application mobile"
-                  )}
-                </FButton>
-              </ButtonContainer>
-            </div>
-          </section>
         </>
       )}
       <MobileSearchFilterModal
@@ -388,10 +331,6 @@ const Homepage = (props: Props) => {
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}
         show={showNewslettreModal}
-      />
-      <BecomeTesterModal
-        toggle={toggleBecomeTesterModal}
-        show={showBecomeTesterModal}
       />
     </div>
   );
