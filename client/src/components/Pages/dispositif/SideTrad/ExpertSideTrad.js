@@ -1049,7 +1049,7 @@ class SideTrad extends Component {
     if (elems1 && elems1[0] && elems1[0].classList) {
       elems1[0].classList.toggle("arevoir", false);
     }
-    if (userTrad && userTrad._id) {
+    if (userTrad && userTrad._id && this.props.dispositifId) {
       let newTrad = {
         _id: userTrad._id,
         translatedText: traduction.translatedText,
@@ -1057,7 +1057,7 @@ class SideTrad extends Component {
         isExpert: true,
         wordsCount,
         timeSpent: timeSpent,
-        articleId: this.props.itemId,
+        articleId: this.props.dispositifId,
         language: this.props.langue.langueCode,
       };
       this.props.fwdSetState({ newTrad }, () => {});
@@ -1080,12 +1080,13 @@ class SideTrad extends Component {
   };
 
   _insertTrad = async (trad) => {
+    if (!this.props.dispositifId) return;
     if (trad) {
       await API.update_tradForReview(trad);
     }
     let newTrad = {
       ...trad,
-      articleId: this.props.itemId,
+      articleId: this.props.dispositifId,
       type: "dispositif",
       locale: this.props.locale,
       traductions: this.props.traductionsFaites,

@@ -159,7 +159,6 @@ interface Props {
     body: string
     title: string
   }
-  itemId?: string
   locale?: string
   langue?: any
   traduction?: {
@@ -1309,7 +1308,6 @@ const Dispositif = (props: Props) => {
                     updateUIArray={updateUIArray}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                     translated={props.translated}
-                    itemId={props.itemId}
                     isExpert={props.isExpert}
                     locale={props.locale}
                     langue={props.langue}
@@ -1334,7 +1332,7 @@ const Dispositif = (props: Props) => {
                     updateUIArray={updateUIArray}
                     typeContenu={dispositif?.typeContenu || "dispositif"}
                     translated={props.translated}
-                    itemId={props.itemId}
+                    dispositifId={dispositif?._id}
                     isExpert={props.isExpert}
                     locale={props.locale}
                     langue={props.langue}
