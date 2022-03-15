@@ -30,7 +30,7 @@ const MobileAppSection = () => {
   }
 
   return (
-    <section id="mobile-app-section" className={styles.smartphone}>
+    <section className={styles.smartphone}>
       <div className={styles.container}>
         <div className={cls(styles.row, "row align-items-center")}>
           <div className={cls(styles.mockup, "col")}>
@@ -82,6 +82,7 @@ const MobileAppSection = () => {
                     prependName="link-outline"
                     prependFill={colors.gray70}
                     inputClassName={styles.input}
+                    autoFocus={false}
                   />
                 </div>
                 <FButton
