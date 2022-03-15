@@ -153,7 +153,6 @@ interface Props {
   valider?: (tradData?: {}) => Promise<void>
   onEditorStateChange?: (editorState: any, target?: string) => void
   onSkip?: () => void
-  getTrads?: () => void
   fwdSetState?: (fn: any, cb: any) => false | void
   isExpert?: boolean
   translated?: {
@@ -1326,7 +1325,6 @@ const Dispositif = (props: Props) => {
                     valider={props.valider}
                     onEditorStateChange={props.onEditorStateChange}
                     onSkip={props.onSkip}
-                    getTrads={props.getTrads}
                     user={user}
                   />
                 ) : (
@@ -1352,7 +1350,6 @@ const Dispositif = (props: Props) => {
                     valider={props.valider}
                     onEditorStateChange={props.onEditorStateChange}
                     onSkip={props.onSkip}
-                    getTrads={props.getTrads}
                     user={user}
                   />
                 ))
@@ -1940,7 +1937,7 @@ const Dispositif = (props: Props) => {
             toggle={() => setShowTagsModal(!showTagsModal)}
             toggleTutorielModal={toggleTutorielModal}
             user={user}
-            dispositifId={dispositif?._id.toString() || ""}
+            dispositifId={dispositif?._id?.toString() || ""}
           />
           <FrameModal
             show={showTutorielModal}

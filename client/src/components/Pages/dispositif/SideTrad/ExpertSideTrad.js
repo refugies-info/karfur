@@ -135,14 +135,14 @@ class SideTrad extends Component {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
     this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (this.state.initialize === false && !!this.props.content.titreInformatif) {
-      this._initializeComponent(this.props);
+      this._initializeComponent();
       this.setState({ initialize: true });
     }
     if (
       this.state.initializeTrad === false &&
       prevProps.traductionsFaites !== this.props.traductionsFaites
     ) {
-      this._initializeComponent(this.props);
+      this._initializeComponent();
       this.setState({ initializeTrad: true });
     }
     if (
@@ -276,7 +276,7 @@ class SideTrad extends Component {
       });
     }
     if (!this.state.contentMod) {
-      traduction.translatedText.contenu.forEach((p, index) => {
+      (traduction.translatedText?.contenu || []).forEach((p, index) => {
         if (p.titleModified) {
         }
         if (p.contentModified) {
@@ -339,9 +339,9 @@ class SideTrad extends Component {
   }
 
   //similar to the function in SideTrad.js
-  _initializeComponent = async (props) => {
-    if (props.traductionsFaites.length > 0) {
-      let trad = props.traductionsFaites.find((trad) => {
+  _initializeComponent = async () => {
+    if (this.props.traductionsFaites.length > 0) {
+      let trad = this.props.traductionsFaites.find((trad) => {
         return (
           trad.status === "En attente" ||
           trad.status === "À revoir" ||
@@ -354,25 +354,25 @@ class SideTrad extends Component {
     }
     const { idx, subidx, subname } = this.state;
     if (
-      props.content &&
-      props.content.titreInformatif !== "Titre informatif" &&
-      props.fwdSetState &&
-      props.translate
+      this.props.content &&
+      this.props.content.titreInformatif !== "Titre informatif" &&
+      this.props.fwdSetState &&
+      this.props.translate
     ) {
       if (this.state.currIdx === "titreInformatif") {
         this._scrollAndHighlight("titreInformatif");
-        props.fwdSetState(
-          () => ({ francais: { body: props.content.titreInformatif } }),
-          () => this.checkTranslate(props.locale)
+        this.props.fwdSetState(
+          () => ({ francais: { body: this.props.content.titreInformatif } }),
+          () => this.checkTranslate(this.props.locale)
         );
       } else {
         this._scrollAndHighlight(idx, subidx, subname);
-        props.fwdSetState(
+        this.props.fwdSetState(
           () => {},
-          () => this.checkTranslate(props.locale)
+          () => this.checkTranslate(this.props.locale)
         );
       }
-      if (props.typeContenu === "demarche") {
+      if (this.props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
     }
