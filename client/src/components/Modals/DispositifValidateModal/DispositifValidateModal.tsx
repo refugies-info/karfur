@@ -34,7 +34,7 @@ interface Props {
 const DispositifValidateModal = (props: Props) => {
   const validateAndClose = () => {
     props.saveDispositif(
-      props.status || "En attente",
+      "En attente",
       false,
       false,
       false,
