@@ -24,8 +24,8 @@ const MentionsLegales = () => {
         droit d’accès, de rectification, de modification et de suppression
         concernant des données qui vous concernent personnellement. Ce droit
         peut être exercé par voie électronique à l’adresse email suivante :{" "}
-        <a title="Email" href="mailto:nour@refugies.info">
-          nour@refugies.info
+        <a title="Email" href="mailto:contact@email.refugies.info">
+          contact@email.refugies.info
         </a>
         .
         <p>
@@ -66,8 +66,8 @@ const MentionsLegales = () => {
         marques, logos ou contenus appartenant à d’autres organisations. Pour
         toute demande d’autorisation ou d’information, veuillez nous contacter
         par email :{" "}
-        <a title="Email" href="mailto:nour@refugies.info">
-          nour@refugies.info
+        <a title="Email" href="mailto:contact@email.refugies.info">
+          contact@email.refugies.info
         </a>
         . Des conditions spécifiques sont prévues pour la presse.
       </p>

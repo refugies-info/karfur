@@ -440,7 +440,7 @@ export class TranslationHOC extends Component {
     });
 
   render() {
-    if (this.state.type === "dispositif" && this.props.selectedDispositif) {
+    if (this.state.type === "dispositif" && this.props.selectedDispositif?._id) {
       return (
         <Dispositif
           type="translation"

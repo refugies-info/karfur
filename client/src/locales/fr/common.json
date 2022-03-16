@@ -205,10 +205,7 @@
     "Mon rôle": "Mon rôle",
     "Autre": "Autre",
     "Portfolio": "Portfolio",
-
-    "Anciens membres": "Anciens membres",
     "Mes outils": "Mes outils",
-    "Vous nous manquez": " (vous nous manquez !)",
     "Problématiques": "Problématiques",
     "problem_1_header": "Comprendre le statut de réfugié",
     "problem_1_subheader": "Mieux comprendre c'est déjà mieux accueillir. Migrant, demandeur d'asile ou réfugié ne désignent pas les mêmes réalités. Réfugiés.info s'adresse aux réfugiés statutaires, c'est-à-dire aux personnes à qui la France accorde une protection internationale car leur vie est menacée dans leur pays d'origine.",
@@ -236,7 +233,7 @@
     "disponible prochainement": "Disponible prochainement",
     "réseau": "Rejoindre le réseau des contributeurs",
     "appel-a-manifestation1": "Ces organisations ont signé un Appel à manifestation d’intérêt et participent à l’évolution de la plateforme.",
-    "appel-a-manifestation2": "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez l’appel ci-dessous et envoyez-le à nour@refugies.info. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
+    "appel-a-manifestation2": "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez et renvoyez l’appel ci-dessous. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
     "telechargerAppel": "Télécharger l’appel [PDF] "
   },
   "CommentContribuer": {

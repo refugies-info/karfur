@@ -20,6 +20,7 @@ export const assetsOnServer = {
     header: bucketUrlQSN + "QuiSommesNous_header.svg",
     parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
     terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
+    pdfAMI: bucketUrlQSN + "AMI-structures-2022.pdf",
   },
   homepage: {
     CarteDeploiement: bucketUrl + "home/Carte_deploiement_janv2022.svg",

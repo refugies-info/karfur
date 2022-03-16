@@ -7,7 +7,6 @@ import { Contribution } from "components/Pages/qui-sommes-nous/Contribution";
 import { Team } from "components/Pages/qui-sommes-nous/Team";
 import { Partners } from "components/Pages/qui-sommes-nous/Partners";
 import { assetsOnServer } from "assets/assetsOnServer";
-import type { Member } from "data/members";
 import SEO from "components/Seo";
 import { NextPage } from "next";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
@@ -79,26 +78,6 @@ const SectionHeader = styled.div`
   line-height: 40px;
   margin-bottom: 48px;
 `;
-const SectionSubHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: baseline;
-  text-align: center;
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 40px;
-  margin-bottom: 48px;
-`;
-
-const SectionSubHeaderMissing = styled.div`
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  color: grey;
-  margin-left: 8px;
-`;
-
 const MissionContainer = styled.div`
   height: 720px;
   padding-top: 48px;
@@ -127,8 +106,6 @@ const PartnersContainer = styled.div`
 `;
 
 const QuiSommesNous: NextPage = () => {
-  const [sideVisible, setSideVisible] = useState(false);
-  const [membre, setMembre] = useState<Member | null>(null);
   const [isToolbarVisible, setIsToolbarVisible] = useState(true);
   const [visibleSection, setVisibleSection] = useState("");
 
@@ -161,15 +138,6 @@ const QuiSommesNous: NextPage = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const onSelectMembre = (membre: any) => {
-    setSideVisible(true);
-    setMembre(membre);
-  };
-
-  const closeSide = () => {
-    if (sideVisible) setSideVisible(false);
-  };
 
   return (
     <MainContainer>
@@ -231,29 +199,12 @@ const QuiSommesNous: NextPage = () => {
         <SectionHeader>{t("QuiSommesNous.Missions", "Missions")}</SectionHeader>
         <Mission />
       </MissionContainer>
-      <TeamContainer onClick={closeSide} className={styles.container}>
+      <TeamContainer className={styles.container}>
         <span id="equipe" className={styles.anchor}></span>
         <SectionHeader>
           {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
         </SectionHeader>
-        <Team
-          sideVisible={sideVisible}
-          member={membre}
-          onMemberCardClick={onSelectMembre}
-          type="members"
-        />
-        <SectionSubHeader>
-          {t("QuiSommesNous.Anciens membres", "Anciens membres")}
-          <SectionSubHeaderMissing>
-            {t("QuiSommesNous.Vous nous manquez", "(vous nous manquez !)")}
-          </SectionSubHeaderMissing>
-        </SectionSubHeader>
-        <Team
-          sideVisible={sideVisible}
-          member={membre}
-          onMemberCardClick={onSelectMembre}
-          type="former_members"
-        />
+        <Team />
       </TeamContainer>
       <ProblematicContainer className={styles.container}>
         <span id="problematic" className={styles.anchor}></span>
