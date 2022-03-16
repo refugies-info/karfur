@@ -6,10 +6,11 @@ import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe";
 import { DispositifContent, Tag } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
-import { isMobile } from "react-device-detect";
 import { ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   updateUIArray: (
@@ -79,11 +80,9 @@ const ContenuDispositif = (props: Props) => {
               className={"contenu " + (props.uiArray[key]?.isHover ? " isHovered" : "")}
               onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
             >
-              {!isMobile && (
-                <button className="anchor" id={"item-head-" + key}>
-                  {dispositifContent.title}
-                </button>
-              )}
+              <button className={cls(mobile.hidden, "anchor")} id={"item-head-" + key}>
+                {dispositifContent.title}
+              </button>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3
                   className={"contenu-title " + (key !== 0 ? " mt-20" : "")}
@@ -130,8 +129,8 @@ const ContenuDispositif = (props: Props) => {
                 )
               }
             </Col>
-            {props.uiArray[key]?.isHover && !isMobile && (
-              <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
+            {props.uiArray[key]?.isHover && (
+              <Col lg="2" md="2" sm="2" xs="2" className={cls(mobile.hidden, "toolbar-col")}>
                 {
                   // on the right, contains reaction and reading
                   <QuickToolbar

@@ -220,3 +220,43 @@
     display: none;
   }
 }
+
+.infobox {
+  display: flex;
+  max-width: 1002px;
+  color: $gray10;
+  background-color: $focus;
+  border-radius: $radius;
+  padding: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 20px 20px 40px;
+
+  @include media-max("tablet-up") {
+    margin: 16px;
+  }
+}
+
+.other_language {
+  display: flex;
+  color: $gray70;
+  font-size: 18px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: auto 40px;
+  padding: 0;
+
+  @include media-max("tablet-up") {
+    margin: auto;
+    padding: 16px;
+  }
+}
+
+.informations {
+  @include media-min("tablet-up") {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

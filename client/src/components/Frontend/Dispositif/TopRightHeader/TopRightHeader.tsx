@@ -4,13 +4,14 @@ import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import { isUserAllowedToModify } from "./functions";
-import { isMobile } from "react-device-detect";
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { ContribStyledStatus } from "containers/Backend/UserContributions/components/SubComponents";
-import styles from "./TopRightHeader.module.scss";
 import { Tag } from "types/interface";
 import { useTranslation } from "next-i18next";
+import styles from "./TopRightHeader.module.scss";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   disableEdit: boolean;
@@ -130,7 +131,7 @@ const TopRightHeader = (props: Props) => {
         </Card>
       </Col>
     );
-  } else if (props.disableEdit && !isMobile) {
+  } else if (props.disableEdit) {
     // when props.disableEdit = true, favorite button and modify button (if user authorized)
     // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin
     // 160920 : or autor but not when dispo if pubié, en attente admin or accepté structure
@@ -142,18 +143,17 @@ const TopRightHeader = (props: Props) => {
         md="6"
         sm="6"
         xs="12"
-        className={styles.top_right_edition}
+        className={cls(mobile.hidden_flex, styles.top_right_edition)}
       >
         {!props.translating &&
           props.langue === "fr" &&
-          (admin || isAuthor || userIsSponsor) &&
-          !isMobile && (
+          (admin || isAuthor || userIsSponsor) && (
             <div
               onClick={(event: any) => {
                 event.stopPropagation();
                 props.toggleTutoModal("Statut des fiches");
               }}
-              className={styles.icon}
+              className={cls(mobile.hidden, styles.icon)}
             >
               <ContribStyledStatus size="large" text={props.status} />
             </div>
