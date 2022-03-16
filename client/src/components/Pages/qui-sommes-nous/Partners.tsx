@@ -58,7 +58,7 @@ export const Partners = () => {
           "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez et renvoyez l’appel ci-dessous. Nous prendrons contact avec vous pour définir les modalités de notre partenariat."
         )}
         <div style={{ marginTop: "32px" }}>
-          <a href={assetsOnServer.quiSommesNous.pdfAPI} download>
+          <a href={assetsOnServer.quiSommesNous.pdfAMI} download>
             <FButton type="fill-dark" name="download-outline">
               {t(
                 "QuiSommesNous.telechargerAppel",

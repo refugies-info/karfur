@@ -1,3 +1,4 @@
+@import "src/scss/colors";
 
 .container {
   display: flex;
@@ -34,8 +35,8 @@
   text-align: center;
   width: fit-content;
   font-weight: bold;
-  font-size: 16px;
-  background: #ffffff;
+  font-size: $text-normal;
+  background: $white;
   padding: 4px;
   margin-top: 20px;
 }
@@ -48,9 +49,9 @@
 .role {
   text-align: center;
   width: fit-content;
-  font-size: 16px;
+  font-size: $text-normal;
   line-height: 23px;
   margin-top: 8px;
   padding: 4px;
-  background: #ffffff;
+  background: $white;
 }
