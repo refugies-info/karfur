@@ -372,28 +372,24 @@ export class TranslationHOC extends Component {
       $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }, { avancement: 1 }],
       status: "Actif",
     };
-    API[
-      isExpert
-        ? "get_tradForReview"
-        : type === "dispositif"
-        ? "get_dispositif"
-        : "getArticle"
-    ]({ query: query, locale: i18nCode, random: true, isExpert })
+    API.get_tradForReview({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
 
-        if (results.length === 0) {
+        if (results.length === 0) { // unless it's importat to check that
           this.props.history.push(
             "/backend/user-translation/" + langue.i18nCode
           );
         } else {
+          const searchParams = (new URL(document.location)).searchParams;
+          const itemId = searchParams.get("dispositif");
           this.props.history.push({
             pathname:
               "/backend/" +
               (isExpert ? "validation" : "traduction") +
               "/" +
               (_.get(results, "0.typeContenu") || type),
-            search: `?language=${langue._id}&dispositif=${_.get(results, "0._id")}`
+            search: `?language=${langue._id}&dispositif=${itemId}`
           });
           this.setState({ disableBtn: false });
         }
