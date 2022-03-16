@@ -72,6 +72,7 @@ import {
   generateAudienceAge,
   getContent,
   isContentForbidden,
+  getNewStatus,
 } from "lib/dispositifPage";
 import { logger } from "logger";
 import { initializeTimer } from "containers/Translation/functions";
@@ -1119,7 +1120,6 @@ const Dispositif = (props: Props) => {
       dispositifId: dispositif._id,
       //@ts-ignore
       avancement: 1,
-      status: status
     };
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
@@ -1145,34 +1145,13 @@ const Dispositif = (props: Props) => {
     } else {
       newDispositif.titreMarque = "";
     }
-    if (status !== "Brouillon") {
-      if (
-        dispositif?.status &&
-        ![
-          "",
-          "En attente non prioritaire",
-          "Brouillon",
-          "Accepté structure",
-        ].includes(dispositif.status)
-      ) {
-        newDispositif.status = dispositif.status;
-      } else if (newDispositif.mainSponsor && user) {
-        const membre = (dispositif.mainSponsor?.membres || []).find(
-          (x) => x.userId === user._id
-        );
-        if (
-          ((membre &&
-            membre.roles &&
-            membre.roles.some(
-              (x) => x === "administrateur" || x === "contributeur"
-            )) || admin) && !sauvegarde
-        ) {
-          newDispositif.status = "En attente admin";
-        }
-      } else {
-        newDispositif.status = "En attente non prioritaire";
-      }
-    }
+    newDispositif.status = getNewStatus(
+      status,
+      dispositif,
+      user,
+      admin,
+      sauvegarde
+    );
 
     logger.info("[saveDispositif] dispositif before call", { newDispositif });
     API.addDispositif(newDispositif).then((data) => {
