@@ -45,7 +45,7 @@ export const activatedLanguages: Language[] = [
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     langueCode: "er",
-    i18nCode: "ti",
+    i18nCode: "ti-ER",
     avancement: 1,
     avancementTrad: 0,
   },
