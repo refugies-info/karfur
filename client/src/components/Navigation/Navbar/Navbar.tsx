@@ -36,6 +36,7 @@ import marioProfile from "assets/mario-profile.jpg";
 import useRTL from "hooks/useRTL";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { AvailableLanguageI18nCode } from "types/interface";
+import history from "utils/backendHistory";
 
 interface Props {
   history: string[]
@@ -99,15 +100,22 @@ const Navbar = (props: Props) => {
     }
   };
 
+  const goToProfile = () => {
+    const pathName = user.membreStruct
+      ? "/backend/user-dash-notifications"
+      : "/backend/user-favorites";
+    const isOnBackend = router.pathname.includes("backend");
+    if (!isOnBackend) router.push(pathName);
+    else if (history) history.push(pathName);
+  }
+
   const path = router.pathname || "";
   const userImg =
     user.user && user.user.picture
       ? user.user.picture.secure_url
       : marioProfile;
   const isRTL = useRTL();
-  const pathName = user.membreStruct
-    ? "/backend/user-dash-notifications"
-    : "/backend/user-favorites";
+
 
   const nbNewNotifications = getNbNewNotifications(
     dispositifsAssocies,
@@ -192,22 +200,20 @@ const Navbar = (props: Props) => {
         {!isMobile && (
           isAuth ?
           <div>
-            <Link href={pathName} passHref>
-              <a className={styles.user_picture_link}>
-                {(user.membreStruct && nbNewNotifications > 0 && userStructure) ? (
-                  <div className={styles.overlay}>
-                    <div className={styles.user_picture_with_overlay}>
-                      <Image src={userImg} alt="user" width={52} height={52} />
-                    </div>
-                    <div className={styles.middle}>{nbNewNotifications}</div>
-                  </div>
-                ) : (
-                  <div className={styles.user_picture}>
+            <button onClick={goToProfile} className={styles.user_picture_link}>
+              {(user.membreStruct && nbNewNotifications > 0 && userStructure) ? (
+                <div className={styles.overlay}>
+                  <div className={styles.user_picture_with_overlay}>
                     <Image src={userImg} alt="user" width={52} height={52} />
                   </div>
-                )}
-              </a>
-            </Link>
+                  <div className={styles.middle}>{nbNewNotifications}</div>
+                </div>
+              ) : (
+                <div className={styles.user_picture}>
+                  <Image src={userImg} alt="user" width={52} height={52} />
+                </div>
+              )}
+            </button>
           </div> :
           <div>
             <Link href="/register" passHref>

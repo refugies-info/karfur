@@ -153,14 +153,14 @@ class SideTrad extends Component {
       }
     }
     if (this.state.initialize === false && !!this.props.content.titreInformatif) {
-      this._initializeComponent(this.props);
+      this._initializeComponent();
       this.setState({ initialize: true });
     }
     if (
       this.state.initializeTrad === false &&
       prevProps.traductionsFaites !== this.props.traductionsFaites
     ) {
-      this._initializeComponent(this.props);
+      this._initializeComponent();
       this.setState({ initializeTrad: true });
     }
     const expertTrad = listTrad.length
@@ -267,7 +267,7 @@ class SideTrad extends Component {
       });
     }
     if (!this.state.contentMod) {
-      traduction.translatedText.contenu.forEach((p, index) => {
+      (traduction.translatedText?.contenu || []).forEach((p, index) => {
         if (p.titleModified) {
         }
         if (p.contentModified) {
@@ -326,28 +326,28 @@ class SideTrad extends Component {
     }
   }
 
-  _initializeComponent = async (props) => {
+  _initializeComponent = async () => {
     const { idx, subidx, subname } = this.state;
     if (
-      props.content &&
-      props.content.titreInformatif !== "Titre informatif" &&
-      props.fwdSetState &&
-      props.translate
+      this.props.content &&
+      this.props.content.titreInformatif !== "Titre informatif" &&
+      this.props.fwdSetState &&
+      this.props.translate
     ) {
       if (this.state.currIdx === "titreInformatif") {
         this._scrollAndHighlight("titreInformatif");
-        props.fwdSetState(
-          () => ({ francais: { body: props.content.titreInformatif } }),
-          () => this.checkTranslate(props.locale)
+        this.props.fwdSetState(
+          () => ({ francais: { body: this.props.content.titreInformatif } }),
+          () => this.checkTranslate(this.props.locale)
         );
       } else {
         this._scrollAndHighlight(idx, subidx, subname);
-        props.fwdSetState(
+        this.props.fwdSetState(
           () => {},
-          () => this.checkTranslate(props.locale)
+          () => this.checkTranslate(this.props.locale)
         );
       }
-      if (props.typeContenu === "demarche") {
+      if (this.props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
     }
@@ -355,7 +355,6 @@ class SideTrad extends Component {
 
   //Called everytime we change section to update the index and the content we are translating, at the end we call checlTranslate which takes care of sending the translation to google
   goChange = async (isNext = true, fromFn = true) => {
-    //await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
     }

@@ -72,7 +72,7 @@ export const generateUiArray = (contenu: DispositifContent[], accordion: boolean
 export const generateMenu = (dispositif: IDispositif) => {
   return dispositif.typeContenu === "dispositif"
     ? dispositif.contenu
-    : dispositif.contenu.map((part) => {
+    : (dispositif.contenu || []).map((part) => {
       if (part.title !== "C'est pour qui ?") {
         return part;
       }
@@ -220,7 +220,7 @@ export const handleContentClickInComponent = (
 };
 
 export const getMainTag = (dispositif: IDispositif | null): Tag => {
-  if (dispositif && dispositif.tags.length > 0) {
+  if (dispositif && (dispositif.tags || []).length > 0) {
     const tag = tags.find(
       (x) => x && x.name === dispositif.tags[0].name
     )
@@ -238,7 +238,7 @@ export const getMainTag = (dispositif: IDispositif | null): Tag => {
 }
 
 export const isPinned = (dispositif: IDispositif | null, user: User | null) => {
-  if (!dispositif || !user) return false;
+  if (!dispositif || !user || !dispositif._id) return false;
   return (user?.cookies?.dispositifsPinned || []).some(
     (x: { _id: string }) => x._id === dispositif._id.toString()
   )

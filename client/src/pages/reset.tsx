@@ -102,7 +102,8 @@ const Reset = () => {
   const togglePasswordVisibility = () =>
     setPasswordVisible(!setPasswordVisible);
 
-  const send = () => {
+  const send = (e: any) => {
+    e.preventDefault();
     if (newPassword.length === 0) {
       Swal.fire({
         title: "Oops...",
@@ -134,13 +135,12 @@ const Reset = () => {
           type: "success",
           timer: 1500,
         }).then(() => {
+          localStorage.setItem("token", data.data.token);
+          setAuthToken(data.data.token);
+          dispatch(fetchUserActionCreator());
           router.push("/");
         });
-        localStorage.setItem("token", data.data.token);
-        setAuthToken(data.data.token);
-        dispatch(fetchUserActionCreator());
-      })
-      .catch(() => {});
+      }).catch(() => {});
   };
 
   const changeLanguage = (lng: string) => {

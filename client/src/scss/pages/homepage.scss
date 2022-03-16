@@ -105,9 +105,6 @@
       &.left-side {
         margin-right: auto;
       }
-      &.smartphone {
-        margin-top: 0px;
-      }
     }
     .section-body {
       p {
@@ -115,10 +112,6 @@
       }
       flex: 1 1 auto;
       margin-bottom: 40px;
-      &.smartphone {
-        margin-bottom: 20px;
-        flex: 0;
-      }
     }
 
     .footer-section {

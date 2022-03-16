@@ -55,8 +55,12 @@ $avatarSize: 52px;
     height: $avatarSize;
     width: $avatarSize;
     border-radius: 50%;
+    padding: 0;
     overflow: hidden;
     display: block;
+    border: none;
+    background: transparent;
+    outline: none;
 
     .overlay {
       background-image: linear-gradient(
@@ -64,8 +68,8 @@ $avatarSize: 52px;
         rgba(4, 33, 177, 0.6),
         rgba(4, 33, 177, 0.6)
       );
-      height: 100%;
-      width: 100%;
+      height: $avatarSize;
+      width: $avatarSize;
       position: relative;
       font-weight: bold;
       font-size: $text-normal;
@@ -73,13 +77,13 @@ $avatarSize: 52px;
       color: $white;
     }
     .user_picture {
-      height: 100%;
-      width: 100%;
+      height: $avatarSize;
+      width: $avatarSize;
     }
 
     .user_picture_with_overlay {
-      height: 100%;
-      width: 100%;
+      height: $avatarSize;
+      width: $avatarSize;
       opacity: 0.3;
     }
 
