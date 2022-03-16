@@ -1,3 +1,5 @@
+@import "src/scss/mixins/responsive";
+
 html body div[dir="rtl"] {
   text-align: right;
 
@@ -17,16 +19,18 @@ html body div[dir="rtl"] {
       direction: ltr;
     }
     &.reading-mode .contenu.isHovered {
-      border-right: none;
-      border-left: 4px solid $gray90;
-      &:after,
-      &:before {
-        right: 100%;
-        left: 0;
-      }
-      &:before {
-        border-right-color: inherit;
-        border-left-color: $white;
+      @include media-min("tablet-up") {
+        border-right: none;
+        border-left: 4px solid $gray90;
+        &:after,
+        &:before {
+          right: 100%;
+          left: 0;
+        }
+        &:before {
+          border-right-color: inherit;
+          border-left-color: $white;
+        }
       }
     }
     .contenu-wrapper .toolbar-col {

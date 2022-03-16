@@ -34,11 +34,13 @@ const Backend = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const locale = router.locale && router.locale !== "fr" ? "/" + router.locale : "";
+
   // fix for: https://github.com/vercel/next.js/discussions/17443#discussioncomment-637879
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
-    history?.push(router.asPath);
+    history?.push(locale + router.asPath);
     return () => setMounted(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -64,9 +66,6 @@ const Backend = () => {
       hasAuthorizedRole || (hasRouteRestrictionHasStructure && hasUserStructure)
     );
   };
-
-  const locale =
-    router.locale && router.locale !== "fr" ? "/" + router.locale : "";
 
   return (
     <>

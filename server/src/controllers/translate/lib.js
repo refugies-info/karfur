@@ -1,3 +1,4 @@
+const logger = require("../../logger");
 const { Translate } = require("@google-cloud/translate");
 const projectId = "traduction-1551702821050";
 
@@ -17,22 +18,21 @@ const translate = new Translate({
   },
 });
 
-function get_translation(req, res) {
+async function get_translation(req, res) {
   if (!req.body || !req.body.q) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     var q = req.body.q;
     var target = req.body.target;
 
-    translate
-      .translate(q, target)
-      .then((results) => {
-        const translation = results[0];
-        res.send(translation);
-      })
-      .catch((err) => {
-        res.status(500).json({ text: "Erreur interne", err: err });
-      });
+    try {
+      const results = await translate.translate(q, target);
+      const translation = results[0];
+      return res.send(translation);
+    } catch (err) {
+      logger.error("Error while getting translation", { error: err });
+      return res.status(500).json({ text: "Erreur interne", err: err });
+    }
   }
 }
 

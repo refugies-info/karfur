@@ -1,40 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import FButton from "components/UI/FButton/FButton";
-import { colors } from "colors";
 import styles from "./FeedbackFooter.module.scss";
 import isInBrowser from "lib/isInBrowser";
-
-const FeedbackContainer = styled.div`
-  display: flex;
-  flex-direction: ${isMobile ? "column" : "row"};
-  color: ${(props: {color: string}) => props.color};
-`;
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: ${isMobile ? "column" : "row"};
-  align-items: center;
-  width: ${isMobile ? "-webkit-fill-available" : ""};
-`;
-const TextContainer = styled.div`
-  text-align: ${isMobile ? "center" : ""};
-  margin-bottom: ${isMobile ? "16px" : ""};
-`;
-
-const CountButtonContainer = styled.div`
-  padding: 15px;
-  display: flex;
-  margin-right: 8px;
-  margin-bottom: 8px;
-  border-radius: 12px;
-  font-weight: bold;
-  line-height:20px;
-  background-color:${(props: {didThank: boolean}) => (props.didThank ? colors.vert : colors.gray20)}
-  color:${(props: {didThank: boolean}) => (props.didThank ? colors.white : colors.gray90)};
-`;
-
+import { cls } from "lib/classname";
 interface Props {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
@@ -47,8 +16,8 @@ const FeedbackFooter = (props: Props) => {
   const { nbThanks, pushReaction, didThank } = props;
 
   return (
-    <FeedbackContainer color={props.color} className={styles.container}>
-      <TextContainer>
+    <div style={{color: props.color}} className={styles.container}>
+      <div className={styles.text_container}>
         <h5>
           {t(
             "Dispositif.informations_utiles",
@@ -60,14 +29,14 @@ const FeedbackFooter = (props: Props) => {
           "Dispositif.remerciez",
           "Remerciez les contributeurs qui les ont rédigées pour vous"
         )}
-      </TextContainer>
-      <ButtonContainer>
-        <CountButtonContainer didThank={didThank}>
+      </div>
+      <div className={styles.btn_container}>
+        <div className={cls(styles.thank_button, didThank && styles.active)}>
           {didThank ? nbThanks + 1 : nbThanks}{" "}
           <span role="img" aria-label="thanks" style={{ marginLeft: "5px" }}>
             🙏
           </span>
-        </CountButtonContainer>
+        </div>
 
         {!didThank && (
           <FButton
@@ -100,8 +69,8 @@ const FeedbackFooter = (props: Props) => {
           </span>
           {t("Non", "Non")}
         </FButton>
-      </ButtonContainer>
-    </FeedbackContainer>
+      </div>
+    </div>
   );
 };
 

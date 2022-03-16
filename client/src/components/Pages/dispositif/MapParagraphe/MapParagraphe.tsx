@@ -11,6 +11,8 @@ import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";
 import { Tag } from "types/interface";
 import styles from "./MapParagraphe.module.scss";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 const refs: any = {};
 interface Props {
@@ -127,24 +129,22 @@ const MapParagraphe = (props: Props) => {
     >
       {(markersToDisplay.length || !props.disableEdit) && (
         <div>
-          {isMobile && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: -30,
-                marginBottom: 20,
-              }}
+          <div
+            className={mobile.visible_flex}
+            style={{
+              justifyContent: "center",
+              marginTop: -30,
+              marginBottom: 20,
+            }}
+          >
+            <FButton
+              type="outline-black"
+              name={"share-outline"}
+              onClick={props.toggleShareContentOnMobileModal}
             >
-              <FButton
-                type="outline-black"
-                name={"share-outline"}
-                onClick={props.toggleShareContentOnMobileModal}
-              >
-                {t("Dispositif.Partager Fiche", "Partager la fiche")}
-              </FButton>
-            </div>
-          )}
+              {t("Dispositif.Partager Fiche", "Partager la fiche")}
+            </FButton>
+          </div>
           <div
             className={styles.header}
             style={{backgroundColor: props.mainTag.darkColor}}
@@ -293,20 +293,18 @@ const MapParagraphe = (props: Props) => {
                   </FButton>
                 </>
               )}
-              {isMobile && (
-                <div className={styles.btn} onClick={onClose}>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <EVAIcon name="checkmark" className="mr-10" />
-                    {t("Ok", "Ok")}
-                  </div>
+              <div className={cls(mobile.visible_flex, styles.btn)} onClick={onClose}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                  }}
+                >
+                  <EVAIcon name="checkmark" className="mr-10" />
+                  {t("Ok", "Ok")}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

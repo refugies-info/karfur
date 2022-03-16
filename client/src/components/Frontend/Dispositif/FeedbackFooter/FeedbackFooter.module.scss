@@ -5,12 +5,16 @@
 
   .container {
     background: $gray10;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     padding: 35px 20px 35px 40px;
     font-size: $text-large;
+
+    @include media-max("tablet-up") {
+      flex-direction: column;
+    }
 
     h5 {
       @include media-max("tablet-up") {
@@ -43,5 +47,41 @@
       &::after {
         background: $validationHover;
       }
+    }
+  }
+
+  .btn_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @include media-max("tablet-up") {
+      flex-direction: column;
+      width: -webkit-fill-available;
+    }
+  }
+
+  .text_container {
+    @include media-max("tablet-up") {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+  }
+
+  .thank_button {
+    padding: 15px;
+    display: flex;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    line-height:20px;
+
+    background-color: $gray20;
+    color: $gray90;
+
+    &.active {
+      background-color: $vert;
+      color: $white;
     }
   }

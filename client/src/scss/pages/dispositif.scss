@@ -326,23 +326,25 @@ $imgHeight: 350px;
     }
   }
   &.reading-mode .contenu.isHovered {
-    border-right: 4px solid $gray90;
-    position: relative;
+    @include media-min("tablet-up") {
+      border-right: 4px solid $gray90;
+      position: relative;
 
-    &:after,
-    &:before {
-      left: 100%;
-      top: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-    }
-    &:before {
-      border-left-color: inherit;
-      border-width: 14px;
-      margin-top: -14px;
+      &:after,
+      &:before {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+      }
+      &:before {
+        border-left-color: inherit;
+        border-width: 14px;
+        margin-top: -14px;
+      }
     }
   }
 

@@ -440,7 +440,7 @@ export interface Need {
   fr: NeedDetail;
   ar?: NeedDetail;
   en?: NeedDetail;
-  ti?: NeedDetail;
+  "ti-ER"?: NeedDetail;
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
@@ -456,7 +456,7 @@ export type AvailableLanguageI18nCode =
   | "en"
   | "ps"
   | "ar"
-  | "ti"
+  | "ti-ER"
   | "ru"
   | "uk"
   | "fa";

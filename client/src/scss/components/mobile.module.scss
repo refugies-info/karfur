@@ -1,0 +1,47 @@
+@import "src/scss/mixins/responsive";
+
+// Visible
+.visible {
+  display: none !important;
+
+  @include media-max("tablet-up") {
+    display: block !important;
+  }
+}
+.visible_flex {
+  display: none !important;
+
+  @include media-max("tablet-up") {
+    display: flex !important;
+  }
+}
+.visible_inline_flex {
+  display: none !important;
+
+  @include media-max("tablet-up") {
+    display: inline-flex !important;
+  }
+}
+
+// Hidden
+.hidden {
+  display: block !important;
+
+  @include media-max("tablet-up") {
+    display: none !important;
+  }
+}
+.hidden_flex {
+  display: flex !important;
+
+  @include media-max("tablet-up") {
+    display: none !important;
+  }
+}
+.hidden_inline_flex {
+  display: inline-flex !important;
+
+  @include media-max("tablet-up") {
+    display: none !important;
+  }
+}

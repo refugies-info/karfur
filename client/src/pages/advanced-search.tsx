@@ -419,9 +419,14 @@ export class AdvancedSearch extends Component<Props, State> {
     if(query.langue) newQueryParam.langue = query.langue;
     if(query.order) newQueryParam.tri = query.order;
 
-    this.props.router.push({
-      search: qs.stringify(newQueryParam),
-    }, undefined, { shallow: true });
+    const locale = this.props.router.locale;
+    const oldQueryString = qs.stringify(this.props.router.query);
+    const newQueryString = qs.stringify(newQueryParam);
+    if (oldQueryString !== newQueryString) {
+      this.props.router.push({
+        search: newQueryString,
+      }, undefined, { locale: locale, shallow: true });
+    }
   }
 
   queryDispositifs = () => {
@@ -814,7 +819,7 @@ export class AdvancedSearch extends Component<Props, State> {
     const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(d => d._id.toString());
 
     return (
-      <div className={"animated fadeIn advanced-search" + (isMobile ?" advanced-search--mobile" : "")}>
+      <div className={"advanced-search" + (isMobile ?" advanced-search--mobile" : "")}>
         <SEO title="Recherche" />
         {isMobile ? (
           <MobileAdvancedSearch
