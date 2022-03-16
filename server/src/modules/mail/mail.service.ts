@@ -452,7 +452,7 @@ export const sendPublishedTradMailToTraductorsService = async (
     };
     const templateName = "publishedTradForTraductors";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData); // test fix 503 when mail is invalid
     await addMailEvent({
       templateName,
       username: data.pseudo,

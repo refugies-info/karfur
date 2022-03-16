@@ -10,7 +10,7 @@ var base = new Airtable({
     : process.env.AIRTABLE_BASE_TRAD
 );
 const logger = require("../../logger");
-const getFormattedLocale = require("../../libs/getFormattedLocale");
+const { getFormattedLocale } = require("../../libs/getFormattedLocale");
 
 const addDispositifInContenusAirtable = (title, link, tagsList, type) => {
   logger.info("[addDispositifInContenusAirtable] adding a new line", {
