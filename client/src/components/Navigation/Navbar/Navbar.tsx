@@ -217,7 +217,7 @@ const Navbar = (props: Props) => {
               )}
             </button>
           </div> :
-          <div>
+          <div className="text-nowrap">
             <Link href="/register" passHref>
               <FButton
                 type="signup"
