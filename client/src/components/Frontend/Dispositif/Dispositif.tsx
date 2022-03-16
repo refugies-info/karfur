@@ -12,8 +12,6 @@ import Swal from "sweetalert2";
 import h2p from "html2plaintext";
 import _ from "lodash";
 import { convertToHTML } from "draft-convert";
-import { isMobile } from "react-device-detect";
-import styled from "styled-components";
 import API from "utils/API";
 // components
 import Sponsors from "components/Frontend/Dispositif/Sponsors";
@@ -97,6 +95,8 @@ import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selector
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 // style
 import styles from "scss/pages/dispositif.module.scss";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 moment.locale("fr");
 
@@ -109,29 +109,6 @@ if (isInBrowser()) {
   NotificationManager = ReactNotifications.NotificationManager;
   NotificationContainer = ReactNotifications.NotificationContainer;
 }
-
-const InfoBoxLanguageContainer = styled.div`
-  display: flex;
-  max-width: 1002px;
-  color: ${colors.gray10};
-  background-color: ${colors.focus};
-  border-radius: 12px;
-  padding: 16px;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: ${isMobile ? "16px" : "0px 20px 20px 40px"};
-`;
-
-const TextOtherLanguageContainer = styled.p`
-  display: flex;
-  color: ${colors.gray70};
-  font-size: 18px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: ${isMobile ? "auto" : "auto 40px"};
-  padding: ${isMobile ? "16px" : 0};
-`;
 
 const uiElement = {
   isHover: false,
@@ -1274,8 +1251,6 @@ const Dispositif = (props: Props) => {
         "animated fadeIn dispositif vue" +
         (!disableEdit
           ? " edition-mode"
-          : isMobile
-          ? ""
           : props.type === "translation"
           ? " side-view-mode"
           : printing && isRTL
@@ -1405,73 +1380,69 @@ const Dispositif = (props: Props) => {
                     flexDirection: "row",
                   }}
                 >
-                  {isMobile && (
-                    <div>
-                      <div className={styles.mobile_title}>
+                  <div className={mobile.visible}>
+                    <div className={styles.mobile_title}>
+                      <div className={styles.mobile_title_text}>
+                        {dispositif?.titreInformatif || ""}
+                      </div>
+                    </div>
+                    {dispositif?.typeContenu === "dispositif" && (
+                      <div className={styles.mobile_title_sponsor}>
                         <div className={styles.mobile_title_text}>
-                          {dispositif?.titreInformatif || ""}
+                          <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
+                          {dispositif?.titreMarque || ""}
                         </div>
                       </div>
-                      {dispositif?.typeContenu === "dispositif" && (
-                        <div className={styles.mobile_title_sponsor}>
-                          <div className={styles.mobile_title_text}>
-                            <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
-                            {dispositif?.titreMarque || ""}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {!isMobile && (
-                    <div>
-                      <h1 className={disableEdit ? "" : "editable"}>
+                    )}
+                  </div>
+                  <div className={mobile.hidden}>
+                    <h1 className={disableEdit ? "" : "editable"}>
+                      {
+                        // Display and edition of titreInformatif
+                        <ContentEditable
+                          id="titreInformatif"
+                          html={dispositif?.titreInformatif || ""} // innerHTML of the editable div
+                          disabled={disableEdit}
+                          onClick={(e) => {
+                            if (!disableEdit) {
+                              onInputClicked(e);
+                            }
+                          }}
+                          onChange={handleChange}
+                          onMouseEnter={(e) => {
+                            updateUIArray(-4);
+                            //@ts-ignore
+                            e.target.focus();
+                          }}
+                          onKeyPress={(e) => handleKeyPress(e, 0)}
+                        />
+                      }
+                    </h1>
+                    {dispositif?.typeContenu === "dispositif" && (
+                      <h2 className={styles.bloc_subtitle}>
+                        <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
                         {
-                          // Display and edition of titreInformatif
+                          // Display and edition of titreMarque
                           <ContentEditable
-                            id="titreInformatif"
-                            html={dispositif?.titreInformatif || ""} // innerHTML of the editable div
+                            id="titreMarque"
+                            html={dispositif?.titreMarque || ""} // innerHTML of the editable div
                             disabled={disableEdit}
                             onClick={(e) => {
-                              if (!disableEdit) {
-                                onInputClicked(e);
-                              }
+                              onInputClicked(e);
                             }}
                             onChange={handleChange}
+                            onKeyDown={onInputClicked}
                             onMouseEnter={(e) => {
-                              updateUIArray(-4);
+                              updateUIArray(-3);
                               //@ts-ignore
                               e.target.focus();
                             }}
-                            onKeyPress={(e) => handleKeyPress(e, 0)}
+                            onKeyPress={(e) => handleKeyPress(e, 1)}
                           />
                         }
-                      </h1>
-                      {dispositif?.typeContenu === "dispositif" && (
-                        <h2 className={styles.bloc_subtitle}>
-                          <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
-                          {
-                            // Display and edition of titreMarque
-                            <ContentEditable
-                              id="titreMarque"
-                              html={dispositif?.titreMarque || ""} // innerHTML of the editable div
-                              disabled={disableEdit}
-                              onClick={(e) => {
-                                onInputClicked(e);
-                              }}
-                              onChange={handleChange}
-                              onKeyDown={onInputClicked}
-                              onMouseEnter={(e) => {
-                                updateUIArray(-3);
-                                //@ts-ignore
-                                e.target.focus();
-                              }}
-                              onKeyPress={(e) => handleKeyPress(e, 1)}
-                            />
-                          }
-                        </h2>
-                      )}
-                    </div>
-                  )}
+                      </h2>
+                    )}
+                  </div>
                   {!disableEdit &&
                     dispositif?.typeContenu === "dispositif" &&
                     displayTuto && (
@@ -1491,56 +1462,54 @@ const Dispositif = (props: Props) => {
             </Col>
           </section>
 
-          {!isMobile && (
-            <Row
-              className="tags-row bg-darkColor"
-              style={{ backgroundColor: mainTag?.darkColor || "dark" }}
+          <Row
+            className={cls(mobile.hidden_flex, "tags-row bg-darkColor")}
+            style={{ backgroundColor: mainTag?.darkColor || "dark" }}
+          >
+            <Col
+              style={{ display: "flex", alignItems: "center" }}
+              lg="8"
+              md="8"
+              sm="8"
+              xs="8"
+              className="col right-bar"
             >
-              <Col
-                style={{ display: "flex", alignItems: "center" }}
-                lg="8"
-                md="8"
-                sm="8"
-                xs="8"
-                className="col right-bar"
-              >
-                {
-                  // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
-                  (disableEdit || dispositif?.typeContenu !== "demarche") && (
-                    // TO DO : connect component to store when store updated after changing infocards
-                    <EnBrefBanner menu={menu} isRTL={isRTL} />
-                  )
-                }
-              </Col>
+              {
+                // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                (disableEdit || dispositif?.typeContenu !== "demarche") && (
+                  // TO DO : connect component to store when store updated after changing infocards
+                  <EnBrefBanner menu={menu} isRTL={isRTL} />
+                )
+              }
+            </Col>
 
-              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                {
-                  // Tags on the right of a dispositif or a demarche
-                  <Tags
-                    tags={dispositif?.tags || []}
-                    disableEdit={disableEdit}
-                    changeTag={changeTag}
-                    openTag={() => setShowTagsModal(true)}
-                    toggleTutorielModal={toggleTutorielModal}
-                    displayTuto={displayTuto}
-                    updateUIArray={updateUIArray}
-                    isRTL={isRTL}
-                    typeContenu={dispositif?.typeContenu || "dispositif"}
-                  />
-                }
-              </Col>
-            </Row>
-          )}
+            <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
+              {
+                // Tags on the right of a dispositif or a demarche
+                <Tags
+                  tags={dispositif?.tags || []}
+                  disableEdit={disableEdit}
+                  changeTag={changeTag}
+                  openTag={() => setShowTagsModal(true)}
+                  toggleTutorielModal={toggleTutorielModal}
+                  displayTuto={displayTuto}
+                  updateUIArray={updateUIArray}
+                  isRTL={isRTL}
+                  typeContenu={dispositif?.typeContenu || "dispositif"}
+                />
+              }
+            </Col>
+          </Row>
 
           <Row className="no-margin-right">
-            {props.type !== "translation" && !printing && !isMobile && (
+            {props.type !== "translation" && !printing && (
               <Col
                 xl="3"
                 lg="3"
                 md="12"
                 sm="12"
                 xs="12"
-                className="left-side-col pt-40"
+                className={cls(mobile.hidden, "left-side-col pt-40")}
               >
                 {
                   // left part of the dispositif/demarche to navigate in sections, go to external website, download in pdf, send by mail, by sms and print
@@ -1575,30 +1544,27 @@ const Dispositif = (props: Props) => {
               className="pt-40 col-middle"
               id={"pageContent"}
             >
-              {isMobile && (
-                //On Mobile device only, button to show modal with sharing options.
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    margin: 10,
-                  }}
+              <div
+                className={mobile.visible_flex}
+                style={{
+                  justifyContent: "center",
+                  margin: 10,
+                }}
+              >
+                <FButton
+                  type="outline-black"
+                  name={"share-outline"}
+                  onClick={() =>
+                    setShowShareContentOnMobileModal(
+                      !showShareContentOnMobileModal
+                    )
+                  }
                 >
-                  <FButton
-                    type="outline-black"
-                    name={"share-outline"}
-                    onClick={() =>
-                      setShowShareContentOnMobileModal(
-                        !showShareContentOnMobileModal
-                      )
-                    }
-                  >
-                    {t("Dispositif.Partager Fiche", "Partager la Fiche")}
-                  </FButton>
-                </div>
-              )}
+                  {t("Dispositif.Partager Fiche", "Partager la Fiche")}
+                </FButton>
+              </div>
               {!isTranslated && showAlertBoxLanguage && (
-                <InfoBoxLanguageContainer>
+                <div className={styles.infobox}>
                   <div style={{ display: "flex", alignItems: "center" }}>
                     <EVAIcon
                       name={"alert-triangle"}
@@ -1632,19 +1598,9 @@ const Dispositif = (props: Props) => {
                     fill={colors.gray10}
                     className="ml-10"
                   ></EVAIcon>
-                </InfoBoxLanguageContainer>
+                </div>
               )}
-              <div
-                style={
-                  isMobile
-                    ? {}
-                    : {
-                        display: "flex",
-                        justifyContent: "flex-start",
-                        flexWrap: "wrap",
-                      }
-                }
-              >
+              <div className={styles.informations}>
                 {disableEdit && dispositif?.lastModificationDate && (
                   // Part about last update
                   <Row className="fiabilite-row">
@@ -1666,67 +1622,71 @@ const Dispositif = (props: Props) => {
                   </Row>
                 )}
                 {!isTranslated && possibleLanguages.length ? (
-                  <TextOtherLanguageContainer>
+                  <div className={styles.other_language}>
                     {t("Dispositif.Lire en", "Lire en :")}
-                    {langueSelected && isMobile ? (
-                      <FButton
-                        type="white"
-                        className="ml-10 mb-2"
-                        onClick={() =>
-                          setShowLanguageToReadModal(!showLanguageToReadModal)
-                        }
-                      >
-                        <i
-                          className={
-                            "flag-icon flag-icon-" +
-                            possibleLanguages[0].langueCode
+                    {langueSelected && (
+                      <>
+                        <FButton
+                          type="white"
+                          className={cls(mobile.visible_inline_flex, "ml-10 mb-2")}
+                          onClick={() =>
+                            setShowLanguageToReadModal(!showLanguageToReadModal)
                           }
-                          title={possibleLanguages[0].langueCode}
-                          id={possibleLanguages[0].langueCode}
-                        />
+                        >
+                          <i
+                            className={
+                              "flag-icon flag-icon-" +
+                              possibleLanguages[0].langueCode
+                            }
+                            title={possibleLanguages[0].langueCode}
+                            id={possibleLanguages[0].langueCode}
+                          />
 
-                        <span className="ml-10 language-name">
-                          {possibleLanguages[0].langueLoc || "Langue"}
-                        </span>
-                        <EVAIcon
-                          name={"chevron-down-outline"}
-                          fill={colors.gray90}
-                          className="ml-10"
-                          size="xlarge"
-                        ></EVAIcon>
-                      </FButton>
-                    ) : langueSelected ? (
-                      possibleLanguages.map((langue, index) => {
-                        return (
-                          <FButton
-                            key={index}
-                            type="white"
-                            className="ml-10 mb-2"
-                            onClick={() => {
-                              Event(
-                                "CHANGE_LANGUAGE",
-                                langue.i18nCode,
-                                "label"
-                              );
-                              changeLanguage(langue.i18nCode);
-                            }}
-                          >
-                            <i
-                              className={
-                                "flag-icon flag-icon-" + langue.langueCode
-                              }
-                              title={langue.langueCode}
-                              id={langue.langueCode}
-                            />
+                          <span className="ml-10 language-name">
+                            {possibleLanguages[0].langueLoc || "Langue"}
+                          </span>
+                          <EVAIcon
+                            name={"chevron-down-outline"}
+                            fill={colors.gray90}
+                            className="ml-10"
+                            size="xlarge"
+                          ></EVAIcon>
+                        </FButton>
 
-                            <span className="ml-10 language-name">
-                              {langue.langueLoc || "Langue"}
-                            </span>
-                          </FButton>
-                        );
-                      })
-                    ) : null}
-                  </TextOtherLanguageContainer>
+                        <div className={mobile.hidden}>
+                          {possibleLanguages.map((langue, index) => {
+                            return (
+                              <FButton
+                                key={index}
+                                type="white"
+                                className="ml-10 mb-2"
+                                onClick={() => {
+                                  Event(
+                                    "CHANGE_LANGUAGE",
+                                    langue.i18nCode,
+                                    "label"
+                                  );
+                                  changeLanguage(langue.i18nCode);
+                                }}
+                              >
+                                <i
+                                  className={
+                                    "flag-icon flag-icon-" + langue.langueCode
+                                  }
+                                  title={langue.langueCode}
+                                  id={langue.langueCode}
+                                />
+
+                                <span className="ml-10 language-name">
+                                  {langue.langueLoc || "Langue"}
+                                </span>
+                              </FButton>
+                            );
+                          })}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 ) : null}
               </div>
 
@@ -1781,9 +1741,9 @@ const Dispositif = (props: Props) => {
                       }
                     />
                   )}
-                  {!printing && !isMobile && (
+                  {!printing && (
                     <div
-                      className="discussion-footer bg-darkColor"
+                      className={cls(mobile.hidden, "discussion-footer bg-darkColor")}
                       style={{ backgroundColor: mainTag?.darkColor || "dark" }}
                     >
                       <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
@@ -1796,9 +1756,8 @@ const Dispositif = (props: Props) => {
                     ...(dispositif?.participants || []),
                     dispositif?.creatorId || [],
                   ].length > 0 &&
-                    !isMobile &&
                     !printing && (
-                      <div className="bottom-wrapper">
+                      <div className={cls(mobile.hidden, "bottom-wrapper")}>
                         <ContribCaroussel
                           contributeurs={[
                             ...(dispositif?.participants || []),
@@ -1833,18 +1792,19 @@ const Dispositif = (props: Props) => {
                 locale={router.locale}
               />
             </Col>
-            {!isMobile && (
-              <Col
-                xl="2"
-                lg="2"
-                md="2"
-                sm="2"
-                xs="2"
-                className={
-                  "aside-right pt-40" + (props.type === "translation" ? " sideView" : "")
-                }
-              />
-            )}
+            <Col
+              xl="2"
+              lg="2"
+              md="2"
+              sm="2"
+              xs="2"
+              className={cls(
+                mobile.hidden,
+                "aside-right pt-40",
+                props.type === "translation" && "sideView"
+              )
+              }
+            />
           </Row>
 
           <ReactionModal

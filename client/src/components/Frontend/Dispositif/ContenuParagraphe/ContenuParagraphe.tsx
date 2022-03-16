@@ -25,6 +25,8 @@ import { DispositifContent, Tag } from "types/interface";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { useRouter } from "next/router";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 interface AccordeonProps {
   disableEdit: boolean
@@ -63,9 +65,6 @@ const StyledHeader = styled.div`
   font-size: ${isMobile ? "18px" : "22px"};
   line-height: 28px;
   color: ${(props: { darkColor: string}) => props.darkColor};
-`;
-const MobileInfoCardsSection = styled.div`
-  display: flex;
 `;
 
 interface BtnProps {
@@ -162,10 +161,9 @@ const ContenuParagraphe = (props: Props) => {
           ? "row " + styles.cards
           : "sous-paragraphe"
       }
-      style={isMobile ? { overflowX: "auto", overflowY: "hidden" } : {}}
     >
-      {isMobile && props.dispositifContent.type === "cards" && nbChildren > 1 && (
-        <MobileInfoCardsSection>
+      {props.dispositifContent.type === "cards" && nbChildren > 1 && (
+        <div className={mobile.visible_flex}>
           {(props.dispositifContent?.children || []).map(
             (subDispositifContent, i) => {
               return (
@@ -197,7 +195,7 @@ const ContenuParagraphe = (props: Props) => {
               );
             }
           )}
-        </MobileInfoCardsSection>
+        </div>
       )}
       {(props.dispositifContent.children || []).map((subitem, index) => {
           const isAccordeonOpen = !!safeUiArray(
@@ -421,8 +419,8 @@ const ContenuParagraphe = (props: Props) => {
                         }
                       </Collapse>
                     </Col>
-                    {props.disableEdit && !isMobile && (
-                      <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
+                    {props.disableEdit && (
+                      <Col lg="2" md="2" sm="2" xs="2" className={cls(mobile.hidden, "toolbar-col")}>
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, index, "isHover")}
                           keyValue={props.keyValue}
@@ -439,11 +437,12 @@ const ContenuParagraphe = (props: Props) => {
                 </div>
               ) : (
                 <>
-                  {!isMobile && props.dispositifContent.type !== "cards" && (
+                  {props.dispositifContent.type !== "cards" && (
                     <div
                       key={index}
                       className={
-                        "contenu paragraphe" +
+                        mobile.hidden +
+                        " contenu paragraphe" +
                         (safeUiArray(props.keyValue, index, "isHover")
                           ? " isHovered"
                           : "")
@@ -492,13 +491,13 @@ const ContenuParagraphe = (props: Props) => {
                           />
                           <br />
                         </Col>
-                        {props.disableEdit && !isMobile && (
+                        {props.disableEdit && (
                           <Col
                             lg="2"
                             md="2"
                             sm="2"
                             xs="2"
-                            className="toolbar-col"
+                            className={cls(mobile.hidden, "toolbar-col")}
                           >
                             <QuickToolbar
                               show={safeUiArray(
@@ -568,27 +567,26 @@ const ContenuParagraphe = (props: Props) => {
           />
         )}
       {props.disableEdit &&
-        isMobile &&
         (props.dispositifContent.title === "Comment je m'engage ?" ||
           props.dispositifContent.title === "Et après ?") &&
         props.dispositifContent.children &&
         props.dispositifContent.children[nbChildren - 1] &&
         props.dispositifContent.children[nbChildren - 1].type !== "map" && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: 10,
-            }}
+        <div
+          className={mobile.visible_flex}
+          style={{
+            justifyContent: "center",
+            margin: 10,
+          }}
+        >
+          <FButton
+            type="outline-black"
+            name={"share-outline"}
+            onClick={props.toggleShareContentOnMobileModal}
           >
-            <FButton
-              type="outline-black"
-              name={"share-outline"}
-              onClick={props.toggleShareContentOnMobileModal}
-            >
-              {t("Dispositif.Partager Fiche", "Partager la fiche")}
-            </FButton>
-          </div>
+            {t("Dispositif.Partager Fiche", "Partager la fiche")}
+          </FButton>
+        </div>
         )}
     </div>
   );

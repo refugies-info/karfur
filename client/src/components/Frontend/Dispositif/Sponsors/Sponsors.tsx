@@ -32,6 +32,8 @@ import { Structure, Tag, User, Picture } from "types/interface";
 import { RootState } from "services/rootReducer";
 import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { isValidPhone } from "lib/validateFields";
+import { cls } from "lib/classname";
+import mobile from "scss/components/mobile.module.scss";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -154,37 +156,6 @@ const AddSponsorDescription = styled.p`
   font-size: 16px;
   color: #212121;
   line-height: 20px;
-`;
-
-interface SponsorCardProps {
-  disableEdit?: boolean
-  add?: boolean
-  nolink?: boolean
-  isMobile?: boolean
-}
-const SponsorCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px;
-  width: 214px;
-  height: ${(props: SponsorCardProps) => (props.disableEdit ? "303px" : "345px")};
-  background: ${(props: SponsorCardProps) => (props.add ? "#F9EF99" : "#eaeaea")};
-  border-radius: 12px;
-  cursor: ${(props: SponsorCardProps) =>
-    (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
-  &:hover {
-    border: ${(props: SponsorCardProps) => (props.add ? "2px solid #212121" : "none")};
-  }
-  margin-left: ${(props: SponsorCardProps) => (props.isMobile ? "32px" : "0px")};
-  margin-right: ${(props: SponsorCardProps) => (props.isMobile ? "32px" : "16px")};
-`;
-const MobileSponsorSection = styled.div`
-  display: flex;
-  overflow-x: auto;
-  margin-left: ${(props: {isRTL: boolean}) => !props.isRTL && "32px"};
-  margin-right: ${(props: {isRTL: boolean}) => props.isRTL && "32px"};
 `;
 
 const burl = getBaseUrl();
@@ -560,16 +531,7 @@ class Sponsors extends Component<Props, State> {
         onMouseEnter={() => this.props.updateUIArray(-7)}
         style={{ backgroundColor: this.props.mainTag.darkColor }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: "10px",
-            marginLeft: isMobile && !isRTL ? "32px" : "0px",
-            marginRight: isMobile && isRTL ? "32px" : "0px",
-          }}
-        >
+        <div className={styles.wrapper}>
           <h5>{"Proposé par"}</h5>
           {!disableEdit &&
             this.props.displayTuto &&
@@ -583,8 +545,8 @@ class Sponsors extends Component<Props, State> {
               </FButton>
             )}
         </div>
-        {isMobile && totalSponsor.length > 1 && (
-          <MobileSponsorSection isRTL={isRTL}>
+        {totalSponsor.length > 1 && (
+          <div className={cls(mobile.visible_flex, styles.mobile_section)}>
             {totalSponsor.map((sponsor, index) => {
               return (
                 <SponsorSection
@@ -597,7 +559,7 @@ class Sponsors extends Component<Props, State> {
                 />
               );
             })}
-          </MobileSponsorSection>
+          </div>
         )}
         {(!isMobile || totalSponsor.length === 1) && (
           <Row>
@@ -606,7 +568,7 @@ class Sponsors extends Component<Props, State> {
                 <SectionTitle>Responsable</SectionTitle>
               ) : null}
               {mainSponsor && mainSponsor._id ? (
-                <SponsorCard disableEdit={disableEdit} isMobile={isMobile}>
+                <div className={cls(styles.sponsor_card, disableEdit && styles.no_edit)}>
                   <ImageLink
                     href={`${burl}annuaire/${mainSponsor._id}`}
                     target="_blank"
@@ -634,15 +596,14 @@ class Sponsors extends Component<Props, State> {
                       <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
                     </DeleteButtonFull>
                   ) : null}
-                </SponsorCard>
+                </div>
               ) : !disableEdit ? (
-                <SponsorCard
+                <div
+                  className={cls(styles.sponsor_card, disableEdit && styles.no_edit, styles.add)}
                   onClick={() => {
                     this.props.toggleFinalValidation();
                     this.toggleModal("responsabilite");
                   }}
-                  add
-                  disableEdit={disableEdit}
                 >
                   <AddSponsorTitle>
                     Choisir la structure responsable
@@ -651,7 +612,7 @@ class Sponsors extends Component<Props, State> {
                     Pour assurer la mise à jour des informations, nous devons
                     relier votre fiche à la structure responsable du dispositif.
                   </AddSponsorDescription>
-                </SponsorCard>
+                </div>
               ) : null}
             </SponsorContainer>
             {sponsors && deduplicatedSponsors.length > 0 ? (
@@ -659,7 +620,8 @@ class Sponsors extends Component<Props, State> {
                 <SectionTitle>Partenaires</SectionTitle>
                 <SponsorListContainer>
                   {deduplicatedSponsors.length === 1 && !disableEdit ? (
-                    <SponsorCard
+                    <div
+                      className={cls(styles.sponsor_card, disableEdit && styles.no_edit, styles.add)}
                       onClick={() => {
                         this.props.toggleFinalValidation();
                         this.toggleModal("img-modal");
@@ -668,8 +630,6 @@ class Sponsors extends Component<Props, State> {
                           nom: "",
                         });
                       }}
-                      add
-                      disableEdit={disableEdit}
                     >
                       <AddSponsorTitle>
                         Ajouter une structure partenaire
@@ -679,13 +639,16 @@ class Sponsors extends Component<Props, State> {
                         ainsi visible dans le cas d’un partenariat ou d’une
                         co-animation.
                       </AddSponsorDescription>
-                    </SponsorCard>
+                    </div>
                   ) : null}
                   {deduplicatedSponsors.map((sponsor, key) => {
                     return (
-                      <SponsorCard
-                        nolink={!sponsor.link}
-                        disableEdit={disableEdit}
+                      <div
+                        className={cls(
+                          styles.sponsor_card,
+                          disableEdit && styles.no_edit,
+                          !sponsor.link && styles.nolink
+                        )}
                         key={key}
                       >
                         {sponsor.link &&
@@ -761,7 +724,7 @@ class Sponsors extends Component<Props, State> {
                             </DeleteButtonSmall>
                           </SponsorListContainer>
                         ) : null}
-                      </SponsorCard>
+                      </div>
                     );
                   })}
                 </SponsorListContainer>
@@ -770,7 +733,8 @@ class Sponsors extends Component<Props, State> {
               <SponsorContainer left>
                 <SectionTitle>Partenaires</SectionTitle>
                 <SponsorListContainer>
-                  <SponsorCard
+                  <div
+                    className={cls(styles.sponsor_card, disableEdit && styles.no_edit, styles.add)}
                     onClick={() => {
                       this.props.toggleFinalValidation();
                       this.toggleModal("img-modal");
@@ -779,8 +743,6 @@ class Sponsors extends Component<Props, State> {
                         nom: "",
                       });
                     }}
-                    add
-                    disableEdit={disableEdit}
                   >
                     <AddSponsorTitle>
                       Ajouter une structure partenaire
@@ -790,7 +752,7 @@ class Sponsors extends Component<Props, State> {
                       ainsi visible dans le cas d’un partenariat ou d’une
                       co-animation.
                     </AddSponsorDescription>
-                  </SponsorCard>
+                  </div>
                 </SponsorListContainer>
               </SponsorContainer>
             ) : null}

@@ -37,6 +37,8 @@ import useRTL from "hooks/useRTL";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { AvailableLanguageI18nCode } from "types/interface";
 import history from "utils/backendHistory";
+import mobile from "scss/components/mobile.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   history: string[]
@@ -129,30 +131,30 @@ const Navbar = (props: Props) => {
         isRTL ? styles.rtl : ""
       }`}
     >
-      {isUserOnContentPage && isMobile ? (
-        <div style={{ height: 50 }}>
+      {isUserOnContentPage && (
+        <div className={mobile.visible} style={{ height: 50 }}>
           <FButton type="light-action" name="arrow-back" onClick={goBack}>
             {t("Retour", "Retour")}
           </FButton>
         </div>
-      ) : (
-        <div className={styles.left_buttons}>
-          <Logo />
-          {path !== "/" && path !== "/homepage" && (
-            <Link href="/" passHref>
-              <FButton
-                type="login"
-                name="home-outline"
-                tag="a"
-                className={styles.home_btn}
-                tabIndex="1"
-              >
-                <b>{t("Toolbar.Accueil", "Accueil")}</b>
-              </FButton>
-            </Link>
-          )}
-        </div>
       )}
+
+      <div className={cls(mobile.hidden_flex, styles.left_buttons)}>
+        <Logo />
+        {path !== "/" && path !== "/homepage" && (
+          <Link href="/" passHref>
+            <FButton
+              type="login"
+              name="home-outline"
+              tag="a"
+              className={styles.home_btn}
+              tabIndex="1"
+            >
+              <b>{t("Toolbar.Accueil", "Accueil")}</b>
+            </FButton>
+          </Link>
+        )}
+      </div>
 
       <div className={styles.center_buttons}>
         <AudioBtn
@@ -164,7 +166,7 @@ const Navbar = (props: Props) => {
         <LanguageBtn hideTextOnMobile={true} />
         {isMobile ? (
           <button
-            className={styles.mobile_search_btn}
+            className={cls(mobile.visible_flex, styles.mobile_search_btn)}
             onClick={() => {
               router.push({ pathname: "/advanced-search" });
             }}
