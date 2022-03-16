@@ -58,7 +58,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
-      <Script src="//static.axept.io/sdk.js" strategy="beforeInteractive" />
+      <Script src="//static.axept.io/sdk.js" strategy="afterInteractive" />
       <Script
         id="crisp-widget"
         strategy="afterInteractive"

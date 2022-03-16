@@ -330,3 +330,47 @@ export const getContent = (dispositif: IDispositif | null): ShortContent => {
     externalLink: dispositif.externalLink,
   }
 }
+
+export const getNewStatus = (
+  statusParam: string,
+  dispositif: IDispositif | null,
+  user: User | null,
+  admin: boolean,
+  sauvegarde: boolean
+) => {
+  // keep draft if already draft
+  if (statusParam === "Brouillon") {
+    return "Brouillon"
+
+  // validate rejected dispositif
+  } else if (
+    dispositif?.status === "Rejeté structure" && // = Rejeté
+    !sauvegarde
+  ) {
+    return "En attente";
+
+  // keep current status
+  } else if (
+    dispositif?.status &&
+    ![
+      "",
+      "En attente non prioritaire", // = Sans structure
+      "Brouillon",
+      "Accepté structure", // = Accepté
+    ].includes(dispositif.status)
+  ) {
+    return dispositif.status;
+
+  // is admin or contrib of current structure, or admin
+  } else if (dispositif?.mainSponsor && user) {
+    const membre = (dispositif.mainSponsor?.membres || []).find(
+      (x) => x.userId === user._id
+    );
+    const isMembreOfStructure = (membre?.roles || []).some((x) => x === "administrateur" || x === "contributeur")
+    if ((isMembreOfStructure || admin) && !sauvegarde) {
+      return "En attente admin"; // = A valider
+    }
+    return statusParam;
+  }
+  return "En attente non prioritaire"; // = Sans structure
+}
