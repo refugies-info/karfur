@@ -55,10 +55,10 @@ const MobileAppSection = () => {
               <div className={styles.store}>
                 <div className={styles.store_badges}>
                   <a href={iosStoreLink} rel="noopener noreferrer" target="_blank">
-                    <Image src={appStoreBadge} alt="Get it on App Store" width={205} height={60}/>
+                    <Image src={appStoreBadge} alt="Get it on App Store" width={190} height={60}/>
                   </a>
                   <a href={androidStoreLink} rel="noopener noreferrer" target="_blank">
-                    <Image src={playStoreBadge} alt="Get it on Play Store" width={200} height={57} />
+                    <Image src={playStoreBadge} alt="Get it on Play Store" width={190} height={57} />
                   </a>
                 </div>
                 <div className={styles.store_qr}>
