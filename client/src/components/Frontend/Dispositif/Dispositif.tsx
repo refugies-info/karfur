@@ -315,6 +315,14 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  // enter edition mode if edit param
+  useEffect(() => {
+    if (router.query.edit === "") {
+      setDisableEdit(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Auto-save
   useEffect(() => {
     if (!disableEdit) {
@@ -1185,8 +1193,12 @@ const Dispositif = (props: Props) => {
           dispatch(fetchUserActionCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
 
-          if (!continueEditing) {
-            setRouteAfterSave(routeAfterSave || "/" + newDispositif.typeContenu + "/" + newDispo._id);
+          const continueAfterCreation = continueEditing && props.type === "create";
+          const nextRoute = routeAfterSave || "/" + newDispositif.typeContenu + "/" + newDispo._id;
+          if (continueAfterCreation) {
+            setRouteAfterSave(nextRoute + "?edit")
+          } else if (!continueEditing) {
+            setRouteAfterSave(nextRoute);
           }
 
           setDisableEdit([
