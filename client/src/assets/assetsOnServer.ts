@@ -190,7 +190,7 @@ export const assetsOnServer = {
       en: bucketUrlStoreBadges + "app-store-en.svg",
       uk: null,
       ps: null,
-      ti: null,
+      "ti-ER": null,
       fa: null,
     },
     playStore: {
@@ -200,7 +200,7 @@ export const assetsOnServer = {
       en: bucketUrlStoreBadges + "google-play-en.svg",
       uk: bucketUrlStoreBadges + "google-play-uk.svg",
       ps: null,
-      ti: null,
+      "ti-ER": null,
       fa: null,
     }
   }
