@@ -26,13 +26,14 @@ import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
 import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
-import { isMobile } from "react-device-detect";
 import styles from "./EtapeParagraphe.module.scss";
 import { DispositifContent, Tag} from "types/interface";
 import { demarcheSteps, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import useRTL from "hooks/useRTL";
+import { cls } from "lib/classname";
+import mobile from "scss/components/mobile.module.scss";
 
 interface AccordeonProps {
   newDisableEdit: boolean
@@ -924,8 +925,8 @@ const EtapeParagraphe = (props: Props) => {
             </FButton>
           )}
         </Col>
-        {disableEdit && !isMobile && (
-          <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
+        {disableEdit && (
+          <Col lg="2" md="2" sm="2" xs="2" className={cls(mobile.hidden, "toolbar-col")}>
             <QuickToolbar
               show={safeUiArray(keyValue, subkey, "isHover")}
               keyValue={keyValue}
