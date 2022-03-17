@@ -97,6 +97,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import styles from "scss/pages/dispositif.module.scss";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
+import { isUserAllowedToModify } from "./TopRightHeader/functions";
 
 moment.locale("fr");
 
@@ -293,10 +294,38 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  const editDispositif = () => {
+    if (!dispositif) return;
+    setDisableEdit(false);
+    const newUiArray = [...menu].map((x, i) => ({
+      ...uiElement,
+      ...(dispositif.uiArray.length > i && {
+        varianteSelected: dispositif.uiArray[i].varianteSelected,
+      }),
+      ...(x.children && {
+        children: x.children.map((_, j) => ({
+          ...uiElement,
+          ...(dispositif.uiArray.length > i &&
+            dispositif.uiArray[i] &&
+            dispositif.uiArray[i].children &&
+            (dispositif.uiArray[i].children || []).length > j && {
+              varianteSelected:
+                dispositif.uiArray[i]?.children?.[j]?.varianteSelected,
+            }),
+          accordion: true,
+        })),
+      }),
+    }));
+    dispatch(setUiArrayActionCreator(newUiArray));
+  };
+
   // enter edition mode if edit param
   useEffect(() => {
-    if (router.query.edit === "") {
-      setDisableEdit(false);
+    const isUserAllowedToModifyDispositif = isUserAllowedToModify(
+      admin, user, dispositif
+    );
+    if (isUserAllowedToModifyDispositif && router.query.edit === "") {
+      editDispositif()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -970,31 +999,6 @@ const Dispositif = (props: Props) => {
   };
   const printPdf = () => {
     if (isInBrowser()) window.print();
-  };
-
-  const editDispositif = (_ = null, disableEdit = false) => {
-    if (!dispositif) return;
-    setDisableEdit(disableEdit);
-    const newUiArray = [...menu].map((x, i) => ({
-      ...uiElement,
-      ...(dispositif.uiArray.length > i && {
-        varianteSelected: dispositif.uiArray[i].varianteSelected,
-      }),
-      ...(x.children && {
-        children: x.children.map((_, j) => ({
-          ...uiElement,
-          ...(dispositif.uiArray.length > i &&
-            dispositif.uiArray[i] &&
-            dispositif.uiArray[i].children &&
-            (dispositif.uiArray[i].children || []).length > j && {
-              varianteSelected:
-                dispositif.uiArray[i]?.children?.[j]?.varianteSelected,
-            }),
-          accordion: !disableEdit,
-        })),
-      }),
-    }));
-    dispatch(setUiArrayActionCreator(newUiArray));
   };
 
   // save reaction and display modal of success

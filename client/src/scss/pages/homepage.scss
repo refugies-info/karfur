@@ -44,7 +44,7 @@
     h5 {
       margin-top: 10px;
       font-weight: normal;
-      @include media-max("tablet-up") {
+      @include isMobile() {
         font-size: $text-large;
         padding: 0 50px;
       }
@@ -255,7 +255,7 @@
     bottom: 80px;
 
     left: 50%;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       left: 44%;
       bottom: 160px;
     }
@@ -286,7 +286,7 @@
       svg {
         transition: all 0.5s ease;
         fill: $gray20;
-        @include media-max("tablet-up") {
+        @include isMobile() {
           fill: $white;
         }
       }
@@ -306,7 +306,7 @@
       svg {
         transition: all 0.5s ease;
         fill: $gray20;
-        @include media-max("tablet-up") {
+        @include isMobile() {
           fill: $white;
         }
       }
@@ -380,7 +380,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       margin-top: -40px;
       max-width: 90%;
       padding-left: 32px;

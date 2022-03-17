@@ -23,7 +23,7 @@ $avatarSize: 52px;
   color: $gray90;
   transition: top 0.6s;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     background: none;
   }
 
@@ -44,7 +44,7 @@ $avatarSize: 52px;
       rgba(255, 255, 255, 0) 31.19%
     );
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       background: none;
     }
   }

@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 $taille: 60px;
@@ -10,7 +11,7 @@ $tailleBig: 80px;
   background-color: $gray90;
   padding: 32px;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     padding-right: 0;
     padding-left: 0;
   }
@@ -18,7 +19,7 @@ $tailleBig: 80px;
     margin-bottom: 20px;
     font-weight: bold;
     font-size: 40px;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       font-size: 28px;
     }
   }
@@ -30,11 +31,11 @@ $tailleBig: 80px;
   justify-content: space-between;
   margin-bottom: 10px;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     margin-left: 32px;
     margin-right: 0;
 
-    [dir="rtl"] & {
+    @include rtl() {
       margin-left: 0;
       margin-right: 32px;
 
@@ -233,7 +234,7 @@ $tailleBig: 80px;
   overflow-x: auto;
   margin-left: 32px;
 
-  [dir="rtl"] & {
+  @include rtl() {
     margin-left: 0;
     margin-right: 32px;
   }
@@ -268,7 +269,7 @@ $tailleBig: 80px;
     cursor: auto !important;
   }
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     margin-left: 32px;
     margin-right: 32px;
   }
