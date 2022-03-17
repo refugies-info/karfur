@@ -150,7 +150,7 @@ const Navbar = (props: Props) => {
               className={styles.home_btn}
               tabIndex="1"
             >
-              <b>{t("Toolbar.Accueil", "Accueil")}</b>
+              {t("Toolbar.Accueil", "Accueil")}
             </FButton>
           </Link>
         )}

@@ -63,7 +63,7 @@ const ButtonContainer = styled.div`
     props.isDisabled ? colors.gray60 : props.backgroundColor};
   font-size:16px;
   color:${(props: ButtonContainerProps) => props.color};
-  font-weight:700;
+  font-weight: bold;
   cursor:pointer;
 `;
 

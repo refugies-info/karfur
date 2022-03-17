@@ -17,6 +17,7 @@ import { ObjectId } from "mongodb";
 import { sortData } from "./functions";
 import { User } from "types/interface";
 import styles from "scss/components/adminTable.module.scss";
+import useRouterLocale from "hooks/useRouterLocale";
 
 moment.locale("fr");
 
@@ -65,6 +66,7 @@ const defaultSortedHeader = {
 };
 export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const routerLocale = useRouterLocale();
 
   const goToTraduction = (element: IDispositifTranslation) => {
     if (props.user && props.user.email === "") {
@@ -75,6 +77,7 @@ export const TranslationAvancementTable = (props: Props) => {
       if (!props.isExpert && element.tradStatus === "Validée") return;
       return props.history.push({
         pathname:
+          routerLocale +
           "/backend" +
           (props.isExpert ? "/validation" : "/traduction") +
           "/" +
