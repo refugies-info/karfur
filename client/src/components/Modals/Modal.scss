@@ -18,7 +18,7 @@
   @include media-min("tablet-up") {
     min-width: 650px;
   }
-  @include media-max("tablet-up") {
+  @include isMobile() {
     width: 100%;
   }
 

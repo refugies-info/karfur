@@ -14,7 +14,7 @@
     height: 30px;
     margin-right: 16px;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       display: none;
     }
   }
@@ -22,7 +22,7 @@
     display: none;
     margin-left: 16px;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       display: block;
     }
   }

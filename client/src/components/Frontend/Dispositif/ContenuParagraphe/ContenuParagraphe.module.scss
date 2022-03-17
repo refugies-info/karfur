@@ -5,7 +5,7 @@
   margin-left: 0;
   margin-right: 0;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     padding: 0 6px;
     overflow-x: auto;
     overflow-y: hidden;
