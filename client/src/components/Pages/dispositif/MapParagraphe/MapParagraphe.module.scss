@@ -113,6 +113,21 @@
   border-radius: $radius;
   color: $white;
 }
+.tuto {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+
+  .label {
+    margin-left: 30px;
+
+    @include isMobile() {
+      margin-left: 6px;
+    }
+  }
+}
 
 .slide {
   -webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1)

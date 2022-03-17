@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import _ from "lodash";
-import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -149,16 +148,8 @@ const MapParagraphe = (props: Props) => {
             className={styles.header}
             style={{backgroundColor: props.mainTag.darkColor}}
           >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                flex: 1,
-                alignItems: "center",
-              }}
-            >
-              <div style={{ marginLeft: isMobile ? 6 : 30 }}>
+            <div className={styles.tuto}>
+              <div className={styles.label}>
                 <EVAIcon name="pin-outline" className="mr-10" />
                 <b>
                   {t(
