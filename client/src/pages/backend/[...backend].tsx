@@ -16,6 +16,7 @@ import styles from "scss/pages/backend.module.scss";
 import { useRouter } from "next/router";
 import history from "utils/backendHistory";
 import { createBrowserHistory } from "history";
+import useRouterLocale from "hooks/useRouterLocale";
 
 const Redirect = () => {
   const router = useRouter();
@@ -33,14 +34,13 @@ const Backend = () => {
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const locale = router.locale && router.locale !== "fr" ? "/" + router.locale : "";
+  const routerLocale = useRouterLocale();
 
   // fix for: https://github.com/vercel/next.js/discussions/17443#discussioncomment-637879
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
-    history?.push(locale + router.asPath);
+    history?.push(routerLocale + router.asPath);
     return () => setMounted(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -83,7 +83,7 @@ const Backend = () => {
                 route.component ? (
                   <Route
                     key={idx}
-                    path={locale + route.path}
+                    path={routerLocale + route.path}
                     exact={route.exact}
                     name={route.name}
                     render={() =>

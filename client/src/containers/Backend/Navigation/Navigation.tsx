@@ -11,9 +11,9 @@ import {
   userStructureHasResponsibleSeenNotification,
 } from "services/UserStructure/userStructure.selectors";
 import { getNbNewNotifications } from "../UserNotifications/lib";
-import { useRouter } from "next/router";
 import { useHistory } from "react-router-dom";
 import styles from "./Navigation.module.scss";
+import useRouterLocale from "hooks/useRouterLocale";
 
 export type SelectedPage =
   | "notifications"
@@ -32,7 +32,7 @@ const NavigationComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   const user = useSelector(userSelector);
-  const router = useRouter();
+  const routerLocale = useRouterLocale();
   const history = useHistory();
   const isAdmin = user && user.admin;
   const hasStructure = user && user.membreStruct;
@@ -56,25 +56,25 @@ const NavigationComponent: React.FunctionComponent<Props> = (
   };
   const onButtonClick = (type: SelectedPage) => {
     if (type === "traductions") {
-      return history.push("/backend/user-translation");
+      return history.push(routerLocale + "/backend/user-translation");
     }
     if (type === "notifications") {
-      return history.push("/backend/user-dash-notifications");
+      return history.push(routerLocale + "/backend/user-dash-notifications");
     }
     if (type === "favoris") {
-      return history.push("/backend/user-favorites");
+      return history.push(routerLocale + "/backend/user-favorites");
     }
     if (type === "contributions") {
-      return history.push("/backend/user-dash-contrib");
+      return history.push(routerLocale + "/backend/user-dash-contrib");
     }
     if (type === "structure") {
-      return history.push("/backend/user-dash-structure");
+      return history.push(routerLocale + "/backend/user-dash-structure");
     }
     if (type === "profil") {
-      return history.push("/backend/user-profile");
+      return history.push(routerLocale + "/backend/user-profile");
     }
     if (type === "admin") {
-      return history.push("/backend/admin");
+      return history.push(routerLocale + "/backend/admin");
     }
     if (type === "logout") {
       return disconnect();

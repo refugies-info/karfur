@@ -190,6 +190,7 @@ const Dispositif = (props: Props) => {
   const [showTutorielModal, setShowTutorielModal] = useState(false);
   const [showDraftModal, setShowDraftModal] = useState(false);
   const [showShareContentOnMobileModal, setShowShareContentOnMobileModal] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const router = useRouter();
   const { t } = useTranslation();
@@ -198,6 +199,7 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
   const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const isUserStructureLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -206,7 +208,7 @@ const Dispositif = (props: Props) => {
   const timer = useRef<number|undefined>();
 
   useEffect(() => {
-    if (API.isAuth() && !user) return;
+    if ((API.isAuth() && !user) || isLoaded) return;
 
     if (props.type === "detail") { // DETAIL
       if (dispositif) {
@@ -291,6 +293,7 @@ const Dispositif = (props: Props) => {
         router.push({ pathname: "/login" });
       }
     }
+    setIsLoaded(true);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
@@ -1185,17 +1188,17 @@ const Dispositif = (props: Props) => {
           );
         }
       }
-      dispatch(setSelectedDispositifActionCreator(newDispo));
+      dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
   };
 
   // when finish loading user after save, redirect
   useEffect(() => {
-    if (routeAfterSave !== "" && !isUserLoading && user) {
+    if (routeAfterSave !== "" && !isUserLoading && !isUserStructureLoading && user) {
       router.push(routeAfterSave);
       setRouteAfterSave("");
     }
-  }, [routeAfterSave, router, isUserLoading, user]);
+  }, [routeAfterSave, router, isUserLoading, isUserStructureLoading, user]);
 
   const upcoming = () =>
     Swal.fire({
