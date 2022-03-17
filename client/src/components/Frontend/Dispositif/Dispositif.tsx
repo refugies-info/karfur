@@ -1185,7 +1185,7 @@ const Dispositif = (props: Props) => {
           );
         }
       }
-      dispatch(setSelectedDispositifActionCreator(newDispo));
+      dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
   };
 
