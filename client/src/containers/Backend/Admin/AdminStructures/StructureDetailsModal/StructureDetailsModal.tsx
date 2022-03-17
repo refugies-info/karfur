@@ -34,7 +34,7 @@ import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDi
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { colors } from "colors";
 import styles from "./StructureDetailsModal.module.scss";
-import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 
 moment.locale("fr");
 
@@ -153,7 +153,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     setStructure,
   ] = useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
-  const router = useRouter();
+  const routerLocale = useRouterLocale();
 
   const isLoadingStructures = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -489,7 +489,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             name="external-link"
             onClick={() => {
               props.history.push({
-                pathname: `/${(router.locale + "/") || ""}backend/user-dash-structure-selected`,
+                pathname: routerLocale + "backend/user-dash-structure-selected",
                 search: `?id=${structure._id}`,
               });
             }}
