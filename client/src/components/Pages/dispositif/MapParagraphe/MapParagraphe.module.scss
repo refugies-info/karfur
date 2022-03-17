@@ -34,7 +34,7 @@
       padding: 20px 40px;
       transform: width 0.45;
       overflow: scroll;
-      @include media-max("tablet-up") {
+      @include isMobile() {
         padding: 16px;
       }
 
@@ -59,7 +59,7 @@
       }
       .marker_input {
         font-size: $text-large;
-        @include media-max("tablet-up") {
+        @include isMobile() {
           font-size: $text-normal;
         }
         color: $gray90;
@@ -69,7 +69,7 @@
         &.is_title {
           font-weight: bold;
           font-size: 24px;
-          @include media-max("tablet-up") {
+          @include isMobile() {
             font-size: $text-large;
           }
         }
@@ -113,6 +113,21 @@
   border-radius: $radius;
   color: $white;
 }
+.tuto {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+
+  .label {
+    margin-left: 30px;
+
+    @include isMobile() {
+      margin-left: 6px;
+    }
+  }
+}
 
 .slide {
   -webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1)
@@ -121,7 +136,7 @@
     both;
   -ms-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
   animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
-  @include media-max("tablet-up") {
+  @include isMobile() {
     min-width: 300px;
   }
 }

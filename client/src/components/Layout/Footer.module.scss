@@ -8,7 +8,7 @@
   padding: 60px 60px;
   color: $white;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     padding: 60px 60px;
   }
   @include media-max("phone-down") {
@@ -58,7 +58,7 @@
   }
 
   .btn {
-    @include media-max("tablet-up") {
+    @include isMobile() {
       width: 100%;
     }
   }
@@ -70,7 +70,7 @@
   flex-wrap: nowrap;
   justify-content: center;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     flex-wrap: wrap;
   }
 }
@@ -79,7 +79,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     flex-wrap: wrap;
   }
 }
@@ -88,7 +88,7 @@
   max-width: 400px;
   margin-right: 20px;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     max-width: none;
   }
 }
@@ -101,7 +101,7 @@
   font-size: 16px;
   white-space: nowrap;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     margin-left: 0;
     margin-top: 25px;
     font-size: 18px;
@@ -115,7 +115,7 @@
   margin-top: 0;
   width: auto;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     margin-left: 0;
     margin-top: 30px;
     width: 100%;

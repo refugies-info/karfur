@@ -4,7 +4,7 @@
   .btn {
     margin-left: 30px;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       background-color: transparent;
       margin-left: 75px;
       margin-top: -20px;

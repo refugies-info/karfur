@@ -9,7 +9,7 @@
 
   .close {
     outline: none;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0 !important;
     }
   }
@@ -33,7 +33,7 @@
       opacity: 1;
       top: 20px;
       right: 20px;
-      @include media-max("tablet-up") {
+      @include isMobile() {
         color: white;
         background-color: black;
         font-size: 20px;
@@ -107,7 +107,7 @@
   // Cols
   .ln_col {
     white-space: nowrap;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       max-width: 70%;
       flex: 0 0 80%;
     }

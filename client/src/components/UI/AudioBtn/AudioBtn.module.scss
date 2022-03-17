@@ -21,7 +21,7 @@
   @include media-max("phone-down") {
     margin-right: 5px;
   }
-  @include media-max("tablet-up") {
+  @include isMobile() {
     height: 50px;
     margin-right: 8px;
   }

@@ -191,8 +191,9 @@ class SideTrad extends Component {
           text: "La traduction a bien été enregistrée",
           type: "success",
           timer: 1000,
+        }).then(() => {
+          this.props.onSkip();
         });
-        this.props.onSkip();
       }
     }
 

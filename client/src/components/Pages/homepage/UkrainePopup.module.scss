@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .ukraine {
@@ -17,11 +18,11 @@
   transform: translateX(-50%);
   white-space: nowrap;
 
-  [dir="rtl"] & {
+  @include rtl() {
     text-align: right;
   }
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     margin-top: -40px;
     display: inline-block;
     position: relative;
@@ -37,7 +38,7 @@
   margin-right: 10px;
   margin-bottom: 0;
 
-  [dir="rtl"] & {
+  @include rtl() {
     margin-right: 0;
     margin-left: 10px;
   }
@@ -49,7 +50,7 @@
     span {
       margin-left: 4px;
 
-      [dir="rtl"] & {
+      @include rtl() {
         margin-left: 0;
         margin-right: 4px;
       }
@@ -60,17 +61,17 @@
   box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
   margin-left: 24px;
 
-  [dir="rtl"] & {
+  @include rtl() {
     margin-left: 0;
     margin-right: 24px;
   }
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     display: inline-block !important;
     margin-left: 0;
     margin-top: 12px;
 
-    [dir="rtl"] & {
+    @include rtl() {
       margin-right: 0;
     }
   }
