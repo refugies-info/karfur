@@ -139,7 +139,7 @@ const Navbar = (props: Props) => {
         </div>
       )}
 
-      <div className={cls(styles.left_buttons, isUserOnContentPage && mobile.hidden)}>
+      <div className={cls(styles.left_buttons, isUserOnContentPage && mobile.hidden_flex)}>
         <Logo />
         {path !== "/" && path !== "/homepage" && (
           <Link href="/" passHref>
