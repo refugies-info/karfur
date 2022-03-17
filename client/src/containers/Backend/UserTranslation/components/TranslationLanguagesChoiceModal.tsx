@@ -15,6 +15,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 // import { ObjectId } from "mongodb";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
+import { useRouter } from "next/router";
 
 const Header = styled.div`
   font-weight: bold;
@@ -129,6 +130,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
   const isLoading = isLoadingLangues || isLoadingUser;
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const selectedLanguages = user?.user?.selectedLanguages;
@@ -219,8 +221,9 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     );
 
     props.toggle();
+    const locale = router.locale ? `/${router.locale}` : "";
     return props.history.push(
-      "/backend/user-translation/" + selectedLangues[0].i18nCode
+      locale + "/backend/user-translation/" + selectedLangues[0].i18nCode
     );
   };
   return (

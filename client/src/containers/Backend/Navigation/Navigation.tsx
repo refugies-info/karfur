@@ -55,26 +55,27 @@ const NavigationComponent: React.FunctionComponent<Props> = (
     window.location.href = "/";
   };
   const onButtonClick = (type: SelectedPage) => {
+    const locale = router.locale ? `/${router.locale}` : "";
     if (type === "traductions") {
-      return history.push("/backend/user-translation");
+      return history.push(locale + "/backend/user-translation");
     }
     if (type === "notifications") {
-      return history.push("/backend/user-dash-notifications");
+      return history.push(locale + "/backend/user-dash-notifications");
     }
     if (type === "favoris") {
-      return history.push("/backend/user-favorites");
+      return history.push(locale + "/backend/user-favorites");
     }
     if (type === "contributions") {
-      return history.push("/backend/user-dash-contrib");
+      return history.push(locale + "/backend/user-dash-contrib");
     }
     if (type === "structure") {
-      return history.push("/backend/user-dash-structure");
+      return history.push(locale + "/backend/user-dash-structure");
     }
     if (type === "profil") {
-      return history.push("/backend/user-profile");
+      return history.push(locale + "/backend/user-profile");
     }
     if (type === "admin") {
-      return history.push("/backend/admin");
+      return history.push(locale + "/backend/admin");
     }
     if (type === "logout") {
       return disconnect();

@@ -17,6 +17,7 @@ import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { User } from "types/interface";
+import { useRouter } from "next/router";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -84,6 +85,7 @@ const getInitialFilterStatus = (
 };
 export const TranslationsAvancement = (props: Props) => {
   const [search, setSearch] = useState("");
+  const router = useRouter();
   const initialStatusFilter = getInitialFilterStatus(
     props.isExpert,
     props.data
@@ -97,7 +99,8 @@ export const TranslationsAvancement = (props: Props) => {
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
-      return props.history.push("/backend/user-translation/" + langue);
+      const locale = router.locale ? `/${router.locale}` : "";
+      return props.history.push(locale + "/backend/user-translation/" + langue);
     }
     return;
   };

@@ -26,6 +26,7 @@ import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./UserTranslation.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
+import { useRouter } from "next/router";
 
 const availableLanguages = activatedLanguages.map(l => l.i18nCode).filter(ln => ln !== "fr");
 const getLangueName = (
@@ -84,6 +85,7 @@ const UserTranslation = () => {
 
   const user = useSelector(userSelector);
   let history = useHistory();
+  const router = useRouter();
 
   const isLoadingUser = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER)
@@ -109,18 +111,20 @@ const UserTranslation = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
+    const locale = router.locale ? `/${router.locale}` : "";
+
     if (userFirstTradLanguage && !langueInUrl) {
       return history.push(
-        "/backend/user-translation/" + userFirstTradLanguage
+        locale + "/backend/user-translation/" + userFirstTradLanguage
       );
     }
 
     if (langueInUrl && !userFirstTradLanguage) {
-      return history.push("/backend/user-translation");
+      return history.push(locale + "/backend/user-translation");
     }
 
     if (!availableLanguages.includes(langueInUrl)) {
-      return history.push("/backend/user-translation");
+      return history.push(locale + "/backend/user-translation");
     }
     const loadIndicators = async () => {
       if (user && user.user) {
