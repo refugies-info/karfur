@@ -35,7 +35,6 @@ export const isUserAllowedToModify = (
   ];
 
   const isAuthor = isUserAuthor(user, selectedDispositif);
-  console.log(isAuthor);
   const isSponsor = isUserSponsor(user, selectedDispositif);
   if (authorCanModifyStatusList.includes(selectedDispositif.status) && isAuthor) return true;
   if (authorCanModifyStatusList.includes(selectedDispositif.status)) return false;
