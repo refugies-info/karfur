@@ -39,6 +39,7 @@ import { AvailableLanguageI18nCode } from "types/interface";
 import history from "utils/backendHistory";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
+import useRouterLocale from "hooks/useRouterLocale";
 
 interface Props {
   history: string[]
@@ -50,6 +51,7 @@ const Navbar = (props: Props) => {
   const [isAuth, setIsAuth] = useState(false);
 
   const router = useRouter();
+  const routerLocale = useRouterLocale();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -108,7 +110,7 @@ const Navbar = (props: Props) => {
       : "/backend/user-favorites";
     const isOnBackend = router.pathname.includes("backend");
     if (!isOnBackend) router.push(pathName);
-    else if (history) history.push(pathName);
+    else if (history) history.push(routerLocale + pathName);
   }
 
   const path = router.pathname || "";

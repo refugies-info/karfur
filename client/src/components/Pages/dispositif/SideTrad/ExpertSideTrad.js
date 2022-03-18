@@ -1018,8 +1018,11 @@ class SideTrad extends Component {
       if (this.state.pointeurs.includes(currIdx)) {
         draft[currIdx + "Modified"] = false;
       } else if (currSubIdx === -1) {
-        draft.contenu[currIdx][currSubName + "Modified"] = false;
+        if (draft.contenu?.[currIdx]?.[currSubName + "Modified"]) {
+          draft.contenu[currIdx][currSubName + "Modified"] = false;
+        }
       } else if (
+        draft.contenu[currIdx] &&
         draft.contenu[currIdx].children &&
         draft.contenu[currIdx].children[currSubIdx]
       ) {

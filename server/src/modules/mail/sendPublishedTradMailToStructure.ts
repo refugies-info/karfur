@@ -11,39 +11,43 @@ export const sendPublishedTradMailToStructure = async (
   dispositif: DispositifNotPopulateDoc,
   locale: string
 ) => {
-  const structureMembres = await getStructureMembers(dispositif.mainSponsor);
-  const membresToSendMail = await getUsersFromStructureMembres(
-    structureMembres
-  );
-
-  const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
-  const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
-  const langue = getFormattedLocale(locale);
-
-  await asyncForEach(membresToSendMail, async (membre) => {
-    logger.info(
-      "[sendPublishedTradMailToStructureService] send mail to membre",
-      {
-        membreId: membre._id,
-      }
+  try {
+    const structureMembres = await getStructureMembers(dispositif.mainSponsor);
+    const membresToSendMail = await getUsersFromStructureMembres(
+      structureMembres
     );
-    try {
-      await sendPublishedTradMailToStructureService({
-        pseudo: membre.username,
-        titreInformatif: titreInformatif,
-        titreMarque: titreMarque,
-        lien:
-          "https://refugies.info/" +
-          dispositif.typeContenu +
-          "/" +
-          dispositif._id,
-        email: membre.email,
-        dispositifId: dispositif._id,
-        userId: membre._id,
-        langue,
-      });
-    } catch (e) {
-      logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e)
-    }
-  });
+
+    const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
+    const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
+    const langue = getFormattedLocale(locale);
+
+    await asyncForEach(membresToSendMail, async (membre) => {
+      logger.info(
+        "[sendPublishedTradMailToStructureService] send mail to membre",
+        {
+          membreId: membre._id,
+        }
+      );
+      try {
+        await sendPublishedTradMailToStructureService({
+          pseudo: membre.username,
+          titreInformatif: titreInformatif,
+          titreMarque: titreMarque,
+          lien:
+            "https://refugies.info/" +
+            dispositif.typeContenu +
+            "/" +
+            dispositif._id,
+          email: membre.email,
+          dispositifId: dispositif._id,
+          userId: membre._id,
+          langue,
+        });
+      } catch (e) {
+        logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e)
+      }
+    });
+  } catch (e) {
+    logger.error("[sendPublishedTradMailToStructureService] Error ", e)
+  }
 };
