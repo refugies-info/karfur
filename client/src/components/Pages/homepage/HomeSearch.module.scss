@@ -1,4 +1,5 @@
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
 @import "src/scss/colors";
 @import "src/scss/variables";
 
@@ -16,7 +17,7 @@
   z-index: 4;
   background: $white;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     flex-direction: column;
     padding: 20px;
   }
@@ -28,7 +29,7 @@
     @include media-min("tablet-up") {
       margin-bottom: 0;
     }
-    @include media-max("tablet-up") {
+    @include isMobile() {
       margin-bottom: 15px;
     }
   }
@@ -44,7 +45,7 @@
   justify-content: center;
   align-items: center;
 
-  [dir="rtl"] & {
+  @include rtl() {
     margin-right: 0;
     margin-left: 10px;
   }

@@ -97,6 +97,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import styles from "scss/pages/dispositif.module.scss";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
+import { isUserAllowedToModify } from "./TopRightHeader/functions";
 
 moment.locale("fr");
 
@@ -189,6 +190,7 @@ const Dispositif = (props: Props) => {
   const [showTutorielModal, setShowTutorielModal] = useState(false);
   const [showDraftModal, setShowDraftModal] = useState(false);
   const [showShareContentOnMobileModal, setShowShareContentOnMobileModal] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const router = useRouter();
   const { t } = useTranslation();
@@ -197,6 +199,7 @@ const Dispositif = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector); // loaded by serverSideProps
   const user = useSelector(userDetailsSelector);
   const isUserLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
+  const isUserStructureLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const admin = useSelector(userSelector)?.admin;
   const langues = useSelector(allLanguesSelector);
 
@@ -205,7 +208,7 @@ const Dispositif = (props: Props) => {
   const timer = useRef<number|undefined>();
 
   useEffect(() => {
-    if (API.isAuth() && !user) return;
+    if ((API.isAuth() && !user) || isLoaded) return;
 
     if (props.type === "detail") { // DETAIL
       if (dispositif) {
@@ -290,13 +293,42 @@ const Dispositif = (props: Props) => {
         router.push({ pathname: "/login" });
       }
     }
+    setIsLoaded(true);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  const editDispositif = () => {
+    if (!dispositif) return;
+    setDisableEdit(false);
+    const newUiArray = [...menu].map((x, i) => ({
+      ...uiElement,
+      ...(dispositif.uiArray.length > i && {
+        varianteSelected: dispositif.uiArray[i].varianteSelected,
+      }),
+      ...(x.children && {
+        children: x.children.map((_, j) => ({
+          ...uiElement,
+          ...(dispositif.uiArray.length > i &&
+            dispositif.uiArray[i] &&
+            dispositif.uiArray[i].children &&
+            (dispositif.uiArray[i].children || []).length > j && {
+              varianteSelected:
+                dispositif.uiArray[i]?.children?.[j]?.varianteSelected,
+            }),
+          accordion: true,
+        })),
+      }),
+    }));
+    dispatch(setUiArrayActionCreator(newUiArray));
+  };
+
   // enter edition mode if edit param
   useEffect(() => {
-    if (router.query.edit === "") {
-      setDisableEdit(false);
+    const isUserAllowedToModifyDispositif = isUserAllowedToModify(
+      admin, user, dispositif
+    );
+    if (isUserAllowedToModifyDispositif && router.query.edit === "") {
+      editDispositif()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -972,31 +1004,6 @@ const Dispositif = (props: Props) => {
     if (isInBrowser()) window.print();
   };
 
-  const editDispositif = (_ = null, disableEdit = false) => {
-    if (!dispositif) return;
-    setDisableEdit(disableEdit);
-    const newUiArray = [...menu].map((x, i) => ({
-      ...uiElement,
-      ...(dispositif.uiArray.length > i && {
-        varianteSelected: dispositif.uiArray[i].varianteSelected,
-      }),
-      ...(x.children && {
-        children: x.children.map((_, j) => ({
-          ...uiElement,
-          ...(dispositif.uiArray.length > i &&
-            dispositif.uiArray[i] &&
-            dispositif.uiArray[i].children &&
-            (dispositif.uiArray[i].children || []).length > j && {
-              varianteSelected:
-                dispositif.uiArray[i]?.children?.[j]?.varianteSelected,
-            }),
-          accordion: !disableEdit,
-        })),
-      }),
-    }));
-    dispatch(setUiArrayActionCreator(newUiArray));
-  };
-
   // save reaction and display modal of success
   const pushReaction = (modalName = null, fieldName: string) => {
     // for a "Merci" modalName is null and fieldName is merci
@@ -1181,17 +1188,17 @@ const Dispositif = (props: Props) => {
           );
         }
       }
-      dispatch(setSelectedDispositifActionCreator(newDispo));
+      dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
   };
 
   // when finish loading user after save, redirect
   useEffect(() => {
-    if (routeAfterSave !== "" && !isUserLoading && user) {
+    if (routeAfterSave !== "" && !isUserLoading && !isUserStructureLoading && user) {
       router.push(routeAfterSave);
       setRouteAfterSave("");
     }
-  }, [routeAfterSave, router, isUserLoading, user]);
+  }, [routeAfterSave, router, isUserLoading, isUserStructureLoading, user]);
 
   const upcoming = () =>
     Swal.fire({

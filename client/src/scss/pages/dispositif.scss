@@ -232,7 +232,7 @@ $imgHeight: 350px;
     line-height: normal;
     color: $gray90;
     margin-bottom: 40px;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       font-size: 28px;
       margin-bottom: 16px;
     }
@@ -245,7 +245,7 @@ $imgHeight: 350px;
     padding: 0 40px 0 0;
     font-size: $text-large;
     line-height: 27px;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0;
     }
     .display-inline-block {
@@ -261,7 +261,7 @@ $imgHeight: 350px;
   }
 
   .col-middle {
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0;
     }
     padding: 40px 0 0 0;
@@ -293,7 +293,7 @@ $imgHeight: 350px;
       transform: translateX(100%);
       z-index: 4;
       width: calc(20vw - 40px);
-      @include media-max("tablet-up") {
+      @include isMobile() {
         padding: 0;
       }
     }
@@ -308,7 +308,7 @@ $imgHeight: 350px;
   .content-row,
   .sous-contenu-wrapper {
     padding: 0 40px;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0 16px;
     }
   }
@@ -417,7 +417,7 @@ $imgHeight: 350px;
     margin-left: 0px;
 
     padding: 12px 40px;
-    @include media-max("tablet-up") {
+    @include isMobile() {
       text-align: center;
     }
 
@@ -433,7 +433,7 @@ $imgHeight: 350px;
       &.align-right {
         padding: 0;
       }
-      @include media-max("tablet-up") {
+      @include isMobile() {
         font-size: $text-large;
       }
     }

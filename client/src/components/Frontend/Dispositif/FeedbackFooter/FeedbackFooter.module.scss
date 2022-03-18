@@ -12,18 +12,18 @@
     padding: 35px 20px 35px 40px;
     font-size: $text-large;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       flex-direction: column;
     }
 
     h5 {
-      @include media-max("tablet-up") {
+      @include isMobile() {
         font-size: 22px;
         text-align: center;
       }
     }
     span {
-      @include media-max("tablet-up") {
+      @include isMobile() {
         font-size: $text-large;
         text-align: center;
       }
@@ -55,14 +55,14 @@
     flex-direction: row;
     align-items: center;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       flex-direction: column;
       width: -webkit-fill-available;
     }
   }
 
   .text_container {
-    @include media-max("tablet-up") {
+    @include isMobile() {
       text-align: center;
       margin-bottom: 16px;
     }

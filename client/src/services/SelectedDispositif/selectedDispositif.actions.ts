@@ -16,8 +16,12 @@ export const fetchSelectedDispositifActionCreator = (value: {
   locale: string;
 }) => action(FETCH_SELECTED_DISPOSITIF, value);
 
-export const setSelectedDispositifActionCreator = (value: IDispositif, reset: boolean = false) =>
-  action(SET_SELECTED_DISPOSITIF, {value, reset});
+export const setSelectedDispositifActionCreator = (
+  value: IDispositif,
+  reset: boolean = false,
+  openAccordions: boolean = false
+) =>
+  action(SET_SELECTED_DISPOSITIF, {value, reset, openAccordions});
 
 export const updateUiArrayActionCreator = (value: {
   subkey: number|null;

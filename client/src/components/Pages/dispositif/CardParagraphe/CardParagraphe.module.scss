@@ -7,13 +7,13 @@
   margin-top: 40px;
 
   &:last-child {
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0 10px 0 5px;
     }
   }
 
   &:first-child {
-    @include media-max("tablet-up") {
+    @include isMobile() {
       padding: 0 5px 0 10px;
     }
   }
@@ -26,7 +26,7 @@
     height: 300px;
     background-color: $gray50;
 
-    @include media-max("tablet-up") {
+    @include isMobile() {
       height: 290px;
       width: 250px;
     }

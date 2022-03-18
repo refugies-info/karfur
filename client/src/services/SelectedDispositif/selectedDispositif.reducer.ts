@@ -47,7 +47,8 @@ export const selectedDispositifReducer = createReducer<
             ...(x.children && {
               children: new Array(x.children.length).fill({
                 ...uiElement,
-                accordion: action.payload.value.status === "Accepté structure",
+                accordion: !!action.payload.openAccordions ||
+                  action.payload.value.status === "Accepté structure",
               }),
             }),
           };

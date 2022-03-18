@@ -11,7 +11,7 @@
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   border-radius: $radius;
 
-  @include media-max("tablet-up") {
+  @include isMobile() {
     max-width: 100%;
   }
 

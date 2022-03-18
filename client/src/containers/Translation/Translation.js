@@ -360,53 +360,7 @@ export class TranslationHOC extends Component {
 
   //gose back to the list of translations
   onSkip = () => {
-    const i18nCode = (this.state.langue || {}).i18nCode,
-      { isExpert, type, langue } = this.state;
-    const nom = "avancement." + i18nCode;
-    if (!isExpert) {
-      this.props.history.push("/backend/user-translation/" + langue.i18nCode);
-      return;
-    }
-
-    const query = {
-      $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }, { avancement: 1 }],
-      status: "Actif",
-    };
-    API[
-      isExpert
-        ? "get_tradForReview"
-        : type === "dispositif"
-        ? "get_dispositif"
-        : "getArticle"
-    ]({ query: query, locale: i18nCode, random: true, isExpert })
-      .then((data_res) => {
-        let results = data_res.data.data;
-
-        if (results.length === 0) {
-          this.props.history.push(
-            "/backend/user-translation/" + langue.i18nCode
-          );
-        } else {
-          this.props.history.push({
-            pathname:
-              "/backend/" +
-              (isExpert ? "validation" : "traduction") +
-              "/" +
-              (_.get(results, "0.typeContenu") || type),
-            search: `?language=${langue._id}&dispositif=${_.get(results, "0._id")}`
-          });
-          this.setState({ disableBtn: false });
-        }
-      })
-      .catch(() =>
-        Swal.fire({
-          title: "Oh non",
-          text:
-            "Aucun résultat n'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s'est produite",
-          type: "error",
-          timer: 2000,
-        })
-      );
+    this.props.history.push("/backend/user-translation/" + this.state.langue.i18nCode);
   };
 
   handleCheckboxChange = (event) => {

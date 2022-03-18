@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
-import { isUserAllowedToModify } from "./functions";
+import { isUserAllowedToModify, isUserAuthor, isUserSponsor } from "./functions";
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { ContribStyledStatus } from "containers/Backend/UserContributions/components/SubComponents";
@@ -53,28 +53,10 @@ const TopRightHeader = (props: Props) => {
   const admin = useSelector(userSelector).admin;
   const selectedDispositif = useSelector(selectedDispositifSelector);
 
-  const isAuthor =
-    user && selectedDispositif && selectedDispositif.creatorId
-      ? user._id === (selectedDispositif.creatorId || {})._id
-      : false;
-
-  // there are 3 roles in a structure : admin = responsable, contributeur : can modify dispositifs of the structure, membre : cannot modify
-  const userIsSponsor =
-    user && selectedDispositif
-      ? (
-          (
-            ((selectedDispositif.mainSponsor || {}).membres || [])
-              // @ts-ignore
-              .find((x) => x.userId === user._id) || {}
-          ).roles || []
-        ).some((y) => y === "administrateur" || y === "contributeur")
-      : false;
-
+  const isAuthor = isUserAuthor(user, selectedDispositif);
+  const userIsSponsor = isUserSponsor(user, selectedDispositif);
   const isUserAllowedToModifyDispositif = isUserAllowedToModify(
-    admin,
-    userIsSponsor,
-    isAuthor,
-    selectedDispositif ? selectedDispositif.status : null
+    admin, user, selectedDispositif
   );
 
   // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
