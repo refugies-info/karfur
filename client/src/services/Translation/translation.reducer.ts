@@ -1,4 +1,3 @@
-import { updateObject } from "../utility";
 import { Translation } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { TranslationActions } from "./translation.actions";
@@ -20,7 +19,7 @@ export const translationReducer = createReducer<
   TranslationActions
 >(initialTranslationState, {
   SET_TRANSLATION: (state, action) =>
-    updateObject(state, { translation: action.payload }),
+    ({...state, translation: action.payload }),
   SET_TRANSLATIONS: (state, action) =>
-    updateObject(state, { translations: action.payload }),
+    ({...state, translations: action.payload }),
 });

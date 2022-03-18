@@ -1,1 +1,3 @@
-export { LeftSideDispositifContainer as LeftSideDispositif } from "./LeftSideDispositif.container";
+import LeftSideDispositif from "./LeftSideDispositif";
+
+export default LeftSideDispositif;

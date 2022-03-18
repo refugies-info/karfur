@@ -1,0 +1,48 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  max-width: 650px;
+
+  .modal_content {
+    background: $gray20;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+    border-radius: $radius;
+    padding: 20px 40px;
+    border: none;
+
+    .modal-header {
+      border: none;
+      padding: 0;
+
+      h5 {
+        font-size: 40px;
+        line-height: 51px;
+      }
+    }
+
+    .modal_body {
+      padding: 0;
+
+      .img {
+        margin: 50px 0 30px 80px;
+      }
+      h5 {
+        color: $vert;
+      }
+    }
+
+    .footer_inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        color: gray;
+        align-self: center;
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}

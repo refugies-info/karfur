@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./NewStructureModal.scss";
-import FInput from "components/FigmaUI/FInput/FInput";
-import moment from "moment/min/moment-with-locales";
-import FButton from "components/FigmaUI/FButton/FButton";
+import Image from "next/image";
+import FInput from "components/UI/FInput/FInput";
+import moment from "moment";
+import "moment/locale/fr";
+import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";
@@ -20,13 +21,15 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
 import { colors } from "colors";
-import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import styles from "./NewStructureModal.module.scss";
+
 moment.locale("fr");
 
 const Header = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 16px;
@@ -67,7 +70,7 @@ const ResponsableContainer = styled.div`
   border-radius: 16px;
   padding: 8px;
   margin-bottom: 8px;
-  border-color: ${colors.cardColor};
+  border-color: ${colors.gray70};
 `;
 interface Props {
   show: boolean;
@@ -80,7 +83,7 @@ interface InitialStructure {
   contact: string;
   phone_contact: string;
   mail_contact: string;
-  responsable: null | Responsable;
+  responsable?: null | Responsable;
   nom: string;
 }
 
@@ -210,7 +213,9 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={toggle}
-      className="structure-details-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+
     >
       <Header>Création d'une nouvelle structure</Header>
       <InputContainer>
@@ -225,10 +230,17 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       </InputContainer>
       <LogoContainer>
         <LogoWrapper>
-          <img className="sponsor-img" src={secureUrl || noStructure} />
+          <Image
+            className={styles.sponsor_img}
+            src={secureUrl || noStructure}
+            alt=""
+            width={140}
+            height={60}
+            objectFit="contain"
+          />
         </LogoWrapper>
         <RightLogoContainer>
-          <FButton className="upload-btn" type="theme" name="upload-outline">
+          <FButton className="position-relative" type="theme" name="upload-outline">
             <Input
               className="file-input"
               type="file"
@@ -253,7 +265,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
           isLoading={isLoading}
           activeUsers={activeUsers}
           onSelectItem={onSelectItem}
-          responsable={structure.responsable}
+          responsable={structure.responsable || null}
           removeRespo={() => setStructure({ ...structure, responsable: null })}
         />
       </ResponsableContainer>

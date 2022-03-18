@@ -1,1 +1,3 @@
-export { UserNotificationsComponent as UserNotifications } from "./UserNotifications.component";
+import UserNotifications from "./UserNotifications";
+
+export default UserNotifications;

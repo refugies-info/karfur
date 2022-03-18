@@ -1,1 +1,3 @@
-export { EnBrefBannerContainer as EnBrefBanner } from "./EnBrefBanner.container";
+import EnBrefBanner from "./EnBrefBanner";
+
+export default EnBrefBanner;

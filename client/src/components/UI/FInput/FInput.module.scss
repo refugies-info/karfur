@@ -1,0 +1,84 @@
+@import "src/scss/colors";
+
+$placeholderColor: $gray90;
+$borderRadius: 12px;
+
+.input {
+  .prepend {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+  }
+  .append {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    cursor: pointer;
+  }
+
+  input,
+  textarea {
+    background: $white;
+    border-radius: $borderRadius !important;
+    border: 0.5px solid $gray90;
+    color: $gray90;
+    outline: none;
+
+    &.error {
+      border: 0.5px solid $error;
+    }
+    &.new_size {
+      height: 52px;
+    }
+    &.has_prepend {
+      padding-left: 45px;
+
+      &.new_size {
+        height: 52px;
+      }
+    }
+    &:hover {
+      background: $gray20;
+      border: 0.5px solid $gray90;
+    }
+    &:focus::-webkit-input-placeholder {
+      color: $gray70;
+    }
+    &:focus:-moz-placeholder {
+      color: $gray70;
+    }
+    &:focus {
+      box-shadow: none;
+      background: $gray10;
+    }
+    // TODO : wont work
+    &.password-input {
+      min-width: 300px;
+      max-width: 900px;
+      padding-right: 38px;
+    }
+    &.phone-input {
+      max-width: 170px;
+    }
+    &.phone-user-input.error::placeholder {
+      color: $error;
+    }
+  }
+
+  *::-webkit-input-placeholder,
+  *:-ms-input-placeholder,
+  *::-ms-input-placeholder,
+  *::placeholder,
+  *:-moz-placeholder,
+  *::-moz-placeholder {
+    color: $placeholderColor;
+  }
+  *:-moz-placeholder,
+  *::-moz-placeholder {
+    opacity: 1;
+  }
+}

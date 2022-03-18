@@ -1,0 +1,30 @@
+@import 'src/scss/colors.scss';
+@import "src/scss/variables";
+
+.plus_wrapper{
+  :global(.dropdown-menu){
+    background: #3D3D3D;
+    border-radius: 8px;
+
+    .dropdown-item{
+      font-size: $text-small;
+      color: $white;
+      display:flex;
+      padding-right: 15px;
+      padding-left: 15px;
+      &:hover{
+        background-color:$white;
+        color:$gray90;
+        svg{
+          fill: $gray90;
+        }
+      }
+      i{
+        margin-left:0;
+      }
+      svg{
+        margin-right:10px;
+      }
+    }
+  }
+}

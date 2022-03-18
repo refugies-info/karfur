@@ -1,1 +1,3 @@
-export { BandeauEditionContainer as BandeauEdition } from "./BandeauEdition.container";
+import BandeauEdition from "./BandeauEdition";
+
+export default BandeauEdition;

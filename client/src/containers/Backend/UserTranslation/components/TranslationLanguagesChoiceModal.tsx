@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Modal } from "reactstrap";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { useSelector, useDispatch } from "react-redux";
-import { allLanguesSelector } from "../../../../services/Langue/langue.selectors";
-import { userSelector } from "../../../../services/User/user.selectors";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { Language, UserLanguage } from "../../../../types/interface";
-import "./TranslationLanguagesChoiceModal.scss";
-import { saveUserActionCreator } from "../../../../services/User/user.actions";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { userSelector } from "services/User/user.selectors";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { Language, UserLanguage } from "types/interface";
+import { saveUserActionCreator } from "services/User/user.actions";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+// import { ObjectId } from "mongodb";
+import styles from "./TranslationLanguagesChoiceModal.module.scss";
+import useRouterLocale from "hooks/useRouterLocale";
 
 const Header = styled.div`
   font-weight: bold;
@@ -30,8 +32,8 @@ const SubTitle = styled.div`
 `;
 
 const LangueItemContainer = styled.div`
-  background: ${(props) =>
-    props.isSelected ? colors.validation : colors.gris};
+  background: ${(props: {isSelected: boolean}) =>
+    props.isSelected ? colors.validation : colors.gray20};
   border-radius: 12px;
   display: flex;
   flex-direction: row;
@@ -54,12 +56,12 @@ const LanguesContainer = styled.div`
 `;
 
 const CheckBoxContainer = styled.div`
-  background: ${(props) =>
-    props.isSelected ? colors.validationDefault : colors.blancSimple};
-  border: ${(props) =>
+  background: ${(props: {isSelected: boolean}) =>
+    props.isSelected ? colors.validationDefault : colors.white};
+  border: ${(props: {isSelected: boolean}) =>
     props.isSelected
       ? `1px solid ${colors.validationDefault}`
-      : `1px solid ${colors.noirCD}`};
+      : `1px solid ${colors.gray50}`};
 
   box-sizing: border-box;
   border-radius: 3px;
@@ -127,15 +129,13 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
   );
 
   const isLoading = isLoadingLangues || isLoadingUser;
+  const dispatch = useDispatch();
+  const routerLocale = useRouterLocale();
 
   useEffect(() => {
-    if (
-      user &&
-      user.user &&
-      user.user.selectedLanguages &&
-      user.user.selectedLanguages.length > 0
-    ) {
-      setSelectedLangues(user.user.selectedLanguages);
+    const selectedLanguages = user?.user?.selectedLanguages;
+    if (selectedLanguages && selectedLanguages.length > 0) {
+      setSelectedLangues(selectedLanguages);
     }
   }, [isLoading, user]);
 
@@ -144,7 +144,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggle}
-        className="modal-traducteur"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Header>Choix de vos langues</Header>
         <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
@@ -192,20 +193,20 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     }
 
     if (!isLangueSelected) {
-      const newSelectedLangues = selectedLangues.concat({
+      const newSelectedLangue: UserLanguage = {
+        //@ts-ignore
         _id: langue._id,
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode,
         langueFr: langue.langueFr,
         langueLoc: langue.langueLoc,
-      });
-      setSelectedLangues(newSelectedLangues);
+      };
+      setSelectedLangues([...selectedLangues, newSelectedLangue]);
     }
   };
 
   const onReinitClick = () => setSelectedLangues([]);
 
-  const dispatch = useDispatch();
 
   const onValidate = () => {
     if (!user || !user.user) return;
@@ -221,24 +222,22 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
     props.toggle();
     return props.history.push(
-      "/backend/user-translation/" + selectedLangues[0].i18nCode
+      routerLocale + "/backend/user-translation/" + selectedLangues[0].i18nCode
     );
   };
   return (
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
-      className="modal-traducteur"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
       size="md"
     >
       <Header>Choix de vos langues</Header>
       <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
       <LanguesContainer>
         {langues
-          .filter(
-            // @ts-ignore
-            (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
-          )
+          .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
             const isLangueSelected =
               selectedLangues.filter(

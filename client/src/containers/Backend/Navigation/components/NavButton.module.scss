@@ -1,0 +1,83 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.btn {
+  border-radius: $radius;
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16px;
+  background-color: $white;
+  border: none;
+
+  .icon {
+    &.icon_traduction {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    .hovered {
+      display: none;
+    }
+  }
+
+  &:hover,
+  &.active {
+    color: $white !important;
+
+    svg {
+      fill: $white !important;
+    }
+
+    .icon {
+      .hovered {
+        display: inline;
+      }
+      .regular {
+        display: none;
+      }
+    }
+  }
+
+  &.black {
+    color: $gray90;
+
+    svg {
+      fill: $gray90;
+    }
+
+    &:hover,
+    &.active {
+      background-color: $gray90;
+    }
+  }
+  &.blue {
+    color: $bleuCharte;
+
+    svg {
+      fill: $bleuCharte;
+    }
+
+    &:hover,
+    &.active {
+      background-color: $bleuCharte;
+    }
+  }
+  &.red {
+    color: $rouge;
+
+    svg {
+      fill: $rouge;
+    }
+
+    &:hover,
+    &.active {
+      background-color: $rouge;
+    }
+  }
+}

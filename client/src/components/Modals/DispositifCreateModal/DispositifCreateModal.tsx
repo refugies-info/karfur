@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
-import styled from "styled-components";
-import Icon from "react-eva-icons";
-import "./DispositifCreateModal.scss";
-import FButton from "../../FigmaUI/FButton/FButton";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/UI/FButton/FButton";
+import styles from "./DispositifCreateModal.module.scss";
 
 interface Props {
   toggle: () => void;
@@ -11,76 +10,7 @@ interface Props {
   typeContenu: string;
   navigateToCommentContribuer: () => void;
 }
-const IconContainer = styled.div`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 20px;
-  top: 20px;
-  cursor: pointer;
-`;
 
-const Header = styled.div`
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-`;
-
-const MainContainer = styled.div`
-  padding: 40px;
-  border-radius: 12px;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-
-const TypeContenuContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 8px 16px;
-  margin-left: 13px;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-  color: #5e5e5e;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: ${(props) => (props.step === 2 ? "33px" : "41px")};
-`;
-
-const Subtitle = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-`;
-
-const VideoContainer = styled.div`
-  background: #d2edfc;
-  border-radius: 12px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top:  ${(props) => (props.step === 2 ? "32px" : "40px")}
-  margin-bottom: 82px;
-`;
-const YellowText = styled.div`
-  background: #f9ef99;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  padding: 8px;
-  margin-left: 8px;
-  margin-right: 8px;
-  color: #3a3a3a;
-`;
 interface StateType {
   step: number;
 }
@@ -119,26 +49,30 @@ export class DispositifCreateModal extends Component<Props, StateType> {
       <Modal
         isOpen={this.props.show}
         toggle={this.props.toggle}
-        className="dispo-create"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
-        <MainContainer>
-          <IconContainer onClick={this.props.toggle}>
-            <Icon name="close-outline" fill="#3D3D3D" size="large" />
-          </IconContainer>
-          <HeaderContainer step={this.state.step}>
-            <Header>Nouvelle fiche</Header>
+        <div className={styles.container}>
+          <div onClick={this.props.toggle} className={styles.close_icon}>
+            <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
+          </div>
+          <div
+            className={styles.header_container}
+            style={{ marginBottom: step === 2 ? 33 : 41 }}
+          >
+            <h2 className={styles.header}>Nouvelle fiche</h2>
             <div>
-              <TypeContenuContainer>
+              <div className={styles.type_contenu}>
                 {this.props.typeContenu}
-              </TypeContenuContainer>
+              </div>
             </div>
-          </HeaderContainer>
+          </div>
           {step === 1 && (
-            <Subtitle>Bienvenue dans l'éditeur de fiche dispositif !</Subtitle>
+            <p className={styles.subtitle}>Bienvenue dans l&apos;éditeur de fiche dispositif !</p>
           )}
 
           {step === 3 && (
-            <Subtitle>Sauvegardez à tout moment pour finir plus tard</Subtitle>
+            <p className={styles.subtitle}>Sauvegardez à tout moment pour finir plus tard</p>
           )}
           {step === 2 && (
             <div
@@ -148,12 +82,17 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 alignItems: "center",
               }}
             >
-              <Subtitle>Cliquez sur les zones surlignées en </Subtitle>
-              <YellowText>jaune</YellowText>
-              <Subtitle>pour écrire.</Subtitle>
+              <p className={styles.subtitle}>
+                Cliquez sur les zones surlignées en{" "}
+                <span className={styles.yellow}>jaune</span>{" "}
+                pour écrire.
+              </p>
             </div>
           )}
-          <VideoContainer step={this.state.step}>
+          <div
+            className={styles.video}
+            style={{ marginTop: step === 2 ? 32 : 40 }}
+          >
             <iframe
               src={getIFrameSrc(this.state.step)}
               frameBorder="0"
@@ -165,8 +104,8 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 borderRadius: "12px",
               }}
             ></iframe>
-          </VideoContainer>
-          <ButtonsContainer>
+          </div>
+          <div className={styles.btn_container}>
             <FButton
               type="outline-black"
               name="log-out-outline"
@@ -175,7 +114,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 this.props.navigateToCommentContribuer();
               }}
             >
-              Quitter l'éditeur
+              Quitter l&apos;éditeur
             </FButton>
             <div>
               {step > 1 && (
@@ -194,8 +133,8 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 {this.getButtonText()}
               </FButton>
             </div>
-          </ButtonsContainer>
-        </MainContainer>
+          </div>
+        </div>
       </Modal>
     );
   }

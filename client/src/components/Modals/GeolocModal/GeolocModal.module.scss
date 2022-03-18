@@ -1,0 +1,108 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  padding: 20px;
+  height: 850px !important;
+
+  .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: $text-large;
+    line-height: 23px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+  }
+
+  .help {
+    display: flex;
+    flex-direction: row;
+    background: $focus;
+    border-radius: $radius;
+    padding: 16px;
+    margin-bottom: 24px;
+    position: relative;
+
+    .description {
+      line-height: 28px;
+      color: #fbfbfb;
+      font-style: normal;
+      font-weight: normal;
+      font-size: $text-normal;
+    }
+  }
+
+  .department {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .checkbox {
+    border-radius: $radius;
+    width: fit-content;
+    padding: 14px;
+    font-weight: normal;
+    font-size: $text-normal;
+    line-height: 20px;
+    color: $gray70;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+
+    .text {
+      font-weight: normal;
+      color: $gray70;
+      margin-bottom: 0;
+    }
+    .text_checked {
+      font-weight: bolder;
+      color: $gray90;
+      margin-bottom: 0;
+    }
+  }
+
+  .selected {
+    background: $validationDefault;
+    border-radius: $radius;
+    font-weight: bold;
+    font-size: $text-normal;
+    color: $white;
+    padding: 15px;
+    width: fit-content;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    margin-right: 8px;
+  }
+
+  .btn_text {
+    font-size: $text-normal;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  .btn_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    width: 90%;
+    bottom: 20px;
+
+    .right {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

@@ -1,0 +1,87 @@
+
+  @import "src/scss/colors";
+  @import "src/scss/mixins/responsive";
+  @import "src/scss/variables";
+
+  .container {
+    background: $gray10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 35px 20px 35px 40px;
+    font-size: $text-large;
+
+    @include isMobile() {
+      flex-direction: column;
+    }
+
+    h5 {
+      @include isMobile() {
+        font-size: 22px;
+        text-align: center;
+      }
+    }
+    span {
+      @include isMobile() {
+        font-size: $text-large;
+        text-align: center;
+      }
+    }
+    .btn {
+      width: -webkit-fill-available;
+      justify-content: center;
+      font-weight: bold;
+      font-size: $text-normal;
+      border-radius: $radius;
+      border: 0.5px solid;
+      padding: 15px 20px;
+      &:hover {
+        background: darken($color: $gray20, $amount: 0);
+      }
+      &:active {
+        background: $validationHover;
+        color: $white;
+        border: none;
+      }
+      &::after {
+        background: $validationHover;
+      }
+    }
+  }
+
+  .btn_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @include isMobile() {
+      flex-direction: column;
+      width: -webkit-fill-available;
+    }
+  }
+
+  .text_container {
+    @include isMobile() {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+  }
+
+  .thank_button {
+    padding: 15px;
+    display: flex;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    line-height:20px;
+
+    background-color: $gray20;
+    color: $gray90;
+
+    &.active {
+      background-color: $vert;
+      color: $white;
+    }
+  }

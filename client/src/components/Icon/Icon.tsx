@@ -1,5 +1,5 @@
 import React from "react";
-import { streamlineIconCorrespondency } from "../../containers/Dispositif/data";
+import { streamlineIconCorrespondency } from "data/dispositif";
 import _ from "lodash";
 import EVAIcon from "../UI/EVAIcon/EVAIcon";
 

@@ -1,0 +1,13 @@
+@import "src/scss/mixins/responsive";
+
+.top_left {
+  .btn {
+    margin-left: 30px;
+
+    @include isMobile() {
+      background-color: transparent;
+      margin-left: 75px;
+      margin-top: -20px;
+    }
+  }
+}

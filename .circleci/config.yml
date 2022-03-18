@@ -10,7 +10,7 @@ jobs:
         - dev
     working_directory: ~/refugies-info
     docker:
-      - image: circleci/node:10.13.0
+      - image: cimg/node:16.14.0
     environment:
       USER: circleci
       TERM: someTerm

@@ -1,0 +1,20 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  .modal_content {
+    mix-blend-mode: normal; /* Shadow autour */
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    border: none;
+    background: $gray20;
+    padding: 32px;
+    width: 600px;
+
+    .sponsor_img {
+      max-width: 140px;
+      max-height: 60px;
+      margin-right: 8px;
+    }
+  }
+}

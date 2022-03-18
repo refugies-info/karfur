@@ -1,0 +1,479 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+body .btn {
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  border-radius: $radius;
+  padding: 15px;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  color: $gray90;
+  width: fit-content;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+
+  @include media-max("sm-limit") {
+    font-size: $text-normal;
+  }
+
+  &.filter {
+    padding: 8px;
+  }
+
+  &:hover {
+    transition: all 0.5s ease;
+
+    svg {
+      fill: $gray90;
+    }
+  }
+  &:not(.theme) {
+    &:hover {
+      color: $gray90;
+    }
+    &:active {
+      background: $gray50;
+      color: $gray90;
+    }
+    &:focus {
+      outline: 0;
+      border: 0.5px solid transparent;
+    }
+
+    &:disabled,
+    &.disabled {
+      background: $gray20;
+      color: $gray70;
+      cursor: not-allowed;
+      svg {
+        fill: $gray70;
+      }
+      &:hover {
+        background-color: $gray20;
+        color: $gray70;
+        svg {
+          fill: $gray70;
+        }
+      }
+    }
+  }
+
+  // TYPES
+  &.default {
+    svg {
+      fill: $gray90;
+    }
+  }
+  &.saved {
+    background: $lightgreen;
+    color: $gray90;
+    svg {
+      fill: $vert;
+    }
+  }
+  &.modified {
+    background: $lightOrange;
+    color: $gray90;
+    svg {
+      fill: $orange;
+    }
+  }
+  &.white {
+    background: $white;
+    color: $gray90;
+    svg {
+      fill: $gray90;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: $gray90;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.white-yellow-hover {
+    background: $white;
+    color: $gray90;
+    svg {
+      fill: $gray90;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: #f9ef98;
+      color: $gray90;
+      svg {
+        fill: $gray90;
+      }
+    }
+  }
+  &.dark {
+    background: $gray90;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: #000000;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: #000000;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.validate-light {
+    background: $vert;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $white;
+      box-shadow: none;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
+
+    &:disabled {
+      background: $gray70;
+      color: $white;
+
+      &:hover {
+        background-color: $gray70;
+        color: $white;
+        svg {
+          fill: $white;
+        }
+      }
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.validate {
+    background: $vert;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $white;
+      box-shadow: none;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
+  }
+  &.validate-mockup {
+    background: $vert;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $white;
+      box-shadow: none;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
+    &.disabled {
+      background: $orange;
+      color: $gray10;
+      cursor: not-allowed;
+      svg {
+        fill: $gray10;
+      }
+    }
+  }
+  &.login {
+    background: $bleuCharte;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+    &:hover {
+      background: $white;
+      color: $bleuCharte;
+      border-color: $bleuCharte;
+      svg {
+        fill: $bleuCharte;
+      }
+    }
+  }
+  &.signup {
+    background: $white;
+    color: $bleuCharte;
+    svg {
+      fill: $bleuCharte;
+    }
+    &:hover {
+      background: $bleuCharte;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.error {
+    background: $error;
+    color: $white;
+    &:hover {
+      background: $rouge;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $error;
+    }
+  }
+  &.light-action {
+    //min-width: 40px;
+    color: $gray90;
+    background: $white;
+    svg {
+      fill: $gray90;
+    }
+    &:not(:disabled):hover {
+      background: $gray90;
+      box-shadow: none;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $gray90;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.small-figma {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray50;
+  }
+  &.thanks {
+    background: transparent;
+    color: $gray70;
+    border: 0.5px solid $gray70;
+    padding: 15px 20px;
+    &:hover {
+      background: $validationDefault;
+      color: $white;
+      border: 0.5px solid $validationDefault;
+    }
+    &:active {
+      background: $validationHover;
+      color: $white;
+      border: 0.5px solid $validationHover;
+    }
+    &.clicked {
+      background: $validationHover;
+      color: $white;
+      border: 0.5px solid $validationHover;
+    }
+  }
+  &.outline {
+    border: 0.5px solid $white;
+    background: transparent;
+    color: $white;
+    transition: all 0.2s ease;
+    &:hover {
+      color: $gray90;
+      border-color: $white;
+      background: $white;
+      svg {
+        fill: $gray90;
+      }
+    }
+  }
+  &.outline-black {
+    border: 0.5px solid $gray90;
+    background: transparent;
+    color: $gray90;
+    transition: all 0.4s ease;
+    svg {
+      fill: $gray90;
+    }
+    &:hover {
+      border-color: $gray90;
+      background: $gray90;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+  }
+  &.pill {
+    border-radius: $radius;
+    height: auto;
+    border: 0.5px solid $white;
+    background: transparent;
+    color: $white;
+    transition: all 0.2s ease;
+
+    svg {
+      fill: $gray10;
+    }
+    &:hover,
+    &:not(:disabled):not(.disabled):active,
+    &:focus {
+      background: $gray10;
+      svg {
+        fill: $gray90;
+      }
+    }
+    &:hover {
+      border-color: #000000;
+    }
+    &:active {
+      background: transparent;
+    }
+    &:focus {
+      background: transparent;
+    }
+
+    &.pill-dark {
+      border-color: $gray90;
+      color: $gray90;
+      svg {
+        fill: $gray90;
+      }
+      &:hover {
+        background-color: #000000;
+        svg {
+          fill: $gray10;
+        }
+      }
+    }
+  }
+  &.hero {
+    height: 60px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  }
+  &.help {
+    background: $erreur;
+    color: $error;
+    svg {
+      fill: $error;
+    }
+    &:hover {
+      background: $error;
+      color: $white;
+      svg {
+        fill: $white;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $erreur;
+    }
+  }
+  &.tuto {
+    background: $focus;
+    color: $white;
+    outline: 0;
+    border: 0.5px solid transparent;
+    svg {
+      fill: $white;
+    }
+    &:hover {
+      background: $bgfocus;
+      color: $focus;
+      svg {
+        fill: $focus;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $focus;
+    }
+  }
+  &.edit {
+    background: $attention;
+    color: $gray90;
+    svg {
+      fill: $gray90;
+    }
+    &:hover {
+      box-shadow: none;
+    }
+  }
+  &.precision {
+    background: $attention;
+    color: $gray90;
+    svg {
+      fill: $gray90;
+    }
+  }
+  &.fill-dark {
+    background: $gray90;
+    color: $white;
+    svg {
+      fill: $white;
+    }
+
+    &:hover {
+      background: $white;
+      border: 1px solid #000000;
+      color: $gray90;
+
+      svg {
+        fill: $gray90;
+      }
+    }
+  }
+
+  // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
+  &.theme {
+    background: $gray90;
+    color: $gray10;
+    svg {
+      fill: $gray10;
+    }
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import {
   IDispositifTranslation,
   TranslationStatus,
   ITypeContenu,
-} from "../../../../types/interface";
+} from "types/interface";
 import styled from "styled-components";
 import {
   LanguageTitle,
@@ -13,10 +13,12 @@ import {
 } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { colors } from "../../../../colors";
-import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import { User } from "../../../../types/interface";
+import FButton from "components/UI/FButton/FButton";
+import { colors } from "colors";
+import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import { User } from "types/interface";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -84,6 +86,7 @@ const getInitialFilterStatus = (
 };
 export const TranslationsAvancement = (props: Props) => {
   const [search, setSearch] = useState("");
+  const routerLocale = useRouterLocale();
   const initialStatusFilter = getInitialFilterStatus(
     props.isExpert,
     props.data
@@ -97,7 +100,7 @@ export const TranslationsAvancement = (props: Props) => {
 
   const navigateToLanguage = (langue: string) => {
     if (props.actualLanguage !== langue) {
-      return props.history.push("/backend/user-translation/" + langue);
+      return props.history.push(routerLocale + "/backend/user-translation/" + langue);
     }
     return;
   };
@@ -160,13 +163,15 @@ export const TranslationsAvancement = (props: Props) => {
           >
             Explications
           </FButton>
-          <FButton
-            type={props.isOneNeedNonTranslated ? "error" : "dark"}
-            onClick={props.toggleNeedsModal}
-            className="mr-8"
-          >
-            Besoins
-          </FButton>
+          {props.isExpert &&
+            <FButton
+              type={props.isOneNeedNonTranslated ? "error" : "dark"}
+              onClick={props.toggleNeedsModal}
+              className="mr-8"
+            >
+              Besoins
+            </FButton>
+          }
           <FButton
             type="dark"
             onClick={props.toggleTraducteurModal}

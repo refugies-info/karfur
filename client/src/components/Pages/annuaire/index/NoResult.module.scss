@@ -1,0 +1,39 @@
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 45px;
+}
+.image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 75px;
+
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+
+}
+.title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 24px !important;
+
+}
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px !important;
+  margin-bottom: 24px !important;
+  max-width: 550px;
+}

@@ -1,0 +1,58 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 40px;
+  margin-left: 66px;
+  justify-content: center;
+}
+
+.member_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.member_card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 207px;
+  height: 250px;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 32px;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  padding: 14px;
+  border-width: 4px;
+  border-style: solid;
+}
+.name {
+  text-align: center;
+  width: fit-content;
+  font-weight: bold;
+  font-size: $text-normal;
+  background: $white;
+  padding: 4px;
+  margin-top: 20px;
+}
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.role {
+  text-align: center;
+  width: fit-content;
+  font-size: $text-normal;
+  line-height: 23px;
+  margin-top: 8px;
+  padding: 4px;
+  background: $white;
+}

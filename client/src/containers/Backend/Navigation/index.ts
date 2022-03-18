@@ -1,1 +1,3 @@
-export { NavigationContainer as Navigation } from "./Navigation.container";
+import Navigation from "./Navigation";
+
+export default Navigation;

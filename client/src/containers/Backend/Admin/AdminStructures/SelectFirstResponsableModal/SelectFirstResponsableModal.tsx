@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
-import "./SelectFirstResponsableModal.scss";
-import { SearchBar } from "containers/UI/SearchBar/SearchBar";
+import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { SimplifiedUser } from "types/interface";
 import { ObjectId } from "mongodb";
-import API from "../../../../../utils/API";
+import API from "utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
+import styles from "./SelectFirstResponsableModal.module.scss";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -23,13 +23,13 @@ const ModifyLink = styled.div`
   cursor: pointer;
 `;
 const SelectedUser = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   width: 100%;
   padding: 8px;
   border-radius: 12px;
 `;
 const Header = styled.div`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   margin-bottom: 40px;
@@ -109,7 +109,8 @@ export const SelectFirstResponsableModal = (props: Props) => {
         isOpen={props.show}
         toggle={props.toggleModal}
         size="lg"
-        className="select-respo-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <Spinner />
       </Modal>
@@ -120,17 +121,18 @@ export const SelectFirstResponsableModal = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggleModal}
       size="lg"
-      className="select-respo-modal"
+      className={styles.modal}
+      contentClassName={styles.modal_content}
     >
       <div>
         <Header>Choix d'un utilisateur</Header>
         {!selectedUser && (
           <SearchBar
-            isArray
             users
             className="search-bar inner-addon right-addon"
             placeholder="Rechercher un utilisateur"
             array={activeUsers}
+            //@ts-ignore
             selectItem={onSelectItem}
           />
         )}

@@ -4,13 +4,12 @@ import {
 } from "./selectedStructure.actionTypes";
 import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
-import { ObjectId } from "mongodb";
 
 export const setSelectedStructureActionCreator = (value: Structure | null) =>
   action(SET_SELECTED_STRUCTURE, value);
 
 export const fetchSelectedStructureActionCreator = (value: {
-  id: ObjectId;
+  id: string;
   locale: string;
 }) => action(FETCH_SELECTED_STRUCTURE, value);
 

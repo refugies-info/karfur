@@ -1,0 +1,16 @@
+.line {
+  border-radius: 8px;
+
+  &:hover {
+    background: #edebeb;
+  }
+
+  .first {
+    border-radius: 8px 0 0 8px;
+  }
+
+  .last {
+    border-radius: 0 8px 8px 0;
+  }
+}
+
