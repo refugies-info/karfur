@@ -45,6 +45,5 @@ substitutions:
     _REGION: europe-west1
     _REGISTRY: "registry-${_ENV}"
     _REGISTRY_URL: "${_REGION}-docker.pkg.dev"
-    _APP_SERVER_URL: "https://backend-${_ENV}-4rok5wopuq-ew.a.run.app"
 
 timeout: 1200s
