@@ -5,31 +5,35 @@ import { templatesIds } from "./templatesIds";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export const sendMail = async (
+export const sendMail = (
   templateName: TemplateName,
   dynamicData: DynamicData
-): Promise<void> => {
-  try {
-    if (process.env.NODE_ENV === "dev") {
-      logger.info("[sendMail] no mail sent in dev env");
-      return;
-    }
-    if (!dynamicData.from.email) {
-      logger.error("[sendMail] no email provided");
-      throw new Error("NO_EMAIL_PROVIDED");
-    }
-
-    logger.info("[sendMail] send mail received", {
-      email: dynamicData.to,
-      templateName,
-    });
-
-    const msg = {
-      ...dynamicData,
-      template_id: templatesIds[templateName],
-    };
-    await sgMail.send(msg);
-  } catch (e) {
-    logger.error("[sendMail] error, email not sent", e);
+) => {
+  if (process.env.NODE_ENV === "dev") {
+    logger.info("[sendMail] no mail sent in dev env");
+    return;
   }
+  if (!dynamicData.from.email) {
+    logger.error("[sendMail] no email provided");
+    throw new Error("NO_EMAIL_PROVIDED");
+  }
+
+  logger.info("[sendMail] send mail received with", {
+    email: dynamicData.to,
+    templateName,
+  });
+
+  const msg = {
+    ...dynamicData,
+    template_id: templatesIds[templateName],
+  };
+  sgMail
+    .send(msg)
+    .then(() => { }, (error: any) => {
+      logger.error("[sendMail] error, email not sent", error);
+
+      if (error.response) {
+        logger.error("[sendMail] error details", error.response.body);
+      }
+    });
 };
