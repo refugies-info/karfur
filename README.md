@@ -76,3 +76,16 @@ All the [Streamline Icons](https://streamlineicons.com/) are copyrighted and the
 ## Maintenance
 
 The project is actively maintained at least until the end of 2022 by the DIAIR, in the French Ministry of Interior.
+
+## Support Refugies.info's Development
+
+Refugies.info is an MIT licensed open source project and completely free to use. However, we are a small team . You can support development by offering :
+
+- data science services
+- translation services
+- design services (UX/UI)
+- contacts of associations working with refugees, or contact of refugees directly with their agreement
+
+## Extras
+
+# If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
