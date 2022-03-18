@@ -5,7 +5,7 @@ import { templatesIds } from "./templatesIds";
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-export const sendMail = async (
+export const sendMail = (
   templateName: TemplateName,
   dynamicData: DynamicData
 ) => {
@@ -18,7 +18,7 @@ export const sendMail = async (
     throw new Error("NO_EMAIL_PROVIDED");
   }
 
-  logger.info("[sendMail] send mail received", {
+  logger.info("[sendMail] send mail received with", {
     email: dynamicData.to,
     templateName,
   });
@@ -27,5 +27,13 @@ export const sendMail = async (
     ...dynamicData,
     template_id: templatesIds[templateName],
   };
-  return sgMail.send(msg);
+  sgMail
+    .send(msg)
+    .then(() => { }, (error: any) => {
+      logger.error("[sendMail] error, email not sent", error);
+
+      if (error.response) {
+        logger.error("[sendMail] error details", error.response.body);
+      }
+    });
 };
