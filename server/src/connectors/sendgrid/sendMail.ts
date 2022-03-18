@@ -8,7 +8,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 export const sendMail = async (
   templateName: TemplateName,
   dynamicData: DynamicData
-) => {
+): Promise<void> => {
   try {
     if (process.env.NODE_ENV === "dev") {
       logger.info("[sendMail] no mail sent in dev env");
@@ -28,9 +28,8 @@ export const sendMail = async (
       ...dynamicData,
       template_id: templatesIds[templateName],
     };
-    return sgMail.send(msg);
+    await sgMail.send(msg);
   } catch (e) {
     logger.error("[sendMail] error, email not sent", e);
-    return null;
   }
 };
