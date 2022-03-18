@@ -27,19 +27,23 @@ export const sendPublishedTradMailToStructure = async (
         membreId: membre._id,
       }
     );
-    await sendPublishedTradMailToStructureService({
-      pseudo: membre.username,
-      titreInformatif: titreInformatif,
-      titreMarque: titreMarque,
-      lien:
-        "https://refugies.info/" +
-        dispositif.typeContenu +
-        "/" +
-        dispositif._id,
-      email: membre.email,
-      dispositifId: dispositif._id,
-      userId: membre._id,
-      langue,
-    });
+    try {
+      await sendPublishedTradMailToStructureService({
+        pseudo: membre.username,
+        titreInformatif: titreInformatif,
+        titreMarque: titreMarque,
+        lien:
+          "https://refugies.info/" +
+          dispositif.typeContenu +
+          "/" +
+          dispositif._id,
+        email: membre.email,
+        dispositifId: dispositif._id,
+        userId: membre._id,
+        langue,
+      });
+    } catch (e) {
+      logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e)
+    }
   });
 };
