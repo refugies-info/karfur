@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./DetailsModal.scss";
+import Image from "next/image";
 import {
   TypeContenu,
   StyledStatus,
 } from "../../sharedComponents/SubComponents";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import {
   SimplifiedDispositif,
   SimplifiedStructureForAdmin,
-} from "../../../../../types/interface";
+} from "types/interface";
 import { colors } from "colors";
-import marioProfile from "../../../../../assets/mario-profile.jpg";
-import noStructure from "../../../../../assets/noStructure.png";
+import marioProfile from "assets/mario-profile.jpg";
+import noStructure from "assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
-import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
-import API from "../../../../../utils/API";
-import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
+import API from "utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { ObjectId } from "mongodb";
-import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import styles from "./DetailsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -53,7 +55,7 @@ const RightPart = styled.div`
 
 const TitreInformatif = styled.span`
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
 `;
@@ -87,8 +89,8 @@ const Title = styled.div`
 `;
 
 const StructureContainer = styled.div`
-  background: ${(props) =>
-    props.noStructure ? colors.erreur : colors.blancSimple};
+  background: ${(props: {noStructure?: boolean}) =>
+    props.noStructure ? colors.erreur : colors.white};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -118,7 +120,7 @@ const ButtonsContainer = styled.div`
 const CreatorContainer = styled.div`
   border-radius: 12px;
   padding: 8px;
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   display: flex;
   flex-direction: row;
   width: fit-content;
@@ -234,7 +236,8 @@ export const DetailsModal = (props: Props) => {
         isOpen={props.show}
         toggle={toggle}
         size="lg"
-        className="details-modal"
+        className={styles.modal}
+        contentClassName={styles.modal_content}
       >
         <MainContainer>
           <RowContainer>
@@ -243,7 +246,7 @@ export const DetailsModal = (props: Props) => {
               <RowContainer>
                 {dispositif.titreMarque && (
                   <TitreMarque>
-                    <span style={{ color: colors.cardColor }}>avec </span>
+                    <span style={{ color: colors.gray70 }}>avec </span>
                     {dispositif.titreMarque}
                   </TitreMarque>
                 )}
@@ -318,9 +321,13 @@ export const DetailsModal = (props: Props) => {
                   props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
                 }}
               >
-                <img
-                  className="creator-img"
+                <Image
+                  className={styles.creator_img}
                   src={getCreatorImage(dispositif)}
+                  alt="creator image"
+                  width={70}
+                  height={50}
+                  objectFit="contain"
                 />
                 {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
@@ -399,16 +406,17 @@ export const DetailsModal = (props: Props) => {
                     {dispositif.mainSponsor.nom}
                   </TitleSponsorContainer>
 
-                  <LogoContainer spaceBetween={true}>
+                  <LogoContainer>
                     {dispositif.mainSponsor &&
                       dispositif.mainSponsor.picture &&
                       dispositif.mainSponsor.picture.secure_url && (
-                        <img
-                          className="sponsor-img"
-                          src={
-                            (dispositif.mainSponsor.picture || {}).secure_url
-                          }
+                        <Image
+                          className={styles.sponsor_img}
+                          src={(dispositif.mainSponsor.picture || {}).secure_url}
                           alt={dispositif.mainSponsor.nom}
+                          width={140}
+                          height={60}
+                          objectFit="contain"
                         />
                       )}
                     <div>
@@ -429,8 +437,12 @@ export const DetailsModal = (props: Props) => {
               {!dispositif.mainSponsor && (
                 <StructureContainer noStructure={true}>
                   Aucune structure définie !
-                  <LogoContainer spaceBetween={true}>
-                    <img className="sponsor-img" src={noStructure} />
+                  <LogoContainer>
+                    <Image
+                      className={styles.sponsor_img}
+                      src={noStructure}
+                      alt="no structure"
+                    />
 
                     <div>
                       <FButton

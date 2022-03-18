@@ -23,7 +23,7 @@ export const sendWelcomeMail = async (
       },
     };
     const templateName = "newUserWelcome";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId });
     return;
   } catch (error) {
@@ -51,7 +51,7 @@ export const sendResetPasswordMail = async (
       },
     };
     const templateName = "resetPassword";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email });
     return;
   } catch (error) {
@@ -80,7 +80,7 @@ export const sendResetPhoneNumberMail = async (
       },
     };
     const templateName = "changePhoneNumber";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email });
     return;
   } catch (error) {
@@ -104,7 +104,7 @@ export const sendSubscriptionReminderMailService = async (email: string) => {
       reply_to: "contact@email.refugies.info",
     };
     const templateName = "subscriptionReminderMail";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, email });
     return;
   } catch (error) {
@@ -142,7 +142,7 @@ export const sendOneDraftReminderMailService = async (
       },
     };
     const templateName = reminder === "first" ? "oneDraftReminder" : "secondOneDraftReminder";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId, dispositifId });
     return;
   } catch (error) {
@@ -181,7 +181,7 @@ export const sendUpdateReminderMailService = async (
       },
     };
     const templateName = "updateReminder";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
 
     await addMailEvent({ templateName, username, email, userId, dispositifId });
 
@@ -217,7 +217,7 @@ export const sendMultipleDraftsReminderMailService = async (
       },
     };
     const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({ templateName, username, email, userId });
     return;
   } catch (error) {
@@ -260,7 +260,7 @@ export const sendPublishedFicheMailToStructureMembersService = async (
     };
     const templateName = "publishedFicheToStructureMembers";
 
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -306,7 +306,7 @@ export const sendPublishedFicheMailToCreatorService = async (
       },
     };
     const templateName = "publishedFicheToCreator";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -354,7 +354,7 @@ export const sendPublishedTradMailToStructureService = async (
     };
     const templateName = "publishedTradForStructure";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -401,7 +401,7 @@ export const sendNewFicheEnAttenteMail = async (
     };
     const templateName = "newFicheEnAttente";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -452,7 +452,7 @@ export const sendPublishedTradMailToTraductorsService = async (
     };
     const templateName = "publishedTradForTraductors";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData); // test fix 503 when mail is invalid
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -505,7 +505,7 @@ export const sendAdminImprovementsMailService = async (
     };
     const templateName = "reviewFiche";
     // @ts-ignore
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudo,
@@ -548,7 +548,7 @@ export const sendNewReponsableMailService = async (
       },
     };
     const templateName = "newResponsable";
-    sendMail(templateName, dynamicData);
+    await sendMail(templateName, dynamicData);
     await addMailEvent({
       templateName,
       username: data.pseudonyme,

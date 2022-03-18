@@ -1,0 +1,80 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  min-width: 650px;
+
+  .modal_content {
+    background: #edebeb;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    padding: 30px 40px;
+  }
+
+  .modal_header {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    justify-content: space-between;
+  }
+
+  .close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+  }
+
+  .modal_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 24px;
+    justify-content: center;
+    font-size: $text-large;
+    line-height: 20px;
+    color: $gray90;
+    padding: 0;
+  }
+
+  .send_by {
+    display: flex;
+    align-items: center;
+    font-size: $text-large;
+    position: absolute;
+    right: 40px;
+  }
+
+  .about {
+    display: flex;
+    align-items: center;
+    font-size: $text-large;
+  }
+
+  .username {
+    background-color: white;
+    margin-left: 10px;
+    padding: 8px;
+  }
+
+  .btn_container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .input {
+    margin-bottom: 30px;
+    height: 370px;
+    background: #fbfbfb;
+    font-size: $text-normal;
+    line-height: 20px;
+    padding: 20px;
+    color: $gray90;
+    font-weight: normal;
+  }
+}

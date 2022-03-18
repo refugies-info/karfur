@@ -4,6 +4,9 @@ const bucketUrlCC = bucketUrl + "comment-contribuer/";
 const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
 const bucketUrlPartners = bucketUrl + "logosPartenaires/";
 const bucketUrlMiddleOffice = bucketUrl + "middle-office/";
+const bucketUrlStoreBadges = bucketUrl + "store-badges/";
+
+export const fontUrl = "https://storage.googleapis.com/refugies-info-assets/fonts/CircularStd/";
 
 export const assetsOnServer = {
   quiSommesNous: {
@@ -17,9 +20,10 @@ export const assetsOnServer = {
     header: bucketUrlQSN + "QuiSommesNous_header.svg",
     parcours: bucketUrlQSN + "QuiSommesNous_parcours.svg",
     terrain: bucketUrlQSN + "QuiSommesNous_terrain.svg",
+    pdfAMI: bucketUrlQSN + "AMI-structures-2022.pdf",
   },
   homepage: {
-    CarteDeploiement: bucketUrl + "home/Carte_deploiement_nov2021.svg",
+    CarteDeploiement: bucketUrl + "home/Carte_deploiement_janv2022.svg",
   },
   commentContribuer: {
     traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
@@ -178,4 +182,26 @@ export const assetsOnServer = {
   middleOffice: {
     noNotification: bucketUrlMiddleOffice + "aucune_notification.svg",
   },
+  storeBadges: {
+    appStore: {
+      fr: bucketUrlStoreBadges + "app-store-fr.svg",
+      ru: bucketUrlStoreBadges + "app-store-ru.svg",
+      ar: bucketUrlStoreBadges + "app-store-ar.svg",
+      en: bucketUrlStoreBadges + "app-store-en.svg",
+      uk: null,
+      ps: null,
+      "ti-ER": null,
+      fa: null,
+    },
+    playStore: {
+      fr: bucketUrlStoreBadges + "google-play-fr.svg",
+      ru: bucketUrlStoreBadges + "google-play-ru.svg",
+      ar: bucketUrlStoreBadges + "google-play-ar.svg",
+      en: bucketUrlStoreBadges + "google-play-en.svg",
+      uk: bucketUrlStoreBadges + "google-play-uk.svg",
+      ps: null,
+      "ti-ER": null,
+      fa: null,
+    }
+  }
 };

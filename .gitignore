@@ -1,19 +1,18 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
-.pnp.js
+node_modules
 
 # testing
-/coverage
+coverage
 
 # production
 /build
 
 # misc
 .DS_Store
-.env.local
+.env
+.env.local*
 .env.development.local
 .env.test.local
 .env.production.local
@@ -22,54 +21,19 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#Ajouts:
-/server/src/config/
-/server/src/private/
-**/node_modules/**
-.env*
-/db-backup*
-/client/nw/screens
-/client/nw/reports
-/client/nw/logs
-/client//.pnp
-/client/.pnp.js
-/client/.npmrc
-/client/coverage
-/client/src/scss/fonts/CircularStd
-/client/.DS_Store
-/client/.env.local
-/client/.env.development.local
-/client/.env.test.local
-/client/.env.production.local
-*.orig
-.idea/
-credentials.json
-token.json
-/controllers/dispositif/gmail_auth.js
-/client/brouillon.js
-/client/.env
+# Common
 **/.jest
-/client/coverage
-.eslintcache
+
+# Server
+/server/src/config/
 /server/dist
+/db-backup*
+
+# Client
+.eslintcache
+.next
 /client/src/locales/interfaceTranslation/csvBeforeTrad
 /client/src/locales/interfaceTranslation/csvAfterTrad
-/client/build/*
-/server/variables.env
+/client/public/fonts/CircularStd
 /client/src/scss/fonts/CircularStd
-
-/refugies-info-app/.expo/
-/refugies-info-app/.expo/packager-info.json
-/refugies-info-app/src/theme/fonts
-/refugies-info-app/node_modules/
-/refugies-info-app/npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-/refugies-info-app/web-build/
-/refugies-info-app/src/translations/scripts/csvAfterTrad
-/refugies-info-app/src/translations/scripts/csvBeforeTrad
-
+/client/tsconfig.tsbuildinfo

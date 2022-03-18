@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
+import Image from "next/image";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import {
   StyledTitle,
   StyledHeader,
@@ -19,13 +20,13 @@ import {
   StyledSort,
   SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
-import "./AdminStructures.scss";
 import {
   TabHeader,
   StyledStatus,
   FilterButton,
 } from "../sharedComponents/SubComponents";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,
@@ -35,16 +36,17 @@ import {
 import {
   SimplifiedStructureForAdmin,
   Responsable,
-} from "../../../../types/interface";
+} from "types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "components/FigmaUI/FButton/FButton";
+import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import styles from "./AdminStructures.module.scss";
 
 moment.locale("fr");
 
@@ -268,7 +270,7 @@ export const AdminStructures = () => {
     (structure) => structure.status !== "Supprimé"
   ).length;
   return (
-    <div className="admin-structures">
+    <div className={styles.container}>
       <SearchBarContainer>
         <CustomSearchBar
           value={search}
@@ -349,9 +351,13 @@ export const AdminStructures = () => {
                 >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
-                      <img
-                        className="sponsor-img mr-8"
+                      <Image
+                        className={styles.sponsor_img + " mr-8"}
                         src={(element.picture || {}).secure_url}
+                        alt=""
+                        width={90}
+                        height={35}
+                        objectFit="contain"
                       />
                     )}
                     <StructureName>{element.nom}</StructureName>

@@ -1,1 +1,42 @@
-// Variable overrides
+@import "src/scss/colors";
+
+// Bootstrap
+// All variables here: https://github.com/twbs/bootstrap/blob/v4.6.1/scss/_variables.scss
+$font-family-sans-serif: "CircularStd", "Roboto", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI";
+$body-color: $gray90;
+$body-bg: white;
+
+// Colors
+$light: $gray20;
+$dark: $gray90;
+
+// Headings
+$h1-font-size: 3.25rem;
+$h2-font-size: 2.5rem;
+$h3-font-size: 2.5rem;
+$h4-font-size: 1.75rem;
+$h5-font-size: 1.375rem;
+
+$headings-margin-bottom: 0;
+$headings-font-weight: bold;
+$headings-line-height: 1.25;
+
+// Font sizes
+$text-small: 14px;
+$text-normal: 16px;
+$text-large: 18px;
+
+// Spacers
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: ($spacer * .75),
+  4: $spacer,
+  5: ($spacer * 1.25),
+  6: ($spacer * 1.5)
+);
+
+// Custom
+$radius: 12px;

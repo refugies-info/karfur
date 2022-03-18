@@ -1,0 +1,12 @@
+.language_title {
+  :global(.flag-icon) {
+    font-size: 20px;
+    margin-right: 8px;
+    border-radius: 6px;
+  }
+  .selected {
+    font-size: 40px;
+    margin-right: 8px;
+    border-radius: 6px;
+  }
+}

@@ -3,13 +3,18 @@ import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProv
 import { UserStructureComponent } from "../UserStructure.component";
 import "jest-styled-components";
 import { act } from "react-test-renderer";
-import { initialMockStore } from "../../../../__fixtures__/reduxStore";
+import { initialMockStore } from "__fixtures__/reduxStore";
 import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../../services/UserStructure/userStructure.actions";
+} from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/image", () => {
+  const Image = () => <></>;
+  return Image
+});
 
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
@@ -21,9 +26,9 @@ jest.mock("reactstrap", () => {
   return { Modal: MockReactModal, Table, Input, InputGroup, InputGroupAddon };
 });
 
-jest.mock("../../../../services/UserStructure/userStructure.actions", () => {
+jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual(
-    "../../../../services/UserStructure/userStructure.actions"
+    "services/UserStructure/userStructure.actions"
   );
   return {
     fetchUserStructureActionCreator: jest.fn(

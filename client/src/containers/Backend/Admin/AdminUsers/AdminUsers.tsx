@@ -1,8 +1,8 @@
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import {
   SearchBarContainer,
   StyledHeader,
@@ -11,18 +11,18 @@ import {
   StyledSort,
   Content,
 } from "../sharedComponents/StyledAdmin";
+import Image from "next/image";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
   RowContainer,
   StructureName,
 } from "../AdminStructures/components/AdminStructureComponents";
-import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { compare } from "../AdminContenu/AdminContenu";
@@ -31,38 +31,24 @@ import {
   SimplifiedUser,
   Responsable,
   SimplifiedStructureForAdmin,
-} from "../../../../types/interface";
+} from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { removeAccents } from "../../../../lib";
+import { removeAccents } from "lib";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import API from "../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import FButton from "components/UI/FButton/FButton";
+import API from "utils/API";
 import Swal from "sweetalert2";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import styles from "./AdminUsers.module.scss";
 
 moment.locale("fr");
-declare const window: Window;
-
-const RoleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 150px;
-`;
-
-const LangueContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 150px;
-`;
 
 export const AdminUsers = () => {
   const defaultSortedHeader = {
@@ -306,9 +292,9 @@ export const AdminUsers = () => {
     return <LoadingAdminUsers />;
   }
   return (
-    <div className="admin-users">
+    <div className={styles.container}>
       <SearchBarContainer>
-        {process.env.REACT_APP_ENV === "production" && (
+        {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
             {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
           </FButton>
@@ -387,7 +373,14 @@ export const AdminUsers = () => {
                   >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
-                        <img className="user-img mr-8" src={secureUrl} />
+                        <Image
+                          className={styles.user_img + " mr-8"}
+                          src={secureUrl}
+                          alt=""
+                          width={70}
+                          height={40}
+                          objectFit="contain"
+                        />
                         <StructureName>{element.username}</StructureName>
                       </RowContainer>
                     </div>
@@ -418,24 +411,24 @@ export const AdminUsers = () => {
                     className="align-middle"
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
-                    <RoleContainer>
+                    <div className={styles.item_container}>
                       {(element.roles || []).map((role) => (
                         <Role key={role} role={role} />
                       ))}
-                    </RoleContainer>
+                    </div>
                   </td>
                   <td
                     className="align-middle"
                     onClick={() => setSelectedUserIdAndToggleModal(element)}
                   >
-                    <LangueContainer>
+                    <div className={styles.item_container}>
                       {(element.langues || []).map((langue) => (
                         <LangueFlag
                           langue={langue.langueCode}
                           key={langue.langueCode}
                         />
                       ))}
-                    </LangueContainer>
+                    </div>
                   </td>
 
                   <td

@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { colors } from "../../../../colors";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import traductionIconBlanc from "../../../../assets/icon_traduction_blanc.svg";
+import { colors } from "colors";
+import Image from "next/image";
+import FButton from "components/UI/FButton/FButton";
+import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
+import styles from "containers/Backend/Navigation/components/NavButton.module.scss";
 
 const Title = styled.div`
   font-weight: bold;
@@ -20,7 +22,7 @@ const MainContainer = styled.div`
 `;
 
 const WhiteContainer = styled.div`
-  background: ${colors.blancSimple};
+  background: ${colors.white};
   border-radius: 12px;
   width: 1040px;
   display: flex;
@@ -69,10 +71,10 @@ export const StartTranslating = (props: Props) => {
             className="mr-10"
             onClick={props.toggleTraducteurModal}
           >
-            <img
+            <Image
               src={traductionIconBlanc}
               alt="a"
-              className={"icon-traduction"}
+              className={styles.icon_traduction}
             />
             Commencer à traduire
           </FButton>

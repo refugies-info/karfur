@@ -1,0 +1,136 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.modal {
+  @include media-min("tablet-up") {
+    width: 500px;
+  }
+
+  .close {
+    outline: none;
+    @include isMobile() {
+      padding: 0 !important;
+    }
+  }
+
+  .modal_content {
+    background: $white;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    border: none;
+  }
+
+  .modal_header {
+    border: none;
+    padding: 1.25rem;
+
+    .close {
+      color: $gray90;
+      outline: none;
+      text-shadow: none;
+      position: absolute;
+      opacity: 1;
+      top: 20px;
+      right: 20px;
+      @include isMobile() {
+        color: white;
+        background-color: black;
+        font-size: 20px;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        top: 35px;
+        right: 35px;
+      }
+    }
+
+    h5 {
+      width: 100%;
+      cursor: default;
+    }
+
+    .title {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      color: $gray90;
+    }
+
+    .subtitle {
+      font-size: $text-normal;
+      font-weight: normal;
+    }
+  }
+
+  .modal_body {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .list_group_item {
+    padding: 15px;
+    border: 0.5px solid $gray90;
+    color: $gray90;
+    border-radius: 12px !important;
+    margin-bottom: 10px !important;
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s ease;
+      color: $white;
+      background: $gray90;
+    }
+    /*   &.disabled {
+    color: $gray50;
+    border-color: $gray50;
+  } */
+    &.unavailable {
+      background: $gray70;
+      border: none;
+      color: $white;
+      padding: 10px;
+      box-shadow: none;
+    }
+    &.active {
+      color: $white;
+      background-color: $validationHover;
+      border: 0.5px solid $validationHover;
+    }
+    .vertical_center {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+    }
+  }
+
+  // Cols
+  .ln_col {
+    white-space: nowrap;
+    @include isMobile() {
+      max-width: 70%;
+      flex: 0 0 80%;
+    }
+  }
+  .progress_col {
+    display: flex;
+    align-items: center;
+
+    .progress {
+      width: 100px;
+      margin-right: 10px;
+      height: 10px;
+    }
+  }
+  .button_col {
+    display: flex;
+    padding-right: 15px;
+    justify-content: flex-end;
+  }
+  .icon_col {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-right: 20px;
+  }
+}

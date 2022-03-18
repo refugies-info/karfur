@@ -1,0 +1,98 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+  background-image: url(../../assets/login_background.svg);
+  background-color: #fbfbfb;
+}
+.input_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.label {
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Titles
+.h2 {
+  margin-top: 64px;
+  color: $bleuCharte;
+}
+.h5 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+// Footer
+.footer_links {
+  color: $gray70;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-top: 64px;
+
+  .link {
+    color: $gray70;
+    background: transparent;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    border: none;
+    text-decoration: underline;
+    outline: none;
+  }
+}
+
+// Messages
+.error_message {
+  color: #e8140f;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-top: 16px;
+}
+
+.reset_message {
+  color: $gray70;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-bottom: 16px;
+}
+.precisions_message {
+  font-size: $text-normal;
+  line-height: 20px;
+  color: $gray70;
+  margin-top: 16px;
+}
+.email_message {
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+
+  .no_email {
+    margin-bottom: 64px;
+    color: #e8140f;
+  }
+}
+
+// Reset
+.reset_loading_access{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

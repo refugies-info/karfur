@@ -12,16 +12,20 @@ const MainContainer = styled.div`
 const StickLine = styled.div`
   display: flex;
   flex: 1;
-  background: ${(props) => (props.filled ? "#0421b1" : "#CDCDCD;")};
+  background: ${(props: {filled: boolean}) => (props.filled ? "#0421b1" : "#CDCDCD;")};
   border-radius: 6px;
   height: 8px;
 `;
 
+interface StepContainerProps {
+  filled: boolean
+  selected: boolean
+}
 const StepContainer = styled.div`
   background: #ffffff;
   border-width: 3px;
   border-style: solid;
-  border-color: ${(props) =>
+  border-color: ${(props: StepContainerProps) =>
     props.filled || props.selected ? "#0421b1" : "#CDCDCD;"};
   border-radius: 50%;
   height: 32px;
@@ -31,7 +35,7 @@ const StepContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) =>
+  background: ${(props: StepContainerProps) =>
     props.filled ? "#0421b1" : props.selected ? "#FFFFFF" : "#CDCDCD;"};
 `;
 
@@ -39,12 +43,12 @@ const StepText = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props) => (props.selected ? "#0421b1" : "#FFFFFF;")};
+  color: ${(props: {selected: boolean}) => (props.selected ? "#0421b1" : "#FFFFFF;")};
 `;
 
 const Step = (props: { value: number; filled: boolean; selected: boolean }) => (
   <StepContainer filled={props.filled} selected={props.selected}>
-    <StepText filled={props.filled} selected={props.selected}>
+    <StepText selected={props.selected}>
       {props.value}
     </StepText>
   </StepContainer>

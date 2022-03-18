@@ -3,7 +3,7 @@ import { LoadingStatusActions } from "./loadingStatus.actions";
 
 export interface LoadingStatusState {
   [key: string]: {
-    error?: string;
+    error?: string|null;
     isLoading: boolean;
   };
 }
@@ -19,7 +19,7 @@ export const loadingStatusReducer = createReducer<
     [action.payload.key]: {
       ...state[action.payload.key],
       isLoading: true,
-      error: undefined,
+      error: null,
     },
   }),
   LOADING_END: (state, action) => ({
@@ -27,7 +27,7 @@ export const loadingStatusReducer = createReducer<
     [action.payload.key]: {
       ...state[action.payload.key],
       isLoading: false,
-      error: undefined,
+      error: null,
     },
   }),
   LOADING_ERROR: (state, action) => ({

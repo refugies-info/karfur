@@ -1,95 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserProfile should disable save when new password too weak 1`] = `
-.c13 {
+.c9 {
   width: 100%;
   margin-right: 16px;
 }
 
-.c14 {
+.c10 {
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
 }
 
-.c15 {
+.c11 {
   color: #f44336;
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -111,7 +41,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -129,7 +59,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -151,7 +81,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -159,11 +89,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c3 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c5 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -171,7 +101,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c8 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -179,11 +109,11 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c7 {
   width: 480px;
 }
 
-.c10 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -203,119 +133,206 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c0 container"
   >
     <div
-      className="c5"
+      className="c1"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c2"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="upload-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-upload-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"upload\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><rect x=\\"4\\" y=\\"4\\" width=\\"16\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(180 12 5)\\"/><rect x=\\"17\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 19 6)\\"/><rect x=\\"3\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 5 6)\\"/><path d=\\"M8 14a1 1 0 0 1-.8-.4 1 1 0 0 1 .2-1.4l4-3a1 1 0 0 1 1.18 0l4 2.82a1 1 0 0 1 .24 1.39 1 1 0 0 1-1.4.24L12 11.24 8.6 13.8a1 1 0 0 1-.6.2z\\"/><path d=\\"M12 21a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         <input
@@ -326,50 +343,52 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c3"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
-      className="c8"
+      className="c4"
     >
       <div>
         <div
-          className="c9"
+          className="c5"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="person-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -377,7 +396,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -386,56 +405,59 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c8"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="email-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-email-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"email\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
-                style={null}
+                placeholder="Register.Renseignez votre adresse email"
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -443,7 +465,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -452,51 +474,54 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
-        className="c12"
+        className="c8"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
-        className="c11"
+        className="c7"
       >
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <div
-            className="icon-prepend input-group-prepend"
+            className="prepend input-group-prepend"
           >
             <span>
               <i
-                data-eva="lock-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-lock-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"lock\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z\\"/><path d=\\"M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
           <input
             autoFocus={true}
-            className="password-input has-prepend new-size form-control"
+            className="password-input has_prepend new_size form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
+            readOnly={false}
             style={
               Object {
                 "width": 70,
@@ -506,22 +531,23 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             value="current"
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
             onClick={[Function]}
           >
             <span>
               <i
-                data-eva="eye-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z\\"/><path d=\\"M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
         </div>
       </div>
       <div
-        className="c11"
+        className="c7"
       >
         <div
           style={
@@ -541,40 +567,43 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             }
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="lock-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-lock-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"lock\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z\\"/><path d=\\"M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has-prepend new-size form-control"
+                className="password-input has_prepend new_size form-control"
                 id="new-password"
                 onChange={[Function]}
-                placeholder="Votre nouveau mot de passe"
-                style={null}
+                placeholder="UserProfile.Votre nouveau mot de passe"
+                readOnly={false}
+                style={Object {}}
                 type="password"
               />
               <div
-                className="icon-append input-group-append"
+                className="append input-group-append"
                 onClick={[Function]}
               >
                 <span>
                   <i
-                    data-eva="eye-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z\\"/><path d=\\"M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
@@ -592,14 +621,15 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           }
         >
           <div
-            className="c13"
+            className="c9"
           >
             <div
               className="progress"
+              style={Object {}}
             >
               <div
                 aria-valuemax={100}
-                aria-valuemin="0"
+                aria-valuemin={0}
                 aria-valuenow={9.09090909090909}
                 className="progress-bar bg-danger"
                 role="progressbar"
@@ -612,16 +642,16 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             </div>
           </div>
           <div
-            className="c14"
+            className="c10"
           >
-            Faible
+            Register.Faible
           </div>
         </div>
         <div
-          className="c15"
+          className="c11"
         >
           <b>
-            Oups, votre mot de passe est trop faible.
+            Register.Mot de passe trop faible
           </b>
         </div>
       </div>
@@ -636,7 +666,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         }
       >
         <button
-          className="figma-btn validate-light "
+          className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
           testID="test-save-password"
@@ -645,13 +675,14 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="save-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
-          Enregistrer
+          UserProfile.Enregistrer
         </button>
       </div>
     </div>
@@ -660,77 +691,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
 `;
 
 exports[`UserProfile should render correctly 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -752,7 +713,7 @@ exports[`UserProfile should render correctly 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -770,7 +731,7 @@ exports[`UserProfile should render correctly 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -792,7 +753,7 @@ exports[`UserProfile should render correctly 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -800,11 +761,11 @@ exports[`UserProfile should render correctly 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c3 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c5 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -812,7 +773,7 @@ exports[`UserProfile should render correctly 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c8 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -820,11 +781,11 @@ exports[`UserProfile should render correctly 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c7 {
   width: 480px;
 }
 
-.c10 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -844,119 +805,206 @@ exports[`UserProfile should render correctly 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c0 container"
   >
     <div
-      className="c5"
+      className="c1"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c2"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="upload-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-upload-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"upload\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><rect x=\\"4\\" y=\\"4\\" width=\\"16\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(180 12 5)\\"/><rect x=\\"17\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 19 6)\\"/><rect x=\\"3\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 5 6)\\"/><path d=\\"M8 14a1 1 0 0 1-.8-.4 1 1 0 0 1 .2-1.4l4-3a1 1 0 0 1 1.18 0l4 2.82a1 1 0 0 1 .24 1.39 1 1 0 0 1-1.4.24L12 11.24 8.6 13.8a1 1 0 0 1-.6.2z\\"/><path d=\\"M12 21a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         <input
@@ -967,50 +1015,52 @@ exports[`UserProfile should render correctly 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c3"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
-      className="c8"
+      className="c4"
     >
       <div>
         <div
-          className="c9"
+          className="c5"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="person-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -1018,7 +1068,7 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -1027,56 +1077,59 @@ exports[`UserProfile should render correctly 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c8"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="email-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-email-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"email\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
-                style={null}
+                placeholder="Register.Renseignez votre adresse email"
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -1084,7 +1137,7 @@ exports[`UserProfile should render correctly 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -1093,29 +1146,30 @@ exports[`UserProfile should render correctly 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
-        className="c12"
+        className="c8"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <button
-        className="figma-btn dark "
+        className="btn  dark  "
         onClick={[Function]}
         testID="test-modify-password"
       >
@@ -1123,13 +1177,14 @@ exports[`UserProfile should render correctly 1`] = `
           className="mr-10"
         >
           <i
-            data-eva="edit-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
-        Modifier mon mot de passe
+        UserProfile.modifyPassword
       </button>
     </div>
   </div>
@@ -1137,77 +1192,7 @@ exports[`UserProfile should render correctly 1`] = `
 `;
 
 exports[`UserProfile should render correctly when changing password 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1229,7 +1214,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-bottom: 42px;
 }
 
-.c8 {
+.c4 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1247,7 +1232,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1269,7 +1254,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   height: fit-content;
 }
 
-.c6 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -1277,11 +1262,11 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-bottom: 16px;
 }
 
-.c7 {
+.c3 {
   word-wrap: break-word;
 }
 
-.c9 {
+.c5 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1289,7 +1274,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-top: 0px;
 }
 
-.c12 {
+.c8 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1297,11 +1282,11 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   margin-top: 24px;
 }
 
-.c11 {
+.c7 {
   width: 480px;
 }
 
-.c10 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1321,119 +1306,206 @@ exports[`UserProfile should render correctly when changing password 1`] = `
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c3"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c4 user-profile"
+    className="c0 container"
   >
     <div
-      className="c5"
+      className="c1"
     >
-      <img
-        alt="my-image"
-        className="user-img"
-        src={Object {}}
-      />
       <div
-        className="c6"
+        className="c2"
       >
         username
       </div>
       <button
-        className="figma-btn dark upload-button mb-16"
+        className="btn  dark position-relative mb-16 "
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="upload-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-upload-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"upload\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><rect x=\\"4\\" y=\\"4\\" width=\\"16\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(180 12 5)\\"/><rect x=\\"17\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 19 6)\\"/><rect x=\\"3\\" y=\\"5\\" width=\\"4\\" height=\\"2\\" rx=\\"1\\" ry=\\"1\\" transform=\\"rotate(90 5 6)\\"/><path d=\\"M8 14a1 1 0 0 1-.8-.4 1 1 0 0 1 .2-1.4l4-3a1 1 0 0 1 1.18 0l4 2.82a1 1 0 0 1 .24 1.39 1 1 0 0 1-1.4.24L12 11.24 8.6 13.8a1 1 0 0 1-.6.2z\\"/><path d=\\"M12 21a1 1 0 0 1-1-1v-8a1 1 0 0 1 2 0v8a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         <input
@@ -1444,50 +1516,52 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           onChange={[Function]}
           type="file"
         />
-        Modifier ma photo
+        UserProfile.Modifier ma photo
       </button>
       <div
-        className="c7"
+        className="c3"
       >
-        Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.
+        UserProfile.photoUsage
       </div>
     </div>
     <div
-      className="c8"
+      className="c4"
     >
       <div>
         <div
-          className="c9"
+          className="c5"
         >
-          Votre pseudonyme
+          UserProfile.votre pseudo
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="person-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="username"
                 onChange={[Function]}
-                style={null}
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="username"
               />
@@ -1495,7 +1569,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-pseudo"
@@ -1504,56 +1578,59 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Ce pseudonyme est public. Il apparaître sur les fiches auxquelles vous allez contribuer.
+          UserProfile.pseudoExplication
         </div>
       </div>
       <div>
         <div
-          className="c12"
+          className="c8"
         >
-          Votre email
+          Register.Votre email
         </div>
         <div
-          className="c10"
+          className="c6"
         >
           <div
-            className="c11"
+            className="c7"
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="email-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-email-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"email\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 4H5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.67 2L12 10.75 5.67 6zM19 18H5a1 1 0 0 1-1-1V7.25l7.4 5.55a1 1 0 0 0 .6.2 1 1 0 0 0 .6-.2L20 7.25V17a1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoFocus={false}
-                className=" has-prepend new-size form-control"
+                className="has_prepend new_size form-control"
                 id="email"
                 onChange={[Function]}
-                placeholder="Renseignez votre adresse email"
-                style={null}
+                placeholder="Register.Renseignez votre adresse email"
+                readOnly={false}
+                style={Object {}}
                 type="text"
                 value="email@gmail.com"
               />
@@ -1561,7 +1638,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           </div>
           <div>
             <button
-              className="figma-btn validate-light ml-8"
+              className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
               testID="test-save-email"
@@ -1570,72 +1647,76 @@ exports[`UserProfile should render correctly when changing password 1`] = `
                 className="mr-10"
               >
                 <i
-                  data-eva="save-outline"
-                  data-eva-fill="#fff"
-                  data-eva-height="20px"
-                  data-eva-width="20px"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                    }
+                  }
                 />
               </span>
-              Enregistrer
+              UserProfile.Enregistrer
             </button>
           </div>
         </div>
         <div
-          className="c7"
+          className="c3"
         >
-          Votre email sera utilisé seulement en cas de réinitialisation de votre mot de passe et pour des notifications liées à votre activité sur le site.
+          UserProfile.emailExplication
         </div>
       </div>
       <div
-        className="c12"
+        className="c8"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
-        className="c11"
+        className="c7"
       >
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <div
-            className="icon-prepend input-group-prepend"
+            className="prepend input-group-prepend"
           >
             <span>
               <i
-                data-eva="lock-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-lock-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"lock\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z\\"/><path d=\\"M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
           <input
             autoFocus={true}
-            className="password-input has-prepend new-size form-control"
+            className="password-input has_prepend new_size form-control"
             id="current-password"
             onChange={[Function]}
             placeholder="Votre mot de passe actuel"
-            style={null}
+            readOnly={false}
+            style={Object {}}
             type="password"
             value=""
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
             onClick={[Function]}
           >
             <span>
               <i
-                data-eva="eye-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z\\"/><path d=\\"M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
         </div>
       </div>
       <div
-        className="c11"
+        className="c7"
       >
         <div
           style={
@@ -1655,40 +1736,43 @@ exports[`UserProfile should render correctly when changing password 1`] = `
             }
           >
             <div
-              className="mb-10 figma-input-group input-group"
+              className="input mb-10 input-group"
             >
               <div
-                className="icon-prepend input-group-prepend"
+                className="prepend input-group-prepend"
               >
                 <span>
                   <i
-                    data-eva="lock-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-lock-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"lock\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M17 8h-1V6.11a4 4 0 1 0-8 0V8H7a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-7-1.89A2.06 2.06 0 0 1 12 4a2.06 2.06 0 0 1 2 2.11V8h-4zM18 19a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1z\\"/><path d=\\"M12 12a3 3 0 1 0 3 3 3 3 0 0 0-3-3zm0 4a1 1 0 1 1 1-1 1 1 0 0 1-1 1z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
               <input
                 autoComplete="new-password"
                 autoFocus={false}
-                className="password-input has-prepend new-size form-control"
+                className="password-input has_prepend new_size form-control"
                 id="new-password"
                 onChange={[Function]}
-                placeholder="Votre nouveau mot de passe"
-                style={null}
+                placeholder="UserProfile.Votre nouveau mot de passe"
+                readOnly={false}
+                style={Object {}}
                 type="password"
               />
               <div
-                className="icon-append input-group-append"
+                className="append input-group-append"
                 onClick={[Function]}
               >
                 <span>
                   <i
-                    data-eva="eye-outline"
-                    data-eva-fill="#212121"
-                    data-eva-height="20px"
-                    data-eva-width="20px"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zM12.22 17c-4.31.1-7.12-3.59-8-5 1-1.61 3.61-4.9 7.61-5 4.29-.11 7.11 3.59 8 5-1.03 1.61-3.61 4.9-7.61 5z\\"/><path d=\\"M12 8.5a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 8.5zm0 5a1.5 1.5 0 1 1 1.5-1.5 1.5 1.5 0 0 1-1.5 1.5z\\"/></g></g></svg>",
+                      }
+                    }
                   />
                 </span>
               </div>
@@ -1709,7 +1793,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         }
       >
         <button
-          className="figma-btn validate-light "
+          className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
           testID="test-save-password"
@@ -1718,13 +1802,14 @@ exports[`UserProfile should render correctly when changing password 1`] = `
             className="mr-10"
           >
             <i
-              data-eva="save-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-save-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"save\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.12 8.71l-4.83-4.83A3 3 0 0 0 13.17 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-7.17a3 3 0 0 0-.88-2.12zM10 19v-2h4v2zm9-1a1 1 0 0 1-1 1h-2v-3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h2v5a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2h-3V5h3.17a1.05 1.05 0 0 1 .71.29l4.83 4.83a1 1 0 0 1 .29.71z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
-          Enregistrer
+          UserProfile.Enregistrer
         </button>
       </div>
     </div>
@@ -1733,7 +1818,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
 `;
 
 exports[`UserProfile should render correctly when loading 1`] = `
-.c6 {
+.c2 {
   width: 160px;
   height: 160px;
   border-radius: 50%;
@@ -1741,77 +1826,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   margin-bottom: 8px;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #212121;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 16px;
-}
-
-.c3 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1833,7 +1848,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   margin-bottom: 42px;
 }
 
-.c7 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1851,7 +1866,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c5 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -1873,7 +1888,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c8 {
+.c4 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1881,7 +1896,7 @@ exports[`UserProfile should render correctly when loading 1`] = `
   margin-top: 0px;
 }
 
-.c9 {
+.c5 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
@@ -1899,100 +1914,191 @@ exports[`UserProfile should render correctly when loading 1`] = `
   }
 >
   <div
+    className="container"
+  >
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Mes fiches
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon icon_traduction"
+      >
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black active"
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Déconnexion
+    </button>
+  </div>
+  <div
     className="c0"
   >
     <div
       className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="person"
-          data-eva-fill="#ffffff"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c3"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Déconnexion
-    </div>
-  </div>
-  <div
-    className="c4"
-  >
-    <div
-      className="c5"
     >
       <div
-        className="c6"
+        className="c2"
       />
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2013,12 +2119,12 @@ exports[`UserProfile should render correctly when loading 1`] = `
       </div>
     </div>
     <div
-      className="c7"
+      className="c3"
     >
       <div
-        className="c8"
+        className="c4"
       >
-        Votre pseudonyme
+        UserProfile.votre pseudo
       </div>
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2037,9 +2143,9 @@ exports[`UserProfile should render correctly when loading 1`] = `
         </span>
       </div>
       <div
-        className="c9"
+        className="c5"
       >
-        Votre email
+        Register.Votre email
       </div>
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2058,9 +2164,9 @@ exports[`UserProfile should render correctly when loading 1`] = `
         </span>
       </div>
       <div
-        className="c9"
+        className="c5"
       >
-        Votre mot de passe
+        UserProfile.Votre mot de passe
       </div>
       <div
         className="css-nitgap-SkeletonTheme"

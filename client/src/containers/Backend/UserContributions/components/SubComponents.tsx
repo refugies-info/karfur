@@ -21,15 +21,15 @@ const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) =>
-    props.isDarkBackground ? colors.blancSimple : colors.darkColor};
-  background-color: ${(props) =>
-    props.isDarkBackground ? colors.darkColor : colors.blancSimple};
+  color: ${(props: {isDarkBackground: boolean}) =>
+    props.isDarkBackground ? colors.white : colors.gray90};
+  background-color: ${(props: {isDarkBackground: boolean}) =>
+    props.isDarkBackground ? colors.gray90 : colors.white};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
   cursor: pointer;
-  border: 1px solid ${colors.noir};
+  border: 1px solid ${colors.gray90};
 `;
 
 export const TypeContenu = (props: {
@@ -61,8 +61,8 @@ export const Responsabilite = (props: { responsable: string | null }) => {
           name={
             props.responsable === "Moi" ? "person-outline" : "briefcase-outline"
           }
-          size="20"
-          fill={colors.noir}
+          size={20}
+          fill={colors.gray90}
         />
       </div>
       {limitNbCaracters(props.responsable, 30)}
@@ -70,20 +70,25 @@ export const Responsabilite = (props: { responsable: string | null }) => {
   );
 };
 
+interface ContribStyledStatusContainerProps {
+  size?: string
+  textColor?: string
+  color: string
+}
 const ContribStyledStatusContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: bold;
-  border-radius: ${(props) => (props.size === "large" ? "12px" : "6px")};
-  padding: ${(props) => (props.size === "large" ? "15px" : "8px")};
-  background-color: ${(props) => props.color};
-  width: ${(props) => (props.size === "large" ? "fit-content" : "fit-content")};
-  height: ${(props) => (props.size === "large" ? "54px" : "")};
+  border-radius: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "12px" : "6px")};
+  padding: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "15px" : "8px")};
+  background-color: ${(props: ContribStyledStatusContainerProps) => props.color};
+  width: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "fit-content" : "fit-content")};
+  height: ${(props: ContribStyledStatusContainerProps) => (props.size === "large" ? "54px" : "")};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
+  color: ${(props: ContribStyledStatusContainerProps) => (props.textColor ? props.textColor : colors.white)};
 `;
 
 export const ContribStyledStatus = (props: { text: string; size?: string }) => {
@@ -103,7 +108,7 @@ export const ContribStyledStatus = (props: { text: string; size?: string }) => {
         {onMouseHover && (
           <EVAIcon
             name={"question-mark-circle"}
-            size="20"
+            size={20}
             fill={textColor}
             className="ml-8"
           />
@@ -119,8 +124,8 @@ export const StatutHeader = (props: { onClick: () => void }) => {
       Statut
       <EVAIcon
         name={"question-mark-circle-outline"}
-        size="20"
-        fill={colors.noir}
+        size={20}
+        fill={colors.gray90}
         className="ml-8"
       />
     </RowContainer>

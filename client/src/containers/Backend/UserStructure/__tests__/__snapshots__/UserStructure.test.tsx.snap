@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserStructure should render correctly when add member modal is open 1`] = `
-.c3 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,7 +23,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 42px;
 }
 
-.c6 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -37,7 +37,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   flex-direction: column;
 }
 
-.c4 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -59,7 +59,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   height: fit-content;
 }
 
-.c8 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -74,7 +74,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: flex-end;
 }
 
-.c10 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -85,14 +85,14 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c12 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -114,11 +114,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   cursor: pointer;
 }
 
-.c15:hover {
+.c12:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -140,11 +140,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   cursor: pointer;
 }
 
-.c16:hover {
+.c13:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -158,63 +158,63 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   align-items: center;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-}
-
-.c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
   color: #0421b1;
   max-width: 190px;
 }
 
-.c19 {
+.c16 {
   color: #212121;
   max-width: 190px;
 }
 
-.c20 {
+.c17 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
 }
 
-.c22 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -229,7 +229,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-top: 8px;
 }
 
-.c21 {
+.c18 {
   background: #2d9cdb;
   border-radius: 12px;
   padding: 16px;
@@ -241,7 +241,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 15px;
 }
 
-.c5 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -249,7 +249,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 30px;
 }
 
-.c7 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -263,57 +263,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   justify-content: space-between;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -324,155 +273,242 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c0 container"
   >
     <div
-      className="c4"
+      className="c1"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c2"
       >
         structureTest
       </div>
       <a
-        aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
       </a>
     </div>
     <div
-      className="c6"
+      className="c3"
     >
       <div
-        className="c7"
+        className="c4"
       >
         <div
-          className="c8"
+          className="c5"
         >
           <div
-            className="c9"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c6"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -480,10 +516,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -520,14 +557,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -537,7 +570,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -546,7 +579,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -555,7 +588,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -572,7 +605,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -584,16 +617,17 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -606,10 +640,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -624,14 +659,10 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -641,7 +672,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -650,7 +681,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -659,7 +690,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -676,7 +707,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -688,16 +719,17 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -710,10 +742,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -727,12 +760,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
     </div>
     <div>
       <div
-        className="c20"
+        className="c17"
       >
         Ajouter un membre
       </div>
       <div
-        className="c21"
+        className="c18"
       >
         <b>
           Attention :
@@ -741,26 +774,28 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <div>
         <div
-          className="mb-10 figma-input-group input-group"
+          className="input mb-10 input-group"
         >
           <input
             autoFocus={true}
-            className="  new-size form-control"
+            className="new_size form-control"
             id="value"
             onChange={[Function]}
-            style={null}
+            readOnly={false}
+            style={Object {}}
             type="text"
             value=""
           />
           <div
-            className="icon-append input-group-append"
+            className="append input-group-append"
           >
             <span>
               <i
-                data-eva="search-outline"
-                data-eva-fill="#212121"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
           </div>
@@ -768,26 +803,27 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         
       </div>
       <div
-        className="c22"
+        className="c19"
       >
         <button
-          className="figma-btn outline-black mr-8"
+          className="btn  outline-black mr-8 "
           onClick={[Function]}
         >
           <span
             className="mr-10"
           >
             <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Annuler
         </button>
         <button
-          className="figma-btn validate "
+          className="btn  validate  "
           disabled={true}
           onClick={[Function]}
         >
@@ -795,10 +831,11 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Ajouter
@@ -811,7 +848,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 `;
 
 exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 1`] = `
-.c3 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -833,7 +870,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 42px;
 }
 
-.c6 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -847,7 +884,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   flex-direction: column;
 }
 
-.c4 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -869,7 +906,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   height: fit-content;
 }
 
-.c8 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -884,7 +921,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: flex-end;
 }
 
-.c10 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -895,14 +932,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c12 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -924,11 +961,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c15:hover {
+.c12:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -950,11 +987,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   cursor: pointer;
 }
 
-.c16:hover {
+.c13:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -968,57 +1005,57 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-}
-
-.c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
   color: #0421b1;
   max-width: 190px;
 }
 
-.c19 {
+.c16 {
   color: #212121;
   max-width: 190px;
 }
 
-.c23 {
+.c20 {
   background: #E0E0E0;
   border-width: 1px;
   border-style: solid;
@@ -1031,910 +1068,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c26 {
-  background: #ffffff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #212121;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: #212121;
-}
-
-.c25 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-bottom: 10px;
-}
-
-.c24 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c21 {
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 40px;
-  margin-right: 15px;
-}
-
-.c27 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: end;
-  -webkit-justify-content: flex-end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  margin-top: 12px;
-}
-
-.c20 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.c22 {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-}
-
-.c5 {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.c7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-<div
-  style={
-    Object {
-      "display": "flex",
-      "flex": 1,
-      "flexDirection": "column",
-    }
-  }
->
-  <div
-    className="c0"
-  >
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Déconnexion
-    </div>
-  </div>
-  <div
-    className="c3 structure-detail"
-  >
-    <div
-      className="c4"
-    >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
-      <div
-        className="c5"
-      >
-        structureTest
-      </div>
-      <a
-        aria-current={null}
-        className="figma-btn dark "
-        href="/annuaire/structureId"
-        onClick={[Function]}
-      >
-        <span
-          className="mr-10"
-        >
-          <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
-          />
-        </span>
-        Voir dans l'annuaire
-      </a>
-    </div>
-    <div
-      className="c6"
-    >
-      <div
-        className="c7"
-      >
-        <div
-          className="c8"
-        >
-          <div
-            className="c9"
-          >
-            Membres
-          </div>
-          <div
-            className="c10"
-          >
-            2
-          </div>
-          <div
-            className="c9"
-          >
-            
-          </div>
-        </div>
-        <div>
-          <button
-            className="figma-btn dark "
-            onClick={[Function]}
-            testID="test-add-member"
-          >
-            <span
-              className="mr-10"
-            >
-              <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
-              />
-            </span>
-            Ajouter un membre
-          </button>
-        </div>
-      </div>
-      <div
-        className="table-responsive"
-      >
-        <table
-          className="table table-borderless"
-        >
-          <thead>
-            <tr>
-              <th>
-                Nom
-              </th>
-              <th>
-                Role
-              </th>
-              <th>
-                Dernière connexion
-              </th>
-              <th>
-                Ajouté le
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              className="membres-table"
-            >
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c11"
-                >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
-                  <div
-                    className="c12"
-                  >
-                    membre2
-                  </div>
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c13"
-                >
-                  Responsable
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c14"
-                >
-                  Non disponible
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c14"
-                >
-                  Non disponible
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                    }
-                  }
-                >
-                  <div
-                    className="c15"
-                    onClick={[Function]}
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginBottom": "4px",
-                        }
-                      }
-                    >
-                      <span>
-                        <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="c16"
-                    disabled={false}
-                    onClick={[Function]}
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginBottom": "4px",
-                        }
-                      }
-                    >
-                      <span>
-                        <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr
-              className="membres-table"
-            >
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c11"
-                >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
-                  <div
-                    className="c17"
-                  >
-                    membre1
-                  </div>
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c18"
-                >
-                  Rédacteur
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c19"
-                >
-                  Non disponible
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  className="c19"
-                >
-                  Non disponible
-                </div>
-              </td>
-              <td
-                className="align-middle"
-              >
-                <div
-                  style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                    }
-                  }
-                >
-                  <div
-                    className="c15"
-                    onClick={[Function]}
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginBottom": "4px",
-                        }
-                      }
-                    >
-                      <span>
-                        <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="c16"
-                    disabled={false}
-                    onClick={[Function]}
-                  >
-                    <div
-                      style={
-                        Object {
-                          "marginBottom": "4px",
-                        }
-                      }
-                    >
-                      <span>
-                        <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div />
-    <div>
-      <div
-        className="c20"
-      >
-        <div
-          className="c21"
-        >
-          Modifier le rôle de
-        </div>
-        <img
-          className="user-img mr-8"
-          src={Object {}}
-        />
-        <div
-          className="c22"
-        >
-          membre1
-        </div>
-      </div>
-      <div
-        className="c23"
-        onClick={[Function]}
-      >
-        <div
-          className="c24"
-        >
-          <div
-            className="c25"
-          >
-            Nommer « rédacteur » 
-          </div>
-          <span>
-            <i
-              data-eva="radio-button-on"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
-            />
-          </span>
-        </div>
-        Éditer et valider les fiches 
-        <br />
-        Accepter les fiches proposées à ma structure 
-        <br />
-        Voir les réactions aux fiches de ma structure 
-        <br />
-        Compléter la fiche annuaire de ma structure 
-        <br />
-      </div>
-      <div
-        className="c26"
-        onClick={[Function]}
-      >
-        <div
-          className="c24"
-        >
-          <div
-            className="c25"
-          >
-            Nommer « responsable »
-          </div>
-          <span>
-            <i
-              data-eva="radio-button-off"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
-            />
-          </span>
-        </div>
-        Éditer et valider les fiches 
-        <br />
-        Accepter les fiches proposées à ma structure 
-        <br />
-        Voir les réactions aux fiches de ma structure 
-        <br />
-        Compléter la fiche annuaire de ma structure 
-        <br />
-        <span>
-          + Ajouter ou supprimer d'autres membres
-          <br />
-        </span>
-        <span>
-          + Nommer d'autres responsables
-          <br />
-        </span>
-      </div>
-      <div
-        className="c27"
-      >
-        <button
-          className="figma-btn outline-black mr-8"
-          onClick={[Function]}
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
-            />
-          </span>
-          Annuler
-        </button>
-        <button
-          className="figma-btn validate "
-          disabled={true}
-          onClick={[Function]}
-          testID="test-validate-edit"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
-            />
-          </span>
-          Valider
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  margin-top: 26px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  margin-bottom: 42px;
-}
-
-.c6 {
-  background: #edebeb;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c4 {
-  background: #edebeb;
-  border-radius: 12px;
-  padding: 40px;
-  margin: 0px 20px 0px 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 315px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c10 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c9 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
-.c15 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c15:hover {
-  background-color: #212121;
-}
-
-.c16 {
-  width: 40px;
-  height: 40px;
-  background-color: #828282;
-  border-radius: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c16:hover {
-  background-color: #f44336;
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c12 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-}
-
-.c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c19 {
-  color: #212121;
-  max-width: 190px;
-}
-
 .c23 {
   background: #ffffff;
   border-width: 1px;
@@ -1948,27 +1081,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   color: #212121;
 }
 
-.c26 {
-  background: #2d9cdb;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #2d9cdb;
-  box-sizing: border-box;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 4px 0px 4px 0px;
-  cursor: pointer;
-  color: #ffffff;
-}
-
-.c25 {
+.c22 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
   margin-bottom: 10px;
 }
 
-.c24 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1986,14 +1106,14 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   align-items: center;
 }
 
-.c21 {
+.c18 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
   margin-right: 15px;
 }
 
-.c27 {
+.c24 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2008,7 +1128,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-top: 12px;
 }
 
-.c20 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2023,13 +1143,13 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 16px;
 }
 
-.c22 {
+.c19 {
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
 }
 
-.c5 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -2037,7 +1157,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   margin-bottom: 30px;
 }
 
-.c7 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2051,57 +1171,6 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   justify-content: space-between;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -2112,155 +1181,242 @@ exports[`UserStructure should render correctly when edit member modal is open, s
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c0 container"
   >
     <div
-      className="c4"
+      className="c1"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c2"
       >
         structureTest
       </div>
       <a
-        aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
       </a>
     </div>
     <div
-      className="c6"
+      className="c3"
     >
       <div
-        className="c7"
+        className="c4"
       >
         <div
-          className="c8"
+          className="c5"
         >
           <div
-            className="c9"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c6"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -2268,10 +1424,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -2308,14 +1465,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -2325,7 +1478,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -2334,7 +1487,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -2343,7 +1496,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -2360,7 +1513,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -2372,16 +1525,17 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2394,10 +1548,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2412,14 +1567,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -2429,7 +1580,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -2438,7 +1589,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -2447,7 +1598,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -2464,7 +1615,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -2476,16 +1627,17 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2498,10 +1650,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -2516,41 +1669,38 @@ exports[`UserStructure should render correctly when edit member modal is open, s
     <div />
     <div>
       <div
-        className="c20"
+        className="c17"
       >
         <div
-          className="c21"
+          className="c18"
         >
           Modifier le rôle de
         </div>
-        <img
-          className="user-img mr-8"
-          src={Object {}}
-        />
         <div
-          className="c22"
+          className="c19"
         >
           membre1
         </div>
       </div>
       <div
-        className="c23"
+        className="c20"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c21"
         >
           <div
-            className="c25"
+            className="c22"
           >
             Nommer « rédacteur » 
           </div>
           <span>
             <i
-              data-eva="radio-button-off"
-              data-eva-fill="#212121"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-on\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-on\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -2564,23 +1714,24 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         <br />
       </div>
       <div
-        className="c26"
+        className="c23"
         onClick={[Function]}
       >
         <div
-          className="c24"
+          className="c21"
         >
           <div
-            className="c25"
+            className="c22"
           >
             Nommer « responsable »
           </div>
           <span>
             <i
-              data-eva="radio-button-on"
-              data-eva-fill="#ffffff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-off\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-off\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
         </div>
@@ -2602,27 +1753,28 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </span>
       </div>
       <div
-        className="c27"
+        className="c24"
       >
         <button
-          className="figma-btn outline-black mr-8"
+          className="btn  outline-black mr-8 "
           onClick={[Function]}
         >
           <span
             className="mr-10"
           >
             <i
-              data-eva="close-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Annuler
         </button>
         <button
-          className="figma-btn validate "
-          disabled={false}
+          className="btn  validate  "
+          disabled={true}
           onClick={[Function]}
           testID="test-validate-edit"
         >
@@ -2630,10 +1782,11 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             className="mr-10"
           >
             <i
-              data-eva="checkmark-outline"
-              data-eva-fill="#fff"
-              data-eva-height="20px"
-              data-eva-width="20px"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
             />
           </span>
           Valider
@@ -2644,8 +1797,8 @@ exports[`UserStructure should render correctly when edit member modal is open, s
 </div>
 `;
 
-exports[`UserStructure should render correctly when loading 1`] = `
-.c3 {
+exports[`UserStructure should render correctly when edit member modal is open, select respo and validate 2`] = `
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2667,7 +1820,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin-bottom: 42px;
 }
 
-.c6 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2681,7 +1834,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   flex-direction: column;
 }
 
-.c4 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -2703,7 +1856,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   height: fit-content;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2718,7 +1871,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
   align-items: flex-end;
 }
 
-.c9 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -2729,27 +1882,66 @@ exports[`UserStructure should render correctly when loading 1`] = `
   margin: 0px 8px 0px 8px;
 }
 
-.c8 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c5 {
-  width: 160px;
-  height: 160px;
-  background-color: #ffffff;
-  margin-bottom: 8px;
+.c12 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+.c12:hover {
+  background-color: #212121;
+}
+
+.c13 {
+  width: 40px;
+  height: 40px;
+  background-color: #828282;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c13:hover {
+  background-color: #f44336;
+}
+
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2757,31 +1949,165 @@ exports[`UserStructure should render correctly when loading 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c9 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+}
+
+.c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
+  color: #0421b1;
+  max-width: 190px;
+}
+
+.c16 {
+  color: #212121;
+  max-width: 190px;
+}
+
+.c20 {
+  background: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #212121;
+  box-sizing: border-box;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px 0px 4px 0px;
   cursor: pointer;
   color: #212121;
+}
+
+.c23 {
+  background: #2d9cdb;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #2d9cdb;
+  box-sizing: border-box;
+  border-radius: 12px;
   padding: 16px;
+  margin: 4px 0px 4px 0px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.c22 {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+
+.c21 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c18 {
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 40px;
+  margin-right: 15px;
+}
+
+.c24 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.c17 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.c19 {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
 }
 
 .c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
   font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.c0 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2789,9 +2115,10 @@ exports[`UserStructure should render correctly when loading 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 <div
@@ -2804,100 +2131,909 @@ exports[`UserStructure should render correctly when loading 1`] = `
   }
 >
   <div
+    className="container"
+  >
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Mes fiches
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon icon_traduction"
+      >
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Déconnexion
+    </button>
+  </div>
+  <div
+    className="c0 container"
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        structureTest
+      </div>
+      <a
+        className="btn  dark  "
+        href="/annuaire/structureId"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
+          />
+        </span>
+        Voir dans l'annuaire
+      </a>
+    </div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <div
+          className="c5"
+        >
+          <div
+            className="c6"
+          >
+            Membres
+          </div>
+          <div
+            className="c7"
+          >
+            2
+          </div>
+          <div
+            className="c6"
+          >
+            
+          </div>
+        </div>
+        <div>
+          <button
+            className="btn  dark  "
+            onClick={[Function]}
+            testID="test-add-member"
+          >
+            <span
+              className="mr-10"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
+              />
+            </span>
+            Ajouter un membre
+          </button>
+        </div>
+      </div>
+      <div
+        className="table-responsive"
+      >
+        <table
+          className="table table-borderless"
+        >
+          <thead>
+            <tr>
+              <th>
+                Nom
+              </th>
+              <th>
+                Role
+              </th>
+              <th>
+                Dernière connexion
+              </th>
+              <th>
+                Ajouté le
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              className="membres-table"
+            >
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c8"
+                >
+                  <div
+                    className="c9"
+                  >
+                    membre2
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c10"
+                >
+                  Responsable
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c11"
+                >
+                  Non disponible
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c11"
+                >
+                  Non disponible
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c12"
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c13"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr
+              className="membres-table"
+            >
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c8"
+                >
+                  <div
+                    className="c14"
+                  >
+                    membre1
+                  </div>
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c15"
+                >
+                  Rédacteur
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c16"
+                >
+                  Non disponible
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  className="c16"
+                >
+                  Non disponible
+                </div>
+              </td>
+              <td
+                className="align-middle"
+              >
+                <div
+                  style={
+                    Object {
+                      "display": "flex",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <div
+                    className="c12"
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    className="c13"
+                    disabled={false}
+                    onClick={[Function]}
+                  >
+                    <div
+                      style={
+                        Object {
+                          "marginBottom": "4px",
+                        }
+                      }
+                    >
+                      <span>
+                        <i
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div />
+    <div>
+      <div
+        className="c17"
+      >
+        <div
+          className="c18"
+        >
+          Modifier le rôle de
+        </div>
+        <div
+          className="c19"
+        >
+          membre1
+        </div>
+      </div>
+      <div
+        className="c20"
+        onClick={[Function]}
+      >
+        <div
+          className="c21"
+        >
+          <div
+            className="c22"
+          >
+            Nommer « rédacteur » 
+          </div>
+          <span>
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-off\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-off\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </div>
+        Éditer et valider les fiches 
+        <br />
+        Accepter les fiches proposées à ma structure 
+        <br />
+        Voir les réactions aux fiches de ma structure 
+        <br />
+        Compléter la fiche annuaire de ma structure 
+        <br />
+      </div>
+      <div
+        className="c23"
+        onClick={[Function]}
+      >
+        <div
+          className="c21"
+        >
+          <div
+            className="c22"
+          >
+            Nommer « responsable »
+          </div>
+          <span>
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-radio-button-on\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"radio-button-on\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </div>
+        Éditer et valider les fiches 
+        <br />
+        Accepter les fiches proposées à ma structure 
+        <br />
+        Voir les réactions aux fiches de ma structure 
+        <br />
+        Compléter la fiche annuaire de ma structure 
+        <br />
+        <span>
+          + Ajouter ou supprimer d'autres membres
+          <br />
+        </span>
+        <span>
+          + Nommer d'autres responsables
+          <br />
+        </span>
+      </div>
+      <div
+        className="c24"
+      >
+        <button
+          className="btn  outline-black mr-8 "
+          onClick={[Function]}
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+          Annuler
+        </button>
+        <button
+          className="btn  validate  "
+          disabled={false}
+          onClick={[Function]}
+          testID="test-validate-edit"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+          Valider
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`UserStructure should render correctly when loading 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-top: 26px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 42px;
+}
+
+.c2 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding: 40px;
+  margin: 0px 20px 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 315px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
+}
+
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "column",
+    }
+  }
+>
+  <div
+    className="container"
+  >
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Mes fiches
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon icon_traduction"
+      >
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Déconnexion
+    </button>
+  </div>
+  <div
     className="c0"
   >
     <div
       className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Déconnexion
-    </div>
-  </div>
-  <div
-    className="c3"
-  >
-    <div
-      className="c4"
     >
       <div
-        className="c5"
+        className="img"
       />
       <div
         className="css-nitgap-SkeletonTheme"
@@ -2918,23 +3054,23 @@ exports[`UserStructure should render correctly when loading 1`] = `
       </div>
     </div>
     <div
-      className="c6"
+      className="c2"
     >
       <div
-        className="c7"
+        className="c3"
       >
         <div
-          className="c8"
+          className="c4"
         >
           Membres
         </div>
         <div
-          className="c9"
+          className="c5"
         >
           ...
         </div>
         <div
-          className="c8"
+          className="c4"
         >
           
         </div>
@@ -2996,58 +3132,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
 `;
 
 exports[`UserStructure should render correctly when no structure 1`] = `
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
 .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
-.c3 {
   margin-top: 60px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -3065,7 +3150,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   flex: 1;
 }
 
-.c4 {
+.c1 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3083,97 +3168,188 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   }
 >
   <div
+    className="container"
+  >
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Mes fiches
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon icon_traduction"
+      >
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
+        />
+      </span>
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+      Toolbar.Déconnexion
+    </button>
+  </div>
+  <div
     className="c0"
   >
     <div
       className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className=""
-      >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-    </div>
-    <div
-      className="c2"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <span
-        className="mr-10"
-      >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
-      </span>
-      Toolbar.Déconnexion
-    </div>
-  </div>
-  <div
-    className="c3"
-  >
-    <div
-      className="c4"
     >
       Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
     </div>
@@ -3182,7 +3358,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
-.c3 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3204,7 +3380,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c6 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3218,7 +3394,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c4 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3240,7 +3416,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c8 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3255,7 +3431,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c10 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -3266,14 +3442,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c11 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3287,18 +3463,31 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
 }
 
-.c15 {
+.c12 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .c13 {
@@ -3308,36 +3497,23 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #0421b1;
+  color: #212121;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.c16 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+.c11 {
+  color: #0421b1;
+  max-width: 190px;
 }
 
 .c14 {
-  color: #0421b1;
-  max-width: 190px;
-}
-
-.c17 {
   color: #212121;
   max-width: 190px;
 }
 
-.c5 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3345,7 +3521,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c7 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3359,57 +3535,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   justify-content: space-between;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -3420,148 +3545,235 @@ exports[`UserStructure should render correctly when structure with membres when 
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c0 container"
   >
     <div
-      className="c4"
+      className="c1"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c2"
       >
         structureTest
       </div>
       <a
-        aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
       </a>
     </div>
     <div
-      className="c6"
+      className="c3"
     >
       <div
-        className="c7"
+        className="c4"
       >
         <div
-          className="c8"
+          className="c5"
         >
           <div
-            className="c9"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c6"
           >
             
           </div>
@@ -3597,14 +3809,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c9"
                   >
                     membre1
                   </div>
@@ -3614,7 +3822,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c10"
                 >
                   Rédacteur
                 </div>
@@ -3623,7 +3831,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -3632,7 +3840,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -3645,14 +3853,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c15"
+                    className="c12"
                   >
                     membre2
                   </div>
@@ -3662,7 +3866,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c16"
+                  className="c13"
                 >
                   Responsable
                 </div>
@@ -3671,7 +3875,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c14"
                 >
                   Non disponible
                 </div>
@@ -3680,7 +3884,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c17"
+                  className="c14"
                 >
                   Non disponible
                 </div>
@@ -3695,7 +3899,7 @@ exports[`UserStructure should render correctly when structure with membres when 
 `;
 
 exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
-.c3 {
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3717,7 +3921,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 42px;
 }
 
-.c6 {
+.c3 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3731,7 +3935,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   flex-direction: column;
 }
 
-.c4 {
+.c1 {
   background: #edebeb;
   border-radius: 12px;
   padding: 40px;
@@ -3753,7 +3957,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   height: fit-content;
 }
 
-.c8 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3768,7 +3972,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: flex-end;
 }
 
-.c10 {
+.c7 {
   background: #212121;
   border-radius: 12px;
   font-weight: bold;
@@ -3779,14 +3983,14 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin: 0px 8px 0px 8px;
 }
 
-.c9 {
+.c6 {
   font-weight: bold;
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
 }
 
-.c15 {
+.c12 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -3808,11 +4012,11 @@ exports[`UserStructure should render correctly when structure with membres when 
   cursor: pointer;
 }
 
-.c15:hover {
+.c12:hover {
   background-color: #212121;
 }
 
-.c16 {
+.c13 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -3834,11 +4038,11 @@ exports[`UserStructure should render correctly when structure with membres when 
   cursor: pointer;
 }
 
-.c16:hover {
+.c13:hover {
   background-color: #f44336;
 }
 
-.c11 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3852,57 +4056,57 @@ exports[`UserStructure should render correctly when structure with membres when 
   align-items: center;
 }
 
-.c12 {
+.c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #0421b1;
-}
-
-.c17 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-}
-
-.c13 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0421b1;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c18 {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 8px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #212121;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .c14 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+}
+
+.c10 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0421b1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c15 {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #212121;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c11 {
   color: #0421b1;
   max-width: 190px;
 }
 
-.c19 {
+.c16 {
   color: #212121;
   max-width: 190px;
 }
 
-.c5 {
+.c2 {
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
@@ -3910,7 +4114,7 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-bottom: 30px;
 }
 
-.c7 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3924,57 +4128,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   justify-content: space-between;
 }
 
-.c1 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #212121;
-  padding: 16px;
-}
-
-.c2 {
-  background: #ffffff;
-  border-radius: 12px;
-  margin: 0px 5px 0px 5px;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  cursor: pointer;
-  color: #e55039;
-  padding: 16px;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 <div
   style={
     Object {
@@ -3985,155 +4138,242 @@ exports[`UserStructure should render correctly when structure with membres when 
   }
 >
   <div
-    className="c0"
+    className="container"
   >
-    <div
-      className="c1"
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon"
       >
-        <i
-          data-eva="star-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="file-add-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Mes fiches
-    </div>
-    <div
-      className="c1"
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    >
-      <img
-        alt="a"
-        className="icon-traduction"
-        src={Object {}}
-      />
-      Toolbar.Mes traductions
-    </div>
-    <div
-      className="c1"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className=""
+        className="icon icon_traduction"
       >
-        <i
-          data-eva="person-outline"
-          data-eva-fill="#212121"
-          data-eva-height="20px"
-          data-eva-width="20px"
+        <span
+          className="regular"
+        />
+        <span
+          className="hovered"
         />
       </span>
-    </div>
-    <div
-      className="c2"
+      Toolbar.Mes traductions
+    </button>
+    <button
+      className="btn black "
       onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
     >
       <span
-        className="mr-10"
+        className="icon"
       >
-        <i
-          data-eva="log-out-outline"
-          data-eva-fill="#e55039"
-          data-eva-height="20px"
-          data-eva-width="20px"
-        />
+        <span
+          className="regular"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className=""
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+      </span>
+    </button>
+    <button
+      className="btn red "
+      onClick={[Function]}
+    >
+      <span
+        className="icon"
+      >
+        <span
+          className="regular"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
+        <span
+          className="hovered"
+        >
+          <span
+            className="mr-10"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </span>
       </span>
       Toolbar.Déconnexion
-    </div>
+    </button>
   </div>
   <div
-    className="c3 structure-detail"
+    className="c0 container"
   >
     <div
-      className="c4"
+      className="c1"
     >
-      <img
-        alt="ACRO"
-        className="sponsor-img"
-        src={Object {}}
-      />
       <div
-        className="c5"
+        className="c2"
       >
         structureTest
       </div>
       <a
-        aria-current={null}
-        className="figma-btn dark "
+        className="btn  dark  "
         href="/annuaire/structureId"
         onClick={[Function]}
+        onMouseEnter={[Function]}
       >
         <span
           className="mr-10"
         >
           <i
-            data-eva="book-outline"
-            data-eva-fill="#fff"
-            data-eva-height="20px"
-            data-eva-width="20px"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-book-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"book\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z\\"/></g></g></svg>",
+              }
+            }
           />
         </span>
         Voir dans l'annuaire
       </a>
     </div>
     <div
-      className="c6"
+      className="c3"
     >
       <div
-        className="c7"
+        className="c4"
       >
         <div
-          className="c8"
+          className="c5"
         >
           <div
-            className="c9"
+            className="c6"
           >
             Membres
           </div>
           <div
-            className="c10"
+            className="c7"
           >
             2
           </div>
           <div
-            className="c9"
+            className="c6"
           >
             
           </div>
         </div>
         <div>
           <button
-            className="figma-btn dark "
+            className="btn  dark  "
             onClick={[Function]}
             testID="test-add-member"
           >
@@ -4141,10 +4381,11 @@ exports[`UserStructure should render correctly when structure with membres when 
               className="mr-10"
             >
               <i
-                data-eva="person-add-outline"
-                data-eva-fill="#fff"
-                data-eva-height="20px"
-                data-eva-width="20px"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z\\"/><path d=\\"M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                  }
+                }
               />
             </span>
             Ajouter un membre
@@ -4181,14 +4422,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c12"
+                    className="c9"
                   >
                     membre2
                   </div>
@@ -4198,7 +4435,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c13"
+                  className="c10"
                 >
                   Responsable
                 </div>
@@ -4207,7 +4444,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -4216,7 +4453,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c14"
+                  className="c11"
                 >
                   Non disponible
                 </div>
@@ -4233,7 +4470,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -4245,16 +4482,17 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -4267,10 +4505,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
@@ -4285,14 +4524,10 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c11"
+                  className="c8"
                 >
-                  <img
-                    className="user-img mr-8"
-                    src={Object {}}
-                  />
                   <div
-                    className="c17"
+                    className="c14"
                   >
                     membre1
                   </div>
@@ -4302,7 +4537,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c18"
+                  className="c15"
                 >
                   Rédacteur
                 </div>
@@ -4311,7 +4546,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -4320,7 +4555,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                 className="align-middle"
               >
                 <div
-                  className="c19"
+                  className="c16"
                 >
                   Non disponible
                 </div>
@@ -4337,7 +4572,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   }
                 >
                   <div
-                    className="c15"
+                    className="c12"
                     onClick={[Function]}
                   >
                     <div
@@ -4349,16 +4584,17 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="edit"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-edit\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"edit\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>
                   </div>
                   <div
-                    className="c16"
+                    className="c13"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -4371,10 +4607,11 @@ exports[`UserStructure should render correctly when structure with membres when 
                     >
                       <span>
                         <i
-                          data-eva="trash"
-                          data-eva-fill="#ffffff"
-                          data-eva-height="20px"
-                          data-eva-width="20px"
+                          dangerouslySetInnerHTML={
+                            Object {
+                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                            }
+                          }
                         />
                       </span>
                     </div>

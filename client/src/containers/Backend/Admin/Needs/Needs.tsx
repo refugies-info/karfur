@@ -16,7 +16,7 @@ import styled from "styled-components";
 import { jsUcfirst } from "../../../../lib/index";
 import { NeedDetailsModal } from "./NeedDetailsModal";
 import { getTagColor } from "./lib";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/UI/FButton/FButton";
 import { AddNeedModal } from "./AddNeedModal";
 import { LoadingNeeds } from "./LoadingNeeds";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../../../colors";
+import { colors } from "colors";
 
 export const MainContainer = styled.div`
   display: flex;
@@ -37,5 +37,5 @@ export const Title = styled.div`
   font-size: 18px;
   line-height: 23px;
   margin-bottom: 8px;
-  margin-top: ${(props) => props.marginTop || "0px"};
+  margin-top: ${(props: {marginTop?: string}) => props.marginTop || "0px"};
 `;

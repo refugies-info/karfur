@@ -1,0 +1,31 @@
+@import "./fonts";
+@import "./colors";
+@import "./variables";
+
+// Vendors
+@import "~@coreui/coreui/scss/coreui.scss";
+@import "~flag-icon-css/css/flag-icon.min.css";
+@import "~font-awesome/css/font-awesome.min.css";
+@import "~simple-line-icons/css/simple-line-icons.css";
+@import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+@import "~rc-time-picker/assets/index.css";
+@import "~react-notifications/src/notifications.scss";
+@import "~@coreui/coreui/scss/_dropdown-menu-right.scss"; // Temp fix for reactstrap
+
+// Main styles
+@import "./rtl";
+@import "./common";
+
+// Pages
+@import "./pages/homepage.scss";
+@import "./pages/advanced-search.scss";
+@import "./pages/dispositif.scss";
+
+// TEMP
+@import "../components/Layout/Layout.scss";
+@import "../components/UI/SearchBar/SearchBar.scss";
+@import "../components/UI/AdvancedSearchBar/AdvancedSearchBar.scss";
+@import "../components/UI/CustomCard/CustomCard.scss";
+@import "../components/Modals/Modal.scss";
+
+@import "./ie-fix";

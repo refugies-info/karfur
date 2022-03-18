@@ -1,0 +1,169 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+$shadow: 0 10px 15px 0 #0421B138;
+
+.smartphone {
+  background: radial-gradient($bleuCharte, rgba($bleuCharte, 0.6496));
+
+  h2 {
+    margin-bottom: 40px;
+  }
+
+  @include media-max("lg-limit") {
+    background: $bleuCharte;
+
+    h2 {
+      font-size: 40px;
+    }
+  }
+}
+
+.subtitle {
+  line-height: 1.75rem;
+
+  @include media-max("lg-limit") {
+    text-align: left;
+    margin-bottom: 16px;
+  }
+}
+
+.container {
+  max-width: 1340px;
+  margin: auto;
+  padding: 100px 20px;
+
+  @include media-max("lg-limit") {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.mobile_title {
+  display: none;
+
+  @include media-max("lg-limit") {
+    display: block;
+    text-align: left;
+  }
+}
+
+.row {
+  @include media-max("lg-limit") {
+    flex-direction: column;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include media-max("lg-limit") {
+    .title {
+      order: 2;
+
+      h2 {
+        display: none;
+      }
+    }
+    .card {
+      order: 1;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.card {
+  background: $white;
+  border-radius: $radius;
+  width: 100%;
+  margin-top: 40px;
+  padding: 32px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+}
+
+// Mockup
+.mockup {
+  @include media-max("lg-limit") {
+    text-align: center;
+  }
+}
+
+// Store
+.store {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+
+  @include media-max("lg-limit") {
+    justify-content: center;
+  }
+}
+.store_badges {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
+}
+.store_title {
+  color: $gray80;
+  flex-shrink: 1;
+  padding: 0 24px;
+}
+.store_qr {
+  display: flex;
+
+  @include media-max("xl-limit") {
+    flex-direction: column;
+  }
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
+}
+.store_qr_img {
+  padding: 8px;
+  border: 3px solid $bleuCharte;
+  border-radius: 5px;
+  box-shadow: $shadow;
+  width: 123px;
+  height: 123px;
+
+  @include media-max("xl-limit") {
+    margin-top: 12px;
+    margin-left: 24px;
+  }
+}
+
+
+// Copy
+.form_link {
+  display: flex;
+
+  @include media-max("lg-limit") {
+    justify-content: center;
+  }
+}
+
+.copy_btn {
+  height: 52px;
+  box-shadow: $shadow;
+}
+
+.input_wrapper {
+  flex-grow: 1;
+  margin-bottom: -10px;
+
+  @include media-max("xl-limit") {
+    display: none;
+  }
+}
+.input {
+  background-color: $white !important;
+  border-color: $gray80 !important;
+  color: $gray80 !important;
+}

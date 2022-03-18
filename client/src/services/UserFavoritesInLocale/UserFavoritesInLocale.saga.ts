@@ -39,6 +39,7 @@ export function* updateUserFavorites(
   try {
     logger.info("[updateUserFavorites] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));
+    if (!action.payload.dispositifId) return;
     yield call(API.updateUserFavorites, {
       dispositifId: action.payload.dispositifId,
       type: action.payload.type,

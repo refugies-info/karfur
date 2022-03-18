@@ -1,0 +1,123 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+
+.footer {
+  position: absolute;
+  width: 100%;
+  background: $gray90;
+  padding: 60px 60px;
+  color: $white;
+
+  @include isMobile() {
+    padding: 60px 60px;
+  }
+  @include media-max("phone-down") {
+    padding: 30px 30px;
+  }
+  .header {
+    line-height: 32px;
+    font-size: 22px;
+  }
+  .link {
+    margin-top: 25px;
+    max-width: 300px;
+    white-space: normal;
+
+    &:first-child {
+      margin-top: 0;
+    }
+    &:hover {
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+  .space_btn {
+    margin-top: 20px;
+  }
+
+  $placeholderColor: $gray90;
+  *::-webkit-input-placeholder {
+    color: $placeholderColor;
+  }
+  *:-moz-placeholder {
+    color: $placeholderColor;
+    opacity: 1;
+  }
+  *::-moz-placeholder {
+    color: $placeholderColor;
+    opacity: 1;
+  }
+  *:-ms-input-placeholder {
+    color: $placeholderColor;
+  }
+  *::-ms-input-placeholder {
+    color: $placeholderColor;
+  }
+  *::placeholder {
+    color: $placeholderColor;
+  }
+
+  .btn {
+    @include isMobile() {
+      width: 100%;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+
+  @include isMobile() {
+    flex-wrap: wrap;
+  }
+}
+.column {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  @include isMobile() {
+    flex-wrap: wrap;
+  }
+}
+.text {
+  display: flex;
+  max-width: 400px;
+  margin-right: 20px;
+
+  @include isMobile() {
+    max-width: none;
+  }
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 0;
+  font-size: 16px;
+  white-space: nowrap;
+
+  @include isMobile() {
+    margin-left: 0;
+    margin-top: 25px;
+    font-size: 18px;
+    white-space: wrap;
+  }
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 0;
+  width: auto;
+
+  @include isMobile() {
+    margin-left: 0;
+    margin-top: 30px;
+    width: 100%;
+  }
+}

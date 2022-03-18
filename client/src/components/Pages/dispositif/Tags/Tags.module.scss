@@ -1,0 +1,62 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.tags {
+  z-index: 10;
+  outline: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  .btn_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: $text-normal;
+    padding: 5px;
+    line-height: 20px;
+  }
+
+  .icon_container {
+    display: flex;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+
+    .rtl {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .plus_btn {
+    background: $lightYellow;
+    border-radius: $radius;
+    font-weight: bold;
+    font-size: $text-normal;
+    line-height: 20px;
+    color: $gray90;
+    border: none;
+    padding: 10px;
+    height: 50px;
+
+    &:hover {
+      background-color: $gray20;
+    }
+
+    svg {
+      margin-right: 10px;
+      fill: $gray90;
+    }
+    i {
+      margin-right: 10px;
+    }
+
+    &.icon {
+      svg {
+        fill: $gray90;
+        margin-right: 2px;
+      }
+    }
+  }
+}

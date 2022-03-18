@@ -1,0 +1,71 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  background: #fbfbfb;
+  display: flex;
+  flex: 1;
+  margin-top: -75px;
+  padding-left: 120px;
+  padding-right: 120px;
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-top: 112px;
+  }
+  .left {
+    position: sticky;
+    top: 112px;
+    margin-bottom: 24px;
+    height: 650px;
+    margin-top: 112px;
+  }
+
+  .loader {
+    display: flex;
+    flex: 1;
+    margin-top: 200px;
+    margin-left: 300px;
+  }
+  .header {
+    background-image: url(../../assets/annuaire/annuaire_create.svg);
+    width: 360px;
+    height: 600px;
+    border-radius: $radius;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-right: 40px;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    background: $white;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 51px;
+    padding-right: 16px;
+    padding-left: 16px;
+    width: fit-content;
+    margin-bottom: 13px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  .step {
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 66px;
+    color: $white;
+  }
+
+  .btn_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}

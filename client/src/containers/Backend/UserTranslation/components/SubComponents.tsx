@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { UserLanguage, TranslationStatus } from "../../../../types/interface";
-import "./SubComponents.scss";
-import { colorAvancement } from "../../../../components/Functions/ColorFunctions";
+import { UserLanguage, TranslationStatus } from "types/interface";
+import { colorAvancement } from "lib/colors";
 import { Progress } from "reactstrap";
-import { colors } from "../../../../colors";
-import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
+import { colors } from "colors";
+import FSwitch from "components/UI/FSwitch/FSwitch";
+import styles from "./SubComponents.module.scss";
 
 interface Props {
   language: UserLanguage;
@@ -18,25 +18,29 @@ const MainContainer = styled.div`
   flex-direction: row;
   margin-right: 16px;
   align-items: center;
-  cursor: ${(props) => (props.hasMultipleLanguages ? "pointer" : "default")};
+  cursor: ${(props: {hasMultipleLanguages: boolean}) => (props.hasMultipleLanguages ? "pointer" : "default")};
 `;
 
+interface TitleProps {
+  hasMultipleLanguages: boolean
+  isSelected: boolean
+}
 const Title = styled.div`
   font-weight: bold;
-  font-size: ${(props) => (props.isSelected ? "28px" : "16px")};
-  line-height: ${(props) => (props.isSelected ? "35px" : "20px")};
-  text-decoration-line: ${(props) =>
+  font-size: ${(props: TitleProps) => (props.isSelected ? "28px" : "16px")};
+  line-height: ${(props: TitleProps) => (props.isSelected ? "35px" : "20px")};
+  text-decoration-line: ${(props: TitleProps) =>
     props.isSelected && props.hasMultipleLanguages ? "underline" : "none"};
 `;
 export const LanguageTitle = (props: Props) => (
   <MainContainer
-    className="language-title"
+    className={styles.language_title}
     hasMultipleLanguages={props.hasMultipleLanguages}
   >
     {props.isSelected ? (
       <i
         className={
-          "flag-icon flag-icon-" + props.language.langueCode + " selected"
+          styles.selected + " flag-icon flag-icon-" + props.language.langueCode
         }
         title={props.language.langueCode}
         id={props.language.langueCode}
@@ -109,9 +113,9 @@ const TradStatusContainer = styled.div`
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  color: ${colors.blancSimple};
+  color: ${colors.white};
   padding: 8px;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
   border-radius: 8px;
   width: fit-content;
 `;
@@ -140,14 +144,18 @@ export const TradStatus = (props: TradStatusProps) => {
   );
 };
 
+interface FilterButtonContainerProps {
+  isSelected: boolean
+  color: string
+}
 const FilterButtonContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isSelected ? colors.blancSimple : props.color)};
+  color: ${(props: FilterButtonContainerProps) => (props.isSelected ? colors.white : props.color)};
   padding: 17px;
-  background-color: ${(props) =>
-    props.isSelected ? props.color : colors.blancSimple};
+  background-color: ${(props: FilterButtonContainerProps) =>
+    props.isSelected ? props.color : colors.white};
   border-radius: 12px;
   width: fit-content;
   margin-right: 10px;
@@ -185,12 +193,12 @@ interface TypeContenuFilterButtonProps {
 
 const TypeContenuFilterButtonContainer = styled.div`
   padding: 15px;
-  background-color: ${(props) =>
-    props.isSelected ? colors.noir : colors.blancSimple};
+  background-color: ${(props: {isSelected: boolean}) =>
+    props.isSelected ? colors.gray90 : colors.white};
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props) => (props.isSelected ? colors.blancSimple : colors.noir)};
+  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.white : colors.gray90)};
   cursor: pointer;
   border-radius: 12px;
   margin-right: 10px;

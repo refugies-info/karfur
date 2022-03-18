@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Table, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import moment from "moment/min/moment-with-locales";
+import moment from "moment";
+import "moment/locale/fr";
 import Swal from "sweetalert2";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { table_contenu, correspondingStatus } from "./data";
-import API from "../../../../utils/API";
+import API from "utils/API";
 import {
   StyledSort,
   StyledTitle,
@@ -17,9 +18,9 @@ import {
   SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
-import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import {
   TypeContenu,
@@ -33,8 +34,8 @@ import {
   TabHeader,
   ColoredRound,
 } from "../sharedComponents/SubComponents";
-import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "components/UI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
@@ -43,16 +44,11 @@ import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailM
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
-import styled from "styled-components";
-import { needsSelector } from "../../../../services/Needs/needs.selectors";
+import { needsSelector } from "services/Needs/needs.selectors";
+import Link from "next/link";
+import styles from "./AdminContenu.module.scss";
 
 moment.locale("fr");
-
-const RowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 export const compare = (a, b) => {
   const orderA = a.order;
@@ -344,7 +340,7 @@ export const AdminContenu = () => {
   return (
     <div>
       <SearchBarContainer>
-        {process.env.REACT_APP_ENV === "production" && (
+        {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
           <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
             {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
           </FButton>
@@ -355,16 +351,20 @@ export const AdminContenu = () => {
           placeholder="Rechercher un contenu..."
           withMargin={true}
         />
-        <FButton
-          type="dark"
-          name="plus-circle-outline"
-          tag={"a"}
+        <Link
           href={"/comment-contribuer#ecrire"}
-          target="_blank"
-          rel="noopener noreferrer"
+          passHref
         >
-          Ajouter un contenu
-        </FButton>
+          <FButton
+            type="dark"
+            name="plus-circle-outline"
+            tag={"a"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ajouter un contenu
+          </FButton>
+        </Link>
       </SearchBarContainer>
       <StyledHeader>
         <div
@@ -444,7 +444,7 @@ export const AdminContenu = () => {
                     />
                   </td>
                   <td className="align-middle">
-                    <RowContainer>
+                    <div className={styles.row}>
                       <ColoredRound
                         color={
                           areNeedsCompatibleWithTags
@@ -453,7 +453,7 @@ export const AdminContenu = () => {
                         }
                       />
                       {element.needs ? element.needs.length : 0}
-                    </RowContainer>
+                    </div>
                   </td>
                   <td
                     className="align-middle"

@@ -1,0 +1,114 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal {
+  min-width: 650px;
+
+  .modal_content {
+    background: $gray10;
+    border: hidden;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border-radius: $radius;
+    color: $gray90;
+    padding: 40px;
+
+    .modal_header {
+      padding: 0;
+      border: none;
+
+      :global(.close) {
+        color: $gray90;
+      }
+
+      h5 {
+        font-size: 40px;
+        line-height: 51px;
+      }
+    }
+    .modal_body {
+      padding: 0;
+      margin-top: 10px;
+      p {
+        font-size: $text-large;
+        line-height: 23px;
+      }
+      h6 {
+        font-size: 24px;
+        line-height: 30px;
+      }
+    }
+    .modal_footer {
+      margin-top: 20px;
+      border: none;
+      padding: 0;
+      justify-content: space-between;
+    }
+  }
+}
+
+.sphere {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  align-self: center;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 20;
+  color: black;
+}
+
+.subtitle {
+  align-self: center;
+  margin-bottom: 0;
+  font-size: 15px !important;
+}
+
+.inner_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.no_tag {
+  background-color: $gray20;
+  border-radius: $radius;
+  padding-left: 15px;
+  margin-top: 30px;
+  cursor: pointer;
+
+  &.enabled {
+    background-color: $lightgreen;
+  }
+
+  .checkmark {
+    top: 15px !important;
+  }
+  .label {
+    margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: $text-small !important;
+    line-height: inherit !important;
+  }
+}

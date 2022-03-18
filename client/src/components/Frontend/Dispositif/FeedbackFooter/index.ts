@@ -1,1 +1,3 @@
-export { FeedbackFooterContainer as FeedbackFooter } from "./FeedbackFooter.container";
+import FeedbackFooter from "./FeedbackFooter";
+
+export default FeedbackFooter;

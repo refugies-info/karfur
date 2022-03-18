@@ -1,24 +1,35 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["es6"],
+    "jsx": "preserve",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "resolveJsonModule": true,
-    "target": "es2018",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "strict": true,
+    "target": "es2018",
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "incremental": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "exclude": ["node_modules"],
-  "include": ["src"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
 }
