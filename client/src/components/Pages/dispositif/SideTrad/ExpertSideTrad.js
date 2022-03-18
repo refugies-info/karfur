@@ -1097,17 +1097,28 @@ class SideTrad extends Component {
       isExpert: true,
     };
 
-    await API.validateTranslations(newTrad).then(() => {
-      Swal.fire({
-        title: "Yay...",
-        text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
-        type: "success",
-        footer:
-          "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>",
-      }).then(() => {
-        this.props.onSkip();
+    await API.validateTranslations(newTrad)
+      .then(() => {
+        Swal.fire({
+          title: "Yay...",
+          text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
+          type: "success",
+          footer:
+            "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>",
+        }).then(() => {
+          this.props.onSkip();
+        });
+      }).catch(() => {
+        Swal.fire({ // Temp fix to prevent mail errors to block validation. To remove
+          title: "Yay...",
+          text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
+          type: "success",
+          footer:
+            "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>",
+        }).then(() => {
+          this.props.onSkip();
+        });
       });
-    });
   };
 
   render() {
