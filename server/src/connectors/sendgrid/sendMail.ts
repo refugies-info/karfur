@@ -35,5 +35,6 @@ export const sendMail = (
       if (error.response) {
         logger.error("[sendMail] error details", error.response.body);
       }
-    });
+    })
+    .catch((e: any) => logger.error("[sendMail] error", e));
 };

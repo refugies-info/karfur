@@ -8,20 +8,24 @@ export const getStructureFromDB = async (
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
 ): Promise<StructureDoc> => {
-  if (withDispositifsAssocies) {
-    if (fields === "all") {
-      return await Structure.findOne({ _id: id }).populate(
+  try {
+    if (withDispositifsAssocies) {
+      if (fields === "all") {
+        return await Structure.findOne({ _id: id }).populate(
+          "dispositifsAssocies"
+        );
+      }
+      return await Structure.findOne({ _id: id }, fields).populate(
         "dispositifsAssocies"
       );
     }
-    return await Structure.findOne({ _id: id }, fields).populate(
-      "dispositifsAssocies"
-    );
+    if (fields === "all") {
+      return await Structure.findOne({ _id: id });
+    }
+    return await Structure.findOne({ _id: id }, fields);
+  } catch (e) {
+    logger.error("[getStructureFromDB] error", e);
   }
-  if (fields === "all") {
-    return await Structure.findOne({ _id: id });
-  }
-  return await Structure.findOne({ _id: id }, fields);
 };
 
 type Query = { status: "Actif" } | {};
