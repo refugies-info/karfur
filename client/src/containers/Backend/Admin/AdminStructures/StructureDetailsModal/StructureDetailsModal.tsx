@@ -489,7 +489,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             name="external-link"
             onClick={() => {
               props.history.push({
-                pathname: routerLocale + "backend/user-dash-structure-selected",
+                pathname: routerLocale + "/backend/user-dash-structure-selected",
                 search: `?id=${structure._id}`,
               });
             }}
