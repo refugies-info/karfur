@@ -81,6 +81,7 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
         "Arabe",
         "Tigrinya",
         "Persan/Dari",
+        "Ukrainien"
       ].includes(langue.langueFr)
     )
     .map((langue) => ({
