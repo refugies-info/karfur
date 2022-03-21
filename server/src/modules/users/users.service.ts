@@ -68,9 +68,9 @@ export const proceedWithLogin = async (user: UserDoc) => {
 export const getUsersFromStructureMembres = async (
   structureMembres: { userId: ObjectId }[]
 ) => {
+  logger.info("[getUsersFromStructureMembres] received");
+  let result: UserForMailing[] = [];
   try {
-    logger.info("[getUsersFromStructureMembres] received");
-    let result: UserForMailing[] = [];
     const userNeededFields = {
       username: 1,
       email: 1,
@@ -96,5 +96,6 @@ export const getUsersFromStructureMembres = async (
     return result;
   } catch (e) {
     logger.info("[getUsersFromStructureMembres] error", e);
+    return result;
   }
 };

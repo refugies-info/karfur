@@ -61,17 +61,21 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (
 };
 
 export const getStructureMembers = async (structureId: ObjectId) => {
-  const structureNeededFields = { membres: 1 };
-  const structure = await getStructureFromDB(
-    structureId,
-    false,
-    structureNeededFields
-  );
+  try {
+    const structureNeededFields = { membres: 1 };
+    const structure = await getStructureFromDB(
+      structureId,
+      false,
+      structureNeededFields
+    );
 
-  if (!structure || !structure.membres || structure.membres.length === 0) {
-    return [];
+    if (!structure || !structure.membres || structure.membres.length === 0) {
+      return [];
+    }
+    return structure.membres;
+  } catch (e) {
+    logger.error("[getStructureMembers] error", e);
   }
-  return structure.membres;
 };
 
 export const userRespoStructureId = async (structures: ObjectId[], userId: ObjectId) => {
