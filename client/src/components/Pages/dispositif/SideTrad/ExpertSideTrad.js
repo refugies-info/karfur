@@ -671,6 +671,7 @@ class SideTrad extends Component {
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, userId, selectedTrad, availableListTrad });
     if (oldTrad && typeof oldTrad === "string") {
+      // Bug with underline: https://github.com/jpuri/html-to-draftjs/issues/61
       this.props.fwdSetState({
         autosuggest: false,
         translated: {
