@@ -333,13 +333,25 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Use autosave in a ref to mutate it when dispositif is updated
+  const autoSave = () => {
+    // eslint-disable-next-line no-use-before-define
+    saveDispositif("Brouillon", true);
+  };
+  const autoSaveRef = React.useRef(autoSave);
+  useEffect(() => {
+    autoSaveRef.current = autoSave;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispositif, menu]);
+
   // Auto-save
   useEffect(() => {
-    if (!disableEdit) {
+    if (!disableEdit && // if edition
+      ["Brouillon", ""].includes(dispositif?.status || "") // and Brouillon
+    ) {
       if (timer.current) clearInterval(timer.current);
-      timer.current = initializeTimer(3 * 60 * 1000, () => {
-        // eslint-disable-next-line no-use-before-define
-        saveDispositif("Brouillon", true);
+      timer.current = initializeTimer(20 * 1000, () => {
+        autoSaveRef.current();
       });
     }
 
