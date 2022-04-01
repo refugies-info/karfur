@@ -350,7 +350,7 @@ const Dispositif = (props: Props) => {
       ["Brouillon", ""].includes(dispositif?.status || "") // and Brouillon
     ) {
       if (timer.current) clearInterval(timer.current);
-      timer.current = initializeTimer(20 * 1000, () => {
+      timer.current = initializeTimer(3 * 60 * 1000, () => {
         autoSaveRef.current();
       });
     }
@@ -1199,6 +1199,8 @@ const Dispositif = (props: Props) => {
             }
           );
         }
+        setIsSaved(true);
+        setIsModified(false);
       }
       dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
