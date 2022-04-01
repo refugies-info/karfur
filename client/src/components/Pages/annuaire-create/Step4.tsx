@@ -8,7 +8,7 @@ import {
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
 import { days } from "data/days";
-import { departments } from "data/departments";
+import { departments as departmentsData } from "data/departments";
 import { HoursDetails } from "./HoursDetails";
 import { CustomDropDown } from "./CustomDropdown";
 import { CustomCheckBox } from "./CustomCheckBox";
@@ -137,7 +137,7 @@ export const Step4 = (props: Props) => {
     if (e.target.value === "") {
       return setDepartments([]);
     }
-    const departmentsDataFiltered = departments.filter((department) =>
+    const departmentsDataFiltered = departmentsData.filter((department) =>
       props.structure && props.structure.departments
         ? !props.structure.departments.includes(department)
         : false
@@ -147,7 +147,6 @@ export const Step4 = (props: Props) => {
       department.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
-    // @ts-ignore
     setDepartments(filteredDepartments);
   };
 
