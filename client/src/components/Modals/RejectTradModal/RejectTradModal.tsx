@@ -123,13 +123,15 @@ const RejectTradModal = (props: Props) => {
                 className="mr-10"
               />
               <span>Message personnalisé à : </span>
-              <Image
-                src={(props.userId.picture || {}).secure_url || marioProfile}
-                className="profile-img-pin mr-10"
-                alt="profile"
-                width={40}
-                height={40}
-              />
+              <div className="mr-10">
+                <Image
+                  src={(props.userId.picture || {}).secure_url || marioProfile}
+                  className="profile-img-pin"
+                  alt="profile"
+                  width={40}
+                  height={40}
+                />
+              </div>
               <b>{props.userId.username}</b>
             </ListGroupItem>
           </ListGroup>
