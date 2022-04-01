@@ -12,7 +12,13 @@ interface Props {
 export const Step6 = (props: Props) => (
   <div className="step6">
     <div style={{ marginTop: "24px" }}>
-      <Image src={gif} width={700} alt="" />
+      <Image
+        src={gif}
+        width={700}
+        height={344}
+        alt=""
+        objectFit="contain"
+      />
     </div>
     <div className={styles.title}>
       Vos informations sont désormais disponibles dans l’annuaire des acteurs de
