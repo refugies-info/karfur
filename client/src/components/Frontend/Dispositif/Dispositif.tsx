@@ -300,7 +300,7 @@ const Dispositif = (props: Props) => {
 
   // Reload page when dispositif changes
   useEffect(() => {
-    setMenu(dispositif ? generateMenu(dispositif) : []);
+    if (dispositif?._id) setMenu(generateMenu(dispositif));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispositif?._id])
 
