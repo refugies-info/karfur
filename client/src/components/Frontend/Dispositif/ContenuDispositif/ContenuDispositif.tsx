@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, IDispositif, Tag } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
-import { ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
+import { getContent } from "lib/dispositifPage";
 
 interface Props {
   updateUIArray: (
@@ -24,7 +24,7 @@ interface Props {
   onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
   addItem: (key: any, type?: string, subkey?: string|number|null) => void
   admin: boolean;
-  content: ShortContent;
+  dispositif: IDispositif | null;
   showGeolocModal: boolean;
   typeContenu: "dispositif" | "demarche";
   uiArray: UiElement[];
@@ -59,8 +59,13 @@ interface Props {
  */
 
 const ContenuDispositif = (props: Props) => {
+  const [content, setContent] = useState(getContent(props.dispositif));
   const { t } = useTranslation();
   const { disableEdit } = props;
+
+  useEffect(() => {
+    setContent(getContent(props.dispositif));
+  }, [props.dispositif]);
 
   const getTitle = (title: string) => {
     if (title === "La démarche par étapes")
@@ -176,7 +181,7 @@ const ContenuDispositif = (props: Props) => {
               toggleNiveau={props.toggleNiveau}
               changeDepartements={props.changeDepartements}
               deleteCard={props.deleteCard}
-              content={props.content}
+              content={content}
               admin={props.admin}
               showGeolocModal={props.showGeolocModal}
               setMarkers={props.setMarkers}

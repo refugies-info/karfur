@@ -297,6 +297,13 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+
+  // Reload page when dispositif changes
+  useEffect(() => {
+    setMenu(dispositif ? generateMenu(dispositif) : []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispositif?._id])
+
   const editDispositif = () => {
     if (!dispositif) return;
     setDisableEdit(false);
@@ -350,7 +357,7 @@ const Dispositif = (props: Props) => {
       ["Brouillon", ""].includes(dispositif?.status || "") // and Brouillon
     ) {
       if (timer.current) clearInterval(timer.current);
-      timer.current = initializeTimer(20 * 1000, () => {
+      timer.current = initializeTimer(3 * 60 * 1000, () => {
         autoSaveRef.current();
       });
     }
@@ -1199,6 +1206,8 @@ const Dispositif = (props: Props) => {
             }
           );
         }
+        setIsSaved(true);
+        setIsModified(false);
       }
       dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
@@ -1710,7 +1719,7 @@ const Dispositif = (props: Props) => {
               </div>
 
               <ContenuDispositif
-                content={getContent(dispositif)}
+                dispositif={dispositif}
                 showMapButton={(val: boolean) => { setAddMapBtn(val) }}
                 updateUIArray={updateUIArray}
                 handleContentClick={handleContentClick}
