@@ -671,6 +671,7 @@ class SideTrad extends Component {
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, userId, selectedTrad, availableListTrad });
     if (oldTrad && typeof oldTrad === "string") {
+      // Bug with underline: https://github.com/jpuri/html-to-draftjs/issues/61
       this.props.fwdSetState({
         autosuggest: false,
         translated: {
@@ -1258,7 +1259,7 @@ class SideTrad extends Component {
           <i
             className={
               styles.flag_margin +
-              "mb-8 flag-icon flag-icon-" +
+              " flag-icon flag-icon-" +
               langue.langueCode
             }
             title={langue.langueCode}
@@ -1368,13 +1369,15 @@ class SideTrad extends Component {
           this.state.availableListTrad.length > 0 ? (
             <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
               <div className={styles.trad_info}>
-                <Image
-                  src={(userId.picture || {}).secure_url || marioProfile}
-                  className="profile-img-pin mr-10"
-                  alt="profile"
-                  width={40}
-                  height={40}
-                />
+                <div className="mr-10 d-flex align-items-center">
+                  <Image
+                    src={(userId.picture || {}).secure_url || marioProfile}
+                    className="profile-img-pin"
+                    alt="profile"
+                    width={40}
+                    height={40}
+                  />
+                </div>
                 <span>{userId.username}</span>
               </div>
               {this.state.availableListTrad.length === 1 ? (
@@ -1453,13 +1456,15 @@ class SideTrad extends Component {
           ) : modifiedNew ? (
             <>
               <div className={styles.trad_info}>
-                <Image
-                  src={(userId.picture || {}).secure_url || marioProfile}
-                  className="profile-img-pin mr-10"
-                  alt="profile"
-                  width={40}
-                  height={40}
-                />
+                <div className="mr-10 d-flex align-items-center">
+                  <Image
+                    src={(userId.picture || {}).secure_url || marioProfile}
+                    className="profile-img-pin"
+                    alt="profile"
+                    width={40}
+                    height={40}
+                  />
+                </div>
                 <span>{this.props.user.username}</span>
               </div>
               <div className={styles.proposition}>Ma nouvelle proposition</div>

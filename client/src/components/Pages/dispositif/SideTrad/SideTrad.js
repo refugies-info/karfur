@@ -1176,13 +1176,15 @@ class SideTrad extends Component {
           this.state.availableListTrad.length > 0 ? (
             <>
               <div className={styles.trad_info}>
-                <Image
-                  src={(userId.picture || {}).secure_url || marioProfile}
-                  className="profile-img-pin mr-10"
-                    alt="profile"
-                    width={40}
-                    height={40}
-                />
+                <div className="mr-10 d-flex align-items-center">
+                  <Image
+                    src={(userId.picture || {}).secure_url || marioProfile}
+                    className="profile-img-pin"
+                      alt="profile"
+                      width={40}
+                      height={40}
+                  />
+                </div>
                 <span
                   style={{
                     textAlign: "center",
@@ -1249,13 +1251,15 @@ class SideTrad extends Component {
           ) : modifiedNew ? (
             <>
               <div className={styles.trad_info}>
-                <Image
-                  src={(userId.picture || {}).secure_url || marioProfile}
-                  className="profile-img-pin mr-10"
-                    alt="profile"
-                    width={40}
-                    height={40}
-                />
+                <div className="mr-10 d-flex align-items-center">
+                  <Image
+                    src={(userId.picture || {}).secure_url || marioProfile}
+                    className="profile-img-pin"
+                      alt="profile"
+                      width={40}
+                      height={40}
+                  />
+                </div>
                 <span>{this.props.user.username}</span>
               </div>
               <div className={styles.proposition}>Ma nouvelle proposition</div>
