@@ -300,7 +300,10 @@ const Dispositif = (props: Props) => {
 
   // Reload page when dispositif changes
   useEffect(() => {
-    if (dispositif?._id) setMenu(generateMenu(dispositif));
+    if (dispositif?._id && props.type !== "create") {
+      setMenu(generateMenu(dispositif));
+      setDisableEdit(true);
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispositif?._id])
 
