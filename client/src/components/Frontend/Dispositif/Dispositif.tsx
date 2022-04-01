@@ -1173,9 +1173,9 @@ const Dispositif = (props: Props) => {
           type: "success",
         });
       }
+      dispatch(fetchUserActionCreator()); // fetch user to get new contributions
       if (!auto) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
-          dispatch(fetchUserActionCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
 
           const continueAfterCreation = continueEditing && props.type === "create";
