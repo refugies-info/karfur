@@ -33,20 +33,19 @@ export const sendPublishedTradMailToTraductors = async (
 
         // @ts-ignore
         const membreFromDB = await getUserById(tradId, userNeededFields);
-        if (membreFromDB.status === "Exclu") return;
-        if (!membreFromDB.email) return;
-
-        await sendPublishedTradMailToTraductorsService({
-          dispositifId,
-          userId: tradId,
-          titreInformatif: titreInformatifFormatted,
-          titreMarque: titreMarqueFormatted,
-          lien,
-          email: membreFromDB.email,
-          pseudo: membreFromDB.username,
-          langue,
-          isDispositif: typeContenu === "dispositif",
-        });
+        if (membreFromDB.status !== "Exclu" && membreFromDB.email) {
+          await sendPublishedTradMailToTraductorsService({
+            dispositifId,
+            userId: tradId,
+            titreInformatif: titreInformatifFormatted,
+            titreMarque: titreMarqueFormatted,
+            lien,
+            email: membreFromDB.email,
+            pseudo: membreFromDB.username,
+            langue,
+            isDispositif: typeContenu === "dispositif",
+          });
+        }
       } catch (error) {
         logger.info(
           "[sendPublishedTradMailToTraductors] error while sending mail to user",
