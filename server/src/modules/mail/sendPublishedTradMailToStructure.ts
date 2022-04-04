@@ -12,6 +12,7 @@ export const sendPublishedTradMailToStructure = async (
   locale: string
 ) => {
   try {
+    logger.info("[sendPublishedTradMailToStructureService] received");
     const structureMembres = await getStructureMembers(dispositif.mainSponsor);
     const membresToSendMail = await getUsersFromStructureMembres(
       structureMembres

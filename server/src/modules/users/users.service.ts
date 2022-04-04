@@ -70,23 +70,32 @@ export const getUsersFromStructureMembres = async (
 ) => {
   logger.info("[getUsersFromStructureMembres] received");
   let result: UserForMailing[] = [];
-  const userNeededFields = {
-    username: 1,
-    email: 1,
-    status: 1,
-  };
-  await asyncForEach(structureMembres, async (membre) => {
-    if (!membre.userId) return;
+  try {
+    const userNeededFields = {
+      username: 1,
+      email: 1,
+      status: 1,
+    };
+    await asyncForEach(structureMembres, async (membre) => {
+      if (!membre.userId) return;
 
-    const membreFromDB = await getUserById(membre.userId, userNeededFields);
-    if (membreFromDB.status === "Exclu") return;
-    if (!membreFromDB.email) return;
-    result.push({
-      username: membreFromDB.username,
-      _id: membreFromDB._id,
-      email: membreFromDB.email,
+      try {
+        const membreFromDB = await getUserById(membre.userId, userNeededFields);
+        if (membreFromDB.status === "Exclu") return;
+        if (!membreFromDB.email) return;
+        result.push({
+          username: membreFromDB.username,
+          _id: membreFromDB._id,
+          email: membreFromDB.email,
+        });
+      } catch (e) {
+        logger.error("[getUsersFromStructureMembres] error while getting user", e);
+      }
     });
-  });
 
-  return result;
+    return result;
+  } catch (e) {
+    logger.info("[getUsersFromStructureMembres] error", e);
+    return result;
+  }
 };

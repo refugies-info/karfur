@@ -564,7 +564,7 @@ const demarcheSteps: DemarcheSteps = {
 
 const customConvertOption = {
   blockToHTML: (block: any) => {
-    if (block.type === "header-six") {
+    if (block.type === "header-six") { // "Bon à savoir" block
       return {
         start:
           "<div class='bloc-rouge'> <div class='icon-left-side'> <span>i</span> </div> <div class='right-side'> <div><b>Bon à savoir :</b></div>",

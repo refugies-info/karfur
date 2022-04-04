@@ -35,7 +35,7 @@ export function* fetchSelectedDispositif(
       });
 
       const dispositif = data.data.data[0];
-      yield put(setSelectedDispositifActionCreator(dispositif));
+      yield put(setSelectedDispositifActionCreator(dispositif, true));
 /*       if (!dispositif || !dispositif._id) {
         yield call(Router.push, "/");
       }

@@ -297,6 +297,16 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+
+  // Reload page when dispositif changes
+  useEffect(() => {
+    if (dispositif?._id && props.type !== "create") {
+      setMenu(generateMenu(dispositif));
+      setDisableEdit(true);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispositif?._id])
+
   const editDispositif = () => {
     if (!dispositif) return;
     setDisableEdit(false);
@@ -333,13 +343,25 @@ const Dispositif = (props: Props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Use autosave in a ref to mutate it when dispositif is updated
+  const autoSave = () => {
+    // eslint-disable-next-line no-use-before-define
+    saveDispositif("Brouillon", true);
+  };
+  const autoSaveRef = React.useRef(autoSave);
+  useEffect(() => {
+    autoSaveRef.current = autoSave;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispositif, menu]);
+
   // Auto-save
   useEffect(() => {
-    if (!disableEdit) {
+    if (!disableEdit && // if edition
+      ["Brouillon", ""].includes(dispositif?.status || "") // and Brouillon
+    ) {
       if (timer.current) clearInterval(timer.current);
       timer.current = initializeTimer(3 * 60 * 1000, () => {
-        // eslint-disable-next-line no-use-before-define
-        saveDispositif("Brouillon", true);
+        autoSaveRef.current();
       });
     }
 
@@ -1151,9 +1173,9 @@ const Dispositif = (props: Props) => {
           type: "success",
         });
       }
+      dispatch(fetchUserActionCreator()); // fetch user to get new contributions
       if (!auto) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
-          dispatch(fetchUserActionCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
 
           const continueAfterCreation = continueEditing && props.type === "create";
@@ -1187,6 +1209,8 @@ const Dispositif = (props: Props) => {
             }
           );
         }
+        setIsSaved(true);
+        setIsModified(false);
       }
       dispatch(setSelectedDispositifActionCreator(newDispo, false, !disableEdit));
     });
@@ -1698,7 +1722,7 @@ const Dispositif = (props: Props) => {
               </div>
 
               <ContenuDispositif
-                content={getContent(dispositif)}
+                dispositif={dispositif}
                 showMapButton={(val: boolean) => { setAddMapBtn(val) }}
                 updateUIArray={updateUIArray}
                 handleContentClick={handleContentClick}
