@@ -1,4 +1,4 @@
-import logger from "src/logger";
+import logger from "../logger";
 
 export async function asyncForEach<T>(
   array: T[],
