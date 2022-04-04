@@ -1162,6 +1162,7 @@ const Dispositif = (props: Props) => {
     logger.info("[saveDispositif] dispositif before call", { newDispositif });
     API.addDispositif(newDispositif).then((data) => {
       const newDispo = data.data.data;
+      delete newDispo.mainSponsor; // fix different return data between addDispositif and get_dispositif
       if (!continueEditing) {
         let text = newDispositif.status === "Brouillon"
             ? "Retrouvez votre fiche dans votre espace « Mes Fiches ». Attention, votre fiche va rester en brouillon. Pour la publier, cliquez sur le bouton valider en vert, plutôt que sur enregistrer."
