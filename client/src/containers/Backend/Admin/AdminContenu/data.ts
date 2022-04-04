@@ -4,7 +4,7 @@ type TableContenu = {
   title: string
   headers: {
     name: string
-    order?: string
+    order: string | null
   }[]
 }
 export const table_contenu: TableContenu = {
@@ -41,6 +41,7 @@ export const table_contenu: TableContenu = {
 
     {
       name: "Actions",
+      order: null,
     },
   ],
 };
@@ -51,7 +52,7 @@ const yellow = "#FFEB3B";
 const red = "#F44336";
 const lightGreen = "#8BC34A";
 
-type CorrespondingStatus = {
+export type CorrespondingStatus = {
   storedStatus: string
   displayedStatus: string
   color: string

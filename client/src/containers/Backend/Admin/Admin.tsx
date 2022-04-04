@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
 import _ from "lodash";
+import qs from "query-string";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
@@ -65,8 +68,13 @@ const Onglet = (props: TabProps) => {
   );
 }
 
+type TabQuery = "contenus" | "structures" | "utilisateurs" | "statistiques" | "besoins" | undefined;
+
 export const Admin = () => {
-  const [activeTab, setActiveTab] = useState("0");
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const queryTab = router.query.tab as TabQuery;
+  const [activeTab, setActiveTab] = useState<TabQuery>(queryTab || "contenus");
 
   const dispatch = useDispatch();
 
@@ -85,7 +93,13 @@ export const Admin = () => {
     };
   }, [dispatch]);
 
-  const toggleTab = (tab: string) => setActiveTab(tab);
+  const toggleTab = (tab: TabQuery) => {
+    router.replace({
+      pathname: locale + "/backend/admin",
+      search: qs.stringify({tab}),
+    }, undefined, { shallow: true });
+    setActiveTab(tab);
+  }
 
   return (
     <div className={styles.admin + " animated fadeIn"}>
@@ -93,67 +107,67 @@ export const Admin = () => {
       <Nav>
         <NavItem>
           <NavLink
-            active={activeTab === "0"}
-            onClick={() => toggleTab("0")}
+            active={activeTab === "contenus"}
+            onClick={() => toggleTab("contenus")}
           >
             <Onglet
               iconSelected="file-add"
               iconNotSelected="file-add-outline"
               text="Contenus"
-              isSelected={activeTab === "0"}
+              isSelected={activeTab === "contenus"}
             />
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            active={activeTab === "1"}
-            onClick={() => toggleTab("1")}
+            active={activeTab === "structures"}
+            onClick={() => toggleTab("structures")}
           >
             <Onglet
               iconSelected="shopping-bag"
               iconNotSelected="shopping-bag-outline"
               text="Structures"
-              isSelected={activeTab === "1"}
+              isSelected={activeTab === "structures"}
             />
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            active={activeTab === "2"}
-            onClick={() => toggleTab("2")}
+            active={activeTab === "utilisateurs"}
+            onClick={() => toggleTab("utilisateurs")}
           >
             <Onglet
               iconSelected="person"
               iconNotSelected="person-outline"
               text="Utilisateurs"
-              isSelected={activeTab === "2"}
+              isSelected={activeTab === "utilisateurs"}
             />
           </NavLink>
         </NavItem>
 
         <NavItem>
           <NavLink
-            active={activeTab === "3"}
-            onClick={() => toggleTab("3")}
+            active={activeTab === "statistiques"}
+            onClick={() => toggleTab("statistiques")}
           >
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
               text="Statistiques"
-              isSelected={activeTab === "3"}
+              isSelected={activeTab === "statistiques"}
             />
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink
-            active={activeTab === "4"}
-            onClick={() => toggleTab("4")}
+            active={activeTab === "besoins"}
+            onClick={() => toggleTab("besoins")}
           >
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
               text="Besoins"
-              isSelected={activeTab === "4"}
+              isSelected={activeTab === "besoins"}
             />
           </NavLink>
         </NavItem>

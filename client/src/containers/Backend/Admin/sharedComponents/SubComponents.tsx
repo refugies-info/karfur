@@ -310,8 +310,8 @@ export const FilterButton = (props: {
 const StyledTabHeader = styled.div`
   display: flex;
   flex-direction: row;
-  font-weight: "bold";
-  cursor: ${(props: {order: boolean}) => props.order && "pointer"};
+  font-weight: bold;
+  cursor: ${(props: {order: number}) => props.order ? "pointer" : "inherit"};
 `;
 
 export const TabHeader = (props: {
@@ -320,7 +320,7 @@ export const TabHeader = (props: {
   isSortedHeader: boolean;
   sens: string;
 }) => (
-  <StyledTabHeader order={!!props.order}>
+  <StyledTabHeader order={props.order ? 1 : 0}>
     {props.name}
     {props.order && (
       <EVAIcon name={`chevron-${props.sens}`} fill={colors.gray90} />
