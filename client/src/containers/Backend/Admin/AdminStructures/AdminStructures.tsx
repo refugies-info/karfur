@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -27,7 +29,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
-import { headers, correspondingStatus } from "./data";
+import { headers, correspondingStatus, FilterStructureStatus } from "./data";
 import {
   RowContainer,
   StructureName,
@@ -37,7 +39,6 @@ import {
   SimplifiedStructureForAdmin,
   Responsable,
 } from "types/interface";
-import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
@@ -47,6 +48,7 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminStructures.module.scss";
+import { statusCompare } from "lib/statusCompare";
 
 moment.locale("fr");
 
@@ -57,7 +59,12 @@ export const AdminStructures = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("En attente");
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const filterQuery = router.query.filter && router.query.tab === "structures" ?
+    decodeURI(router.query.filter as string) as FilterStructureStatus :
+    undefined;
+  const [filter, setFilter] = useState<FilterStructureStatus>(filterQuery || "En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
@@ -87,6 +94,16 @@ export const AdminStructures = () => {
     false
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (router.query.tab === "structures") {
+      router.replace({
+        pathname: locale + "/backend/admin",
+        search: new URLSearchParams({ tab: router.query.tab, filter: encodeURI(filter) }).toString(),
+      }, undefined, { shallow: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, router.query.tab]);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -120,7 +137,7 @@ export const AdminStructures = () => {
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: string) => {
+  const onFilterClick = (status: FilterStructureStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -300,7 +317,7 @@ export const AdminStructures = () => {
           <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
         </div>
         <StyledSort marginTop="8px">
-          {correspondingStatus.sort(compare).map((element) => {
+          {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.status;
             const nbStructures = getNbStructuresByStatus(
               structuresForCount,

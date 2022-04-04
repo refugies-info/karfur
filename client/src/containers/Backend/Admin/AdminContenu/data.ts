@@ -52,8 +52,10 @@ const yellow = "#FFEB3B";
 const red = "#F44336";
 const lightGreen = "#8BC34A";
 
+export type FilterContentStatus = "Actif" | "En attente" | "Brouillon" | "En attente non prioritaire" | "Rejeté structure" | "En attente admin" | "Accepté structure" | "Supprimé";
+
 export type CorrespondingStatus = {
-  storedStatus: string
+  storedStatus: FilterContentStatus
   displayedStatus: string
   color: string
   order: number
@@ -61,7 +63,11 @@ export type CorrespondingStatus = {
 }
 
 export const correspondingStatus: CorrespondingStatus[] = [
-  { storedStatus: "Actif", displayedStatus: "Publié", color: green, order: 5 },
+  {
+    storedStatus: "Actif",
+    displayedStatus: "Publié",
+    color: green, order: 5
+  },
   {
     storedStatus: "En attente",
     displayedStatus: "En attente",

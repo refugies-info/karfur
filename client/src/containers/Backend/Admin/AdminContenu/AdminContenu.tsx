@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Spinner } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import "moment/locale/fr";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
-import { table_contenu, correspondingStatus, CorrespondingStatus } from "./data";
+import { table_contenu, correspondingStatus, FilterContentStatus } from "./data";
 import API from "utils/API";
 import {
   StyledSort,
@@ -49,14 +51,11 @@ import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
 import { SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
 import { ObjectId } from "mongodb";
+import { statusCompare } from "lib/statusCompare";
+
 
 moment.locale("fr");
 
-export const compare = (a: CorrespondingStatus, b: CorrespondingStatus) => {
-  const orderA = a.order;
-  const orderB = b.order;
-  return orderA > orderB ? 1 : -1;
-};
 export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
@@ -64,8 +63,13 @@ export const AdminContenu = () => {
     orderColumn: "none",
   };
   const dispositifs = useSelector(allDispositifsSelector);
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const filterQuery = router.query.filter && router.query.tab === "contenus" ?
+    decodeURI(router.query.filter as string) as FilterContentStatus :
+    undefined;
 
-  const [filter, setFilter] = useState("En attente admin");
+  const [filter, setFilter] = useState<FilterContentStatus>(filterQuery || "En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
@@ -113,6 +117,16 @@ export const AdminContenu = () => {
   };
   const allNeeds = useSelector(needsSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (router.query.tab === "contenus") {
+      router.replace({
+        pathname: locale + "/backend/admin",
+        search: new URLSearchParams({ tab: router.query.tab, filter: encodeURI(filter) }).toString(),
+      }, undefined, { shallow: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, router.query.tab]);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -245,8 +259,7 @@ export const AdminContenu = () => {
     }
   };
 
-
-  const onFilterClick = (status: string) => {
+  const onFilterClick = (status: FilterContentStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -388,7 +401,7 @@ export const AdminContenu = () => {
           <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
         </div>
         <StyledSort marginTop="8px">
-          {correspondingStatus.sort(compare).map((status) => {
+          {correspondingStatus.sort(statusCompare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
               dispositifsForCount,
               status.storedStatus

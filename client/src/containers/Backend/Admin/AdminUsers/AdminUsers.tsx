@@ -1,5 +1,5 @@
 import marioProfile from "assets/mario-profile.jpg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/fr";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,9 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
-import { userHeaders, correspondingStatus } from "./data";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
+import { userHeaders, correspondingStatus, FilterUserStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -25,7 +27,6 @@ import {
 } from "../AdminStructures/components/AdminStructureComponents";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
@@ -47,6 +48,7 @@ import API from "utils/API";
 import Swal from "sweetalert2";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
+import { statusCompare } from "lib/statusCompare";
 
 moment.locale("fr");
 
@@ -57,7 +59,13 @@ export const AdminUsers = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("Admin");
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const filterQuery = router.query.filter && router.query.tab === "utilisateurs" ?
+    decodeURI(router.query.filter as string) as FilterUserStatus :
+    undefined;
+
+  const [filter, setFilter] = useState<FilterUserStatus>(filterQuery || "Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
@@ -79,6 +87,16 @@ export const AdminUsers = () => {
   const [showChangeStructureModal, setShowChangeStructureModal] =
     useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (router.query.tab === "utilisateurs") {
+      router.replace({
+        pathname: locale + "/backend/admin",
+        search: new URLSearchParams({ tab: router.query.tab, filter: encodeURI(filter) }).toString(),
+      }, undefined, { shallow: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, router.query.tab]);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -116,7 +134,7 @@ export const AdminUsers = () => {
     toggleContentDetailsModal();
   };
 
-  const onFilterClick = (status: string) => {
+  const onFilterClick = (status: FilterUserStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -320,7 +338,7 @@ export const AdminUsers = () => {
           <FigureContainer>{users.length}</FigureContainer>
         </div>
         <StyledSort marginTop="8px">
-          {correspondingStatus.sort(compare).map((element) => {
+          {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.status;
             const nbUsers = getNbUsersByStatus(usersForCount, status);
             return (

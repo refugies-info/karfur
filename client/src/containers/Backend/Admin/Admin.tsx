@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
 import _ from "lodash";
-import qs from "query-string";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
@@ -96,7 +95,7 @@ export const Admin = () => {
   const toggleTab = (tab: TabQuery) => {
     router.replace({
       pathname: locale + "/backend/admin",
-      search: qs.stringify({tab}),
+      search: new URLSearchParams({ tab: tab as string }).toString(),
     }, undefined, { shallow: true });
     setActiveTab(tab);
   }
