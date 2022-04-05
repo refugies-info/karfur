@@ -22,7 +22,7 @@ export const getAdminUrlParams = (
   selectedDispositifId: string | ObjectId | undefined | null,
   selectedStructureId: string | ObjectId | undefined | null,
 ) => {
-  const urlParams: AdminUrlParams = {  };
+  const urlParams: AdminUrlParams = {};
 
   urlParams.tab = tab || "contenus";
   if (filter) urlParams.filter = encodeURI(filter);
@@ -33,28 +33,83 @@ export const getAdminUrlParams = (
   return new URLSearchParams(urlParams).toString();
 }
 
+const getSavedQuery = () => {
+  const savedQuery = localStorage.getItem("adminUrlParams");
+  return savedQuery ? new URLSearchParams(savedQuery) : null;
+}
 
+/**
+ * Get initial tab of admin
+ * Option 1: query
+ * Option 2: localStorage
+ * Option 3: default "contenus"
+ * @param router
+ * @returns
+ */
+export const getInitialTab = (router: NextRouter) => {
+  if (router.query.tab) return router.query.tab as TabQuery; // option 1: url
+
+  return getSavedQuery()?.get("tab") as TabQuery  // option 2: url
+    || "contenus"; // option 3: contenus
+}
+
+
+const DEFAULT_FILTERS = {
+  filter: null,
+  selectedUserId: null,
+  selectedDispositifId: null,
+  selectedStructureId: null,
+}
+
+/**
+ * Get initial filters of tab if active
+ * Option 1: query
+ * Option 2: localStorage
+ * @param router
+ * @param currentTab
+ * @returns
+ */
 export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
-  if (router.query.tab !== currentTab) {
+
+  // Option 1: query of route
+  if (router.query.tab) {
+    if (router.query.tab !== currentTab) return DEFAULT_FILTERS
+
+    const filterQuery = router.query.filter ?
+      decodeURI(router.query.filter as string) as Status : undefined;
+
     return {
-      filter: null,
-      selectedUserId: null,
-      selectedDispositifId: null,
-      selectedStructureId: null,
+      filter: filterQuery,
+      //@ts-ignore
+      selectedUserId: router.query.userId as ObjectId || null,
+      //@ts-ignore
+      selectedDispositifId: router.query.contentId as ObjectId || null,
+      //@ts-ignore
+      selectedStructureId: router.query.structureId as ObjectId || null,
     }
   }
 
-  const filterQuery = router.query.filter ?
-    decodeURI(router.query.filter as string) as FilterContentStatus | FilterUserStatus | FilterStructureStatus :
-    undefined;
+  // Option 2: query of localStorage
+  const savedQuery = getSavedQuery();
+  if (savedQuery) {
+    const initialTab = savedQuery.get("tab");
 
-  return {
-    filter: filterQuery,
-    //@ts-ignore
-    selectedUserId: router.query.userId as ObjectId || null,
-    //@ts-ignore
-    selectedDispositifId: router.query.contentId as ObjectId || null,
-    //@ts-ignore
-    selectedStructureId: router.query.structureId as ObjectId || null,
+    if (initialTab && initialTab === currentTab) {
+      const filterQuery = savedQuery.get("filter") ?
+      decodeURI(savedQuery.get("filter") as string) as Status : undefined;
+
+      return {
+        filter: filterQuery,
+        //@ts-ignore
+        selectedUserId: savedQuery.get("userId") as ObjectId || null,
+        //@ts-ignore
+        selectedDispositifId: savedQuery.get("contentId") as ObjectId || null,
+        //@ts-ignore
+        selectedStructureId: savedQuery.get("structureId") as ObjectId || null,
+      }
+    }
+    return DEFAULT_FILTERS;
   }
+
+  return DEFAULT_FILTERS;
 }

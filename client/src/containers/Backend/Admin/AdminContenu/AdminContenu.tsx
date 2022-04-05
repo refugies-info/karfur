@@ -125,7 +125,7 @@ export const AdminContenu = () => {
 
   // update route params
   useEffect(() => {
-    if (router.query.tab === "contenus" || router.query.tab === undefined) {
+    if (router.query.tab === "contenus") {
       const params = getAdminUrlParams(
         router.query.tab,
         filter,
