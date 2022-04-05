@@ -23,6 +23,7 @@ import styled from "styled-components";
 import Navigation from "../Navigation";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
+import { TabQuery } from "lib/getAdminUrlParams";
 
 const OngletText = styled.span`
   color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.gray90)};
@@ -66,8 +67,6 @@ const Onglet = (props: TabProps) => {
     </OngletContainer>
   );
 }
-
-type TabQuery = "contenus" | "structures" | "utilisateurs" | "statistiques" | "besoins" | undefined;
 
 export const Admin = () => {
   const router = useRouter();

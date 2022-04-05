@@ -52,9 +52,15 @@ import styles from "./AdminContenu.module.scss";
 import { SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
+import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 
 
 moment.locale("fr");
+
+const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
+  if (!id) return null;
+  return dispositifs.find(d => d._id && d._id.toString() === id.toString()) || null;
+}
 
 export const AdminContenu = () => {
   const defaultSortedHeader = {
@@ -63,30 +69,29 @@ export const AdminContenu = () => {
     orderColumn: "none",
   };
   const dispositifs = useSelector(allDispositifsSelector);
+
+  // filters
   const router = useRouter();
   const locale = useRouterLocale();
-  const filterQuery = router.query.filter && router.query.tab === "contenus" ?
-    decodeURI(router.query.filter as string) as FilterContentStatus :
-    undefined;
-
-  const [filter, setFilter] = useState<FilterContentStatus>(filterQuery || "En attente admin");
+  const initialFilters = getInitialFilters(router, "contenus");
+  const [filter, setFilter] = useState<FilterContentStatus>(initialFilters.filter as FilterContentStatus || "En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showDetailsModal, setShowDetailsModal] = useState(false);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] =
-    useState(false);
-  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
-  const [isExportLoading, setIsExportLoading] = useState(false);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState(null);
 
-  const [selectedDispositif, setSelectedDispositif] = useState<SimplifiedDispositif | null>(null);
-  const [showChangeStructureModal, setShowChangeStructureModal] =
-    useState(false);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] =
-    useState(false);
+  // modals
+  const [showDetailsModal, setShowDetailsModal] = useState(!!initialFilters.selectedDispositifId);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
+  const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(null);
+
+  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId|null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+
+  const [isExportLoading, setIsExportLoading] = useState(false);
 
   const headers = table_contenu.headers;
   const isLoading = useSelector(
@@ -111,22 +116,37 @@ export const AdminContenu = () => {
     toggleUserDetailsModal();
   };
 
-  const setSelectedDispositifAndToggleModal = (element: SimplifiedDispositif | null) => {
-    setSelectedDispositif(element);
+  const setSelectedDispositifAndToggleModal = (id: ObjectId | null) => {
+    setSelectedContentId(id);
     toggleDetailsModal();
   };
   const allNeeds = useSelector(needsSelector);
   const dispatch = useDispatch();
 
+  // update route params
   useEffect(() => {
     if (router.query.tab === "contenus") {
+      const params = getAdminUrlParams(
+        router.query.tab,
+        filter,
+        selectedUserId,
+        selectedContentId,
+        selectedStructureId
+      );
+
       router.replace({
         pathname: locale + "/backend/admin",
-        search: new URLSearchParams({ tab: router.query.tab, filter: encodeURI(filter) }).toString(),
+        search: params,
       }, undefined, { shallow: true });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, router.query.tab]);
+  }, [
+    filter,
+    router.query.tab,
+    selectedUserId,
+    selectedContentId,
+    selectedStructureId
+  ]);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -271,8 +291,7 @@ export const AdminContenu = () => {
     element: ObjectId | null,
     _status: string | null = null
   ) => {
-    const dispositif = dispositifs.find(d => d._id && d._id.toString() === element?.toString());
-    if (dispositif) setSelectedDispositifAndToggleModal(dispositif || null);
+    setSelectedDispositifAndToggleModal(element || null);
   }
 
   const setSelectedStructureIdAndToggleModal = (element: SimplifiedMainSponsor | null) => {
@@ -458,7 +477,7 @@ export const AdminContenu = () => {
                 <tr key={key}>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <TypeContenu
                       type={element.typeContenu || "dispositif"}
@@ -479,7 +498,7 @@ export const AdminContenu = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <Title
                       titreInformatif={element.titreInformatif}
@@ -496,13 +515,13 @@ export const AdminContenu = () => {
                   </td>
                   <td
                     className={"align-middle "}
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     {nbDays}
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {element.adminProgressionStatus ? (
@@ -523,7 +542,7 @@ export const AdminContenu = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <StyledStatus text={element.status} />
                   </td>
@@ -543,11 +562,11 @@ export const AdminContenu = () => {
                       <DeleteButton
                         onClick={() =>
                           prepareDeleteContrib(
-                            setSelectedDispositif,
+                            setSelectedContentId,
                             setShowDetailsModal,
                             fetchAllDispositifsActionsCreator,
                             dispatch,
-                            element
+                            element._id
                           )
                         }
                         disabled={element.status === "Supprimé"}
@@ -566,16 +585,14 @@ export const AdminContenu = () => {
         setSelectedStructureIdAndToggleModal={
           setSelectedStructureIdAndToggleModal
         }
-        selectedDispositifId={
-          selectedDispositif ? selectedDispositif._id : null
-        }
+        selectedDispositifId={selectedContentId}
         onDeleteClick={() =>
           prepareDeleteContrib(
-            setSelectedDispositif,
+            setSelectedContentId,
             setShowDetailsModal,
             fetchAllDispositifsActionsCreator,
             dispatch,
-            selectedDispositif
+            selectedContentId
           )
         }
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
@@ -587,9 +604,7 @@ export const AdminContenu = () => {
         <ImprovementsMailModal
           show={showImprovementsMailModal}
           toggleModal={toggleImprovementsMailModal}
-          selectedDispositifId={
-            selectedDispositif ? selectedDispositif._id : null
-          }
+          selectedDispositifId={selectedContentId}
         />
       )}
       <UserDetailsModal
@@ -604,8 +619,8 @@ export const AdminContenu = () => {
       <ChangeStructureModal
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
-        dispositifId={selectedDispositif ? selectedDispositif._id : null}
-        dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
+        dispositifId={selectedContentId}
+        dispositifStatus={getDispositif(dispositifs, selectedContentId)?.status || null}
       />
 
       {selectedStructureId && (
@@ -629,7 +644,7 @@ export const AdminContenu = () => {
         <NeedsChoiceModal
           show={showNeedsChoiceModal}
           toggle={toggleNeedsChoiceModal}
-          dispositifId={selectedDispositif ? selectedDispositif._id : null}
+          dispositifId={selectedContentId}
         />
       )}
     </div>

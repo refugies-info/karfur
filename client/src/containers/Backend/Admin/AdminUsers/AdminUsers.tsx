@@ -49,6 +49,7 @@ import Swal from "sweetalert2";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
+import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 
 moment.locale("fr");
 
@@ -59,44 +60,55 @@ export const AdminUsers = () => {
     orderColumn: "none",
   };
 
+  // filters
   const router = useRouter();
   const locale = useRouterLocale();
-  const filterQuery = router.query.filter && router.query.tab === "utilisateurs" ?
-    decodeURI(router.query.filter as string) as FilterUserStatus :
-    undefined;
-
-  const [filter, setFilter] = useState<FilterUserStatus>(filterQuery || "Admin");
+  const initialFilters = getInitialFilters(router, "utilisateurs");
+  const [filter, setFilter] = useState<FilterUserStatus>(initialFilters.filter as FilterUserStatus || "Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] =
-    useState(false);
-  const [isExportLoading, setIsExportLoading] = useState(false);
+
+  // modals
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(!!initialFilters.selectedDispositifId);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [selectedStructureId, setSelectedStructureId] =
-    useState<ObjectId | null>(null);
-  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
-  const [selectedContentId, setSelectedContentId] =
-    useState<ObjectId | null>(null);
-  const [selectedContentStatus, setSelectedContentStatus] =
-    useState<string | null>(null);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] =
-    useState(false);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
-  const [showChangeStructureModal, setShowChangeStructureModal] =
-    useState(false);
+
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
+  const [isExportLoading, setIsExportLoading] = useState(false);
+
   const dispatch = useDispatch();
 
+  // update route params
   useEffect(() => {
     if (router.query.tab === "utilisateurs") {
+      const params = getAdminUrlParams(
+        router.query.tab,
+        filter,
+        selectedUserId,
+        selectedContentId,
+        selectedStructureId
+      )
+
       router.replace({
         pathname: locale + "/backend/admin",
-        search: new URLSearchParams({ tab: router.query.tab, filter: encodeURI(filter) }).toString(),
+        search: params,
       }, undefined, { shallow: true });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, router.query.tab]);
+  }, [
+    filter,
+    router.query.tab,
+    selectedUserId,
+    selectedContentId,
+    selectedStructureId
+  ]);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
