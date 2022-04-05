@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -27,7 +29,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
-import { headers, correspondingStatus } from "./data";
+import { headers, correspondingStatus, FilterStructureStatus } from "./data";
 import {
   RowContainer,
   StructureName,
@@ -37,7 +39,6 @@ import {
   SimplifiedStructureForAdmin,
   Responsable,
 } from "types/interface";
-import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
@@ -47,6 +48,8 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminStructures.module.scss";
+import { statusCompare } from "lib/statusCompare";
+import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 
 moment.locale("fr");
 
@@ -57,36 +60,55 @@ export const AdminStructures = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("En attente");
+  // filters
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const initialFilters = getInitialFilters(router, "structures");
+  const [filter, setFilter] = useState<FilterStructureStatus>(initialFilters.filter as FilterStructureStatus || "En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-    false
-  );
-  const [showNewStructureModal, setShowNewStructureModal] = useState(false);
 
+  // modals
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(!!initialFilters.selectedDispositifId);
+  const [showNewStructureModal, setShowNewStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [
-    selectedStructureId,
-    setSelectedStructureId,
-  ] = useState<ObjectId | null>(null);
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
-  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(
-    null
-  );
-  const [selectedContentStatus, setSelectedContentStatus] = useState<
-    string | null
-  >(null);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(
-    false
-  );
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
+
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
-  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
-    false
-  );
+
   const dispatch = useDispatch();
+
+  // update route params
+  useEffect(() => {
+    if (router.query.tab === "structures") {
+      const params = getAdminUrlParams(
+        router.query.tab,
+        filter,
+        selectedUserId,
+        selectedContentId,
+        selectedStructureId
+      )
+
+      router.replace({
+        pathname: locale + "/backend/admin",
+        search: params,
+      }, undefined, { shallow: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    filter,
+    router.query.tab,
+    selectedUserId,
+    selectedContentId,
+    selectedStructureId
+  ]);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -120,7 +142,7 @@ export const AdminStructures = () => {
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: string) => {
+  const onFilterClick = (status: FilterStructureStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -300,7 +322,7 @@ export const AdminStructures = () => {
           <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
         </div>
         <StyledSort marginTop="8px">
-          {correspondingStatus.sort(compare).map((element) => {
+          {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.status;
             const nbStructures = getNbStructuresByStatus(
               structuresForCount,
