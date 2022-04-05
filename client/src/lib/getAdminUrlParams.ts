@@ -24,7 +24,7 @@ export const getAdminUrlParams = (
 ) => {
   const urlParams: AdminUrlParams = {  };
 
-  if (tab) urlParams.tab = tab;
+  urlParams.tab = tab || "contenus";
   if (filter) urlParams.filter = encodeURI(filter);
   if (selectedUserId) urlParams.userId = selectedUserId.toString();
   if (selectedDispositifId) urlParams.contentId = selectedDispositifId.toString();
