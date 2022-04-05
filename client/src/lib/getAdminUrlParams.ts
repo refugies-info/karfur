@@ -33,9 +33,15 @@ export const getAdminUrlParams = (
   return new URLSearchParams(urlParams).toString();
 }
 
+// local storage queries
+const ADMIN_URL_PARAMS = "adminUrlParams"
 const getSavedQuery = () => {
-  const savedQuery = localStorage.getItem("adminUrlParams");
+  const savedQuery = localStorage.getItem(ADMIN_URL_PARAMS);
   return savedQuery ? new URLSearchParams(savedQuery) : null;
+}
+
+export const setSavedQuery = (query: string) => {
+  localStorage.setItem(ADMIN_URL_PARAMS, query);
 }
 
 /**

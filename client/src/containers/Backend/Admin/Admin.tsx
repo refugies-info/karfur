@@ -23,7 +23,7 @@ import styled from "styled-components";
 import Navigation from "../Navigation";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
-import { getInitialTab, TabQuery } from "lib/getAdminUrlParams";
+import { getInitialTab, setSavedQuery, TabQuery } from "lib/getAdminUrlParams";
 
 const OngletText = styled.span`
   color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.gray90)};
@@ -89,6 +89,11 @@ export const Admin = () => {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // save query in localstorage
+  useEffect(() => {
+    setSavedQuery(window.location.search.replace("?", ""));
+  }, [router.query])
 
   const dispatch = useDispatch();
 
