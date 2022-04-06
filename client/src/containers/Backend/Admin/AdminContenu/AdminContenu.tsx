@@ -53,6 +53,7 @@ import { SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
+import { removeAccents } from "lib";
 
 
 moment.locale("fr");
@@ -170,13 +171,13 @@ export const AdminContenu = () => {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(search.toLowerCase())) ||
+                .includes(removeAccents(search.toLowerCase()))) ||
             (dispo.titreMarque &&
               dispo.titreMarque
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(search.toLowerCase()))
+                .includes(removeAccents(search.toLowerCase())))
         )
       : dispositifs;
 
