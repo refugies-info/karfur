@@ -8,7 +8,7 @@ import {
 } from "../../sharedComponents/SubComponents";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
-import { compare } from "../AdminContenu";
+import { statusCompare } from "lib/statusCompare";
 import moment from "moment";
 import "moment/locale/fr";
 import {
@@ -257,7 +257,7 @@ export const DetailsModal = (props: Props) => {
               </RowContainer>
               <Title>Statut</Title>
               <RowContainer>
-                {correspondingStatus.sort(compare).map((status) => {
+                {correspondingStatus.sort(statusCompare).map((status) => {
                   const newStatus = modifiedStatus || dispositif.status;
 
                   return (

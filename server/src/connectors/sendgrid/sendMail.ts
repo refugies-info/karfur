@@ -13,6 +13,10 @@ export const sendMail = (
     logger.info("[sendMail] no mail sent in dev env");
     return;
   }
+  if (process.env.NODE_ENV === "staging") { // TODO: temp for test, remove
+    logger.info("[sendMail] no mail sent in staging env");
+    return;
+  }
   if (!dynamicData.from.email) {
     logger.error("[sendMail] no email provided");
     throw new Error("NO_EMAIL_PROVIDED");
