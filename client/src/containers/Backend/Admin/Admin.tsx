@@ -23,7 +23,7 @@ import styled from "styled-components";
 import Navigation from "../Navigation";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
-import { TabQuery } from "lib/getAdminUrlParams";
+import { getInitialTab, setSavedQuery, TabQuery } from "lib/getAdminUrlParams";
 
 const OngletText = styled.span`
   color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.gray90)};
@@ -71,8 +71,29 @@ const Onglet = (props: TabProps) => {
 export const Admin = () => {
   const router = useRouter();
   const locale = useRouterLocale();
-  const queryTab = router.query.tab as TabQuery;
-  const [activeTab, setActiveTab] = useState<TabQuery>(queryTab || "contenus");
+
+  // Handle initial tab
+  const initialTab = getInitialTab(router);
+  const [activeTab, setActiveTab] = useState<TabQuery>(initialTab);
+
+  const redirectToTab = (tab: string) => {
+    router.replace({
+      pathname: locale + "/backend/admin",
+      search: new URLSearchParams({ tab: tab }).toString(),
+    }, undefined, { shallow: true });
+  }
+
+  useEffect(() => { // update url if needed on load
+    if (initialTab && initialTab !== router.query.tab) {
+      redirectToTab(initialTab as string);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // save query in localstorage
+  useEffect(() => {
+    setSavedQuery(window.location.search.replace("?", ""));
+  }, [router.query])
 
   const dispatch = useDispatch();
 
@@ -92,10 +113,7 @@ export const Admin = () => {
   }, [dispatch]);
 
   const toggleTab = (tab: TabQuery) => {
-    router.replace({
-      pathname: locale + "/backend/admin",
-      search: new URLSearchParams({ tab: tab as string }).toString(),
-    }, undefined, { shallow: true });
+    redirectToTab(tab as string)
     setActiveTab(tab);
   }
 
