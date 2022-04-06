@@ -11,8 +11,8 @@ import FButton from "components/UI/FButton/FButton";
 import {
   escapeRegexCharacters,
   getSuggestionValue,
-  removeAccents,
 } from "lib/search";
+import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";

@@ -50,6 +50,7 @@ import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminStructures.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
+import { removeAccents } from "lib";
 
 moment.locale("fr");
 
@@ -198,7 +199,7 @@ export const AdminStructures = () => {
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(search.toLowerCase())
+              .includes(removeAccents(search.toLowerCase()))
         )
       : structures;
 

@@ -12,14 +12,14 @@ export const removeAccents = (str = "") => {
     "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
   var accentsOut =
     "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
-  const newStr = str.split("");
-  var i, x;
-  for (i = 0; i < str.length; i++) {
-    if ((x = accents.indexOf(str[i])) !== -1) {
-      newStr[i] = accentsOut[x];
+  const chars = str.split("");
+  let i, x;
+  for (i = 0; i < chars.length; i++) {
+    if ((x = accents.indexOf(chars[i])) !== -1) {
+      chars[i] = accentsOut[x];
     }
   }
-  return newStr.join("");
+  return chars.join("");
 };
 
 // rules for password check :
