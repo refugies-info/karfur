@@ -11,7 +11,6 @@ import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 
 module.exports = function (app) {
   app.post("/login", checkToken.getId, checkToken.getRoles, login);
-  app.post("/signup", checkToken.getRoles, account.signup);
   app.post("/checkUserExists", account.checkUserExists);
   app.post(
     "/set_user_info",
