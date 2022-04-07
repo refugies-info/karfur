@@ -12,15 +12,16 @@ var base = new Airtable({
 const logger = require("../../logger");
 const { getFormattedLocale } = require("../../libs/getFormattedLocale");
 
-const addDispositifInContenusAirtable = (title, link, tagsList, type) => {
-  logger.info("[addDispositifInContenusAirtable] adding a new line", {
-    title,
-    tagsList,
-  });
+const addDispositifInContenusAirtable = async (title, link, tagsList, type) => {
+  try {
 
-  base("CONTENUS").create(
-    [
-      {
+    logger.info("[addDispositifInContenusAirtable] adding a new line", {
+      title,
+      tagsList,
+    });
+
+    await base("CONTENUS").create(
+      [{
         fields: {
           "! Titre": title,
           "! Thèmes": tagsList,
@@ -30,68 +31,73 @@ const addDispositifInContenusAirtable = (title, link, tagsList, type) => {
           "! Type de contenus":
             type === "demarche" ? ["Démarche"] : ["Dispositif"],
         },
-      },
-    ],
-    function (err) {
-      if (err) {
-        logger.error(
-          "[addDispositifInContenusAirtable] error while adding a new line",
-          { error: err }
-        );
-        return;
-      }
-    }
-  );
+      }]
+    );
+  } catch (e) {
+    logger.error("[addDispositifInContenusAirtable] error while adding a new line", e)
+  }
 };
 
-const removeTraductionDispositifInContenusAirtable = (
+const removeTraductionDispositifInContenusAirtable = async (
   recordId,
   title,
   tagsList
 ) => {
-  logger.info(
-    "[removeTraductionDispositifInContenusAirtable] update line for record",
-    {
-      recordId,
-    }
-  );
-  base("CONTENUS").update([
-    {
-      id: recordId,
-      fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList },
-    },
-  ]);
-};
-
-const removeDispositifInContenusAirtable = (recordId) => {
-  logger.info("[removeDispositifInContenusAirtable] update line for record", {
-    recordId,
-  });
-  base("CONTENUS").update([
-    { id: recordId, fields: { "! Traduits ?": [], "! À traduire ?": false } },
-  ]);
-};
-
-const addTraductionDispositifInContenusAirtable = ({ id, trad }, locale) => {
-  const formattedLocale = getFormattedLocale(locale, "short");
-  logger.info(
-    "[addTraductionDispositifInContenusAirtable] update line for record and locale",
-    {
-      id,
-      locale,
-      formattedLocale,
-    }
-  );
-
-  if (trad) {
-    trad.push(formattedLocale);
+  try {
+    logger.info(
+      "[removeTraductionDispositifInContenusAirtable] update line for record",
+      {
+        recordId,
+      }
+    );
+    await base("CONTENUS").update([
+      {
+        id: recordId,
+        fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList },
+      },
+    ]);
+  } catch (e) {
+    logger.error("[removeTraductionDispositifInContenusAirtable] error", e)
   }
-  base("CONTENUS").update([
-    {
-      id,
-      fields: { "! Traduits ?": trad || [formattedLocale] },
-    },
-  ]);
+};
+
+const removeDispositifInContenusAirtable = async (recordId) => {
+  try {
+    logger.info("[removeDispositifInContenusAirtable] update line for record", {
+      recordId,
+    });
+    await base("CONTENUS").update([
+      { id: recordId, fields: { "! Traduits ?": [], "! À traduire ?": false } },
+    ]);
+  } catch (e) {
+    logger.error("[removeDispositifInContenusAirtable] error", e)
+  }
+};
+
+const addTraductionDispositifInContenusAirtable = async ({ id, trad }, locale) => {
+  try {
+    const formattedLocale = getFormattedLocale(locale, "short");
+    logger.info(
+      "[addTraductionDispositifInContenusAirtable] update line for record and locale",
+      {
+        id,
+        locale,
+        formattedLocale,
+      }
+    );
+
+    if (trad) {
+      trad.push(formattedLocale);
+    }
+    await base("CONTENUS").update([
+      {
+        id,
+        fields: { "! Traduits ?": trad || [formattedLocale] },
+      },
+    ]);
+  } catch (e) {
+    logger.error("[addTraductionDispositifInContenusAirtable] error", e)
+  }
 };
 
 const addOrUpdateDispositifInContenusAirtable = async (
@@ -133,52 +139,56 @@ const addOrUpdateDispositifInContenusAirtable = async (
     .select({
       filterByFormula: formula,
     })
-    .firstPage(function (err, records) {
-      if (err) {
-        logger.error(
-          "[addOrUpdateDispositifInContenusAirtable] error while getting dispositif in airtable",
-          { error: err }
-        );
-        return;
-      }
-      records.forEach(function (record) {
-        logger.info(
-          "[addOrUpdateDispositifInContenusAirtable] retrieved dispositif",
-          { recordId: record.id, title: record.get("! Titre") }
-        );
-        recordsList.push({ id: record.id, trad: record.get("! Traduits ?") });
-      });
-      if (recordsList.length === 0) {
-        logger.info(
-          "[addOrUpdateDispositifInContenusAirtable] no dispositif with the link exists in table contenu",
-          { link }
-        );
-        if (locale) {
-          logger.info(
-            "[addOrUpdateDispositifInContenusAirtable] no locale so we don't do anything",
-            { link }
+    .firstPage(async function (err, records) {
+      try {
+        if (err) {
+          logger.error(
+            "[addOrUpdateDispositifInContenusAirtable] error while getting dispositif in airtable",
+            { error: err }
           );
           return;
         }
-        // add content in airtable
-        addDispositifInContenusAirtable(title, link, tagsList, type);
-        return;
+        records.forEach(function (record) {
+          logger.info(
+            "[addOrUpdateDispositifInContenusAirtable] retrieved dispositif",
+            { recordId: record.id, title: record.get("! Titre") }
+          );
+          recordsList.push({ id: record.id, trad: record.get("! Traduits ?") });
+        });
+        if (recordsList.length === 0) {
+          logger.info(
+            "[addOrUpdateDispositifInContenusAirtable] no dispositif with the link exists in table contenu",
+            { link }
+          );
+          if (locale) {
+            logger.info(
+              "[addOrUpdateDispositifInContenusAirtable] no locale so we don't do anything",
+              { link }
+            );
+            return;
+          }
+          // add content in airtable
+          await addDispositifInContenusAirtable(title, link, tagsList, type);
+          return;
+        }
+        if (hasContentBeenDeleted) {
+          await removeDispositifInContenusAirtable(recordsList[0].id);
+          return;
+        }
+        if (!locale) {
+          // no locale and a record already in airtable ==> dispositif modified in french
+          await removeTraductionDispositifInContenusAirtable(
+            recordsList[0].id,
+            title,
+            tagsList
+          );
+          return;
+        }
+        // dispositif has been translated
+        await addTraductionDispositifInContenusAirtable(recordsList[0], locale);
+      } catch (e) {
+        logger.error("[addOrUpdateDispositifInContenusAirtable] error ", e);
       }
-      if (hasContentBeenDeleted) {
-        removeDispositifInContenusAirtable(recordsList[0].id);
-        return;
-      }
-      if (!locale) {
-        // no locale and a record already in airtable ==> dispositif modified in french
-        removeTraductionDispositifInContenusAirtable(
-          recordsList[0].id,
-          title,
-          tagsList
-        );
-        return;
-      }
-      // dispositif has been translated
-      addTraductionDispositifInContenusAirtable(recordsList[0], locale);
     });
 };
 
