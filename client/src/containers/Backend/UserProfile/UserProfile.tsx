@@ -396,7 +396,6 @@ export const UserProfile = () => {
             className="position-relative mb-16"
           >
             <Input
-              className="file-input"
               type="file"
               id="picture"
               name="structure"
