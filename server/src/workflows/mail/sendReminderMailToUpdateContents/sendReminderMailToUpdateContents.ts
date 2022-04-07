@@ -59,28 +59,32 @@ export const sendReminderMailToUpdateContents = async (
                 //@ts-ignore
                 dispositif.mainSponsor.membres,
                 async (membre: Membre) => {
-                  if (membre.roles.includes("administrateur")) {
-                    let user = await getUserById(membre.userId, {
-                      username: 1,
-                      email: 1,
-                    });
-                    if (user.email) {
-                      sendUpdateReminderMailService(
-                        user.email,
-                        user.username,
-                        dispositif.titreInformatif,
-                        user._id,
-                        dispositif._id,
-                        "https://refugies.info/" +
-                          dispositif.typeContenu +
-                          "/" +
-                          dispositif._id
-                      );
-
-                      await updateDispositifInDB(dispositif._id, {
-                        lastReminderMailSentToUpdateContentDate: Date.now(),
+                  try {
+                    if (membre.roles.includes("administrateur")) {
+                      let user = await getUserById(membre.userId, {
+                        username: 1,
+                        email: 1,
                       });
+                      if (user.email) {
+                        await sendUpdateReminderMailService(
+                          user.email,
+                          user.username,
+                          dispositif.titreInformatif,
+                          user._id,
+                          dispositif._id,
+                          "https://refugies.info/" +
+                            dispositif.typeContenu +
+                            "/" +
+                            dispositif._id
+                        );
+
+                        await updateDispositifInDB(dispositif._id, {
+                          lastReminderMailSentToUpdateContentDate: Date.now(),
+                        });
+                      }
                     }
+                  } catch (e) {
+                    logger.error("[sendReminderMailToUpdateContents] error while sending mail", e);
                   }
                 }
               );
