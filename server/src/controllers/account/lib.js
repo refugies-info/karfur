@@ -1,5 +1,4 @@
 const { User } = require("../../schema/schemaUser");
-const Role = require("../../schema/schemaRole.js");
 const { Langue } = require("../../schema/schemaLangue");
 const passwordHash = require("password-hash");
 const crypto = require("crypto");
@@ -26,41 +25,41 @@ const url =
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
-const populateLanguages = (user) => {
+const populateLanguages = async (user) => {
   if (
     user.selectedLanguages &&
     user.selectedLanguages.constructor === Array &&
     user.selectedLanguages.length > 0
   ) {
     user.selectedLanguages.forEach((langue) => {
-      Langue.findOne({ _id: langue._id }).exec((err, result) => {
+      Langue.findOne({ _id: langue._id }).exec(async (err, result) => {
         if (!err) {
           if (!result.participants) {
             result.participants = [user._id];
-            result.save();
+            await result.save();
           } else if (
             !result.participants.some((participant) =>
               participant.equals(user._id)
             )
           ) {
             result.participants = [...result.participants, user._id];
-            result.save();
+            await result.save();
           }
         }
       });
     });
 
     //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
-    Langue.find({ participants: user._id }).exec((err, results) => {
+    Langue.find({ participants: user._id }).exec(async (err, results) => {
       if (!err) {
-        results.forEach((result) => {
+        results.forEach(async (result) => {
           if (
             result.participants.some((participant) =>
               participant.equals(user._id)
             )
           ) {
             if (!user.selectedLanguages.some((x) => x._id === result._id)) {
-              Langue.update(
+              await Langue.updateOne(
                 { _id: result._id },
                 { $pull: { participants: user._id } }
               );
@@ -122,30 +121,23 @@ const _checkAndNotifyAdmin = async function (
   }
 };
 
-function checkUserExists(req, res) {
+async function checkUserExists(req, res) {
   if (!req.body.username) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    User.findOne(
-      {
-        username: req.body.username, //.toLowerCase()
-      },
-      (err, user) => {
-        if (err) {
-          res.status(500).json({ text: "Erreur interne" });
-        } else if (!user) {
-          res
-            .status(204)
-            .json({ text: "L'utilisateur n'existe pas", data: false });
-        } else {
-          res.status(200).json({ text: "L'utilisateur existe", data: true });
-        }
-      }
-    );
+    return res.status(400).json({ text: "Requête invalide" });
+  }
+  try {
+    const user = await User.findOne({ username: req.body.username })
+    if (!user) {
+      return res.status(204)
+        .json({ text: "L'utilisateur n'existe pas", data: false });
+    }
+    return res.status(200).json({ text: "L'utilisateur existe", data: true });
+  } catch (e) {
+    return res.status(500).json({ text: "Erreur interne" });
   }
 }
 
-function set_user_info(req, res) {
+async function set_user_info(req, res) {
   let user = req.body;
   if (!user || !user._id) {
     res.status(400).json({ text: "Requête invalide" });
@@ -161,7 +153,7 @@ function set_user_info(req, res) {
       return false;
     }
 
-    _checkAndNotifyAdmin(user, req.roles, req.user, false); //Si on lui donne un role admin, je notifie tous les autres admin
+    await _checkAndNotifyAdmin(user, req.roles, req.user, false); //Si on lui donne un role admin, je notifie tous les autres admin
 
     // keep only needed properties
     let userToSave = {
@@ -175,19 +167,22 @@ function set_user_info(req, res) {
       userToSave["$addToSet"] = { roles: req.roles.find((x) => x.nom === "Trad")._id };
     }
 
-    User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       {
         _id: user._id,
       },
       userToSave,
       { new: true },
-      function (error, result) {
+      async function (error, result) {
         if (error) {
           res.status(500).json({ text: "Erreur interne", error: error });
         } else {
           //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-          //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
-          populateLanguages(user);
+          try {
+            await populateLanguages(user);
+          } catch (e) {
+            logger.error("[set_user_info] error while populating languages", e);
+          }
           res.status(200).json({
             data: result,
             text: "Mise à jour réussie",
@@ -234,7 +229,7 @@ function reset_password(req, res) {
             "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
-      crypto.randomBytes(20, function (errb, buffer) {
+      crypto.randomBytes(20, async function (errb, buffer) {
         if (errb) {
           return res.status(422).json({ message: errb });
         }
@@ -247,7 +242,7 @@ function reset_password(req, res) {
           .exec();
         const newUrl = url + "reset?token=" + token;
 
-        sendResetPasswordMail(username, newUrl, user.email);
+        await sendResetPasswordMail(username, newUrl, user.email);
 
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
@@ -394,99 +389,7 @@ function get_user_info(req, res) {
   });
 }
 
-//Cette fonction semble inutilisée maintenant, à vérifier
-function signup(req, res) {
-  if (!req.body.username || !req.body.password) {
-    //Le cas où l'email ou bien le password ne serait pas soumis ou nul
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    let user = req.body;
 
-    if (user.password) {
-      if ((computePasswordStrengthScore(user.password) || {}).score < 1) {
-        return res
-          .status(401)
-          .json({ text: "Le mot de passe est trop faible" });
-      }
-      user.password = passwordHash.generate(user.password);
-    }
-
-    const find = new Promise(function (resolve, reject) {
-      User.findOne(
-        {
-          username: user.username,
-        },
-        function (err, result) {
-          if (err) {
-            reject(500);
-          } else {
-            if (result) {
-              reject(204);
-            } else {
-              resolve(true);
-            }
-          }
-        }
-      );
-    });
-
-    find.then(
-      function () {
-        if (user.traducteur) {
-          user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
-          delete user.traducteur;
-        }
-        user.status = "Actif";
-        user.last_connected = new Date();
-
-        Role.findOne({ nom: "User" }).exec((e, result) => {
-          user.roles = (result || {})._id;
-
-          var _u = new User(user);
-          _u.save(function (err, user) {
-            if (err) {
-              res.status(500).json({
-                text: "Erreur interne",
-              });
-            } else {
-              //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-              //Je le fais en non bloquant, il faut pas que ça bloque l'enregistrement
-              populateLanguages(user);
-
-              res.status(200).json({
-                text: "Succès",
-                token: user.getToken(),
-                data: user,
-              });
-            }
-          });
-        });
-      },
-      function (error) {
-        switch (error) {
-          case 500:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-            break;
-          case 204:
-            res.status(404).json({
-              text: "Le nom d'utilisateur existe déjà",
-            });
-            break;
-          default:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-        }
-      }
-    );
-  }
-}
-
-//On exporte nos fonctions
-
-exports.signup = signup;
 exports.checkUserExists = checkUserExists;
 exports.set_user_info = set_user_info;
 exports.get_users = get_users;

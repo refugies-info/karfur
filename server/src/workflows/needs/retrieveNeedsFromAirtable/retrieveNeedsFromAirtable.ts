@@ -54,7 +54,7 @@ export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
                       need: needDB.fr.text,
                     });
                     // @ts-ignore
-                    createNeedInDB(needDB);
+                    await createNeedInDB(needDB);
                     return;
                   }
                 });

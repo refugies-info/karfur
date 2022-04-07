@@ -57,6 +57,10 @@ function set_image(req, res) {
         text: "Pas de résultats à l'enregistrement",
       });
     }
+  }).catch(() => {
+    res.status(500).json({
+      text: "Erreur interne",
+    });
   });
 }
 

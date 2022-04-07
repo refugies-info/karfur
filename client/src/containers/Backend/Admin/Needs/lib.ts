@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
 import { tags } from "data/tags";
+import { ObjectId } from "mongodb";
 
 export const getTagColor = (tagName: string) => {
   const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
@@ -22,12 +23,11 @@ export const getTag = (tagName: string) => {
 };
 
 export const prepareDeleteContrib = (
-  setSelectedDispositif: any,
+  setSelectedDispositifId: any,
   setShowDetailsModal: any,
   fetchAllDispositifsActionsCreator: any,
   dispatch: any,
-  dispositif?: any,
-  dispositifId?: any
+  dispositifId: ObjectId | null
 ) => {
   Swal.fire({
     title: "Êtes-vous sûr ?",
@@ -41,11 +41,7 @@ export const prepareDeleteContrib = (
   }).then((result) => {
     if (result.value) {
       const newDispositif = {
-        dispositifId: dispositif
-          ? dispositif._id
-          : dispositifId
-          ? dispositifId
-          : null,
+        dispositifId: dispositifId,
         status: "Supprimé",
       };
 
@@ -57,7 +53,7 @@ export const prepareDeleteContrib = (
             type: "success",
             timer: 1500,
           });
-          setSelectedDispositif(null);
+          setSelectedDispositifId(null);
           setShowDetailsModal(false);
           dispatch(fetchAllDispositifsActionsCreator());
         })

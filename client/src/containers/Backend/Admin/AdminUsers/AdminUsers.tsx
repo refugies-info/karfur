@@ -1,5 +1,5 @@
 import marioProfile from "assets/mario-profile.jpg";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/fr";
 import { useDispatch } from "react-redux";
@@ -12,7 +12,9 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
-import { userHeaders, correspondingStatus } from "./data";
+import { useRouter } from "next/router";
+import useRouterLocale from "hooks/useRouterLocale";
+import { userHeaders, correspondingStatus, FilterUserStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -25,7 +27,6 @@ import {
 } from "../AdminStructures/components/AdminStructureComponents";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
@@ -47,6 +48,8 @@ import API from "utils/API";
 import Swal from "sweetalert2";
 import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
+import { statusCompare } from "lib/statusCompare";
+import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 
 moment.locale("fr");
 
@@ -57,28 +60,55 @@ export const AdminUsers = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("Admin");
+  // filters
+  const router = useRouter();
+  const locale = useRouterLocale();
+  const initialFilters = getInitialFilters(router, "utilisateurs");
+  const [filter, setFilter] = useState<FilterUserStatus>(initialFilters.filter as FilterUserStatus || "Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] =
-    useState(false);
-  const [isExportLoading, setIsExportLoading] = useState(false);
+
+  // modals
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(!!initialFilters.selectedDispositifId);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  const [selectedStructureId, setSelectedStructureId] =
-    useState<ObjectId | null>(null);
-  const [showContentDetailsModal, setShowContentDetailsModal] = useState(false);
-  const [selectedContentId, setSelectedContentId] =
-    useState<ObjectId | null>(null);
-  const [selectedContentStatus, setSelectedContentStatus] =
-    useState<string | null>(null);
-  const [showImprovementsMailModal, setShowImprovementsMailModal] =
-    useState(false);
+  const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
-  const [showChangeStructureModal, setShowChangeStructureModal] =
-    useState(false);
+
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
+  const [isExportLoading, setIsExportLoading] = useState(false);
+
   const dispatch = useDispatch();
+
+  // update route params
+  useEffect(() => {
+    if (router.query.tab === "utilisateurs") {
+      const params = getAdminUrlParams(
+        router.query.tab,
+        filter,
+        selectedUserId,
+        selectedContentId,
+        selectedStructureId
+      )
+
+      router.replace({
+        pathname: locale + "/backend/admin",
+        search: params,
+      }, undefined, { shallow: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    filter,
+    router.query.tab,
+    selectedUserId,
+    selectedContentId,
+    selectedStructureId
+  ]);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -116,7 +146,7 @@ export const AdminUsers = () => {
     toggleContentDetailsModal();
   };
 
-  const onFilterClick = (status: string) => {
+  const onFilterClick = (status: FilterUserStatus) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -320,7 +350,7 @@ export const AdminUsers = () => {
           <FigureContainer>{users.length}</FigureContainer>
         </div>
         <StyledSort marginTop="8px">
-          {correspondingStatus.sort(compare).map((element) => {
+          {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.status;
             const nbUsers = getNbUsersByStatus(usersForCount, status);
             return (

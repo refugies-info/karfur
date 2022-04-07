@@ -90,7 +90,7 @@ export const login2FA = async (
     await verifyCode(phone, userFromRequest.code);
 
     if (!userFromDB.phone) { // if no phone saved, save it
-      updateUserInDB(userFromDB._id, { phone });
+      await updateUserInDB(userFromDB._id, { phone });
     }
     return true;
   }
@@ -111,7 +111,7 @@ export const login2FA = async (
       username,
     });
     // creation of user
-    updateUserInDB(userFromDB._id, {
+    await updateUserInDB(userFromDB._id, {
       email: userFromRequest.email,
     });
     return requestSMSLogin(phone);

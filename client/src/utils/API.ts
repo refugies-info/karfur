@@ -77,10 +77,6 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/login", user, { headers });
   },
-  signup: (send: any) => {
-    const headers = getHeaders();
-    return instance.post("/user/signup", send, { headers });
-  },
   checkUserExists: (query: {
     username: string
   }) => {

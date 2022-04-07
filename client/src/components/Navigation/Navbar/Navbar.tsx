@@ -105,9 +105,10 @@ const Navbar = (props: Props) => {
   };
 
   const goToProfile = () => {
-    const pathName = user.membreStruct
-      ? "/backend/user-dash-notifications"
-      : "/backend/user-favorites";
+    let pathName = "/backend/user-favorites";
+    if (user.membreStruct) pathName = "/backend/user-dash-notifications";
+    if (user.admin) pathName = "/backend/admin";
+
     const isOnBackend = router.pathname.includes("backend");
     if (!isOnBackend) router.push(pathName);
     else if (history) history.push(routerLocale + pathName);
