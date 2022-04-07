@@ -337,7 +337,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
         </span>
         <input
           accept="image/*"
-          className="file-input form-control-file"
+          className="form-control-file"
           id="picture"
           name="structure"
           onChange={[Function]}
@@ -1009,7 +1009,7 @@ exports[`UserProfile should render correctly 1`] = `
         </span>
         <input
           accept="image/*"
-          className="file-input form-control-file"
+          className="form-control-file"
           id="picture"
           name="structure"
           onChange={[Function]}
@@ -1510,7 +1510,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
         </span>
         <input
           accept="image/*"
-          className="file-input form-control-file"
+          className="form-control-file"
           id="picture"
           name="structure"
           onChange={[Function]}
