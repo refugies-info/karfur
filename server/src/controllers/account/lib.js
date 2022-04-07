@@ -123,24 +123,17 @@ const _checkAndNotifyAdmin = async function (
 
 async function checkUserExists(req, res) {
   if (!req.body.username) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    await User.findOne(
-      {
-        username: req.body.username, //.toLowerCase()
-      },
-      (err, user) => {
-        if (err) {
-          res.status(500).json({ text: "Erreur interne" });
-        } else if (!user) {
-          res
-            .status(204)
-            .json({ text: "L'utilisateur n'existe pas", data: false });
-        } else {
-          res.status(200).json({ text: "L'utilisateur existe", data: true });
-        }
-      }
-    );
+    return res.status(400).json({ text: "Requête invalide" });
+  }
+  try {
+    const user = await User.findOne({ username: req.body.username })
+    if (!user) {
+      return res.status(204)
+        .json({ text: "L'utilisateur n'existe pas", data: false });
+    }
+    return res.status(200).json({ text: "L'utilisateur existe", data: true });
+  } catch (e) {
+    return res.status(500).json({ text: "Erreur interne" });
   }
 }
 
