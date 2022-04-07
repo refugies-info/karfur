@@ -16,7 +16,8 @@
     "sourceType": "module",
     "ecmaFeatures": {
       "modules": true
-    }
+    },
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
@@ -28,6 +29,7 @@
     "quotes": ["error", "double"],
     "object-shorthand": "off",
     "eqeqeq": "error",
-    "@typescript-eslint/no-unused-vars": "error"
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-floating-promises": "error"
   }
 }

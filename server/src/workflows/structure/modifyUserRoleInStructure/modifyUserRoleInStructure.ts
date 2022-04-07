@@ -86,7 +86,7 @@ export const modifyUserRoleInStructure = async (
       } else if (userIsAdmin) {
         logger.info("[modifyUserRoleInStructure] user is admin, mail not sent");
       } else {
-        sendNewReponsableMailService({
+        await sendNewReponsableMailService({
           userId: user._id,
           email: user.email,
           pseudonyme: user.username,

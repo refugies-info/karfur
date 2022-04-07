@@ -139,19 +139,23 @@ async function add_tradForReview(req, res) {
     promise = new Traduction(traduction).save();
   }
   promise
-    .then((data) => {
-      if (req.userId) {
-        User.findByIdAndUpdate(
-          { _id: req.userId },
-          {
-            $addToSet: {
-              traductionsFaites: data._id,
-              roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
-                ._id,
+    .then(async (data) => {
+      try {
+        if (req.userId) {
+          await User.findByIdAndUpdate(
+            { _id: req.userId },
+            {
+              $addToSet: {
+                traductionsFaites: data._id,
+                roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
+                  ._id,
+              },
             },
-          },
-          { new: true }
-        );
+            { new: true }
+          );
+        }
+      } catch (e) {
+        logger.error("[addTradForReview] error", e)
       }
       res.status(200).json({
         text: "Succès",
