@@ -174,7 +174,7 @@ export interface AlgoliaObject {
   title_ar?: string;
   title_ps?: string;
   title_uk?: string;
-  "title_ti-ER"?: string;
+  title_ti?: string;
   name_fr?: string;
   name_ru?: string;
   name_en?: string;
@@ -182,7 +182,7 @@ export interface AlgoliaObject {
   name_ar?: string;
   name_ps?: string;
   name_uk?: string;
-  "name_ti-ER"?: string;
+  name_ti?: string;
   abstract_fr?: string;
   abstract_ar?: string;
   abstract_en?: string;
@@ -190,7 +190,7 @@ export interface AlgoliaObject {
   abstract_ru?: string;
   abstract_ps?: string;
   abstract_uk?: string;
-  "abstract_ti-ER"?: string;
+  abstract_ti?: string;
   sponsorName?: string;
   sponsorUrl?: string;
   nbVues?: number;
