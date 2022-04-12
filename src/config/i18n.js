@@ -9,8 +9,8 @@ export const supportedLocales = {
   ar: {
     translationFileLoader: () => require("../translations/ar.json"),
   },
-  "ti-ER": {
-    translationFileLoader: () => require("../translations/ti-ER.json"),
+  ti: {
+    translationFileLoader: () => require("../translations/ti.json"),
   },
   ru: {
     translationFileLoader: () => require("../translations/ru.json"),

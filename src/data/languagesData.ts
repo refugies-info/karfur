@@ -43,6 +43,6 @@ export const activatedLanguages: {
   {
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
-    i18nCode: "ti-ER",
+    i18nCode: "ti",
   }
 ];

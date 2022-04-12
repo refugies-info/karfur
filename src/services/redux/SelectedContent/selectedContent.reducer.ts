@@ -8,7 +8,7 @@ export type SelectedContentState = {
   ar: Content | null;
   ps: Content | null;
   fa: Content | null;
-  "ti-ER": Content | null;
+  ti: Content | null;
   ru: Content | null;
   uk: Content | null;
 };
@@ -19,7 +19,7 @@ export const initialSelectedContentState = {
   ar: null,
   ps: null,
   fa: null,
-  "ti-ER": null,
+  ti: null,
   ru: null,
   uk: null,
 };

@@ -9,7 +9,7 @@ describe("[Reducer] selected content", () => {
       en: null,
       ps: null,
       fa: null,
-      "ti-ER": null,
+      ti: null,
       ru: null,
       uk: null,
     };
@@ -24,7 +24,7 @@ describe("[Reducer] selected content", () => {
       en: null,
       ps: null,
       fa: null,
-      "ti-ER": null,
+      ti: null,
       ru: null,
       uk: null,
     });

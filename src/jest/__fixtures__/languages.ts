@@ -26,7 +26,7 @@ export const mockedLanguageData = [
   {
     _id: "5db9684e5cdcfc00165352be",
     avancementTrad: 0.46099290780141844,
-    i18nCode: "ti-ER",
+    i18nCode: "ti",
     langueFr: "Tigrinya",
   },
   {
