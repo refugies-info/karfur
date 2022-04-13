@@ -15,6 +15,7 @@ import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import styles from "scss/pages/annuaire-id.module.scss";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
   history: string[]
@@ -90,7 +91,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({qu
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
   }
 });

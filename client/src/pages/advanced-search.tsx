@@ -48,6 +48,7 @@ import { IDispositif, IUserFavorite, Language, Tag, User } from "types/interface
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/advanced-search.module.scss";
 import moment from "moment";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -1789,7 +1790,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({lo
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
   }
 });

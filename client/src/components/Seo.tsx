@@ -15,7 +15,8 @@ const getAlternateLocales = (locales: string[] | undefined, currentLocale: strin
 }
 
 const getPath = (path: string) => {
-  return path.split("?")[0];
+  const pathWithoutParams = path.split("?")[0];
+  return pathWithoutParams === "/" ? "" : pathWithoutParams;
 }
 
 const SEO = (props: Props) => {

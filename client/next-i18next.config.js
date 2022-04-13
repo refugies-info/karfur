@@ -1,10 +1,11 @@
 module.exports = {
   i18n: {
-    locales: ["fr", "en", "ps", "fa", "ti-ER", "ru", "ar", "uk"],
-    defaultLocale: "fr",
+    locales: ["default", "fr", "en", "ps", "fa", "ti-ER", "ru", "ar", "uk"],
+    defaultLocale: "default",
+    localeDetection: false,
     localePath: "./src/locales",
 
-    debug: false, // process.env.NODE_ENV === "development",
+    debug: false,
     saveMissing: false,
     interpolation: {
       escapeValue: true, // react already safes from xss

@@ -21,6 +21,7 @@ import {
   filterStructuresByLoc,
 } from "lib/filterStructures";
 import styles from "scss/pages/annuaire.module.scss";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -228,7 +229,7 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) =
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
     revalidate: 30
   };
