@@ -4,6 +4,7 @@ module.exports = {
     defaultLocale: "default",
     localeDetection: false,
     localePath: "./src/locales",
+    fallbackLng: "fr",
 
     debug: false,
     saveMissing: false,
