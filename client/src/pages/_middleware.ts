@@ -15,7 +15,7 @@ export let middleware: NextMiddleware = (request) => {
     // Set the locale to "fr"
     newUrl.locale = "fr";
     // Redirect to the new url
-    return NextResponse.redirect(newUrl);
+    return NextResponse.redirect(newUrl, 308);
   }
   // Continue to the next middleware
   return undefined;
