@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link"
+import { useRouter } from "next/router";
 import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -8,6 +9,7 @@ import Streamline from "assets/streamline";
 import { tags } from "data/tags";
 import { IDispositif, IUserFavorite } from "types/interface";
 import styles from "./SearchResultCard.module.scss";
+import { getPath } from "routes";
 
 interface Props {
   pin: (e: any, dispositif: IDispositif|IUserFavorite) => void
@@ -17,6 +19,7 @@ interface Props {
 }
 
 const SearchResultCard = (props: Props) => {
+  const router = useRouter();
   const pinned = !props.pinnedList ? false : !!props.pinnedList.find(
     (pinnedDispostifId) => pinnedDispostifId === props.dispositif._id.toString()
   );
@@ -37,6 +40,9 @@ const SearchResultCard = (props: Props) => {
       iconTag = tags.find((tag) => tag.short === shortTagFull);
     }
 
+  const typeContenu = props.dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
+  const id = props.dispositif._id ? props.dispositif._id.toString() : "";
+
     return (
       <div
         className={
@@ -44,14 +50,10 @@ const SearchResultCard = (props: Props) => {
         }
         key={props.dispositif._id.toString()}
       >
-        <Link
-          href={{
-            pathname:
-              "/" +
-              (props.dispositif.typeContenu || "dispositif") +
-              (props.dispositif._id ? "/" + props.dispositif._id : ""),
-          }}
-        >
+        <Link href={{
+          pathname: getPath(typeContenu, router.locale),
+          query: {id: id}
+        }}>
           <a>
             <CustomCard
               className={

@@ -10,7 +10,7 @@ import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { AvailableFilters } from "data/searchFilters";
 import { tags } from "data/tags";
-import { SearchQuery } from "pages/advanced-search";
+import { SearchQuery } from "pages/recherche";
 
 interface Props {
   nbFilteredResults: number;

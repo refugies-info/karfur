@@ -19,5 +19,61 @@ module.exports = {
   },
   compiler: {
     styledComponents: true
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/advanced-search",
+        destination: "/recherche",
+      },
+      {
+        source: "/directory",
+        destination: "/annuaire",
+      },
+      {
+        source: "/directory/:id",
+        destination: "/annuaire/:id",
+      },
+      {
+        source: "/directory-create",
+        destination: "/annuaire-creation",
+      },
+      {
+        source: "/procedure",
+        destination: "/demarche",
+      },
+      {
+        source: "/procedure/:id",
+        destination: "/demarche/:id",
+      },
+      {
+        source: "/program",
+        destination: "/dispositif",
+      },
+      {
+        source: "/program/:id",
+        destination: "/dispositif/:id",
+      },
+      {
+        source: "/how-to-contribute",
+        destination: "/comment-contribuer",
+      },
+      {
+        source: "/who-are-we",
+        destination: "/qui-sommes-nous",
+      },
+      {
+        source: "/legal-notices",
+        destination: "/mentions-legales",
+      },
+      {
+        source: "/accessibility-statement",
+        destination: "/declaration-accessibilite",
+      },
+      {
+        source: "/privacy-policy",
+        destination: "/politique-de-confidentialite",
+      },
+    ]
   }
 }

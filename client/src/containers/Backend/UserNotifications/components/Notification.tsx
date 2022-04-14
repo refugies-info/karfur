@@ -5,6 +5,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
+import { getPath } from "routes";
 
 const Container = styled.div`
   background: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
@@ -94,7 +95,7 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return router.push("/annuaire-create");
+      return router.push(getPath("/annuaire-creation", router.locale));
     }
 
     if (props.type === "new content" && props.link) {

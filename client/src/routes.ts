@@ -11,8 +11,129 @@ import {
 } from "./containers/Backend/UserStructure";
 import UserTranslation from "./containers/Backend/UserTranslation";
 
+// Frontend
+export type PathNames = "/" |
+  "/recherche" |
+  "/annuaire" |
+  "/annuaire/[id]" |
+  "/annuaire-creation" |
+  "/demarche" |
+  "/demarche/[id]" |
+  "/dispositif" |
+  "/dispositif/[id]" |
+  "/comment-contribuer" |
+  "/qui-sommes-nous" |
+  "/mentions-legales" |
+  "/declaration-accessibilite" |
+  "/politique-de-confidentialite" |
+  "/login" |
+  "/register" |
+  "/reset" |
+  "/backend/[...backend]"
+  ;
+
+type Routes = {
+  [key in PathNames]: {
+    fr: string;
+    ln: string;
+  };
+};
+
+export const routes: Routes = {
+  "/": {
+    fr: "/",
+    ln: "/",
+  },
+  "/recherche": {
+    fr: "/recherche",
+    ln: "/advanced-search",
+  },
+  "/annuaire": {
+    fr: "/annuaire",
+    ln: "/directory",
+  },
+  "/annuaire/[id]": {
+    fr: "/annuaire/[id]",
+    ln: "/directory/[id]",
+  },
+  "/annuaire-creation": {
+    fr: "/annuaire-creation",
+    ln: "/directory-create",
+  },
+  "/demarche": {
+    fr: "/demarche",
+    ln: "/processe",
+  },
+  "/demarche/[id]": {
+    fr: "/demarche/[id]",
+    ln: "/procedure/[id]",
+  },
+  "/dispositif": {
+    fr: "/dispositif",
+    ln: "/program",
+  },
+  "/dispositif/[id]": {
+    fr: "/dispositif/[id]",
+    ln: "/program/[id]",
+  },
+  "/comment-contribuer": {
+    fr: "/comment-contribuer",
+    ln: "/how-to-contribute",
+  },
+  "/qui-sommes-nous": {
+    fr: "/qui-sommes-nous",
+    ln: "/who-are-we",
+  },
+  "/mentions-legales": {
+    fr: "/mentions-legales",
+    ln: "/legal-notices",
+  },
+  "/declaration-accessibilite": {
+    fr: "/declaration-accessibilite",
+    ln: "/accessibility-statement",
+  },
+  "/politique-de-confidentialite": {
+    fr: "/politique-de-confidentialite",
+    ln: "/privacy-policy",
+  },
+  "/login": {
+    fr: "/login",
+    ln: "/login",
+  },
+  "/register": {
+    fr: "/register",
+    ln: "/register",
+  },
+  "/reset": {
+    fr: "/reset",
+    ln: "/reset",
+  },
+  "/backend/[...backend]": {
+    fr: "/backend/[...backend]",
+    ln: "/backend/[...backend]"
+  }
+}
+
+export const isRoute = (
+  currentPath: string,
+  pathName: PathNames
+) => {
+  return currentPath.includes(routes[pathName].fr)
+    || currentPath.includes(routes[pathName].ln);
+}
+
+export const getPath = (
+  pathName: PathNames,
+  locale: string | undefined,
+  params?: string
+) => {
+  const localeKey = locale === "fr" ? "fr" : "ln";
+  return routes[pathName][localeKey] + (params || "");
+}
+
+// Backend
 type Role = "Trad" | "ExpertTrad" | "Admin" | "hasStructure" | "User" | "Contrib";
-export type RouteType = {
+export type BackendRouteType = {
   path: string,
   exact?: boolean,
   name: string,
@@ -20,7 +141,7 @@ export type RouteType = {
   restriction: Role[]
 }
 
-const routes: RouteType[] = [
+export const backendRoutes: BackendRouteType[] = [
   {
     path: "/backend/traduction",
     exact: true,
@@ -149,4 +270,4 @@ const routes: RouteType[] = [
     restriction: ["User", "Trad", "ExpertTrad", "Admin"],
   },
 ];
-export default routes;
+

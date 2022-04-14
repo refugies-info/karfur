@@ -8,7 +8,7 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import routes, { RouteType } from "routes";
+import { backendRoutes, BackendRouteType, getPath } from "routes";
 import isInBrowser from "lib/isInBrowser";
 import SEO from "components/Seo";
 import API from "utils/API";
@@ -22,7 +22,7 @@ const Redirect = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/login")
+    router.replace(getPath("/login", router.locale))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,7 +49,7 @@ const Backend = () => {
     if (!user && !isLoading && API.isAuth()) dispatch(fetchUserActionCreator());
   }, [user, isLoading, dispatch]);
 
-  const isAuthorized = (route: RouteType) => {
+  const isAuthorized = (route: BackendRouteType) => {
     if ((route.restriction || []).length === 0) {
       // No restriction: OK
       return true;
@@ -79,7 +79,7 @@ const Backend = () => {
         user ? (
           <Router history={history || createBrowserHistory()}>
             <Switch>
-              {routes.map((route, idx) =>
+              {backendRoutes.map((route, idx) =>
                 route.component ? (
                   <Route
                     key={idx}

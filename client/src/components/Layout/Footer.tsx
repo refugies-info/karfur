@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import styles from "./Footer.module.scss";
+import { getPath } from "routes";
 
 const Footer = () => {
   const [showSubscribeNewsletterModal, setShowSubscribeNewsletterModal] =
     useState(false);
   const { t } = useTranslation();
+  const router = useRouter();
 
   const toggleSubscribeNewsletterModal = () =>
     setShowSubscribeNewsletterModal(!showSubscribeNewsletterModal);
@@ -48,7 +51,7 @@ const Footer = () => {
           </div>
           <div className={styles.links}>
             {!isMobile && (
-              <Link href="/comment-contribuer">
+              <Link href={getPath("/comment-contribuer", router.locale)}>
                 <a className={styles.link}>
                   {t(
                     "CommentContribuer.Participer / Contribuer",
@@ -57,14 +60,14 @@ const Footer = () => {
                 </a>
               </Link>
             )}
-            <Link href="/advanced-search">
+            <Link href={getPath("/recherche", router.locale)}>
               <a className={styles.link}>
                 {t("Dispositif d'accompagnement", "Chercher de l'information")}
               </a>
             </Link>
 
             {!isMobile && (
-              <Link href="/annuaire">
+              <Link href={getPath("/annuaire", router.locale)}>
                 <a className={styles.link}>
                   {t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}
                 </a>
@@ -85,7 +88,7 @@ const Footer = () => {
           </div>
           <div className={styles.links}>
             {!isMobile && (
-              <Link href="/qui-sommes-nous">
+              <Link href={getPath("/qui-sommes-nous", router.locale)}>
                 <a className={styles.link}>
                   {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
                 </a>
@@ -98,7 +101,7 @@ const Footer = () => {
                 {t("Démarche administrative", "Contacter l'èquipe")}
               </a>
             </div>
-            <Link href="/politique-de-confidentialite">
+            <Link href={getPath("/politique-de-confidentialite", router.locale)}>
               <a className={styles.link}>
                 {t(
                   "Politique de confidentialité",
@@ -106,12 +109,12 @@ const Footer = () => {
                 )}
               </a>
             </Link>
-            <Link href="/mentions-legales">
+            <Link href={getPath("/mentions-legales", router.locale)}>
               <a className={styles.link}>
                 {t("Mentions légales", "Mentions légales")}
               </a>
             </Link>
-            <Link href="/declaration-accessibilite">
+            <Link href={getPath("/declaration-accessibilite", router.locale)}>
               <a className={styles.link}>
                 {t("Footer.accessibility_link", "Accessibilité : non conforme")}
               </a>

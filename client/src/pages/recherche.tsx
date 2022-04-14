@@ -49,6 +49,7 @@ import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/advanced-search.module.scss";
 import moment from "moment";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { getPath } from "routes";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -425,6 +426,7 @@ export class AdvancedSearch extends Component<Props, State> {
     const newQueryString = qs.stringify(newQueryParam);
     if (oldQueryString !== newQueryString) {
       this.props.router.push({
+        pathname: getPath("/recherche", this.props.router.locale),
         search: newQueryString,
       }, undefined, { locale: locale, shallow: true });
     }
@@ -612,13 +614,9 @@ export class AdvancedSearch extends Component<Props, State> {
 
   writeNew = () => {
     if (this.props.user) {
-      this.props.router.push({
-        pathname: "/comment-contribuer",
-      });
+      this.props.router.push(getPath("/comment-contribuer", this.props.router.locale));
     } else {
-      this.props.router.push({
-        pathname: "/login",
-      });
+      this.props.router.push(getPath("/login", this.props.router.locale));
     }
   };
 
@@ -670,11 +668,8 @@ export class AdvancedSearch extends Component<Props, State> {
   };
 
   goToDispositif = (dispositif: IDispositif) => {
-    this.props.router.push(
-      "/" +
-        (dispositif.typeContenu || "dispositif") +
-        (dispositif._id ? "/" + dispositif._id : "")
-    );
+    const route = dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
+    this.props.router.push(getPath(route, this.props.router.locale, dispositif._id.toString() || ""));
   };
 
   upcoming = () =>

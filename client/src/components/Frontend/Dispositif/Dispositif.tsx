@@ -76,6 +76,7 @@ import { logger } from "logger";
 import { initializeTimer } from "containers/Translation/functions";
 import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/interface";
 import useRTL from "hooks/useRTL";
+import { getPath, isRoute, PathNames } from "routes";
 // store
 import {
   fetchSelectedDispositifActionCreator,
@@ -216,7 +217,7 @@ const Dispositif = (props: Props) => {
 
         // case dispositif not active and user neither admin nor contributor nor in structure
         if (isContentForbidden(dispositif, admin, user)) { // TODO: not secure
-          router.push(user ? "/" : "/login");
+          router.push(user ? "/" : getPath("/login", router.locale));
           return;
         }
         /* WHY THIS?
@@ -227,7 +228,7 @@ const Dispositif = (props: Props) => {
       if (dispositif) {
         // case dispositif not active and user neither admin nor contributor nor in structure
         if (isContentForbidden(dispositif, admin, user)) { // TODO: not secure
-          router.push(user ? "/" : "/login");
+          router.push(user ? "/" : getPath("/login", router.locale));
           return;
         }
         /* WHY THIS?
@@ -290,7 +291,7 @@ const Dispositif = (props: Props) => {
         dispatch(setSelectedDispositifActionCreator(emptyDispositif, true));
         dispatch(setUiArrayActionCreator(generateUiArray(menuContenu, true)));
       } else {
-        router.push({ pathname: "/login" });
+        router.push(getPath("/login", router.locale));
       }
     }
     setIsLoaded(true);
@@ -369,8 +370,12 @@ const Dispositif = (props: Props) => {
     if (dispositif?._id && (
       (hasEditParam && disableEdit) || (!hasEditParam && !disableEdit)  // needs redirect
     )) {
+      const route = props.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
       router.replace({
-        pathname: `/${props.typeContenu}/${dispositif._id.toString()}`,
+        pathname: getPath(route, router.locale),
+        query: {
+          id: dispositif._id.toString(),
+        },
         search: disableEdit ? null : "edit"
       }, undefined, { shallow: true });
     }
@@ -993,10 +998,10 @@ const Dispositif = (props: Props) => {
   };
 
   const goBack = () => {
-    if (props.history[1]?.includes("advanced-search")) {
+    if (isRoute(props.history[1], "/recherche")) {
       router.push(props.history[1]);
     } else {
-      router.push({ pathname: "/advanced-search" });
+      router.push({ pathname: getPath("/recherche", router.locale) });
     }
   };
 
@@ -1251,8 +1256,12 @@ const Dispositif = (props: Props) => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    const { pathname, asPath, query } = router;
-    router.push({ pathname, query }, asPath, { locale: lng });
+
+    const { pathname, query } = router;
+    router.push({
+      pathname: getPath(pathname as PathNames, lng),
+      query
+    }, undefined, { locale: lng });
   }
 
   const isRTL = useRTL();
@@ -1884,7 +1893,7 @@ const Dispositif = (props: Props) => {
               }
               typeContenu={dispositif?.typeContenu}
               navigateToCommentContribuer={() =>
-                router.push("/comment-contribuer")
+                router.push(getPath("/comment-contribuer", router.locale))
               }
             />
           )}

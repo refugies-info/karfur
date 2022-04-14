@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { Tag } from "types/interface";
 import styles from "./CatList.module.scss";
 import useRTL from "hooks/useRTL";
+import { getPath } from "routes";
 
 const InnerButton = styled.div`
   display: flex;
@@ -55,7 +56,7 @@ const CatList = (props: Props) => {
 
   const goToTag = (tag: string) => {
     router.push({
-      pathname: "/advanced-search",
+      pathname: getPath("/recherche", router.locale),
       search: "?tag=" + tag,
     });
   };
@@ -119,7 +120,7 @@ const CatList = (props: Props) => {
       <motion.li key={props.tags.length + 1} variants={itemanim}>
         <button
           onClick={() => {
-            router.push("/advanced-search");
+            router.push(getPath("/recherche", router.locale));
           }}
           className={styles.menu + " bg-gray10"}
         >

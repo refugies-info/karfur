@@ -22,6 +22,7 @@ import {
 } from "lib/filterStructures";
 import styles from "scss/pages/annuaire.module.scss";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { getPath } from "routes";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -104,7 +105,10 @@ const Annuaire = () => {
       keyword?: string;
       ville?: string;
     }) => {
-      router.push({ search: qs.stringify(query) },  undefined, { shallow: true });
+      router.push({
+        pathname: getPath("/annuaire", router.locale),
+        search: qs.stringify(query)
+      }, undefined, { shallow: true });
     };
 
     // build url
@@ -182,7 +186,10 @@ const Annuaire = () => {
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const onStructureCardClick = (id: ObjectId) =>
-    router.push({ pathname: `/annuaire/${id}` });
+    router.push({
+      pathname: getPath("/annuaire/[id]", router.locale),
+      query: {id: id.toString()}
+    });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
   return (
