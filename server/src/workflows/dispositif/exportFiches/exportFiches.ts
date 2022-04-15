@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { Res, RequestFromClientWithBody } from "../../../types/interface";
+import { Res, RequestFromClientWithBody, Need } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
@@ -24,6 +24,8 @@ interface Result {
   "Combien ça coute": string | null;
   Durée: string | null;
   "Nombre de vues": number;
+  "Besoins": string[];
+  "Date de dernière mise à jour": string;
 }
 
 const getAgeRequis = (infocards: any[]) => {
@@ -99,7 +101,7 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
   logger.info(
     `[exportFichesInAirtable] export ${fiches.length} fiches in airtable`
   );
-  base("Fiches").create(fiches, function (err: Error) {
+  base("Fiches").create(fiches, {typecast: true}, function (err: Error) {
     if (err) {
       logger.error(
         "[exportFichesInAirtable] error while exporting fiches to airtable",
@@ -147,6 +149,7 @@ const formatFiche = (fiche: any) => {
   const duree = getDuree(infocards);
   const prix = getPrice(infocards);
   const zoneAction = getZoneAction(infocards);
+  const besoins = fiche.needs ? fiche.needs.map((need: Need) => need.fr.text) : [];
 
   const formattedResult = {
     "Titre informatif": fiche.titreInformatif,
@@ -163,6 +166,8 @@ const formatFiche = (fiche: any) => {
     "Combien ça coute": prix,
     Durée: duree,
     "Nombre de vues": fiche.nbVues || 0,
+    "Besoins": besoins,
+    "Date de dernière mise à jour": fiche.updatedAt,
   };
 
   return { fields: formattedResult };
@@ -176,7 +181,14 @@ export const exportFiches = async (
 
     checkRequestIsFromSite(req.fromSite);
 
-    const fiches = await getDispositifArray({ status: "Actif" });
+    const fiches = await getDispositifArray(
+      { status: "Actif" },
+      {
+        updatedAt: 1,
+        needs: 1
+      },
+      "needs"
+    );
 
     let result: { fields: Result }[] = [];
 

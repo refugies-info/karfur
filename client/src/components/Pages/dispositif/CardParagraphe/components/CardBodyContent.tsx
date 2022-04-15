@@ -38,6 +38,7 @@ interface Props {
   subkey: number;
   t: any;
   typeContenu: "dispositif" | "demarche";
+  visibleOnMobile?: boolean;
   toggleGeolocModal: (arg: boolean) => void;
   handleMenuChange: (ev: any, value?: any) => any
   emptyPlaceholder: (e: any) => void;
@@ -178,9 +179,9 @@ export const CardBodyContent = (props: Props) => {
   return (
     <ContentEditable
       //@ts-ignore
-      id={props.keyValue}
-      data-subkey={props.subkey}
-      data-target="contentTitle"
+      id={props.visibleOnMobile ? undefined : props.keyValue} // no id for mobile to prevent duplicates
+      data-subkey={props.visibleOnMobile ? undefined : props.subkey}
+      data-target={props.visibleOnMobile ? undefined : "contentTitle"}
       html={texte} // innerHTML of the editable div
       disabled={props.disableEdit} // use true to disable editing
       onChange={props.handleMenuChange} // handle innerHTML change
