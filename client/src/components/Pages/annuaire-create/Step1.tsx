@@ -163,7 +163,6 @@ export const Step1 = (props: Props) => {
             className="position-relative"
           >
             <FileInput
-              className="file-input"
               type="file"
               id="picture"
               name="structure"

@@ -316,7 +316,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 name="upload-outline"
               >
                 <Input
-                  className="file-input"
                   type="file"
                   id="picture"
                   name="structure"

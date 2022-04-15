@@ -72,7 +72,9 @@ describe("getDispositifArray", () => {
   };
   it("should call Dispositif when query has no audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockResolvedValue(dispositifsList),
+      lean: jest.fn().mockReturnValueOnce({
+          populate: jest.fn().mockResolvedValue(dispositifsList),
+      })
     });
     const query = { status: "Actif" };
 
@@ -81,10 +83,29 @@ describe("getDispositifArray", () => {
     expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
+  it("should call Dispositif with extra fields", async () => {
+    Dispositif.find.mockReturnValueOnce({
+      lean: jest.fn().mockReturnValueOnce({
+        populate: jest.fn().mockResolvedValue(dispositifsList),
+      })
+    });
+
+    const query = { status: "Actif" };
+
+    const res = await getDispositifArray(query, {updatedAt: 1});
+
+    expect(Dispositif.find).toHaveBeenCalledWith(query, {
+      ...neededFields,
+      updatedAt: 1
+    });
+    expect(res).toEqual(dispositifsList);
+  });
 
   it("should call Dispositif when query has bottom audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockResolvedValue(dispositifsList),
+      lean: jest.fn().mockReturnValueOnce({
+        populate: jest.fn().mockResolvedValue(dispositifsList),
+      })
     });
 
     const query = { status: "Actif", "audienceAge.bottomValue": 25 };
@@ -97,7 +118,9 @@ describe("getDispositifArray", () => {
 
   it("should call Dispositif when query has bottom audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockResolvedValue(dispositifsList),
+      lean: jest.fn().mockReturnValueOnce({
+        populate: jest.fn().mockResolvedValue(dispositifsList),
+      })
     });
 
     const query = {

@@ -60,7 +60,7 @@ describe("formatForAlgolia", () => {
       title_ps: undefined,
       title_fa: undefined,
       title_en: "Get financial aids",
-      "title_ti-ER": undefined,
+      title_ti: undefined,
       title_ru: undefined,
       title_ar: undefined,
       tagName: "trouver un travail",
