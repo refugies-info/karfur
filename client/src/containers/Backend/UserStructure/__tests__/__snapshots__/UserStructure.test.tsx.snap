@@ -463,7 +463,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <a
         className="btn  dark  "
-        href="/annuaire/structureId"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -1371,7 +1371,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <a
         className="btn  dark  "
-        href="/annuaire/structureId"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -2321,7 +2321,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <a
         className="btn  dark  "
-        href="/annuaire/structureId"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -3735,7 +3735,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       </div>
       <a
         className="btn  dark  "
-        href="/annuaire/structureId"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -4328,7 +4328,7 @@ exports[`UserStructure should render correctly when structure with membres when 
       </div>
       <a
         className="btn  dark  "
-        href="/annuaire/structureId"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
