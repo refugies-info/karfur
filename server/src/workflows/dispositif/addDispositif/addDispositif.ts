@@ -105,12 +105,9 @@ export const addDispositif = async (
         dispositif.avancement =
           // @ts-ignore
           originalDispositif.avancement.fr || originalDispositif.avancement;
-
-        // @ts-ignore
-        dispositif.publishedAt = Date.now();
       }
 
-      if (dispositif.status === "Actif") {
+      if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
         // @ts-ignore
         dispositif.publishedAt = Date.now();
       }
