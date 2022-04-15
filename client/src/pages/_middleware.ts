@@ -14,6 +14,11 @@ export let middleware: NextMiddleware = (request) => {
     const newUrl = request.nextUrl.clone();
     // Set the locale to "fr"
     newUrl.locale = "fr";
+
+    if (newUrl.pathname === "/") {
+      return NextResponse.redirect(request.url + "fr", 308); // fix double redirect for /
+    }
+
     // Redirect to the new url
     return NextResponse.redirect(newUrl, 308);
   }

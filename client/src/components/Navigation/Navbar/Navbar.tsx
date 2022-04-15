@@ -98,7 +98,7 @@ const Navbar = (props: Props) => {
   }, [router.pathname, router.query]);
 
   const goBack = () => {
-    if (isRoute(props.history[1], "/recherche")) {
+    if (props.history[1] && isRoute(props.history[1], "/recherche")) {
       router.push(props.history[1]);
     } else {
       router.push(getPath("/recherche", router.locale));

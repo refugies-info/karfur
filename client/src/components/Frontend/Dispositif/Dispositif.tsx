@@ -998,7 +998,7 @@ const Dispositif = (props: Props) => {
   };
 
   const goBack = () => {
-    if (isRoute(props.history[1], "/recherche")) {
+    if (props.history[1] && isRoute(props.history[1], "/recherche")) {
       router.push(props.history[1]);
     } else {
       router.push({ pathname: getPath("/recherche", router.locale) });

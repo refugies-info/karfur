@@ -16,8 +16,6 @@ const urlTranslations = [
 ];
 
 const oldPathsRedirects = [
-  [ "/advanced-search","/fr/recherche" ], // not working
-  [ "/annuaire-create","/fr/annuaire-creation" ], // not working
   [ "/fr/advanced-search","/fr/recherche" ],
   [ "/fr/annuaire-create","/fr/annuaire-creation" ],
   [ `/:lang${ln}?/annuaire-create`,"/:lang/directory-create" ],

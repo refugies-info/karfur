@@ -28,7 +28,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
   };
 
   const onClickGoBack = () => {
-    if (isRoute(props.history[1], "/annuaire")) {
+    if (props.history[1] && isRoute(props.history[1], "/annuaire")) {
       router.push(props.history[1]);
     } else {
       router.push(getPath("/annuaire", router.locale));

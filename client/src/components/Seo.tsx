@@ -1,6 +1,7 @@
 import { getBaseUrl } from "lib/getBaseUrl";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
+import { getPath, PathNames } from "routes";
 
 interface Props {
   description?: string;
@@ -11,12 +12,13 @@ const defaultTitle = "Réfugiés.info";
 
 const getAlternateLocales = (locales: string[] | undefined, currentLocale: string|undefined) => {
   if (!locales || locales.length === 0) return [];
-  return locales.filter(locale => locale !== (currentLocale || "fr"));
+  return locales.filter(locale => locale !== "default" && locale !== (currentLocale || "fr"));
 }
 
-const getPath = (path: string) => {
-  const pathWithoutParams = path.split("?")[0];
-  return pathWithoutParams === "/" ? "" : pathWithoutParams;
+const getFullPath = (router: NextRouter, ln: string) => {
+  const path = getPath(router.pathname as PathNames, ln)
+    .replace("[id]", router.query.id as string || ""); // replace id params
+  return getBaseUrl() + ln + path;
 }
 
 const SEO = (props: Props) => {
@@ -57,7 +59,7 @@ const SEO = (props: Props) => {
         <link
           key={i}
           hrefLang={ln}
-          href={getBaseUrl() + ln + getPath(router.asPath)}
+          href={getFullPath(router, ln)}
         ></link>
       ))}
     </Head>

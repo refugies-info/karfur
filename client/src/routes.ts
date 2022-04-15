@@ -12,7 +12,8 @@ import {
 import UserTranslation from "./containers/Backend/UserTranslation";
 
 // Frontend
-export type PathNames = "/" |
+export type PathNames =
+  "/" |
   "/recherche" |
   "/annuaire" |
   "/annuaire/[id]" |
@@ -33,93 +34,36 @@ export type PathNames = "/" |
   ;
 
 type Routes = {
-  [key in PathNames]: {
-    fr: string;
-    ln: string;
-  };
+  [key in PathNames]: string
 };
 
-export const routes: Routes = {
-  "/": {
-    fr: "/",
-    ln: "/",
-  },
-  "/recherche": {
-    fr: "/recherche",
-    ln: "/advanced-search",
-  },
-  "/annuaire": {
-    fr: "/annuaire",
-    ln: "/directory",
-  },
-  "/annuaire/[id]": {
-    fr: "/annuaire/[id]",
-    ln: "/directory/[id]",
-  },
-  "/annuaire-creation": {
-    fr: "/annuaire-creation",
-    ln: "/directory-create",
-  },
-  "/demarche": {
-    fr: "/demarche",
-    ln: "/processe",
-  },
-  "/demarche/[id]": {
-    fr: "/demarche/[id]",
-    ln: "/procedure/[id]",
-  },
-  "/dispositif": {
-    fr: "/dispositif",
-    ln: "/program",
-  },
-  "/dispositif/[id]": {
-    fr: "/dispositif/[id]",
-    ln: "/program/[id]",
-  },
-  "/comment-contribuer": {
-    fr: "/comment-contribuer",
-    ln: "/how-to-contribute",
-  },
-  "/qui-sommes-nous": {
-    fr: "/qui-sommes-nous",
-    ln: "/who-are-we",
-  },
-  "/mentions-legales": {
-    fr: "/mentions-legales",
-    ln: "/legal-notices",
-  },
-  "/declaration-accessibilite": {
-    fr: "/declaration-accessibilite",
-    ln: "/accessibility-statement",
-  },
-  "/politique-de-confidentialite": {
-    fr: "/politique-de-confidentialite",
-    ln: "/privacy-policy",
-  },
-  "/login": {
-    fr: "/login",
-    ln: "/login",
-  },
-  "/register": {
-    fr: "/register",
-    ln: "/register",
-  },
-  "/reset": {
-    fr: "/reset",
-    ln: "/reset",
-  },
-  "/backend/[...backend]": {
-    fr: "/backend/[...backend]",
-    ln: "/backend/[...backend]"
-  }
+const routes: Routes = {
+  "/": "/",
+  "/recherche": "/advanced-search",
+  "/annuaire": "/directory",
+  "/annuaire/[id]": "/directory/[id]",
+  "/annuaire-creation": "/directory-create",
+  "/demarche": "/processe",
+  "/demarche/[id]": "/procedure/[id]",
+  "/dispositif": "/program",
+  "/dispositif/[id]": "/program/[id]",
+  "/comment-contribuer": "/how-to-contribute",
+  "/qui-sommes-nous": "/who-are-we",
+  "/mentions-legales": "/legal-notices",
+  "/declaration-accessibilite": "/accessibility-statement",
+  "/politique-de-confidentialite": "/privacy-policy",
+  "/login": "/login",
+  "/register": "/register",
+  "/reset": "/reset",
+  "/backend/[...backend]": "/backend/[...backend]"
 }
 
 export const isRoute = (
   currentPath: string,
   pathName: PathNames
 ) => {
-  return currentPath.includes(routes[pathName].fr)
-    || currentPath.includes(routes[pathName].ln);
+  return currentPath.includes(pathName)
+    || currentPath.includes(routes[pathName]);
 }
 
 export const getPath = (
@@ -127,8 +71,7 @@ export const getPath = (
   locale: string | undefined,
   params?: string
 ) => {
-  const localeKey = locale === "fr" ? "fr" : "ln";
-  return routes[pathName][localeKey] + (params || "");
+  return `${locale === "fr" ? pathName : routes[pathName]}${params || ""}`
 }
 
 // Backend
