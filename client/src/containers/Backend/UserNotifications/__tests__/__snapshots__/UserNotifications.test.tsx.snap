@@ -539,39 +539,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 `;
 
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c3 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c2 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
 .c4 {
   background: #2d9cdb;
   border-radius: 12px;
@@ -688,6 +655,39 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   color: #f44336;
   margin-right: 8px;
   margin-left: 8px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c3 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c2 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
 }
 
 .c0 {

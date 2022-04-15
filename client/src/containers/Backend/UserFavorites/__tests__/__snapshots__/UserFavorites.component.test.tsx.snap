@@ -1,6 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UserFavorites should render correctly when 0 favorites 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -32,36 +62,6 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #edebeb;
-  border-radius: 12px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  width: 1120px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  margin-right: 32px;
-  margin-left: 32px;
 }
 
 .c6 {
@@ -579,39 +579,6 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 `;
 
 exports[`UserFavorites should render correctly when 3 favorites 1`] = `
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin-bottom: 32px;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c5 {
-  background: #212121;
-  border-radius: 12px;
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  color: #ffffff;
-  padding: 8px 19px 8px 19px;
-  margin: 0px 8px 0px 8px;
-}
-
-.c4 {
-  font-weight: bold;
-  font-size: 28px;
-  line-height: 35px;
-  margin-bottom: 8px;
-}
-
 .c1 {
   background: #edebeb;
   border-radius: 12px;
@@ -650,6 +617,39 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   justify-content: flex-start;
   margin-right: 32px;
   margin-left: 32px;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 32px;
+  -webkit-align-items: flex-end;
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+
+.c5 {
+  background: #212121;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  padding: 8px 19px 8px 19px;
+  margin: 0px 8px 0px 8px;
+}
+
+.c4 {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 8px;
 }
 
 .c0 {
@@ -1189,6 +1189,36 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 `;
 
 exports[`UserFavorites should render correctly when loading 1`] = `
+.c1 {
+  background: #edebeb;
+  border-radius: 12px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1120px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  margin-right: 32px;
+  margin-left: 32px;
+}
+
 .c2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1220,36 +1250,6 @@ exports[`UserFavorites should render correctly when loading 1`] = `
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
-}
-
-.c1 {
-  background: #edebeb;
-  border-radius: 12px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  width: 1120px;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  margin-right: 32px;
-  margin-left: 32px;
 }
 
 .c6 {
