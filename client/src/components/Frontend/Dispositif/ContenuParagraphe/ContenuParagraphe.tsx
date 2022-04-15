@@ -191,6 +191,7 @@ const ContenuParagraphe = (props: Props) => {
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
                   typeContenu={props.typeContenu}
+                  visibleOnMobile={true}
                 />
               );
             }
