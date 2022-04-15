@@ -370,13 +370,15 @@ const Dispositif = (props: Props) => {
       (hasEditParam && disableEdit) || (!hasEditParam && !disableEdit)  // needs redirect
     )) {
       const route = props.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
-      router.replace({
-        pathname: getPath(route, router.locale),
-        query: {
-          id: dispositif._id.toString(),
+      const id = dispositif._id.toString();
+      router.replace(
+        {
+          pathname: getPath(route, router.locale),
+          query: { id },
         },
-        search: disableEdit ? null : "edit"
-      }, undefined, { shallow: true });
+        router.asPath + (disableEdit ? "" : "?edit"),
+        { shallow: true }
+      );
     }
     return () => { if (timer.current) clearInterval(timer.current) }
   // eslint-disable-next-line react-hooks/exhaustive-deps
