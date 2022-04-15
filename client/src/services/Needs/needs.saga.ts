@@ -2,8 +2,6 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest, call, put } from "redux-saga/effects";
 import API from "../../utils/API";
 import { logger } from "../../logger";
-
-import _ from "lodash";
 import {
   startLoading,
   LoadingStatusKey,

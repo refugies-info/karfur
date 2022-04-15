@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import "moment/locale/fr";
 import API from "utils/API";
-import _ from "lodash";
+import find from "lodash/find";
 import { targetByTag } from "./data";
 import FButton from "components/UI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
@@ -147,7 +147,7 @@ class Dashboard extends Component {
               principal xxx (vs objectif)):
             </b>
             {Object.keys(this.state.nbDispositifsByMainTag).map((tag, key) => {
-              const targetTag = _.find(targetByTag, { name: tag });
+              const targetTag = find(targetByTag, { name: tag });
               const targetDispo =
                 targetTag && targetTag.targetDispositif
                   ? targetTag.targetDispositif

@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import qs from "query-string";
-import _ from "lodash";
+import get from "lodash/get";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import withSizes from "react-sizes";
@@ -449,9 +449,9 @@ export class AdvancedSearch extends Component<Props, State> {
     if (this.state.query.theme) {
       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
       dispositifs = dispositifs.sort((a, b) =>
-        _.get(a, "tags.0.name", {}) === this.state.query.theme
+        get(a, "tags.0.name", {}) === this.state.query.theme
           ? -1
-          : _.get(b, "tags.0.name", {}) === this.state.query.theme
+          : get(b, "tags.0.name", {}) === this.state.query.theme
           ? 1
           : 0
       );
@@ -657,11 +657,11 @@ export class AdvancedSearch extends Component<Props, State> {
       var aValue = 0;
       var bValue = 0;
       if (order === "created_at") {
-        aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
-        bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
+        aValue = get(a, "publishedAt", get(a, "created_at"));
+        bValue = get(b, "publishedAt", get(b, "created_at"));
       } else {
-        aValue = _.get(a, order);
-        bValue = _.get(b, order);
+        aValue = get(a, order);
+        bValue = get(b, order);
       }
       return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
     });

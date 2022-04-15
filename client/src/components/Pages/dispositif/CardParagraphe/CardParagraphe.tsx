@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
-import _ from "lodash";
+import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
@@ -157,7 +157,7 @@ const CardParagraphe = (props: Props) => {
 
   const computeCardClassName = () => {
     const safeMainTag =
-      _.isEmpty(props.mainTag) || !props.mainTag.short
+      isEmpty(props.mainTag) || !props.mainTag.short
         ? "noImage"
         : props.mainTag.short.replace(/ /g, "-");
 

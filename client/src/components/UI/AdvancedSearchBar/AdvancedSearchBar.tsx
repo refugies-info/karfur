@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";

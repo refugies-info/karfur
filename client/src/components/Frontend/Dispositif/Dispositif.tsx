@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, createRef } from "react";
 import { useTranslation } from "next-i18next";
-import { Col, Row, Spinner } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import ContentEditable from "react-contenteditable";
@@ -10,7 +10,6 @@ import moment from "moment";
 import "moment/locale/fr";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
-import _ from "lodash";
 import { convertToHTML } from "draft-convert";
 import API from "utils/API";
 // components
