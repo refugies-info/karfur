@@ -50,6 +50,7 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   disableEdit: boolean;
   mainTag: Tag;
+  visibleOnMobile?: boolean;
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (arg1: boolean) => void;
   changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
@@ -225,6 +226,7 @@ const CardParagraphe = (props: Props) => {
                 handleMenuChange={props.handleMenuChange}
                 emptyPlaceholder={emptyPlaceholder}
                 mainTag={props.mainTag}
+                visibleOnMobile={props.visibleOnMobile}
               />
             </span>
 
