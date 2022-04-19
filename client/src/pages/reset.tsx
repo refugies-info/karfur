@@ -30,6 +30,7 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { getPath, PathNames } from "routes";
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -145,8 +146,11 @@ const Reset = () => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    const { pathname, asPath, query } = router;
-    router.push({ pathname, query }, asPath, { locale: lng });
+    const { pathname, query } = router;
+    router.push({
+      pathname: getPath(pathname as PathNames, lng),
+      query
+    }, undefined, { locale: lng });
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
@@ -177,7 +181,7 @@ const Reset = () => {
           )}
           ...
         </h5>
-        <Link href="/login" passHref>
+        <Link href={getPath("/login", router.locale)} passHref>
           <FButton tag="a" fill={colors.gray90} name="arrow-back-outline">
             {t(
               "Login.Revenir à la page de connexion",

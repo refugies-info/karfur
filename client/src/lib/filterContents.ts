@@ -1,5 +1,5 @@
 import { searchFrench, FrenchLevelFilter, AgeFilter, searchAge } from "data/searchFilters";
-import { SearchQuery } from "pages/advanced-search";
+import { SearchQuery } from "pages/recherche";
 import { IDispositif } from "types/interface";
 
 const filterContentsByTheme = (contents: IDispositif[], tagFilter: string | undefined) => {

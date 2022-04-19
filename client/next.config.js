@@ -1,4 +1,5 @@
 const { i18n } = require("./next-i18next.config");
+const { translatedRedirects, oldPathsRedirects, rewrites } = require("./redirects.js");
 
 module.exports = {
   reactStrictMode: true, // Fix for https://github.com/kirill-konshin/next-redux-wrapper/issues/422
@@ -19,5 +20,14 @@ module.exports = {
   },
   compiler: {
     styledComponents: true
-  }
+  },
+  async rewrites() {
+    return rewrites
+  },
+   async redirects() {
+     return [
+       ...oldPathsRedirects,
+       ...translatedRedirects,
+     ]
+  },
 }

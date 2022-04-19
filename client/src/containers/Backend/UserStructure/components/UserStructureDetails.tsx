@@ -16,6 +16,8 @@ import { AddMemberModal } from "./AddMemberModal";
 import { EditMemberModal } from "./EditMemberModal";
 import styles from "./UserStructureDetails.module.scss";
 import Link from "next/link";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 const StructureName = styled.div`
   font-weight: bold;
@@ -66,7 +68,9 @@ const formatRoles = (membres: UserStructureMembre[]) =>
       return { ...membre, mainRole: "Rédacteur" };
     return { ...membre, mainRole: "Exclus" };
   });
+
 export const UserStructureDetails = (props: Props) => {
+  const router = useRouter();
   const [showAddMemberModal, setShowAddMemberModal] = useState(false);
   const toggleAddMemberModal = () => setShowAddMemberModal(!showAddMemberModal);
 
@@ -113,7 +117,10 @@ export const UserStructureDetails = (props: Props) => {
         <StructureName>{props.name}</StructureName>
         {isMember && (
           <Link
-            href={"/annuaire/" + props.structureId}
+            href={{
+              pathname: getPath("/annuaire/[id]", router.locale),
+              query: {id: props.structureId.toString()}
+            }}
             passHref
           >
             <FButton

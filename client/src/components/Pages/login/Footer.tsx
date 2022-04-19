@@ -2,6 +2,8 @@ import React from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link"
 import styles from "scss/components/login.module.scss";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 interface Props {
   step: number
@@ -17,6 +19,7 @@ interface Props {
 
 const Footer = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const contactSupportCallback = React.useCallback(() => {
     window.$crisp.push(["do", "chat:open"]);
   }, [])
@@ -82,7 +85,7 @@ const Footer = (props: Props) => {
       <>
         <p className={styles.footer_links}>
           {t("Login.Pas encore de compte ?", "Pas encore de compte ?")}{" "}
-          <Link href="/register" >
+          <Link href={getPath("/register", router.locale)} >
             <a className={styles.link}>
               {t("Login.Créez un compte", "Créez un compte")}
             </a>

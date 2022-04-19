@@ -3,11 +3,11 @@
 
 .toolbar {
   width: fit-content;
-  background: transparent;
+  background: transparent !important;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 8px;
-  border: none;
+  border: none !important;
   z-index: 4;
 
   .card_body {

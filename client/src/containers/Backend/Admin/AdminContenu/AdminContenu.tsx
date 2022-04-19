@@ -54,6 +54,7 @@ import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
+import { getPath } from "routes";
 
 
 moment.locale("fr");
@@ -394,7 +395,7 @@ export const AdminContenu = () => {
           withMargin={true}
         />
         <Link
-          href={"/comment-contribuer#ecrire"}
+          href={getPath("/comment-contribuer", router.locale)+"#ecrire"}
           passHref
         >
           <FButton

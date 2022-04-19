@@ -936,7 +936,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center dispositif"
           >
             <a
-              href="/dispositif/id1"
+              href="/program/id1"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
@@ -1043,7 +1043,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center dispositif"
           >
             <a
-              href="/dispositif/id2"
+              href="/program/id2"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
@@ -1144,7 +1144,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center demarche"
           >
             <a
-              href="/demarche/id3"
+              href="/procedure/id3"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >

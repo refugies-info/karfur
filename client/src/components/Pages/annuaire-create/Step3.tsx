@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
-import _ from "lodash";
+import groupBy from "lodash/groupBy";
 import { UserStructure } from "types/interface";
 import { activities } from "data/activities";
 import { ActivityCard } from "./ActivityCard";
@@ -74,7 +74,7 @@ interface Props {
 
 export const Step3 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
-  const groupedActivities = _.groupBy(activities, (activity) => activity.tag);
+  const groupedActivities = groupBy(activities, (activity) => activity.tag);
 
   const getUpdatedActivities = (selectedActivity: string) => {
     if (!props.structure) return [];

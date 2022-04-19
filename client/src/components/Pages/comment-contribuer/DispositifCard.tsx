@@ -7,6 +7,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "./DispositifCard.module.scss";
 import Image from "next/image";
+import { getPath } from "routes";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -52,10 +53,10 @@ const DispositifCard = (props: Props) => {
       className={styles.container}
       onClick={() => {
         if (!props.user) {
-          return router.push("/login");
+          return router.push(getPath("/login", router.locale));
         }
         if (props.user.email !== "") {
-          return router.push("/dispositif");
+          return router.push(getPath("/dispositif", router.locale));
         }
         return props.toggleModal("dispositif");
       }}

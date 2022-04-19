@@ -8,6 +8,7 @@ import Streamline from "assets/streamline";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
 import { useRouter } from "next/router";
+import { getPath } from "routes";
 
 interface Props {
   tagSelected: null | Tag;
@@ -94,7 +95,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       </TotalCountTitle>
 
       {props.nbFilteredResults === 0 && props.ville === "" && (
-        <NoResultPlaceholder restart={() => router.push("/advanced-search")} />
+        <NoResultPlaceholder restart={() => router.push(getPath("/recherche", router.locale))} />
       )}
 
       {props.tagSelected && props.ville === "" ? (

@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import FButton from "components/UI/FButton/FButton";
 import { assetsOnServer } from "assets/assetsOnServer";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 const MissionContentContainer = styled.div`
   display: flex;
@@ -44,6 +46,8 @@ const FooterText = styled.div`
 
 const MissionDispositif = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   return (
     <MissionDetailContainer>
       <Image
@@ -64,7 +68,7 @@ const MissionDispositif = () => {
           "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives."
         )}
       </MissionDetailDescription>
-      <Link href="/advanced-search?filter=dispositifs" passHref>
+      <Link href={getPath("/recherche", router.locale, "?filter=dispositifs")} passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher un dispositif", "Explorer un dispositif")}
         </FButton>
@@ -75,6 +79,8 @@ const MissionDispositif = () => {
 
 const MissionDemarche = () => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   return (
     <MissionDetailContainer>
       <div>
@@ -97,7 +103,7 @@ const MissionDemarche = () => {
           "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration."
         )}
       </MissionDetailDescription>
-      <Link href="/advanced-search?filter=demarches" passHref>
+      <Link href={getPath("/recherche", router.locale, "?filter=demarches")} passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher une démarche", "Explorer les démarches")}
         </FButton>

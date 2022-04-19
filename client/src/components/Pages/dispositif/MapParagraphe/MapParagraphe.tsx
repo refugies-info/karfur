@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import _ from "lodash";
+import get from "lodash/get";
 import { useTranslation } from "next-i18next";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -45,7 +45,7 @@ const MapParagraphe = (props: Props) => {
 
   const onPlacesChanged = () => {
     //J'enlève tous les markers qui ont pas été validés
-    const place = _.get(refs.searchBox.getPlaces(), "0", {});
+    const place = get(refs.searchBox.getPlaces(), "0", {});
     const nextMarker = {
       latitude: place.geometry.location.lat(),
       longitude: place.geometry.location.lng(),
@@ -54,7 +54,7 @@ const MapParagraphe = (props: Props) => {
       place_id: place.place_id,
       position: place.geometry.location,
     };
-    const nextCenter = _.get(nextMarker, "position", center);
+    const nextCenter = get(nextMarker, "position", center);
 
     setCenter(nextCenter);
     setSelectedMarker(nextMarker);

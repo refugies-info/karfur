@@ -29,6 +29,7 @@ import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
 import useRTL from "hooks/useRTL";
+import { getPath, PathNames } from "routes";
 
 interface Props {
   children: any
@@ -48,8 +49,11 @@ const Layout = (props: Props) => {
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
 
-    const { pathname, asPath, query } = router;
-    router.replace({ pathname, query }, asPath, { locale: lng }).then(() => {
+    const { pathname, query } = router;
+    router.replace({
+      pathname: getPath(pathname as PathNames, lng),
+      query
+    }, undefined, { locale: lng }).then(() => {
       setLanguageLoaded(true);
     });
 
@@ -65,7 +69,7 @@ const Layout = (props: Props) => {
   useEffect(() => {
     // Language popup
     const storedLanguei18nCode = localStorage.getItem("languei18nCode");
-    if (storedLanguei18nCode && storedLanguei18nCode !== "fr") {
+    if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       dispatch(toggleLangueModalActionCreator());
