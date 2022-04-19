@@ -9,7 +9,7 @@ import {
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
 import Router from "next/router";
 import { userSelector } from "../User/user.selectors";
-import _ from "lodash";
+import isEmpty from "lodash/isEmpty";
 import {
   startLoading,
   LoadingStatusKey,
@@ -48,7 +48,7 @@ export function* fetchSelectedDispositif(
         !user.user.contributions.includes(dispositif._id) &&
         !user.user.structures.includes(dispositif.mainSponsor._id)
       ) {
-        if (_.isEmpty(user)) {
+        if (isEmpty(user)) {
           yield call(Router.push, "/login");
         }
         // yield call(Router.push, "/");

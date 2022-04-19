@@ -14,7 +14,6 @@ import {
   Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
-import _ from "lodash";
 import { useTranslation } from "next-i18next";
 
 import FButton from "components/UI/FButton/FButton";

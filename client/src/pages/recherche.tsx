@@ -5,7 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Tooltip } from "reactstrap";
 import Swal from "sweetalert2";
 import qs from "query-string";
-import _ from "lodash";
+import get from "lodash/get";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import withSizes from "react-sizes";
@@ -48,6 +48,8 @@ import { IDispositif, IUserFavorite, Language, Tag, User } from "types/interface
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/advanced-search.module.scss";
 import moment from "moment";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { getPath } from "routes";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -424,6 +426,7 @@ export class AdvancedSearch extends Component<Props, State> {
     const newQueryString = qs.stringify(newQueryParam);
     if (oldQueryString !== newQueryString) {
       this.props.router.push({
+        pathname: getPath("/recherche", this.props.router.locale),
         search: newQueryString,
       }, undefined, { locale: locale, shallow: true });
     }
@@ -446,9 +449,9 @@ export class AdvancedSearch extends Component<Props, State> {
     if (this.state.query.theme) {
       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
       dispositifs = dispositifs.sort((a, b) =>
-        _.get(a, "tags.0.name", {}) === this.state.query.theme
+        get(a, "tags.0.name", {}) === this.state.query.theme
           ? -1
-          : _.get(b, "tags.0.name", {}) === this.state.query.theme
+          : get(b, "tags.0.name", {}) === this.state.query.theme
           ? 1
           : 0
       );
@@ -611,13 +614,9 @@ export class AdvancedSearch extends Component<Props, State> {
 
   writeNew = () => {
     if (this.props.user) {
-      this.props.router.push({
-        pathname: "/comment-contribuer",
-      });
+      this.props.router.push(getPath("/comment-contribuer", this.props.router.locale));
     } else {
-      this.props.router.push({
-        pathname: "/login",
-      });
+      this.props.router.push(getPath("/login", this.props.router.locale));
     }
   };
 
@@ -658,22 +657,19 @@ export class AdvancedSearch extends Component<Props, State> {
       var aValue = 0;
       var bValue = 0;
       if (order === "created_at") {
-        aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
-        bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
+        aValue = get(a, "publishedAt", get(a, "created_at"));
+        bValue = get(b, "publishedAt", get(b, "created_at"));
       } else {
-        aValue = _.get(a, order);
-        bValue = _.get(b, order);
+        aValue = get(a, order);
+        bValue = get(b, order);
       }
       return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
     });
   };
 
   goToDispositif = (dispositif: IDispositif) => {
-    this.props.router.push(
-      "/" +
-        (dispositif.typeContenu || "dispositif") +
-        (dispositif._id ? "/" + dispositif._id : "")
-    );
+    const route = dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
+    this.props.router.push(getPath(route, this.props.router.locale, dispositif._id.toString() || ""));
   };
 
   upcoming = () =>
@@ -1789,7 +1785,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({lo
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
   }
 });

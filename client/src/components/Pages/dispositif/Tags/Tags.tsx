@@ -9,6 +9,7 @@ import styles from "./Tags.module.scss";
 import { tags } from "data/tags";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
+import { getPath } from "routes";
 
 interface Props {
   tags: Tag[];
@@ -38,7 +39,7 @@ const Tags = (props: Props) => {
   const toggleDropdown = (key: number, tag: Tag) => {
     if (props.disableEdit) {
       router.push({
-        pathname: "/advanced-search",
+        pathname: getPath("/recherche", router.locale),
         search: "?tag=" + tag.short || tag.name,
       });
     } else {

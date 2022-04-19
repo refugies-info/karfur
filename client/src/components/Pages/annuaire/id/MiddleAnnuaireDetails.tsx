@@ -12,6 +12,8 @@ import Skeleton from "react-loading-skeleton";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import { tags } from "data/tags";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
 
 interface Props {
   structure: Structure | null;
@@ -211,6 +213,7 @@ const sortStructureActivities = (structure: Structure | null) => {
 
 export const MiddleAnnuaireDetail = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const structure = props.structure;
   const activitiesSortedByTheme = sortStructureActivities(structure);
 
@@ -231,7 +234,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </TitleContainer>
           {props.isMember && (
             <div style={{ height: "5Opx" }}>
-              <Link href="/annuaire-create" passHref>
+              <Link href={getPath("/annuaire-creation", router.locale)} passHref>
                 <FButton
                   tag="a"
                   type="dark"

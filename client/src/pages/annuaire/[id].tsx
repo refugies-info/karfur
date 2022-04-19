@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import _ from "lodash";
 import { useRouter } from "next/router";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -15,6 +14,7 @@ import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import styles from "scss/pages/annuaire-id.module.scss";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
   history: string[]
@@ -90,7 +90,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({qu
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
   }
 });

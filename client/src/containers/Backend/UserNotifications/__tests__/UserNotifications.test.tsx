@@ -212,7 +212,7 @@ describe("UserNotifications", () => {
     component.root
       .findByProps({ testID: "test-notif-annuaire" })
       .props.onClick({ stopPropagation: jest.fn() });
-    expect(Router).toMatchObject({ asPath: "/annuaire-create" });
+    expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
 
   it("should delete notif reaction", () => {

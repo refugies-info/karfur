@@ -40,6 +40,7 @@ import history from "utils/backendHistory";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
 import useRouterLocale from "hooks/useRouterLocale";
+import { getPath, isRoute } from "routes";
 
 interface Props {
   history: string[]
@@ -97,10 +98,10 @@ const Navbar = (props: Props) => {
   }, [router.pathname, router.query]);
 
   const goBack = () => {
-    if (props.history[1]?.includes("advanced-search")) {
+    if (props.history[1] && isRoute(props.history[1], "/recherche")) {
       router.push(props.history[1]);
     } else {
-      router.push({ pathname: "/advanced-search" });
+      router.push(getPath("/recherche", router.locale));
     }
   };
 
@@ -126,8 +127,8 @@ const Navbar = (props: Props) => {
     dispositifsAssocies,
     hasResponsibleSeenNotification
   );
-  const isUserOnContentPage =
-    path.includes("dispositif") || path.includes("demarche");
+  const isUserOnContentPage = path.includes("dispositif") || path.includes("demarche");
+
   return (
     <header
       className={`${styles.navbar} ${visible || !scroll ? "" : styles.hidden} ${
@@ -171,7 +172,7 @@ const Navbar = (props: Props) => {
           <button
             className={cls(mobile.visible_flex, styles.mobile_search_btn)}
             onClick={() => {
-              router.push({ pathname: "/advanced-search" });
+              router.push(getPath("/recherche", router.locale));
             }}
           >
             <EVAIcon name="search" size="large" fill={colors.gray10} />
@@ -185,7 +186,7 @@ const Navbar = (props: Props) => {
         )}
 
         {!isMobile && (
-          <Link href="/advanced-search">
+          <Link href={getPath("/recherche", router.locale)}>
             <a
               className={`${styles.advanced_search_btn} ${
                 isRTL ? styles.advanced_search_btn_rtl : ""
@@ -221,7 +222,7 @@ const Navbar = (props: Props) => {
             </button>
           </div> :
           <div className="text-nowrap">
-            <Link href="/register" passHref>
+            <Link href={getPath("/register", router.locale)} passHref>
               <FButton
                 type="signup"
                 name="person-add-outline"
@@ -232,7 +233,7 @@ const Navbar = (props: Props) => {
                 <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
               </FButton>
             </Link>
-            <Link href="/login" passHref>
+            <Link href={getPath("/login", router.locale)} passHref>
                 <FButton
                   type="login"
                   name="log-in-outline"

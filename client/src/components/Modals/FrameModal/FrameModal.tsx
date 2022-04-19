@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import { colors } from "colors";
-import _ from "lodash";
+import find from "lodash/find";
 
 import FButton from "../../UI/FButton/FButton";
 import { sectionUrlCorrespondencies } from "./data";
@@ -24,7 +24,7 @@ const FrameModal = (props: Props) => {
     if (!props.section) {
       return defaultUrl;
     }
-    const sectionUrlCorrespondency = _.find(sectionUrlCorrespondencies, {
+    const sectionUrlCorrespondency = find(sectionUrlCorrespondencies, {
       section: props.section,
     });
 

@@ -4,6 +4,7 @@ import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositif/selectedDispositif.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
   history: string[]
@@ -34,7 +35,7 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ q
   // 200
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
   }
 });

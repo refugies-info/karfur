@@ -3,7 +3,7 @@ import { colors } from "colors";
 import Autocomplete from "react-google-autocomplete";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./LocalisationFilter.module.scss";
-import { SearchQuery } from "pages/advanced-search";
+import { SearchQuery } from "pages/recherche";
 import { AvailableFilters } from "data/searchFilters";
 
 interface Props {

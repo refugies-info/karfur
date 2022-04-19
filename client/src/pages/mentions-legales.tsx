@@ -3,8 +3,12 @@ import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 const MentionsLegales = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
       <SEO title="Mentions légales" />
@@ -49,7 +53,7 @@ const MentionsLegales = () => {
       <p>
         Les informations personnelles collectées ne sont en aucun cas confiées à
         des tiers. Pour plus d&apos;information consultez la page relative à{" "}
-        <Link href="/politique-de-confidentialite/">
+        <Link href={getPath("/politique-de-confidentialite", router.locale)}>
           <a>
             <strong>notre politique de confidentialité</strong>
           </a>

@@ -5,6 +5,8 @@ import { SimplifiedStructure } from "types/interface";
 import { useTranslation } from "next-i18next";
 import styles from "./Header.module.scss";
 import useRTL from "hooks/useRTL";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 interface Props {
   letters: string[];
@@ -30,6 +32,7 @@ interface Props {
 export const Header = (props: Props) => {
   const isRTL = useRTL();
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <>
@@ -66,11 +69,12 @@ export const Header = (props: Props) => {
           <>
             {props.letters.map((letter) => (
               <Link
-                href={
+                href={getPath(
+                  "/annuaire",
+                  router.locale,
                   props.lettersClickable.includes(letter.toLocaleUpperCase())
-                    ? `/annuaire#${letter.toUpperCase()}`
-                    : "/annuaire"
-                }
+                    ? "#" + letter.toUpperCase() : ""
+                )}
                 key={letter}
               >
                   <a

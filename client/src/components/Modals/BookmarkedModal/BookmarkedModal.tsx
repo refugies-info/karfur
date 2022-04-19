@@ -2,10 +2,12 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import styles from "./BookmarkedModal.module.scss";
+import { getPath } from "routes";
 
 interface Props {
   show: boolean
@@ -16,6 +18,7 @@ interface Props {
 const BookmarkedModal = (props: Props) => {
   const { t } = useTranslation();
   const { show, toggle, success } = props;
+  const router = useRouter();
 
   return (
     <Modal
@@ -77,12 +80,12 @@ const BookmarkedModal = (props: Props) => {
           </>
         ) : (
           <>
-            <Link href="/login" passHref>
+            <Link href={getPath("/login", router.locale)} passHref>
               <FButton type="login" name="log-in-outline" tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </Link>
-            <Link href="/register" passHref>
+            <Link href={getPath("/register", router.locale)} passHref>
               <FButton
                 type="signup"
                 name="person-add-outline"

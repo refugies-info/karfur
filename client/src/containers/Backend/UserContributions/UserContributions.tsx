@@ -28,6 +28,7 @@ import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import Navigation from "../Navigation";
+import { getPath } from "routes";
 
 const MainContainer = styled.div`
   display: flex;
@@ -192,7 +193,7 @@ const UserContributions = (props: Props) => {
                 Explications
               </FButton>
               <Link
-                href="/comment-contribuer#ecrire"
+                href={getPath("/comment-contribuer", router.locale) + "#ecrire"}
                 passHref
               >
                 <FButton

@@ -319,7 +319,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
         >
           <a
             className="btn  dark mr-10 "
-            href="/comment-contribuer#ecrire"
+            href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
@@ -817,7 +817,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
           </button>
           <a
             className="btn  dark  "
-            href="/comment-contribuer#ecrire"
+            href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
@@ -1637,7 +1637,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
           </button>
           <a
             className="btn  dark  "
-            href="/comment-contribuer#ecrire"
+            href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
