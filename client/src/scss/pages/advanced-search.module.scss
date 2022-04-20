@@ -1,3 +1,14 @@
+@import "src/scss/colors";
+
+.container {
+  background: $gray40;
+  flex: 1 1;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: -75px;
+}
+
 .searchbar_wrapper {
   position: fixed;
   transform: translateY(60px);

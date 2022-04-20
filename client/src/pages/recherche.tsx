@@ -815,7 +815,7 @@ export class AdvancedSearch extends Component<Props, State> {
     const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(d => d._id.toString());
 
     return (
-      <div className={"advanced-search" + (isMobile ?" advanced-search--mobile" : "")}>
+      <div className={styles.container}>
         <SEO title="Recherche" />
         {isMobile ? (
           <MobileAdvancedSearch
@@ -838,7 +838,7 @@ export class AdvancedSearch extends Component<Props, State> {
             isLoading={this.props.isLoading}
           />
         ) : (
-          <>
+          <div>
             <div className={styles.searchbar_wrapper + " " + (!this.state.visible ? styles.top : "")}>
               <div className="search-bar">
                 {pageFilters.map((filter, i: number) => (
@@ -1747,7 +1747,7 @@ export class AdvancedSearch extends Component<Props, State> {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-          </>
+          </div>
         )}
       </div>
     );
