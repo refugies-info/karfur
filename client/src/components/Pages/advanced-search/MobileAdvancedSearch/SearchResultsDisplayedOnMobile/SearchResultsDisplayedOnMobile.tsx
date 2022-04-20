@@ -1,10 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { Tag, IDispositif } from "types/interface";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
-import { colors } from "colors";
-import Streamline from "assets/streamline";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
 import { useRouter } from "next/router";
@@ -25,26 +22,6 @@ interface Props {
   isLoading: boolean;
 }
 
-
-
-const Title = styled.div`
-  margin-right: 10px;
-  font-size: 18px;
-  font-weight: bold;
-`;
-
-const TagSelected = styled.div`
-  height: 50px;
-  background-color: ${(props) => props.color};
-  color: white;
-  width: -webkit-fit-content;
-  padding: 13.5px;
-  border-radius: 12px;
-  margin: 13px 8px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`;
 
 export const SearchResultsDisplayedOnMobile = (props: Props) => {
   const { t } = useTranslation();
@@ -70,49 +47,20 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
         <NoResultPlaceholder restart={() => router.push(getPath("/recherche", router.locale))} />
       )}
 
-      {props.tagSelected && props.ville === "" ? (
-        //Tag selected and no location
+      {props.tagSelected && props.ville === "" ? ( // 1. Tag selected and no location
         <>
           {props.principalThemeList.map((item: IDispositif, index: number) => {
-            //Display all dispositif about this tag as primary tag
-            return (
+            return ( // all dispositif about this tag as primary tag
               <FicheOnMobile
                 key={index}
                 dispositif={item}
               />
             );
           })}
-          <h5 className={styles.title}>
-            {t(
-              "AdvancedSearch.Fiches aussi à propos de",
-              "Fiches aussi à propos de"
-            )}
-            <TagSelected color={props.tagSelected.darkColor}>
-              {props.tagSelected && (
-                <>
-                  <Title>
-                    {t(
-                      "Tags." + props.tagSelected.short,
-                      props.tagSelected.name
-                    )}
-                  </Title>
-                  {props.tagSelected.icon ? (
-                    <Streamline
-                      name={props.tagSelected.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
-                  ) : null}
-                </>
-              )}
-            </TagSelected>
-          </h5>
           {props.secondaryThemeList
             .concat(props.secondaryThemeListFullFrance)
             .map((item: IDispositif, index: number) => {
-              //Display all dispositif about this tag as secondary tag
-              return (
+              return ( // all dispositif about this tag as secondary tag
                 <FicheOnMobile
                   key={index}
                   dispositif={item}
@@ -120,44 +68,19 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               );
             })}
         </>
-      ) : props.tagSelected && props.ville !== "" ? (
-        //Tag and location selected
+      ) : props.tagSelected && props.ville !== "" ? ( // 2. Tag and location selected
         <>
           <h5 className={styles.title}>
             {props.nbFilteredResults > 0
               ? t("AdvancedSearch.Fiches pour", "Fiches pour")
               : t("AdvancedSearch.0 fiche pour", "0 fiche pour")}
-
             <span className={styles.blue}>{" " + props.ville}</span>
-            {t("AdvancedSearch.avec le thème", "avec le thème")}
-            <TagSelected color={props.tagSelected.darkColor}>
-              {props.tagSelected && (
-                <>
-                  <Title>
-                    {t(
-                      "Tags." + props.tagSelected.short,
-                      props.tagSelected.name
-                    )}
-                  </Title>
-                  {props.tagSelected.icon ? (
-                    <Streamline
-                      name={props.tagSelected.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
-                  ) : null}
-                </>
-              )}
-            </TagSelected>
           </h5>
 
           {props.principalThemeList
             .concat(props.secondaryThemeList)
             .map((item: IDispositif, index: number) => {
-              return (
-                //Display all dispositif about this tag as primary or secondary tag and this location
-
+              return ( // all dispositif about this tag as primary or secondary tag and this location
                 <FicheOnMobile
                   key={index}
                   dispositif={item}
@@ -167,37 +90,13 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           <h5 className={styles.title}>
             {t("AdvancedSearch.Fiches valables", "Fiches valables")}
             <span className={styles.blue}>
-              {t("AdvancedSearch.partout en France", "partout en France")}
+              {" " + t("AdvancedSearch.partout en France", "partout en France")}
             </span>
-            {t("AdvancedSearch.avec le thème", "avec le thème")}
-
-            <TagSelected color={props.tagSelected.darkColor}>
-              {props.tagSelected && (
-                <>
-                  <Title>
-                    {t(
-                      "Tags." + props.tagSelected.short,
-                      props.tagSelected.name
-                    )}
-                  </Title>
-                  {props.tagSelected.icon ? (
-                    <Streamline
-                      name={props.tagSelected.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
-                  ) : null}
-                </>
-              )}
-            </TagSelected>
           </h5>
           {props.principalThemeListFullFrance
             .concat(props.secondaryThemeListFullFrance)
             .map((item: IDispositif, index: number) => {
-              return (
-                //Display all dispositif about this tag as primary or secondary tag and all France as location
-
+              return ( // all dispositif about this tag as primary or secondary tag and all France as location
                 <FicheOnMobile
                   dispositif={item}
                   key={index}
@@ -205,8 +104,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               );
             })}
         </>
-      ) : (
-        //All others filters selected but not Tag
+      ) : ( // 3. All others filters selected but not Tag
         <>
           {props.ville !== "" && (
             <h5 className={styles.title}>
@@ -216,8 +114,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           )}
 
           {props.dispositifs.map((item: IDispositif, index: number) => {
-            return (
-              //Display all dispositif about this location
+            return ( // all dispositif about this location
               <FicheOnMobile
                 key={index}
                 dispositif={item}
@@ -228,7 +125,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
             <h5 className={styles.title}>
               {t("AdvancedSearch.Fiches valables", "Fiches valables")}
               <span className={styles.blue}>
-                {t(
+                {" " + t(
                   "AdvancedSearch.partout en France",
                   "partout en France"
                 )}
@@ -237,9 +134,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           )}
           {props.dispositifsFullFrance.map(
             (item: IDispositif, index: number) => {
-              return (
-                //Display all dispositif with all France as location
-
+              return ( // all dispositif with all France as location
                 <FicheOnMobile
                   key={index}
                   dispositif={item}
