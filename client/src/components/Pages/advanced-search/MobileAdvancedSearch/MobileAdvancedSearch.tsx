@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
+import FButton from "components/UI/FButton";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
 import { Tag, IDispositif } from "types/interface";
@@ -8,10 +10,8 @@ import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import { AvailableFilters } from "data/searchFilters";
 import { tags } from "data/tags";
 import { SearchQuery } from "pages/recherche";
-import styles from "./MobileAdvancedSearch.module.scss";
-import FButton from "components/UI/FButton";
 import { cls } from "lib/classname";
-import { useRouter } from "next/router";
+import styles from "./MobileAdvancedSearch.module.scss";
 
 interface Props {
   nbFilteredResults: number;
