@@ -1,0 +1,16 @@
+@import "src/scss/colors";
+
+.count {
+  color: $gray80;
+  text-align: center;
+  font-weight: bold;
+  margin: 32px 0 24px 0;
+}
+
+.title {
+  font-size: 22px !important;
+}
+
+.blue {
+  color: $bleuCharte;
+}

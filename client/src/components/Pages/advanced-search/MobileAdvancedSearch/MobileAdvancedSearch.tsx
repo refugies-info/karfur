@@ -10,6 +10,8 @@ import { tags } from "data/tags";
 import { SearchQuery } from "pages/recherche";
 import styles from "./MobileAdvancedSearch.module.scss";
 import FButton from "components/UI/FButton";
+import { cls } from "lib/classname";
+import { useRouter } from "next/router";
 
 interface Props {
   nbFilteredResults: number;
@@ -27,20 +29,25 @@ interface Props {
   isLoading: boolean;
 }
 
+const findTag = (theme: string|undefined) => tags.find((tag) => tag.name === theme) || null;
+
 export const MobileAdvancedSearch = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
+  const hasInitialSearch = Object.keys(router.query).filter(key => key !== "tri").length > 0;
 
   const [showTagModal, setShowTagModal] = useState(false);
-  const [tagSelected, setTagSelected] = useState<Tag | null>(null);
+  const [tagSelected, setTagSelected] = useState<Tag | null>(findTag(props.query.theme));
   const [showAgeModal, setShowAgeModal] = useState(false);
-  const [ageSelected, setAgeSelected] = useState<string | null>(null);
+  const [ageSelected, setAgeSelected] = useState<string | null>(props.query.age || null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
-  const [frenchSelected, setFrenchSelected] = useState<string | null>(null);
+  const [frenchSelected, setFrenchSelected] = useState<string | null>(props.query.frenchLevel || null);
   const [showLanguageModal, setShowLanguageModal] = useState(false);
-  const [language, setLanguage] = useState<string | null>(null);
-  const [ville, setVille] = useState("");
+  const [language, setLanguage] = useState<string | null>(props.query.langue || null);
+  const [ville, setVille] = useState(props.query.loc?.city || "");
   const [geoSearch, setGeoSearch] = useState(false);
-  const [showFilterForm, setShowFilterForm] = useState(true);
+  const [showFilterForm, setShowFilterForm] = useState(!hasInitialSearch);
 
   const toggleShowModal = (modal: AvailableFilters) => {
     switch (modal) {
@@ -66,8 +73,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   useEffect(() => {
-    const tag = tags.find((tag) => tag.name === props.query.theme);
-    setTagSelected(tag || null);
+    setTagSelected(findTag(props.query.theme));
     setVille(props.query.loc?.city || "");
     setAgeSelected(props.query.age || null);
     setFrenchSelected(props.query.frenchLevel || null);
@@ -101,7 +107,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, "d-block d-md-none")}>
       {showFilterForm ? (
         <>
           <div className={styles.search_field}>
