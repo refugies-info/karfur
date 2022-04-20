@@ -55,3 +55,34 @@
   outline: none;
   padding: 0;
 }
+
+.validate_btn {
+  width: 100% !important;
+  justify-content: center;
+  box-shadow: 0 10px 15px 0 #00000040;
+
+  &:disabled {
+    background: $gray60 !important;
+    color: $white !important;
+
+    svg {
+      fill: $white !important;
+    }
+  }
+
+  .large {
+    font-size: $text-large !important;
+  }
+
+  .badge {
+    margin-left: 8px;
+    width: 24px;
+    height: 24px;
+    background: $white;
+    color: $bleuCharte;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

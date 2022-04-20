@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchFilterModal";
-import { colors } from "colors";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
 import { Tag, IDispositif } from "types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { AvailableFilters } from "data/searchFilters";
 import { tags } from "data/tags";
 import { SearchQuery } from "pages/recherche";
 import styles from "./MobileAdvancedSearch.module.scss";
+import FButton from "components/UI/FButton";
 
 interface Props {
   nbFilteredResults: number;
@@ -28,39 +26,6 @@ interface Props {
   totalFicheCount: number;
   isLoading: boolean;
 }
-interface SearchBouttonProps {
-  isDisabled: boolean;
-  showFilterForm: boolean;
-  isUserModifyingSearch?: boolean;
-  tagSelected: Tag | null;
-}
-const SearchBoutton = styled.div`
-  height: 53px;
-  width: 100%;
-  background-color: ${(props: SearchBouttonProps) =>
-    props.isDisabled
-      ? colors.gray60
-      : props.showFilterForm || props.isUserModifyingSearch
-      ? colors.vert
-      : props.tagSelected
-      ? props.tagSelected.darkColor
-      : colors.bleuCharte};
-  border-radius: 12px;
-  align-items: center;
-  font-size: 18px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  margin: 5px 0;
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
-`;
-const SearchTitle = styled.div`
-  margin-left: 10px;
-`;
-
 
 export const MobileAdvancedSearch = (props: Props) => {
   const { t } = useTranslation();
@@ -118,11 +83,21 @@ export const MobileAdvancedSearch = (props: Props) => {
   }, [props.query]);
 
   const isSearchButtonDisabled =
-    !tagSelected && !ageSelected && !frenchSelected && !language && ville === "";
+    !tagSelected &&
+    !ageSelected &&
+    !frenchSelected &&
+    !language &&
+    ville === "";
 
   const onSearchClick = () => {
     if (isSearchButtonDisabled) return;
     setShowFilterForm(!showFilterForm);
+  };
+
+  const getFilterCount = () => {
+    return [tagSelected, ageSelected, frenchSelected, language, ville].filter(
+      (filter) => !!filter
+    ).length;
   };
 
   return (
@@ -253,44 +228,34 @@ export const MobileAdvancedSearch = (props: Props) => {
               show={showLanguageModal}
             />
           )}
-          <SearchBoutton
-            isDisabled={isSearchButtonDisabled}
-            showFilterForm={showFilterForm}
-            tagSelected={tagSelected}
+          <FButton
+            type="validate"
+            name={isSearchButtonDisabled ? "search" : "checkmark"}
+            disabled={isSearchButtonDisabled}
             onClick={onSearchClick}
+            className={styles.validate_btn}
           >
-            <EVAIcon
-              name={isSearchButtonDisabled ? "search" : "checkmark"}
-              fill="#FFFFFF"
-              size="large"
-            />
-            <SearchTitle>
-              {isSearchButtonDisabled
-                ? t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
-                : t("Rechercher", "Rechercher")}
-            </SearchTitle>
-          </SearchBoutton>
+            {isSearchButtonDisabled
+              ? t("Sélectionnez un filtre !", "Sélectionnez un filtre !")
+              : t("Rechercher", "Rechercher")}
+          </FButton>
         </>
       ) : (
         <>
-          <SearchBoutton
-            isDisabled={isSearchButtonDisabled}
-            showFilterForm={showFilterForm}
-            tagSelected={tagSelected}
+          <FButton
+            type="login"
+            name="options-2-outline"
+            className={styles.validate_btn}
             onClick={onSearchClick}
           >
-            <EVAIcon
-              name={isSearchButtonDisabled ? "search" : "options-2"}
-              fill="#FFFFFF"
-              size="large"
-            />
-            <SearchTitle>
+            <span className={styles.large}>
               {t(
                 "AdvancedSearch.Modifier ma recherche",
                 "Modifier ma recherche"
               )}
-            </SearchTitle>
-          </SearchBoutton>
+            </span>
+            <span className={styles.badge}>{getFilterCount()}</span>
+          </FButton>
           <SearchResultsDisplayedOnMobile
             tagSelected={tagSelected}
             ville={ville}
