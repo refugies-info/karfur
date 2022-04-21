@@ -258,7 +258,7 @@ export const MobileAdvancedSearch = (props: Props) => {
             type="login"
             name="options-2-outline"
             className={styles.validate_btn}
-            onClick={onSearchClick}
+            onClick={() => setShowFilterForm(true)}
           >
             <span className={styles.large}>
               {t(
