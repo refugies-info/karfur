@@ -1,4 +1,4 @@
-const ln = "(en|ps|fa|ti-ER|ru|ar|uk)"
+const ln = "(en|ps|fa|ti|ru|ar|uk)"
 const urlTranslations = [
   ["/recherche", "/advanced-search"],
   ["/annuaire", "/directory"],
