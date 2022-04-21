@@ -908,8 +908,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <div>
           <button
             className="btn  outline-black  "
+            data-test-id="test-delete-button"
             onClick={[Function]}
-            testID="test-delete-button"
           >
             <span
               className="mr-10"
@@ -948,8 +948,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id1"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id1"
                   >
                     <span>
                       <i
@@ -1055,8 +1055,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id2"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id2"
                   >
                     <span>
                       <i
@@ -1156,8 +1156,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id3"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id3"
                   >
                     <span>
                       <i

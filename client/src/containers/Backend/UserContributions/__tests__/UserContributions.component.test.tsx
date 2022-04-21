@@ -178,9 +178,9 @@ describe("userContributions", () => {
       shouldRedirect: false,
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    component.root.findByProps({ testID: "test_id1" }).props.onClick();
+    component.root.findByProps({ "data-test-id": "test_id1" }).props.onClick();
     expect(Router).toMatchObject({ asPath: "/dispositif/id1" });
-    component.root.findByProps({ testID: "test_id2" }).props.onClick();
+    component.root.findByProps({ "data-test-id": "test_id2" }).props.onClick();
     expect(Router).toMatchObject({ asPath: "/demarche/id2" });
   });
 
@@ -202,7 +202,7 @@ describe("userContributions", () => {
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     component.root
-      .findByProps({ testID: "test_delete_id1" })
+      .findByProps({ "data-test-id": "test_delete_id1" })
       .props.onClick({ stopPropagation: () => {} });
     expect(component.toJSON()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({

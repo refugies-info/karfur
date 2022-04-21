@@ -171,7 +171,7 @@ test("should call onClick ValidateButton", () => {
   component = TestRenderer.create(
     <ValidateButton onClick={onClick} disabled={false} />
   );
-  component.root.findByProps({ testID: "validate-button" }).props.onClick();
+  component.root.findByProps({ "data-test-id": "validate-button" }).props.onClick();
   expect(onClick).toHaveBeenCalled();
 });
 
@@ -199,7 +199,7 @@ test("should call onClick DeleteButton", () => {
   component = TestRenderer.create(
     <DeleteButton onClick={onClick} disabled={false} />
   );
-  component.root.findByProps({ testID: "delete-button" }).props.onClick();
+  component.root.findByProps({ "data-test-id": "delete-button" }).props.onClick();
   expect(onClick).toHaveBeenCalled();
 });
 
