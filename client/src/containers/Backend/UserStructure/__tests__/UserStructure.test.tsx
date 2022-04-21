@@ -145,7 +145,7 @@ describe("UserStructure", () => {
       });
     });
     act(() => {
-      component.root.findByProps({ testID: "test-add-member" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test-add-member" }).props.onClick();
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -166,19 +166,19 @@ describe("UserStructure", () => {
       });
     });
     act(() => {
-      component.root.findByProps({ testID: "test_see_id1" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test_see_id1" }).props.onClick();
     });
     expect(component.toJSON()).toMatchSnapshot();
     act(() => {
       component.root
-        .findByProps({ testID: "test-role-Responsable" })
+        .findByProps({ "data-test-id": "test-role-Responsable" })
         .props.onClick();
     });
     expect(component.toJSON()).toMatchSnapshot();
 
     act(() => {
       component.root
-        .findByProps({ testID: "test-validate-edit" })
+        .findByProps({ "data-test-id": "test-validate-edit" })
         .props.onClick();
     });
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
@@ -212,7 +212,7 @@ describe("UserStructure", () => {
       });
     });
     act(() => {
-      component.root.findByProps({ testID: "test_delete_id1" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test_delete_id1" }).props.onClick();
     });
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",

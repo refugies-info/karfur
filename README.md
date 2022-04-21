@@ -7,6 +7,7 @@ Refugies.info is a project to offer a better experience to refugees in France as
 ## Table of Contents
 
 - [Demo](#demo)
+- [Documentation](#documentation)
 - [Contributing](#contributing)
 - [Team](#team)
 - [Community](#community)
@@ -17,7 +18,11 @@ Refugies.info is a project to offer a better experience to refugees in France as
 
 The website is live and available at [https://refugies.info](https://refugies.info)
 
-[![Homepage record](https://img.youtube.com/vi/o_qg4pDW0v8/0.jpg)](https://www.youtube.com/watch?v=o_qg4pDW0v8)
+## Documentation
+
+Please find the documentation [here](documentation/README.md).
+
+You can also visit more specifically the [frontend documentation](documentation/client/README.md) or the [backend documentation](documentation/server/README.md).
 
 ## Contributing
 
