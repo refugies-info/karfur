@@ -2,7 +2,7 @@ import { Tag } from "types/interface";
 import { tags } from "./tags";
 
 // FILTERS
-export type AvailableFilters = "theme" | "age" | "frenchLevel" | "loc";
+export type AvailableFilters = "theme" | "age" | "frenchLevel" | "loc" | "langue";
 export type AgeFilter = {
   name: "moins de 18 ans" | "entre 18 et 25 ans" | "entre 25 et 56 ans" | "56 ans et plus";
   bottomValue: number;

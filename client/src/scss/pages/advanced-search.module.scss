@@ -1,3 +1,14 @@
+@import "src/scss/colors";
+
+.container {
+  background: $gray40;
+  flex: 1 1;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: -75px;
+}
+
 .searchbar_wrapper {
   position: fixed;
   transform: translateY(60px);
@@ -7,5 +18,39 @@
 
   &.top {
     transform: translateY(-8px);
+  }
+}
+
+.search_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.mt_250 {
+  padding-top: 225px;
+  transition: top 0.6s;
+}
+.mt_250_hidden {
+  transition: top 0.6s;
+  padding-top: 150px !important;
+}
+
+.language_btn {
+  cursor: pointer;
+  background-color: $gray20;
+  padding: 8px;
+  margin: 0 8px 0 0;
+  border-radius: 8px;
+  color: black;
+
+  &:hover > span {
+    background-color: $gray90;
+    color: white !important;
+  }
+  &:hover {
+    background-color: $gray90;
+    color: white !important;
   }
 }

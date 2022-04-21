@@ -1307,7 +1307,7 @@ const Dispositif = (props: Props) => {
       <Row className="main-row">
         {props.type === "translation" &&
           (
-            <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
+            <Col xl="4" lg="4" md="4" sm="4" xs="4">
             {user &&
               (!props.isExpert ? (
                   <SideTrad
