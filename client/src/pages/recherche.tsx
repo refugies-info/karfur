@@ -836,6 +836,7 @@ export class AdvancedSearch extends Component<Props, State> {
           totalFicheCount={this.props.dispositifs.length}
           nbFilteredResults={this.state.countShow}
           isLoading={this.props.isLoading}
+          restart={this.restart}
         />
 
         <div className="d-none d-md-block w-100">

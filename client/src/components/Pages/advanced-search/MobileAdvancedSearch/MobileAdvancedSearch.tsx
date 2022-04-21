@@ -18,6 +18,7 @@ interface Props {
   addToQuery: (query: Partial<SearchQuery>) => void;
   queryDispositifs: () => void;
   removeFromQuery: (filter: AvailableFilters) => void;
+  restart: () => void
   query: SearchQuery;
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -105,6 +106,11 @@ export const MobileAdvancedSearch = (props: Props) => {
       (filter) => !!filter
     ).length;
   };
+
+  const restart = () => {
+    props.restart();
+    setShowFilterForm(true);
+  }
 
   return (
     <div className={cls(styles.container, "d-block d-md-none")}>
@@ -274,6 +280,7 @@ export const MobileAdvancedSearch = (props: Props) => {
             totalFicheCount={props.totalFicheCount}
             nbFilteredResults={props.nbFilteredResults}
             isLoading={props.isLoading}
+            restart={restart}
           />
         </>
       )}

@@ -20,6 +20,7 @@ interface Props {
   totalFicheCount: number;
   nbFilteredResults: number;
   isLoading: boolean;
+  restart: () => void
 }
 
 
@@ -44,7 +45,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
       </p>
 
       {props.nbFilteredResults === 0 && props.ville === "" && (
-        <NoResultPlaceholder restart={() => router.push(getPath("/recherche", router.locale))} />
+        <NoResultPlaceholder restart={props.restart} />
       )}
 
       {props.tagSelected && props.ville === "" ? ( // 1. Tag selected and no location
