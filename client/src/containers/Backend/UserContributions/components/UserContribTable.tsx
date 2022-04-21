@@ -56,8 +56,7 @@ export const UserContribTable = (props: Props) => (
             key={key}
             onClick={() => props.onContributionRowClick(burl)}
             className={styles.line}
-            // @ts-ignore
-            testid={`test_${element._id}`}
+            data-test-id={`test_${element._id}`}
           >
             <td className={styles.first + " align-middle"}>
               <TypeContenu
@@ -120,7 +119,7 @@ export const UserContribTable = (props: Props) => (
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <SeeButtonWithoutNavigation />
                 <DeleteButton
-                  testid={"test_delete_" + element._id}
+                  data-test-id={"test_delete_" + element._id}
                   onClick={(event: any) =>
                     props.deleteDispositif(
                       event,

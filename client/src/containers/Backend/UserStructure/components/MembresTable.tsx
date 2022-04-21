@@ -112,15 +112,14 @@ export const MembresTable = (props: Props) => (
               <td className="align-middle">
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <EditButtonWithoutNavigation
-                    // @ts-ignore
-                    testid={"test_see_" + element._id}
+                    data-test-id={"test_see_" + element._id}
                     onClick={() => {
                       props.setSelectedUser(element);
                       props.toggleEditMemberModal();
                     }}
                   />
                   <DeleteButton
-                    testid={"test_delete_" + element._id}
+                    data-test-id={"test_delete_" + element._id}
                     disabled={false}
                     onClick={() => props.deleteUserFromStructure(element._id)}
                   />

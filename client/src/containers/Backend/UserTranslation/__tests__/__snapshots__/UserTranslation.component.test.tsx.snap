@@ -1203,8 +1203,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           className="c2"
         >
           <div
+            data-test-id="test-langue-undefined"
             onClick={[Function]}
-            testid="test-langue-undefined"
           >
             <div
               className="c3 language_title"
@@ -1548,8 +1548,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             <tbody>
               <tr
                 className="line"
+                data-test-id="test-line-id6"
                 onClick={[Function]}
-                testid="test-line-id6"
               >
                 <td
                   className="first align-middle"
@@ -1632,8 +1632,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <button
                     className="btn  error  "
+                    data-test-id="test-trash"
                     onClick={[Function]}
-                    testid="test-trash"
                   >
                     <span
                       className=""
@@ -2190,8 +2190,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           className="c2"
         >
           <div
+            data-test-id="test-langue-idEn"
             onClick={[Function]}
-            testid="test-langue-idEn"
           >
             <div
               className="c3 language_title"
@@ -2535,8 +2535,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             <tbody>
               <tr
                 className="line"
+                data-test-id="test-line-id6"
                 onClick={[Function]}
-                testid="test-line-id6"
               >
                 <td
                   className="first align-middle"
@@ -3104,8 +3104,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           className="c2"
         >
           <div
+            data-test-id="test-langue-idEn"
             onClick={[Function]}
-            testid="test-langue-idEn"
           >
             <div
               className="c3 language_title"
@@ -3410,8 +3410,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             <tbody>
               <tr
                 className="line"
+                data-test-id="test-line-id3"
                 onClick={[Function]}
-                testid="test-line-id3"
               >
                 <td
                   className="first align-middle"

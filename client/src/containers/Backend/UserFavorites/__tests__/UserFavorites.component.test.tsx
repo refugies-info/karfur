@@ -153,7 +153,7 @@ describe("UserFavorites", () => {
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
     component.root
-      .findByProps({ testid: "test-delete-button" })
+      .findByProps({ "data-test-id": "test-delete-button" })
       .props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
@@ -177,7 +177,7 @@ describe("UserFavorites", () => {
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");
     component.root
-      .findByProps({ testid: "test-delete-button" })
+      .findByProps({ "data-test-id": "test-delete-button" })
       .props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
@@ -201,7 +201,7 @@ describe("UserFavorites", () => {
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("ps");
 
     component.root
-      .findByProps({ testid: "test-toggle-pin-id1" })
+      .findByProps({ "data-test-id": "test-toggle-pin-id1" })
       .props.onClick({ preventDefault: jest.fn(), stopPropagation: jest.fn() });
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       dispositifId: "id1",

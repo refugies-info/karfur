@@ -148,7 +148,7 @@ describe("user translation", () => {
 
     expect(component.toJSON()).toMatchSnapshot();
     act(() => {
-      component.root.findByProps({ testid: "test-line-id3" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test-line-id3" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
       pathname: "/backend/traduction/dispositif",
@@ -174,7 +174,7 @@ describe("user translation", () => {
       });
     });
     act(() => {
-      component.root.findByProps({ testid: "test-line-id6" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test-line-id6" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
       pathname: "/backend/validation/dispositif",
@@ -227,7 +227,7 @@ describe("user translation", () => {
         },
       });
     });
-    component.root.findByProps({ testid: "test-langue-idPs" }).props.onClick();
+    component.root.findByProps({ "data-test-id": "test-langue-idPs" }).props.onClick();
     expect(push).toHaveBeenCalledWith("/backend/user-translation/ps");
   });
 });

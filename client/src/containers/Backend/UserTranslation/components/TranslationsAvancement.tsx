@@ -140,8 +140,7 @@ export const TranslationsAvancement = (props: Props) => {
             <div
               key={langue.i18nCode}
               onClick={() => navigateToLanguage(langue.i18nCode)}
-              // @ts-ignore
-              testid={`test-langue-${langue._id}`}
+              data-test-id={`test-langue-${langue._id}`}
             >
               <LanguageTitle
                 language={langue}

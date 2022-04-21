@@ -51,8 +51,7 @@ export const Role = (props: Props) => (
   <MainContainer
     onClick={() => props.onRoleSelect(props.role)}
     state={props.state}
-    // @ts-ignore
-    testid={"test-role-" + props.role}
+    data-test-id={"test-role-" + props.role}
   >
     <Row>
       <Title>{getTitle(props.role)}</Title>

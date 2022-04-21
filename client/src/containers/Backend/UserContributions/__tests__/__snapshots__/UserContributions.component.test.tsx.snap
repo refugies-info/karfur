@@ -886,8 +886,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
             <tbody>
               <tr
                 className="line"
+                data-test-id="test_id1"
                 onClick={[Function]}
-                testid="test_id1"
               >
                 <td
                   className="first align-middle"
@@ -1014,6 +1014,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     </div>
                     <div
                       className="c12"
+                      data-test-id="delete-button"
                       disabled={false}
                       onClick={[Function]}
                     >
@@ -1706,8 +1707,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
             <tbody>
               <tr
                 className="line"
+                data-test-id="test_id1"
                 onClick={[Function]}
-                testid="test_id1"
               >
                 <td
                   className="first align-middle"
@@ -1834,6 +1835,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c12"
+                      data-test-id="delete-button"
                       disabled={false}
                       onClick={[Function]}
                     >
@@ -1860,8 +1862,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id2"
                 onClick={[Function]}
-                testid="test_id2"
               >
                 <td
                   className="first align-middle"
@@ -1985,6 +1987,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c12"
+                      data-test-id="delete-button"
                       disabled={false}
                       onClick={[Function]}
                     >
@@ -2011,8 +2014,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id3"
                 onClick={[Function]}
-                testid="test_id3"
               >
                 <td
                   className="first align-middle"
@@ -2136,6 +2139,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c16"
+                      data-test-id="delete-button"
                       disabled={true}
                     >
                       <div
@@ -2161,8 +2165,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id4"
                 onClick={[Function]}
-                testid="test_id4"
               >
                 <td
                   className="first align-middle"
@@ -2286,6 +2290,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c16"
+                      data-test-id="delete-button"
                       disabled={true}
                     >
                       <div
@@ -2311,8 +2316,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id5"
                 onClick={[Function]}
-                testid="test_id5"
               >
                 <td
                   className="first align-middle"
@@ -2436,6 +2441,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c12"
+                      data-test-id="delete-button"
                       disabled={false}
                       onClick={[Function]}
                     >
@@ -2462,8 +2468,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id6"
                 onClick={[Function]}
-                testid="test_id6"
               >
                 <td
                   className="first align-middle"
@@ -2593,6 +2599,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c16"
+                      data-test-id="delete-button"
                       disabled={true}
                     >
                       <div
@@ -2618,8 +2625,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
               </tr>
               <tr
                 className="line"
+                data-test-id="test_id7"
                 onClick={[Function]}
-                testid="test_id7"
               >
                 <td
                   className="first align-middle"
@@ -2749,6 +2756,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     </div>
                     <div
                       className="c12"
+                      data-test-id="delete-button"
                       disabled={false}
                       onClick={[Function]}
                     >
