@@ -1,6 +1,14 @@
 # Development Guide
 
-Project was created and uses [NextJS](https://nextjs.org/) to start and build.
+- [Redux usage](#redux-usage)
+- [Write components](#write-small-and-reusable-components)
+- [Typing](#typing)
+- [Testing](#testing)
+- [Routing](#routing)
+- [Assets](#assets)
+- [Styling](#styling)
+- [Logging](#logging)
+
 ## Redux usage
 
 1. Put all API calls in sagas and store infos in redux store

@@ -89,10 +89,8 @@ Make sure you have a mongodb instance launched.
 
 Open a new terminal tab and launch the server:
 ```bash
-# go into app's directory
-> cd karfur/server
-# serve at localhost:8000.
-> nodemon
+> cd karfur/server    # go into app's directory
+> nodemon             # serve at localhost:8000
 ```
 
 ### Admin account creation
@@ -101,8 +99,8 @@ Open a new terminal tab and launch the server:
 - run (replace XXX by your pseudo)
 
 ```bash
-$ mongo heroku_wbj38s57
-$ db.users.updateOne({"username":"XXX"},{$addToSet:{roles:ObjectId("5ce57c969aadae8734c7aee9")}},{upsert:false})
+> mongo heroku_wbj38s57
+> db.users.updateOne({"username":"XXX"},{$addToSet:{roles:ObjectId("5ce57c969aadae8734c7aee9")}},{upsert:false})
 ```
 
 - disconnect from website and reconnect, you need to add an email and phone number for 2 factor authent for admin
@@ -159,12 +157,12 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 # - starts the unit test runner
 > npm run test
 
-# - launch unit tests
+# launch unit tests
 > npm run test:unit
 
-# - launch linter tests
+# launch linter tests
 > npm run test:lint
 
-# - launch test types
+# launch test types
 > npm run test:types
 ```

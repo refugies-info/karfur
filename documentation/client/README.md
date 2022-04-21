@@ -1,6 +1,7 @@
 # Client documentation
 
-This project is a React based project, which uses the NextJS framework. The source code is located at `/client`.
+This project is a React based project, which uses the NextJS framework.
+The source code is located at `/client`.
 
 - [Tech stack](#tech-stack)
 - [Setup](#setup)
@@ -13,7 +14,8 @@ This project is a React based project, which uses the NextJS framework. The sour
 
 ## Tech stack
 
-This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/). It includes the following libraries:
+This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).
+It includes the following libraries:
 - [Typescript](https://www.typescriptlang.org/)
 - [Redux](https://redux.js.org/)
 - [Axios](https://github.com/axios/axios)
@@ -23,6 +25,8 @@ This project is based on [React](https://reactjs.org/), and uses the [NextJS fra
 
 
 ## Setup
+
+*It is recommended to [setup the server](../server/) first as you will need it to build or run the client.*
 
 1. Clone the repository locally
 2. Install the dependencies

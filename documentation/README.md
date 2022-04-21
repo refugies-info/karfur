@@ -2,12 +2,12 @@
 
 This repository contains 2 projects. Here are the associated documentations:
 
-## [Server](server/README.md)
+## [Server](server/)
 
 Located in `/client`
 Backend app built with Node
 
-## [Client](client/README.md)
+## [Client](client/)
 
 Located in `/client`
 Frontend app built with NextJS
