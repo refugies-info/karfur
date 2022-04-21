@@ -4,12 +4,12 @@ This repository contains 2 projects. Here are the associated documentations:
 
 ## [Server](server/)
 
-Located in `/client`
+Located in `/server`  
 Backend app built with Node
 
 ## [Client](client/)
 
-Located in `/client`
+Located in `/client`  
 Frontend app built with NextJS
 
 ## Technical standards
@@ -32,9 +32,9 @@ We use 3 branches which triggers the deployment automatically:
 For all the new features, you must follow this process:
 - create a `feature` branch with your changes
 - open a pull request to `dev`. Add the `bug` or `enhancement` tag.
-- once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.
+- once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.  
   Name it `[STG-FRONT|BACK]` and add the `release` tag.
-- once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature
+- once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature.  
   Name it `[PROD-FRONT|BACK]` and add the `release` tag.
 
 

@@ -1,6 +1,6 @@
 # Client documentation
 
-This project is a React based project, which uses the NextJS framework.
+This project is a React based project, which uses the NextJS framework.  
 The source code is located at `/client`.
 
 - [Tech stack](#tech-stack)
@@ -14,7 +14,7 @@ The source code is located at `/client`.
 
 ## Tech stack
 
-This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).
+This project is based on [React](https://reactjs.org/), and uses the [NextJS framework](https://nextjs.org/).  
 It includes the following libraries:
 - [Typescript](https://www.typescriptlang.org/)
 - [Redux](https://redux.js.org/)

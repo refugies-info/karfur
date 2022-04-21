@@ -1,6 +1,7 @@
 # Server documentation
 
-This project is a Node based project, which connects to a MongoDB database. The source code is located at `/server`.
+This project is a Node based project, which connects to a MongoDB database.  
+The source code is located at `/server`.
 
 - [Tech stack](#tech-stack)
 - [Setup](#setup)
