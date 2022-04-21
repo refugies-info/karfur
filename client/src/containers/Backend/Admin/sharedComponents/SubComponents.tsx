@@ -226,7 +226,7 @@ export const ValidateButton = (props: {
     disabled={props.disabled}
     hoverColor={colors.validationHover}
     //@ts-ignore
-    testID="validate-button"
+    testid="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
@@ -263,14 +263,14 @@ export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
 export const DeleteButton = (props: {
   onClick: (event: any) => void;
   disabled: boolean;
-  testID?: any;
+  testid?: any;
 }) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
     //@ts-ignore
-    testID="delete-button"
+    testid="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash" fill={colors.white} size={20} />

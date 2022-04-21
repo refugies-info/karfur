@@ -887,7 +887,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id1"
+                testid="test_id1"
               >
                 <td
                   className="first align-middle"
@@ -1707,7 +1707,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id1"
+                testid="test_id1"
               >
                 <td
                   className="first align-middle"
@@ -1861,7 +1861,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id2"
+                testid="test_id2"
               >
                 <td
                   className="first align-middle"
@@ -2012,7 +2012,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id3"
+                testid="test_id3"
               >
                 <td
                   className="first align-middle"
@@ -2162,7 +2162,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id4"
+                testid="test_id4"
               >
                 <td
                   className="first align-middle"
@@ -2312,7 +2312,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id5"
+                testid="test_id5"
               >
                 <td
                   className="first align-middle"
@@ -2463,7 +2463,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id6"
+                testid="test_id6"
               >
                 <td
                   className="first align-middle"
@@ -2619,7 +2619,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 onClick={[Function]}
-                testID="test_id7"
+                testid="test_id7"
               >
                 <td
                   className="first align-middle"

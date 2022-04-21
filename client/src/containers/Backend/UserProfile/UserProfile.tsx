@@ -439,7 +439,7 @@ export const UserProfile = () => {
                   name="save-outline"
                   className="ml-8"
                   onClick={onPseudoModificationValidate}
-                  testID="test-save-pseudo"
+                  testid="test-save-pseudo"
                 >
                   {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
@@ -479,7 +479,7 @@ export const UserProfile = () => {
                   name="save-outline"
                   className="ml-8"
                   onClick={onEmailModificationValidate}
-                  testID="test-save-email"
+                  testid="test-save-email"
                 >
                   {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
@@ -531,7 +531,7 @@ export const UserProfile = () => {
                     name="save-outline"
                     className="ml-8"
                     onClick={onPhoneModificationValidate}
-                    testID="test-save-phone"
+                    testid="test-save-phone"
                   >
                     {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>
@@ -558,7 +558,7 @@ export const UserProfile = () => {
               type="dark"
               name="edit-outline"
               onClick={openModifyPassword}
-              testID="test-modify-password"
+              testid="test-modify-password"
             >
               {t(
                 "UserProfile.modifyPassword",
@@ -624,7 +624,7 @@ export const UserProfile = () => {
                     type="validate-light"
                     name="save-outline"
                     onClick={modifyPassword}
-                    testID="test-save-password"
+                    testid="test-save-password"
                   >
                     {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>

@@ -183,7 +183,7 @@ describe("UserNotifications", () => {
       shouldRedirect: true,
     });
     component.root
-      .findByProps({ testID: "test-notif-new content" })
+      .findByProps({ testid: "test-notif-new content" })
       .props.onClick({ stopPropagation: jest.fn() });
     expect(Router).toMatchObject({ asPath: "/dispositif/id" });
   });
@@ -210,7 +210,7 @@ describe("UserNotifications", () => {
       shouldRedirect: true,
     });
     component.root
-      .findByProps({ testID: "test-notif-annuaire" })
+      .findByProps({ testid: "test-notif-annuaire" })
       .props.onClick({ stopPropagation: jest.fn() });
     expect(Router).toMatchObject({ asPath: "/directory-create" });
   });
@@ -237,7 +237,7 @@ describe("UserNotifications", () => {
       shouldRedirect: true,
     });
     component.root
-      .findByProps({ testID: "test-delete-reaction" })
+      .findByProps({ testid: "test-delete-reaction" })
       .props.onClick({ stopPropagation: jest.fn() });
     expect(updateDispositifReactionActionCreator).toHaveBeenLastCalledWith({
       dispositif: {
@@ -272,7 +272,7 @@ describe("UserNotifications", () => {
       shouldRedirect: true,
     });
     component.root
-      .findByProps({ testID: "test-delete-annuaire" })
+      .findByProps({ testid: "test-delete-annuaire" })
       .props.onClick({ stopPropagation: jest.fn() });
     expect(setUserStructureActionCreator).toHaveBeenLastCalledWith({
       dispositifsAssocies: [],

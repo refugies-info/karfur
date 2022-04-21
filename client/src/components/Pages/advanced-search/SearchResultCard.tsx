@@ -73,7 +73,7 @@ const SearchResultCard = (props: Props) => {
                     className={styles.container + " bookmark-icon" + (pinned ? " pinned" : "")}
                     onClick={(e: any) => props.pin(e, props.dispositif)}
                     //@ts-ignore
-                    testID={"test-toggle-pin-" + props.dispositif._id}
+                    testid={"test-toggle-pin-" + props.dispositif._id}
                   >
                     <EVAIcon name="star" fill={colors.gray10} size="medium" />
                   </div>

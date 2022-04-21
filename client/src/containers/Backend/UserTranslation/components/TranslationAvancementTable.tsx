@@ -194,7 +194,7 @@ export const TranslationAvancementTable = (props: Props) => {
                 onClick={() => goToTraduction(element)}
                 className={styles.line}
                 // @ts-ignore
-                testID={`test-line-${element._id}`}
+                testid={`test-line-${element._id}`}
               >
                 <td className={styles.first + " align-middle"}>
                   <TypeContenu
@@ -256,7 +256,7 @@ export const TranslationAvancementTable = (props: Props) => {
                       type="error"
                       name="trash-2"
                       onClick={(event: any) => deleteTrad(event, element)}
-                      testID="test-trash"
+                      testid="test-trash"
                     />
                   </td>
                 )}

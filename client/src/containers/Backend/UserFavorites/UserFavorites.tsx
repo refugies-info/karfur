@@ -135,7 +135,7 @@ const UserFavorites = () => {
                 type="outline-black"
                 name="trash-outline"
                 onClick={removeAllFavorites}
-                testID="test-delete-button"
+                testid="test-delete-button"
               >
                 {t("UserFavorites.Tout supprimer", "Tout supprimer")}
               </FButton>

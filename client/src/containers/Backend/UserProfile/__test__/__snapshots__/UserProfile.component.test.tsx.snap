@@ -399,7 +399,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-pseudo"
+              testid="test-save-pseudo"
             >
               <span
                 className="mr-10"
@@ -468,7 +468,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-email"
+              testid="test-save-email"
             >
               <span
                 className="mr-10"
@@ -669,7 +669,7 @@ exports[`UserProfile should disable save when new password too weak 1`] = `
           className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
-          testID="test-save-password"
+          testid="test-save-password"
         >
           <span
             className="mr-10"
@@ -1071,7 +1071,7 @@ exports[`UserProfile should render correctly 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-pseudo"
+              testid="test-save-pseudo"
             >
               <span
                 className="mr-10"
@@ -1140,7 +1140,7 @@ exports[`UserProfile should render correctly 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-email"
+              testid="test-save-email"
             >
               <span
                 className="mr-10"
@@ -1171,7 +1171,7 @@ exports[`UserProfile should render correctly 1`] = `
       <button
         className="btn  dark  "
         onClick={[Function]}
-        testID="test-modify-password"
+        testid="test-modify-password"
       >
         <span
           className="mr-10"
@@ -1572,7 +1572,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-pseudo"
+              testid="test-save-pseudo"
             >
               <span
                 className="mr-10"
@@ -1641,7 +1641,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
               className="btn  validate-light ml-8 "
               disabled={true}
               onClick={[Function]}
-              testID="test-save-email"
+              testid="test-save-email"
             >
               <span
                 className="mr-10"
@@ -1796,7 +1796,7 @@ exports[`UserProfile should render correctly when changing password 1`] = `
           className="btn  validate-light  "
           disabled={true}
           onClick={[Function]}
-          testID="test-save-password"
+          testid="test-save-password"
         >
           <span
             className="mr-10"

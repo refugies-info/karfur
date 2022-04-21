@@ -510,7 +510,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           <button
             className="btn  dark  "
             onClick={[Function]}
-            testID="test-add-member"
+            testid="test-add-member"
           >
             <span
               className="mr-10"
@@ -1418,7 +1418,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           <button
             className="btn  dark  "
             onClick={[Function]}
-            testID="test-add-member"
+            testid="test-add-member"
           >
             <span
               className="mr-10"
@@ -1776,7 +1776,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           className="btn  validate  "
           disabled={true}
           onClick={[Function]}
-          testID="test-validate-edit"
+          testid="test-validate-edit"
         >
           <span
             className="mr-10"
@@ -2368,7 +2368,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           <button
             className="btn  dark  "
             onClick={[Function]}
-            testID="test-add-member"
+            testid="test-add-member"
           >
             <span
               className="mr-10"
@@ -2726,7 +2726,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           className="btn  validate  "
           disabled={false}
           onClick={[Function]}
-          testID="test-validate-edit"
+          testid="test-validate-edit"
         >
           <span
             className="mr-10"
@@ -4375,7 +4375,7 @@ exports[`UserStructure should render correctly when structure with membres when 
           <button
             className="btn  dark  "
             onClick={[Function]}
-            testID="test-add-member"
+            testid="test-add-member"
           >
             <span
               className="mr-10"
