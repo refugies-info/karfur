@@ -1,65 +1,49 @@
-# Client specific standards
+# Development Guide
 
-Project was created and uses [NextJS](https://nextjs.org/) to start and build.
+- [Redux usage](#redux-usage)
+- [Write components](#write-small-and-reusable-components)
+- [Typing](#typing)
+- [Testing](#testing)
+- [Routing](#routing)
+- [Assets](#assets)
+- [Styling](#styling)
+- [Logging](#logging)
 
-## Getting started
-
-### Development
-
-Install the dependencies and start the dev server:
-```bash
-> npm install
-> npm run dev
-```
-
-### Production
-
-In order to test the app, you may want to build it:
-```bash
-> npm run build   # build a production ready app
-> npm run start   # start the app with the previously created build
-```
-
-### Architecture
-Learn more about the general architecture of the app by reading the [architecture guide](./architecture.md).
-
-## Development Guide
-
-### Redux usage
+## Redux usage
 
 1. Put all API calls in sagas and store infos in redux store
 2. Use selector hooks to access redux store
 
-### Write small and reusable components
+## Write small and reusable components
 
 Separate components in multiple small reusable components to increase modularity and separate logic in different functions.
 
 To know more about how to write a component, please read [component architecture guide](./component-architecture.md).
 
-### Typing
+## Typing
 
 Every new client file should be **fully typed**. If possible, type existing files.
 
-### Testing
+## Testing
 
 Every file should be **fully tested**.
 
 See SubComponents.test.tsx for examples of snapshot tests.
 
-### Routing
+## Routing
 
 The routing has a specific behavior in RI, because the app host the website and the backoffice. 
 To learn more, please the the [routing guide](./routing.md).
 
-### Assets
+## Assets
 
 In order to have a light bundle, put the assets on GCP bucket like explained in assets storage doc in private repo.
 
-### Styling
+## Styling
 
 The project uses mainly scss modules for design. To know more, read the [styling guide](./styling.md).
 
-### Logging
+## Logging
 
 - see [global standards](../general.md)
 - Do not put logs in render

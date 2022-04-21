@@ -7,8 +7,8 @@
 
 ## Typing
 
-> Every new server file should be **fully typed**. If possible, type existing files.
+Every new server file should be **fully typed**. If possible, type existing files.
 
 ## Testing
 
-> Every new workflow and module should be **fully tested**.
+Every new workflow and module should be **fully tested**.
