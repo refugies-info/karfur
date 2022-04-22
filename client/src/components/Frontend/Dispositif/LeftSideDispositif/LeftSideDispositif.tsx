@@ -14,6 +14,7 @@ import { colors } from "colors";
 import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
+import { Event } from "lib/tracking";
 
 interface Props {
   menu: DispositifContent[];
@@ -181,25 +182,28 @@ const LeftSideDispositif = (props: Props) => {
               type="light-action"
               href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
               name="paper-plane-outline"
+              onClick={() => Event("Share", "Mail", "from dispositif sidebar")}
             >
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
             </FButton>
             <FButton
               className="print_buttons_btn"
               type="light-action"
-              onClick={() =>
+              onClick={() => {
+                Event("Share", "SMS", "from dispositif sidebar");
                 send_sms(
                   "Veuillez renseigner votre numéro de téléphone",
                   props.typeContenu,
                   props.content.titreInformatif
                 )
-              }
+              }}
               name="smartphone-outline"
             >
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
             </FButton>
             <ReactToPrint
               onBeforeGetContent={() => {
+                Event("Share", "Print", "from dispositif sidebar")
                 props.createPdf();
               }}
               onAfterPrint={() => {
