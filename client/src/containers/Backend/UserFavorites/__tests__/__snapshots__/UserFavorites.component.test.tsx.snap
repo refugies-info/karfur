@@ -908,8 +908,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <div>
           <button
             className="btn  outline-black  "
+            data-test-id="test-delete-button"
             onClick={[Function]}
-            testID="test-delete-button"
           >
             <span
               className="mr-10"
@@ -936,7 +936,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center dispositif"
           >
             <a
-              href="/dispositif/id1"
+              href="/program/id1"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
@@ -948,8 +948,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id1"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id1"
                   >
                     <span>
                       <i
@@ -1043,7 +1043,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center dispositif"
           >
             <a
-              href="/dispositif/id2"
+              href="/program/id2"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
@@ -1055,8 +1055,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id2"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id2"
                   >
                     <span>
                       <i
@@ -1144,7 +1144,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             className="card-col puff-in-center demarche"
           >
             <a
-              href="/demarche/id3"
+              href="/procedure/id3"
               onClick={[Function]}
               onMouseEnter={[Function]}
             >
@@ -1156,8 +1156,8 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 >
                   <div
                     className="container bookmark-icon pinned"
+                    data-test-id="test-toggle-pin-id3"
                     onClick={[Function]}
-                    testID="test-toggle-pin-id3"
                   >
                     <span>
                       <i

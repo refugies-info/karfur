@@ -205,7 +205,7 @@ export const AdminStructures = () => {
 
     const filteredStructures = structuresFilteredBySearch.filter(
       (structure) => structure.status === filter
-    );
+    ).sort((a, b) => moment(b.created_at).isBefore(moment(a.created_at)) ? -1 : 1);
     if (sortedHeader.name === "none")
       return {
         structuresToDisplay: filteredStructures,

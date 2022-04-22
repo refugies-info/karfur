@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "./DemarcheCard.module.scss";
+import { getPath } from "routes";
 
 const TitleContainer = styled.div`
   font-weight: bold;
@@ -54,10 +55,10 @@ const DemarcheCard = (props: Props) => {
       className={styles.container}
       onClick={() => {
         if (!props.user) {
-          return router.push("/login");
+          return router.push(getPath("/login", router.locale));
         }
         if (props.user.email !== "") {
-          return router.push("/demarche");
+          return router.push(getPath("/demarche", router.locale));
         }
         return props.toggleModal("demarche");
       }}

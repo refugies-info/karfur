@@ -10,6 +10,7 @@ import {
   Progress,
 } from "reactstrap";
 import Link from "next/link";
+import {useRouter} from "next/router";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import { Language } from "types/interface";
@@ -19,6 +20,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Event } from "lib/tracking";
 import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./LanguageModal.module.scss";
+import { getPath } from "routes";
 
 interface Props {
   show: boolean
@@ -31,6 +33,7 @@ interface Props {
 
 const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const getAvancementTrad = (i18nCode: string) => {
     if (i18nCode === "fr") return 1;
@@ -139,7 +142,7 @@ const LanguageModal = (props: Props) => {
                   <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
                 </Col>
                 <Col xs="4" className={styles.button_col}>
-                  <Link href="/comment-contribuer#traduire" passHref>
+                  <Link href={getPath("/comment-contribuer", router.locale)+"#traduire"} passHref>
                     <FButton
                       tag="a"
                       onClick={props.toggle}

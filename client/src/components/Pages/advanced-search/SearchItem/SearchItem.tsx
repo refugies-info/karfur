@@ -8,7 +8,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRTL from "hooks/useRTL";
 import styles from "./SearchItem.module.scss";
 import fsb_styles from "components/UI/FSearchBtn/FSearchBtn.module.scss";
-import { SearchQuery } from "pages/advanced-search";
+import { SearchQuery } from "pages/recherche";
 import {
   SearchItemType,
   AgeFilter,

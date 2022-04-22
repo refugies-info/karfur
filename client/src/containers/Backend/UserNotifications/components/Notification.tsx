@@ -5,6 +5,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import moment, { Moment } from "moment";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
+import { getPath } from "routes";
 
 const Container = styled.div`
   background: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
@@ -94,7 +95,7 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return router.push("/annuaire-create");
+      return router.push(getPath("/annuaire-creation", router.locale));
     }
 
     if (props.type === "new content" && props.link) {
@@ -117,8 +118,7 @@ export const Notification = (props: Props) => {
     <Container
       read={props.read}
       onClick={(event: any) => onNotifClick(event)}
-      //@ts-ignore
-      testID={"test-notif-" + props.type}
+      data-test-id={"test-notif-" + props.type}
     >
       <RowContainer>
         <EVAIcon
@@ -146,7 +146,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onAnnuaireNotifDeleteClick}
               className="ml-8"
-              testID="test-delete-annuaire"
+              data-test-id="test-delete-annuaire"
             />
           </>
         )}
@@ -165,7 +165,7 @@ export const Notification = (props: Props) => {
               name="trash-2"
               onClick={onReactionDeleteClick}
               className="ml-8"
-              testID="test-delete-reaction"
+              data-test-id="test-delete-reaction"
             />
           </>
         )}

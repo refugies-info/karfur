@@ -1,4 +1,4 @@
-# General Architecture
+# Architecture
 
 - [`assets`](#assets)
 - [`components`](#components)
@@ -12,11 +12,12 @@
 - [`services`](#services)
 - [`types`](#types)
 
-## assets
+## `assets`
+### Responsibility
 
 Contains the assets of the projects. In order to have a light bundle, put the assets on GCP bucket like explained in assets storage doc in private repo.
 
-## components
+## `components`
 
 ### Responsibility
 
@@ -30,7 +31,7 @@ TO DO
 
 TO DO
 
-## containers
+## `containers`
 
 ### Responsibility
 
@@ -44,7 +45,7 @@ TO DO
 
 TO DO
 
-## data
+## `data`
 
 ### Responsibility
 
@@ -54,7 +55,7 @@ pieces of data needed in components or pages
 
 - ✅ Fully typed
 
-## hooks
+## `hooks`
 
 ### Responsibility
 
@@ -64,7 +65,7 @@ custom hooks used across the components and pages
 
 - ✅ Fully typed
 
-## lib
+## `lib`
 
 ### Responsibility
 
@@ -79,14 +80,14 @@ TO DO
 - ✅ Fully tested
 
 
-## locales
+## `locales`
 
 Contains :
 
 - for the 6 langages the commong.json files (translation of interface words)
 - the folder **interfaceTranslation** with scripts to convert json to csv and vice versa for experts translation (see [doc](../../client/src/locales/interfaceTranslation/README.md))
 
-## pages
+## `pages`
 
 ### Responsibility
 
@@ -96,7 +97,7 @@ Contains all the pages of the app. Each file is automatically used as a page by 
 
 TO DO
 
-## scss
+## `scss`
 
 ### Responsibility
 
@@ -106,7 +107,7 @@ Contains all the global CSS files. For more informations, read the [styling guid
 
 - ✅ Fully tested
 
-## services
+## `services`
 
 ### Responsibility
 
@@ -116,7 +117,7 @@ contains redux store
 
 - ✅ Fully tested
 
-## types
+## `types`
 
 Contains :
 

@@ -451,6 +451,22 @@ export interface Need {
   updatedAt: Moment;
 }
 
+export interface RegionFigures {
+  region: string;
+  nbDispositifs: number;
+  nbDepartments: number;
+  nbDepartmentsWithDispo: number;
+}
+export interface NbDispositifsByRegion {
+  regionFigures: RegionFigures[]
+  dispositifsWithoutGeoloc: ObjectId[]
+}
+export interface Statistics {
+  nbMercis: number
+  nbVues: number
+  nbVuesMobile: number
+}
+
 export type AvailableLanguageI18nCode =
   | "fr"
   | "en"

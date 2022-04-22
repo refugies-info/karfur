@@ -62,10 +62,10 @@ describe("UserProfile", () => {
       });
     });
     expect(
-      component.root.findByProps({ testID: "test-save-email" }).props.disabled
+      component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled
     ).toBe(true);
     expect(
-      component.root.findByProps({ testID: "test-save-pseudo" }).props.disabled
+      component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.disabled
     ).toBe(true);
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -85,7 +85,7 @@ describe("UserProfile", () => {
     });
     act(() => {
       component.root
-        .findByProps({ testID: "test-modify-password" })
+        .findByProps({ "data-test-id": "test-modify-password" })
         .props.onClick();
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -120,11 +120,11 @@ describe("UserProfile", () => {
         .props.onChange({ target: { id: "username", value: "pseudo" } });
     });
     expect(
-      component.root.findByProps({ testID: "test-save-pseudo" }).props.disabled
+      component.root.findByProps({ "data-test-id": "test-save-pseudo" }).props.disabled
     ).toBe(false);
     act(() => {
       component.root
-        .findByProps({ testID: "test-save-pseudo" })
+        .findByProps({ "data-test-id": "test-save-pseudo" })
         .props.onClick();
     });
     expect(API.updateUser).toHaveBeenCalledWith({
@@ -162,11 +162,11 @@ describe("UserProfile", () => {
       });
     });
     expect(
-      component.root.findByProps({ testID: "test-save-email" }).props.disabled
+      component.root.findByProps({ "data-test-id": "test-save-email" }).props.disabled
     ).toBe(false);
 
     act(() => {
-      component.root.findByProps({ testID: "test-save-email" }).props.onClick();
+      component.root.findByProps({ "data-test-id": "test-save-email" }).props.onClick();
     });
 
     expect(saveUserActionCreator).toHaveBeenLastCalledWith({
@@ -204,12 +204,12 @@ describe("UserProfile", () => {
 
     act(() => {
       component.root
-        .findByProps({ testID: "test-modify-password" })
+        .findByProps({ "data-test-id": "test-modify-password" })
         .props.onClick();
     });
 
     expect(
-      component.root.findByProps({ testID: "test-save-password" }).props
+      component.root.findByProps({ "data-test-id": "test-save-password" }).props
         .disabled
     ).toBe(true);
 
@@ -222,7 +222,7 @@ describe("UserProfile", () => {
       });
     });
     expect(
-      component.root.findByProps({ testID: "test-save-password" }).props
+      component.root.findByProps({ "data-test-id": "test-save-password" }).props
         .disabled
     ).toBe(true);
     expect(component.toJSON()).toMatchSnapshot();
@@ -253,7 +253,7 @@ describe("UserProfile", () => {
     });
     act(() => {
       component.root
-        .findByProps({ testID: "test-modify-password" })
+        .findByProps({ "data-test-id": "test-modify-password" })
         .props.onClick();
     });
 
@@ -267,13 +267,13 @@ describe("UserProfile", () => {
     });
 
     expect(
-      component.root.findByProps({ testID: "test-save-password" }).props
+      component.root.findByProps({ "data-test-id": "test-save-password" }).props
         .disabled
     ).toBe(false);
 
     act(() => {
       component.root
-        .findByProps({ testID: "test-save-password" })
+        .findByProps({ "data-test-id": "test-save-password" })
         .props.onClick();
     });
     expect(API.changePassword).toHaveBeenCalledWith({

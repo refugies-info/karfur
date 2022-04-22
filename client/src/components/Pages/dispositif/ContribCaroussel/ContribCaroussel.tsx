@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import _ from "lodash";
+import uniqBy from "lodash/uniqBy";
 import {
   Row,
   Col,
@@ -11,7 +11,6 @@ import {
 } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import isInBrowser from "lib/isInBrowser";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import marioProfile from "assets/mario-profile.jpg";
@@ -50,7 +49,7 @@ const ContribCarousel = (props: Props) => {
     );
 
     // there may be duplicates in db in Dispositif.participants
-    const deduplicatedContributors = _.uniqBy(props.contributeurs, "username");
+    const deduplicatedContributors = uniqBy(props.contributeurs, "username");
 
     // reducedContributors is an array of multiple arrays containing maximum nbCards contributeurs
     const reducedContributors = (deduplicatedContributors || []).reduce(

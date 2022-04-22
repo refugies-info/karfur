@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
-import _ from "lodash";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";

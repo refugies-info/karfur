@@ -39,6 +39,7 @@ steps:
 
 options:
     dynamic_substitutions: true
+    machineType: 'E2_HIGHCPU_32'
 
 substitutions:
     _COMPONENT: frontend

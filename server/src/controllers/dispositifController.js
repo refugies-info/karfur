@@ -18,6 +18,7 @@ import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
 import { getNbContents } from "../workflows/dispositif/getNbContents";
+import { getStatistics } from "../workflows/dispositif/getStatistics";
 
 module.exports = function (app) {
   app.post("/addDispositif", checkToken.check, addDispositif);
@@ -62,6 +63,7 @@ module.exports = function (app) {
   );
   app.get("/getContentById", getContentById);
   app.get("/getNbContents", getNbContents);
+  app.get("/statistics", checkToken.check, getStatistics);
   /* NOT USED
   app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
   app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);

@@ -32,6 +32,7 @@ import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
+import { getPath } from "routes";
 
 const ButtonContainerRow = styled.div`
   display: flex;
@@ -59,7 +60,7 @@ const Homepage = (props: Props) => {
 
   const selectOption =  (tagName: string) => {
     router.push({
-      pathname: "/advanced-search",
+      pathname: getPath("/recherche", router.locale),
       search: qs.stringify({tag: tagName}),
     });
   };
@@ -123,7 +124,7 @@ const Homepage = (props: Props) => {
             isDisabled={false}
             onClick={() => {
               router.push({
-                pathname: "/advanced-search",
+                pathname: getPath("/recherche", router.locale),
                 search: isMobile ? null : "?filter=dispositifs",
               });
             }}
@@ -140,7 +141,7 @@ const Homepage = (props: Props) => {
             isDisabled={false}
             onClick={() => {
               router.push({
-                pathname: "/advanced-search",
+                pathname: getPath("/recherche", router.locale),
                 search: isMobile ? null : "?filter=demarches",
               });
             }}
@@ -163,7 +164,7 @@ const Homepage = (props: Props) => {
             isDisabled={isMobile ? true : false}
             onClick={() => {
               router.push({
-                pathname: "/annuaire",
+                pathname: getPath("/annuaire", router.locale),
               });
             }}
           />
@@ -196,7 +197,7 @@ const Homepage = (props: Props) => {
                 </p>
               </div>
               <footer className="footer-section">
-                <Link href="/comment-contribuer" passHref>
+                <Link href={getPath("/comment-contribuer", router.locale)} passHref>
                   <FButton
                     name="file-add-outline"
                     tag="a"
@@ -220,7 +221,7 @@ const Homepage = (props: Props) => {
                 </p>
               </div>
               <footer>
-                <Link href="/comment-contribuer#ecrire" passHref>
+                <Link href={getPath("/comment-contribuer", router.locale)+"#ecrire"} passHref>
                   <FButton
                     name="file-add-outline"
                     type="dark"
@@ -245,7 +246,7 @@ const Homepage = (props: Props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <footer className="footer-section">
-                <Link href="/comment-contribuer#traduire" passHref>
+                <Link href={getPath("/comment-contribuer", router.locale)+"#traduire"} passHref>
                   <FButton
                     name="file-add-outline"
                     type="dark"
@@ -273,7 +274,7 @@ const Homepage = (props: Props) => {
               <footer className="footer-section">
                 <ButtonContainerRow>
                   <ButtonSeparator isRTL={isRTL}>
-                    <Link href="/comment-contribuer#deployer-card" passHref>
+                    <Link href={getPath("/comment-contribuer", router.locale)+"#deployer-card"} passHref>
                       <FButton
                         type="dark"
                         tag="a"
@@ -293,7 +294,7 @@ const Homepage = (props: Props) => {
                       </FButton>
                     </Link>
                   </ButtonSeparator>
-                  <Link href="/comment-contribuer#deployer-card" passHref>
+                  <Link href={getPath("/comment-contribuer", router.locale)+"#deployer-card"} passHref>
                     <FButton
                       type="outline-black"
                       tag="a"

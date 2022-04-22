@@ -3,8 +3,12 @@ import Link from "next/link";
 import styles from "scss/pages/legal-pages.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 const PolitiqueConfidentialite = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.legal_pages + " animated fadeIn texte-small"}>
       <SEO title="Politique de confidentialité" />
@@ -12,7 +16,7 @@ const PolitiqueConfidentialite = () => {
       <h2>Qui sommes-nous ?</h2>
       <p>
         Ce site est édité par <strong>Refugies.info</strong>. Visitez la page{" "}
-        <Link href="/mentions-legales/"><a>Mentions légales</a></Link> pour plus
+        <Link href={getPath("/mentions-legales", router.locale)}><a>Mentions légales</a></Link> pour plus
         d&apos;informations.
       </p>
 

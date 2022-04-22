@@ -19,7 +19,6 @@ import { formatNotifications } from "./lib";
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "components/Modals";
 import { FormattedNotification } from "./types";
-import _ from "lodash";
 import Swal from "sweetalert2";
 import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Skeleton from "react-loading-skeleton";
