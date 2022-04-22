@@ -39,6 +39,7 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import { filterContents } from "lib/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { colors } from "colors";
 import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
@@ -1778,8 +1779,12 @@ const mapSizesToProps = ({ width }: {width: number}) => ({
   isBigDesktop: width >= 1565,
 });
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({locale}) => {
-  store.dispatch(fetchActiveDispositifsActionsCreator());
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ locale }) => {
+  if (locale) {
+    store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
+  } else {
+    store.dispatch(fetchActiveDispositifsActionsCreator());
+  }
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
