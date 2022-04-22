@@ -170,3 +170,39 @@ export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
 
 export const createDispositifInDB = async (dispositif: DispositifDoc) =>
   await new Dispositif(dispositif).save();
+
+export const getNbMercis = async () => {
+  return Dispositif.aggregate([
+    {
+      $match: { status: "Actif" },
+    },
+    {
+      $project: {
+        _id: null,
+        mercis: {
+          $size: { "$ifNull": [ "$merci", [] ] }
+        },
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        mercis: { $sum: "$mercis" },
+      },
+    },
+  ]);
+}
+export const getNbVues = async () => {
+  return Dispositif.aggregate([
+    {
+      $match: { status: "Actif" },
+    },
+    {
+      $group: {
+        _id: null,
+        nbVues: { $sum: "$nbVues" },
+        nbVuesMobile: { $sum: "$nbVuesMobile" },
+      },
+    },
+  ]);
+}
