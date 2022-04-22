@@ -126,6 +126,7 @@ export const MobileAdvancedSearch = (props: Props) => {
               type="theme"
               title={"Tags.choisir un thème"}
               defaultTitle={"choisir un thème"}
+              setState={setTagSelected}
               removeFromQuery={() => props.removeFromQuery("theme")}
             />
           </div>

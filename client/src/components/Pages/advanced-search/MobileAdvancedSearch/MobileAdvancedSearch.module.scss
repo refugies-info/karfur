@@ -46,6 +46,11 @@
   & > span {
     height: 20px;
   }
+
+  .theme_name {
+    flex-grow: 1;
+    padding-left: 8px;
+  }
 }
 
 .autocomplete {
@@ -62,7 +67,7 @@
   box-shadow: 0 10px 15px 0 #00000040;
 
   &:disabled {
-    background: $gray60 !important;
+    background: $gray80 !important;
     color: $white !important;
 
     svg {
