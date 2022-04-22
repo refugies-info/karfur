@@ -90,8 +90,9 @@ Make sure you have a mongodb instance launched.
 
 Open a new terminal tab and launch the server:
 ```bash
-> cd karfur/server    # go into app's directory
-> nodemon             # serve at localhost:8000
+> cd karfur/server                # go into app's directory
+> npm install -g nodemon ts-node  # install globally some dependencies
+> nodemon                         # serve at localhost:8000
 ```
 
 ### Admin account creation
