@@ -1,6 +1,7 @@
 import { Language } from "types/interface";
 import { LangueActions } from "./langue.actions";
 import { createReducer } from "typesafe-actions";
+import isInBrowser from "lib/isInBrowser";
 
 export interface LangueState {
   langues: Language[];
@@ -21,7 +22,7 @@ export const langueReducer = createReducer<LangueState, LangueActions>(
   {
     TOGGLE_LANGUE: (state, action) => {
       // @ts-ignore
-      localStorage.setItem("languei18nCode", action.payload);
+      if (isInBrowser()) localStorage.setItem("languei18nCode", action.payload);
       return { ...state, languei18nCode: action.payload };
     },
     TOGGLE_LANG_MODAL: (state) =>
