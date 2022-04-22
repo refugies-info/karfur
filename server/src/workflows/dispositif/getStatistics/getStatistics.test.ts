@@ -1,6 +1,7 @@
 //@ts-nocheck
 import { getStatistics } from "./getStatistics";
 import { getNbMercis, getNbVues } from "../../../modules/dispositif/dispositif.repository";
+import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -15,6 +16,14 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getNbVues: jest.fn().mockResolvedValue([{_id:null,nbVues:175201,nbVuesMobile:85741}]),
 }));
 
+jest.mock("../../../libs/checkAuthorizations", () => ({
+  checkIfUserIsAdmin: jest.fn().mockReturnValue(undefined),
+}));
+
+const req = {
+  user: { roles: [{ nom: "Admin" }] },
+};
+
 describe("getStatistics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -22,7 +31,7 @@ describe("getStatistics", () => {
 
   it("should return correct result", async () => {
     const res = mockResponse();
-    await getStatistics({}, res);
+    await getStatistics(req, res);
     expect(getNbMercis).toHaveBeenCalled();
     expect(getNbVues).toHaveBeenCalled();
 
@@ -43,7 +52,7 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics({}, res);
+    await getStatistics(req, res);
     expect(getNbMercis).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
@@ -55,8 +64,21 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics({}, res);
+    await getStatistics(req, res);
     expect(getNbVues).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
+  });
+
+  it("should return a 403 if not admin ", async () => {
+    checkIfUserIsAdmin.mockImplementation(() => {
+      throw new Error("NOT_AUTHORIZED");
+    });
+
+    const res = mockResponse();
+    await getStatistics(req, res);
+    expect(getNbVues).not.toHaveBeenCalled();
+    expect(getNbVues).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
   });
