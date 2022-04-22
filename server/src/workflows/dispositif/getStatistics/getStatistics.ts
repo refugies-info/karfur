@@ -1,6 +1,7 @@
 import logger from "../../../logger";
 import { getNbMercis, getNbVues } from "../../../modules/dispositif/dispositif.repository";
 import { Res, RequestFromClient } from "../../../types/interface";
+import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
 interface Query {}
 
@@ -10,6 +11,9 @@ type Vues = {nbVues: number, nbVuesMobile: number}
 export const getStatistics = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     logger.info("[getStatistics]");
+
+    // @ts-ignore : populate roles
+    checkIfUserIsAdmin(req.user.roles)
 
     const resMercis: Mercis[] = await getNbMercis();
     const resVues: Vues[] = await getNbVues();

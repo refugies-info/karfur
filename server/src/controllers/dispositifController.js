@@ -63,7 +63,7 @@ module.exports = function (app) {
   );
   app.get("/getContentById", getContentById);
   app.get("/getNbContents", getNbContents);
-  app.get("/statistics", getStatistics);
+  app.get("/statistics", checkToken.check, getStatistics);
   /* NOT USED
   app.post("/addNeedsFromAirtable", addNeedsFromAirtable);
   app.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
