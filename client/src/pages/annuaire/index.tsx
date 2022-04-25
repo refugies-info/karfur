@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
-import { ObjectId } from "mongodb";
 import qs from "query-string";
 import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
@@ -185,11 +184,6 @@ const Annuaire = () => {
   }, [initialFilteredStructures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-  const onStructureCardClick = (id: ObjectId) =>
-    router.push({
-      pathname: getPath("/annuaire/[id]", router.locale),
-      query: {id: id.toString()}
-    });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
   return (
@@ -217,10 +211,7 @@ const Annuaire = () => {
       />
         <div className={styles.content}>
           {filteredStructures.length > 0 ? (
-            <LetterSection
-              onStructureCardClick={onStructureCardClick}
-              structures={filteredStructures}
-            />
+            <LetterSection structures={filteredStructures} />
           ) : (
             <NoResult resetAllFilter={resetAllFilter} />
           )}
