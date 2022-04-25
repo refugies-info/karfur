@@ -73,6 +73,8 @@ const Layout = (props: Props) => {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       dispatch(toggleLangueModalActionCreator());
+    } else {
+      setLanguageLoaded(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import uniqBy from "lodash/uniqBy";
 import {
   Row,
   Col,
@@ -13,6 +12,7 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { reduceContributors } from "./function";
 import marioProfile from "assets/mario-profile.jpg";
 import styles from "./ContribCaroussel.module.scss";
 
@@ -42,53 +42,9 @@ const ContribCarousel = (props: Props) => {
   };
 
   // Contributors
-  const [reducedContributors, setReduceContributors] = useState<any[]>([]);
+  const [reducedContributors, setReduceContributors] = useState<any[]>(reduceContributors(props.contributeurs));
   useEffect(() => {
-    const nbCards = Math.floor(
-      (((window.innerWidth - 2 * 10) * 7) / 12 - 2 * (15 + 20)) / (140 + 20)
-    );
-
-    // there may be duplicates in db in Dispositif.participants
-    const deduplicatedContributors = uniqBy(props.contributeurs, "username");
-
-    // reducedContributors is an array of multiple arrays containing maximum nbCards contributeurs
-    const reducedContributors = (deduplicatedContributors || []).reduce(
-      (acc, curr, i) => {
-        if (
-          i > 0 &&
-          i % nbCards === 0 &&
-          i !== deduplicatedContributors.length - 1
-        ) {
-          return {
-            currGrp: [curr],
-            groupedData: [...acc.groupedData, acc.currGrp],
-          };
-        } else if (
-          i % nbCards !== 0 &&
-          i === deduplicatedContributors.length - 1
-        ) {
-          return {
-            groupedData: [...acc.groupedData, [...acc.currGrp, curr]],
-            currGrp: [],
-          };
-        } else if (
-          i % nbCards === 0 &&
-          i === deduplicatedContributors.length - 1
-        ) {
-          return {
-            groupedData: [...acc.groupedData, ...acc.currGrp, [curr]],
-            currGrp: [],
-          };
-        }
-        return {
-          currGrp: [...acc.currGrp, curr],
-          groupedData: acc.groupedData,
-        };
-      },
-      { currGrp: [], groupedData: [] }
-    ).groupedData;
-
-    setReduceContributors(reducedContributors);
+    setReduceContributors(reduceContributors(props.contributeurs));
   }, [props.contributeurs]);
 
   return (

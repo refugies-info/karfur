@@ -147,6 +147,11 @@ const EtapeParagraphe = (props: Props) => {
 
   const { t } = useTranslation();
 
+  const [openAccordions, setOpenAccordions] = useState(true); // open accordions for robots
+  useEffect(() => {
+    setOpenAccordions(false); // but close it for users
+  }, []);
+
   useEffect(() => {
     if (
       (!isOptionSelected && props.subitem.option?.value1,
@@ -290,7 +295,7 @@ const EtapeParagraphe = (props: Props) => {
     children[subkey][node];
   }
 
-  const isAccordeonOpen = !!safeUiArray(keyValue, subkey, "accordion");
+  const isAccordeonOpen = openAccordions || !!safeUiArray(keyValue, subkey, "accordion");
   const darkColor = props.mainTag?.darkColor || colors.gray90;
   const lightColor = props.mainTag?.lightColor || colors.gray20;
   const isRTL = useRTL();
@@ -320,10 +325,10 @@ const EtapeParagraphe = (props: Props) => {
                   keyValue,
                   subkey,
                   "accordion",
-                  !safeUiArray(keyValue, subkey, "accordion")
+                  !isAccordeonOpen
                 )
               }
-              aria-expanded={safeUiArray(keyValue, subkey, "accordion")}
+              aria-expanded={isAccordeonOpen}
               aria-controls={"collapse" + keyValue + "-" + subkey}
             >
               <StyledHeader darkColor={darkColor}>
@@ -343,13 +348,7 @@ const EtapeParagraphe = (props: Props) => {
                 />
                 {disableEdit && (
                   <EVAIcon
-                    name={
-                      "chevron-" +
-                      (safeUiArray(keyValue, subkey, "accordion")
-                        ? "up"
-                        : "down") +
-                      "-outline"
-                    }
+                    name={`chevron-${isAccordeonOpen ? "up" : "down"}-outline`}
                     size="large"
                     fill={darkColor}
                     className="ml-8"
@@ -862,7 +861,7 @@ const EtapeParagraphe = (props: Props) => {
 
           <Collapse
             className="contenu-accordeon etape-accordeon"
-            isOpen={safeUiArray(keyValue, subkey, "accordion")}
+            isOpen={isAccordeonOpen}
             data-parent="#accordion"
             id={"collapse" + keyValue + "-" + subkey}
             aria-labelledby={"heading" + keyValue + "-" + subkey}

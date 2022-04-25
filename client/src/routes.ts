@@ -57,5 +57,6 @@ export const getPath = (
   locale: string | undefined,
   params?: string
 ) => {
-  return `${locale === "fr" ? pathName : routes[pathName]}${params || ""}`
+  const path = locale === "fr" ? pathName : routes[pathName]
+  return `${path || pathName}${params || ""}`
 }
