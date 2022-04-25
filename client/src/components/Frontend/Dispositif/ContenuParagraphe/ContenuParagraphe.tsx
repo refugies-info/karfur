@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
@@ -128,6 +128,11 @@ const ContenuParagraphe = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
+  const [openAccordions, setOpenAccordions] = useState(true); // open accordions for robots
+  useEffect(() => {
+    setOpenAccordions(false); // but close it for users
+  }, []);
+
   const safeUiArray = (key: number, subkey: number, node: string) => {
     const children = props.uiArray[key]?.children;
     if (children === undefined) return false;
@@ -199,7 +204,7 @@ const ContenuParagraphe = (props: Props) => {
         </div>
       )}
       {(props.dispositifContent.children || []).map((subitem, index) => {
-          const isAccordeonOpen = !!safeUiArray(
+          const isAccordeonOpen = openAccordions || !!safeUiArray(
             props.keyValue,
             index,
             "accordion"
@@ -330,14 +335,10 @@ const ContenuParagraphe = (props: Props) => {
                               props.keyValue,
                               index,
                               "accordion",
-                              !safeUiArray(props.keyValue, index, "accordion")
+                              !isAccordeonOpen
                             )
                           }
-                          aria-expanded={safeUiArray(
-                            props.keyValue,
-                            index,
-                            "accordion"
-                          )}
+                          aria-expanded={isAccordeonOpen}
                           aria-controls={
                             "collapse" + props.keyValue + "-" + index
                           }
@@ -357,17 +358,7 @@ const ContenuParagraphe = (props: Props) => {
                             />
                             {props.disableEdit && (
                               <EVAIcon
-                                name={
-                                  "chevron-" +
-                                  (safeUiArray(
-                                    props.keyValue,
-                                    index,
-                                    "accordion"
-                                  )
-                                    ? "up"
-                                    : "down") +
-                                  "-outline"
-                                }
+                                name={`chevron-${isAccordeonOpen ? "up" : "down"}-outline`}
                                 size="large"
                                 fill={darkColor}
                                 className="ml-12"
@@ -389,11 +380,7 @@ const ContenuParagraphe = (props: Props) => {
                       </div>
                       <Collapse
                         className="contenu-accordeon"
-                        isOpen={safeUiArray(
-                          props.keyValue,
-                          index,
-                          "accordion"
-                        )}
+                        isOpen={isAccordeonOpen}
                         data-parent="#accordion"
                         id={"collapse" + props.keyValue + "-" + index}
                         aria-labelledby={
