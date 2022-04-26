@@ -7,7 +7,7 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { login2FA } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import passwordHash from "password-hash";
-import { User } from "src/schema/schemaUser";
+import { User } from "./../../../schema/schemaUser";
 
 interface Query {
   newPassword: string;
