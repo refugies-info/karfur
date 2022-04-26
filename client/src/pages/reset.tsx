@@ -31,6 +31,10 @@ import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath, PathNames } from "routes";
+import PhoneAndEmailFields from "components/Pages/login/PhoneAndEmailFields";
+import CodeField from "components/Pages/login/CodeField";
+import Footer from "components/Pages/login/Footer";
+
 
 const StyledHeader = styled.div`
   font-weight: 600;
@@ -52,11 +56,32 @@ const ContentContainer = styled.div`
   padding-top: 100px;
 `;
 
+type Structure = {
+  nom: string;
+  picture: {
+    secure_url: string;
+  };
+};
+
 const Reset = () => {
   const [newPassword, setNewPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [resetPasswordToken, setResetPasswordToken] = useState("");
+
+  // 2FA
+  const [code, setCode] = useState("");
+  const [phone, setPhone] = useState("");
+  const [smsSentTo, setSmsSentTo] = useState("");
+  const [structure, setStructure] = useState<Structure | null>(null);
+  const [email, setEmail] = useState("");
+  const [step, setStep] = useState(0);
+  const [wrongAdminCodeError, setWrongAdminCodeError] = useState(false);
+  const [
+    newHasStructureWithoutPhoneOrEmail,
+    setNewHasStructureWithoutPhoneOrEmail,
+  ] = useState(false);
+  const [unexpectedError, setUnexpectedError] = useState(false);
 
   const { t } = useTranslation();
   const router = useRouter();
@@ -127,6 +152,9 @@ const Reset = () => {
     const user = {
       newPassword: newPassword,
       reset_password_token: resetPasswordToken,
+      code,
+      email,
+      phone,
     };
     API.set_new_password(user)
       .then((data) => {
@@ -141,20 +169,82 @@ const Reset = () => {
           dispatch(fetchUserActionCreator());
           router.push("/");
         });
-      }).catch(() => {});
+      })
+      .catch((e) => {
+        if (e.response.status === 501) {
+          setStep(2);
+          setNewHasStructureWithoutPhoneOrEmail(false);
+          setSmsSentTo(e.response?.data?.phone || "");
+        } else if (e.response.status === 402) {
+          setWrongAdminCodeError(true);
+        } else if (e.response.status === 502) {
+          setStep(1);
+          setNewHasStructureWithoutPhoneOrEmail(true);
+          setEmail(e.response?.data?.email || "");
+          setStructure(e.response?.data?.structure);
+        } else {
+          setUnexpectedError(true);
+        }
+      });
   };
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
     const { pathname, query } = router;
-    router.push({
-      pathname: getPath(pathname as PathNames, lng),
-      query
-    }, undefined, { locale: lng });
+    router.push(
+      {
+        pathname: getPath(pathname as PathNames, lng),
+        query,
+      },
+      undefined,
+      { locale: lng }
+    );
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
     }
+  };
+
+  const getFormTemplate = () => {
+    if (step === 0) { // STEP 0: New password
+      return (
+        <PasswordField
+          id="newPassword"
+          value={newPassword}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNewPassword(e.target.value)
+          }
+          passwordVisible={passwordVisible}
+          onShowPassword={togglePasswordVisibility}
+          weakPasswordError={null}
+          nextButtonText={t("Valider", "Valider")}
+        />
+      );
+    } else if (step === 1) { // STEP 1: No phone
+      return (
+        <PhoneAndEmailFields
+          onChangePhone={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPhone(e.target.value)
+          }
+          onChangeEmail={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
+          phone={phone}
+          email={email}
+          structure={structure}
+          isAdmin={false}
+        />
+      );
+    }
+    return ( // STEP 2: 2FA code
+      <CodeField
+        value={code}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setCode(e.target.value)
+        }
+        wrongAdminCodeError={wrongAdminCodeError}
+      />
+    );
   };
 
   if (isLoading) {
@@ -193,6 +283,24 @@ const Reset = () => {
     );
   }
 
+    const getSubtitle = () => {
+      if (step === 0) {
+        {t(
+          "Reset.Entrez votre nouveau mot de passe",
+          "Entrez votre nouveau mot de passe"
+        )}
+      }
+      if (newHasStructureWithoutPhoneOrEmail) {
+        return "";
+      }
+
+      if (step === 2) {
+        return t("Login.code_sent_sms", { phone: smsSentTo });
+      }
+      return "";
+    };
+
+
   return (
     <div className="app">
       <SEO />
@@ -212,30 +320,33 @@ const Reset = () => {
             {t("Login.Centre d'aide", "Centre d'aide")}
           </FButton>
           <StyledHeader>
-            {t(
+            {step !== 2 ? t(
               "Reset.Réinitialisation du mot de passe",
               "Réinitialisation du mot de passe"
-            )}
+              ) :
+              t("Login.Double authentification", "Double authentification ")
+            }
           </StyledHeader>
           <StyledEnterValue>
-            {t(
-              "Reset.Entrez votre nouveau mot de passe",
-              "Entrez votre nouveau mot de passe"
-            )}
+            {getSubtitle()}
           </StyledEnterValue>
-          <Form onSubmit={send}>
-            <PasswordField
-              id="newPassword"
-              value={newPassword}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setNewPassword(e.target.value)
+          <Form onSubmit={send}>{getFormTemplate()}</Form>
+
+          {step === 2 &&
+            <Footer
+              step={2}
+              resetPassword={() => {}}
+              resetPasswordNotPossible={false}
+              resetPasswordPossible={false}
+              login={send}
+              unexpectedError={unexpectedError}
+              newAdminWithoutPhoneOrEmail={false}
+              newHasStructureWithoutPhoneOrEmail={
+                newHasStructureWithoutPhoneOrEmail
               }
-              passwordVisible={passwordVisible}
-              onShowPassword={togglePasswordVisibility}
-              weakPasswordError={null}
-              nextButtonText={t("Valider", "Valider")}
+              userDeletedError={false}
             />
-          </Form>
+          }
         </ContentContainer>
         <LanguageModal
           show={showLangModal}

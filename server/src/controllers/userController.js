@@ -6,6 +6,7 @@ import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
 import { changePassword } from "../workflows/users/changePassword";
+import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 
@@ -22,7 +23,7 @@ module.exports = function (app) {
   app.post("/get_user_info", checkToken.check, account.get_user_info);
   app.post("/changePassword", checkToken.check, changePassword);
   app.post("/reset_password", checkToken.getRoles, account.reset_password);
-  app.post("/set_new_password", checkToken.getRoles, account.set_new_password);
+  app.post("/set_new_password", checkToken.getRoles, setNewPassword);
 
   app.get("/getFiguresOnUsers", getFiguresOnUsers);
   app.get("/getAllUsers", checkToken.check, getAllUsers);
