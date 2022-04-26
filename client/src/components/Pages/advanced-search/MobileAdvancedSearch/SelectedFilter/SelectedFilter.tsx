@@ -38,7 +38,6 @@ export const SelectedFilter = (props: Props) => {
       >
         {props.tagSelected ? (
           <>
-            {t("Tags." + props.tagSelected.name, props.tagSelected.name)}
             {props.tagSelected?.icon ? (
               <Streamline
                 name={props.tagSelected.icon}
@@ -47,6 +46,18 @@ export const SelectedFilter = (props: Props) => {
                 height={20}
               />
             ) : null}
+            <div className={styles.theme_name}>
+              {t("Tags." + props.tagSelected.name, props.tagSelected.name)}
+            </div>
+            <span
+              onClick={(e: any) => {
+                e.stopPropagation();
+                props.setState(null);
+                props.removeFromQuery();
+              }}
+            >
+              <EVAIcon name="close" fill={colors.gray10} size="medium" />
+            </span>
           </>
         ) : (
           <>

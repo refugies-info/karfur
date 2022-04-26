@@ -73,6 +73,8 @@ const Layout = (props: Props) => {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       dispatch(toggleLangueModalActionCreator());
+    } else {
+      setLanguageLoaded(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -112,10 +114,11 @@ const Layout = (props: Props) => {
   const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   useEffect(() => {
-    if (dispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
+    if (languageLoaded && dispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
   }, [
+    languageLoaded,
     dispositifs.length,
     isDispositifsLoading,
     hasDispositifsError,

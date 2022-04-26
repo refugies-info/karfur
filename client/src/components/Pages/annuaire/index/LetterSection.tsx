@@ -1,59 +1,66 @@
 import React from "react";
 import LinesEllipsis from "react-lines-ellipsis";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import { ObjectId } from "mongodb";
 import { Picture, SimplifiedStructure } from "types/interface";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styles from "./LetterSection.module.scss";
-import Image from "next/image";
-
-interface Props {
-  structures: SimplifiedStructure[];
-  onStructureCardClick: (id: ObjectId) => void;
-}
-
+import { getPath } from "routes";
 interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture | null;
-  onStructureCardClick: (id: ObjectId) => void;
   id: ObjectId;
 }
 const StructureCard = (props: StructureCardProps) => {
-  return (
-    <div
-      className={styles.structure_container}
-      onClick={() => props.onStructureCardClick(props.id)}
-    >
-      <div className={styles.inner}>
-        <Image
-          className={styles.img}
-          src={props.picture?.secure_url || placeholder}
-          alt={props.acronyme}
-          width={150}
-          height={100}
-        />
-      </div>
-      {!props.picture?.secure_url && <div></div>}
+  const router = useRouter();
 
-      <LinesEllipsis
-        text={
-          props.acronyme
-            ? props.nom.length + props.acronyme.length > 43
-              ? props.nom.substr(0, 36 - props.acronyme.length) +
-                "... (" +
-                props.acronyme +
-                ")"
-              : props.nom + " (" + props.acronyme + ")"
-            : props.nom
-        }
-        maxLine="4"
-        trimRight
-        basedOn="letters"
-      />
-    </div>
+  return (
+    <Link
+      href={{
+        pathname: getPath("/annuaire/[id]", router.locale),
+        query: {id: props.id.toString()}
+      }}
+    >
+      <a
+        className={styles.structure_container}
+      >
+        <div className={styles.inner}>
+          <Image
+            className={styles.img}
+            src={props.picture?.secure_url || placeholder}
+            alt={props.acronyme}
+            width={150}
+            height={100}
+          />
+        </div>
+        {!props.picture?.secure_url && <div></div>}
+
+        <LinesEllipsis
+          text={
+            props.acronyme
+              ? props.nom.length + props.acronyme.length > 43
+                ? props.nom.substr(0, 36 - props.acronyme.length) +
+                  "... (" +
+                  props.acronyme +
+                  ")"
+                : props.nom + " (" + props.acronyme + ")"
+              : props.nom
+          }
+          maxLine="4"
+          trimRight
+          basedOn="letters"
+        />
+      </a>
+    </Link>
   );
 };
 
+interface Props {
+  structures: SimplifiedStructure[];
+}
 export const LetterSection = (props: Props) => {
   return (
     <div className={styles.letter_container}>
@@ -79,7 +86,6 @@ export const LetterSection = (props: Props) => {
             nom={structure.nom}
             picture={structure.picture || null}
             acronyme={structure.acronyme}
-            onStructureCardClick={props.onStructureCardClick}
             id={structure._id}
           />
         </div>

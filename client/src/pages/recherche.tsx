@@ -8,9 +8,7 @@ import qs from "query-string";
 import get from "lodash/get";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import withSizes from "react-sizes";
 import Streamline from "assets/streamline";
-import { isMobile } from "react-device-detect";
 import { END } from "redux-saga";
 import SearchItem from "components/Pages/advanced-search/SearchItem/SearchItem";
 import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
@@ -36,9 +34,10 @@ import FButton from "components/UI/FButton/FButton";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { filterContents } from "lib/filterContents";
+import { decodeQuery, queryDispositifs } from "lib/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { colors } from "colors";
 import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
@@ -75,14 +74,6 @@ const ThemeHeaderTitle = styled.p`
   color: ${(props) => props.color};
 `;
 
-const ThemeListContainer = styled.div`
-  display: grid;
-  justify-content: start;
-  align-content: start;
-  grid-template-columns: ${(props: {columns?: number}) =>
-    `repeat(${props.columns || 5}, minmax(260px, 300px))`};
-  background-color: ${(props) => props.color};
-`;
 interface SearchToggleProps {
   isRtl: boolean
   visible: boolean
@@ -264,11 +255,6 @@ interface Props {
   isLoading: boolean
   t: any
   fetchUser: any
-  isMobile: boolean
-  isTablet: boolean
-  isSmallDesktop: boolean
-  isDesktop: boolean
-  isBigDesktop: boolean
 }
 interface State {
   query: SearchQuery
@@ -301,30 +287,37 @@ interface State {
 export class AdvancedSearch extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    const initialQuery = decodeQuery(this.props.router.query);
+    const queryResults = queryDispositifs(
+      this.props.dispositifs,
+      initialQuery.query,
+      this.props.languei18nCode
+    );
+    if (isInBrowser()) this.updateUrl(initialQuery.query);
+
     this.state = {
-      query: {
-        order: "theme"
-      },
-      dispositifs: [],
+      query: initialQuery.query,
+      dispositifs: queryResults.dispositifs,
       dropdownOpenTri: false,
       dropdownOpenFiltre: false,
       showBookmarkModal: false,
-      searchToggleVisible: false,
+      searchToggleVisible: initialQuery.searchToggleVisible,
       visible: true,
-      countTotal: 0,
-      countShow: 0,
-      themesObject: [],
-      principalThemeList: [],
-      secondaryThemeList: [],
-      principalThemeListFullFrance: [],
-      secondaryThemeListFullFrance: [],
-      nonTranslated: [],
+      countTotal: queryResults.countTotal,
+      countShow: queryResults.countShow,
+      themesObject: queryResults.themesObject,
+      principalThemeList: queryResults.principalThemeList,
+      secondaryThemeList: queryResults.secondaryThemeList,
+      principalThemeListFullFrance: queryResults.principalThemeListFullFrance,
+      secondaryThemeListFullFrance: queryResults.secondaryThemeListFullFrance,
+      nonTranslated: queryResults.nonTranslated,
       chargingArray: new Array(20).fill(true),
       showGeolocFullFrancePrincipal: false,
       showGeolocFullFranceSecondary: false,
-      filterVille: "",
-      dispositifsFullFrance: [],
-      geoSearch: false,
+      filterVille: queryResults.filterVille,
+      dispositifsFullFrance: queryResults.dispositifsFullFrance,
+      geoSearch: initialQuery.geoSearch,
       wrapperRef: null,
       languageDropdown: false
     };
@@ -359,35 +352,6 @@ export class AdvancedSearch extends Component<Props, State> {
       document.addEventListener("mousedown", this.handleClickOutside);
       window.addEventListener("scroll", this.handleScrolling);
     }
-
-    const {
-      tag, dep, city, age, niveauFrancais, filter, langue, tri
-    } = this.props.router.query;
-
-    if (filter || langue || tri) this.setState({ searchToggleVisible: true });
-
-    // Reinject filters value in search
-    if (tag || age || niveauFrancais || dep || city || filter || langue || tri) {
-      const query: SearchQuery = {
-        order: tri
-      };
-
-      if (tag) query.theme = decodeURIComponent(tag);
-      if (age) query.age = decodeURIComponent(age);
-      if (dep && city) {
-        query.loc = {
-          city: decodeURIComponent(city),
-          dep: decodeURIComponent(dep)
-        }
-        this.switchGeoSearch(true);
-      }
-      if (niveauFrancais) query.frenchLevel = decodeURIComponent(niveauFrancais);
-      if (filter) query.type = decodeURIComponent(filter) as ("dispositifs" | "demarches" | undefined);
-      if (langue) query.langue = langue
-      this.setState({ query: query });
-    } else {
-      this.queryDispositifs();
-    }
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -410,8 +374,7 @@ export class AdvancedSearch extends Component<Props, State> {
     });
   };
 
-  updateUrl = () => {
-    const query = this.state.query;
+  updateUrl = (query: SearchQuery) => {
     let newQueryParam: any = {};
     if(query.theme) newQueryParam.tag = query.theme;
     if(query.age) newQueryParam.age = query.age;
@@ -434,183 +397,13 @@ export class AdvancedSearch extends Component<Props, State> {
   }
 
   queryDispositifs = () => {
-    this.updateUrl();
-    const filteredDispositifs = filterContents(
+    this.updateUrl(this.state.query);
+    const queryResults = queryDispositifs(
       this.props.dispositifs,
-      this.state.query
+      this.state.query,
+      this.props.languei18nCode
     );
-    const sortedDispositifs = this.sortDispositifs(
-      filteredDispositifs,
-      this.state.query.order
-    );
-
-    let dispositifs = sortedDispositifs;
-    this.setState({ countTotal: dispositifs.length });
-
-    if (this.state.query.theme) {
-      //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
-      dispositifs = dispositifs.sort((a, b) =>
-        get(a, "tags.0.name", {}) === this.state.query.theme
-          ? -1
-          : get(b, "tags.0.name", {}) === this.state.query.theme
-          ? 1
-          : 0
-      );
-    } else {
-      //@ts-ignore
-      dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
-    }
-
-    if (this.props.languei18nCode !== "fr" || this.state.query.langue) {
-      var nonTranslated = dispositifs.filter((dispo) => {
-        const lnCode = this.props.languei18nCode !== "fr"
-          ? this.props.languei18nCode : this.state.query.langue;
-        if (!lnCode) return false
-        if (dispo.avancement?.[lnCode]) return false;
-        return true;
-      });
-      this.setState({ nonTranslated });
-
-      dispositifs = dispositifs.filter((dispo) => {
-        const lnCode = this.props.languei18nCode !== "fr"
-          ? this.props.languei18nCode : this.state.query.langue;
-          if (!lnCode) return false
-          if (dispo.avancement?.[lnCode]) return true;
-          return false;
-      });
-    }
-    let dispositifsFullFrance: IDispositif[] = [];
-    if (this.state.query.loc?.dep) {
-      var index;
-      var i;
-      var dispositifsFrance = [];
-      var dispositifsVille = [];
-      var dispositifsEmpty = [];
-      this.setState({ filterVille: this.state.query.loc?.city || "" });
-      for (index = 0; index < dispositifs.length; index++) {
-        if (dispositifs[index]?.contenu?.[1]?.children) {
-          var geolocInfocard = (dispositifs[index].contenu[1].children || []).find(
-            (infocard) => infocard.title === "Zone d'action"
-          );
-          if (geolocInfocard && geolocInfocard.departments) {
-            for (i = 0; i < geolocInfocard.departments.length; i++) {
-              if (
-                geolocInfocard.departments[i] === "All" &&
-                dispositifs[index].typeContenu === "dispositif"
-              ) {
-                dispositifsFrance.push(dispositifs[index]);
-              } else if (
-                geolocInfocard.departments[i].split(" - ")[1] ===
-                  this.state.query.loc?.dep ||
-                geolocInfocard.departments[i].split(" - ")[1] ===
-                  this.state.query.loc?.city ||
-                dispositifs[index].typeContenu === "demarche"
-              ) {
-                dispositifsVille.push(dispositifs[index]);
-              }
-            }
-          } else if (dispositifs[index].typeContenu === "dispositif") {
-            dispositifsEmpty.push(dispositifs[index]);
-          } else if (dispositifs[index].typeContenu === "demarche") {
-            dispositifsVille.push(dispositifs[index]);
-          }
-        } else if (dispositifs[index].typeContenu === "dispositif") {
-          dispositifsEmpty.push(dispositifs[index]);
-        } else if (dispositifs[index].typeContenu === "demarche") {
-          dispositifsVille.push(dispositifs[index]);
-        }
-      }
-      dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
-
-      dispositifs = dispositifsVille;
-      this.setState({ dispositifsFullFrance });
-    }
-    dispositifs = dispositifs.map((x) => ({
-      ...x,
-      nbVues: x.nbVues || 0,
-    }));
-
-    if (this.state.query.order === "theme") {
-      const themesObject = tags.map((tag) => {
-        return {
-          tag: tag,
-          dispositifs: dispositifs.filter((elem) => (
-            elem.tags[0] ? elem.tags[0].short === tag.short : ""
-          )),
-        };
-      }).filter(themeObject => themeObject.dispositifs.length > 0);
-
-      this.setState({ themesObject: themesObject });
-    }
-    if (this.state.query.theme) {
-      var principalThemeList = dispositifs.filter((elem) => (
-        elem?.tags[0] ? elem.tags[0].name === this.state.query.theme : ""
-      ));
-      const principalThemeListSorted = this.sortDispositifs(
-        principalThemeList,
-        this.state.query.order
-      );
-
-      var secondaryThemeList = dispositifs.filter((element) => {
-        if (element.tags && element.tags.length > 0) {
-          for (var index = 1; index < element.tags.length; index++) {
-            if (
-              index !== 0 &&
-              element.tags[index] &&
-              element.tags[index].name === this.state.query.theme
-            )
-              return true;
-          }
-        }
-        return false;
-      });
-      const secondaryThemeListSorted = this.sortDispositifs(
-        secondaryThemeList,
-        this.state.query.order
-      );
-
-      this.setState({
-        principalThemeList: principalThemeListSorted,
-        secondaryThemeList: secondaryThemeListSorted,
-      });
-      if (this.state.query.loc?.city) {
-        var principalThemeListFullFrance = dispositifsFullFrance.filter(
-          (elem) => (elem?.tags[0] ? elem.tags[0].name === this.state.query.theme : "")
-        );
-        const principalThemeListFullFranceSorted = this.sortDispositifs(
-          principalThemeListFullFrance,
-          this.state.query.order
-        );
-        var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
-          (element) => {
-            if (element.tags && element.tags.length > 0) {
-              for (var index = 1; index < element.tags.length; index++) {
-                if (
-                  index !== 0 &&
-                  element.tags[index] &&
-                  element.tags[index].name === this.state.query.theme
-                )
-                  return true;
-              }
-            }
-            return false;
-          }
-        );
-        const secondaryThemeListFullFranceSorted = this.sortDispositifs(
-          secondaryThemeListFullFrance,
-          this.state.query.order
-        );
-
-        this.setState({
-          principalThemeListFullFrance: principalThemeListFullFranceSorted,
-          secondaryThemeListFullFrance: secondaryThemeListFullFranceSorted,
-        });
-      }
-    }
-    this.setState({
-      dispositifs,
-      countShow: dispositifs.length,
-    });
+    this.setState(queryResults);
   };
 
   writeNew = () => {
@@ -794,10 +587,6 @@ export class AdvancedSearch extends Component<Props, State> {
     let { dispositifs } = this.state;
     const {
       t,
-      isDesktop,
-      isSmallDesktop,
-      isTablet,
-      isBigDesktop,
       languei18nCode,
     } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
@@ -1053,17 +842,7 @@ export class AdvancedSearch extends Component<Props, State> {
                               ).slice(1)}
                           </ThemeHeaderTitle>
                         </ThemeHeader>
-                        <ThemeListContainer
-                          columns={
-                            isDesktop || isBigDesktop
-                              ? 5
-                              : isSmallDesktop
-                              ? 4
-                              : isTablet
-                              ? 3
-                              : 2
-                          }
-                        >
+                        <div className={styles.theme_grid}>
                           {theme.dispositifs.slice(0, 4)
                             .map((dispositif, index) => {
                               return (
@@ -1082,7 +861,7 @@ export class AdvancedSearch extends Component<Props, State> {
                             theme={theme.tag}
                             isRTL={isRTL}
                           />
-                        </ThemeListContainer>
+                        </div>
                       </ThemeContainer>
                     );
                   })}
@@ -1159,17 +938,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       </ThemeButton>
                     ) : null}
                   </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
+                  <div className={styles.theme_grid}>
                     {this.state.principalThemeList.length > 0 ? (
                       this.state.principalThemeList.map(
                         (dispositif, index: number) => {
@@ -1192,7 +961,7 @@ export class AdvancedSearch extends Component<Props, State> {
                         writeNew={this.writeNew}
                       />
                     )}
-                  </ThemeListContainer>
+                  </div>
                   <ButtonContainer>
                     {this.state.filterVille &&
                     !this.state.showGeolocFullFrancePrincipal ? (
@@ -1232,17 +1001,7 @@ export class AdvancedSearch extends Component<Props, State> {
                   </ButtonContainer>
                   {this.state.filterVille &&
                   this.state.showGeolocFullFrancePrincipal ? (
-                    <ThemeListContainer
-                      columns={
-                        isDesktop || isBigDesktop
-                          ? 5
-                          : isSmallDesktop
-                          ? 4
-                          : isTablet
-                          ? 3
-                          : 2
-                      }
-                    >
+                    <div className={styles.theme_grid}>
                       {this.state.principalThemeListFullFrance.length > 0 ? (
                         this.state.principalThemeListFullFrance.map(
                           (dispositif, index: number) => {
@@ -1265,7 +1024,7 @@ export class AdvancedSearch extends Component<Props, State> {
                           writeNew={this.writeNew}
                         />
                       )}
-                    </ThemeListContainer>
+                    </div>
                   ) : null}
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
@@ -1340,17 +1099,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       </ThemeButton>
                     ) : null}
                   </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
+                  <div className={styles.theme_grid}>
                     {this.state.secondaryThemeList.length > 0 ? (
                       this.state.secondaryThemeList.map(
                         (dispositif, index: number) => {
@@ -1373,7 +1122,7 @@ export class AdvancedSearch extends Component<Props, State> {
                         writeNew={this.writeNew}
                       />
                     )}
-                  </ThemeListContainer>
+                  </div>
                   <ButtonContainer>
                     {this.state.filterVille &&
                     !this.state.showGeolocFullFranceSecondary ? (
@@ -1414,17 +1163,7 @@ export class AdvancedSearch extends Component<Props, State> {
                   </ButtonContainer>
                   {this.state.filterVille &&
                   this.state.showGeolocFullFranceSecondary ? (
-                    <ThemeListContainer
-                      columns={
-                        isDesktop || isBigDesktop
-                          ? 5
-                          : isSmallDesktop
-                          ? 4
-                          : isTablet
-                          ? 3
-                          : 2
-                      }
-                    >
+                    <div className={styles.theme_grid}>
                       {this.state.secondaryThemeListFullFrance.length > 0 ? (
                         this.state.secondaryThemeListFullFrance.map(
                           (dispositif, index: number) => {
@@ -1447,7 +1186,7 @@ export class AdvancedSearch extends Component<Props, State> {
                           writeNew={this.writeNew}
                         />
                       )}
-                    </ThemeListContainer>
+                    </div>
                   ) : null}
                 </ThemeContainer>
               ) : this.state.filterVille ? (
@@ -1462,17 +1201,7 @@ export class AdvancedSearch extends Component<Props, State> {
                       </ThemeTextAlone>
                     </ThemeButton>
                   </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
+                  <div className={styles.theme_grid}>
                     {dispositifs.length > 0 ? (
                       dispositifs.map((dispositif, index: number) => {
                         return (
@@ -1493,23 +1222,13 @@ export class AdvancedSearch extends Component<Props, State> {
                         writeNew={this.writeNew}
                       />
                     )}
-                  </ThemeListContainer>
+                  </div>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
                       {"Fiches disponibles partout en France"}
                     </ThemeHeaderTitle>
                   </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
+                  <div className={styles.theme_grid}>
                     {this.state.dispositifsFullFrance.length > 0 ? (
                       this.state.dispositifsFullFrance.map(
                         (dispositif, index: number) => {
@@ -1532,7 +1251,7 @@ export class AdvancedSearch extends Component<Props, State> {
                         writeNew={this.writeNew}
                       />
                     )}
-                  </ThemeListContainer>
+                  </div>
                 </ThemeContainer>
               ) : (
                 <ThemeContainer>
@@ -1573,17 +1292,7 @@ export class AdvancedSearch extends Component<Props, State> {
                           </>
                         </ThemeHeaderTitle>
                       </ThemeHeader>
-                      <ThemeListContainer
-                        columns={
-                          isDesktop || isBigDesktop
-                            ? 5
-                            : isSmallDesktop
-                            ? 4
-                            : isTablet
-                            ? 3
-                            : 2
-                        }
-                      >
+                      <div className={styles.theme_grid}>
                         {this.state.dispositifs.length > 0 ? (
                           this.state.dispositifs.map((dispositif, index: number) => {
                             return (
@@ -1604,7 +1313,7 @@ export class AdvancedSearch extends Component<Props, State> {
                             writeNew={this.writeNew}
                           />
                         )}
-                      </ThemeListContainer>
+                      </div>
                       <ThemeHeader>
                         <ThemeHeaderTitle color={"#828282"}>
                           <>
@@ -1641,17 +1350,7 @@ export class AdvancedSearch extends Component<Props, State> {
                           </>
                         </ThemeHeaderTitle>
                       </ThemeHeader>
-                      <ThemeListContainer
-                        columns={
-                          isDesktop || isBigDesktop
-                            ? 5
-                            : isSmallDesktop
-                            ? 4
-                            : isTablet
-                            ? 3
-                            : 2
-                        }
-                      >
+                      <div className={styles.theme_grid}>
                         {this.state.nonTranslated.length > 0 ? (
                           this.state.nonTranslated.map(
                             (dispositif, index: number) => {
@@ -1674,22 +1373,12 @@ export class AdvancedSearch extends Component<Props, State> {
                             writeNew={this.writeNew}
                           />
                         )}
-                      </ThemeListContainer>
+                      </div>
                     </>
                   ) : (
                     <>
                       <ThemeHeader />
-                      <ThemeListContainer
-                        columns={
-                          isDesktop || isBigDesktop
-                            ? 5
-                            : isSmallDesktop
-                            ? 4
-                            : isTablet
-                            ? 3
-                            : 2
-                        }
-                      >
+                      <div className={styles.theme_grid}>
                         {dispositifs.map((dispositif, index: number) => {
                           return (
                             <div key={index}>
@@ -1710,7 +1399,7 @@ export class AdvancedSearch extends Component<Props, State> {
                               writeNew={this.writeNew}
                             />
                           )}
-                      </ThemeListContainer>
+                      </div>
                     </>
                   )}
                 </ThemeContainer>
@@ -1725,21 +1414,11 @@ export class AdvancedSearch extends Component<Props, State> {
             >
               <ThemeContainer>
                 <ThemeHeader />
-                <ThemeListContainer
-                  columns={
-                    isDesktop || isBigDesktop
-                      ? 5
-                      : isSmallDesktop
-                      ? 4
-                      : isTablet
-                      ? 3
-                      : 2
-                  }
-                >
+                <div className={styles.theme_grid}>
                   {this.state.chargingArray.map((_, index: number) => {
                     return <LoadingCard key={index} />;
                   })}
-                </ThemeListContainer>
+                </div>
               </ThemeContainer>
             </div>
           )}
@@ -1770,16 +1449,12 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
-const mapSizesToProps = ({ width }: {width: number}) => ({
-  isMobile: width < 850,
-  isTablet: width >= 850 && width < 1100,
-  isSmallDesktop: width >= 1100 && width < 1400,
-  isDesktop: width >= 1400 && width < 1565,
-  isBigDesktop: width >= 1565,
-});
-
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({locale}) => {
-  store.dispatch(fetchActiveDispositifsActionsCreator());
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({ locale }) => {
+  if (locale) {
+    store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
+  } else {
+    store.dispatch(fetchActiveDispositifsActionsCreator());
+  }
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
@@ -1791,10 +1466,8 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({lo
 });
 
 export default withRouter(
-  //@ts-ignore
   connect(
     mapStateToProps,
     mapDispatchToProps
-    //@ts-ignore
-  )(withSizes(mapSizesToProps)(withTranslation()(AdvancedSearch)))
+  )(withTranslation()(AdvancedSearch))
 )

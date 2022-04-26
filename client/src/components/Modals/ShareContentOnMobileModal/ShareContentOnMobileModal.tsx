@@ -6,6 +6,7 @@ import {
   send_sms,
   sharingOptions,
 } from "components/Pages/dispositif/function";
+import { Event } from "lib/tracking";
 import styles from "./ShareContentOnMobileModal.module.scss";
 
 declare const window: Window;
@@ -51,13 +52,14 @@ export const ShareContentOnMobileModal = (props: Props) => {
 
           <ShareButton
             name={"smartphone-outline"}
-            onClick={() =>
+            onClick={() => {
+              Event("Share", "SMS", "from dispositif mobile modal");
               send_sms(
                 "Veuillez renseigner un numéro de téléphone",
                 props.typeContenu,
                 props.content.titreInformatif
               )
-            }
+            }}
             text={props.t("Dispositif.Via sms", "Via sms")}
             type="button"
           />

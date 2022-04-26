@@ -4,6 +4,7 @@ import FButton from "components/UI/FButton/FButton";
 import styles from "./FeedbackFooter.module.scss";
 import isInBrowser from "lib/isInBrowser";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 interface Props {
   pushReaction: (arg1: null, arg2: string) => void;
   didThank: boolean;
@@ -43,7 +44,10 @@ const FeedbackFooter = (props: Props) => {
             disabled={didThank}
             className={styles.btn + " validate mr-8 mb-8"}
             type="validate"
-            onClick={() => pushReaction(null, "merci")}
+            onClick={() => {
+              Event("Reaction", "Merci", "from dispositif")
+              pushReaction(null, "merci")
+            }}
           >
             <span role="img" aria-label="thanks">
               🙏
