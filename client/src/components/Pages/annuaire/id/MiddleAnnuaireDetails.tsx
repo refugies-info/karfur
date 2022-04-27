@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -6,6 +7,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Structure } from "types/interface";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { ActivityCard } from "components/Pages/annuaire-create/ActivityCard";
+import { userSelector } from "services/User/user.selectors";
 import { activities } from "data/activities";
 import { NoActivity } from "./NoActivity";
 import Skeleton from "react-loading-skeleton";
@@ -215,6 +217,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const structure = props.structure;
+  const admin = useSelector(userSelector).admin;
   const activitiesSortedByTheme = sortStructureActivities(structure);
 
   if (!props.isLoading && structure) {
@@ -232,7 +235,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               </Title>
             )}
           </TitleContainer>
-          {props.isMember && (
+          {props.isMember || admin && (
             <div style={{ height: "5Opx" }}>
               <Link href={getPath("/annuaire-creation", router.locale)} passHref>
                 <FButton

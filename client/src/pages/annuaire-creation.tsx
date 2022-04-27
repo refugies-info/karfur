@@ -17,7 +17,7 @@ import {
   setUserStructureActionCreator,
 } from "services/UserStructure/userStructure.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { userStructureIdSelector } from "services/User/user.selectors";
+import { selectedStructureIdSelector } from "services/SelectedStructure/selectedStructure.selector";
 import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -34,11 +34,13 @@ const AnnuaireCreate = () => {
   const [hasModifications, setHasModifications] = useState(false);
 
   const dispatch = useDispatch();
-  const structureId = useSelector(userStructureIdSelector);
+  const structureId = useSelector(selectedStructureIdSelector);
   const structure = useSelector(userStructureSelector);
+
   const isLoadingFetch = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
   );
+
   const isLoadingUpdate = useSelector(
     isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE)
   );

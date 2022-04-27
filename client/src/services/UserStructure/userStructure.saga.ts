@@ -38,8 +38,10 @@ export function* fetchUserStructure(
     );
     yield put(setUserStructureActionCreator(data.data.data));
     const user = yield select(userSelector);
+    const isAdmin = user.admin
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
+
     const userInStructure = structureMembers.filter(
       (member: any) => member._id === userId
     );
@@ -50,7 +52,7 @@ export function* fetchUserStructure(
       userRoles.includes("contributeur");
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
-    if (shouldRedirect && !isUserContribOrAdmin) {
+    if (shouldRedirect && !isUserContribOrAdmin && !isAdmin) {
       yield call(Router.push, "/");
     }
 
