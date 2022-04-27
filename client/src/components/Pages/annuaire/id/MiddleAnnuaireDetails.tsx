@@ -16,7 +16,6 @@ import FButton from "components/UI/FButton/FButton";
 import { tags } from "data/tags";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
-import { logger } from "logger";
 
 interface Props {
   structure: Structure | null;
