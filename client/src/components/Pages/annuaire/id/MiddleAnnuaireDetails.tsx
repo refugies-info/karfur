@@ -16,6 +16,7 @@ import FButton from "components/UI/FButton/FButton";
 import { tags } from "data/tags";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { logger } from "logger";
 
 interface Props {
   structure: Structure | null;
@@ -219,6 +220,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
   const admin = useSelector(userSelector).admin;
   const activitiesSortedByTheme = sortStructureActivities(structure);
+  const hasUpdatePermission = props.isMember || admin ? true : false;
 
   if (!props.isLoading && structure) {
     return (
@@ -235,7 +237,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               </Title>
             )}
           </TitleContainer>
-          {props.isMember || admin && (
+          {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
               <Link href={getPath("/annuaire-creation", router.locale)} passHref>
                 <FButton
