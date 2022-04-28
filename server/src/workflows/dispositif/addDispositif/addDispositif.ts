@@ -14,12 +14,14 @@ import {
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
+import { getStructureFromDB, updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { computePossibleNeeds } from "../../../modules/needs/needs.service";
+import { UserDoc } from "../../../schema/schemaUser";
+import { StructureDoc } from "../../../schema/schemaStructure";
 
 interface Request {
   titreInformatif: string;
@@ -32,6 +34,54 @@ interface Request {
   titreMarque: string;
   tags?: any[];
   needs?: ObjectId[];
+  saveType: "auto" | "validate"| "save"
+}
+
+export const getNewStatus = (
+  dispositif: Request | null,
+  structure: StructureDoc | null,
+  user: UserDoc | null,
+  saveType: "auto" | "validate"| "save"
+) => {
+  // keep draft if already draft
+  if (dispositif.status === "Brouillon" && saveType !== "validate") {
+    return "Brouillon"
+
+  // validate rejected dispositif
+  } else if (
+    dispositif?.status === "Rejeté structure" && // = Rejeté
+    saveType === "validate"
+  ) {
+    return "En attente";
+
+  // keep current status
+  } else if (
+    dispositif?.status &&
+    ![
+      "",
+      "En attente non prioritaire", // = Sans structure
+      "Brouillon",
+      "Accepté structure", // = Accepté
+    ].includes(dispositif.status)
+  ) {
+    return dispositif.status;
+
+  // is admin or contrib of current structure, or admin
+  } else if (structure && user) {
+    const isAdmin = user.roles.find((x: any) => x.nom === "Admin");
+    const membre = (structure?.membres || []).find(
+      (x: any) => x.userId.toString() === user._id.toString()
+    );
+    const isMembreOfStructure = (membre?.roles || []).some((x) => x === "administrateur" || x === "contributeur")
+    if (saveType === "validate") {
+      if ((isMembreOfStructure || isAdmin)) {
+        return "En attente admin"; // = A valider
+      }
+      return "En attente";
+    }
+    return dispositif.status;
+  }
+  return "En attente non prioritaire"; // = Sans structure
 }
 
 /**
@@ -54,12 +104,28 @@ export const addDispositif = async (
     }
 
     let dispositif = req.body;
+    let structure: StructureDoc | null = null;
+    if (dispositif.mainSponsor) {
+      structure = await getStructureFromDB(
+        //@ts-ignore
+        dispositif.mainSponsor?._id || dispositif.mainSponsor,
+        false,
+        { membres: 1 }
+      );
+    }
+    dispositif.status = getNewStatus( // set new status
+      dispositif,
+      structure,
+      req.user,
+      dispositif.saveType
+    );
+
+    delete dispositif.saveType;
 
     logger.info("[addDispositif] received a dispositif", {
       dispositifId: dispositif.dispositifId,
     });
 
-    dispositif.status = dispositif.status || "En attente";
     let dispResult: DispositifDoc;
 
     if (dispositif.contenu) {

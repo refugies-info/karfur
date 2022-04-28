@@ -69,7 +69,6 @@ import {
   generateAudienceAge,
   getContent,
   isContentForbidden,
-  getNewStatus,
 } from "lib/dispositifPage";
 import { logger } from "logger";
 import { initializeTimer } from "containers/Translation/functions";
@@ -262,7 +261,7 @@ const Dispositif = (props: Props) => {
           participants: [],
           signalements: [],
           sponsors: [],
-          status: "",
+          status: "Brouillon",
           suggestions: [],
           tags: [],
           titreInformatif: contenu.titreInformatif,
@@ -346,7 +345,7 @@ const Dispositif = (props: Props) => {
   // Use autosave in a ref to mutate it when dispositif is updated
   const autoSave = () => {
     // eslint-disable-next-line no-use-before-define
-    saveDispositif("Brouillon", true);
+    saveDispositif(true, "auto");
   };
   const autoSaveRef = React.useRef(autoSave);
   useEffect(() => {
@@ -1082,14 +1081,12 @@ const Dispositif = (props: Props) => {
   };
 
   const saveDispositif = (
-    status: string,
-    auto = false,
-    sauvegarde = false,
-    saveAndEdit = false,
     continueEditing = true,
+    saveType: "auto" | "validate"| "save" = "save",
     routeAfterSave = "",
   ) => {
     if (!dispositif) return;
+    const auto = saveType === "auto";
 
     let content: ShortContent = {
       titreInformatif: h2p(dispositif.titreInformatif),
@@ -1128,10 +1125,10 @@ const Dispositif = (props: Props) => {
       contenu: generateContenu(menu),
       autoSave: auto,
       lastModificationDate: Date.now(),
-      //@ts-ignore
       dispositifId: dispositif._id,
       //@ts-ignore
       avancement: 1,
+      saveType: saveType
     };
 
     if (dispositif._id && dispositif.status !== "Brouillon") {
@@ -1157,13 +1154,6 @@ const Dispositif = (props: Props) => {
     } else {
       newDispositif.titreMarque = "";
     }
-    newDispositif.status = getNewStatus(
-      status,
-      dispositif,
-      user,
-      admin,
-      sauvegarde
-    );
 
     logger.info("[saveDispositif] dispositif before call", { newDispositif });
     API.addDispositif(newDispositif).then((data) => {
@@ -1199,7 +1189,7 @@ const Dispositif = (props: Props) => {
             "Brouillon",
             "En attente non prioritaire",
             "Actif",
-          ].includes(status) && !saveAndEdit);
+          ].includes(newDispo.status) && !continueEditing);
         });
       } else {
         if (isInBrowser()) {

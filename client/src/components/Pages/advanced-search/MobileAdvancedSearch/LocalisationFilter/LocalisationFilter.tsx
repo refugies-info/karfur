@@ -49,6 +49,7 @@ export const LocalisationFilter = (props: Props) => {
             componentRestrictions: { country: "fr" },
           }}
           className={styles.autocomplete}
+          autoFocus
         />
       </div>
     );
