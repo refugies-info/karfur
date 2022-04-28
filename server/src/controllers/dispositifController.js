@@ -21,7 +21,11 @@ import { getNbContents } from "../workflows/dispositif/getNbContents";
 import { getStatistics } from "../workflows/dispositif/getStatistics";
 
 module.exports = function (app) {
-  app.post("/addDispositif", checkToken.check, addDispositif);
+  app.post("/addDispositif",
+    checkToken.getId,
+    checkToken.check,
+    addDispositif
+  );
   app.post(
     "/add_dispositif_infocards",
     checkToken.check,

@@ -15,11 +15,8 @@ interface Props {
   titreMarque: string
   status: string | undefined
   saveDispositif: (
-    status: string,
-    auto?: boolean,
-    sauvegarde?: boolean,
-    saveAndEdit?: boolean,
-    continueEditing?: boolean
+    saveAndEdit: boolean,
+    saveType: "auto"|"save"|"validate"
   ) => void;
   toggleTutorielModal: any
   tags: any[]
@@ -34,11 +31,8 @@ interface Props {
 const DispositifValidateModal = (props: Props) => {
   const validateAndClose = () => {
     props.saveDispositif(
-      "En attente",
       false,
-      false,
-      false,
-      false,
+      "validate"
     );
     props.toggle();
   };
