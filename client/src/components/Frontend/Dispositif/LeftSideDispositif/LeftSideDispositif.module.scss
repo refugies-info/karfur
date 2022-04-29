@@ -1,0 +1,11 @@
+@import "src/scss/mixins/rtl";
+
+.list {
+  @include rtl() {
+    padding-right: 0;
+
+    & > ul {
+      padding-right: 0;
+    }
+  }
+}
