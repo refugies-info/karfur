@@ -15,6 +15,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { reduceContributors } from "./function";
 import marioProfile from "assets/mario-profile.jpg";
 import styles from "./ContribCaroussel.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   contributeurs: any[];
@@ -40,6 +41,12 @@ const ContribCarousel = (props: Props) => {
     const nextIndex = activeIndex === 0 ? maxL - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
+
+  // No JS
+  const [noJs, setNoJs] = useState(true);
+  useEffect(() => {
+    setNoJs(false);
+  }, []);
 
   // Contributors
   const [reducedContributors, setReduceContributors] = useState<any[]>(reduceContributors(props.contributeurs));
@@ -85,7 +92,7 @@ const ContribCarousel = (props: Props) => {
         activeIndex={activeIndex}
         next={() => next(reducedContributors.length)}
         previous={() => previous(reducedContributors.length)}
-        className={styles.carousel}
+        className={cls(styles.carousel, noJs && styles.nojs)}
       >
         {reducedContributors.map((item, key) => {
           if (Array.isArray(item)) {
