@@ -2,6 +2,7 @@ import React from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 import styles from "./FButton.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   type?:
@@ -38,6 +39,7 @@ interface Props {
   tag?: any
   children?: any
   theme?: string;
+  wrap?: boolean;
   [x: string]: any
 }
 
@@ -51,15 +53,21 @@ const FButton = React.forwardRef((props: Props, ref) => {
     filter,
     tag: Tag,
     children,
+    wrap,
     ...bProps
   } = props;
 
   if (props.href && Tag === "button") Tag = "a";
   const themeType = type === "theme" ? " bg-darkColor" : "";
 
-  const classNames = `${styles.btn} ${filter ? styles.filter : ""} ${
-    type ? styles[type] : ""
-  } ${className || ""} ${themeType}`;
+  const classNames = cls(
+    styles.btn,
+    filter ? styles.filter : false,
+    type ? styles[type] : false,
+    className || "",
+    themeType,
+    wrap ? styles.wrap : false
+  );
 
   return (
     <Tag
