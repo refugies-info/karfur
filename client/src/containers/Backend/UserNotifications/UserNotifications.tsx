@@ -54,6 +54,7 @@ const CenterContainer = styled.div`
 
 interface Props {
   history: any;
+  title: string
 }
 const UserNotifications = (props: Props) => {
   const [selectedReaction, setSelectedReaction] =
@@ -73,6 +74,11 @@ const UserNotifications = (props: Props) => {
   const hasResponsibleSeenAnnuaireNotif = useSelector(
     userStructureHasResponsibleSeenNotification
   );
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const loadUserStructure = async () => {

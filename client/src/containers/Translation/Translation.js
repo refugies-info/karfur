@@ -74,6 +74,7 @@ export class TranslationHOC extends Component {
     this._isMounted = true;
     this._initializeComponent(this.props);
     window.scrollTo(0, 0);
+    document.title = this.props.title;
   }
 
   componentDidUpdate(prevProps) {

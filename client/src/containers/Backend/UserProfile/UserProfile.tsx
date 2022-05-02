@@ -108,7 +108,11 @@ const getUserImage = (user: User) =>
     ? user.picture.secure_url
     : marioProfile;
 
-export const UserProfile = () => {
+interface Props {
+  title: string
+}
+
+export const UserProfile = (props: Props) => {
   const { t } = useTranslation();
 
   const [username, setUsername] = useState("");
@@ -149,6 +153,11 @@ export const UserProfile = () => {
   const user = useSelector(userDetailsSelector);
   const userStructureMembres = useSelector(userStructureMembresSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [showPhone, setShowPhone] = useState(false);
   useEffect(() => {
