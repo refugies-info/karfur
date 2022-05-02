@@ -10,13 +10,17 @@ import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
 import { tags } from "data/tags";
-import { NbDispositifsByRegion, RegionFigures, Statistics } from "types/interface";
+import { RegionFigures, Statistics } from "types/interface";
 import { ObjectId } from "mongodb";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
 
-const Dashboard = () => {
+interface Props {
+  title?: string
+}
+
+const Dashboard = (props: Props) => {
   const [nbDispositifs, setNbDispositifs] = useState(0);
   const [nbDispositifsActifs, setNbDispositifsActifs] = useState(0);
   const [nbDemarches, setNbDemarches] = useState(0);
@@ -35,6 +39,11 @@ const Dashboard = () => {
     ObjectId[]
   >([]);
   const [statistics, setStatistics] = useState<Statistics | null>(null);
+
+  useEffect(() => {
+    if (props.title) document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     API.count_dispositifs({
