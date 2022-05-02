@@ -67,7 +67,11 @@ const Onglet = (props: TabProps) => {
   );
 }
 
-export const Admin = () => {
+interface Props {
+  title: string
+}
+
+export const Admin = (props: Props) => {
   const router = useRouter();
   const locale = useRouterLocale();
 
@@ -81,6 +85,11 @@ export const Admin = () => {
       search: new URLSearchParams({ tab: tab }).toString(),
     }, undefined, { shallow: true });
   }
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => { // update url if needed on load
     if (initialTab && initialTab !== router.query.tab) {

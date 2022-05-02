@@ -86,10 +86,9 @@ const Backend = () => {
                     key={idx}
                     path={routerLocale + route.path}
                     exact={route.exact}
-                    name={route.name}
                     render={() =>
                       isAuthorized(route) ? (
-                        <route.component />
+                        <route.component title={route.name} />
                       ) : (
                         <UnauthorizedAccess />
                       )
