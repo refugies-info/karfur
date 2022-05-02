@@ -1291,6 +1291,7 @@ const Dispositif = (props: Props) => {
           ? " printing-mode"
           : " reading-mode")
       }
+      dir={isRTL ? "rtl" : "ltr"} // needed here for printing
       ref={newRef}
     >
       <SEO title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}/>
