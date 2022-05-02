@@ -39,6 +39,19 @@
 .carousel {
   padding: 0 30px 16px 30px;
 
+  &.nojs {
+    :global(.carousel-inner){
+      display: flex;
+      flex-wrap: wrap;
+    }
+    :global(.carousel-item){
+      display: block;
+      float: none;
+      width: auto;
+      margin: 0;
+    }
+  }
+
   .item {
     display: flex;
   }

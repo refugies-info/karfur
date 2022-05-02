@@ -287,13 +287,13 @@ exports[`user translation should redirect if user has language but not langue in
           className="c5"
         >
           <button
-            className="btn  dark mr-10 "
+            className="btn dark mr-10"
             onClick={[Function]}
           >
             Commencer à traduire
           </button>
           <button
-            className="btn  tuto ml-10 "
+            className="btn tuto ml-10"
             onClick={[Function]}
           >
             <span
@@ -603,13 +603,13 @@ exports[`user translation should redirect if user has no language but langue in 
           className="c5"
         >
           <button
-            className="btn  dark mr-10 "
+            className="btn dark mr-10"
             onClick={[Function]}
           >
             Commencer à traduire
           </button>
           <button
-            className="btn  tuto ml-10 "
+            className="btn tuto ml-10"
             onClick={[Function]}
           >
             <span
@@ -1227,7 +1227,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             Vous avez traduit 0 mots pendant 0 minutes.
           </div>
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -1244,13 +1244,13 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             Explications
           </button>
           <button
-            className="btn  dark mr-8 "
+            className="btn dark mr-8"
             onClick={[Function]}
           >
             Besoins
           </button>
           <button
-            className="btn  dark  "
+            className="btn dark"
             onClick={[Function]}
           >
             <span
@@ -1631,7 +1631,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                   className="last align-middle"
                 >
                   <button
-                    className="btn  error  "
+                    className="btn error"
                     data-test-id="test-trash"
                     onClick={[Function]}
                   >
@@ -2214,7 +2214,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             Vous avez traduit 0 mots pendant 0 minutes.
           </div>
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -2231,13 +2231,13 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             Explications
           </button>
           <button
-            className="btn  dark mr-8 "
+            className="btn dark mr-8"
             onClick={[Function]}
           >
             Besoins
           </button>
           <button
-            className="btn  dark  "
+            className="btn dark"
             onClick={[Function]}
           >
             <span
@@ -3128,7 +3128,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             Vous avez traduit 0 mots pendant 0 minutes.
           </div>
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -3145,7 +3145,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             Explications
           </button>
           <button
-            className="btn  dark  "
+            className="btn dark"
             onClick={[Function]}
           >
             <span
@@ -3908,7 +3908,7 @@ exports[`user translation should return loader langue in url = first selected la
           className="c2"
         >
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -3925,7 +3925,7 @@ exports[`user translation should return loader langue in url = first selected la
             Explications
           </button>
           <button
-            className="btn  dark  "
+            className="btn dark"
           >
             <span
               className="mr-10"

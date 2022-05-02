@@ -19,7 +19,6 @@ import {
   infocardsDemarcheTitles,
   ShortContent,
 } from "data/dispositif";
-import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
 import { DispositifContent, Tag } from "types/interface";
 import { EditorState } from "draft-js";
@@ -56,15 +55,6 @@ const StyledAccordeon = styled.div`
     props.disableEdit && !props.isAccordeonOpen
       ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
       : "none"};
-`;
-
-const StyledHeader = styled.div`
-  display: flex;
-  margin: auto;
-  font-weight: bold;
-  font-size: ${isMobile ? "18px" : "22px"};
-  line-height: 28px;
-  color: ${(props: { darkColor: string}) => props.darkColor};
 `;
 
 interface BtnProps {
@@ -228,7 +218,7 @@ const ContenuParagraphe = (props: Props) => {
               }
               key={index}
             >
-              {subitem.type === "card" && (!isMobile || nbChildren === 1) ? (
+              {subitem.type === "card" && nbChildren === 1 ? (
                 <CardParagraphe
                   subkey={index}
                   subitem={subitem}
@@ -343,7 +333,7 @@ const ContenuParagraphe = (props: Props) => {
                             "collapse" + props.keyValue + "-" + index
                           }
                         >
-                          <StyledHeader darkColor={darkColor}>
+                          <div className={styles.title} style={{color: darkColor}}>
                             <ContentEditable
                               id={props.keyValue+""}
                               data-subkey={index}
@@ -364,7 +354,7 @@ const ContenuParagraphe = (props: Props) => {
                                 className="ml-12"
                               />
                             )}
-                          </StyledHeader>
+                          </div>
                           {!props.disableEdit && index > 0 && (
                             <EVAIcon
                               onClick={() =>

@@ -318,7 +318,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
           className="c6"
         >
           <a
-            className="btn  dark mr-10 "
+            className="btn dark mr-10"
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -337,7 +337,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
             Créer une nouvelle fiche
           </a>
           <button
-            className="btn  tuto ml-10 "
+            className="btn tuto ml-10"
             onClick={[Function]}
           >
             <span
@@ -799,7 +799,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
         </div>
         <div>
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -816,7 +816,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
             Explications
           </button>
           <a
-            className="btn  dark  "
+            className="btn dark"
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -1620,7 +1620,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
         </div>
         <div>
           <button
-            className="btn  tuto mr-8 "
+            className="btn tuto mr-8"
             onClick={[Function]}
           >
             <span
@@ -1637,7 +1637,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
             Explications
           </button>
           <a
-            className="btn  dark  "
+            className="btn dark"
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}

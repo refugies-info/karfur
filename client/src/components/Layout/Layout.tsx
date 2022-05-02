@@ -74,6 +74,8 @@ const Layout = (props: Props) => {
     } else if (!storedLanguei18nCode) {
       dispatch(toggleLangueModalActionCreator());
     } else {
+      const locale = router.locale || "fr";
+      if (locale !== "fr") dispatch(toggleLangueActionCreator(locale));
       setLanguageLoaded(true);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

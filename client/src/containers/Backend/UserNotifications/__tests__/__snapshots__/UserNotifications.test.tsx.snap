@@ -938,7 +938,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         className="c5"
       >
         <button
-          className="btn  dark mr-8 "
+          className="btn dark mr-8"
         >
           <span
             className="mr-10"
@@ -954,7 +954,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Compléter la fiche annuaire
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
           data-test-id="test-delete-annuaire"
           onClick={[Function]}
         >
@@ -1004,7 +1004,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1058,7 +1058,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1074,7 +1074,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
           data-test-id="test-delete-reaction"
           onClick={[Function]}
         >
@@ -1129,7 +1129,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1145,7 +1145,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
           data-test-id="test-delete-reaction"
           onClick={[Function]}
         >

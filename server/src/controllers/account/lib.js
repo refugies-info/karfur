@@ -136,10 +136,10 @@ async function checkUserExists(req, res) {
 }
 
 async function set_user_info(req, res) {
-  let user = req.body;
-  if (!user || !user._id) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
+  try {
+    let user = req.body;
+    if (!user || !user._id) return res.status(400).json({ text: "Requête invalide" });
+
     if (user.password) {
       delete user.password;
     }
@@ -165,29 +165,27 @@ async function set_user_info(req, res) {
       userToSave["$addToSet"] = { roles: req.roles.find((x) => x.nom === "Trad")._id };
     }
 
-    await User.findByIdAndUpdate(
+    const result = await User.findByIdAndUpdate(
       {
         _id: user._id,
       },
       userToSave,
-      { new: true },
-      async function (error, result) {
-        if (error) {
-          res.status(500).json({ text: "Erreur interne", error: error });
-        } else {
-          //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-          try {
-            await populateLanguages(user);
-          } catch (e) {
-            logger.error("[set_user_info] error while populating languages", e);
-          }
-          res.status(200).json({
-            data: result,
-            text: "Mise à jour réussie",
-          });
-        }
-      }
+      { new: true }
     );
+
+    //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+    try {
+      await populateLanguages(user);
+    } catch (e) {
+      logger.error("[set_user_info] error while populating languages", e);
+    }
+    return res.status(200).json({
+      data: result,
+      text: "Mise à jour réussie",
+    });
+  } catch (e) {
+    logger.error("[set_user_info] error", e);
+    return res.status(500).json({ text: "Erreur interne", error: e });
   }
 }
 
