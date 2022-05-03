@@ -51,6 +51,11 @@ export const SearchResultsScreen = ({
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
   }, [currentI18nCode])
 
+  const queryLanguages: string[] = ["fr"];
+  if (currentI18nCode && currentI18nCode !== "ti") { // ti no supported by Algolia
+    queryLanguages.push(currentI18nCode)
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <InstantSearch
@@ -61,7 +66,7 @@ export const SearchResultsScreen = ({
       >
         <Configure
           restrictSearchableAttributes={searchableAttributes}
-          queryLanguages={["fr", currentI18nCode]}
+          queryLanguages={queryLanguages}
         />
         <SearchBoxContainer style={{ paddingTop: (insets.top + theme.margin * 3) }}>
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
