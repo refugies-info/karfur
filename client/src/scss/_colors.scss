@@ -28,11 +28,13 @@ $standby: #fdd497;
 $erreur: #ffcecb;
 $rouge: #e55039;
 $error: #f44336;
+$grey2: #E0E0E0;
 
 :export {
   lightColor: $lightColor;
   darkColor: $darkColor;
   white: $white;
+  grey2: $grey2;
   gray10: $gray10;
   gray20: $gray20;
   gray50: $gray50;

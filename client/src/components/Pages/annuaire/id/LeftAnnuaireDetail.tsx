@@ -10,7 +10,6 @@ import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styles from "./LeftAnnuaireDetail.module.scss";
 import { getPath, isRoute } from "routes";
 
-
 interface Props {
   structure: Structure | null;
   isLoading: boolean;
