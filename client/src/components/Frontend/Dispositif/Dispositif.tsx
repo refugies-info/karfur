@@ -1013,17 +1013,6 @@ const Dispositif = (props: Props) => {
   const createPdf = () => {
     if (!dispositif) return;
     Event("EXPORT_PDF", router.locale || "fr", "label");
-    let newUiArray = [...dispositif.uiArray];
-    newUiArray = newUiArray.map((x) => ({
-      ...x,
-      accordion: true,
-      ...(x.children && {
-        children: x.children.map((y) => {
-          return { ...y, accordion: true };
-        }),
-      }),
-    }));
-    dispatch(setUiArrayActionCreator(newUiArray));
     setShowSpinnerPrint(true);
     setPrinting(true);
   };

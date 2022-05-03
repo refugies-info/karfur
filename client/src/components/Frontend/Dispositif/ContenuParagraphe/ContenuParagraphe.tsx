@@ -194,7 +194,7 @@ const ContenuParagraphe = (props: Props) => {
         </div>
       )}
       {(props.dispositifContent.children || []).map((subitem, index) => {
-          const isAccordeonOpen = openAccordions || !!safeUiArray(
+          const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(
             props.keyValue,
             index,
             "accordion"
