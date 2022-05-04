@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION}-alpine
 WORKDIR /usr/src/app
 
 # Copy package.json and install node modules
-COPY package*.json .
+COPY package*.json ./
 RUN npm ci
 
 # Add app source code
