@@ -12,7 +12,7 @@ import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";
 import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
-import { compare } from "../../AdminContenu/AdminContenu";
+import { statusCompare } from "lib/statusCompare";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
@@ -242,7 +242,6 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
         <RightLogoContainer>
           <FButton className="position-relative" type="theme" name="upload-outline">
             <Input
-              className="file-input"
               type="file"
               id="picture"
               name="structure"
@@ -303,7 +302,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       <Title>Statut</Title>
       <RowContainer>
         {correspondingStatus
-          .sort(compare)
+          .sort(statusCompare)
           .filter((element) => element.status !== "Supprimé")
           .map((element) => {
             return (

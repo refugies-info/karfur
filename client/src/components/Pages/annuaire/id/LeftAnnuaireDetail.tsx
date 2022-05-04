@@ -8,6 +8,7 @@ import { SocialsLink } from "./SocialsLink";
 import FButton from "components/UI/FButton/FButton";
 import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
 import styles from "./LeftAnnuaireDetail.module.scss";
+import { getPath, isRoute } from "routes";
 
 
 interface Props {
@@ -27,10 +28,10 @@ export const LeftAnnuaireDetail = (props: Props) => {
   };
 
   const onClickGoBack = () => {
-    if (props.history[1]?.includes("annuaire")) {
+    if (props.history[1] && isRoute(props.history[1], "/annuaire")) {
       router.push(props.history[1]);
     } else {
-      router.push("/annuaire");
+      router.push(getPath("/annuaire", router.locale));
     }
   };
   if (props.structure && !props.isLoading) {
@@ -50,7 +51,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
             <Image
               src={getSecureUrl(props.structure.picture)}
               alt={props.structure.acronyme}
-              className={styles.image}
+              className={styles.img}
               width={232}
               height={150}
               objectFit="contain"

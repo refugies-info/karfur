@@ -225,8 +225,7 @@ export const ValidateButton = (props: {
     onClick={props.onClick}
     disabled={props.disabled}
     hoverColor={colors.validationHover}
-    //@ts-ignore
-    testID="validate-button"
+    data-test-id="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
@@ -263,14 +262,12 @@ export const EditButtonWithoutNavigation = (props: { onClick: () => void }) => (
 export const DeleteButton = (props: {
   onClick: (event: any) => void;
   disabled: boolean;
-  testID?: any;
 }) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
     hoverColor={colors.error}
     disabled={props.disabled}
-    //@ts-ignore
-    testID="delete-button"
+    data-test-id="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash" fill={colors.white} size={20} />
@@ -310,8 +307,8 @@ export const FilterButton = (props: {
 const StyledTabHeader = styled.div`
   display: flex;
   flex-direction: row;
-  font-weight: "bold";
-  cursor: ${(props: {order: boolean}) => props.order && "pointer"};
+  font-weight: bold;
+  cursor: ${(props: {order: number}) => props.order ? "pointer" : "inherit"};
 `;
 
 export const TabHeader = (props: {
@@ -320,7 +317,7 @@ export const TabHeader = (props: {
   isSortedHeader: boolean;
   sens: string;
 }) => (
-  <StyledTabHeader order={!!props.order}>
+  <StyledTabHeader order={props.order ? 1 : 0}>
     {props.name}
     {props.order && (
       <EVAIcon name={`chevron-${props.sens}`} fill={colors.gray90} />

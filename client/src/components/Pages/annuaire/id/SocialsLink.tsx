@@ -10,9 +10,9 @@ interface Props {
   linkedin: string | undefined;
 }
 
-const onLinkClicked = (link: string | undefined) => {
+const getLink = (link: string | undefined) => {
   if (!link) return;
-  window.open((link.includes("http") ? "" : "http://") + link, "_blank");
+  return (link.includes("http") ? "" : "http://") + link
 };
 
 export const SocialsLink = (props: Props) => {
@@ -26,7 +26,10 @@ export const SocialsLink = (props: Props) => {
             <FButton
               type="white"
               name="globe"
-              onClick={() => onLinkClicked(website)}
+              href={getLink(website)}
+              tag="a"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {t("Annuaire.Visiter internet", "Visiter le site internet")}
             </FButton>
@@ -37,7 +40,10 @@ export const SocialsLink = (props: Props) => {
           <FButton
             type="white"
             name="facebook"
-            onClick={() => onLinkClicked(props.facebook)}
+            href={getLink(props.facebook)}
+            tag="a"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t("Annuaire.facebook", "Suivre sur Facebook")}
           </FButton>
@@ -48,7 +54,10 @@ export const SocialsLink = (props: Props) => {
           <FButton
             type="white"
             name="twitter"
-            onClick={() => onLinkClicked(props.twitter)}
+            href={getLink(props.twitter)}
+            tag="a"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t("Annuaire.twitter", "Suivre sur Twitter")}
           </FButton>
@@ -59,7 +68,10 @@ export const SocialsLink = (props: Props) => {
           <FButton
             type="white"
             name="linkedin"
-            onClick={() => onLinkClicked(props.linkedin)}
+            href={getLink(props.linkedin)}
+            tag="a"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t("Annuaire.linkedin", "Suivre sur LinkedIn")}
           </FButton>

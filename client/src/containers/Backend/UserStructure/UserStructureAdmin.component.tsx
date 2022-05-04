@@ -13,6 +13,7 @@ declare const window: Window;
 
 export interface Props {
   location: any;
+  title: string
 }
 
 export const UserStructureAdminComponent = (props: Props) => {
@@ -22,6 +23,11 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   const toggleReload = () => setReload(!reload);
   const user = useSelector(userSelector);
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const searchParams = (new URL(document.location.href)).searchParams;

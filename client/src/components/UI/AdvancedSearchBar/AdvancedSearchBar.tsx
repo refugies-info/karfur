@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import type { IDispositif } from "types/interface";
 import * as themes from "data/synonym";
 import Streamline from "assets/streamline";
@@ -18,6 +18,7 @@ import useOutsideClick from "hooks/useOutsideClick";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import useRTL from "hooks/useRTL";
 import { tags } from "data/tags";
+import { getPath } from "routes";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -243,11 +244,11 @@ const AdvancedSearchBar = (props: Props) => {
               black
               onClick={() => {
                 setSearchText("");
-                if (router.pathname === "/advanced-search") {
-                  router.replace("/advanced-search");
+                if (router.pathname === "/recherche") {
+                  router.replace(getPath("/recherche", router.locale));
                   window.location.reload();
                 } else {
-                  router.push("/advanced-search");
+                  router.push(getPath("/recherche", router.locale));
                 }
               }}
             >
@@ -312,13 +313,13 @@ const AdvancedSearchBar = (props: Props) => {
                               )
                             ) {
                               router.push({
-                                pathname: "/advanced-search",
+                                pathname: getPath("/recherche", router.locale),
                                 search: selectedTag ? "?tag=" + selectedTag.name : "",
                               });
                               window.location.reload();
                             } else {
                               router.push({
-                                pathname: "/advanced-search",
+                                pathname: getPath("/recherche", router.locale),
                                 search: selectedTag ? "?tag=" + selectedTag.name : "",
                               });
                             }
@@ -381,12 +382,12 @@ const AdvancedSearchBar = (props: Props) => {
                           color={selectedTag ? selectedTag.lightColor : ""}
                           onClick={() => {
                             setSearchText("");
-                            router.push(
-                              "/" +
-                                (elem.typeContenu || "dispositif") +
-                                (elem._id ? "/" + elem._id : "")
-                            );
-                          }}
+                            const route = elem.typeContenu === "demarche"
+                              ? "/demarche/[id]" : "/dispositif/[id]";
+                            router.push({
+                              pathname: getPath(route, router.locale),
+                              query: {id: elem._id.toString() || ""}});
+                            }}
                         >
                           <ThemeButton
                             color={selectedTag ? selectedTag.darkColor : ""}
@@ -470,11 +471,11 @@ const AdvancedSearchBar = (props: Props) => {
             <SeeAllButton
               onClick={() => {
                 setSearchText("");
-                if (router.pathname === "/advanced-search") {
-                  router.replace("/advanced-search");
+                if (router.pathname === "/recherche") {
+                  router.replace(getPath("/recherche", router.locale));
                   window.location.reload();
                 } else {
-                  router.push("/advanced-search");
+                  router.push(getPath("/recherche", router.locale));
                 }
               }}
             >

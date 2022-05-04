@@ -440,7 +440,7 @@ export interface Need {
   fr: NeedDetail;
   ar?: NeedDetail;
   en?: NeedDetail;
-  "ti-ER"?: NeedDetail;
+  ti?: NeedDetail;
   ru?: NeedDetail;
   ps?: NeedDetail;
   fa?: NeedDetail;
@@ -451,12 +451,28 @@ export interface Need {
   updatedAt: Moment;
 }
 
+export interface RegionFigures {
+  region: string;
+  nbDispositifs: number;
+  nbDepartments: number;
+  nbDepartmentsWithDispo: number;
+}
+export interface NbDispositifsByRegion {
+  regionFigures: RegionFigures[]
+  dispositifsWithoutGeoloc: ObjectId[]
+}
+export interface Statistics {
+  nbMercis: number
+  nbVues: number
+  nbVuesMobile: number
+}
+
 export type AvailableLanguageI18nCode =
   | "fr"
   | "en"
   | "ps"
   | "ar"
-  | "ti-ER"
+  | "ti"
   | "ru"
   | "uk"
   | "fa";

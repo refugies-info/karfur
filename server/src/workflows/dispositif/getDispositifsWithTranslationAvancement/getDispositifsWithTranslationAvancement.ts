@@ -127,6 +127,11 @@ export const getDispositifsWithTranslationAvancement = async (
       });
     });
 
+    logger.info(
+      "[getDispositifsWithTranslationAvancement] got results",
+      { count: results.length }
+    );
+
     res.status(200).json({ data: results });
   } catch (error) {
     logger.error("[getDispositifsWithTranslationAvancement] error", {

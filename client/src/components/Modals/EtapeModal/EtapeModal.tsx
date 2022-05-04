@@ -8,7 +8,7 @@ import {
   Label,
   Input,
 } from "reactstrap";
-import _ from "lodash";
+import get from "lodash/get";
 import ContentEditable from "react-contenteditable";
 import ReactToPrint from "react-to-print";
 import FButton from "components/UI/FButton/FButton";
@@ -32,7 +32,7 @@ const EtapeModal = (props: Props) => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const newLength = _.get(props, "subitem.papiers", []).length;
+    const newLength = get(props, "subitem.papiers", []).length;
     if (newLength !== checked.length) {
       setChecked(new Array(newLength).fill(false));
     }

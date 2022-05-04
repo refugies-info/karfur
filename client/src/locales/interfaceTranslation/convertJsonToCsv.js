@@ -50,13 +50,13 @@ const convertJsonToCsv = (langue) => {
 };
 
 const main = () => {
-  // langues : en, ar, fa, ps, ru, ti-ER, uk
+  // langues : en, ar, fa, ps, ru, ti, uk
   convertJsonToCsv("ar");
   convertJsonToCsv("en");
   convertJsonToCsv("fa");
   convertJsonToCsv("ps");
   convertJsonToCsv("ru");
-  convertJsonToCsv("ti-ER");
+  convertJsonToCsv("ti");
   convertJsonToCsv("uk");
 };
 

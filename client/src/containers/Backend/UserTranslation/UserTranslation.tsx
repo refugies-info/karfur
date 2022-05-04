@@ -46,7 +46,11 @@ const getLangueName = (
   return { langueSelectedFr: null, langueI18nCode: null };
 };
 
-const UserTranslation = () => {
+interface Props {
+  title: string
+}
+
+const UserTranslation = (props: Props) => {
   const [
     showOneNeedTranslationModal,
     setShowOneNeedTranslationModal,
@@ -70,6 +74,11 @@ const UserTranslation = () => {
   const [elementToTranslate, setElementToTranslate] = useState(null);
 
   const [indicators, setIndicators] = useState<null | Indicators>(null);
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //@ts-ignore
   const langueInUrl = useParams()?.id;

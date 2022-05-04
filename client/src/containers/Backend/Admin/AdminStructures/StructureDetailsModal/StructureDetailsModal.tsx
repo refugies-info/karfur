@@ -22,7 +22,7 @@ import {
 } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { compare } from "../../AdminContenu/AdminContenu";
+import { statusCompare } from "lib/statusCompare";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
@@ -316,7 +316,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 name="upload-outline"
               >
                 <Input
-                  className="file-input"
                   type="file"
                   id="picture"
                   name="structure"
@@ -385,7 +384,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           </InputContainer>
           <Title>Statut</Title>
           <RowContainer>
-            {correspondingStatus.sort(compare).map((element) => {
+            {correspondingStatus.sort(statusCompare).map((element) => {
               return (
                 <div
                   key={element.status}
@@ -417,7 +416,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           structure.dispositifsSimplified.length ? (
             structure.dispositifsSimplified.map((dispositif, index) => {
               return (
-                <>
+                <div key={index}>
                   <TitleFichesContainer
                     color={dispositif.color}
                     key={index}
@@ -471,7 +470,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                       />
                     </div>
                   </DetailsFichesContainer>
-                </>
+                </div>
               );
             })
           ) : (

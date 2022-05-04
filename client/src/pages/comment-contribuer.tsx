@@ -28,6 +28,7 @@ import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { fetchLanguesActionCreator } from "services/Langue/langue.actions";
 import useRTL from "hooks/useRTL";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
   nbExperts: number
@@ -451,7 +452,7 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) =
     props: {
       nbExperts,
       nbTraductors,
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
     revalidate: 60
   };

@@ -28,6 +28,7 @@ import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import Navigation from "../Navigation";
+import { getPath } from "routes";
 
 const MainContainer = styled.div`
   display: flex;
@@ -53,6 +54,7 @@ const WhiteContainer = styled.div`
 `;
 interface Props {
   history: any;
+  title: string
 }
 const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
@@ -75,6 +77,11 @@ const UserContributions = (props: Props) => {
   );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     dispatch(fetchUserContributionsActionCreator());
@@ -192,7 +199,7 @@ const UserContributions = (props: Props) => {
                 Explications
               </FButton>
               <Link
-                href="/comment-contribuer#ecrire"
+                href={getPath("/comment-contribuer", router.locale) + "#ecrire"}
                 passHref
               >
                 <FButton

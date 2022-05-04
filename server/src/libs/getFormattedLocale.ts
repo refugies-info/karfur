@@ -15,7 +15,7 @@ const activatedLanguages = [
     full: "russe",
   },
   {
-    code: "ti-ER",
+    code: "ti",
     short: "Tigrynia",
     full: "tigrinya",
   },

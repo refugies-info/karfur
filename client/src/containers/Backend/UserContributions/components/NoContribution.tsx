@@ -1,10 +1,11 @@
 import { ContribContainer } from "./SubComponents";
 import React from "react";
-import { NavHashLink } from "react-router-hash-link";
 import styled from "styled-components";
 import FButton from "../../../../components/UI/FButton/FButton";
 import { colors } from "../../../../colors";
 import Link from "next/link";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 const Header = styled.div`
   font-weight: bold;
@@ -50,41 +51,45 @@ const RowContainer = styled.div`
 export const NoContribution = (props: {
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
-}) => (
-  <ContribContainer>
-    <Header>Vous n'avez pas encore rédigé de fiche.</Header>
-    <WhiteContainer>
-      <Title>C'est parti ?</Title>
-      <SubTitle>
-        Chacun peut apporter sa contribution pour enrichir le site.
-      </SubTitle>
-      <SubTitle>Lancez-vous !</SubTitle>
-      <RowContainer>
-        <Link
-          href="/comment-contribuer#ecrire"
-          passHref
-        >
-          <FButton
-            tag="a"
-            type="dark"
-            name="file-add-outline"
-            className="mr-10"
+}) => {
+  const router = useRouter();
+
+  return (
+    <ContribContainer>
+      <Header>Vous n'avez pas encore rédigé de fiche.</Header>
+      <WhiteContainer>
+        <Title>C'est parti ?</Title>
+        <SubTitle>
+          Chacun peut apporter sa contribution pour enrichir le site.
+        </SubTitle>
+        <SubTitle>Lancez-vous !</SubTitle>
+        <RowContainer>
+          <Link
+            href={getPath("/comment-contribuer", router.locale) + "#ecrire"}
+            passHref
           >
-            Créer une nouvelle fiche
+            <FButton
+              tag="a"
+              type="dark"
+              name="file-add-outline"
+              className="mr-10"
+            >
+              Créer une nouvelle fiche
+            </FButton>
+          </Link>
+          <FButton
+            type="tuto"
+            name="video-outline"
+            className="ml-10"
+            onClick={() => {
+              props.setTutoModalDisplayed("Mes fiches");
+              props.toggleTutoModal();
+            }}
+          >
+            Explications
           </FButton>
-        </Link>
-        <FButton
-          type="tuto"
-          name="video-outline"
-          className="ml-10"
-          onClick={() => {
-            props.setTutoModalDisplayed("Mes fiches");
-            props.toggleTutoModal();
-          }}
-        >
-          Explications
-        </FButton>
-      </RowContainer>
-    </WhiteContainer>
-  </ContribContainer>
-);
+        </RowContainer>
+      </WhiteContainer>
+    </ContribContainer>
+  )
+}

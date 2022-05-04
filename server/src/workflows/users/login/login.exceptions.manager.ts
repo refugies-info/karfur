@@ -42,6 +42,12 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
       return res.status(405).json({
         text: "Utilisateur supprimé",
       });
+    case "ADMIN_FORBIDDEN":
+      return res.status(401).json({ text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site" });
+    case "NO_EMAIL":
+      return res.status(403).json({ text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi." });
+    case "USER_NOT_EXISTS":
+      return res.status(500).json({ text: "Utilisateur inconnu" });
     default:
       res.status(500).json({
         text: "Erreur interne",

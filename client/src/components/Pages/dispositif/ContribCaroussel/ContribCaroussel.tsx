@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import _ from "lodash";
 import {
   Row,
   Col,
@@ -11,11 +10,12 @@ import {
 } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import isInBrowser from "lib/isInBrowser";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { reduceContributors } from "./function";
 import marioProfile from "assets/mario-profile.jpg";
 import styles from "./ContribCaroussel.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   contributeurs: any[];
@@ -42,54 +42,16 @@ const ContribCarousel = (props: Props) => {
     setActiveIndex(nextIndex);
   };
 
-  // Contributors
-  const [reducedContributors, setReduceContributors] = useState<any[]>([]);
+  // No JS
+  const [noJs, setNoJs] = useState(true);
   useEffect(() => {
-    const nbCards = Math.floor(
-      (((window.innerWidth - 2 * 10) * 7) / 12 - 2 * (15 + 20)) / (140 + 20)
-    );
+    setNoJs(false);
+  }, []);
 
-    // there may be duplicates in db in Dispositif.participants
-    const deduplicatedContributors = _.uniqBy(props.contributeurs, "username");
-
-    // reducedContributors is an array of multiple arrays containing maximum nbCards contributeurs
-    const reducedContributors = (deduplicatedContributors || []).reduce(
-      (acc, curr, i) => {
-        if (
-          i > 0 &&
-          i % nbCards === 0 &&
-          i !== deduplicatedContributors.length - 1
-        ) {
-          return {
-            currGrp: [curr],
-            groupedData: [...acc.groupedData, acc.currGrp],
-          };
-        } else if (
-          i % nbCards !== 0 &&
-          i === deduplicatedContributors.length - 1
-        ) {
-          return {
-            groupedData: [...acc.groupedData, [...acc.currGrp, curr]],
-            currGrp: [],
-          };
-        } else if (
-          i % nbCards === 0 &&
-          i === deduplicatedContributors.length - 1
-        ) {
-          return {
-            groupedData: [...acc.groupedData, ...acc.currGrp, [curr]],
-            currGrp: [],
-          };
-        }
-        return {
-          currGrp: [...acc.currGrp, curr],
-          groupedData: acc.groupedData,
-        };
-      },
-      { currGrp: [], groupedData: [] }
-    ).groupedData;
-
-    setReduceContributors(reducedContributors);
+  // Contributors
+  const [reducedContributors, setReduceContributors] = useState<any[]>(reduceContributors(props.contributeurs));
+  useEffect(() => {
+    setReduceContributors(reduceContributors(props.contributeurs));
   }, [props.contributeurs]);
 
   return (
@@ -130,7 +92,7 @@ const ContribCarousel = (props: Props) => {
         activeIndex={activeIndex}
         next={() => next(reducedContributors.length)}
         previous={() => previous(reducedContributors.length)}
-        className={styles.carousel}
+        className={cls(styles.carousel, noJs && styles.nojs)}
       >
         {reducedContributors.map((item, key) => {
           if (Array.isArray(item)) {

@@ -8,12 +8,9 @@ interface Props {
   toggle: () => void;
   show: boolean;
   saveDispositif: (
-    arg: string,
-    auto: boolean,
-    sauvegarde: boolean,
     saveAndEdit: boolean,
-    continueEditing: boolean,
-    routeAfterSave?: string,
+    saveType: "auto" | "save" | "validate",
+    routeAfterSave?: string
   ) => void;
   status: string;
   toggleIsModified: (arg: boolean) => void;
@@ -101,11 +98,8 @@ export const DraftModal = (props: Props) => (
           className="mr-8"
           onClick={() => {
             props.saveDispositif(
-              props.status || "Brouillon",
               false,
-              true,
-              false,
-              false,
+              "save",
               "/backend/user-dash-contrib"
             );
             props.toggle();
@@ -120,11 +114,8 @@ export const DraftModal = (props: Props) => (
           name="save-outline"
           onClick={() => {
             props.saveDispositif(
-              props.status || "Brouillon",
-              false,
               true,
-              true,
-              true
+              "save"
             );
             props.toggleIsModified(false);
             props.toggleIsSaved(true);

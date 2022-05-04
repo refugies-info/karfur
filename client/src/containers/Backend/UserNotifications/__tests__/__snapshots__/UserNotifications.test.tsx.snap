@@ -913,6 +913,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
     </div>
     <div
       className="c4"
+      data-test-id="test-notif-annuaire"
       onClick={[Function]}
     >
       <div
@@ -937,7 +938,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         className="c5"
       >
         <button
-          className="btn  dark mr-8 "
+          className="btn dark mr-8"
         >
           <span
             className="mr-10"
@@ -953,9 +954,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Compléter la fiche annuaire
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
+          data-test-id="test-delete-annuaire"
           onClick={[Function]}
-          testID="test-delete-annuaire"
         >
           <span
             className=""
@@ -973,6 +974,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
     </div>
     <div
       className="c4"
+      data-test-id="test-notif-new content"
       onClick={[Function]}
     >
       <div
@@ -1002,7 +1004,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1021,6 +1023,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
     </div>
     <div
       className="c4"
+      data-test-id="test-notif-reaction"
       onClick={[Function]}
     >
       <div
@@ -1055,7 +1058,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1071,9 +1074,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
+          data-test-id="test-delete-reaction"
           onClick={[Function]}
-          testID="test-delete-reaction"
         >
           <span
             className=""
@@ -1091,6 +1094,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
     </div>
     <div
       className="c9"
+      data-test-id="test-notif-reaction"
       onClick={[Function]}
     >
       <div
@@ -1125,7 +1129,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Depuis 5 jours
         </div>
         <button
-          className="btn  dark  "
+          className="btn dark"
         >
           <span
             className="mr-10"
@@ -1141,9 +1145,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           Voir la réaction
         </button>
         <button
-          className="btn  error ml-8 "
+          className="btn error ml-8"
+          data-test-id="test-delete-reaction"
           onClick={[Function]}
-          testID="test-delete-reaction"
         >
           <span
             className=""
