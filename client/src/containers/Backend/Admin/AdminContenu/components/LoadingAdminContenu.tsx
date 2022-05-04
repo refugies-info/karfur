@@ -15,7 +15,7 @@ import { FilterButton } from "../../sharedComponents/SubComponents";
 
 export const LoadingAdminContenu = () => {
   const arrayLines = new Array(12).fill("a");
-  const arrayContent = new Array(5).fill("a");
+  const arrayContent = new Array(7).fill("a");
 
   const compare = (a: any, b: any) => {
     const orderA = a.order;

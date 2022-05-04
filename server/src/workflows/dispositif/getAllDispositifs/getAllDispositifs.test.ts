@@ -41,6 +41,8 @@ describe("getAllispositifs", () => {
     draftReminderMailSentDate: 1,
     draftSecondReminderMailSentDate: 1,
     lastReminderMailSentToUpdateContentDate: 1,
+    merci: 1,
+    nbVues: 1,
     lastModificationDate: 1,
     needs: 1,
     tags: 1,
@@ -81,11 +83,13 @@ describe("getAllispositifs", () => {
       _id: "creatorId",
       picture: { secure_url: "secure_url" },
     },
+    nbMercis: 0
   };
   const adaptedDispositif2 = {
     _id: "id2",
     mainSponsor: "",
     creatorId: null,
+    nbMercis: 0
   };
   it("should call getDispositifsFromDB", async () => {
     getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
