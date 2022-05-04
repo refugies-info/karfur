@@ -213,6 +213,11 @@ const LeftSideDispositif = (props: Props) => {
               onBeforeGetContent={() => {
                 Event("Share", "Print", "from dispositif sidebar")
                 props.createPdf();
+
+                // give enough time for the accordions to open before printing
+                return new Promise((resolve: any) => {
+                  setTimeout(() => { resolve() }, 500);
+                });
               }}
               onAfterPrint={() => {
                 props.closePdf();
