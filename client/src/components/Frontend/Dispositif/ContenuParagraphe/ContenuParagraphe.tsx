@@ -194,7 +194,7 @@ const ContenuParagraphe = (props: Props) => {
         </div>
       )}
       {(props.dispositifContent.children || []).map((subitem, index) => {
-          const isAccordeonOpen = openAccordions || !!safeUiArray(
+          const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(
             props.keyValue,
             index,
             "accordion"
@@ -218,31 +218,33 @@ const ContenuParagraphe = (props: Props) => {
               }
               key={index}
             >
-              {subitem.type === "card" && nbChildren === 1 ? (
-                <CardParagraphe
-                  subkey={index}
-                  subitem={subitem}
-                  dispositifId={router.query.id as string}
-                  disableEdit={props.disableEdit}
-                  changeTitle={props.changeTitle}
-                  handleMenuChange={props.handleMenuChange}
-                  changeAge={props.changeAge}
-                  toggleFree={props.toggleFree}
-                  changePrice={props.changePrice}
-                  updateUIArray={props.updateUIArray}
-                  toggleNiveau={props.toggleNiveau}
-                  changeDepartements={props.changeDepartements}
-                  deleteCard={props.deleteCard}
-                  content={props.content}
-                  keyValue={props.keyValue}
-                  cards={cards}
-                  mainTag={props.mainTag}
-                  toggleTutorielModal={props.toggleTutorielModal}
-                  admin={props.admin}
-                  toggleGeolocModal={props.toggleGeolocModal}
-                  showGeolocModal={props.showGeolocModal}
-                  typeContenu={props.typeContenu}
-                />
+              {subitem.type === "card" ? (
+                <div className={mobile.hidden_flex}>
+                  <CardParagraphe
+                    subkey={index}
+                    subitem={subitem}
+                    dispositifId={router.query.id as string}
+                    disableEdit={props.disableEdit}
+                    changeTitle={props.changeTitle}
+                    handleMenuChange={props.handleMenuChange}
+                    changeAge={props.changeAge}
+                    toggleFree={props.toggleFree}
+                    changePrice={props.changePrice}
+                    updateUIArray={props.updateUIArray}
+                    toggleNiveau={props.toggleNiveau}
+                    changeDepartements={props.changeDepartements}
+                    deleteCard={props.deleteCard}
+                    content={props.content}
+                    keyValue={props.keyValue}
+                    cards={cards}
+                    mainTag={props.mainTag}
+                    toggleTutorielModal={props.toggleTutorielModal}
+                    admin={props.admin}
+                    toggleGeolocModal={props.toggleGeolocModal}
+                    showGeolocModal={props.showGeolocModal}
+                    typeContenu={props.typeContenu}
+                  />
+                </div>
               ) : subitem.type === "map" && !props.printing ? (
                 <MapParagraphe
                   key={index}

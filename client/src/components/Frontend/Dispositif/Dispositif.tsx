@@ -1013,17 +1013,6 @@ const Dispositif = (props: Props) => {
   const createPdf = () => {
     if (!dispositif) return;
     Event("EXPORT_PDF", router.locale || "fr", "label");
-    let newUiArray = [...dispositif.uiArray];
-    newUiArray = newUiArray.map((x) => ({
-      ...x,
-      accordion: true,
-      ...(x.children && {
-        children: x.children.map((y) => {
-          return { ...y, accordion: true };
-        }),
-      }),
-    }));
-    dispatch(setUiArrayActionCreator(newUiArray));
     setShowSpinnerPrint(true);
     setPrinting(true);
   };
@@ -1291,6 +1280,7 @@ const Dispositif = (props: Props) => {
           ? " printing-mode"
           : " reading-mode")
       }
+      dir={isRTL ? "rtl" : "ltr"} // needed here for printing
       ref={newRef}
     >
       <SEO title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}/>

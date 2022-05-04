@@ -14,15 +14,6 @@ div.app-body {
     margin-top: 0;
   }
 
-  &.pdf-print {
-    @media print {
-      html,
-      body {
-        direction: rtl;
-      }
-    }
-  }
-
   .content {
     display: flex;
     flex: 1;
