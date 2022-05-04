@@ -41,7 +41,12 @@ const TitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-const UserFavorites = () => {
+
+interface Props {
+  title: string
+}
+
+const UserFavorites = (props: Props) => {
   const { t } = useTranslation();
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
@@ -49,6 +54,11 @@ const UserFavorites = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const locale = router.locale || "fr";
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     dispatch(fetchUserFavoritesActionCreator(locale));
@@ -135,7 +145,7 @@ const UserFavorites = () => {
                 type="outline-black"
                 name="trash-outline"
                 onClick={removeAllFavorites}
-                testID="test-delete-button"
+                data-test-id="test-delete-button"
               >
                 {t("UserFavorites.Tout supprimer", "Tout supprimer")}
               </FButton>

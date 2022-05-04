@@ -12,12 +12,16 @@ export const removeAudienceAgeOnDemarches = async (_: any, res: Res) => {
 
     const demarches = await getAllDemarchesFromDB();
 
-    asyncForEach(demarches, async (demarche) => {
-      logger.info("[removeAudienceAgeOnDemarches] id", { id: demarche._id });
-      await removeAudienceAgeInDB(demarche._id);
-      logger.info("[removeAudienceAgeOnDemarches] id succes", {
-        id: demarche._id,
-      });
+    await asyncForEach(demarches, async (demarche) => {
+      try {
+        logger.info("[removeAudienceAgeOnDemarches] id", { id: demarche._id });
+        await removeAudienceAgeInDB(demarche._id);
+        logger.info("[removeAudienceAgeOnDemarches] id succes", {
+          id: demarche._id,
+        });
+      } catch (e) {
+        logger.error("[removeAudienceAgeOnDemarches] error", e);
+      }
     });
 
     res.status(200).json({ text: "OK" });

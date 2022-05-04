@@ -1,3 +1,9 @@
+export type FilterStructureStatus = "Actif" | "En attente" | "Supprimé";
+export type StructureStatus = {
+  status: FilterStructureStatus
+  order: number
+}
+
 export const headers = [
   { name: "Nom", order: "nom" },
   { name: "Statut", order: "" },
@@ -7,7 +13,7 @@ export const headers = [
   { name: "Création", order: "created_at" },
 ];
 
-export const correspondingStatus = [
+export const correspondingStatus: StructureStatus[] = [
   { status: "Actif", order: 2 },
   { status: "En attente", order: 1 },
   { status: "Supprimé", order: 3 },

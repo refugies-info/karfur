@@ -21,6 +21,11 @@ body .btn {
     font-size: $text-normal;
   }
 
+  &.wrap {
+    white-space: normal;
+    text-align: left;
+  }
+
   &.filter {
     padding: 8px;
   }

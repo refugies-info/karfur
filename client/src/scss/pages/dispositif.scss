@@ -8,6 +8,7 @@ $imgHeight: 350px;
 @media print {
   .print-rtl {
     direction: rtl;
+    text-align: right;
   }
   .page-break {
     display: block;

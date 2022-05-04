@@ -6,6 +6,7 @@ import { colors } from "colors";
 import Streamline from "assets/streamline";
 import { tags } from "data/tags";
 import { useRouter } from "next/router";
+import { getPath } from "routes";
 
 interface Props {
   dispositif: IDispositif;
@@ -57,11 +58,10 @@ export const FicheOnMobile = (props: Props) => {
   const router = useRouter();
 
   const navigateToContent = () => {
+    const route = props.dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
     return router.push({
-      pathname:
-        "/" +
-        (props.dispositif.typeContenu || "dispositif") +
-        (props.dispositif._id ? "/" + props.dispositif._id : ""),
+      pathname: getPath(route, router.locale),
+      query: {id: props.dispositif._id.toString() || ""}
     });
   };
   return (

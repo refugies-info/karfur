@@ -8,6 +8,7 @@ import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { saveUserActionCreator } from "services/User/user.actions";
 import styles from "./CompleteProfilModal.module.scss";
+import { getPath } from "routes";
 
 interface Props {
   show: boolean;
@@ -31,9 +32,9 @@ export const CompleteProfilModal = (props: Props) => {
 
   const redirect = () => {
     if (props.type === "dispositif") {
-      router.push("/dispositif");
+      router.push(getPath("/dispositif", router.locale));
     } else if (props.type === "demarche") {
-      router.push("/demarche");
+      router.push(getPath("/demarche", router.locale));
     } else if (props.type === "traduction") {
       if (!props.langueId) return;
       if (!props.isExpert && props.element.tradStatus === "Validée") return;

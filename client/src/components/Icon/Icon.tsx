@@ -1,6 +1,6 @@
 import React from "react";
 import { streamlineIconCorrespondency } from "data/dispositif";
-import _ from "lodash";
+import find from "lodash/find";
 import EVAIcon from "../UI/EVAIcon/EVAIcon";
 
 export const infoCardIcon = (iconTitle: string | undefined, color?: string) => {
@@ -8,7 +8,7 @@ export const infoCardIcon = (iconTitle: string | undefined, color?: string) => {
   // let iconType = defaultIcon;
   let iconTypeEva = streamlineIconCorrespondency[0].titleIcon;
   if (iconTitle) {
-    const correspondingElement = _.find(
+    const correspondingElement = find(
       streamlineIconCorrespondency,
       (element) => element.titleIcon === iconTitle
     );

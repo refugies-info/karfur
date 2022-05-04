@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
-import { debounce } from "lodash";
+import debounce from "lodash.debounce";
 import { useTranslation } from "next-i18next";
 import NoResultImage from "assets/no_results.svg";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -11,8 +11,8 @@ import FButton from "components/UI/FButton/FButton";
 import {
   escapeRegexCharacters,
   getSuggestionValue,
-  removeAccents,
 } from "lib/search";
+import { removeAccents } from "lib";
 
 import { colors } from "colors";
 import Image from "next/image";

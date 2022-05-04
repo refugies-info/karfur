@@ -139,19 +139,23 @@ async function add_tradForReview(req, res) {
     promise = new Traduction(traduction).save();
   }
   promise
-    .then((data) => {
-      if (req.userId) {
-        User.findByIdAndUpdate(
-          { _id: req.userId },
-          {
-            $addToSet: {
-              traductionsFaites: data._id,
-              roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
-                ._id,
+    .then(async (data) => {
+      try {
+        if (req.userId) {
+          await User.findByIdAndUpdate(
+            { _id: req.userId },
+            {
+              $addToSet: {
+                traductionsFaites: data._id,
+                roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
+                  ._id,
+              },
             },
-          },
-          { new: true }
-        );
+            { new: true }
+          );
+        }
+      } catch (e) {
+        logger.error("[addTradForReview] error", e)
       }
       res.status(200).json({
         text: "Succès",
@@ -280,8 +284,10 @@ function update_tradForReview(req, res) {
   );
 }
 
-export const computeIndicator = async (userId, start, end) =>
-  await Indicator.aggregate([
+export const computeIndicator = async (userId, start, end) => {
+  logger.info("[computeIndicator] received", {userId, start, end});
+
+  return await Indicator.aggregate([
     {
       $match: {
         userId: new mongoose.Types.ObjectId(userId),
@@ -296,9 +302,12 @@ export const computeIndicator = async (userId, start, end) =>
       },
     },
   ]);
+}
 
-export const computeGlobalIndicator = async (userId) =>
-  await Indicator.aggregate([
+export const computeGlobalIndicator = async (userId) => {
+  logger.info("[computeGlobalIndicator] received for userId", userId);
+
+  return await Indicator.aggregate([
     {
       $match: {
         userId: new mongoose.Types.ObjectId(userId),
@@ -312,8 +321,10 @@ export const computeGlobalIndicator = async (userId) =>
       },
     },
   ]);
+}
 
 export const computeAllIndicators = async (userId) => {
+  logger.info("[computeAllIndicators] received for userId", userId);
   var start = new Date();
   var end3 = new Date();
   var end6 = new Date();
@@ -325,23 +336,35 @@ export const computeAllIndicators = async (userId) => {
   //start.setHours(0, 0, 0, 0);
 
   //we aggregate the number of words and time spent in these periods
-  const threeMonthsIndicator = await computeIndicator(userId, start, end3);
+  try {
+    logger.info("[computeAllIndicators] computing indicators");
+    const threeMonthsIndicator = await computeIndicator(userId, start, end3);
 
-  const sixMonthsIndicator = await computeIndicator(userId, start, end6);
-  const twelveMonthsIndicator = await computeIndicator(userId, start, end12);
+    const sixMonthsIndicator = await computeIndicator(userId, start, end6);
+    const twelveMonthsIndicator = await computeIndicator(userId, start, end12);
 
-  const totalIndicator = await computeGlobalIndicator(userId);
+    const totalIndicator = await computeGlobalIndicator(userId);
 
-  return {
-    twelveMonthsIndicator,
-    sixMonthsIndicator,
-    threeMonthsIndicator,
-    totalIndicator,
-  };
+    return {
+      twelveMonthsIndicator,
+      sixMonthsIndicator,
+      threeMonthsIndicator,
+      totalIndicator,
+    };
+  } catch (e) {
+    logger.error("[computeAllIndicators] error", e);
+    return {
+      twelveMonthsIndicator: null,
+      sixMonthsIndicator: null,
+      threeMonthsIndicator: null,
+      totalIndicator: null,
+    };
+  }
 };
 //Fetching the progression from the indicators collection
 async function get_progression(req, res) {
   try {
+    logger.info("[get_progression] received");
     const {
       twelveMonthsIndicator,
       sixMonthsIndicator,
@@ -349,6 +372,7 @@ async function get_progression(req, res) {
       totalIndicator,
     } = await computeAllIndicators(req.body.userId || req.userId);
 
+    logger.info("[get_progression] values calculated");
     res.send({
       twelveMonthsIndicator,
       sixMonthsIndicator,

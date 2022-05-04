@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
-import _ from "lodash";
+import get from "lodash/get";
 import { DispositifContent, IDispositif } from "../../types/interface";
 
 
@@ -40,7 +40,7 @@ export const selectedDispositifReducer = createReducer<
       ...(action.payload.reset ? {} : state),
       ...action.payload.value,
       // @ts-ignore
-      uiArray: _.get(action.payload.value, "contenu", []).map(
+      uiArray: get(action.payload.value, "contenu", []).map(
         (x: DispositifContent) => {
           return {
             ...uiElement,

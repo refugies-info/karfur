@@ -41,7 +41,7 @@ export const activeLanguages = [
     langueFr: "Tigrinya",
     langueLoc: "ትግርኛ",
     langueCode: "er",
-    i18nCode: "ti-ER",
+    i18nCode: "ti",
     avancement: 0.9985054227648286,
     avancementTrad: 0.33527696793002915
   },

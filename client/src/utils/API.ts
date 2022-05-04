@@ -1,13 +1,15 @@
-import axios, { AxiosRequestHeaders, Canceler } from "axios";
+import axios, { AxiosRequestHeaders, AxiosResponse, Canceler } from "axios";
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { IDispositif, User } from "types/interface";
+import { IDispositif, NbDispositifsByRegion, Statistics, User } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
+
+type Response<T = any> = AxiosResponse<{text: string, data: T}>
 
 //@ts-ignore
 axios.withCredentials = true;
@@ -76,10 +78,6 @@ const API = {
   }) => {
     const headers = getHeaders();
     return instance.post("/user/login", user, { headers });
-  },
-  signup: (send: any) => {
-    const headers = getHeaders();
-    return instance.post("/user/signup", send, { headers });
   },
   checkUserExists: (query: {
     username: string
@@ -192,7 +190,7 @@ const API = {
       headers,
     });
   },
-  count_dispositifs: (query: any) => {
+  count_dispositifs: (query: any): Promise<AxiosResponse<number>>  => {
     const headers = getHeaders();
     return instance.post("/dispositifs/count_dispositifs", query, {
       headers,
@@ -239,7 +237,7 @@ const API = {
     return instance.post("/dispositifs/getDispositifs", params);
   },
   getAllDispositifs: () => instance.get("/dispositifs/getAllDispositifs"),
-  getNbDispositifsByRegion: () => {
+  getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion")
   },
   updateNbVuesOrFavoritesOnContent: (params: any) => {
@@ -247,6 +245,10 @@ const API = {
     return instance.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params, {
       headers,
     })
+  },
+  getStatistics: (): Promise<Response<Statistics>> => {
+    const headers = getHeaders();
+    return instance.get("/dispositifs/statistics", { headers });
   },
 
   // Mail

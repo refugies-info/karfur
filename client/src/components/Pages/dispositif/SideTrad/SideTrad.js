@@ -6,7 +6,7 @@ import dynamic from "next/dynamic"
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
 import { convertToHTML } from "draft-convert";
-import _ from "lodash";
+import get from "lodash/get";
 
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -410,7 +410,7 @@ class SideTrad extends Component {
         this.state.currSubName === "title"
       ) {
         idx = currIdx - 1;
-        subidx = _.get(this.props, "menu." + idx + ".children", []).length - 1;
+        subidx = get(this.props, "menu." + idx + ".children", []).length - 1;
         subname = "content";
       } else if (
         (isNext &&

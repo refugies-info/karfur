@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
-import { ObjectId } from "mongodb";
 import qs from "query-string";
 import { END } from "redux-saga";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
@@ -21,6 +20,8 @@ import {
   filterStructuresByLoc,
 } from "lib/filterStructures";
 import styles from "scss/pages/annuaire.module.scss";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { getPath } from "routes";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -103,7 +104,10 @@ const Annuaire = () => {
       keyword?: string;
       ville?: string;
     }) => {
-      router.push({ search: qs.stringify(query) },  undefined, { shallow: true });
+      router.push({
+        pathname: getPath("/annuaire", router.locale),
+        search: qs.stringify(query)
+      }, undefined, { shallow: true });
     };
 
     // build url
@@ -180,8 +184,6 @@ const Annuaire = () => {
   }, [initialFilteredStructures]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
-  const onStructureCardClick = (id: ObjectId) =>
-    router.push({ pathname: `/annuaire/${id}` });
   const lettersClickable = defineLettersClickable(filteredStructures);
 
   return (
@@ -209,10 +211,7 @@ const Annuaire = () => {
       />
         <div className={styles.content}>
           {filteredStructures.length > 0 ? (
-            <LetterSection
-              onStructureCardClick={onStructureCardClick}
-              structures={filteredStructures}
-            />
+            <LetterSection structures={filteredStructures} />
           ) : (
             <NoResult resetAllFilter={resetAllFilter} />
           )}
@@ -228,7 +227,7 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) =
 
   return {
     props: {
-      ...(await serverSideTranslations(locale || "fr", ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
     revalidate: 30
   };

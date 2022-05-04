@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import h2p from "html2plaintext";
 import { EditorState, ContentState } from "draft-js";
 import { connect } from "react-redux";
-import _ from "lodash";
+import get from "lodash/get";
 import produce from "immer";
 
 import API from "../../utils/API";
@@ -74,6 +74,7 @@ export class TranslationHOC extends Component {
     this._isMounted = true;
     this._initializeComponent(this.props);
     window.scrollTo(0, 0);
+    document.title = this.props.title;
   }
 
   componentDidUpdate(prevProps) {
@@ -87,16 +88,16 @@ export class TranslationHOC extends Component {
       this.setState({
         traductionsFaites: traductions,
         traduction: {
-          initialText: _.get(traductions, "0.initialText", {}),
+          initialText: get(traductions, "0.initialText", {}),
           translatedText:
             isExpert && traductions.find((trad) => trad.userId._id === userId)
-              ? _.get(
+              ? get(
                   traductions.find((trad) => trad.userId._id === userId),
                   ["translatedText"]
                 )
               : traduction
               ? traduction.translatedText
-              : _.get(traductions, "0.translatedText", {}),
+              : get(traductions, "0.translatedText", {}),
         },
         autosuggest: false,
       });
@@ -170,7 +171,7 @@ export class TranslationHOC extends Component {
     this._isMounted && this.setState({ langue });
     return {
       locale: langue.i18nCode,
-      langueBackupId: _.get(langue, "langueBackupId.i18nCode"),
+      langueBackupId: get(langue, "langueBackupId.i18nCode"),
     };
   };
 

@@ -11,7 +11,8 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import _ from "lodash";
+import isEmpty from "lodash/isEmpty";
+import uniqBy from "lodash/uniqBy";
 import API from "utils/API";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
@@ -430,7 +431,7 @@ class Sponsors extends Component<Props, State> {
   };
 
   addSponsor = () => {
-    if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
+    if (isEmpty(this.props.sponsors) && this.props.finalValidation) {
       this.props.addSponsor({
         picture: this.state.imgData ? { ...this.state.imgData } : null,
         link: this.state.link,
@@ -514,7 +515,7 @@ class Sponsors extends Component<Props, State> {
       (sponsor) => !!sponsor.picture && !sponsor._id
     );
     const deduplicatedSponsors = sponsorsWithoutPicture.concat(
-      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom)
+      uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom)
     );
     const modal = { name: "responsabilite" };
     const structuresArray = this.props.structures

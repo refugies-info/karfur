@@ -219,14 +219,13 @@ function get_dispo_progression(req, res) {
 }
 */
 
-function count_dispositifs(req, res) {
-  Dispositif.count(req.body, (err, count) => {
-    if (err) {
-      res.status(404).json({ text: "Pas de résultat" });
-    } else {
-      res.status(200).json(count);
-    }
-  });
+async function count_dispositifs(req, res) {
+  try {
+    const count = await Dispositif.count(req.body);
+    return res.status(200).json(count);
+  } catch (e) {
+    return res.status(404).json({ text: "Pas de résultat" });
+  }
 }
 
 //On exporte notre fonction

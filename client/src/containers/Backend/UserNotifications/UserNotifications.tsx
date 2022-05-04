@@ -19,7 +19,6 @@ import { formatNotifications } from "./lib";
 import { Notification } from "./components/Notification";
 import { ReactionLectureModal } from "components/Modals";
 import { FormattedNotification } from "./types";
-import _ from "lodash";
 import Swal from "sweetalert2";
 import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Skeleton from "react-loading-skeleton";
@@ -55,6 +54,7 @@ const CenterContainer = styled.div`
 
 interface Props {
   history: any;
+  title: string
 }
 const UserNotifications = (props: Props) => {
   const [selectedReaction, setSelectedReaction] =
@@ -74,6 +74,11 @@ const UserNotifications = (props: Props) => {
   const hasResponsibleSeenAnnuaireNotif = useSelector(
     userStructureHasResponsibleSeenNotification
   );
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const loadUserStructure = async () => {

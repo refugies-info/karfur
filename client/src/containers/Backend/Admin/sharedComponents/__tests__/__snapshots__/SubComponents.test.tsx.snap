@@ -29,6 +29,7 @@ exports[`should render DeleteButton disabled 1`] = `
 
 <div
   className="c0"
+  data-test-id="delete-button"
   disabled={true}
 >
   <div
@@ -80,6 +81,7 @@ exports[`should render DeleteButton not disabled 1`] = `
 
 <div
   className="c0"
+  data-test-id="delete-button"
   disabled={false}
   onClick={[Function]}
 >
@@ -761,13 +763,13 @@ exports[`should render TabHeader down 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: "bold";
+  font-weight: bold;
   cursor: pointer;
 }
 
 <div
   className="c0"
-  order={true}
+  order={1}
 >
   test
   <span>
@@ -791,12 +793,13 @@ exports[`should render TabHeader no order 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: "bold";
+  font-weight: bold;
+  cursor: inherit;
 }
 
 <div
   className="c0"
-  order={false}
+  order={0}
 >
   test
 </div>
@@ -811,13 +814,13 @@ exports[`should render TabHeader up 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  font-weight: "bold";
+  font-weight: bold;
   cursor: pointer;
 }
 
 <div
   className="c0"
-  order={true}
+  order={1}
 >
   test
   <span>
@@ -1008,6 +1011,7 @@ exports[`should render ValidateButton disabled 1`] = `
 
 <div
   className="c0"
+  data-test-id="validate-button"
   disabled={true}
   onClick={[Function]}
 >
@@ -1060,6 +1064,7 @@ exports[`should render ValidateButton not disabled 1`] = `
 
 <div
   className="c0"
+  data-test-id="validate-button"
   disabled={false}
   onClick={[Function]}
 >

@@ -11,7 +11,7 @@ export const getDispositifsFromDB = async (
 ): Promise<IDispositif[]> =>
   await Dispositif.find({}, needFields).populate("mainSponsor creatorId");
 
-export const getDispositifArray = async (query: any) => {
+export const getDispositifArray = async (query: any, extraFields: any = {}, populate: string = "") => {
   const neededFields = {
     titreInformatif: 1,
     titreMarque: 1,
@@ -27,9 +27,10 @@ export const getDispositifArray = async (query: any) => {
     nbVues: 1,
     audienceAge: 1,
     niveauFrancais: 1,
+    ...extraFields
   };
 
-  return await Dispositif.find(query, neededFields).lean();
+  return await Dispositif.find(query, neededFields).lean().populate(populate);
 };
 
 export const updateDispositifInDB = async (
@@ -169,3 +170,39 @@ export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
 
 export const createDispositifInDB = async (dispositif: DispositifDoc) =>
   await new Dispositif(dispositif).save();
+
+export const getNbMercis = async () => {
+  return Dispositif.aggregate([
+    {
+      $match: { status: "Actif" },
+    },
+    {
+      $project: {
+        _id: null,
+        mercis: {
+          $size: { "$ifNull": [ "$merci", [] ] }
+        },
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        mercis: { $sum: "$mercis" },
+      },
+    },
+  ]);
+}
+export const getNbVues = async () => {
+  return Dispositif.aggregate([
+    {
+      $match: { status: "Actif" },
+    },
+    {
+      $group: {
+        _id: null,
+        nbVues: { $sum: "$nbVues" },
+        nbVuesMobile: { $sum: "$nbVuesMobile" },
+      },
+    },
+  ]);
+}

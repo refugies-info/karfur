@@ -462,8 +462,8 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         structureTest
       </div>
       <a
-        className="btn  dark  "
-        href="/annuaire/structureId"
+        className="btn dark"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -508,9 +508,9 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         </div>
         <div>
           <button
-            className="btn  dark  "
+            className="btn dark"
+            data-test-id="test-add-member"
             onClick={[Function]}
-            testID="test-add-member"
           >
             <span
               className="mr-10"
@@ -628,6 +628,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -730,6 +731,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -806,7 +808,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         className="c19"
       >
         <button
-          className="btn  outline-black mr-8 "
+          className="btn outline-black mr-8"
           onClick={[Function]}
         >
           <span
@@ -823,7 +825,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           Annuler
         </button>
         <button
-          className="btn  validate  "
+          className="btn validate"
           disabled={true}
           onClick={[Function]}
         >
@@ -1370,8 +1372,8 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         structureTest
       </div>
       <a
-        className="btn  dark  "
-        href="/annuaire/structureId"
+        className="btn dark"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -1416,9 +1418,9 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </div>
         <div>
           <button
-            className="btn  dark  "
+            className="btn dark"
+            data-test-id="test-add-member"
             onClick={[Function]}
-            testID="test-add-member"
           >
             <span
               className="mr-10"
@@ -1536,6 +1538,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1638,6 +1641,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1684,6 +1688,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <div
         className="c20"
+        data-test-id="test-role-Rédacteur"
         onClick={[Function]}
       >
         <div
@@ -1715,6 +1720,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <div
         className="c23"
+        data-test-id="test-role-Responsable"
         onClick={[Function]}
       >
         <div
@@ -1756,7 +1762,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="c24"
       >
         <button
-          className="btn  outline-black mr-8 "
+          className="btn outline-black mr-8"
           onClick={[Function]}
         >
           <span
@@ -1773,10 +1779,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           Annuler
         </button>
         <button
-          className="btn  validate  "
+          className="btn validate"
+          data-test-id="test-validate-edit"
           disabled={true}
           onClick={[Function]}
-          testID="test-validate-edit"
         >
           <span
             className="mr-10"
@@ -2320,8 +2326,8 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         structureTest
       </div>
       <a
-        className="btn  dark  "
-        href="/annuaire/structureId"
+        className="btn dark"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -2366,9 +2372,9 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         </div>
         <div>
           <button
-            className="btn  dark  "
+            className="btn dark"
+            data-test-id="test-add-member"
             onClick={[Function]}
-            testID="test-add-member"
           >
             <span
               className="mr-10"
@@ -2486,6 +2492,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2588,6 +2595,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -2634,6 +2642,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <div
         className="c20"
+        data-test-id="test-role-Rédacteur"
         onClick={[Function]}
       >
         <div
@@ -2665,6 +2674,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <div
         className="c23"
+        data-test-id="test-role-Responsable"
         onClick={[Function]}
       >
         <div
@@ -2706,7 +2716,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="c24"
       >
         <button
-          className="btn  outline-black mr-8 "
+          className="btn outline-black mr-8"
           onClick={[Function]}
         >
           <span
@@ -2723,10 +2733,10 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           Annuler
         </button>
         <button
-          className="btn  validate  "
+          className="btn validate"
+          data-test-id="test-validate-edit"
           disabled={false}
           onClick={[Function]}
-          testID="test-validate-edit"
         >
           <span
             className="mr-10"
@@ -3734,8 +3744,8 @@ exports[`UserStructure should render correctly when structure with membres when 
         structureTest
       </div>
       <a
-        className="btn  dark  "
-        href="/annuaire/structureId"
+        className="btn dark"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -4327,8 +4337,8 @@ exports[`UserStructure should render correctly when structure with membres when 
         structureTest
       </div>
       <a
-        className="btn  dark  "
-        href="/annuaire/structureId"
+        className="btn dark"
+        href="/directory/structureId"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
@@ -4373,9 +4383,9 @@ exports[`UserStructure should render correctly when structure with membres when 
         </div>
         <div>
           <button
-            className="btn  dark  "
+            className="btn dark"
+            data-test-id="test-add-member"
             onClick={[Function]}
-            testID="test-add-member"
           >
             <span
               className="mr-10"
@@ -4493,6 +4503,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -4595,6 +4606,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   </div>
                   <div
                     className="c13"
+                    data-test-id="delete-button"
                     disabled={false}
                     onClick={[Function]}
                   >

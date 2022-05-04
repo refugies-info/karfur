@@ -31,6 +31,7 @@ import { colors } from "colors";
 import styles from "scss/components/login.module.scss";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { getPath, PathNames } from "routes";
 
 type Structure = {
   nom: string;
@@ -106,8 +107,11 @@ const Login = () => {
 
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
-    const { pathname, asPath, query } = router;
-    router.push({ pathname, query }, asPath, { locale: lng });
+    const { pathname, query } = router;
+    router.push({
+      pathname: getPath(pathname as PathNames, lng),
+      query
+    }, undefined, { locale: lng });
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());

@@ -1,108 +1,115 @@
-# Target organization of backend :
+# Architecture
 
 ![SA](../images/SA1.png)
 
-# Controllers
+- [`controllers`](#controllers)
+- [`workflows`](#workflows)
+- [`modules`](#modules)
+- [`libs`](#libs)
+- [`schemas`](#schemas)
+- [`connectors`](#connectors)
 
-## Responsibility
+## `controllers`
+
+### Responsibility
 
 A controller is where we declare the routes for every business entity (user, dispositif, structure etc)
 
-## Collaborators
+### Collaborators
 
 - import only **workflows**
 
-# Workflows
+## `workflows`
 
-## Responsibility
+### Responsibility
 
-> A workflow is where the logic of a route is orchestrated
+A workflow is where the logic of a route is orchestrated
 
-## Collaborators
+### Collaborators
 
 - Import **modules**, **connectors** or **libs**
 - **Controllers** will import workflows
 
-## Checks
+### Checks
 
 - ✅ Fully unit tested
 - ✅ Throw http code for the client
 
-# Modules
+## `modules`
 
-## Responsibility
+### Responsibility
 
-> A module is a business autonomous brick responsible for handling a business mission
-> We want to have each module independant from other modules.
+A module is a business autonomous brick responsible for handling a business mission.
+We want to have each module independant from other modules.
 
-## Collaborators
+### Collaborators
 
 - Import only **connectors**
 - **Workflows** will import modules to perform business logic
 
-## Checks
+### Checks
 
-### Everywhere in module folder
+#### Everywhere in module folder
 
 - ✅ Does **not** import other **modules**
 - ✅ Fully unit tested
 - ✅ Throw Business intellegible error messages
 
-### Repository
+#### Repository
 
-> "repositories" are interfaces used to retrieve or modify business object from database
+"repositories" are interfaces used to retrieve or modify business object from database
 
 - ✅ Import only **schema**
 
-### Adapter
+#### Adapter
 
-> In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface
+In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface
 
 - ✅ Should never be async
 - ✅ Should have exact type
 
-### Index
+#### Index
 
-> In this project, module index are location for module related business function
+In this project, module index are location for module related business function
 
 - ✅ Every function should be used on workflow only
 
-# Libs
+## `libs`
 
-## Responsibility
+### Responsibility
 
-> A lib is a singleton with the intelligence to do non business related stuff. For example, libs do authorization checks.
+A lib is a singleton with the intelligence to do non business related stuff. For example, libs do authorization checks.
 
-## Collaborators
+### Collaborators
 
 - any file can import `libs/\*``
 
-## Checks
+### Checks
 
 - ✅ Can be used by any other project without modification
 - ✅ Fully tested
 
-# Schemas
+## `schemas`
 
-## Responsibility
+### Responsibility
 
-> Schema are use to declare mongodb collections. There is one schema per collection.
+Schema are use to declare mongodb collections. There is one schema per collection.
 
-## Checks
+### Checks
 
 - ✅ Fully typed
 
-# Connectors
+## `connectors`
 
-## Responsibility
+### Responsibility
 
-> A connector is the link between the app and a technical provider like Sendgrid
+A connector is the link between the app and a technical provider like Sendgrid
 
-## Collaborators
+### Collaborators
 
 - **Modules** and **Worflows** can import connectors to contact external services.
 
-## Checks
+### Checks
 
 - ✅ No business logic
 - ✅ Functions are typed

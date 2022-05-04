@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import _ from "lodash";
+import React from "react";
 import { useTranslation } from "next-i18next";
 import { Table } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";

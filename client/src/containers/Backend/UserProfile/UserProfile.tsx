@@ -108,7 +108,11 @@ const getUserImage = (user: User) =>
     ? user.picture.secure_url
     : marioProfile;
 
-export const UserProfile = () => {
+interface Props {
+  title: string
+}
+
+export const UserProfile = (props: Props) => {
   const { t } = useTranslation();
 
   const [username, setUsername] = useState("");
@@ -149,6 +153,11 @@ export const UserProfile = () => {
   const user = useSelector(userDetailsSelector);
   const userStructureMembres = useSelector(userStructureMembresSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const [showPhone, setShowPhone] = useState(false);
   useEffect(() => {
@@ -396,7 +405,6 @@ export const UserProfile = () => {
             className="position-relative mb-16"
           >
             <Input
-              className="file-input"
               type="file"
               id="picture"
               name="structure"
@@ -440,7 +448,7 @@ export const UserProfile = () => {
                   name="save-outline"
                   className="ml-8"
                   onClick={onPseudoModificationValidate}
-                  testID="test-save-pseudo"
+                  data-test-id="test-save-pseudo"
                 >
                   {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
@@ -480,7 +488,7 @@ export const UserProfile = () => {
                   name="save-outline"
                   className="ml-8"
                   onClick={onEmailModificationValidate}
-                  testID="test-save-email"
+                  data-test-id="test-save-email"
                 >
                   {t("UserProfile.Enregistrer", "Enregistrer")}
                 </FButton>
@@ -532,7 +540,7 @@ export const UserProfile = () => {
                     name="save-outline"
                     className="ml-8"
                     onClick={onPhoneModificationValidate}
-                    testID="test-save-phone"
+                    data-test-id="test-save-phone"
                   >
                     {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>
@@ -559,7 +567,7 @@ export const UserProfile = () => {
               type="dark"
               name="edit-outline"
               onClick={openModifyPassword}
-              testID="test-modify-password"
+              data-test-id="test-modify-password"
             >
               {t(
                 "UserProfile.modifyPassword",
@@ -625,7 +633,7 @@ export const UserProfile = () => {
                     type="validate-light"
                     name="save-outline"
                     onClick={modifyPassword}
-                    testID="test-save-password"
+                    data-test-id="test-save-password"
                   >
                     {t("UserProfile.Enregistrer", "Enregistrer")}
                   </FButton>
