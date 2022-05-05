@@ -1,7 +1,7 @@
 import { Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { StructureSimplifiedWithLoc } from "src/schema/schemaStructure";
+import { StructureSimplifiedWithLoc } from "schema/schemaStructure";
 
 export const getActiveStructures = async (req: {}, res: Res) => {
   try {

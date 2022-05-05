@@ -15,7 +15,7 @@ import {
   FormattedDispositif,
 } from "../../../modules/dispositif/dispositif.adapter";
 import { isTitreInformatifObject } from "../../../types/typeguards";
-import { DispositifPopulatedDoc } from "src/schema/schemaDispositif";
+import { DispositifPopulatedDoc } from "schema/schemaDispositif";
 
 const formatTitle = (dispo: DispositifPopulatedDoc) => {
   if (isTitreInformatifObject(dispo.titreInformatif)) {
