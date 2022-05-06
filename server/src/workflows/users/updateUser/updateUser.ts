@@ -45,6 +45,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     logger.info("[updateUser] call received", { user, action });
+    const userFromDB = await getUserById(user._id, { username: 1, phone: 1, roles: 1 });
 
     if (user.phone) { // format phone
       user.phone = formatPhoneNumber(user.phone);
@@ -58,7 +59,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
-      const userFromDB = await getUserById(user._id, { username: 1, phone: 1, roles: 1 });
       const actualRoles = userFromDB.roles;
 
       let newRoles = actualRoles.filter(
@@ -82,7 +82,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       if (userFromDB.phone !== user.phone) { // if phone changed, send mail
         await sendResetPhoneNumberMail(userFromDB.username, user.email);
       }
-      await log(user, userFromDB, req.user._id);
     }
 
     if (action === "delete") {
@@ -99,7 +98,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       try {
         delete user.roles; // for security purposes, do not use roles sent by the client
-        const userFromDB = await getUserById(user._id, { roles: 1 });
         if (user.selectedLanguages) {
           const traducteurRole = await getRoleByName("Trad");
           const actualRoles = userFromDB.roles;
@@ -124,7 +122,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         } else {
           await updateUserInDB(user._id, user);
         }
-        await log(user, userFromDB, req.user._id);
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");
@@ -132,6 +129,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         throw error;
       }
     }
+    await log(user, userFromDB, req.user._id);
 
     return res.status(200).json({
       text: "OK",

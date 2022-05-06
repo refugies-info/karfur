@@ -20,6 +20,14 @@ export const log = async (
       }
     );
   }
+  if (user.phone && !userFromDb.phone) {
+    await addLog(
+      user._id,
+      "User",
+      "Ajout du numéro de téléphone",
+      { author: authorId }
+    );
+  }
   if (userFromDb.email && user.email !== userFromDb.email) {
     await addLog(
       user._id,
