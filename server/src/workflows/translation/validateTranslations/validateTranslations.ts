@@ -1,24 +1,26 @@
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
-import { TraductionDoc } from "../../../schema/schemaTraduction";
-import logger from "../../../logger";
-import ErrorDB from "../../../schema/schemaError";
-import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdminOrExpert,
-} from "../../../libs/checkAuthorizations";
+import logger from "logger";
+import { RequestFromClientWithBody, Res } from "types/interface";
+import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
 import {
   validateTradInDB,
   deleteTradsInDB,
-} from "../../../modules/traductions/traductions.repository";
-import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
-import { asyncForEach } from "../../../libs/asyncForEach";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
-import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
-import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
-import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
+} from "modules/traductions/traductions.repository";
+import { insertInDispositif } from "modules/dispositif/insertInDispositif";
+import { updateLanguagesAvancement } from "modules/langues/langues.service";
+import { getLanguageByCode } from "modules/langues/langues.repository";
+import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors";
+import {
+  checkRequestIsFromSite,
+  checkIfUserIsAdminOrExpert,
+} from "libs/checkAuthorizations";
+import { asyncForEach } from "libs/asyncForEach";
+import { DispositifNotPopulateDoc } from "schema/schemaDispositif";
+import { TraductionDoc } from "schema/schemaTraduction";
+import ErrorDB from "schema/schemaError";
+import { log } from "./log";
 
 interface Query {
   articleId: ObjectId;
@@ -69,6 +71,9 @@ export const validateTranslations = async (
         body.locale,
         dispositifFromDB
       );
+
+      const language = await getLanguageByCode(body.locale);
+      await log(dispositifFromDB._id, req.userId, language._id)
 
       try {
         await addOrUpdateDispositifInContenusAirtable(
