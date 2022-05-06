@@ -1,29 +1,30 @@
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger = require("logger");
 import { ObjectId } from "mongoose";
-import { turnHTMLtoJSON } from "../../../controllers/dispositif/functions";
+import { RequestFromClientWithBody, Res } from "types/interface";
+import { turnHTMLtoJSON } from "controllers/dispositif/functions";
+import { getRoleByName } from "controllers/role/role.repository";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
   createDispositifInDB,
-} from "../../../modules/dispositif/dispositif.repository";
+} from "modules/dispositif/dispositif.repository";
+import { updateTraductions } from "modules/traductions/updateTraductions";
+import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
+import { updateLanguagesAvancement } from "modules/langues/langues.service";
+import { getStructureFromDB, updateAssociatedDispositifsInStructure } from "modules/structure/structure.repository";
+import { sendMailToStructureMembersWhenDispositifEnAttente } from "modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { computePossibleNeeds } from "modules/needs/needs.service";
+import { addRoleAndContribToUser } from "modules/users/users.repository";
 import {
   checkUserIsAuthorizedToModifyDispositif,
   checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
-import { updateTraductions } from "../../../modules/traductions/updateTraductions";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { getStructureFromDB, updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
-import { DispositifDoc } from "../../../schema/schemaDispositif";
-import { getRoleByName } from "../../../controllers/role/role.repository";
-import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
-import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { computePossibleNeeds } from "../../../modules/needs/needs.service";
-import { UserDoc } from "../../../schema/schemaUser";
-import { StructureDoc } from "../../../schema/schemaStructure";
+} from "libs/checkAuthorizations";
+import { DispositifDoc } from "schema/schemaDispositif";
+import { UserDoc } from "schema/schemaUser";
+import { StructureDoc } from "schema/schemaStructure";
+import { log } from "./log";
 
-interface Request {
+export interface Request {
   titreInformatif: string;
   dispositifId: ObjectId;
   status: string;
@@ -182,6 +183,8 @@ export const addDispositif = async (
         dispositif.dispositifId,
         dispositif
       );
+
+      await log(dispositif, originalDispositif, req.user._id);
 
       // when publish or modify a dispositif, update table in airtable to follow the traduction
       if (dispResult.status === "Actif") {

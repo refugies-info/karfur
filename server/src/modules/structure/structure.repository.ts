@@ -116,7 +116,7 @@ export const updateStructureInDB = async (
   structureId: ObjectId,
   structure: StructureDoc
 ) => {
-  await Structure.findOneAndUpdate(
+  return Structure.findOneAndUpdate(
     {
       _id: structureId,
     },

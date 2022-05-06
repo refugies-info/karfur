@@ -1,15 +1,16 @@
 import { ObjectId } from "mongoose";
-import { RequestFromClient, Res } from "../../../types/interface";
-import logger from "../../../logger";
+import { RequestFromClient, Res } from "types/interface";
+import logger from "logger";
 import {
   updateDispositifInDB,
   getDispositifById,
-} from "../../../modules/dispositif/dispositif.repository";
+} from "modules/dispositif/dispositif.repository";
+import { computePossibleNeeds } from "modules/needs/needs.service";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
-import { computePossibleNeeds } from "../../../modules/needs/needs.service";
+} from "libs/checkAuthorizations";
+import { log } from "./log";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -44,6 +45,8 @@ export const updateDispositifTagsOrNeeds = async (
     }
 
     const newDispositif = tags ? { tags, needs: newNeeds } : { needs };
+
+    await log(dispositifId, !!tags, req.user._id)
 
     await updateDispositifInDB(dispositifId, newDispositif);
     return res.status(200).json({ text: "OK" });

@@ -1,26 +1,27 @@
+import {ObjectId} from "mongoose";
+import logger from "logger";
 import {
   RequestFromClient,
   Res,
   Picture,
   SelectedLanguage,
-} from "../../../types/interface";
-import { ObjectId } from "mongoose";
-import logger from "../../../logger";
-import { getRoleByName } from "../../../controllers/role/role.repository";
+} from "types/interface";
+import { getRoleByName } from "controllers/role/role.repository";
 import {
   getUserById,
   updateUserInDB,
-} from "../../../modules/users/users.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
+} from "modules/users/users.repository";
+import { sendResetPhoneNumberMail } from "modules/mail/mail.service";
 import {
   requestSMSLogin,
   verifyCode
-} from "../../../modules/users/login2FA";
+} from "modules/users/login2FA";
+import formatPhoneNumber from "libs/formatPhoneNumber";
+import { checkRequestIsFromSite } from "libs/checkAuthorizations";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
-import formatPhoneNumber from "../../../libs/formatPhoneNumber";
+import { log } from "./log";
 
-interface User {
+export interface User {
   _id: ObjectId;
   roles: string[];
   email?: string;
@@ -81,6 +82,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       if (userFromDB.phone !== user.phone) { // if phone changed, send mail
         await sendResetPhoneNumberMail(userFromDB.username, user.email);
       }
+      await log(user, userFromDB, req.user._id);
     }
 
     if (action === "delete") {
@@ -97,9 +99,9 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       try {
         delete user.roles; // for security purposes, do not use roles sent by the client
+        const userFromDB = await getUserById(user._id, { roles: 1 });
         if (user.selectedLanguages) {
           const traducteurRole = await getRoleByName("Trad");
-          const userFromDB = await getUserById(user._id, { roles: 1 });
           const actualRoles = userFromDB.roles;
           const hasAlreadyRoleTrad = !!actualRoles.find(
             (role) => role && role.toString() === traducteurRole._id.toString()
@@ -122,6 +124,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         } else {
           await updateUserInDB(user._id, user);
         }
+        await log(user, userFromDB, req.user._id);
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");

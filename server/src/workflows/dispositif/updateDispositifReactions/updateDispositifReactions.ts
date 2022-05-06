@@ -1,13 +1,15 @@
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { ObjectId } from "mongoose";
 import { Moment } from "moment";
 import uniqid from "uniqid";
+import logger from "logger";
+import { RequestFromClientWithBody, Res } from "types/interface";
 import {
   updateDispositifInDB,
   modifyReadSuggestionInDispositif,
-} from "../../../modules/dispositif/dispositif.repository";
-import logger from "../../../logger";
+  getDispositifById
+} from "modules/dispositif/dispositif.repository";
+import { checkRequestIsFromSite } from "libs/checkAuthorizations";
+import { log } from "./log";
 
 interface Request {
   dispositifId: ObjectId;
@@ -42,6 +44,8 @@ export const updateDispositifReactions = async (
     if (type !== "remove" && type !== "add" && type !== "read") {
       throw new Error("INCORRECT_TYPE");
     }
+    const dispositif = await getDispositifById(dispositifId, { mainSponsor: 1 });
+    await log(dispositif, dispositifId);
 
     if (type === "remove") {
       await updateDispositifInDB(dispositifId, {

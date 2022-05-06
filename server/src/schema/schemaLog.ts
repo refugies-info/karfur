@@ -22,7 +22,7 @@ const logSchema = new mongoose.Schema(
       ref: "User",
       required: false
     },
-    dynamicId: {
+    dynamicId: { // used to replace {{dynamic}} in text by object property
       type: mongoose.Types.ObjectId,
       refPath: "model_dynamic",
       required: false
@@ -30,7 +30,7 @@ const logSchema = new mongoose.Schema(
     model_dynamic: {
       type: String,
       enum: ["User", "Dispositif", "Structure", "Langue"],
-      required: function () { return this.dynamicId !== null }
+      required: function () { return !!this.dynamicId }
     },
     link: {
       id: {
@@ -40,7 +40,7 @@ const logSchema = new mongoose.Schema(
       model_link: {
         type: String,
         enum: ["User", "Dispositif", "Structure"],
-        required: function () { return this.link.id !== null }
+        required: function () { return !!this.link.id }
       },
       next: {
         type: String,

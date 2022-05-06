@@ -1,7 +1,8 @@
-import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
-import logger from "../../../logger";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import logger from "logger";
+import { RequestFromClient, Res } from "types/interface";
+import { updateDispositifInDB } from "modules/dispositif/dispositif.repository";
+import { log } from "./log";
 
 interface QueryModifyAdmin {
   dispositifId: ObjectId;
@@ -42,6 +43,8 @@ export const updateDispositifAdminComments = async (
     };
 
     await updateDispositifInDB(dispositifId, modifiedDispositif);
+
+    await log(dispositifId, req.user._id);
 
     res.status(200).json({ text: "OK" });
   } catch (error) {

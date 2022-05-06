@@ -1,11 +1,13 @@
 import { ObjectId } from "mongoose";
-import { RequestFromClient, Res } from "../../../types/interface";
-import logger from "../../../logger";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
-import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
+import logger from "logger";
+import { RequestFromClient, Res } from "types/interface";
+import { updateDispositifInDB, getDispositifById } from "modules/dispositif/dispositif.repository";
+import { updateAssociatedDispositifsInStructure } from "modules/structure/structure.repository";
 import {
   checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
+} from "libs/checkAuthorizations";
+import { log } from "./log";
+
 interface QueryModify {
   dispositifId: ObjectId | null;
   sponsorId: ObjectId;
@@ -43,9 +45,12 @@ export const modifyDispositifMainSponsor = async (
       mainSponsor: sponsorId,
       status: status === "En attente non prioritaire" ? "En attente" : status,
     };
+    const oldDispositif = await getDispositifById(dispositifId, { mainSponsor: 1 });
     await updateDispositifInDB(dispositifId, modifiedDispositif);
 
     await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
+
+    await log(oldDispositif, dispositifId, sponsorId, req.user._id);
 
     res.status(200).json({ text: "OK" });
   } catch (error) {

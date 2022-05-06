@@ -1,8 +1,9 @@
-import { Res, RequestFromClient } from "../../../types/interface";
-import { StructureDoc } from "../../../schema/schemaStructure";
-import logger from "../../../logger";
-import { updateStructureInDB } from "../../../modules/structure/structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
+import logger from "logger";
+import { Res, RequestFromClient } from "types/interface";
+import { updateStructureInDB, getStructureFromDB } from "modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "modules/structure/structure.service";
+import { StructureDoc } from "schema/schemaStructure";
+import { log } from "./log";
 
 // route called when modify structure but not its members (use another route for this)
 export const updateStructure = async (
@@ -31,11 +32,17 @@ export const updateStructure = async (
       logger.info("[modifyStructure] updating stucture", {
         structureId: structure._id,
       });
+      const oldStructure = await getStructureFromDB(
+        structure._id,
+        false,
+        {picture: 1, nom: 1, status: 1}
+      );
       const updatedStructure = await updateStructureInDB(
         structure._id,
         structure
       );
 
+      await log(structure, oldStructure, req.userId);
       logger.info("[modifyStructure] successfully modified structure with id", {
         id: structure._id,
       });

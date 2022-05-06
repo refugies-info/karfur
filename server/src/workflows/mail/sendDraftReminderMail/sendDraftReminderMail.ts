@@ -1,21 +1,22 @@
-import { RequestFromClient, Res } from "../../../types/interface";
-import logger from "../../../logger";
+import logger from "logger";
+import { RequestFromClient, Res } from "types/interface";
+import { isTitreInformatifObject } from "types/typeguards";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
-} from "../../../modules/dispositif/dispositif.repository";
+} from "modules/dispositif/dispositif.repository";
 import {
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
-} from "../../../modules/mail/mail.service";
-import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
+} from "modules/mail/mail.service";
 import {
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
   FormattedDispositif,
-} from "../../../modules/dispositif/dispositif.adapter";
-import { isTitreInformatifObject } from "../../../types/typeguards";
+} from "modules/dispositif/dispositif.adapter";
+import { checkCronAuthorization } from "libs/checkAuthorizations";
 import { DispositifPopulatedDoc } from "schema/schemaDispositif";
+import { log } from "./log";
 
 const formatTitle = (dispo: DispositifPopulatedDoc) => {
   if (isTitreInformatifObject(dispo.titreInformatif)) {
@@ -48,6 +49,7 @@ const sendReminderEmails = async (
         draftSecondReminderMailSentDate: Date.now(),
       };
       await updateDispositifInDB(dispositifId, updatedDispositif);
+      await log(dispositifId, reminder);
       return;
     }
 
@@ -69,6 +71,7 @@ const sendReminderEmails = async (
         } : {
           draftSecondReminderMailSentDate: Date.now(),
         };
+        await log(dispositif._id, reminder);
         await updateDispositifInDB(dispositif._id, updatedDispositif);
       }
     );
