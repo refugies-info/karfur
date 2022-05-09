@@ -38,6 +38,14 @@ export const table_contenu: TableContenu = {
       name: "Statut",
       order: "",
     },
+    {
+      name: "Merci",
+      order: "nbMercis",
+    },
+    {
+      name: "Vues",
+      order: "nbVues",
+    },
 
     {
       name: "Actions",

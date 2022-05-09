@@ -3,12 +3,18 @@ import { activatedLanguages } from "data/activatedLanguages";
 import styles from "./Language.module.scss";
 
 interface Props {
-  langueCode: string;
+  langueCode?: string;
+  i18nCode?: string;
 }
 
 const Language = (props: Props) => {
+  if (!props.langueCode && !props.i18nCode) return null;
   const language = activatedLanguages.find(
-    (ln) => ln.langueCode === props.langueCode
+    (ln) => {
+      if (props.langueCode) return ln.langueCode === props.langueCode
+      else if (props.i18nCode) return ln.i18nCode === props.i18nCode
+      return null
+    }
   );
   if (!language) return null;
 

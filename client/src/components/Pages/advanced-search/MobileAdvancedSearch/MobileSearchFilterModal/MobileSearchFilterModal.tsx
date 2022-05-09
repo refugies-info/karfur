@@ -148,7 +148,7 @@ export const MobileSearchFilterModal = (props: Props) => {
             <LanguageButton
               item={item as Language}
               onClick={() =>
-                selectOption((item as Language).langueCode, props.type)
+                selectOption((item as Language).i18nCode, props.type)
               }
             />
           ) : null}

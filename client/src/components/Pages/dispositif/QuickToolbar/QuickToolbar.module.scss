@@ -10,6 +10,10 @@
   border: none !important;
   z-index: 4;
 
+  @media print {
+    display: none;
+  }
+
   .card_body {
     align-items: center;
     padding: 0;
