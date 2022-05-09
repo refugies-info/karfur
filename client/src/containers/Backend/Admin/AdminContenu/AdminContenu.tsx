@@ -59,6 +59,10 @@ import { getPath } from "routes";
 
 moment.locale("fr");
 
+const normalize = (value: string) => {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
   if (!id) return null;
   return dispositifs.find(d => d._id && d._id.toString() === id.toString()) || null;
@@ -201,39 +205,21 @@ export const AdminContenu = () => {
         return sortedHeader.sens === "up" ? -1 : 1;
       }
 
-      const sponsorA =
-        a.mainSponsor && a.mainSponsor.nom
-          ? a.mainSponsor.nom.toLowerCase()
-          : "";
-      const sponsorB =
-        b.mainSponsor && b.mainSponsor.nom
-          ? b.mainSponsor.nom.toLowerCase()
-          : "";
+      let valueA, valueB;
+      if (sortedHeader.orderColumn === "mainSponsor") {
+        valueA = normalize((a?.mainSponsor?.nom || "").toLowerCase());
+        valueB = normalize((b?.mainSponsor?.nom || "").toLowerCase());
+      } else if (sortedHeader.orderColumn === "nbMercis" || sortedHeader.orderColumn === "nbVues") {
+        valueA = a[sortedHeader.orderColumn];
+        valueB = b[sortedHeader.orderColumn];
+      } else {
+        //@ts-ignore
+        valueA = normalize((a[sortedHeader.orderColumn] || "").toLowerCase());
+        //@ts-ignore
+        valueB = normalize((b[sortedHeader.orderColumn] || "").toLowerCase());
+      }
 
-      const valueA =
-        sortedHeader.orderColumn === "mainSponsor"
-          ? sponsorA
-          //@ts-ignore
-          : a[sortedHeader.orderColumn]
-          //@ts-ignore
-          ? a[sortedHeader.orderColumn].toLowerCase()
-          : "";
-      const valueAWithoutAccent = valueA
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-      const valueB =
-        sortedHeader.orderColumn === "mainSponsor"
-          ? sponsorB
-          //@ts-ignore
-          : b[sortedHeader.orderColumn]
-          //@ts-ignore
-          ? b[sortedHeader.orderColumn].toLowerCase()
-          : "";
-      const valueBWithoutAccent = valueB
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-      if (valueAWithoutAccent > valueBWithoutAccent)
+      if (valueA > valueB)
         return sortedHeader.sens === "up" ? 1 : -1;
 
       return sortedHeader.sens === "up" ? -1 : 1;
@@ -547,6 +533,12 @@ export const AdminContenu = () => {
                     onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <StyledStatus text={element.status} />
+                  </td>
+                  <td className="align-middle font-weight-bold">
+                    {element.nbMercis} 🙏
+                  </td>
+                  <td className="align-middle font-weight-bold">
+                    {element.nbVues || 0} 📈
                   </td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>

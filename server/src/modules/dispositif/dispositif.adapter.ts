@@ -142,6 +142,19 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
     return { ...dispositif, contenu: simplifiedContent };
   });
 
+export const countDispositifMercis = (
+  dispositifs: Partial<IDispositif>[]
+) =>
+  dispositifs.map((dispositif) => {
+    const nbMercis = (dispositif.merci || []).length;
+    delete dispositif.merci;
+
+    return {
+      ...dispositif,
+      nbMercis: nbMercis
+    };
+  });
+
 export const adaptDispositifMainSponsorAndCreatorId = (
   dispositifs: DispositifPopulatedMainSponsorDoc[]
 ) =>
