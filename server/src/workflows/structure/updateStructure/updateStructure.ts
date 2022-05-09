@@ -51,9 +51,7 @@ export const updateStructure = async (
         data: updatedStructure,
       });
     } catch (error) {
-      logger.error("[modifyStructure] error", {
-        error,
-      });
+      logger.error("[modifyStructure] error", error);
       switch (error.message) {
         case "NO_STRUCTURE_WITH_THIS_ID":
           return res.status(402).json({ text: "Id non valide" });

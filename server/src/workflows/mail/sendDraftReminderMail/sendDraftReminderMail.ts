@@ -71,8 +71,8 @@ const sendReminderEmails = async (
         } : {
           draftSecondReminderMailSentDate: Date.now(),
         };
-        await log(dispositif._id, reminder);
         await updateDispositifInDB(dispositif._id, updatedDispositif);
+        await log(dispositif._id, reminder);
       }
     );
     return;

@@ -1,33 +1,37 @@
 // @ts-nocheck
 import { sendDraftReminderMail } from "./sendDraftReminderMail";
-import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
+import { checkCronAuthorization } from "libs/checkAuthorizations";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
-} from "../../../modules/dispositif/dispositif.repository";
+} from "modules/dispositif/dispositif.repository";
 import {
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
-} from "../../../modules/mail/mail.service";
+} from "modules/mail/mail.service";
 import moment from "moment";
 import mockdate from "mockdate";
-import logger from "../../../logger";
+import logger from "logger";
+import { log } from "./log";
 
 mockdate.set("2019-11-10T10:00:00.00Z");
 
-jest.mock("../../../logger");
-jest.mock("../../../libs/checkAuthorizations", () => ({
+jest.mock("logger");
+jest.mock("libs/checkAuthorizations", () => ({
   checkCronAuthorization: jest.fn(),
 }));
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+jest.mock("modules/dispositif/dispositif.repository", () => ({
   getDraftDispositifs: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));
 
-jest.mock("../../../modules/mail/mail.service", () => ({
+jest.mock("modules/mail/mail.service", () => ({
   sendOneDraftReminderMailService: jest.fn(),
   sendMultipleDraftsReminderMailService: jest.fn(),
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 type MockResponse = { json: any; status: any };
@@ -280,6 +284,8 @@ describe("sendDraftReminderMail", () => {
     expect(updateDispositifInDB).toHaveBeenCalledWith("id2", {
       draftReminderMailSentDate: 1573380000000,
     });
+    expect(log).toHaveBeenCalledWith("id1", "first");
+    expect(log).toHaveBeenCalledWith("id2", "first");
 
     expect(res.status).toHaveBeenCalledWith(200);
   });

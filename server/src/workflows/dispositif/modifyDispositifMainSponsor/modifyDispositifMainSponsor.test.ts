@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { modifyDispositifMainSponsor } from "./modifyDispositifMainSponsor";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
+import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -16,10 +17,14 @@ jest.mock("../../../modules/structure/structure.repository", () => ({
 }));
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
+  getDispositifById: jest.fn().mockResolvedValue({}),
 }));
 
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkIfUserIsAdmin: jest.fn(),
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 describe("modifyDispositifMainSponsor", () => {
@@ -90,7 +95,7 @@ describe("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
-      user: { roles: [{ nom: "Admin" }] },
+      user: { roles: [{ nom: "Admin" }], _id: "userId" },
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -120,7 +125,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      user: {roles: [{nom: "Admin"}]},
+      user: {roles: [{nom: "Admin"}], _id: "userId"},
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -149,7 +154,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      user: {roles: [{nom: "Admin"}]},
+      user: {roles: [{nom: "Admin"}], _id: "userId"},
       body: {
         query: {
           dispositifId: "dispositifId",
@@ -177,7 +182,7 @@ describe("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
-      user: {roles: [{nom: "Admin"}]},
+      user: {roles: [{nom: "Admin"}], _id: "userId"},
       body: {
         query: {
           dispositifId: "dispositifId",

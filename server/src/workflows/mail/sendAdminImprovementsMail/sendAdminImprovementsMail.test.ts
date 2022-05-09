@@ -1,9 +1,13 @@
 // @ts-nocheck
 import { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";
 import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
+import { log } from "./log";
 
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendAdminImprovementsMailService: jest.fn(),
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 type MockResponse = { json: any; status: any };
