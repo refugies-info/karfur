@@ -11,7 +11,7 @@ import {
 } from "../../../modules/mail/mail.service";
 import { getUserById } from "../../../modules/users/users.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
-
+import {log} from "./log"
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -45,6 +45,9 @@ jest.mock("../../../controllers/role/role.repository", () => ({
   getRoleByName: jest.fn().mockResolvedValue({
     _id: "adminRole"
   }),
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 describe("modifyUserRoleInStructure", () => {

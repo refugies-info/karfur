@@ -1,12 +1,13 @@
+import logger from "../../../logger";
 import {
   Res,
   RequestFromClient,
   Picture,
   Membre,
 } from "../../../types/interface";
-import logger from "../../../logger";
 import { updateRoleAndStructureOfResponsable } from "../../../modules/users/users.service";
 import { createStructureInDB } from "../../../modules/structure/structure.repository";
+import { log } from "./log";
 
 interface ReceivedStructure {
   picture: Picture | null;
@@ -38,6 +39,8 @@ export const createStructure = async (
 
       // @ts-ignore
       const newStructure = await createStructureInDB(structureToSave);
+      await log(newStructure._id, req.userId);
+
       const structureId = newStructure._id;
       if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre

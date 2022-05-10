@@ -6,6 +6,7 @@ import { register } from "../../../modules/users/register";
 import { login2FA } from "../../../modules/users/login2FA";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
+import { logRegister, logLogin } from "./log";
 
 jest.mock("../../../modules/users/users.repository", () => ({
   getUserByUsernameFromDB: jest.fn(),
@@ -25,6 +26,10 @@ jest.mock("../../../modules/users/users.service", () => ({
 }));
 jest.mock("../../../modules/structure/structure.service", () => ({
   userRespoStructureId: jest.fn(),
+}));
+jest.mock("./log", () => ({
+  logRegister: jest.fn().mockResolvedValue(undefined),
+  logLogin: jest.fn().mockResolvedValue(undefined)
 }));
 
 const reqRoles = [
