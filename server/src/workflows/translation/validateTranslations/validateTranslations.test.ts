@@ -1,15 +1,16 @@
 // @ts-nocheck
 import { validateTranslations } from "./validateTranslations";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
 import {
   validateTradInDB,
   deleteTradsInDB,
-} from "../../../modules/traductions/traductions.repository";
-import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
-import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
-import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
-import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
+} from "modules/traductions/traductions.repository";
+import { insertInDispositif } from "modules/dispositif/insertInDispositif";
+import { updateLanguagesAvancement } from "modules/langues/langues.service";
+import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors";
+import { getLanguageByCode } from "modules/langues/langues.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -18,37 +19,42 @@ const mockResponse = (): MockResponse => {
   res.json = jest.fn().mockReturnValue(res);
   return res;
 };
-
-jest.mock("../../../modules/mail/sendPublishedTradMailToTraductors", () => ({
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
+jest.mock("modules/mail/sendPublishedTradMailToTraductors", () => ({
   sendPublishedTradMailToTraductors: jest.fn(),
 }));
 
-jest.mock("../../../controllers/miscellaneous/airtable", () => ({
+jest.mock("controllers/miscellaneous/airtable", () => ({
   addOrUpdateDispositifInContenusAirtable: jest.fn(),
 }));
 
-jest.mock("../../../modules/traductions/traductions.repository", () => ({
+jest.mock("modules/traductions/traductions.repository", () => ({
   validateTradInDB: jest.fn(),
   deleteTradsInDB: jest.fn(),
 }));
 
-jest.mock("../../../modules/dispositif/insertInDispositif", () => ({
+jest.mock("modules/dispositif/insertInDispositif", () => ({
   insertInDispositif: jest.fn(),
 }));
 
-jest.mock("../../../modules/langues/langues.service", () => ({
+jest.mock("modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
 }));
+jest.mock("modules/langues/langues.repository", () => ({
+  getLanguageByCode: jest.fn().mockResolvedValue({_id: "ln"}),
+}));
 
-jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+jest.mock("modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithAllFields: jest.fn(),
 }));
 
-jest.mock("../../../modules/mail/sendPublishedTradMailToStructure", () => ({
+jest.mock("modules/mail/sendPublishedTradMailToStructure", () => ({
   sendPublishedTradMailToStructure: jest.fn(),
 }));
 
-jest.mock("../../../schema/schemaError", () => ({
+jest.mock("schema/schemaError", () => ({
   ErrorDB: {
     save: jest.fn(),
   }

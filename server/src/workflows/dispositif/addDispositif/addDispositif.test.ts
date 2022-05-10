@@ -17,6 +17,7 @@ import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { getExpertTraductionByLanguage } from "../../../modules/traductions/traductions.repository";
+import { log } from "./log";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
@@ -30,7 +31,9 @@ jest.mock(
     sendMailToStructureMembersWhenDispositifEnAttente: jest.fn(),
   })
 );
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkUserIsAuthorizedToModifyDispositif: jest.fn(),

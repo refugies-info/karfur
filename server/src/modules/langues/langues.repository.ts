@@ -20,3 +20,6 @@ export const updateLanguageAvancementInDB = async (
   langueId: ObjectId,
   avancementTrad: number
 ) => await Langue.findByIdAndUpdate({ _id: langueId }, { avancementTrad });
+
+export const getLanguageByCode = async (locale: string) =>
+  Langue.findOne({ i18nCode:  locale})

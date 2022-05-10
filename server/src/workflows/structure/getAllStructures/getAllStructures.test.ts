@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { getStructuresFromDB } from "src/modules/structure/structure.repository";
+import { getStructuresFromDB } from "modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { getAllStructures } from "./getAllStructures";
 
