@@ -14,20 +14,32 @@ $breakpoints: (
 $drawerLimit: 768px;
 
 /* from... */
-@mixin media-min($_key) {
+@mixin media-min($_key, $screen: true) {
   $break: map-get($breakpoints, $_key);
 
-  @media screen and (min-width: $break) {
-    &{ @content; }
+  @if ($screen) {
+    @media screen and (min-width: $break) {
+      &{ @content; }
+    }
+  } @else {
+    @media (min-width: $break) {
+      &{ @content; }
+    }
   }
 }
 
 /* to... */
-@mixin media-max($_key) {
+@mixin media-max($_key, $screen: true) {
   $break: map-get($breakpoints, $_key);
 
-  @media screen and (max-width: ($break - 1)) {
-    &{ @content; }
+  @if ($screen) {
+    @media screen and (max-width: ($break - 1)) {
+      &{ @content; }
+    }
+  } @else {
+    @media (max-width: ($break - 1)) {
+      &{ @content; }
+    }
   }
 }
 
