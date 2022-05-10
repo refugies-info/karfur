@@ -9,7 +9,7 @@ export const log = async (
   await addLog(
     dispositifId,
     "Dispositif",
-    "Traduction validé en : ",
+    "Traduction validée en : {{dynamic}}",
     {
       author: authorId,
       dynamicId: langueId,

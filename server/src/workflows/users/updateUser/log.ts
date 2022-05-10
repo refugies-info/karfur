@@ -8,7 +8,7 @@ export const log = async (
   userFromDb: UserDoc,
   authorId: ObjectId
 ) => {
-  if (user.phone !== userFromDb.phone) {
+  if (userFromDb.phone && user.phone !== userFromDb.phone) {
     await addLog(
       user._id,
       "User",
@@ -28,7 +28,7 @@ export const log = async (
       { author: authorId }
     );
   }
-  if (userFromDb.email && user.email !== userFromDb.email) {
+  if (!userFromDb.email && user.email) {
     await addLog(
       user._id,
       "User",
@@ -40,7 +40,7 @@ export const log = async (
       }
     );
   }
-  if (!userFromDb.email && user.email) {
+  if (userFromDb.email && user.email !== userFromDb.email) {
     await addLog(
       user._id,
       "User",

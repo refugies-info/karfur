@@ -45,7 +45,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     logger.info("[updateUser] call received", { user, action });
-    const userFromDB = await getUserById(user._id, { username: 1, phone: 1, roles: 1 });
+    const userFromDB = await getUserById(user._id, { username: 1, phone: 1, email: 1, roles: 1 });
 
     if (user.phone) { // format phone
       user.phone = formatPhoneNumber(user.phone);
@@ -78,6 +78,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
 
       await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles });
+      user.username = userFromDB.username; // populate username for log
 
       if (userFromDB.phone !== user.phone) { // if phone changed, send mail
         await sendResetPhoneNumberMail(userFromDB.username, user.email);
@@ -122,6 +123,10 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         } else {
           await updateUserInDB(user._id, user);
         }
+        // populate user for logs
+        if (!user.email) user.email = userFromDB.email;
+        if (!user.phone) user.phone = userFromDB.phone;
+        if (!user.username) user.username = userFromDB.username;
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");

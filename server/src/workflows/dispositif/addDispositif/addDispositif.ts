@@ -184,6 +184,7 @@ export const addDispositif = async (
         dispositif
       );
 
+      //@ts-ignore
       await log(dispositif, originalDispositif, req.user._id);
 
       // when publish or modify a dispositif, update table in airtable to follow the traduction
