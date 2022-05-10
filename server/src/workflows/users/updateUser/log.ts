@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
-import { addLog } from "modules/logs/logs.service";
-import { UserDoc } from "schema/schemaUser";
+import { addLog } from "../../../modules/logs/logs.service";
+import { UserDoc } from "../../../schema/schemaUser";
 import { User } from "./updateUser";
 
 export const log = async (

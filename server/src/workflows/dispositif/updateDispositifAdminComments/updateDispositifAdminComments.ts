@@ -1,7 +1,7 @@
 import { ObjectId } from "mongoose";
-import logger from "logger";
-import { RequestFromClient, Res } from "types/interface";
-import { updateDispositifInDB, getDispositifById } from "modules/dispositif/dispositif.repository";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { log } from "./log";
 
 interface QueryModifyAdmin {

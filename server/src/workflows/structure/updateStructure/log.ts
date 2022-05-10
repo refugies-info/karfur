@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
-import { addLog } from "modules/logs/logs.service";
-import { StructureDoc } from "schema/schemaStructure";
+import { addLog } from "../../../modules/logs/logs.service";
+import { StructureDoc } from "../../../schema/schemaStructure";
 
 export const log = async (
   structure: StructureDoc,

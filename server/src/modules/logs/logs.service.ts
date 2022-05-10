@@ -1,5 +1,5 @@
 import { ObjectId } from "mongoose";
-import { Log } from "schema/schemaLog";
+import { Log } from "../../schema/schemaLog";
 import { createLog } from "./logs.repository";
 
 type optionsType = {

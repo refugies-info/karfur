@@ -1,16 +1,16 @@
 import { ObjectId } from "mongoose";
-import logger from "logger";
-import { RequestFromClient, Res } from "types/interface";
-import { checkIfUserIsAuthorizedToModifyStructure } from "modules/structure/structure.service";
-import { sendNewReponsableMailService } from "modules/mail/mail.service";
-import { getUserById } from "modules/users/users.repository";
-import { updateStructureMember, getStructureFromDB } from "modules/structure/structure.repository";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
+import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
+import { getUserById } from "../../../modules/users/users.repository";
+import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
-} from "modules/users/users.service";
-import { getRoleByName } from "controllers/role/role.repository";
-import { checkRequestIsFromSite } from "libs/checkAuthorizations";
+} from "../../../modules/users/users.service";
+import { getRoleByName } from "../../../controllers/role/role.repository";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 interface Query {

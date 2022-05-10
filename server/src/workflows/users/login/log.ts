@@ -1,5 +1,5 @@
 import { ObjectId } from "mongoose";
-import { addLog } from "modules/logs/logs.service";
+import { addLog } from "../../../modules/logs/logs.service";
 
 export const logRegister = async (
   userId: ObjectId

@@ -1,17 +1,17 @@
-import logger from "logger";
 import { ObjectId } from "mongoose";
-import { RequestFromClient, Res } from "types/interface";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
 import {
   updateDispositifInDB,
   getDispositifByIdWithMainSponsor,
-} from "modules/dispositif/dispositif.repository";
-import { publishDispositif } from "modules/dispositif/dispositif.service";
-import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
+} from "../../../modules/dispositif/dispositif.repository";
+import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
   checkUserIsAuthorizedToModifyDispositif,
-} from "libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 interface QueryUpdate {

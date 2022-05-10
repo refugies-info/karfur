@@ -1,12 +1,12 @@
-import logger from "logger";
+import logger from "../../../logger";
 import {
   Res,
   RequestFromClient,
   Picture,
   Membre,
-} from "types/interface";
-import { updateRoleAndStructureOfResponsable } from "modules/users/users.service";
-import { createStructureInDB } from "modules/structure/structure.repository";
+} from "../../../types/interface";
+import { updateRoleAndStructureOfResponsable } from "../../../modules/users/users.service";
+import { createStructureInDB } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
 
 interface ReceivedStructure {

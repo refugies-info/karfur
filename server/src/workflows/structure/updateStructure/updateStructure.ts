@@ -1,8 +1,8 @@
-import logger from "logger";
-import { Res, RequestFromClient } from "types/interface";
-import { updateStructureInDB, getStructureFromDB } from "modules/structure/structure.repository";
-import { checkIfUserIsAuthorizedToModifyStructure } from "modules/structure/structure.service";
-import { StructureDoc } from "schema/schemaStructure";
+import logger from "../../../logger";
+import { Res, RequestFromClient } from "../../../types/interface";
+import { updateStructureInDB, getStructureFromDB } from "../../../modules/structure/structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
+import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
 
 // route called when modify structure but not its members (use another route for this)

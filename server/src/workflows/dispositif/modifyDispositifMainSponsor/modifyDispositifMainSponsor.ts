@@ -1,11 +1,11 @@
 import { ObjectId } from "mongoose";
-import logger from "logger";
-import { RequestFromClient, Res } from "types/interface";
-import { updateDispositifInDB, getDispositifById } from "modules/dispositif/dispositif.repository";
-import { updateAssociatedDispositifsInStructure } from "modules/structure/structure.repository";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import {
   checkIfUserIsAdmin,
-} from "libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 interface QueryModify {

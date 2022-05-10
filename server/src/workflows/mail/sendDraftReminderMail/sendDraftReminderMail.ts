@@ -1,21 +1,21 @@
-import logger from "logger";
-import { RequestFromClient, Res } from "types/interface";
-import { isTitreInformatifObject } from "types/typeguards";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import { isTitreInformatifObject } from "../../../types/typeguards";
 import {
   getDraftDispositifs,
   updateDispositifInDB,
-} from "modules/dispositif/dispositif.repository";
+} from "../../../modules/dispositif/dispositif.repository";
 import {
   sendOneDraftReminderMailService,
   sendMultipleDraftsReminderMailService,
-} from "modules/mail/mail.service";
+} from "../../../modules/mail/mail.service";
 import {
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
   FormattedDispositif,
-} from "modules/dispositif/dispositif.adapter";
-import { checkCronAuthorization } from "libs/checkAuthorizations";
-import { DispositifPopulatedDoc } from "schema/schemaDispositif";
+} from "../../../modules/dispositif/dispositif.adapter";
+import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
+import { DispositifPopulatedDoc } from "../../../schema/schemaDispositif";
 import { log } from "./log";
 
 const formatTitle = (dispo: DispositifPopulatedDoc) => {

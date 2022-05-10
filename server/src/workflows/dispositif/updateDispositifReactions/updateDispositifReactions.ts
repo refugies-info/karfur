@@ -1,14 +1,14 @@
 import { ObjectId } from "mongoose";
 import { Moment } from "moment";
 import uniqid from "uniqid";
-import logger from "logger";
-import { RequestFromClientWithBody, Res } from "types/interface";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import {
   updateDispositifInDB,
   modifyReadSuggestionInDispositif,
   getDispositifById
-} from "modules/dispositif/dispositif.repository";
-import { checkRequestIsFromSite } from "libs/checkAuthorizations";
+} from "../../../modules/dispositif/dispositif.repository";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 interface Request {

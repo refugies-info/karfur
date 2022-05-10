@@ -1,23 +1,23 @@
-import {ObjectId} from "mongoose";
-import logger from "logger";
+import { ObjectId } from "mongoose";
+import logger from "../../../logger";
 import {
   RequestFromClient,
   Res,
   Picture,
   SelectedLanguage,
-} from "types/interface";
-import { getRoleByName } from "controllers/role/role.repository";
+} from "../../../types/interface";
+import { getRoleByName } from "../../../controllers/role/role.repository";
 import {
   getUserById,
   updateUserInDB,
-} from "modules/users/users.repository";
-import { sendResetPhoneNumberMail } from "modules/mail/mail.service";
+} from "../../../modules/users/users.repository";
+import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import {
   requestSMSLogin,
   verifyCode
-} from "modules/users/login2FA";
-import formatPhoneNumber from "libs/formatPhoneNumber";
-import { checkRequestIsFromSite } from "libs/checkAuthorizations";
+} from "../../../modules/users/login2FA";
+import formatPhoneNumber from "../../../libs/formatPhoneNumber";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
 

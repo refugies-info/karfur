@@ -1,25 +1,25 @@
 import { ObjectId } from "mongoose";
-import logger from "logger";
-import { RequestFromClientWithBody, Res } from "types/interface";
-import { addOrUpdateDispositifInContenusAirtable } from "controllers/miscellaneous/airtable";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import {
   validateTradInDB,
   deleteTradsInDB,
-} from "modules/traductions/traductions.repository";
-import { insertInDispositif } from "modules/dispositif/insertInDispositif";
-import { updateLanguagesAvancement } from "modules/langues/langues.service";
-import { getLanguageByCode } from "modules/langues/langues.repository";
-import { getDispositifByIdWithAllFields } from "modules/dispositif/dispositif.repository";
-import { sendPublishedTradMailToStructure } from "modules/mail/sendPublishedTradMailToStructure";
-import { sendPublishedTradMailToTraductors } from "modules/mail/sendPublishedTradMailToTraductors";
+} from "../../../modules/traductions/traductions.repository";
+import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
+import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
+import { getLanguageByCode } from "../../../modules/langues/langues.repository";
+import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
+import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
+import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdminOrExpert,
-} from "libs/checkAuthorizations";
-import { asyncForEach } from "libs/asyncForEach";
-import { DispositifNotPopulateDoc } from "schema/schemaDispositif";
-import { TraductionDoc } from "schema/schemaTraduction";
-import ErrorDB from "schema/schemaError";
+} from "../../../libs/checkAuthorizations";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
+import { TraductionDoc } from "../../../schema/schemaTraduction";
+import ErrorDB from "../../../schema/schemaError";
 import { log } from "./log";
 
 interface Query {

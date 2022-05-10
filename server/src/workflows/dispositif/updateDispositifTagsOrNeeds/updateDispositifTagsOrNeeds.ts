@@ -1,15 +1,15 @@
 import { ObjectId } from "mongoose";
-import { RequestFromClient, Res } from "types/interface";
-import logger from "logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import logger from "../../../logger";
 import {
   updateDispositifInDB,
   getDispositifById,
-} from "modules/dispositif/dispositif.repository";
-import { computePossibleNeeds } from "modules/needs/needs.service";
+} from "../../../modules/dispositif/dispositif.repository";
+import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
-} from "libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 interface QueryUpdate {

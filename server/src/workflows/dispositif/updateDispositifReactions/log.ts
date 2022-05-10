@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
-import { addLog } from "modules/logs/logs.service";
-import { DispositifDoc } from "schema/schemaDispositif";
+import { addLog } from "../../../modules/logs/logs.service";
+import { DispositifDoc } from "../../../schema/schemaDispositif";
 
 export const log = async (
   dispositif: DispositifDoc,

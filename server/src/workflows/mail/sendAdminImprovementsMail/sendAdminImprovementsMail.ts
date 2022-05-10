@@ -1,12 +1,12 @@
 import { ObjectId } from "mongoose";
-import logger from "logger";
-import { RequestFromClientWithBody, Res } from "types/interface";
-import { sendAdminImprovementsMailService } from "modules/mail/mail.service";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
-} from "libs/checkAuthorizations";
-import { asyncForEach } from "libs/asyncForEach";
+} from "../../../libs/checkAuthorizations";
+import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 
 interface Query {

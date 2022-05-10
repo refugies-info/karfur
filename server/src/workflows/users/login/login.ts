@@ -1,14 +1,14 @@
-import logger from "logger";
-import { RequestFromClientWithBody, Res } from "types/interface";
-import { getRoleByName } from "controllers/role/role.repository";
-import { getUserByUsernameFromDB } from "modules/users/users.repository";
-import { register } from "modules/users/register";
-import { login2FA } from "modules/users/login2FA";
-import LoginError from "modules/users/LoginError";
-import { proceedWithLogin } from "modules/users/users.service";
-import { userRespoStructureId } from "modules/structure/structure.service";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
+import { register } from "../../../modules/users/register";
+import { login2FA } from "../../../modules/users/login2FA";
+import LoginError from "../../../modules/users/LoginError";
+import { proceedWithLogin } from "../../../modules/users/users.service";
+import { userRespoStructureId } from "../../../modules/structure/structure.service";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { loginExceptionsManager } from "./login.exceptions.manager";
-import { checkRequestIsFromSite } from "libs/checkAuthorizations";
 import { logRegister, logLogin } from "./log";
 
 interface User {

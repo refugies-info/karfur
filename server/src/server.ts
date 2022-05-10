@@ -1,31 +1,29 @@
 "use strict";
 require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const cloudinary = require("cloudinary");
-const formData = require("express-form-data");
-const path = require("path");
-const compression = require("compression");
-const logger = require("./logger");
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import cloudinary from "cloudinary";
+import formData from "express-form-data";
+import path from "path";
+import compression from "compression";
+import logger from "./logger";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
 logger.info(NODE_ENV + " environment");
 
+//@ts-ignore
 cloudinary.config({
   cloud_name: CLOUD_NAME,
   api_key: API_KEY,
   api_secret: API_SECRET,
 });
-//On définit notre objet express nommé app
+
 const app = express();
-
-//Connexion à la base de donnée
+// Database
 mongoose.set("debug", false);
-let db_path = MONGODB_URI;
-
+const db_path = MONGODB_URI;
 mongoose
   .connect(db_path)
   .then(() => {
@@ -36,14 +34,12 @@ mongoose
   });
 
 //Body Parser
-var urlencodedParser = bodyParser.urlencoded({
-  extended: true,
-  limit: "50mb",
-});
 app.use(compression());
 app.use(express.static(path.join(__dirname, "../../client", "build")));
-app.use(urlencodedParser);
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true,
+}));
 app.use(formData.parse());
 app.use(cors());
 
@@ -61,16 +57,16 @@ app.use(function (_, res, next) {
     "Access-Control-Allow-Methods",
     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
   );
-  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
 
 //Checking request origin
 app.use(function (req, _, next) {
-  req.fromPostman =
-    req.headers["postman-secret"] === process.env.POSTMAN_SECRET;
-  req.fromSite =
-    req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
+  //@ts-ignore
+  req.fromPostman = req.headers["postman-secret"] === process.env.POSTMAN_SECRET;
+  //@ts-ignore
+  req.fromSite = req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
   next();
 });
 
@@ -91,7 +87,7 @@ app.use("/indicator", router);
 app.use("/mail", router);
 app.use("/needs", router);
 app.use("/search", router);
-app.use("/log", router);
+app.use("/logs", router);
 
 require(__dirname + "/controllers/userController")(router);
 require(__dirname + "/controllers/translateController")(router);
@@ -110,7 +106,7 @@ require(__dirname + "/controllers/searchController")(router);
 require(__dirname + "/controllers/logController")(router);
 
 var port = process.env.PORT;
-app.get("*", (req, res) => {
+app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
 });
 app.listen(port, () => logger.info(`Listening on port ${port}`));

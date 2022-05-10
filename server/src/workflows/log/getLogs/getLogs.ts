@@ -1,11 +1,11 @@
-import logger = require("logger");
 import { ObjectId } from "mongoose";
-import { RequestFromClientWithBody, Res } from "types/interface";
-import { findLogs } from "modules/logs/logs.repository";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { findLogs } from "../../../modules/logs/logs.repository";
 import {
   checkRequestIsFromSite,
-} from "libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "libs/checkAuthorizations";
+} from "../../../libs/checkAuthorizations";
+import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
 export interface Request {
   id: ObjectId;

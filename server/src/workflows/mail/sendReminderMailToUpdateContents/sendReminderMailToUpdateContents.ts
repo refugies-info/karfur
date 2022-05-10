@@ -1,16 +1,16 @@
-import logger from "logger";
-import { RequestFromClient, Res } from "types/interface";
-import { isTitreInformatifObject } from "types/typeguards";
-import { Membre } from "types/interface";
+import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
+import { isTitreInformatifObject } from "../../../types/typeguards";
+import { Membre } from "../../../types/interface";
 import {
   getPublishedDispositifWithMainSponsor,
   updateDispositifInDB,
-} from "modules/dispositif/dispositif.repository";
-import { getUserById } from "modules/users/users.repository";
-import { filterDispositifsForUpdateReminders } from "modules/dispositif/dispositif.adapter";
-import { sendUpdateReminderMailService } from "modules/mail/mail.service";
-import { checkCronAuthorization } from "libs/checkAuthorizations";
-import { asyncForEach } from "libs/asyncForEach";
+} from "../../../modules/dispositif/dispositif.repository";
+import { getUserById } from "../../../modules/users/users.repository";
+import { filterDispositifsForUpdateReminders } from "../../../modules/dispositif/dispositif.adapter";
+import { sendUpdateReminderMailService } from "../../../modules/mail/mail.service";
+import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
+import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
 
 export const sendReminderMailToUpdateContents = async (
