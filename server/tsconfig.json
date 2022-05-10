@@ -13,7 +13,7 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "types": ["node"]
   },
   "exclude": ["node_modules", "dist", "src/**/*.test.ts"],
