@@ -2,6 +2,7 @@
 import {
   formatDispositifsByCreator,
   getTitreInfoOrMarque,
+  countDispositifMercis
 } from "../dispositif.adapter";
 
 describe("formatDispositifsByCreator", () => {
@@ -102,5 +103,60 @@ describe("getTitreInfoOrMarque", () => {
   it("should return string if title object", () => {
     const res = getTitreInfoOrMarque({ fr: "titre object", en: "title" });
     expect(res).toEqual("titre object");
+  });
+});
+
+describe("countDispositifMercis", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should format data", () => {
+    const dispositifs = [
+      {
+        _id: "dispoId1",
+        titreInformatif: "t1",
+        merci: [{added_at: "x"}]
+      },
+      {
+        _id: "dispoId2",
+        titreInformatif: "t2",
+        merci: [{added_at: "x"}, {added_at: "x"}]
+      },
+      {
+        _id: "dispoId3",
+        titreInformatif: "t3",
+        merci: []
+      },
+      {
+        _id: "dispoId4",
+        titreInformatif: "t4",
+      }
+    ];
+    const expectedResult = [
+      {
+        _id: "dispoId1",
+        titreInformatif: "t1",
+        nbMercis: 1
+      },
+      {
+        _id: "dispoId2",
+        titreInformatif: "t2",
+        nbMercis: 2
+      },
+      {
+        _id: "dispoId3",
+        titreInformatif: "t3",
+        nbMercis: 0
+      },
+      {
+        _id: "dispoId4",
+        titreInformatif: "t4",
+        nbMercis: 0
+      }
+    ]
+
+    const res = countDispositifMercis(dispositifs);
+
+    expect(res).toEqual(expectedResult);
   });
 });

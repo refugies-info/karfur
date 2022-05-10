@@ -287,6 +287,7 @@ const ContenuParagraphe = (props: Props) => {
                   updateUIArray={props.updateUIArray}
                   disableEdit={props.disableEdit}
                   toggleModal={props.toggleModal}
+                  printing={props.printing}
                 />
               ) : subitem.type === "accordion" ? (
                 <div

@@ -52,7 +52,7 @@ const getPublicVise = (infocards: any[]) => {
       : null;
   if (!publicViseIC || !publicViseIC.contentTitle) return "";
 
-  return publicViseIC.contentTitle;
+  return publicViseIC.contentTitle.fr || publicViseIC.contentTitle;
 };
 
 const getNiveauFrancais = (infocards: any[]) => {

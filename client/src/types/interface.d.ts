@@ -120,6 +120,8 @@ export interface SimplifiedDispositif {
   lastModificationDate?: Moment;
   needs?: ObjectId[];
   tags: Tag[];
+  nbMercis: number;
+  nbVues: number;
 }
 
 export interface Role {
