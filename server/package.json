@@ -29,7 +29,7 @@
     "dotenv": "^7.0.0",
     "draftjs-to-html": "^0.8.4",
     "express": "^4.16.4",
-    "express-form-data": "^2.0.8",
+    "express-form-data": "^2.0.18",
     "himalaya": "^1.1.0",
     "html2plaintext": "^2.1.2",
     "jwt-simple": "^0.5.5",
