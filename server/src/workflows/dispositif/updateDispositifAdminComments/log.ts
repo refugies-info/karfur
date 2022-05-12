@@ -8,7 +8,9 @@ export const log = async (
   oldDispositif: DispositifDoc,
   authorId: ObjectId
 ) => {
-  if (dispositif.adminComments !== oldDispositif.adminComments) {
+  const newComments = dispositif.adminComments || "";
+  const oldComments = oldDispositif.adminComments || "";
+  if (newComments !== oldComments) {
     await addLog(
       dispositifId,
       "Dispositif",
