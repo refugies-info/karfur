@@ -13,7 +13,7 @@ import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceMo
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import {
   StyledTitle,
   StyledHeader,
@@ -51,6 +51,7 @@ import styles from "./AdminStructures.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 
 moment.locale("fr");
 
@@ -149,6 +150,7 @@ export const AdminStructures = () => {
   };
 
   const structures = useSelector(allStructuresSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
 
   if (
     (isLoading || structures.length === 0) &&
@@ -473,9 +475,8 @@ export const AdminStructures = () => {
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
-              setSelectedContentId,
-              setShowContentDetailsModal,
-              fetchAllDispositifsActionsCreator,
+              dispositifs,
+              setAllDispositifsActionsCreator,
               dispatch,
               selectedContentId
             )

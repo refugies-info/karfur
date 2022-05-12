@@ -1,31 +1,34 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Modal, Input, Spinner } from "reactstrap";
+import { Modal, Input, Spinner, Row, Col } from "reactstrap";
 import Image from "next/image";
+import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+import "moment/locale/fr";
+import { ObjectId } from "mongodb";
 import {
   TypeContenu,
   StyledStatus,
 } from "../../sharedComponents/SubComponents";
 import FButton from "components/UI/FButton/FButton";
-import { correspondingStatus, progressionData } from "../data";
+import { correspondingStatus, progressionData, publicationData } from "../data";
 import { statusCompare } from "lib/statusCompare";
-import moment from "moment";
-import "moment/locale/fr";
 import {
-  SimplifiedDispositif,
   SimplifiedStructureForAdmin,
 } from "types/interface";
 import { colors } from "colors";
-import marioProfile from "assets/mario-profile.jpg";
-import noStructure from "assets/noStructure.png";
-import { useSelector, useDispatch } from "react-redux";
-import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
+import {
+  allDispositifsSelector,
+  dispositifSelector,
+} from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
-import { ObjectId } from "mongodb";
+import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import marioProfile from "assets/mario-profile.jpg";
+import noStructure from "assets/noStructure.png";
 import styles from "./DetailsModal.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   show: boolean;
@@ -40,181 +43,101 @@ interface Props {
     element: SimplifiedStructureForAdmin | null
   ) => void;
 }
-
-const LeftPart = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-`;
-
-const RightPart = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-`;
-
-const TitreInformatif = styled.span`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-`;
-const TitreMarque = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-right: 8px;
-`;
-
-const RowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 16px;
-  align-items: center;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 12px 0px 12px 0px;
-`;
-
-const StructureContainer = styled.div`
-  background: ${(props: {noStructure?: boolean}) =>
-    props.noStructure ? colors.erreur : colors.white};
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  padding: 16px;
-  cursor: pointer;
-`;
-const TitleSponsorContainer = styled.div`
-  text-decoration: underline;
-`;
-
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 16px;
-`;
-
-const CreatorContainer = styled.div`
-  border-radius: 12px;
-  padding: 8px;
-  background: ${colors.white};
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  align-items: center;
-  cursor: pointer;
-`;
-
 moment.locale("fr");
-const statusModifiable = ["En attente", "En attente admin", "Brouillon"];
 
 export const DetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
 
-  const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
   const [adminComments, setAdminComments] = useState<string>("");
-  const [adminProgressionStatusGroup1, setAdminProgressionStatusGroup1] =
-    useState<string | null>(null);
-  const [adminProgressionStatusGroup2, setAdminProgressionStatusGroup2] =
-    useState<string | null>(null);
-
+  const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
+  const [currentId, setCurrentId] = useState(props.selectedDispositifId);
   const dispatch = useDispatch();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
+  const allDispositifs = useSelector(allDispositifsSelector);
   useEffect(() => {
-    if (dispositif) {
-      if (dispositif.adminComments) {
-        setAdminComments(dispositif.adminComments);
-      } else {
-        setAdminComments("");
+    if (dispositif && currentId !== selectedDispositifId) {
+      setAdminComments(dispositif.adminComments || "");
+      setAdminCommentsSaved(false);
+      setCurrentId(selectedDispositifId);
+    }
+  }, [dispositif, currentId, selectedDispositifId]);
+
+  const updateDispositifsStore = (
+    dispositifId: ObjectId,
+    property:
+      | "adminComments"
+      | "status"
+      | "adminProgressionStatus"
+      | "adminPercentageProgressionStatus",
+    value: string
+  ) => {
+    const dispositifs = [...allDispositifs];
+    const newDispositif = dispositifs.find((d) => d._id === dispositifId);
+    if (newDispositif) newDispositif[property] = value;
+    dispatch(setAllDispositifsActionsCreator(dispositifs));
+  };
+  const onNotesChange = (e: any) => {
+    if (adminCommentsSaved) setAdminCommentsSaved(false);
+    setAdminComments(e.target.value);
+  }
+
+  const modifyStatus = async (
+    newStatus: string,
+    property:
+      | "status"
+      | "adminProgressionStatus"
+      | "adminPercentageProgressionStatus"
+  ) => {
+    if (dispositif && newStatus !== dispositif[property]) {
+      if (property === "status" && newStatus === "Supprimé") {
+        props.onDeleteClick();
+        return;
       }
 
-      if (dispositif.adminProgressionStatus) {
-        setAdminProgressionStatusGroup1(dispositif.adminProgressionStatus);
-      } else {
-        setAdminProgressionStatusGroup1("Nouveau !");
-      }
-      if (dispositif.adminPercentageProgressionStatus) {
-        setAdminProgressionStatusGroup2(
-          dispositif.adminPercentageProgressionStatus
-        );
-      } else {
-        setAdminProgressionStatusGroup2(null);
-      }
-    }
-  }, [dispositif]);
-
-  const getCreatorImage = (selectedDispositif: SimplifiedDispositif) =>
-    selectedDispositif &&
-    selectedDispositif.creatorId &&
-    selectedDispositif.creatorId.picture &&
-    selectedDispositif.creatorId.picture.secure_url
-      ? selectedDispositif.creatorId.picture.secure_url
-      : marioProfile;
-
-  const modifyStatus = (newStatus: string) => {
-    if (statusModifiable.includes(newStatus)) {
-      return setModifiedStatus(newStatus);
-    }
-  };
-  const onNotesChange = (e: any) => setAdminComments(e.target.value);
-
-  const modifyProgressionStatus = (status: any) => {
-    if (status.group === 1) {
-      return setAdminProgressionStatusGroup1(status.storedStatus);
-    }
-    return setAdminProgressionStatusGroup2(status.storedStatus);
-  };
-  const toggle = () => {
-    setModifiedStatus(null);
-    props.toggleModal();
-  };
-  const onSaveClick = async (dispositif: SimplifiedDispositif) => {
-    if (modifiedStatus && modifiedStatus !== dispositif.status) {
-      const newDispositif = {
-        dispositifId: dispositif._id,
-        status: modifiedStatus,
+      const queryDispositif = {
+        query: {
+          dispositifId: dispositif._id,
+          [property]: newStatus,
+        }
       };
-      await API.updateDispositifStatus({ query: newDispositif });
+
+      if (property === "status") {
+        await API.updateDispositifStatus(queryDispositif);
+      } else {
+        await API.updateDispositifAdminComments(queryDispositif);
+      }
+      updateDispositifsStore(dispositif._id, property, newStatus);
     }
+  };
+  const saveAdminComments = async () => {
+    if (!dispositif) return;
     await API.updateDispositifAdminComments({
       query: {
         dispositifId: dispositif._id,
         adminComments,
-        adminProgressionStatus: adminProgressionStatusGroup1,
-        adminPercentageProgressionStatus: adminProgressionStatusGroup2,
       },
     });
-    dispatch(fetchAllDispositifsActionsCreator());
-    toggle();
+    setAdminCommentsSaved(true);
+    updateDispositifsStore(dispositif._id, "adminComments", adminComments);
   };
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
+
+  const getButtonColor = () => {
+    if (adminCommentsSaved) return "saved";
+    const oldComments = dispositif?.adminComments || "";
+    if (oldComments !== adminComments) return "modified";
+    return "dark";
+  };
+
+  const hiddenStatus = [
+    "En attente non prioritaire",
+    "Rejeté structure",
+    "Accepté structure",
+  ];
 
   if (isLoading) {
     return (
@@ -234,88 +157,187 @@ export const DetailsModal = (props: Props) => {
     return (
       <Modal
         isOpen={props.show}
-        toggle={toggle}
-        size="lg"
+        toggle={props.toggleModal}
+        size="xl"
         className={styles.modal}
         contentClassName={styles.modal_content}
       >
-        <MainContainer>
-          <RowContainer>
-            <LeftPart>
-              <TitreInformatif>{dispositif.titreInformatif}</TitreInformatif>
-              <RowContainer>
-                {dispositif.titreMarque && (
-                  <TitreMarque>
-                    <span style={{ color: colors.gray70 }}>avec </span>
-                    {dispositif.titreMarque}
-                  </TitreMarque>
-                )}
-                <TypeContenu
-                  type={dispositif.typeContenu}
-                  isDetailedVue={true}
-                />
-              </RowContainer>
-              <Title>Statut</Title>
-              <RowContainer>
-                {correspondingStatus.sort(statusCompare).map((status) => {
-                  const newStatus = modifiedStatus || dispositif.status;
+        <Row>
+          <Col className={styles.title}>
+            <TypeContenu type={dispositif.typeContenu} isDetailedVue={true} />
+            <h2 className={styles.title}>
+              {dispositif.titreInformatif}
+              <span style={{ color: colors.gray70 }}> avec </span>
+              {dispositif.titreMarque}
+            </h2>
+          </Col>
 
-                  return (
-                    <div
-                      key={status.storedStatus}
-                      style={{
-                        marginRight: "8px",
-                        marginTop: "4px",
-                        marginBottom: "4px",
-                      }}
-                      onClick={() => modifyStatus(status.storedStatus)}
-                    >
-                      <StyledStatus
-                        text={status.storedStatus}
-                        overrideColor={newStatus !== status.storedStatus}
-                        textToDisplay={status.displayedStatus}
-                        color={status.color}
-                        disabled={
-                          !statusModifiable.includes(status.storedStatus)
-                        }
-                      />
-                    </div>
-                  );
-                })}
-              </RowContainer>
-              <Title>Dernière mise à jour</Title>
-              {dispositif.lastModificationDate
-                ? `${moment(dispositif.lastModificationDate).format(
-                    "LLL"
-                  )} soit ${moment(dispositif.lastModificationDate).fromNow()}`
-                : "Non disponible"}
-              <Title>Date de publication</Title>
-              {dispositif.publishedAt && dispositif.status === "Actif"
-                ? `${moment(dispositif.publishedAt).format(
-                    "LLL"
-                  )} soit ${moment(dispositif.publishedAt).fromNow()}`
-                : "Non disponible"}
-              <Title>Date de création</Title>
-              {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
-                dispositif.created_at
-              ).fromNow()}`}
-              {dispositif.status === "Actif" && (
-                <>
-                  {" "}
-                  <Title>Envoi relance mise à jour</Title>
-                  {dispositif.lastReminderMailSentToUpdateContentDate
-                    ? moment(
-                        dispositif.lastReminderMailSentToUpdateContentDate
-                      ).format("LLL") +
-                      " soit " +
-                      moment(
-                        dispositif.lastReminderMailSentToUpdateContentDate
-                      ).fromNow()
-                    : "Non envoyé"}
-                </>
+          <Col className="text-right">
+            {["En attente admin", "En attente", "Accepté structure"].includes(
+              dispositif.status
+            ) &&
+              dispositif.typeContenu === "dispositif" && (
+                <FButton
+                  className="mr-2"
+                  type="dark"
+                  name="email-outline"
+                  onClick={props.toggleImprovementsMailModal}
+                >
+                  Demande
+                </FButton>
               )}
-              <Title>Créateur</Title>
-              <CreatorContainer
+            <FButton
+              className="mr-2"
+              type="dark"
+              name="options-2-outline"
+              onClick={props.toggleNeedsChoiceModal}
+            >
+              Catégories
+            </FButton>
+            <FButton
+              className="mr-2"
+              type="dark"
+              tag={"a"}
+              href={burl}
+              target="_blank"
+              rel="noopener noreferrer"
+              name="eye-outline"
+            >
+              Voir
+            </FButton>
+            <FButton
+              className="mr-8"
+              type="white"
+              onClick={props.toggleModal}
+              name="close-outline"
+            ></FButton>
+          </Col>
+        </Row>
+
+        <div className={styles.status_row}>
+          <div>
+            <p className={styles.label}>Statut de la fiche</p>
+            <div className="d-flex">
+              {correspondingStatus.sort(statusCompare).map((status) => {
+                if (
+                  hiddenStatus.includes(status.storedStatus) && // hide some status
+                  status.storedStatus !== dispositif.status
+                )
+                  return null;
+
+                return (
+                  <div
+                    className="mr-2"
+                    key={status.storedStatus}
+                    onClick={() => modifyStatus(status.storedStatus, "status")}
+                  >
+                    <StyledStatus
+                      text={status.storedStatus}
+                      overrideColor={status.storedStatus !== dispositif.status}
+                      textToDisplay={status.displayedStatus}
+                      color={status.color}
+                      disabled={status.storedStatus === dispositif.status}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <p className={styles.label}>Statut de publication</p>
+            <div className="d-flex">
+              {publicationData.map((status) => (
+                <div
+                  key={status.storedStatus}
+                  className="mr-2"
+                  onClick={() =>
+                    modifyStatus(status.storedStatus, "adminProgressionStatus")
+                  }
+                >
+                  <StyledStatus
+                    text={status.storedStatus}
+                    textToDisplay={status.displayedStatus}
+                    color={status.color}
+                    textColor={status.textColor}
+                    overrideColor={
+                      status.storedStatus !== dispositif.adminProgressionStatus
+                    }
+                    disabled={status.storedStatus === dispositif.adminProgressionStatus}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className={styles.label}>Progression</p>
+            <div className="d-flex">
+              {progressionData.map((status) => (
+                <div
+                  key={status.storedStatus}
+                  className="mr-2"
+                  onClick={() =>
+                    modifyStatus(
+                      status.storedStatus,
+                      "adminPercentageProgressionStatus"
+                    )
+                  }
+                >
+                  <StyledStatus
+                    text={status.storedStatus}
+                    textToDisplay={status.displayedStatus}
+                    color={status.color}
+                    textColor={status.textColor}
+                    overrideColor={
+                      status.storedStatus !==
+                      dispositif.adminPercentageProgressionStatus
+                    }
+                    disabled={status.storedStatus === dispositif.adminPercentageProgressionStatus}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.details_row}>
+          <div className={styles.col_1}>
+            <Row className="mb-5">
+              <Col>
+                <p className={styles.label}>Dernière mise à jour</p>
+                <p className={styles.text}>
+                  {dispositif.lastModificationDate
+                    ? `${moment(dispositif.lastModificationDate).format(
+                        "LLL"
+                      )} soit ${moment(
+                        dispositif.lastModificationDate
+                      ).fromNow()}`
+                    : "Non disponible"}
+                </p>
+              </Col>
+              <Col>
+                <p className={styles.label}>Date de publication</p>
+                <p className={styles.text}>
+                  {dispositif.publishedAt && dispositif.status === "Actif"
+                    ? `${moment(dispositif.publishedAt).format(
+                        "LLL"
+                      )} soit ${moment(dispositif.publishedAt).fromNow()}`
+                    : "Non disponible"}
+                </p>
+              </Col>
+            </Row>
+
+            <div className="mb-5">
+              <div className="d-flex justify-content-between">
+                <p className={styles.label}>Création</p>
+                <p className={styles.text}>
+                  {`${moment(dispositif.created_at).format(
+                    "LLL"
+                  )} soit ${moment(dispositif.created_at).fromNow()}`}
+                </p>
+              </div>
+              <div
+                className={styles.white_container}
                 onClick={() => {
                   props.toggleModal();
                   props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
@@ -323,201 +345,120 @@ export const DetailsModal = (props: Props) => {
               >
                 <Image
                   className={styles.creator_img}
-                  src={getCreatorImage(dispositif)}
+                  src={
+                    dispositif.creatorId?.picture?.secure_url || marioProfile
+                  }
                   alt="creator image"
-                  width={70}
-                  height={50}
+                  width={20}
+                  height={20}
                   objectFit="contain"
                 />
-                {dispositif.creatorId && dispositif.creatorId.username}
-              </CreatorContainer>
-              {dispositif.status === "Brouillon" && (
-                <>
-                  <Title>Envoi relance(s) brouillon</Title>
-                  {!dispositif.draftReminderMailSentDate && !dispositif.draftSecondReminderMailSentDate ?
-                    `Non envoyé ${!dispositif?.creatorId?.email && "(pas de mail renseigné)"}` :
-                    (
-                      <>
-                        {dispositif.draftReminderMailSentDate &&
-                          <div>Le {moment(dispositif.draftReminderMailSentDate).format("LLL")}</div>
-                        }
-                        {dispositif.draftSecondReminderMailSentDate &&
-                          <div>Le {moment(dispositif.draftSecondReminderMailSentDate).format("LLL")}</div>
-                        }
-                      </>
-                    )
-                  }
-                </>
-              )}
-            </LeftPart>
-            <RightPart>
-              <Title>Progression</Title>
-              <RowContainer>
-                {progressionData.map((status) => (
-                  <div
-                    key={status.storedStatus}
-                    style={{
-                      marginRight: "8px",
-                      marginTop: "4px",
-                      marginBottom: "4px",
-                    }}
-                    onClick={() => modifyProgressionStatus(status)}
-                  >
-                    <StyledStatus
-                      text={status.storedStatus}
-                      textToDisplay={status.displayedStatus}
-                      color={status.color}
-                      textColor={status.textColor}
-                      overrideColor={
-                        status.storedStatus !== adminProgressionStatusGroup1 &&
-                        status.storedStatus !== adminProgressionStatusGroup2
-                      }
-                    />
-                  </div>
-                ))}
-              </RowContainer>
-              <Title>Notes</Title>
-              <Input
-                type="textarea"
-                placeholder="Rédigez un court paragraphe sur votre structure"
-                rows={5}
-                value={adminComments}
-                onChange={onNotesChange}
-                id="note"
-              />
-              <Title>Dernière action d'administrateur</Title>
-              {dispositif.lastAdminUpdate
-                ? `${moment(dispositif.lastAdminUpdate).format(
-                    "LLL"
-                  )} soit ${moment(dispositif.lastAdminUpdate).fromNow()}`
-                : "Non disponible"}
-              <Title>Structure responsable</Title>
-              {dispositif.mainSponsor && (
-                <StructureContainer
-                  onClick={() => {
-                    props.setSelectedStructureIdAndToggleModal(
-                      //@ts-ignore
-                      dispositif.mainSponsor
-                    );
-                    props.toggleModal();
-                  }}
-                >
-                  <TitleSponsorContainer>
-                    {dispositif.mainSponsor.nom}
-                  </TitleSponsorContainer>
+                {dispositif.creatorId && (
+                  <p className={styles.text}>
+                    <strong className="mx-1">
+                      {dispositif.creatorId.username}
+                    </strong>
+                    {"| "}
+                    {dispositif.creatorId.email}
+                  </p>
+                )}
+              </div>
+            </div>
 
-                  <LogoContainer>
-                    {dispositif.mainSponsor &&
-                      dispositif.mainSponsor.picture &&
-                      dispositif.mainSponsor.picture.secure_url && (
-                        <Image
-                          className={styles.sponsor_img}
-                          src={(dispositif.mainSponsor.picture || {}).secure_url}
-                          alt={dispositif.mainSponsor.nom}
-                          width={140}
-                          height={60}
-                          objectFit="contain"
-                        />
-                      )}
-                    <div>
-                      <FButton
-                        name="edit-outline"
-                        type="outline-black"
-                        onClick={(e: any) => {
-                          e.stopPropagation();
-                          props.setShowChangeStructureModal(true);
-                        }}
-                      >
-                        Modifier
-                      </FButton>
-                    </div>
-                  </LogoContainer>
-                </StructureContainer>
+            <div className="mb-5">
+              <p className={styles.label}>Structure responsable</p>
+              {dispositif.mainSponsor && (
+                <div className="d-flex">
+                  <div
+                    className={styles.white_container}
+                    onClick={() => {
+                      props.setSelectedStructureIdAndToggleModal(
+                        //@ts-ignore
+                        dispositif.mainSponsor
+                      );
+                      props.toggleModal();
+                    }}
+                  >
+                    {dispositif?.mainSponsor?.picture?.secure_url && (
+                      <Image
+                        className={styles.sponsor_img}
+                        src={(dispositif.mainSponsor.picture || {}).secure_url}
+                        alt={dispositif.mainSponsor.nom}
+                        width={95}
+                        height={30}
+                        objectFit="contain"
+                      />
+                    )}
+                    <p className={cls(styles.text, "ml-1 ")}>
+                      {dispositif.mainSponsor.nom}
+                    </p>
+                    <span className="ml-auto">
+                      <StyledStatus
+                        text={dispositif.mainSponsor.status}
+                        textToDisplay={dispositif.mainSponsor.status}
+                        disabled={true}
+                      />
+                    </span>
+                  </div>
+                  <FButton
+                    className="ml-1"
+                    name="edit-outline"
+                    type="dark"
+                    onClick={(e: any) => {
+                      e.stopPropagation();
+                      props.setShowChangeStructureModal(true);
+                    }}
+                  ></FButton>
+                </div>
               )}
               {!dispositif.mainSponsor && (
-                <StructureContainer noStructure={true}>
-                  Aucune structure définie !
-                  <LogoContainer>
+                <div className="d-flex">
+                  <div className={styles.white_container}>
                     <Image
                       className={styles.sponsor_img}
                       src={noStructure}
                       alt="no structure"
                     />
 
-                    <div>
-                      <FButton
-                        name="edit-outline"
-                        type="outline-black"
-                        onClick={() => props.setShowChangeStructureModal(true)}
-                      >
-                        Choisir
-                      </FButton>
-                    </div>
-                  </LogoContainer>
-                </StructureContainer>
+                    <p className={cls(styles.text, "ml-1")}>
+                      Aucune structure définie !
+                    </p>
+                  </div>
+                  <FButton
+                    className="ml-1"
+                    name="edit-outline"
+                    type="dark"
+                    onClick={() => props.setShowChangeStructureModal(true)}
+                  ></FButton>
+                </div>
               )}
-              {["En attente admin", "En attente", "Accepté structure"].includes(
-                dispositif.status
-              ) &&
-                dispositif.typeContenu === "dispositif" && (
-                  <>
-                    <Title>Mail d'amélioration</Title>
-                    <FButton
-                      type="dark"
-                      name="email-outline"
-                      onClick={props.toggleImprovementsMailModal}
-                    >
-                      Demander des changements
-                    </FButton>
-                  </>
-                )}
-              <div style={{ marginTop: 12 }}>
-                <FButton type="dark" onClick={props.toggleNeedsChoiceModal}>
-                  Gérer les besoins
-                </FButton>
-              </div>
-            </RightPart>
-          </RowContainer>
-          <ButtonsContainer>
-            <div>
-              <FButton
-                className="mr-8"
-                type="dark"
-                tag={"a"}
-                href={burl}
-                target="_blank"
-                rel="noopener noreferrer"
-                name="external-link"
-              >
-                Voir la fiche
-              </FButton>
-              <FButton
-                type="error"
-                onClick={props.onDeleteClick}
-                name="trash-2"
-              >
-                Supprimer
-              </FButton>
             </div>
-            <div>
-              <FButton
-                className="mr-8"
-                type="white"
-                onClick={toggle}
-                name="close-outline"
-              >
-                Annuler
-              </FButton>
-              <FButton
-                type="validate"
-                name="checkmark-outline"
-                onClick={() => onSaveClick(dispositif)}
-              >
-                Enregistrer
-              </FButton>
-            </div>
-          </ButtonsContainer>
-        </MainContainer>
+          </div>
+          <div className={styles.col_2}>
+            <p className={styles.label}>Notes internes sur la fiche</p>
+            <Input
+              type="textarea"
+              placeholder="Note sur la fiche ..."
+              rows={5}
+              maxLength={3000}
+              value={adminComments}
+              onChange={onNotesChange}
+              id="note"
+              className={styles.input}
+            />
+            <FButton
+              name="save-outline"
+              type={getButtonColor()}
+              onClick={saveAdminComments}
+              className="mt-1 w-100"
+            >
+              {!adminCommentsSaved ? "Enregistrer" : "Enregistré !"}
+            </FButton>
+          </div>
+          <div>
+            <p className={styles.label}>Journal d'activité</p>
+          </div>
+        </div>
       </Modal>
     );
   }

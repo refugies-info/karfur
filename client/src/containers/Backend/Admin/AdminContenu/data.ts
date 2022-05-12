@@ -139,7 +139,7 @@ type ProgressionData = {
 }
 
 
-export const progressionData: ProgressionData[] = [
+export const publicationData: ProgressionData[] = [
   {
     storedStatus: "Nouveau !",
     displayedStatus: "Nouveau !",
@@ -148,33 +148,36 @@ export const progressionData: ProgressionData[] = [
     group: 1,
   },
   {
-    storedStatus: "À contacter",
-    displayedStatus: "À contacter",
+    storedStatus: "À relire",
+    displayedStatus: "À relire 🕶",
     color: lightBlue,
     textColor: colors.gray90,
     group: 1,
   },
   {
     storedStatus: "Contacté",
-    displayedStatus: "Contacté",
+    displayedStatus: "Contacté 🔄",
     color: lightBlue,
     textColor: colors.gray90,
     group: 1,
   },
   {
     storedStatus: "À relancer",
-    displayedStatus: "À relancer",
+    displayedStatus: "À relancer ⚠️",
     color: lightBlue,
     textColor: colors.gray90,
     group: 1,
   },
   {
     storedStatus: "Bloqué",
-    displayedStatus: "Bloqué",
+    displayedStatus: "Bloqué ⛔️",
     color: lightBlue,
     textColor: colors.gray90,
     group: 1,
-  },
+  }
+];
+
+export const progressionData: ProgressionData[] = [
   {
     storedStatus: "0%",
     displayedStatus: "0%",

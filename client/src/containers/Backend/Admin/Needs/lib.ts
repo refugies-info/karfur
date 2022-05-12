@@ -3,6 +3,7 @@ import { colors } from "colors";
 import API from "../../../../utils/API";
 import { tags } from "data/tags";
 import { ObjectId } from "mongodb";
+import { SimplifiedDispositif } from "types/interface";
 
 export const getTagColor = (tagName: string) => {
   const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
@@ -22,10 +23,10 @@ export const getTag = (tagName: string) => {
   return null;
 };
 
+// TODO: move function
 export const prepareDeleteContrib = (
-  setSelectedDispositifId: any,
-  setShowDetailsModal: any,
-  fetchAllDispositifsActionsCreator: any,
+  allDispositifs: SimplifiedDispositif[],
+  setAllDispositifsActionsCreator: any,
   dispatch: any,
   dispositifId: ObjectId | null
 ) => {
@@ -53,9 +54,10 @@ export const prepareDeleteContrib = (
             type: "success",
             timer: 1500,
           });
-          setSelectedDispositifId(null);
-          setShowDetailsModal(false);
-          dispatch(fetchAllDispositifsActionsCreator());
+          const dispositifs = [...allDispositifs];
+          const newDispositif = dispositifs.find((d) => d._id === dispositifId);
+          if (newDispositif) newDispositif.status = "Supprimé";
+          dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {
           Swal.fire({

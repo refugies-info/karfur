@@ -6,7 +6,7 @@ import "moment/locale/fr";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator, setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { table_contenu, correspondingStatus, FilterContentStatus } from "./data";
@@ -556,9 +556,8 @@ export const AdminContenu = () => {
                       <DeleteButton
                         onClick={() =>
                           prepareDeleteContrib(
-                            setSelectedContentId,
-                            setShowDetailsModal,
-                            fetchAllDispositifsActionsCreator,
+                            dispositifs,
+                            setAllDispositifsActionsCreator,
                             dispatch,
                             element._id
                           )
@@ -582,9 +581,8 @@ export const AdminContenu = () => {
         selectedDispositifId={selectedContentId}
         onDeleteClick={() =>
           prepareDeleteContrib(
-            setSelectedContentId,
-            setShowDetailsModal,
-            fetchAllDispositifsActionsCreator,
+            dispositifs,
+            setAllDispositifsActionsCreator,
             dispatch,
             selectedContentId
           )

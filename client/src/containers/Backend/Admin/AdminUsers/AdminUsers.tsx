@@ -42,7 +42,7 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
@@ -50,6 +50,7 @@ import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
 import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 
 moment.locale("fr");
 
@@ -162,6 +163,7 @@ export const AdminUsers = () => {
   };
 
   const users = useSelector(activeUsersSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
 
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
@@ -514,9 +516,8 @@ export const AdminUsers = () => {
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
-              setSelectedContentId,
-              setShowContentDetailsModal,
-              fetchAllDispositifsActionsCreator,
+              dispositifs,
+              setAllDispositifsActionsCreator,
               dispatch,
               selectedContentId
             )
