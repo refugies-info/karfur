@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 
 .admin {
   display: flex;
@@ -12,4 +13,42 @@
     border: none;
     background: $gray20;
   }
+}
+
+.details_button {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 52px;
+  padding: 12px;
+  border-radius: $radius;
+  background-color: $white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $gray10;
+  }
+
+  &:active, &:focus {
+    background-color: $gray20;
+  }
+
+  &.disabled {
+    background-color: $white !important;
+    cursor: default !important;
+  }
+
+  .user_img {
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .sponsor_img {
+    margin-right: 8px;
+  }
+}
+
+.text {
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
 }

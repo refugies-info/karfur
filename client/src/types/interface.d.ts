@@ -362,6 +362,7 @@ export interface Responsable {
   _id: ObjectId;
   username: string;
   picture: Picture;
+  email: string;
 }
 export interface SimplifiedStructureForAdmin {
   _id: ObjectId;

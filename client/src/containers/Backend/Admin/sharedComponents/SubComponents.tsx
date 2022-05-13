@@ -5,6 +5,8 @@ import { limitNbCaracters } from "lib";
 import { correspondingStatus, progressionData } from "../AdminContenu/data";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
+import moment, { Moment } from "moment";
+import styles from "../Admin.module.scss";
 interface SimplifiedStructure {
   _id: ObjectId;
   status: string;
@@ -323,4 +325,16 @@ export const TabHeader = (props: {
       <EVAIcon name={`chevron-${props.sens}`} fill={colors.gray90} />
     )}
   </StyledTabHeader>
+);
+
+
+export const Date = (props: {
+  date: Moment | undefined
+}) => (
+  <p className={styles.text}>
+    {props.date ?
+      `${moment(props.date).format("LLL")} soit ${moment(props.date).fromNow()}`
+      : "Non disponible"
+    }
+  </p>
 );

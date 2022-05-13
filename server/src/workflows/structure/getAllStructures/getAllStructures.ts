@@ -68,7 +68,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
         dispositifsIds,
       };
     });
-    const neededFieldsUser = { username: 1, picture: 1 };
+    const neededFieldsUser = { username: 1, picture: 1, email: 1 };
     // @ts-ignore
     const data = [];
     await asyncForEach(
