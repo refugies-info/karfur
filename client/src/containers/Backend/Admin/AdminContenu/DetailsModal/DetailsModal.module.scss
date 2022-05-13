@@ -89,6 +89,12 @@
     flex-grow: 1;
   }
 }
+.col_3 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 435px;
+}
 
 
 .white_container {

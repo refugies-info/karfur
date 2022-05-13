@@ -329,12 +329,17 @@ export const TabHeader = (props: {
 
 
 export const Date = (props: {
-  date: Moment | undefined
+  date: Moment | undefined,
+  author?: {_id: ObjectId, username: string}
 }) => (
   <p className={styles.text}>
-    {props.date ?
-      `${moment(props.date).format("LLL")} soit ${moment(props.date).fromNow()}`
-      : "Non disponible"
+
+    {!props.date ?
+      "Non disponible" :
+      <>
+        {`${moment(props.date).format("LLL")} soit ${moment(props.date).fromNow()}`}
+        {props.author &&<strong>{` par ${props.author.username}`}</strong>}
+      </>
     }
   </p>
 );

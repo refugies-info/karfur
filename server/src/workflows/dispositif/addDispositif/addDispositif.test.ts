@@ -158,6 +158,7 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -194,6 +195,7 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -242,6 +244,7 @@ describe("addDispositif", () => {
       titreMarque: "TM",
       typeContenu: "dispositif",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(

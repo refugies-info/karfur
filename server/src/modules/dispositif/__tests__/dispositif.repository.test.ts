@@ -18,7 +18,9 @@ const dispositifsList = [{ id: "id1" }, { id: "id2" }];
 describe("getDispositifsFromDB", () => {
   it("should call Dispositif", async () => {
     Dispositif.find.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue(dispositifsList),
+      populate: jest.fn().mockReturnValueOnce({
+        populate: jest.fn().mockResolvedValue(dispositifsList),
+      })
     });
     const neededFields = { status: 1, typeContenu: 1 };
     const res = await getDispositifsFromDB(neededFields);
@@ -73,7 +75,7 @@ describe("getDispositifArray", () => {
   it("should call Dispositif when query has no audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
       lean: jest.fn().mockReturnValueOnce({
-          populate: jest.fn().mockResolvedValue(dispositifsList),
+        populate: jest.fn().mockResolvedValue(dispositifsList),
       })
     });
     const query = { status: "Actif" };

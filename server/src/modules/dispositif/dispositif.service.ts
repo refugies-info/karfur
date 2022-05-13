@@ -7,8 +7,12 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/misce
 import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 
-export const publishDispositif = async (dispositifId: ObjectId) => {
-  const newDispositif = { status: "Actif", publishedAt: Date.now() };
+export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId) => {
+  const newDispositif = {
+    status: "Actif",
+    publishedAt: Date.now(),
+    publishedAtAuthor: userId
+  };
 
   // @ts-ignore : updateDispositifInDB returns object with creatorId not populate
   const newDispo: DispositifNotPopulateDoc = await updateDispositifInDB(

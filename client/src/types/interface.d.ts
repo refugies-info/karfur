@@ -107,6 +107,10 @@ export interface SimplifiedDispositif {
   typeContenu: string;
   created_at: Moment;
   publishedAt?: Moment;
+  publishedAtAuthor?: {
+    _id: ObjectId
+    username: string
+  }
   _id: ObjectId;
   mainSponsor: null | SimplifiedMainSponsor;
   creatorId: SimplifiedCreator | null;
@@ -118,6 +122,10 @@ export interface SimplifiedDispositif {
   draftReminderMailSentDate?: Moment;
   draftSecondReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
+  lastModificationAuthor?: {
+    _id: ObjectId
+    username: string
+  }
   needs?: ObjectId[];
   tags: Tag[];
   nbMercis: number;
@@ -479,3 +487,27 @@ export type AvailableLanguageI18nCode =
   | "ru"
   | "uk"
   | "fa";
+
+  export interface Log {
+    _id: ObjectId;
+    objectId: ObjectId;
+    model_object: "User" | "Dispositif" | "Structure";
+    text: string;
+    author?: {
+      _id: ObjectId;
+      username: string;
+    }
+    dynamicId?: {
+      _id: ObjectId;
+      name?: string;
+      titreInformatif?: string;
+      username?: string;
+    }
+    model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
+    link?: {
+      id: ObjectId;
+      model_link: "User" | "Dispositif" | "Structure";
+      next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
+    }
+    created_at: Moment;
+  }

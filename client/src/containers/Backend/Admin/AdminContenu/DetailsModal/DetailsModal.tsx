@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Modal, Input, Spinner, Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
@@ -7,7 +7,7 @@ import { ObjectId } from "mongodb";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
 import { statusCompare } from "lib/statusCompare";
-import { SimplifiedStructureForAdmin } from "types/interface";
+import { Log, SimplifiedStructureForAdmin } from "types/interface";
 import { colors } from "colors";
 import {
   allDispositifsSelector,
@@ -28,6 +28,7 @@ import {
   StyledStatus,
   Date,
 } from "../../sharedComponents/SubComponents";
+import { LogList } from "../../Logs/LogList";
 
 interface Props {
   show: boolean;
@@ -53,7 +54,8 @@ export const DetailsModal = (props: Props) => {
     dispositif?.adminComments || ""
   );
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
-  const [currentId, setCurrentId] = useState(props.selectedDispositifId);
+  const [currentId, setCurrentId] = useState<ObjectId|null>(null);
+  const [logs, setLogs] = useState<Log[]>([]);
 
   const structure = useSelector(
     structureSelector(dispositif?.mainSponsor?._id || null)
@@ -61,13 +63,22 @@ export const DetailsModal = (props: Props) => {
   const allDispositifs = useSelector(allDispositifsSelector);
   const allUsers = useSelector(allUsersSelector);
 
+  const updateLogs = useCallback(() => {
+    if (selectedDispositifId) {
+      API.logs(selectedDispositifId).then(res => {
+        setLogs(res.data.data)
+      });
+    }
+  }, [selectedDispositifId]);
+
   useEffect(() => {
     if (dispositif && currentId !== selectedDispositifId) {
       setAdminComments(dispositif.adminComments || "");
       setAdminCommentsSaved(false);
       setCurrentId(selectedDispositifId);
     }
-  }, [dispositif, currentId, selectedDispositifId]);
+    updateLogs();
+  }, [dispositif, currentId, selectedDispositifId, updateLogs]);
 
   const updateDispositifsStore = (
     dispositifId: ObjectId,
@@ -82,7 +93,9 @@ export const DetailsModal = (props: Props) => {
     const newDispositif = dispositifs.find((d) => d._id === dispositifId);
     if (newDispositif) newDispositif[property] = value;
     dispatch(setAllDispositifsActionsCreator(dispositifs));
+    updateLogs();
   };
+
   const onNotesChange = (e: any) => {
     if (adminCommentsSaved) setAdminCommentsSaved(false);
     setAdminComments(e.target.value);
@@ -318,7 +331,7 @@ export const DetailsModal = (props: Props) => {
             <Row className="mb-5">
               <Col>
                 <p className={styles.label}>Dernière mise à jour</p>
-                <Date date={dispositif.lastModificationDate} />
+                <Date date={dispositif.lastModificationDate} author={dispositif.lastModificationAuthor} />
               </Col>
               <Col>
                 <p className={styles.label}>Date de publication</p>
@@ -328,6 +341,7 @@ export const DetailsModal = (props: Props) => {
                       ? undefined
                       : dispositif.publishedAt
                   }
+                  author={dispositif.publishedAtAuthor}
                 />
               </Col>
             </Row>
@@ -444,8 +458,9 @@ export const DetailsModal = (props: Props) => {
             </FButton>
           </div>
 
-          <div>
+          <div className={styles.col_3}>
             <p className={styles.label}>Journal d'activité</p>
+            <LogList logs={logs} />
           </div>
         </div>
       </Modal>
