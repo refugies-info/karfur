@@ -17,18 +17,19 @@ import API from "utils/API";
 import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import styles from "./DetailsModal.module.scss";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { allUsersSelector } from "services/AllUsers/allUsers.selector";
 import { UserButton } from "../../sharedComponents/UserButton";
 import { findUser } from "./functions";
 import { StructureButton } from "../../sharedComponents/StructureButton";
+import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import {
   TypeContenu,
   StyledStatus,
   Date,
 } from "../../sharedComponents/SubComponents";
 import { LogList } from "../../Logs/LogList";
+import styles from "./ContentDetailsModal.module.scss";
 
 interface Props {
   show: boolean;
@@ -45,7 +46,7 @@ interface Props {
 }
 moment.locale("fr");
 
-export const DetailsModal = (props: Props) => {
+export const ContentDetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
   const dispatch = useDispatch();
 
@@ -54,7 +55,7 @@ export const DetailsModal = (props: Props) => {
     dispositif?.adminComments || ""
   );
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId|null>(null);
+  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
   const [logs, setLogs] = useState<Log[]>([]);
 
   const structure = useSelector(
@@ -65,8 +66,8 @@ export const DetailsModal = (props: Props) => {
 
   const updateLogs = useCallback(() => {
     if (selectedDispositifId) {
-      API.logs(selectedDispositifId).then(res => {
-        setLogs(res.data.data)
+      API.logs(selectedDispositifId).then((res) => {
+        setLogs(res.data.data);
       });
     }
   }, [selectedDispositifId]);
@@ -165,7 +166,6 @@ export const DetailsModal = (props: Props) => {
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        className="details-modal"
       >
         <Spinner />
       </Modal>
@@ -176,24 +176,21 @@ export const DetailsModal = (props: Props) => {
     const burl =
       "/" + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id;
     return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        size="xl"
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-      >
-        <Row>
-          <Col className={styles.title}>
+      <DetailsModal
+        show={props.show}
+        toggleModal={props.toggleModal}
+        leftHead={
+          <>
             <TypeContenu type={dispositif.typeContenu} isDetailedVue={true} />
             <h2 className={styles.title}>
               {dispositif.titreInformatif}
               <span style={{ color: colors.gray70 }}> avec </span>
               {dispositif.titreMarque}
             </h2>
-          </Col>
-
-          <Col className="text-right">
+          </>
+        }
+        rightHead={
+          <>
             {["En attente admin", "En attente", "Accepté structure"].includes(
               dispositif.status
             ) &&
@@ -232,9 +229,9 @@ export const DetailsModal = (props: Props) => {
               onClick={props.toggleModal}
               name="close-outline"
             ></FButton>
-          </Col>
-        </Row>
-
+          </>
+        }
+      >
         <div className={styles.status_row}>
           <div>
             <p className={styles.label}>Statut de la fiche</p>
@@ -331,7 +328,10 @@ export const DetailsModal = (props: Props) => {
             <Row className="mb-5">
               <Col>
                 <p className={styles.label}>Dernière mise à jour</p>
-                <Date date={dispositif.lastModificationDate} author={dispositif.lastModificationAuthor} />
+                <Date
+                  date={dispositif.lastModificationDate}
+                  author={dispositif.lastModificationAuthor}
+                />
               </Col>
               <Col>
                 <p className={styles.label}>Date de publication</p>
@@ -368,7 +368,9 @@ export const DetailsModal = (props: Props) => {
                   onClick={() => {
                     if (!dispositif.mainSponsor) return;
                     //@ts-ignore
-                    props.setSelectedStructureIdAndToggleModal(dispositif.mainSponsor);
+                    props.setSelectedStructureIdAndToggleModal(
+                      dispositif.mainSponsor
+                    );
                     props.toggleModal();
                   }}
                 />
@@ -463,7 +465,7 @@ export const DetailsModal = (props: Props) => {
             <LogList logs={logs} />
           </div>
         </div>
-      </Modal>
+      </DetailsModal>
     );
   }
   return <div />;

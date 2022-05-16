@@ -46,7 +46,7 @@ import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/Selec
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
-import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminStructures.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -465,7 +465,7 @@ export const AdminStructures = () => {
       )}
 
       {selectedContentId && (
-        <DetailsModal
+        <ContentDetailsModal
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={
             setSelectedStructureIdAndToggleModal

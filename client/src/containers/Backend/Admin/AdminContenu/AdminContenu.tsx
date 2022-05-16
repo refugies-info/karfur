@@ -38,7 +38,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
-import { DetailsModal } from "./DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -572,7 +572,7 @@ export const AdminContenu = () => {
           </tbody>
         </Table>
       </Content>
-      <DetailsModal
+      <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
         setSelectedStructureIdAndToggleModal={

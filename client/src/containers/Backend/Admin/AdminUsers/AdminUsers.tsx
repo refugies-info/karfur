@@ -46,7 +46,7 @@ import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDisp
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -506,7 +506,7 @@ export const AdminUsers = () => {
         />
       )}
       {selectedContentId && (
-        <DetailsModal
+        <ContentDetailsModal
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={
             setSelectedStructureIdAndToggleModal
