@@ -6,7 +6,7 @@ import "moment/locale/fr";
 import { ObjectId } from "mongodb";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
-import { Log, SimplifiedStructureForAdmin } from "types/interface";
+import { Log } from "types/interface";
 import { colors } from "colors";
 import {
   allDispositifsSelector,
@@ -40,9 +40,9 @@ interface Props {
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
-  setSelectedUserIdAndToggleModal: (element: any) => void;
+  setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
   setSelectedStructureIdAndToggleModal: (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => void;
 }
 moment.locale("fr");
@@ -258,7 +258,7 @@ export const ContentDetailsModal = (props: Props) => {
                   user={dispositif.creatorId}
                   onClick={() => {
                     props.toggleModal();
-                    props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
+                    props.setSelectedUserIdAndToggleModal(dispositif.creatorId?._id || null);
                   }}
                 />
               </div>
@@ -271,8 +271,7 @@ export const ContentDetailsModal = (props: Props) => {
                     onClick={() => {
                       if (!dispositif.mainSponsor) return;
                       props.setSelectedStructureIdAndToggleModal(
-                        //@ts-ignore
-                        dispositif.mainSponsor
+                        dispositif.mainSponsor?._id || null
                       );
                       props.toggleModal();
                     }}
@@ -298,7 +297,7 @@ export const ContentDetailsModal = (props: Props) => {
                       onClick={() => {
                         props.toggleModal();
                         props.setSelectedUserIdAndToggleModal(
-                          structure.responsable
+                          structure.responsable?._id || null
                         );
                       }}
                     />
@@ -317,9 +316,7 @@ export const ContentDetailsModal = (props: Props) => {
                                 user={findUser(user.userId, allUsers)}
                                 onClick={() => {
                                   props.toggleModal();
-                                  props.setSelectedUserIdAndToggleModal({
-                                    _id: user.userId,
-                                  });
+                                  props.setSelectedUserIdAndToggleModal(user.userId);
                                 }}
                                 condensed={true}
                               />
@@ -356,7 +353,13 @@ export const ContentDetailsModal = (props: Props) => {
 
             <div className={styles.col_3}>
               <Label>Journal d'activité</Label>
-              <LogList logs={logs} />
+              <LogList
+                logs={logs}
+                openUserModal={props.setSelectedUserIdAndToggleModal}
+                openStructureModal={props.setSelectedStructureIdAndToggleModal}
+                openImprovementsModal={props.toggleImprovementsMailModal}
+                openNeedsModal={props.toggleNeedsChoiceModal}
+              />
             </div>
           </div>
         </>

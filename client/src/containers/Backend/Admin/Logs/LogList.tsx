@@ -3,10 +3,21 @@ import moment from "moment";
 import { Log } from "types/interface";
 import { LogLine } from "./LogLine";
 import styles from "./LogList.module.scss";
+import { ObjectId } from "mongodb";
 
 type GroupedLogs = { [key: string]: Log[] };
 
-export const LogList = (props: { logs: Log[] }) => {
+interface Props {
+  logs: Log[]
+  openUserModal?: (user: ObjectId | null) => void
+  openContentModal?: (element: ObjectId | null, status: string | null) => void
+  openStructureModal?: (element: ObjectId | null) => void
+  openAnnuaire?: (id: ObjectId) => void
+  openImprovementsModal?: () => void
+  openNeedsModal?: () => void
+}
+
+export const LogList = (props: Props) => {
   const [groupedLogs, setGroupedLogs] = useState<GroupedLogs>({});
 
   useEffect(() => {
@@ -21,13 +32,22 @@ export const LogList = (props: { logs: Log[] }) => {
 
   return (
     <div className={styles.container}>
-      {Object.entries(groupedLogs).map((group) => (
-        <>
+      {Object.entries(groupedLogs).map((group, j) => (
+        <div key={j}>
           <p className={styles.date}>{group[0]}</p>
           {group[1].map((log, i) => (
-            <LogLine key={i} log={log} />
+            <LogLine
+              key={i}
+              log={log}
+              openUserModal={props.openUserModal}
+              openContentModal={props.openContentModal}
+              openStructureModal={props.openStructureModal}
+              openAnnuaire={props.openAnnuaire}
+              openImprovementsModal={props.openImprovementsModal}
+              openNeedsModal={props.openNeedsModal}
+            />
           ))}
-        </>
+        </div>
       ))}
     </div>
   );

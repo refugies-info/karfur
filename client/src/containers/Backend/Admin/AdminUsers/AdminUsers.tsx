@@ -132,10 +132,8 @@ export const AdminUsers = () => {
   const toggleContentDetailsModal = () =>
     setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (
-    element: SimplifiedUser | null | Responsable
-  ) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
@@ -157,9 +155,9 @@ export const AdminUsers = () => {
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => {
-    setSelectedStructureId(element ? element._id : null);
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
@@ -402,7 +400,7 @@ export const AdminUsers = () => {
                 <tr key={key}>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
@@ -420,7 +418,7 @@ export const AdminUsers = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div style={{ maxWidth: "200px", wordWrap: "break-word" }}>
                       {element.email}
@@ -433,7 +431,7 @@ export const AdminUsers = () => {
                       setSelectedStructureIdAndToggleModal(
                         //@ts-ignore
                         element.structures && element.structures.length > 0
-                          ? element.structures[0]
+                          ? element.structures[0]._id
                           : null
                       )
                     }
@@ -442,7 +440,7 @@ export const AdminUsers = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div className={styles.item_container}>
                       {(element.roles || []).map((role) => (
@@ -452,7 +450,7 @@ export const AdminUsers = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div className={styles.item_container}>
                       {(element.langues || []).map((langue) => (
@@ -466,7 +464,7 @@ export const AdminUsers = () => {
 
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     {element.created_at
                       ? moment(element.created_at).format("LLL")

@@ -139,9 +139,9 @@ export const AdminStructures = () => {
   };
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => {
-    setSelectedStructureId(element ? element._id : null);
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
@@ -178,8 +178,8 @@ export const AdminStructures = () => {
   const toggleContentDetailsModal = () =>
     setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
   const setSelectedContentIdAndToggleModal = (
@@ -373,7 +373,7 @@ export const AdminStructures = () => {
               <tr key={key}>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
@@ -391,7 +391,7 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   <StyledStatus
                     text={element.status}
@@ -400,7 +400,7 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle cursor-pointer"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.nbMembres}
                 </td>
@@ -408,7 +408,7 @@ export const AdminStructures = () => {
                 <td
                   className={"align-middle "}
                   onClick={() =>
-                    setSelectedUserIdAndToggleModal(element.responsable)
+                    setSelectedUserIdAndToggleModal(element.responsable?._id || null)
                   }
                 >
                   <ResponsableComponent
@@ -418,13 +418,13 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.nbFiches}
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.created_at
                     ? moment(element.created_at).format("LLL")

@@ -72,7 +72,7 @@ interface Props {
   toggleModal: () => void;
   selectedUserId: ObjectId | null;
   setSelectedStructureIdAndToggleModal: (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => void;
 }
 
@@ -305,7 +305,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
               role={structure.role ? structure.role[0] : null}
               onClick={() => {
                 //@ts-ignore
-                props.setSelectedStructureIdAndToggleModal(structure);
+                props.setSelectedStructureIdAndToggleModal(structure._id);
                 props.toggleModal();
               }}
             />

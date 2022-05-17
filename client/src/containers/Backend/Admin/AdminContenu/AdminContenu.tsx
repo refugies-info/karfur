@@ -117,8 +117,8 @@ export const AdminContenu = () => {
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: any) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
@@ -282,8 +282,8 @@ export const AdminContenu = () => {
     setSelectedDispositifAndToggleModal(element || null);
   }
 
-  const setSelectedStructureIdAndToggleModal = (element: SimplifiedMainSponsor | null) => {
-    setSelectedStructureId(element ? element._id : null);
+  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
   const handleChange = (e: any) => setSearch(e.target.value);
@@ -496,7 +496,7 @@ export const AdminContenu = () => {
                   <td
                     className="align-middle cursor-pointer"
                     onClick={() =>
-                      setSelectedStructureIdAndToggleModal(element.mainSponsor)
+                      setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)
                     }
                   >
                     <Structure sponsor={element.mainSponsor} />

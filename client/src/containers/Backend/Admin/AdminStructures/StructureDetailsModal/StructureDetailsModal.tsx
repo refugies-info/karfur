@@ -42,6 +42,7 @@ import { getStructureWithAllInformationRequired } from "./functions";
 import styles from "./StructureDetailsModal.module.scss";
 import Swal from "sweetalert2";
 import { colors } from "colors";
+import { useRouter } from "next/router";
 
 moment.locale("fr");
 interface Props extends RouteComponentProps {
@@ -49,7 +50,7 @@ interface Props extends RouteComponentProps {
   toggleModal: () => void;
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
-  setSelectedUserIdAndToggleModal: (element: Responsable | null) => void;
+  setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
   setSelectedContentIdAndToggleModal: (
     element: ObjectId | null,
     status: string | null
@@ -60,6 +61,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   props: Props
 ) => {
   const routerLocale = useRouterLocale();
+  const router = useRouter();
   const selectedStructureId = props.selectedStructureId;
   const dispatch = useDispatch();
 
@@ -236,7 +238,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 user={structure.createur}
                 onClick={() => {
                   props.toggleModal();
-                  props.setSelectedUserIdAndToggleModal(structure.createur);
+                  props.setSelectedUserIdAndToggleModal(structure.createur?._id || null);
                 }}
               />
             </div>
@@ -249,7 +251,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 onClick={() => {
                   if (structure.responsable) {
                     props.toggleModal();
-                    props.setSelectedUserIdAndToggleModal(structure.responsable);
+                    props.setSelectedUserIdAndToggleModal(structure.responsable?._id || null);
                   } else {
                     props.toggleRespoModal();
                   }
@@ -297,7 +299,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
           <div className={styles.col_3}>
             <Label>Journal d'activité</Label>
-            <LogList logs={logs} />
+            <LogList
+              logs={logs}
+              openUserModal={props.setSelectedUserIdAndToggleModal}
+              openContentModal={props.setSelectedContentIdAndToggleModal}
+              openAnnuaire={(id) => router.push(`/annuaire/${id}`)}
+            />
           </div>
         </div>
       </DetailsModal>

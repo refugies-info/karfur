@@ -494,7 +494,7 @@ export interface Log {
   }
   dynamicId?: {
     _id: ObjectId;
-    name?: string;
+    nom?: string;
     titreInformatif?: string;
     username?: string;
   }
