@@ -2,6 +2,7 @@
 import { createStructure } from "./createStructure";
 import { createStructureInDB } from "../../../modules/structure/structure.repository";
 import { updateRoleAndStructureOfResponsable } from "../../../modules/users/users.service";
+import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -14,7 +15,9 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../modules/structure/structure.repository", () => ({
   createStructureInDB: jest.fn().mockResolvedValue({ _id: "id" }),
 }));
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../modules/users/users.service", () => ({
   updateRoleAndStructureOfResponsable: jest.fn(),
 }));

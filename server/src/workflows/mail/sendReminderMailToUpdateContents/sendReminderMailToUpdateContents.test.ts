@@ -10,6 +10,7 @@ import { getUserById } from "../../../modules/users/users.repository";
 import moment from "moment";
 import mockdate from "mockdate";
 import logger from "../../../logger";
+import { log } from "./log";
 
 mockdate.set("2019-11-10T10:00:00.00Z");
 
@@ -26,7 +27,9 @@ jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getPublishedDispositifWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
 }));
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../modules/mail/mail.service", () => ({
   sendUpdateReminderMailService: jest.fn(),
 }));
