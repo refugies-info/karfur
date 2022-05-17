@@ -116,7 +116,7 @@ export const createStructureInDB = async (structure: StructureDoc) =>
 
 export const updateStructureInDB = async (
   structureId: ObjectId,
-  structure: StructureDoc
+  structure: Partial<StructureDoc>
 ) => {
   return Structure.findOneAndUpdate(
     {

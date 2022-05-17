@@ -138,7 +138,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
       const queryStructure = {
         query: {
-          ...structure,
+          _id: structure._id,
           [property]: newStatus,
         },
       };

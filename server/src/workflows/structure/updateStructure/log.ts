@@ -3,7 +3,7 @@ import { addLog } from "../../../modules/logs/logs.service";
 import { StructureDoc } from "../../../schema/schemaStructure";
 
 export const log = async (
-  structure: StructureDoc,
+  structure: Partial<StructureDoc>,
   oldStructure: StructureDoc,
   authorId: ObjectId
 ) => {
@@ -22,7 +22,7 @@ export const log = async (
       }
     );
   }
-  if (structure.nom !== oldStructure.nom) {
+  if (structure.nom && structure.nom !== oldStructure.nom) {
     await addLog(
       structure._id,
       "Structure",
@@ -37,7 +37,7 @@ export const log = async (
       }
     );
   }
-  if (structure.status !== oldStructure.status) {
+  if (structure.status && structure.status !== oldStructure.status) {
     await addLog(
       structure._id,
       "Structure",
@@ -45,8 +45,23 @@ export const log = async (
       { author: authorId }
     );
   }
+  if (structure.adminComments && structure.adminComments !== oldStructure.adminComments) {
+    await addLog(
+      structure._id,
+      "Structure",
+      "Note interne modifiée",
+      { author: authorId }
+    );
+  }
 
-  if (structure.picture?.imgId &&
+  delete structure.status;
+  delete structure.adminProgressionStatus;
+  delete structure.adminPercentageProgressionStatus;
+  delete structure.adminComments;
+
+  const nbPropertiesEdited = Object.keys(structure).filter(key => key !== "_id").length;
+  if (nbPropertiesEdited > 0 &&
+    structure.picture?.imgId &&
     structure.picture?.imgId === oldStructure.picture?.imgId &&
     structure.nom === oldStructure.nom
   ) {
