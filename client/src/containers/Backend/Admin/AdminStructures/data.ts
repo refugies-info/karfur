@@ -35,38 +35,35 @@ export const correspondingStatus: StructureStatus[] = [
   },
 ];
 
-const darkBlue = colors.bleuCharte;
-const lightBlue = colors.lightBlue;
-
 export const publicationStatus: ProgressionStatus[] = [
   {
     storedStatus: "Contacté",
     displayedStatus: "Contacté 🔄",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "À relancer",
     displayedStatus: "À relancer ⚠️",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "À repêcher",
     displayedStatus: "À repêcher 🎣",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "À réconcilier",
     displayedStatus: "À réconcilier 🤝",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "Doublons",
     displayedStatus: "Doublons 👥",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
 ];
@@ -75,31 +72,31 @@ export const progressionStatus: ProgressionStatus[] = [
   {
     storedStatus: "0%",
     displayedStatus: "0%",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "25%",
     displayedStatus: "25%",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "50%",
     displayedStatus: "50%",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "75%",
     displayedStatus: "75%",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
   {
     storedStatus: "100%",
     displayedStatus: "100%",
-    color: lightBlue,
+    color: colors.lightBlue,
     textColor: colors.gray90,
   },
 ];

@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
-import { userHeaders, correspondingStatus, FilterUserStatus } from "./data";
+import { userHeaders, correspondingStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -32,6 +32,7 @@ import {
   SimplifiedUser,
   Responsable,
   SimplifiedStructureForAdmin,
+  UserStatusType,
 } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
@@ -65,7 +66,7 @@ export const AdminUsers = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "utilisateurs");
-  const [filter, setFilter] = useState<FilterUserStatus>(initialFilters.filter as FilterUserStatus || "Admin");
+  const [filter, setFilter] = useState<UserStatusType>(initialFilters.filter as UserStatusType || "Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -147,7 +148,7 @@ export const AdminUsers = () => {
     toggleContentDetailsModal();
   };
 
-  const onFilterClick = (status: FilterUserStatus) => {
+  const onFilterClick = (status: UserStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -353,7 +354,7 @@ export const AdminUsers = () => {
         </div>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
-            const status = element.status;
+            const status = element.storedStatus;
             const nbUsers = getNbUsersByStatus(usersForCount, status);
             return (
               <FilterButton

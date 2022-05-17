@@ -9,7 +9,7 @@ import useRouterLocale from "hooks/useRouterLocale";
 import { fetchAllDispositifsActionsCreator, setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
-import { table_contenu, correspondingStatus, FilterContentStatus } from "./data";
+import { table_contenu, correspondingStatus } from "./data";
 import API from "utils/API";
 import {
   StyledSort,
@@ -49,7 +49,7 @@ import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
-import { SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
+import { ContentStatusType, SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -80,7 +80,7 @@ export const AdminContenu = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
-  const [filter, setFilter] = useState<FilterContentStatus>(initialFilters.filter as FilterContentStatus || "En attente admin");
+  const [filter, setFilter] = useState<ContentStatusType>(initialFilters.filter as ContentStatusType || "En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -267,7 +267,7 @@ export const AdminContenu = () => {
     }
   };
 
-  const onFilterClick = (status: FilterContentStatus) => {
+  const onFilterClick = (status: ContentStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
