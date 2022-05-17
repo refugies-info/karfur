@@ -193,7 +193,7 @@ export interface User {
 export interface DispositifContent {
   type?: string;
   title?: string;
-  content?: string|null;
+  content?: string | null;
   editable?: boolean;
   children?: DispositifContent[];
   placeholder?: string;
@@ -375,25 +375,20 @@ export interface Responsable {
 export interface SimplifiedStructureForAdmin {
   _id: ObjectId;
   nom: string;
-  picture: Picture;
+  acronyme: string;
   status: string;
-  contact: string;
-  phone_contact: string;
-  mail_contact: string;
+  picture: Picture;
   nbMembres: number;
   created_at: Moment;
+  createur: null | Responsable;
   responsable: null | Responsable;
   membres: Membre[];
   dispositifsIds: ObjectId[];
+  createur: null | SimplifiedCreator;
   nbFiches: number;
-  dispositifsSimplified?: {
-    titreInformatif: string | { fr: string };
-    creator: Responsable;
-    created_at: number;
-    _id: ObjectId;
-    status: string;
-    color: string;
-  }[];
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
 }
 
 export interface IUserFavorite {
@@ -488,26 +483,55 @@ export type AvailableLanguageI18nCode =
   | "uk"
   | "fa";
 
-  export interface Log {
+export interface Log {
+  _id: ObjectId;
+  objectId: ObjectId;
+  model_object: "User" | "Dispositif" | "Structure";
+  text: string;
+  author?: {
     _id: ObjectId;
-    objectId: ObjectId;
-    model_object: "User" | "Dispositif" | "Structure";
-    text: string;
-    author?: {
-      _id: ObjectId;
-      username: string;
-    }
-    dynamicId?: {
-      _id: ObjectId;
-      name?: string;
-      titreInformatif?: string;
-      username?: string;
-    }
-    model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
-    link?: {
-      id: ObjectId;
-      model_link: "User" | "Dispositif" | "Structure";
-      next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
-    }
-    created_at: Moment;
+    username: string;
   }
+  dynamicId?: {
+    _id: ObjectId;
+    name?: string;
+    titreInformatif?: string;
+    username?: string;
+  }
+  model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
+  link?: {
+    id: ObjectId;
+    model_link: "User" | "Dispositif" | "Structure";
+    next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
+  }
+  created_at: Moment;
+}
+
+
+export type Status = {
+  displayedStatus: string
+  color: string
+  textColor?: string
+}
+
+export type ContentStatusType = "Actif" | "En attente" | "Brouillon" | "En attente non prioritaire" | "Rejeté structure" | "En attente admin" | "Accepté structure" | "Supprimé";
+export type ContentStatus = {
+  storedStatus: ContentStatusType
+  order: number
+} & Status;
+
+export type StructureStatusType = "Actif" | "En attente" | "Supprimé";
+export type StructureStatus = {
+  storedStatus: StructureStatusType
+  order: number
+} & Status;
+
+export type UserStatusType = "Respo" | "Admin" | "Experts" | "Traducteurs" | "Rédacteurs" | "Multi-structure" | "Tous";
+export type UserStatus = {
+  storedStatus: UserStatusType
+  order: number
+} & Status;
+
+export type ProgressionStatus = {
+  storedStatus: string
+} & Status;

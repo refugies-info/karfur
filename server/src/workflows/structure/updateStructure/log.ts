@@ -7,7 +7,7 @@ export const log = async (
   oldStructure: StructureDoc,
   authorId: ObjectId
 ) => {
-  if (structure.picture.imgId !== oldStructure.picture.imgId) {
+  if (structure.picture?.imgId && structure.picture?.imgId !== oldStructure.picture?.imgId) {
     await addLog(
       structure._id,
       "Structure",
@@ -46,7 +46,8 @@ export const log = async (
     );
   }
 
-  if (structure.picture.imgId === oldStructure.picture.imgId &&
+  if (structure.picture?.imgId &&
+    structure.picture?.imgId === oldStructure.picture?.imgId &&
     structure.nom === oldStructure.nom
   ) {
     await addLog(

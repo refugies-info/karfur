@@ -29,7 +29,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
-import { headers, correspondingStatus, FilterStructureStatus } from "./data";
+import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,
   StructureName,
@@ -38,6 +38,7 @@ import {
 import {
   SimplifiedStructureForAdmin,
   Responsable,
+  StructureStatusType,
 } from "types/interface";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
@@ -66,7 +67,7 @@ export const AdminStructures = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "structures");
-  const [filter, setFilter] = useState<FilterStructureStatus>(initialFilters.filter as FilterStructureStatus || "En attente");
+  const [filter, setFilter] = useState<StructureStatusType>(initialFilters.filter as StructureStatusType || "En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -144,7 +145,7 @@ export const AdminStructures = () => {
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: FilterStructureStatus) => {
+  const onFilterClick = (status: StructureStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -326,7 +327,7 @@ export const AdminStructures = () => {
         </div>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
-            const status = element.status;
+            const status = element.storedStatus;
             const nbStructures = getNbStructuresByStatus(
               structuresForCount,
               status

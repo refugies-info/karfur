@@ -343,3 +343,5 @@ export const Date = (props: {
     }
   </p>
 );
+
+export const Label = (props: { children: any }) => <p className={styles.label}>{props.children}</p>

@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Modal, Input, Spinner, Row, Col } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import "moment/locale/fr";
 import { ObjectId } from "mongodb";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
-import { statusCompare } from "lib/statusCompare";
 import { Log, SimplifiedStructureForAdmin } from "types/interface";
 import { colors } from "colors";
 import {
@@ -25,11 +24,13 @@ import { StructureButton } from "../../sharedComponents/StructureButton";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import {
   TypeContenu,
-  StyledStatus,
   Date,
+  Label,
 } from "../../sharedComponents/SubComponents";
 import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
+import { StatusRow } from "../../sharedComponents/StatusRow";
+import { NotesInput } from "../../sharedComponents/NotesInput";
 
 interface Props {
   show: boolean;
@@ -146,13 +147,6 @@ export const ContentDetailsModal = (props: Props) => {
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
-  const getButtonColor = () => {
-    if (adminCommentsSaved) return "saved";
-    const oldComments = dispositif?.adminComments || "";
-    if (oldComments !== adminComments) return "modified";
-    return "dark";
-  };
-
   const hiddenStatus = [
     "En attente non prioritaire",
     "Rejeté structure",
@@ -161,17 +155,6 @@ export const ContentDetailsModal = (props: Props) => {
 
   const moreMembers = (structure?.membres || []).length > 3;
 
-  if (isLoading) {
-    return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-      >
-        <Spinner />
-      </Modal>
-    );
-  }
-
   if (dispositif) {
     const burl =
       "/" + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id;
@@ -179,10 +162,11 @@ export const ContentDetailsModal = (props: Props) => {
       <DetailsModal
         show={props.show}
         toggleModal={props.toggleModal}
+        isLoading={isLoading}
         leftHead={
           <>
             <TypeContenu type={dispositif.typeContenu} isDetailedVue={true} />
-            <h2 className={styles.title}>
+            <h2>
               {dispositif.titreInformatif}
               <span style={{ color: colors.gray70 }}> avec </span>
               {dispositif.titreMarque}
@@ -232,239 +216,150 @@ export const ContentDetailsModal = (props: Props) => {
           </>
         }
       >
-        <div className={styles.status_row}>
-          <div>
-            <p className={styles.label}>Statut de la fiche</p>
-            <div className="d-flex">
-              {correspondingStatus.sort(statusCompare).map((status) => {
-                if (
-                  hiddenStatus.includes(status.storedStatus) && // hide some status
-                  status.storedStatus !== dispositif.status
-                )
-                  return null;
+        <>
+          <StatusRow
+            element={dispositif}
+            status={correspondingStatus}
+            publicationStatus={publicationData}
+            progressionStatus={progressionData}
+            modifyStatus={modifyStatus}
+            hiddenStatus={hiddenStatus}
+          />
 
-                return (
-                  <div
-                    className="mr-2"
-                    key={status.storedStatus}
-                    onClick={() => modifyStatus(status.storedStatus, "status")}
-                  >
-                    <StyledStatus
-                      text={status.storedStatus}
-                      overrideColor={status.storedStatus !== dispositif.status}
-                      textToDisplay={status.displayedStatus}
-                      color={status.color}
-                      disabled={status.storedStatus === dispositif.status}
+          <div className={styles.details_row}>
+            <div className={styles.col_1}>
+              <Row className="mb-5">
+                <Col>
+                  <Label>Dernière mise à jour</Label>
+                  <Date
+                    date={dispositif.lastModificationDate}
+                    author={dispositif.lastModificationAuthor}
+                  />
+                </Col>
+                <Col>
+                  <Label>Date de publication</Label>
+                  <Date
+                    date={
+                      dispositif.status !== "Actif"
+                        ? undefined
+                        : dispositif.publishedAt
+                    }
+                    author={dispositif.publishedAtAuthor}
+                  />
+                </Col>
+              </Row>
+
+              <div className="mb-5">
+                <div className="d-flex justify-content-between">
+                  <Label>Création</Label>
+                  <Date date={dispositif.created_at} />
+                </div>
+                <UserButton
+                  user={dispositif.creatorId}
+                  onClick={() => {
+                    props.toggleModal();
+                    props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
+                  }}
+                />
+              </div>
+
+              <div className="mb-5">
+                <Label>Structure responsable</Label>
+                <div className="d-flex">
+                  <StructureButton
+                    sponsor={dispositif.mainSponsor}
+                    onClick={() => {
+                      if (!dispositif.mainSponsor) return;
+                      props.setSelectedStructureIdAndToggleModal(
+                        //@ts-ignore
+                        dispositif.mainSponsor
+                      );
+                      props.toggleModal();
+                    }}
+                  />
+                  <FButton
+                    className="ml-1"
+                    name="edit-outline"
+                    type="dark"
+                    onClick={(e: any) => {
+                      e.stopPropagation();
+                      props.setShowChangeStructureModal(true);
+                    }}
+                  ></FButton>
+                </div>
+              </div>
+
+              {structure && (
+                <>
+                  <div className="mb-5">
+                    <Label>Premier responsable</Label>
+                    <UserButton
+                      user={structure.responsable}
+                      onClick={() => {
+                        props.toggleModal();
+                        props.setSelectedUserIdAndToggleModal(
+                          structure.responsable
+                        );
+                      }}
                     />
                   </div>
-                );
-              })}
-            </div>
-          </div>
 
-          <div>
-            <p className={styles.label}>Statut de publication</p>
-            <div className="d-flex">
-              {publicationData.map((status) => (
-                <div
-                  key={status.storedStatus}
-                  className="mr-2"
-                  onClick={() =>
-                    modifyStatus(status.storedStatus, "adminProgressionStatus")
+                  {structure?.membres?.length &&
+                    <div>
+                      <Label>Autres responsables</Label>
+                      <Row noGutters>
+                        {(structure.membres || [])
+                          .filter((m) => m.roles.includes("administrateur"))
+                          .slice(0, moreMembers ? 2 : 3)
+                          .map((user, index) => (
+                            <Col key={index} className="mr-1">
+                              <UserButton
+                                user={findUser(user.userId, allUsers)}
+                                onClick={() => {
+                                  props.toggleModal();
+                                  props.setSelectedUserIdAndToggleModal({
+                                    _id: user.userId,
+                                  });
+                                }}
+                                condensed={true}
+                              />
+                            </Col>
+                          ))}
+                        {moreMembers && (
+                          <Col>
+                            <UserButton
+                              text={`+ ${
+                                structure.membres.length - 2
+                              } responsables`}
+                              condensed={true}
+                              noImage={true}
+                            />
+                          </Col>
+                        )}
+                      </Row>
+                    </div>
                   }
-                >
-                  <StyledStatus
-                    text={status.storedStatus}
-                    textToDisplay={status.displayedStatus}
-                    color={status.color}
-                    textColor={status.textColor}
-                    overrideColor={
-                      status.storedStatus !== dispositif.adminProgressionStatus
-                    }
-                    disabled={
-                      status.storedStatus === dispositif.adminProgressionStatus
-                    }
-                  />
-                </div>
-              ))}
+                </>
+              )}
             </div>
-          </div>
-          <div>
-            <p className={styles.label}>Progression</p>
-            <div className="d-flex">
-              {progressionData.map((status) => (
-                <div
-                  key={status.storedStatus}
-                  className="mr-2"
-                  onClick={() =>
-                    modifyStatus(
-                      status.storedStatus,
-                      "adminPercentageProgressionStatus"
-                    )
-                  }
-                >
-                  <StyledStatus
-                    text={status.storedStatus}
-                    textToDisplay={status.displayedStatus}
-                    color={status.color}
-                    textColor={status.textColor}
-                    overrideColor={
-                      status.storedStatus !==
-                      dispositif.adminPercentageProgressionStatus
-                    }
-                    disabled={
-                      status.storedStatus ===
-                      dispositif.adminPercentageProgressionStatus
-                    }
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
 
-        <div className={styles.details_row}>
-          <div className={styles.col_1}>
-            <Row className="mb-5">
-              <Col>
-                <p className={styles.label}>Dernière mise à jour</p>
-                <Date
-                  date={dispositif.lastModificationDate}
-                  author={dispositif.lastModificationAuthor}
-                />
-              </Col>
-              <Col>
-                <p className={styles.label}>Date de publication</p>
-                <Date
-                  date={
-                    dispositif.status !== "Actif"
-                      ? undefined
-                      : dispositif.publishedAt
-                  }
-                  author={dispositif.publishedAtAuthor}
-                />
-              </Col>
-            </Row>
-
-            <div className="mb-5">
-              <div className="d-flex justify-content-between">
-                <p className={styles.label}>Création</p>
-                <Date date={dispositif.created_at} />
-              </div>
-              <UserButton
-                user={dispositif.creatorId}
-                onClick={() => {
-                  props.toggleModal();
-                  props.setSelectedUserIdAndToggleModal(dispositif.creatorId);
-                }}
+            <div className={styles.col_2}>
+              <Label>Notes internes sur la fiche</Label>
+              <NotesInput
+                adminComments={adminComments}
+                onNotesChange={onNotesChange}
+                saveAdminComments={saveAdminComments}
+                adminCommentsSaved={adminCommentsSaved}
+                oldComments={structure?.adminComments || ""}
               />
             </div>
 
-            <div className="mb-5">
-              <p className={styles.label}>Structure responsable</p>
-              <div className="d-flex">
-                <StructureButton
-                  sponsor={dispositif.mainSponsor}
-                  onClick={() => {
-                    if (!dispositif.mainSponsor) return;
-                    //@ts-ignore
-                    props.setSelectedStructureIdAndToggleModal(
-                      dispositif.mainSponsor
-                    );
-                    props.toggleModal();
-                  }}
-                />
-                <FButton
-                  className="ml-1"
-                  name="edit-outline"
-                  type="dark"
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    props.setShowChangeStructureModal(true);
-                  }}
-                ></FButton>
-              </div>
+            <div className={styles.col_3}>
+              <Label>Journal d'activité</Label>
+              <LogList logs={logs} />
             </div>
-
-            {structure && (
-              <>
-                <div className="mb-5">
-                  <p className={styles.label}>Premier responsable</p>
-                  <UserButton
-                    user={structure.responsable}
-                    onClick={() => {
-                      props.toggleModal();
-                      props.setSelectedUserIdAndToggleModal(
-                        structure.responsable
-                      );
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <p className={styles.label}>Autres responsables</p>
-                  <Row noGutters>
-                    {structure.membres
-                      .filter((m) => m.roles.includes("administrateur"))
-                      .slice(0, moreMembers ? 2 : 3)
-                      .map((user, index) => (
-                        <Col key={index} className="mr-1">
-                          <UserButton
-                            user={findUser(user.userId, allUsers)}
-                            onClick={() => {
-                              props.toggleModal();
-                              props.setSelectedUserIdAndToggleModal({
-                                _id: user.userId,
-                              });
-                            }}
-                            condensed={true}
-                          />
-                        </Col>
-                      ))}
-                    {moreMembers && (
-                      <Col>
-                        <UserButton
-                          text={`+ ${
-                            structure.membres.length - 2
-                          } responsables`}
-                          condensed={true}
-                          noImage={true}
-                        />
-                      </Col>
-                    )}
-                  </Row>
-                </div>
-              </>
-            )}
           </div>
-
-          <div className={styles.col_2}>
-            <p className={styles.label}>Notes internes sur la fiche</p>
-            <Input
-              type="textarea"
-              placeholder="Note sur la fiche ..."
-              rows={5}
-              maxLength={3000}
-              value={adminComments}
-              onChange={onNotesChange}
-              id="note"
-              className={styles.input}
-            />
-            <FButton
-              name="save-outline"
-              type={getButtonColor()}
-              onClick={saveAdminComments}
-              className="mt-1 w-100"
-            >
-              {!adminCommentsSaved ? "Enregistrer" : "Enregistré !"}
-            </FButton>
-          </div>
-
-          <div className={styles.col_3}>
-            <p className={styles.label}>Journal d'activité</p>
-            <LogList logs={logs} />
-          </div>
-        </div>
+        </>
       </DetailsModal>
     );
   }

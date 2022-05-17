@@ -6,9 +6,9 @@ interface Props {
   isLoading: boolean;
   show: boolean;
   toggleModal: () => void;
-  leftHead: Element
-  rightHead: Element
-  children: Element
+  leftHead: any
+  rightHead: any
+  children: any
 }
 
 export const DetailsModal = (props: Props) => {

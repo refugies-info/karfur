@@ -12,22 +12,22 @@ export const getAllStructures = async (req: {}, res: Res) => {
     logger.info("[getAllStructures] get structures ");
     const neededFields = {
       nom: 1,
+      acronyme: 1,
       status: 1,
       picture: 1,
       dispositifsAssocies: 1,
-      contact: 1,
-      phone_contact: 1,
-      mail_contact: 1,
-      membres: 1,
       created_at: 1,
+      createur: 1,
+      membres: 1,
+      adminComments: 1,
+      adminProgressionStatus: 1,
+      adminPercentageProgressionStatus: 1,
     };
     const structures = await getStructuresFromDB({}, neededFields, true);
     const simplifiedStructures = structures.map((structure) => {
       // @ts-ignore
       const jsonStructure: StructureDoc = structure.toJSON();
-      const nbMembres = jsonStructure.membres
-        ? jsonStructure.membres.length
-        : 0;
+      const nbMembres = jsonStructure.membres?.length || 0;
       const responsablesArray = jsonStructure.membres
         ? jsonStructure.membres.filter(
             (user) =>
@@ -41,9 +41,7 @@ export const getAllStructures = async (req: {}, res: Res) => {
 
       // @ts-ignore
       jsonStructure.dispositifsAssocies.forEach((dispositif: DispositifDoc) => {
-        if (!["Supprimé"].includes(dispositif.status)) {
-          dispositifsIds.push(dispositif._id);
-        }
+        dispositifsIds.push(dispositif._id);
       });
 
       // @ts-ignore
