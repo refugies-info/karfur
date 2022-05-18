@@ -92,8 +92,6 @@ export const PrivacyPolicyScreen = ({
               alignSelf: "center",
               marginBottom: theme.margin * 3
             }}
-            width={200}
-            height={92}
           />
           <ContentHighlight>
             <TextSmallNormal>Tu n’es pas obligé de partager ces informations pour avoir accès à l’application.</TextSmallNormal>
@@ -203,8 +201,6 @@ export const PrivacyPolicyScreen = ({
               alignSelf: "center",
               marginBottom: theme.margin * 3
             }}
-            width={210}
-            height={130}
           />
           <P style={{ marginBottom: 0 }}>
             Grâce à ces informations, nous faisons des statistiques pour nous aider à améliorer l’application au fil du temps et à mieux comprendre tes besoins.

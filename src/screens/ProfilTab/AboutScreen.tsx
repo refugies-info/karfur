@@ -377,8 +377,6 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
             <TeamItem key={index}>
               <Image
                 source={membre.photo}
-                width={80}
-                height={80}
                 style={{ width: 80, height: 80 }}
               />
               <TeamDetails isRTL={isRTL}>

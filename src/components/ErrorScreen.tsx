@@ -43,8 +43,6 @@ export const ErrorScreen = (props: Props) => {
         height: 160,
         marginBottom: theme.margin * 4
       }}
-      width={240}
-      height={160}
     />
   );
 

@@ -509,7 +509,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Quand tu ouvres l’application réfugiés.info pour la première fois ou quand tu vas dans l’onglet “Moi”, nous te demandons de nous partager quelques informations sur toi, par exemple la ville dans laquelle tu habites.
         </Text>
         <Image
-          height={92}
           source={1}
           style={
             Object {
@@ -519,7 +518,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "width": 200,
             }
           }
-          width={200}
         />
         <View
           style={
@@ -1746,7 +1744,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Quand tu navigues dans l’application réfugiés.info, nous récoltons automatiquement des informations sur ta navigation, par exemple combien de temps tu passes sur une de nos fiches.
         </Text>
         <Image
-          height={130}
           source={1}
           style={
             Object {
@@ -1756,7 +1753,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "width": 210,
             }
           }
-          width={210}
         />
         <Text
           isRTL={false}

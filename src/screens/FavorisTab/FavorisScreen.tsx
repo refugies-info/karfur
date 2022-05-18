@@ -244,8 +244,6 @@ export const FavorisScreen = ({
           <Image
             source={EmptyIllu}
             style={{ width: 312, height: 250, marginTop: theme.margin * 4 }}
-            width={312}
-            height={250}
           />
           <EmptyTitle>
             {t("favorites_screen.empty", "C'est vide")}

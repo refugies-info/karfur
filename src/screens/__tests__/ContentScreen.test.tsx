@@ -21,6 +21,9 @@ jest.mock("react-native-safe-area-context", () => {
     SafeAreaView,
   };
 });
+jest.mock("@03balogun/react-native-skeleton-content", () => {
+  return null
+});
 jest.mock("react-native-maps", () => {
   const { View } = require("react-native");
   const MockMapView = (props: any) => {

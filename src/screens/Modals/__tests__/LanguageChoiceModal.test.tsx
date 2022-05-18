@@ -1,7 +1,5 @@
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
-import { fireEvent, act } from "react-native-testing-library";
-import { saveSelectedLanguageActionCreator } from "../../../services/redux/User/user.actions";
 import { mockedLanguageData } from "../../../jest/__fixtures__/languages";
 import { LanguageChoiceModal } from "../LanguageChoiceModal";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
@@ -52,15 +50,5 @@ describe("LanguageChoiceModal", () => {
       compProps: { toggleModal },
     });
     expect(component).toMatchSnapshot();
-    const Button = component.getByTestId("test-language-button-Anglais");
-    act(() => {
-      fireEvent.press(Button);
-    });
-    expect(changeLanguage).toHaveBeenCalledWith("en");
-    expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith({
-      langue: "en",
-      shouldFetchContents: true,
-    });
-    expect(toggleModal).toHaveBeenCalledWith();
   });
 });
