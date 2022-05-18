@@ -2,6 +2,14 @@
 
 exports[`Filter french level should render correctly when french level selected 1`] = `
 <RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
   style={
     Object {
       "display": "flex",
@@ -28,6 +36,7 @@ exports[`Filter french level should render correctly when french level selected 
       accessibilityLabel=""
       accessibilityRole="button"
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -57,6 +66,7 @@ exports[`Filter french level should render correctly when french level selected 
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -149,6 +159,7 @@ exports[`Filter french level should render correctly when french level selected 
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -306,6 +317,7 @@ exports[`Filter french level should render correctly when french level selected 
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -427,6 +439,7 @@ exports[`Filter french level should render correctly when french level selected 
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -536,6 +549,7 @@ exports[`Filter french level should render correctly when french level selected 
                 }
               >
                 <View
+                  collapsable={false}
                   style={
                     Object {
                       "transform": Array [
@@ -604,6 +618,7 @@ exports[`Filter french level should render correctly when french level selected 
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -763,6 +778,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -794,6 +810,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -825,6 +842,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -862,6 +880,7 @@ exports[`Filter french level should render correctly when french level selected 
           <View
             accessibilityRole="button"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -913,7 +932,13 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -945,6 +970,7 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-validate-button"
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "transform": Array [
@@ -1037,6 +1063,14 @@ exports[`Filter french level should render correctly when french level selected 
 
 exports[`Filter french level should render correctly when no french level selected 1`] = `
 <RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
   style={
     Object {
       "display": "flex",
@@ -1063,6 +1097,7 @@ exports[`Filter french level should render correctly when no french level select
       accessibilityLabel=""
       accessibilityRole="button"
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -1092,6 +1127,7 @@ exports[`Filter french level should render correctly when no french level select
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -1184,6 +1220,7 @@ exports[`Filter french level should render correctly when no french level select
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -1341,6 +1378,7 @@ exports[`Filter french level should render correctly when no french level select
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1462,6 +1500,7 @@ exports[`Filter french level should render correctly when no french level select
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1583,6 +1622,7 @@ exports[`Filter french level should render correctly when no french level select
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1742,6 +1782,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -1773,6 +1814,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -1804,6 +1846,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -1841,6 +1884,7 @@ exports[`Filter french level should render correctly when no french level select
           <View
             accessibilityRole="button"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1892,7 +1936,13 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "disabled": true,
+              }
+            }
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1916,6 +1966,7 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-validate-button"
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "transform": Array [
@@ -2008,6 +2059,14 @@ exports[`Filter french level should render correctly when no french level select
 
 exports[`Filter french level should select level when click on it 1`] = `
 <RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
   style={
     Object {
       "display": "flex",
@@ -2034,6 +2093,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       accessibilityLabel=""
       accessibilityRole="button"
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -2063,6 +2123,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -2155,6 +2216,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -2312,6 +2374,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -2433,6 +2496,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -2542,6 +2606,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 }
               >
                 <View
+                  collapsable={false}
                   style={
                     Object {
                       "transform": Array [
@@ -2610,6 +2675,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           <View
             accessibilityRole="radio"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -2769,6 +2835,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -2800,6 +2867,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -2831,6 +2899,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
+            collapsable={false}
             isDone={true}
             style={
               Object {
@@ -2868,6 +2937,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           <View
             accessibilityRole="button"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -2919,7 +2989,13 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "disabled": false,
+              }
+            }
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -2951,6 +3027,7 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-validate-button"
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "transform": Array [

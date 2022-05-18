@@ -43,6 +43,7 @@ exports[`Search results screen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -59,6 +60,7 @@ exports[`Search results screen should render correctly 1`] = `
         }
       >
         <View
+          collapsable={false}
           style={
             Object {
               "transform": Array [
@@ -160,6 +162,7 @@ exports[`Search results screen should render correctly 1`] = `
         }
       >
         <View
+          collapsable={false}
           style={
             Object {
               "transform": Array [
@@ -223,12 +226,10 @@ exports[`Search results screen should render correctly 1`] = `
           </RNSVGSvgView>
         </View>
         <TextInput
-          allowFontScaling={true}
           isRTL={false}
           onChangeText={[Function]}
           placeholder="Rechercher"
           placeholderTextColor="#5E5E5E"
-          rejectResponderTermination={true}
           style={
             Array [
               Object {
@@ -243,12 +244,12 @@ exports[`Search results screen should render correctly 1`] = `
             ]
           }
           testID="test-city-search"
-          underlineColorAndroid="transparent"
           value=""
         />
         <View
           accessibilityRole="button"
           accessible={true}
+          collapsable={false}
           focusable={true}
           onClick={[Function]}
           onResponderGrant={[Function]}
@@ -264,6 +265,7 @@ exports[`Search results screen should render correctly 1`] = `
           }
         >
           <View
+            collapsable={false}
             style={
               Object {
                 "transform": Array [
@@ -414,6 +416,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -481,6 +484,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -548,6 +552,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -615,6 +620,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -682,6 +688,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -749,6 +756,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -816,6 +824,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -883,6 +892,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -950,6 +960,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1017,6 +1028,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1084,6 +1096,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1151,6 +1164,7 @@ exports[`Search results screen should render correctly 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}

@@ -12,7 +12,7 @@ import { ObjectId, Need } from "../../types/interface";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import SkeletonContent from "react-native-skeleton-content";
+import SkeletonContent from "@03balogun/react-native-skeleton-content";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
 import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";

@@ -7,7 +7,7 @@ import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import styled from "styled-components/native";
-import SkeletonContent from "react-native-skeleton-content";
+import SkeletonContent from "@03balogun/react-native-skeleton-content";
 
 const ThemeText = styled(TextSmallNormal)`
   color: white;

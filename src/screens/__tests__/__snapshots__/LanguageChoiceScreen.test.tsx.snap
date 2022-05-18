@@ -59,6 +59,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         }
       >
         <View
+          collapsable={false}
           style={
             Object {
               "transform": Array [
@@ -184,6 +185,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -314,6 +316,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -459,6 +462,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -604,6 +608,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -749,6 +754,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -894,6 +900,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1039,6 +1046,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}
@@ -1184,6 +1192,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       <View
         accessibilityRole="button"
         accessible={true}
+        collapsable={false}
         focusable={true}
         onClick={[Function]}
         onResponderGrant={[Function]}

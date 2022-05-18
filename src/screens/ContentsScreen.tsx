@@ -11,7 +11,7 @@ import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeed
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
 import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
-import SkeletonContent from "react-native-skeleton-content";
+import SkeletonContent from "@03balogun/react-native-skeleton-content";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { ContentsHeaderAnimated } from "../components/Contents/ContentsHeaderAnimated";
 import { ContentSummary } from "../components/Contents/ContentSummary";

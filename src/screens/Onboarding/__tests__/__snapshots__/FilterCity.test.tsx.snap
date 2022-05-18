@@ -2,6 +2,14 @@
 
 exports[`Filter city should render correctly when city selected 1`] = `
 <RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
   style={
     Object {
       "display": "flex",
@@ -28,6 +36,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       accessibilityLabel=""
       accessibilityRole="button"
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -57,6 +66,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -149,6 +159,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -319,6 +330,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
           <View
             accessibilityRole="button"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -364,6 +376,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               city (dep)
             </Text>
             <View
+              collapsable={false}
               style={
                 Object {
                   "transform": Array [
@@ -468,6 +481,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={true}
               style={
                 Object {
@@ -499,6 +513,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={false}
               style={
                 Object {
@@ -530,6 +545,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={false}
               style={
                 Object {
@@ -567,6 +583,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -618,7 +635,13 @@ exports[`Filter city should render correctly when city selected 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                Object {
+                  "disabled": false,
+                }
+              }
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -650,6 +673,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               testID="test-validate-button"
             >
               <View
+                collapsable={false}
                 style={
                   Object {
                     "transform": Array [
@@ -743,6 +767,14 @@ exports[`Filter city should render correctly when city selected 1`] = `
 
 exports[`Filter city should render correctly when no city 1`] = `
 <RNCSafeAreaView
+  edges={
+    Array [
+      "bottom",
+      "left",
+      "right",
+      "top",
+    ]
+  }
   style={
     Object {
       "display": "flex",
@@ -769,6 +801,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       accessibilityLabel=""
       accessibilityRole="button"
       accessible={true}
+      collapsable={false}
       focusable={true}
       onClick={[Function]}
       onResponderGrant={[Function]}
@@ -798,6 +831,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -890,6 +924,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       }
     >
       <View
+        collapsable={false}
         style={
           Object {
             "transform": Array [
@@ -1050,6 +1085,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1079,6 +1115,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               }
             >
               <View
+                collapsable={false}
                 style={
                   Object {
                     "transform": Array [
@@ -1182,397 +1219,12 @@ exports[`Filter city should render correctly when no city 1`] = `
               swipeThreshold={100}
               transparent={true}
               visible={false}
-            >
-              <View
-                accessible={true}
-                focusable={true}
-                forwardedRef={[Function]}
-                onClick={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-                style={
-                  Object {
-                    "backgroundColor": "#F7F7F7",
-                    "bottom": 0,
-                    "height": 1334,
-                    "left": 0,
-                    "opacity": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 750,
-                  }
-                }
-              />
-              <View
-                deviceHeight={null}
-                deviceWidth={null}
-                forwardedRef={[Function]}
-                hideModalContentWhileAnimating={false}
-                onBackdropPress={[Function]}
-                onModalHide={[Function]}
-                onModalWillHide={[Function]}
-                onModalWillShow={[Function]}
-                panResponderThreshold={4}
-                pointerEvents="box-none"
-                scrollHorizontal={false}
-                scrollOffset={0}
-                scrollOffsetMax={0}
-                scrollTo={null}
-                statusBarTranslucent={true}
-                style={
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "flex-start",
-                    "margin": 37.5,
-                    "paddingTop": 48,
-                    "transform": Array [
-                      Object {
-                        "translateY": 0,
-                      },
-                    ],
-                  }
-                }
-                supportedOrientations={
-                  Array [
-                    "portrait",
-                    "landscape",
-                  ]
-                }
-                swipeThreshold={100}
-              >
-                <RNCSafeAreaView
-                  isIPhone12={false}
-                  style={
-                    Array [
-                      Object {
-                        "marginBottom": 0,
-                        "position": "relative",
-                        "zIndex": 2,
-                      },
-                    ]
-                  }
-                >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "flexDirection": "row",
-                        },
-                      ]
-                    }
-                  >
-                    <View
-                      accessibilityRole="button"
-                      accessible={true}
-                      focusable={true}
-                      onClick={[Function]}
-                      onResponderGrant={[Function]}
-                      onResponderMove={[Function]}
-                      onResponderRelease={[Function]}
-                      onResponderTerminate={[Function]}
-                      onResponderTerminationRequest={[Function]}
-                      onStartShouldSetResponder={[Function]}
-                      style={
-                        Object {
-                          "marginRight": 8,
-                          "opacity": 1,
-                        }
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scale": 1,
-                              },
-                            ],
-                          }
-                        }
-                      >
-                        <RNSVGSvgView
-                          align="xMidYMid"
-                          bbHeight={24}
-                          bbWidth={24}
-                          fill="#5E5E5E"
-                          focusable={false}
-                          height={24}
-                          meetOrSlice={0}
-                          minX={0}
-                          minY={0}
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "borderWidth": 0,
-                              },
-                              Object {
-                                "flex": 0,
-                                "height": 24,
-                                "width": 24,
-                              },
-                            ]
-                          }
-                          vbHeight={24}
-                          vbWidth={24}
-                          width={24}
-                        >
-                          <RNSVGGroup
-                            fill={4284374622}
-                            propList={
-                              Array [
-                                "fill",
-                              ]
-                            }
-                          >
-                            <RNSVGGroup>
-                              <RNSVGGroup>
-                                <RNSVGRect
-                                  height="24"
-                                  matrix={
-                                    Array [
-                                      6.123233995736766e-17,
-                                      1,
-                                      -1,
-                                      6.123233995736766e-17,
-                                      24,
-                                      0,
-                                    ]
-                                  }
-                                  opacity={0}
-                                  width="24"
-                                  x={0}
-                                  y={0}
-                                />
-                                <RNSVGPath
-                                  d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                                />
-                              </RNSVGGroup>
-                            </RNSVGGroup>
-                          </RNSVGGroup>
-                        </RNSVGSvgView>
-                      </View>
-                    </View>
-                    <View
-                      isRTL={false}
-                      style={
-                        Array [
-                          Object {
-                            "alignItems": "center",
-                            "display": "flex",
-                            "flexDirection": "row",
-                          },
-                          Object {
-                            "backgroundColor": "#FFFFFF",
-                            "borderColor": "#5E5E5E",
-                            "borderRadius": 12,
-                            "borderStyle": "solid",
-                            "borderWidth": 1,
-                            "flexBasis": 0,
-                            "flexGrow": 1,
-                            "flexShrink": 1,
-                            "height": 56,
-                            "paddingBottom": 16,
-                            "paddingLeft": 16,
-                            "paddingRight": 16,
-                            "paddingTop": 16,
-                          },
-                        ]
-                      }
-                    >
-                      <View
-                        style={
-                          Object {
-                            "transform": Array [
-                              Object {
-                                "scale": 1,
-                              },
-                            ],
-                          }
-                        }
-                      >
-                        <RNSVGSvgView
-                          align="xMidYMid"
-                          bbHeight={24}
-                          bbWidth={24}
-                          fill="#5E5E5E"
-                          focusable={false}
-                          height={24}
-                          meetOrSlice={0}
-                          minX={0}
-                          minY={0}
-                          style={
-                            Array [
-                              Object {
-                                "backgroundColor": "transparent",
-                                "borderWidth": 0,
-                              },
-                              Object {
-                                "flex": 0,
-                                "height": 24,
-                                "width": 24,
-                              },
-                            ]
-                          }
-                          vbHeight={24}
-                          vbWidth={24}
-                          width={24}
-                        >
-                          <RNSVGGroup
-                            fill={4284374622}
-                            propList={
-                              Array [
-                                "fill",
-                              ]
-                            }
-                          >
-                            <RNSVGGroup>
-                              <RNSVGGroup>
-                                <RNSVGRect
-                                  height="24"
-                                  opacity={0}
-                                  width="24"
-                                  x={0}
-                                  y={0}
-                                />
-                                <RNSVGPath
-                                  d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"
-                                />
-                              </RNSVGGroup>
-                            </RNSVGGroup>
-                          </RNSVGGroup>
-                        </RNSVGSvgView>
-                      </View>
-                      <TextInput
-                        allowFontScaling={true}
-                        isRTL={false}
-                        onChangeText={[Function]}
-                        placeholder="Exemple : Paris"
-                        placeholderTextColor="#5E5E5E"
-                        rejectResponderTermination={true}
-                        style={
-                          Array [
-                            Object {
-                              "flexBasis": 0,
-                              "flexGrow": 1,
-                              "flexShrink": 1,
-                              "height": "100%",
-                              "marginLeft": 8,
-                              "marginRight": 0,
-                              "textAlign": "left",
-                            },
-                          ]
-                        }
-                        testID="test-city-input"
-                        underlineColorAndroid="transparent"
-                        value=""
-                      />
-                      <View
-                        accessibilityRole="button"
-                        accessible={true}
-                        focusable={true}
-                        onClick={[Function]}
-                        onResponderGrant={[Function]}
-                        onResponderMove={[Function]}
-                        onResponderRelease={[Function]}
-                        onResponderTerminate={[Function]}
-                        onResponderTerminationRequest={[Function]}
-                        onStartShouldSetResponder={[Function]}
-                        style={
-                          Object {
-                            "opacity": 1,
-                          }
-                        }
-                      >
-                        <View
-                          style={
-                            Object {
-                              "transform": Array [
-                                Object {
-                                  "scale": 1,
-                                },
-                              ],
-                            }
-                          }
-                        >
-                          <RNSVGSvgView
-                            align="xMidYMid"
-                            bbHeight={24}
-                            bbWidth={24}
-                            fill="#5E5E5E"
-                            focusable={false}
-                            height={24}
-                            meetOrSlice={0}
-                            minX={0}
-                            minY={0}
-                            style={
-                              Array [
-                                Object {
-                                  "backgroundColor": "transparent",
-                                  "borderWidth": 0,
-                                },
-                                Object {
-                                  "flex": 0,
-                                  "height": 24,
-                                  "width": 24,
-                                },
-                              ]
-                            }
-                            vbHeight={24}
-                            vbWidth={24}
-                            width={24}
-                          >
-                            <RNSVGGroup
-                              fill={4284374622}
-                              propList={
-                                Array [
-                                  "fill",
-                                ]
-                              }
-                            >
-                              <RNSVGGroup>
-                                <RNSVGGroup>
-                                  <RNSVGRect
-                                    height="24"
-                                    matrix={
-                                      Array [
-                                        -1,
-                                        1.2246467991473532e-16,
-                                        -1.2246467991473532e-16,
-                                        -1,
-                                        24,
-                                        24,
-                                      ]
-                                    }
-                                    opacity={0}
-                                    width="24"
-                                    x={0}
-                                    y={0}
-                                  />
-                                  <RNSVGPath
-                                    d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"
-                                  />
-                                </RNSVGGroup>
-                              </RNSVGGroup>
-                            </RNSVGGroup>
-                          </RNSVGSvgView>
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </RNCSafeAreaView>
-              </View>
-            </Modal>
+            />
           </View>
           <View
             accessibilityRole="button"
             accessible={true}
+            collapsable={false}
             focusable={true}
             onClick={[Function]}
             onResponderGrant={[Function]}
@@ -1609,6 +1261,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             }
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "transform": Array [
@@ -1731,6 +1384,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={true}
               style={
                 Object {
@@ -1762,6 +1416,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={false}
               style={
                 Object {
@@ -1793,6 +1448,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             }
           >
             <View
+              collapsable={false}
               isDone={false}
               style={
                 Object {
@@ -1830,6 +1486,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             <View
               accessibilityRole="button"
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1881,7 +1538,13 @@ exports[`Filter city should render correctly when no city 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                Object {
+                  "disabled": true,
+                }
+              }
               accessible={true}
+              collapsable={false}
               focusable={true}
               onClick={[Function]}
               onResponderGrant={[Function]}
@@ -1905,6 +1568,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               testID="test-validate-button"
             >
               <View
+                collapsable={false}
                 style={
                   Object {
                     "transform": Array [

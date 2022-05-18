@@ -46,7 +46,7 @@ import { HeaderWithBackForWrapper } from "../components/HeaderWithLogo";
 import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../services/redux/LoadingStatus/loadingStatus.actions";
-import SkeletonContent from "react-native-skeleton-content";
+import SkeletonContent from "@03balogun/react-native-skeleton-content";
 import { CustomButton } from "../components/CustomButton";
 import { RTLView } from "../components/BasicComponents";
 import { SmallButton } from "../components/SmallButton";
