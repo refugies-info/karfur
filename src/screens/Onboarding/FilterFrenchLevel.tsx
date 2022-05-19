@@ -51,7 +51,7 @@ export const FilterFrenchLevel = ({
   React.useEffect(() => {
     if (userFrenchLevel) {
       const formattedLevel = frenchLevelFilters.filter(
-        (frenchLevelFilter) => frenchLevelFilter.name === userFrenchLevel
+        (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
       );
       if (formattedLevel.length > 0) {
         setSelectedFrenchLevel(formattedLevel[0]);
@@ -63,7 +63,7 @@ export const FilterFrenchLevel = ({
     if (selectedFrenchLevel) {
       dispatch(
         saveUserFrenchLevelActionCreator({
-          frenchLevel: selectedFrenchLevel.name,
+          frenchLevel: selectedFrenchLevel.key,
           shouldFetchContents: false,
         })
       );
@@ -74,7 +74,7 @@ export const FilterFrenchLevel = ({
   };
 
   const onSelectFrenchLevel = (frenchLevel: FrenchLevel) => {
-    if (selectedFrenchLevel && selectedFrenchLevel.name === frenchLevel.name) {
+    if (selectedFrenchLevel && selectedFrenchLevel.key === frenchLevel.key) {
       setSelectedFrenchLevel(null);
       return;
     }
@@ -116,7 +116,7 @@ export const FilterFrenchLevel = ({
                 text={frenchLevel.name}
                 isSelected={
                   !!selectedFrenchLevel &&
-                  frenchLevel.name === selectedFrenchLevel.name
+                  frenchLevel.key === selectedFrenchLevel.key
                 }
                 onPress={() => onSelectFrenchLevel(frenchLevel)}
                 details={frenchLevel.cecrCorrespondency}

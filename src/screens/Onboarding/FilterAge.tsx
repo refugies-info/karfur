@@ -81,10 +81,10 @@ export const FilterAge = ({
           <View accessibilityRole="radiogroup">
             {ageFilters.map((age) => (
               <FilterButton
-                key={age}
-                text={age}
-                isSelected={age === selectedAge}
-                onPress={() => onAgeClick(age)}
+                key={age.name}
+                text={age.name}
+                isSelected={age.key === selectedAge}
+                onPress={() => onAgeClick(age.key)}
               />
             ))}
           </View>

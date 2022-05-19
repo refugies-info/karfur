@@ -84,4 +84,5 @@ export interface GoogleAPISuggestion {
 export interface FrenchLevel {
   name: string;
   cecrCorrespondency?: string[];
+  key: string;
 }

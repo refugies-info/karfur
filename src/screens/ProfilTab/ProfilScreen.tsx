@@ -36,6 +36,7 @@ import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { CustomButton } from "../../components/CustomButton"
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import AccessibleIcon from "../../theme/images/accessibility/accessible-icon.svg";
+import { ageFilters } from "../../data/filtersData";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -114,6 +115,10 @@ export const ProfilScreen = ({
     })
   };
 
+  const selectedAgeName: string = ageFilters.find(age => {
+    return age.key === selectedAge
+  })?.name || "";
+
   return (
     <View style={{flex: 1}}>
       <HeaderAnimated
@@ -153,8 +158,8 @@ export const ProfilScreen = ({
             iconName="calendar-outline"
             category={t("profile_screens.age", "age")}
             userChoice={
-              selectedAge
-                ? t("filters." + selectedAge, selectedAge)
+              selectedAgeName
+                ? t("filters." + selectedAgeName, selectedAgeName)
                 : t("profile_screens.all_ages", "Tous les âges")
             }
             isFirst={false}

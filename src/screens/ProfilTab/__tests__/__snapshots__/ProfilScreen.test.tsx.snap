@@ -1083,7 +1083,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   ]
                 }
               >
-                Je commence à apprendre
+                Je parle couramment
               </Text>
               <View
                 collapsable={false}

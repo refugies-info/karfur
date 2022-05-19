@@ -44,7 +44,7 @@ describe("Filter french level", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { frenchLevel: "french_level_b" },
+        user: { frenchLevel: "Je parle bien" },
       },
     });
     expect(component).toMatchSnapshot();
@@ -57,7 +57,7 @@ describe("Filter french level", () => {
       compProps: { navigation: { goBack: jest.fn(), navigate } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { frenchLevel: "french_level_b" },
+        user: { frenchLevel: "Je parle bien" },
       },
     });
 
@@ -66,7 +66,7 @@ describe("Filter french level", () => {
       fireEvent.press(Button);
     });
     expect(saveUserFrenchLevelActionCreator).toHaveBeenCalledWith({
-      frenchLevel: "french_level_b",
+      frenchLevel: "Je parle bien",
       shouldFetchContents: false,
     });
     expect(navigate).toHaveBeenCalledWith("FinishOnboarding");

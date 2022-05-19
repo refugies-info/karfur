@@ -107,8 +107,8 @@ describe("Profil screen", () => {
       reduxState: {
         ...initialRootStateFactory(),
         user: {
-          age: "age_10_17",
-          frenchLevel: "Je commence à apprendre",
+          age: "0 à 17 ans",
+          frenchLevel: "Je parle couramment",
           city: "Paris",
         },
       },

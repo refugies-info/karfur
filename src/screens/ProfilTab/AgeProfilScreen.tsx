@@ -70,10 +70,10 @@ export const AgeProfilScreen = ({
         <View accessibilityRole="radiogroup">
           {ageFilters.map((age) => (
             <FilterButton
-              key={age}
-              text={age}
-              isSelected={age === selectedAge}
-              onPress={() => onValidateAge(age)}
+              key={age.name}
+              text={age.name}
+              isSelected={age.key === selectedAge}
+              onPress={() => onValidateAge(age.key)}
             />
           ))}
           <FilterButton

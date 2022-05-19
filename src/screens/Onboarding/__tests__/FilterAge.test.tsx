@@ -42,7 +42,7 @@ describe("Filter age", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { age: "age_10_17" },
+        user: { age: "0 à 17 ans" },
       },
     });
     expect(component).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe("Filter age", () => {
       compProps: { navigation: { goBack: jest.fn(), navigate } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { age: "age_10_17" },
+        user: { age: "0 à 17 ans" },
       },
     });
 
@@ -64,7 +64,7 @@ describe("Filter age", () => {
       fireEvent.press(Button);
     });
     expect(saveUserAgeActionCreator).toHaveBeenCalledWith({
-      age: "age_10_17",
+      age: "0 à 17 ans",
       shouldFetchContents: false,
     });
     expect(navigate).toHaveBeenCalledWith("FilterFrenchLevel");

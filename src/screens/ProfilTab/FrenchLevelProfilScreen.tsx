@@ -37,7 +37,7 @@ export const FrenchLevelProfilScreen = ({
   React.useEffect(() => {
     if (userFrenchLevel) {
       const formattedLevel = frenchLevelFilters.filter(
-        (frenchLevelFilter) => frenchLevelFilter.name === userFrenchLevel
+        (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel
       );
       if (formattedLevel.length > 0) {
         setSelectedFrenchLevel(formattedLevel[0]);
@@ -45,12 +45,12 @@ export const FrenchLevelProfilScreen = ({
     }
   }, [userFrenchLevel]);
 
-  const onValidateFrenchLevel = (frenchLevelName: string) => {
-    if (selectedFrenchLevel && selectedFrenchLevel.name === frenchLevelName)
+  const onValidateFrenchLevel = (frenchLevelKey: string) => {
+    if (selectedFrenchLevel && selectedFrenchLevel.key === frenchLevelKey)
       return;
     dispatch(
       saveUserFrenchLevelActionCreator({
-        frenchLevel: frenchLevelName,
+        frenchLevel: frenchLevelKey,
         shouldFetchContents: true,
       })
     );
@@ -102,9 +102,9 @@ export const FrenchLevelProfilScreen = ({
                 text={frenchLevel.name}
                 isSelected={
                   !!selectedFrenchLevel &&
-                  frenchLevel.name === selectedFrenchLevel.name
+                  frenchLevel.key === selectedFrenchLevel.key
                 }
-                onPress={() => onValidateFrenchLevel(frenchLevel.name)}
+                onPress={() => onValidateFrenchLevel(frenchLevel.key)}
                 details={frenchLevel.cecrCorrespondency}
               />
             ))}
