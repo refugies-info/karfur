@@ -692,7 +692,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: #0421b1;
+  color: #ffffff;
 }
 
 <div
@@ -700,7 +700,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   color="#0421b1"
   disabled={false}
 >
-  Nouveau !
+  Nouveau !
 </div>
 `;
 
