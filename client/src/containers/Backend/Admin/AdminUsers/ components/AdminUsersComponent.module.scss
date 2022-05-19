@@ -1,0 +1,45 @@
+@import "src/scss/colors";
+
+.langue {
+  padding: 8px;
+  font-size: 12px;
+  background: $gray50;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.role_checkbox {
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  width: fit-content;
+  line-height: 15px;
+  color: $white;
+  margin-right: 8px;
+  background: #828282;
+  display: inline-block;
+
+  &.selected {
+    background:#4CAF50;
+  }
+}
+.role_name {
+  margin-left: 24px;
+}
+
+.role {
+  background: $gray50;
+  border-radius: 6px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 8px;
+  width: fit-content;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}

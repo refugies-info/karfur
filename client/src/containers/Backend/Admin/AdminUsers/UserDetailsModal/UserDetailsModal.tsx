@@ -1,93 +1,73 @@
 import React, { useState, useEffect, useCallback } from "react";
-import styled from "styled-components";
-import {
-  Event,
-  Indicators,
-  SimplifiedStructureForAdmin,
-} from "types/interface";
+import { Event, Indicators, Log, SimplifiedUser } from "types/interface";
 import Image from "next/image";
-import { Modal, Spinner } from "reactstrap";
+import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
 import "moment/locale/fr";
 import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
-import { userSelector } from "services/AllUsers/allUsers.selector";
+import { allUsersSelector, userSelector } from "services/AllUsers/allUsers.selector";
 import FInput from "components/UI/FInput/FInput";
-import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import {
-  Structure,
   RoleCheckBox,
   LangueDetail,
 } from "../ components/AdminUsersComponents";
 import FButton from "components/UI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import API from "utils/API";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { setAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import Swal from "sweetalert2";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { colors } from "colors";
 import styles from "./UserDetailsModal.module.scss";
+import { DetailsModal } from "../../sharedComponents/DetailsModal";
+import { Label } from "../../sharedComponents/SubComponents";
+import { NotesInput } from "../../sharedComponents/NotesInput";
+import { LogList } from "../../Logs/LogList";
+import { StructureButton } from "../../sharedComponents/StructureButton";
+import { isValidEmail, isValidPhone } from "lib/validateFields";
 
 moment.locale("fr");
 
-const StructureName = styled.div`
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-`;
-
-const Label = styled.label`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 4px 0px 8px 0px;
-`;
-
-const RowContainerWrap = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-`;
-
-const IndicatorContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-const IndicatorColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 32px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-top: 16px;
-  justify-content: space-between;
-`;
 interface Props {
   show: boolean;
   toggleModal: () => void;
   selectedUserId: ObjectId | null;
-  setSelectedStructureIdAndToggleModal: (
-    structureId: ObjectId | null
-  ) => void;
+  setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
 }
 
 export const UserDetailsModal: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  // const [user, setUser] = useState<SimplifiedUser | null>(null);
+  const selectedUserId = props.selectedUserId;
+
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
+  const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
   const [indicators, setIndicators] = useState<null | Indicators>(null);
 
-  const userFromStore = useSelector(userSelector(props.selectedUserId));
+  const allUsers = useSelector(allUsersSelector);
+  const userFromStore = useSelector(userSelector(selectedUserId));
+  const [adminComments, setAdminComments] = useState<string>(
+    userFromStore?.adminComments || ""
+  );
+  const [infosSaved, setInfosSaved] = useState(false);
+  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
+  const [logs, setLogs] = useState<Log[]>([]);
+
   const dispatch = useDispatch();
+  const updateLogs = useCallback(() => {
+    if (selectedUserId) {
+      API.logs(selectedUserId).then((res) => {
+        setLogs(res.data.data);
+      });
+    }
+  }, [selectedUserId]);
+
   useEffect(() => {
     const loadIndicators = async () => {
       if (userFromStore) {
@@ -97,28 +77,67 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         setIndicators(data.data);
       }
     };
-    setEmail(userFromStore?.email || "");
-    setPhone(userFromStore?.phone || "");
-    setPhoneError("");
-    const roles =
-      userFromStore?.roles
+
+    if (userFromStore && currentId !== selectedUserId) {
+      setEmail(userFromStore?.email || "");
+      setPhone(userFromStore?.phone || "");
+      setName(/* userFromStore?.name ||  */ "");
+      setPhoneError("");
+      const roles = userFromStore?.roles
         ? userFromStore.roles.filter(
             (role: string) => role === "Admin" || role === "ExpertTrad"
           )
         : [];
-    setRoles(roles);
+      setRoles(roles);
+      setAdminComments(userFromStore.adminComments || "");
+      setInfosSaved(false);
+      setCurrentId(selectedUserId);
+    }
+    updateLogs();
     loadIndicators();
-  }, [userFromStore]);
+  }, [userFromStore, currentId, selectedUserId, updateLogs]);
+
+  const updateUserStore = (
+    userId: ObjectId,
+    user: Partial<SimplifiedUser>
+  ) => {
+    const users = [...allUsers];
+    let newUser = users.find((u) => u._id === userId);
+    if (newUser) newUser = {...newUser, ...user};
+    dispatch(setAllUsersActionsCreator(users));
+    updateLogs();
+  };
 
   const onChangeEmail = useCallback((e: Event) => {
+    if (infosSaved) setInfosSaved(false);
+    if (e.target.value && !isValidEmail(e.target.value)) {
+      setEmailError("Ceci n'est pas un email valide, vérifiez votre saisie");
+    } else {
+      setEmailError("");
+    }
     setEmail(e.target.value);
-  }, []);
+  }, [infosSaved]);
   const onChangePhone = useCallback((e: Event) => {
+    if (infosSaved) setInfosSaved(false);
+    if (e.target.value && !isValidPhone(e.target.value)) {
+      setPhoneError("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie");
+    } else {
+      setPhoneError("");
+    }
     setPhone(e.target.value);
-  }, []);
+  }, [infosSaved]);
+  const onChangeName = useCallback((e: Event) => {
+    if (infosSaved) setInfosSaved(false);
+    setName(e.target.value);
+  }, [infosSaved]);
+  const onNotesChange = useCallback((e: any) => {
+    if (infosSaved) setInfosSaved(false);
+    setAdminComments(e.target.value);
+  }, [infosSaved]);
 
   const handleCheckBoxChange = (name: string) => {
     if (!roles) return;
+    if (infosSaved) setInfosSaved(false);
     const mappedName = name === "Expert en traduction" ? "ExpertTrad" : "Admin";
     const hasAlreadyRole = roles.includes(mappedName);
 
@@ -135,18 +154,24 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     return setRoles(newRoles);
   };
 
-  const hasStructure = userFromStore && (userFromStore.structures || []).length > 0;
-  const isResponsable = hasStructure && userFromStore
-    && (userFromStore.structures || []).find(s => (s.role && s.role.includes("Responsable")));
-  const isAdmin = userFromStore && (userFromStore.roles || []).find(r => r === "Admin");
+  const hasStructure =
+    userFromStore && (userFromStore.structures || []).length > 0;
+  const isResponsable =
+    hasStructure &&
+    userFromStore &&
+    (userFromStore.structures || []).find(
+      (s) => s.role && s.role.includes("Responsable")
+    );
+  const isAdmin =
+    userFromStore && (userFromStore.roles || []).find((r) => r === "Admin");
 
   const onSaveClick = async () => {
     try {
       if (userFromStore) {
         if ((isResponsable || isAdmin) && userFromStore?.phone && !phone) {
           setPhoneError("Vous devez renseigner un numéro");
-          return;
         }
+        if (!!phoneError || !!emailError) return;
         setPhoneError("");
         await API.updateUser({
           query: {
@@ -154,14 +179,15 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
             action: "modify-with-roles",
           },
         });
-        Swal.fire({
-          title: "Yay...",
-          text: "Utilisateur modifié",
-          type: "success",
-          timer: 1500,
+        setInfosSaved(true);
+        updateUserStore(userFromStore._id, {
+          email: email,
+          phone: phone,
+          // name: name,
+          adminComments: adminComments,
+          roles: roles
         });
-        dispatch(fetchAllUsersActionsCreator());
-        props.toggleModal();
+        updateLogs();
       }
     } catch (error) {
       Swal.fire({
@@ -170,14 +196,23 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         type: "error",
         timer: 1500,
       });
-      dispatch(fetchAllUsersActionsCreator());
-      props.toggleModal();
     }
   };
 
   const onDeleteClick = async () => {
     try {
       if (userFromStore) {
+        const res = await Swal.fire({
+          title: "Êtes-vous sûr ?",
+          text: "Souhaitez-vous supprimer cet utilisateur",
+          type: "question",
+          showCancelButton: true,
+          confirmButtonColor: colors.rouge,
+          cancelButtonColor: colors.vert,
+          confirmButtonText: "Oui, le supprimer",
+          cancelButtonText: "Annuler",
+        });
+        if (!res.value) return;
         await API.updateUser({
           query: {
             user: { _id: userFromStore._id, roles, email, phone },
@@ -190,7 +225,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           type: "success",
           timer: 1500,
         });
-        dispatch(fetchAllUsersActionsCreator());
+        updateUserStore(userFromStore._id, { "status": "Exclu" });
         props.toggleModal();
       }
     } catch (error) {
@@ -200,7 +235,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         type: "error",
         timer: 1500,
       });
-      dispatch(fetchAllUsersActionsCreator());
       props.toggleModal();
     }
   };
@@ -209,210 +243,232 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     return value ? Math.floor(value / 1000 / 60) : 0;
   }, []);
 
-  const secureUrl =
-    userFromStore && userFromStore.picture && userFromStore.picture.secure_url
-      ? userFromStore.picture.secure_url
-      : marioProfile;
+  const secureUrl = userFromStore?.picture?.secure_url || marioProfile;
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
   );
 
-  if (isLoading) {
-    return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-      >
-        <Spinner />
-      </Modal>
-    );
-  }
-  if (!userFromStore)
-    return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-        size="large"
-      >
-        Erreur
-      </Modal>
-    );
+  const isEdited = email !== (userFromStore?.email || "") ||
+    phone !== (userFromStore?.phone || "") ||
+    adminComments !== (userFromStore?.adminComments || "") ||
+    (roles.find(r => r === "ExpertTrad")) !== ((userFromStore?.roles || []).find(r => r === "ExpertTrad")) ||
+    (roles.find(r => r === "Admin")) !== ((userFromStore?.roles || []).find(r => r === "Admin"));
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggleModal}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-      size="lg"
-    >
-      <RowContainer>
-        <Image
-          className={styles.user_img + " mr-8"}
-          src={secureUrl}
-          alt=""
-          width={80}
-          height={80}
-          objectFit="contain"
-        />
-        <StructureName>{userFromStore.username}</StructureName>
-      </RowContainer>
-      <div style={{ marginRight: 32 }}>
-        <Label
-          htmlFor="email"
-          style={{ marginBottom: 12 }}
-        >Email</Label>
-        <FInput
-          id="email"
-          value={email}
-          onChange={onChangeEmail}
-          newSize={true}
-          autoFocus={false}
-        />
-      </div>
-      <div style={{ marginRight: 32 }}>
-        <Label
-          htmlFor="phone"
-          style={{ marginBottom: 12 }}
-        >Numéro de téléphone</Label>
-        <FInput
-          id="phone"
-          value={phone}
-          onChange={onChangePhone}
-          newSize={true}
-          autoFocus={false}
-          prepend
-          prependName="smartphone-outline"
-          inputClassName="phone-input"
-          error={!!phoneError && !phone}
-        />
-        {(!!phoneError && !phone) && <p style={{color: colors.error}}>{phoneError}</p>}
-      </div>
-      <div>
-        <Label>Structure</Label>
-        {!hasStructure && <p>Pas de structure</p>}
-        {hasStructure &&
-          (userFromStore.structures || []).map((structure) => (
-            <Structure
-              key={structure._id.toString()}
-              nom={structure.nom}
-              picture={structure.picture || null}
-              role={structure.role ? structure.role[0] : null}
-              onClick={() => {
-                //@ts-ignore
-                props.setSelectedStructureIdAndToggleModal(structure._id);
-                props.toggleModal();
-              }}
-            />
-          ))
-        }
-      </div>
-      <div>
-        <Label>Rôles</Label>
-        <RowContainer>
-          <RoleCheckBox
-            name="Expert en traduction"
-            isSelected={roles.includes("ExpertTrad")}
-            handleCheckBoxChange={handleCheckBoxChange}
+    <DetailsModal
+      show={props.show}
+      toggleModal={props.toggleModal}
+      isLoading={isLoading}
+      leftHead={
+        <>
+          <Image
+            className={styles.user_img}
+            src={secureUrl}
+            alt=""
+            width={50}
+            height={50}
+            objectFit="contain"
           />
-          <RoleCheckBox
-            name="Administrateur"
-            isSelected={roles.includes("Admin")}
-            handleCheckBoxChange={handleCheckBoxChange}
-          />
-        </RowContainer>
-      </div>
-      <div>
-        <Label>Langues</Label>
-        <RowContainerWrap>
-          {(userFromStore.langues || []).map((langue) => (
-            <LangueDetail key={langue.langueCode} langue={langue} />
-          ))}
-        </RowContainerWrap>
-      </div>
-      <div>
-        <Label>Date de création</Label>
-        <div style={{ marginBottom: "8px" }}>
-          {userFromStore.created_at
-            ? moment(userFromStore.created_at).format("LLL")
-            : "Non connue"}
-        </div>
-      </div>
-      <IndicatorContainer>
-        <IndicatorColumn>
-          <Label>Minutes passées à traduire</Label>
-          {indicators ? (
-            <>
-              <span>
-                3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.[0]?.timeSpent)}
-              </span>
-              <span>
-                6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.[0]?.timeSpent)}
-              </span>
-              <span>
-                12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.[0]?.timeSpent)}
-              </span>
-              <span>
-                Toujours : {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}
-              </span>
-            </>
-          ) : (
-            <Spinner />
-          )}
-        </IndicatorColumn>
-        <IndicatorColumn>
-          <Label>Nombre de mots traduits</Label>
-          {indicators ? (
-            <>
-              <span>
-                3 derniers mois : {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}
-              </span>
-              <span>
-                6 derniers mois : {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}
-              </span>
-              <span>
-                12 derniers mois : {indicators?.twelveMonthsIndicator?.[0]?.wordsCount || 0}
-              </span>
-              <span>
-                Toujours : {indicators?.totalIndicator?.[0]?.wordsCount || 0}
-              </span>
-            </>
-          ) : (
-            <Spinner />
-          )}
-        </IndicatorColumn>
-      </IndicatorContainer>
-      <ButtonContainer>
-        <FButton
-          type="error"
-          onClick={onDeleteClick}
-          name="trash-2"
-        >
-          Supprimer
-        </FButton>
-        <div>
+          <h2>{userFromStore?.username || ""}</h2>
+        </>
+      }
+      rightHead={
+        <>
+          <FButton
+            className="mr-8"
+            type="error"
+            name="trash-2-outline"
+            target="_blank"
+            onClick={onDeleteClick}
+          >
+            Supprimer
+          </FButton>
           <FButton
             className="mr-8"
             type="white"
             onClick={props.toggleModal}
             name="close-outline"
-          >
-            Annuler
-          </FButton>
-          <FButton
-            type="validate"
-            name="checkmark-outline"
-            onClick={() => onSaveClick()}
-          >
-            Enregistrer
-          </FButton>
-        </div>
-      </ButtonContainer>
-    </Modal>
+          ></FButton>
+        </>
+      }
+    >
+      {userFromStore ? (
+        <>
+          <div className={styles.details_row}>
+            <div className={styles.col_1}>
+              <div>
+                <Label htmlFor="name">Prénom et nom</Label>
+                <FInput
+                  id="name"
+                  value={name}
+                  onChange={onChangeName}
+                  newSize={true}
+                  autoFocus={false}
+                />
+              </div>
+              <div className="mt-2">
+                <Label htmlFor="email">Email</Label>
+                <FInput
+                  id="email"
+                  value={email}
+                  onChange={onChangeEmail}
+                  newSize={true}
+                  autoFocus={false}
+                  prepend
+                  prependName="email-outline"
+                  error={!!emailError}
+                />
+                {!!emailError && (
+                  <p className={styles.error}>{emailError}</p>
+                )}
+              </div>
+              <div className="mt-2">
+                <Label htmlFor="phone">Numéro de téléphone</Label>
+                <FInput
+                  id="phone"
+                  value={phone}
+                  onChange={onChangePhone}
+                  newSize={true}
+                  autoFocus={false}
+                  prepend
+                  prependName="smartphone-outline"
+                  inputClassName="phone-input"
+                  error={!!phoneError}
+                />
+                {!!phoneError && (
+                  <p className={styles.error}>{phoneError}</p>
+                )}
+              </div>
+              <div className="mt-2">
+                <Label>Notes internes</Label>
+                <NotesInput
+                  adminComments={adminComments}
+                  onNotesChange={onNotesChange}
+                  saveAdminComments={() => {
+                    onSaveClick()
+                  }}
+                  adminCommentsSaved={infosSaved}
+                  edited={isEdited}
+                />
+              </div>
+            </div>
+            <div className={styles.col_2}>
+              <Label>Structure</Label>
+              {!hasStructure ?
+                <p className={styles.no_structure}>Aucune structure</p>
+                :
+                <div>
+                  {(userFromStore.structures || []).map((structure) => (
+                    <StructureButton
+                      key={structure._id.toString()}
+                      sponsor={structure}
+                      onClick={() => {
+                        if (!structure) return;
+                        props.setSelectedStructureIdAndToggleModal(
+                          structure?._id || null
+                        );
+                        props.toggleModal();
+                      }}
+                      additionnalProp="role"
+                    />
+                  ))}
+                </div>
+              }
+
+              <div className="mt-4">
+                <Label>Rôles</Label>
+                <div>
+                  <RoleCheckBox
+                    name="Expert en traduction"
+                    isSelected={roles.includes("ExpertTrad")}
+                    handleCheckBoxChange={handleCheckBoxChange}
+                  />
+                  <RoleCheckBox
+                    name="Administrateur"
+                    isSelected={roles.includes("Admin")}
+                    handleCheckBoxChange={handleCheckBoxChange}
+                    />
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <Label>Langues de traduction activées</Label>
+                <div>
+                  {(userFromStore.langues || []).map((langue) => (
+                    <LangueDetail key={langue.langueCode} langue={langue} />
+                  ))}
+                </div>
+              </div>
+
+              <Row className="mt-4">
+                <Col className={styles.stats}>
+                  <Label>Minutes passées à traduire</Label>
+                  {indicators ? (
+                    <>
+                      <div>
+                        3 derniers mois :{" "}
+                        {getMinutes(
+                          indicators?.threeMonthsIndicator?.[0]?.timeSpent
+                        )}
+                      </div>
+                      <div>
+                        6 derniers mois :{" "}
+                        {getMinutes(
+                          indicators?.sixMonthsIndicator?.[0]?.timeSpent
+                        )}
+                      </div>
+                      <div>
+                        12 derniers mois :{" "}
+                        {getMinutes(
+                          indicators?.twelveMonthsIndicator?.[0]?.timeSpent
+                        )}
+                      </div>
+                      <div>
+                        Toujours :{" "}
+                        {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}
+                      </div>
+                    </>
+                    ) : <Spinner />
+                  }
+              </Col>
+              <Col className={styles.stats}>
+                <Label>Nombre de mots traduits</Label>
+                {indicators ? (
+                  <>
+                    <div>
+                      3 derniers mois :{" "}
+                      {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}
+                    </div>
+                    <div>
+                      6 derniers mois :{" "}
+                      {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}
+                    </div>
+                    <div>
+                      12 derniers mois :{" "}
+                      {indicators?.twelveMonthsIndicator?.[0]?.wordsCount ||
+                        0}
+                    </div>
+                    <div>
+                      Toujours :{" "}
+                      {indicators?.totalIndicator?.[0]?.wordsCount || 0}
+                    </div>
+                  </>
+                ) : (
+                  <Spinner />
+                )}
+              </Col>
+            </Row>
+            </div>
+            <div className={styles.col_3}>
+              <Label>Journal d'activité</Label>
+              <LogList logs={logs} />
+            </div>
+          </div>
+        </>
+      ) : (
+        <p>Erreur</p>
+      )}
+    </DetailsModal>
   );
 };

@@ -84,6 +84,7 @@ export interface SimplifiedUser {
   sixMonthsIndicator?: Indicator;
   twelveMonthsIndicator?: Indicator;
   totalIndicator?: Indicator;
+  adminComments?: string;
 }
 
 export interface SimplifiedCreator {

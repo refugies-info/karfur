@@ -24,6 +24,11 @@
   border-radius: $radius;
   background-color: $white;
   cursor: pointer;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &:hover {
     background-color: $gray10;

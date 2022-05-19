@@ -156,9 +156,9 @@ export const getColorAndStatus = (text: string) => {
     };
 
   return {
-    status: "Nouveau !",
+    status: "Nouveau !",
     color: colors.bleuCharte,
-    textColor: colors.bleuCharte,
+    textColor: colors.white,
   };
 };
 
@@ -344,4 +344,4 @@ export const Date = (props: {
   </p>
 );
 
-export const Label = (props: { children: any }) => <p className={styles.label}>{props.children}</p>
+export const Label = (props: { children: any, htmlFor?: string }) => <label className={styles.label} htmlFor={props.htmlFor}>{props.children}</label>

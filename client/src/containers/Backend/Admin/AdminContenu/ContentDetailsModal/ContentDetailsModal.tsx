@@ -275,6 +275,7 @@ export const ContentDetailsModal = (props: Props) => {
                       );
                       props.toggleModal();
                     }}
+                    additionnalProp="status"
                   />
                   <FButton
                     className="ml-1"
@@ -347,7 +348,7 @@ export const ContentDetailsModal = (props: Props) => {
                 onNotesChange={onNotesChange}
                 saveAdminComments={saveAdminComments}
                 adminCommentsSaved={adminCommentsSaved}
-                oldComments={structure?.adminComments || ""}
+                edited={(structure?.adminComments || "") !== adminComments}
               />
             </div>
 

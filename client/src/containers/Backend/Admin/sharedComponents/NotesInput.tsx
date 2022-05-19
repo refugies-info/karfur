@@ -7,13 +7,13 @@ interface Props {
   onNotesChange: (e: any) => void;
   saveAdminComments: () => void;
   adminCommentsSaved: boolean;
-  oldComments: string;
+  edited: boolean;
 }
 
 export const NotesInput = (props: Props) => {
   const getButtonColor = () => {
     if (props.adminCommentsSaved) return "saved";
-    if (props.oldComments !== props.adminComments) return "modified";
+    if (props.edited) return "modified";
     return "dark";
   };
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  Responsable,
   Log,
 } from "types/interface";
 import Image from "next/image";
@@ -267,7 +266,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 modifyStatus(adminComments, "adminComments")
               }
               adminCommentsSaved={adminCommentsSaved}
-              oldComments={structure?.adminComments || ""}
+              edited={(structure?.adminComments || "") !== adminComments}
             />
           </div>
 

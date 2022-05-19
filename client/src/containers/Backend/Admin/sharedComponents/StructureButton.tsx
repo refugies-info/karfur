@@ -1,15 +1,21 @@
 import React from "react";
 import Image from "next/image";
-import { SimplifiedMainSponsor } from "types/interface";
+import { SimplifiedMainSponsor, SimplifiedStructure } from "types/interface";
 import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
 import noStructure from "assets/noStructure.png";
 import styles from "../Admin.module.scss";
 
 export const StructureButton = (props: {
-  sponsor: SimplifiedMainSponsor | null;
+  sponsor: SimplifiedMainSponsor | SimplifiedStructure | null;
   onClick: () => void;
+  additionnalProp: "status" | "role"
 }) => {
+  const additionnalProp = props.additionnalProp || "status";
+  const propsToDisplay = additionnalProp === "status" ?
+    (props.sponsor as SimplifiedMainSponsor).status || "" :
+    (props.sponsor as SimplifiedStructure)?.role?.[0] || ""
+
   return (
     <div className={styles.details_button} onClick={props.onClick}>
       {props.sponsor?.picture?.secure_url ? (
@@ -34,8 +40,8 @@ export const StructureButton = (props: {
       {props.sponsor && (
         <span className="ml-auto">
           <StyledStatus
-            text={props.sponsor.status}
-            textToDisplay={props.sponsor.status}
+            text={propsToDisplay}
+            textToDisplay={propsToDisplay}
             disabled={true}
           />
         </span>
