@@ -37,7 +37,7 @@ module.exports = function (app) {
   app.get("/getAllDispositifs", getAllDispositifs);
   app.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
   app.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
-  app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
+  app.post("/updateDispositifAdminComments", checkToken.check, updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post(
     "/updateNbVuesOrFavoritesOnContent",

@@ -3,19 +3,25 @@ import { updateDispositifReactions } from "./updateDispositifReactions";
 import {
   updateDispositifInDB,
   modifyReadSuggestionInDispositif,
+  getDispositifById
 } from "../../../modules/dispositif/dispositif.repository";
 import mockdate from "mockdate";
+import { log } from "./log";
 
 mockdate.set("2019-11-10T10:00:00.00Z");
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
   modifyReadSuggestionInDispositif: jest.fn(),
+  getDispositifById: jest.fn(),
 }));
 
 jest.mock("uniqid", () => ({
   __esModule: true, // this property makes it work
   default: () => "test",
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 type MockResponse = { json: any; status: any };
