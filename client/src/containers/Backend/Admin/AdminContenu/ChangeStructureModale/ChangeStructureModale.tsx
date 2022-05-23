@@ -71,16 +71,16 @@ export const ChangeStructureModal = (props: Props) => {
     setSelectedStructure,
   ] = useState<SimplifiedStructure | null>(null);
   const dispatch = useDispatch();
+  const structures = useSelector(activeStructuresSelector);
   useEffect(() => {
     const loadStructures = () => {
       dispatch(fetchActiveStructuresActionCreator());
     };
-    loadStructures();
-  }, [dispatch]);
+    if (props.show && structures.length === 0) loadStructures();
+  }, [dispatch, structures, props.show]);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
-  const structures = useSelector(activeStructuresSelector);
   const selectItem = (item: any) => setSelectedStructure(item);
   const toggleModal = () => {
     setSelectedStructure(null);

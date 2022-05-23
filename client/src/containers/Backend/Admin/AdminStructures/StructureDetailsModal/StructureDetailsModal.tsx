@@ -42,6 +42,7 @@ import styles from "./StructureDetailsModal.module.scss";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import { useRouter } from "next/router";
+import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 
 moment.locale("fr");
 interface Props extends RouteComponentProps {
@@ -88,8 +89,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       setAdminComments(structure.adminComments || "");
       setAdminCommentsSaved(false);
       setCurrentId(selectedStructureId);
+      updateLogs();
     }
-    updateLogs();
   }, [structure, currentId, selectedStructureId, updateLogs]);
 
   const updateStructuresStore = (
@@ -146,6 +147,11 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
       await API.updateStructure(queryStructure);
       updateStructuresStore(structure._id, property, newStatus);
+
+      if (property === "status") { // if we publish a structure, fetch active structures
+        dispatch(fetchActiveStructuresActionCreator());
+      }
+
       if (property === "adminComments") setAdminCommentsSaved(true);
     }
   };

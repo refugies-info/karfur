@@ -90,9 +90,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       setAdminComments(userFromStore.adminComments || "");
       setInfosSaved(false);
       setCurrentId(selectedUserId);
+      updateLogs();
+      loadIndicators();
     }
-    updateLogs();
-    loadIndicators();
   }, [userFromStore, currentId, selectedUserId, updateLogs]);
 
   const updateUserStore = (

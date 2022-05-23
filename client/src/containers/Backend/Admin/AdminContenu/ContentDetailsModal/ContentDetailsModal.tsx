@@ -78,8 +78,8 @@ export const ContentDetailsModal = (props: Props) => {
       setAdminComments(dispositif.adminComments || "");
       setAdminCommentsSaved(false);
       setCurrentId(selectedDispositifId);
+      updateLogs();
     }
-    updateLogs();
   }, [dispositif, currentId, selectedDispositifId, updateLogs]);
 
   const updateDispositifsStore = (
