@@ -89,8 +89,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       setAdminComments(structure.adminComments || "");
       setAdminCommentsSaved(false);
       setCurrentId(selectedStructureId);
+      updateLogs();
     }
-    updateLogs();
   }, [structure, currentId, selectedStructureId, updateLogs]);
 
   const updateStructuresStore = (
