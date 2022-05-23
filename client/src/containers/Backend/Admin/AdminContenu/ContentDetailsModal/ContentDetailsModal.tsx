@@ -153,7 +153,12 @@ export const ContentDetailsModal = (props: Props) => {
     "Accepté structure",
   ];
 
-  const moreMembers = (structure?.membres || []).length > 3;
+
+  const members = (structure?.membres || [])
+    .filter((m) => m.roles.includes("administrateur"))
+    .filter((m) => m.userId !== structure?.responsable?._id);
+
+  const moreMembers = members.length > 3;
 
   if (dispositif) {
     const burl =
@@ -278,7 +283,7 @@ export const ContentDetailsModal = (props: Props) => {
                     additionnalProp="status"
                   />
                   <FButton
-                    className="ml-1"
+                    className="ml-1 mb-2"
                     name="edit-outline"
                     type="dark"
                     onClick={(e: any) => {
@@ -304,12 +309,11 @@ export const ContentDetailsModal = (props: Props) => {
                     />
                   </div>
 
-                  {structure?.membres?.length &&
+                  {members.length > 0 &&
                     <div>
                       <Label>Autres responsables</Label>
                       <Row noGutters>
-                        {(structure.membres || [])
-                          .filter((m) => m.roles.includes("administrateur"))
+                        {members
                           .slice(0, moreMembers ? 2 : 3)
                           .map((user, index) => (
                             <Col key={index} className="mr-1">
@@ -327,7 +331,7 @@ export const ContentDetailsModal = (props: Props) => {
                           <Col>
                             <UserButton
                               text={`+ ${
-                                structure.membres.length - 2
+                                members.length - 2
                               } responsables`}
                               condensed={true}
                               noImage={true}
@@ -348,7 +352,7 @@ export const ContentDetailsModal = (props: Props) => {
                 onNotesChange={onNotesChange}
                 saveAdminComments={saveAdminComments}
                 adminCommentsSaved={adminCommentsSaved}
-                edited={(structure?.adminComments || "") !== adminComments}
+                edited={(dispositif?.adminComments || "") !== adminComments}
               />
             </div>
 

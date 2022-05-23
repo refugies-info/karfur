@@ -408,11 +408,11 @@ export const AdminUsers = () => {
                           className={styles.user_img + " mr-8"}
                           src={secureUrl}
                           alt=""
-                          width={70}
+                          width={40}
                           height={40}
                           objectFit="contain"
                         />
-                        <StructureName>{element.username}</StructureName>
+                        <StructureName className="ml-4">{element.username}</StructureName>
                       </RowContainer>
                     </div>
                   </td>

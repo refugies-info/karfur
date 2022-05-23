@@ -33,7 +33,7 @@ export const LogList = (props: Props) => {
   return (
     <div className={styles.container}>
       {Object.entries(groupedLogs).map((group, j) => (
-        <div key={j}>
+        <div key={j} className="mb-2">
           <p className={styles.date}>{group[0]}</p>
           {group[1].map((log, i) => (
             <LogLine

@@ -44,7 +44,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
 
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
-  const [name, setName] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
@@ -81,7 +80,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     if (userFromStore && currentId !== selectedUserId) {
       setEmail(userFromStore?.email || "");
       setPhone(userFromStore?.phone || "");
-      setName(/* userFromStore?.name ||  */ "");
       setPhoneError("");
       const roles = userFromStore?.roles
         ? userFromStore.roles.filter(
@@ -125,10 +123,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       setPhoneError("");
     }
     setPhone(e.target.value);
-  }, [infosSaved]);
-  const onChangeName = useCallback((e: Event) => {
-    if (infosSaved) setInfosSaved(false);
-    setName(e.target.value);
   }, [infosSaved]);
   const onNotesChange = useCallback((e: any) => {
     if (infosSaved) setInfosSaved(false);
@@ -298,16 +292,6 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           <div className={styles.details_row}>
             <div className={styles.col_1}>
               <div>
-                <Label htmlFor="name">Prénom et nom</Label>
-                <FInput
-                  id="name"
-                  value={name}
-                  onChange={onChangeName}
-                  newSize={true}
-                  autoFocus={false}
-                />
-              </div>
-              <div className="mt-2">
                 <Label htmlFor="email">Email</Label>
                 <FInput
                   id="email"

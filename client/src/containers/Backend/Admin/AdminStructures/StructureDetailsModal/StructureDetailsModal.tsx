@@ -146,6 +146,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
       await API.updateStructure(queryStructure);
       updateStructuresStore(structure._id, property, newStatus);
+      if (property === "adminComments") setAdminCommentsSaved(true);
     }
   };
 
