@@ -114,6 +114,10 @@ var userSchema = new mongoose.Schema(
       type: Date,
       required: false,
     },
+    adminComments: {
+      type: String,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -184,6 +188,7 @@ export interface UserDoc extends mongoose.Document {
   authy_id?: string;
   reset_password_token?: string;
   reset_password_expires?: number;
+  adminComments?: string;
   _id: ObjectId;
   created_at: Date;
 }

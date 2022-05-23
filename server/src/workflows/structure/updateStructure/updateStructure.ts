@@ -7,7 +7,7 @@ import { log } from "./log";
 
 // route called when modify structure but not its members (use another route for this)
 export const updateStructure = async (
-  req: RequestFromClient<StructureDoc>,
+  req: RequestFromClient<Partial<StructureDoc>>,
   res: Res
 ) => {
   if (!req.fromSite) {
@@ -35,7 +35,7 @@ export const updateStructure = async (
       const oldStructure = await getStructureFromDB(
         structure._id,
         false,
-        {picture: 1, nom: 1, status: 1}
+        {picture: 1, nom: 1, status: 1, adminComments: 1}
       );
       const updatedStructure = await updateStructureInDB(
         structure._id,

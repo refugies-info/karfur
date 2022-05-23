@@ -100,6 +100,7 @@ export const adaptUsers = (users: UserDoc[], role: "admin" | "hasStructure") =>
       picture: user.picture,
       status: user.status,
       email: user.email,
+      adminComments: user.adminComments
     };
     // hasStructure
     if (role === "hasStructure") return simpleUser;
@@ -157,6 +158,7 @@ export const getAllUsers = async (req: any, res: Res) => {
       email: 1,
       phone: 1,
       selectedLanguages: 1,
+      adminComments: 1
     };
 
     const users = await getAllUsersFromDB(neededFields);

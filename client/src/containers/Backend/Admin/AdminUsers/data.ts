@@ -1,16 +1,4 @@
-export type FilterUserStatus =
-  "Respo" |
-  "Admin" |
-  "Experts" |
-  "Traducteurs" |
-  "Rédacteurs" |
-  "Multi-structure" |
-  "Tous";
-
-export type UserStatus = {
-  status: FilterUserStatus
-  order: number
-}
+import { UserStatus } from "types/interface";
 
 export const userHeaders = [
   { name: "Pseudonyme", order: "username" },
@@ -21,12 +9,49 @@ export const userHeaders = [
   { name: "Création", order: "created_at" },
 ];
 
+const green = "#4CAF50";
+
 export const correspondingStatus: UserStatus[] = [
-  { status: "Respo", order: 2 },
-  { status: "Admin", order: 1 },
-  { status: "Experts", order: 3 },
-  { status: "Traducteurs", order: 4 },
-  { status: "Rédacteurs", order: 5 },
-  { status: "Multi-structure", order: 6 },
-  { status: "Tous", order: 7 },
+  {
+    displayedStatus: "Respo",
+    storedStatus: "Respo",
+    color: green,
+    order: 2
+  },
+  {
+    displayedStatus: "Admin",
+    storedStatus: "Admin",
+    color: green,
+    order: 1
+  },
+  {
+    displayedStatus: "Experts",
+    storedStatus: "Experts",
+    color: green,
+    order: 3
+  },
+  {
+    displayedStatus: "Traducteurs",
+    storedStatus: "Traducteurs",
+    color: green,
+    order: 4
+  },
+  {
+    displayedStatus: "Rédacteurs",
+    storedStatus: "Rédacteurs",
+    color: green,
+    order: 5
+  },
+  {
+    displayedStatus: "Multi-structure",
+    storedStatus: "Multi-structure",
+    color: green,
+    order: 6
+  },
+  {
+    displayedStatus: "Tous",
+    storedStatus: "Tous",
+    color: green,
+    order: 7
+  },
 ];

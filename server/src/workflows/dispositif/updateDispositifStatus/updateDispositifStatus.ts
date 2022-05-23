@@ -38,7 +38,7 @@ export const updateDispositifStatus = async (
     if (status === "Actif") {
       // @ts-ignore : populate roles
       checkIfUserIsAdmin(req.user.roles);
-      await publishDispositif(dispositifId);
+      await publishDispositif(dispositifId, req.userId);
 
       return res.status(200).json({ text: "OK" });
     }
