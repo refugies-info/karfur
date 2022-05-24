@@ -47,7 +47,7 @@ const dispositif2 = {
   titreMarque: "titreMarque",
 };
 const dispositif3 = {
-  _id: "dispo2",
+  _id: "dispo3",
   contenu: "content2",
   unusedField: "unusedField",
   abstract: "abstract",
@@ -58,7 +58,7 @@ const dispositif3 = {
 };
 
 const dispositif4 = {
-  _id: "dispo2",
+  _id: "dispo4",
   contenu: "content2",
   unusedField: "unusedField",
   abstract: "abstract",
@@ -122,16 +122,18 @@ describe("getAllStructures", () => {
   });
   const neededFields = {
     nom: 1,
+    acronyme: 1,
     status: 1,
     picture: 1,
     dispositifsAssocies: 1,
-    contact: 1,
-    phone_contact: 1,
-    mail_contact: 1,
-    membres: 1,
     created_at: 1,
+    createur: 1,
+    membres: 1,
+    adminComments: 1,
+    adminProgressionStatus: 1,
+    adminPercentageProgressionStatus: 1,
   };
-  const neededFieldsUser = { picture: 1, username: 1 };
+  const neededFieldsUser = { picture: 1, username: 1, email: 1 };
   it("should call getStructuresFromDB and getUserById and return a 200 (structure with respo)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
@@ -158,7 +160,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
-        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
+        dispositifsIds: ["dispo1", "dispo2", "dispo3", "dispo4"],
         responsable: {
           _id: "id1",
           username: "respo",
@@ -199,7 +201,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
-        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
+        dispositifsIds: ["dispo1", "dispo2", "dispo3", "dispo4"],
         responsable: null,
         nbFiches: 2,
         membres: [
@@ -236,7 +238,7 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
-        dispositifsIds: ["dispo1", "dispo2", "dispo2"],
+        dispositifsIds: ["dispo1", "dispo2", "dispo3", "dispo4"],
         responsable: null,
         nbFiches: 2,
         membres: [

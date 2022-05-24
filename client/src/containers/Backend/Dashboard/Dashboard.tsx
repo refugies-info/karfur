@@ -18,6 +18,7 @@ const formatter = new Intl.NumberFormat();
 
 interface Props {
   title?: string
+  visible: boolean
 }
 
 const Dashboard = (props: Props) => {
@@ -39,69 +40,65 @@ const Dashboard = (props: Props) => {
     ObjectId[]
   >([]);
   const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    if (props.title) document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (props.visible && !loaded) {
+      const promises = [
+        API.count_dispositifs({
+          typeContenu: { $ne: "demarche" }
+        }).then((data) => setNbDispositifs(data.data)),
+        API.count_dispositifs({
+          typeContenu: { $ne: "demarche" },
+          status: "Actif",
+        }).then((data) => setNbDispositifsActifs(data.data)),
+        API.count_dispositifs({
+          typeContenu: "demarche"
+        }).then((data) => setNbDemarches(data.data)),
+        API.count_dispositifs({
+          typeContenu: "demarche",
+          status: "Actif",
+        }).then((data) => setNbDemarchesActives(data.data)),
+        API.getFiguresOnUsers().then((data) => {
+          setNbContributors(data.data.data.nbContributors);
+          setNbTraductors(data.data.data.nbTraductors);
+        }),
+        API.getNbDispositifsByRegion().then((data) => {
+          setFiguresByRegion(data.data.data.regionFigures);
+          setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
+        }),
+        API.getStatistics().then((data) => {
+          setStatistics(data.data.data);
+        })
+      ];
 
-  useEffect(() => {
-    API.count_dispositifs({
-      typeContenu: { $ne: "demarche" }
-    }).then((data) => setNbDispositifs(data.data));
-
-    API.count_dispositifs({
-      typeContenu: { $ne: "demarche" },
-      status: "Actif",
-    }).then((data) => setNbDispositifsActifs(data.data));
-
-    API.count_dispositifs({
-      typeContenu: "demarche"
-    }).then((data) => setNbDemarches(data.data));
-
-    API.count_dispositifs({
-      typeContenu: "demarche",
-      status: "Actif",
-    }).then((data) => setNbDemarchesActives(data.data));
-
-    API.getFiguresOnUsers().then((data) => {
-      setNbContributors(data.data.data.nbContributors);
-      setNbTraductors(data.data.data.nbTraductors);
-    });
-
-    API.getNbDispositifsByRegion().then((data) => {
-      setFiguresByRegion(data.data.data.regionFigures);
-      setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
-    });
-
-    API.getStatistics().then((data) => {
-      setStatistics(data.data.data);
-    });
-
-    for (const tag of tags) {
-      API.count_dispositifs({
-        "tags.0.name": tag.name,
-        status: "Actif",
-        typeContenu: "dispositif",
-      }).then((data) => {
-        setNbDispositifsByMainTag((prev) => ({
-          ...prev,
-          [tag.name]: data.data,
-        }));
-      });
-
-      API.count_dispositifs({
-        "tags.0.name": tag.name,
-        status: "Actif",
-        typeContenu: "demarche",
-      }).then((data) => {
-        setNbDemarchesByMainTag((prev) => ({
-          ...prev,
-          [tag.name]: data.data,
-        }));
-      });
+      for (const tag of tags) {
+        promises.push(
+          API.count_dispositifs({
+            "tags.0.name": tag.name,
+            status: "Actif",
+            typeContenu: "dispositif",
+          }).then((data) => {
+            setNbDispositifsByMainTag((prev) => ({
+              ...prev,
+              [tag.name]: data.data,
+            }));
+          }),
+          API.count_dispositifs({
+            "tags.0.name": tag.name,
+            status: "Actif",
+            typeContenu: "demarche",
+          }).then((data) => {
+            setNbDemarchesByMainTag((prev) => ({
+              ...prev,
+              [tag.name]: data.data,
+            }));
+          })
+        );
+      }
+      Promise.all(promises).finally(() => setLoaded(true));
     }
-  }, []);
+  }, [loaded, props.visible]);
 
   const toggleNoGeolocModal = () => setShowNoGeolocModal(!showNoGeolocModal);
 

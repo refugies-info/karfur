@@ -1,0 +1,30 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  font-size: 12px;
+  line-height: 15px;
+  background: $gray40b;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  display: flex;
+  cursor: default;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    display: block;
+    text-decoration: underline;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: $gray40;
+    }
+  }
+}

@@ -16,14 +16,14 @@ export const getLogs = async (
   res: Res
 ) => {
   try {
-    logger.info("[getLogs] received with id", req?.body?.id);
+    logger.info("[getLogs] received with id", req?.query?.id);
     checkRequestIsFromSite(req.fromSite);
     //@ts-ignore
     checkIfUserIsAdmin(req.user.roles)
 
-    if (!req.body.id) throw new Error("INVALID_REQUEST");
+    if (!req.query.id) throw new Error("INVALID_REQUEST");
 
-    const logs = await findLogs(req.body.id);
+    const logs = await findLogs(req.query.id);
     return res.status(200).json({
       text: "Succès",
       data: logs,

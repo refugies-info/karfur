@@ -38,15 +38,17 @@ type NeededFields =
       departments: number;
     }
   | {
-      nom: number;
-      status: number;
-      picture: number;
-      dispositifsAssocies: number;
-      contact: number;
-      phone_contact: number;
-      mail_contact: number;
-      membres: number;
-      created_at: number;
+    nom: number;
+    acronyme: number;
+    status: number;
+    picture: number;
+    createur: number;
+    dispositifsAssocies: number;
+    created_at: number;
+    membres: number;
+    adminComments: number;
+    adminProgressionStatus: number;
+    adminPercentageProgressionStatus: number;
     }
   | { membres: 1 };
 
@@ -58,9 +60,9 @@ export const getStructuresFromDB = async (
   if (!withDispositifsAssocies)
     return await Structure.find(query, neededFields);
 
-  return await Structure.find(query, neededFields).populate(
-    "dispositifsAssocies"
-  );
+  return await Structure.find(query, neededFields)
+    .populate("dispositifsAssocies")
+    .populate("createur", "username email picture");
 };
 
 export const updateAssociatedDispositifsInStructure = async (
@@ -114,7 +116,7 @@ export const createStructureInDB = async (structure: StructureDoc) =>
 
 export const updateStructureInDB = async (
   structureId: ObjectId,
-  structure: StructureDoc
+  structure: Partial<StructureDoc>
 ) => {
   return Structure.findOneAndUpdate(
     {

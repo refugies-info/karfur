@@ -14,7 +14,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
-import { userHeaders, correspondingStatus, FilterUserStatus } from "./data";
+import { userHeaders, correspondingStatus } from "./data";
 import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -32,6 +32,7 @@ import {
   SimplifiedUser,
   Responsable,
   SimplifiedStructureForAdmin,
+  UserStatusType,
 } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
@@ -42,14 +43,15 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
-import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 
 moment.locale("fr");
 
@@ -64,7 +66,7 @@ export const AdminUsers = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "utilisateurs");
-  const [filter, setFilter] = useState<FilterUserStatus>(initialFilters.filter as FilterUserStatus || "Admin");
+  const [filter, setFilter] = useState<UserStatusType>(initialFilters.filter as UserStatusType || "Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -130,10 +132,8 @@ export const AdminUsers = () => {
   const toggleContentDetailsModal = () =>
     setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (
-    element: SimplifiedUser | null | Responsable
-  ) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
@@ -146,7 +146,7 @@ export const AdminUsers = () => {
     toggleContentDetailsModal();
   };
 
-  const onFilterClick = (status: FilterUserStatus) => {
+  const onFilterClick = (status: UserStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -155,13 +155,14 @@ export const AdminUsers = () => {
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => {
-    setSelectedStructureId(element ? element._id : null);
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
   const users = useSelector(activeUsersSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
 
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
@@ -351,7 +352,7 @@ export const AdminUsers = () => {
         </div>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
-            const status = element.status;
+            const status = element.storedStatus;
             const nbUsers = getNbUsersByStatus(usersForCount, status);
             return (
               <FilterButton
@@ -399,7 +400,7 @@ export const AdminUsers = () => {
                 <tr key={key}>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
@@ -407,17 +408,17 @@ export const AdminUsers = () => {
                           className={styles.user_img + " mr-8"}
                           src={secureUrl}
                           alt=""
-                          width={70}
+                          width={40}
                           height={40}
                           objectFit="contain"
                         />
-                        <StructureName>{element.username}</StructureName>
+                        <StructureName className="ml-4">{element.username}</StructureName>
                       </RowContainer>
                     </div>
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div style={{ maxWidth: "200px", wordWrap: "break-word" }}>
                       {element.email}
@@ -430,7 +431,7 @@ export const AdminUsers = () => {
                       setSelectedStructureIdAndToggleModal(
                         //@ts-ignore
                         element.structures && element.structures.length > 0
-                          ? element.structures[0]
+                          ? element.structures[0]._id
                           : null
                       )
                     }
@@ -439,7 +440,7 @@ export const AdminUsers = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div className={styles.item_container}>
                       {(element.roles || []).map((role) => (
@@ -449,7 +450,7 @@ export const AdminUsers = () => {
                   </td>
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     <div className={styles.item_container}>
                       {(element.langues || []).map((langue) => (
@@ -463,7 +464,7 @@ export const AdminUsers = () => {
 
                   <td
                     className="align-middle"
-                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
                   >
                     {element.created_at
                       ? moment(element.created_at).format("LLL")
@@ -504,7 +505,7 @@ export const AdminUsers = () => {
         />
       )}
       {selectedContentId && (
-        <DetailsModal
+        <ContentDetailsModal
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={
             setSelectedStructureIdAndToggleModal
@@ -514,9 +515,8 @@ export const AdminUsers = () => {
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
-              setSelectedContentId,
-              setShowContentDetailsModal,
-              fetchAllDispositifsActionsCreator,
+              dispositifs,
+              setAllDispositifsActionsCreator,
               dispatch,
               selectedContentId
             )

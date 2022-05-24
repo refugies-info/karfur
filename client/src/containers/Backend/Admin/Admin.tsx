@@ -200,7 +200,9 @@ export const Admin = (props: Props) => {
         activeTab={activeTab}
         className={styles.tab_content}
       >
-        <CustomTabPane />
+        <CustomTabPane
+          activeTab={activeTab}
+        />
       </TabContent>
     </div>
   );

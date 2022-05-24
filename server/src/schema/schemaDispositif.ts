@@ -150,9 +150,11 @@ var dispositifSchema = new mongoose.Schema(
     publishedAt: {
       type: Date,
     },
+    publishedAtAuthor: { type: mongoose.Types.ObjectId, ref: "User" },
     lastModificationDate: {
       type: Date,
     },
+    lastModificationAuthor: { type: mongoose.Types.ObjectId, ref: "User" },
     adminComments: {
       type: String,
       required: false,

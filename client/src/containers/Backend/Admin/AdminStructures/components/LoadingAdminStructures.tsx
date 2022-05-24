@@ -1,4 +1,9 @@
 import React from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import { Table } from "reactstrap";
+import { colors } from "colors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { headers, correspondingStatus } from "../data";
 import {
   StyledHeader,
   StyledTitle,
@@ -6,11 +11,6 @@ import {
   FigureContainer,
   StyledSort,
 } from "../../sharedComponents/StyledAdmin";
-import { Table } from "reactstrap";
-import { headers, correspondingStatus } from "../data";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
-import { colors } from "colors";
 import { FilterButton } from "../../sharedComponents/SubComponents";
 
 export const LoadingAdminStructures = () => {
@@ -30,9 +30,9 @@ export const LoadingAdminStructures = () => {
         <StyledSort>
           {correspondingStatus.sort(compare).map((element) => (
             <FilterButton
-              key={element.status}
+              key={element.storedStatus}
               onClick={() => {}}
-              text={`${element.status} (...)`}
+              text={`${element.displayedStatus} (...)`}
               isSelected={false}
             />
           ))}
