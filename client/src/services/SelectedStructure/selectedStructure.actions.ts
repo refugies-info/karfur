@@ -1,6 +1,7 @@
 import {
   SET_SELECTED_STRUCTURE,
   FETCH_SELECTED_STRUCTURE,
+  UPDATE_SELECTED_STRUCTURE
 } from "./selectedStructure.actionTypes";
 import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
@@ -13,9 +14,13 @@ export const fetchSelectedStructureActionCreator = (value: {
   locale: string;
 }) => action(FETCH_SELECTED_STRUCTURE, value);
 
+export const updateSelectedStructureActionCreator = (value: { locale: string }) =>
+  action(UPDATE_SELECTED_STRUCTURE, value);
+
 const actions = {
   setSelectedStructureActionCreator,
   fetchSelectedStructureActionCreator,
+  updateSelectedStructureActionCreator,
 };
 
 export type SelectedStructureActions = ActionType<typeof actions>;

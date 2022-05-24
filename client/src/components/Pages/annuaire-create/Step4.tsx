@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Input } from "reactstrap";
 import {
-  UserStructure,
   DetailedOpeningHours,
+  Structure,
 } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
@@ -15,7 +15,7 @@ import { CustomCheckBox } from "./CustomCheckBox";
 import { AddButton } from "./Step2";
 
 interface Props {
-  structure: UserStructure | null;
+  structure: Structure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

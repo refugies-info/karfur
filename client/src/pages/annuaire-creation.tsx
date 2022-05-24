@@ -11,20 +11,15 @@ import { Step5 } from "components/Pages/annuaire-create/Step5";
 import { Step6 } from "components/Pages/annuaire-create/Step6";
 import { FrameModal } from "components/Modals";
 import { Modifications } from "components/Pages/annuaire-create/Modifications";
-import {
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
-  setUserStructureActionCreator,
-} from "services/UserStructure/userStructure.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { userStructureIdSelector } from "services/User/user.selectors";
-import { userStructureSelector } from "services/UserStructure/userStructure.selectors";
+import { selectedStructureIdSelector, selectedStructureSelector } from "services/SelectedStructure/selectedStructure.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
-import { UserStructure } from "types/interface";
+import { Structure } from "types/interface";
 import styles from "scss/pages/annuaire-create.module.scss";
 import SEO from "components/Seo";
+import { setSelectedStructureActionCreator, updateSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 
 
 const AnnuaireCreate = () => {
@@ -34,13 +29,15 @@ const AnnuaireCreate = () => {
   const [hasModifications, setHasModifications] = useState(false);
 
   const dispatch = useDispatch();
-  const structureId = useSelector(userStructureIdSelector);
-  const structure = useSelector(userStructureSelector);
+  const structureId = useSelector(selectedStructureIdSelector);
+  const structure = useSelector(selectedStructureSelector);
+
   const isLoadingFetch = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
+    isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
   );
+
   const isLoadingUpdate = useSelector(
-    isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE)
+    isLoadingSelector(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE)
   );
   const isLoading = isLoadingUpdate || isLoadingFetch;
 
@@ -56,20 +53,12 @@ const AnnuaireCreate = () => {
   };
 
   const updateStructure = () => {
-    dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
+    dispatch(updateSelectedStructureActionCreator({locale: router.locale || "fr"}));
   };
 
-  const setStructure = (structure: UserStructure) => {
-    dispatch(setUserStructureActionCreator(structure));
+  const setStructure = (structure: Structure) => {
+    dispatch(setSelectedStructureActionCreator(structure));
   };
-
-  useEffect(() => {
-    if (structureId) {
-      dispatch(
-        fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
-      );
-    }
-  }, [dispatch, structureId]);
 
   const onStepValidate = () => {
     updateStructure();
@@ -157,7 +146,7 @@ const AnnuaireCreate = () => {
                   name="done-all-outline"
                   className="ml-8"
                   onClick={() =>
-                    router.push("/backend/user-dash-structure")
+                    router.push("/annuaire/"+structureId)
                   }
                 >
                   Terminer
