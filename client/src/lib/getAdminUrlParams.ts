@@ -1,11 +1,9 @@
 import { ObjectId } from "mongodb";
 import { NextRouter } from "next/router";
-import { FilterContentStatus } from "containers/Backend/Admin/AdminContenu/data";
-import { FilterUserStatus } from "containers/Backend/Admin/AdminUsers/data";
-import { FilterStructureStatus } from "containers/Backend/Admin/AdminStructures/data";
+import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
 
 export type TabQuery = "contenus" | "structures" | "utilisateurs" | "statistiques" | "besoins" | undefined;
-type Status = FilterContentStatus | FilterStructureStatus | FilterUserStatus;
+type Status = ContentStatusType | StructureStatusType | UserStatusType;
 
 type AdminUrlParams = {
   tab?: string

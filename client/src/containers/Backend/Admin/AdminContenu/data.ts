@@ -1,4 +1,5 @@
 import { colors } from "colors";
+import { ContentStatus, ProgressionStatus } from "types/interface";
 
 type TableContenu = {
   title: string
@@ -60,21 +61,12 @@ const yellow = "#FFEB3B";
 const red = "#F44336";
 const lightGreen = "#8BC34A";
 
-export type FilterContentStatus = "Actif" | "En attente" | "Brouillon" | "En attente non prioritaire" | "Rejeté structure" | "En attente admin" | "Accepté structure" | "Supprimé";
-
-export type CorrespondingStatus = {
-  storedStatus: FilterContentStatus
-  displayedStatus: string
-  color: string
-  order: number
-  textColor?: string
-}
-
-export const correspondingStatus: CorrespondingStatus[] = [
+export const correspondingStatus: ContentStatus[] = [
   {
     storedStatus: "Actif",
     displayedStatus: "Publié",
-    color: green, order: 5
+    color: green,
+    order: 5
   },
   {
     storedStatus: "En attente",
@@ -130,84 +122,68 @@ export const correspondingStatus: CorrespondingStatus[] = [
 const darkBlue = colors.bleuCharte;
 const lightBlue = colors.lightBlue;
 
-type ProgressionData = {
-  storedStatus: string
-  displayedStatus: string
-  color: string
-  group: number
-  textColor: string
-}
-
-
-export const progressionData: ProgressionData[] = [
+export const publicationData: ProgressionStatus[] = [
   {
     storedStatus: "Nouveau !",
     displayedStatus: "Nouveau !",
     color: darkBlue,
     textColor: colors.white,
-    group: 1,
   },
   {
-    storedStatus: "À contacter",
-    displayedStatus: "À contacter",
+    storedStatus: "À relire",
+    displayedStatus: "À relire 🕶",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 1,
   },
   {
     storedStatus: "Contacté",
-    displayedStatus: "Contacté",
+    displayedStatus: "Contacté 🔄",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 1,
   },
   {
     storedStatus: "À relancer",
-    displayedStatus: "À relancer",
+    displayedStatus: "À relancer ⚠️",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 1,
   },
   {
     storedStatus: "Bloqué",
-    displayedStatus: "Bloqué",
+    displayedStatus: "Bloqué ⛔️",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 1,
-  },
+  }
+];
+
+export const progressionData: ProgressionStatus[] = [
   {
     storedStatus: "0%",
     displayedStatus: "0%",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 2,
   },
   {
     storedStatus: "25%",
     displayedStatus: "25%",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 2,
   },
   {
     storedStatus: "50%",
     displayedStatus: "50%",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 2,
   },
   {
     storedStatus: "75%",
     displayedStatus: "75%",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 2,
   },
   {
     storedStatus: "100%",
     displayedStatus: "100%",
     color: lightBlue,
     textColor: colors.gray90,
-    group: 2,
   },
 ];

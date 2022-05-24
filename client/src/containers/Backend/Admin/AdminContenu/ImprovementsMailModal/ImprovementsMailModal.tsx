@@ -251,7 +251,6 @@ export const ImprovementsMailModal = (props: Props) => {
         <Text>{title}</Text>
         <StyledStatus
           text={formattedStatus.displayedStatus}
-          overrideColor={false}
           textToDisplay={formattedStatus.displayedStatus}
           color={formattedStatus.color}
           disabled={true}

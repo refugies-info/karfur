@@ -303,21 +303,21 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       <RowContainer>
         {correspondingStatus
           .sort(statusCompare)
-          .filter((element) => element.status !== "Supprimé")
+          .filter((element) => element.storedStatus !== "Supprimé")
           .map((element) => {
             return (
               <div
-                key={element.status}
+                key={element.storedStatus}
                 style={{
                   marginRight: "8px",
                   marginBottom: "8px",
                 }}
-                onClick={() => modifyStatus(element.status)}
+                onClick={() => modifyStatus(element.storedStatus)}
               >
                 <StyledStatus
-                  text={element.status}
-                  overrideColor={structure.status !== element.status}
-                  textToDisplay={element.status}
+                  text={element.storedStatus}
+                  overrideColor={structure.status !== element.storedStatus}
+                  textToDisplay={element.displayedStatus}
                   // color={element.color}
                   disabled={false}
                 />

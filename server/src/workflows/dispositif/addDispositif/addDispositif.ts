@@ -177,7 +177,12 @@ export const addDispositif = async (
       if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
         // @ts-ignore
         dispositif.publishedAt = Date.now();
+        // @ts-ignore
+        dispositif.publishedAtAuthor = req.userId;
       }
+      // @ts-ignore
+      dispositif.lastModificationAuthor = req.userId;
+
       //now I need to save the dispositif and the translation
       dispResult = await updateDispositifInDB(
         dispositif.dispositifId,
@@ -252,6 +257,8 @@ export const addDispositif = async (
       }
       // @ts-ignore
       dispositif.creatorId = req.userId;
+      // @ts-ignore
+      dispositif.lastModificationAuthor = req.userId;
       // @ts-ignore
       dispResult = await createDispositifInDB(dispositif);
 

@@ -5,8 +5,13 @@ import { AdminStructures } from "containers/Backend/Admin/AdminStructures/AdminS
 import { AdminUsers } from "containers/Backend/Admin/AdminUsers/AdminUsers";
 import { Needs } from "containers/Backend/Admin/Needs/Needs";
 import Dashboard from "containers/Backend/Dashboard/Dashboard";
+import { TabQuery } from "lib/getAdminUrlParams";
 
-const CustomTabPane = () => {
+interface Props {
+  activeTab: TabQuery
+}
+
+const CustomTabPane = (props: Props) => {
   return (
     <>
       <TabPane tabId="contenus" className="p-0">
@@ -19,7 +24,7 @@ const CustomTabPane = () => {
         <AdminUsers />
       </TabPane>
       <TabPane tabId="statistiques" className="p-0">
-        <Dashboard />
+        <Dashboard visible={props.activeTab === "statistiques"} />
       </TabPane>
       <TabPane tabId="besoins" className="p-0">
         <Needs />
