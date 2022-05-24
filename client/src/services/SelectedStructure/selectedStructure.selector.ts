@@ -6,6 +6,4 @@ export const selectedStructureSelector = (state: RootState): Structure | null =>
   state.selectedStructure;
 
 export const selectedStructureIdSelector = (state: RootState): ObjectId | null =>
-  state.selectedStructure && state.selectedStructure._id
-    ? state.selectedStructure._id
-    : null;
+  state.selectedStructure?._id || null
