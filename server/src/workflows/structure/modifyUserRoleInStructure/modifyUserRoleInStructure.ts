@@ -1,16 +1,17 @@
-import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
-import { getRoleByName } from "../../../controllers/role/role.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
 } from "../../../modules/users/users.service";
+import { getRoleByName } from "../../../controllers/role/role.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { log } from "./log";
 
 interface Query {
   membreId: ObjectId;
@@ -75,6 +76,8 @@ export const modifyUserRoleInStructure = async (
     }
     const membreIdToSend = action === "create" ? null : membreId;
     await updateStructureMember(membreIdToSend, structure);
+
+    await log(action, role, membreId, structureId, req.userId);
 
     if ((action === "create" || action === "modify") && role === "administrateur") {
       const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });

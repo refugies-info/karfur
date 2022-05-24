@@ -1,26 +1,27 @@
+import { ObjectId } from "mongoose";
+import logger from "../../../logger";
 import {
   RequestFromClient,
   Res,
   Picture,
   SelectedLanguage,
 } from "../../../types/interface";
-import { ObjectId } from "mongoose";
-import logger from "../../../logger";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import {
   getUserById,
   updateUserInDB,
 } from "../../../modules/users/users.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import {
   requestSMSLogin,
   verifyCode
 } from "../../../modules/users/login2FA";
-import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { loginExceptionsManager } from "../login/login.exceptions.manager";
+import { log } from "./log";
 
-interface User {
+export interface User {
   _id: ObjectId;
   roles: string[];
   email?: string;
@@ -44,6 +45,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     logger.info("[updateUser] call received", { user, action });
+    const userFromDB = await getUserById(user._id, { username: 1, phone: 1, email: 1, roles: 1 });
 
     if (user.phone) { // format phone
       user.phone = formatPhoneNumber(user.phone);
@@ -57,7 +59,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
-      const userFromDB = await getUserById(user._id, { username: 1, phone: 1, roles: 1 });
       const actualRoles = userFromDB.roles;
 
       let newRoles = actualRoles.filter(
@@ -77,6 +78,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       }
 
       await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles });
+      user.username = userFromDB.username; // populate username for log
 
       if (userFromDB.phone !== user.phone) { // if phone changed, send mail
         await sendResetPhoneNumberMail(userFromDB.username, user.email);
@@ -99,7 +101,6 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         delete user.roles; // for security purposes, do not use roles sent by the client
         if (user.selectedLanguages) {
           const traducteurRole = await getRoleByName("Trad");
-          const userFromDB = await getUserById(user._id, { roles: 1 });
           const actualRoles = userFromDB.roles;
           const hasAlreadyRoleTrad = !!actualRoles.find(
             (role) => role && role.toString() === traducteurRole._id.toString()
@@ -122,6 +123,10 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         } else {
           await updateUserInDB(user._id, user);
         }
+        // populate user for logs
+        if (!user.email) user.email = userFromDB.email;
+        if (!user.phone) user.phone = userFromDB.phone;
+        if (!user.username) user.username = userFromDB.username;
       } catch (error) {
         if (user.username !== req.user.username) {
           throw new Error("PSEUDO_ALREADY_EXISTS");
@@ -129,6 +134,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         throw error;
       }
     }
+    await log(user, userFromDB, req.user._id);
 
     return res.status(200).json({
       text: "OK",

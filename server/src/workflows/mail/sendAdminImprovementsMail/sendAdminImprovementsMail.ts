@@ -1,12 +1,13 @@
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import logger from "../../../logger";
 import { ObjectId } from "mongoose";
+import logger from "../../../logger";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
-import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
 import { asyncForEach } from "../../../libs/asyncForEach";
+import { log } from "./log";
 
 interface Query {
   dispositifId: ObjectId;
@@ -52,6 +53,8 @@ export const sendAdminImprovementsMail = async (
         sectionsToModify: formattedSections,
       });
     });
+
+    await log(data.dispositifId, req.user._id);
 
     return res.status(200).json({ text: "OK" });
   } catch (error) {

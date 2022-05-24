@@ -7,6 +7,7 @@ import {
 } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
 import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
+import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -18,7 +19,9 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../controllers/role/role.repository", () => ({
   getRoleByName: jest.fn(),
 }));
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn(),
   updateUserInDB: jest.fn(),
@@ -79,7 +82,7 @@ describe("updateUser", () => {
         action: "modify-with-roles",
       },
     },
-    user: { roles: [{ nom: "Admin" }] },
+    user: { roles: [{ nom: "Admin" }], _id: "userId" },
   };
   it("should return 200 when modify, case new roles empty, actual role other", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
@@ -92,7 +95,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesEmpty, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -114,7 +117,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesEmpty, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -157,7 +160,7 @@ describe("updateUser", () => {
     );
 
     expect(getRoleByName).toHaveBeenCalledWith("Trad");
-    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("userId", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
       selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
@@ -189,7 +192,7 @@ describe("updateUser", () => {
     );
 
     expect(getRoleByName).toHaveBeenCalledWith("Trad");
-    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("userId", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       _id: "userId",
       selectedLanguages: [{ _id: "langueId", i18nCode: "en" }],
@@ -224,6 +227,7 @@ describe("updateUser", () => {
   });
   it("should return 200 if user himself and check code for phone verification", async () => {
     verifyCode.mockResolvedValueOnce(true);
+    getUserById.mockResolvedValueOnce({  });
     await updateUser(
       {
         fromSite: true,
@@ -288,7 +292,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -310,7 +314,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -332,7 +336,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -355,7 +359,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -388,7 +392,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesExpert, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -410,7 +414,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesExpert, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -443,7 +447,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesExpertAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -465,7 +469,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesExpertAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       email: "email",
       phone: "0607080910",
@@ -481,7 +485,7 @@ describe("updateUser", () => {
     await updateUser(reqRolesExpertAdmin, res);
     expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
     expect(getRoleByName).not.toHaveBeenCalledWith("Admin");
-    expect(getUserById).not.toHaveBeenCalled();
+    expect(getUserById).toHaveBeenCalledWith("id", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
@@ -491,9 +495,9 @@ describe("updateUser", () => {
     getUserById.mockRejectedValueOnce(new Error("error"));
     getRoleByName.mockResolvedValue({ _id: "expertRoleId" });
     await updateUser(reqRolesExpertAdmin, res);
-    expect(getRoleByName).toHaveBeenCalledWith("ExpertTrad");
-    expect(getRoleByName).toHaveBeenCalledWith("Admin");
-    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1,roles: 1 });
+    expect(getUserById).toHaveBeenCalledWith("id", { username: 1, phone: 1, roles: 1, email: 1 });
+    expect(getRoleByName).not.toHaveBeenCalled();
+    expect(getRoleByName).not.toHaveBeenCalled();
     expect(updateUserInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
@@ -521,7 +525,7 @@ describe("updateUser", () => {
     );
     expect(getRoleByName).not.toHaveBeenCalled();
     expect(getRoleByName).not.toHaveBeenCalled();
-    expect(getUserById).not.toHaveBeenCalled();
+    expect(getUserById).toHaveBeenCalledWith("id", { phone: 1, roles: 1, username: 1, email: 1 });
     expect(updateUserInDB).toHaveBeenCalledWith("id", {
       status: "Exclu",
     });
@@ -549,6 +553,7 @@ describe("updateUser", () => {
   });
 
   it("should return 200 if user himself and type modify-my-details", async () => {
+    getUserById.mockResolvedValueOnce({  });
     await updateUser(
       {
         fromSite: true,
@@ -572,6 +577,7 @@ describe("updateUser", () => {
   });
 
   it("should return 200 but no role saved if user himself and type modify-my-details", async () => {
+    getUserById.mockResolvedValueOnce({  });
     await updateUser(
       {
         fromSite: true,

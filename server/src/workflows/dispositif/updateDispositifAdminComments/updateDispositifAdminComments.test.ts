@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { updateDispositifAdminComments } from "./updateDispositifAdminComments";
-import { updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
+import { updateDispositifInDB, getDispositifById } from "../../../modules/dispositif/dispositif.repository";
+import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -12,6 +13,10 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   updateDispositifInDB: jest.fn(),
+  getDispositifById: jest.fn().mockResolvedValue({}),
+}));
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
 }));
 
 describe("updateDispositifAdminComments", () => {
@@ -62,6 +67,7 @@ describe("updateDispositifAdminComments", () => {
           adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
         },
       },
+      user: {_id: "userId"}
     };
 
     const date = 148707670800;
