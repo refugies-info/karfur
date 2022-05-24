@@ -133,7 +133,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
   const admin = useSelector(userSelector).admin;
   const activitiesSortedByTheme = sortStructureActivities(structure);
-  const hasUpdatePermission = props.isMember || admin ? true : false;
+  const hasUpdatePermission = props.isMember || admin;
 
   if (!props.isLoading && structure) {
     return (
