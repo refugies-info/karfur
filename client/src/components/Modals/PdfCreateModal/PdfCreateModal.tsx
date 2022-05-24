@@ -79,6 +79,10 @@ export class PdfCreateModal extends Component<Props> {
               onBeforeGetContent={() => {
                 this.props.createPdf();
                 this.props.toggle();
+                // give enough time for the accordions to open before printing
+                return new Promise((resolve: any) => {
+                  setTimeout(() => { resolve() }, 500);
+                });
               }}
               onAfterPrint={() => {
                 this.props.closePdf();

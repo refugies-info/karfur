@@ -1,17 +1,18 @@
 import { ObjectId } from "mongoose";
-import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
+import { RequestFromClient, Res } from "../../../types/interface";
 import {
   updateDispositifInDB,
   getDispositifByIdWithMainSponsor,
 } from "../../../modules/dispositif/dispositif.repository";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
+import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
   checkUserIsAuthorizedToModifyDispositif,
 } from "../../../libs/checkAuthorizations";
-import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { log } from "./log";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -31,10 +32,13 @@ export const updateDispositifStatus = async (
     const { dispositifId, status } = req.body.query;
     logger.info("[updateDispositifStatus]", { dispositifId, status });
     let newDispositif;
+
+    await log(dispositifId, status, req.userId)
+
     if (status === "Actif") {
       // @ts-ignore : populate roles
       checkIfUserIsAdmin(req.user.roles);
-      await publishDispositif(dispositifId);
+      await publishDispositif(dispositifId, req.userId);
 
       return res.status(200).json({ text: "OK" });
     }

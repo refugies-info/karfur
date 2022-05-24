@@ -1,14 +1,15 @@
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import logger from "../../../logger";
-import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { getRoleByName } from "../../../controllers/role/role.repository";
+import { getUserByUsernameFromDB } from "../../../modules/users/users.repository";
 import { register } from "../../../modules/users/register";
 import { login2FA } from "../../../modules/users/login2FA";
+import LoginError from "../../../modules/users/LoginError";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { loginExceptionsManager } from "./login.exceptions.manager";
-import LoginError from "../../../modules/users/LoginError";
+import { logRegister, logLogin } from "./log";
 
 interface User {
   username: string;
@@ -40,6 +41,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     if (!user) {
       const userRole = await getRoleByName("User");
       const { user, token } = await register(req.body, userRole);
+      await logRegister(user._id);
       return res.status(200).json({
         text: "Succès",
         token,
@@ -69,6 +71,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
       await login2FA(req.body, user, userIsAdmin ? "admin" : userStructureId);
     }
     await proceedWithLogin(user);
+    await logLogin(user._id);
     return res.status(200).json({
       // @ts-ignore
       token: user.getToken(),

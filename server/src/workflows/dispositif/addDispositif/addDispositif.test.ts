@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { addDispositif } from "./addDispositif";
+import { addDispositif, getNewStatus } from "./addDispositif";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
@@ -12,10 +12,12 @@ import {
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
+import { getStructureFromDB, updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
+import { getExpertTraductionByLanguage } from "../../../modules/traductions/traductions.repository";
+import { log } from "./log";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
@@ -29,7 +31,9 @@ jest.mock(
     sendMailToStructureMembersWhenDispositifEnAttente: jest.fn(),
   })
 );
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkUserIsAuthorizedToModifyDispositif: jest.fn(),
@@ -49,6 +53,7 @@ jest.mock("../../../modules/langues/langues.service", () => ({
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
+  getStructureFromDB: jest.fn(),
 }));
 
 jest.mock("../../../controllers/role/role.repository", () => ({
@@ -153,6 +158,7 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -189,6 +195,7 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -213,6 +220,10 @@ describe("addDispositif", () => {
       _id: "dispoId",
       mainSponsor: "mainSponsorId",
     });
+    getStructureFromDB.mockResolvedValueOnce({
+      _id: "sponsorId",
+      membres: []
+    });
     const dispositif = {
       titreInformatif: "TI",
       status: "En attente",
@@ -233,6 +244,7 @@ describe("addDispositif", () => {
       titreMarque: "TM",
       typeContenu: "dispositif",
       creatorId: "userId",
+      lastModificationAuthor: "userId"
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -254,6 +266,10 @@ describe("addDispositif", () => {
   it("should return 200 if existing dispositif ", async () => {
     const originalDis = { avancement: 1 };
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
+    getStructureFromDB.mockResolvedValueOnce({
+      _id: "mainSponsorId",
+      membres: []
+    });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
       mainSponsor: "mainSponsorId",
@@ -299,6 +315,10 @@ describe("addDispositif", () => {
   it("should return 200 if existing dispositif from Brouillon to en attente", async () => {
     const originalDis = { avancement: 1, status: "Brouillon" };
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
+    getStructureFromDB.mockResolvedValueOnce({
+      _id: "mainSponsorId",
+      membres: []
+    });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
       mainSponsor: "mainSponsorId",
@@ -341,6 +361,10 @@ describe("addDispositif", () => {
   it("should return 200 if existing dispositif from en attente to en attente (not send mail)", async () => {
     const originalDis = { avancement: 1, status: "En attente" };
     getDispositifByIdWithMainSponsor.mockResolvedValueOnce(originalDis);
+    getStructureFromDB.mockResolvedValueOnce({
+      _id: "sponsorId",
+      membres: []
+    });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
       mainSponsor: "mainSponsorId",
@@ -395,5 +419,115 @@ describe("addDispositif", () => {
     ).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(403);
+  });
+});
+
+
+const dispositif = {
+  _id: "dispositifId",
+}
+const structure = {
+  _id: "structureId",
+  membres: [{
+    userId: "userOfStructureId",
+    roles: ["administrateur"]
+  }]
+}
+const user = {
+  _id: "userId",
+  roles: []
+}
+const userOfStructure = {
+  _id: "userOfStructureId",
+  roles: []
+}
+
+describe("getNewStatus", () => {
+  it("should return Brouillon for auto save", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "Brouillon"},
+      null,
+      user,
+      "auto"
+    )
+    expect(status).toEqual("Brouillon")
+  });
+  it("should return En attente for Validate and Rejeté structure", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "Rejeté structure"},
+      null,
+      user,
+      "validate"
+    )
+    expect(status).toEqual("En attente")
+  });
+  it("should return same status", () => {
+    let status = getNewStatus(
+      {...dispositif, status: "En attente non prioritaire"},
+      null,
+      user,
+      "save"
+    )
+    expect(status).toEqual("En attente non prioritaire");
+
+    status = getNewStatus(
+      {...dispositif, status: "Brouillon"},
+      null,
+      user,
+      "save"
+    )
+    expect(status).toEqual("Brouillon");
+
+    status = getNewStatus(
+      {...dispositif, status: "Accepté structure"},
+      structure,
+      user,
+      "save"
+    )
+    expect(status).toEqual("Accepté structure");
+
+    status = getNewStatus(
+      {...dispositif, status: "En attente non prioritaire"},
+      null,
+      user,
+      "validate"
+    )
+    expect(status).toEqual("En attente non prioritaire");
+  });
+  it("should return En attente admin for Validate and member", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "Brouillon"},
+      structure,
+      userOfStructure,
+      "validate"
+    )
+    expect(status).toEqual("En attente admin")
+  });
+  it("should return En attente for Validate and not member", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "Brouillon"},
+      structure,
+      user,
+      "validate"
+    )
+    expect(status).toEqual("En attente");
+  });
+  it("should return status for save and member", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "En attente"},
+      structure,
+      userOfStructure,
+      "save"
+    )
+    expect(status).toEqual("En attente")
+  });
+  it("should return En attente non prioritaire if no structure", () => {
+    const status = getNewStatus(
+      {...dispositif, status: "Brouillon"},
+      null,
+      user,
+      "validate"
+    )
+    expect(status).toEqual("En attente non prioritaire")
   });
 });

@@ -13,7 +13,7 @@ import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceMo
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import {
   StyledTitle,
   StyledHeader,
@@ -29,7 +29,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
-import { headers, correspondingStatus, FilterStructureStatus } from "./data";
+import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,
   StructureName,
@@ -38,6 +38,7 @@ import {
 import {
   SimplifiedStructureForAdmin,
   Responsable,
+  StructureStatusType,
 } from "types/interface";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
@@ -46,11 +47,12 @@ import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/Selec
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
-import { DetailsModal } from "../AdminContenu/DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminStructures.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 
 moment.locale("fr");
 
@@ -65,7 +67,7 @@ export const AdminStructures = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "structures");
-  const [filter, setFilter] = useState<FilterStructureStatus>(initialFilters.filter as FilterStructureStatus || "En attente");
+  const [filter, setFilter] = useState<StructureStatusType>(initialFilters.filter as StructureStatusType || "En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -137,18 +139,19 @@ export const AdminStructures = () => {
   };
 
   const setSelectedStructureIdAndToggleModal = (
-    element: SimplifiedStructureForAdmin | null
+    structureId: ObjectId | null
   ) => {
-    setSelectedStructureId(element ? element._id : null);
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
 
-  const onFilterClick = (status: FilterStructureStatus) => {
+  const onFilterClick = (status: StructureStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
 
   const structures = useSelector(allStructuresSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
 
   if (
     (isLoading || structures.length === 0) &&
@@ -175,8 +178,8 @@ export const AdminStructures = () => {
   const toggleContentDetailsModal = () =>
     setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
   const setSelectedContentIdAndToggleModal = (
@@ -324,7 +327,7 @@ export const AdminStructures = () => {
         </div>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
-            const status = element.status;
+            const status = element.storedStatus;
             const nbStructures = getNbStructuresByStatus(
               structuresForCount,
               status
@@ -370,7 +373,7 @@ export const AdminStructures = () => {
               <tr key={key}>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
@@ -388,7 +391,7 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   <StyledStatus
                     text={element.status}
@@ -397,7 +400,7 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle cursor-pointer"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.nbMembres}
                 </td>
@@ -405,7 +408,7 @@ export const AdminStructures = () => {
                 <td
                   className={"align-middle "}
                   onClick={() =>
-                    setSelectedUserIdAndToggleModal(element.responsable)
+                    setSelectedUserIdAndToggleModal(element.responsable?._id || null)
                   }
                 >
                   <ResponsableComponent
@@ -415,13 +418,13 @@ export const AdminStructures = () => {
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.nbFiches}
                 </td>
                 <td
                   className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
                 >
                   {element.created_at
                     ? moment(element.created_at).format("LLL")
@@ -463,7 +466,7 @@ export const AdminStructures = () => {
       )}
 
       {selectedContentId && (
-        <DetailsModal
+        <ContentDetailsModal
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={
             setSelectedStructureIdAndToggleModal
@@ -473,9 +476,8 @@ export const AdminStructures = () => {
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
             prepareDeleteContrib(
-              setSelectedContentId,
-              setShowContentDetailsModal,
-              fetchAllDispositifsActionsCreator,
+              dispositifs,
+              setAllDispositifsActionsCreator,
               dispatch,
               selectedContentId
             )

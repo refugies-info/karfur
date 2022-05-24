@@ -10,13 +10,18 @@ import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
 import { tags } from "data/tags";
-import { NbDispositifsByRegion, RegionFigures, Statistics } from "types/interface";
+import { RegionFigures, Statistics } from "types/interface";
 import { ObjectId } from "mongodb";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
 
-const Dashboard = () => {
+interface Props {
+  title?: string
+  visible: boolean
+}
+
+const Dashboard = (props: Props) => {
   const [nbDispositifs, setNbDispositifs] = useState(0);
   const [nbDispositifsActifs, setNbDispositifsActifs] = useState(0);
   const [nbDemarches, setNbDemarches] = useState(0);
@@ -35,64 +40,65 @@ const Dashboard = () => {
     ObjectId[]
   >([]);
   const [statistics, setStatistics] = useState<Statistics | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    API.count_dispositifs({
-      typeContenu: { $ne: "demarche" }
-    }).then((data) => setNbDispositifs(data.data));
+    if (props.visible && !loaded) {
+      const promises = [
+        API.count_dispositifs({
+          typeContenu: { $ne: "demarche" }
+        }).then((data) => setNbDispositifs(data.data)),
+        API.count_dispositifs({
+          typeContenu: { $ne: "demarche" },
+          status: "Actif",
+        }).then((data) => setNbDispositifsActifs(data.data)),
+        API.count_dispositifs({
+          typeContenu: "demarche"
+        }).then((data) => setNbDemarches(data.data)),
+        API.count_dispositifs({
+          typeContenu: "demarche",
+          status: "Actif",
+        }).then((data) => setNbDemarchesActives(data.data)),
+        API.getFiguresOnUsers().then((data) => {
+          setNbContributors(data.data.data.nbContributors);
+          setNbTraductors(data.data.data.nbTraductors);
+        }),
+        API.getNbDispositifsByRegion().then((data) => {
+          setFiguresByRegion(data.data.data.regionFigures);
+          setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
+        }),
+        API.getStatistics().then((data) => {
+          setStatistics(data.data.data);
+        })
+      ];
 
-    API.count_dispositifs({
-      typeContenu: { $ne: "demarche" },
-      status: "Actif",
-    }).then((data) => setNbDispositifsActifs(data.data));
-
-    API.count_dispositifs({
-      typeContenu: "demarche"
-    }).then((data) => setNbDemarches(data.data));
-
-    API.count_dispositifs({
-      typeContenu: "demarche",
-      status: "Actif",
-    }).then((data) => setNbDemarchesActives(data.data));
-
-    API.getFiguresOnUsers().then((data) => {
-      setNbContributors(data.data.data.nbContributors);
-      setNbTraductors(data.data.data.nbTraductors);
-    });
-
-    API.getNbDispositifsByRegion().then((data) => {
-      setFiguresByRegion(data.data.data.regionFigures);
-      setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
-    });
-
-    API.getStatistics().then((data) => {
-      setStatistics(data.data.data);
-    });
-
-    for (const tag of tags) {
-      API.count_dispositifs({
-        "tags.0.name": tag.name,
-        status: "Actif",
-        typeContenu: "dispositif",
-      }).then((data) => {
-        setNbDispositifsByMainTag((prev) => ({
-          ...prev,
-          [tag.name]: data.data,
-        }));
-      });
-
-      API.count_dispositifs({
-        "tags.0.name": tag.name,
-        status: "Actif",
-        typeContenu: "demarche",
-      }).then((data) => {
-        setNbDemarchesByMainTag((prev) => ({
-          ...prev,
-          [tag.name]: data.data,
-        }));
-      });
+      for (const tag of tags) {
+        promises.push(
+          API.count_dispositifs({
+            "tags.0.name": tag.name,
+            status: "Actif",
+            typeContenu: "dispositif",
+          }).then((data) => {
+            setNbDispositifsByMainTag((prev) => ({
+              ...prev,
+              [tag.name]: data.data,
+            }));
+          }),
+          API.count_dispositifs({
+            "tags.0.name": tag.name,
+            status: "Actif",
+            typeContenu: "demarche",
+          }).then((data) => {
+            setNbDemarchesByMainTag((prev) => ({
+              ...prev,
+              [tag.name]: data.data,
+            }));
+          })
+        );
+      }
+      Promise.all(promises).finally(() => setLoaded(true));
     }
-  }, []);
+  }, [loaded, props.visible]);
 
   const toggleNoGeolocModal = () => setShowNoGeolocModal(!showNoGeolocModal);
 

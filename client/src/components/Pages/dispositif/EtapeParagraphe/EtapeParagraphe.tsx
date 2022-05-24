@@ -117,6 +117,7 @@ interface Props {
   disableEdit: boolean;
   upcoming: () => void;
   content: ShortContent;
+  printing: boolean;
 }
 
 const EtapeParagraphe = (props: Props) => {
@@ -295,7 +296,7 @@ const EtapeParagraphe = (props: Props) => {
     children[subkey][node];
   }
 
-  const isAccordeonOpen = openAccordions || !!safeUiArray(keyValue, subkey, "accordion");
+  const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(keyValue, subkey, "accordion");
   const darkColor = props.mainTag?.darkColor || colors.gray90;
   const lightColor = props.mainTag?.lightColor || colors.gray20;
   const isRTL = useRTL();

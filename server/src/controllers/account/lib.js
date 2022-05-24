@@ -1,10 +1,8 @@
 const { User } = require("../../schema/schemaUser");
 const { Langue } = require("../../schema/schemaLangue");
-const passwordHash = require("password-hash");
 const crypto = require("crypto");
 const logger = require("../../logger");
 const nodemailer = require("nodemailer");
-import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
 import { sendResetPasswordMail } from "../../modules/mail/mail.service";
 import formatPhoneNumber from "../../libs/formatPhoneNumber";
 
@@ -138,10 +136,10 @@ async function checkUserExists(req, res) {
 }
 
 async function set_user_info(req, res) {
-  let user = req.body;
-  if (!user || !user._id) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
+  try {
+    let user = req.body;
+    if (!user || !user._id) return res.status(400).json({ text: "Requête invalide" });
+
     if (user.password) {
       delete user.password;
     }
@@ -167,29 +165,27 @@ async function set_user_info(req, res) {
       userToSave["$addToSet"] = { roles: req.roles.find((x) => x.nom === "Trad")._id };
     }
 
-    await User.findByIdAndUpdate(
+    const result = await User.findByIdAndUpdate(
       {
         _id: user._id,
       },
       userToSave,
-      { new: true },
-      async function (error, result) {
-        if (error) {
-          res.status(500).json({ text: "Erreur interne", error: error });
-        } else {
-          //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-          try {
-            await populateLanguages(user);
-          } catch (e) {
-            logger.error("[set_user_info] error while populating languages", e);
-          }
-          res.status(200).json({
-            data: result,
-            text: "Mise à jour réussie",
-          });
-        }
-      }
+      { new: true }
     );
+
+    //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+    try {
+      await populateLanguages(user);
+    } catch (e) {
+      logger.error("[set_user_info] error while populating languages", e);
+    }
+    return res.status(200).json({
+      data: result,
+      text: "Mise à jour réussie",
+    });
+  } catch (e) {
+    logger.error("[set_user_info] error", e);
+    return res.status(500).json({ text: "Erreur interne", error: e });
   }
 }
 
@@ -245,58 +241,6 @@ function reset_password(req, res) {
         await sendResetPasswordMail(username, newUrl, user.email);
 
         return res.status(200).json({ text: "Envoi réussi", data: user.email });
-      });
-    }
-  );
-}
-
-function set_new_password(req, res) {
-  const { newPassword, reset_password_token } = req.body;
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!newPassword || !reset_password_token) {
-    return res.status(400).json({ text: "Requête invalide" });
-  }
-
-  return User.findOne(
-    {
-      reset_password_token,
-      reset_password_expires: { $gt: Date.now() },
-    },
-    async (err, user) => {
-      if (err) {
-        return res.status(500).json({ text: "Erreur interne", data: err });
-      } else if (!user) {
-        return res.status(404).json({ text: "L'utilisateur n'existe pas" });
-      } else if (!user.email) {
-        return res.status(403).json({
-          text:
-            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
-        });
-      }
-      if (
-        (user.roles || []).some(
-          (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
-        )
-      ) {
-        //L'admin ne peut pas le faire comme ça
-        return res.status(401).json({
-          text:
-            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
-        });
-      }
-      if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
-        return res
-          .status(401)
-          .json({ text: "Le mot de passe est trop faible" });
-      }
-      user.password = passwordHash.generate(newPassword);
-      user.reset_password_token = undefined;
-      user.reset_password_expires = undefined;
-      user.save();
-      res.status(200).json({
-        token: user.getToken(),
-        text: "Authentification réussi",
       });
     }
   );
@@ -395,4 +339,3 @@ exports.set_user_info = set_user_info;
 exports.get_users = get_users;
 exports.get_user_info = get_user_info;
 exports.reset_password = reset_password;
-exports.set_new_password = set_new_password;

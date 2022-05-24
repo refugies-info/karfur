@@ -6,10 +6,10 @@ import "moment/locale/fr";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
-import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator, setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
-import { table_contenu, correspondingStatus, FilterContentStatus } from "./data";
+import { table_contenu, correspondingStatus } from "./data";
 import API from "utils/API";
 import {
   StyledSort,
@@ -38,7 +38,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
-import { DetailsModal } from "./DetailsModal/DetailsModal";
+import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -49,7 +49,7 @@ import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
-import { SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
+import { ContentStatusType, SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -58,6 +58,10 @@ import { getPath } from "routes";
 
 
 moment.locale("fr");
+
+const normalize = (value: string) => {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
 const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
   if (!id) return null;
@@ -76,7 +80,7 @@ export const AdminContenu = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
-  const [filter, setFilter] = useState<FilterContentStatus>(initialFilters.filter as FilterContentStatus || "En attente admin");
+  const [filter, setFilter] = useState<ContentStatusType>(initialFilters.filter as ContentStatusType || "En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -113,8 +117,8 @@ export const AdminContenu = () => {
   const toggleUserDetailsModal = () =>
     setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (element: any) => {
-    setSelectedUserId(element ? element._id : null);
+  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+    setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
@@ -201,39 +205,21 @@ export const AdminContenu = () => {
         return sortedHeader.sens === "up" ? -1 : 1;
       }
 
-      const sponsorA =
-        a.mainSponsor && a.mainSponsor.nom
-          ? a.mainSponsor.nom.toLowerCase()
-          : "";
-      const sponsorB =
-        b.mainSponsor && b.mainSponsor.nom
-          ? b.mainSponsor.nom.toLowerCase()
-          : "";
+      let valueA, valueB;
+      if (sortedHeader.orderColumn === "mainSponsor") {
+        valueA = normalize((a?.mainSponsor?.nom || "").toLowerCase());
+        valueB = normalize((b?.mainSponsor?.nom || "").toLowerCase());
+      } else if (sortedHeader.orderColumn === "nbMercis" || sortedHeader.orderColumn === "nbVues") {
+        valueA = a[sortedHeader.orderColumn];
+        valueB = b[sortedHeader.orderColumn];
+      } else {
+        //@ts-ignore
+        valueA = normalize((a[sortedHeader.orderColumn] || "").toLowerCase());
+        //@ts-ignore
+        valueB = normalize((b[sortedHeader.orderColumn] || "").toLowerCase());
+      }
 
-      const valueA =
-        sortedHeader.orderColumn === "mainSponsor"
-          ? sponsorA
-          //@ts-ignore
-          : a[sortedHeader.orderColumn]
-          //@ts-ignore
-          ? a[sortedHeader.orderColumn].toLowerCase()
-          : "";
-      const valueAWithoutAccent = valueA
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-      const valueB =
-        sortedHeader.orderColumn === "mainSponsor"
-          ? sponsorB
-          //@ts-ignore
-          : b[sortedHeader.orderColumn]
-          //@ts-ignore
-          ? b[sortedHeader.orderColumn].toLowerCase()
-          : "";
-      const valueBWithoutAccent = valueB
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-      if (valueAWithoutAccent > valueBWithoutAccent)
+      if (valueA > valueB)
         return sortedHeader.sens === "up" ? 1 : -1;
 
       return sortedHeader.sens === "up" ? -1 : 1;
@@ -281,7 +267,7 @@ export const AdminContenu = () => {
     }
   };
 
-  const onFilterClick = (status: FilterContentStatus) => {
+  const onFilterClick = (status: ContentStatusType) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
@@ -296,8 +282,8 @@ export const AdminContenu = () => {
     setSelectedDispositifAndToggleModal(element || null);
   }
 
-  const setSelectedStructureIdAndToggleModal = (element: SimplifiedMainSponsor | null) => {
-    setSelectedStructureId(element ? element._id : null);
+  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+    setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
   const handleChange = (e: any) => setSearch(e.target.value);
@@ -510,7 +496,7 @@ export const AdminContenu = () => {
                   <td
                     className="align-middle cursor-pointer"
                     onClick={() =>
-                      setSelectedStructureIdAndToggleModal(element.mainSponsor)
+                      setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)
                     }
                   >
                     <Structure sponsor={element.mainSponsor} />
@@ -548,6 +534,12 @@ export const AdminContenu = () => {
                   >
                     <StyledStatus text={element.status} />
                   </td>
+                  <td className="align-middle font-weight-bold">
+                    {element.nbMercis} 🙏
+                  </td>
+                  <td className="align-middle font-weight-bold">
+                    {element.nbVues || 0} 📈
+                  </td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
@@ -564,9 +556,8 @@ export const AdminContenu = () => {
                       <DeleteButton
                         onClick={() =>
                           prepareDeleteContrib(
-                            setSelectedContentId,
-                            setShowDetailsModal,
-                            fetchAllDispositifsActionsCreator,
+                            dispositifs,
+                            setAllDispositifsActionsCreator,
                             dispatch,
                             element._id
                           )
@@ -581,7 +572,7 @@ export const AdminContenu = () => {
           </tbody>
         </Table>
       </Content>
-      <DetailsModal
+      <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
         setSelectedStructureIdAndToggleModal={
@@ -590,9 +581,8 @@ export const AdminContenu = () => {
         selectedDispositifId={selectedContentId}
         onDeleteClick={() =>
           prepareDeleteContrib(
-            setSelectedContentId,
-            setShowDetailsModal,
-            fetchAllDispositifsActionsCreator,
+            dispositifs,
+            setAllDispositifsActionsCreator,
             dispatch,
             selectedContentId
           )

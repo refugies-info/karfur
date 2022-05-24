@@ -12,6 +12,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
+import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -20,7 +21,9 @@ const mockResponse = (): MockResponse => {
   res.json = jest.fn().mockReturnValue(res);
   return res;
 };
-
+jest.mock("./log", () => ({
+  log: jest.fn().mockResolvedValue(undefined)
+}));
 jest.mock("../../../modules/dispositif/dispositif.service", () => ({
   publishDispositif: jest.fn(),
 }));
@@ -110,13 +113,14 @@ describe("updateDispositifStatus", () => {
     const req = {
       fromSite: true,
       body: { query: { dispositifId: "id", status: "Actif" } },
+      userId: "userId",
       user: { roles: [] },
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
-    expect(publishDispositif).toHaveBeenCalledWith("id");
+    expect(publishDispositif).toHaveBeenCalledWith("id", "userId");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });

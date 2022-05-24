@@ -1,7 +1,7 @@
 import logger from "../../../logger";
-import { Res, IDispositif, Picture } from "../../../types/interface";
+import { Res, Picture } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
-import { adaptDispositifMainSponsorAndCreatorId } from "../../../modules/dispositif/dispositif.adapter";
+import { adaptDispositifMainSponsorAndCreatorId, countDispositifMercis } from "../../../modules/dispositif/dispositif.adapter";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { ObjectId } from "mongoose";
 
@@ -35,6 +35,8 @@ export interface DispositifMainInfo {
   lastModificationDate?: number;
   mainSponsor?: SponsorMainInfo;
   creatorId: CreatorMainInfo;
+  nbMercis: number
+  nbVues: number
 }
 
 export const getAllDispositifs = async (req: {}, res: Res) => {
@@ -49,6 +51,7 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       typeContenu: 1,
       created_at: 1,
       publishedAt: 1,
+      publishedAtAuthor: 1,
       adminComments: 1,
       adminProgressionStatus: 1,
       adminPercentageProgressionStatus: 1,
@@ -57,8 +60,11 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       draftSecondReminderMailSentDate: 1,
       lastReminderMailSentToUpdateContentDate: 1,
       lastModificationDate: 1,
+      lastModificationAuthor: 1,
       needs: 1,
       tags: 1,
+      merci: 1,
+      nbVues: 1
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
@@ -67,20 +73,22 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
     const adaptedDispositifs: DispositifMainInfo[] =
       adaptDispositifMainSponsorAndCreatorId(dispositifs);
 
+    // @ts-ignore
+    const dispositifsResult: DispositifMainInfo[] =
+      countDispositifMercis(adaptedDispositifs);
+
     const array: string[] = [];
 
-    array.forEach.call(adaptedDispositifs, (dispositif: IDispositif) => {
+    array.forEach.call(dispositifsResult, (dispositif: DispositifMainInfo) => {
       turnToLocalizedTitles(dispositif, "fr");
     });
 
     res.status(200).json({
       text: "Succès",
-      data: adaptedDispositifs,
+      data: dispositifsResult,
     });
   } catch (error) {
-    logger.error("[getAllDispositifs] error while getting dispositifs", {
-      error,
-    });
+    logger.error("[getAllDispositifs] error while getting dispositifs", error);
     switch (error) {
       case 500:
         res.status(500).json({

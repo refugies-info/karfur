@@ -420,7 +420,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
         >
           UserFavorites.Comment ajouter
           <button
-            className="btn  tuto mr-10 "
+            className="btn tuto mr-10"
             onClick={[Function]}
           >
             <span
@@ -907,7 +907,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         </div>
         <div>
           <button
-            className="btn  outline-black  "
+            className="btn outline-black"
             data-test-id="test-delete-button"
             onClick={[Function]}
           >

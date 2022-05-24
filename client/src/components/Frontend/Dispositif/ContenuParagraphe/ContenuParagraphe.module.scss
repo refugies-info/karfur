@@ -11,3 +11,15 @@
     overflow-y: hidden;
   }
 }
+
+.title {
+  display: flex;
+  margin: auto;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+
+  @include isMobile() {
+    font-size: 18px;
+  }
+}

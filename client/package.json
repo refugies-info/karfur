@@ -80,7 +80,9 @@
     "test:types": "tsc --noEmit",
     "test:unit": "jest --runInBand",
     "test:lint": "next lint",
-    "fix:lint": "next lint --fix"
+    "fix:lint": "next lint --fix",
+    "pr:stg": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
+    "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''"
   },
   "proxy": "http://localhost:8000",
   "bugs": {

@@ -1,8 +1,6 @@
-import { CorrespondingStatus } from "containers/Backend/Admin/AdminContenu/data";
-import { StructureStatus } from "containers/Backend/Admin/AdminStructures/data";
-import { UserStatus } from "containers/Backend/Admin/AdminUsers/data";
+import { ContentStatus, StructureStatus, UserStatus } from "types/interface";
 
-type Status = CorrespondingStatus | StructureStatus | UserStatus;
+type Status = StructureStatus | UserStatus | ContentStatus;
 export const statusCompare = (a: Status, b: Status ) => {
   const orderA = a.order;
   const orderB = b.order;

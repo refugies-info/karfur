@@ -15,6 +15,8 @@ import { DispositifContent, Tag } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
 import { Event } from "lib/tracking";
+import { cls } from "lib/classname";
+import styles from "./LeftSideDispositif.module.scss";
 
 interface Props {
   menu: DispositifContent[];
@@ -80,7 +82,7 @@ const LeftSideDispositif = (props: Props) => {
   return (
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
-      <ListGroup className="list-group-flush">
+      <ListGroup className={cls("list-group-flush", styles.list)}>
         <Scrollspy
           items={props.menu.map((_, key) => "item-" + key)}
           currentClassName="active"
@@ -138,6 +140,7 @@ const LeftSideDispositif = (props: Props) => {
                     name="external-link-outline"
                     onClick={onLinkClicked}
                     theme={props.mainTag.darkColor}
+                    wrap
                   >
                     {t("Dispositif.Voir le site", "Voir le site")}
                   </FButton>
@@ -148,6 +151,7 @@ const LeftSideDispositif = (props: Props) => {
                     type={"edit"}
                     name="external-link-outline"
                     onClick={onLinkClicked}
+                    wrap
                   >
                     {t("Dispositif.Ajouter votre site", "Ajouter votre site")}
                   </FButton>
@@ -158,6 +162,7 @@ const LeftSideDispositif = (props: Props) => {
                     name={"play-circle-outline"}
                     className="print_buttons_btn ml-8"
                     onClick={() => props.toggleTutorielModal("WebsiteLink")}
+                    wrap
                   />
                 )}
               </div>
@@ -171,6 +176,7 @@ const LeftSideDispositif = (props: Props) => {
               type="light-action"
               name="download-outline"
               onClick={() => props.toggleShowPdfModal()}
+              wrap
             >
               {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
               {props.showSpinner && (
@@ -183,6 +189,7 @@ const LeftSideDispositif = (props: Props) => {
               href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
               name="paper-plane-outline"
               onClick={() => Event("Share", "Mail", "from dispositif sidebar")}
+              wrap
             >
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
             </FButton>
@@ -198,6 +205,7 @@ const LeftSideDispositif = (props: Props) => {
                 )
               }}
               name="smartphone-outline"
+              wrap
             >
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
             </FButton>
@@ -205,6 +213,11 @@ const LeftSideDispositif = (props: Props) => {
               onBeforeGetContent={() => {
                 Event("Share", "Print", "from dispositif sidebar")
                 props.createPdf();
+
+                // give enough time for the accordions to open before printing
+                return new Promise((resolve: any) => {
+                  setTimeout(() => { resolve() }, 500);
+                });
               }}
               onAfterPrint={() => {
                 props.closePdf();
@@ -214,6 +227,7 @@ const LeftSideDispositif = (props: Props) => {
                   className="print_buttons_btn"
                   type="light-action"
                   name="printer-outline"
+                  wrap
                 >
                   {t("Dispositif.Imprimer", "Imprimer")}
                 </FButton>

@@ -36,10 +36,20 @@ const ErrorText = styled.div`
   margin-top: 60px;
 `;
 
-export const UserStructureComponent = () => {
+interface Props {
+  title: string
+}
+
+export const UserStructureComponent = (props: Props) => {
   const dispatch = useDispatch();
   const userStructure = useSelector(userStructureSelector);
   const user = useSelector(userSelector);
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (userStructure) {
       dispatch(

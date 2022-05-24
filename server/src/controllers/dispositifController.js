@@ -21,7 +21,11 @@ import { getNbContents } from "../workflows/dispositif/getNbContents";
 import { getStatistics } from "../workflows/dispositif/getStatistics";
 
 module.exports = function (app) {
-  app.post("/addDispositif", checkToken.check, addDispositif);
+  app.post("/addDispositif",
+    checkToken.getId,
+    checkToken.check,
+    addDispositif
+  );
   app.post(
     "/add_dispositif_infocards",
     checkToken.check,
@@ -33,7 +37,7 @@ module.exports = function (app) {
   app.get("/getAllDispositifs", getAllDispositifs);
   app.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
   app.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
-  app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
+  app.post("/updateDispositifAdminComments", checkToken.check, updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
   app.post(
     "/updateNbVuesOrFavoritesOnContent",

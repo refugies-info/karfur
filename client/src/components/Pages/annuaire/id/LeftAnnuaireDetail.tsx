@@ -50,7 +50,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
             <Image
               src={getSecureUrl(props.structure.picture)}
               alt={props.structure.acronyme}
-              className={styles.image}
+              className={styles.img}
               width={232}
               height={150}
               objectFit="contain"

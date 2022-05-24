@@ -80,7 +80,7 @@ export const SelectedFilter = (props: Props) => {
       {props.otherFilterSelected ? (
         <>
           {props.type === "langue" ?
-            <Language langueCode={props.otherFilterSelected} /> :
+            <Language i18nCode={props.otherFilterSelected} /> :
             t("Tags." + props.otherFilterSelected, props.otherFilterSelected)
           }
           <span

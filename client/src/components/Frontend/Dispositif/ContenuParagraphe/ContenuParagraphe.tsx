@@ -19,7 +19,6 @@ import {
   infocardsDemarcheTitles,
   ShortContent,
 } from "data/dispositif";
-import { isMobile } from "react-device-detect";
 import styles from "./ContenuParagraphe.module.scss";
 import { DispositifContent, Tag } from "types/interface";
 import { EditorState } from "draft-js";
@@ -56,15 +55,6 @@ const StyledAccordeon = styled.div`
     props.disableEdit && !props.isAccordeonOpen
       ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
       : "none"};
-`;
-
-const StyledHeader = styled.div`
-  display: flex;
-  margin: auto;
-  font-weight: bold;
-  font-size: ${isMobile ? "18px" : "22px"};
-  line-height: 28px;
-  color: ${(props: { darkColor: string}) => props.darkColor};
 `;
 
 interface BtnProps {
@@ -204,7 +194,7 @@ const ContenuParagraphe = (props: Props) => {
         </div>
       )}
       {(props.dispositifContent.children || []).map((subitem, index) => {
-          const isAccordeonOpen = openAccordions || !!safeUiArray(
+          const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(
             props.keyValue,
             index,
             "accordion"
@@ -228,31 +218,33 @@ const ContenuParagraphe = (props: Props) => {
               }
               key={index}
             >
-              {subitem.type === "card" && (!isMobile || nbChildren === 1) ? (
-                <CardParagraphe
-                  subkey={index}
-                  subitem={subitem}
-                  dispositifId={router.query.id as string}
-                  disableEdit={props.disableEdit}
-                  changeTitle={props.changeTitle}
-                  handleMenuChange={props.handleMenuChange}
-                  changeAge={props.changeAge}
-                  toggleFree={props.toggleFree}
-                  changePrice={props.changePrice}
-                  updateUIArray={props.updateUIArray}
-                  toggleNiveau={props.toggleNiveau}
-                  changeDepartements={props.changeDepartements}
-                  deleteCard={props.deleteCard}
-                  content={props.content}
-                  keyValue={props.keyValue}
-                  cards={cards}
-                  mainTag={props.mainTag}
-                  toggleTutorielModal={props.toggleTutorielModal}
-                  admin={props.admin}
-                  toggleGeolocModal={props.toggleGeolocModal}
-                  showGeolocModal={props.showGeolocModal}
-                  typeContenu={props.typeContenu}
-                />
+              {subitem.type === "card" ? (
+                <div className={mobile.hidden_flex}>
+                  <CardParagraphe
+                    subkey={index}
+                    subitem={subitem}
+                    dispositifId={router.query.id as string}
+                    disableEdit={props.disableEdit}
+                    changeTitle={props.changeTitle}
+                    handleMenuChange={props.handleMenuChange}
+                    changeAge={props.changeAge}
+                    toggleFree={props.toggleFree}
+                    changePrice={props.changePrice}
+                    updateUIArray={props.updateUIArray}
+                    toggleNiveau={props.toggleNiveau}
+                    changeDepartements={props.changeDepartements}
+                    deleteCard={props.deleteCard}
+                    content={props.content}
+                    keyValue={props.keyValue}
+                    cards={cards}
+                    mainTag={props.mainTag}
+                    toggleTutorielModal={props.toggleTutorielModal}
+                    admin={props.admin}
+                    toggleGeolocModal={props.toggleGeolocModal}
+                    showGeolocModal={props.showGeolocModal}
+                    typeContenu={props.typeContenu}
+                  />
+                </div>
               ) : subitem.type === "map" && !props.printing ? (
                 <MapParagraphe
                   key={index}
@@ -295,6 +287,7 @@ const ContenuParagraphe = (props: Props) => {
                   updateUIArray={props.updateUIArray}
                   disableEdit={props.disableEdit}
                   toggleModal={props.toggleModal}
+                  printing={props.printing}
                 />
               ) : subitem.type === "accordion" ? (
                 <div
@@ -343,7 +336,7 @@ const ContenuParagraphe = (props: Props) => {
                             "collapse" + props.keyValue + "-" + index
                           }
                         >
-                          <StyledHeader darkColor={darkColor}>
+                          <div className={styles.title} style={{color: darkColor}}>
                             <ContentEditable
                               id={props.keyValue+""}
                               data-subkey={index}
@@ -364,7 +357,7 @@ const ContenuParagraphe = (props: Props) => {
                                 className="ml-12"
                               />
                             )}
-                          </StyledHeader>
+                          </div>
                           {!props.disableEdit && index > 0 && (
                             <EVAIcon
                               onClick={() =>

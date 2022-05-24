@@ -54,6 +54,7 @@ const WhiteContainer = styled.div`
 `;
 interface Props {
   history: any;
+  title: string
 }
 const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
@@ -76,6 +77,11 @@ const UserContributions = (props: Props) => {
   );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
+
+  useEffect(() => {
+    document.title = props.title;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     dispatch(fetchUserContributionsActionCreator());
