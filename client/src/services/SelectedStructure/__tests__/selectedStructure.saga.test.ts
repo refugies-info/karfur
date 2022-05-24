@@ -2,6 +2,7 @@
 import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, {
   fetchSelectedStructure,
+  updateSelectedStructure,
 } from "../selectedStructure.saga";
 import API from "../../../utils/API";
 import {
@@ -9,8 +10,15 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { setSelectedStructureActionCreator } from "../selectedStructure.actions";
-import { FETCH_SELECTED_STRUCTURE } from "../selectedStructure.actionTypes";
+import {
+  setSelectedStructureActionCreator,
+  fetchSelectedStructureActionCreator
+} from "../selectedStructure.actions";
+import {
+  FETCH_SELECTED_STRUCTURE,
+  UPDATE_SELECTED_STRUCTURE
+} from "../selectedStructure.actionTypes";
+import { selectedStructureSelector } from "../selectedStructure.selector";
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -18,6 +26,8 @@ describe("[Saga] Structures", () => {
       testSaga(latestActionsSaga)
         .next()
         .takeLatest("FETCH_SELECTED_STRUCTURE", fetchSelectedStructure)
+        .next()
+        .takeLatest("UPDATE_SELECTED_STRUCTURE", updateSelectedStructure)
         .next()
         .isDone();
     });
@@ -54,6 +64,45 @@ describe("[Saga] Structures", () => {
         .put(setSelectedStructureActionCreator(null))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
+        .next()
+        .isDone();
+    });
+  });
+
+  describe("updateSelectedStructure", () => {
+    it("should call and dispatch correct actions if no structure", () => {
+      testSaga(updateSelectedStructure, {
+        type: UPDATE_SELECTED_STRUCTURE,
+        payload: { locale: "fr" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE))
+        .next()
+        .select(selectedStructureSelector)
+        .next(null)
+        .isDone();
+    });
+
+    it("should call and dispatch correct actions if structure", () => {
+      testSaga(updateSelectedStructure, {
+        type: UPDATE_SELECTED_STRUCTURE,
+        payload: { locale: "fr" },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE))
+        .next()
+        .select(selectedStructureSelector)
+        .next({ _id: "structureId", membres: "membres" })
+        .call(API.updateStructure, { query: { _id: "structureId" } })
+        .next()
+        .put(
+          fetchSelectedStructureActionCreator({
+            id: "structureId",
+            locale: "fr",
+          })
+        )
+        .next()
+        .put(finishLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE))
         .next()
         .isDone();
     });
