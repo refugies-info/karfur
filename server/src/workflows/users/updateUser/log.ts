@@ -12,12 +12,8 @@ export const log = async (
     await addLog(
       user._id,
       "User",
-      "Modification du numéro de téléphone par : {{dynamic}}",
-      {
-        author: authorId,
-        dynamicId: authorId,
-        model_dynamic: "User"
-      }
+      "Modification du numéro de téléphone",
+      { author: authorId }
     );
   }
   if (user.phone && !userFromDb.phone) {
@@ -32,36 +28,24 @@ export const log = async (
     await addLog(
       user._id,
       "User",
-      "Ajout de l’adresse mail par : {{dynamic}}",
-      {
-        author: authorId,
-        dynamicId: authorId,
-        model_dynamic: "User"
-      }
+      "Ajout de l’adresse mail",
+      { author: authorId }
     );
   }
   if (userFromDb.email && user.email !== userFromDb.email) {
     await addLog(
       user._id,
       "User",
-      "Modification de l’adresse mail par : {{dynamic}}",
-      {
-        author: authorId,
-        dynamicId: authorId,
-        model_dynamic: "User"
-      }
+      "Modification de l’adresse mail",
+      { author: authorId }
     );
   }
   if (user.username !== userFromDb.username) {
     await addLog(
       user._id,
       "User",
-      "Modification du pseudo par : {{dynamic}}",
-      {
-        author: authorId,
-        dynamicId: authorId,
-        model_dynamic: "User"
-      }
+      "Modification du pseudo par",
+      { author: authorId }
     );
   }
 }

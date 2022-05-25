@@ -169,7 +169,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         setPhoneError("");
         await API.updateUser({
           query: {
-            user: { _id: userFromStore._id, roles, email, phone },
+            user: { _id: userFromStore._id, roles, email, phone, adminComments },
             action: "modify-with-roles",
           },
         });
@@ -325,7 +325,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                 )}
               </div>
               <div className="mt-2">
-                <Label>Notes internes</Label>
+                <Label>Notes sur l'utilisateur</Label>
                 <NotesInput
                   adminComments={adminComments}
                   onNotesChange={onNotesChange}
