@@ -40,14 +40,13 @@ interface Props {
 export const UserDetailsModal: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  const selectedUserId = props.selectedUserId;
-
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
   const [indicators, setIndicators] = useState<null | Indicators>(null);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId|null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
   const userFromStore = useSelector(userSelector(selectedUserId));
@@ -66,6 +65,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       });
     }
   }, [selectedUserId]);
+
+  useEffect(() => {
+    setSelectedUserId(props.selectedUserId);
+  }, [props.selectedUserId])
 
   useEffect(() => {
     const loadIndicators = async () => {
@@ -446,7 +449,10 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
             </div>
             <div className={styles.col_3}>
               <Label>Journal d'activité</Label>
-              <LogList logs={logs} />
+              <LogList
+                logs={logs}
+                openUserModal={setSelectedUserId}
+              />
             </div>
           </div>
         </>

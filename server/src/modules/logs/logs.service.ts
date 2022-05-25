@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 import { Log } from "../../schema/schemaLog";
 import { createLog } from "./logs.repository";
 
-type optionsType = {
+export type optionsType = {
   author?: ObjectId;
   dynamicId?: ObjectId;
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
