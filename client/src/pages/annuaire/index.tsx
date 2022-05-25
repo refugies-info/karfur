@@ -5,23 +5,27 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
 import qs from "query-string";
 import { END } from "redux-saga";
+
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
 import { wrapper } from "services/configureStore";
+
 import { SimplifiedStructure } from "types/interface";
-import { NoResult } from "components/Pages/annuaire/index/NoResult";
-import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
-import { Header } from "components/Pages/annuaire/index/Header";
-import SEO from "components/Seo";
-import { Event} from "lib/tracking";
+import { getPath } from "routes";
+import { Event } from "lib/tracking";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import {
   filterStructuresByType,
   filterStructuresByKeword,
   filterStructuresByLoc,
 } from "lib/filterStructures";
+
+import { NoResult } from "components/Pages/annuaire/index/NoResult";
+import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
+import { Header } from "components/Pages/annuaire/index/Header";
+import SEO from "components/Seo";
+
 import styles from "scss/pages/annuaire.module.scss";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { getPath } from "routes";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];

@@ -265,7 +265,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
               />
             </div>
 
-            <Label>Notes internes</Label>
+            <Label>Notes sur la structure</Label>
             <NotesInput
               adminComments={adminComments}
               onNotesChange={onNotesChange}

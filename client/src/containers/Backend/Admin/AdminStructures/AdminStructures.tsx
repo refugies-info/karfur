@@ -153,10 +153,7 @@ export const AdminStructures = () => {
   const structures = useSelector(allStructuresSelector);
   const dispositifs = useSelector(allDispositifsSelector);
 
-  if (
-    (isLoading || structures.length === 0) &&
-    showStructureDetailsModal === false
-  ) {
+  if (isLoading || structures.length === 0) {
     return <LoadingAdminStructures />;
   }
   const reorder = (element: { name: string; order: string }) => {

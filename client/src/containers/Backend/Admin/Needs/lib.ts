@@ -30,7 +30,7 @@ export const prepareDeleteContrib = (
   dispatch: any,
   dispositifId: ObjectId | null
 ) => {
-  Swal.fire({
+  return Swal.fire({
     title: "Êtes-vous sûr ?",
     text: "La suppression d'un dispositif est irréversible",
     type: "question",
@@ -46,7 +46,7 @@ export const prepareDeleteContrib = (
         status: "Supprimé",
       };
 
-      API.updateDispositifStatus({ query: newDispositif })
+      return API.updateDispositifStatus({ query: newDispositif })
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -68,5 +68,6 @@ export const prepareDeleteContrib = (
           });
         });
     }
+    return;
   });
 };
