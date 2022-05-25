@@ -36,7 +36,7 @@ interface Props {
   show: boolean;
   toggleModal: () => void;
   selectedDispositifId: ObjectId | null;
-  onDeleteClick: () => void;
+  onDeleteClick: () => Promise<void>;
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
@@ -112,7 +112,8 @@ export const ContentDetailsModal = (props: Props) => {
   ) => {
     if (dispositif && newStatus !== dispositif[property]) {
       if (property === "status" && newStatus === "Supprimé") {
-        props.onDeleteClick();
+        await props.onDeleteClick();
+        updateLogs();
         return;
       }
 
@@ -173,7 +174,7 @@ export const ContentDetailsModal = (props: Props) => {
             <TypeContenu type={dispositif.typeContenu} isDetailedVue={true} />
             <h2>
               {dispositif.titreInformatif}
-              <span style={{ color: colors.gray70 }}> avec </span>
+              {dispositif.typeContenu === "dispositif" && <span style={{ color: colors.gray70 }}> avec </span>}
               {dispositif.titreMarque}
             </h2>
           </>
