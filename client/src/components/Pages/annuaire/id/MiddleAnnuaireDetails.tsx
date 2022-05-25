@@ -1,19 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Structure } from "types/interface";
-import { DayHoursPrecisions } from "./DayHoursPrecisions";
-import { ActivityCard } from "components/Pages/annuaire-create/ActivityCard";
-import { activities } from "data/activities";
-import { NoActivity } from "./NoActivity";
-import Skeleton from "react-loading-skeleton";
-import { colors } from "colors";
-import FButton from "components/UI/FButton/FButton";
-import { tags } from "data/tags";
 import { useRouter } from "next/router";
+import Skeleton from "react-loading-skeleton";
+
+import { userSelector } from "services/User/user.selectors";
+
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { ActivityCard } from "components/Pages/annuaire-create/ActivityCard";
+import FButton from "components/UI/FButton/FButton";
+import { DayHoursPrecisions } from "./DayHoursPrecisions";
+import { NoActivity } from "./NoActivity";
+
+import { activities } from "data/activities";
+import { tags } from "data/tags";
+import { Structure } from "types/interface";
 import { getPath } from "routes";
+
+import styles from "./MiddleAnnuaireDetails.module.scss";
 
 interface Props {
   structure: Structure | null;
@@ -21,86 +26,6 @@ interface Props {
   isMember: boolean;
 }
 
-const MiddleContainer = styled.div`
-  padding: 32px;
-  padding-top: 100px;
-  overflow: scroll;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 51px;
-  margin-right: 8px;
-`;
-
-const TitleContainer = styled.div`
-  margin-bottom: 14px;
-  color: ${colors.bleuCharte};
-`;
-
-const SubTitle = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 24px;
-  margin-bottom: 8px;
-`;
-const LineContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const WhiteContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 16px;
-  width: fit-content;
-  margin-bottom: 8px;
-`;
-
-// on firefox behaviour is strange with overflow, we have to add an empty container to have margin
-const BottomContainer = styled.div`
-  margin-top: 80px;
-  width: 100%;
-  height: 250px;
-  color: #e5e5e5;
-`;
-const RedContainer = styled.div`
-  background: ${colors.grey2};
-  border-radius: 12px;
-  padding: 16px;
-  width: fit-content;
-  margin-right: 8px;
-`;
-
-const BlueContainer = styled.div`
-  background: #d2edfc;
-  border-radius: 12px;
-  padding: 16px;
-  width: fit-content;
-  margin: 10px 0;
-`;
-
-const Description = styled.div`
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
-`;
-
-const InfoContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const NoDescription = styled.div`
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-`;
 const weekDays = [
   "Lundi",
   "Mardi",
@@ -111,53 +36,44 @@ const weekDays = [
   "Dimanche",
 ];
 
-const InfoColumnContainer = styled.div`
-  margin-right: 42px;
-`;
-
-const ActivityContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  felx-direction: row;
-`;
 const PhoneNumber = (props: { phone: string }) => (
-  <WhiteContainer>
+  <div className={styles.white_container}>
     <EVAIcon name="phone-call-outline" fill="#212121" className="mr-8" />
     {props.phone}
-  </WhiteContainer>
+  </div>
 );
 
 const Mail = (props: { mail: string }) => (
-  <WhiteContainer>
+  <div className={styles.white_container}>
     <EVAIcon name="email-outline" fill="#212121" className="mr-8" />
     {props.mail}
-  </WhiteContainer>
+  </div>
 );
 
 const Adress = (props: { adress: string | undefined }) => (
-  <WhiteContainer>
+  <div className={styles.white_container}>
     <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
     {props.adress}
-  </WhiteContainer>
+  </div>
 );
 
 const HoursPrecisions = (props: { text: string }) => (
-  <BlueContainer>
+  <div className={styles.blue_container}>
     <EVAIcon name="info" fill="#2D9CDB" className="mr-8" />
     {props.text}
-  </BlueContainer>
+  </div>
 );
 
 const Departement = (props: { departement: string }) => {
   const { t } = useTranslation();
 
   return (
-    <WhiteContainer>
+    <div className={styles.white_container}>
       <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
       {props.departement === "All"
         ? t("Dispositif.France entière", "France entière")
         : props.departement}
-    </WhiteContainer>
+    </div>
   )
 }
 
@@ -169,10 +85,10 @@ const Placeholder = (props: {
   const { t } = useTranslation();
 
   return (
-    <RedContainer>
+    <div className={styles.red_container}>
       <EVAIcon name={props.iconName} fill="#212121" className="mr-8" />
       {t("Annuaire." + props.i18nKey, props.text)}
-    </RedContainer>
+    </div>
   );
 }
 
@@ -215,24 +131,26 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const structure = props.structure;
+  const admin = useSelector(userSelector).admin;
   const activitiesSortedByTheme = sortStructureActivities(structure);
+  const hasUpdatePermission = props.isMember || admin;
 
   if (!props.isLoading && structure) {
     return (
-      <MiddleContainer>
+      <div className={styles.middle_container}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <TitleContainer>
-            {!structure.acronyme && <Title>{structure.nom}</Title>}
+          <div className={styles.title_container}>
+            {!structure.acronyme && <div className={styles.title}>{structure.nom}</div>}
             {structure.acronyme && (
-              <Title>
+              <div className={styles.title}>
                 {structure.nom}{" "}
                 <span style={{ color: "#828282" }}>
                   {"- " + structure.acronyme}
                 </span>{" "}
-              </Title>
+              </div>
             )}
-          </TitleContainer>
-          {props.isMember && (
+          </div>
+          {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
               <Link href={getPath("/annuaire-creation", router.locale)} passHref>
                 <FButton
@@ -247,22 +165,22 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           )}
         </div>
         {structure.description && (
-          <Description>{structure.description}</Description>
+          <div className={styles.description}>{structure.description}</div>
         )}
         {!structure.description && (
-          <NoDescription>
+          <div className={styles.no_description}>
             {t(
               "Annuaire.noDescription",
               "Aucune description de la structure disponible."
             )}
-          </NoDescription>
+          </div>
         )}
-        <InfoContainer>
-          <InfoColumnContainer>
-            <SubTitle>
+        <div className={styles.info_container}>
+          <div className={styles.info_column_container}>
+            <div className={styles.subtitle}>
               {t("Annuaire.Adresse email", "Adresse email")}
-            </SubTitle>
-            <LineContainer>
+            </div>
+            <div className={styles.line_container}>
               {structure.mailsPublic &&
                 structure.mailsPublic.map((mail) => (
                   <Mail mail={mail} key={mail} />
@@ -275,11 +193,11 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                   i18nKey="noemail"
                 />
               )}
-            </LineContainer>
-            <SubTitle>
+            </div>
+            <div className={styles.subtitle}>
               {t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
-            </SubTitle>
-            <LineContainer>
+            </div>
+            <div className={styles.line_container}>
               {structure.phonesPublic &&
                 structure.phonesPublic.map((phone) => (
                   <PhoneNumber phone={phone} key={phone} />
@@ -292,10 +210,10 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                   i18nKey="noPhone"
                 />
               )}
-            </LineContainer>
-            <SubTitle>
+            </div>
+            <div className={styles.subtitle}>
               {t("Annuaire.Adresse postale", "Adresse postale")}
-            </SubTitle>
+            </div>
             {structure.adressPublic && (
               <Adress adress={structure.adressPublic} />
             )}
@@ -306,13 +224,13 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                 i18nKey="noAdress"
               />
             )}
-            <SubTitle>
+            <div className={styles.subtitle}>
               {t(
                 "Annuaire.Départements d'action",
                 "Départements d'action"
               )}
-            </SubTitle>
-            <LineContainer>
+            </div>
+            <div className={styles.line_container}>
               {structure.departments &&
                 structure.departments.map((departement) => (
                   <Departement
@@ -328,12 +246,12 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                   i18nKey="noDepartement"
                 />
               )}
-            </LineContainer>
-          </InfoColumnContainer>
-          <InfoColumnContainer>
-            <SubTitle>
+            </div>
+          </div>
+          <div className={styles.info_column_container}>
+            <div className={styles.subtitle}>
               {t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
-            </SubTitle>
+            </div>
             {!structure.openingHours && (
               <Placeholder
                 iconName="alert-circle-outline"
@@ -371,14 +289,14 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                   key={day}
                 />
               ))}
-          </InfoColumnContainer>
-        </InfoContainer>
-        <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <Title>
-            {t("Annuaire.Activités et services", "Activités et services")}
-          </Title>
+          </div>
         </div>
-        <ActivityContainer>
+        <div style={{ marginTop: "24px", marginBottom: "24px" }}>
+          <div className={styles.title}>
+            {t("Annuaire.Activités et services", "Activités et services")}
+          </div>
+        </div>
+        <div className={styles.activity_container}>
           {activitiesSortedByTheme &&
             activitiesSortedByTheme.map((activity) => {
               const { tag, image } = getActivityDetails(activity);
@@ -404,14 +322,14 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               <NoActivity />
             </>
           )}
-        </ActivityContainer>
-        <BottomContainer>{"s"}</BottomContainer>
-      </MiddleContainer>
+        </div>
+        <div className={styles.bottom_container}>{"s"}</div>
+      </div>
     );
   }
 
   return (
-    <MiddleContainer>
+    <div className={styles.middle_container}>
       <Skeleton width={600} height={40} />
       <div style={{ marginTop: "16px" }}>
         <Skeleton width={600} count={3} />
@@ -419,6 +337,6 @@ export const MiddleAnnuaireDetail = (props: Props) => {
       <div style={{ marginTop: "16px" }}>
         <Skeleton width={600} count={3} />
       </div>
-    </MiddleContainer>
+    </div>
   );
 };
