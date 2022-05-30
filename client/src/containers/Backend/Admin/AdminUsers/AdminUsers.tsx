@@ -30,8 +30,6 @@ import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
-  Responsable,
-  SimplifiedStructureForAdmin,
   UserStatusType,
 } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
