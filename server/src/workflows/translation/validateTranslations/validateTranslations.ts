@@ -21,6 +21,7 @@ import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
 import { TraductionDoc } from "../../../schema/schemaTraduction";
 import ErrorDB from "../../../schema/schemaError";
 import { log } from "./log";
+import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
 
 interface Query {
   articleId: ObjectId;
@@ -83,6 +84,7 @@ export const validateTranslations = async (
           [],
           insertedDispositif.typeContenu,
           body.locale,
+          getDispositifDepartments(insertedDispositif),
           false
         );
       } catch (error) {

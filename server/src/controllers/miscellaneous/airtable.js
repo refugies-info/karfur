@@ -12,7 +12,7 @@ var base = new Airtable({
 const logger = require("../../logger");
 const { getFormattedLocale } = require("../../libs/getFormattedLocale");
 
-const addDispositifInContenusAirtable = async (title, link, tagsList, type) => {
+const addDispositifInContenusAirtable = async (title, link, tagsList, type, departments) => {
   try {
 
     logger.info("[addDispositifInContenusAirtable] adding a new line", {
@@ -30,9 +30,10 @@ const addDispositifInContenusAirtable = async (title, link, tagsList, type) => {
           "! Priorité": ["Normale"],
           "! Type de contenus":
             type === "demarche" ? ["Démarche"] : ["Dispositif"],
+          "! Départements": departments
         },
       }]
-    );
+    , {typecast: true});
   } catch (e) {
     logger.error("[addDispositifInContenusAirtable] error while adding a new line", e)
   }
@@ -41,7 +42,8 @@ const addDispositifInContenusAirtable = async (title, link, tagsList, type) => {
 const removeTraductionDispositifInContenusAirtable = async (
   recordId,
   title,
-  tagsList
+  tagsList,
+  departments
 ) => {
   try {
     logger.info(
@@ -53,9 +55,9 @@ const removeTraductionDispositifInContenusAirtable = async (
     await base("CONTENUS").update([
       {
         id: recordId,
-        fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList },
+        fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList, "! Départements": departments },
       },
-    ]);
+    ], {typecast: true});
   } catch (e) {
     logger.error("[removeTraductionDispositifInContenusAirtable] error", e)
   }
@@ -107,6 +109,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
   tags,
   type,
   locale,
+  departments,
   hasContentBeenDeleted
 ) => {
   if (process.env.NODE_ENV === "dev") {
@@ -114,7 +117,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
       {
         env: process.env.NODE_ENV,
-        data: { titleInformatif, titreMarque, id, tags, locale },
+        data: { titleInformatif, titreMarque, id, tags, locale, departments },
       }
     );
 
@@ -168,7 +171,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
             return;
           }
           // add content in airtable
-          await addDispositifInContenusAirtable(title, link, tagsList, type);
+          await addDispositifInContenusAirtable(title, link, tagsList, type, departments);
           return;
         }
         if (hasContentBeenDeleted) {
@@ -180,7 +183,8 @@ const addOrUpdateDispositifInContenusAirtable = async (
           await removeTraductionDispositifInContenusAirtable(
             recordsList[0].id,
             title,
-            tagsList
+            tagsList,
+            departments
           );
           return;
         }
