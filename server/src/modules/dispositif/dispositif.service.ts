@@ -31,8 +31,10 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
-      newDispo.titreInformatif,
-      newDispo.titreMarque,
+      //@ts-ignore
+      newDispo.titreInformatif?.fr || newDispo.titreInformatif,
+      //@ts-ignore
+      newDispo.titreMarque?.fr || newDispo.titreMarque,
       newDispo._id,
       newDispo.tags,
       newDispo.typeContenu,

@@ -65,12 +65,10 @@ const removeTraductionDispositifInContenusAirtable = async (
 
 const removeDispositifInContenusAirtable = async (recordId) => {
   try {
-    logger.info("[removeDispositifInContenusAirtable] update line for record", {
+    logger.info("[removeDispositifInContenusAirtable] remove line", {
       recordId,
     });
-    await base("CONTENUS").update([
-      { id: recordId, fields: { "! Traduits ?": [], "! À traduire ?": false } },
-    ]);
+    await base("CONTENUS").destroy([ recordId ]);
   } catch (e) {
     logger.error("[removeDispositifInContenusAirtable] error", e)
   }
