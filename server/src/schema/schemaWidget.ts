@@ -28,8 +28,9 @@ const widgetSchema = new mongoose.Schema(
       type: [{ type: mongoose.Types.ObjectId, ref: "Langue" }]
     },
     author: {
-      type: { type: mongoose.Types.ObjectId, ref: "User" },
-      required: true,
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+      required: true
     },
   },
   { timestamps: { createdAt: "created_at" } }
