@@ -94,8 +94,8 @@
     }
     &.active {
       color: $white;
-      background-color: $validationHover;
-      border: 0.5px solid $validationHover;
+      background-color: $focus;
+      border: 0.5px solid $focus;
     }
     .vertical_center {
       display: flex;
