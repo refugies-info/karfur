@@ -508,6 +508,23 @@ export interface Log {
   created_at: Moment;
 }
 
+export interface Widget {
+  _id: ObjectId;
+  name: string;
+  tags: string[];
+  typeContenu: ("dispositif"|"demarche")[];
+  location?: {
+    city: string;
+    department: string;
+  }
+  languages?: ObjectId[];
+  author: {
+    _id: ObjectId;
+    username: string;
+  }
+  created_at: Moment;
+}
+
 
 export type Status = {
   displayedStatus: string

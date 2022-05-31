@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { IDispositif, NbDispositifsByRegion, Statistics, User } from "types/interface";
+import { IDispositif, NbDispositifsByRegion, Statistics, User, Widget } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -319,6 +319,18 @@ const API = {
   createNeed: (query: any) =>{
     const headers = getHeaders();
     return instance.post("/needs/createNeed", query, {
+      headers,
+    })
+  },
+
+  // Widgets
+  getWidgets: () => {
+    const headers = getHeaders();
+    return instance.get("/widgets", { headers });
+  },
+  postWidgets: (query: Partial<Widget>) =>{
+    const headers = getHeaders();
+    return instance.post("/widgets", query, {
       headers,
     })
   },

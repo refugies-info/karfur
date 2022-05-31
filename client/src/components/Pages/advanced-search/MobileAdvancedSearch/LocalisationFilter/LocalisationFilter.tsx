@@ -15,6 +15,7 @@ interface Props {
   setGeoSearch: (geosearch: boolean) => void;
   addToQuery: (query: Partial<SearchQuery>) => void;
   removeFromQuery: (filter: AvailableFilters) => void;
+  className?: string
 }
 
 export const LocalisationFilter = (props: Props) => {
@@ -37,7 +38,7 @@ export const LocalisationFilter = (props: Props) => {
   // maps autocomplete field
   if (props.geoSearch) {
     return (
-      <div className={styles.search_btn}>
+      <div className={cls(styles.search_btn, props.className || "")}>
         <Autocomplete
           apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
           onBlur={() => props.ville === ""}
@@ -58,7 +59,7 @@ export const LocalisationFilter = (props: Props) => {
   // city selected
   if (props.ville) {
     return (
-      <div className={cls(styles.search_btn, styles.selected)}>
+      <div className={cls(styles.search_btn, styles.selected, props.className || "")}>
         {props.ville}
         <span
           onClick={() => {
@@ -75,7 +76,7 @@ export const LocalisationFilter = (props: Props) => {
   // default state
   return (
     <button
-      className={styles.search_btn}
+      className={cls(styles.search_btn, props.className || "")}
       onClick={() => props.setGeoSearch(true)}
     >
       {t("SearchItem.choisir ma ville", "choisir ma ville")}

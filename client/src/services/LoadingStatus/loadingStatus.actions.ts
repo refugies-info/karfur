@@ -20,6 +20,8 @@ export enum LoadingStatusKey {
   FETCH_DISPOSITIFS_TRANSLATIONS_STATUS = "FETCH_DISPOSITIFS_TRANSLATIONS_STATUS",
   FETCH_NEEDS = "FETCH_NEEDS",
   SAVE_NEED = "SAVE_NEED",
+  FETCH_WIDGETS = "FETCH_WIDGETS",
+  SAVE_WIDGET = "SAVE_WIDGET",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>
