@@ -1,3 +1,5 @@
+import express from "express";
+const router = express.Router();
 const account = require("./account/lib.js");
 const checkToken = require("./account/checkToken");
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
@@ -10,32 +12,32 @@ import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 
-module.exports = function (app) {
-  app.post("/login", checkToken.getId, checkToken.getRoles, login);
-  app.post("/checkUserExists", account.checkUserExists);
-  app.post(
-    "/set_user_info",
-    checkToken.check,
-    checkToken.getRoles,
-    account.set_user_info
-  );
-  app.post("/get_users", checkToken.getId, account.get_users);
-  app.post("/get_user_info", checkToken.check, account.get_user_info);
-  app.post("/changePassword", checkToken.check, changePassword);
-  app.post("/reset_password", checkToken.getRoles, account.reset_password);
-  app.post("/set_new_password", checkToken.getRoles, setNewPassword);
+router.post("/login", checkToken.getId, checkToken.getRoles, login);
+router.post("/checkUserExists", account.checkUserExists);
+router.post(
+  "/set_user_info",
+  checkToken.check,
+  checkToken.getRoles,
+  account.set_user_info
+);
+router.post("/get_users", checkToken.getId, account.get_users);
+router.post("/get_user_info", checkToken.check, account.get_user_info);
+router.post("/changePassword", checkToken.check, changePassword);
+router.post("/reset_password", checkToken.getRoles, account.reset_password);
+router.post("/set_new_password", checkToken.getRoles, setNewPassword);
 
-  app.get("/getFiguresOnUsers", getFiguresOnUsers);
-  app.get("/getAllUsers", checkToken.check, getAllUsers);
-  app.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
-  app.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-  app.get(
-    "/getUserFavoritesInLocale",
-    checkToken.check,
-    getUserFavoritesInLocale
-  );
-  app.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
-  /* NOT USED
-  app.get("/findBuggedUsers", findBuggedUsers);
-  */
-};
+router.get("/getFiguresOnUsers", getFiguresOnUsers);
+router.get("/getAllUsers", checkToken.check, getAllUsers);
+router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
+router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
+router.get(
+  "/getUserFavoritesInLocale",
+  checkToken.check,
+  getUserFavoritesInLocale
+);
+router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
+/* NOT USED
+router.get("/findBuggedUsers", findBuggedUsers);
+*/
+
+module.exports = router;

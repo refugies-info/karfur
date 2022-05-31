@@ -71,42 +71,43 @@ app.use(function (req, _, next) {
   next();
 });
 
-//Définition du routeur
-var router = express.Router();
-app.enable("strict routing");
-app.use("/user", router);
-app.use("/translate", router);
-app.use("/langues", router);
-app.use("/roles", router);
-app.use("/images", router);
-app.use("/traduction", router);
-app.use("/dispositifs", router);
-app.use("/structures", router);
-app.use("/tts", router);
-app.use("/miscellaneous", router);
-app.use("/indicator", router);
-app.use("/mail", router);
-app.use("/needs", router);
-app.use("/search", router);
-app.use("/logs", router);
-app.use("/widgets", router);
 
-require(__dirname + "/controllers/userController")(router);
-require(__dirname + "/controllers/translateController")(router);
-require(__dirname + "/controllers/languesController")(router);
-require(__dirname + "/controllers/roleController")(router);
-require(__dirname + "/controllers/imageController")(router);
-require(__dirname + "/controllers/traductionController")(router);
-require(__dirname + "/controllers/dispositifController")(router);
-require(__dirname + "/controllers/structureController")(router);
-require(__dirname + "/controllers/ttsController")(router);
-require(__dirname + "/controllers/miscellaneousController")(router);
-require(__dirname + "/controllers/indicatorController")(router);
-require(__dirname + "/controllers/mailController")(router);
-require(__dirname + "/controllers/needsController")(router);
-require(__dirname + "/controllers/searchController")(router);
-require(__dirname + "/controllers/logController")(router);
-require(__dirname + "/controllers/widgetController")(router);
+// Setup routes
+const userController = require(__dirname + "/controllers/userController");
+const translateController = require(__dirname + "/controllers/translateController");
+const languesController = require(__dirname + "/controllers/languesController");
+const roleController = require(__dirname + "/controllers/roleController");
+const imageController = require(__dirname + "/controllers/imageController");
+const traductionController = require(__dirname + "/controllers/traductionController");
+const dispositifController = require(__dirname + "/controllers/dispositifController");
+const structureController = require(__dirname + "/controllers/structureController");
+const ttsController = require(__dirname + "/controllers/ttsController");
+const miscellaneousController = require(__dirname + "/controllers/miscellaneousController");
+const indicatorController = require(__dirname + "/controllers/indicatorController");
+const mailController = require(__dirname + "/controllers/mailController");
+const needsController = require(__dirname + "/controllers/needsController");
+const searchController = require(__dirname + "/controllers/searchController");
+const widgetController = require(__dirname + "/controllers/widgetController");
+const logController = require(__dirname + "/controllers/logController");
+
+app.enable("strict routing");
+app.use("/user", userController);
+app.use("/translate", translateController);
+app.use("/langues", languesController);
+app.use("/roles", roleController);
+app.use("/images", imageController);
+app.use("/traduction", traductionController);
+app.use("/dispositifs", dispositifController);
+app.use("/structures", structureController);
+app.use("/tts", ttsController);
+app.use("/miscellaneous", miscellaneousController);
+app.use("/indicator", indicatorController);
+app.use("/mail", mailController);
+app.use("/needs", needsController);
+app.use("/search", searchController);
+app.use("/logs", logController);
+app.use("/widgets", widgetController);
+
 
 var port = process.env.PORT;
 app.get("*", (_req, res) => {
