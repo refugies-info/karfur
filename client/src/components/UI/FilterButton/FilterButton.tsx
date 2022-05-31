@@ -22,7 +22,7 @@ const FilterButton = React.forwardRef((props: Props, ref) => {
   const classNames = cls(
     styles.btn,
     active && styles.active,
-    color && styles.colored,
+    !!color && styles.colored,
     className || "",
   );
 

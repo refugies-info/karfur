@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -126,9 +127,17 @@ export const Widgets = () => {
           </form>
         </Col>
         <Col>
-          {!isFetching &&
-            widgets.length > 0 &&
-            widgets.map((widget) => (
+          {isFetching ?
+            <SkeletonTheme color="#CDCDCD">
+              <Skeleton
+                width="100%"
+                height={72}
+                count={3}
+                className="mb-4"
+                style={{borderRadius: 12}}
+              />
+            </SkeletonTheme> :
+            (widgets || []).map((widget) => (
               <WidgetLine key={widget._id.toString()} widget={widget} />
             ))}
         </Col>
