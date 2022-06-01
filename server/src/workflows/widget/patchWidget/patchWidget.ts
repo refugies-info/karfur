@@ -13,8 +13,10 @@ export interface Request {
   tags: string[];
   typeContenu: "dispositif" | "demarche"[];
   languages: ObjectId[];
-  city: string;
-  department: string;
+  location: {
+    city: string;
+    department: string;
+  }
 }
 
 export const patchWidget = async (
@@ -30,22 +32,16 @@ export const patchWidget = async (
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
     const widget: Partial<WidgetDoc> = {
-      author: req.userId
+      author: req.userId,
+      typeContenu: req.body.typeContenu,
+      tags: req.body.tags,
+      languages: req.body.languages,
+      location: {
+        city: req.body.location.city,
+        department: req.body.location.department
+      }
     };
 
-    if (req.body.typeContenu?.length) {
-      widget.typeContenu = req.body.typeContenu;
-    }
-    if (req.body.tags?.length) {
-      widget.tags = req.body.tags;
-    }
-    if (req.body.languages?.length) {
-      widget.languages = req.body.languages;
-    }
-    if (req.body.city && req.body.department) {
-      widget.location.city = req.body.city;
-      widget.location.department = req.body.department;
-    }
     const dbWidget = await updateWidget(req.params.id, widget);
 
     return res.status(200).json({

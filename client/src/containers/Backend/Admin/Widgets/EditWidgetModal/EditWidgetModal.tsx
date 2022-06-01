@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { Widget } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
 import FButton from "components/UI/FButton";
 import { ThemesInput } from "../components/ThemesInput";
 import { LocationInput } from "../components/LocationInput";
 import { TypeContenuInput } from "../components/TypeContenuInput";
 import { LanguageInput } from "../components/LanguageInput";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
-import { generateIframe } from "../functions";
+import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./EditWidgetModal.module.scss";
 
 interface Props {
@@ -20,6 +21,8 @@ interface Props {
 }
 
 export const EditWidgetModal = (props: Props) => {
+  const dispatch = useDispatch();
+
   const [selectedTags, setSelectedTags] = useState<string[]>(
     props.widget?.tags || []
   );
@@ -51,6 +54,29 @@ export const EditWidgetModal = (props: Props) => {
       setSelectedDepartment("");
     }
   }, [props.widget]);
+
+  const editWidget = (e: any) => {
+    e.preventDefault();
+    dispatch(saveWidgetActionCreator({
+      _id: props.widget?._id,
+      tags: selectedTags,
+      typeContenu: selectedTypeContenu,
+      languages: selectedLanguages,
+      location: {
+        city: selectedCity,
+        department: selectedDepartment,
+      }
+    }));
+  }
+
+  const editAndCopy = (e: any) => {
+    editWidget(e);
+    if (props.widget) {
+      const code = generateIframe(props.widget); // TODO: check if updated properly
+      copyToClipboard(code);
+      props.toggle();
+    }
+  }
 
   const languages = useSelector(allLanguesSelector);
 
@@ -109,10 +135,10 @@ export const EditWidgetModal = (props: Props) => {
             <FButton type="white" name="close-outline" onClick={props.toggle}>
               Annuler
             </FButton>
-            <FButton type="dark" name="save-outline" disabled={!canSubmit}>
+            <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget}>
               Sauvegarder
             </FButton>
-            <FButton type="validate" name="copy-outline" disabled={!canSubmit}>
+            <FButton type="validate" name="copy-outline" disabled={!canSubmit} onClick={editAndCopy}>
               Sauvegarder et copier
             </FButton>
           </div>
