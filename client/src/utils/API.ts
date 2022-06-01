@@ -334,6 +334,16 @@ const API = {
       headers,
     })
   },
+  patchWidget: (query: Partial<Widget>) =>{
+    const headers = getHeaders();
+    return instance.patch(`/widgets/${query._id}`, query, {
+      headers,
+    })
+  },
+  deleteWidget: (query: ObjectId) =>{
+    const headers = getHeaders();
+    return instance.delete(`/widgets/${query}`, { headers })
+  },
 
   // Export
   exportUsers: () => {

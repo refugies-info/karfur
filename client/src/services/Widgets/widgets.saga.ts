@@ -7,12 +7,13 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { GET_WIDGETS, SAVE_WIDGET, CREATE_WIDGET } from "./widgets.actionTypes";
+import { GET_WIDGETS, SAVE_WIDGET, CREATE_WIDGET, DELETE_WIDGET } from "./widgets.actionTypes";
 import {
   setWidgetsActionCreator,
   saveWidgetActionCreator,
   fetchWidgetsActionCreator,
   createWidgetActionCreator,
+  deleteWidgetActionCreator
 } from "./widgets.actions";
 
 export function* fetchWidgets(): SagaIterator {
@@ -41,7 +42,7 @@ export function* saveWidget(
     yield put(startLoading(LoadingStatusKey.SAVE_WIDGET));
     const newWidget = action.payload;
     logger.info("[saveWidget] start saving widget");
-    yield call(API.postWidgets, newWidget);
+    yield call(API.patchWidget, newWidget);
     yield put(fetchWidgetsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_WIDGET));
   } catch (error) {
@@ -74,10 +75,30 @@ export function* createWidget(
   }
 }
 
+export function* deleteWidget(
+  action: ReturnType<typeof deleteWidgetActionCreator>
+): SagaIterator {
+  try {
+    yield put(startLoading(LoadingStatusKey.DELETE_WIDGET));
+    logger.info("[deleteWidget] start deleting widget");
+    yield call(API.deleteWidget, action.payload);
+    yield put(fetchWidgetsActionCreator());
+    yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));
+  } catch (error) {
+    const { message } = error as Error;
+    logger.error("Error while deleting widget ", {
+      error: message,
+      widget: action.payload,
+    });
+    yield put(setWidgetsActionCreator([]));
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(GET_WIDGETS, fetchWidgets);
   yield takeLatest(SAVE_WIDGET, saveWidget);
   yield takeLatest(CREATE_WIDGET, createWidget);
+  yield takeLatest(DELETE_WIDGET, deleteWidget);
 }
 
 export default latestActionsSaga;

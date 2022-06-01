@@ -22,6 +22,7 @@ export enum LoadingStatusKey {
   SAVE_NEED = "SAVE_NEED",
   FETCH_WIDGETS = "FETCH_WIDGETS",
   SAVE_WIDGET = "SAVE_WIDGET",
+  DELETE_WIDGET = "DELETE_WIDGET",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>
