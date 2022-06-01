@@ -25,6 +25,7 @@ export interface RequestFromClientWithBody<Query> {
   userId?: ObjectId;
   user?: UserDoc;
   roles: { nom: string; _id: ObjectId }[];
+  params?: any
 }
 
 export interface AudienceAge {
