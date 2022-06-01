@@ -37,6 +37,20 @@ export const ThemesInput = (props: Props) => {
           <TagName name={tag.short} icon={tag.icon} />
         </FilterButton>
       ))}
+      <FilterButton
+        active={props.selectedTags.length === tags.length}
+        onClick={(e: any) => {
+          e.preventDefault();
+          if (props.selectedTags.length === tags.length) {
+            props.setSelectedTags([]);
+          } else {
+            props.setSelectedTags(tags.map(tag => tag.short))
+          }
+        }}
+        className="mr-2 mb-2"
+      >
+        Tous les thèmes
+      </FilterButton>
     </div>
   );
 };

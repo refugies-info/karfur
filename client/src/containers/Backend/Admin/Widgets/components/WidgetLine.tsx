@@ -1,17 +1,27 @@
 import { colors } from "colors";
 import FButton from "components/UI/FButton";
+import isInBrowser from "lib/isInBrowser";
 import moment from "moment";
+import { ObjectId } from "mongodb";
 import { Widget } from "types/interface";
+import { copyToClipboard, generateIframe } from "../functions";
 import styles from "./WidgetLine.module.scss";
+
+let NotificationManager: any = null;
+if (isInBrowser()) {
+  const ReactNotifications = require("react-notifications/dist/react-notifications.js");
+  NotificationManager = ReactNotifications.NotificationManager;
+}
 
 interface Props {
   widget: Widget;
+  onClick: (id: ObjectId) => void
 }
 
 export const WidgetLine = (props: Props) => {
   const { widget } = props;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => props.onClick(widget._id)}>
       <div>
         <h3 className={styles.name}>{widget.name}</h3>
         <p className={styles.details}>
@@ -25,11 +35,24 @@ export const WidgetLine = (props: Props) => {
           type="small-figma"
           className="mr-1"
           theme={colors.gray80}
+          onClick={(e: any) => {
+            e.stopPropagation();
+            const text = generateIframe(widget);
+            copyToClipboard(text);
+            NotificationManager.success(
+              "Le code d'intégration du widget a été copié dans ton presse-papiers.",
+              "Copié dans le presse-papiers",
+              5000,
+            );
+          }}
         ></FButton>
         <FButton
           name="trash-2-outline"
           type="small-figma"
           theme={colors.gray80}
+          onClick={(e: any) => {
+            e.stopPropagation();
+          }}
         ></FButton>
       </div>
     </div>

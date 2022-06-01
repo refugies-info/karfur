@@ -3,6 +3,8 @@ import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
+import { Widget } from "types/interface";
+import isInBrowser from "lib/isInBrowser";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { widgetsSelector } from "services/Widgets/widgets.selectors";
@@ -13,22 +15,33 @@ import {
   fetchWidgetsActionCreator,
 } from "services/Widgets/widgets.actions";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import styles from "./Widgets.module.scss";
+import { FigureContainer } from "../sharedComponents/StyledAdmin";
 import { WidgetLine } from "./components/WidgetLine";
 import { ThemesInput } from "./components/ThemesInput";
 import { LocationInput } from "./components/LocationInput";
 import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
+import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
+import styles from "./Widgets.module.scss";
+
+let NotificationContainer: any = null;
+if (isInBrowser()) {
+  const ReactNotifications = require("react-notifications/dist/react-notifications.js");
+  NotificationContainer = ReactNotifications.NotificationContainer;
+}
+
 
 export const Widgets = () => {
   const [name, setName] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<
     ("demarche" | "dispositif")[]
-  >([]);
+  >(["demarche", "dispositif"]);
   const [selectedLanguages, setSelectedLanguages] = useState<ObjectId[]>([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedWidget, setSelectedWidget] = useState<Widget | null>(null);
 
   const dispatch = useDispatch();
 
@@ -46,7 +59,7 @@ export const Widgets = () => {
   const resetForm = useCallback(() => {
     setName("");
     setSelectedTags([]);
-    setSelectedTypeContenu([]);
+    setSelectedTypeContenu(["demarche", "dispositif"]);
     setSelectedLanguages([]);
     setSelectedCity("");
   }, []);
@@ -68,9 +81,27 @@ export const Widgets = () => {
     resetForm();
   };
 
+  const toggleModal = (widgetId: ObjectId | null) => {
+    if (!widgetId) {
+      setSelectedWidget(null);
+      setShowEditModal(false);
+    } else {
+      const widget = widgets.find(w => w._id === widgetId);
+      if (widget) {
+        setSelectedWidget(widget);
+        setShowEditModal(true);
+      }
+    }
+  }
+
+  const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedTags.length > 0;
+
   return (
     <div className="m-5">
-      <h2 className={styles.title}>Widgets</h2>
+      <h2 className={styles.title}>
+        Widgets
+        <FigureContainer>{widgets.length}</FigureContainer>
+      </h2>
       <Row>
         <Col>
           <form className={styles.form}>
@@ -119,7 +150,7 @@ export const Widgets = () => {
                 type="validate"
                 onClick={createWidget}
                 name="plus-circle-outline"
-                disabled={isSaving}
+                disabled={isSaving || !canSubmit}
               >
                 Créer le widget
               </FButton>
@@ -138,10 +169,24 @@ export const Widgets = () => {
               />
             </SkeletonTheme> :
             (widgets || []).map((widget) => (
-              <WidgetLine key={widget._id.toString()} widget={widget} />
+              <WidgetLine
+                key={widget._id.toString()}
+                widget={widget}
+                onClick={toggleModal}
+              />
             ))}
         </Col>
       </Row>
+
+      <EditWidgetModal
+        show={showEditModal}
+        toggle={() => toggleModal(null)}
+        widget={selectedWidget}
+      />
+
+      {isInBrowser() && NotificationContainer !== null &&
+        <NotificationContainer />
+      }
     </div>
   );
 };
