@@ -42,13 +42,14 @@ export const Widgets = () => {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedWidget, setSelectedWidget] = useState<Widget | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
 
   const dispatch = useDispatch();
 
   const isFetching = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_WIDGETS)
   );
-  const isSaving = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_WIDGET));
+  const isCreatingInDb = useSelector(isLoadingSelector(LoadingStatusKey.CREATE_WIDGET));
   const widgets = useSelector(widgetsSelector);
   const languages = useSelector(allLanguesSelector);
 
@@ -66,6 +67,7 @@ export const Widgets = () => {
 
   const createWidget = (e: any) => {
     e.preventDefault();
+    setIsCreating(true);
     dispatch(
       createWidgetActionCreator({
         name: name,
@@ -93,6 +95,15 @@ export const Widgets = () => {
       }
     }
   }
+
+  useEffect(() => {
+    // if creation in db has ended
+    if (!isCreatingInDb && isCreating) {
+      setIsCreating(false);
+      toggleModal(widgets[0]._id) // open widget modal
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isCreatingInDb]);
 
   const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedTags.length > 0;
 
@@ -150,7 +161,7 @@ export const Widgets = () => {
                 type="validate"
                 onClick={createWidget}
                 name="plus-circle-outline"
-                disabled={isSaving || !canSubmit}
+                disabled={isCreating || !canSubmit}
               >
                 Créer le widget
               </FButton>

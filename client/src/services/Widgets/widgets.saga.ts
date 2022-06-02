@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, select } from "redux-saga/effects";
 import API from "../../utils/API";
 import { logger } from "../../logger";
 import {
@@ -11,10 +11,11 @@ import { GET_WIDGETS, SAVE_WIDGET, CREATE_WIDGET, DELETE_WIDGET } from "./widget
 import {
   setWidgetsActionCreator,
   saveWidgetActionCreator,
-  fetchWidgetsActionCreator,
   createWidgetActionCreator,
   deleteWidgetActionCreator
 } from "./widgets.actions";
+import { widgetsSelector } from "./widgets.selectors";
+import { Widget } from "types/interface";
 
 export function* fetchWidgets(): SagaIterator {
   try {
@@ -42,8 +43,13 @@ export function* saveWidget(
     yield put(startLoading(LoadingStatusKey.SAVE_WIDGET));
     const newWidget = action.payload;
     logger.info("[saveWidget] start saving widget");
-    yield call(API.patchWidget, newWidget);
-    yield put(fetchWidgetsActionCreator());
+
+    const data = yield call(API.patchWidget, newWidget);
+    const newWidgets: Widget[] = yield select(widgetsSelector);
+    const editedWidgetIndex = newWidgets.findIndex(w => w._id === action.payload._id);
+    newWidgets[editedWidgetIndex] = data.data.data;
+    yield put(setWidgetsActionCreator(newWidgets));
+
     yield put(finishLoading(LoadingStatusKey.SAVE_WIDGET));
   } catch (error) {
     const { message } = error as Error;
@@ -59,12 +65,15 @@ export function* createWidget(
   action: ReturnType<typeof createWidgetActionCreator>
 ): SagaIterator {
   try {
-    yield put(startLoading(LoadingStatusKey.SAVE_WIDGET));
+    yield put(startLoading(LoadingStatusKey.CREATE_WIDGET));
     const newWidget = action.payload;
     logger.info("[createWidget] start creating widget");
-    yield call(API.postWidgets, newWidget);
-    yield put(fetchWidgetsActionCreator());
-    yield put(finishLoading(LoadingStatusKey.SAVE_WIDGET));
+
+    const data = yield call(API.postWidgets, newWidget);
+    const widgets: Widget[] = yield select(widgetsSelector);
+    yield put(setWidgetsActionCreator([data.data.data, ...widgets]));
+
+    yield put(finishLoading(LoadingStatusKey.CREATE_WIDGET));
   } catch (error) {
     const { message } = error as Error;
     logger.error("Error while creating widget ", {
@@ -82,7 +91,10 @@ export function* deleteWidget(
     yield put(startLoading(LoadingStatusKey.DELETE_WIDGET));
     logger.info("[deleteWidget] start deleting widget");
     yield call(API.deleteWidget, action.payload);
-    yield put(fetchWidgetsActionCreator());
+
+    const widgets: Widget[] = yield select(widgetsSelector);
+    yield put(setWidgetsActionCreator(widgets.filter(w => w._id !== action.payload)));
+
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));
   } catch (error) {
     const { message } = error as Error;
