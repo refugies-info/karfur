@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { postWidgets } from "./postWidgets";
-import { createWidget } from "../../../modules/widgets/widgets.repository";
+import { deleteWidget } from "./deleteWidget";
+import { deleteWidgetById } from "../../../modules/widgets/widgets.repository";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
@@ -8,7 +8,7 @@ import {
 import { Widget } from ".../../../schema/schemaWidget";
 
 jest.mock("../../../modules/widgets/widgets.repository", () => ({
-  createWidget: jest.fn(),
+  deleteWidgetById: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
@@ -27,7 +27,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("postWidgets", () => {
+describe("deleteWidget", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -38,8 +38,11 @@ describe("postWidgets", () => {
     checkRequestIsFromSite.mockImplementationOnce(() => {
       throw new Error("NOT_FROM_SITE");
     });
-    const req = { fromSite: false };
-    await postWidgets(req, res);
+    const req = {
+      fromSite: false,
+      params: {}
+    };
+    await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(405);
   });
   it("should return 403 if not admin", async () => {
@@ -48,57 +51,27 @@ describe("postWidgets", () => {
     })
     const req = {
       user: { roles: [] },
+      params: {}
     };
-    await postWidgets(req, res);
+    await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
   });
-  it("should return 400 if no name", async () => {
+  it("should return 400 if no id", async () => {
     const req = {
-      body: { typeContenu: ["demarche"], tags: ["administratif"]},
       user: { roles: [], userId: "id" },
+      params: {id: null}
     };
-    await postWidgets(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-  });
-  it("should return 400 if no tag", async () => {
-    const req = {
-      body: { name:"test", typeContenu: ["demarche"], tags: []},
-      user: { roles: [], userId: "id" },
-    };
-    await postWidgets(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-  });
-  it("should return 400 if no typeContenu", async () => {
-    const req = {
-      body: { name:"test", tags: ["administratif"]},
-      user: { roles: [], userId: "id" },
-    };
-    await postWidgets(req, res);
+    await deleteWidget(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it("should return 200", async () => {
     const req = {
-      fromSite: true,
-      body: {
-        name: "test",
-        typeContenu: ["demarche"],
-        tags: ["administratif"],
-        location: {
-          city: "Paris"
-        }
-      },
-      user: { roles: [] },
-      userId: "id"
+      user: { roles: [], userId: "id" },
+      params: {id: "widgetId"}
     };
-    await postWidgets(req, res);
-    expect(createWidget).toHaveBeenCalledWith({
-      name: "test",
-      tags: ["administratif"],
-      typeContenu: ["demarche"],
-      author: "id",
-      // no city because no department
-    });
+    await deleteWidget(req, res);
+    expect(deleteWidgetById).toHaveBeenCalledWith("widgetId");
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
