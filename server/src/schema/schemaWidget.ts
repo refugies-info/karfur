@@ -13,7 +13,7 @@ const widgetSchema = new mongoose.Schema(
     },
     typeContenu: {
       type: [String],
-      enum: ["dispositif", "demarche"],
+      enum: ["dispositifs", "demarches"],
       required: true,
     },
     location: {
@@ -25,7 +25,7 @@ const widgetSchema = new mongoose.Schema(
       }
     },
     languages: {
-      type: [{ type: mongoose.Types.ObjectId, ref: "Langue" }]
+      type: [String]
     },
     author: {
       type: mongoose.Types.ObjectId,
@@ -40,12 +40,12 @@ export interface WidgetDoc extends mongoose.Document {
   _id: ObjectId;
   name: string;
   tags: string[];
-  typeContenu: "dispositif"|"demarche"[];
+  typeContenu: ("dispositifs"|"demarches")[];
   location: {
     city: string;
     department: string;
   }
-  languages: ObjectId[];
+  languages: string[];
   author: ObjectId;
   created_at: Moment;
 }

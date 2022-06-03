@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const TypeContenuInput = (props: Props) => {
-  const onTypeContenuChange = (typeContenu: "demarche" | "dispositif") => {
+  const onTypeContenuChange = (typeContenu: "demarches" | "dispositifs") => {
     if (props.selectedTypeContenu.includes(typeContenu)) {
       // remove
       props.setSelectedTypeContenu((types: string[]) =>
@@ -28,9 +28,9 @@ export const TypeContenuInput = (props: Props) => {
       <FilterButton
         onClick={(e: any) => {
           e.preventDefault();
-          onTypeContenuChange("dispositif");
+          onTypeContenuChange("dispositifs");
         }}
-        active={props.selectedTypeContenu.includes("dispositif")}
+        active={props.selectedTypeContenu.includes("dispositifs")}
         className="mr-2"
       >
         Dispositif
@@ -38,9 +38,9 @@ export const TypeContenuInput = (props: Props) => {
       <FilterButton
         onClick={(e: any) => {
           e.preventDefault();
-          onTypeContenuChange("demarche");
+          onTypeContenuChange("demarches");
         }}
-        active={props.selectedTypeContenu.includes("demarche")}
+        active={props.selectedTypeContenu.includes("demarches")}
       >
         Démarche
       </FilterButton>

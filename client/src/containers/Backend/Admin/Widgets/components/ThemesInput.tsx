@@ -26,11 +26,11 @@ export const ThemesInput = (props: Props) => {
       {tags.map((tag) => (
         <FilterButton
           key={tag.short}
-          active={props.selectedTags.includes(tag.short)}
+          active={props.selectedTags.includes(tag.name)}
           color={tag.darkColor}
           onClick={(e: any) => {
             e.preventDefault();
-            onTagsChange(tag.short);
+            onTagsChange(tag.name);
           }}
           className="mr-2 mb-2"
         >
@@ -44,7 +44,7 @@ export const ThemesInput = (props: Props) => {
           if (props.selectedTags.length === tags.length) {
             props.setSelectedTags([]);
           } else {
-            props.setSelectedTags(tags.map(tag => tag.short))
+            props.setSelectedTags(tags.map(tag => tag.name))
           }
         }}
         className="mr-2 mb-2"

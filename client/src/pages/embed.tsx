@@ -68,7 +68,7 @@ const Embed = () => {
   const flagIconCode = filterLanguage?.langueCode || langueCode;
 
   return (
-    <div className={cls(styles.container, "advanced-search")}>
+    <div className={cls(styles.container, styles.embed, "advanced-search")}>
       <div className="w-100">
         <div
           className={cls(styles.search_wrapper)}

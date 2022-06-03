@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { Widget } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
@@ -27,9 +26,9 @@ export const EditWidgetModal = (props: Props) => {
     props.widget?.tags || []
   );
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<
-    ("demarche" | "dispositif")[]
-  >(props.widget?.typeContenu || ["demarche", "dispositif"]);
-  const [selectedLanguages, setSelectedLanguages] = useState<ObjectId[]>(
+    ("demarches" | "dispositifs")[]
+  >(props.widget?.typeContenu || ["demarches", "dispositifs"]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
     props.widget?.languages || []
   );
   const [selectedCity, setSelectedCity] = useState(
@@ -38,6 +37,8 @@ export const EditWidgetModal = (props: Props) => {
   const [selectedDepartment, setSelectedDepartment] = useState(
     props.widget?.location?.department || ""
   );
+  const [code, setCode] = useState(props.widget ? generateIframe(props.widget) : "");
+  const [copyAndCloseAfterEdit, setCopyAndCloseAfterEdit] = useState(false);
 
   useEffect(() => {
     if (props.widget) {
@@ -70,13 +71,23 @@ export const EditWidgetModal = (props: Props) => {
   }
 
   const editAndCopy = (e: any) => {
+    setCopyAndCloseAfterEdit(true);
     editWidget(e);
-    if (props.widget) {
-      const code = generateIframe(props.widget); // TODO: check if updated properly
-      copyToClipboard(code);
-      props.toggle();
-    }
   }
+
+  useEffect(() => {
+    if (props.widget) {
+      const generatedCode = generateIframe(props.widget);
+      setCode(generatedCode)
+
+      if (copyAndCloseAfterEdit) {
+        copyToClipboard(generatedCode);
+        props.toggle();
+        setCopyAndCloseAfterEdit(false);
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.widget]);
 
   const languages = useSelector(allLanguesSelector);
 
@@ -123,9 +134,7 @@ export const EditWidgetModal = (props: Props) => {
         <Col sm="6">
           <div className={styles.code_container}>
             <h4 className={styles.code_title}>Code d’intégration</h4>
-            <pre className={styles.code}>
-              {props.widget ? generateIframe(props.widget) : ""}
-            </pre>
+            <pre className={styles.code}>{code}</pre>
           </div>
         </Col>
       </Row>

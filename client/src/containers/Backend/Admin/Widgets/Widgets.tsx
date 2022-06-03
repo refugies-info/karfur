@@ -3,11 +3,10 @@ import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ObjectId } from "mongodb";
-import { Widget } from "types/interface";
 import isInBrowser from "lib/isInBrowser";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { widgetsSelector } from "services/Widgets/widgets.selectors";
+import { widgetSelector, widgetsSelector } from "services/Widgets/widgets.selectors";
 import FButton from "components/UI/FButton";
 import FInput from "components/UI/FInput/FInput";
 import {
@@ -35,13 +34,12 @@ export const Widgets = () => {
   const [name, setName] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<
-    ("demarche" | "dispositif")[]
-  >(["demarche", "dispositif"]);
-  const [selectedLanguages, setSelectedLanguages] = useState<ObjectId[]>([]);
+    ("demarches" | "dispositifs")[]
+  >(["demarches", "dispositifs"]);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
-  const [selectedWidget, setSelectedWidget] = useState<Widget | null>(null);
   const [isCreating, setIsCreating] = useState(false);
 
   const dispatch = useDispatch();
@@ -60,7 +58,7 @@ export const Widgets = () => {
   const resetForm = useCallback(() => {
     setName("");
     setSelectedTags([]);
-    setSelectedTypeContenu(["demarche", "dispositif"]);
+    setSelectedTypeContenu(["demarches", "dispositifs"]);
     setSelectedLanguages([]);
     setSelectedCity("");
   }, []);
@@ -83,17 +81,11 @@ export const Widgets = () => {
     resetForm();
   };
 
+  const [selectedWidgetId, setSelectedWidgetId] = useState<ObjectId | null>(null);
+  const selectedWidget = useSelector(widgetSelector(selectedWidgetId))
   const toggleModal = (widgetId: ObjectId | null) => {
-    if (!widgetId) {
-      setSelectedWidget(null);
-      setShowEditModal(false);
-    } else {
-      const widget = widgets.find(w => w._id === widgetId);
-      if (widget) {
-        setSelectedWidget(widget);
-        setShowEditModal(true);
-      }
-    }
+    setSelectedWidgetId(widgetId);
+    setShowEditModal(!!widgetId);
   }
 
   useEffect(() => {

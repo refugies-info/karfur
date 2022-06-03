@@ -6,16 +6,16 @@ import LanguageText from "components/UI/Language";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
-  selectedLanguages: ObjectId[];
+  selectedLanguages: string[];
   setSelectedLanguages: (callback: any) => void;
   languages: Language[];
 }
 
 export const LanguageInput = (props: Props) => {
-  const onLanguageChange = (language: ObjectId) => {
+  const onLanguageChange = (language: string) => {
     if (props.selectedLanguages.includes(language)) {
       // remove
-      props.setSelectedLanguages((ln: ObjectId[]) =>
+      props.setSelectedLanguages((ln: string[]) =>
         ln.filter((l) => l !== language)
       );
     } else {
@@ -34,9 +34,9 @@ export const LanguageInput = (props: Props) => {
             key={index}
             onClick={(e: any) => {
               e.preventDefault();
-              if (item._id) onLanguageChange(item._id);
+              if (item._id) onLanguageChange(item.i18nCode);
             }}
-            active={item._id && props.selectedLanguages.includes(item._id)}
+            active={item._id && props.selectedLanguages.includes(item.i18nCode)}
             className="mr-2 mb-2"
           >
             <LanguageText langueCode={item.langueCode} />

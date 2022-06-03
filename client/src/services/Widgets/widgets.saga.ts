@@ -45,10 +45,12 @@ export function* saveWidget(
     logger.info("[saveWidget] start saving widget");
 
     const data = yield call(API.patchWidget, newWidget);
-    const newWidgets: Widget[] = yield select(widgetsSelector);
-    const editedWidgetIndex = newWidgets.findIndex(w => w._id === action.payload._id);
-    newWidgets[editedWidgetIndex] = data.data.data;
-    yield put(setWidgetsActionCreator(newWidgets));
+    if (data.data.data) {
+      const newWidgets: Widget[] = yield select(widgetsSelector);
+      const editedWidgetIndex = newWidgets.findIndex(w => w._id === action.payload._id);
+      newWidgets[editedWidgetIndex] = data.data.data;
+      yield put(setWidgetsActionCreator(newWidgets));
+    }
 
     yield put(finishLoading(LoadingStatusKey.SAVE_WIDGET));
   } catch (error) {

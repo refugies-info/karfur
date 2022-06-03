@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { deleteWidgetById } from "../../../modules/widgets/widgets.repository";
@@ -7,14 +6,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
-export interface Request {
-  name: string;
-  tags: string[];
-  typeContenu: "dispositif" | "demarche"[];
-  languages: ObjectId[];
-  city: string;
-  department: string;
-}
+export interface Request {}
 
 export const deleteWidget = async (
   req: RequestFromClientWithBody<Request>,

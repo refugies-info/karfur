@@ -54,7 +54,7 @@ describe("postWidgets", () => {
   });
   it("should return 400 if no name", async () => {
     const req = {
-      body: { typeContenu: ["demarche"], tags: ["administratif"]},
+      body: { typeContenu: ["demarches"], tags: ["administratif"]},
       user: { roles: [], userId: "id" },
     };
     await postWidgets(req, res);
@@ -62,7 +62,7 @@ describe("postWidgets", () => {
   });
   it("should return 400 if no tag", async () => {
     const req = {
-      body: { name:"test", typeContenu: ["demarche"], tags: []},
+      body: { name:"test", typeContenu: ["demarches"], tags: []},
       user: { roles: [], userId: "id" },
     };
     await postWidgets(req, res);
@@ -82,7 +82,7 @@ describe("postWidgets", () => {
       fromSite: true,
       body: {
         name: "test",
-        typeContenu: ["demarche"],
+        typeContenu: ["demarches"],
         tags: ["administratif"],
         location: {
           city: "Paris"
@@ -95,7 +95,7 @@ describe("postWidgets", () => {
     expect(createWidget).toHaveBeenCalledWith({
       name: "test",
       tags: ["administratif"],
-      typeContenu: ["demarche"],
+      typeContenu: ["demarches"],
       author: "id",
       // no city because no department
     });

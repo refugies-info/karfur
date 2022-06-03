@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { createWidget } from "../../../modules/widgets/widgets.repository";
@@ -11,8 +10,8 @@ import { Widget } from "../../../schema/schemaWidget";
 export interface Request {
   name: string;
   tags: string[];
-  typeContenu: "dispositif" | "demarche"[];
-  languages: ObjectId[];
+  typeContenu: ("dispositifs" | "demarches")[];
+  languages: string[];
   location: {
     city: string;
     department: string;

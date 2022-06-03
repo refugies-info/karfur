@@ -512,12 +512,12 @@ export interface Widget {
   _id: ObjectId;
   name: string;
   tags: string[];
-  typeContenu: ("dispositif"|"demarche")[];
+  typeContenu: ("dispositifs"|"demarches")[];
   location?: {
     city: string;
     department: string;
   }
-  languages?: ObjectId[];
+  languages?: string[];
   author: {
     _id: ObjectId;
     username: string;

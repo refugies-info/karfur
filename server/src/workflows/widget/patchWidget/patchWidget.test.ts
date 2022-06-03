@@ -73,7 +73,7 @@ describe("patchWidget", () => {
       params: { id: "widgetId" },
       userId: "userId",
       body: {
-        typeContenu: ["dispositif"],
+        typeContenu: ["dispositifs"],
         tags: ["administratif"],
         languages: [],
         location: {
@@ -85,7 +85,7 @@ describe("patchWidget", () => {
     await patchWidget(req, res);
     expect(updateWidget).toHaveBeenCalledWith("widgetId", {
       author: "userId",
-      typeContenu: ["dispositif"],
+      typeContenu: ["dispositifs"],
       tags: ["administratif"],
       languages: [],
       location: {
