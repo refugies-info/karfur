@@ -51,7 +51,7 @@ const NoResultsText = styled.p`
 `;
 
 interface Props {
-  restart: () => void
+  restart?: () => void
   writeNew?: () => void
 }
 
@@ -70,15 +70,17 @@ const NoResultPlaceholder = (props: Props) => {
           )}{" "}
         </NoResultsText>
         <NoResultsButtonsContainer>
-          <FButton
-            type="dark"
-            name="refresh-outline"
-            className="mr-10"
-            onClick={props.restart}
-          >
-            Recommencer
-          </FButton>
-          {!isMobile && (
+          {props.restart &&
+            <FButton
+              type="dark"
+              name="refresh-outline"
+              className="mr-10"
+              onClick={props.restart}
+            >
+              Recommencer
+            </FButton>
+          }
+          {!isMobile && props.writeNew && (
             <FButton
               type="white-yellow-hover"
               name="file-add-outline"

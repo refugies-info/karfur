@@ -113,7 +113,7 @@ const sortDispositifs = (dispositifs: IDispositif[], order: string) => {
 };
 
 
-interface DispositifsFilteredState {
+export interface DispositifsFilteredState {
   dispositifs: IDispositif[]
   countTotal: number
   countShow: number

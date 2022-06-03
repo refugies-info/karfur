@@ -553,3 +553,8 @@ export type UserStatus = {
 export type ProgressionStatus = {
   storedStatus: string
 } & Status;
+
+export type PageOptions = {
+  cookiesModule: boolean
+  supportModule: boolean
+}

@@ -10,23 +10,6 @@
   margin-top: -75px;
 }
 
-.theme_grid {
-  display: grid;
-  justify-content: start;
-  align-content: start;
-  grid-template-columns: repeat(2, minmax(260px, 300px));
-
-  @include media-min("tablet-down") {
-    grid-template-columns: repeat(3, minmax(260px, 300px));
-  }
-  @include media-min("xl-limit") {
-    grid-template-columns: repeat(4, minmax(260px, 300px));
-  }
-  @include media-min("widescreen-up") {
-    grid-template-columns: repeat(5, minmax(260px, 300px));
-  }
-}
-
 .searchbar_wrapper {
   position: fixed;
   transform: translateY(60px);
