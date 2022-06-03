@@ -17,7 +17,8 @@ export const generateIframe = (widget: Widget) => {
   const urlParams = [locationParam, typeContenuParam, langueParam, tagParam]
     .filter(t => t !== "")
     .join("&");
-  const iframe = `<iframe width="930" height="600" src="${getBaseUrl()}fr/embed?${encodeURI(urlParams)}" title="${widget.name}" frameborder="0"></iframe>`;
+  const analyticsParam = `&utm_source=widget&utm_medium=Iframe&utm_campaign=${encodeURI(widget.name)}`
+  const iframe = `<iframe width="930" height="600" src="${getBaseUrl()}fr/embed?${encodeURI(urlParams)}${analyticsParam}" title="${widget.name}" frameborder="0"></iframe>`;
 
   return `<!-- Début de widget Réfugiés.info -->${iframe}<!-- Fin du widget Réfugiés.info -->`;
 }

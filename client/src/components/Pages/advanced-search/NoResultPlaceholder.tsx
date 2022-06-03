@@ -4,6 +4,7 @@ import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import NoResultsBackgroundImage from "assets/no_results.svg";
 import FButton from "components/UI/FButton/FButton";
+import Image from "next/image";
 
 const NoResultsContainer = styled.div`
   display: flex;
@@ -48,6 +49,7 @@ const NoResultsText = styled.p`
   line-height: 23px !important;
   margin-bottom: 24px !important;
   max-width: 520px;
+  min-width: 300px;
 `;
 
 interface Props {
@@ -60,7 +62,14 @@ const NoResultPlaceholder = (props: Props) => {
 
   return (
     <NoResultsContainer>
-      <NoResults />
+      <NoResults>
+        <Image
+          src={NoResultsBackgroundImage}
+          alt={"no results"}
+          width={254}
+          height={180}
+        />
+      </NoResults>
       <NoResultsTextContainer>
         <NoResultsTitle>{t("Aucun résultat", "Aucun résultat")}</NoResultsTitle>
         <NoResultsText>
