@@ -1,12 +1,9 @@
 import Streamline from "assets/streamline";
 import useRTL from "hooks/useRTL";
-import { cls } from "lib/classname";
 import { DispositifsFilteredState } from "lib/filterContents";
 import { useTranslation } from "next-i18next";
 import { SearchQuery } from "pages/recherche";
-import { useState } from "react";
-import { IDispositif, IUserFavorite, Language, Tag } from "types/interface";
-import NoResultPlaceholder from "../NoResultPlaceholder";
+import { IDispositif, IUserFavorite } from "types/interface";
 import SearchResultCard from "../SearchResultCard";
 import SeeMoreCard from "../SeeMoreCard";
 import styles from "./SearchResults.module.scss";

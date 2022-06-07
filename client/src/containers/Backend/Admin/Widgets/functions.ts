@@ -12,7 +12,7 @@ export const generateIframe = (widget: Widget) => {
     `langue=${widget.languages[0]}`
     : "";
   const tagParam = widget.tags ?
-    `tag=${widget.tags}` // TODO: make it works with more than 1
+    `tag=${widget.tags.join(",")}`
     : "";
   const urlParams = [locationParam, typeContenuParam, langueParam, tagParam]
     .filter(t => t !== "")
