@@ -4,12 +4,12 @@ import { SearchQuery } from "pages/recherche";
 import { IDispositif, Tag } from "types/interface";
 import { tags } from "data/tags";
 
-const filterContentsByTheme = (contents: IDispositif[], tagFilter: string | undefined) => {
+const filterContentsByTheme = (contents: IDispositif[], tagFilter: string[] | undefined) => {
   if (!tagFilter) return contents;
 
   return contents.filter((content) => {
     if (content.tags && content.tags.length > 0) {
-      const hasContentTheme = content.tags.filter((tag) => tag && tag.name === tagFilter).length > 0;
+      const hasContentTheme = content.tags.filter((tag) => tag && tagFilter.includes(tag.name)).length > 0;
       return hasContentTheme;
     }
     return false;
@@ -257,7 +257,7 @@ export const queryDispositifs = (
 
   if (query.theme) {
     const principalThemeList = dispositifs.filter((elem) => (
-      elem?.tags[0] ? elem.tags[0].name === query.theme : ""
+      elem?.tags[0] ? query.theme?.includes(elem.tags[0].name) : ""
     ));
     principalThemeListSorted = sortDispositifs(
       principalThemeList,
@@ -270,7 +270,7 @@ export const queryDispositifs = (
           if (
             index !== 0 &&
             element.tags[index] &&
-            element.tags[index].name === query.theme
+            query.theme?.includes(element.tags[index].name)
           )
           return true;
         }
@@ -285,7 +285,7 @@ export const queryDispositifs = (
     // THEME + LOCATION
     if (query.loc?.city) {
       var principalThemeListFullFrance = dispositifsFullFrance.filter(
-        (elem) => (elem?.tags[0] ? elem.tags[0].name === query.theme : "")
+        (elem) => (elem?.tags[0] ? query.theme?.includes(elem.tags[0].name) : "")
       );
       principalThemeListFullFranceSorted = sortDispositifs(
         principalThemeListFullFrance,
@@ -298,7 +298,7 @@ export const queryDispositifs = (
               if (
                 index !== 0 &&
                 element.tags[index] &&
-                element.tags[index].name === query.theme
+                query.theme?.includes(element.tags[index].name)
               )
                 return true;
             }
@@ -346,7 +346,7 @@ export const decodeQuery = (routerQuery: any): QueryState => {
 
   // Reinject filters value in search
   if (tag || age || niveauFrancais || dep || city || filter || langue || tri) {
-    if (tag) query.theme = decodeURIComponent(tag);
+    if (tag) query.theme = decodeURIComponent(tag).split(",");
     if (age) query.age = decodeURIComponent(age);
     if (dep && city) {
       query.loc = {

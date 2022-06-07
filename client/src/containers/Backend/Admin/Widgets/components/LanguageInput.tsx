@@ -12,15 +12,13 @@ interface Props {
 }
 
 export const LanguageInput = (props: Props) => {
+
+  // in version 1, only 1 language allowed ?
   const onLanguageChange = (language: string) => {
-    if (props.selectedLanguages.includes(language)) {
-      // remove
-      props.setSelectedLanguages((ln: string[]) =>
-        ln.filter((l) => l !== language)
-      );
+    if (props.selectedLanguages?.[0] === language) {
+      props.setSelectedLanguages([])
     } else {
-      // add
-      props.setSelectedLanguages((ln: ObjectId[]) => [...ln, language]);
+      props.setSelectedLanguages([language]);
     }
   };
   return (

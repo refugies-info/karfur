@@ -8,11 +8,13 @@ export const getAllWidgets = async () => {
 }
 
 export const createWidget = async (widget: WidgetDoc) => {
-  return new Widget(widget).save().then(w => w.populate("author", "username"));
+  return new Widget(widget).save()
+    .then(w => w.populate("author", "username"));
 }
 
 export const updateWidget = async (widgetId: ObjectId, widget: Partial<WidgetDoc>) => {
-  return Widget.findOneAndUpdate({ _id: widgetId }, widget, { upsert: true, new: true }).populate("author", "username");
+  return Widget.findOneAndUpdate({ _id: widgetId }, widget, { upsert: true, new: true })
+    .populate("author", "username");
 }
 
 export const deleteWidgetById = async (widgetId: ObjectId) => {

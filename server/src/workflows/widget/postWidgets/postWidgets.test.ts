@@ -5,7 +5,6 @@ import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
-import { Widget } from ".../../../schema/schemaWidget";
 
 jest.mock("../../../modules/widgets/widgets.repository", () => ({
   createWidget: jest.fn(),

@@ -25,7 +25,7 @@ const widgetSchema = new mongoose.Schema(
       }
     },
     languages: {
-      type: [String]
+      type: [String] // only 1 allowed for now, but save an array for later
     },
     author: {
       type: mongoose.Types.ObjectId,

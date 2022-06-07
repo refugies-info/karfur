@@ -61,8 +61,8 @@ const Embed = () => {
   const filterLanguage = query.langue
     ? langues.find((x) => x.i18nCode === query.langue)
     : undefined;
-  const selectedTag = query.theme
-    ? tags.find((tag) => tag.name === query.theme)
+  const selectedTag = query.theme && query.theme.length === 1
+    ? tags.find((tag) => tag.name === query.theme?.[0])
     : undefined;
 
   const flagIconCode = filterLanguage?.langueCode || langueCode;
@@ -81,7 +81,7 @@ const Embed = () => {
                 : "#e4e5e6",
           }}
         >
-          {query.theme ? (
+          {selectedTag ? (
             <ThemeResults
               langueCode={langueCode}
               flagIconCode={flagIconCode}

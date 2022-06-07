@@ -9,10 +9,10 @@ export const generateIframe = (widget: Widget) => {
     `filter=${widget.typeContenu[0]}`
     : "";
   const langueParam = widget.languages && widget.languages.length > 0 ?
-    `langue=${widget.languages[0]}` // TODO: make it works with more than 1
+    `langue=${widget.languages[0]}`
     : "";
   const tagParam = widget.tags ?
-    `tag=${widget.tags[0]}` // TODO: make it works with more than 1
+    `tag=${widget.tags}` // TODO: make it works with more than 1
     : "";
   const urlParams = [locationParam, typeContenuParam, langueParam, tagParam]
     .filter(t => t !== "")

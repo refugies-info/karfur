@@ -85,7 +85,7 @@ export const OrderThemeResults = (props: Props) => {
               })
             }
             <SeeMoreCard
-              seeMore={() => props.addToQuery({theme: theme.tag.name})}
+              seeMore={() => props.addToQuery({theme: [theme.tag.name]})}
               theme={theme.tag}
               isRTL={isRTL}
             />

@@ -134,7 +134,7 @@ const FilterTitle = styled.p`
 
 const pageFilters = [searchTheme, searchLoc, searchAge, searchFrench];
 export type SearchQuery = {
-  theme?: string;
+  theme?: string[];
   age?: string;
   frenchLevel?: string;
   type?: "dispositifs" | "demarches";
@@ -495,8 +495,8 @@ export class AdvancedSearch extends Component<Props, State> {
           (x) => x.i18nCode === this.state.query.langue
         )
       : null;
-    const selectedTag = this.state.query.theme
-      ? tags.find((tag) => tag.name === this.state.query.theme)
+    const selectedTag = this.state.query.theme && this.state.query.theme.length === 1
+      ? tags.find((tag) => tag.name === this.state.query?.theme?.[0])
       : null;
     const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(
       (d) => d._id.toString()
@@ -706,7 +706,7 @@ export class AdvancedSearch extends Component<Props, State> {
                 backgroundColor:
                   this.state.query.order === "theme"
                     ? themesObject[0]?.tag?.lightColor || "#f1e8f5"
-                    : this.state.query.theme
+                    : selectedTag
                     ? selectedTag?.lightColor
                     : "#e4e5e6",
               }}
@@ -718,7 +718,7 @@ export class AdvancedSearch extends Component<Props, State> {
                   pinnedList={pinnedList}
                   addToQuery={this.addToQuery}
                 />
-              ) : this.state.query.theme ? (
+              ) : selectedTag ? (
                 <ThemeResults
                   langueCode={langueCode}
                   flagIconCode={flagIconCode}

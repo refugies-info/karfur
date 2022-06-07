@@ -30,7 +30,7 @@ interface Props {
   isLoading: boolean;
 }
 
-const findTag = (theme: string|undefined) => tags.find((tag) => tag.name === theme) || null;
+const findTag = (theme: string[]|undefined) => tags.find((tag) => tag.name === theme?.[0]) || null;
 
 export const MobileAdvancedSearch = (props: Props) => {
   const { t } = useTranslation();
