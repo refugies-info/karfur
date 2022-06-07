@@ -33,6 +33,7 @@ export function* fetchWidgets(): SagaIterator {
       error: message,
     });
     yield put(setWidgetsActionCreator([]));
+    yield put(finishLoading(LoadingStatusKey.FETCH_WIDGETS));
   }
 }
 
@@ -59,7 +60,6 @@ export function* saveWidget(
       error: message,
       widget: action.payload,
     });
-    yield put(setWidgetsActionCreator([]));
   }
 }
 
@@ -82,7 +82,6 @@ export function* createWidget(
       error: message,
       widget: action.payload,
     });
-    yield put(setWidgetsActionCreator([]));
   }
 }
 
@@ -104,7 +103,6 @@ export function* deleteWidget(
       error: message,
       widget: action.payload,
     });
-    yield put(setWidgetsActionCreator([]));
   }
 }
 

@@ -150,9 +150,9 @@ export const queryDispositifs = (
   if (query.theme) {
     //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
     dispositifs = dispositifs.sort((a, b) =>
-      get(a, "tags.0.name", {}) === query.theme
+      query.theme?.includes(get(a, "tags.0.name", {}))
         ? -1
-        : get(b, "tags.0.name", {}) === query.theme
+        : query.theme?.includes(get(b, "tags.0.name", {}))
         ? 1
         : 0
     );
