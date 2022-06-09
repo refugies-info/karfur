@@ -53,9 +53,11 @@ export const NeedsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const dispatch = useDispatch();
-  useFocusEffect(() => {
-    dispatch(resetReadingList());
-  });
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );

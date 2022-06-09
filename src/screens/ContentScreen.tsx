@@ -13,7 +13,7 @@ import {
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
-import { useFocusEffect, CompositeNavigationProp } from "@react-navigation/native";
+import { useFocusEffect, CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ExplorerParamList, BottomTabParamList } from "../../types";
@@ -239,7 +239,7 @@ const computeIfContentIsTranslatedInCurrentLanguage = (
   return avancement[currentLanguage] === 1;
 };
 
-type ContentScreenType = CompositeNavigationProp<
+type ContentScreenType = CompositeScreenProps<
   //@ts-ignore
   StackScreenProps<ExplorerParamList, "ContentScreen">,
   BottomTabScreenProps<BottomTabParamList>
@@ -256,9 +256,11 @@ export const ContentScreen = ({
   } = route.params;
   const dispatch = useDispatch();
 
-  useFocusEffect(() => {
-    dispatch(resetReadingList());
-  });
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false

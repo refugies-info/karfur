@@ -20,7 +20,7 @@ export const voiceOverReducer = createReducer<
 >(initialVoiceOverState, {
   READING_START: (state) => ({
     ...state,
-    isReading: true,
+    isReading: state.readingList.length > 0,
     currentItem: state.readingList?.[0]?.id
   }),
   READING_STOP: (state) => ({

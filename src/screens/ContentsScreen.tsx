@@ -101,9 +101,11 @@ export const ContentsScreen = ({
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
 
   const dispatch = useDispatch();
-  useFocusEffect(() => {
-    dispatch(resetReadingList());
-  });
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
 
   const { t } = useTranslationWithRTL();
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
