@@ -1,7 +1,7 @@
 import * as React from "react";
 import { theme } from "../../theme";
 import { ExplorerParamList } from "../../../types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { View, Animated } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
@@ -19,6 +19,8 @@ import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated"
 import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
+import { useFocusEffect } from "@react-navigation/native";
+import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -50,6 +52,10 @@ export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
+  const dispatch = useDispatch();
+  useFocusEffect(() => {
+    dispatch(resetReadingList());
+  });
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );

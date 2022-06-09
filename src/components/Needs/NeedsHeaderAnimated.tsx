@@ -5,6 +5,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { RTLView } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
+import { ReadableText } from "../ReadableText";
 
 interface Props {
   tagDarkColor: string;
@@ -63,8 +64,9 @@ export const NeedsHeaderAnimated = (props: Props) => {
             },
           ]}
         >
-          {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) ||
-            ""}
+          <ReadableText>
+            {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) || ""}
+          </ReadableText>
         </Animated.Text>
 
         <StreamlineIcon

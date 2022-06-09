@@ -17,7 +17,9 @@ const SearchStack = createStackNavigator<SearchParamList>();
 export const SearchNavigator = ({ navigation, route }: Props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      tabBarVisible: (getFocusedRouteNameFromRoute(route) !== "SearchResultsScreen") // show tab bar everywhere except search results screen
+      tabBarStyle: getFocusedRouteNameFromRoute(route) === "SearchResultsScreen" ? {
+        display: "none" // show tab bar everywhere except search results screen
+      } : {}
     })
   }, [navigation, route]);
 

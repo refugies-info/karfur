@@ -1,0 +1,5 @@
+export const READING_START = "READING_START";
+export const READING_STOP = "READING_STOP";
+export const READING_NEXT = "READING_NEXT";
+export const ADD_READING = "ADD_READING";
+export const RESET_READING = "RESET_READING";

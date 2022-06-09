@@ -87,10 +87,11 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"
-      tabBarOptions={{
-        activeTintColor: theme.colors.darkBlue,
-        inactiveTintColor: theme.colors.darkGrey,
-        style: { borderTopWidth: 0, elevation: 0 },
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: theme.colors.darkBlue,
+        tabBarInactiveTintColor: theme.colors.darkGrey,
+        tabBarStyle: { borderTopWidth: 0, elevation: 0 },
       }}
     >
       <BottomTab.Screen
@@ -133,6 +134,7 @@ export default function BottomTabNavigator() {
             focused: boolean;
           }) =>
             renderTabBarLabel(color, focused, t("tab_bar.favorites", "Favoris")),
+          tabBarItemStyle:{marginRight: 40}
         }}
       />
       <BottomTab.Screen
@@ -154,6 +156,7 @@ export default function BottomTabNavigator() {
             focused: boolean;
           }) =>
             renderTabBarLabel(color, focused, t("tab_bar.search", "Rechercher")),
+          tabBarItemStyle:{marginLeft: 40}
         }}
       />
       <BottomTab.Screen
@@ -173,7 +176,7 @@ export default function BottomTabNavigator() {
           }: {
             color: string;
             focused: boolean;
-          }) => renderTabBarLabel(color, focused, t("tab_bar.profile", "Moi")),
+            }) => renderTabBarLabel(color, focused, t("tab_bar.profile", "Moi")),
         }}
       />
     </BottomTab.Navigator>

@@ -21,8 +21,10 @@ const ExplorerStack = createStackNavigator<ExplorerParamList>();
 export const ExplorerNavigator = ({ navigation, route }: Props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      tabBarVisible: getFocusedRouteNameFromRoute(route) !== "ContentScreen", // show tab bar everywhere except content screen
-    });
+      tabBarStyle: getFocusedRouteNameFromRoute(route) === "ContentScreen" ? {
+        display: "none" // show tab bar everywhere except content screen
+      } : {}
+    })
   }, [navigation, route]);
 
   return (

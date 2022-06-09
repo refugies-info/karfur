@@ -12,6 +12,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
 import { ThemeTag } from "../../types/interface";
+import { ReadableText } from "../ReadableText";
 
 const NeedContainer = styled(RTLTouchableOpacity)`
   padding:${theme.margin * 2}px
@@ -102,7 +103,7 @@ export const NeedsSummary = (props: Props) => {
             //@ts-ignore
             color={props.tagDarkColor}
           /> :
-          props.needText
+          <ReadableText>{props.needText || ""}</ReadableText>
         }
       </StyledText>
 

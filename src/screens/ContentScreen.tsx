@@ -13,7 +13,7 @@ import {
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
-import { CompositeNavigationProp } from "@react-navigation/native";
+import { useFocusEffect, CompositeNavigationProp } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ExplorerParamList, BottomTabParamList } from "../../types";
@@ -68,6 +68,8 @@ import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
 import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
+import { ReadableText } from "../components/ReadableText";
+import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -252,6 +254,11 @@ export const ContentScreen = ({
     needId,
     backScreen,
   } = route.params;
+  const dispatch = useDispatch();
+
+  useFocusEffect(() => {
+    dispatch(resetReadingList());
+  });
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
@@ -281,7 +288,6 @@ export const ContentScreen = ({
 
   const { t, isRTL } = useTranslationWithRTL();
 
-  const dispatch = useDispatch();
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
@@ -615,7 +621,9 @@ export const ContentScreen = ({
             style={styles.bodyContainer}
           >
             <TextSmallNormal style={{ color: theme.colors.white }}>
-              {selectedContent.titreInformatif}
+              <ReadableText>
+                {selectedContent.titreInformatif}
+              </ReadableText>
             </TextSmallNormal>
           </SimplifiedHeaderContainer>
         </Animated.View>
@@ -679,7 +687,9 @@ export const ContentScreen = ({
               return (
                 <View key={index}>
                   <HeaderText textColor={themeTag.tagDarkColor}>
-                    {t("content_screen." + header, header)}
+                    <ReadableText>
+                      {t("content_screen." + header, header)}
+                    </ReadableText>
                   </HeaderText>
                   <View style={{ marginHorizontal: theme.margin * 3 }}>
                     <ContentFromHtml
@@ -694,7 +704,9 @@ export const ContentScreen = ({
               return (
                 <View key={index}>
                   <HeaderText textColor={themeTag.tagDarkColor}>
-                    {t("content_screen." + header, header)}
+                    <ReadableText>
+                      {t("content_screen." + header, header)}
+                    </ReadableText>
                   </HeaderText>
                 </View>
               );
@@ -703,7 +715,9 @@ export const ContentScreen = ({
             return (
               <View key={index}>
                 <HeaderText textColor={themeTag.tagDarkColor}>
-                  {t("content_screen." + header, header)}
+                  <ReadableText>
+                    {t("content_screen." + header, header)}
+                  </ReadableText>
                 </HeaderText>
                 {selectedContent &&
                   selectedContent.contenu[index] &&
@@ -775,10 +789,12 @@ export const ContentScreen = ({
           {!!map && map.markers.length > 0 && (
             <>
               <HeaderText key={1} textColor={themeTag.tagDarkColor}>
-                {t(
-                  "content_screen.where",
-                  "Trouver un interlocuteur"
-                )}
+                <ReadableText>
+                  {t(
+                    "content_screen.where",
+                    "Trouver un interlocuteur"
+                  )}
+                </ReadableText>
               </HeaderText>
               <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
                 <TouchableOpacity

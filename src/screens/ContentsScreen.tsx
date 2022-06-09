@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
 import { ScrollView, View, Animated, Platform } from "react-native";
@@ -24,6 +24,8 @@ import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { useFocusEffect } from "@react-navigation/native";
+import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -97,6 +99,12 @@ export const ContentsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
+
+  const dispatch = useDispatch();
+  useFocusEffect(() => {
+    dispatch(resetReadingList());
+  });
+
   const { t } = useTranslationWithRTL();
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
