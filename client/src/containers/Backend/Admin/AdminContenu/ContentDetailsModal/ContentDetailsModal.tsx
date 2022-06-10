@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
 import { ObjectId } from "mongodb";
@@ -13,6 +14,7 @@ import {
   dispositifSelector,
 } from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
+import useRouterLocale from "hooks/useRouterLocale";
 import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
@@ -50,6 +52,8 @@ moment.locale("fr");
 export const ContentDetailsModal = (props: Props) => {
   const selectedDispositifId = props.selectedDispositifId;
   const dispatch = useDispatch();
+  const routerLocale = useRouterLocale();
+  const history = useHistory();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
   const [adminComments, setAdminComments] = useState<string>(
@@ -336,6 +340,9 @@ export const ContentDetailsModal = (props: Props) => {
                               } responsables`}
                               condensed={true}
                               noImage={true}
+                              onClick={() => {
+                                history.push(`${routerLocale}/backend/user-dash-structure-selected?id=${structure._id}`);
+                              }}
                             />
                           </Col>
                         )}

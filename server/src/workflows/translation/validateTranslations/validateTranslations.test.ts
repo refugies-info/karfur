@@ -180,6 +180,7 @@ describe("validateTranslations", () => {
       [],
       "dispositif",
       "locale",
+      [],
       false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
@@ -226,6 +227,7 @@ describe("validateTranslations", () => {
       [],
       "dispositif",
       "locale",
+      [],
       false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
@@ -402,6 +404,7 @@ describe("validateTranslations", () => {
       [],
       "dispositif",
       "locale",
+      [],
       false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
@@ -478,6 +481,7 @@ describe("validateTranslations", () => {
       [],
       "dispositif",
       "locale",
+      [],
       false
     );
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
