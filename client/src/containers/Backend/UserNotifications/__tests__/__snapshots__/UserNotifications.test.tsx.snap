@@ -502,9 +502,12 @@ exports[`UserNotifications should render correctly when loading 1`] = `
         nouvelle notification.
       </div>
     </div>
-    <span>
+    <span
+      aria-busy={true}
+      aria-live="polite"
+    >
       <span
-        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        className="react-loading-skeleton"
         style={
           Object {
             "height": 50,
@@ -513,8 +516,9 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       >
         ‌
       </span>
+      <br />
       <span
-        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        className="react-loading-skeleton"
         style={
           Object {
             "height": 50,
@@ -523,8 +527,9 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       >
         ‌
       </span>
+      <br />
       <span
-        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+        className="react-loading-skeleton"
         style={
           Object {
             "height": 50,
@@ -533,6 +538,7 @@ exports[`UserNotifications should render correctly when loading 1`] = `
       >
         ‌
       </span>
+      <br />
     </span>
   </div>
 </div>

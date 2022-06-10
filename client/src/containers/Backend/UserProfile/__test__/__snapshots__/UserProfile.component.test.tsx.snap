@@ -2100,23 +2100,24 @@ exports[`UserProfile should render correctly when loading 1`] = `
       <div
         className="c2"
       />
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 20,
-                "width": 160,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 20,
+              "width": 160,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
     </div>
     <div
       className="c3"
@@ -2126,64 +2127,67 @@ exports[`UserProfile should render correctly when loading 1`] = `
       >
         UserProfile.votre pseudo
       </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
       <div
         className="c5"
       >
         Register.Votre email
       </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
       <div
         className="c5"
       >
         UserProfile.Votre mot de passe
       </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
     </div>
   </div>
 </div>
