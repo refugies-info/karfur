@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, ReactNode } from "react";
 import * as Speech from "expo-speech";
 import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,8 @@ import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
 
 interface Props {
-  children: string;
+  children?: string | ReactNode;
+  text?: string;
 }
 
 export const ReadableText = (props: Props) => {
@@ -43,7 +44,8 @@ export const ReadableText = (props: Props) => {
 
   useEffect(() => {
     if (currentReadingItem === id) { // if currentItem is this one
-      Speech.speak(props.children, { // read it
+      const text = props.text || props.children as string || "";
+      Speech.speak(text, { // read it
         onDone: () => {
           wait(1000) // then wait for 1 sec
             .then(() => dispatch(readNext())); // and go to next element
@@ -57,7 +59,7 @@ export const ReadableText = (props: Props) => {
   return (
     <>
       <Text
-        style={!isActive ? { backgroundColor: theme.colors.lightBlue } : {}}
+        style={isActive ? { backgroundColor: theme.colors.lightBlue} : {}}
       >
         {props.children}
       </Text>

@@ -11,6 +11,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ContentFromHtml } from "./ContentFromHtml";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { ReadableText } from "../ReadableText";
 
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
@@ -153,7 +154,9 @@ export const AccordionAnimated = (props: Props) => {
             )}
             {!props.isContentTranslated ? (
               <TitleText width={props.width} darkColor={props.darkColor}>
-                {props.title}
+                <ReadableText>
+                  {props.title}
+                </ReadableText>
               </TitleText>
             ) : (
               <AccordionHeaderFromHtml

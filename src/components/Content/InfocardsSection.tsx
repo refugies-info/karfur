@@ -14,6 +14,7 @@ import { TextFromHtml } from "./TextFromHtml";
 import { RTLView } from "../BasicComponents";
 import { View } from "react-native";
 import { InfocardImage } from "./InfocardImage";
+import { ReadableText } from "../ReadableText";
 
 interface Props {
   content: DispositifContent[];
@@ -83,7 +84,9 @@ export const InfocardsSection = (props: Props) => {
           <View key={indexSection}>
             <SectionContainer>
               <TitleText color={props.color}>
-                {t("content_screen." + data.title, data.title)}
+                <ReadableText>
+                  {t("content_screen." + data.title, data.title)}
+                  </ReadableText>
               </TitleText>
               {data.filteredData.map((infocard, key) => {
                 const displayedName =
@@ -105,12 +108,18 @@ export const InfocardsSection = (props: Props) => {
                       <InfocardTextContainer isRTL={isRTL}>
                         {!!displayedName && (
                           <SubtitleText>
-                            {t("content_screen." + displayedName, displayedName)}
+                            <ReadableText>
+                              {t("content_screen." + displayedName, displayedName)}
+                            </ReadableText>
                           </SubtitleText>
                         )}
                         {!!description && (
                           <View>
-                            <DescriptionText>{description}</DescriptionText>
+                            <DescriptionText>
+                              <ReadableText>
+                                {description}
+                                </ReadableText>
+                              </DescriptionText>
                           </View>
                         )}
                         {infocard.title === "Durée" &&

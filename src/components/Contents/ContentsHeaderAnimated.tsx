@@ -8,6 +8,7 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import { TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import styled from "styled-components/native";
 import SkeletonContent from "@03balogun/react-native-skeleton-content";
+import { ReadableText } from "../ReadableText";
 
 const ThemeText = styled(TextSmallNormal)`
   color: white;
@@ -110,9 +111,11 @@ export const ContentsHeaderAnimated = (props: Props) => {
             accessibilityRole="button"
           >
             <ThemeText isRTL={isRTL}>
-              {firstLetterUpperCase(
-                t("tags." + props.tagName, props.tagName)
-              ) || ""}
+              <ReadableText>
+                {firstLetterUpperCase(
+                  t("tags." + props.tagName, props.tagName)
+                ) || ""}
+              </ReadableText>
             </ThemeText>
             {!props.showSimplifiedHeader && (
               <StreamlineIcon name={props.iconName} width={16} height={16} />
@@ -144,7 +147,9 @@ export const ContentsHeaderAnimated = (props: Props) => {
           },
         ]}
       >
-        {props.needName}
+        <ReadableText>
+          {props.needName}
+        </ReadableText>
       </Animated.Text>
       {props.isLoading
         ? !props.showSimplifiedHeader && (

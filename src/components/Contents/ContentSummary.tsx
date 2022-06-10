@@ -13,6 +13,7 @@ import { DemarcheImage } from "./DemarcheImage";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
+import { ReadableText } from "../ReadableText";
 
 const IMAGE_SIZE = 58;
 
@@ -167,7 +168,9 @@ export const ContentSummary = (props: Props) => {
                   //@ts-ignore
                   color={props.tagDarkColor}
                 /> :
-                props.titreInfo
+                <ReadableText>
+                  {props.titreInfo || ""}
+                </ReadableText>
               }
             </TitreInfoText>
             {(!!props.titreMarque || !!props?.searchItem[`titreMarque_${props.searchLanguageMatch||"fr"}`]) && (
@@ -178,8 +181,10 @@ export const ContentSummary = (props: Props) => {
                       attribute={`titreMarque_${props.searchLanguageMatch||"fr"}`}
                       //@ts-ignore
                       color={props.tagDarkColor}
-                    /> :
-                    props.titreMarque
+                  /> :
+                  <ReadableText>
+                    {props.titreMarque || ""}
+                  </ReadableText>
                   }
               </TitreMarqueText>
             )}

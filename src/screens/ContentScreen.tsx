@@ -623,9 +623,7 @@ export const ContentScreen = ({
             style={styles.bodyContainer}
           >
             <TextSmallNormal style={{ color: theme.colors.white }}>
-              <ReadableText>
-                {selectedContent.titreInformatif}
-              </ReadableText>
+              {selectedContent.titreInformatif}
             </TextSmallNormal>
           </SimplifiedHeaderContainer>
         </Animated.View>
@@ -645,7 +643,9 @@ export const ContentScreen = ({
                   isRTL={isRTL}
                   onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
                 >
-                  {selectedContent.titreInformatif}
+                  <ReadableText>
+                    {selectedContent.titreInformatif || ""}
+                  </ReadableText>
                 </TitreInfoText>
 
                 {!!selectedContent.titreMarque && (
@@ -653,7 +653,9 @@ export const ContentScreen = ({
                     onLayout={(e: any) => onLayoutTitre(e, "titreMarque")}
                     isRTL={isRTL}
                   >
-                    {"avec " + selectedContent.titreMarque}
+                    <ReadableText>
+                      {"avec " + selectedContent.titreMarque}
+                    </ReadableText>
                   </TitreMarqueText>
                 )}
               </TitlesContainer>

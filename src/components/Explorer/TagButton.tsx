@@ -8,6 +8,7 @@ import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
+import { ReadableText } from "../ReadableText";
 
 interface Props {
   tagName?: string;
@@ -66,7 +67,9 @@ export const TagButton = (props: Props) => {
             //@ts-ignore
             colorNotHighlighted={theme.colors.white}
           /> :
-          firstLetterUpperCase(t("tags." + props.tagName, props.tagName))
+          <ReadableText>
+            {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) || ""}
+          </ReadableText>
         }
       </StyledText>
       <StreamlineIcon name={props.iconName} width={20} height={20} />
