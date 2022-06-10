@@ -44,12 +44,12 @@ export const LoadingNeeds = () => {
               return (
                 <tr key={key} className={"bg-white"}>
                   <td style={{ width: 300 }}>
-                    <SkeletonTheme color="#CDCDCD">
+                    <SkeletonTheme baseColor="#CDCDCD">
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
                   <td key={key}>
-                    <SkeletonTheme color="#CDCDCD">
+                    <SkeletonTheme baseColor="#CDCDCD">
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>

@@ -62,13 +62,13 @@ export const LoadingAdminUsers = () => {
               return (
                 <tr key={key} className={"bg-white"}>
                   <td>
-                    <SkeletonTheme color="#CDCDCD">
+                    <SkeletonTheme baseColor="#CDCDCD">
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
                   {arrayContent.map((_, key) => (
                     <td key={key}>
-                      <SkeletonTheme color="#CDCDCD">
+                      <SkeletonTheme baseColor="#CDCDCD">
                         <Skeleton width={70} count={1} />
                       </SkeletonTheme>
                     </td>
