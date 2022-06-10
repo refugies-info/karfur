@@ -68,7 +68,8 @@ export const StatusRow = (props: Props) => {
               className="mr-2"
               onClick={() =>
                 props.modifyStatus(
-                  status.storedStatus,
+                  status.storedStatus !== props.element.adminProgressionStatus ?
+                    status.storedStatus : "",
                   "adminProgressionStatus"
                 )
               }
@@ -80,9 +81,6 @@ export const StatusRow = (props: Props) => {
                 textColor={status.textColor}
                 overrideColor={
                   status.storedStatus !== props.element.adminProgressionStatus
-                }
-                disabled={
-                  status.storedStatus === props.element.adminProgressionStatus
                 }
               />
             </div>
@@ -98,7 +96,8 @@ export const StatusRow = (props: Props) => {
               className="mr-2"
               onClick={() =>
                 props.modifyStatus(
-                  status.storedStatus,
+                  status.storedStatus !== props.element.adminPercentageProgressionStatus ?
+                    status.storedStatus : "",
                   "adminPercentageProgressionStatus"
                 )
               }
@@ -110,10 +109,6 @@ export const StatusRow = (props: Props) => {
                 textColor={status.textColor}
                 overrideColor={
                   status.storedStatus !==
-                  props.element.adminPercentageProgressionStatus
-                }
-                disabled={
-                  status.storedStatus ===
                   props.element.adminPercentageProgressionStatus
                 }
               />
