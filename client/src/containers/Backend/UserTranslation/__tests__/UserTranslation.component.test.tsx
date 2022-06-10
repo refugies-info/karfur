@@ -81,7 +81,7 @@ describe("user translation", () => {
         },
       });
     });
-    expect(push).toHaveBeenCalledWith("/backend/user-translation/en");
+    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/en");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -103,7 +103,7 @@ describe("user translation", () => {
       fetchDispositifsWithTranslationsStatusActionCreator
     ).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
-    expect(push).toHaveBeenCalledWith("/backend/user-translation");
+    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
   });
 
   it("should redirect if user has no language but langue in url + snap no langue", () => {
@@ -124,7 +124,7 @@ describe("user translation", () => {
       fetchDispositifsWithTranslationsStatusActionCreator
     ).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
-    expect(push).toHaveBeenCalledWith("/backend/user-translation");
+    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
     expect(component.toJSON()).toMatchSnapshot();
   });
 
@@ -151,7 +151,7 @@ describe("user translation", () => {
       component.root.findByProps({ "data-test-id": "test-line-id3" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
-      pathname: "/backend/traduction/dispositif",
+      pathname: "/fr/backend/traduction/dispositif",
       search: "?language=idEn&dispositif=id3",
     });
   });
@@ -177,7 +177,7 @@ describe("user translation", () => {
       component.root.findByProps({ "data-test-id": "test-line-id6" }).props.onClick();
     });
     expect(push).toHaveBeenCalledWith({
-      pathname: "/backend/validation/dispositif",
+      pathname: "/fr/backend/validation/dispositif",
       search: "?language=idEn&dispositif=id6",
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -228,6 +228,6 @@ describe("user translation", () => {
       });
     });
     component.root.findByProps({ "data-test-id": "test-langue-idPs" }).props.onClick();
-    expect(push).toHaveBeenCalledWith("/backend/user-translation/ps");
+    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/ps");
   });
 });

@@ -43,8 +43,8 @@ export const updateDispositifAdminComments = async (
     };
 
     const oldDispositif = await getDispositifById(dispositifId, { adminComments: 1 });
-    await updateDispositifInDB(dispositifId, modifiedDispositif);
-    await log(dispositifId, modifiedDispositif, oldDispositif, req.user._id);
+    const newDispositif = await updateDispositifInDB(dispositifId, modifiedDispositif);
+    await log(dispositifId, newDispositif, oldDispositif, req.user._id);
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
