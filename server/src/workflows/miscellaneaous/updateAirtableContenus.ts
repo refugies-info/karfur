@@ -16,7 +16,7 @@ import { getActiveContents } from "../../modules/dispositif/dispositif.repositor
 import { ObjectId } from "mongoose";
 import { checkRequestIsFromPostman } from "../../libs/checkAuthorizations";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
-import { getDispositifDepartments } from "src/libs/getDispositifDepartments";
+import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 
 
 const getFormattedAvancement = (

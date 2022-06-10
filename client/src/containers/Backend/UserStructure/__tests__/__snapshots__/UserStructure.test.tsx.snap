@@ -3045,23 +3045,24 @@ exports[`UserStructure should render correctly when loading 1`] = `
       <div
         className="img"
       />
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 20,
-                "width": 160,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 20,
+              "width": 160,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
     </div>
     <div
       className="c2"
@@ -3085,57 +3086,60 @@ exports[`UserStructure should render correctly when loading 1`] = `
           
         </div>
       </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-                "width": 700,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
+              "width": 700,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-                "width": 700,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
+              "width": 700,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
-      <div
-        className="css-nitgap-SkeletonTheme"
+        <br />
+      </span>
+      <span
+        aria-busy={true}
+        aria-live="polite"
       >
-        <span>
-          <span
-            className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-            style={
-              Object {
-                "height": 50,
-                "width": 700,
-              }
+        <span
+          className="react-loading-skeleton"
+          style={
+            Object {
+              "--base-color": "#ffffff",
+              "height": 50,
+              "width": 700,
             }
-          >
-            ‌
-          </span>
+          }
+        >
+          ‌
         </span>
-      </div>
+        <br />
+      </span>
     </div>
   </div>
 </div>

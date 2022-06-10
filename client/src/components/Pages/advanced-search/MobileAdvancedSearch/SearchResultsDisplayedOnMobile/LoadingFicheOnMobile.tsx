@@ -45,7 +45,7 @@ export const LoadingFicheOnMobile = () => {
     <div>
       <ItemContainer darkColor={""} typeContenu={"dispositif"} lightColor={""}>
         <TitleText color={colors.gray90}>
-          <SkeletonTheme color={colors.gray50}>
+          <SkeletonTheme baseColor={colors.gray50}>
             <Skeleton width={200} count={1} />
           </SkeletonTheme>
         </TitleText>

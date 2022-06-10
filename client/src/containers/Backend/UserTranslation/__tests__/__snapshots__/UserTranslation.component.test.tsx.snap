@@ -3886,23 +3886,24 @@ exports[`user translation should return loader langue in url = first selected la
         <div
           className="c2"
         >
-          <div
-            className="css-nitgap-SkeletonTheme"
+          <span
+            aria-busy={true}
+            aria-live="polite"
           >
-            <span>
-              <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                style={
-                  Object {
-                    "height": 50,
-                    "width": 120,
-                  }
+            <span
+              className="react-loading-skeleton"
+              style={
+                Object {
+                  "--base-color": "#ffffff",
+                  "height": 50,
+                  "width": 120,
                 }
-              >
-                ‌
-              </span>
+              }
+            >
+              ‌
             </span>
-          </div>
+            <br />
+          </span>
         </div>
         <div
           className="c2"
@@ -4081,1560 +4082,1644 @@ exports[`user translation should return loader langue in url = first selected la
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                className="bg-white"
-              >
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
-                </td>
-                <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
-                  >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
-                        }
-                      >
-                        ‌
-                      </span>
-                    </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
               </tr>
               <tr
                 className="bg-white"
               >
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 50,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 270,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
                 </td>
                 <td>
-                  <div
-                    className="css-1hlq30t-SkeletonTheme"
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
                   >
-                    <span>
-                      <span
-                        className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
-                        style={
-                          Object {
-                            "width": 70,
-                          }
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
                         }
-                      >
-                        ‌
-                      </span>
+                      }
+                    >
+                      ‌
                     </span>
-                  </div>
+                    <br />
+                  </span>
+                </td>
+              </tr>
+              <tr
+                className="bg-white"
+              >
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+              </tr>
+              <tr
+                className="bg-white"
+              >
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+              </tr>
+              <tr
+                className="bg-white"
+              >
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+              </tr>
+              <tr
+                className="bg-white"
+              >
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+              </tr>
+              <tr
+                className="bg-white"
+              >
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 50,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 270,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
+                </td>
+                <td>
+                  <span
+                    aria-busy={true}
+                    aria-live="polite"
+                  >
+                    <span
+                      className="react-loading-skeleton"
+                      style={
+                        Object {
+                          "--base-color": "#CDCDCD",
+                          "width": 70,
+                        }
+                      }
+                    >
+                      ‌
+                    </span>
+                    <br />
+                  </span>
                 </td>
               </tr>
             </tbody>
