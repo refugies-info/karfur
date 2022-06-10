@@ -361,7 +361,7 @@ export class TranslationHOC extends Component {
 
   //gose back to the list of translations
   onSkip = () => {
-    this.props.history.push("/backend/user-translation/" + this.state.langue.i18nCode);
+    this.props.history.push("/fr/backend/user-translation/" + this.state.langue.i18nCode);
   };
 
   handleCheckboxChange = (event) => {
