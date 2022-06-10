@@ -1,4 +1,4 @@
-import { DispositifDoc } from "src/schema/schemaDispositif";
+import { DispositifDoc } from "../schema/schemaDispositif";
 
 export const getDispositifDepartments = (
   dispositif: DispositifDoc
