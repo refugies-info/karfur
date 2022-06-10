@@ -16,6 +16,7 @@ import marioProfile from "assets/mario-profile.jpg";
 import { RejectTradModal } from "components/Modals";
 import { colorAvancement } from "lib/colors";
 import { customConvertOption } from "data/dispositif";
+import convertHtmlToReact from "@hedgedoc/html-to-react";
 
 import { colors } from "colors";
 import API from "utils/API";
@@ -33,10 +34,8 @@ const Editor = dynamic(
 );
 
 let htmlToDraft = null;
-let ReactHtmlParser = null;
 if (isInBrowser()) {
   htmlToDraft = require("html-to-draftjs").default;
-  ReactHtmlParser = require("react-html-parser").default;
 }
 
 const AlertModified = styled.div`
@@ -1210,7 +1209,7 @@ class SideTrad extends Component {
             this.initial_text = initial_text;
           }}
         >
-          {ReactHtmlParser((francais || {}).body || "", options)}
+          {convertHtmlToReact((francais || {}).body || "", options)}
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
