@@ -23,6 +23,7 @@ import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { UserDoc } from "../../../schema/schemaUser";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
+import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
 
 export interface Request {
   titreInformatif: string;
@@ -205,6 +206,7 @@ export const addDispositif = async (
             dispResult.tags,
             dispResult.typeContenu,
             null,
+            getDispositifDepartments(dispResult),
             false
           );
         } catch (error) {

@@ -6,6 +6,7 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/misce
 
 import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
+import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 
 export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId) => {
   const newDispositif = {
@@ -30,12 +31,15 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
-      newDispo.titreInformatif,
-      newDispo.titreMarque,
+      //@ts-ignore
+      newDispo.titreInformatif?.fr || newDispo.titreInformatif,
+      //@ts-ignore
+      newDispo.titreMarque?.fr || newDispo.titreMarque,
       newDispo._id,
       newDispo.tags,
       newDispo.typeContenu,
       null,
+      getDispositifDepartments(newDispo),
       false
     );
   } catch (error) {
