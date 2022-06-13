@@ -353,7 +353,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Gérer mes papiers
+                <Text
+                  style={Object {}}
+                >
+                  Gérer mes papiers
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -421,7 +426,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Apprendre le français
+                <Text
+                  style={Object {}}
+                >
+                  Apprendre le français
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -489,7 +499,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Apprendre un métier
+                <Text
+                  style={Object {}}
+                >
+                  Apprendre un métier
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -557,7 +572,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Trouver un travail
+                <Text
+                  style={Object {}}
+                >
+                  Trouver un travail
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -625,7 +645,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Me loger
+                <Text
+                  style={Object {}}
+                >
+                  Me loger
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -693,7 +718,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Me soigner
+                <Text
+                  style={Object {}}
+                >
+                  Me soigner
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -761,7 +791,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Me déplacer
+                <Text
+                  style={Object {}}
+                >
+                  Me déplacer
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -829,7 +864,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Rencontrer des gens
+                <Text
+                  style={Object {}}
+                >
+                  Rencontrer des gens
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -897,7 +937,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Faire des études
+                <Text
+                  style={Object {}}
+                >
+                  Faire des études
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -965,7 +1010,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Aider une association
+                <Text
+                  style={Object {}}
+                >
+                  Aider une association
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -1033,7 +1083,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Occuper mon temps libre
+                <Text
+                  style={Object {}}
+                >
+                  Occuper mon temps libre
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}
@@ -1101,7 +1156,12 @@ exports[`Search Screen should render correctly 1`] = `
                   ]
                 }
               >
-                Découvrir la culture
+                <Text
+                  style={Object {}}
+                >
+                  Découvrir la culture
+                </Text>
+                <View />
               </Text>
               <react-native-svg
                 height={20}

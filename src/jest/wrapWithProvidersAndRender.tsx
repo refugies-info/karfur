@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "react-native-testing-library";
+import { NavigationContext } from "@react-navigation/native"
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import {
@@ -12,6 +13,11 @@ interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<unknown>;
   compProps?: Record<string, unknown>;
   reduxState?: Partial<RootState>;
+}
+
+const navContext = {
+  isFocused: () => true,
+  addListener: jest.fn(() => jest.fn())
 }
 
 /**
@@ -28,9 +34,12 @@ export function wrapWithProvidersAndRender({
   const store = createStore(rootReducer, reduxState);
 
   const componentWithReduxAndI18n = (
-    <Provider store={store}>
-      <Component {...compProps} />
-    </Provider>
+    //@ts-ignore
+    <NavigationContext.Provider value={navContext}>
+      <Provider store={store}>
+        <Component {...compProps} />
+      </Provider>
+    </NavigationContext.Provider>
   );
 
   return render(componentWithReduxAndI18n);
