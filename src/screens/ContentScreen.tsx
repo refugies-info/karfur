@@ -8,7 +8,9 @@ import {
   Modal,
   Share,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  NativeSyntheticEvent,
+  NativeScrollEvent
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
@@ -69,7 +71,8 @@ import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
-import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
+import { resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../hooks/useAutoScroll";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -567,6 +570,13 @@ export const ContentScreen = ({
     return;
   };
 
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
+  }
+  useAutoScroll(scrollview, 250);
+
   // SHARE
   const shareContent = async (content: Content) => {
     logEventInFirebase(FirebaseEvent.SHARE_CONTENT, {
@@ -629,10 +639,13 @@ export const ContentScreen = ({
         </Animated.View>
       </FixedContainerForHeader>
       <ScrollView
+        ref={scrollview}
         contentContainerStyle={{ paddingBottom: theme.margin * 5 }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}
+        onMomentumScrollEnd={onScrollEnd}
+        onScrollEndDrag={onScrollEnd}
       >
         {
           <>

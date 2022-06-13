@@ -3,7 +3,7 @@ import { theme } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { View, Animated } from "react-native";
+import { View, Animated, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
@@ -20,7 +20,8 @@ import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
 import { useFocusEffect } from "@react-navigation/native";
-import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { resetReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -99,6 +100,13 @@ export const NeedsScreen = ({
     }
     return;
   };
+
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
+  }
+  useAutoScroll(scrollview, 250);
 
   const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
@@ -265,6 +273,7 @@ export const NeedsScreen = ({
       />
 
       <ScrollView
+        ref={scrollview}
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
@@ -274,6 +283,8 @@ export const NeedsScreen = ({
         onScroll={handleScroll}
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
+        onMomentumScrollEnd={onScrollEnd}
+        onScrollEndDrag={onScrollEnd}
       >
         {needsToDisplay.map((need) => {
           const needText =

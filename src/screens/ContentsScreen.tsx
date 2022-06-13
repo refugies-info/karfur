@@ -4,7 +4,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
-import { ScrollView, View, Animated, Platform } from "react-native";
+import { ScrollView, View, Animated, Platform, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { theme } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
 import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
@@ -25,7 +25,8 @@ import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { useFocusEffect } from "@react-navigation/native";
-import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
+import { resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../hooks/useAutoScroll";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -188,6 +189,13 @@ export const ContentsScreen = ({
     return;
   };
 
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
+  }
+  useAutoScroll(scrollview, 250);
+
   const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [12, 0],
@@ -297,6 +305,7 @@ export const ContentsScreen = ({
       />
 
       <ScrollView
+        ref={scrollview}
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
@@ -306,6 +315,8 @@ export const ContentsScreen = ({
         onScroll={handleScroll}
         scrollEventThrottle={16}
         alwaysBounceVertical={false}
+        onMomentumScrollEnd={onScrollEnd}
+        onScrollEndDrag={onScrollEnd}
       >
         {sortedTranslatedContents.map((content) => {
           return (

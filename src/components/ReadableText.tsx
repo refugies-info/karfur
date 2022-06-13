@@ -6,11 +6,12 @@ import {
   addToReadingList,
   readNext,
 } from "../services/redux/VoiceOver/voiceOver.actions";
-import { currentItem } from "../services/redux/VoiceOver/voiceOver.selectors";
+import { currentItemId, isPausedSelector, readingRateSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
-import { wait } from "../libs/wait";
+// import { wait } from "../libs/wait";
 import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
+import { logger } from "../logger";
 
 interface Props {
   children?: string | ReactNode;
@@ -19,7 +20,7 @@ interface Props {
 
 export const ReadableText = (props: Props) => {
   const dispatch = useDispatch();
-  const currentReadingItem = useSelector(currentItem);
+  const currentReadingItem = useSelector(currentItemId);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
 
@@ -42,17 +43,42 @@ export const ReadableText = (props: Props) => {
     }
   }, [isFocused]);
 
+  const readingRate = useSelector(readingRateSelector);
   useEffect(() => {
     if (currentReadingItem === id) { // if currentItem is this one
       const text = props.text || props.children as string || "";
       Speech.speak(text, { // read it
+        rate: readingRate,
+        onBoundary: () => {
+          logger.info("boundary");
+        },
+        onMark: () => {
+          logger.info("mark");
+        },
         onDone: () => {
-          wait(1000) // then wait for 1 sec
-            .then(() => dispatch(readNext())); // and go to next element
+          logger.info("done");
+          dispatch(readNext());
+          // wait(1000) // then wait for 1 sec
+          //   .then(() => {}); // and go to next element
+          //TODO: ERROR when go next -> fires anyway
+        },
+        onStopped: () => {
+
         }
       });
     }
   }, [currentReadingItem]);
+
+  const isPaused = useSelector(isPausedSelector);
+  useEffect(() => {
+    if (currentReadingItem === id) { // if currentItem is this one
+      if (isPaused) {
+        Speech.pause();
+      } else {
+        Speech.resume();
+      }
+    };
+  }, [isPaused]);
 
   const isActive = currentReadingItem === id;
 
