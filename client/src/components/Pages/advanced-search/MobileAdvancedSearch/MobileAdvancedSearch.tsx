@@ -39,7 +39,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   const hasInitialSearch = Object.keys(router.query).filter(key => key !== "tri").length > 0;
 
   const [showTagModal, setShowTagModal] = useState(false);
-  const [tagSelected, setTagSelected] = useState<Tag | null>(findTag(props.query.theme));
+  const [tagSelected, setTagSelected] = useState<Tag | null>(findTag(props.query.theme?.[0]));
   const [showAgeModal, setShowAgeModal] = useState(false);
   const [ageSelected, setAgeSelected] = useState<string | null>(props.query.age || null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
@@ -70,11 +70,12 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   const selectOption = (itemName: string, type: AvailableFilters) => {
-    props.addToQuery({ [type]: itemName });
+    const value = type === "theme" ? [itemName] : itemName
+    props.addToQuery({ [type]: value });
   };
 
   useEffect(() => {
-    setTagSelected(findTag(props.query.theme));
+    setTagSelected(findTag(props.query.theme?.[0]));
     setVille(props.query.loc?.city || "");
     setAgeSelected(props.query.age || null);
     setFrenchSelected(props.query.frenchLevel || null);

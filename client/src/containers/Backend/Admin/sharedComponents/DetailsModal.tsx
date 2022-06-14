@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, Spinner, Row, Col } from "reactstrap";
+import { cls } from "lib/classname";
 import styles from "./DetailsModal.module.scss";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
   leftHead: any
   rightHead: any
   children: any
+  className?: string
+  contentClassName?: string
 }
 
 export const DetailsModal = (props: Props) => {
@@ -17,8 +20,8 @@ export const DetailsModal = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggleModal}
       size="xl"
-      className={styles.modal}
-      contentClassName={styles.modal_content}
+      className={cls(styles.modal, props.className || "")}
+      contentClassName={cls(styles.modal_content, props.contentClassName || "")}
     >
       {props.isLoading ? <Spinner /> :
         <>
