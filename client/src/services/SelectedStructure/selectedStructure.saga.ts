@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, select } from "redux-saga/effects";
 import API from "../../utils/API";
 import { logger } from "../../logger";
 import {
@@ -7,11 +7,13 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { FETCH_SELECTED_STRUCTURE } from "./selectedStructure.actionTypes";
+import { FETCH_SELECTED_STRUCTURE, UPDATE_SELECTED_STRUCTURE } from "./selectedStructure.actionTypes";
 import {
   fetchSelectedStructureActionCreator,
   setSelectedStructureActionCreator,
+  updateSelectedStructureActionCreator
 } from "./selectedStructure.actions";
+import { selectedStructureSelector } from "./selectedStructure.selector";
 
 export function* fetchSelectedStructure(
   action: ReturnType<typeof fetchSelectedStructureActionCreator>
@@ -32,8 +34,40 @@ export function* fetchSelectedStructure(
   }
 }
 
+export function* updateSelectedStructure(
+  action: ReturnType<typeof updateSelectedStructureActionCreator>
+): SagaIterator {
+  try {
+    yield put(startLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
+    logger.info("[updateSelectedStructure] updating user structure");
+    let structureId;
+    const structure = yield select(selectedStructureSelector);
+    structureId = structure._id;
+    if (!structure) {
+      logger.info("[updateSelectedStructure] no structure to update");
+      return;
+    }
+    delete structure.membres;
+    yield call(API.updateStructure, { query: structure });
+
+    yield put(
+      fetchSelectedStructureActionCreator({
+        id: structureId,
+        locale: action.payload.locale
+      })
+    );
+    logger.info("[updateSelectedStructure] successfully updated user structure");
+    yield put(finishLoading(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
+  } catch (error) {
+    logger.error("[updateSelectedStructure] error while updating user structure", {
+      error,
+    });
+  }
+}
+
 function* latestActionsSaga() {
   yield takeLatest(FETCH_SELECTED_STRUCTURE, fetchSelectedStructure);
+  yield takeLatest(UPDATE_SELECTED_STRUCTURE, updateSelectedStructure);
 }
 
 export default latestActionsSaga;

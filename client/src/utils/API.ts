@@ -417,6 +417,12 @@ const API = {
     return instance.post("/miscellaneous/send_sms", query, { headers });
   },
 
+  // Logs
+  logs: (objectId: ObjectId) => {
+    const headers = getHeaders();
+    return instance.get(`/logs?id=${objectId}`, { headers });
+  },
+
   // tts
   get_tts: (query: {
     text: string

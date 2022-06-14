@@ -23,6 +23,7 @@ import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { UserDoc } from "../../../schema/schemaUser";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
+import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
 
 export interface Request {
   titreInformatif: string;
@@ -177,7 +178,12 @@ export const addDispositif = async (
       if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
         // @ts-ignore
         dispositif.publishedAt = Date.now();
+        // @ts-ignore
+        dispositif.publishedAtAuthor = req.userId;
       }
+      // @ts-ignore
+      dispositif.lastModificationAuthor = req.userId;
+
       //now I need to save the dispositif and the translation
       dispResult = await updateDispositifInDB(
         dispositif.dispositifId,
@@ -200,6 +206,7 @@ export const addDispositif = async (
             dispResult.tags,
             dispResult.typeContenu,
             null,
+            getDispositifDepartments(dispResult),
             false
           );
         } catch (error) {
@@ -252,6 +259,8 @@ export const addDispositif = async (
       }
       // @ts-ignore
       dispositif.creatorId = req.userId;
+      // @ts-ignore
+      dispositif.lastModificationAuthor = req.userId;
       // @ts-ignore
       dispResult = await createDispositifInDB(dispositif);
 

@@ -1538,9 +1538,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               }
             }
           >
-            <span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1549,8 +1552,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1559,6 +1563,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
             </span>
           </div>
           <div>
@@ -1570,9 +1575,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 }
               }
             >
-              <span>
+              <span
+                aria-busy={true}
+                aria-live="polite"
+              >
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1581,8 +1589,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1591,8 +1600,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1601,6 +1611,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
               </span>
             </div>
             <div
@@ -1618,9 +1629,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               }
             }
           >
-            <span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1629,8 +1643,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1639,6 +1654,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
             </span>
           </div>
           <div>
@@ -1650,9 +1666,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 }
               }
             >
-              <span>
+              <span
+                aria-busy={true}
+                aria-live="polite"
+              >
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1661,8 +1680,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1671,8 +1691,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1681,6 +1702,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
               </span>
             </div>
             <div
@@ -1698,9 +1720,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               }
             }
           >
-            <span>
+            <span
+              aria-busy={true}
+              aria-live="polite"
+            >
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1709,8 +1734,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
               <span
-                className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                className="react-loading-skeleton"
                 style={
                   Object {
                     "height": "28px",
@@ -1719,6 +1745,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
               >
                 ‌
               </span>
+              <br />
             </span>
           </div>
           <div>
@@ -1730,9 +1757,12 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 }
               }
             >
-              <span>
+              <span
+                aria-busy={true}
+                aria-live="polite"
+              >
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1741,8 +1771,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1751,8 +1782,9 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
                 <span
-                  className="react-loading-skeleton css-1vmnjpn-skeletonStyles-Skeleton"
+                  className="react-loading-skeleton"
                   style={
                     Object {
                       "height": "14px",
@@ -1761,6 +1793,7 @@ exports[`UserFavorites should render correctly when loading 1`] = `
                 >
                   ‌
                 </span>
+                <br />
               </span>
             </div>
             <div

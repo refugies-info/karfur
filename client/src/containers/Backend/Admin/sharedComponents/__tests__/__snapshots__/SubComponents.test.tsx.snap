@@ -491,6 +491,7 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -516,6 +517,7 @@ exports[`should render StyledStatus Brouillon  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #212121;
 }
@@ -541,6 +543,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -566,6 +569,7 @@ exports[`should render StyledStatus En attente non prioritaire  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -591,6 +595,7 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -616,6 +621,7 @@ exports[`should render StyledStatus Supprimé  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -641,6 +647,7 @@ exports[`should render StyledStatus actif  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -666,6 +673,7 @@ exports[`should render StyledStatus en attente  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }
@@ -691,8 +699,9 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
-  color: #0421b1;
+  color: #ffffff;
 }
 
 <div
@@ -700,7 +709,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   color="#0421b1"
   disabled={false}
 >
-  Nouveau !
+  Nouveau !
 </div>
 `;
 
@@ -716,6 +725,7 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: textColor;
 }
@@ -741,6 +751,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: pointer;
   color: #ffffff;
 }

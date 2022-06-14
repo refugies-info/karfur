@@ -98,6 +98,18 @@ var structureSchema = new mongoose.Schema(
       unique: false,
       required: false,
     },
+    adminComments: {
+      type: String,
+      required: false,
+    },
+    adminProgressionStatus: {
+      type: String,
+      required: false,
+    },
+    adminPercentageProgressionStatus: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );
@@ -137,6 +149,9 @@ export interface StructureDoc extends mongoose.Document {
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   disposAssociesLocalisation?: string[];
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus: string;
 }
 
 export interface StructureSimplifiedWithLoc extends mongoose.Document {

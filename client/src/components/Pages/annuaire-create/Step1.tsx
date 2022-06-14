@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Input, Spinner } from "reactstrap";
 import FInput from "components/UI/FInput/FInput";
-import { UserStructure } from "types/interface";
+import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
@@ -57,7 +57,7 @@ background-color: red;
 `
 
 interface Props {
-  structure: UserStructure | null;
+  structure: Structure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

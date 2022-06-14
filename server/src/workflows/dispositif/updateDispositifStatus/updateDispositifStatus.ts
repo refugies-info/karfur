@@ -13,6 +13,7 @@ import {
   checkUserIsAuthorizedToModifyDispositif,
 } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
+import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
@@ -38,7 +39,7 @@ export const updateDispositifStatus = async (
     if (status === "Actif") {
       // @ts-ignore : populate roles
       checkIfUserIsAdmin(req.user.roles);
-      await publishDispositif(dispositifId);
+      await publishDispositif(dispositifId, req.userId);
 
       return res.status(200).json({ text: "OK" });
     }
@@ -49,6 +50,7 @@ export const updateDispositifStatus = async (
         mainSponsor: 1,
         status: 1,
         typeContenu: 1,
+        contenu: 1
       };
 
       const dispositif = await getDispositifByIdWithMainSponsor(
@@ -69,6 +71,7 @@ export const updateDispositifStatus = async (
         dispositif.tags,
         dispositif.typeContenu,
         null,
+        getDispositifDepartments(dispositif),
         true
       );
     }

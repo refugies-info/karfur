@@ -29,6 +29,7 @@ export interface User {
   code?: string;
   username?: string;
   picture?: Picture;
+  adminComments?: string;
   selectedLanguages?: SelectedLanguage[];
 }
 
@@ -77,7 +78,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         newRoles.push(expertRole._id);
       }
 
-      await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles });
+      await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles, adminComments: user.adminComments });
       user.username = userFromDB.username; // populate username for log
 
       if (userFromDB.phone !== user.phone) { // if phone changed, send mail

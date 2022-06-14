@@ -34,6 +34,7 @@ describe("getAllispositifs", () => {
     typeContenu: 1,
     created_at: 1,
     publishedAt: 1,
+    publishedAtAuthor: 1,
     adminComments: 1,
     adminProgressionStatus: 1,
     adminPercentageProgressionStatus: 1,
@@ -44,6 +45,7 @@ describe("getAllispositifs", () => {
     merci: 1,
     nbVues: 1,
     lastModificationDate: 1,
+    lastModificationAuthor: 1,
     needs: 1,
     tags: 1,
   };

@@ -1,0 +1,22 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border-radius: $radius;
+  padding: 16px;
+  flex-grow: 1;
+  overflow-y: scroll;
+}
+
+.date {
+  font-size: 12px;
+  font-weight: bold;
+  color: $bleuCharte;
+  margin-bottom: 8px;
+  margin-top: 16px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

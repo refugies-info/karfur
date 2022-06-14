@@ -56,7 +56,9 @@ describe("getStructuresFromDB", () => {
 
   it("should call structure.find when withDispositifsAssocies true ", async () => {
     Structure.find.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue(["structuresWithDispos"]),
+      populate: jest.fn().mockReturnValue({
+        populate: jest.fn().mockResolvedValue(["structuresWithDispos"])
+      })
     });
 
     const query = { status: "Actif" };

@@ -113,13 +113,14 @@ describe("updateDispositifStatus", () => {
     const req = {
       fromSite: true,
       body: { query: { dispositifId: "id", status: "Actif" } },
+      userId: "userId",
       user: { roles: [] },
     };
     const res = mockResponse();
     await updateDispositifStatus(req, res);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
 
-    expect(publishDispositif).toHaveBeenCalledWith("id");
+    expect(publishDispositif).toHaveBeenCalledWith("id", "userId");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
@@ -147,6 +148,7 @@ describe("updateDispositifStatus", () => {
     mainSponsor: 1,
     status: 1,
     typeContenu: 1,
+    contenu: 1
   };
   it("should return a 200 when new status is supprimé and user authorized and demarche", async () => {
     updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
@@ -255,6 +257,7 @@ describe("updateDispositifStatus", () => {
       [],
       "dispositif",
       null,
+      [],
       true
     );
 

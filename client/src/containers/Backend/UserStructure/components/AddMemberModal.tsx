@@ -80,7 +80,7 @@ export const AddMemberModal = (props: Props) => {
         ajouter a déjà créé un compte sur réfugiés.info.
       </InformationContainer>
       {isLoading && (
-        <SkeletonTheme color={colors.white}>
+        <SkeletonTheme baseColor={colors.white}>
           <Skeleton count={1} height={50} />
         </SkeletonTheme>
       )}

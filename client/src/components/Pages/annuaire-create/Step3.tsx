@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import groupBy from "lodash/groupBy";
-import { UserStructure } from "types/interface";
+import { Structure } from "types/interface";
 import { activities } from "data/activities";
 import { ActivityCard } from "./ActivityCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -67,7 +67,7 @@ const IconContainer = styled.div`
   cursor: pointer;
 `;
 interface Props {
-  structure: UserStructure | null;
+  structure: Structure | null;
   setStructure: (arg: any) => void;
   setHasModifications: (arg: boolean) => void;
 }

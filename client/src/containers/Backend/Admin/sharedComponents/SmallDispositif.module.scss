@@ -1,0 +1,30 @@
+@import "src/scss/colors";
+
+.container {
+  font-size: 12px;
+  line-height: 15px;;
+  background: $gray30;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  position: relative;
+  cursor: pointer;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    background: $gray40;
+  }
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.status {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+}
