@@ -49,7 +49,7 @@ import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
-import { ContentStatusType, SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
+import { ContentStatusType, SimplifiedDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -182,7 +182,13 @@ export const AdminContenu = () => {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(removeAccents(search.toLowerCase())))
+                .includes(removeAccents(search.toLowerCase()))) ||
+                (dispo.mainSponsor?.nom &&
+                  dispo.mainSponsor.nom
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .toLowerCase()
+                    .includes(removeAccents(search.toLowerCase())))
         )
       : dispositifs;
 
@@ -229,6 +235,7 @@ export const AdminContenu = () => {
       dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
+  
   const { dispositifsToDisplay, dispositifsForCount } =
     filterAndSortDispositifs(dispositifs);
 
