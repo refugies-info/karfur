@@ -162,7 +162,7 @@ export const Widgets = () => {
         </Col>
         <Col>
           {isFetching ?
-            <SkeletonTheme color="#CDCDCD">
+            <SkeletonTheme baseColor="#CDCDCD">
               <Skeleton
                 width="100%"
                 height={72}
