@@ -4,6 +4,8 @@ import styles from "./FSearchBtn.module.scss";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 
+// TODO: replace by FilterButton or FButton
+
 interface Props {
   className?: string;
   active?: boolean;

@@ -4,6 +4,7 @@ import { AdminContenu } from "containers/Backend/Admin/AdminContenu/AdminContenu
 import { AdminStructures } from "containers/Backend/Admin/AdminStructures/AdminStructures";
 import { AdminUsers } from "containers/Backend/Admin/AdminUsers/AdminUsers";
 import { Needs } from "containers/Backend/Admin/Needs/Needs";
+import { Widgets } from "containers/Backend/Admin/Widgets/Widgets";
 import Dashboard from "containers/Backend/Dashboard/Dashboard";
 import { TabQuery } from "lib/getAdminUrlParams";
 
@@ -28,6 +29,9 @@ const CustomTabPane = (props: Props) => {
       </TabPane>
       <TabPane tabId="besoins" className="p-0">
         <Needs />
+      </TabPane>
+      <TabPane tabId="widgets" className="p-0">
+        <Widgets />
       </TabPane>
     </>
   );

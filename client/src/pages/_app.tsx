@@ -8,10 +8,12 @@ import Layout from "components/Layout/Layout";
 import isInBrowser from "lib/isInBrowser";
 import { useRouter } from "next/router";
 import { initGA, PageView } from "lib/tracking";
+import { PageOptions } from "types/interface";
 import "scss/index.scss";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
+  options: PageOptions
 }
 
 type AppPropsWithLayout = AppProps & {
@@ -22,9 +24,13 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
   const defaultLayout = (page: ReactElement) => <Layout history={history}>{page}</Layout>;
   const getLayout = Component.getLayout ?? defaultLayout;
+  const options: PageOptions = Component.options || {
+    cookiesModule: true,
+    supportModule: true
+  }
   const router = useRouter();
 
-  if (isInBrowser()) {
+  if (isInBrowser() && options.cookiesModule) {
     // AXEPTIO
     window.axeptioSettings = {
       clientId: process.env.NEXT_PUBLIC_REACT_APP_AXEPTIO_CLIENTID,
@@ -58,12 +64,15 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
-      <Script src="//static.axept.io/sdk.js" strategy="afterInteractive" />
-      <Script
-        id="crisp-widget"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
+      {options.cookiesModule &&
+        <Script src="//static.axept.io/sdk.js" strategy="afterInteractive" />
+      }
+      {options.supportModule &&
+        <Script
+          id="crisp-widget"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
             window.$crisp=[["safe", true]];
             window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
             (function(){
@@ -73,8 +82,9 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
               s.async = 1;
               d.getElementsByTagName("head")[0].appendChild(s);
             })();`,
-        }}
-      />
+          }}
+        />
+      }
 
       {getLayout(<Component history={history} {...pageProps} />)}
     </>

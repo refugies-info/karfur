@@ -78,8 +78,7 @@
 
     &:hover {
       transition: all 0.5s ease;
-      color: $white;
-      background: $gray90;
+      background: $gray20;
     }
     /*   &.disabled {
     color: $gray50;
@@ -94,8 +93,8 @@
     }
     &.active {
       color: $white;
-      background-color: $validationHover;
-      border: 0.5px solid $validationHover;
+      background-color: $bleuCharte;
+      border: 0.5px solid $bleuCharte;
     }
     .vertical_center {
       display: flex;

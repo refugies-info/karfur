@@ -1,0 +1,1 @@
+export { patchWidget } from "./patchWidget";

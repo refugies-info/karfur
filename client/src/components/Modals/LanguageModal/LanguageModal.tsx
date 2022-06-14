@@ -14,7 +14,6 @@ import {useRouter} from "next/router";
 import { isMobile } from "react-device-detect";
 import { useTranslation } from "next-i18next";
 import { Language } from "types/interface";
-import { colorAvancement } from "lib/colors";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Event } from "lib/tracking";
@@ -98,15 +97,12 @@ const LanguageModal = (props: Props) => {
                         {props.isLanguagesLoading === false && (
                           <>
                             <Progress
-                              color={colorAvancement(getAvancementTrad(ln.i18nCode))}
+                              color={isSelected ? "secondary" : "primary"}
                               value={getAvancementTrad(ln.i18nCode) * 100}
                               className={styles.progress}
                             />
                             <span
-                              className={
-                                "text-" +
-                                colorAvancement(getAvancementTrad(ln.i18nCode))
-                              }
+                              className={isSelected ? "text-light" : "text-primary"}
                             >
                               <b>
                                 {Math.round(getAvancementTrad(ln.i18nCode) * 100) + " %"}

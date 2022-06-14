@@ -1,0 +1,32 @@
+@import "src/scss/colors";
+
+.form {
+  padding: 40px;
+  background: $gray40b;
+  border: 2px dashed $gray60;
+  border-radius: 16px;
+}
+.form_block {
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 52px;
+  line-height: 65px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items:center;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
