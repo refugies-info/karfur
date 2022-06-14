@@ -52,6 +52,7 @@ import {
   dispositifsWithTranslationsStatusReducer,
 } from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
 import { needsReducer, NeedsState } from "./Needs/needs.reducer";
+import { widgetsReducer, WidgetsState } from "./Widgets/widgets.reducer";
 import { HYDRATE } from "next-redux-wrapper"
 import { Reducer } from "typesafe-actions";
 
@@ -73,6 +74,7 @@ export interface RootState {
   userContributions: UserContributionsState;
   dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
   needs: NeedsState;
+  widgets: WidgetsState;
 }
 
 const combinedReducer = combineReducers({
@@ -93,6 +95,7 @@ const combinedReducer = combineReducers({
   userContributions: userContributionsReducer,
   dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
   needs: needsReducer,
+  widgets: widgetsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {

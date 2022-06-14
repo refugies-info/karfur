@@ -8,13 +8,8 @@ import qs from "query-string";
 import get from "lodash/get";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Streamline from "assets/streamline";
 import { END } from "redux-saga";
 import SearchItem from "components/Pages/advanced-search/SearchItem/SearchItem";
-import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
-import SeeMoreCard from "components/Pages/advanced-search/SeeMoreCard";
-import LoadingCard from "components/Pages/advanced-search/LoadingCard";
-import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
 import { MobileAdvancedSearch } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileAdvancedSearch";
 import API from "utils/API";
 import {
@@ -26,7 +21,7 @@ import {
   searchLoc,
   searchTheme,
   searchFrench,
-  AvailableFilters
+  AvailableFilters,
 } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { tags } from "data/tags";
@@ -34,7 +29,11 @@ import FButton from "components/UI/FButton/FButton";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
 import { fetchUserActionCreator } from "services/User/user.actions";
-import { decodeQuery, queryDispositifs } from "lib/filterContents";
+import {
+  decodeQuery,
+  DispositifsFilteredState,
+  queryDispositifs,
+} from "lib/filterContents";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
@@ -43,40 +42,27 @@ import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { RootState } from "services/rootReducer";
-import { IDispositif, IUserFavorite, Language, Tag, User } from "types/interface";
+import {
+  IDispositif,
+  IUserFavorite,
+  Language,
+  User,
+} from "types/interface";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/advanced-search.module.scss";
 import moment from "moment";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
-
-const ThemeContainer = styled.div`
-  width: 100%;
-  background-color: ${(props) => props.color};
-  padding: 24px 68px 48px 68px;
-  align-items: center;
-`;
-
-const ThemeHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 48px 0px 48px 0px;
-`;
-
-const ThemeHeaderTitle = styled.p`
-  font-style: normal;
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-  color: ${(props) => props.color};
-`;
+import { ThemeResults } from "components/Pages/advanced-search/SearchResults/ThemeResults";
+import { CityResults } from "components/Pages/advanced-search/SearchResults/CityResults";
+import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
+import { OrderThemeResults } from "components/Pages/advanced-search/SearchResults/OrderThemeResults";
+import { LoadingResults } from "components/Pages/advanced-search/SearchResults/LoadingResults";
 
 interface SearchToggleProps {
-  isRtl: boolean
-  visible: boolean
+  isRtl: boolean;
+  visible: boolean;
 }
 const SearchToggle = styled.div`
   display: flex;
@@ -87,7 +73,8 @@ const SearchToggle = styled.div`
   border-radius: 12px;
   border: 0.5px solid;
   margin-right: ${(props: SearchToggleProps) => (props.isRtl ? "10px" : "")};
-  color: ${(props: SearchToggleProps) => (props.visible ? colors.white : colors.bleuCharte)};
+  color: ${(props: SearchToggleProps) =>
+    props.visible ? colors.white : colors.bleuCharte};
   border-color: ${(props: SearchToggleProps) =>
     props.visible ? "transparent" : colors.bleuCharte};
   background-color: ${(props: SearchToggleProps) =>
@@ -112,40 +99,14 @@ const FilterBar = styled.div`
   margin-left: 68px;
   margin-right: 68px;
   z-index: 2;
-  transform: translateY(${(props: {visibleSearch: boolean}) => props.visibleSearch ? "-10px" : "-84px"});
-  opacity: ${(props: {visibleSearch: boolean}) => (props.visibleSearch ? "1" : "0")};
+  transform: translateY(
+    ${(props: { visibleSearch: boolean }) =>
+      props.visibleSearch ? "-10px" : "-84px"}
+  );
+  opacity: ${(props: { visibleSearch: boolean }) =>
+    props.visibleSearch ? "1" : "0"};
   transition: transform 0.6s;
   height: 80px;
-`;
-interface ThemeButtonProps {
-  color: string
-  ml?: number
-}
-const ThemeButton = styled.div`
-  background-color: ${(props: ThemeButtonProps) => props.color || "black"};
-  display: flex;
-  flex-direction: row;
-  padding: 12px;
-  border-radius: 12px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 20px;
-  margin-left: ${(props: ThemeButtonProps) => (props.ml ? `${props.ml}px` : "0px")};
-`;
-const ThemeText = styled.p`
-  color: white;
-  font-size: 18px;
-  margin-left: 8px;
-  margin-right: ${(props: {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
-  font-weight: bold;
-`;
-
-const ThemeTextAlone = styled.p`
-  color: white;
-  font-size: 18px;
-  margin-left: 0px;
-  margin-right: ${(props:  {mr?: number}) => (props.mr ? `${props.mr}px` : "0px")};
-  font-weight: bold;
 `;
 
 const LanguageText = styled.span`
@@ -171,118 +132,41 @@ const FilterTitle = styled.p`
   margin-right: 10px;
 `;
 
-const ShowFullFrancePrimary = styled.div`
-  padding: 8px;
-  height: 52px;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  display: flex;
-  margin-top: 48px;
-  margin-bottom: 48px;
-
-  background: ${(props: {active?: boolean}) => (props.active ? "white" : "transparent")};
-
-  border: 2px solid #5e5e5e;
-  box-sizing: border-box;
-  border-radius: 12px;
-  font-size: 16px;
-  text-align: center;
-  align-content: center;
-  cursor: pointer;
-  &:hover {
-    background-color: white;
-  }
-`;
-
-const ShowFullFranceSecondary = styled.div`
-  padding: 8px;
-  height: 52px;
-  font-size: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  align-content: center;
-  align-self: center;
-  margin-top: 48px;
-  margin-bottom: 48px;
-
-  background: ${(props: {active?: boolean}) => (props.active ? "white" : "transparent")};
-
-  border: 2px solid #5e5e5e;
-  box-sizing: border-box;
-  border-radius: 12px;
-  cursor: pointer;
-  &:hover {
-    background-color: white;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const pageFilters = [
-  searchTheme,
-  searchLoc,
-  searchAge,
-  searchFrench
-]
+const pageFilters = [searchTheme, searchLoc, searchAge, searchFrench];
 export type SearchQuery = {
-  theme?: string
-  age?: string
-  frenchLevel?: string
-  type?: "dispositifs" | "demarches"
-  langue?: string
+  theme?: string[];
+  age?: string;
+  frenchLevel?: string;
+  type?: "dispositifs" | "demarches";
+  langue?: string;
   loc?: {
-    city: string
-    dep: string
-  }
-  order: "created_at" | "nbVues" | "theme" | ""
-}
+    city: string;
+    dep: string;
+  };
+  order: "created_at" | "nbVues" | "theme" | "";
+};
 
 interface Props {
-  router: any
-  dispositifs: IDispositif[]
-  languei18nCode: string
-  user: User|null
-  langues: Language[]
-  isLoading: boolean
-  t: any
-  fetchUser: any
+  router: any;
+  dispositifs: IDispositif[];
+  languei18nCode: string;
+  user: User | null;
+  langues: Language[];
+  isLoading: boolean;
+  t: any;
+  fetchUser: any;
 }
 interface State {
-  query: SearchQuery
-  dispositifs: IDispositif[]
-  principalThemeList: IDispositif[]
-  secondaryThemeList: IDispositif[]
-  principalThemeListFullFrance: IDispositif[]
-  secondaryThemeListFullFrance: IDispositif[]
-  nonTranslated: IDispositif[]
-  dispositifsFullFrance: IDispositif[]
-  dropdownOpenTri: boolean
-  dropdownOpenFiltre: boolean
-  showBookmarkModal: boolean
-  searchToggleVisible: boolean
-  visible: boolean
-  countTotal: number
-  countShow: number
-  themesObject: {
-    tag: Tag
-    dispositifs: IDispositif[]
-  }[]
-  chargingArray: boolean[]
-  showGeolocFullFrancePrincipal: boolean
-  showGeolocFullFranceSecondary: boolean
-  filterVille: string
-  geoSearch: boolean
-  wrapperRef: any
-  languageDropdown: boolean
+  query: SearchQuery;
+  queryResults: DispositifsFilteredState;
+  dropdownOpenTri: boolean;
+  dropdownOpenFiltre: boolean;
+  showBookmarkModal: boolean;
+  searchToggleVisible: boolean;
+  visible: boolean;
+  geoSearch: boolean;
+  wrapperRef: any;
+  languageDropdown: boolean;
 }
 export class AdvancedSearch extends Component<Props, State> {
   constructor(props: Props) {
@@ -298,35 +182,22 @@ export class AdvancedSearch extends Component<Props, State> {
 
     this.state = {
       query: initialQuery.query,
-      dispositifs: queryResults.dispositifs,
+      queryResults: queryResults,
       dropdownOpenTri: false,
       dropdownOpenFiltre: false,
       showBookmarkModal: false,
       searchToggleVisible: initialQuery.searchToggleVisible,
       visible: true,
-      countTotal: queryResults.countTotal,
-      countShow: queryResults.countShow,
-      themesObject: queryResults.themesObject,
-      principalThemeList: queryResults.principalThemeList,
-      secondaryThemeList: queryResults.secondaryThemeList,
-      principalThemeListFullFrance: queryResults.principalThemeListFullFrance,
-      secondaryThemeListFullFrance: queryResults.secondaryThemeListFullFrance,
-      nonTranslated: queryResults.nonTranslated,
-      chargingArray: new Array(20).fill(true),
-      showGeolocFullFrancePrincipal: false,
-      showGeolocFullFranceSecondary: false,
-      filterVille: queryResults.filterVille,
-      dispositifsFullFrance: queryResults.dispositifsFullFrance,
       geoSearch: initialQuery.geoSearch,
       wrapperRef: null,
-      languageDropdown: false
+      languageDropdown: false,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
-  setWrapperRef(node:any) {
+  setWrapperRef(node: any) {
     this.setState({ wrapperRef: node });
   }
 
@@ -376,25 +247,29 @@ export class AdvancedSearch extends Component<Props, State> {
 
   updateUrl = (query: SearchQuery) => {
     let newQueryParam: any = {};
-    if(query.theme) newQueryParam.tag = query.theme;
-    if(query.age) newQueryParam.age = query.age;
-    if(query.frenchLevel) newQueryParam.niveauFrancais = query.frenchLevel;
-    if(query.loc?.city) newQueryParam.city = query.loc?.city;
-    if(query.loc?.dep) newQueryParam.dep = query.loc?.dep;
-    if(query.type) newQueryParam.filter = query.type;
-    if(query.langue) newQueryParam.langue = query.langue;
-    if(query.order) newQueryParam.tri = query.order;
+    if (query.theme) newQueryParam.tag = query.theme;
+    if (query.age) newQueryParam.age = query.age;
+    if (query.frenchLevel) newQueryParam.niveauFrancais = query.frenchLevel;
+    if (query.loc?.city) newQueryParam.city = query.loc?.city;
+    if (query.loc?.dep) newQueryParam.dep = query.loc?.dep;
+    if (query.type) newQueryParam.filter = query.type;
+    if (query.langue) newQueryParam.langue = query.langue;
+    if (query.order) newQueryParam.tri = query.order;
 
     const locale = this.props.router.locale;
     const oldQueryString = qs.stringify(this.props.router.query);
     const newQueryString = qs.stringify(newQueryParam);
     if (oldQueryString !== newQueryString) {
-      this.props.router.push({
-        pathname: getPath("/recherche", this.props.router.locale),
-        search: newQueryString,
-      }, undefined, { locale: locale, shallow: true });
+      this.props.router.push(
+        {
+          pathname: getPath("/recherche", this.props.router.locale),
+          search: newQueryString,
+        },
+        undefined,
+        { locale: locale, shallow: true }
+      );
     }
-  }
+  };
 
   queryDispositifs = () => {
     this.updateUrl(this.state.query);
@@ -403,12 +278,14 @@ export class AdvancedSearch extends Component<Props, State> {
       this.state.query,
       this.props.languei18nCode
     );
-    this.setState(queryResults);
+    this.setState({ queryResults });
   };
 
   writeNew = () => {
     if (this.props.user) {
-      this.props.router.push(getPath("/comment-contribuer", this.props.router.locale));
+      this.props.router.push(
+        getPath("/comment-contribuer", this.props.router.locale)
+      );
     } else {
       this.props.router.push(getPath("/login", this.props.router.locale));
     }
@@ -418,23 +295,25 @@ export class AdvancedSearch extends Component<Props, State> {
     e.preventDefault();
     e.stopPropagation();
     if (API.isAuth() && this.props.user) {
-      const dispositifsPinned = this.props.user?.cookies?.dispositifsPinned || [];
+      const dispositifsPinned =
+        this.props.user?.cookies?.dispositifsPinned || [];
       const isDispositifPinned = !!dispositifsPinned.find(
         (pinnedDispostif) => pinnedDispostif._id === dispositif._id.toString()
       );
       this.setState(
         {
-          showBookmarkModal: !isDispositifPinned && !this.state.showBookmarkModal,
+          showBookmarkModal:
+            !isDispositifPinned && !this.state.showBookmarkModal,
         },
         () => {
           const newUserCookies = {
             _id: this.props.user?._id,
-            cookies: { ...(this.props.user?.cookies || {}) }
+            cookies: { ...(this.props.user?.cookies || {}) },
           };
           newUserCookies.cookies.dispositifsPinned = [
             ...(newUserCookies?.cookies?.dispositifsPinned || []),
-            { _id: dispositif._id.toString(), datePin: moment() }
-          ]
+            { _id: dispositif._id.toString(), datePin: moment() },
+          ];
 
           API.set_user_info(newUserCookies).then(() => {
             this.props.fetchUser();
@@ -462,8 +341,13 @@ export class AdvancedSearch extends Component<Props, State> {
   };
 
   goToDispositif = (dispositif: IDispositif) => {
-    const route = dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
-    this.props.router.push(getPath(route, this.props.router.locale, dispositif._id.toString() || ""));
+    const route =
+      dispositif.typeContenu === "demarche"
+        ? "/demarche/[id]"
+        : "/dispositif/[id]";
+    this.props.router.push(
+      getPath(route, this.props.router.locale, dispositif._id.toString() || "")
+    );
   };
 
   upcoming = () =>
@@ -480,12 +364,16 @@ export class AdvancedSearch extends Component<Props, State> {
     if (query.theme) newQuery.order = ""; // deactivate theme tri when filtered
 
     this.setState({
-      query: newQuery
+      query: newQuery,
     });
   };
   removeFromQuery = (filter: AvailableFilters) => {
     const newQuery = { ...this.state.query };
-    if (filter === "loc") this.setState({ filterVille: "" });
+    if (filter === "loc") {
+      this.setState({
+        queryResults: { ...this.state.queryResults, filterVille: "" },
+      });
+    }
     delete newQuery[filter];
     this.setState({ query: newQuery });
   };
@@ -494,7 +382,7 @@ export class AdvancedSearch extends Component<Props, State> {
     this.setState({
       query: {
         ...this.state.query,
-        order: ""
+        order: "",
       },
     });
   };
@@ -504,67 +392,66 @@ export class AdvancedSearch extends Component<Props, State> {
       query: {
         ...this.state.query,
         type: undefined,
-        langue: undefined
+        langue: undefined,
       },
       languageDropdown: false,
     });
   };
   selectLanguage = (language: Language) => {
-    this.setState(
-      {
-        query: {
-          ...this.state.query,
-          langue: language.i18nCode,
-          type: undefined
-        },
-        languageDropdown: false
-      });
+    this.setState({
+      query: {
+        ...this.state.query,
+        langue: language.i18nCode,
+        type: undefined,
+      },
+      languageDropdown: false,
+    });
   };
   restart = () => {
     this.setState({
-        query: {
-          order: "theme"
-        },
-        filterVille: "",
-        geoSearch: false,
-      });
+      query: {
+        order: "theme",
+      },
+      queryResults: { ...this.state.queryResults, filterVille: "" },
+      geoSearch: false,
+    });
   };
   reorder = (tri: Tris) => {
-    const value = tri.value === this.state.query.order
-      ? "" // deactivate all sorts
-      : tri.value; // or set new sort
+    const value =
+      tri.value === this.state.query.order
+        ? "" // deactivate all sorts
+        : tri.value; // or set new sort
 
     const newQuery: SearchQuery = {
       ...this.state.query,
-      order: value
-    }
+      order: value,
+    };
     if (tri.value === "theme") newQuery.theme = undefined; // deactivate theme when "Par theme"
     this.setState({ query: newQuery });
   };
   filterType = (filtre: Filtres) => {
-    this.setState(
-      {
-        query: {
-          ...this.state.query,
-          type: filtre.value,
-          langue: undefined
-        },
-        languageDropdown: false,
-      });
+    this.setState({
+      query: {
+        ...this.state.query,
+        type: filtre.value,
+        langue: undefined,
+      },
+      languageDropdown: false,
+    });
   };
 
   // Toggle elements
   toggleDropdownTri = () => {
     this.setState((pS) => ({ dropdownOpenTri: !pS.dropdownOpenTri }));
-  }
+  };
   toggleDropdownFiltre = () => {
     this.setState((pS) => ({ dropdownOpenFiltre: !pS.dropdownOpenFiltre }));
-  }
+  };
   toggleBookmarkModal = () => {
     this.setState((prevState) => ({
       showBookmarkModal: !prevState.showBookmarkModal,
     }));
-  }
+  };
   toggleSearch = () => {
     this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
   };
@@ -572,37 +459,49 @@ export class AdvancedSearch extends Component<Props, State> {
     this.setState({ languageDropdown: true });
   };
 
-
   nbFilterSelected = () => {
     let nb = 0;
-    if (this.state.query.theme) nb++
-    if (this.state.query.loc) nb++
-    if (this.state.query.age) nb++
-    if (this.state.query.frenchLevel) nb++
+    if (this.state.query.theme) nb++;
+    if (this.state.query.loc) nb++;
+    if (this.state.query.age) nb++;
+    if (this.state.query.frenchLevel) nb++;
     if (this.state.geoSearch) nb++;
     return nb;
   };
 
   render() {
-    let { dispositifs } = this.state;
-    const {
-      t,
-      languei18nCode,
-    } = this.props;
+    let {
+      dispositifs,
+      dispositifsFullFrance,
+      principalThemeList,
+      principalThemeListFullFrance,
+      secondaryThemeList,
+      secondaryThemeListFullFrance,
+      countShow,
+      themesObject,
+      filterVille,
+    } = this.state.queryResults;
+    const { t, languei18nCode } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(this.props.router.locale);
-    const currentLanguage =(this.props.langues || []).find(
+    const currentLanguage = (this.props.langues || []).find(
       (x) => x.i18nCode === this.props.router.locale
     );
-    const langueCode = this.props.langues.length > 0 && currentLanguage
-      ? currentLanguage.langueCode
-      : "fr";
-    const filterLanguage = this.state.query.langue ? (this.props.langues || []).find(
-      (x) => x.i18nCode === this.state.query.langue
-    ) : null;
-    const selectedTag = this.state.query.theme ? tags.find(
-      tag => tag.name === this.state.query.theme
-    ) : null;
-    const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(d => d._id.toString());
+    const langueCode =
+      this.props.langues.length > 0 && currentLanguage
+        ? currentLanguage.langueCode
+        : "fr";
+    const filterLanguage = this.state.query.langue
+      ? (this.props.langues || []).find(
+          (x) => x.i18nCode === this.state.query.langue
+        )
+      : null;
+    const selectedTag = this.state.query.theme && this.state.query.theme.length === 1
+      ? tags.find((tag) => tag.name === this.state.query?.theme?.[0])
+      : null;
+    const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(
+      (d) => d._id.toString()
+    );
+    const flagIconCode = filterLanguage?.langueCode || langueCode;
 
     return (
       <div className={cls(styles.container, "advanced-search")}>
@@ -612,36 +511,37 @@ export class AdvancedSearch extends Component<Props, State> {
           addToQuery={this.addToQuery}
           queryDispositifs={this.queryDispositifs}
           removeFromQuery={this.removeFromQuery}
-          dispositifs={this.state.dispositifs}
-          dispositifsFullFrance={this.state.dispositifsFullFrance}
-          principalThemeList={this.state.principalThemeList}
-          principalThemeListFullFrance={
-            this.state.principalThemeListFullFrance
-          }
-          secondaryThemeList={this.state.secondaryThemeList}
-          secondaryThemeListFullFrance={
-            this.state.secondaryThemeListFullFrance
-          }
+          dispositifs={dispositifs}
+          dispositifsFullFrance={dispositifsFullFrance}
+          principalThemeList={principalThemeList}
+          principalThemeListFullFrance={principalThemeListFullFrance}
+          secondaryThemeList={secondaryThemeList}
+          secondaryThemeListFullFrance={secondaryThemeListFullFrance}
           totalFicheCount={this.props.dispositifs.length}
-          nbFilteredResults={this.state.countShow}
+          nbFilteredResults={countShow}
           isLoading={this.props.isLoading}
           restart={this.restart}
         />
 
         <div className="d-none d-md-block w-100">
-          <div className={cls(styles.searchbar_wrapper, (!this.state.visible && styles.top))}>
+          <div
+            className={cls(
+              styles.searchbar_wrapper,
+              !this.state.visible && styles.top
+            )}
+          >
             <div className="search-bar">
               {pageFilters.map((filter, i: number) => (
-                  <SearchItem
-                    key={i}
-                    searchItem={filter}
-                    query={this.state.query}
-                    addToQuery={this.addToQuery}
-                    removeFromQuery={() => this.removeFromQuery(filter.type)}
-                    switchGeoSearch={this.switchGeoSearch}
-                    geoSearch={this.state.geoSearch}
-                  />
-                ))}
+                <SearchItem
+                  key={i}
+                  searchItem={filter}
+                  query={this.state.query}
+                  addToQuery={this.addToQuery}
+                  removeFromQuery={() => this.removeFromQuery(filter.type)}
+                  switchGeoSearch={this.switchGeoSearch}
+                  geoSearch={this.state.geoSearch}
+                />
+              ))}
               <SearchToggle
                 onClick={() => this.toggleSearch()}
                 visible={this.state.searchToggleVisible}
@@ -649,20 +549,23 @@ export class AdvancedSearch extends Component<Props, State> {
               >
                 <div>
                   {this.nbFilterSelected() < 2 &&
-                    t(
-                      "AdvancedSearch.Plus de filtres",
-                      "Plus de filtres"
-                    )}{" "}
+                    t("AdvancedSearch.Plus de filtres", "Plus de filtres")}{" "}
                   <EVAIcon
-                    name={this.state.searchToggleVisible ? "arrow-ios-upward-outline" : "arrow-ios-downward-outline"}
-                    fill={this.state.searchToggleVisible ? colors.white : colors.bleuCharte}
+                    name={
+                      this.state.searchToggleVisible
+                        ? "arrow-ios-upward-outline"
+                        : "arrow-ios-downward-outline"
+                    }
+                    fill={
+                      this.state.searchToggleVisible
+                        ? colors.white
+                        : colors.bleuCharte
+                    }
                   />
                 </div>
               </SearchToggle>
             </div>
-            <FilterBar
-              visibleSearch={this.state.searchToggleVisible}
-            >
+            <FilterBar visibleSearch={this.state.searchToggleVisible}>
               <FilterTitle>
                 {t("AdvancedSearch.Filtrer par n", "Filtrer par")}
               </FilterTitle>
@@ -728,7 +631,10 @@ export class AdvancedSearch extends Component<Props, State> {
                       ref={this.setWrapperRef}
                     >
                       {this.props.langues.map((langue, idx) => {
-                        if (langue.avancement > 0 && langue.langueCode !== "fr") {
+                        if (
+                          langue.avancement > 0 &&
+                          langue.langueCode !== "fr"
+                        ) {
                           return (
                             <div
                               key={idx}
@@ -749,7 +655,7 @@ export class AdvancedSearch extends Component<Props, State> {
                             </div>
                           );
                         }
-                        return null
+                        return null;
                       })}
                     </div>
                   </Tooltip>{" "}
@@ -771,11 +677,9 @@ export class AdvancedSearch extends Component<Props, State> {
               ))}
               <FilterTitle>
                 {" "}
-                {(this.props.isLoading ? ". " : this.state.countShow) +
+                {(this.props.isLoading ? ". " : countShow) +
                   "/" +
-                  (this.props.isLoading
-                    ? "."
-                    : this.props.dispositifs.length) +
+                  (this.props.isLoading ? "." : this.props.dispositifs.length) +
                   " " +
                   t("AdvancedSearch.résultats", "résultats")}
               </FilterTitle>
@@ -794,632 +698,74 @@ export class AdvancedSearch extends Component<Props, State> {
             <div
               className={cls(
                 styles.search_wrapper,
-                this.state.searchToggleVisible ? styles.mt_250 : styles.mt_250_hidden
+                this.state.searchToggleVisible
+                  ? styles.mt_250
+                  : styles.mt_250_hidden
               )}
               style={{
                 backgroundColor:
                   this.state.query.order === "theme"
-                    ? this.state.themesObject[0]?.tag?.lightColor || "#f1e8f5"
-                    : this.state.query.theme
+                    ? themesObject[0]?.tag?.lightColor || "#f1e8f5"
+                    : selectedTag
                     ? selectedTag?.lightColor
                     : "#e4e5e6",
               }}
             >
               {this.state.query.order === "theme" ? (
-                <div style={{ width: "100%" }}>
-                  {this.state.themesObject.map((theme, index: number) => {
-                    return (
-                      <ThemeContainer
-                        key={index}
-                        color={theme.tag.lightColor}
-                      >
-                        <ThemeHeader>
-                          <ThemeButton
-                            ml={isRTL ? 20 : 0}
-                            color={theme.tag.darkColor}
-                          >
-                            <Streamline
-                              name={theme.tag.icon}
-                              stroke={"white"}
-                              width={22}
-                              height={22}
-                            />
-                            <ThemeText mr={isRTL ? 8 : 0}>
-                              {t(
-                                "Tags." + theme.tag.short,
-                                theme.tag.short
-                              )}
-                            </ThemeText>
-                          </ThemeButton>
-                          <ThemeHeaderTitle color={theme.tag.darkColor}>
-                            {t(
-                              "Tags." + theme.tag.name,
-                              theme.tag.name
-                            )[0].toUpperCase() +
-                              t(
-                                "Tags." + theme.tag.name,
-                                theme.tag.name
-                              ).slice(1)}
-                          </ThemeHeaderTitle>
-                        </ThemeHeader>
-                        <div className={styles.theme_grid}>
-                          {theme.dispositifs.slice(0, 4)
-                            .map((dispositif, index) => {
-                              return (
-                                <SearchResultCard
-                                  key={index}
-                                  pin={this.pin}
-                                  pinnedList={pinnedList}
-                                  dispositif={dispositif}
-                                  showPinned={true}
-                                />
-                              );
-                            })
-                          }
-                          <SeeMoreCard
-                            seeMore={() => this.addToQuery({theme: theme.tag.name})}
-                            theme={theme.tag}
-                            isRTL={isRTL}
-                          />
-                        </div>
-                      </ThemeContainer>
-                    );
-                  })}
-                </div>
-              ) : this.state.query.theme ? (
-                <ThemeContainer>
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {langueCode !== "fr" || filterLanguage !== null ? (
-                        <>
-                          {t("AdvancedSearch.Résultats disponibles en") + " "}
-                          <i
-                            className={
-                              "flag-icon flag-icon-" +
-                              (filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode)
-                            }
-                            title={
-                              filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode
-                            }
-                            id={
-                              filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode
-                            }
-                          />
-                          <span
-                            className={
-                              "language-name " + (isRTL ? "mr-10" : "ml-10")
-                            }
-                          >
-                            {(filterLanguage
-                              ? filterLanguage.langueFr
-                              : currentLanguage?.langueFr) || "Langue"}
-                          </span>
-                          {" " + t("AdvancedSearch.avec le thème")}
-                        </>
-                      ) : (
-                        t(
-                          "AdvancedSearch.fiches avec le thème"
-                        )[0].toUpperCase() +
-                        t("AdvancedSearch.fiches avec le thème").slice(1)
-                      )}
-                    </ThemeHeaderTitle>
-                    <ThemeButton
-                      ml={8}
-                      color={selectedTag ? selectedTag.darkColor : ""}
-                    >
-                      <Streamline
-                        name={selectedTag ? selectedTag.icon : undefined}
-                        stroke={"white"}
-                        width={22}
-                        height={22}
-                      />
-                      <ThemeText mr={isRTL ? 8 : 0}>
-                        {selectedTag
-                          ? t("Tags." + selectedTag.short, selectedTag.short)
-                          : null}
-                      </ThemeText>
-                    </ThemeButton>
-                    {this.state.filterVille ? (
-                      <ThemeHeaderTitle color={"#828282"}>
-                        {" disponibles à "}
-                      </ThemeHeaderTitle>
-                    ) : null}
-                    {this.state.filterVille ? (
-                      <ThemeButton ml={8} color={"#0421b1"}>
-                        <ThemeTextAlone mr={0}>
-                          {this.state.filterVille}
-                        </ThemeTextAlone>
-                      </ThemeButton>
-                    ) : null}
-                  </ThemeHeader>
-                  <div className={styles.theme_grid}>
-                    {this.state.principalThemeList.length > 0 ? (
-                      this.state.principalThemeList.map(
-                        (dispositif, index: number) => {
-                          return (
-                            <div key={index}>
-                              <SearchResultCard
-                                key={index}
-                                pin={this.pin}
-                                pinnedList={pinnedList}
-                                dispositif={dispositif}
-                                showPinned={true}
-                              />
-                            </div>
-                          );
-                        }
-                      )
-                    ) : (
-                      <NoResultPlaceholder
-                        restart={this.restart}
-                        writeNew={this.writeNew}
-                      />
-                    )}
-                  </div>
-                  <ButtonContainer>
-                    {this.state.filterVille &&
-                    !this.state.showGeolocFullFrancePrincipal ? (
-                      <ShowFullFrancePrimary
-                        onClick={() =>
-                          this.setState({
-                            showGeolocFullFrancePrincipal: true,
-                          })
-                        }
-                      >
-                        {t(
-                          "AdvancedSearch.Afficher aussi les résultats disponibles dans",
-                          "Afficher aussi les résultats disponibles dans"
-                        )}
-                        <span style={{ marginLeft: "4px" }}>
-                          <b>{t("AdvancedSearch.toute la France")}</b>
-                        </span>
-                      </ShowFullFrancePrimary>
-                    ) : this.state.filterVille &&
-                      this.state.showGeolocFullFrancePrincipal ? (
-                      <ShowFullFrancePrimary
-                        active
-                        onClick={() =>
-                          this.setState({
-                            showGeolocFullFrancePrincipal: false,
-                          })
-                        }
-                      >
-                        {t(
-                          "AdvancedSearch.Masquer les résultats disponibles dans"
-                        )}
-                        <span style={{ marginLeft: "4px" }}>
-                          <b>{t("AdvancedSearch.toute la France")}</b>
-                        </span>
-                      </ShowFullFrancePrimary>
-                    ) : null}
-                  </ButtonContainer>
-                  {this.state.filterVille &&
-                  this.state.showGeolocFullFrancePrincipal ? (
-                    <div className={styles.theme_grid}>
-                      {this.state.principalThemeListFullFrance.length > 0 ? (
-                        this.state.principalThemeListFullFrance.map(
-                          (dispositif, index: number) => {
-                            return (
-                              <div key={index}>
-                                <SearchResultCard
-                                  key={index}
-                                  pin={this.pin}
-                                  pinnedList={pinnedList}
-                                  dispositif={dispositif}
-                                  showPinned={true}
-                                />
-                              </div>
-                            );
-                          }
-                        )
-                      ) : (
-                        <NoResultPlaceholder
-                          restart={this.restart}
-                          writeNew={this.writeNew}
-                        />
-                      )}
-                    </div>
-                  ) : null}
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {langueCode !== "fr" || filterLanguage ? (
-                        <>
-                          {t("AdvancedSearch.Autres fiches traduites en") +
-                            " "}
-                          <i
-                            className={
-                              "flag-icon flag-icon-" +
-                              (filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode)
-                            }
-                            title={
-                              filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode
-                            }
-                            id={
-                              filterLanguage
-                                ? filterLanguage.langueCode
-                                : langueCode
-                            }
-                          />
-                          <span
-                            className={
-                              "language-name " + (isRTL ? "mr-10" : "ml-10")
-                            }
-                          >
-                            {(filterLanguage
-                              ? filterLanguage.langueFr
-                              : currentLanguage?.langueFr) || "Langue"}
-                          </span>
-                          {" " + t("AdvancedSearch.avec le thème")}
-                        </>
-                      ) : (
-                        t(
-                          "AdvancedSearch.autres fiches avec le thème"
-                        )[0].toUpperCase() +
-                        t("AdvancedSearch.autres fiches avec le thème").slice(
-                          1
-                        )
-                      )}
-                    </ThemeHeaderTitle>
-                    <ThemeButton
-                      ml={8}
-                      color={selectedTag ? selectedTag.darkColor : ""}
-                    >
-                      <Streamline
-                        name={selectedTag ? selectedTag.icon : undefined}
-                        stroke={"white"}
-                        width={22}
-                        height={22}
-                      />
-                      <ThemeText mr={isRTL ? 8 : 0}>
-                        {selectedTag
-                          ? t("Tags." + selectedTag.short, selectedTag.short)
-                          : null}
-                      </ThemeText>
-                    </ThemeButton>
-                    {this.state.filterVille ? (
-                      <ThemeHeaderTitle color={"#828282"}>
-                        {" disponibles à "}
-                      </ThemeHeaderTitle>
-                    ) : null}
-                    {this.state.filterVille ? (
-                      <ThemeButton ml={8} color={"#0421b1"}>
-                        <ThemeTextAlone mr={0}>
-                          {this.state.filterVille}
-                        </ThemeTextAlone>
-                      </ThemeButton>
-                    ) : null}
-                  </ThemeHeader>
-                  <div className={styles.theme_grid}>
-                    {this.state.secondaryThemeList.length > 0 ? (
-                      this.state.secondaryThemeList.map(
-                        (dispositif, index: number) => {
-                          return (
-                            <div key={index}>
-                              <SearchResultCard
-                                key={index}
-                                pin={this.pin}
-                                pinnedList={pinnedList}
-                                dispositif={dispositif}
-                                showPinned={true}
-                              />
-                            </div>
-                          );
-                        }
-                      )
-                    ) : (
-                      <NoResultPlaceholder
-                        restart={this.restart}
-                        writeNew={this.writeNew}
-                      />
-                    )}
-                  </div>
-                  <ButtonContainer>
-                    {this.state.filterVille &&
-                    !this.state.showGeolocFullFranceSecondary ? (
-                      <ShowFullFranceSecondary
-                        onClick={() =>
-                          this.setState({
-                            showGeolocFullFranceSecondary: true,
-                          })
-                        }
-                      >
-                        {t(
-                          "AdvancedSearch.Afficher aussi les autres fiches disponibles dans",
-                          "Afficher aussi les autres fiches disponibles dans"
-                        )}
-                        <span style={{ marginLeft: "4px" }}>
-                          <b>{t("AdvancedSearch.toute la France")}</b>
-                        </span>
-                      </ShowFullFranceSecondary>
-                    ) : this.state.filterVille &&
-                      this.state.showGeolocFullFranceSecondary ? (
-                      <ShowFullFranceSecondary
-                        active
-                        onClick={() =>
-                          this.setState({
-                            showGeolocFullFranceSecondary: false,
-                          })
-                        }
-                      >
-                        {t(
-                          "AdvancedSearch.Masquer les autres fiches disponibles dans",
-                          "Masquer les autres fiches disponibles dans"
-                        )}
-                        <span style={{ marginLeft: "4px" }}>
-                          <b>{t("AdvancedSearch.toute la France")}</b>
-                        </span>
-                      </ShowFullFranceSecondary>
-                    ) : null}
-                  </ButtonContainer>
-                  {this.state.filterVille &&
-                  this.state.showGeolocFullFranceSecondary ? (
-                    <div className={styles.theme_grid}>
-                      {this.state.secondaryThemeListFullFrance.length > 0 ? (
-                        this.state.secondaryThemeListFullFrance.map(
-                          (dispositif, index: number) => {
-                            return (
-                              <div key={index}>
-                                <SearchResultCard
-                                  key={index}
-                                  pin={this.pin}
-                                  pinnedList={pinnedList}
-                                  dispositif={dispositif}
-                                  showPinned={true}
-                                />
-                              </div>
-                            );
-                          }
-                        )
-                      ) : (
-                        <NoResultPlaceholder
-                          restart={this.restart}
-                          writeNew={this.writeNew}
-                        />
-                      )}
-                    </div>
-                  ) : null}
-                </ThemeContainer>
-              ) : this.state.filterVille ? (
-                <ThemeContainer>
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {"Fiches disponibles à "}
-                    </ThemeHeaderTitle>
-                    <ThemeButton ml={8} color={"#0421b1"}>
-                      <ThemeTextAlone mr={0}>
-                        {this.state.filterVille}
-                      </ThemeTextAlone>
-                    </ThemeButton>
-                  </ThemeHeader>
-                  <div className={styles.theme_grid}>
-                    {dispositifs.length > 0 ? (
-                      dispositifs.map((dispositif, index: number) => {
-                        return (
-                          <div key={index}>
-                            <SearchResultCard
-                              key={index}
-                              pin={this.pin}
-                              pinnedList={pinnedList}
-                              dispositif={dispositif}
-                              showPinned={true}
-                            />
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <NoResultPlaceholder
-                        restart={this.restart}
-                        writeNew={this.writeNew}
-                      />
-                    )}
-                  </div>
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {"Fiches disponibles partout en France"}
-                    </ThemeHeaderTitle>
-                  </ThemeHeader>
-                  <div className={styles.theme_grid}>
-                    {this.state.dispositifsFullFrance.length > 0 ? (
-                      this.state.dispositifsFullFrance.map(
-                        (dispositif, index: number) => {
-                          return (
-                            <div key={index}>
-                              <SearchResultCard
-                                key={index}
-                                pin={this.pin}
-                                pinnedList={pinnedList}
-                                dispositif={dispositif}
-                                showPinned={true}
-                              />
-                            </div>
-                          );
-                        }
-                      )
-                    ) : (
-                      <NoResultPlaceholder
-                        restart={this.restart}
-                        writeNew={this.writeNew}
-                      />
-                    )}
-                  </div>
-                </ThemeContainer>
+                <OrderThemeResults
+                  queryResults={this.state.queryResults}
+                  pin={this.pin}
+                  pinnedList={pinnedList}
+                  addToQuery={this.addToQuery}
+                />
+              ) : selectedTag ? (
+                <ThemeResults
+                  langueCode={langueCode}
+                  flagIconCode={flagIconCode}
+                  selectedTag={selectedTag || null}
+                  filterLanguage={filterLanguage || null}
+                  currentLanguage={currentLanguage || null}
+                  queryResults={this.state.queryResults}
+                  embed={false}
+                  pin={this.pin}
+                  pinnedList={pinnedList}
+                  restart={this.restart}
+                  writeNew={this.writeNew}
+                />
+              ) : filterVille ? (
+                <CityResults
+                  queryResults={this.state.queryResults}
+                  embed={false}
+                  pin={this.pin}
+                  pinnedList={pinnedList}
+                  restart={this.restart}
+                  writeNew={this.writeNew}
+                />
               ) : (
-                <ThemeContainer>
-                  {langueCode !== "fr" || filterLanguage ? (
-                    <>
-                      <ThemeHeader>
-                        <ThemeHeaderTitle color={"#828282"}>
-                          <>
-                            {t("AdvancedSearch.Résultats disponibles en") +
-                              " "}
-                            <i
-                              className={
-                                "flag-icon flag-icon-" +
-                                (filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode)
-                              }
-                              title={
-                                filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode
-                              }
-                              id={
-                                filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode
-                              }
-                            />
-                            <span
-                              className={
-                                "language-name " + (isRTL ? "mr-10" : "ml-10")
-                              }
-                            >
-                              {(filterLanguage
-                                ? filterLanguage.langueFr
-                                : currentLanguage?.langueFr) || "Langue"}
-                            </span>
-                          </>
-                        </ThemeHeaderTitle>
-                      </ThemeHeader>
-                      <div className={styles.theme_grid}>
-                        {this.state.dispositifs.length > 0 ? (
-                          this.state.dispositifs.map((dispositif, index: number) => {
-                            return (
-                              <div key={index}>
-                                <SearchResultCard
-                                  key={index}
-                                  pin={this.pin}
-                                  pinnedList={pinnedList}
-                                  dispositif={dispositif}
-                                  showPinned={true}
-                                />
-                              </div>
-                            );
-                          })
-                        ) : (
-                          <NoResultPlaceholder
-                            restart={this.restart}
-                            writeNew={this.writeNew}
-                          />
-                        )}
-                      </div>
-                      <ThemeHeader>
-                        <ThemeHeaderTitle color={"#828282"}>
-                          <>
-                            {t(
-                              "AdvancedSearch.Résultats non disponibles en"
-                            ) + " "}
-                            <i
-                              className={
-                                "flag-icon flag-icon-" +
-                                (filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode)
-                              }
-                              title={
-                                filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode
-                              }
-                              id={
-                                filterLanguage
-                                  ? filterLanguage.langueCode
-                                  : langueCode
-                              }
-                            />
-                            <span
-                              className={
-                                "language-name " + (isRTL ? "mr-10" : "ml-10")
-                              }
-                            >
-                              {(filterLanguage
-                                ? filterLanguage.langueFr
-                                : currentLanguage?.langueFr) || "Langue"}
-                            </span>
-                          </>
-                        </ThemeHeaderTitle>
-                      </ThemeHeader>
-                      <div className={styles.theme_grid}>
-                        {this.state.nonTranslated.length > 0 ? (
-                          this.state.nonTranslated.map(
-                            (dispositif, index: number) => {
-                              return (
-                                <div key={index}>
-                                  <SearchResultCard
-                                    key={index}
-                                    pin={this.pin}
-                                    pinnedList={pinnedList}
-                                    dispositif={dispositif}
-                                    showPinned={true}
-                                  />
-                                </div>
-                              );
-                            }
-                          )
-                        ) : (
-                          <NoResultPlaceholder
-                            restart={this.restart}
-                            writeNew={this.writeNew}
-                          />
-                        )}
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <ThemeHeader />
-                      <div className={styles.theme_grid}>
-                        {dispositifs.map((dispositif, index: number) => {
-                          return (
-                            <div key={index}>
-                              <SearchResultCard
-                                key={index}
-                                pin={this.pin}
-                                pinnedList={pinnedList}
-                                dispositif={dispositif}
-                                showPinned={true}
-                              />
-                            </div>
-                          );
-                        })}
-                        {!this.props.isLoading &&
-                          dispositifs.length === 0 && (
-                            <NoResultPlaceholder
-                              restart={this.restart}
-                              writeNew={this.writeNew}
-                            />
-                          )}
-                      </div>
-                    </>
-                  )}
-                </ThemeContainer>
+                <DefaultResults
+                  langueCode={langueCode}
+                  filterLanguage={filterLanguage || null}
+                  currentLanguage={currentLanguage || null}
+                  queryResults={this.state.queryResults}
+                  embed={false}
+                  isLoading={false}
+                  pin={this.pin}
+                  pinnedList={pinnedList}
+                  restart={this.restart}
+                  writeNew={this.writeNew}
+                />
               )}
             </div>
           ) : (
             <div
               className={cls(
                 styles.search_wrapper,
-                this.state.searchToggleVisible ? styles.mt_250 : styles.mt_250_hidden
+                this.state.searchToggleVisible
+                  ? styles.mt_250
+                  : styles.mt_250_hidden
               )}
             >
-              <ThemeContainer>
-                <ThemeHeader />
-                <div className={styles.theme_grid}>
-                  {this.state.chargingArray.map((_, index: number) => {
-                    return <LoadingCard key={index} />;
-                  })}
-                </div>
-              </ThemeContainer>
+              <LoadingResults />
             </div>
           )}
           <BookmarkedModal
@@ -1449,25 +795,30 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ locale }) => {
-  if (locale) {
-    store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
-  } else {
-    store.dispatch(fetchActiveDispositifsActionsCreator());
-  }
-  store.dispatch(END);
-  await store.sagaTask?.toPromise();
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ locale }) => {
+      if (locale) {
+        store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
+      } else {
+        store.dispatch(fetchActiveDispositifsActionsCreator());
+      }
+      store.dispatch(END);
+      await store.sagaTask?.toPromise();
 
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-    },
-  }
-});
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), [
+            "common",
+          ])),
+        },
+      };
+    }
+);
 
 export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
   )(withTranslation()(AdvancedSearch))
-)
+);

@@ -4,6 +4,8 @@ import { iconName } from "types/interface";
 import styles from "./TagButton.module.scss";
 import { cls } from "lib/classname";
 
+// TODO: replace by FilterButton or FButton
+
 interface Props {
   name: string;
   icon?: iconName;

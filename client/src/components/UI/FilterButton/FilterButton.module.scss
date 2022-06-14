@@ -1,0 +1,55 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.btn {
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  color: $gray90;
+  background-color: $white;
+  white-space: nowrap;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.1s ease;
+
+  &:hover {
+    background: $gray10;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.active {
+    color: $white;
+    background: $gray90;
+
+    &:hover {
+      background: $gray80;
+    }
+  }
+
+  // colored: change opacity
+  &.colored {
+    opacity: 0.3;
+
+    &:hover {
+      opacity: 0.35;
+    }
+
+    &.active {
+      background: inherit;
+      opacity: 1;
+    }
+  }
+}
+
+.close {
+  height: 20px;
+  margin-top: -3px;
+  margin-left: 10px;
+}

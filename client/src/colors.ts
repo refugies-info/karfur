@@ -8,6 +8,7 @@ export const colors = {
   gray50: "#cdcdcd",
   gray60: "#c6c6c6",
   gray70: "#828282",
+  gray80: "#5E5E5E",
   gray90: "#212121",
   focus: "#2d9cdb",
   bleuCharte: "#0421b1",

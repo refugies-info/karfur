@@ -72,13 +72,14 @@ const SearchItem = (props: Props) => {
     setVilleAuto("");
   };
   const selectOption = (item: Tag | AgeFilter | FrenchLevelFilter) => {
-    props.addToQuery({ [props.searchItem.type]: item.name });
+    const value = props.searchItem.type === "theme" ? [item.name] : item.name;
+    props.addToQuery({ [props.searchItem.type]: value });
     toggle();
   };
 
   const active = !!props.query[props.searchItem.type];
   const currentTag = props.searchItem.type === "theme" && active
-    ? tags.find((tag) => tag.name === props.query.theme)
+    ? tags.find((tag) => tag.name === props.query.theme?.[0])
     : null;
 
   useEffect(() => {
