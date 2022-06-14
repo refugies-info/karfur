@@ -1,21 +1,50 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 
-.modal {
-  .modal_content {
-   mix-blend-mode: normal; /* Shadow autour */
-   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-   border-radius: $radius;
-   border: none;
-   background: $gray20;
-   padding: 32px;
+$containerHeight: 450px;
 
-   .user_img {
-     max-width: 80px;
-     max-height: 80px;
-     border-radius: 50%;
-     margin-right: 16px;
-     margin-bottom: 16px;
-   }
- }
+.user_img {
+  border-radius: 50%;
+}
+
+.no_structure {
+  font-size: 22px;
+  font-weight: bold;
+  color: $orange;
+  background: $lightOrange;
+  padding: 8px;
+  border-radius: $radius;
+}
+
+.details_row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  margin-top: 20px;
+}
+
+.col_1 {
+  width: 335px;
+  display: flex;
+  flex-direction: column;
+}
+.col_2 {
+  width: 450px;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+.col_3 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: $containerHeight;
+}
+
+.stats {
+  font-size: 12px;
+}
+.error {
+  color: $error;
+  font-size: 12px;
 }

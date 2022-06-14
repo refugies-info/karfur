@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
+
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { selectedStructureSelector } from "services/SelectedStructure/selectedStructure.selector";
 import { userSelector } from "services/User/user.selectors";
+import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
+import { wrapper } from "services/configureStore";
+
 import { LeftAnnuaireDetail } from "components/Pages/annuaire/id/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "components/Pages/annuaire/id/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaireDetails";
-import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
 import SEO from "components/Seo";
-import { wrapper } from "services/configureStore";
-import { END } from "redux-saga";
+
 import styles from "scss/pages/annuaire-id.module.scss";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
   history: string[]

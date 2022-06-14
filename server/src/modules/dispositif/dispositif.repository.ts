@@ -9,7 +9,10 @@ import { ObjectId } from "mongoose";
 export const getDispositifsFromDB = async (
   needFields: Object
 ): Promise<IDispositif[]> =>
-  await Dispositif.find({}, needFields).populate("mainSponsor creatorId");
+  await Dispositif.find({}, needFields)
+    .populate("mainSponsor creatorId")
+    .populate("lastModificationAuthor publishedAtAuthor", "username")
+
 
 export const getDispositifArray = async (query: any, extraFields: any = {}, populate: string = "") => {
   const neededFields = {

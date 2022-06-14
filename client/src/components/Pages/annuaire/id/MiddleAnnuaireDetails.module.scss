@@ -1,0 +1,95 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.middle_container {
+  padding: 32px;
+  padding-top: 100px;
+  overflow: scroll;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.title_container {
+  margin-bottom: 14px;
+  color: $bleuCharte;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 51px;
+  margin-right: 8px;
+}
+
+.subtitle {
+  font-weight: bold;
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.line_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.white_container {
+  background: $white;
+  border-radius: $radius;
+  padding: 16px;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+.bottom_container {
+  margin-top: 80px;
+  width: 100%;
+  height: 250px;
+  color: #e5e5e5;
+}
+
+.red_container {
+  background: $grey50b;
+  border-radius: $radius;
+  padding: 16px;
+  width: fit-content;
+  margin-right: 8px;
+}
+
+.blue_container {
+  background: $bgfocus;
+  border-radius: $radius;
+  padding: 16px;
+  width: fit-content;
+  margin: 10px 0;
+}
+
+.description {
+  font-weight: normal;
+  font-size: $text-normal;
+  line-height: 20px;
+}
+
+.info_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.no_description {
+  font-weight: normal;
+  font-size: $text-normal;
+  line-height: 20px;
+  color: $gray70;
+}
+
+.info_column_container {
+  margin-right: 42px;
+}
+
+.activity_container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}

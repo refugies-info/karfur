@@ -1,0 +1,64 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/responsive";
+
+.creator_img {
+  max-width: 70px;
+  max-height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.sponsor_img {
+  max-width: 140px;
+  max-height: 60px;
+  margin-right: 8px;
+}
+.label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: bold;
+}
+.text {
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
+}
+.details_row {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-grow: 1;
+  margin-top: 16px;
+}
+.col_1 {
+  width: 450px;
+}
+.col_2 {
+  width: 225px;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+
+  .input {
+    flex-grow: 1;
+  }
+}
+.col_3 {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 435px;
+}
+
+
+.white_container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  height: 52px;
+  padding: 12px;
+  border-radius: $radius;
+  background-color: $white;
+  cursor: pointer;
+}

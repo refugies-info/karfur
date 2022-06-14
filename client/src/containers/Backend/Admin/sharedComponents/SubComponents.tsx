@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "lib";
-import { correspondingStatus, progressionData } from "../AdminContenu/data";
+import { correspondingStatus, progressionData, publicationData } from "../AdminContenu/data";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
+import moment, { Moment } from "moment";
+import styles from "../Admin.module.scss";
 interface SimplifiedStructure {
   _id: ObjectId;
   status: string;
@@ -129,6 +131,7 @@ export const StyledStatusContainer = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
+  white-space: nowrap;
   cursor: ${(props: StyledStatusContainer ) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props: StyledStatusContainer ) => (props.textColor ? props.textColor : colors.white)};
 `;
@@ -153,10 +156,21 @@ export const getColorAndStatus = (text: string) => {
       textColor: correspondingStatusElementProgression[0].textColor,
     };
 
+  const correspondingStatusElementPublication = publicationData.filter(
+    (element) => element.storedStatus === text
+  );
+  if (correspondingStatusElementPublication.length > 0)
+    return {
+      status: correspondingStatusElementPublication[0].displayedStatus,
+      color: correspondingStatusElementPublication[0].color,
+      textColor: correspondingStatusElementPublication[0].textColor,
+    };
+
+
   return {
-    status: "Nouveau !",
+    status: "Nouveau !",
     color: colors.bleuCharte,
-    textColor: colors.bleuCharte,
+    textColor: colors.white,
   };
 };
 
@@ -324,3 +338,22 @@ export const TabHeader = (props: {
     )}
   </StyledTabHeader>
 );
+
+
+export const Date = (props: {
+  date: Moment | undefined,
+  author?: {_id: ObjectId, username: string}
+}) => (
+  <p className={styles.text}>
+
+    {!props.date ?
+      "Non disponible" :
+      <>
+        {`${moment(props.date).format("LLL")} soit ${moment(props.date).fromNow()}`}
+        {props.author &&<strong>{` par ${props.author.username}`}</strong>}
+      </>
+    }
+  </p>
+);
+
+export const Label = (props: { children: any, htmlFor?: string }) => <label className={styles.label} htmlFor={props.htmlFor}>{props.children}</label>

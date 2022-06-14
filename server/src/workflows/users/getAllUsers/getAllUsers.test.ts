@@ -24,6 +24,7 @@ const neededFields = {
   email: 1,
   phone: 1,
   selectedLanguages: 1,
+  adminComments: 1
 };
 
 const user1 = {

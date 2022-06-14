@@ -50,7 +50,7 @@ describe("getLogs", () => {
   });
   it("should return 400 if invalid request", async () => {
     const req = {
-      body: {  },
+      query: {  },
       user: { roles: [] },
     };
     await getLogs(req, res);
@@ -59,7 +59,7 @@ describe("getLogs", () => {
   it("should return 200", async () => {
     const req = {
       fromSite: true,
-      body: { id: "id" },
+      query: { id: "id" },
       user: { roles: [] },
     };
     await getLogs(req, res);

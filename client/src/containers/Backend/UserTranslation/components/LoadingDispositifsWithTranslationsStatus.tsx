@@ -61,7 +61,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
     <MainContainer>
       <RowContainer>
         <Row>
-          <SkeletonTheme color={colors.white}>
+          <SkeletonTheme baseColor={colors.white}>
             <Skeleton width={120} height={50} count={1} />
           </SkeletonTheme>
         </Row>
@@ -130,18 +130,18 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
               return (
                 <tr key={key} className={"bg-white"}>
                   <td>
-                    <SkeletonTheme color="#CDCDCD">
+                    <SkeletonTheme baseColor="#CDCDCD">
                       <Skeleton width={50} count={1} />
                     </SkeletonTheme>
                   </td>
                   <td>
-                    <SkeletonTheme color="#CDCDCD">
+                    <SkeletonTheme baseColor="#CDCDCD">
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
                   {arrayContent.map((_, key) => (
                     <td key={key}>
-                      <SkeletonTheme color="#CDCDCD">
+                      <SkeletonTheme baseColor="#CDCDCD">
                         <Skeleton width={70} count={1} />
                       </SkeletonTheme>
                     </td>

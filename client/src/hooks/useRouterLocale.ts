@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 const getRouterLocale = (locale: string | undefined) => {
-  return locale && locale !== "fr" ? "/" + locale : "";
+  return locale && locale !== "fr" ? "/" + locale : "/fr";
 }
 
 const useRouterLocale = () => {

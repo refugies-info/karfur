@@ -3,6 +3,7 @@ import { colors } from "colors";
 import API from "../../../../utils/API";
 import { tags } from "data/tags";
 import { ObjectId } from "mongodb";
+import { SimplifiedDispositif } from "types/interface";
 
 export const getTagColor = (tagName: string) => {
   const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
@@ -22,14 +23,14 @@ export const getTag = (tagName: string) => {
   return null;
 };
 
+// TODO: move function
 export const prepareDeleteContrib = (
-  setSelectedDispositifId: any,
-  setShowDetailsModal: any,
-  fetchAllDispositifsActionsCreator: any,
+  allDispositifs: SimplifiedDispositif[],
+  setAllDispositifsActionsCreator: any,
   dispatch: any,
   dispositifId: ObjectId | null
 ) => {
-  Swal.fire({
+  return Swal.fire({
     title: "Êtes-vous sûr ?",
     text: "La suppression d'un dispositif est irréversible",
     type: "question",
@@ -45,7 +46,7 @@ export const prepareDeleteContrib = (
         status: "Supprimé",
       };
 
-      API.updateDispositifStatus({ query: newDispositif })
+      return API.updateDispositifStatus({ query: newDispositif })
         .then(() => {
           Swal.fire({
             title: "Yay...",
@@ -53,9 +54,10 @@ export const prepareDeleteContrib = (
             type: "success",
             timer: 1500,
           });
-          setSelectedDispositifId(null);
-          setShowDetailsModal(false);
-          dispatch(fetchAllDispositifsActionsCreator());
+          const dispositifs = [...allDispositifs];
+          const newDispositif = dispositifs.find((d) => d._id === dispositifId);
+          if (newDispositif) newDispositif.status = "Supprimé";
+          dispatch(setAllDispositifsActionsCreator(dispositifs));
         })
         .catch(() => {
           Swal.fire({
@@ -66,5 +68,6 @@ export const prepareDeleteContrib = (
           });
         });
     }
+    return;
   });
 };

@@ -42,7 +42,7 @@ export const ResponsableComponent = (props: Props) => {
             className={styles.respo_img + " mr-8"}
             src={responsableSecureUrl}
             alt=""
-            width={70}
+            width={40}
             height={40}
             objectFit="contain"
           />
@@ -60,6 +60,7 @@ export const ResponsableComponent = (props: Props) => {
             style={{
               cursor: "pointer",
               textDecoration: "underline",
+              marginLeft: 16
             }}
           >
             {props.responsable.username}
@@ -88,12 +89,12 @@ export const ResponsableComponent = (props: Props) => {
           className={styles.respo_img + " mr-8"}
           src={responsableSecureUrl}
           alt=""
-          width={70}
+          width={40}
           height={40}
           objectFit="contain"
         />
       )}
-      {props.responsable ? props.responsable.username : "Aucun responsable"}
+      <span className="ml-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
     </RowContainer>
   );
 };

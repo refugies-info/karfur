@@ -70,6 +70,7 @@ describe("publish dispositif", () => {
       [],
       "dispositif",
       null,
+      [],
       false
     );
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
@@ -93,6 +94,7 @@ describe("publish dispositif", () => {
       [],
       "dispositif",
       null,
+      [],
       false
     );
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);

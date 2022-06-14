@@ -16,7 +16,8 @@ export let middleware: NextMiddleware = (request) => {
     newUrl.locale = "fr";
 
     if (newUrl.pathname === "/") {
-      return NextResponse.redirect(request.url + "fr", 308); // fix double redirect for /
+      const url = new URL(request.url);
+      return NextResponse.redirect(url.origin + "/fr" + url.search, 308); // fix double redirect for /
     }
 
     // Redirect to the new url
