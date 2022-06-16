@@ -125,7 +125,7 @@ export const ReadButton = () => {
         accessibilityLabel={"Écouter"}>
         <PlayButton>
           <Icon
-            name={isReading ? "square-outline" : "arrow-right"}
+            name={isReading && !isPaused ? "square-outline" : "arrow-right"}
             height={24}
             width={24}
             fill={theme.colors.white}

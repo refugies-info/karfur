@@ -104,7 +104,8 @@ export const NeedsScreen = ({
   // Voiceover
   const scrollview = React.useRef<ScrollView|null>(null);
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
+    const offset = showSimplifiedHeader ? 250 : 400;
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
   }
   useAutoScroll(scrollview, 250);
 
