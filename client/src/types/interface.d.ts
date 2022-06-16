@@ -498,6 +498,7 @@ export interface Log {
     nom?: string;
     titreInformatif?: string;
     username?: string;
+    langueFr?: string;
   }
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
