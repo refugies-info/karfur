@@ -270,6 +270,7 @@ const Dispositif = (props: Props) => {
           updatedAt: moment(),
           nbVues: 0,
           nbMercis: 0,
+          adminProgressionStatus: "Nouveau !"
         }
         setDisableEdit(false);
         setShowDispositifCreateModal(true);

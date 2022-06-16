@@ -14,7 +14,7 @@ import {
   fetchWidgetsActionCreator,
 } from "services/Widgets/widgets.actions";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { FigureContainer } from "../sharedComponents/StyledAdmin";
+import { FigureContainer, StyledHeader, StyledHeaderInner, StyledTitle } from "../sharedComponents/StyledAdmin";
 import { WidgetLine } from "./components/WidgetLine";
 import { ThemesInput } from "./components/ThemesInput";
 import { LocationInput } from "./components/LocationInput";
@@ -100,86 +100,90 @@ export const Widgets = () => {
   const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedTags.length > 0;
 
   return (
-    <div className="m-5">
-      <h2 className={styles.title}>
-        Widgets
-        <FigureContainer>{widgets.length}</FigureContainer>
-      </h2>
-      <Row>
-        <Col>
-          <form className={styles.form}>
-            <FInput
-              id="value"
-              value={name}
-              onChange={(e: any) => setName(e.target.value)}
-              placeholder="Choisis un titre"
-            />
-
-            <ThemesInput
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
-            />
-
-            <LocationInput
-              selectedCity={selectedCity}
-              selectedDepartment={selectedDepartment}
-              setSelectedCity={setSelectedCity}
-              setSelectedDepartment={setSelectedDepartment}
-            />
-
-            <TypeContenuInput
-              selectedTypeContenu={selectedTypeContenu}
-              setSelectedTypeContenu={setSelectedTypeContenu}
-            />
-
-            <LanguageInput
-              selectedLanguages={selectedLanguages}
-              setSelectedLanguages={setSelectedLanguages}
-              languages={languages}
-            />
-
-            <div className={styles.buttons}>
-              <FButton
-                type="white"
-                onClick={(e: any) => {
-                  e.preventDefault();
-                  resetForm();
-                }}
-                name="trash-2-outline"
-              >
-                Tout effacer
-              </FButton>
-              <FButton
-                type="validate"
-                onClick={createWidget}
-                name="plus-circle-outline"
-                disabled={isCreating || !canSubmit}
-              >
-                Créer le widget
-              </FButton>
-            </div>
-          </form>
-        </Col>
-        <Col>
-          {isFetching ?
-            <SkeletonTheme baseColor="#CDCDCD">
-              <Skeleton
-                width="100%"
-                height={72}
-                count={3}
-                className="mb-4"
-                style={{borderRadius: 12}}
+    <div>
+      <StyledHeader>
+        <StyledHeaderInner>
+          <StyledTitle>Widgets</StyledTitle>
+          <FigureContainer>{widgets.length}</FigureContainer>
+        </StyledHeaderInner>
+      </StyledHeader>
+      <div className="mx-5 mb-5">
+        <Row>
+          <Col>
+            <form className={styles.form}>
+              <FInput
+                id="value"
+                value={name}
+                onChange={(e: any) => setName(e.target.value)}
+                placeholder="Choisis un titre"
               />
-            </SkeletonTheme> :
-            (widgets || []).map((widget) => (
-              <WidgetLine
-                key={widget._id.toString()}
-                widget={widget}
-                onClick={toggleModal}
+
+              <ThemesInput
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
               />
-            ))}
-        </Col>
-      </Row>
+
+              <LocationInput
+                selectedCity={selectedCity}
+                selectedDepartment={selectedDepartment}
+                setSelectedCity={setSelectedCity}
+                setSelectedDepartment={setSelectedDepartment}
+              />
+
+              <TypeContenuInput
+                selectedTypeContenu={selectedTypeContenu}
+                setSelectedTypeContenu={setSelectedTypeContenu}
+              />
+
+              <LanguageInput
+                selectedLanguages={selectedLanguages}
+                setSelectedLanguages={setSelectedLanguages}
+                languages={languages.filter(ln => ln.i18nCode !== "fr")}
+              />
+
+              <div className={styles.buttons}>
+                <FButton
+                  type="white"
+                  onClick={(e: any) => {
+                    e.preventDefault();
+                    resetForm();
+                  }}
+                  name="trash-2-outline"
+                >
+                  Tout effacer
+                </FButton>
+                <FButton
+                  type="validate"
+                  onClick={createWidget}
+                  name="plus-circle-outline"
+                  disabled={isCreating || !canSubmit}
+                >
+                  Créer le widget
+                </FButton>
+              </div>
+            </form>
+          </Col>
+          <Col>
+            {isFetching ?
+              <SkeletonTheme baseColor="#CDCDCD">
+                <Skeleton
+                  width="100%"
+                  height={72}
+                  count={3}
+                  className="mb-4"
+                  style={{borderRadius: 12}}
+                />
+              </SkeletonTheme> :
+              (widgets || []).map((widget) => (
+                <WidgetLine
+                  key={widget._id.toString()}
+                  widget={widget}
+                  onClick={toggleModal}
+                />
+              ))}
+          </Col>
+        </Row>
+      </div>
 
       <EditWidgetModal
         show={showEditModal}

@@ -11,6 +11,10 @@ $light: $gray20;
 $dark: $gray90;
 $primary: $bleuCharte;
 
+$theme-colors: (
+  "light-green":    $greenValidate,
+);
+
 // Headings
 $h1-font-size: 3.25rem;
 $h2-font-size: 2.5rem;

@@ -97,12 +97,12 @@ const LanguageModal = (props: Props) => {
                         {props.isLanguagesLoading === false && (
                           <>
                             <Progress
-                              color={isSelected ? "secondary" : "primary"}
+                              color={isSelected ? "light-green" : "primary"}
                               value={getAvancementTrad(ln.i18nCode) * 100}
                               className={styles.progress}
                             />
                             <span
-                              className={isSelected ? "text-light" : "text-primary"}
+                              className={isSelected ? "text-light-green" : "text-primary"}
                             >
                               <b>
                                 {Math.round(getAvancementTrad(ln.i18nCode) * 100) + " %"}

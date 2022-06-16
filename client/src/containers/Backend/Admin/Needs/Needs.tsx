@@ -3,6 +3,7 @@ import {
   StyledTitle,
   FigureContainer,
   Content,
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { Table } from "reactstrap";
 import { TabHeader } from "../sharedComponents/SubComponents";
@@ -133,17 +134,10 @@ export const Needs = () => {
   return (
     <div>
       <StyledHeader>
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <StyledHeaderInner>
           <StyledTitle>Besoins</StyledTitle>
           <FigureContainer>{needs.length}</FigureContainer>
-        </div>
+        </StyledHeaderInner>
         <FButton type="dark" onClick={() => setShowAddNeedModal(true)}>
           Ajouter un besoin
         </FButton>
