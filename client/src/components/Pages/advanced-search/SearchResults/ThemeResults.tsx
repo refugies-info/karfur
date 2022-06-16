@@ -71,31 +71,33 @@ export const ThemeResults = (props: Props) => {
             t("AdvancedSearch.fiches avec le thème")[0].toUpperCase() +
             t("AdvancedSearch.fiches avec le thème").slice(1)
           )}
+          <span
+            className={cls(styles.button, styles.inline_button)}
+            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+          >
+            <Streamline
+              name={selectedTag ? selectedTag.icon : undefined}
+              stroke={"white"}
+              width={22}
+              height={22}
+            />
+            <p className={styles.text}>
+              {selectedTag
+                ? t("Tags." + selectedTag.short, selectedTag.short)
+                : null}
+            </p>
+          </span>
+          {filterVille ? (
+            <span className={styles.title}>{" disponibles à "}</span>
+          ) : null}
+          {filterVille ? (
+            <span
+              className={cls(styles.button, styles.inline_button)}
+            >
+              <p className={styles.text_alone}>{filterVille}</p>
+            </span>
+          ) : null}
         </p>
-        <div
-          className={styles.button}
-          style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
-        >
-          <Streamline
-            name={selectedTag ? selectedTag.icon : undefined}
-            stroke={"white"}
-            width={22}
-            height={22}
-          />
-          <p className={styles.text}>
-            {selectedTag
-              ? t("Tags." + selectedTag.short, selectedTag.short)
-              : null}
-          </p>
-        </div>
-        {filterVille ? (
-          <p className={styles.title}>{" disponibles à "}</p>
-        ) : null}
-        {filterVille ? (
-          <div className={styles.button}>
-            <p className={styles.text_alone}>{filterVille}</p>
-          </div>
-        ) : null}
       </div>
       <div className={styles.theme_grid}>
         {principalThemeList.length > 0 ? (
@@ -190,31 +192,33 @@ export const ThemeResults = (props: Props) => {
             t("AdvancedSearch.autres fiches avec le thème")[0].toUpperCase() +
             t("AdvancedSearch.autres fiches avec le thème").slice(1)
           )}
+          <span
+            className={cls(styles.button, styles.inline_button)}
+            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+          >
+            <Streamline
+              name={selectedTag ? selectedTag.icon : undefined}
+              stroke={"white"}
+              width={22}
+              height={22}
+            />
+            <p className={styles.text}>
+              {selectedTag
+                ? t("Tags." + selectedTag.short, selectedTag.short)
+                : null}
+            </p>
+          </span>
+          {filterVille ? (
+            <span className={styles.title}>{" disponibles à "}</span>
+          ) : null}
+          {filterVille ? (
+            <span
+              className={cls(styles.button, styles.inline_button)}
+            >
+              <p className={styles.text_alone}>{filterVille}</p>
+            </span>
+          ) : null}
         </p>
-        <div
-          className={styles.button}
-          style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
-        >
-          <Streamline
-            name={selectedTag ? selectedTag.icon : undefined}
-            stroke={"white"}
-            width={22}
-            height={22}
-          />
-          <p className={styles.text}>
-            {selectedTag
-              ? t("Tags." + selectedTag.short, selectedTag.short)
-              : null}
-          </p>
-        </div>
-        {filterVille ? (
-          <p className={styles.title}>{" disponibles à "}</p>
-        ) : null}
-        {filterVille ? (
-          <div className={styles.button}>
-            <p className={styles.text_alone}>{filterVille}</p>
-          </div>
-        ) : null}
       </div>
       <div className={styles.theme_grid}>
         {secondaryThemeList.length > 0 ? (

@@ -126,7 +126,7 @@ export const EditWidgetModal = (props: Props) => {
             <LanguageInput
               selectedLanguages={selectedLanguages}
               setSelectedLanguages={setSelectedLanguages}
-              languages={languages}
+              languages={languages.filter(ln => ln.i18nCode !== "fr")}
             />
           </form>
         </Col>
@@ -144,12 +144,14 @@ export const EditWidgetModal = (props: Props) => {
             <FButton type="white" name="close-outline" onClick={props.toggle}>
               Annuler
             </FButton>
-            <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget}>
-              Sauvegarder
-            </FButton>
-            <FButton type="validate" name="copy-outline" disabled={!canSubmit} onClick={editAndCopy}>
-              Sauvegarder et copier
-            </FButton>
+            <div>
+              <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget} className="mr-2">
+                Sauvegarder
+              </FButton>
+              <FButton type="validate" name="copy-outline" disabled={!canSubmit} onClick={editAndCopy}>
+                Sauvegarder et copier
+              </FButton>
+            </div>
           </div>
         </Col>
       </Row>

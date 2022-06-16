@@ -18,6 +18,7 @@ import {
   Content,
   FigureContainer,
   SearchBarContainer,
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
@@ -403,17 +404,10 @@ export const AdminContenu = () => {
         </Link>
       </SearchBarContainer>
       <StyledHeader>
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <StyledHeaderInner>
           <StyledTitle>Contenus</StyledTitle>
           <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
-        </div>
+        </StyledHeaderInner>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
