@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity, View } from "react-native";
+import React, { useEffect } from "react";
+import { Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Speech from "expo-speech";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,12 +84,10 @@ export const ReadButton = () => {
   };
 
   const goToNext = () => {
-    Speech.stop();
     dispatch(readNext());
   }
 
   const goToPrevious = () => {
-    Speech.stop();
     dispatch(readPrevious());
   }
 
@@ -101,6 +99,22 @@ export const ReadButton = () => {
   const changeRate = () => {
     dispatch(readRate());
   }
+
+  useEffect(() => {
+    if (isPaused) {
+      if (Platform.OS === "android") {
+        Speech.stop();
+      } else {
+        Speech.pause();
+      }
+    } else {
+      if (Platform.OS === "android") {
+        dispatch(startReading());
+      } else {
+        Speech.resume();
+      }
+    }
+  }, [isPaused]);
 
   return (
     <Container>

@@ -329,6 +329,14 @@ export const ContentScreen = ({
     }
   };
 
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
+  }
+  useAutoScroll(scrollview, 250);
+
+
   // Header color
   const getInterpolation = (color: string) => {
     return animatedController.interpolate({
@@ -569,13 +577,6 @@ export const ContentScreen = ({
     }
     return;
   };
-
-  // Voiceover
-  const scrollview = React.useRef<ScrollView|null>(null);
-  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y))
-  }
-  useAutoScroll(scrollview, 250);
 
   // SHARE
   const shareContent = async (content: Content) => {

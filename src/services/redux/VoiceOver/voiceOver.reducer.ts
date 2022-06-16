@@ -25,17 +25,21 @@ export const voiceOverReducer = createReducer<
   VoiceOverActions
 >(initialVoiceOverState, {
   READING_START: (state) => {
-    let index = 0;
-    for (const [i, item] of state.readingList.entries()) {
-      if (item.posY >= state.currentScroll) {
-        index = i;
-        break;
+    let currentItem = state.currentItem; // start current one
+    if (!currentItem) { // or find item on the screen
+      let index = 0;
+      for (const [i, item] of state.readingList.entries()) {
+        if (item.posY >= state.currentScroll) {
+          index = i;
+          break;
+        }
       }
+      currentItem = state.readingList?.[index]?.id
     }
     return {
       ...state,
       isReading: state.readingList.length > 0,
-      currentItem: state.readingList?.[index]?.id
+      currentItem
     }
   },
   READING_STOP: (state) => ({

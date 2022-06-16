@@ -4,14 +4,13 @@ import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToReadingList,
-  readNext,
+  readNext
 } from "../services/redux/VoiceOver/voiceOver.actions";
 import { currentItemId, isPausedSelector, readingRateSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
 // import { wait } from "../libs/wait";
 import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
-import { logger } from "../logger";
 
 interface Props {
   children?: string | ReactNode;
@@ -44,20 +43,17 @@ export const ReadableText = (props: Props) => {
   }, [isFocused]);
 
   const readingRate = useSelector(readingRateSelector);
+  const isPaused = useSelector(isPausedSelector);
   useEffect(() => {
-    if (currentReadingItem === id) { // if currentItem is this one
+    if (currentReadingItem === id && !isPaused) { // if currentItem is this one
       const text = props.text || props.children as string || "";
+      Speech.stop();
       Speech.speak(text, { // read it
         rate: readingRate,
-        onBoundary: () => {
-          logger.info("boundary");
-        },
-        onMark: () => {
-          logger.info("mark");
-        },
         onDone: () => {
-          logger.info("done");
-          dispatch(readNext());
+          Speech.isSpeakingAsync().then(res => {
+            if (!res) dispatch(readNext());
+          })
           // wait(1000) // then wait for 1 sec
           //   .then(() => {}); // and go to next element
           //TODO: ERROR when go next -> fires anyway
@@ -67,18 +63,8 @@ export const ReadableText = (props: Props) => {
         }
       });
     }
-  }, [currentReadingItem]);
+  }, [currentReadingItem, isPaused]);
 
-  const isPaused = useSelector(isPausedSelector);
-  useEffect(() => {
-    if (currentReadingItem === id) { // if currentItem is this one
-      if (isPaused) {
-        Speech.pause();
-      } else {
-        Speech.resume();
-      }
-    };
-  }, [isPaused]);
 
   const isActive = currentReadingItem === id;
 
