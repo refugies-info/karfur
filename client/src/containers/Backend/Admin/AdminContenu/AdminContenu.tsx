@@ -235,7 +235,7 @@ export const AdminContenu = () => {
       dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
-  
+
   const { dispositifsToDisplay, dispositifsForCount } =
     filterAndSortDispositifs(dispositifs);
 
@@ -519,13 +519,9 @@ export const AdminContenu = () => {
                     onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                      {element.adminProgressionStatus ? (
+                      {element.adminProgressionStatus && (
                         <div style={{ marginRight: "8px" }}>
                           <StyledStatus text={element.adminProgressionStatus} />
-                        </div>
-                      ) : (
-                        <div style={{ marginRight: "8px" }}>
-                          <StyledStatus text="Nouveau !" />
                         </div>
                       )}
                       {element.adminPercentageProgressionStatus && (
