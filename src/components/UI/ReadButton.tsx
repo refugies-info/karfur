@@ -13,9 +13,12 @@ import {
   startReading,
   stopReading,
 } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { isPausedSelector, isReadingSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { isPausedSelector, isReadingSelector, readingRateSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { theme } from "../../theme";
-import { StyledTextVerySmall } from "../StyledText";
+import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
+import Play from "../../theme/images/voiceover/play_icon.svg";
+import Pause from "../../theme/images/voiceover/pause_icon.svg";
+import Background from "../../theme/images/voiceover/bg_voiceover.svg";
 
 const Container = styled(View)`
   position: absolute;
@@ -46,26 +49,40 @@ const PlayButton = styled(View)`
   box-shadow: 0 0 8px rgba(4, 33, 177, 0.16);
 `;
 const Buttons = styled(View)`
-  background: ${theme.colors.lightBlue};
   flex-direction: row;
   display: flex;
+  justify-content: space-between;
   position: absolute;
   bottom: 49px;
+  height: 56px;
   z-index: 1;
+  padding: 8px;
+`;
+const BackgroundContainer = styled(View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 `;
 const Space = styled(View)`
   width: 56px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 8px;
+  margin-left: 8px;
 `;
+interface ButtonProps {
+  mr?: boolean
+  ml?: boolean
+  background?: string
+}
 const Button = styled(TouchableOpacity)`
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  margin: 8px;
-  background: white;
+  background: ${(props: ButtonProps) => props.background || "white"};
   justify-content: center;
   align-items:center;
+  margin-right: ${(props: ButtonProps) => props.mr ? "8px" : "0"};
+  margin-left: ${(props: ButtonProps) => props.ml ? "8px" : "0"};
 `;
 
 export const ReadButton = () => {
@@ -73,6 +90,7 @@ export const ReadButton = () => {
 
   const isReading = useSelector(isReadingSelector);
   const isPaused = useSelector(isPausedSelector);
+  const rate = useSelector(readingRateSelector);
   const toggleVoiceOver = () => {
     if (!isReading) {
       dispatch(startReading());
@@ -124,12 +142,10 @@ export const ReadButton = () => {
         accessible={true}
         accessibilityLabel={"Écouter"}>
         <PlayButton>
-          <Icon
-            name={isReading && !isPaused ? "square-outline" : "arrow-right"}
-            height={24}
-            width={24}
-            fill={theme.colors.white}
-          />
+          {(isReading && !isPaused) ?
+            <Pause width={16} height={16} /> :
+            <Play width={16} height={16} />
+          }
         </PlayButton>
         <StyledTextVerySmall style={{ color: theme.colors.darkGrey }}>
           Écouter
@@ -137,15 +153,15 @@ export const ReadButton = () => {
       </PlayContainer>
       {isReading && (
         <Buttons>
+          <BackgroundContainer>
+            <Background />
+          </BackgroundContainer>
           <Button onPress={changeRate}>
-            <Icon
-              name={"flash-outline"}
-              height={24}
-              width={24}
-              fill={theme.colors.black}
-            />
+            <StyledTextSmallBold>
+              {rate === 1 ? "x1" : "x2"}
+            </StyledTextSmallBold>
           </Button>
-          <Button onPress={goToPrevious}>
+          <Button onPress={goToPrevious} ml>
             <Icon
               name={"arrow-back-outline"}
               height={24}
@@ -154,7 +170,7 @@ export const ReadButton = () => {
             />
           </Button>
           <Space />
-          <Button onPress={goToNext}>
+          <Button onPress={goToNext} mr>
             <Icon
               name={"arrow-forward-outline"}
               height={24}
@@ -162,12 +178,12 @@ export const ReadButton = () => {
               fill={theme.colors.black}
             />
           </Button>
-          <Button onPress={stopVoiceOver}>
+          <Button onPress={stopVoiceOver} background={theme.colors.red}>
             <Icon
               name={"close-outline"}
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={theme.colors.white}
             />
           </Button>
         </Buttons>

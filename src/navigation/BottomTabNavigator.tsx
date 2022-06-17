@@ -22,6 +22,7 @@ import {
 import styled from "styled-components/native";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
+import { ReadButton } from "../components/UI/ReadButton";
 
 const ICON_SIZE = 24;
 const ICON_SIZE_SMALL = 18;
@@ -83,6 +84,7 @@ const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
   const hasUserNewFavorites = useSelector(hasUserNewFavoritesSelector);
+  const hasReadButton = true; // TODO: make it conditional
 
   return (
     <BottomTab.Navigator
@@ -92,6 +94,7 @@ export default function BottomTabNavigator() {
         tabBarActiveTintColor: theme.colors.darkBlue,
         tabBarInactiveTintColor: theme.colors.darkGrey,
         tabBarStyle: { borderTopWidth: 0, elevation: 0 },
+        tabBarBackground: function tabBarBack() { return <ReadButton /> }
       }}
     >
       <BottomTab.Screen
@@ -134,7 +137,7 @@ export default function BottomTabNavigator() {
             focused: boolean;
           }) =>
             renderTabBarLabel(color, focused, t("tab_bar.favorites", "Favoris")),
-          tabBarItemStyle:{marginRight: 40}
+          tabBarItemStyle: { marginRight: hasReadButton ? 40 : 0 }
         }}
       />
       <BottomTab.Screen
@@ -156,7 +159,7 @@ export default function BottomTabNavigator() {
             focused: boolean;
           }) =>
             renderTabBarLabel(color, focused, t("tab_bar.search", "Rechercher")),
-          tabBarItemStyle:{marginLeft: 40}
+            tabBarItemStyle: { marginLeft: hasReadButton ? 40 : 0 }
         }}
       />
       <BottomTab.Screen
@@ -177,6 +180,7 @@ export default function BottomTabNavigator() {
             color: string;
             focused: boolean;
             }) => renderTabBarLabel(color, focused, t("tab_bar.profile", "Moi")),
+          tabBarBackground: function tabBarBack() { return null }
         }}
       />
     </BottomTab.Navigator>

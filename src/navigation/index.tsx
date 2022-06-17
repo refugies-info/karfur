@@ -27,7 +27,6 @@ import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selec
 import { setUserHasNewFavoritesActionCreator } from "../services/redux/User/user.actions";
 import "../services/i18n";
 import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
-import { ReadButton } from "../components/UI/ReadButton";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
@@ -167,7 +166,6 @@ export const RootNavigator = () => {
           </>
         )}
       </Stack.Navigator>
-      {hasUserSeenOnboarding && <ReadButton />}
     </NavigationContainer>
   );
 };

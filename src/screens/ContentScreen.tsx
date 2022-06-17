@@ -73,6 +73,7 @@ import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
 import { resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../hooks/useAutoScroll";
+import { ReadButton } from "../components/UI/ReadButton";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -880,6 +881,13 @@ export const ContentScreen = ({
               t("content_screen.add_button_accessibility")
             }
           />
+          <View style={{
+            width: 56,
+            height: "100%",
+            marginHorizontal: theme.margin * 3
+          }}>
+            <ReadButton />
+          </View>
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"
