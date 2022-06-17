@@ -3,228 +3,111 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
-import { useSelector } from "react-redux";
+import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View } from "react-native";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
-import { Icon } from "react-native-eva-icons";
-import { theme } from "../theme";
-import { useTranslation } from "react-i18next";
-import { hasUserNewFavoritesSelector } from "../services/redux/User/user.selectors";
-import {
-  StyledTextVerySmallBold,
-  StyledTextVerySmall,
-} from "../components/StyledText";
-import styled from "styled-components/native";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 import { ReadButton } from "../components/UI/ReadButton";
+import { TabBarItem } from "./components/TabBarItem";
+import { theme } from "../theme";
 
-const ICON_SIZE = 24;
-const ICON_SIZE_SMALL = 18;
-const ICON_EXPLORER = "compass";
-const ICON_FAVORITES = "star";
-const ICON_SEARCH = "search";
-const ICON_PROFILE = "person";
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-const renderTabBarIcon = (
-  color: string,
-  focused: boolean,
-  iconName: string,
-  badge?: boolean,
-  isSmall?: boolean,
-) => {
-  const iconNameWithFocus = focused ? iconName : iconName + "-outline";
-  return (
-    <>
-      <Icon
-        name={iconNameWithFocus}
-        width={!isSmall ? ICON_SIZE : ICON_SIZE_SMALL}
-        height={!isSmall ? ICON_SIZE : ICON_SIZE_SMALL}
-        fill={color}
-      />
-      {badge &&
-      <View
-        style={{
-          width: theme.margin,
-          height: theme.margin,
-          position: "absolute",
-          top: 2,
-          left: "50%",
-          marginLeft: 10,
-          backgroundColor: theme.colors.darkBlue,
-          borderRadius: theme.margin / 2
-        }}
-      ></View>
+const BottomTabBarContainer = styled(View)`
+  flex-direction: row;
+  background-color: white;
+  height: 48px;
+  align-items: center;
+  box-shadow: 0px 0px 4px #2121210A;
+`;
+const Space = styled(View)`
+  width: 56px;
+  margin: ${theme.margin}px;
+`
+
+function BottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  // Hide tab bar if needed
+  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  //@ts-ignore
+  if (focusedOptions?.tabBarStyle?.display === "none") return null;
+
+  const items = state.routes.map((route, index) => {
+    const { options } = descriptors[route.key];
+    const label = options.tabBarLabel as string;
+    const isFocused = state.index === index;
+
+    const onPress = () => {
+      const event = navigation.emit({
+        type: "tabPress",
+        target: route.key,
+        canPreventDefault: true,
+      });
+
+      if (!isFocused && !event.defaultPrevented) {
+        // The `merge: true` option makes sure that the params inside the tab screen are preserved
+        navigation.navigate({ name: route.name, merge: true, params: route.params });
       }
-    </>
+    };
+
+    return (
+      <TabBarItem
+        key={index}
+        isFocused={isFocused}
+        onPress={onPress}
+        options={options}
+        route={route}
+        label={label}
+      />
+    );
+  })
+
+  const hasReadButton = state.index !== 3; // everywhere except Profil tab
+  if (hasReadButton) items.splice(2, 0, <Space />);
+
+  return (
+    <BottomTabBarContainer>
+      {hasReadButton && <ReadButton />}
+      {items.map(i => i)}
+    </BottomTabBarContainer>
   );
-};
-
-const TabBarLabelText = styled(StyledTextVerySmall)`
-  color: ${(props: { color: string }) => props.color};
-  margin-bottom: 4px;
-`;
-
-const TabBarLabelTextBold = styled(StyledTextVerySmallBold)`
-  color: ${(props: { color: string }) => props.color};
-  margin-bottom: 4px;
-`;
-const renderTabBarLabel = (color: string, focused: boolean, name: string) => {
-  if (focused)
-    return <TabBarLabelTextBold color={color}>{name}</TabBarLabelTextBold>;
-  return <TabBarLabelText color={color}>{name}</TabBarLabelText>;
-};
+}
 
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
-  const hasUserNewFavorites = useSelector(hasUserNewFavoritesSelector);
-  const hasReadButton = true; // TODO: make it conditional
 
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: theme.colors.darkBlue,
-        tabBarInactiveTintColor: theme.colors.darkGrey,
-        tabBarStyle: { borderTopWidth: 0, elevation: 0 },
-        tabBarBackground: function tabBarBack() { return <ReadButton /> }
-      }}
+      screenOptions={{ headerShown: false }}
+      tabBar={props => <BottomTabBar {...props} />}
     >
       <BottomTab.Screen
         name="Explorer"
         component={ExplorerNavigator}
-        options={{
-          tabBarIcon: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) => renderTabBarIcon(color, focused, ICON_EXPLORER),
-          tabBarLabel: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) =>
-            renderTabBarLabel(color, focused, t("tab_bar.explorer", "Explorer")),
-        }}
+        options={{ tabBarLabel: t("tab_bar.explorer", "Explorer") }}
       />
       <BottomTab.Screen
         name="Favoris"
         component={FavorisNavigator}
-        options={{
-          tabBarIcon: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) => renderTabBarIcon(color, focused, ICON_FAVORITES, hasUserNewFavorites),
-          tabBarLabel: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) =>
-            renderTabBarLabel(color, focused, t("tab_bar.favorites", "Favoris")),
-          tabBarItemStyle: { marginRight: hasReadButton ? 40 : 0 }
-        }}
+        options={{ tabBarLabel: t("tab_bar.favorites", "Favoris") }}
       />
       <BottomTab.Screen
         name="Search"
         component={SearchNavigator}
-        options={{
-          tabBarIcon: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) => renderTabBarIcon(color, focused, ICON_SEARCH),
-          tabBarLabel: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) =>
-            renderTabBarLabel(color, focused, t("tab_bar.search", "Rechercher")),
-            tabBarItemStyle: { marginLeft: hasReadButton ? 40 : 0 }
-        }}
+        options={{ tabBarLabel: t("tab_bar.search", "Rechercher") }}
       />
       <BottomTab.Screen
         name="Profil"
         component={ProfileNavigator}
-        options={{
-          tabBarIcon: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-          }) => renderTabBarIcon(color, focused, ICON_PROFILE),
-          tabBarLabel: ({
-            color,
-            focused,
-          }: {
-            color: string;
-            focused: boolean;
-            }) => renderTabBarLabel(color, focused, t("tab_bar.profile", "Moi")),
-          tabBarBackground: function tabBarBack() { return null }
-        }}
+        options={{ tabBarLabel:  t("tab_bar.profile", "Moi") }}
       />
     </BottomTab.Navigator>
   );
-}
-
-interface TabBarProps {
-  width: number
-}
-const FakeTabBarContainer = styled.View`
-  background-color: ${theme.colors.greyF7};
-  height: 40px;
-  width: ${(props: {width: number}) => props.width}px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: ${theme.radius * 2}px;
-`;
-const FakeTabBarItem = styled.View`
-  align-items: center;
-  width: 25%;
-  padding-top: 4px;
-`;
-export const FakeTabBar = (props: TabBarProps) => {
-  const { t } = useTranslation();
-
-  return (
-    <FakeTabBarContainer width={props.width}>
-      <FakeTabBarItem>
-        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_EXPLORER, false, true)}
-        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.explorer", "Explorer"))}
-      </FakeTabBarItem>
-      <FakeTabBarItem>
-        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_FAVORITES, false, true)}
-        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.favorites", "Favoris"))}
-      </FakeTabBarItem>
-      <FakeTabBarItem>
-        {renderTabBarIcon(theme.colors.darkGrey, false, ICON_SEARCH, false, true)}
-        {renderTabBarLabel(theme.colors.darkGrey, false, t("tab_bar.search", "Rechercher"))}
-      </FakeTabBarItem>
-      <FakeTabBarItem>
-        {renderTabBarIcon(theme.colors.darkBlue, true, ICON_PROFILE, false, true)}
-        {renderTabBarLabel(theme.colors.darkBlue, true, t("tab_bar.profile", "Moi"))}
-      </FakeTabBarItem>
-    </FakeTabBarContainer>
-  )
 }

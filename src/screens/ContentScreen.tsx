@@ -862,6 +862,7 @@ export const ContentScreen = ({
             justifyContent: "center",
             paddingTop: theme.margin,
             paddingBottom: insets.bottom || theme.margin,
+            paddingHorizontal: theme.margin
           }}
         >
           <CustomButton
@@ -875,7 +876,8 @@ export const ContentScreen = ({
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
-            style={{ marginHorizontal: theme.margin }}
+            style={{ marginHorizontal: theme.margin, width: 120 }}
+            textStyle={{fontSize: theme.fonts.sizes.verySmall}}
             accessibilityLabel={isContentFavorite ?
               t("content_screen.remove_button_accessibility") :
               t("content_screen.add_button_accessibility")
@@ -884,7 +886,7 @@ export const ContentScreen = ({
           <View style={{
             width: 56,
             height: "100%",
-            marginHorizontal: theme.margin * 3
+            marginHorizontal: theme.margin * 3,
           }}>
             <ReadButton />
           </View>
@@ -900,7 +902,8 @@ export const ContentScreen = ({
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
-            style={{ marginHorizontal: theme.margin }}
+            style={{ marginHorizontal: theme.margin, width: 120 }}
+            textStyle={{fontSize: theme.fonts.sizes.verySmall}}
             accessibilityLabel={ t("content_screen.share_button_accessibility")}
           />
         </RTLView>

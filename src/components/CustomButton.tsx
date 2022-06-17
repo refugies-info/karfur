@@ -86,6 +86,7 @@ interface Props {
   iconFirst?: boolean;
   notFullWidth?: boolean;
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   iconStyle?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   iconSize?: number;
@@ -130,7 +131,7 @@ export const CustomButton = (props: Props) => {
           isRTL={isRTL}
           iconFirst={!!props.iconFirst}
           hasIcon={!!props.iconName}
-          style={props.textStyle}
+          style={props.textStyle || {}}
         >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextNormal>
@@ -140,7 +141,7 @@ export const CustomButton = (props: Props) => {
           isRTL={isRTL}
           iconFirst={!!props.iconFirst}
           hasIcon={!!props.iconName}
-          style={props.textStyle}
+          style={props.textStyle || {}}
         >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextBold>

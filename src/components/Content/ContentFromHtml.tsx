@@ -6,7 +6,6 @@ import { RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { TextSmallNormal } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ReadableText } from "../ReadableText";
 
 interface Props {
   htmlContent: string;
@@ -16,7 +15,6 @@ export const ContentFromHtml = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
-    <ReadableText text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
       <HTML
         contentWidth={props.windowWidth}
         source={{ html: props.htmlContent }}
@@ -130,6 +128,5 @@ export const ContentFromHtml = (props: Props) => {
           ),
         }}
       />
-    </ReadableText>
   );
 };
