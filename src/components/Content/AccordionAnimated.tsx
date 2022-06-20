@@ -12,6 +12,8 @@ import { ContentFromHtml } from "./ContentFromHtml";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { ReadableText } from "../ReadableText";
+import { useSelector } from "react-redux";
+import { currentItemId, isReadingSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
@@ -102,6 +104,7 @@ export const AccordionAnimated = (props: Props) => {
   const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(
     false
   );
+  const currentItemRef = React.useRef<string>("");
 
   const bodyHeight = animatedController.interpolate({
     inputRange: [0, 1],
@@ -133,6 +136,32 @@ export const AccordionAnimated = (props: Props) => {
     }
     toggleAccordion();
   };
+
+  // Voiceover
+  const isReading = useSelector(isReadingSelector);
+  const currentItem = useSelector(currentItemId);
+
+  React.useEffect(() => {
+    const accordionIsReading = isReading
+      && currentItem
+      && currentItem === currentItemRef.current;
+    setIsExpanded(!!accordionIsReading);
+
+    if (accordionIsReading) {
+      Animated.timing(animatedController, {
+        duration: 500,
+        toValue: 1,
+        useNativeDriver: false,
+      }).start();
+    } else {
+      Animated.timing(animatedController, {
+        duration: 500,
+        toValue: 0,
+        useNativeDriver: false,
+      }).start();
+    }
+
+  }, [isReading, currentItem]);
 
   return (
     <AccordionContainer>
@@ -189,6 +218,7 @@ export const AccordionAnimated = (props: Props) => {
               <ExpandedContentContainer>
                 {!!props.content && (
                   <ContentFromHtml
+                    ref={currentItemRef}
                     htmlContent={props.content}
                     windowWidth={props.windowWidth}
                   />

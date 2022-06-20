@@ -12,12 +12,12 @@ interface Props {
   htmlContent: string;
   windowWidth: number;
 }
-export const ContentFromHtml = (props: Props) => {
+export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
     <>
-      <ReadableText text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
+      <ReadableText ref={ref} text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
         <HTML
           contentWidth={props.windowWidth}
           source={{ html: props.htmlContent }}
@@ -134,4 +134,6 @@ export const ContentFromHtml = (props: Props) => {
       </ReadableText>
     </>
   )
-};
+});
+
+ContentFromHtml.displayName = "ContentFromHtml";

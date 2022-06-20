@@ -18,20 +18,21 @@ interface Props {
   text?: string;
 }
 
-export const ReadableText = (props: Props) => {
+export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const dispatch = useDispatch();
   const currentReadingItem = useSelector(currentItemId);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const ref = useRef<View | null>(null);
+  if (ref) ref.current = id;
+  const refView = useRef<View | null>(null);
 
   useEffect(() => {
     if (isFocused) {
       setTimeout(() => {
         // use setTimeout to be sure the element has been rendered
-        ref.current?.measure((_x, _y, _width, _height, pageX, pageY) => {
+        refView.current?.measure((_x, _y, _width, _height, pageX, pageY) => {
           dispatch(
             addToReadingList({
               id: id,
@@ -74,11 +75,13 @@ export const ReadableText = (props: Props) => {
   return (
     <>
       <Text
-        style={isActive ? { backgroundColor: theme.colors.lightBlue} : {}}
+        style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}
       >
         {props.children}
       </Text>
-      <View ref={ref}></View>
+      <View ref={refView}></View>
     </>
   );
-};
+});
+
+ReadableText.displayName = "ReadableText";
