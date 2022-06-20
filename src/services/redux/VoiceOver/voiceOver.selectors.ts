@@ -9,7 +9,7 @@ export const isPausedSelector = (state: RootState) =>
 export const readingRateSelector = (state: RootState) =>
   state.voiceOver.rate;
 
-export const readingList = (state: RootState) =>
+export const readingListSelector = (state: RootState) =>
   state.voiceOver.readingList;
 
 export const currentItemId = (state: RootState) =>

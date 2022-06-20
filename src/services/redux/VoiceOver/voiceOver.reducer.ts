@@ -39,7 +39,8 @@ export const voiceOverReducer = createReducer<
     return {
       ...state,
       isReading: state.readingList.length > 0,
-      currentItem
+      currentItem,
+      isPaused: false,
     }
   },
   READING_STOP: (state) => ({
@@ -93,7 +94,11 @@ export const voiceOverReducer = createReducer<
   },
   RESET_READING: (state) => ({
     ...state,
-    readingList: []
+    readingList: [],
+    isReading: false,
+    isPaused: false,
+    currentItem: null,
+    currentScroll: 0
   }),
   SCROLL_READING: (state, action) => ({
     ...state,

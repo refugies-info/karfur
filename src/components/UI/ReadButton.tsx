@@ -53,7 +53,7 @@ const Buttons = styled(View)`
   display: flex;
   justify-content: space-between;
   position: absolute;
-  bottom: 49px;
+  bottom: 48px;
   height: 56px;
   z-index: 1;
   padding: 8px;
