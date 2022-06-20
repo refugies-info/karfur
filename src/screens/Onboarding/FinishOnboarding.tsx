@@ -21,7 +21,7 @@ import ArrowOnboarding from "../../theme/images/onboarding/arrow-onboarding.svg"
 import { View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { FakeTabBar } from "../../navigation/BottomTabNavigator";
+import { FakeTabBar } from "../../navigation/components/FakeTabBar";
 
 const MainView = styled(SafeAreaView)`
   display: flex;
