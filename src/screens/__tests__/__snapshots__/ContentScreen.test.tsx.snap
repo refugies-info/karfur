@@ -455,29 +455,39 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             }
           >
-            <Text
+            <View
               style={Object {}}
             >
-              <View
-                style={Object {}}
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                    },
+                  ]
+                }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
                       },
-                      Object {
-                        "flexShrink": 1,
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                      },
+                      Object {},
+                      Object {},
                     ]
                   }
                 >
@@ -485,10 +495,6 @@ exports[`ContentScreen should render correctly 1`] = `
                     selectable={true}
                     style={
                       Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
                         Object {},
                         Object {},
                       ]
@@ -497,48 +503,142 @@ exports[`ContentScreen should render correctly 1`] = `
                     <Text
                       selectable={true}
                       style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
+                        Object {
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "fontWeight": null,
+                          "lineHeight": 20,
+                          "marginBottom": 16,
+                          "marginTop": 16,
+                          "textAlign": "left",
+                        }
                       }
                     >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
+                      Insair 38 aide les réfugiés statutaires à accéder à un logement et à un emploi en leur proposant un accompagnement social individualisé. 
+                    </Text>
+                  </Text>
+                </Text>
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Object {
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginBottom": 16,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    Ce dispositif du groupe cdc habitat ADOMA est à destination des réfugiés 
+                  </Text>
+                </Text>
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
+                      },
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {},
+                        Object {},
+                      ]
+                    }
+                  >
+                    <Text
+                      selectable={true}
+                      style={
+                        Object {
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "fontWeight": null,
+                          "lineHeight": 20,
+                          "marginBottom": 16,
+                          "marginTop": 16,
+                          "textAlign": "left",
                         }
-                      >
-                        Insair 38 aide les réfugiés statutaires à accéder à un logement et à un emploi en leur proposant un accompagnement social individualisé. 
-                      </Text>
+                      }
+                    >
+                      non-hébergés durant leur demande d'asile et sans référents sociaux 
                     </Text>
                   </Text>
                 </Text>
                 <Text
-                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Object {
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginBottom": 16,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    i
+                  </Text>
+                </Text>
+                <Text
                   selectable={true}
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
                       },
-                      Object {
-                        "flexShrink": 1,
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                      },
+                      Object {},
+                      Object {},
                     ]
                   }
                 >
@@ -555,8 +655,9 @@ exports[`ContentScreen should render correctly 1`] = `
                       selectable={true}
                       style={
                         Object {
-                          "fontFamily": "circularBook",
+                          "fontFamily": "circularBold",
                           "fontSize": 16,
+                          "fontWeight": null,
                           "lineHeight": 20,
                           "marginBottom": 16,
                           "marginTop": 16,
@@ -564,131 +665,124 @@ exports[`ContentScreen should render correctly 1`] = `
                         }
                       }
                     >
-                      Ce dispositif du groupe cdc habitat ADOMA est à destination des réfugiés 
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
-                      }
-                    >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
-                        }
-                      >
-                        non-hébergés durant leur demande d'asile et sans référents sociaux 
-                      </Text>
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Object {
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "marginBottom": 16,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        }
-                      }
-                    >
-                      i
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
-                      }
-                    >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
-                        }
-                      >
-                        dentifiés. 
-                      </Text>
+                      dentifiés. 
                     </Text>
                   </Text>
                 </Text>
+              </Text>
+              <View
+                style={
+                  Array [
+                    Object {},
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffcecb",
+                      "borderRadius": 12,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                      "padding": 16,
+                      "textAlign": "left",
+                    },
+                    Object {},
+                  ]
+                }
+              >
                 <View
                   style={
                     Array [
                       Object {},
                       Object {
                         "alignItems": "center",
-                        "backgroundColor": "#ffcecb",
-                        "borderRadius": 12,
+                        "backgroundColor": "#212121",
+                        "borderRadius": "50%",
+                        "color": "#ffcecb",
                         "display": "flex",
                         "flexDirection": "row",
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                        "padding": 16,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginLeft": 0,
+                        "marginRight": 16,
+                        "width": 24,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#212121",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginLeft": 0,
+                        "marginRight": 16,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {},
+                        Object {
+                          "color": "#ffcecb",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {},
+                          Object {},
+                        ]
+                      }
+                    >
+                      <Text
+                        selectable={true}
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#212121",
+                            "borderRadius": 50,
+                            "color": "#ffcecb",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "marginLeft": 0,
+                            "marginRight": 16,
+                            "marginTop": 8,
+                            "padding": 16,
+                            "textAlign": "left",
+                            "width": 24,
+                          }
+                        }
+                      >
+                        i
+                      </Text>
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {},
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
                         "textAlign": "left",
                       },
-                      Object {},
+                      Object {
+                        "flexShrink": 1,
+                      },
                     ]
                   }
                 >
@@ -696,31 +790,8 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {},
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#212121",
-                          "borderRadius": "50%",
-                          "color": "#ffcecb",
-                          "display": "flex",
-                          "flexDirection": "row",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginLeft": 0,
-                          "marginRight": 16,
-                          "width": 24,
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#212121",
-                          "borderRadius": 50,
-                          "display": "flex",
-                          "flexDirection": "row",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginLeft": 0,
-                          "marginRight": 16,
-                          "width": 24,
-                        },
+                        Object {},
+                        Object {},
                       ]
                     }
                   >
@@ -728,10 +799,13 @@ exports[`ContentScreen should render correctly 1`] = `
                       selectable={true}
                       style={
                         Array [
-                          Object {},
                           Object {
-                            "color": "#ffcecb",
+                            "fontFamily": "circularBold",
+                            "fontWeight": null,
+                            "textAlign": "left",
                           },
+                          Object {},
+                          Object {},
                         ]
                       }
                     >
@@ -749,55 +823,74 @@ exports[`ContentScreen should render correctly 1`] = `
                           style={
                             Object {
                               "alignItems": "center",
-                              "backgroundColor": "#212121",
-                              "borderRadius": 50,
-                              "color": "#ffcecb",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
                               "display": "flex",
                               "flexDirection": "row",
-                              "fontFamily": "circularBook",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
                               "fontSize": 16,
-                              "height": 24,
-                              "justifyContent": "center",
+                              "fontWeight": null,
                               "lineHeight": 20,
                               "marginBottom": 8,
-                              "marginLeft": 0,
-                              "marginRight": 16,
                               "marginTop": 8,
                               "padding": 16,
                               "textAlign": "left",
-                              "width": 24,
                             }
                           }
                         >
-                          i
+                          Bon à savoir :
                         </Text>
                       </Text>
                     </Text>
                   </View>
-                  <View
+                  <Text
+                    selectable={true}
                     style={
-                      Array [
-                        Object {},
-                        Object {
-                          "color": "#212121",
-                          "flexShrink": 1,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "flexShrink": 1,
-                        },
-                      ]
+                      Object {
+                        "color": "#212121",
+                        "textAlign": "left",
+                      }
                     }
                   >
-                    <View
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                          Object {},
-                        ]
-                      }
+                    <Text
+                      selectable={true}
+                      style={Object {}}
                     >
+                      <Text
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {},
+                            Object {},
+                          ]
+                        }
+                      >
+                        <Text
+                          selectable={true}
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                              "padding": 16,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          Pour bénéficier de ce dispositif, vous devez être 
+                        </Text>
+                      </Text>
                       <Text
                         selectable={true}
                         style={
@@ -805,7 +898,6 @@ exports[`ContentScreen should render correctly 1`] = `
                             Object {
                               "fontFamily": "circularBold",
                               "fontWeight": null,
-                              "textAlign": "left",
                             },
                             Object {},
                             Object {},
@@ -843,145 +935,48 @@ exports[`ContentScreen should render correctly 1`] = `
                               }
                             }
                           >
-                            Bon à savoir :
+                            domicilié
                           </Text>
                         </Text>
                       </Text>
-                    </View>
-                    <Text
-                      selectable={true}
-                      style={
-                        Object {
-                          "color": "#212121",
-                          "textAlign": "left",
-                        }
-                      }
-                    >
                       <Text
                         selectable={true}
-                        style={Object {}}
+                        style={
+                          Array [
+                            Object {},
+                            Object {},
+                          ]
+                        }
                       >
                         <Text
                           selectable={true}
                           style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                              "padding": 16,
+                              "textAlign": "left",
+                            }
                           }
                         >
-                          <Text
-                            selectable={true}
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "backgroundColor": "#ffcecb",
-                                "borderRadius": 12,
-                                "color": "#212121",
-                                "display": "flex",
-                                "flexDirection": "row",
-                                "flexShrink": 1,
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                                "padding": 16,
-                                "textAlign": "left",
-                              }
-                            }
-                          >
-                            Pour bénéficier de ce dispositif, vous devez être 
-                          </Text>
-                        </Text>
-                        <Text
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": "circularBold",
-                                "fontWeight": null,
-                              },
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
-                            }
-                          >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "alignItems": "center",
-                                  "backgroundColor": "#ffcecb",
-                                  "borderRadius": 12,
-                                  "color": "#212121",
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "flexShrink": 1,
-                                  "fontFamily": "circularBold",
-                                  "fontSize": 16,
-                                  "fontWeight": null,
-                                  "lineHeight": 20,
-                                  "marginBottom": 8,
-                                  "marginTop": 8,
-                                  "padding": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              domicilié
-                            </Text>
-                          </Text>
-                        </Text>
-                        <Text
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "backgroundColor": "#ffcecb",
-                                "borderRadius": 12,
-                                "color": "#212121",
-                                "display": "flex",
-                                "flexDirection": "row",
-                                "flexShrink": 1,
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                                "padding": 16,
-                                "textAlign": "left",
-                              }
-                            }
-                          >
-                             dans l'agglomération grenobloise et être en besoin d'accès à un logement.
-                          </Text>
+                           dans l'agglomération grenobloise et être en besoin d'accès à un logement.
                         </Text>
                       </Text>
                     </Text>
-                  </View>
+                  </Text>
                 </View>
               </View>
-            </Text>
-            <View />
+            </View>
           </View>
         </View>
         <View
@@ -1909,61 +1904,56 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Ce dispositif vous permettra d'avoir un référent social qui vous accompagnera dans vos démarches administratives, ouverture des droits, inscription à Pôle Emploi...
-                            </Text>
+                            Ce dispositif vous permettra d'avoir un référent social qui vous accompagnera dans vos démarches administratives, ouverture des droits, inscription à Pôle Emploi...
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2177,61 +2167,56 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Ce dispositif permet l'ouverture des droits et l'accès aux soins.
-                            </Text>
+                            Ce dispositif permet l'ouverture des droits et l'accès aux soins.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2445,61 +2430,56 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              L'accompagnement global qu'offre ce dispositif vous permettra de trouver une formation professionnel ou un emploi.
-                            </Text>
+                            L'accompagnement global qu'offre ce dispositif vous permettra de trouver une formation professionnel ou un emploi.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2713,61 +2693,56 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              L'objectif de ce dispositif est de vous permettre d'avoir un logement ou de vous maintenir dans un logement.
-                            </Text>
+                            L'objectif de ce dispositif est de vous permettre d'avoir un logement ou de vous maintenir dans un logement.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3013,29 +2988,85 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
+                          selectable={true}
+                          style={
+                            Array [
+                              Object {},
+                              Object {},
+                            ]
+                          }
+                        >
+                          <Text
+                            selectable={true}
+                            style={
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            Pour avoir plus d'informations et pour accéder à un accompagnement, envoyer un mail : 
+                          </Text>
+                        </Text>
+                      </Text>
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
                           selectable={true}
                           style={
                             Array [
                               Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
+                                "fontFamily": "circularBold",
+                                "fontWeight": null,
                               },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
@@ -3052,8 +3083,9 @@ exports[`ContentScreen should render correctly 1`] = `
                               selectable={true}
                               style={
                                 Object {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "circularBold",
                                   "fontSize": 16,
+                                  "fontWeight": null,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
                                   "marginTop": 16,
@@ -3061,74 +3093,12 @@ exports[`ContentScreen should render correctly 1`] = `
                                 }
                               }
                             >
-                              Pour avoir plus d'informations et pour accéder à un accompagnement, envoyer un mail : 
+                              contratrefugies@grenoblealpesmetropole.fr 
                             </Text>
                           </Text>
                         </Text>
-                        <Text
-                          isRTL={false}
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": "circularBold",
-                                  "fontWeight": null,
-                                },
-                                Object {},
-                                Object {},
-                              ]
-                            }
-                          >
-                            <Text
-                              selectable={true}
-                              style={
-                                Array [
-                                  Object {},
-                                  Object {},
-                                ]
-                              }
-                            >
-                              <Text
-                                selectable={true}
-                                style={
-                                  Object {
-                                    "fontFamily": "circularBold",
-                                    "fontSize": 16,
-                                    "fontWeight": null,
-                                    "lineHeight": 20,
-                                    "marginBottom": 16,
-                                    "marginTop": 16,
-                                    "textAlign": "left",
-                                  }
-                                }
-                              >
-                                contratrefugies@grenoblealpesmetropole.fr 
-                              </Text>
-                            </Text>
-                          </Text>
-                        </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3342,61 +3312,56 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Les places pour ce dispositif sont très limitées 
-                            </Text>
+                            Les places pour ce dispositif sont très limitées 
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3795,6 +3760,7 @@ exports[`ContentScreen should render correctly 1`] = `
           Object {
             "justifyContent": "center",
             "paddingBottom": 8,
+            "paddingHorizontal": 8,
             "paddingTop": 8,
           },
         ]
@@ -3835,7 +3801,7 @@ exports[`ContentScreen should render correctly 1`] = `
             },
             "shadowOpacity": 1,
             "shadowRadius": 8,
-            "width": "auto",
+            "width": 120,
           }
         }
         testID="test-custom-button-Mes fiches"
@@ -3930,12 +3896,75 @@ exports[`ContentScreen should render correctly 1`] = `
                 "marginRight": 0,
                 "textAlign": "left",
               },
+              Object {
+                "fontSize": 13,
+              },
             ]
           }
           textColor="#212121"
         >
           Mes fiches
         </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": "100%",
+            "marginHorizontal": 24,
+            "width": 56,
+          }
+        }
+      >
+        <View
+          className="sc-bdnxRM KGMMf"
+        >
+          <View
+            accessibilityLabel="Écouter"
+            accessibilityRole="button"
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              className="sc-dlnjwi kDArHC"
+            >
+              <react-native-svg
+                height={16}
+                width={16}
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 13,
+                    "lineHeight": 16,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#5E5E5E",
+                  },
+                ]
+              }
+            >
+              Écouter
+            </Text>
+          </View>
+        </View>
       </View>
       <View
         accessibilityRole="button"
@@ -3972,7 +4001,7 @@ exports[`ContentScreen should render correctly 1`] = `
             },
             "shadowOpacity": 1,
             "shadowRadius": 8,
-            "width": "auto",
+            "width": 120,
           }
         }
         testID="test-custom-button-Partager"
@@ -4082,6 +4111,9 @@ exports[`ContentScreen should render correctly 1`] = `
                 "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
+              },
+              Object {
+                "fontSize": 13,
               },
             ]
           }
@@ -4584,29 +4616,39 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             }
           >
-            <Text
+            <View
               style={Object {}}
             >
-              <View
-                style={Object {}}
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                    },
+                  ]
+                }
               >
                 <Text
-                  isRTL={false}
                   selectable={true}
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
                       },
-                      Object {
-                        "flexShrink": 1,
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                      },
+                      Object {},
+                      Object {},
                     ]
                   }
                 >
@@ -4614,10 +4656,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     selectable={true}
                     style={
                       Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
                         Object {},
                         Object {},
                       ]
@@ -4626,48 +4664,142 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     <Text
                       selectable={true}
                       style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
+                        Object {
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "fontWeight": null,
+                          "lineHeight": 20,
+                          "marginBottom": 16,
+                          "marginTop": 16,
+                          "textAlign": "left",
+                        }
                       }
                     >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
+                      Insair 38 aide les réfugiés statutaires à accéder à un logement et à un emploi en leur proposant un accompagnement social individualisé. 
+                    </Text>
+                  </Text>
+                </Text>
+              </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "flexShrink": 1,
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Object {
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginBottom": 16,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    Ce dispositif du groupe cdc habitat ADOMA est à destination des réfugiés 
+                  </Text>
+                </Text>
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
+                      },
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {},
+                        Object {},
+                      ]
+                    }
+                  >
+                    <Text
+                      selectable={true}
+                      style={
+                        Object {
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "fontWeight": null,
+                          "lineHeight": 20,
+                          "marginBottom": 16,
+                          "marginTop": 16,
+                          "textAlign": "left",
                         }
-                      >
-                        Insair 38 aide les réfugiés statutaires à accéder à un logement et à un emploi en leur proposant un accompagnement social individualisé. 
-                      </Text>
+                      }
+                    >
+                      non-hébergés durant leur demande d'asile et sans référents sociaux 
                     </Text>
                   </Text>
                 </Text>
                 <Text
-                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {},
+                      Object {},
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Object {
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginBottom": 16,
+                        "marginTop": 16,
+                        "textAlign": "left",
+                      }
+                    }
+                  >
+                    i
+                  </Text>
+                </Text>
+                <Text
                   selectable={true}
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
-                        "fontFamily": "circularBook",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
+                        "fontFamily": "circularBold",
+                        "fontWeight": null,
                       },
-                      Object {
-                        "flexShrink": 1,
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                      },
+                      Object {},
+                      Object {},
                     ]
                   }
                 >
@@ -4684,8 +4816,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       selectable={true}
                       style={
                         Object {
-                          "fontFamily": "circularBook",
+                          "fontFamily": "circularBold",
                           "fontSize": 16,
+                          "fontWeight": null,
                           "lineHeight": 20,
                           "marginBottom": 16,
                           "marginTop": 16,
@@ -4693,131 +4826,124 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         }
                       }
                     >
-                      Ce dispositif du groupe cdc habitat ADOMA est à destination des réfugiés 
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
-                      }
-                    >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
-                        }
-                      >
-                        non-hébergés durant leur demande d'asile et sans référents sociaux 
-                      </Text>
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Object {
-                          "fontFamily": "circularBook",
-                          "fontSize": 16,
-                          "lineHeight": 20,
-                          "marginBottom": 16,
-                          "marginTop": 16,
-                          "textAlign": "left",
-                        }
-                      }
-                    >
-                      i
-                    </Text>
-                  </Text>
-                  <Text
-                    selectable={true}
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "circularBold",
-                          "fontWeight": null,
-                        },
-                        Object {},
-                        Object {},
-                      ]
-                    }
-                  >
-                    <Text
-                      selectable={true}
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                        ]
-                      }
-                    >
-                      <Text
-                        selectable={true}
-                        style={
-                          Object {
-                            "fontFamily": "circularBold",
-                            "fontSize": 16,
-                            "fontWeight": null,
-                            "lineHeight": 20,
-                            "marginBottom": 16,
-                            "marginTop": 16,
-                            "textAlign": "left",
-                          }
-                        }
-                      >
-                        dentifiés. 
-                      </Text>
+                      dentifiés. 
                     </Text>
                   </Text>
                 </Text>
+              </Text>
+              <View
+                style={
+                  Array [
+                    Object {},
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#ffcecb",
+                      "borderRadius": 12,
+                      "display": "flex",
+                      "flexDirection": "row",
+                      "marginBottom": 8,
+                      "marginTop": 8,
+                      "padding": 16,
+                      "textAlign": "left",
+                    },
+                    Object {},
+                  ]
+                }
+              >
                 <View
                   style={
                     Array [
                       Object {},
                       Object {
                         "alignItems": "center",
-                        "backgroundColor": "#ffcecb",
-                        "borderRadius": 12,
+                        "backgroundColor": "#212121",
+                        "borderRadius": "50%",
+                        "color": "#ffcecb",
                         "display": "flex",
                         "flexDirection": "row",
-                        "marginBottom": 8,
-                        "marginTop": 8,
-                        "padding": 16,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginLeft": 0,
+                        "marginRight": 16,
+                        "width": 24,
+                      },
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#212121",
+                        "borderRadius": 50,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginLeft": 0,
+                        "marginRight": 16,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {},
+                        Object {
+                          "color": "#ffcecb",
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {},
+                          Object {},
+                        ]
+                      }
+                    >
+                      <Text
+                        selectable={true}
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#212121",
+                            "borderRadius": 50,
+                            "color": "#ffcecb",
+                            "display": "flex",
+                            "flexDirection": "row",
+                            "fontFamily": "circularBook",
+                            "fontSize": 16,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "lineHeight": 20,
+                            "marginBottom": 8,
+                            "marginLeft": 0,
+                            "marginRight": 16,
+                            "marginTop": 8,
+                            "padding": 16,
+                            "textAlign": "left",
+                            "width": 24,
+                          }
+                        }
+                      >
+                        i
+                      </Text>
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {},
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
                         "textAlign": "left",
                       },
-                      Object {},
+                      Object {
+                        "flexShrink": 1,
+                      },
                     ]
                   }
                 >
@@ -4825,31 +4951,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {},
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#212121",
-                          "borderRadius": "50%",
-                          "color": "#ffcecb",
-                          "display": "flex",
-                          "flexDirection": "row",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginLeft": 0,
-                          "marginRight": 16,
-                          "width": 24,
-                        },
-                        Object {
-                          "alignItems": "center",
-                          "backgroundColor": "#212121",
-                          "borderRadius": 50,
-                          "display": "flex",
-                          "flexDirection": "row",
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginLeft": 0,
-                          "marginRight": 16,
-                          "width": 24,
-                        },
+                        Object {},
+                        Object {},
                       ]
                     }
                   >
@@ -4857,10 +4960,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       selectable={true}
                       style={
                         Array [
-                          Object {},
                           Object {
-                            "color": "#ffcecb",
+                            "fontFamily": "circularBold",
+                            "fontWeight": null,
+                            "textAlign": "left",
                           },
+                          Object {},
+                          Object {},
                         ]
                       }
                     >
@@ -4878,55 +4984,74 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           style={
                             Object {
                               "alignItems": "center",
-                              "backgroundColor": "#212121",
-                              "borderRadius": 50,
-                              "color": "#ffcecb",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
                               "display": "flex",
                               "flexDirection": "row",
-                              "fontFamily": "circularBook",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
                               "fontSize": 16,
-                              "height": 24,
-                              "justifyContent": "center",
+                              "fontWeight": null,
                               "lineHeight": 20,
                               "marginBottom": 8,
-                              "marginLeft": 0,
-                              "marginRight": 16,
                               "marginTop": 8,
                               "padding": 16,
                               "textAlign": "left",
-                              "width": 24,
                             }
                           }
                         >
-                          i
+                          Bon à savoir :
                         </Text>
                       </Text>
                     </Text>
                   </View>
-                  <View
+                  <Text
+                    selectable={true}
                     style={
-                      Array [
-                        Object {},
-                        Object {
-                          "color": "#212121",
-                          "flexShrink": 1,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "flexShrink": 1,
-                        },
-                      ]
+                      Object {
+                        "color": "#212121",
+                        "textAlign": "left",
+                      }
                     }
                   >
-                    <View
-                      style={
-                        Array [
-                          Object {},
-                          Object {},
-                          Object {},
-                        ]
-                      }
+                    <Text
+                      selectable={true}
+                      style={Object {}}
                     >
+                      <Text
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {},
+                            Object {},
+                          ]
+                        }
+                      >
+                        <Text
+                          selectable={true}
+                          style={
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                              "padding": 16,
+                              "textAlign": "left",
+                            }
+                          }
+                        >
+                          Pour bénéficier de ce dispositif, vous devez être 
+                        </Text>
+                      </Text>
                       <Text
                         selectable={true}
                         style={
@@ -4934,7 +5059,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             Object {
                               "fontFamily": "circularBold",
                               "fontWeight": null,
-                              "textAlign": "left",
                             },
                             Object {},
                             Object {},
@@ -4972,145 +5096,48 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               }
                             }
                           >
-                            Bon à savoir :
+                            domicilié
                           </Text>
                         </Text>
                       </Text>
-                    </View>
-                    <Text
-                      selectable={true}
-                      style={
-                        Object {
-                          "color": "#212121",
-                          "textAlign": "left",
-                        }
-                      }
-                    >
                       <Text
                         selectable={true}
-                        style={Object {}}
+                        style={
+                          Array [
+                            Object {},
+                            Object {},
+                          ]
+                        }
                       >
                         <Text
                           selectable={true}
                           style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
+                            Object {
+                              "alignItems": "center",
+                              "backgroundColor": "#ffcecb",
+                              "borderRadius": 12,
+                              "color": "#212121",
+                              "display": "flex",
+                              "flexDirection": "row",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                              "padding": 16,
+                              "textAlign": "left",
+                            }
                           }
                         >
-                          <Text
-                            selectable={true}
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "backgroundColor": "#ffcecb",
-                                "borderRadius": 12,
-                                "color": "#212121",
-                                "display": "flex",
-                                "flexDirection": "row",
-                                "flexShrink": 1,
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                                "padding": 16,
-                                "textAlign": "left",
-                              }
-                            }
-                          >
-                            Pour bénéficier de ce dispositif, vous devez être 
-                          </Text>
-                        </Text>
-                        <Text
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {
-                                "fontFamily": "circularBold",
-                                "fontWeight": null,
-                              },
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
-                            }
-                          >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "alignItems": "center",
-                                  "backgroundColor": "#ffcecb",
-                                  "borderRadius": 12,
-                                  "color": "#212121",
-                                  "display": "flex",
-                                  "flexDirection": "row",
-                                  "flexShrink": 1,
-                                  "fontFamily": "circularBold",
-                                  "fontSize": 16,
-                                  "fontWeight": null,
-                                  "lineHeight": 20,
-                                  "marginBottom": 8,
-                                  "marginTop": 8,
-                                  "padding": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              domicilié
-                            </Text>
-                          </Text>
-                        </Text>
-                        <Text
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {},
-                              Object {},
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Object {
-                                "alignItems": "center",
-                                "backgroundColor": "#ffcecb",
-                                "borderRadius": 12,
-                                "color": "#212121",
-                                "display": "flex",
-                                "flexDirection": "row",
-                                "flexShrink": 1,
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                                "padding": 16,
-                                "textAlign": "left",
-                              }
-                            }
-                          >
-                             dans l'agglomération grenobloise et être en besoin d'accès à un logement.
-                          </Text>
+                           dans l'agglomération grenobloise et être en besoin d'accès à un logement.
                         </Text>
                       </Text>
                     </Text>
-                  </View>
+                  </Text>
                 </View>
               </View>
-            </Text>
-            <View />
+            </View>
           </View>
         </View>
         <View
@@ -6038,61 +6065,56 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Ce dispositif vous permettra d'avoir un référent social qui vous accompagnera dans vos démarches administratives, ouverture des droits, inscription à Pôle Emploi...
-                            </Text>
+                            Ce dispositif vous permettra d'avoir un référent social qui vous accompagnera dans vos démarches administratives, ouverture des droits, inscription à Pôle Emploi...
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6306,61 +6328,56 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Ce dispositif permet l'ouverture des droits et l'accès aux soins.
-                            </Text>
+                            Ce dispositif permet l'ouverture des droits et l'accès aux soins.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6574,61 +6591,56 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              L'accompagnement global qu'offre ce dispositif vous permettra de trouver une formation professionnel ou un emploi.
-                            </Text>
+                            L'accompagnement global qu'offre ce dispositif vous permettra de trouver une formation professionnel ou un emploi.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6842,61 +6854,56 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              L'objectif de ce dispositif est de vous permettre d'avoir un logement ou de vous maintenir dans un logement.
-                            </Text>
+                            L'objectif de ce dispositif est de vous permettre d'avoir un logement ou de vous maintenir dans un logement.
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -7142,29 +7149,85 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
+                          selectable={true}
+                          style={
+                            Array [
+                              Object {},
+                              Object {},
+                            ]
+                          }
+                        >
+                          <Text
+                            selectable={true}
+                            style={
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
+                            }
+                          >
+                            Pour avoir plus d'informations et pour accéder à un accompagnement, envoyer un mail : 
+                          </Text>
+                        </Text>
+                      </Text>
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
+                      >
+                        <Text
                           selectable={true}
                           style={
                             Array [
                               Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
+                                "fontFamily": "circularBold",
+                                "fontWeight": null,
                               },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
@@ -7181,8 +7244,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                               selectable={true}
                               style={
                                 Object {
-                                  "fontFamily": "circularBook",
+                                  "fontFamily": "circularBold",
                                   "fontSize": 16,
+                                  "fontWeight": null,
                                   "lineHeight": 20,
                                   "marginBottom": 16,
                                   "marginTop": 16,
@@ -7190,74 +7254,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                 }
                               }
                             >
-                              Pour avoir plus d'informations et pour accéder à un accompagnement, envoyer un mail : 
+                              contratrefugies@grenoblealpesmetropole.fr 
                             </Text>
                           </Text>
                         </Text>
-                        <Text
-                          isRTL={false}
-                          selectable={true}
-                          style={
-                            Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
-                            ]
-                          }
-                        >
-                          <Text
-                            selectable={true}
-                            style={
-                              Array [
-                                Object {
-                                  "fontFamily": "circularBold",
-                                  "fontWeight": null,
-                                },
-                                Object {},
-                                Object {},
-                              ]
-                            }
-                          >
-                            <Text
-                              selectable={true}
-                              style={
-                                Array [
-                                  Object {},
-                                  Object {},
-                                ]
-                              }
-                            >
-                              <Text
-                                selectable={true}
-                                style={
-                                  Object {
-                                    "fontFamily": "circularBold",
-                                    "fontSize": 16,
-                                    "fontWeight": null,
-                                    "lineHeight": 20,
-                                    "marginBottom": 16,
-                                    "marginTop": 16,
-                                    "textAlign": "left",
-                                  }
-                                }
-                              >
-                                contratrefugies@grenoblealpesmetropole.fr 
-                              </Text>
-                            </Text>
-                          </Text>
-                        </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -7471,61 +7473,56 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
+                    <View
                       style={Object {}}
                     >
-                      <View
-                        style={Object {}}
+                      <Text
+                        isRTL={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "fontFamily": "circularBook",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "flexShrink": 1,
+                              "marginBottom": 8,
+                              "marginTop": 8,
+                            },
+                          ]
+                        }
                       >
                         <Text
-                          isRTL={false}
                           selectable={true}
                           style={
                             Array [
-                              Object {
-                                "color": "#212121",
-                                "fontFamily": "circularBook",
-                                "fontSize": 16,
-                                "lineHeight": 20,
-                                "textAlign": "left",
-                              },
-                              Object {
-                                "flexShrink": 1,
-                                "marginBottom": 8,
-                                "marginTop": 8,
-                              },
+                              Object {},
+                              Object {},
                             ]
                           }
                         >
                           <Text
                             selectable={true}
                             style={
-                              Array [
-                                Object {},
-                                Object {},
-                              ]
+                              Object {
+                                "fontFamily": "circularBook",
+                                "fontSize": 16,
+                                "lineHeight": 20,
+                                "marginBottom": 16,
+                                "marginTop": 16,
+                                "textAlign": "left",
+                              }
                             }
                           >
-                            <Text
-                              selectable={true}
-                              style={
-                                Object {
-                                  "fontFamily": "circularBook",
-                                  "fontSize": 16,
-                                  "lineHeight": 20,
-                                  "marginBottom": 16,
-                                  "marginTop": 16,
-                                  "textAlign": "left",
-                                }
-                              }
-                            >
-                              Les places pour ce dispositif sont très limitées 
-                            </Text>
+                            Les places pour ce dispositif sont très limitées 
                           </Text>
                         </Text>
-                      </View>
-                    </Text>
-                    <View />
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </View>
@@ -7924,6 +7921,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           Object {
             "justifyContent": "center",
             "paddingBottom": 8,
+            "paddingHorizontal": 8,
             "paddingTop": 8,
           },
         ]
@@ -7964,7 +7962,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             },
             "shadowOpacity": 1,
             "shadowRadius": 8,
-            "width": "auto",
+            "width": 120,
           }
         }
         testID="test-custom-button-Mes fiches"
@@ -8059,12 +8057,75 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "marginRight": 0,
                 "textAlign": "left",
               },
+              Object {
+                "fontSize": 13,
+              },
             ]
           }
           textColor="#212121"
         >
           Mes fiches
         </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": "100%",
+            "marginHorizontal": 24,
+            "width": 56,
+          }
+        }
+      >
+        <View
+          className="sc-bdnxRM KGMMf"
+        >
+          <View
+            accessibilityLabel="Écouter"
+            accessibilityRole="button"
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              className="sc-dlnjwi kDArHC"
+            >
+              <react-native-svg
+                height={16}
+                width={16}
+              />
+            </View>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 13,
+                    "lineHeight": 16,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "color": "#5E5E5E",
+                  },
+                ]
+              }
+            >
+              Écouter
+            </Text>
+          </View>
+        </View>
       </View>
       <View
         accessibilityRole="button"
@@ -8101,7 +8162,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             },
             "shadowOpacity": 1,
             "shadowRadius": 8,
-            "width": "auto",
+            "width": 120,
           }
         }
         testID="test-custom-button-Partager"
@@ -8211,6 +8272,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "marginLeft": 8,
                 "marginRight": 0,
                 "textAlign": "left",
+              },
+              Object {
+                "fontSize": 13,
               },
             ]
           }

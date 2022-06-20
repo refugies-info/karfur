@@ -3206,6 +3206,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#FFFFFF"

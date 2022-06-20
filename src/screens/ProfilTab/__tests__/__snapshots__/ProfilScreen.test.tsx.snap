@@ -1238,6 +1238,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -2481,6 +2482,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -3843,6 +3845,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -5086,6 +5089,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -6448,6 +6452,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -7691,6 +7696,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
@@ -7932,6 +7938,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                     "marginRight": 8,
                     "textAlign": "left",
                   },
+                  Object {},
                 ]
               }
               textColor="#FFFFFF"
@@ -8069,6 +8076,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   "marginRight": 0,
                   "textAlign": "left",
                 },
+                Object {},
               ]
             }
             textColor="#212121"
