@@ -11,6 +11,7 @@ import { generateId } from "../libs/generateId";
 // import { wait } from "../libs/wait";
 import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
+import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 
 interface Props {
   children?: string | ReactNode;
@@ -22,6 +23,7 @@ export const ReadableText = (props: Props) => {
   const currentReadingItem = useSelector(currentItemId);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const ref = useRef<View | null>(null);
 
@@ -40,7 +42,7 @@ export const ReadableText = (props: Props) => {
         });
       });
     }
-  }, [isFocused]);
+  }, [isFocused, currentLanguageI18nCode]);
 
   const readingRate = useSelector(readingRateSelector);
   const isPaused = useSelector(isPausedSelector);
@@ -50,6 +52,7 @@ export const ReadableText = (props: Props) => {
       Speech.stop();
       Speech.speak(text, { // read it
         rate: readingRate,
+        language: currentLanguageI18nCode || "fr",
         onDone: () => {
           Speech.isSpeakingAsync().then(res => {
             if (!res) dispatch(readNext());
