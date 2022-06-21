@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { getStructuresFromDB } from "modules/structure/structure.repository";
+import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { getUserById } from "../../../modules/users/users.repository";
 import { getAllStructures } from "./getAllStructures";
 
-jest.mock("src/modules/structure/structure.repository", () => ({
+jest.mock("../../../modules/structure/structure.repository", () => ({
   getStructuresFromDB: jest
     .fn()
     .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),

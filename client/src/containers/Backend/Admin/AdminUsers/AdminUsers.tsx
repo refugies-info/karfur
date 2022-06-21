@@ -10,6 +10,7 @@ import {
   FigureContainer,
   StyledSort,
   Content,
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -30,8 +31,6 @@ import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import {
   SimplifiedUser,
-  Responsable,
-  SimplifiedStructureForAdmin,
   UserStatusType,
 } from "types/interface";
 import { prepareDeleteContrib } from "../Needs/lib";
@@ -339,17 +338,10 @@ export const AdminUsers = () => {
         />
       </SearchBarContainer>
       <StyledHeader>
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <StyledHeaderInner>
           <StyledTitle>Utilisateurs</StyledTitle>
           <FigureContainer>{users.length}</FigureContainer>
-        </div>
+        </StyledHeaderInner>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.storedStatus;

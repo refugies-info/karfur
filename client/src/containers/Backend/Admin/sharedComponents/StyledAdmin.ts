@@ -27,6 +27,13 @@ export const StyledHeader = styled.div`
   margin-left: 24px;
 `;
 
+export const StyledHeaderInner = styled.div`
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Content = styled.div`
   margin-left: 24px;
   margin-right: 8px;

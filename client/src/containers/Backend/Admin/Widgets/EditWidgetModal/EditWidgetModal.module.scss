@@ -1,0 +1,34 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.modal_content {
+  background: $gray40 !important;
+}
+
+.code_container {
+  background-color: $grey50b;
+  padding: 40px;
+  border-radius: $radius;
+  margin-top: 40px;
+
+}
+.code_title {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+.code {
+  padding: 24px;
+  background-color: $white;
+  border: 2px $gray60 dashed;
+  white-space: break-spaces;
+  word-break: break-word;
+}
+
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -498,12 +498,30 @@ export interface Log {
     nom?: string;
     titreInformatif?: string;
     username?: string;
+    langueFr?: string;
   }
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
     id: ObjectId;
     model_link: "User" | "Dispositif" | "Structure";
     next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
+  }
+  created_at: Moment;
+}
+
+export interface Widget {
+  _id: ObjectId;
+  name: string;
+  tags: string[];
+  typeContenu: ("dispositifs"|"demarches")[];
+  location?: {
+    city: string;
+    department: string;
+  }
+  languages?: string[];
+  author: {
+    _id: ObjectId;
+    username: string;
   }
   created_at: Moment;
 }
@@ -536,3 +554,8 @@ export type UserStatus = {
 export type ProgressionStatus = {
   storedStatus: string
 } & Status;
+
+export type PageOptions = {
+  cookiesModule: boolean
+  supportModule: boolean
+}

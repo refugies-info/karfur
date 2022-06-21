@@ -12,10 +12,11 @@ import styles from "./SearchResultCard.module.scss";
 import { getPath } from "routes";
 
 interface Props {
-  pin: (e: any, dispositif: IDispositif|IUserFavorite) => void
-  pinnedList: string[]|undefined
+  pin?: (e: any, dispositif: IDispositif|IUserFavorite) => void
+  pinnedList?: string[]
   dispositif: IDispositif|IUserFavorite
   showPinned: boolean
+  linkBlank?: boolean
 }
 
 const SearchResultCard = (props: Props) => {
@@ -54,7 +55,7 @@ const SearchResultCard = (props: Props) => {
           pathname: getPath(typeContenu, router.locale),
           query: {id: id}
         }}>
-          <a>
+          <a target={props.linkBlank ? "_blank" : undefined}>
             <CustomCard
               className={
                 props.dispositif.typeContenu === "demarche"
@@ -71,7 +72,9 @@ const SearchResultCard = (props: Props) => {
                 {props.showPinned && (
                   <div
                     className={styles.container + " bookmark-icon" + (pinned ? " pinned" : "")}
-                    onClick={(e: any) => props.pin(e, props.dispositif)}
+                    onClick={(e: any) => {
+                      if(props.pin) props.pin(e, props.dispositif)
+                    }}
                     data-test-id={"test-toggle-pin-" + props.dispositif._id}
                   >
                     <EVAIcon name="star" fill={colors.gray10} size="medium" />

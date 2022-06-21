@@ -1,0 +1,1 @@
+export { deleteWidget } from "./deleteWidget";

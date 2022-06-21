@@ -1,5 +1,7 @@
+import express from "express";
+const router = express.Router();
 const translate = require("./translate/lib.js");
 
-module.exports = function (app) {
-  app.post("/get_translation", translate.get_translation);
-};
+router.post("/get_translation", translate.get_translation);
+
+module.exports = router;

@@ -18,6 +18,7 @@ import {
   Content,
   FigureContainer,
   SearchBarContainer,
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
@@ -49,7 +50,7 @@ import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
 import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
-import { ContentStatusType, SimplifiedDispositif, SimplifiedMainSponsor } from "types/interface";
+import { ContentStatusType, SimplifiedDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
@@ -182,7 +183,13 @@ export const AdminContenu = () => {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
-                .includes(removeAccents(search.toLowerCase())))
+                .includes(removeAccents(search.toLowerCase()))) ||
+                (dispo.mainSponsor?.nom &&
+                  dispo.mainSponsor.nom
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .toLowerCase()
+                    .includes(removeAccents(search.toLowerCase())))
         )
       : dispositifs;
 
@@ -229,6 +236,7 @@ export const AdminContenu = () => {
       dispositifsForCount: dispositifsFilteredBySearch,
     };
   };
+
   const { dispositifsToDisplay, dispositifsForCount } =
     filterAndSortDispositifs(dispositifs);
 
@@ -396,17 +404,10 @@ export const AdminContenu = () => {
         </Link>
       </SearchBarContainer>
       <StyledHeader>
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <StyledHeaderInner>
           <StyledTitle>Contenus</StyledTitle>
           <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
-        </div>
+        </StyledHeaderInner>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
@@ -512,13 +513,9 @@ export const AdminContenu = () => {
                     onClick={() => setSelectedDispositifAndToggleModal(element._id)}
                   >
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                      {element.adminProgressionStatus ? (
+                      {element.adminProgressionStatus && (
                         <div style={{ marginRight: "8px" }}>
                           <StyledStatus text={element.adminProgressionStatus} />
-                        </div>
-                      ) : (
-                        <div style={{ marginRight: "8px" }}>
-                          <StyledStatus text="Nouveau !" />
                         </div>
                       )}
                       {element.adminPercentageProgressionStatus && (
