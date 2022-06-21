@@ -1,7 +1,7 @@
 export default {
   name: "Réfugiés.info",
   slug: "refugies-info-app",
-  version: "1.0.10",
+  version: "1.0.11",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -18,7 +18,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.10",
+    buildNumber: "1.0.11",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -39,7 +39,7 @@ export default {
     fr: "./src/translations/fr.json"
   },
   android: {
-    versionCode: 10,
+    versionCode: 11,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -175,6 +175,6 @@ export default {
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   extra: {
-    displayVersionNumber: "2022.05.2"
+    displayVersionNumber: "2022.06.1"
   }
 };
