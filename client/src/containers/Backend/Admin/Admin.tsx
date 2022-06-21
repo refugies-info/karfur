@@ -195,6 +195,19 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
+        <NavItem>
+          <NavLink
+            active={activeTab === "widgets"}
+            onClick={() => toggleTab("widgets")}
+          >
+            <Onglet
+              iconSelected="code"
+              iconNotSelected="code-outline"
+              text="Widgets"
+              isSelected={activeTab === "widgets"}
+            />
+          </NavLink>
+        </NavItem>
       </Nav>
       <TabContent
         activeTab={activeTab}

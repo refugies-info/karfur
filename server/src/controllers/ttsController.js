@@ -1,5 +1,7 @@
+import express from "express";
+const router = express.Router();
 const tts = require("./tts/lib.js");
 
-module.exports = function (app) {
-  app.post("/get_tts", tts.get_tts);
-};
+router.post("/get_tts", tts.get_tts);
+
+module.exports = router;

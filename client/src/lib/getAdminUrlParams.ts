@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { NextRouter } from "next/router";
 import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
 
-export type TabQuery = "contenus" | "structures" | "utilisateurs" | "statistiques" | "besoins" | undefined;
+export type TabQuery = "contenus" | "structures" | "utilisateurs" | "statistiques" | "besoins" | "widgets" | undefined;
 type Status = ContentStatusType | StructureStatusType | UserStatusType;
 
 type AdminUrlParams = {

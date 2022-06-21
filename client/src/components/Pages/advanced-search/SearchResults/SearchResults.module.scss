@@ -1,0 +1,113 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+
+.theme_grid {
+  display: grid;
+  justify-content: start;
+  align-content: start;
+
+  @include media-min("sm-limit") {
+    grid-template-columns: repeat(2, minmax(260px, 300px));
+  }
+  @include media-min("tablet-down") {
+    grid-template-columns: repeat(3, minmax(260px, 300px));
+  }
+  @include media-min("xl-limit") {
+    grid-template-columns: repeat(4, minmax(260px, 300px));
+  }
+  @include media-min("widescreen-up") {
+    grid-template-columns: repeat(5, minmax(260px, 300px));
+  }
+}
+
+.theme_container {
+  width: 100%;
+  padding: 0 24px 48px 24px;
+  align-items: center;
+
+  @include media-min("tablet-up") {
+    padding: 24px 68px 48px 68px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 48px 0 48px 0;
+  }
+  .title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 40px;
+    color: $gray70;
+  }
+  .button {
+    background-color: $bleuCharte;
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 8px;
+  }
+  .inline_button {
+    display: inline-flex;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .text {
+    color: white;
+    font-size: 18px;
+    margin-left: 8px;
+    margin-right: 0;
+    font-weight: bold;
+
+    @include rtl() {
+      margin-right: 8px;
+    }
+  }
+  .text_alone {
+    color: white;
+    font-size: 18px;
+    margin-left: 0;
+    font-weight: bold;
+  }
+}
+
+.france_btn {
+  padding: 8px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  background: transparent;
+  border: 2px solid #5e5e5e;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+  }
+  .active {
+    background: white
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

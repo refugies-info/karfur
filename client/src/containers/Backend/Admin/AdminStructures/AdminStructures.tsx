@@ -21,6 +21,7 @@ import {
   FigureContainer,
   StyledSort,
   SearchBarContainer,
+  StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
 import {
   TabHeader,
@@ -311,17 +312,10 @@ export const AdminStructures = () => {
         </FButton>
       </SearchBarContainer>
       <StyledHeader>
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <StyledHeaderInner>
           <StyledTitle>Structures</StyledTitle>
           <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
-        </div>
+        </StyledHeaderInner>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.storedStatus;
