@@ -3,7 +3,8 @@ import { View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack"
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { SearchParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -15,6 +16,7 @@ import { HeaderAnimated } from "../../components/HeaderAnimated";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { theme } from "../../theme";
+import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
@@ -43,6 +45,12 @@ const ShadowView = styled.View`
 export const SearchScreen = ({
   navigation
 }: StackScreenProps<SearchParamList, "SearchScreen">) => {
+  const dispatch = useDispatch();
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
   const { t, isRTL } = useTranslationWithRTL();
   const currentI18nCode = useSelector(currentI18nCodeSelector);
   const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));

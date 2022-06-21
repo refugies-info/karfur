@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { ScrollView, View } from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, View } from "react-native";
+import { useDispatch } from "react-redux";
 import { theme } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
 import { getThemeTag } from "../../libs/getThemeTag";
@@ -11,6 +12,8 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { tags } from "../../data/tagData";
 import { StyledTextNormalBold } from "../StyledText";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
+import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
   margin-top: ${theme.margin * 7}px;
@@ -26,16 +29,27 @@ interface Props {
 const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const scrollview = React.useRef<ScrollView>(null);
+  const parentScrollview = React.useRef<ScrollView>(null);
 
   React.useLayoutEffect(() => {
     initHorizontalScroll(scrollview, isRTL)
   }, [isRTL])
 
+  // Voiceover
+  const dispatch = useDispatch();
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + 250))
+  }
+  useAutoScroll(parentScrollview, 300);
+
   return (
     <ScrollView
+      ref={parentScrollview}
       style={{ flex: 1 }}
       onScroll={props.handleScroll}
       scrollEventThrottle={20}
+      onMomentumScrollEnd={onScrollEnd}
+      onScrollEndDrag={onScrollEnd}
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>
         <ListSubtitle isRTL={isRTL}>

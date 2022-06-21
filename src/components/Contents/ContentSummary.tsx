@@ -245,7 +245,9 @@ export const ContentSummary = (props: Props) => {
                 //@ts-ignore
                 color={props.tagDarkColor}
               /> :
-              props.titreInfo
+              <ReadableText>
+                {props.titreInfo}
+              </ReadableText>
             }
           </TitreInfoText>
         </TitlesContainer>
