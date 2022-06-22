@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { ScrollView, View } from "react-native";
+import * as React from "react";
+import { NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
@@ -37,7 +37,8 @@ import { theme } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
 import { logger } from "../../logger";
-import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
+import { resetReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const MAX_CONTENT_LOCALIZED = 10;
 
@@ -69,7 +70,13 @@ export const ExplorerScreen = ({
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
 
-  const [tabSelected, setTabSelected] = useState("galery");
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
+
+  const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
 
   // Handle share link
@@ -146,21 +153,13 @@ export const ExplorerScreen = ({
     setIsLocalizedWarningVisible(isWarningVisible);
   }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
 
-  const [accessGranted] = useNotificationsStatus();
-  const [notificationsModalVisible, setNotificationsModalVisible] =
-    useState<boolean>(false);
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + 250))
+  }
+  useAutoScroll(scrollview, 250);
 
-  useEffect(() => {
-    const showModal = async () => {
-      const keyExists = await AsyncStorage.getItem("notificationsModal");
-      if (!accessGranted && !keyExists) {
-        setNotificationsModalVisible(true);
-        await AsyncStorage.setItem("notificationsModal", "true");
-      }
-    };
-
-    showModal();
-  }, [accessGranted]);
 
   return (
     <WrapperWithHeaderAndLanguageModal>
@@ -201,6 +200,9 @@ export const ExplorerScreen = ({
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
         <ScrollView
+          ref={scrollview}
+          onMomentumScrollEnd={onScrollEnd}
+          onScrollEndDrag={onScrollEnd}
           contentContainerStyle={{
             paddingHorizontal: theme.margin * 3,
             paddingBottom: theme.margin * 3,

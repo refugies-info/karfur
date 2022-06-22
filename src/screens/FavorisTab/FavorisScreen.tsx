@@ -5,7 +5,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { Icon } from "react-native-eva-icons";
 
-import { Image, ScrollView, View } from "react-native"
+import { Image, NativeScrollEvent, NativeSyntheticEvent, ScrollView, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux";
 
 import { getContentById } from "../../utils/API";
@@ -33,6 +33,8 @@ import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
+import { resetReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const EmptyContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 4}px;
@@ -61,6 +63,12 @@ export const FavorisScreen = ({
   const { t, isRTL } = useTranslationWithRTL();
   const dispatch = useDispatch();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(resetReadingList());
+    }, [])
+  );
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
@@ -133,6 +141,14 @@ export const FavorisScreen = ({
     }
   }
 
+  // Voiceover
+  const scrollview = React.useRef<ScrollView|null>(null);
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const offset = showSimplifiedHeader ? 400 : 600;
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
+  }
+  useAutoScroll(scrollview, 400);
+
   const renderActions = () => {
     return (
       <View
@@ -168,10 +184,13 @@ export const FavorisScreen = ({
 
       {favorites.length > 0 ?
         <ScrollView
+          ref={scrollview}
           onScroll={handleScroll}
           alwaysBounceVertical={false}
           scrollEventThrottle={5}
           scrollIndicatorInsets={{ right: 1 }}
+          onMomentumScrollEnd={onScrollEnd}
+          onScrollEndDrag={onScrollEnd}
           contentContainerStyle={{
             justifyContent: "space-between",
             paddingHorizontal: theme.margin * 3,
