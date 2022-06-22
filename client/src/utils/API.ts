@@ -148,7 +148,7 @@ const API = {
   },
   getUserContributions: () => {
     const headers = getHeaders();
-    return instance.get("/user/getUserContributions", { headers })
+    return instance.get("/dispositifs/getUserContributions", { headers })
   },
   updateUserFavorites: (query: {
     dispositifId: ObjectId
@@ -229,7 +229,7 @@ const API = {
   getDispositifsWithTranslationAvancement: (locale: string) => {
     const headers = getHeaders();
     return instance.get(
-      `/user/getDispositifsWithTranslationAvancement?locale=${locale}`,
+      `/dispositifs/getDispositifsWithTranslationAvancement?locale=${locale}`,
       { headers }
     )
   },
@@ -352,7 +352,7 @@ const API = {
   },
   exportFiches: () => {
     const headers = getHeaders();
-    return instance.post("/user/exportFiches", {}, { headers })
+    return instance.post("/dispositifs/exportFiches", {}, { headers })
   },
   exportDispositifsGeolocalisation: () => {
     const headers = getHeaders();
