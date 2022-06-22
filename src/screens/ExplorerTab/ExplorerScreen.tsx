@@ -154,11 +154,12 @@ export const ExplorerScreen = ({
   }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
 
   // Voiceover
-  const scrollview = React.useRef<ScrollView|null>(null);
+  const scrollview = React.useRef<ScrollView | null>(null);
+  const offset = 230;
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + 250))
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
   }
-  useAutoScroll(scrollview, 250);
+  useAutoScroll(scrollview, offset);
 
 
   return (

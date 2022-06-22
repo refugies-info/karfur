@@ -20,6 +20,13 @@ export const initialVoiceOverState = {
   currentScroll: 0
 };
 
+const sortItems = (a: ReadingItem, b: ReadingItem) => {
+  if (a.posY < b.posY) return -1;
+  else if (a.posY > b.posY) return 1;
+  else if (a.posX < b.posX) -1; // is same horizontal position, check vertical position
+  return 1;
+};
+
 export const voiceOverReducer = createReducer<
   VoiceOverState,
   VoiceOverActions
@@ -28,7 +35,7 @@ export const voiceOverReducer = createReducer<
     let currentItem = state.currentItem; // start current one
     if (!currentItem) { // or find item on the screen
       let index = 0;
-      for (const [i, item] of state.readingList.entries()) {
+      for (const [i, item] of state.readingList.sort(sortItems).entries()) {
         if (item.posY >= state.currentScroll) {
           index = i;
           break;
@@ -58,7 +65,7 @@ export const voiceOverReducer = createReducer<
   }),
   READING_NEXT: (state) => {
     if (!state.currentItem || !state.isReading) return state;
-    const currentItemIndex = state.readingList.findIndex(i => i.id === state.currentItem);
+    const currentItemIndex = state.readingList.sort(sortItems).findIndex(i => i.id === state.currentItem);
     const nextItem = state.readingList[currentItemIndex + 1];
     return {
       ...state,
@@ -68,7 +75,7 @@ export const voiceOverReducer = createReducer<
   },
   READING_PREVIOUS: (state) => {
     if (!state.currentItem || !state.isReading) return state;
-    const currentItemIndex = state.readingList.findIndex(i => i.id === state.currentItem);
+    const currentItemIndex = state.readingList.sort(sortItems).findIndex(i => i.id === state.currentItem);
     const nextItem = state.readingList[currentItemIndex - 1];
     return {
       ...state,
@@ -81,12 +88,9 @@ export const voiceOverReducer = createReducer<
     rate: state.rate === 1 ? 1.2 : 1
   }),
   ADD_READING: (state, action) => {
-    const newList = [...state.readingList, action.payload].sort((a, b) => {
-      if (a.posY < b.posY) return -1;
-      else if (a.posY > b.posY) return 1;
-      else if (a.posX < b.posY) -1; // is same horizontal position, check vertical position
-      return 1;
-    })
+    const newList = state.readingList.find(i => i.id === action.payload.id) ?
+      [...state.readingList] : // if already in list, do not add again
+      [...state.readingList, action.payload];
     return {
       ...state,
       readingList: newList

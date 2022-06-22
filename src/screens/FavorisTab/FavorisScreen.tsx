@@ -142,12 +142,15 @@ export const FavorisScreen = ({
   }
 
   // Voiceover
-  const scrollview = React.useRef<ScrollView|null>(null);
+  const scrollview = React.useRef<ScrollView | null>(null);
+  const offset = 340;
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const offset = showSimplifiedHeader ? 400 : 600;
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
+    const currentScroll = showSimplifiedHeader ?
+      event.nativeEvent.contentOffset.y + offset :
+      0;
+    dispatch(setScrollReading(currentScroll))
   }
-  useAutoScroll(scrollview, 400);
+  useAutoScroll(scrollview, offset);
 
   const renderActions = () => {
     return (

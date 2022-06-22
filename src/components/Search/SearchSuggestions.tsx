@@ -37,10 +37,11 @@ const SearchSuggestions = (props: Props) => {
 
   // Voiceover
   const dispatch = useDispatch();
+  const offset = 350;
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + 250))
+    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
   }
-  useAutoScroll(parentScrollview, 300);
+  useAutoScroll(parentScrollview, offset);
 
   return (
     <ScrollView

@@ -11,6 +11,7 @@ export const useAutoScroll = (
   useEffect(() => {
     if (scrollviewRef && currentReadingItem) {
       scrollviewRef.current?.scrollTo({
+        // item.posY is position on page. So offset needs to be equal position of 1rst element on page
         y: currentReadingItem.posY - offset,
         animated: true
       })

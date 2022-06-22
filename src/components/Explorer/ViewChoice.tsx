@@ -8,7 +8,6 @@ import GalerieOutline from "../../theme/images/streamlineIcons/galerie-outline.s
 import ListFill from "../../theme/images/streamlineIcons/list-fill.svg";
 import ListOutline from "../../theme/images/streamlineIcons/list-outline.svg";
 import { useTranslation } from "react-i18next";
-import { ReadableText } from "../ReadableText";
 
 const ICON_SIZE = 16;
 
@@ -65,15 +64,11 @@ export const ViewChoice = (props: Props) => {
       <StreamlineIcon name={props.iconName} isSelected={props.isSelected} />
       {props.isSelected ? (
         <ChoiceTextBold>
-          <ReadableText>
-            {t("explorer_screen." + props.text, props.text)}
-          </ReadableText>
+          {t("explorer_screen." + props.text, props.text)}
         </ChoiceTextBold>
       ) : (
           <ChoiceText>
-            <ReadableText>
-              {t("explorer_screen." + props.text, props.text)}
-            </ReadableText>
+            {t("explorer_screen." + props.text, props.text)}
           </ChoiceText>
       )}
     </StyledButton>
