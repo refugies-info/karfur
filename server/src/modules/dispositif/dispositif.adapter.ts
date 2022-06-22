@@ -305,12 +305,15 @@ export const getTitreInfoOrMarqueInLocale = (
   return titre;
 };
 
+const removeAccents = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
 export const filterContentsOnGeoloc = (
   contentsArray: IDispositif[],
   department: string | null,
   strict: boolean = false
 ) => {
   if (!department) return contentsArray;
+  const normalizedRefDep = removeAccents(department);
   return contentsArray.filter((content) => {
     if (
       content.contenu &&
@@ -323,10 +326,11 @@ export const filterContentsOnGeoloc = (
       );
       if (geolocInfocard && geolocInfocard.departments) {
         for (var i = 0; i < geolocInfocard.departments.length; i++) {
-          if (!strict && geolocInfocard.departments[i] === "All") {
+          const normalizedDep = removeAccents(geolocInfocard.departments[i]);
+          if (!strict && normalizedDep === "All") {
             return true;
           }
-          if (geolocInfocard.departments[i].split(" - ")[1] === department) {
+          if (normalizedDep.split(" - ")[1] === normalizedRefDep) {
             return true;
           }
         }
