@@ -5,11 +5,9 @@ import * as Speech from "expo-speech";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
-  pauseReading,
-  resumeReading,
   setReadingItem,
 } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { currentItemSelector, currentScrollSelector, isPausedSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { currentItemSelector, currentScrollSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { theme } from "../../theme";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import Play from "../../theme/images/voiceover/play_icon.svg";
@@ -93,7 +91,7 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
 export const ReadButton = () => {
   const dispatch = useDispatch();
 
-  const isPaused = useSelector(isPausedSelector);
+  const [isPaused, setIsPaused] = useState(false);
   const [rate, setRate] = useState(1);
 
 
@@ -160,10 +158,8 @@ export const ReadButton = () => {
   const toggleVoiceOver = () => {
     if (!currentItem) {
       startToRead();
-    } else if (isPaused) {
-      dispatch(resumeReading());
     } else {
-      dispatch(pauseReading());
+      setIsPaused(!isPaused);
     }
   };
 

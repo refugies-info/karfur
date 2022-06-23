@@ -1,8 +1,5 @@
 import { RootState } from "../reducers";
 
-export const isPausedSelector = (state: RootState) =>
-  state.voiceOver.isPaused;
-
 export const readingListSelector = (state: RootState) =>
   state.voiceOver.readingList;
 
