@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Speech from "expo-speech";
@@ -6,19 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   pauseReading,
-  readNext,
-  readPrevious,
-  readRate,
   resumeReading,
-  startReading,
-  stopReading,
+  setReadingItem,
 } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { isPausedSelector, isReadingSelector, readingRateSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { currentItemSelector, currentScrollSelector, isPausedSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { theme } from "../../theme";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import Play from "../../theme/images/voiceover/play_icon.svg";
 import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Background from "../../theme/images/voiceover/bg_voiceover.svg";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { ReadingItem } from "../../types/interface";
 
 const Container = styled(View)`
   position: absolute;
@@ -85,38 +83,89 @@ const Button = styled(TouchableOpacity)`
   margin-left: ${(props: ButtonProps) => props.ml ? "8px" : "0"};
 `;
 
+const sortItems = (a: ReadingItem, b: ReadingItem) => {
+  if (a.posY < b.posY) return -1;
+  else if (a.posY > b.posY) return 1;
+  else if (a.posX < b.posX) -1; // is same horizontal position, check vertical position
+  return 1;
+}
+
 export const ReadButton = () => {
   const dispatch = useDispatch();
 
-  const isReading = useSelector(isReadingSelector);
   const isPaused = useSelector(isPausedSelector);
-  const rate = useSelector(readingRateSelector);
+  const [rate, setRate] = useState(1);
+
+
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
+  const readingList = useSelector(readingListSelector);
+  const currentItem = useSelector(currentItemSelector);
+  const currentScroll = useSelector(currentScrollSelector);
+
+  const getReadingList = useCallback((startFromId: string | null, offset: number) => {
+    const toRead = readingList.sort(sortItems);
+    const firstItemToRead = startFromId || toRead[0].id;
+    const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
+    return toRead.slice(currentItemIndex + offset);
+  }, [readingList]);
+
+  const readText = useCallback((item: ReadingItem) => {
+    Speech.speak(item.text, {
+      rate: rate,
+      language: currentLanguageI18nCode || "fr",
+      onStart: () => { dispatch(setReadingItem(item.id)) }
+    });
+  }, [rate, currentLanguageI18nCode]);
+
+  const startToRead = () => {
+    const sortedReadingList = readingList.sort(sortItems);
+    const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
+    const toRead = getReadingList(firstItem?.id || null, 0);
+    for (const item of toRead) readText(item);
+  }
+
+  const goToNext = () => {
+    Speech.stop();
+    if (currentItem) {
+      const toRead = getReadingList(currentItem.id, 1);
+      for (const item of toRead) readText(item);
+    }
+  }
+
+  const goToPrevious = () => {
+    Speech.stop();
+    if (currentItem) {
+      const toRead = getReadingList(currentItem.id, -1);
+      for (const item of toRead) readText(item);
+    }
+  }
+
+  const stopVoiceOver = () => {
+    Speech.stop();
+    dispatch(setReadingItem(null));
+  }
+
+  const changeRate = () => {
+    setRate(rate => rate === 1 ? 1.2 : 1);
+  }
+
+  useEffect(() => {
+    Speech.stop();
+    if (currentItem) {
+      const toRead = getReadingList(currentItem.id, 0);
+      for (const item of toRead) readText(item);
+    }
+  }, [rate])
+
   const toggleVoiceOver = () => {
-    if (!isReading) {
-      dispatch(startReading());
+    if (!currentItem) {
+      startToRead();
     } else if (isPaused) {
       dispatch(resumeReading());
     } else {
       dispatch(pauseReading());
     }
   };
-
-  const goToNext = () => {
-    dispatch(readNext());
-  }
-
-  const goToPrevious = () => {
-    dispatch(readPrevious());
-  }
-
-  const stopVoiceOver = () => {
-    Speech.stop();
-    dispatch(stopReading());
-  }
-
-  const changeRate = () => {
-    dispatch(readRate());
-  }
 
   useEffect(() => {
     if (isPaused) {
@@ -127,7 +176,7 @@ export const ReadButton = () => {
       }
     } else {
       if (Platform.OS === "android") {
-        dispatch(startReading());
+        if (currentItem) startToRead();
       } else {
         Speech.resume();
       }
@@ -142,7 +191,7 @@ export const ReadButton = () => {
         accessible={true}
         accessibilityLabel={"Écouter"}>
         <PlayButton>
-          {(isReading && !isPaused) ?
+          {(currentItem && !isPaused) ?
             <Pause width={16} height={16} /> :
             <Play width={16} height={16} />
           }
@@ -151,7 +200,7 @@ export const ReadButton = () => {
           Écouter
         </StyledTextVerySmall>
       </PlayContainer>
-      {isReading && (
+      {currentItem && (
         <Buttons>
           <BackgroundContainer>
             <Background />

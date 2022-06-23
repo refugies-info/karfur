@@ -138,4 +138,5 @@ export interface ReadingItem {
   id: string
   posX: number
   posY: number
+  text: string
 }
