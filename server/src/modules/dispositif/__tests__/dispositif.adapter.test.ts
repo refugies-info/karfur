@@ -2,7 +2,8 @@
 import {
   formatDispositifsByCreator,
   getTitreInfoOrMarque,
-  countDispositifMercis
+  countDispositifMercis,
+  filterContentsOnGeoloc
 } from "../dispositif.adapter";
 
 describe("formatDispositifsByCreator", () => {
@@ -158,5 +159,99 @@ describe("countDispositifMercis", () => {
     const res = countDispositifMercis(dispositifs);
 
     expect(res).toEqual(expectedResult);
+  });
+
+  const contents = [
+    {
+      contenu: [
+        {},
+        {
+          children: [
+            {
+              title: "Zone d'action",
+              departments: ["All"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      contenu: [
+        {},
+        {
+          children: [
+            {
+              title: "Zone d'action",
+              departments: ["63 - Puy-de-Dôme"]
+            }
+          ]
+        }
+      ]
+    },
+  ]
+
+  describe("filterContentsOnGeoloc", () => {
+    it("should return 1 content", () => {
+      const res1 = filterContentsOnGeoloc(contents, "Puy-de-Dôme", true);
+      expect(res1).toEqual([{
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                title: "Zone d'action",
+                departments: ["63 - Puy-de-Dôme"]
+              }
+            ]
+          }
+        ]
+      }]);
+
+      const res2 = filterContentsOnGeoloc(contents, "Puy-de-Dome", true);
+      expect(res2).toEqual([{
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                title: "Zone d'action",
+                departments: ["63 - Puy-de-Dôme"]
+              }
+            ]
+          }
+        ]
+      }]);
+    });
+
+    it("should return 2 content", () => {
+      const res = filterContentsOnGeoloc(contents, "Puy-de-Dôme", false);
+      expect(res).toEqual([
+        {
+          contenu: [
+            {},
+            {
+              children: [
+                {
+                  title: "Zone d'action",
+                  departments: ["All"]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          contenu: [
+            {},
+            {
+              children: [
+                {
+                  title: "Zone d'action",
+                  departments: ["63 - Puy-de-Dôme"]
+                }
+              ]
+            }
+          ]
+        }]);
+    });
   });
 });
