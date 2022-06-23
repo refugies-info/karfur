@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Modal, Spinner, Row, Col, Input, Label } from "reactstrap";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -12,7 +12,7 @@ import { getUsersToSendMail } from "./functions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
-import { SimplifiedCreator } from "types/interface";
+import { SimplifiedCreator, Log } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import { colors } from "colors";
 import { Category } from "./Components";
@@ -20,8 +20,7 @@ import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import styles from "./ImprovementsMailModal.module.scss";
-import stylesAdmin from "../../Admin.module.scss";
-import { cls } from "lib/classname";
+import { LogList } from "../../Logs/LogList";
 
 interface Props {
   show: boolean;
@@ -108,11 +107,26 @@ const getTitle = (
 };
 
 export const ImprovementsMailModal = (props: Props) => {
+  const { selectedDispositifId } = props
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [logs, setLogs] = useState<Log[]>([]);
 
+  
   const dispositif = useSelector(
-    dispositifSelector(props.selectedDispositifId)
-  );
+    dispositifSelector(selectedDispositifId)
+    );
+
+    const updateLogs = useCallback(() => {
+      if (selectedDispositifId) {
+        API.logs(selectedDispositifId).then((res) => {
+          setLogs(res.data.data);
+        });
+      }
+    }, [selectedDispositifId]);
+
+    useEffect(() => {
+      updateLogs();
+    }, [updateLogs]);
 
   const users = useSelector(activeUsersSelector);
   const structures = useSelector(allStructuresSelector);
@@ -373,6 +387,9 @@ export const ImprovementsMailModal = (props: Props) => {
       </Col>
       <Col lg="4">
         <Header>Emails envoyés</Header>
+        <LogList 
+          logs={logs}
+        />
       </Col>
       </Row>
     </Modal>
