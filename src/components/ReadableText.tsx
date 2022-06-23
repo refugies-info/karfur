@@ -4,9 +4,13 @@ import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToReadingList,
-  readNext
+  readNext,
 } from "../services/redux/VoiceOver/voiceOver.actions";
-import { currentItemId, isPausedSelector, readingRateSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
+import {
+  currentItemId,
+  isPausedSelector,
+  readingRateSelector,
+} from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
 // import { wait } from "../libs/wait";
 import { theme } from "../theme";
@@ -49,37 +53,43 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const isPaused = useSelector(isPausedSelector);
   useEffect(() => {
     if (currentReadingItem === id && !isPaused) { // if currentItem is this one
-      const text = props.text || props.children as string || "";
+      const text = props.text || (props.children as string) || "";
       Speech.stop();
       Speech.speak(text, { // read it
         rate: readingRate,
         language: currentLanguageI18nCode || "fr",
         onDone: () => {
-          Speech.isSpeakingAsync().then(res => {
+          Speech.isSpeakingAsync().then((res) => {
             if (!res) dispatch(readNext());
-          })
+          });
           // wait(1000) // then wait for 1 sec
           //   .then(() => {}); // and go to next element
           //TODO: ERROR when go next -> fires anyway
         },
-        onStopped: () => {
-
-        }
       });
     }
   }, [currentReadingItem, isPaused]);
-
 
   const isActive = currentReadingItem === id;
 
   return (
     <>
-      <Text
-        style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}
-      >
-        {props.children}
-      </Text>
-      <View ref={refView}></View>
+      {props.text ? ( // if text given as prop, include content in a View
+        <View
+          ref={refView}
+          style={isActive ? { backgroundColor: theme.colors.lightBlue, flexDirection: "row" } : { flexDirection: "row" }}
+        >
+          {props.children}
+        </View>
+      ) : ( // else, include content in a Text
+        <>
+          <Text
+            style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}>
+            {props.children}
+          </Text>
+          <View ref={refView}></View>
+        </>
+      )}
     </>
   );
 });

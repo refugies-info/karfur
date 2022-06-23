@@ -343,6 +343,8 @@ exports[`Search results screen should render correctly 1`] = `
     </View>
   </View>
   <RCTScrollView
+    onMomentumScrollEnd={[Function]}
+    onScrollEndDrag={[Function]}
     scrollEventThrottle={20}
     style={
       Object {

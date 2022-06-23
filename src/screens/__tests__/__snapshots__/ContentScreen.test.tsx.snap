@@ -455,8 +455,12 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             }
           >
-            <Text
-              style={Object {}}
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
             >
               <View
                 style={Object {}}
@@ -980,8 +984,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   </View>
                 </View>
               </View>
-            </Text>
-            <View />
+            </View>
           </View>
         </View>
         <View
@@ -1524,8 +1527,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -1554,8 +1561,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                   <Image
                     source={1}
@@ -1914,8 +1920,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -1967,8 +1977,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2182,8 +2191,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -2235,8 +2248,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2450,8 +2462,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -2503,8 +2519,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -2718,8 +2733,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -2771,8 +2790,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3018,8 +3036,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -3132,8 +3154,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -3347,8 +3368,12 @@ exports[`ContentScreen should render correctly 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -3400,8 +3425,7 @@ exports[`ContentScreen should render correctly 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -4656,8 +4680,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             }
           >
-            <Text
-              style={Object {}}
+            <View
+              style={
+                Object {
+                  "flexDirection": "row",
+                }
+              }
             >
               <View
                 style={Object {}}
@@ -5181,8 +5209,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </View>
                 </View>
               </View>
-            </Text>
-            <View />
+            </View>
           </View>
         </View>
         <View
@@ -5725,8 +5752,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </Text>
                       <View />
                     </Text>
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -5755,8 +5786,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                   <Image
                     source={1}
@@ -6115,8 +6145,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -6168,8 +6202,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6383,8 +6416,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -6436,8 +6473,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6651,8 +6687,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -6704,8 +6744,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -6919,8 +6958,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -6972,8 +7015,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -7219,8 +7261,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -7333,8 +7379,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
@@ -7548,8 +7593,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       ]
                     }
                   >
-                    <Text
-                      style={Object {}}
+                    <View
+                      style={
+                        Object {
+                          "flexDirection": "row",
+                        }
+                      }
                     >
                       <View
                         style={Object {}}
@@ -7601,8 +7650,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           </Text>
                         </Text>
                       </View>
-                    </Text>
-                    <View />
+                    </View>
                   </View>
                 </View>
               </View>
