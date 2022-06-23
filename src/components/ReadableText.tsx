@@ -48,24 +48,23 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
 
   const isActive = currentReadingItem === id;
   return (
-    <>
-      {props.text ? ( // if text given as prop, include content in a View
-        <View
-          ref={refView}
-          style={isActive ? { backgroundColor: theme.colors.lightBlue, flexDirection: "row" } : { flexDirection: "row" }}
-        >
+    props.text ? ( // if text given as prop, include content in a View
+      <View
+        ref={refView}
+        style={isActive ? { backgroundColor: theme.colors.lightBlue, flexDirection: "row" } : { flexDirection: "row" }}
+        collapsable={false}
+      >
+        {props.children}
+      </View>
+    ) : ( // else, include content in a Text
+      <>
+        <Text
+          style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}>
           {props.children}
-        </View>
-      ) : ( // else, include content in a Text
-        <>
-          <Text
-            style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}>
-            {props.children}
-          </Text>
-          <View ref={refView}></View>
-        </>
-      )}
-    </>
+        </Text>
+        <View ref={refView}></View>
+      </>
+    )
   );
 });
 
