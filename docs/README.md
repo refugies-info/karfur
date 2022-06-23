@@ -158,3 +158,58 @@ To test the application, we compare snapshots of the app between the previous an
 > yarn test             # start to compare snapshots
 > yarn test:unit -u     # update snapshots to keep the current one as a reference.
 ```
+
+## Theme
+
+The file `theme/index.ts` contains all the variables needed to design the app:
+- `colors`
+- `fonts` sizes and families
+- `shadows`: very useful to replicate shadows on android and ios
+- `margin` and `radius` units
+
+## Redux store
+
+The store (in `services/redux`) contains the following modules:
+- `Contents`: content organized by language
+- `ContentsGroupedByNeeds`: contents grouped by needs. Easier to show up on NeedsScreen
+- `Languages`: all available languages
+- `LoadingStatus`: loading status of various kind of content
+- `Needs`: all needs
+- `SelectedContent`: content currently displayed in the content page
+- `User`: all settings related to the current user
+- `Voiceover`: all the commands related to the voiceover feature
+
+## Navigation
+
+The app has the following navigation structure:
+- if user has not seen the onboarding
+  - OnboardingStack
+    - LanguageChoiceScreen
+    - OnboardingStartScreen
+    - OnboardingStepsScreen
+    - FilterCityScreen
+    - FilterAgeScreen
+    - FilterFrenchLevelScreen
+    - FinishOnboardingScreen
+- else
+  - BottomTabStack
+    - ExplorerStack
+      - ExplorerScreen
+      - ContentScreen
+      - ContentsScreen
+      - NeedsScreen
+    - FavorisStack
+      - FavorisScreen
+    - SearchStack
+      - SearchScreen
+      - SearchResultsScreen
+    - ProfileStack
+      - ProfilScreen
+      - LangueProfilScreen
+      - AgeProfilScreen
+      - CityProfilScreen
+      - FrenchLevelProfilScreen
+      - PrivacyPolicyScreen
+      - LegalNoticeScreen
+      - AboutScreen
+      - AccessibilityScreen
