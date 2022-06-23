@@ -1,7 +1,11 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
+@import "src/scss/mixins/responsive";
 
 .modal {
+  @include media-min("xl-limit"){
+    max-width: 1200px !important;
+  }
   .modal_content {
     mix-blend-mode: normal; /* Shadow autour */
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
@@ -9,7 +13,7 @@
     border: none;
     background: $gray20;
     padding: 24px;
-    width: 748px;
+    min-height: 600px;
 
     .user_img {
       max-width: 70px;
@@ -18,4 +22,21 @@
       margin-right: 8px;
     }
   }
+}
+
+.input {
+  border-radius: $radius;
+  font-size: 12px;
+  padding: 16px;
+  color: $dark;
+  flex-grow: 1;
+}
+
+.details_button {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  border-radius: $radius;
+  background-color: $white;
+  margin-bottom: 8px;
 }

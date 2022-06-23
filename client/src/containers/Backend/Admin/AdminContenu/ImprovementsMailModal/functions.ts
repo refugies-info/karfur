@@ -43,6 +43,7 @@ export const getUsersToSendMail = (
         _id: membreWithDetailsArray[0]._id,
         email: membreWithDetailsArray[0].email,
         picture: membreWithDetailsArray[0].picture,
+        roles: membreWithDetailsArray[0].roles
       });
     });
 

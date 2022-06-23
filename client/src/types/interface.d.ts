@@ -92,6 +92,7 @@ export interface SimplifiedCreator {
   picture: Picture | undefined;
   _id: ObjectId;
   email: string | undefined;
+  roles?: string[]
 }
 
 export interface SimplifiedMainSponsor {

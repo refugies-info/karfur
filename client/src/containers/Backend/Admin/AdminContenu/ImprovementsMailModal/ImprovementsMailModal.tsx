@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
 import React, { useState } from "react";
-import { Modal, Spinner } from "reactstrap";
+import { Modal, Spinner, Row, Col, Input, Label } from "reactstrap";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import Image from "next/image";
@@ -20,6 +20,8 @@ import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import styles from "./ImprovementsMailModal.module.scss";
+import stylesAdmin from "../../Admin.module.scss";
+import { cls } from "lib/classname";
 
 interface Props {
   show: boolean;
@@ -44,23 +46,26 @@ const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20px;
 `;
 
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 12px 0px 12px 0px;
-`;
+// const Title = styled.div`
+//   font-weight: bold;
+//   font-size: 16px;
+//   line-height: 20px;
+//   margin: 12px 0px 12px 0px;
+// `;
 
-const UserContainer = styled.div`
-  border-radius: 12px;
-  padding: 8px;
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  align-items: center;
-`;
+// const UserContainer = styled.div`
+//   display: flex;
+//   align-items: center;
+//   flex-grow: 1;
+//   height: 52px;
+//   padding: 12px;
+//   border-radius: $radius;
+//   background-color: $white;
+//   margin-bottom: 8px;
+// `;
 
 const EmailText = styled.div`
   font-weight: bold;
@@ -246,29 +251,40 @@ export const ImprovementsMailModal = (props: Props) => {
       contentClassName={styles.modal_content}
       size="lg"
     >
+      <Row>
+        <Col lg="8">
       <Header>Demande d'informations complémentaires pour la fiche :</Header>
       <RowContainer>
-        <Text>{title}</Text>
+        <Text>Fiche : <b>{title}</b></Text>
         <StyledStatus
           text={formattedStatus.displayedStatus}
           textToDisplay={formattedStatus.displayedStatus}
           color={formattedStatus.color}
           disabled={true}
           textColor={formattedStatus.textColor}
-        />
+          />
       </RowContainer>
-      {["En attente admin", "Accepté structure"].includes(
-        dispositif.status
-      ) && <Title>{"Membres de la structure " + mainSponsorName}</Title>}
-      {dispositif.status === "En attente" && (
-        <Title>Créateur de la fiche</Title>
-      )}
+
+      <RowContainer>
+        <Text>Structure : <b>{mainSponsorName}</b></Text>
+        <StyledStatus
+          text={formattedStatus.displayedStatus}
+          textToDisplay={formattedStatus.displayedStatus}
+          color={formattedStatus.color}
+          disabled={true}
+          textColor={formattedStatus.textColor}
+          />
+      </RowContainer>
+
+      <Label>La demande sera envoyée à :</Label>
 
       {usersToDisplay.map((user, index) => {
         const hasEmail = !!user.email;
         const email = user.email || "pas d'email renseigné";
         return (
-          <UserContainer key={index}>
+            <Row key={index}>
+              <Col lg="10">
+          <div className={styles.details_button}>
             <Image
               className={styles.user_img}
               src={getUserImage(user)}
@@ -278,11 +294,27 @@ export const ImprovementsMailModal = (props: Props) => {
               objectFit="contain"
             />
             {user.username + " - "}
-            <EmailText hasEmail={hasEmail}>{email}</EmailText>
-          </UserContainer>
+            <EmailText style={{ marginRight: "5px" }} hasEmail={hasEmail}>{email}</EmailText>
+            {user.roles?.map((role, i) => {
+              return (
+                <div style={{ marginRight: "5px" }} key={i}>
+                <StyledStatus
+                  text={role}
+                  textToDisplay={role}
+                  disabled
+                />
+                </div>
+              )
+            })}
+          </div>
+            </Col>
+            </Row>
         );
       })}
-      <Title>{"Sections à revoir (" + selectedCategories.length + ")"} </Title>
+
+      <Row className="mt-5">
+        <Col lg="4">
+      <Label>{"Sections à revoir (" + selectedCategories.length + ")"} </Label>
       <CategoriesContainer>
         {dispositifCategories.map((categorie, index) => (
           <Category
@@ -293,15 +325,32 @@ export const ImprovementsMailModal = (props: Props) => {
           />
         ))}
       </CategoriesContainer>
+      </Col>
+      <Col lg="8">
+      <Label>Ajouter un message</Label>
+      <Input
+        type="textarea"
+        placeholder="Précisions sur les modifications attendues..."
+        rows={10}
+        maxLength={3000}
+        // value={props.adminComments}
+        // onChange={props.onNotesChange}
+        id="message"
+        className={styles.input}
+      />
+      </Col>
+      </Row>
+
       <RecapContainer>
         Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b> utilisateur(s)
         avec <b>{selectedCategories.length}</b> section(s) à revoir.
       </RecapContainer>
+
       <div
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "end",
         }}
       >
         <FButton
@@ -321,6 +370,11 @@ export const ImprovementsMailModal = (props: Props) => {
           Envoyer
         </FButton>
       </div>
+      </Col>
+      <Col lg="4">
+        <Header>Emails envoyés</Header>
+      </Col>
+      </Row>
     </Modal>
   );
 };
