@@ -456,6 +456,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "flexDirection": "row",
@@ -1528,6 +1529,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       <View />
                     </Text>
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -1921,6 +1923,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -2192,6 +2195,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -2463,6 +2467,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -2734,6 +2739,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -3037,6 +3043,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -3369,6 +3376,7 @@ exports[`ContentScreen should render correctly 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -4681,6 +4689,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
+              collapsable={false}
               style={
                 Object {
                   "flexDirection": "row",
@@ -5753,6 +5762,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       <View />
                     </Text>
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -6146,6 +6156,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -6417,6 +6428,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -6688,6 +6700,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -6959,6 +6972,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -7262,6 +7276,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
@@ -7594,6 +7609,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     }
                   >
                     <View
+                      collapsable={false}
                       style={
                         Object {
                           "flexDirection": "row",
