@@ -47,15 +47,17 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [smsSentTo, setSmsSentTo] = useState("");
-  const [structure, setStructure] = useState<Structure|null>(null);
+  const [structure, setStructure] = useState<Structure | null>(null);
   const [step, setStep] = useState(0);
   const [noUserError, setNoUserError] = useState(false);
   const [wrongPasswordError, setWrongPasswordError] = useState(false);
-  const [resetPasswordNotPossible, setResetPasswordNotPossible] = useState(false);
+  const [resetPasswordNotPossible, setResetPasswordNotPossible] =
+    useState(false);
   const [resetPasswordPossible, setResetPasswordPossible] = useState(false);
   const [wrongAdminCodeError, setWrongAdminCodeError] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
-  const [newAdminWithoutPhoneOrEmail, setNewAdminWithoutPhoneOrEmail] = useState(false);
+  const [newAdminWithoutPhoneOrEmail, setNewAdminWithoutPhoneOrEmail] =
+    useState(false);
   const [
     newHasStructureWithoutPhoneOrEmail,
     setNewHasStructureWithoutPhoneOrEmail,
@@ -68,11 +70,20 @@ const Login = () => {
 
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
-  const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+  const isLanguagesLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_LANGUES)
+  );
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
-    if (API.isAuth()) router.push("/");
+    if (API.isAuth()) {
+      const { query } = router;
+      if (query.redirect) {
+        router.push(query.redirect as string);
+      } else {
+        router.push("/");
+      }
+    }
   }, [dispatch, router]);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -108,10 +119,14 @@ const Login = () => {
   const changeLanguage = (lng: string) => {
     dispatch(toggleLangueActionCreator(lng));
     const { pathname, query } = router;
-    router.push({
-      pathname: getPath(pathname as PathNames, lng),
-      query
-    }, undefined, { locale: lng });
+    router.push(
+      {
+        pathname: getPath(pathname as PathNames, lng),
+        query,
+      },
+      undefined,
+      { locale: lng }
+    );
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
@@ -129,6 +144,7 @@ const Login = () => {
    * 200 : authentification succeeded
    * 502 : new admin without phone number or email
    */
+
   const login = () => {
     const user = {
       username,
@@ -146,7 +162,14 @@ const Login = () => {
           text: t("Authentification réussie !", "Authentification réussie !"),
           type: "success",
           timer: 1500,
-        }).then(() => router.push("/"));
+        }).then(() => {
+          const { query } = router;
+          if (query.redirect) {
+            router.push(query.redirect as string);
+          } else {
+            router.push("/");
+          }
+        });
         localStorage.setItem("token", token);
         setAuthToken(token);
         dispatch(fetchUserActionCreator());
@@ -158,7 +181,8 @@ const Login = () => {
           setNewAdminWithoutPhoneOrEmail(false);
           setNewHasStructureWithoutPhoneOrEmail(false);
           setSmsSentTo(e.response?.data?.phone || "");
-        } else if (e.response.status === 401) { // status 401 corresponds to wrong password
+        } else if (e.response.status === 401) {
+          // status 401 corresponds to wrong password
           setWrongPasswordError(true);
         } else if (e.response.status === 402) {
           setWrongAdminCodeError(true);
@@ -183,7 +207,8 @@ const Login = () => {
     e.preventDefault();
     setWrongPasswordError(false);
 
-    if (step === 0) { // validate pseudo
+    if (step === 0) {
+      // validate pseudo
       if (username.length === 0) {
         Swal.fire({
           title: "Oops...",
@@ -195,13 +220,16 @@ const Login = () => {
       }
       API.checkUserExists({ username }).then((data) => {
         const userExists = data.status === 200;
-        if (userExists) { // if user, go to next step (password)
+        if (userExists) {
+          // if user, go to next step (password)
           setStep(1);
-        } else { // if no user: display error
+        } else {
+          // if no user: display error
           setNoUserError(!userExists);
         }
       });
-    } else { // password check
+    } else {
+      // password check
       if (password.length === 0) {
         Swal.fire({
           title: "Oops...",
@@ -287,7 +315,8 @@ const Login = () => {
   };
 
   const getFormTemplate = () => {
-    if (step === 0) { // STEP 0: username
+    if (step === 0) {
+      // STEP 0: username
       return (
         <UsernameField
           value={username}
@@ -297,7 +326,8 @@ const Login = () => {
           noUserError={noUserError}
         />
       );
-    } else if (step === 1) { // STEP 1: password or contact infos
+    } else if (step === 1) {
+      // STEP 1: password or contact infos
       if (newAdminWithoutPhoneOrEmail && !wrongPasswordError) {
         return (
           <PhoneAndEmailFields
@@ -344,7 +374,8 @@ const Login = () => {
       );
     }
 
-    return ( // STEP 2: 2FA code
+    return (
+      // STEP 2: 2FA code
       <CodeField
         value={code}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -457,4 +488,4 @@ export const getStaticProps = defaultStaticProps;
 export default Login;
 
 // override default layout
-Login.getLayout = (page: ReactElement) => page
+Login.getLayout = (page: ReactElement) => page;
