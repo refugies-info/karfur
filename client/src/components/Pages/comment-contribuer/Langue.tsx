@@ -25,21 +25,26 @@ const LangueContainer = styled.a`
 `;
 const ProgressContainer = styled.div`
   width: 100px;
-  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "8px" : "24px")};
-  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "24px" : "8px")};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? "8px" : "24px")};
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "24px" : "8px"};
 `;
 const AvancementContainer = styled.div`
-  color: ${(props: {color?: string}) => props.color};
+  color: ${(props: { color?: string }) => props.color};
 `;
 
 interface Props {
   isRTL: boolean;
   langue: Language;
   key: string;
+  href: {
+    pathname: string;
+    query?: {};
+  };
 }
 
 const Langue = (props: Props) => (
-  <Link href="/backend/user-translation" passHref>
+  <Link href={props.href} passHref>
     <LangueContainer>
       <div
         style={{
@@ -70,4 +75,4 @@ const Langue = (props: Props) => (
   </Link>
 );
 
-export default Langue
+export default Langue;
