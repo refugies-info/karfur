@@ -1,6 +1,7 @@
+import React from "react";
 import { Image, StyleSheet } from "react-native";
-import * as React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
+
 import { OnboardingParamList } from "../../../types";
 import { StyledTextBigBold } from "../../components/StyledText";
 import { theme } from "../../theme";
@@ -46,6 +47,7 @@ export const OnboardingStart = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "OnboardingStart">) => {
   const { t } = useTranslationWithRTL();
+
   return (
     <MainView>
       <HeaderWithBack navigation={navigation} />

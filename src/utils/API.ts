@@ -1,6 +1,9 @@
 import axios from "react-native-axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import Config from "../libs/getEnvironment";
-import { ObjectId } from "../types/interface";
+import { ObjectId, AppUser } from "../types/interface";
+import { logger } from "../logger";
 
 const dbURL = Config.dbUrl;
 const siteSecret = Config.siteSecret;
@@ -54,7 +57,9 @@ export const getContentsForApp = ({
   return apiCaller.get(route);
 };
 
-export const getNbContents = ({ department }: {
+export const getNbContents = ({
+  department,
+}: {
   department: string | null;
 }) => {
   const route = `/dispositifs/getNbContents?department=${department}`;
@@ -78,3 +83,16 @@ export const updateNbVuesOrFavoritesOnContent = (
     | { query: { id: ObjectId; nbVuesMobile: number } }
     | { query: { id: ObjectId; nbFavoritesMobile: number } }
 ) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
+
+export const updateAppUser = async (payload: AppUser) => {
+  const uid = await AsyncStorage.getItem("uid");
+
+  if (!uid) {
+    logger.error("[updateAppUser]: uid not found in async storage");
+  }
+
+  apiCaller.post("/appuser/", {
+    ...payload,
+    uid,
+  });
+};
