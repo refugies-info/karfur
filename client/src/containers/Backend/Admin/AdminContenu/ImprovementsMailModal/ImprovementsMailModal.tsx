@@ -48,24 +48,6 @@ const RowContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-// const Title = styled.div`
-//   font-weight: bold;
-//   font-size: 16px;
-//   line-height: 20px;
-//   margin: 12px 0px 12px 0px;
-// `;
-
-// const UserContainer = styled.div`
-//   display: flex;
-//   align-items: center;
-//   flex-grow: 1;
-//   height: 52px;
-//   padding: 12px;
-//   border-radius: $radius;
-//   background-color: $white;
-//   margin-bottom: 8px;
-// `;
-
 const EmailText = styled.div`
   font-weight: bold;
   font-size: 16px;
@@ -110,7 +92,11 @@ export const ImprovementsMailModal = (props: Props) => {
   const { selectedDispositifId } = props
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [logs, setLogs] = useState<Log[]>([]);
+  const [message, setMessage] = useState<string>("");
 
+  const handleChange = (event: any) => {
+    setMessage(event.target.value);
+  };
   
   const dispositif = useSelector(
     dispositifSelector(selectedDispositifId)
@@ -180,6 +166,7 @@ export const ImprovementsMailModal = (props: Props) => {
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
+  const formattedStatusStructure = dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
 
   const title = getTitle(
     dispositif.titreInformatif,
@@ -232,6 +219,7 @@ export const ImprovementsMailModal = (props: Props) => {
       titreInformatif: dispositif.titreInformatif,
       titreMarque: dispositif.titreMarque,
       sections: selectedCategories,
+      message
     };
 
     API.sendAdminImprovementsMail(data)
@@ -281,13 +269,13 @@ export const ImprovementsMailModal = (props: Props) => {
 
       <RowContainer>
         <Text>Structure : <b>{mainSponsorName}</b></Text>
-        <StyledStatus
-          text={formattedStatus.displayedStatus}
-          textToDisplay={formattedStatus.displayedStatus}
-          color={formattedStatus.color}
+        {formattedStatusStructure && <StyledStatus
+          text={formattedStatusStructure.displayedStatus}
+          textToDisplay={formattedStatusStructure.displayedStatus}
+          color={formattedStatusStructure.color}
           disabled={true}
-          textColor={formattedStatus.textColor}
-          />
+          textColor={formattedStatusStructure.textColor}
+          />}
       </RowContainer>
 
       <Label>La demande sera envoyée à :</Label>
@@ -341,14 +329,17 @@ export const ImprovementsMailModal = (props: Props) => {
       </CategoriesContainer>
       </Col>
       <Col lg="8">
-      <Label>Ajouter un message</Label>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Label>Ajouter un message</Label>
+          <p className={styles.character_count}>{message.length.toString()} sur 3000 caractères</p>
+        </div>
       <Input
         type="textarea"
         placeholder="Précisions sur les modifications attendues..."
         rows={10}
         maxLength={3000}
-        // value={props.adminComments}
-        // onChange={props.onNotesChange}
+        onChange={handleChange}
+        value={message}
         id="message"
         className={styles.input}
       />

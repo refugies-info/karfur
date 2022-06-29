@@ -47,7 +47,7 @@ export const LogLine = (props: Props) => {
     }
   }
 
-  return (
+   return (
     <div
       className={cls(styles.container, !!log.link && styles.clickable)}
       onClick={handleClick}
