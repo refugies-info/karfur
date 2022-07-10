@@ -12,6 +12,7 @@ import { errors } from "celebrate";
 import logger from "./logger";
 
 import appuserController from "./controllers/appusers";
+import notificationsController from "./controllers/notifications";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
@@ -106,7 +107,9 @@ app.use("/needs", needsController);
 app.use("/search", searchController);
 app.use("/logs", logController);
 app.use("/widgets", widgetController);
+
 app.use("/appuser", appuserController);
+app.use("/notifications", notificationsController);
 
 app.use(errors()); // Joi middleware for validation errors
 

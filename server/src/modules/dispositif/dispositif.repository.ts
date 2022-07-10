@@ -1,18 +1,11 @@
 import { IDispositif, AudienceAge } from "../../types/interface";
-import {
-  Dispositif,
-  DispositifPopulatedDoc,
-  DispositifDoc,
-} from "../../schema/schemaDispositif";
+import { Dispositif, DispositifPopulatedDoc, DispositifDoc } from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 
-export const getDispositifsFromDB = async (
-  needFields: Object
-): Promise<IDispositif[]> =>
+export const getDispositifsFromDB = async (needFields: Object): Promise<IDispositif[]> =>
   await Dispositif.find({}, needFields)
     .populate("mainSponsor creatorId")
-    .populate("lastModificationAuthor publishedAtAuthor", "username")
-
+    .populate("lastModificationAuthor publishedAtAuthor", "username");
 
 export const getDispositifArray = async (query: any, extraFields: any = {}, populate: string = "") => {
   const neededFields = {
@@ -37,7 +30,7 @@ export const getDispositifArray = async (query: any, extraFields: any = {}, popu
 };
 
 export const updateDispositifInDB = async (
-  dispositifId: ObjectId,
+  dispositifId: ObjectId | string,
   modifiedDispositif:
     | { mainSponsor: ObjectId; status: string }
     | { status: string; publishedAt: number }
@@ -58,42 +51,29 @@ export const updateDispositifInDB = async (
     | { needs: any }
     | { nbVuesMobile: number }
     | { nbFavoritesMobile: number }
+    | { notificationsSent: {} }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
     upsert: true,
     // @ts-ignore
-    new: true,
+    new: true
   });
 
-export const getActiveDispositifsFromDBWithoutPopulate = async (
-  needFields: Object
-): Promise<IDispositif[]> =>
-  await Dispositif.find(
-    { status: "Actif", typeContenu: "dispositif" },
-    needFields
-  );
+export const getActiveDispositifsFromDBWithoutPopulate = async (needFields: Object): Promise<IDispositif[]> =>
+  await Dispositif.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
 
 export const getAllContentsFromDB = async () =>
-  await Dispositif.find(
-    {},
-    { audienceAge: 1, contenu: 1, typeContenu: 1, status: 1 }
-  );
+  await Dispositif.find({}, { audienceAge: 1, contenu: 1, typeContenu: 1, status: 1 });
 
-export const getAllDemarchesFromDB = async () =>
-  await Dispositif.find({ typeContenu: "demarche" }, { _id: 1 });
+export const getAllDemarchesFromDB = async () => await Dispositif.find({ typeContenu: "demarche" }, { _id: 1 });
 
 export const removeAudienceAgeInDB = async (dispositifId: ObjectId) =>
-  await Dispositif.update(
-    { _id: dispositifId },
-    { $unset: { audienceAge: "" } }
-  );
+  await Dispositif.update({ _id: dispositifId }, { $unset: { audienceAge: "" } });
 
 export const removeVariantesInDB = async (dispositifId: ObjectId) =>
   await Dispositif.update({ _id: dispositifId }, { $unset: { variantes: "" } });
 
-export const getDraftDispositifs = async (): Promise<
-  DispositifPopulatedDoc[]
-> =>
+export const getDraftDispositifs = async (): Promise<DispositifPopulatedDoc[]> =>
   // @ts-ignore populate creatorId
   await Dispositif.find(
     { status: "Brouillon" },
@@ -103,49 +83,31 @@ export const getDraftDispositifs = async (): Promise<
       creatorId: 1,
       updatedAt: 1,
       lastModificationDate: 1,
-      titreInformatif: 1,
+      titreInformatif: 1
     }
   ).populate("creatorId");
 
-export const modifyReadSuggestionInDispositif = async (
-  dispositifId: ObjectId,
-  suggestionId: string
-) =>
+export const modifyReadSuggestionInDispositif = async (dispositifId: ObjectId, suggestionId: string) =>
   await Dispositif.findOneAndUpdate(
-    { _id: dispositifId, "suggestions.suggestionId": suggestionId },
+    { "_id": dispositifId, "suggestions.suggestionId": suggestionId },
     // @ts-ignore
     { $set: { ["suggestions.$.read"]: true } }
   );
 
-export const getDispositifById = async (
-  id: ObjectId,
-  neededFields: Record<string, number>
-) => await Dispositif.findOne({ _id: id }, neededFields);
+export const getDispositifById = async (id: ObjectId | string, neededFields: Record<string, number>) =>
+  await Dispositif.findOne({ _id: id }, neededFields);
 
-export const getDispositifsWithCreatorId = async (
-  creatorId: ObjectId,
-  neededFields: Record<string, number>
-) =>
-  await Dispositif.find(
-    { creatorId, status: { $ne: "Supprimé" } },
-    neededFields
-  ).populate("mainSponsor");
+export const getDispositifsWithCreatorId = async (creatorId: ObjectId, neededFields: Record<string, number>) =>
+  await Dispositif.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
 
-export const getDispositifByIdWithMainSponsor = async (
-  id: ObjectId,
-  neededFields: Record<string, number> | "all"
-) => {
+export const getDispositifByIdWithMainSponsor = async (id: ObjectId, neededFields: Record<string, number> | "all") => {
   if (neededFields === "all") {
     return await Dispositif.findOne({ _id: id }).populate("mainSponsor");
   }
-  return await Dispositif.findOne({ _id: id }, neededFields).populate(
-    "mainSponsor"
-  );
+  return await Dispositif.findOne({ _id: id }, neededFields).populate("mainSponsor");
 };
 
-export const getPublishedDispositifWithMainSponsor = async (): Promise<
-  DispositifPopulatedDoc[]
-> =>
+export const getPublishedDispositifWithMainSponsor = async (): Promise<DispositifPopulatedDoc[]> =>
   // @ts-ignore
   await Dispositif.find(
     { status: "Actif" },
@@ -156,56 +118,52 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<
       lastReminderMailSentToUpdateContentDate: 1,
       lastModificationDate: 1,
       titreInformatif: 1,
-      typeContenu: 1,
+      typeContenu: 1
     }
   ).populate("mainSponsor");
 
 export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);
 
-export const getActiveContentsFiltered = async (
-  neededFields: Record<string, number>,
-  query: any
-) => await Dispositif.find(query, neededFields).populate("mainSponsor");
+export const getActiveContentsFiltered = async (neededFields: Record<string, number>, query: any) =>
+  await Dispositif.find(query, neededFields).populate("mainSponsor");
 
-export const getDispositifByIdWithAllFields = async (id: ObjectId) =>
-  await Dispositif.findOne({ _id: id });
+export const getDispositifByIdWithAllFields = async (id: ObjectId) => await Dispositif.findOne({ _id: id });
 
-export const createDispositifInDB = async (dispositif: DispositifDoc) =>
-  await new Dispositif(dispositif).save();
+export const createDispositifInDB = async (dispositif: DispositifDoc) => await new Dispositif(dispositif).save();
 
 export const getNbMercis = async () => {
   return Dispositif.aggregate([
     {
-      $match: { status: "Actif" },
+      $match: { status: "Actif" }
     },
     {
       $project: {
         _id: null,
         mercis: {
-          $size: { "$ifNull": [ "$merci", [] ] }
-        },
+          $size: { $ifNull: ["$merci", []] }
+        }
       }
     },
     {
       $group: {
         _id: null,
-        mercis: { $sum: "$mercis" },
-      },
-    },
+        mercis: { $sum: "$mercis" }
+      }
+    }
   ]);
-}
+};
 export const getNbVues = async () => {
   return Dispositif.aggregate([
     {
-      $match: { status: "Actif" },
+      $match: { status: "Actif" }
     },
     {
       $group: {
         _id: null,
         nbVues: { $sum: "$nbVues" },
-        nbVuesMobile: { $sum: "$nbVuesMobile" },
-      },
-    },
+        nbVuesMobile: { $sum: "$nbVuesMobile" }
+      }
+    }
   ]);
-}
+};
