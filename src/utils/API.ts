@@ -1,9 +1,9 @@
 import axios from "react-native-axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Config from "../libs/getEnvironment";
 import { ObjectId, AppUser } from "../types/interface";
-import { logger } from "../logger";
+
+import { makeApiRequest } from "../hooks/useApi";
 
 const dbURL = Config.dbUrl;
 const siteSecret = Config.siteSecret;
@@ -84,15 +84,14 @@ export const updateNbVuesOrFavoritesOnContent = (
     | { query: { id: ObjectId; nbFavoritesMobile: number } }
 ) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
 
-export const updateAppUser = async (payload: AppUser) => {
-  const uid = await AsyncStorage.getItem("uid");
+export const updateAppUser = async (payload: AppUser) =>
+  makeApiRequest("/appuser/", payload, "POST");
 
-  if (!uid) {
-    logger.error("[updateAppUser]: uid not found in async storage");
-  }
-
-  apiCaller.post("/appuser/", {
-    ...payload,
-    uid,
-  });
-};
+export const markNotificationAsSeen = async (notificationId: string) =>
+  makeApiRequest(
+    "/notifications/seen",
+    {
+      notificationId,
+    },
+    "POST"
+  );

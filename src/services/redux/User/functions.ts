@@ -18,7 +18,7 @@ const itemsToSave: {
 } = {
   SELECTED_LANGUAGE: "selectedLanguage",
   CITY: "city",
-  DEP: "dep",
+  DEP: "department",
   AGE: "age",
   FRENCH_LEVEL: "frenchLevel",
 };
@@ -28,7 +28,7 @@ export const saveItemInAsyncStorage = async (item: Item, value: string) => {
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      // @ts-ignore
+      //@ts-expect-error
       [itemsToSave[item]]: value,
     });
   }
@@ -44,7 +44,7 @@ export const deleteItemInAsyncStorage = async (item: Item) => {
 
   if (Object.keys(itemsToSave).includes(item)) {
     await updateAppUser({
-      // @ts-ignore
+      //@ts-expect-error
       [itemsToSave[item]]: null,
     });
   }

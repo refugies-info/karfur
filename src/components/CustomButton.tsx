@@ -20,8 +20,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.notFullWidth ? "auto" : "100%"};
   height: ${(props: { isSmall: boolean }) =>
     !props.isSmall ? 56 : 40}px;
-  ${(props: { isDisabled: boolean, isSmall: boolean, backgroundColor: string }) =>
-    props.isDisabled ? "" : (props.isSmall || !props.backgroundColor ? theme.shadows.lg : theme.shadows.sm)};
+  ${(props: { isDisabled: boolean, isSmall: boolean, backgroundColor: string, withShadows: boolean }) =>
+    props.isDisabled || !props.withShadows ? "" : (props.isSmall || !props.backgroundColor ? theme.shadows.lg : theme.shadows.sm)};
   opacity: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? 0.4 : 1};
 `;
@@ -57,12 +57,14 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   iconStyle?: StyleProp<ViewStyle>;
   accessibilityLabel?: string;
+  withShadows?: boolean;
 }
 
 const ICON_SIZE = 24;
 
 export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
+  const {withShadows = true} = props;
 
   const icon = <Icon
     name={props.iconName}
@@ -84,6 +86,7 @@ export const CustomButton = (props: Props) => {
       style={props.style || {}}
       accessibilityRole="button"
       accessibilityLabel={props.accessibilityLabel}
+      withShadows={withShadows}
     >
       {props.iconName && props.iconFirst && icon}
       {props.isTextNotBold ? (

@@ -70,9 +70,11 @@ const colors = {
   lightBlue: "#DAE0FB",
   blue: "#2D9CDB",
   red: "#B01917",
+  lighterRed: "#E8140F",
   green: "#008205",
   lightRed: "#ffcecb",
   greyF7: "#F7F7F7",
+  greyDisabled: "#919191",
 };
 
 const images = {};
@@ -103,8 +105,18 @@ const shadows = {
   lg: `
   box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.16);
   elevation: 6;
-  `
-}
+  `,
+};
+
+const shadowsStylesheet = {
+  lg: {
+    shadowColor: colors.black,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 1, height: 1 },
+    shadowRadius: 8,
+    elevation: 6,
+  },
+};
 
 export const theme = {
   colors,
@@ -112,5 +124,6 @@ export const theme = {
   margin: 8,
   fonts,
   radius: 6,
-  shadows
+  shadows,
+  shadowsStylesheet,
 };

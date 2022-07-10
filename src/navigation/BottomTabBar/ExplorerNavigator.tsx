@@ -1,12 +1,13 @@
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
 import { ExplorerParamList } from "../../../types";
-import React from "react";
 import { ExplorerScreen } from "../../screens/ExplorerTab/ExplorerScreen";
 import { ContentScreen } from "../../screens/ContentScreen";
 import { ContentsScreen } from "../../screens/ContentsScreen";
 import { NeedsScreen } from "../../screens/ExplorerTab/NeedsScreen";
+import { NotificationsScreen } from "../../screens/NotificationsScreen";
 
 interface Props {
   navigation?: any;
@@ -20,8 +21,8 @@ const ExplorerStack = createStackNavigator<ExplorerParamList>();
 export const ExplorerNavigator = ({ navigation, route }: Props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      tabBarVisible: (getFocusedRouteNameFromRoute(route) !== "ContentScreen") // show tab bar everywhere except content screen
-    })
+      tabBarVisible: getFocusedRouteNameFromRoute(route) !== "ContentScreen", // show tab bar everywhere except content screen
+    });
   }, [navigation, route]);
 
   return (
@@ -30,5 +31,10 @@ export const ExplorerNavigator = ({ navigation, route }: Props) => {
       <ExplorerStack.Screen name="ContentScreen" component={ContentScreen} />
       <ExplorerStack.Screen name="ContentsScreen" component={ContentsScreen} />
       <ExplorerStack.Screen name="NeedsScreen" component={NeedsScreen} />
-    </ExplorerStack.Navigator>)
+      <ExplorerStack.Screen
+        name="NotificationsScreen"
+        component={NotificationsScreen}
+      />
+    </ExplorerStack.Navigator>
+  );
 };

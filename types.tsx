@@ -15,8 +15,8 @@ export type RootStackParamList = {
 export type BottomTabParamList = {
   Explorer: undefined;
   Favoris: {
-    screen?: string
-  }
+    screen?: string;
+  };
   Profil: undefined;
   Search: undefined;
 };
@@ -26,18 +26,19 @@ export type ExplorerParamList = {
   ContentsScreen: {
     colors: ThemeTag;
     needId: ObjectId;
-    backScreen?: string
+    backScreen?: string;
   };
   ContentScreen: {
     contentId: ObjectId;
     needId?: ObjectId;
     colors?: ThemeTag;
-    backScreen?: string
+    backScreen?: string;
   };
   NeedsScreen: {
     colors: ThemeTag;
-    backScreen?: string
+    backScreen?: string;
   };
+  NotificationsScreen: {};
 };
 
 export type FavorisParamList = {
@@ -69,6 +70,7 @@ export type ProfileParamList = {
   LegalNoticeScreen: undefined;
   AboutScreen: undefined;
   AccessibilityScreen: undefined;
+  NotificationsSettingsScreen: undefined;
 };
 
 export type LanguageChoiceParamList = {

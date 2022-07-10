@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
   TextSmallNormal,
-  TextVerySmallNormal
+  TextVerySmallNormal,
 } from "../../components/StyledText";
 import { View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -18,7 +18,7 @@ import {
   removeSelectedLanguageActionCreator,
   removeUserHasNewFavoritesActionCreator,
   removeUserLocalizedWarningHiddenActionCreator,
-  removeUserAllFavoritesActionCreator
+  removeUserAllFavoritesActionCreator,
 } from "../../services/redux/User/user.actions";
 import { ProfilDetailButton } from "../../components/Profil/ProfilDetailButton";
 import { HeaderAnimated } from "../../components/HeaderAnimated";
@@ -33,46 +33,44 @@ import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { CustomButton } from "../../components/CustomButton"
+import { CustomButton } from "../../components/CustomButton";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import AccessibleIcon from "../../theme/images/accessibility/accessible-icon.svg";
 import { ageFilters } from "../../data/filtersData";
+import { updateAppUser } from "../../utils/API";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
-  margin-top: ${theme.margin * 5}px;
   margin-bottom: ${theme.margin * 7}px;
   margin-horizontal: ${theme.margin * 3}px;
 `;
 
 const ContentContainer = styled.ScrollView`
-padding-bottom: ${theme.margin * 3}px;
-padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${theme.margin * 3}px;
+  padding-top: ${theme.margin * 2}px;
 `;
 const StyledText = styled(TextSmallNormal)`
   padding-horizontal: ${theme.margin * 3}px;
   margin-bottom: ${theme.margin * 3}px;
-  `;
+`;
 
 const ProfilButtonsContainer = styled.View`
   margin-horizontal: ${theme.margin * 3}px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
+  margin-bottom: ${theme.margin * 5}px;
   ${theme.shadows.lg}
 `;
 
 export const ProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "ProfilScreen">) => {
-  const [isDeleteDataModalVisible, setDeleteDataModalVisible] = React.useState(
-    false
-  );
-  const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(
-    false
-  );
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+  const [isDeleteDataModalVisible, setDeleteDataModalVisible] =
+    React.useState(false);
+  const [isReinitAppModalVisible, setReinitAppModalVisible] =
+    React.useState(false);
+  const [isLanguageModalVisible, setLanguageModalVisible] =
+    React.useState(false);
 
   const toggleDeleteDataModal = () =>
     setDeleteDataModalVisible(!isDeleteDataModalVisible);
@@ -102,6 +100,14 @@ export const ProfilScreen = ({
     dispatch(removeUserFrenchLevelActionCreator(true));
     dispatch(removeUserAgeActionCreator(true));
     dispatch(removeUserLocationActionCreator(true));
+    updateAppUser({
+      selectedLanguage: null,
+      city: null,
+      department: null,
+      age: null,
+      frenchLevel: null,
+      expoPushToken: null,
+    });
   };
 
   const reinitializeApp = () => {
@@ -112,15 +118,24 @@ export const ProfilScreen = ({
       dispatch(removeUserLocalizedWarningHiddenActionCreator());
       dispatch(removeUserAllFavoritesActionCreator());
       dispatch(removeHasUserSeenOnboardingActionCreator());
-    })
+      updateAppUser({
+        selectedLanguage: null,
+        city: null,
+        department: null,
+        age: null,
+        frenchLevel: null,
+        expoPushToken: null,
+      });
+    });
   };
 
-  const selectedAgeName: string = ageFilters.find(age => {
-    return age.key === selectedAge
-  })?.name || "";
+  const selectedAgeName: string =
+    ageFilters.find((age) => {
+      return age.key === selectedAge;
+    })?.name || "";
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <HeaderAnimated
         title={t("tab_bar.profile", "Profil")}
         showSimplifiedHeader={showSimplifiedHeader}
@@ -128,10 +143,7 @@ export const ProfilScreen = ({
         useShadow={true}
       />
 
-      <ContentContainer
-        onScroll={handleScroll}
-        scrollEventThrottle={5}
-      >
+      <ContentContainer onScroll={handleScroll} scrollEventThrottle={5}>
         <StyledText>{t("profile_screens.my_profile", "Mon profil")}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
@@ -147,7 +159,8 @@ export const ProfilScreen = ({
             iconName="pin-outline"
             category={t("profile_screens.city", "Ville")}
             userChoice={
-              selectedLocation.city || t("profile_screens.whole_country", "Toute la France")
+              selectedLocation.city ||
+              t("profile_screens.whole_country", "Toute la France")
             }
             isFirst={false}
             isLast={false}
@@ -192,7 +205,23 @@ export const ProfilScreen = ({
             isTextNotBold={true}
           />
         </DeleteDataContainer>
-        <StyledText>{t("profile_screens.app_informations", "Informations sur l'application")}</StyledText>
+        <StyledText>{t("profile_screens.settings", "Paramètres")}</StyledText>
+        <ProfilButtonsContainer>
+          <ProfilDetailButton
+            iconName="bell-outline"
+            category={t("profile_screens.notifications", "Notifications")}
+            isFirst={true}
+            isLast={true}
+            isRTL={isRTL}
+            onPress={() => navigation.navigate("NotificationsSettingsScreen")}
+          />
+        </ProfilButtonsContainer>
+        <StyledText>
+          {t(
+            "profile_screens.app_informations",
+            "Informations sur l'application"
+          )}
+        </StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
             iconName="question-mark-circle-outline"
@@ -204,7 +233,10 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconName="lock-outline"
-            category={t("profile_screens.privacy_policy", "Politique de confidentialité")}
+            category={t(
+              "profile_screens.privacy_policy",
+              "Politique de confidentialité"
+            )}
             isFirst={false}
             isLast={false}
             isRTL={isRTL}
@@ -220,7 +252,10 @@ export const ProfilScreen = ({
           />
           <ProfilDetailButton
             iconImage={AccessibleIcon}
-            category={t("profile_screens.accessibility", "Déclaration d'accessibilité")}
+            category={t(
+              "profile_screens.accessibility",
+              "Déclaration d'accessibilité"
+            )}
             isFirst={false}
             isLast={true}
             isRTL={isRTL}
@@ -238,7 +273,9 @@ export const ProfilScreen = ({
           />
         </DeleteDataContainer>
         <View style={{ marginBottom: theme.margin * 7 }}>
-          <TextVerySmallNormal style={{ textAlign: "center", color: theme.colors.darkGrey }}>
+          <TextVerySmallNormal
+            style={{ textAlign: "center", color: theme.colors.darkGrey }}
+          >
             Version {Constants.manifest?.extra?.displayVersionNumber}
           </TextVerySmallNormal>
         </View>

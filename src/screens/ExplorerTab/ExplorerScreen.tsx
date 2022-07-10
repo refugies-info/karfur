@@ -1,15 +1,19 @@
-import * as React from "react";
-import { ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, View } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "react-native-modal";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
 
 import {
   saveUserLocalizedWarningHiddenActionCreator,
   setInitialUrlUsed,
-  setRedirectDispositifActionCreator
+  setRedirectDispositifActionCreator,
 } from "../../services/redux/User/user.actions";
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
@@ -22,7 +26,7 @@ import {
   userLocationSelector,
   isLocalizedWarningHiddenSelector,
   isInitialUrlUsedSelector,
-  redirectDispositifSelector
+  redirectDispositifSelector,
 } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -33,6 +37,7 @@ import { theme } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
 import { logger } from "../../logger";
+import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 
 const MAX_CONTENT_LOCALIZED = 10;
 
@@ -64,11 +69,11 @@ export const ExplorerScreen = ({
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
 
-  const [tabSelected, setTabSelected] = React.useState("galery");
+  const [tabSelected, setTabSelected] = useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
 
   // Handle share link
-  const handleOpenUrl = (event: Linking.EventType|string|null) => {
+  const handleOpenUrl = (event: Linking.EventType | string | null) => {
     if (event) {
       let url = typeof event === "object" ? event.url : event;
       logger.info("[initialUrl]", url);
@@ -79,9 +84,9 @@ export const ExplorerScreen = ({
         navigation.navigate(screen.rootNavigator, screen.screenParams);
       }
     }
-  }
+  };
   const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
-  React.useEffect(() => {
+  useEffect(() => {
     Linking.addEventListener("url", (event) => handleOpenUrl(event));
     if (!isInitialUrlUsed) {
       Linking.getInitialURL()
@@ -97,18 +102,18 @@ export const ExplorerScreen = ({
   const redirect = React.useCallback(() => {
     if (redirectDispositif) {
       navigation.navigate("NeedsScreen", {
-        colors: redirectDispositif.colors
+        colors: redirectDispositif.colors,
       });
       navigation.navigate("ContentsScreen", {
         needId: redirectDispositif.needId,
         colors: redirectDispositif.colors,
-        backScreen: ""
+        backScreen: "",
       });
       navigation.navigate("ContentScreen", {
         contentId: redirectDispositif.contentId,
         needId: redirectDispositif.needId,
         colors: redirectDispositif.colors,
-        backScreen: ""
+        backScreen: "",
       });
       dispatch(setRedirectDispositifActionCreator(null));
     }
@@ -117,18 +122,21 @@ export const ExplorerScreen = ({
 
   // Calculate total content for warning
   const nbContents = useSelector(nbContentsSelector);
-  const isLocalizedWarningHidden = useSelector(isLocalizedWarningHiddenSelector);
-  const [isLocalizedModalVisible, setIsLocalizedModalVisible] = React.useState(false);
-  const [totalContent, setTotalContent] = React.useState(0);
+  const isLocalizedWarningHidden = useSelector(
+    isLocalizedWarningHiddenSelector
+  );
+  const [isLocalizedModalVisible, setIsLocalizedModalVisible] = useState(false);
+  const [totalContent, setTotalContent] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTotalContent(
       (nbContents.nbGlobalContent || 0) + (nbContents.nbLocalizedContent || 0)
     );
   }, [nbContents]);
 
-  const [isLocalizedWarningVisible, setIsLocalizedWarningVisible] = React.useState(false);
-  React.useEffect(() => {
+  const [isLocalizedWarningVisible, setIsLocalizedWarningVisible] =
+    useState(false);
+  useEffect(() => {
     const isWarningVisible = !!(
       !isLocalizedWarningHidden &&
       selectedLocation.city &&
@@ -138,17 +146,36 @@ export const ExplorerScreen = ({
     setIsLocalizedWarningVisible(isWarningVisible);
   }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
 
+  const [accessGranted] = useNotificationsStatus();
+  const [notificationsModalVisible, setNotificationsModalVisible] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const showModal = async () => {
+      const keyExists = await AsyncStorage.getItem("notificationsModal");
+      if (!accessGranted && !keyExists) {
+        setNotificationsModalVisible(true);
+        await AsyncStorage.setItem("notificationsModal", "true");
+      }
+    };
+
+    showModal();
+  }, [accessGranted]);
 
   return (
     <WrapperWithHeaderAndLanguageModal>
-      {isLocalizedWarningVisible &&
+      {isLocalizedWarningVisible && (
         <LocalizedWarningMessage
           totalContent={totalContent}
-          city={selectedLocation.city || ""}
-          openModal={() => { setIsLocalizedModalVisible(true) }}
-          onClose={() => dispatch(saveUserLocalizedWarningHiddenActionCreator())}
+          city={selectedLocation.city || ""}
+          openModal={() => {
+            setIsLocalizedModalVisible(true);
+          }}
+          onClose={() =>
+            dispatch(saveUserLocalizedWarningHiddenActionCreator())
+          }
         />
-      }
+      )}
 
       <ViewChoiceContainer>
         <ViewChoice
@@ -200,13 +227,13 @@ export const ExplorerScreen = ({
                     tagVeryLightColor: tag.color30,
                     tagLightColor: tag.lightColor,
                     iconName: tag.icon,
-                  }
+                  },
                 });
                 return;
               }}
               style={{
                 marginBottom: theme.margin * 3,
-                marginTop: 0
+                marginTop: 0,
               }}
             />
           ))}
@@ -217,17 +244,32 @@ export const ExplorerScreen = ({
             <TagsCarousel navigation={navigation} />
           </CarousselContainer>
         </CenteredView>
-        )}
+      )}
 
-      {isLocalizedWarningVisible &&
+      {isLocalizedWarningVisible && (
         <LocalizedWarningModal
           isVisible={isLocalizedModalVisible}
           closeModal={() => setIsLocalizedModalVisible(false)}
-          nbGlobalContent={nbContents.nbGlobalContent || 0}
+          nbGlobalContent={nbContents.nbGlobalContent || 0}
           nbLocalizedContent={nbContents.nbLocalizedContent || 0}
           city={selectedLocation.city || ""}
         />
-      }
+      )}
+      <Modal isVisible={notificationsModalVisible}>
+        <View
+          style={{
+            flex: 0.5,
+          }}
+        >
+          <EnableNotifications
+            withMargin={false}
+            fullSize={false}
+            onDismiss={() => {
+              setNotificationsModalVisible(false);
+            }}
+          />
+        </View>
+      </Modal>
     </WrapperWithHeaderAndLanguageModal>
   );
 };
