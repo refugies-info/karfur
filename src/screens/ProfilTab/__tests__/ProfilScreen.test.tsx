@@ -20,6 +20,12 @@ jest.mock("react-native-safe-area-context", () => {
   };
 });
 
+jest.mock("@react-navigation/native", () => {
+  return {
+    useRoute: () => ({ name: "LanguageChoiceScreen" }),
+  };
+});
+
 describe("Profil screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -126,7 +132,9 @@ describe("Profil screen", () => {
       },
       compProps: { navigation },
     });
-    const Button = component.getByTestId("test-custom-button-Supprimer les données de mon profil");
+    const Button = component.getByTestId(
+      "test-custom-button-Supprimer les données de mon profil"
+    );
 
     act(() => {
       fireEvent.press(Button);

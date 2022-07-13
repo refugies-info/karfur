@@ -16,6 +16,12 @@ jest.mock("react-native-safe-area-context", () => {
   };
 });
 
+jest.mock("@react-navigation/native", () => {
+  return {
+    useRoute: () => ({ name: "TestSreen" }),
+  };
+});
+
 describe("HeaderWithLogo", () => {
   it("should render correctly with LTR", () => {
     i18n.isRTL.mockReturnValueOnce(false);

@@ -32,8 +32,6 @@ export const saveItemInAsyncStorage = async (item: Item, value: string) => {
       [itemsToSave[item]]: value,
     });
   }
-
-  // console.log(`${item} saved in AsyncStorage`, value);
 };
 
 export const getItemInAsyncStorage = async (item: Item) =>

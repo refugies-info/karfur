@@ -20,11 +20,16 @@ jest.mock("react-native-safe-area-context", () => {
   };
 });
 
+jest.mock("@react-navigation/native", () => {
+  return {
+    useRoute: () => ({ name: "LanguageChoiceScreen" }),
+  };
+});
+
 describe("Search Screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-
 
   it("should render correctly", () => {
     const component = wrapWithProvidersAndRender({
