@@ -64,7 +64,6 @@ export const RootNavigator = () => {
         setIsI18nInitialized(true);
       } catch (error) {
         logger.error("Error while initializing i18n", {
-          //@ts-expect-error
           error: error.message,
         });
       }
@@ -114,10 +113,11 @@ export const RootNavigator = () => {
         }
       );
 
-      //This handler is triggered when a notification is received when the app is foregrounded
-      notificationsListener.current = Notifications.addNotificationReceivedListener(() => {
+    //This handler is triggered when a notification is received when the app is foregrounded
+    notificationsListener.current =
+      Notifications.addNotificationReceivedListener(() => {
         queryClient.invalidateQueries("notifications");
-      })
+      });
 
     return () => {
       if (responseListener.current) {
@@ -125,7 +125,9 @@ export const RootNavigator = () => {
       }
 
       if (notificationsListener.current) {
-        Notifications.removeNotificationSubscription(notificationsListener.current);
+        Notifications.removeNotificationSubscription(
+          notificationsListener.current
+        );
       }
     };
   }, []);
