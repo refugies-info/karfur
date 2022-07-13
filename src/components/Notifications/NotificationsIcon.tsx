@@ -54,7 +54,7 @@ const NotificationsIcon = () => {
     <TouchableOpacity
       style={styles.buttonContainer}
       accessibilityRole="button"
-      accessibilityLabel={t("global.notifications")}
+      accessibilityLabel={t("notifications.settings")}
       onPress={() => navigate("NotificationsScreen")}
     >
       <Icon

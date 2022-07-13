@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { theme } from "../theme";
 import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
@@ -18,27 +18,58 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   width: ${(props: { notFullWidth: boolean }) =>
     props.notFullWidth ? "auto" : "100%"};
-  height: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? 56 : 40}px;
-  ${(props: { isDisabled: boolean, isSmall: boolean, backgroundColor: string, withShadows: boolean }) =>
-    props.isDisabled || !props.withShadows ? "" : (props.isSmall || !props.backgroundColor ? theme.shadows.lg : theme.shadows.sm)};
-  opacity: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? 0.4 : 1};
+  height: ${(props: { isSmall: boolean }) => (!props.isSmall ? 56 : 40)}px;
+  ${(props: {
+    isDisabled: boolean;
+    isSmall: boolean;
+    backgroundColor: string;
+    withShadows: boolean;
+  }) =>
+    props.isDisabled || !props.withShadows
+      ? ""
+      : props.isSmall || !props.backgroundColor
+      ? theme.shadows.lg
+      : theme.shadows.sm};
+  opacity: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0.4 : 1)};
 `;
 
 const ColoredTextBold = styled(StyledTextSmallBold)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
-    props.hasIcon && (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+  margin-left: ${(props: {
+    isRTL: boolean;
+    iconFirst: boolean;
+    hasIcon: boolean;
+  }) =>
+    props.hasIcon &&
+    (props.iconFirst || props.isRTL) &&
+    props.isRTL !== props.iconFirst
+      ? theme.margin
+      : 0}px;
+  margin-right: ${(props: {
+    isRTL: boolean;
+    iconFirst: boolean;
+    hasIcon: boolean;
+  }) =>
     props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
 const ColoredTextNormal = styled(StyledTextSmall)`
   color: ${(props: { textColor: string }) => props.textColor};
-  margin-left: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
-    props.hasIcon && (props.iconFirst || props.isRTL) && (props.isRTL !== props.iconFirst) ? theme.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean, iconFirst: boolean, hasIcon: boolean }) =>
+  margin-left: ${(props: {
+    isRTL: boolean;
+    iconFirst: boolean;
+    hasIcon: boolean;
+  }) =>
+    props.hasIcon &&
+    (props.iconFirst || props.isRTL) &&
+    props.isRTL !== props.iconFirst
+      ? theme.margin
+      : 0}px;
+  margin-right: ${(props: {
+    isRTL: boolean;
+    iconFirst: boolean;
+    hasIcon: boolean;
+  }) =>
     props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
 `;
 
@@ -56,6 +87,8 @@ interface Props {
   notFullWidth?: boolean;
   style?: StyleProp<ViewStyle>;
   iconStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  iconSize?: number;
   accessibilityLabel?: string;
   withShadows?: boolean;
 }
@@ -64,15 +97,17 @@ const ICON_SIZE = 24;
 
 export const CustomButton = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
-  const {withShadows = true} = props;
+  const { withShadows = true } = props;
 
-  const icon = <Icon
-    name={props.iconName}
-    width={ICON_SIZE}
-    height={ICON_SIZE}
-    fill={props.textColor}
-    style={props.iconStyle || {}}
-  />;
+  const icon = (
+    <Icon
+      name={props.iconName}
+      width={props.iconSize || ICON_SIZE}
+      height={props.iconSize || ICON_SIZE}
+      fill={props.textColor}
+      style={props.iconStyle || {}}
+    />
+  );
 
   return (
     <ButtonContainer
@@ -83,7 +118,7 @@ export const CustomButton = (props: Props) => {
       isSmall={props.isSmall}
       testID={"test-custom-button-" + props.defaultText}
       notFullWidth={props.notFullWidth}
-      style={props.style || {}}
+      style={props.style || {}}
       accessibilityRole="button"
       accessibilityLabel={props.accessibilityLabel}
       withShadows={withShadows}
@@ -95,6 +130,7 @@ export const CustomButton = (props: Props) => {
           isRTL={isRTL}
           iconFirst={!!props.iconFirst}
           hasIcon={!!props.iconName}
+          style={props.textStyle}
         >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextNormal>
@@ -104,6 +140,7 @@ export const CustomButton = (props: Props) => {
           isRTL={isRTL}
           iconFirst={!!props.iconFirst}
           hasIcon={!!props.iconName}
+          style={props.textStyle}
         >
           {t(props.i18nKey, props.defaultText)}
         </ColoredTextBold>

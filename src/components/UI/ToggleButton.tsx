@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Switch, StyleSheet } from "react-native";
-import { Icon } from "react-native-eva-icons";
 
 import { theme } from "../../theme";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
+import { StreamlineIcon } from "../StreamlineIcon";
 
 const ICON_SIZE = 24;
 
@@ -79,16 +79,19 @@ export const ToggleButton = ({
         ]}
       >
         {icon && (
-          <Icon
-            name={icon}
-            width={ICON_SIZE}
-            height={ICON_SIZE}
-            fill={disabled ? theme.colors.greyDisabled : theme.colors.black}
-            style={[
-              styles.icon,
-              isRTL && { marginLeft: theme.margin, marginRight: 0 },
-            ]}
-          />
+          <View
+            style={{
+              marginRight: isRTL ? 0 : theme.margin,
+              marginLeft: isRTL ? theme.margin : 0,
+            }}
+          >
+            <StreamlineIcon
+              name={icon}
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              stroke={disabled ? theme.colors.greyDisabled : theme.colors.black}
+            />
+          </View>
         )}
         <View
           style={[

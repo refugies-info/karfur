@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { theme } from "../../theme";
 
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import {
   StyledTextBigBold,
@@ -46,6 +47,7 @@ export const EnableNotifications = ({
   fullSize = true,
   onDismiss,
 }: Props) => {
+  const { t, isRTL } = useTranslationWithRTL();
   const [, registerForNotifications] = useNotificationsStatus();
 
   return (
@@ -58,6 +60,9 @@ export const EnableNotifications = ({
         fullSize && {
           flex: 1,
         },
+        isRTL && {
+          alignItems: "flex-end",
+        },
       ]}
     >
       <LottieView
@@ -69,12 +74,12 @@ export const EnableNotifications = ({
         speed={1.2}
       />
       <View style={styles.titles}>
-        <StyledTextBigBold>
-          De nouvelles informations chaque semaine !
+        <StyledTextBigBold isRTL={isRTL}>
+          {t("notifications.newInfoEveryWeek")}
         </StyledTextBigBold>
         <View style={styles.separator} />
-        <StyledTextNormal>
-          Sois informé quand nous publions une fiche qui peut t’intéresser.
+        <StyledTextNormal isRTL={isRTL}>
+          {t("notifications.beInformed")}
         </StyledTextNormal>
       </View>
       <CustomButton

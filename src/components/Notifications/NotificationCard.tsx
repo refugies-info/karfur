@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
-import { Icon } from "react-native-eva-icons";
 import { useQueryClient } from "react-query";
 //@ts-expect-error
 import moment from "moment/min/moment-with-locales";
@@ -11,6 +10,10 @@ import { theme } from "../../theme";
 
 import { Notification } from "../../hooks/useNotifications";
 import { markNotificationAsSeen } from "../../utils/API";
+
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+
+import { CustomButton } from "../CustomButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.darkBlue,
     paddingHorizontal: theme.margin * 2,
     paddingVertical: theme.margin,
+    marginTop: theme.margin,
     borderRadius: theme.radius * 2,
     display: "flex",
     flexDirection: "row",
@@ -63,48 +67,21 @@ const styles = StyleSheet.create({
   },
 });
 
-const CTA = ({ unseen, onPress }: { unseen: boolean; onPress: () => void }) => {
-  return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[
-        styles.cta,
-        !unseen && {
-          backgroundColor: theme.colors.lightBlue,
-        },
-      ]}
-      activeOpacity={0.8}
-    >
-      <Text
-        style={{
-          color: unseen ? theme.colors.white : theme.colors.darkBlue,
-          fontSize: 14,
-          paddingRight: theme.margin,
-          fontWeight: "bold",
-          fontFamily: theme.fonts.families.circularBold,
-        }}
-      >
-        Voir la fiche
-      </Text>
-      <Icon
-        name="arrow-forward"
-        fill={unseen ? theme.colors.white : theme.colors.darkBlue}
-        width={20}
-        height={20}
-      />
-    </TouchableOpacity>
-  );
-};
-
 interface NotificationCardProps {
   notification: Notification;
 }
 
 export const NotificationCard = ({ notification }: NotificationCardProps) => {
   const { data, _id, title, seen, createdAt } = notification;
+  const { t, isRTL } = useTranslationWithRTL();
   const navigation = useNavigation();
   const queryClient = useQueryClient();
   const { i18n } = useTranslation();
+
+  const markAsSeen = async () => {
+    await markNotificationAsSeen(_id);
+    queryClient.invalidateQueries("notifications");
+  };
 
   const navigateToContent = async () => {
     navigation.navigate("Explorer", {
@@ -113,8 +90,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
         contentId: data?.contentId,
       },
     });
-    await markNotificationAsSeen(_id);
-    queryClient.invalidateQueries("notifications");
+    markAsSeen();
   };
 
   return (
@@ -126,9 +102,20 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
         !seen && {
           backgroundColor: theme.colors.lightBlue,
         },
+        isRTL && {
+          flexDirection: "row-reverse",
+        },
       ]}
     >
-      <View style={styles.leftContainer}>
+      <View
+        style={[
+          styles.leftContainer,
+          isRTL && {
+            marginLeft: theme.margin,
+            marginRight: 0,
+          },
+        ]}
+      >
         <View
           style={[
             styles.dot,
@@ -138,7 +125,14 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
           ]}
         />
       </View>
-      <View style={styles.rightContainer}>
+      <View
+        style={[
+          styles.rightContainer,
+          isRTL && {
+            alignItems: "flex-end",
+          },
+        ]}
+      >
         <View>
           <Text
             style={[
@@ -146,15 +140,74 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
               !seen && {
                 fontWeight: "bold",
               },
+              isRTL && {
+                textAlign: "right",
+              },
             ]}
           >
             {title}
           </Text>
-          <Text style={styles.subtitle}>
+          <Text
+            style={[
+              styles.subtitle &&
+                isRTL && {
+                  textAlign: "right",
+                },
+            ]}
+          >
             {moment(createdAt).locale(i18n.language).fromNow()}
           </Text>
         </View>
-        <CTA unseen={!seen} onPress={navigateToContent} />
+        <View
+          style={{
+            flexDirection: isRTL ? "row-reverse" : "row",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <CustomButton
+            i18nKey="notifications.viewFiche"
+            backgroundColor={
+              seen ? theme.colors.lightBlue : theme.colors.darkBlue
+            }
+            defaultText="Voir la fiche"
+            textColor={seen ? theme.colors.darkBlue : theme.colors.white}
+            isTextNotBold={seen}
+            notFullWidth={true}
+            isSmall={true}
+            withShadows={false}
+            iconName={isRTL ? "arrow-back" : "arrow-forward"}
+            onPress={navigateToContent}
+            style={{
+              marginTop: theme.margin,
+            }}
+            textStyle={{
+              fontSize: theme.fonts.sizes.verySmall,
+            }}
+            iconSize={16}
+          />
+          {!seen && (
+            <CustomButton
+              i18nKey="notifications.markAsSeen"
+              defaultText="Marquer comme vu"
+              textColor={theme.colors.darkBlue}
+              backgroundColor={theme.colors.lightBlue}
+              isTextNotBold={true}
+              notFullWidth={true}
+              isSmall={true}
+              withShadows={false}
+              onPress={markAsSeen}
+              style={{
+                marginTop: theme.margin,
+                borderColor: theme.colors.darkBlue,
+                borderWidth: 1,
+              }}
+              textStyle={{
+                fontSize: theme.fonts.sizes.verySmall,
+              }}
+            />
+          )}
+        </View>
       </View>
     </TouchableOpacity>
   );

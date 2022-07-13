@@ -38,6 +38,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const RootNavigator = () => {
   const [isI18nInitialized, setIsI18nInitialized] = useState(false);
   const responseListener = useRef<Subscription>();
+  const notificationsListener = useRef<Subscription>();
   const navigationRef = useRef<any>();
   const queryClient = useQueryClient();
 
@@ -113,9 +114,18 @@ export const RootNavigator = () => {
         }
       );
 
+      //This handler is triggered when a notification is received when the app is foregrounded
+      notificationsListener.current = Notifications.addNotificationReceivedListener(() => {
+        queryClient.invalidateQueries("notifications");
+      })
+
     return () => {
       if (responseListener.current) {
         Notifications.removeNotificationSubscription(responseListener.current);
+      }
+
+      if (notificationsListener.current) {
+        Notifications.removeNotificationSubscription(notificationsListener.current);
       }
     };
   }, []);

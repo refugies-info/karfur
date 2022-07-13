@@ -15,6 +15,7 @@ import { theme } from "../theme/index";
 
 import { useNotifications, Notification } from "../hooks/useNotifications";
 import { useNotificationsStatus } from "../hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 import { StyledTextBigBold } from "../components/StyledText";
 import { HeaderWithBack } from "../components/HeaderWithBack";
@@ -45,14 +46,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginVertical: theme.margin * 2,
+    margin: theme.margin * 2,
   },
   unseenCount: {
     display: "flex",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: theme.margin,
+    marginHorizontal: theme.margin,
     fontSize: theme.fonts.sizes.small,
     backgroundColor: theme.colors.lighterRed,
     borderRadius: 100,
@@ -92,8 +93,10 @@ const renderCard = (notification: Notification) => {
 };
 
 export const NotificationsScreen = () => {
+  const { t, isRTL } = useTranslationWithRTL();
   const navigation = useNavigation();
   const { data: notifications, isLoading } = useNotifications();
+
   const [accessGranted] = useNotificationsStatus();
 
   const count = notifications ? notifications?.unseenCount : null;
@@ -106,15 +109,24 @@ export const NotificationsScreen = () => {
     >
       <HeaderWithBack navigation={navigation} />
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
+        <View
+          style={[
+            styles.titleContainer,
+            isRTL && {
+              flexDirection: "row-reverse",
+            },
+          ]}
+        >
           <View
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: isRTL ? "row-reverse" : "row",
               alignItems: "center",
             }}
           >
-            <StyledTextBigBold>Notifications</StyledTextBigBold>
+            <StyledTextBigBold>
+              {t("notifications.notifications")}
+            </StyledTextBigBold>
             {!!count && (
               <View style={styles.unseenCount}>
                 <Text style={styles.unseenCountText}>
@@ -178,12 +190,10 @@ export const NotificationsScreen = () => {
                   fill={theme.colors.darkGrey}
                 />
                 <Text style={styles.noNotificationsTitle}>
-                  Il n’y a pas encore de notifications !
+                  {t("notifications.noneYet")}
                 </Text>
                 <Text style={styles.noNotificationsSubtitle}>
-                  {
-                    "Quand tu recevras des notifications, elles apparaîtront ici. Va dans les "
-                  }
+                  {t("notifications.noneYetSubtitle1")}
                   <Text
                     onPress={() => navigation.navigate("Profil")}
                     style={{
@@ -191,9 +201,9 @@ export const NotificationsScreen = () => {
                       textDecorationLine: "underline",
                     }}
                   >
-                    {"paramètres"}
+                    {t("notifications.settings")}
                   </Text>
-                  {" pour choisir celles que tu souhaites recevoir."}
+                  {t("notifications.noneYetSubtitle2")}
                 </Text>
               </View>
             )}

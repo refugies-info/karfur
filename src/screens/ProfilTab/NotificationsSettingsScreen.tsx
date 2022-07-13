@@ -13,10 +13,14 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useNotificationsSettings } from "../../hooks/useNotificationSettings";
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 
+import { firstLetterUpperCase } from "../../libs";
+
 import { TextBigBold, TextNormalBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ToggleButton } from "../../components/UI/ToggleButton";
 import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
+
+import { tags } from "../../data/tagData";
 
 const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;
@@ -24,63 +28,51 @@ const Title = styled(TextBigBold)`
 
 const THEMES = [
   {
-    name: "Gérer mes papiers",
     key: "gérer mes papiers",
     icon: "bell",
   },
   {
     key: "apprendre le français",
-    name: "Apprendre le français",
     icon: "bell",
   },
   {
     key: "trouver un travail",
-    name: "Trouver un travail",
     icon: "bell",
   },
   {
     key: "faire des études",
-    name: "Faire des études",
     icon: "bell",
   },
   {
-    name: "Occuper mon temps libre",
     key: "occuper mon temps libre",
     icon: "bell",
   },
   {
     key: "me loger",
-    name: "Me loger",
     icon: "bell",
   },
   {
     key: "apprendre un métier",
-    name: "Apprendre un métier",
     icon: "bell",
   },
   {
     key: "découvrir la culture",
-    name: "Découvrir la culture",
     icon: "bell",
   },
   {
     key: "me déplacer",
-    name: "Me déplacer",
     icon: "bell",
   },
   {
     key: "me soigner",
-    name: "Me soigner",
     icon: "bell",
   },
   {
     key: "aider une association",
-    name: "Aider une association",
     icon: "bell",
   },
   {
     key: "rencontrer des gens",
-    name: "Rencontrer des gens",
     icon: "bell",
   },
 ];
@@ -135,7 +127,7 @@ export const NotificationsSettingsScreen = () => {
           marginTop: theme.margin * 3,
         }}
       >
-        <Title>{t("profile_screens.notifications", "Notifications")}</Title>
+        <Title>{t("notifications.notifications")}</Title>
       </View>
 
       <ScrollView
@@ -151,53 +143,53 @@ export const NotificationsSettingsScreen = () => {
           <ActivityIndicator size="small" color={theme.colors.black} />
         ) : (
           <>
-            <TextNormalBold>
-              {t("profile_screens.notifications_subtitle", "Nouvelles fiches")}
-            </TextNormalBold>
+            <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
             <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
               <ToggleButton
-                title={`Fiches pour ta ville ${
+                title={`${t("notifications.settingsLocal")} ${
                   !!location.city ? `: ${location.city}` : ""
                 }`}
-                subtitle="Exemple : Cours de français à Paris"
+                subtitle={t("notifications.settingsLocalSubtitle")}
                 enabled={hasSetLocation && settings?.local}
                 onToggle={updateLocalSettings}
               />
               <View style={styles.separator} />
               <ToggleButton
-                title="Fiches pour toute la France"
-                subtitle="Exemple : Cours en ligne"
+                title={t("notifications.settingsGlobal")}
+                subtitle={t("notifications.settingsGlobalSubtitle")}
                 enabled={settings?.global}
                 onToggle={(state) => updateSettings("global", state)}
               />
               <View style={styles.separator} />
               <ToggleButton
-                title="Fiches démarches"
-                subtitle="Exemple : Obtenir la nationalité"
+                title={t("notifications.settingsDemarches")}
+                subtitle={t("notifications.settingsDemarchesSubtitle")}
                 enabled={settings?.demarches}
                 onToggle={(state) => updateSettings("demarches", state)}
               />
             </View>
-            <TextNormalBold>
-              {t("profile_screens.notifications_theme", "Thèmes")}
-            </TextNormalBold>
+            <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
             <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
-              {THEMES.map((theme, index) => (
+              {tags.map((tag, index) => (
                 <>
                   <ToggleButton
-                    key={theme.key}
-                    title={theme.name}
-                    icon={theme.icon}
-                    enabled={settings?.themes[theme.key]}
+                    key={tag.name}
+                    title={
+                      firstLetterUpperCase(
+                        t(`tags.${tag.name}`, tag.name)
+                      ) as string
+                    }
+                    icon={tag.icon}
+                    enabled={settings?.themes[tag.name]}
                     onToggle={(state) =>
-                      updateSettings(`themes.${theme.key}`, state)
+                      updateSettings(`themes.${tag.name}`, state)
                     }
                     disabled={themesDisabled}
                   />
                   {index < THEMES.length - 1 && (
                     <View
                       style={styles.separator}
-                      key={`separator-${theme.key}`}
+                      key={`separator-${tag.name}`}
                     />
                   )}
                 </>

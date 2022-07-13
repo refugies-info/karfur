@@ -208,6 +208,26 @@
     "call_2": "Vous représentez une organisation liée à l’intégration des personnes réfugiées et souhaitez rejoindre l’aventure ? Téléchargez l’appel ci-dessous et envoyez-le à nour@refugies.info. Nous prendrons contact avec vous pour définir les modalités de notre partenariat.",
     "download_call_button": "Télécharger l’appel [PDF]"
   },
+  "notifications": {
+    "notifications": "Notifications",
+    "noneYet": "Il n’y a pas encore de notifications !",
+    "noneYetSubtitle1": "Quand tu recevras des notifications, elles apparaîtront ici. Va dans les ",
+    "settings": "paramètres",
+    "noneYetSubtitle2": " pour choisir celles que tu souhaites recevoir.",
+    "newInfoEveryWeek": "De nouvelles informations chaque semaine !",
+    "beInformed": "Sois informé quand nous publions une fiche qui peut t’intéresser.",
+    "enableNotifications": "Activer les notifications",
+    "notNow": "Pas maintenant",
+    "viewFiche": "Voir la fiche",
+    "newFiches": "Nouvelles fiches",
+    "themes": "Thèmes",
+    "settingsLocal": "Fiches pour ta ville",
+    "settingsLocalSubtitle": "Exemple : Cours de français à Paris",
+    "settingsGlobal": "Fiches pour toute la France",
+    "settingsGlobalSubtitle": "Exemple : Cours en ligne",
+    "settingsDemarches": "Fiches démarches",
+    "settingsDemarchesSubtitle": "Exemple : Obtenir la nationalité"
+  },
   "global": {
     "close": "Fermer",
     "cancel": "Annuler",
