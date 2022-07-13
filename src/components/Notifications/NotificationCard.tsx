@@ -4,7 +4,6 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { useQueryClient } from "react-query";
 //@ts-expect-error
 import moment from "moment/min/moment-with-locales";
-import { useTranslation } from "react-i18next";
 
 import { theme } from "../../theme";
 
@@ -73,10 +72,9 @@ interface NotificationCardProps {
 
 export const NotificationCard = ({ notification }: NotificationCardProps) => {
   const { data, _id, title, seen, createdAt } = notification;
-  const { t, isRTL } = useTranslationWithRTL();
+  const { isRTL, i18n } = useTranslationWithRTL();
   const navigation = useNavigation();
   const queryClient = useQueryClient();
-  const { i18n } = useTranslation();
 
   const markAsSeen = async () => {
     await markNotificationAsSeen(_id);
