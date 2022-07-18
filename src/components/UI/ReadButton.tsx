@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Speech from "expo-speech";
+import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
@@ -116,6 +117,7 @@ export const ReadButton = () => {
   }, [rate, currentLanguageI18nCode]);
 
   const startToRead = () => {
+    activateKeepAwake("voiceover");
     const sortedReadingList = readingList.sort(sortItems);
     const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
     const toRead = getReadingList(firstItem?.id || null, 0);
@@ -139,6 +141,7 @@ export const ReadButton = () => {
   }
 
   const stopVoiceOver = () => {
+    deactivateKeepAwake("voiceover");
     Speech.stop();
     dispatch(setReadingItem(null));
   }
