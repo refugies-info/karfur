@@ -14,6 +14,7 @@ import { StyledTextNormalBold } from "../StyledText";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../../hooks/useAutoScroll";
+import { ReadableText } from "../ReadableText";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
   margin-top: ${theme.margin * 7}px;
@@ -51,10 +52,15 @@ const SearchSuggestions = (props: Props) => {
       scrollEventThrottle={20}
       onMomentumScrollEnd={onScrollEnd}
       onScrollEndDrag={onScrollEnd}
+      contentContainerStyle={{
+        paddingBottom: theme.margin * 5
+      }}
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>
         <ListSubtitle isRTL={isRTL}>
-          {t("search_screen.most_searched_content", "Les fiches les plus recherchées")}
+          <ReadableText>
+            {t("search_screen.most_searched_content", "Les fiches les plus recherchées")}
+          </ReadableText>
         </ListSubtitle>
 
         {(props.contents || []).map((content: SimplifiedContent) => {
@@ -78,7 +84,9 @@ const SearchSuggestions = (props: Props) => {
       </View>
       <View>
         <ListSubtitle style={{ marginHorizontal: theme.margin * 3 }} isRTL={isRTL}>
-          {t("search_screen.themes", "Les thèmes")}
+            <ReadableText>
+              {t("search_screen.themes", "Les thèmes")}
+            </ReadableText>
         </ListSubtitle>
         <ScrollView
           ref={scrollview}

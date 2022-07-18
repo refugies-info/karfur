@@ -314,7 +314,7 @@ export const ContentsScreen = ({
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
           paddingTop: theme.margin * 3,
-          paddingBottom: theme.margin * 3,
+          paddingBottom: theme.margin * 5,
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}

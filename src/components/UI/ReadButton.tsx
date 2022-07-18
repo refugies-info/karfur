@@ -3,6 +3,7 @@ import { Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Speech from "expo-speech";
 import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
+import * as Haptics from "expo-haptics";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
@@ -19,7 +20,7 @@ import { ReadingItem } from "../../types/interface";
 
 const Container = styled(View)`
   position: absolute;
-  bottom: 0;
+  bottom: ${((props: {bottomInset: number}) => props.bottomInset)}px;
   left: 0;
   right: 0;
   align-items: center;
@@ -80,6 +81,7 @@ const Button = styled(TouchableOpacity)`
   align-items:center;
   margin-right: ${(props: ButtonProps) => props.mr ? "8px" : "0"};
   margin-left: ${(props: ButtonProps) => props.ml ? "8px" : "0"};
+  ${theme.shadows.blue}
 `;
 
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
@@ -89,7 +91,11 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
   return 1;
 }
 
-export const ReadButton = () => {
+interface Props {
+  bottomInset: number
+}
+
+export const ReadButton = (props: Props) => {
   const dispatch = useDispatch();
 
   const [isPaused, setIsPaused] = useState(false);
@@ -118,6 +124,7 @@ export const ReadButton = () => {
 
   const startToRead = () => {
     activateKeepAwake("voiceover");
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const sortedReadingList = readingList.sort(sortItems);
     const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
     const toRead = getReadingList(firstItem?.id || null, 0);
@@ -126,6 +133,7 @@ export const ReadButton = () => {
 
   const goToNext = () => {
     Speech.stop();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
       const toRead = getReadingList(currentItem.id, 1);
       for (const item of toRead) readText(item);
@@ -134,6 +142,7 @@ export const ReadButton = () => {
 
   const goToPrevious = () => {
     Speech.stop();
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
       const toRead = getReadingList(currentItem.id, -1);
       for (const item of toRead) readText(item);
@@ -142,6 +151,7 @@ export const ReadButton = () => {
 
   const stopVoiceOver = () => {
     deactivateKeepAwake("voiceover");
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Speech.stop();
     dispatch(setReadingItem(null));
   }
@@ -150,6 +160,7 @@ export const ReadButton = () => {
     setRate(rate => rate === 1 ? 1.2 : 1);
   }
 
+  // change rate
   useEffect(() => {
     Speech.stop();
     if (currentItem) {
@@ -157,6 +168,11 @@ export const ReadButton = () => {
       for (const item of toRead) readText(item);
     }
   }, [rate])
+
+  // change language
+  useEffect(() => {
+    stopVoiceOver();
+  }, [currentLanguageI18nCode])
 
   const toggleVoiceOver = () => {
     if (!currentItem) {
@@ -183,7 +199,7 @@ export const ReadButton = () => {
   }, [isPaused]);
 
   return (
-    <Container>
+    <Container bottomInset={props.bottomInset}>
       <PlayContainer
         onPress={toggleVoiceOver}
         accessibilityRole="button"
@@ -199,7 +215,7 @@ export const ReadButton = () => {
           Écouter
         </StyledTextVerySmall>
       </PlayContainer>
-      {currentItem && (
+      {!currentItem && (
         <Buttons>
           <BackgroundContainer>
             <Background />

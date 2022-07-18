@@ -892,7 +892,7 @@ export const ContentScreen = ({
             height: "100%",
             marginHorizontal: theme.margin * 3,
           }}>
-            <ReadButton />
+            <ReadButton bottomInset={0} />
           </View>
           <CustomButton
             onPress={() => shareContent(selectedContent)}

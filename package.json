@@ -35,6 +35,7 @@
     "expo-device": "~4.2.0",
     "expo-firebase-analytics": "~7.0.0",
     "expo-font": "~10.1.0",
+    "expo-haptics": "~11.2.0",
     "expo-keep-awake": "~10.1.1",
     "expo-linear-gradient": "~11.3.0",
     "expo-linking": "~3.1.0",

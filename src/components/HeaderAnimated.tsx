@@ -5,6 +5,7 @@ import { theme } from "../theme";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { HeaderWithLogo, HeaderWithBackForWrapper } from "./HeaderWithLogo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ReadableText } from "./ReadableText";
 
 interface Props {
   title: string;
@@ -96,7 +97,9 @@ export const HeaderAnimated = (props: Props) => {
               },
             ]}
           >
-            {props.title}
+            <ReadableText>
+              {props.title}
+            </ReadableText>
           </Animated.Text>
         </Animated.View>
       </View>

@@ -8,6 +8,7 @@ import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/b
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
@@ -32,7 +33,7 @@ const Space = styled(View)`
   margin: ${theme.margin}px;
 `
 
-function BottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
   // Hide tab bar if needed
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   //@ts-ignore
@@ -72,8 +73,13 @@ function BottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   if (hasReadButton) items.splice(2, 0, <Space />);
 
   return (
-    <BottomTabBarContainer>
-      {hasReadButton && <ReadButton />}
+    <BottomTabBarContainer
+      style={{
+        height: 48 + insets.bottom,
+        paddingBottom: insets.bottom
+      }}
+    >
+      {hasReadButton && <ReadButton bottomInset={insets.bottom} />}
       {items.map(i => i)}
     </BottomTabBarContainer>
   );
@@ -81,12 +87,13 @@ function BottomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"
       screenOptions={{ headerShown: false }}
-      tabBar={props => <BottomTabBar {...props} />}
+      tabBar={props => <BottomTabBar {...props} insets={insets} />}
     >
       <BottomTab.Screen
         name="Explorer"
