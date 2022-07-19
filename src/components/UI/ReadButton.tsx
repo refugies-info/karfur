@@ -85,6 +85,8 @@ const Button = styled(TouchableOpacity)`
   ${theme.shadows.blue}
 `;
 
+const MAX_RATE = Platform.OS === "android" ? 1.4 : 1.2;
+
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
   else if (a.posY > b.posY) return 1;
@@ -118,7 +120,14 @@ export const ReadButton = (props: Props) => {
     Speech.speak(item.text, {
       rate: rate,
       language: currentLanguageI18nCode || "fr",
-      onStart: () => { dispatch(setReadingItem(item.id)) }
+      onStart: () => { dispatch(setReadingItem(item.id)) },
+      onDone: () => {
+        const readingList = getReadingList(null, 0);
+        // if last one, close voiceover
+        if (readingList[readingList.length - 1].id === item.id) {
+          dispatch(setReadingItem(null))
+        }
+      }
     });
   }, [rate, currentLanguageI18nCode]);
 
@@ -159,7 +168,7 @@ export const ReadButton = (props: Props) => {
   }
 
   const changeRate = () => {
-    setRate(rate => rate === 1 ? 1.2 : 1);
+    setRate(rate => rate === 1 ? MAX_RATE : 1);
   }
 
   // Navigate to other screen
