@@ -219,6 +219,7 @@ export const AccordionAnimated = (props: Props) => {
                     ref={currentItemRef}
                     htmlContent={props.content}
                     windowWidth={props.windowWidth}
+                    fromAccordion={true}
                   />
                 )}
               </ExpandedContentContainer>

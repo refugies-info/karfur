@@ -11,13 +11,18 @@ import { ReadableText } from "../ReadableText";
 interface Props {
   htmlContent: string;
   windowWidth: number;
+  fromAccordion?: boolean;
 }
 export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
     <>
-      <ReadableText ref={ref} text={props.htmlContent.replace(/<[^>]*>?/gm, "")}>
+      <ReadableText
+        ref={ref}
+        text={props.htmlContent.replace(/<[^>]*>?/gm, "")}
+        heightOffset={props.fromAccordion}
+      >
         <HTML
           contentWidth={props.windowWidth}
           source={{ html: props.htmlContent }}

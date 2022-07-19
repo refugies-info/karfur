@@ -110,20 +110,18 @@ export const ReadButton = (props: Props) => {
   const currentScroll = useSelector(currentScrollSelector);
 
   const getReadingList = useCallback((startFromId: string | null, offset: number) => {
-    const toRead = readingList.sort(sortItems);
+    const toRead = readingList.sort(sortItems).filter(item => item);
     const firstItemToRead = startFromId || toRead[0].id;
     const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
     return toRead.slice(currentItemIndex + offset);
   }, [readingList]);
 
-  const readText = useCallback((item: ReadingItem) => {
+  const readText = useCallback((item: ReadingItem, readingList: ReadingItem[]) => {
     Speech.speak(item.text, {
       rate: rate,
       language: currentLanguageI18nCode || "fr",
       onStart: () => { dispatch(setReadingItem(item.id)) },
       onDone: () => {
-        const readingList = getReadingList(null, 0);
-        // if last one, close voiceover
         if (readingList[readingList.length - 1].id === item.id) {
           dispatch(setReadingItem(null))
         }
@@ -137,7 +135,7 @@ export const ReadButton = (props: Props) => {
     const sortedReadingList = readingList.sort(sortItems);
     const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
     const toRead = getReadingList(firstItem?.id || null, 0);
-    for (const item of toRead) readText(item);
+    for (const item of toRead) readText(item, toRead);
   }
 
   const goToNext = () => {
@@ -145,7 +143,7 @@ export const ReadButton = (props: Props) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
       const toRead = getReadingList(currentItem.id, 1);
-      for (const item of toRead) readText(item);
+      for (const item of toRead) readText(item, toRead);
     }
   }
 
@@ -154,7 +152,7 @@ export const ReadButton = (props: Props) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
       const toRead = getReadingList(currentItem.id, -1);
-      for (const item of toRead) readText(item);
+      for (const item of toRead) readText(item, toRead);
     }
   }
 
@@ -186,7 +184,7 @@ export const ReadButton = (props: Props) => {
     Speech.stop();
     if (currentItem) {
       const toRead = getReadingList(currentItem.id, 0);
-      for (const item of toRead) readText(item);
+      for (const item of toRead) readText(item, toRead);
     }
   }, [rate])
 

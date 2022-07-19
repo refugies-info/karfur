@@ -15,6 +15,8 @@ import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 interface Props {
   children?: string | ReactNode;
   text?: string;
+   // for accordions, element will be moved vertically when displayed
+  heightOffset?: boolean;
 }
 
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
@@ -32,12 +34,12 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
       setTimeout(() => {
         const text = props.text || (props.children as string) || "";
         // use setTimeout to be sure the element has been rendered
-        refView.current?.measure((_x, _y, _width, _height, pageX, pageY) => {
+        refView.current?.measure((_x, _y, _width, height, pageX, pageY) => {
           dispatch(
             addToReadingList({
               id: id,
               posX: pageX,
-              posY: pageY,
+              posY: !props.heightOffset ? pageY : pageY + height,
               text: text
             })
           );
