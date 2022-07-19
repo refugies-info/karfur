@@ -53,7 +53,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
 
       if (!isFocused && !event.defaultPrevented) {
         // The `merge: true` option makes sure that the params inside the tab screen are preserved
-        navigation.navigate({ name: route.name, merge: true, params: route.params });
+        navigation.navigate({ name: route.name, merge: true , params: undefined });
       }
     };
 
