@@ -1,22 +1,23 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
+import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
+import * as Speech from "expo-speech";
 import { Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import * as Speech from "expo-speech";
-import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
-import * as Haptics from "expo-haptics";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import {
-  setReadingItem,
+  setReadingItem
 } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { currentItemSelector, currentScrollSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { theme } from "../../theme";
-import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
-import Play from "../../theme/images/voiceover/play_icon.svg";
-import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Background from "../../theme/images/voiceover/bg_voiceover.svg";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import Pause from "../../theme/images/voiceover/pause_icon.svg";
+import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
+import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 
 const Container = styled(View)`
   position: absolute;
@@ -101,7 +102,6 @@ export const ReadButton = (props: Props) => {
   const [isPaused, setIsPaused] = useState(false);
   const [rate, setRate] = useState(1);
 
-
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const readingList = useSelector(readingListSelector);
   const currentItem = useSelector(currentItemSelector);
@@ -151,14 +151,26 @@ export const ReadButton = (props: Props) => {
 
   const stopVoiceOver = () => {
     deactivateKeepAwake("voiceover");
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Speech.stop();
     dispatch(setReadingItem(null));
+    if (currentItem) { // test to prevent haptic on any navigate
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
   }
 
   const changeRate = () => {
     setRate(rate => rate === 1 ? 1.2 : 1);
   }
+
+  // Navigate to other screen
+  const navigation = useNavigation();
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("state", () => {
+      stopVoiceOver();
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   // change rate
   useEffect(() => {
@@ -215,7 +227,7 @@ export const ReadButton = (props: Props) => {
           Écouter
         </StyledTextVerySmall>
       </PlayContainer>
-      {!currentItem && (
+      {currentItem && (
         <Buttons>
           <BackgroundContainer>
             <Background />

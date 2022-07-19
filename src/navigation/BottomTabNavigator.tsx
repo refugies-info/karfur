@@ -69,7 +69,8 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     );
   })
 
-  const hasReadButton = state.index !== 3; // everywhere except Profil tab
+  const explorerScreen = state.routes.find(route => route.name === "Explorer")?.state?.index;
+  const hasReadButton = state.index !== 3 && explorerScreen !== 0; // everywhere except Profil tab or first screen
   if (hasReadButton) items.splice(2, 0, <Space />);
 
   return (
