@@ -7,14 +7,14 @@ import {
   SET_READING_ITEM
 } from "./voiceOver.actionTypes";
 
-export const addToReadingList = (item: ReadingItem) =>
+export const addToReadingList = (item: Promise<ReadingItem>) =>
   action(ADD_READING, item);
 export const resetReadingList = () =>
   action(RESET_READING);
 export const setScrollReading = (y: number) =>
   action(SCROLL_READING, y);
-export const setReadingItem = (itemId: string|null) =>
-  action(SET_READING_ITEM, itemId);
+export const setReadingItem = (item: ReadingItem|null) =>
+  action(SET_READING_ITEM, item);
 
 const actions = {
   addToReadingList,

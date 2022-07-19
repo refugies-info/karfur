@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useState, ReactNode } from "react";
 import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addToReadingList,
+  addToReadingList
 } from "../services/redux/VoiceOver/voiceOver.actions";
 import {
-  currentItemId,
+  currentItemSelector,
 } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
 import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
+import { ReadingItem } from "../types/interface";
 
 interface Props {
   children?: string | ReactNode;
@@ -21,7 +22,7 @@ interface Props {
 
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const dispatch = useDispatch();
-  const currentReadingItem = useSelector(currentItemId);
+  const currentReadingItem = useSelector(currentItemSelector);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
@@ -32,23 +33,22 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   useEffect(() => {
     if (isFocused) {
       setTimeout(() => {
-        const text = props.text || (props.children as string) || "";
-        // use setTimeout to be sure the element has been rendered
-        refView.current?.measure((_x, _y, _width, height, pageX, pageY) => {
-          dispatch(
-            addToReadingList({
+        const item: Promise<ReadingItem> = new Promise(resolve => {
+          refView.current?.measure((_x, _y, _width, height, pageX, pageY) => {
+            resolve({
               id: id,
+              text: props.text || (props.children as string) || "",
               posX: pageX,
-              posY: !props.heightOffset ? pageY : pageY + height,
-              text: text
-            })
-          );
+              posY: !props.heightOffset ? pageY : pageY + height
+            } as ReadingItem)
+          });
         });
-      });
+        dispatch(addToReadingList(item));
+      })
     }
   }, [isFocused, currentLanguageI18nCode]);
 
-  const isActive = currentReadingItem === id;
+  const isActive = currentReadingItem?.id === id;
   return (
     props.text ? ( // if text given as prop, include content in a View
       <View

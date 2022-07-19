@@ -3,8 +3,8 @@ import { ReadingItem } from "../../../types/interface";
 import { VoiceOverActions } from "./voiceOver.actions";
 
 export interface VoiceOverState {
-  readingList: ReadingItem[];
-  currentItem: string | null;
+  readingList: Promise<ReadingItem>[];
+  currentItem: ReadingItem | null;
   currentScroll: number;
 }
 
@@ -23,12 +23,9 @@ export const voiceOverReducer = createReducer<
     currentItem: action.payload
   }),
   ADD_READING: (state, action) => {
-    const newList = state.readingList.find(i => i.id === action.payload.id) ?
-      [...state.readingList] : // if already in list, do not add again
-      [...state.readingList, action.payload];
     return {
       ...state,
-      readingList: newList
+      readingList: [...state.readingList, action.payload]
     }
   },
   RESET_READING: (state) => ({

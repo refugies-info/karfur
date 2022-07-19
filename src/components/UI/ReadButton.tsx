@@ -36,6 +36,7 @@ const PlayContainer = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   z-index: 2;
+  opacity: ${((props: {loading: boolean}) => props.loading ? 0.4 : 1)};
 `;
 const PlayButton = styled(View)`
   width: 56px;
@@ -94,6 +95,17 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
   return 1;
 }
 
+const getReadingList = (
+  list: ReadingItem[],
+  startFromId: string | null,
+  offset: number
+) => {
+  const toRead = list.filter(item => item);;
+  const firstItemToRead = startFromId || toRead[0].id;
+  const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
+  return toRead.slice(currentItemIndex + offset);
+}
+
 interface Props {
   bottomInset: number
 }
@@ -103,24 +115,19 @@ export const ReadButton = (props: Props) => {
 
   const [isPaused, setIsPaused] = useState(false);
   const [rate, setRate] = useState(1);
+  const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const readingList = useSelector(readingListSelector);
   const currentItem = useSelector(currentItemSelector);
   const currentScroll = useSelector(currentScrollSelector);
 
-  const getReadingList = useCallback((startFromId: string | null, offset: number) => {
-    const toRead = readingList.sort(sortItems).filter(item => item);
-    const firstItemToRead = startFromId || toRead[0].id;
-    const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
-    return toRead.slice(currentItemIndex + offset);
-  }, [readingList]);
-
   const readText = useCallback((item: ReadingItem, readingList: ReadingItem[]) => {
     Speech.speak(item.text, {
       rate: rate,
       language: currentLanguageI18nCode || "fr",
-      onStart: () => { dispatch(setReadingItem(item.id)) },
+      onStart: () => { dispatch(setReadingItem(item)) },
       onDone: () => {
         if (readingList[readingList.length - 1].id === item.id) {
           dispatch(setReadingItem(null))
@@ -129,21 +136,27 @@ export const ReadButton = (props: Props) => {
     });
   }, [rate, currentLanguageI18nCode]);
 
-  const startToRead = () => {
+  const startToRead = useCallback(() => {
+    setIsLoading(true);
     activateKeepAwake("voiceover");
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    const sortedReadingList = readingList.sort(sortItems);
-    const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
-    const toRead = getReadingList(firstItem?.id || null, 0);
-    for (const item of toRead) readText(item, toRead);
-  }
+
+    Promise.all(readingList).then((res) => {
+      const sortedReadingList = res.sort(sortItems);
+      setResolvedReadingList(sortedReadingList);
+      const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
+      const toRead = getReadingList(sortedReadingList, firstItem?.id || null, 0);
+      setIsLoading(false);
+      for (const itemToRead of toRead) readText(itemToRead, toRead);
+    });
+  }, [readingList]);
 
   const goToNext = () => {
     Speech.stop();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
-      const toRead = getReadingList(currentItem.id, 1);
-      for (const item of toRead) readText(item, toRead);
+      const toRead = getReadingList(resolvedReadingList, currentItem.id, 1);
+      for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
   }
 
@@ -151,8 +164,8 @@ export const ReadButton = (props: Props) => {
     Speech.stop();
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     if (currentItem) {
-      const toRead = getReadingList(currentItem.id, -1);
-      for (const item of toRead) readText(item, toRead);
+      const toRead = getReadingList(resolvedReadingList, currentItem.id, -1);
+      for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
   }
 
@@ -183,8 +196,8 @@ export const ReadButton = (props: Props) => {
   useEffect(() => {
     Speech.stop();
     if (currentItem) {
-      const toRead = getReadingList(currentItem.id, 0);
-      for (const item of toRead) readText(item, toRead);
+      const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
+      for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
   }, [rate])
 
@@ -220,6 +233,7 @@ export const ReadButton = (props: Props) => {
   return (
     <Container bottomInset={props.bottomInset}>
       <PlayContainer
+        loading={isLoading}
         onPress={toggleVoiceOver}
         accessibilityRole="button"
         accessible={true}

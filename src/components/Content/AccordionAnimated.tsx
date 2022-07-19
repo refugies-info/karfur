@@ -13,7 +13,7 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { ReadableText } from "../ReadableText";
 import { useSelector } from "react-redux";
-import { currentItemId } from "../../services/redux/VoiceOver/voiceOver.selectors";
+import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
@@ -138,11 +138,11 @@ export const AccordionAnimated = (props: Props) => {
   };
 
   // Voiceover
-  const currentItem = useSelector(currentItemId);
+  const currentItem = useSelector(currentItemSelector);
 
   React.useEffect(() => {
     const accordionIsReading = currentItem
-      && currentItem === currentItemRef.current;
+      && currentItem.id === currentItemRef.current;
     setIsExpanded(!!accordionIsReading);
 
     if (accordionIsReading) {
