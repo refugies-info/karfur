@@ -58,7 +58,12 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
           }
         >
-          Profil
+          <Text
+            style={Object {}}
+          >
+            Profil
+          </Text>
+          <View />
         </Text>
       </View>
     </View>
@@ -2665,7 +2670,12 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
           }
         >
-          Profil
+          <Text
+            style={Object {}}
+          >
+            Profil
+          </Text>
+          <View />
         </Text>
       </View>
     </View>
@@ -5272,7 +5282,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
           }
         >
-          Profil
+          <Text
+            style={Object {}}
+          >
+            Profil
+          </Text>
+          <View />
         </Text>
       </View>
     </View>

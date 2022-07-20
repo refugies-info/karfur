@@ -646,7 +646,7 @@ export const ContentScreen = ({
       </FixedContainerForHeader>
       <ScrollView
         ref={scrollview}
-        contentContainerStyle={{ paddingBottom: theme.margin * 5 + insets.bottom }}
+        contentContainerStyle={{ paddingBottom: theme.margin * 5 + (insets.bottom || 0) }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}

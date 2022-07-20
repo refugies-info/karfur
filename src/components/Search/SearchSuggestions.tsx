@@ -56,7 +56,7 @@ const SearchSuggestions = (props: Props) => {
       onMomentumScrollEnd={onScrollEnd}
       onScrollEndDrag={onScrollEnd}
       contentContainerStyle={{
-        paddingBottom: theme.margin * 5 + insets.bottom
+        paddingBottom: theme.margin * 5 + (insets.bottom || 0)
       }}
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>

@@ -201,7 +201,7 @@ export const FavorisScreen = ({
             justifyContent: "space-between",
             paddingHorizontal: theme.margin * 3,
             paddingTop: theme.margin * 3,
-            paddingBottom: theme.margin * 5 + insets.bottom,
+            paddingBottom: theme.margin * 5 + (insets.bottom || 0),
             flexShrink: 0,
             flexGrow: 1
           }}
@@ -263,7 +263,7 @@ export const FavorisScreen = ({
             alignItems: "center",
             justifyContent: "center",
             flexGrow: 1,
-            paddingBottom: theme.margin * 5 + insets.bottom
+            paddingBottom: theme.margin * 5 + (insets.bottom || 0)
           }}
         >
           <Image

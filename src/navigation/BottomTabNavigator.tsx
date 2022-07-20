@@ -78,8 +78,8 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
   return (
     <BottomTabBarContainer
       style={{
-        height: 48 + insets.bottom,
-        paddingBottom: insets.bottom
+        height: 48 + (insets.bottom || 0),
+        paddingBottom: (insets.bottom || 0)
       }}
     >
       {!noReadButton && <ReadButton bottomInset={insets.bottom} />}

@@ -69,7 +69,12 @@ exports[`Search Screen should render correctly 1`] = `
               }
             }
           >
-            Rechercher
+            <Text
+              style={Object {}}
+            >
+              Rechercher
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -227,6 +232,11 @@ exports[`Search Screen should render correctly 1`] = `
     </View>
   </View>
   <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 40,
+      }
+    }
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
@@ -261,7 +271,12 @@ exports[`Search Screen should render correctly 1`] = `
             ]
           }
         >
-          Les fiches les plus recherchées
+          <Text
+            style={Object {}}
+          >
+            Les fiches les plus recherchées
+          </Text>
+          <View />
         </Text>
       </View>
       <View>
@@ -284,7 +299,12 @@ exports[`Search Screen should render correctly 1`] = `
             ]
           }
         >
-          Les thèmes
+          <Text
+            style={Object {}}
+          >
+            Les thèmes
+          </Text>
+          <View />
         </Text>
         <RCTScrollView
           contentContainerStyle={
