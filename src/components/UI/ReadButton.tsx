@@ -18,6 +18,7 @@ import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
+import { Animated } from "react-native";
 
 const Container = styled(View)`
   position: absolute;
@@ -48,7 +49,7 @@ const PlayButton = styled(View)`
   justify-content: center;
   box-shadow: 0 0 8px rgba(4, 33, 177, 0.16);
 `;
-const Buttons = styled(View)`
+const Buttons = styled(Animated.View)`
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -117,6 +118,11 @@ export const ReadButton = (props: Props) => {
   const [rate, setRate] = useState(1);
   const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const animatedValue =  React.useRef(new Animated.Value(0)).current;
+  const animatedStyle = {
+    transform: [{ scale: animatedValue }]
+  };
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const readingList = useSelector(readingListSelector);
@@ -230,6 +236,23 @@ export const ReadButton = (props: Props) => {
     }
   }, [isPaused]);
 
+  // show menu
+  useEffect(() => {
+    if (currentItem) {
+      Animated.spring(animatedValue, {
+        toValue: 1,
+        bounciness: 14,
+        speed: 24,
+        useNativeDriver: false
+      }).start();
+    } else {
+      Animated.spring(animatedValue, {
+        toValue: 0,
+        useNativeDriver: false
+      }).start();
+    }
+  }, [currentItem])
+
   return (
     <Container bottomInset={props.bottomInset}>
       <PlayContainer
@@ -248,43 +271,41 @@ export const ReadButton = (props: Props) => {
           Écouter
         </StyledTextVerySmall>
       </PlayContainer>
-      {currentItem && (
-        <Buttons>
-          <BackgroundContainer>
-            <Background />
-          </BackgroundContainer>
-          <Button onPress={changeRate}>
-            <StyledTextSmallBold>
-              {rate === 1 ? "x1" : "x2"}
-            </StyledTextSmallBold>
-          </Button>
-          <Button onPress={goToPrevious} ml>
-            <Icon
-              name={"arrow-back-outline"}
-              height={24}
-              width={24}
-              fill={theme.colors.black}
-            />
-          </Button>
-          <Space />
-          <Button onPress={goToNext} mr>
-            <Icon
-              name={"arrow-forward-outline"}
-              height={24}
-              width={24}
-              fill={theme.colors.black}
-            />
-          </Button>
-          <Button onPress={stopVoiceOver} background={theme.colors.red}>
-            <Icon
-              name={"close-outline"}
-              height={24}
-              width={24}
-              fill={theme.colors.white}
-            />
-          </Button>
-        </Buttons>
-      )}
+      <Buttons style={animatedStyle}>
+        <BackgroundContainer>
+          <Background />
+        </BackgroundContainer>
+        <Button onPress={changeRate}>
+          <StyledTextSmallBold>
+            {rate === 1 ? "x1" : "x2"}
+          </StyledTextSmallBold>
+        </Button>
+        <Button onPress={goToPrevious} ml>
+          <Icon
+            name={"arrow-back-outline"}
+            height={24}
+            width={24}
+            fill={theme.colors.black}
+          />
+        </Button>
+        <Space />
+        <Button onPress={goToNext} mr>
+          <Icon
+            name={"arrow-forward-outline"}
+            height={24}
+            width={24}
+            fill={theme.colors.black}
+          />
+        </Button>
+        <Button onPress={stopVoiceOver} background={theme.colors.red}>
+          <Icon
+            name={"close-outline"}
+            height={24}
+            width={24}
+            fill={theme.colors.white}
+          />
+        </Button>
+      </Buttons>
     </Container>
   );
 };
