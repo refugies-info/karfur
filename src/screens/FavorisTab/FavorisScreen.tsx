@@ -2,6 +2,7 @@ import * as React from "react"
 import styled from "styled-components/native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { useFocusEffect } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { Icon } from "react-native-eva-icons";
 
@@ -69,6 +70,8 @@ export const FavorisScreen = ({
       dispatch(resetReadingList());
     }, [])
   );
+
+  const insets = useSafeAreaInsets();
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
@@ -198,7 +201,7 @@ export const FavorisScreen = ({
             justifyContent: "space-between",
             paddingHorizontal: theme.margin * 3,
             paddingTop: theme.margin * 3,
-            paddingBottom: theme.margin * 5,
+            paddingBottom: theme.margin * 5 + insets.bottom,
             flexShrink: 0,
             flexGrow: 1
           }}
@@ -260,7 +263,7 @@ export const FavorisScreen = ({
             alignItems: "center",
             justifyContent: "center",
             flexGrow: 1,
-            paddingBottom: theme.margin * 5
+            paddingBottom: theme.margin * 5 + insets.bottom
           }}
         >
           <Image

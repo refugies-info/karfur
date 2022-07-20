@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import { theme } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
@@ -32,6 +33,8 @@ const SearchSuggestions = (props: Props) => {
   const scrollview = React.useRef<ScrollView>(null);
   const parentScrollview = React.useRef<ScrollView>(null);
 
+  const insets = useSafeAreaInsets();
+
   React.useLayoutEffect(() => {
     initHorizontalScroll(scrollview, isRTL)
   }, [isRTL])
@@ -53,7 +56,7 @@ const SearchSuggestions = (props: Props) => {
       onMomentumScrollEnd={onScrollEnd}
       onScrollEndDrag={onScrollEnd}
       contentContainerStyle={{
-        paddingBottom: theme.margin * 5
+        paddingBottom: theme.margin * 5 + insets.bottom
       }}
     >
       <View style={{ marginHorizontal: theme.margin * 3 }}>

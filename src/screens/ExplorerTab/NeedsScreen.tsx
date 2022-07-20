@@ -2,6 +2,7 @@ import * as React from "react";
 import { theme } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { View, Animated, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
@@ -66,6 +67,7 @@ export const NeedsScreen = ({
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
 
   const animatedController = React.useRef(new Animated.Value(0)).current;
+  const insets = useSafeAreaInsets();
 
   const toggleSimplifiedHeader = (displayHeader: boolean) => {
     if (displayHeader && !showSimplifiedHeader) {
@@ -282,7 +284,7 @@ export const NeedsScreen = ({
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
           paddingTop: theme.margin * 3,
-          paddingBottom: theme.margin * 5,
+          paddingBottom: theme.margin * 5 + insets.bottom,
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}

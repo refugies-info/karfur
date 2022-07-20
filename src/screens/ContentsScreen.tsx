@@ -2,6 +2,7 @@ import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
 import { ScrollView, View, Animated, Platform, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
@@ -107,6 +108,8 @@ export const ContentsScreen = ({
       dispatch(resetReadingList());
     }, [])
   );
+
+  const insets = useSafeAreaInsets();
 
   const { t } = useTranslationWithRTL();
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
@@ -314,7 +317,7 @@ export const ContentsScreen = ({
         contentContainerStyle={{
           paddingHorizontal: theme.margin * 3,
           paddingTop: theme.margin * 3,
-          paddingBottom: theme.margin * 5,
+          paddingBottom: theme.margin * 5 + insets.bottom,
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
