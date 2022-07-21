@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
 import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
-import { Platform, TouchableOpacity, View } from "react-native";
+import { Image, Platform, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -13,7 +13,6 @@ import {
 } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { currentItemSelector, currentScrollSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { theme } from "../../theme";
-import Background from "../../theme/images/voiceover/bg_voiceover.svg";
 import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
@@ -281,7 +280,10 @@ export const ReadButton = (props: Props) => {
       </PlayContainer>
       <Buttons style={animatedStyle}>
         <BackgroundContainer>
-          <Background />
+          <Image
+            source={require("../../theme/images/voiceover/bg_voiceover.png")}
+            style={{marginLeft: -8, marginTop: -8}}
+          />
         </BackgroundContainer>
         <Button onPress={changeRate}>
           <StyledTextSmallBold>
