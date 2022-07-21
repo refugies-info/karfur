@@ -34,8 +34,9 @@ import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { resetReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../../hooks/useAutoScroll";
+import { useResetList } from "../../hooks/useResetList";
 
 const EmptyContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 4}px;
@@ -65,11 +66,7 @@ export const FavorisScreen = ({
   const dispatch = useDispatch();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(resetReadingList());
-    }, [])
-  );
+  useResetList();
 
   const insets = useSafeAreaInsets();
 

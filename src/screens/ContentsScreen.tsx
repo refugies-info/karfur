@@ -25,9 +25,9 @@ import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { useFocusEffect } from "@react-navigation/native";
-import { resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../hooks/useAutoScroll";
+import { useResetList } from "../hooks/useResetList";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -103,11 +103,7 @@ export const ContentsScreen = ({
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
 
   const dispatch = useDispatch();
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(resetReadingList());
-    }, [])
-  );
+  useResetList();
 
   const insets = useSafeAreaInsets();
 

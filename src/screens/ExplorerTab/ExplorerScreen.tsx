@@ -37,7 +37,7 @@ import { theme } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
 import { logger } from "../../logger";
-import { resetReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const MAX_CONTENT_LOCALIZED = 10;
@@ -69,12 +69,6 @@ export const ExplorerScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
-
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(resetReadingList());
-    }, [])
-  );
 
   const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);

@@ -5,12 +5,11 @@ import {
   addToReadingList
 } from "../services/redux/VoiceOver/voiceOver.actions";
 import {
-  currentItemSelector,
+  currentItemSelector, readingListLengthSelector,
 } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
 import { theme } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
-import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { ReadingItem } from "../types/interface";
 
 interface Props {
@@ -23,17 +22,17 @@ interface Props {
 export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const dispatch = useDispatch();
   const currentReadingItem = useSelector(currentItemSelector);
+  const readingListLength = useSelector(readingListLengthSelector);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
-  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   if (ref) ref.current = id;
   const refView = useRef<View | null>(null);
 
   useEffect(() => {
-    if (isFocused) {
-      setTimeout(() => {
-        const item: Promise<ReadingItem> = new Promise(resolve => {
+    if (readingListLength === 0 && isFocused) {
+      const item: Promise<ReadingItem> = new Promise(resolve => {
+        setTimeout(() => {
           refView.current?.measure((_x, _y, _width, height, pageX, pageY) => {
             resolve({
               id: id,
@@ -42,11 +41,11 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
               posY: !props.heightOffset ? pageY : pageY + height
             } as ReadingItem)
           });
-        });
-        dispatch(addToReadingList(item));
-      })
+        })
+      });
+      dispatch(addToReadingList(item));
     }
-  }, [isFocused, currentLanguageI18nCode]);
+  }, [readingListLength]);
 
   const isActive = currentReadingItem?.id === id;
   return (

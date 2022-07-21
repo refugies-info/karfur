@@ -129,6 +129,11 @@ export const ReadButton = (props: Props) => {
   const currentItem = useSelector(currentItemSelector);
   const currentScroll = useSelector(currentScrollSelector);
 
+  const [isReading, setIsReading] = useState(false);
+  useEffect(() => {
+    setIsReading(!!currentItem);
+  }, [currentItem])
+
   const readText = useCallback((item: ReadingItem, readingList: ReadingItem[]) => {
     Speech.speak(item.text, {
       rate: rate,
@@ -175,14 +180,15 @@ export const ReadButton = (props: Props) => {
     }
   }
 
-  const stopVoiceOver = () => {
+  const stopVoiceOver = useCallback(() => {
     deactivateKeepAwake("voiceover");
     Speech.stop();
-    dispatch(setReadingItem(null));
-    if (currentItem) { // test to prevent haptic on any navigate
+    if (isReading) { // test to prevent haptic on any navigate
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
-  }
+    dispatch(setReadingItem(null));
+    setIsPaused(false);
+  }, [isReading]);
 
   const changeRate = () => {
     setRate(rate => rate === 1 ? MAX_RATE : 1);
@@ -212,14 +218,7 @@ export const ReadButton = (props: Props) => {
     stopVoiceOver();
   }, [currentLanguageI18nCode])
 
-  const toggleVoiceOver = () => {
-    if (!currentItem) {
-      startToRead();
-    } else {
-      setIsPaused(!isPaused);
-    }
-  };
-
+  // pause
   useEffect(() => {
     if (isPaused) {
       if (Platform.OS === "android") {
@@ -238,7 +237,7 @@ export const ReadButton = (props: Props) => {
 
   // show menu
   useEffect(() => {
-    if (currentItem) {
+    if (isReading) {
       Animated.spring(animatedValue, {
         toValue: 1,
         bounciness: 14,
@@ -251,7 +250,16 @@ export const ReadButton = (props: Props) => {
         useNativeDriver: false
       }).start();
     }
-  }, [currentItem])
+  }, [isReading])
+
+  // start
+  const toggleVoiceOver = () => {
+    if (!isReading) {
+      startToRead();
+    } else {
+      setIsPaused(!isPaused);
+    }
+  };
 
   return (
     <Container bottomInset={props.bottomInset}>
@@ -262,7 +270,7 @@ export const ReadButton = (props: Props) => {
         accessible={true}
         accessibilityLabel={"Écouter"}>
         <PlayButton>
-          {(currentItem && !isPaused) ?
+          {(isReading && !isPaused) ?
             <Pause width={16} height={16} /> :
             <Play width={16} height={16} />
           }

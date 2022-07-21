@@ -15,7 +15,7 @@ import {
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
 import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
-import { useFocusEffect, CompositeScreenProps } from "@react-navigation/native";
+import { CompositeScreenProps } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { ExplorerParamList, BottomTabParamList } from "../../types";
@@ -71,9 +71,10 @@ import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
-import { resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../hooks/useAutoScroll";
 import { ReadButton } from "../components/UI/ReadButton";
+import { useResetList } from "../hooks/useResetList";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -260,11 +261,7 @@ export const ContentScreen = ({
   } = route.params;
   const dispatch = useDispatch();
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(resetReadingList());
-    }, [])
-  );
+  useResetList();
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
