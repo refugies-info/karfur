@@ -134,6 +134,7 @@ export const ReadButton = (props: Props) => {
   }, [currentItem])
 
   const readText = useCallback((item: ReadingItem, readingList: ReadingItem[]) => {
+    setIsPaused(false);
     Speech.speak(item.text, {
       rate: rate,
       language: currentLanguageI18nCode || "fr",
