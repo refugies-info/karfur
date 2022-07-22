@@ -71,10 +71,9 @@ import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
-import { setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { newReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../hooks/useAutoScroll";
 import { ReadButton } from "../components/UI/ReadButton";
-import { useResetList } from "../hooks/useResetList";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -261,7 +260,6 @@ export const ContentScreen = ({
   } = route.params;
   const dispatch = useDispatch();
 
-  useResetList();
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
@@ -383,6 +381,7 @@ export const ContentScreen = ({
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
   React.useEffect(() => {
     if (selectedContent) {
+      dispatch(newReadingList());
       const nbVuesMobile = selectedContent.nbVuesMobile
         ? selectedContent.nbVuesMobile + 1
         : 1;

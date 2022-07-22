@@ -20,9 +20,9 @@ import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated"
 import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
-import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { newReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../../hooks/useAutoScroll";
-import { useResetList } from "../../hooks/useResetList";
+import { useFocusEffect } from "@react-navigation/native";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -55,7 +55,9 @@ export const NeedsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const dispatch = useDispatch();
-  useResetList();
+  useFocusEffect(React.useCallback(() => {
+    dispatch(newReadingList());
+  }, []));
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false

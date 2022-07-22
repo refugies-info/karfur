@@ -34,9 +34,8 @@ import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { newReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../../hooks/useAutoScroll";
-import { useResetList } from "../../hooks/useResetList";
 
 const EmptyContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 4}px;
@@ -66,7 +65,6 @@ export const FavorisScreen = ({
   const dispatch = useDispatch();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
 
-  useResetList();
 
   const insets = useSafeAreaInsets();
 
@@ -79,6 +77,7 @@ export const FavorisScreen = ({
   // When the screen has focus, remove "new favorite" badge
   const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
   useFocusEffect(React.useCallback(() => {
+    dispatch(newReadingList());
     if (hasNewFavorites) {
       dispatch(removeUserHasNewFavoritesActionCreator());
     }
@@ -123,6 +122,10 @@ export const FavorisScreen = ({
     getContentsToDisplay(favorites, contents)
       .then(setContentsToDisplay)
   }, [favorites, contents]);
+
+  React.useEffect(() => {
+    dispatch(newReadingList());
+  }, [contentsToDisplay])
 
   const [favoriteToDelete, setFavoriteToDelete] = React.useState<string|"all">("");
   const showDeleteModal = (contentId: string|"all") => {

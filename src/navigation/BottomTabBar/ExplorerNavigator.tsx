@@ -7,7 +7,8 @@ import { ExplorerScreen } from "../../screens/ExplorerTab/ExplorerScreen";
 import { ContentScreen } from "../../screens/ContentScreen";
 import { ContentsScreen } from "../../screens/ContentsScreen";
 import { NeedsScreen } from "../../screens/ExplorerTab/NeedsScreen";
-import { NotificationsScreen } from "../../screens/NotificationsScreen";
+import { useDispatch } from "react-redux";
+import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 interface Props {
   navigation?: any;
@@ -27,8 +28,17 @@ export const ExplorerNavigator = ({ navigation, route }: Props) => {
     })
   }, [navigation, route]);
 
+  const dispatch = useDispatch();
+
   return (
-    <ExplorerStack.Navigator screenOptions={{ headerShown: false }}>
+    <ExplorerStack.Navigator
+      screenOptions={{ headerShown: false }}
+      screenListeners={{
+        beforeRemove: () => {
+          dispatch(resetReadingList());
+        }
+      }}
+    >
       <ExplorerStack.Screen name="ExplorerScreen" component={ExplorerScreen} />
       <ExplorerStack.Screen name="ContentScreen" component={ContentScreen} />
       <ExplorerStack.Screen name="ContentsScreen" component={ContentsScreen} />

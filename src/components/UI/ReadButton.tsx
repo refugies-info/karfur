@@ -148,18 +148,20 @@ export const ReadButton = (props: Props) => {
   }, [rate, currentLanguageI18nCode]);
 
   const startToRead = useCallback(() => {
-    setIsLoading(true);
-    activateKeepAwake("voiceover");
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (Array.isArray(readingList)) {
+      setIsLoading(true);
+      activateKeepAwake("voiceover");
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-    Promise.all(readingList).then((res) => {
-      const sortedReadingList = res.sort(sortItems);
-      setResolvedReadingList(sortedReadingList);
-      const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
-      const toRead = getReadingList(sortedReadingList, firstItem?.id || null, 0);
-      setIsLoading(false);
-      for (const itemToRead of toRead) readText(itemToRead, toRead);
-    });
+      Promise.all(readingList).then((res) => {
+        const sortedReadingList = res.sort(sortItems);
+        setResolvedReadingList(sortedReadingList);
+        const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
+        const toRead = getReadingList(sortedReadingList, firstItem?.id || null, 0);
+        setIsLoading(false);
+        for (const itemToRead of toRead) readText(itemToRead, toRead);
+      });
+    }
   }, [readingList]);
 
   const goToNext = () => {

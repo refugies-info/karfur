@@ -3,13 +3,13 @@ import { ReadingItem } from "../../../types/interface";
 import { VoiceOverActions } from "./voiceOver.actions";
 
 export interface VoiceOverState {
-  readingList: Promise<ReadingItem>[];
+  readingList: Promise<ReadingItem>[]|null;
   currentItem: ReadingItem | null;
   currentScroll: number;
 }
 
 export const initialVoiceOverState = {
-  readingList: [],
+  readingList: null,
   currentItem: null,
   currentScroll: 0
 };
@@ -25,14 +25,17 @@ export const voiceOverReducer = createReducer<
   ADD_READING: (state, action) => {
     return {
       ...state,
-      readingList: [...state.readingList, action.payload]
+      readingList: [...(state.readingList || []), action.payload]
     }
   },
-  RESET_READING: (state) => ({
+  NEW_READING: (state) => ({
     ...state,
     readingList: [],
-    isReading: false,
-    isPaused: false,
+    currentScroll: 0
+  }),
+  RESET_READING: (state) => ({
+    ...state,
+    readingList: null,
     currentItem: null,
     currentScroll: 0
   }),

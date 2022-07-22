@@ -18,6 +18,8 @@ import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 import { ReadButton } from "../components/UI/ReadButton";
 import { TabBarItem } from "./components/TabBarItem";
 import { theme } from "../theme";
+import { useDispatch } from "react-redux";
+import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -91,12 +93,18 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
 export default function BottomTabNavigator() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const dispatch = useDispatch();
 
   return (
     <BottomTab.Navigator
       initialRouteName="Explorer"
       screenOptions={{ headerShown: false }}
       tabBar={props => <BottomTabBar {...props} insets={insets} />}
+      screenListeners={{
+        beforeRemove: () => {
+          dispatch(resetReadingList());
+        }
+      }}
     >
       <BottomTab.Screen
         name="Explorer"

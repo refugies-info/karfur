@@ -2,3 +2,4 @@ export const ADD_READING = "ADD_READING";
 export const RESET_READING = "RESET_READING";
 export const SCROLL_READING = "SCROLL_READING";
 export const SET_READING_ITEM = "SET_READING_ITEM";
+export const NEW_READING = "NEW_READING";
