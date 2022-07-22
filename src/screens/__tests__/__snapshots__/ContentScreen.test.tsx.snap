@@ -4053,7 +4053,15 @@ exports[`ContentScreen should render correctly 1`] = `
             <View
               className="sc-eCApnc XvTDm"
             >
-              <react-native-svg />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "marginLeft": -8,
+                    "marginTop": -8,
+                  }
+                }
+              />
             </View>
             <View
               accessible={true}
@@ -8619,7 +8627,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
             <View
               className="sc-eCApnc XvTDm"
             >
-              <react-native-svg />
+              <Image
+                source={1}
+                style={
+                  Object {
+                    "marginLeft": -8,
+                    "marginTop": -8,
+                  }
+                }
+              />
             </View>
             <View
               accessible={true}
