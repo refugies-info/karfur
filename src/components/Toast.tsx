@@ -19,7 +19,7 @@ const ToastContainer = styled(Animated.View)`
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 100px;
+  bottom: 140px;
   z-index: 13;
 `;
 const ToastView = styled(RTLView)`
