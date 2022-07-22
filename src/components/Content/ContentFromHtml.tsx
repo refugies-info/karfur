@@ -17,7 +17,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
-    <>
+    <View style={{ flexDirection: "row" }}>
       <ReadableText
         ref={ref}
         text={props.htmlContent.replace(/<[^>]*>?/gm, "")}
@@ -137,7 +137,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
           }}
         />
       </ReadableText>
-    </>
+    </View>
   )
 });
 

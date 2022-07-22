@@ -52,7 +52,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
     props.text ? ( // if text given as prop, include content in a View
       <View
         ref={refView}
-        style={isActive ? { backgroundColor: theme.colors.lightBlue, flexDirection: "row" } : { flexDirection: "row" }}
+        style={isActive ? { backgroundColor: theme.colors.lightBlue, maxWidth: "100%" } : { maxWidth: "100%" }}
         collapsable={false}
       >
         {props.children}
