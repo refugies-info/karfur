@@ -18,28 +18,28 @@ export const voiceOverReducer = createReducer<
   VoiceOverState,
   VoiceOverActions
 >(initialVoiceOverState, {
-  SET_READING_ITEM: (state, action) => ({
+  VOICEOVER_SET_READING_ITEM: (state, action) => ({
     ...state,
     currentItem: action.payload
   }),
-  ADD_READING: (state, action) => {
+  VOICEOVER_ADD_ITEM: (state, action) => {
     return {
       ...state,
       readingList: [...(state.readingList || []), action.payload]
     }
   },
-  NEW_READING: (state) => ({
+  VOICEOVER_NEW_LIST: (state) => ({
     ...state,
     readingList: [],
     currentScroll: 0
   }),
-  RESET_READING: (state) => ({
+  VOICEOVER_RESET_LIST: (state) => ({
     ...state,
     readingList: null,
     currentItem: null,
     currentScroll: 0
   }),
-  SCROLL_READING: (state, action) => ({
+  VOICEOVER_UPDATE_SCROLL: (state, action) => ({
     ...state,
     currentScroll: action.payload
   }),

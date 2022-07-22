@@ -1,23 +1,23 @@
 import { action, ActionType } from "typesafe-actions";
 import { ReadingItem } from "../../../types/interface";
 import {
-  ADD_READING,
-  RESET_READING,
-  SCROLL_READING,
-  SET_READING_ITEM,
-  NEW_READING
+  VOICEOVER_ADD_ITEM,
+  VOICEOVER_RESET_LIST,
+  VOICEOVER_UPDATE_SCROLL,
+  VOICEOVER_SET_READING_ITEM,
+  VOICEOVER_NEW_LIST
 } from "./voiceOver.actionTypes";
 
 export const addToReadingList = (item: Promise<ReadingItem>) =>
-  action(ADD_READING, item);
+  action(VOICEOVER_ADD_ITEM, item);
 export const newReadingList = () =>
-  action(NEW_READING);
+  action(VOICEOVER_NEW_LIST);
 export const resetReadingList = () =>
-  action(RESET_READING);
+  action(VOICEOVER_RESET_LIST);
 export const setScrollReading = (y: number) =>
-  action(SCROLL_READING, y);
+  action(VOICEOVER_UPDATE_SCROLL, y);
 export const setReadingItem = (item: ReadingItem|null) =>
-  action(SET_READING_ITEM, item);
+  action(VOICEOVER_SET_READING_ITEM, item);
 
 const actions = {
   addToReadingList,
