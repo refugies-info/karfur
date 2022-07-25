@@ -1,6 +1,6 @@
 const urlTranslations = [
-  ["/demarche/", "/procedure/"],
-  ["/dispositif/", "/program/"],
+  ["/demarche/.*", "/procedure/.*"],
+  ["/dispositif/.*", "/program/.*"],
   ["/comment-contribuer", "/how-to-contribute"],
   ["/qui-sommes-nous", "/who-are-we"],
   ["/mentions-legales", "/legal-notices"],
@@ -23,21 +23,21 @@ const deepLinks = [
     {
       scheme: "https",
       host: "refugies.info",
-      pathPrefix: url[0]
+      pathPattern: url[0]
     }
   )),
   ...urlTranslations.map(url => ( // https://refugies.info/fr/dispositif/
     {
       scheme: "https",
       host: "refugies.info",
-      pathPrefix: "/*" + url[0]
+      pathPattern: "/.*" + url[0]
     }
   )),
   ...urlTranslations.map(url => ( // https://refugies.info/en/program/
     {
       scheme: "https",
       host: "refugies.info",
-      pathPrefix: "/*" + url[1]
+      pathPattern: "/.*" + url[1]
     }
   ))
 ]
