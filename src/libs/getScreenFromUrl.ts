@@ -1,5 +1,3 @@
-import { getThemeTag } from "./getThemeTag";
-
 export const getScreenFromUrl = (url: string): {
   rootNavigator: "Explorer" | "Profil"
   screenParams: any
@@ -29,25 +27,6 @@ export const getScreenFromUrl = (url: string): {
         screen: "ContentScreen",
         params: {
           contentId: resDemarche[0].replace("demarche/", "")
-        }
-      }
-    }
-  }
-
-  // Tag
-  const rxTag = /advanced-search\?tag=\S+/g;
-  const resTag = rxTag.exec(url);
-  if (resTag && resTag[0]) {
-    const tagName = decodeURI(resTag[0].replace("advanced-search?tag=", ""));
-    const colors = tagName ? getThemeTag(tagName) : null;
-    if (!colors) return null;
-
-    return {
-      rootNavigator: "Explorer",
-      screenParams: {
-        screen: "NeedsScreen",
-        params: {
-          colors: colors,
         }
       }
     }
