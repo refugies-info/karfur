@@ -1,3 +1,5 @@
+import deepLinks from "./androidDeepLinks";
+
 export default {
   name: "Réfugiés.info",
   slug: "refugies-info-app",
@@ -62,95 +64,7 @@ export default {
       {
         action: "VIEW",
         autoVerify: true,
-        data: [
-          {
-            scheme: "https",
-            host: "refugies.info",
-            path: ""
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            path: ""
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            path: "/"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            path: "/"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/dispositif/"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/dispositif/"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/demarche/"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/demarche/"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/advanced-search"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/advanced-search"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/qui-sommes-nous"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/qui-sommes-nous"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/mentions-legales"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/mentions-legales"
-          },
-
-          {
-            scheme: "https",
-            host: "refugies.info",
-            pathPrefix: "/politique-de-confidentialite"
-          },
-          {
-            scheme: "https",
-            host: "www.refugies.info",
-            pathPrefix: "/politique-de-confidentialite"
-          },
-        ],
+        data: deepLinks,
         category: [
           "BROWSABLE",
           "DEFAULT"
@@ -175,6 +89,6 @@ export default {
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   extra: {
-    displayVersionNumber: "2022.06.1"
+    displayVersionNumber: "2022.07.1"
   }
 };

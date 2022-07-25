@@ -5,7 +5,7 @@ export const getScreenFromUrl = (url: string): {
   screenParams: any
 }|null => {
   // Dispositif
-  const rxDispositif = /dispositif\/[a-z|0-9]*/g;
+  const rxDispositif = /([a-z][a-z]\/)?(dispositif|program)\/[a-z|0-9]*/g;
   const resDispositif = rxDispositif.exec(url);
   if (resDispositif && resDispositif[0]) {
     return {
@@ -20,7 +20,7 @@ export const getScreenFromUrl = (url: string): {
   }
 
   // Demarche
-  const rxDemarche = /demarche\/[a-z|0-9]*/g;
+  const rxDemarche = /([a-z][a-z]\/)?(demarche|procedure)\/[a-z|0-9]*/g;
   const resDemarche = rxDemarche.exec(url);
   if (resDemarche && resDemarche[0]) {
     return {
@@ -54,7 +54,7 @@ export const getScreenFromUrl = (url: string): {
   }
 
   // About
-  if (url.includes("/qui-sommes-nous")) {
+  if (url.includes("/qui-sommes-nous") || url.includes("/who-are-we")) {
     return {
       rootNavigator: "Profil",
       screenParams: {
@@ -64,7 +64,7 @@ export const getScreenFromUrl = (url: string): {
   }
 
   // Legal notice
-  if (url.includes("/mentions-legales")) {
+  if (url.includes("/mentions-legales") || url.includes("/legal-notices")) {
     return {
       rootNavigator: "Profil",
       screenParams: {
@@ -74,11 +74,21 @@ export const getScreenFromUrl = (url: string): {
   }
 
   // Privacy policy
-  if (url.includes("/politique-de-confidentialite")) {
+  if (url.includes("/politique-de-confidentialite") || url.includes("/privacy-policy")) {
     return {
       rootNavigator: "Profil",
       screenParams: {
         screen: "PrivacyPolicyScreen",
+      }
+    }
+  }
+
+  // Accessibility
+  if (url.includes("/declaration-accessibilite") || url.includes("/accessibility-statement")) {
+    return {
+      rootNavigator: "Profil",
+      screenParams: {
+        screen: "AccessibilityScreen",
       }
     }
   }
