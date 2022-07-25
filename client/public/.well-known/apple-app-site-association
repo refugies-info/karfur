@@ -22,6 +22,22 @@
 						"comment": "Demarches"
 					},
 					{
+						"/": "/*/dispositif/*",
+						"comment": "Dispositifs"
+					},
+					{
+						"/": "/*/demarche/*",
+						"comment": "Demarches"
+					},
+          {
+						"/": "/*/program/*",
+						"comment": "Dispositifs"
+					},
+					{
+						"/": "/*/procedure/*",
+						"comment": "Demarches"
+					},
+					{
 						"/": "/advanced-search",
 						"comment": "Search"
 					},
@@ -30,12 +46,48 @@
 						"comment": "About"
 					},
 					{
+						"/": "/*/qui-sommes-nous",
+						"comment": "About"
+					},
+					{
+						"/": "/*/who-are-we",
+						"comment": "About"
+					},
+					{
 						"/": "/mentions-legales",
+						"comment": "Legal Notice"
+					},
+					{
+						"/": "/*/mentions-legales",
+						"comment": "Legal Notice"
+					},
+					{
+						"/": "/*/legal-notices",
 						"comment": "Legal Notice"
 					},
 					{
 						"/": "/politique-de-confidentialite",
 						"comment": "Privacy Policy"
+					},
+					{
+						"/": "/*/politique-de-confidentialite",
+						"comment": "Privacy Policy"
+					},
+					{
+						"/": "/*/privacy-policy",
+						"comment": "Privacy Policy"
+					},
+					{
+						"/": "/declaration-accessibilite",
+						"comment": "Accessibilité"
+					},
+					{
+						"/": "/*/declaration-accessibilite",
+						"comment": "Accessibilité"
+					},
+					{
+						"/": "/*/accessibility-statement",
+						"comment": "Accessibilité"
 					}
 				]
 			},
@@ -45,11 +97,24 @@
 					"",
 					"/",
 					"/dispositif/*",
+					"/*/dispositif/*",
+					"/*/program/*",
 					"/demarche/*",
+					"/*/demarche/*",
+					"/*/procedure/*",
 					"/advanced-search",
 					"/qui-sommes-nous",
+					"/*/qui-sommes-nous",
+					"/*/who-are-we",
 					"/mentions-legales",
-					"/politique-de-confidentialite"
+					"/*/mentions-legales",
+					"/*/legal-notices",
+					"/politique-de-confidentialite",
+					"/*/politique-de-confidentialite",
+					"/*/privacy-policy",
+          "/accessibility-statement",
+          "/*/accessibility-statement",
+          "/*/accessibility-statement"
 				]
 			}
 		]
