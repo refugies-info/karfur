@@ -67,12 +67,6 @@ test("should render Structure with sponsor without nom", () => {
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-test("should render Structure with sponsor diair", () => {
-  const sponsor = { _id: "5e5fdb7b361338004e16e75f", nom: "test" };
-  component = TestRenderer.create(<Structure sponsor={sponsor} />);
-  expect(component.toJSON()).toMatchSnapshot();
-});
-
 test("should render Structure with sponsor actif", () => {
   const sponsor = { _id: "abc", nom: "test", status: "Actif" };
   component = TestRenderer.create(<Structure sponsor={sponsor} />);
