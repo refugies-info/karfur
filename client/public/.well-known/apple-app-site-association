@@ -38,10 +38,6 @@
 						"comment": "Demarches"
 					},
 					{
-						"/": "/advanced-search",
-						"comment": "Search"
-					},
-					{
 						"/": "/qui-sommes-nous",
 						"comment": "About"
 					},
@@ -102,7 +98,6 @@
 					"/demarche/*",
 					"/*/demarche/*",
 					"/*/procedure/*",
-					"/advanced-search",
 					"/qui-sommes-nous",
 					"/*/qui-sommes-nous",
 					"/*/who-are-we",
