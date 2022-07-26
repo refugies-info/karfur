@@ -149,6 +149,14 @@ export const ContentsScreen = ({
   );
   const isLoading = isLoadingContents || isLoadingNeeds;
 
+  React.useEffect(() => { // reset when finish loading
+    if (!isLoading) {
+      setTimeout(() => {
+        dispatch(newReadingList());
+      });
+    }
+  }, [isLoading]);
+
   // Back button
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
 

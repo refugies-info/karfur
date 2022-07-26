@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
 import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
@@ -196,15 +195,12 @@ export const ReadButton = (props: Props) => {
     setRate(rate => rate === 1 ? MAX_RATE : 1);
   }
 
-  // Navigate to other screen
-  const navigation = useNavigation();
+  // Stop when reset
   useEffect(() => {
-    const unsubscribe = navigation.addListener("state", () => {
+    if (readingList === null) {
       stopVoiceOver();
-    });
-
-    return unsubscribe;
-  }, [navigation]);
+    }
+  }, [readingList]);
 
   // change rate
   useEffect(() => {

@@ -164,6 +164,14 @@ export const NeedsScreen = ({
     colors.tagName
   );
 
+  React.useEffect(() => { // reset when finish loading
+    if (!isLoading) {
+      setTimeout(() => {
+        dispatch(newReadingList());
+      });
+    }
+  }, [isLoading]);
+
   if (isLoading) {
     return (
       <View>
