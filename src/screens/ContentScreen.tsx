@@ -617,6 +617,8 @@ export const ContentScreen = ({
     navigation.navigate("Favoris", { screen: "FavorisScreen" });
   }
 
+  const noReadButton = ["ps", "fa", "ti"].includes(currentLanguage || "fr");
+
   return (
     <View style={{ paddingBottom: 60 }}>
       <FixedContainerForHeader>
@@ -889,13 +891,15 @@ export const ContentScreen = ({
               t("content_screen.add_button_accessibility")
             }
           />
-          <View style={{
-            width: 56,
-            height: "100%",
-            marginHorizontal: theme.margin * 3,
-          }}>
-            <ReadButton bottomInset={0} />
-          </View>
+          {!noReadButton &&
+            <View style={{
+              width: 56,
+              height: "100%",
+              marginHorizontal: theme.margin * 3,
+            }}>
+              <ReadButton bottomInset={0} />
+            </View>
+          }
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"

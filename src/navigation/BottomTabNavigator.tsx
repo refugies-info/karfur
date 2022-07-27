@@ -20,9 +20,10 @@ import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 import { ReadButton } from "../components/UI/ReadButton";
 import { TabBarItem } from "./components/TabBarItem";
 import { theme } from "../theme";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useNavigation } from "@react-navigation/native";
+import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -74,10 +75,12 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     );
   })
 
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const explorerScreen = state.routes.find(route => route.name === "Explorer")?.state?.index
     || 0; // will return undefined if explorerScreen just mounted, 0 else
   const noReadButton = state.index === 3 // profil tab
-    || (state.index === 0 && explorerScreen === 0); // explorer screen
+    || (state.index === 0 && explorerScreen === 0) // explorer screen
+    || ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
   if (!noReadButton) items.splice(2, 0, <Space />);
 
   return (
