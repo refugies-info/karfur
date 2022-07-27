@@ -27,6 +27,8 @@ import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selec
 import { setUserHasNewFavoritesActionCreator } from "../services/redux/User/user.actions";
 import "../services/i18n";
 import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
+import { View } from "react-native";
+import { setRef } from "../services/redux/VoiceOver/voiceOver.actions";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
@@ -87,58 +89,8 @@ export const RootNavigator = () => {
     dispatch(fetchNeedsActionCreator());
   }, []);
 
-  //Notifications listener
-  useEffect(() => {
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener(
-        async (response) => {
-          switch (response?.notification?.request?.content?.data?.type) {
-            case "dispositif": {
-              navigationRef?.current.navigate("Explorer", {
-                screen: "ContentScreen",
-                params: {
-                  contentId:
-                    response.notification.request.content.data.contentId,
-                },
-              });
-              await markNotificationAsSeen(
-                response.notification.request.content.data
-                  .notificationId as string
-              );
-              queryClient.invalidateQueries("notifications");
-            }
-            default:
-              break;
-          }
-        }
-      );
-
-    //This handler is triggered when a notification is received when the app is foregrounded
-    notificationsListener.current =
-      Notifications.addNotificationReceivedListener(() => {
-        queryClient.invalidateQueries("notifications");
-      });
-
-    return () => {
-      if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
-      }
-
-      if (notificationsListener.current) {
-        Notifications.removeNotificationSubscription(
-          notificationsListener.current
-        );
-      }
-    };
-  }, []);
-
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: false,
-      shouldSetBadge: false,
-    }),
-  });
+  const parentRef = React.useRef<View|null>(null);
+  dispatch(setRef(parentRef));
 
   if (!isI18nInitialized || hasUserSeenOnboarding === null) {
     return null;
@@ -153,19 +105,21 @@ export const RootNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={MyTheme} ref={navigationRef}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!hasUserSeenOnboarding ? (
-          <Stack.Screen
-            name="OnboardingNavigator"
-            component={OnboardingStackNavigator}
-          />
-        ) : (
-          <>
+    <View style={{flex: 1}} ref={parentRef}>
+      <NavigationContainer theme={MyTheme}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {!hasUserSeenOnboarding ? (
+            <Stack.Screen
+              name="OnboardingNavigator"
+              component={OnboardingStackNavigator}
+            />
+          ) : (
+            <>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
   );
 };

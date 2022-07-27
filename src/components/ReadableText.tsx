@@ -5,7 +5,7 @@ import {
   addToReadingList
 } from "../services/redux/VoiceOver/voiceOver.actions";
 import {
-  currentItemSelector, readingListLengthSelector,
+  currentItemSelector, readingListLengthSelector, refSelector,
 } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
 import { theme } from "../theme";
@@ -23,6 +23,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   const dispatch = useDispatch();
   const currentReadingItem = useSelector(currentItemSelector);
   const readingListLength = useSelector(readingListLengthSelector);
+  const parentRef = useSelector(refSelector);
   const [id, _setId] = useState(generateId());
   const isFocused = useIsFocused();
 
@@ -33,14 +34,16 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
     if (readingListLength === 0 && isFocused) {
       const item: Promise<ReadingItem> = new Promise(resolve => {
         setTimeout(() => {
-          refView.current?.measure((_x, _y, _width, height, pageX, pageY) => {
-            resolve({
-              id: id,
-              text: props.text || (props.children as string) || "",
-              posX: pageX,
-              posY: !props.heightOffset ? pageY : pageY + height
-            } as ReadingItem)
-          });
+          if (parentRef?.current) {
+            refView.current?.measureLayout((parentRef.current as any), (x, y, _width, height) => {
+              resolve({
+                id: id,
+                text: props.text || (props.children as string) || "",
+                posX: x,
+                posY: !props.heightOffset ? y : y + height
+              } as ReadingItem)
+            }, () => { });
+          }
         })
       });
       dispatch(addToReadingList(item));

@@ -1,3 +1,5 @@
+import React from "react";
+import { View } from "react-native";
 import { createReducer } from "typesafe-actions";
 import { ReadingItem } from "../../../types/interface";
 import { VoiceOverActions } from "./voiceOver.actions";
@@ -6,18 +8,24 @@ export interface VoiceOverState {
   readingList: Promise<ReadingItem>[]|null;
   currentItem: ReadingItem | null;
   currentScroll: number;
+  parentRef: React.MutableRefObject<View | null>|null
 }
 
 export const initialVoiceOverState = {
   readingList: null,
   currentItem: null,
-  currentScroll: 0
+  currentScroll: 0,
+  parentRef: null // used to calculate position of elements
 };
 
 export const voiceOverReducer = createReducer<
   VoiceOverState,
   VoiceOverActions
 >(initialVoiceOverState, {
+  VOICEOVER_SET_REF: (state, action) => ({
+    ...state,
+    parentRef: action.payload
+  }),
   VOICEOVER_SET_READING_ITEM: (state, action) => ({
     ...state,
     currentItem: action.payload

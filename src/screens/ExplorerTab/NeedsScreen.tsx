@@ -111,7 +111,6 @@ export const NeedsScreen = ({
   useAutoScroll(scrollview, offset);
 
   useFocusEffect(React.useCallback(() => {
-    scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
     dispatch(newReadingList());
   }, []));
 
