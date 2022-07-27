@@ -100,6 +100,7 @@ const getReadingList = (
   offset: number
 ) => {
   const toRead = list.filter(item => item);;
+  if (toRead.length === 0) return [];
   const firstItemToRead = startFromId || toRead[0].id;
   const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
   return toRead.slice(currentItemIndex + offset);
@@ -157,8 +158,8 @@ export const ReadButton = (props: Props) => {
         setResolvedReadingList(sortedReadingList);
         const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
         const toRead = getReadingList(sortedReadingList, firstItem?.id || null, 0);
-        setIsLoading(false);
         for (const itemToRead of toRead) readText(itemToRead, toRead);
+        setIsLoading(false);
       });
     }
   }, [readingList]);

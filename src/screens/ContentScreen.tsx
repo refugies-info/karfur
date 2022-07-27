@@ -71,9 +71,10 @@ import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
-import { newReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
+import { newReadingList, resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useAutoScroll } from "../hooks/useAutoScroll";
 import { ReadButton } from "../components/UI/ReadButton";
+import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -352,6 +353,7 @@ export const ContentScreen = ({
   // Load content
   let unsubscribeConnectionListener: any;
   const fetchContent = (contentId: string, selectedLanguage: AvailableLanguageI18nCode) => {
+    dispatch(resetReadingList());
     dispatch(
       fetchSelectedContentActionCreator({
         contentId: contentId,
@@ -379,9 +381,13 @@ export const ContentScreen = ({
   }, [selectedLanguage]);
 
   const selectedContent = useSelector(selectedContentSelector(currentLanguage));
+  const readingListLength = useSelector(readingListLengthSelector);
   React.useEffect(() => {
     if (selectedContent) {
-      dispatch(newReadingList());
+      if (readingListLength === undefined) {
+        // new reading list if content is just loaded
+        dispatch(newReadingList());
+      }
       const nbVuesMobile = selectedContent.nbVuesMobile
         ? selectedContent.nbVuesMobile + 1
         : 1;
