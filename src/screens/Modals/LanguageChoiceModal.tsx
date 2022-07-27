@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -20,6 +20,8 @@ import { CustomButton } from "../../components/CustomButton";
 import { AvailableLanguageI18nCode } from "../../types/interface";
 import { ChoiceButton } from "../../components/UI/ChoiceButton";
 import { Icon } from "react-native-eva-icons";
+import { useStopVoiceover } from "../../hooks/useStopVoiceover";
+
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
@@ -103,6 +105,14 @@ export const LanguageChoiceModal = (props: Props) => {
     );
     props.toggleModal();
   };
+
+  const stopVoiceOver = useStopVoiceover();
+  useEffect(() => {
+    if (props.isModalVisible) {
+      stopVoiceOver();
+    }
+  }, [props.isModalVisible]);
+
   return (
     <Modal
       isVisible={props.isModalVisible}

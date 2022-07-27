@@ -181,6 +181,13 @@ export const ReadButton = (props: Props) => {
     }
   }
 
+  const resumeReading = () => {
+    if (currentItem) {
+      const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
+      for (const itemToRead of toRead) readText(itemToRead, toRead);
+    }
+  }
+
   const stopVoiceOver = useCallback(() => {
     deactivateKeepAwake("voiceover");
     Speech.stop();
@@ -226,7 +233,7 @@ export const ReadButton = (props: Props) => {
       }
     } else {
       if (Platform.OS === "android") {
-        if (currentItem) startToRead();
+        resumeReading();
       } else {
         Speech.resume();
       }

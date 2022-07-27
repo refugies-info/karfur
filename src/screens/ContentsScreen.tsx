@@ -104,10 +104,6 @@ export const ContentsScreen = ({
 
   const dispatch = useDispatch();
 
-  useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
-  }, []));
-
   const insets = useSafeAreaInsets();
 
   const { t } = useTranslationWithRTL();
@@ -209,6 +205,10 @@ export const ContentsScreen = ({
     dispatch(setScrollReading(currentScroll))
   }
   useAutoScroll(scrollview, offset);
+  useFocusEffect(React.useCallback(() => {
+    scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
+    dispatch(newReadingList());
+  }, []));
 
   const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],

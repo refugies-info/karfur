@@ -55,9 +55,6 @@ export const NeedsScreen = ({
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
   const dispatch = useDispatch();
-  useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
-  }, []));
 
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
@@ -112,6 +109,11 @@ export const NeedsScreen = ({
     dispatch(setScrollReading(currentScroll))
   }
   useAutoScroll(scrollview, offset);
+
+  useFocusEffect(React.useCallback(() => {
+    scrollview.current?.scrollTo({ x: 0, y: 0, animated: false });
+    dispatch(newReadingList());
+  }, []));
 
   const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
