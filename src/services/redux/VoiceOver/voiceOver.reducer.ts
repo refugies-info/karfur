@@ -1,5 +1,3 @@
-import React from "react";
-import { View } from "react-native";
 import { createReducer } from "typesafe-actions";
 import { ReadingItem } from "../../../types/interface";
 import { VoiceOverActions } from "./voiceOver.actions";
@@ -8,7 +6,7 @@ export interface VoiceOverState {
   readingList: Promise<ReadingItem>[]|null;
   currentItem: ReadingItem | null;
   currentScroll: number;
-  parentRef: React.MutableRefObject<View | null>|null
+  parentRef: any
 }
 
 export const initialVoiceOverState = {
