@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { InstantSearch, Configure } from "react-instantsearch-native";
 import { StackScreenProps } from "@react-navigation/stack"
@@ -55,6 +55,7 @@ export const SearchResultsScreen = ({
   if (currentI18nCode && currentI18nCode !== "ti") { // ti no supported by Algolia
     queryLanguages.push(currentI18nCode)
   }
+  const parentScrollview = React.useRef<ScrollView>(null);
 
   return (
     <View style={{ flex: 1 }}>
@@ -83,6 +84,8 @@ export const SearchResultsScreen = ({
           <SearchSuggestions
             contents={mostViewedContents}
             navigation={navigation}
+            parentScrollview={parentScrollview}
+            onScrollEnd={() => {}}
           />
         }
       </InstantSearch>
