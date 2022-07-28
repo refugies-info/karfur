@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NativeScrollEvent, NativeSyntheticEvent, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
