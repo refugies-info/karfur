@@ -71,8 +71,8 @@ import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
 import { getThemeTag, defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
-import { newReadingList, resetReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../hooks/useAutoScroll";
+import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
+import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 
@@ -329,13 +329,11 @@ export const ContentScreen = ({
   // Voiceover
   const scrollview = React.useRef<ScrollView|null>(null);
   const offset = 250;
+  const {setScroll, saveList} = useVoiceover(scrollview, offset);
+
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScroll = showSimplifiedHeader ?
-    event.nativeEvent.contentOffset.y + offset :
-      0;
-    dispatch(setScrollReading(currentScroll))
+    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0)
   }
-  useAutoScroll(scrollview, offset);
 
 
   // Header color
@@ -386,7 +384,7 @@ export const ContentScreen = ({
     if (selectedContent) {
       if (readingListLength === undefined) {
         // new reading list if content is just loaded
-        dispatch(newReadingList());
+        saveList();
       }
       const nbVuesMobile = selectedContent.nbVuesMobile
         ? selectedContent.nbVuesMobile + 1

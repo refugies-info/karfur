@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
-import { setReadingItem } from "../services/redux/VoiceOver/voiceOver.actions";
+import { resetReadingList, setReadingItem } from "../services/redux/VoiceOver/voiceOver.actions";
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
@@ -21,7 +21,6 @@ import { ReadButton } from "../components/UI/ReadButton";
 import { TabBarItem } from "./components/TabBarItem";
 import { theme } from "../theme";
 import { useDispatch, useSelector } from "react-redux";
-import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useNavigation } from "@react-navigation/native";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 
@@ -81,7 +80,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
   const noReadButton = state.index === 3 // profil tab
     || (state.index === 0 && explorerScreen === 0) // explorer screen
     || ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
-  if (!noReadButton) items.splice(2, 0, <Space />);
+  if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 
   return (
     <BottomTabBarContainer
@@ -108,6 +107,7 @@ export default function BottomTabNavigator() {
     const unsubscribeState = navigation.addListener("state", () => {
       deactivateKeepAwake("voiceover");
       Speech.stop();
+      dispatch(resetReadingList());
       dispatch(setReadingItem(null));
     });
 
@@ -119,11 +119,6 @@ export default function BottomTabNavigator() {
       initialRouteName="Explorer"
       screenOptions={{ headerShown: false }}
       tabBar={props => <BottomTabBar {...props} insets={insets} />}
-      screenListeners={{
-        beforeRemove: () => {
-          dispatch(resetReadingList());
-        }
-      }}
     >
       <BottomTab.Screen
         name="Explorer"

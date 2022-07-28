@@ -111,7 +111,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
             accessibilityRole="button"
           >
             <ThemeText isRTL={isRTL}>
-              <ReadableText>
+              <ReadableText overridePosY={0}>
                 {firstLetterUpperCase(
                   t("tags." + props.tagName, props.tagName)
                 ) || ""}
@@ -147,7 +147,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
           },
         ]}
       >
-        <ReadableText>
+        <ReadableText overridePosY={10}>
           {props.needName}
         </ReadableText>
       </Animated.Text>

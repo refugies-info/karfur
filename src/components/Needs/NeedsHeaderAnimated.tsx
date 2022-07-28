@@ -64,7 +64,7 @@ export const NeedsHeaderAnimated = (props: Props) => {
             },
           ]}
         >
-          <ReadableText>
+          <ReadableText overridePosY={0}>
             {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) || ""}
           </ReadableText>
         </Animated.Text>

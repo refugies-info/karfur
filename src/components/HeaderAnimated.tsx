@@ -97,7 +97,7 @@ export const HeaderAnimated = (props: Props) => {
               },
             ]}
           >
-            <ReadableText>
+            <ReadableText overridePosY={0}>
               {props.title}
             </ReadableText>
           </Animated.Text>

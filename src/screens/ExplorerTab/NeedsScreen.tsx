@@ -1,7 +1,7 @@
 import * as React from "react";
 import { theme } from "../../theme";
 import { ExplorerParamList } from "../../../types";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { View, Animated, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
@@ -20,9 +20,7 @@ import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated"
 import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
-import { newReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../../hooks/useAutoScroll";
-import { useFocusEffect } from "@react-navigation/native";
+import { useVoiceover } from "../../hooks/useVoiceover";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -54,8 +52,6 @@ export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
-  const dispatch = useDispatch();
-
   const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
     false
   );
@@ -102,17 +98,23 @@ export const NeedsScreen = ({
   // Voiceover
   const scrollview = React.useRef<ScrollView|null>(null);
   const offset = 250;
+  const {setScroll, saveList} = useVoiceover(scrollview, offset);
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScroll = showSimplifiedHeader ?
-      event.nativeEvent.contentOffset.y + offset :
-      0;
-    dispatch(setScrollReading(currentScroll))
+    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0)
   }
-  useAutoScroll(scrollview, offset);
 
-  useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
-  }, []));
+  const isLoadingContents = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
+  );
+  const isLoadingNeeds = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
+  );
+  const isLoading = isLoadingContents || isLoadingNeeds;
+  React.useEffect(() => { // reset when finish loading
+    if (!isLoading) {
+      setTimeout(() => saveList())
+    }
+  }, [isLoading]);
 
   const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
@@ -140,14 +142,6 @@ export const NeedsScreen = ({
   const { t } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const isLoadingContents = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
-  );
-  const isLoadingNeeds = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
-  );
-  const isLoading = isLoadingContents || isLoadingNeeds;
-
   const {
     colors,
     backScreen
@@ -164,14 +158,6 @@ export const NeedsScreen = ({
     groupedContents,
     colors.tagName
   );
-
-  React.useEffect(() => { // reset when finish loading
-    if (!isLoading) {
-      setTimeout(() => {
-        dispatch(newReadingList());
-      });
-    }
-  }, [isLoading]);
 
   if (isLoading) {
     return (

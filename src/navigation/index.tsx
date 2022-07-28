@@ -27,8 +27,6 @@ import { hasUserSeenOnboardingSelector } from "../services/redux/User/user.selec
 import { setUserHasNewFavoritesActionCreator } from "../services/redux/User/user.actions";
 import "../services/i18n";
 import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
-import { View } from "react-native";
-import { setRef } from "../services/redux/VoiceOver/voiceOver.actions";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
@@ -89,9 +87,6 @@ export const RootNavigator = () => {
     dispatch(fetchNeedsActionCreator());
   }, []);
 
-  const parentRef = React.useRef<View|null>(null);
-  dispatch(setRef(parentRef));
-
   if (!isI18nInitialized || hasUserSeenOnboarding === null) {
     return null;
   }
@@ -105,7 +100,6 @@ export const RootNavigator = () => {
   };
 
   return (
-    <View style={{flex: 1}} ref={parentRef}>
       <NavigationContainer theme={MyTheme}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {!hasUserSeenOnboarding ? (
@@ -120,6 +114,5 @@ export const RootNavigator = () => {
           )}
         </Stack.Navigator>
       </NavigationContainer>
-    </View>
   );
 };

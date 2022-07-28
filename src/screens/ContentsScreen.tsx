@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ExplorerParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
@@ -25,9 +25,7 @@ import { TextBigBold } from "../components/StyledText";
 import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
-import { newReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../hooks/useAutoScroll";
-import { useFocusEffect } from "@react-navigation/native";
+import { useVoiceover } from "../hooks/useVoiceover";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -101,9 +99,6 @@ export const ContentsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
-
-  const dispatch = useDispatch();
-
   const insets = useSafeAreaInsets();
 
   const { t } = useTranslationWithRTL();
@@ -137,21 +132,7 @@ export const ContentsScreen = ({
     needNameSelector(needId, currentLanguageI18nCode)
   );
 
-  const isLoadingContents = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
-  );
-  const isLoadingNeeds = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
-  );
-  const isLoading = isLoadingContents || isLoadingNeeds;
 
-  React.useEffect(() => { // reset when finish loading
-    if (!isLoading) {
-      setTimeout(() => {
-        dispatch(newReadingList());
-      });
-    }
-  }, [isLoading]);
 
   // Back button
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
@@ -198,16 +179,25 @@ export const ContentsScreen = ({
   // Voiceover
   const scrollview = React.useRef<ScrollView | null>(null);
   const offset = 400;
+  const {setScroll, saveList} = useVoiceover(scrollview, offset);
+
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScroll = showSimplifiedHeader ?
-      event.nativeEvent.contentOffset.y + offset :
-      0;
-    dispatch(setScrollReading(currentScroll))
+    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0);
   }
-  useAutoScroll(scrollview, offset);
-  useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
-  }, []));
+
+  const isLoadingContents = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
+  );
+  const isLoadingNeeds = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
+  );
+  const isLoading = isLoadingContents || isLoadingNeeds;
+
+  React.useEffect(() => { // reset when finish loading
+    if (!isLoading) {
+      setTimeout(() => saveList());
+    }
+  }, [isLoading]);
 
   const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],

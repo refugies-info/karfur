@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
-import { NativeScrollEvent, NativeSyntheticEvent, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useDispatch } from "react-redux";
 import { theme } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
 import { getThemeTag } from "../../libs/getThemeTag";
@@ -13,8 +12,6 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { tags } from "../../data/tagData";
 import { StyledTextNormalBold } from "../StyledText";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
-import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../../hooks/useAutoScroll";
 import { ReadableText } from "../ReadableText";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
@@ -26,12 +23,13 @@ interface Props {
   handleScroll?: any;
   contents: SimplifiedContent[];
   navigation: any;
+  onScrollEnd: any
+  parentScrollview: any
 }
 
 const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const scrollview = React.useRef<ScrollView>(null);
-  const parentScrollview = React.useRef<ScrollView>(null);
 
   const insets = useSafeAreaInsets();
 
@@ -39,22 +37,14 @@ const SearchSuggestions = (props: Props) => {
     initHorizontalScroll(scrollview, isRTL)
   }, [isRTL])
 
-  // Voiceover
-  const dispatch = useDispatch();
-  const offset = 350;
-  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
-  }
-  useAutoScroll(parentScrollview, offset);
-
   return (
     <ScrollView
-      ref={parentScrollview}
+      ref={props.parentScrollview}
       style={{ flex: 1 }}
       onScroll={props.handleScroll}
       scrollEventThrottle={20}
-      onMomentumScrollEnd={onScrollEnd}
-      onScrollEndDrag={onScrollEnd}
+      onMomentumScrollEnd={props.onScrollEnd}
+      onScrollEndDrag={props.onScrollEnd}
       contentContainerStyle={{
         paddingBottom: theme.margin * 5 + (insets.bottom || 0)
       }}

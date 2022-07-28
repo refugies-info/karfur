@@ -1,22 +1,22 @@
 import * as React from "react";
-import { View } from "react-native";
+import { NativeScrollEvent, NativeSyntheticEvent, View } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack"
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { SearchParamList } from "../../../types"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
+import { contentsSelector, mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { theme } from "../../theme";
-import { useFocusEffect } from "@react-navigation/native";
-import { newReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
+import { useVoiceover } from "../../hooks/useVoiceover";
+import { ScrollView } from "react-native-gesture-handler";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
@@ -45,10 +45,6 @@ const ShadowView = styled.View`
 export const SearchScreen = ({
   navigation
 }: StackScreenProps<SearchParamList, "SearchScreen">) => {
-  const dispatch = useDispatch();
-  useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
-  }, []));
   const { t, isRTL } = useTranslationWithRTL();
   const currentI18nCode = useSelector(currentI18nCodeSelector);
   const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
@@ -61,6 +57,22 @@ export const SearchScreen = ({
     setLanguageModalVisible(!isLanguageModalVisible);
 
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+
+  // Voiceover
+  const parentScrollview = React.useRef<ScrollView>(null);
+  const offset = 350;
+  const {setScroll, saveList} = useVoiceover(parentScrollview, offset);
+
+  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setScroll(event.nativeEvent.contentOffset.y, offset);
+  }
+
+  const contents = useSelector(contentsSelector);
+  React.useEffect(() => {
+    if (contents.length) {
+      setTimeout(saveList);
+    }
+  }, [contents])
 
   return (
     <View style={{ flex: 1 }}>
@@ -92,6 +104,8 @@ export const SearchScreen = ({
         handleScroll={handleScroll}
         contents={mostViewedContents}
         navigation={navigation}
+        parentScrollview={parentScrollview}
+        onScrollEnd={onScrollEnd}
       />
       <LanguageChoiceModal
         isModalVisible={isLanguageModalVisible}

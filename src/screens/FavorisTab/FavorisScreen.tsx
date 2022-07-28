@@ -34,8 +34,7 @@ import { theme } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { newReadingList, setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../../hooks/useAutoScroll";
+import { useVoiceover } from "../../hooks/useVoiceover";
 
 const EmptyContainer = styled.ScrollView`
   padding-horizontal: ${theme.margin * 4}px;
@@ -77,7 +76,6 @@ export const FavorisScreen = ({
   // When the screen has focus, remove "new favorite" badge
   const hasNewFavorites = useSelector(hasUserNewFavoritesSelector)
   useFocusEffect(React.useCallback(() => {
-    dispatch(newReadingList());
     if (hasNewFavorites) {
       dispatch(removeUserHasNewFavoritesActionCreator());
     }
@@ -123,10 +121,6 @@ export const FavorisScreen = ({
       .then(setContentsToDisplay)
   }, [favorites, contents]);
 
-  React.useEffect(() => {
-    dispatch(newReadingList());
-  }, [contentsToDisplay])
-
   const [favoriteToDelete, setFavoriteToDelete] = React.useState<string|"all">("");
   const showDeleteModal = (contentId: string|"all") => {
     setFavoriteToDelete(contentId);
@@ -147,13 +141,15 @@ export const FavorisScreen = ({
   // Voiceover
   const scrollview = React.useRef<ScrollView | null>(null);
   const offset = 340;
+  const {setScroll, saveList} = useVoiceover(scrollview, offset);
+
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScroll = showSimplifiedHeader ?
-      event.nativeEvent.contentOffset.y + offset :
-      0;
-    dispatch(setScrollReading(currentScroll))
+    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0);
   }
-  useAutoScroll(scrollview, offset);
+
+  React.useEffect(() => {
+    saveList();
+  }, [contentsToDisplay]);
 
   const renderActions = () => {
     return (

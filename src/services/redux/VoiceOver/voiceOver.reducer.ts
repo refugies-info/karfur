@@ -6,24 +6,18 @@ export interface VoiceOverState {
   readingList: Promise<ReadingItem>[]|null;
   currentItem: ReadingItem | null;
   currentScroll: number;
-  parentRef: any
 }
 
 export const initialVoiceOverState = {
   readingList: null,
   currentItem: null,
   currentScroll: 0,
-  parentRef: null // used to calculate position of elements
 };
 
 export const voiceOverReducer = createReducer<
   VoiceOverState,
   VoiceOverActions
 >(initialVoiceOverState, {
-  VOICEOVER_SET_REF: (state, action) => ({
-    ...state,
-    parentRef: action.payload
-  }),
   VOICEOVER_SET_READING_ITEM: (state, action) => ({
     ...state,
     currentItem: action.payload
@@ -34,10 +28,10 @@ export const voiceOverReducer = createReducer<
       readingList: [...(state.readingList || []), action.payload]
     }
   },
-  VOICEOVER_NEW_LIST: (state) => ({
+  VOICEOVER_NEW_LIST: (state, action) => ({
     ...state,
     readingList: [],
-    currentScroll: 0
+    currentScroll: action.payload !== null ? action.payload : state.currentScroll
   }),
   VOICEOVER_RESET_LIST: (state) => ({
     ...state,

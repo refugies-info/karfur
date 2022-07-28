@@ -37,8 +37,6 @@ import { theme } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
 import { logger } from "../../logger";
-import { setScrollReading } from "../../services/redux/VoiceOver/voiceOver.actions";
-import { useAutoScroll } from "../../hooks/useAutoScroll";
 
 const MAX_CONTENT_LOCALIZED = 10;
 
@@ -147,14 +145,6 @@ export const ExplorerScreen = ({
     setIsLocalizedWarningVisible(isWarningVisible);
   }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
 
-  // Voiceover
-  const scrollview = React.useRef<ScrollView | null>(null);
-  const offset = 230;
-  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    dispatch(setScrollReading(event.nativeEvent.contentOffset.y + offset))
-  }
-  useAutoScroll(scrollview, offset);
-
 
   return (
     <WrapperWithHeaderAndLanguageModal>
@@ -195,9 +185,6 @@ export const ExplorerScreen = ({
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
         <ScrollView
-          ref={scrollview}
-          onMomentumScrollEnd={onScrollEnd}
-          onScrollEndDrag={onScrollEnd}
           contentContainerStyle={{
             paddingHorizontal: theme.margin * 3,
             paddingBottom: theme.margin * 3,

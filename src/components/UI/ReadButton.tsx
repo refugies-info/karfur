@@ -162,7 +162,7 @@ export const ReadButton = (props: Props) => {
         setIsLoading(false);
       });
     }
-  }, [readingList]);
+  }, [readingList, currentScroll]);
 
   const goToNext = () => {
     Speech.stop();

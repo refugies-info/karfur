@@ -4,8 +4,6 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { SearchParamList } from "../../../types";
 import { SearchScreen } from "../../screens/SearchTab/SearchScreen";
 import { SearchResultsScreen } from "../../screens/SearchTab/SearchResultsScreen";
-import { useDispatch } from "react-redux";
-import { resetReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 interface Props {
   navigation?: any;
@@ -25,16 +23,9 @@ export const SearchNavigator = ({ navigation, route }: Props) => {
     })
   }, [navigation, route]);
 
-  const dispatch = useDispatch();
-
   return (
     <SearchStack.Navigator
       screenOptions={{ headerShown: false }}
-      screenListeners={{
-        beforeRemove: () => {
-          dispatch(resetReadingList());
-        }
-      }}
     >
       <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
       <SearchStack.Screen name="SearchResultsScreen" component={SearchResultsScreen}
