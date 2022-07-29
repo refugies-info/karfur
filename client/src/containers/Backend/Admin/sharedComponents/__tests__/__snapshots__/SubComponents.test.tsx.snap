@@ -303,50 +303,6 @@ exports[`should render Structure with sponsor actif 1`] = `
 </div>
 `;
 
-exports[`should render Structure with sponsor diair 1`] = `
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 300px;
-}
-
-.c1 {
-  width: 10px;
-  height: 10px;
-  background-color: #f44336;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.c2 {
-  word-break: break-all;
-  max-width: 280px;
-}
-
-<div
-  className="c0"
->
-  <div
-    className="c1"
-    color="#f44336"
-  />
-  <div
-    className="c2"
-  >
-    Structure temporaire
-  </div>
-</div>
-`;
-
 exports[`should render Structure with sponsor en attente 1`] = `
 .c0 {
   display: -webkit-box;
