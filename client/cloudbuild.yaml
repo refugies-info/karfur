@@ -10,7 +10,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: [
       "build",
-      "-t", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
+      "-t", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
       "--build-arg", "APP_SERVER_URL=${_APP_SERVER_URL}",
       "--build-arg", "APP_ENV=${_APP_ENV}",
       "."
@@ -19,7 +19,7 @@ steps:
 
   # Push the container image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest"]
+    args: ["push", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"]
 
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -30,7 +30,7 @@ steps:
         "--project", "$PROJECT_ID",
         "--region", "${_REGION}",
         "--platform", "managed",
-        "--image", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:latest",
+        "--image", "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
         "--port", "3000",
         "--memory", "1G",
         "--allow-unauthenticated"
