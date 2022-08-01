@@ -479,6 +479,7 @@ interface AdminImprovementsMail {
   email: string;
   pseudo: string;
   sectionsToModify: Object;
+  message: string;
 }
 
 export const sendAdminImprovementsMailService = async (
@@ -501,6 +502,7 @@ export const sendAdminImprovementsMailService = async (
         lien: data.lien,
         pseudo: data.pseudo,
         sectionsToModify: data.sectionsToModify,
+        message: data.message
       },
     };
     const templateName = "reviewFiche";
