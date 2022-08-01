@@ -35,7 +35,7 @@ describe("getUsersToSendMail", () => {
       [{ _id: "structure1" }]
     );
 
-    expect(res).toEqual([{ _id: "creatorId" }]);
+    expect(res).toEqual([{ _id: "creatorId", roles: ["Créateur"] }]);
   });
 
   it("should return correct data when en attente admin and no sponsor", () => {
