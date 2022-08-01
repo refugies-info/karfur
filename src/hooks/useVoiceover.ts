@@ -46,9 +46,12 @@ export const useVoiceover = (
   }, [currentReadingItem]);
 
   // Save scroll locally in component, and in Redux
-  const setScroll = (currentScroll: number, offset: number) => {
-    setOldPosY(currentScroll);
-    dispatch(setScrollReading(currentScroll + offset))
+  const setScroll = (currentScroll: number, _offset: number) => {
+    if (isFocused) {
+      setOldPosY(currentScroll);
+      // keep offset to be able to find which element is visible when click on play
+      dispatch(setScrollReading(currentScroll + offset))
+    }
   }
 
   // Manually saves list
