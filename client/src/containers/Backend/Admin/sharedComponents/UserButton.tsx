@@ -24,7 +24,7 @@ export const UserButton = (props: {
       )}
       onClick={props.onClick}
     >
-      {!props.noImage &&
+      {!props.noImage && (
         <Image
           className={styles.user_img}
           src={props.user?.picture?.secure_url || marioProfile}
@@ -33,7 +33,7 @@ export const UserButton = (props: {
           height={20}
           objectFit="contain"
         />
-      }
+      )}
       {props.user && (
         <p className={styles.text}>
           <strong className="mx-1">{props.user.username}</strong>
@@ -47,16 +47,9 @@ export const UserButton = (props: {
       )}
       {props.tags && (
         <div className={styles.tags}>
-          {props.tags.map((tag, i) => {
-            return (
-              <StyledStatus
-                key={i}
-                text={tag}
-                textToDisplay={tag}
-                disabled
-              />
-            )
-            })}
+          {props.tags.map((tag, i) => (
+            <StyledStatus key={i} text={tag} textToDisplay={tag} disabled />
+          ))}
         </div>
       )}
     </div>

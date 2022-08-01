@@ -14,7 +14,7 @@ export const getUsersToSendMail = (
   structures: SimplifiedStructureForAdmin[]
 ) => {
   if (status === "En attente" && creatorId) {
-    return [creatorId];
+    return [{...creatorId, roles: ["Créateur"]}];
   }
 
   if (["En attente admin", "Accepté structure"].includes(status)) {
@@ -59,6 +59,7 @@ export const getFormattedStatus = (dispoStatus: string) => {
   );
   return corresStatus[0];
 };
+
 export const getTitle = (
   titreInformatif: string,
   typeContenu: string,
