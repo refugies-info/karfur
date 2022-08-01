@@ -172,7 +172,7 @@ export const ChangeStructureModal = (props: Props) => {
               name="arrow-back-outline"
               onClick={toggleModal}
             >
-              Annuler
+              Retour
             </FButton>
             <FButton
               type="validate"

@@ -4,6 +4,7 @@ import { Responsable, SimplifiedCreator } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
 import styles from "../Admin.module.scss";
 import { cls } from "lib/classname";
+import { StyledStatus } from "./SubComponents";
 
 export const UserButton = (props: {
   user?: Responsable | SimplifiedCreator | null;
@@ -11,6 +12,7 @@ export const UserButton = (props: {
   condensed?: boolean;
   noImage?: boolean;
   text?: string;
+  tags?: string[];
 }) => {
   return (
     <div
@@ -37,6 +39,20 @@ export const UserButton = (props: {
         <p className={cls(styles.text, "w-100 text-center")}>
           <strong>{props.text}</strong>
         </p>
+      )}
+      {props.tags && (
+        <div>
+          {props.tags.map((tag, i) => {
+            return (
+              <StyledStatus
+                key={i}
+                text={tag}
+                textToDisplay={tag}
+                disabled
+              />
+            )
+            })}
+        </div>
       )}
     </div>
   );

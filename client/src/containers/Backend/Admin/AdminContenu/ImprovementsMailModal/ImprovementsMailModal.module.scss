@@ -2,26 +2,33 @@
 @import "src/scss/variables";
 @import "src/scss/mixins/responsive";
 
-.modal {
-  @include media-min("xl-limit"){
-    max-width: 1200px !important;
-  }
-  .modal_content {
-    mix-blend-mode: normal; /* Shadow autour */
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border-radius: $radius;
-    border: none;
-    background: $gray20;
-    padding: 24px;
-    min-height: 600px;
+.text {
+  margin-bottom: 0;
+  font-size: 12px;
+  line-height: 15px;
+}
 
-    .user_img {
-      max-width: 70px;
-      max-height: 40px;
-      border-radius: 50%;
-      margin-right: 8px;
-    }
-  }
+.categories {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.infoline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recap {
+  background: $erreur;
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: 12px;
 }
 
 .input {
@@ -32,17 +39,9 @@
   flex-grow: 1;
 }
 
-.details_button {
-  display: flex;
-  align-items: center;
-  height: 52px;
-  border-radius: $radius;
-  background-color: $white;
-  margin-bottom: 8px;
-}
-
-.character_count {
-  font-size: 12px;
-  color: gray;
-  margin-bottom: 0px;
+.category {
+  font-size: 12px !important;
+  padding: 8px !important;
+  font-weight: normal !important;
+  margin: 0 8px 8px 0;
 }
