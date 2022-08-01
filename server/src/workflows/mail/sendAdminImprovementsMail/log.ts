@@ -20,17 +20,16 @@ export const log = async (
 
   const recipients = users.map((user) => { return user.username; });
 
-  const text = `Envoyé à : ${recipients.join(", ")}
-    \n3 sections à revoir : ${sections.join(", ")}
-    \nMessage personnalisé : ${message}
-    \npar ${authorId}
-  `;
+  const text = `Envoyé à : ${recipients.join(", ")}<br/>
+    <br/>
+    ${sections.length} section(s) à revoir : <br/>
+    <ul>${sections.map(s => `<li>${s}</li>`).join("")}</ul>
+    Message personnalisé : ${message}<br/>`;
 
   await addLog(
     dispositifId,
     "Dispositif",
     text,
-    // "Demande de changements envoyée",
     {
       link: {
         id: dispositifId,

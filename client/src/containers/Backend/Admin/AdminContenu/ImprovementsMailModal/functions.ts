@@ -1,3 +1,4 @@
+import { correspondingStatus } from "../data";
 import {
   SimplifiedCreator,
   SimplifiedMainSponsor,
@@ -50,4 +51,21 @@ export const getUsersToSendMail = (
     return result;
   }
   return [];
+};
+
+export const getFormattedStatus = (dispoStatus: string) => {
+  const corresStatus = correspondingStatus.filter(
+    (status) => status.storedStatus === dispoStatus
+  );
+  return corresStatus[0];
+};
+export const getTitle = (
+  titreInformatif: string,
+  typeContenu: string,
+  titreMarque: string | undefined
+) => {
+  if (typeContenu === "dispositif") {
+    return titreInformatif + " avec " + titreMarque;
+  }
+  return titreInformatif;
 };

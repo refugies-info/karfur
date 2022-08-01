@@ -16,8 +16,7 @@ import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { UserButton } from "../../sharedComponents/UserButton";
-import { correspondingStatus } from "../data";
-import { getUsersToSendMail } from "./functions";
+import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
 import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
 
@@ -27,22 +26,6 @@ interface Props {
   selectedDispositifId: ObjectId | null;
 }
 
-const getFormattedStatus = (dispoStatus: string) => {
-  const corresStatus = correspondingStatus.filter(
-    (status) => status.storedStatus === dispoStatus
-  );
-  return corresStatus[0];
-};
-const getTitle = (
-  titreInformatif: string,
-  typeContenu: string,
-  titreMarque: string | undefined
-) => {
-  if (typeContenu === "dispositif") {
-    return titreInformatif + " avec " + titreMarque;
-  }
-  return titreInformatif;
-};
 
 export const ImprovementsMailModal = (props: Props) => {
   const { selectedDispositifId } = props;
@@ -59,7 +42,10 @@ export const ImprovementsMailModal = (props: Props) => {
   const updateLogs = useCallback(() => {
     if (selectedDispositifId) {
       API.logs(selectedDispositifId).then((res) => {
-        setLogs(res.data.data);
+        setLogs(res.data.data
+          // keep only improvement logs
+          .filter((log: Log) => log?.link?.next === "ModalImprovements")
+        );
       });
     }
   }, [selectedDispositifId]);
@@ -242,7 +228,12 @@ export const ImprovementsMailModal = (props: Props) => {
           </p>
 
           {usersToDisplay.map((user, index) => (
-            <UserButton key={index} user={user} tags={user.roles} />
+            <UserButton
+              key={index}
+              user={user}
+              tags={user.roles}
+              wrap={true}
+            />
           ))}
 
           <Row className="mt-6">
@@ -328,7 +319,7 @@ export const ImprovementsMailModal = (props: Props) => {
           <div className={cls(modalStyles.title, "mb-4")}>
             <h2>Emails envoyés</h2>
           </div>
-          <LogList logs={logs} />
+          {logs.length > 0 && <LogList logs={logs} />}
         </Col>
       </Row>
     </DetailsModal>

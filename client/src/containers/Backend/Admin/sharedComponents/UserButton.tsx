@@ -13,10 +13,15 @@ export const UserButton = (props: {
   noImage?: boolean;
   text?: string;
   tags?: string[];
+  wrap?: boolean;
 }) => {
   return (
     <div
-      className={cls(styles.details_button, !props.onClick && styles.disabled)}
+      className={cls(
+        styles.details_button,
+        !props.onClick && styles.disabled,
+        !!props.wrap && styles.wrap
+      )}
       onClick={props.onClick}
     >
       {!props.noImage &&
@@ -41,7 +46,7 @@ export const UserButton = (props: {
         </p>
       )}
       {props.tags && (
-        <div>
+        <div className={styles.tags}>
           {props.tags.map((tag, i) => {
             return (
               <StyledStatus
