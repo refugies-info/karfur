@@ -19,6 +19,7 @@ interface Query {
   titreInformatif: string;
   titreMarque: string;
   sections: string[];
+  message: string;
 }
 export const sendAdminImprovementsMail = async (
   req: RequestFromClientWithBody<Query>,
@@ -51,10 +52,17 @@ export const sendAdminImprovementsMail = async (
         email: user.email,
         pseudo: user.username,
         sectionsToModify: formattedSections,
+        message: data.message
       });
     });
 
-    await log(data.dispositifId, req.user._id);
+    const options = {
+      message: data.message,
+      sections: data.sections,
+      users: data.users
+    };
+
+    await log(data.dispositifId, req.user._id, options);
 
     return res.status(200).json({ text: "OK" });
   } catch (error) {
