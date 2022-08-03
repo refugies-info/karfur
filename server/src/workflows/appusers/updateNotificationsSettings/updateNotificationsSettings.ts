@@ -1,9 +1,9 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
 
-import logger from "src/logger";
+import logger from "../../../logger";
 
-import { updateNotificationsSettings } from "src/modules/appusers/appusers.service";
+import { updateNotificationsSettings } from "../../../modules/appusers/appusers.service";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -20,6 +20,7 @@ const validator = celebrate({
 });
 
 const handler = async (req: Request, res: Response) => {
+  logger.info("[updateNotificationsSettings] received");
   const uid = req.headers["x-app-uid"];
 
   try {
@@ -31,7 +32,7 @@ const handler = async (req: Request, res: Response) => {
     }
     res.status(200).json(settings);
   } catch (err) {
-    logger.error(`updateNotificationsSettingsHandler error: ${err}`);
+    logger.error("[updateNotificationsSettings] error", err);
     res.status(500).json({
       error: "Internal server error"
     });

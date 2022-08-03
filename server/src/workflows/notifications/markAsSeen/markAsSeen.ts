@@ -1,7 +1,8 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
+import logger from "../../../logger";
 
-import { markNotificationAsSeen } from "src/modules/notifications/notifications.service";
+import { markNotificationAsSeen } from "../../../modules/notifications/notifications.service";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -15,6 +16,7 @@ const validator = celebrate({
 });
 
 const handler = async (req: Request, res: Response) => {
+  logger.info("[markAsSeen] received");
   const uid = req.headers["x-app-uid"];
   const { notificationId } = req.body;
 

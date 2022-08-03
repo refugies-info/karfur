@@ -5,8 +5,8 @@ import { getDispositifById, updateDispositifInDB } from "../../modules/dispositi
 import { getAllAppUsers } from "../../modules/appusers/appusers.service";
 import { Notification } from "../../schema/schemaNotification";
 
-import logger from "src/logger";
-import { getLocaleString as t } from "src/libs/getLocaleString";
+import logger from "../../logger";
+import { getLocaleString as t } from "../../libs/getLocaleString";
 
 import { parseDispositif, filterTargets, getNotificationEmoji, getTitle } from "./helpers";
 

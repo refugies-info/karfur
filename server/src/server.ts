@@ -11,9 +11,6 @@ import { errors } from "celebrate";
 
 import logger from "./logger";
 
-import appuserController from "./controllers/appusers";
-import notificationsController from "./controllers/notifications";
-
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
 logger.info(NODE_ENV + " environment");
@@ -89,6 +86,8 @@ const needsController = require(__dirname + "/controllers/needsController");
 const searchController = require(__dirname + "/controllers/searchController");
 const widgetController = require(__dirname + "/controllers/widgetController");
 const logController = require(__dirname + "/controllers/logController");
+const appuserController = require(__dirname + "/controllers/appusersController");
+const notificationsController = require(__dirname + "/controllers/notificationsController");
 
 app.enable("strict routing");
 app.use("/user", userController);
@@ -107,7 +106,6 @@ app.use("/needs", needsController);
 app.use("/search", searchController);
 app.use("/logs", logController);
 app.use("/widgets", widgetController);
-
 app.use("/appuser", appuserController);
 app.use("/notifications", notificationsController);
 

@@ -1,7 +1,8 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
+import logger from "../../../logger";
 
-import { updateOrCreateAppUser } from "../../modules/appusers/appusers.service";
+import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.service";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -20,6 +21,8 @@ const validator = celebrate({
 });
 
 const handler = async (req: Request, res: Response) => {
+  logger.info("[updateAppUser] received");
+
   const uid = req.headers["x-app-uid"];
   const updated = await updateOrCreateAppUser({
     ...req.body,

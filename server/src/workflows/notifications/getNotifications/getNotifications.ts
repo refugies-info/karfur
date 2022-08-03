@@ -1,7 +1,8 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
+import logger from "../../../logger";
 
-import { getNotificationsForUser } from "src/modules/notifications/notifications.service";
+import { getNotificationsForUser } from "../../../modules/notifications/notifications.service";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -12,6 +13,7 @@ const validator = celebrate({
 });
 
 const handler = async (req: Request, res: Response) => {
+  logger.info("[getNotifications] received");
   const uid = req.headers["x-app-uid"];
 
   const notifications = await getNotificationsForUser(uid as string);
