@@ -9,6 +9,7 @@ import logger from "../../logger";
 import { getLocaleString as t } from "../../libs/getLocaleString";
 
 import { parseDispositif, filterTargets, getNotificationEmoji, getTitle } from "./helpers";
+import { getAdminOption } from "../adminOptions/adminOptions.repository";
 
 // TODO: Push security should be enabled here : https://expo.dev/accounts/refugies-info/settings/access-tokens
 // const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
@@ -34,98 +35,109 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
 };
 
 export const sendNotifications = async (messages: ExpoPushMessage[]) => {
-  const chunks = expo.chunkPushNotifications(messages);
+  const adminOption = await getAdminOption("activesNotifications");
+  // already added in sendNotificationsForDispositif but replicated here
+  // to be more secure if new feature in the future
+  if (!adminOption || adminOption.value === true) {
+    const chunks = expo.chunkPushNotifications(messages);
 
-  await Promise.all(
-    chunks.map(async (chunk) => {
-      try {
-        const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-        return ticketChunk;
-      } catch (error) {
-        logger.error("[sendNotifications]", error);
-      }
-    })
-  );
+    await Promise.all(
+      chunks.map(async (chunk) => {
+        try {
+          const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+          return ticketChunk;
+        } catch (error) {
+          logger.error("[sendNotifications]", error);
+        }
+      })
+    );
+  }
 };
 
 export const sendNotificationsForDispositif = async (dispositifId: string | ObjectId, lang: string = "en") => {
-  try {
-    const dispositif = await getDispositifById(dispositifId, {
-      status: 1,
-      titreMarque: 1,
-      typeContenu: 1,
-      titreInformatif: 1,
-      contenu: 1,
-      tags: 1,
-      notificationsSent: 1
-    });
+  const adminOption = await getAdminOption("activesNotifications");
+  if (!adminOption || adminOption.value === true) {
+    logger.error("[sendNotificationsForDispositif] notifications actives");
+    try {
+      const dispositif = await getDispositifById(dispositifId, {
+        status: 1,
+        titreMarque: 1,
+        typeContenu: 1,
+        titreInformatif: 1,
+        contenu: 1,
+        tags: 1,
+        notificationsSent: 1
+      });
 
-    if (!dispositif) {
-      logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
-      return;
-    }
-
-    if (dispositif.notificationsSent && dispositif.notificationsSent[lang]) {
-      logger.info(
-        `[sendNotificationsForDispositif] dispositif ${dispositifId} notifications already sent for lang ${lang}`
-      );
-      return;
-    }
-
-    const requirements = parseDispositif(dispositif);
-    if (!requirements) {
-      logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} - Failed to parse requirements`);
-      return;
-    }
-
-    const targetUsers = filterTargets(await getAllAppUsers(), requirements);
-
-    logger.info(`[sendNotificationsForDispositif] dispositif ${dispositifId} - ${targetUsers.length} users found`);
-
-    const tokens = {} as Record<string, string>;
-    targetUsers.forEach((user) => {
-      if (user.expoPushToken) {
-        tokens[user.uid] = user.expoPushToken;
+      if (!dispositif) {
+        logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
+        return;
       }
-    });
 
-    const savedNotifications = await Notification.insertMany(
-      targetUsers.map((user) => {
-        return {
-          uid: user.uid,
-          seen: false,
-          title: `${getNotificationEmoji(dispositif)} ${t(lang, "notifications.newOffer")} - ${getTitle(
-            dispositif.titreInformatif
-          )} ${t(lang, "notifications.with")} ${getTitle(dispositif.titreMarque)}`,
-          data: {
-            type: "dispositif",
-            // @ts-ignore
-            contentId: dispositif._id.toString()
-          }
-        };
-      })
-    );
+      if (dispositif.notificationsSent && dispositif.notificationsSent[lang]) {
+        logger.info(
+          `[sendNotificationsForDispositif] dispositif ${dispositifId} notifications already sent for lang ${lang}`
+        );
+        return;
+      }
 
-    const messages: ExpoPushMessage[] = savedNotifications
-      .map((notification) => {
-        return {
-          to: tokens[notification.uid],
-          title: "Réfugiés.info",
-          body: notification.title,
-          data: {
-            ...notification.data,
-            notificationId: notification._id.toString()
-          }
-        };
-      })
-      .filter((message) => message.to);
+      const requirements = parseDispositif(dispositif);
+      if (!requirements) {
+        logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} - Failed to parse requirements`);
+        return;
+      }
 
-    await sendNotifications(messages);
+      const targetUsers = filterTargets(await getAllAppUsers(), requirements);
 
-    const payload = dispositif?.notificationsSent || {};
-    payload[lang] = true;
-    await updateDispositifInDB(dispositifId, { notificationsSent: payload });
-  } catch (err) {
-    logger.error("[sendNotificationsForDispositif]", err);
+      logger.info(`[sendNotificationsForDispositif] dispositif ${dispositifId} - ${targetUsers.length} users found`);
+
+      const tokens = {} as Record<string, string>;
+      targetUsers.forEach((user) => {
+        if (user.expoPushToken) {
+          tokens[user.uid] = user.expoPushToken;
+        }
+      });
+
+      const savedNotifications = await Notification.insertMany(
+        targetUsers.map((user) => {
+          return {
+            uid: user.uid,
+            seen: false,
+            title: `${getNotificationEmoji(dispositif)} ${t(lang, "notifications.newOffer")} - ${getTitle(
+              dispositif.titreInformatif
+            )} ${t(lang, "notifications.with")} ${getTitle(dispositif.titreMarque)}`,
+            data: {
+              type: "dispositif",
+              // @ts-ignore
+              contentId: dispositif._id.toString()
+            }
+          };
+        })
+      );
+
+      const messages: ExpoPushMessage[] = savedNotifications
+        .map((notification) => {
+          return {
+            to: tokens[notification.uid],
+            title: "Réfugiés.info",
+            body: notification.title,
+            data: {
+              ...notification.data,
+              notificationId: notification._id.toString()
+            }
+          };
+        })
+        .filter((message) => message.to);
+
+      await sendNotifications(messages);
+
+      const payload = dispositif?.notificationsSent || {};
+      payload[lang] = true;
+      await updateDispositifInDB(dispositifId, { notificationsSent: payload });
+    } catch (err) {
+      logger.error("[sendNotificationsForDispositif]", err);
+    }
+  } else {
+    logger.error("[sendNotificationsForDispositif] not active: nothing sent",);
   }
 };

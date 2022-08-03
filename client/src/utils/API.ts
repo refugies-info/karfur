@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { IDispositif, NbDispositifsByRegion, Statistics, User, Widget } from "types/interface";
+import { AdminOption, IDispositif, NbDispositifsByRegion, Statistics, User, Widget } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -443,6 +443,16 @@ const API = {
   logs: (objectId: ObjectId) => {
     const headers = getHeaders();
     return instance.get(`/logs?id=${objectId}`, { headers });
+  },
+
+  // AdminOptions
+  getAdminOption: (key: string): Promise<Response<AdminOption>> => {
+    const headers = getHeaders();
+    return instance.get(`/options/${key}`, { headers });
+  },
+  setAdminOption: (key: string, value: any): Promise<Response<AdminOption>> => {
+    const headers = getHeaders();
+    return instance.post(`/options/${key}`, {value} ,{ headers });
   },
 
   // tts

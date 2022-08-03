@@ -21,6 +21,10 @@ jest.mock("../../mail/sendMailWhenDispositifPublished", () => ({
   sendMailWhenDispositifPublished: jest.fn(),
 }));
 
+jest.mock("../../../modules/notifications/notifications.service", () => ({
+  sendNotificationsForDispositif: jest.fn(),
+}));
+
 describe("publish dispositif", () => {
   beforeEach(() => {
     jest.clearAllMocks();
