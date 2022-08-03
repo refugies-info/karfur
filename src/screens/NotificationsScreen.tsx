@@ -21,6 +21,9 @@ import { StyledTextBigBold } from "../components/StyledText";
 import { HeaderWithBack } from "../components/HeaderWithBack";
 import { NotificationCard } from "../components/Notifications/NotificationCard";
 import { EnableNotifications } from "../components/Notifications/EnableNotifications";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { BottomTabParamList, ExplorerParamList } from "../../types";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 
 const ICON_SIZE = 24;
 

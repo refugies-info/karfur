@@ -1,5 +1,4 @@
 import { useQueryClient } from "react-query";
-import { set } from "lodash";
 
 import { useApi, useApiMutation } from "./useApi";
 
@@ -37,8 +36,9 @@ export const useNotificationsSettings = (): [
 
   const updateSettings = async (key: string, value: boolean) => {
     try {
-      const payload: any = {};
-      set(payload, key, value);
+      const payload: any = {
+        [key]: value
+      };
       queryClient.setQueryData("notificationsSettings", (current: any) => {
         if (payload.themes) {
           return {

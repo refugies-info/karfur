@@ -21,6 +21,8 @@ import { ToggleButton } from "../../components/UI/ToggleButton";
 import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
 
 import { tags } from "../../data/tagData";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ProfileParamList } from "../../../types";
 
 const Title = styled(TextBigBold)`
   margin-bottom: ${theme.margin * 2}px;

@@ -1,6 +1,5 @@
 import * as React from "react";
 import FranceFlag from "../../theme/images/Flags/France.svg";
-// import FranceFlag from "../../theme/images/notification.svg";
 import AfghanistanFlag from "../../theme/images/Flags/Afghanistan.svg";
 import ArabeFlag from "../../theme/images/Flags/Arabe.svg";
 import GBFlag from "../../theme/images/Flags/GB.svg";

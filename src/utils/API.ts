@@ -7,7 +7,7 @@ import { makeApiRequest } from "../hooks/useApi";
 
 const dbURL = Config.dbUrl;
 const siteSecret = Config.siteSecret;
-const apiCaller = axios.create({
+export const apiCaller = axios.create({
   baseURL: dbURL,
   headers: {
     "Content-Type": "application/json",

@@ -13,20 +13,10 @@ import {
 import "react-native-get-random-values"; // Needed before uuid import according to their docs
 import { v4 as uuidv4 } from "uuid";
 
-import Config from "../libs/getEnvironment";
+import { apiCaller } from "../utils/API";
 import { logger } from "../logger";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";
-
-const dbURL = Config.dbUrl;
-const siteSecret = Config.siteSecret;
-const apiCaller = axios.create({
-  baseURL: dbURL,
-  headers: {
-    "Content-Type": "application/json",
-    "site-secret": siteSecret,
-  },
-});
 
 const UID_STORAGE_KEY = "uid";
 

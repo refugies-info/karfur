@@ -13,6 +13,8 @@ import { markNotificationAsSeen } from "../../utils/API";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { CustomButton } from "../CustomButton";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ExplorerParamList } from "../../../types";
 
 const styles = StyleSheet.create({
   container: {
