@@ -112,6 +112,16 @@ const shadows = {
   `
 }
 
+const shadowsStylesheet = {
+  lg: {
+    shadowColor: colors.black,
+    shadowOpacity: 0.16,
+    shadowOffset: { width: 1, height: 1 },
+    shadowRadius: 8,
+    elevation: 6,
+  },
+};
+
 export const theme = {
   colors,
   images,

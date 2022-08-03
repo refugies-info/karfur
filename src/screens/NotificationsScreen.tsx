@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   settingsButton: {
-    width: 32,
-    height: 32,
+    width: 40,
+    height: 40,
     backgroundColor: theme.colors.white,
     borderRadius: theme.radius,
     display: "flex",
