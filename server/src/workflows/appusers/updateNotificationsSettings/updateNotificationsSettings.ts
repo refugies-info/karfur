@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 import logger from "../../../logger";
 
-import { updateNotificationsSettings } from "../../../modules/appusers/appusers.service";
+import { updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({

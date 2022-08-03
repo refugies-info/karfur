@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 import { Expo, ExpoPushMessage } from "expo-server-sdk";
 
 import { getDispositifById, updateDispositifInDB } from "../../modules/dispositif/dispositif.repository";
-import { getAllAppUsers } from "../../modules/appusers/appusers.service";
+import { getAllAppUsers } from "../../modules/appusers/appusers.repository";
 import { Notification } from "../../schema/schemaNotification";
 
 import logger from "../../logger";
@@ -10,7 +10,7 @@ import { getLocaleString as t } from "../../libs/getLocaleString";
 
 import { parseDispositif, filterTargets, getNotificationEmoji, getTitle } from "./helpers";
 
-// Push security should be enabled here : https://expo.dev/accounts/refugies-info/settings/access-tokens
+// TODO: Push security should be enabled here : https://expo.dev/accounts/refugies-info/settings/access-tokens
 // const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 const expo = new Expo();
 

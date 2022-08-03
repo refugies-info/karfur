@@ -2,7 +2,7 @@ import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
 import logger from "../../../logger";
 
-import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.service";
+import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.repository";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
