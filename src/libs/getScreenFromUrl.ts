@@ -11,7 +11,7 @@ export const getScreenFromUrl = (url: string): {
       screenParams: {
         screen: "ContentScreen",
         params: {
-          contentId: resDispositif[0].replace("dispositif/", "")
+          contentId: resDispositif[0].replace(/([a-z][a-z]\/)?(dispositif|program)\//g, "")
         }
       }
     }
@@ -26,7 +26,7 @@ export const getScreenFromUrl = (url: string): {
       screenParams: {
         screen: "ContentScreen",
         params: {
-          contentId: resDemarche[0].replace("demarche/", "")
+          contentId: resDemarche[0].replace(/([a-z][a-z]\/)?(demarche|procedure)\//g, "")
         }
       }
     }
