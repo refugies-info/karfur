@@ -12,9 +12,7 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji, getTitle } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 
-// TODO: Push security should be enabled here : https://expo.dev/accounts/refugies-info/settings/access-tokens
-// const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
-const expo = new Expo();
+const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
 const isNotificationsActive = async () => {
   const adminOption = await getAdminOption("activesNotifications");
