@@ -20,7 +20,7 @@ export const getTitle = (title: string | Record<string, string>, lang: string = 
     return title;
   }
 
-  return title[lang] || "";
+  return title[lang] || title["fr"] || "";
 };
 
 const getAge = (target: any) => {
@@ -110,6 +110,21 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
 
     return ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
+  });
+};
+
+export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements) => {
+  return targets.filter((target) => {
+    const { age, mainTheme } = requirements;
+    const { notificationsSettings } = target;
+    const parsedAge = parseTargetAge(target.age);
+
+    const ageOk = !target.age || parsedAge.min >= 18 || (parsedAge.max < 18 && age.min === 0);
+
+    const typeOk = notificationsSettings?.demarches;
+    const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
+
+    return ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 

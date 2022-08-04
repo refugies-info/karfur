@@ -7,13 +7,19 @@ import { Notification } from "../../schema/schemaNotification";
 
 import logger from "../../logger";
 import { getLocaleString as t } from "../../libs/getLocaleString";
+import { availableLanguages } from "../../libs/getFormattedLocale";
 
-import { parseDispositif, filterTargets, getNotificationEmoji, getTitle } from "./helpers";
+import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji, getTitle } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 
 // TODO: Push security should be enabled here : https://expo.dev/accounts/refugies-info/settings/access-tokens
 // const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 const expo = new Expo();
+
+const isNotificationsActive = async () => {
+  const adminOption = await getAdminOption("activesNotifications");
+  return !adminOption || adminOption.value === true;
+}
 
 export const getNotificationsForUser = async (uid: string) => {
   const notifications = await Notification.find({ uid }).limit(15).sort({ createdAt: -1 });
@@ -35,10 +41,10 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
 };
 
 export const sendNotifications = async (messages: ExpoPushMessage[]) => {
-  const adminOption = await getAdminOption("activesNotifications");
+  const notificationActive = await isNotificationsActive();
   // already added in sendNotificationsForDispositif but replicated here
   // to be more secure if new feature in the future
-  if (!adminOption || adminOption.value === true) {
+  if (notificationActive) {
     const chunks = expo.chunkPushNotifications(messages);
 
     await Promise.all(
@@ -55,8 +61,8 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
 };
 
 export const sendNotificationsForDispositif = async (dispositifId: string | ObjectId, lang: string = "en") => {
-  const adminOption = await getAdminOption("activesNotifications");
-  if (!adminOption || adminOption.value === true) {
+  const notificationActive = await isNotificationsActive();
+  if (notificationActive) {
     logger.error("[sendNotificationsForDispositif] notifications actives");
     try {
       const dispositif = await getDispositifById(dispositifId, {
@@ -139,5 +145,88 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
     }
   } else {
     logger.error("[sendNotificationsForDispositif] not active: nothing sent",);
+  }
+};
+
+export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId) => {
+  const notificationActive = await isNotificationsActive();
+  if (notificationActive) {
+    logger.error("[sendNotificationsForDemarche] notifications actives");
+    try {
+      const demarche = await getDispositifById(demarcheId, {
+        status: 1,
+        typeContenu: 1,
+        titreInformatif: 1,
+        contenu: 1,
+        tags: 1,
+        notificationsSent: 1
+      });
+
+      if (!demarche || demarche.typeContenu !== "demarche") { // not a demarche: error
+        logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} not found`);
+        return;
+      }
+
+      const requirements = parseDispositif(demarche);
+      if (!requirements) {
+        logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} - Failed to parse requirements`);
+        return;
+      }
+
+      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements);
+
+      logger.info(`[sendNotificationsForDemarche] demarche ${demarcheId} - ${targetUsers.length} users found`);
+
+      const tokens = {} as Record<string, string>;
+      targetUsers.forEach((user) => {
+        if (user.expoPushToken) {
+          tokens[user.uid] = user.expoPushToken;
+        }
+      });
+
+      const savedNotifications = await Notification.insertMany(
+        targetUsers.map((user) => {
+          const lang = user.selectedLanguage || "fr";
+          return {
+            uid: user.uid,
+            seen: false,
+            title: `${t(lang, "notifications.newOffer")} ${getNotificationEmoji(demarche)} : ${getTitle(
+              demarche.titreInformatif, lang
+            )}`,
+            data: {
+              type: "dispositif",
+              // @ts-ignore
+              contentId: demarche._id.toString()
+            }
+          };
+        })
+      );
+
+      const messages: ExpoPushMessage[] = savedNotifications
+        .map((notification) => {
+          return {
+            to: tokens[notification.uid],
+            title: "Réfugiés.info",
+            body: notification.title,
+            data: {
+              ...notification.data,
+              notificationId: notification._id.toString()
+            }
+          };
+        })
+        .filter((message) => message.to);
+
+      await sendNotifications(messages);
+
+      const payload = demarche?.notificationsSent || {};
+      for (const lang of availableLanguages) {
+        payload[lang] = true;
+      }
+      await updateDispositifInDB(demarcheId, { notificationsSent: payload });
+    } catch (err) {
+      logger.error("[sendNotificationsForDemarche]", err);
+    }
+  } else {
+    logger.error("[sendNotificationsForDemarche] not active: nothing sent",);
   }
 };

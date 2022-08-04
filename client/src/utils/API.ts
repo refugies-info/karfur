@@ -445,6 +445,12 @@ const API = {
     return instance.get(`/logs?id=${objectId}`, { headers });
   },
 
+  // Notifications
+  sendNotification: (demarcheId: string|ObjectId): Promise<Response<AdminOption>> => {
+    const headers = getHeaders();
+    return instance.post("/notifications/send", { demarcheId }, { headers });
+  },
+
   // AdminOptions
   getAdminOption: (key: string): Promise<Response<AdminOption>> => {
     const headers = getHeaders();
