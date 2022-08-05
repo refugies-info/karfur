@@ -171,14 +171,14 @@ export const Admin = (props: Props) => {
 
         <NavItem>
           <NavLink
-            active={activeTab === "statistiques"}
-            onClick={() => toggleTab("statistiques")}
+            active={activeTab === "divers"}
+            onClick={() => toggleTab("divers")}
           >
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
-              text="Statistiques"
-              isSelected={activeTab === "statistiques"}
+              text="Divers"
+              isSelected={activeTab === "divers"}
             />
           </NavLink>
         </NavItem>

@@ -60,6 +60,10 @@ jest.mock("schema/schemaError", () => ({
   }
 }));
 
+jest.mock("../../../modules/notifications/notifications.service", () => ({
+  sendNotificationsForDispositif: jest.fn(),
+}));
+
 describe("validateTranslations", () => {
   beforeEach(() => {
     jest.clearAllMocks();

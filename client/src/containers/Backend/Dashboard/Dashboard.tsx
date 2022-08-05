@@ -12,9 +12,12 @@ import styles from "./Dashboard.module.scss";
 import { tags } from "data/tags";
 import { RegionFigures, Statistics } from "types/interface";
 import { ObjectId } from "mongodb";
+import { colors } from "colors";
+import { Spinner } from "reactstrap";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
+const ACTIVES_NOTIFICATIONS = "activesNotifications";
 
 interface Props {
   title?: string
@@ -41,6 +44,7 @@ const Dashboard = (props: Props) => {
   >([]);
   const [statistics, setStatistics] = useState<Statistics | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [notificationsActive, setNotificationsActive] = useState<boolean|null>(null);
 
   useEffect(() => {
     if (props.visible && !loaded) {
@@ -69,6 +73,10 @@ const Dashboard = (props: Props) => {
         }),
         API.getStatistics().then((data) => {
           setStatistics(data.data.data);
+        }),
+        API.getAdminOption(ACTIVES_NOTIFICATIONS).then(data => {
+          const res = data.data.data?.value;
+          setNotificationsActive(res ===  null ? true : res);
         })
       ];
 
@@ -128,9 +136,47 @@ const Dashboard = (props: Props) => {
     (data) => data.region === "France"
   );
 
+  const deactivateNotifications = async () => {
+    const res = await Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: notificationsActive ?
+        "Vous allez désactiver les notifications push sur l'application pour une durée indéterminée" :
+        "Vous allez réactiver l'envoi de notifications automatiques sur l'application pour une durée indéterminée",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: notificationsActive ?
+        "Oui, désactiver" :
+        "Oui, réactiver",
+      cancelButtonText: "Annuler",
+    });
+    if (!res.value) return;
+
+    return API.setAdminOption(ACTIVES_NOTIFICATIONS, !notificationsActive)
+      .then(data => {
+        const res = data.data.data?.value;
+        setNotificationsActive(res ===  null ? true : res);
+      });
+  }
+
   return (
     <div className={styles.container + " animated fadeIn"}>
-      <div className="unformatted-data mb-10 ml-12">
+      <div>
+        <h5 className="mb-4">Application</h5>
+        {notificationsActive === null ?
+          <Spinner size="sm" />:
+          <FButton type="dark" onClick={deactivateNotifications}>
+            {notificationsActive ?
+              "Désactiver les notifications push" :
+              "Réactiver les notifications push"
+            }
+          </FButton>
+        }
+      </div>
+
+      <div className="unformatted-data mb-10 mt-6">
+        <h5 className="mb-4">Statistiques</h5>
         <NavLink to="backend/admin">Admin</NavLink>
         <ul>
           <b>
