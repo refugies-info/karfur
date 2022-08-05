@@ -7,63 +7,63 @@ var dispositifSchema = new mongoose.Schema(
     titreMarque: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     titreInformatif: {
       type: Object,
       unique: false,
-      required: true,
+      required: true
     },
     abstract: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     contact: {
       type: String,
       unique: false,
-      required: false,
+      required: false
     },
     externalLink: {
       type: String,
       unique: false,
-      required: false,
+      required: false
     },
     contenu: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     sponsors: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     mainSponsor: { type: mongoose.Types.ObjectId, ref: "Structure" },
     audience: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     audienceAge: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     tags: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     localisation: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     niveauFrancais: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     creatorId: { type: mongoose.Types.ObjectId, ref: "User" },
     status: {
@@ -80,128 +80,133 @@ var dispositifSchema = new mongoose.Schema(
         "Rejeté structure",
         "Rejeté admin",
         "Inactif",
-        "Supprimé",
-      ],
+        "Supprimé"
+      ]
     },
     nbMots: {
       type: Number,
       unique: false,
-      required: false,
+      required: false
     },
     merci: {
       type: Object,
-      required: false,
+      required: false
     },
     pasMerci: {
       type: Object,
-      required: false,
+      required: false
     },
     bravo: {
       type: Object,
-      required: false,
+      required: false
     },
     suggestions: {
       type: Object,
-      required: false,
+      required: false
     },
     questions: {
       type: Object,
-      required: false,
+      required: false
     },
     signalements: {
       type: Object,
-      required: false,
+      required: false
     },
     traductions: {
       type: [{ type: mongoose.Types.ObjectId, ref: "Traduction" }],
-      required: false,
+      required: false
     },
     participants: {
       type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
-      required: false,
+      required: false
     },
     avancement: {
       type: Object,
-      required: false,
+      required: false
     },
     timeSpent: {
       type: Number,
       unique: false,
-      required: false,
+      required: false
     },
     variantes: {
       type: Object,
       unique: false,
-      required: false,
+      required: false
     },
     typeContenu: {
       type: String,
       unique: false,
       required: false,
-      enum: ["dispositif", "demarche"],
+      enum: ["dispositif", "demarche"]
     },
     demarcheId: { type: mongoose.Types.ObjectId, ref: "Dispositif" },
     autoSave: {
       type: Boolean,
       unique: false,
-      required: false,
+      required: false
     },
 
     publishedAt: {
-      type: Date,
+      type: Date
     },
     publishedAtAuthor: { type: mongoose.Types.ObjectId, ref: "User" },
     lastModificationDate: {
-      type: Date,
+      type: Date
     },
     lastModificationAuthor: { type: mongoose.Types.ObjectId, ref: "User" },
     adminComments: {
       type: String,
-      required: false,
+      required: false
     },
     adminProgressionStatus: {
       type: String,
-      required: false,
+      required: false
     },
     adminPercentageProgressionStatus: {
       type: String,
-      required: false,
+      required: false
     },
     lastAdminUpdate: {
       type: Date,
-      required: false,
+      required: false
     },
     nbVues: {
       type: Number,
       unique: false,
-      required: false,
+      required: false
     },
     draftReminderMailSentDate: {
       type: Date,
       unique: false,
-      required: false,
+      required: false
     },
     draftSecondReminderMailSentDate: {
       type: Date,
       unique: false,
-      required: false,
+      required: false
     },
     lastReminderMailSentToUpdateContentDate: {
       type: Date,
       unique: false,
-      required: false,
+      required: false
     },
     needs: [{ type: mongoose.Types.ObjectId, ref: "Needs" }],
     nbVuesMobile: {
       type: Number,
       unique: false,
-      required: false,
+      required: false
     },
     nbFavoritesMobile: {
       type: Number,
       unique: false,
-      required: false,
+      required: false
     },
+    notificationsSent: {
+      type: Object,
+      unique: false,
+      required: false
+    }
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -252,6 +257,7 @@ export interface DispositifDoc extends mongoose.Document {
   needs?: ObjectId[];
   nbVuesMobile?: number;
   nbFavoritesMobile?: number;
+  notificationsSent?: Record<string, boolean>;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {
@@ -269,7 +275,4 @@ export interface DispositifPopulatedMainSponsorDoc extends DispositifDoc {
   creatorId: UserDoc;
 }
 
-export const Dispositif = mongoose.model<DispositifDoc>(
-  "Dispositif",
-  dispositifSchema
-);
+export const Dispositif = mongoose.model<DispositifDoc>("Dispositif", dispositifSchema);

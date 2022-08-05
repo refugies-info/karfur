@@ -7,6 +7,8 @@ import cloudinary from "cloudinary";
 import formData from "express-form-data";
 import path from "path";
 import compression from "compression";
+import { errors } from "celebrate";
+
 import logger from "./logger";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
@@ -17,7 +19,7 @@ logger.info(NODE_ENV + " environment");
 cloudinary.config({
   cloud_name: CLOUD_NAME,
   api_key: API_KEY,
-  api_secret: API_SECRET,
+  api_secret: API_SECRET
 });
 
 const app = express();
@@ -37,27 +39,23 @@ mongoose
 app.use(compression());
 app.use(express.static(path.join(__dirname, "../../client", "build")));
 app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({
-  limit: "50mb",
-  extended: true,
-}));
+app.use(
+  express.urlencoded({
+    limit: "50mb",
+    extended: true
+  })
+);
 app.use(formData.parse());
 app.use(cors());
 
 //Définition des CORS
 app.use(function (_, res, next) {
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type"
-  );
+  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
   res.setHeader(
     "Access-Control-Allow-Origin",
     "*" // process.env.FRONT_SITE_URL
   );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
@@ -70,7 +68,6 @@ app.use(function (req, _, next) {
   req.fromSite = req.headers["site-secret"] === process.env.REACT_APP_SITE_SECRET;
   next();
 });
-
 
 // Setup routes
 const userController = require(__dirname + "/controllers/userController");
@@ -89,6 +86,9 @@ const needsController = require(__dirname + "/controllers/needsController");
 const searchController = require(__dirname + "/controllers/searchController");
 const widgetController = require(__dirname + "/controllers/widgetController");
 const logController = require(__dirname + "/controllers/logController");
+const appuserController = require(__dirname + "/controllers/appusersController");
+const notificationsController = require(__dirname + "/controllers/notificationsController");
+const adminOptionController = require(__dirname + "/controllers/adminOptionController");
 
 app.enable("strict routing");
 app.use("/user", userController);
@@ -107,7 +107,11 @@ app.use("/needs", needsController);
 app.use("/search", searchController);
 app.use("/logs", logController);
 app.use("/widgets", widgetController);
+app.use("/appuser", appuserController);
+app.use("/notifications", notificationsController);
+app.use("/options", adminOptionController);
 
+app.use(errors()); // Joi middleware for validation errors
 
 var port = process.env.PORT;
 app.get("*", (_req, res) => {

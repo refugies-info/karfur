@@ -1,32 +1,10 @@
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
-import { Res, Picture } from "../../../types/interface";
+import { Res } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
-
-interface Indicator {
-  _id: ObjectId;
-  wordsCount: number;
-  timeSpent: number;
-}
-interface ReturnedUser {
-  username: string;
-  picture: Picture;
-  status: string;
-  _id: ObjectId;
-  created_at: Date;
-  roles: string[];
-  email: string;
-  langues: { langueCode: string; langueFr: string }[];
-  structures: { _id: ObjectId; nom: string; picture: Picture }[];
-  nbStructures: number;
-  threeMonthsIndicator?: Indicator;
-  sixMonthsIndicator?: Indicator;
-  twelveMonthsIndicator?: Indicator;
-  totalIndicator?: Indicator;
-}
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
