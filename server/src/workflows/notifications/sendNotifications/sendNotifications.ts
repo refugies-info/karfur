@@ -5,8 +5,8 @@ import logger from "../../../logger";
 import { log } from "./log";
 
 import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
-import { RequestFromClientWithBody } from "src/types/interface";
-import { checkIfUserIsAdmin } from "src/libs/checkAuthorizations";
+import { RequestFromClientWithBody } from "../../../types/interface";
+import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
