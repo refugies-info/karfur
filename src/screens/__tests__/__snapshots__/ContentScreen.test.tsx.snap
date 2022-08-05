@@ -4045,7 +4045,7 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <View
           bottomInset={0}
-          className="sc-bdnxRM ia-DdHs"
+          className="sc-bczRLJ ivbfPp"
         >
           <View
             accessibilityLabel="Écouter"
@@ -4067,7 +4067,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-dlnjwi kDArHC"
+              className="sc-dkzDqf jiBkTT"
             >
               <react-native-svg
                 height={16}
@@ -4094,7 +4094,7 @@ exports[`ContentScreen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            className="sc-hKFxyN lidwFB"
+            className="sc-hKMtZM ceTnCf"
             collapsable={false}
             style={
               Object {
@@ -4107,7 +4107,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-eCApnc XvTDm"
+              className="sc-eCYdqJ bIpvRt"
             >
               <Image
                 source={1}
@@ -4246,7 +4246,7 @@ exports[`ContentScreen should render correctly 1`] = `
               </View>
             </View>
             <View
-              className="sc-jSFjdj bqZymc"
+              className="sc-jSMfEi bPDEas"
             />
             <View
               accessible={true}
@@ -8675,7 +8675,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <View
           bottomInset={0}
-          className="sc-bdnxRM ia-DdHs"
+          className="sc-bczRLJ ivbfPp"
         >
           <View
             accessibilityLabel="Écouter"
@@ -8697,7 +8697,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-dlnjwi kDArHC"
+              className="sc-dkzDqf jiBkTT"
             >
               <react-native-svg
                 height={16}
@@ -8724,7 +8724,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </Text>
           </View>
           <View
-            className="sc-hKFxyN lidwFB"
+            className="sc-hKMtZM ceTnCf"
             collapsable={false}
             style={
               Object {
@@ -8737,7 +8737,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-eCApnc XvTDm"
+              className="sc-eCYdqJ bIpvRt"
             >
               <Image
                 source={1}
@@ -8876,7 +8876,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </View>
             </View>
             <View
-              className="sc-jSFjdj bqZymc"
+              className="sc-jSMfEi bPDEas"
             />
             <View
               accessible={true}
