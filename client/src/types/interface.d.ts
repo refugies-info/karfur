@@ -527,6 +527,13 @@ export interface Widget {
   created_at: Moment;
 }
 
+export interface AdminOption {
+  _id: ObjectId;
+  key: string;
+  value: any;
+  created_at: Moment;
+}
+
 
 export type Status = {
   displayedStatus: string
