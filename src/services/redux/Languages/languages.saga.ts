@@ -26,7 +26,7 @@ export function* fetchLanguages(): SagaIterator {
         : [];
     yield put(setLanguagesActionCreator(formattedLanguages));
     yield put(finishLoading(LoadingStatusKey.FETCH_LANGUAGES));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while fetching langues", { error: error.message });
     yield put(setLanguagesActionCreator([]));
   }

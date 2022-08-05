@@ -1,19 +1,6 @@
-import axios from "react-native-axios";
-
-import Config from "../libs/getEnvironment";
 import { ObjectId, AppUser } from "../types/interface";
-
 import { makeApiRequest } from "../hooks/useApi";
-
-const dbURL = Config.dbUrl;
-const siteSecret = Config.siteSecret;
-export const apiCaller = axios.create({
-  baseURL: dbURL,
-  headers: {
-    "Content-Type": "application/json",
-    "site-secret": siteSecret,
-  },
-});
+import { apiCaller } from "./ConfigAPI";
 
 export const getLanguages = () => apiCaller.get("/langues/getLanguages");
 

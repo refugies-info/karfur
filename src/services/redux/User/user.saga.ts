@@ -70,7 +70,7 @@ export function* saveSelectedLanguage(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while saving langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
     yield put(setCurrentLanguageActionCreator("fr"));
@@ -83,7 +83,7 @@ export function* removeSelectedLanguage(): SagaIterator {
     yield call(deleteItemInAsyncStorage, "SELECTED_LANGUAGE");
     yield put(setSelectedLanguageActionCreator(null));
     yield put(setCurrentLanguageActionCreator(null));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing langue", { error: error.message });
     yield put(setSelectedLanguageActionCreator("fr"));
     yield put(setCurrentLanguageActionCreator("fr"));
@@ -107,7 +107,7 @@ export function* saveUserLocation(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("[saveUserLocation] saga error", { error: error.message });
     yield put(setUserLocationActionCreator({ city: null, dep: null }));
   }
@@ -125,7 +125,7 @@ export function* removeUserLocation(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing location", { error: error.message });
   }
 }
@@ -144,7 +144,7 @@ export function* saveUserFrenchLevel(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("[saveUserFrenchLevel] saga error", { error: error.message });
     yield put(setUserFrenchLevelActionCreator(null));
   }
@@ -161,7 +161,7 @@ export function* removeUserFrenchLevel(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing french level", { error: error.message });
   }
 }
@@ -180,7 +180,7 @@ export function* saveUserAge(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("[saveUserAge] saga error", { error: error.message });
     yield put(setUserAgeActionCreator(null));
   }
@@ -197,7 +197,7 @@ export function* removeUserAge(
     if (shouldFetchContents) {
       yield put(fetchContentsActionCreator());
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing age", { error: error.message });
   }
 }
@@ -207,7 +207,7 @@ export function* saveHasUserSeenOnboarding(): SagaIterator {
     logger.info("[saveHasUserSeenOnboarding] saga");
     yield call(saveItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING", "TRUE");
     yield put(setHasUserSeenOnboardingActionCreator(true));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while saving user has seen onboarding", {
       error: error.message,
     });
@@ -220,7 +220,7 @@ export function* removeHasUserSeenOnboarding(): SagaIterator {
     logger.info("[removeHasUserSeenOnboarding] saga");
     yield call(deleteItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING");
     yield put(setHasUserSeenOnboardingActionCreator(false));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing has user seen onboarding", {
       error: error.message,
     });
@@ -232,7 +232,7 @@ export function* saveUserHasNewFavorites(): SagaIterator {
     logger.info("[saveUserHasNewFavorites] saga");
     yield call(saveItemInAsyncStorage, "HAS_USER_NEW_FAVORITES", "TRUE");
     yield put(setUserHasNewFavoritesActionCreator(true));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while saving user has new favorites", {
       error: error.message,
     });
@@ -244,7 +244,7 @@ export function* removeUserHasNewFavorites(): SagaIterator {
     logger.info("[removeUserHasNewFavorites] saga");
     yield call(deleteItemInAsyncStorage, "HAS_USER_NEW_FAVORITES");
     yield put(setUserHasNewFavoritesActionCreator(false));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing has user new favorites", {
       error: error.message,
     });
@@ -256,7 +256,7 @@ export function* saveUserLocalizedWarningHidden(): SagaIterator {
     logger.info("[saveUserLocalizedWarningHidden] saga");
     yield call(saveItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN", "TRUE");
     yield put(setUserLocalizedWarningHiddenActionCreator(true));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while saving localized warning hidden", {
       error: error.message,
     });
@@ -268,7 +268,7 @@ export function* removeUserLocalizedWarningHidden(): SagaIterator {
     logger.info("[removeUserLocalizedWarningHidden] saga");
     yield call(deleteItemInAsyncStorage, "LOCALIZED_WARNING_HIDDEN");
     yield put(setUserLocalizedWarningHiddenActionCreator(false));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing localized warning hidden", {
       error: error.message,
     });
@@ -284,7 +284,7 @@ export function* getUserInfos(): SagaIterator {
         "HAS_USER_SEEN_ONBOARDING"
       );
       yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting onboarding status", {
         error: error.message,
       });
@@ -302,7 +302,7 @@ export function* getUserInfos(): SagaIterator {
         yield put(setSelectedLanguageActionCreator(selectedLanguage));
         yield put(setCurrentLanguageActionCreator(selectedLanguage));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting language", {
         error: error.message,
       });
@@ -313,7 +313,7 @@ export function* getUserInfos(): SagaIterator {
       if (city && dep) {
         yield put(setUserLocationActionCreator({ city, dep }));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting user location", {
         error: error.message,
       });
@@ -323,7 +323,7 @@ export function* getUserInfos(): SagaIterator {
       if (age) {
         yield put(setUserAgeActionCreator(age));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting user age", {
         error: error.message,
       });
@@ -333,7 +333,7 @@ export function* getUserInfos(): SagaIterator {
       if (frenchLevel) {
         yield put(setUserFrenchLevelActionCreator(frenchLevel));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting user french level", {
         error: error.message,
       });
@@ -346,7 +346,7 @@ export function* getUserInfos(): SagaIterator {
       if (favorites) {
         yield put(setUserFavoritesActionCreator(JSON.parse(favorites || "[]")));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting user favorites", {
         error: error.message,
       });
@@ -357,12 +357,12 @@ export function* getUserInfos(): SagaIterator {
       if (isLocalizedWarningHidden) {
         yield put(setUserLocalizedWarningHiddenActionCreator(true));
       }
-    } catch (error) {
+    } catch (error: any) {
       logger.error("Error while getting user localized warning", {
         error: error.message,
       });
     }
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while getting user infos", {
       error: error.message,
     });
@@ -382,7 +382,7 @@ export function* addUserFavorite(
       JSON.stringify(newFavorites)
     );
     yield put(setUserFavoritesActionCreator(newFavorites));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while adding favorite", { error: error.message });
   }
 }
@@ -402,7 +402,7 @@ export function* removeUserFavorite(
       JSON.stringify(newFavorites)
     );
     yield put(setUserFavoritesActionCreator(newFavorites));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing favorite", { error: error.message });
   }
 }
@@ -412,7 +412,7 @@ export function* removeUserAllFavorites(): SagaIterator {
     logger.info("[removeAllFavorites] saga");
     yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify([]));
     yield put(setUserFavoritesActionCreator([]));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while removing favorites", { error: error.message });
   }
 }

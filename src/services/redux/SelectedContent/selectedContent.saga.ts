@@ -46,7 +46,7 @@ export function* fetchSelectedContent(
       );
     }
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_CONTENT));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while getting content", { error: error.message });
     yield put(setSelectedContentActionCreator({ content: null, locale }));
     yield put(setSelectedContentActionCreator({ content: null, locale: "fr" }));

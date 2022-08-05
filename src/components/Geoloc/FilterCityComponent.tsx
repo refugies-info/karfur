@@ -123,7 +123,7 @@ export const FilterCityComponent = (props: Props) => {
       if (results && results.data && results.data.predictions) {
         setSuggestions(results.data.predictions);
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(defaultError);
       resetData();
       setIsGeolocLoading(false);
@@ -162,7 +162,7 @@ export const FilterCityComponent = (props: Props) => {
         suggestion.structured_formatting.main_text,
         suggestion.place_id
       );
-    } catch (error) {
+    } catch (error: any) {
       setError(defaultError);
       resetData();
       setIsGeolocLoading(false);
@@ -214,7 +214,7 @@ export const FilterCityComponent = (props: Props) => {
         }
       }
       throw new Error("ERREUR");
-    } catch (error) {
+    } catch (error: any) {
       if (error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(

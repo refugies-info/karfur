@@ -62,7 +62,7 @@ export const RootNavigator = () => {
           // error reading value
         }
         setIsI18nInitialized(true);
-      } catch (error) {
+      } catch (error: any) {
         logger.error("Error while initializing i18n", {
           error: error.message,
         });

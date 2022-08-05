@@ -27,6 +27,7 @@ interface Props {
   iconName?: string;
   text?: string;
   navigation: any;
+  backHandler?: () => void
 }
 
 export const HeaderWithBack = (props: Props) => {
@@ -36,7 +37,7 @@ export const HeaderWithBack = (props: Props) => {
     <TopButtonsContainer>
       <SmallButton
         iconName="arrow-back-outline"
-        onPress={props.navigation.goBack}
+        onPress={props.backHandler || props.navigation.goBack}
         label={t("global.back_button_accessibility")}
       />
       {props.iconName && props.text && (

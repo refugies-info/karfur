@@ -600,7 +600,7 @@ export const ContentScreen = ({
         message: `${siteUrl}/dispositif/${content._id}`,
       };
       await Share.share(shareData);
-    } catch (error) {
+    } catch (error: any) {
       alert(error.message);
     }
   };

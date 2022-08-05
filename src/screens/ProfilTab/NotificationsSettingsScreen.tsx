@@ -116,13 +116,14 @@ export const NotificationsSettingsScreen = () => {
     }
   };
 
-  if (!settings) {
-    return <ActivityIndicator size="small" color={theme.colors.black} />;
-  }
-
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
-      <HeaderWithBack navigation={navigation} />
+      <HeaderWithBack
+        navigation={navigation}
+        backHandler={() => {
+          navigation.navigate("ProfilScreen");
+        }}
+      />
       <View
         style={{
           marginHorizontal: theme.margin * 3,
@@ -132,74 +133,74 @@ export const NotificationsSettingsScreen = () => {
         <Title>{t("notifications.notifications")}</Title>
       </View>
 
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: theme.margin * 2,
-          paddingHorizontal: theme.margin * 3,
-        }}
-        scrollIndicatorInsets={{ right: 1 }}
-      >
-        {!accessGranted ? (
-          <EnableNotifications withMargin={false} />
-        ) : !settings ? (
-          <ActivityIndicator size="small" color={theme.colors.black} />
-        ) : (
-          <>
-            <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
-            <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
-              <ToggleButton
-                title={`${t("notifications.settingsLocal")} ${
-                  !!location.city ? `: ${location.city}` : ""
-                }`}
-                subtitle={t("notifications.settingsLocalSubtitle")}
-                enabled={hasSetLocation && settings?.local}
-                onToggle={updateLocalSettings}
-              />
-              <View style={styles.separator} />
-              <ToggleButton
-                title={t("notifications.settingsGlobal")}
-                subtitle={t("notifications.settingsGlobalSubtitle")}
-                enabled={settings?.global}
-                onToggle={(state) => updateSettings("global", state)}
-              />
-              <View style={styles.separator} />
-              <ToggleButton
-                title={t("notifications.settingsDemarches")}
-                subtitle={t("notifications.settingsDemarchesSubtitle")}
-                enabled={settings?.demarches}
-                onToggle={(state) => updateSettings("demarches", state)}
-              />
-            </View>
-            <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
-            <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
-              {tags.map((tag, index) => (
-                <>
-                  <ToggleButton
-                    key={tag.name}
-                    title={
-                      firstLetterUpperCase(
-                        t(`tags.${tag.name}`, tag.name)
-                      ) as string
-                    }
-                    icon={tag.icon}
-                    enabled={settings?.themes[tag.name]}
-                    onToggle={(state) =>
-                      updateSettings(`themes.${tag.name}`, state)
-                    }
-                    disabled={themesDisabled}
-                  />
-                  {index < THEMES.length - 1 && (
-                    <View
-                      style={styles.separator}
-                      key={`separator-${tag.name}`}
+      {!settings ?
+        <ActivityIndicator size="small" color={theme.colors.black} /> :
+        <ScrollView
+          contentContainerStyle={{
+            paddingTop: theme.margin * 2,
+            paddingHorizontal: theme.margin * 3,
+          }}
+          scrollIndicatorInsets={{ right: 1 }}
+        >
+          {!accessGranted ? (
+            <EnableNotifications withMargin={false} />
+          ) : (
+            <>
+              <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
+              <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
+                <ToggleButton
+                  title={`${t("notifications.settingsLocal")} ${
+                    !!location.city ? `: ${location.city}` : ""
+                  }`}
+                  subtitle={t("notifications.settingsLocalSubtitle")}
+                  enabled={hasSetLocation && settings?.local}
+                  onToggle={updateLocalSettings}
+                />
+                <View style={styles.separator} />
+                <ToggleButton
+                  title={t("notifications.settingsGlobal")}
+                  subtitle={t("notifications.settingsGlobalSubtitle")}
+                  enabled={settings?.global}
+                  onToggle={(state) => updateSettings("global", state)}
+                />
+                <View style={styles.separator} />
+                <ToggleButton
+                  title={t("notifications.settingsDemarches")}
+                  subtitle={t("notifications.settingsDemarchesSubtitle")}
+                  enabled={settings?.demarches}
+                  onToggle={(state) => updateSettings("demarches", state)}
+                />
+              </View>
+              <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
+              <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
+                {tags.map((tag, index) => (
+                  <View key={tag.name}>
+                    <ToggleButton
+                      title={
+                        firstLetterUpperCase(
+                          t(`tags.${tag.name}`, tag.name)
+                        ) as string
+                      }
+                      icon={tag.icon}
+                      enabled={settings?.themes[tag.name]}
+                      onToggle={(state) =>
+                        updateSettings(`themes.${tag.name}`, state)
+                      }
+                      disabled={themesDisabled}
                     />
-                  )}
-                </>
-              ))}
-            </View>
-          </>
-        )}
-      </ScrollView>
+                    {index < THEMES.length - 1 && (
+                      <View
+                        style={styles.separator}
+                        key={`separator-${tag.name}`}
+                      />
+                    )}
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
+        </ScrollView>
+      }
     </SafeAreaView>
   );
 };

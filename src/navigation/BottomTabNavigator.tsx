@@ -82,11 +82,13 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     || ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
   if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 
+  const insetBottom = insets.bottom > 0 ? insets.bottom - 8 : 0;
+
   return (
     <BottomTabBarContainer
       style={{
-        height: 48 + (insets.bottom || 0),
-        paddingBottom: (insets.bottom || 0)
+        height: 48 + insetBottom,
+        paddingBottom: insetBottom
       }}
     >
       {!noReadButton && <ReadButton bottomInset={insets.bottom} />}

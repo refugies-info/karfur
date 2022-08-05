@@ -12,7 +12,7 @@ import {
 import "react-native-get-random-values"; // Needed before uuid import according to their docs
 import { v4 as uuidv4 } from "uuid";
 
-import { apiCaller } from "../utils/API";
+import { apiCaller } from "../utils/ConfigAPI";
 import { logger } from "../logger";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE";

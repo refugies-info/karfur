@@ -10,7 +10,7 @@ const i18n = {
       i18next.use(translationLoader).init(
         {
           fallbackLng: config.fallback,
-
+          compatibilityJSON: "v3",
           interpolation: {
             escapeValue: false,
           },

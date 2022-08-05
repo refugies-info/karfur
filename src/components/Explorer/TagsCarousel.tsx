@@ -20,10 +20,10 @@ export const TagsCarousel = (props: any) => {
   const cardWidth = Math.max(Dimensions.get("window").width * 0, MIN_CARD_WIDTH);
   const cardHeight = cardWidth / CARD_RATIO;
 
-  const renderItem = ({ item }: { item: ExpandedTag }) => {
+  const renderItem = ({ item }: { item: any }) => {
     return (
       <CarousselCard
-        tag={item}
+        tag={item as ExpandedTag}
         navigation={props.navigation}
         cardWidth={cardWidth}
         cardHeight={cardHeight}
@@ -40,6 +40,7 @@ export const TagsCarousel = (props: any) => {
         itemWidth={cardWidth}
         renderItem={renderItem}
         onSnapToItem={(index) => setActiveIndex(index)}
+        //@ts-ignore
         inverted={isRTL}
         firstItem={0}
         initialNumToRender={12}

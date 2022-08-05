@@ -71,7 +71,7 @@ export function* fetchContents(): SagaIterator {
     );
 
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
-  } catch (error) {
+  } catch (error: any) {
     logger.error("Error while fetching contents", {
       error: error.message,
     });
