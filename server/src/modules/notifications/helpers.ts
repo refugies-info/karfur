@@ -38,7 +38,7 @@ const getAge = (target: any) => {
 //   return frenchLevel ? getTitle(frenchLevel.contentTitle) : ALL_FRENCH_LEVEL;
 // };
 
-const getDepartments = (target: any) => {
+const getDepartments = (target: any): string[] => {
   const actionZone = target?.children?.find((item: any) => getTitle(item.title) === ACTION_ZONE);
   if (actionZone) {
     return actionZone.departments
@@ -54,7 +54,7 @@ const getDepartments = (target: any) => {
       })
       .filter((dep: []) => dep?.length);
   }
-  return ALL;
+  return [ALL];
 };
 
 const parseTargetAge = (targetAge: string) => {
@@ -81,7 +81,7 @@ const parseTargetAge = (targetAge: string) => {
 };
 
 //Extracts age, french level, departments from a dispositif
-export const parseDispositif = (dispositif: IDispositif) => {
+export const parseDispositif = (dispositif: IDispositif): Requirements => {
   const target = dispositif?.contenu?.find((item: any) => getTitle(item.title) === TARGET_AUDIENCE);
 
   if (!target) {
@@ -89,7 +89,6 @@ export const parseDispositif = (dispositif: IDispositif) => {
   }
 
   return {
-    id: dispositif._id,
     departments: getDepartments(target),
     age: getAge(target),
     type: dispositif.typeContenu,

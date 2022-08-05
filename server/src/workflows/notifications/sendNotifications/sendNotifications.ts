@@ -35,11 +35,13 @@ const handler = async (
       status: "Succès"
     });
   } catch (e) {
-    logger.error("[sendNotifications] error", e);
-
-    res.status(500).json({
-      status: "Erreur"
-    });
+    logger.error("[sendNotifications] error", { error: e.message });
+    switch (e.message) {
+      case "NOT_AUTHORIZED":
+        return res.status(403).json({ text: "Lecture interdite" });
+      default:
+        return res.status(500).json({ text: "Erreur interne" });
+    }
   }
 
 };
