@@ -2,6 +2,10 @@ import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRe
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { fireEvent, act } from "react-native-testing-library";
 import { ProfilScreen } from "../ProfilScreen";
+import { useRoute } from "@react-navigation/core";
+import { initialUserState } from "../../../services/redux/User/user.reducer";
+
+jest.mock("@react-navigation/core");
 
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -9,6 +13,10 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
     t: jest.fn().mockImplementation((_, arg2) => arg2),
     isRTL: false,
   }),
+}));
+
+jest.mock("../../../utils/logEvent", () => ({
+  logEventInFirebase: jest.fn()
 }));
 
 jest.mock("react-native-safe-area-context", () => {
@@ -29,6 +37,9 @@ jest.mock("@react-navigation/native", () => {
 describe("Profil screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "LanguageChoiceScreen"
+    });
   });
 
   it("should render correctly when no data in store", () => {
@@ -113,6 +124,7 @@ describe("Profil screen", () => {
       reduxState: {
         ...initialRootStateFactory(),
         user: {
+          ...initialUserState,
           age: "0 à 17 ans",
           frenchLevel: "Je parle couramment",
           city: "Paris",

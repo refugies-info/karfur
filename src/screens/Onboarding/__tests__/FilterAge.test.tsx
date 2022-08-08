@@ -3,6 +3,7 @@ import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRe
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { act, fireEvent } from "react-native-testing-library";
 import { saveUserAgeActionCreator } from "../../../services/redux/User/user.actions";
+import { initialUserState } from "../../../services/redux/User/user.reducer";
 
 jest.useFakeTimers();
 
@@ -42,7 +43,7 @@ describe("Filter age", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { age: "0 à 17 ans" },
+        user: { ...initialUserState, age: "0 à 17 ans" },
       },
     });
     expect(component).toMatchSnapshot();
@@ -55,7 +56,7 @@ describe("Filter age", () => {
       compProps: { navigation: { goBack: jest.fn(), navigate } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { age: "0 à 17 ans" },
+        user: { ...initialUserState, age: "0 à 17 ans" },
       },
     });
 

@@ -13,6 +13,7 @@ describe("[Selector] LoadingStatus", () => {
       loadingStatus: {
         FETCH_LANGUAGES: {
           isLoading: true,
+          error: undefined
         },
       },
     };

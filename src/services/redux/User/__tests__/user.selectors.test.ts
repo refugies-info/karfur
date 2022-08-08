@@ -1,4 +1,6 @@
+import { AvailableLanguageI18nCode } from "../../../../types/interface";
 import { initialRootStateFactory } from "../../reducers";
+import { initialUserState } from "../user.reducer";
 import {
   hasUserSeenOnboardingSelector,
   selectedI18nCodeSelector,
@@ -10,6 +12,7 @@ describe("[Selector] user", () => {
       const state = {
         ...initialRootStateFactory(),
         user: {
+          ...initialUserState,
           hasUserSeenOnboarding: false,
           selectedLanguagei18nCode: null,
         },
@@ -22,8 +25,9 @@ describe("[Selector] user", () => {
       const state = {
         ...initialRootStateFactory(),
         user: {
+          ...initialUserState,
           hasUserSeenOnboarding: true,
-          selectedLanguagei18nCode: "en",
+          selectedLanguagei18nCode: "en" as AvailableLanguageI18nCode,
         },
       };
       expect(hasUserSeenOnboardingSelector(state)).toEqual(true);

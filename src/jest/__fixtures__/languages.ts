@@ -1,7 +1,7 @@
 export const mockedLanguageData = [
   {
     _id: "5ce57c969aadae8734c7aedd",
-    avancementTrad: undefined,
+    avancementTrad: 1,
     i18nCode: "fr",
     langueFr: "Français",
   },

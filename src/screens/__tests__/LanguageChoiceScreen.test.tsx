@@ -39,6 +39,9 @@ jest.mock("@react-navigation/native", () => {
 describe("LanguageChoiceScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "LanguageChoiceScreen"
+    });
   });
 
   it("should render correctly", () => {

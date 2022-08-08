@@ -3,6 +3,7 @@ import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRe
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { act, fireEvent } from "react-native-testing-library";
 import { saveUserFrenchLevelActionCreator } from "../../../services/redux/User/user.actions";
+import { initialUserState } from "../../../services/redux/User/user.reducer";
 
 jest.useFakeTimers();
 
@@ -44,7 +45,7 @@ describe("Filter french level", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { frenchLevel: "Je parle bien" },
+        user: { ...initialUserState, frenchLevel: "Je parle bien" },
       },
     });
     expect(component).toMatchSnapshot();
@@ -57,7 +58,7 @@ describe("Filter french level", () => {
       compProps: { navigation: { goBack: jest.fn(), navigate } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { frenchLevel: "Je parle bien" },
+        user: { ...initialUserState, frenchLevel: "Je parle bien" },
       },
     });
 

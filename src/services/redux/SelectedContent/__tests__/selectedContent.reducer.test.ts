@@ -1,5 +1,6 @@
 import { selectedContentReducer } from "../selectedContent.reducer";
 import { setSelectedContentActionCreator } from "../selectedContent.actions";
+import { selectedContent } from "../../../../jest/__fixtures__/selectedContent";
 
 describe("[Reducer] selected content", () => {
   it("sets the content to the store", () => {
@@ -16,10 +17,10 @@ describe("[Reducer] selected content", () => {
     expect(
       selectedContentReducer(
         state,
-        setSelectedContentActionCreator({ content: "content", locale: "ar" })
+        setSelectedContentActionCreator({ content: selectedContent, locale: "ar" })
       )
     ).toEqual({
-      ar: "content",
+      ar: selectedContent,
       fr: null,
       en: null,
       ps: null,

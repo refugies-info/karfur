@@ -10,8 +10,8 @@ import {
 } from "../services/redux/reducers";
 
 interface WrapWithProvidersAndRenderParams {
-  Component: React.FunctionComponent<unknown>;
-  compProps?: Record<string, unknown>;
+  Component: React.FunctionComponent<any>;
+  compProps?: Record<string, any>;
   reduxState?: Partial<RootState>;
 }
 
@@ -34,8 +34,7 @@ export function wrapWithProvidersAndRender({
   const store = createStore(rootReducer, reduxState);
 
   const componentWithReduxAndI18n = (
-    //@ts-ignore
-    <NavigationContext.Provider value={navContext}>
+    <NavigationContext.Provider value={navContext as any}>
       <Provider store={store}>
         <Component {...compProps} />
       </Provider>

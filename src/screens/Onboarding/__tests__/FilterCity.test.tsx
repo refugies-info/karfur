@@ -3,6 +3,7 @@ import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRe
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { act, fireEvent } from "react-native-testing-library";
 import { saveUserLocationActionCreator } from "../../../services/redux/User/user.actions";
+import { initialUserState } from "../../../services/redux/User/user.reducer";
 
 jest.useFakeTimers();
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
@@ -46,7 +47,7 @@ describe("Filter city", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { city: "city", department: "dep" },
+        user: { ...initialUserState, city: "city", department: "dep" },
       },
     });
     expect(component).toMatchSnapshot();
@@ -59,7 +60,7 @@ describe("Filter city", () => {
       compProps: { navigation: { goBack: jest.fn(), navigate } },
       reduxState: {
         ...initialRootStateFactory(),
-        user: { city: "city", department: "dep" },
+        user: { ...initialUserState, city: "city", department: "dep" },
       },
     });
 

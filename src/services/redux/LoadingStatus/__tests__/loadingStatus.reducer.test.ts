@@ -21,6 +21,7 @@ describe("[Reducer] LoadingStatus", () => {
     const state = {
       FETCH_LANGUAGES: {
         isLoading: true,
+        error: undefined
       },
     };
     expect(

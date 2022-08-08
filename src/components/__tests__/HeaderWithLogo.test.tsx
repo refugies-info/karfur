@@ -7,6 +7,10 @@ jest.mock("../../services/i18n", () => ({
   default: { isRTL: jest.fn() },
 }));
 
+jest.mock("../../utils/logEvent", () => ({
+  logEventInFirebase: jest.fn()
+}));
+
 jest.mock("react-native-safe-area-context", () => {
   const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
 
@@ -23,14 +27,19 @@ jest.mock("@react-navigation/native", () => {
 });
 
 describe("HeaderWithLogo", () => {
+  beforeEach(() => {
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "TestSreen"
+    });
+  }),
   it("should render correctly with LTR", () => {
-    i18n.isRTL.mockReturnValueOnce(false);
+    (i18n.isRTL as jest.Mock).mockReturnValueOnce(false);
     const component = wrapWithProvidersAndRender({ Component: HeaderWithLogo });
     expect(component).toMatchSnapshot();
   });
 
   it("should render correctly with RTL", () => {
-    i18n.isRTL.mockReturnValueOnce(true);
+    (i18n.isRTL as jest.Mock).mockReturnValueOnce(true);
     const component = wrapWithProvidersAndRender({ Component: HeaderWithLogo });
     expect(component).toMatchSnapshot();
   });

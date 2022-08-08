@@ -1,16 +1,42 @@
-import { languagesReducer } from "../languages.reducer";
+import { initialLanguageState, languagesReducer } from "../languages.reducer";
 import { setLanguagesActionCreator } from "../languages.actions";
 
 describe("[Reducer] languages", () => {
   it("sets the available languages to the store", () => {
-    const state = {};
+    const state = initialLanguageState;
     expect(
       languagesReducer(
         state,
-        setLanguagesActionCreator([{ _id: "id1" }, { _id: "id2" }])
+        setLanguagesActionCreator([
+          {
+            _id: "id1",
+            langueFr: "",
+            i18nCode: "",
+            avancementTrad: 1
+          },
+          {
+            _id: "id2",
+            langueFr: "",
+            i18nCode: "",
+            avancementTrad: 1
+          }
+        ])
       )
     ).toEqual({
-      availableLanguages: [{ _id: "id1" }, { _id: "id2" }],
+      availableLanguages: [
+        {
+          _id: "id1",
+          langueFr: "",
+          i18nCode: "",
+          avancementTrad: 1
+        },
+        {
+          _id: "id2",
+          langueFr: "",
+          i18nCode: "",
+          avancementTrad: 1
+        }
+      ],
     });
   });
 });

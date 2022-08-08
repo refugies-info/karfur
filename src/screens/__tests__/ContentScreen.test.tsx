@@ -1,9 +1,10 @@
+import React from "react";
 import { wrapWithProvidersAndRender } from "../../jest/wrapWithProvidersAndRender";
 import { ContentScreen } from "../ContentScreen";
 import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
-import React from "react";
+import { initialUserState } from "../../services/redux/User/user.reducer";
 
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -11,6 +12,10 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
     t: jest.fn().mockImplementation((_, arg2) => arg2),
     isRTL: false,
   }),
+}));
+
+jest.mock("../../utils/logEvent", () => ({
+  logEventInFirebase: jest.fn()
 }));
 
 jest.mock("react-native-safe-area-context", () => {
@@ -87,6 +92,7 @@ describe("ContentScreen", () => {
       reduxState: {
         ...initialRootStateFactory(),
         user: {
+          ...initialUserState,
           currentLanguagei18nCode: "fr",
           favorites: [],
         },
@@ -125,6 +131,7 @@ describe("ContentScreen", () => {
       reduxState: {
         ...initialRootStateFactory(),
         user: {
+          ...initialUserState,
           currentLanguagei18nCode: "fr",
           favorites: [],
         },

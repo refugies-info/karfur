@@ -74,9 +74,21 @@ describe("[Saga] contents", () => {
             dataFr: [
               {
                 _id: "idFr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1Fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
           },
@@ -87,9 +99,21 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "idFr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1Fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
           })
@@ -98,9 +122,21 @@ describe("[Saga] contents", () => {
         .call(groupResultsByNeed, [
           {
             _id: "idFr",
+            titreInformatif: "titre",
+            tags: [],
+            typeContenu: "dispositif",
+            nbVues: 1,
+            sponsorUrl: null,
+            avancement: 1
           },
           {
             _id: "id1Fr",
+            titreInformatif: "titre",
+            tags: [],
+            typeContenu: "dispositif",
+            nbVues: 1,
+            sponsorUrl: null,
+            avancement: 1
           },
         ])
         .next({ idFr: [], id1Fr: [] })
@@ -141,17 +177,41 @@ describe("[Saga] contents", () => {
             data: [
               {
                 _id: "id_ar",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1_ar",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
             dataFr: [
               {
                 _id: "id_fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1_fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
           },
@@ -162,9 +222,21 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "id_ar",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1_ar",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
           })
@@ -176,9 +248,21 @@ describe("[Saga] contents", () => {
             contents: [
               {
                 _id: "id_fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
               {
                 _id: "id1_fr",
+                titreInformatif: "titre",
+                tags: [],
+                typeContenu: "dispositif",
+                nbVues: 1,
+                sponsorUrl: null,
+                avancement: 1
               },
             ],
           })
@@ -187,9 +271,21 @@ describe("[Saga] contents", () => {
         .call(groupResultsByNeed, [
           {
             _id: "id_fr",
+            titreInformatif: "titre",
+            tags: [],
+            typeContenu: "dispositif",
+            nbVues: 1,
+            sponsorUrl: null,
+            avancement: 1
           },
           {
             _id: "id1_fr",
+            titreInformatif: "titre",
+            tags: [],
+            typeContenu: "dispositif",
+            nbVues: 1,
+            sponsorUrl: null,
+            avancement: 1
           },
         ])
         .next({ idFr: [], id1Fr: [] })

@@ -64,6 +64,7 @@ export interface DispositifContent {
   target?: string;
   contentTitle?: string;
   isFakeContent?: boolean;
+  markers?: MarkerGoogle[];
   titleIcon?: string;
   typeIcon?: string;
   bottomValue?: number;
