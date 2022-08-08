@@ -95,19 +95,31 @@ const fonts = {
 
 const shadows = {
   xs: `
-  box-shadow: 0px -1px 8px rgba(33, 33, 33, 0.08);
-  elevation: 4;
+    shadow-color: ${colors.black};
+    shadow-opacity: 0.08;
+    shadow-offset: 0px -1px;
+    shadow-radius: 8px;
+    elevation: 4;
   `,
   sm: `
-  box-shadow: 1px 1px 2px rgba(33, 33, 33, 0.4);
-  elevation: 2;
+    shadow-color: ${colors.black};
+    shadow-opacity: 0.4;
+    shadow-offset: 1px 1px;
+    shadow-radius: 2px;
+    elevation: 2;
   `,
   lg: `
-  box-shadow: 1px 1px 8px rgba(33, 33, 33, 0.16);
-  elevation: 6;
+    shadow-color: ${colors.black};
+    shadow-opacity: 0.16;
+    shadow-offset: 1px 1px;
+    shadow-radius: 8px;
+    elevation: 6;
   `,
   blue: `
-    box-shadow: 0px 0px 8px rgba(4, 33, 177, 0.16);
+    shadow-color: ${colors.darkBlue};
+    shadow-opacity: 0.16;
+    shadow-offset: 0 0;
+    shadow-radius: 8px;
     elevation: 5;
   `
 }

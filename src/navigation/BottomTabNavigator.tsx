@@ -91,7 +91,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
         paddingBottom: insetBottom
       }}
     >
-      {!noReadButton && <ReadButton bottomInset={insets.bottom} />}
+      {!noReadButton && <ReadButton bottomInset={insetBottom} />}
       {items.map(i => i)}
     </BottomTabBarContainer>
   );

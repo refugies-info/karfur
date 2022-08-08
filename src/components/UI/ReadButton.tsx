@@ -45,7 +45,7 @@ const PlayButton = styled(View)`
   z-index: 20;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 8px rgba(4, 33, 177, 0.16);
+  ${theme.shadows.blue}
 `;
 const Buttons = styled(Animated.View)`
   flex-direction: row;
@@ -272,6 +272,7 @@ export const ReadButton = (props: Props) => {
       <PlayContainer
         loading={isLoading}
         onPress={toggleVoiceOver}
+        activeOpacity={0.8}
         accessibilityRole="button"
         accessible={true}
         accessibilityLabel={"Écouter"}>
