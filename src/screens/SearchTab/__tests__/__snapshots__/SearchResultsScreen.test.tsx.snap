@@ -15,12 +15,12 @@ exports[`Search results screen should render correctly 1`] = `
           "backgroundColor": "#F6F6F6",
           "elevation": 4,
           "paddingBottom": 24,
-          "shadowColor": "rgba(33, 33, 33, 0.08)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": -1,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.08,
           "shadowRadius": 8,
         },
         Object {
@@ -458,12 +458,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -531,12 +531,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -604,12 +604,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -677,12 +677,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -750,12 +750,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -823,12 +823,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -896,12 +896,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -969,12 +969,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1042,12 +1042,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1115,12 +1115,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1188,12 +1188,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1261,12 +1261,12 @@ exports[`Search results screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }

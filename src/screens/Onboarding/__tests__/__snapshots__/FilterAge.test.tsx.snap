@@ -55,12 +55,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.16)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 1,
             "width": 1,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.16,
           "shadowRadius": 8,
         }
       }
@@ -488,12 +488,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -585,12 +585,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -864,12 +864,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
                 "height": 56,
                 "justifyContent": "center",
                 "opacity": 0.4,
-                "shadowColor": "rgba(33, 33, 33, 0.4)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.4,
                 "shadowRadius": 2,
               }
             }
@@ -1022,12 +1022,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.16)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 1,
             "width": 1,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.16,
           "shadowRadius": 8,
         }
       }
@@ -1301,12 +1301,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -1398,12 +1398,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -1495,12 +1495,12 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -1924,12 +1924,12 @@ exports[`Filter age should select age when click on it 1`] = `
           "paddingLeft": 12,
           "paddingRight": 12,
           "paddingTop": 12,
-          "shadowColor": "rgba(33, 33, 33, 0.16)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": 1,
             "width": 1,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.16,
           "shadowRadius": 8,
         }
       }
@@ -2203,12 +2203,12 @@ exports[`Filter age should select age when click on it 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -2300,12 +2300,12 @@ exports[`Filter age should select age when click on it 1`] = `
               "paddingLeft": 14,
               "paddingRight": 14,
               "paddingTop": 14,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -2733,12 +2733,12 @@ exports[`Filter age should select age when click on it 1`] = `
                 "height": 56,
                 "justifyContent": "center",
                 "opacity": 0.4,
-                "shadowColor": "rgba(33, 33, 33, 0.4)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.4,
                 "shadowRadius": 2,
               }
             }

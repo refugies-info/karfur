@@ -211,12 +211,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -263,12 +263,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -342,12 +342,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -394,12 +394,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -488,12 +488,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -540,12 +540,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -634,12 +634,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -686,12 +686,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -780,12 +780,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -832,12 +832,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -926,12 +926,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -978,12 +978,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -1072,12 +1072,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -1124,12 +1124,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },
@@ -1218,12 +1218,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "paddingLeft": 14,
             "paddingRight": 14,
             "paddingTop": 14,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
           }
         }
@@ -1270,12 +1270,12 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
                     "marginLeft": 4,
                     "marginRight": 4,
                     "marginTop": 4,
-                    "shadowColor": "rgba(33, 33, 33, 0.4)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.4,
                     "shadowRadius": 2,
                     "width": 22,
                   },

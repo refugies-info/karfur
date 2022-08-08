@@ -74,12 +74,12 @@ exports[`ContentScreen should render correctly 1`] = `
                 "paddingLeft": 12,
                 "paddingRight": 12,
                 "paddingTop": 12,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               }
             }
@@ -193,12 +193,12 @@ exports[`ContentScreen should render correctly 1`] = `
               "elevation": 6,
               "paddingHorizontal": 24,
               "paddingVertical": 8,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             },
             Object {
@@ -1008,12 +1008,12 @@ exports[`ContentScreen should render correctly 1`] = `
                 "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               },
             ]
@@ -1769,12 +1769,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -2049,12 +2049,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -2329,12 +2329,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -2609,12 +2609,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -2921,12 +2921,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -3262,12 +3262,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -3532,12 +3532,12 @@ exports[`ContentScreen should render correctly 1`] = `
               Object {
                 "elevation": 6,
                 "marginHorizontal": 24,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               },
             ]
@@ -3706,12 +3706,12 @@ exports[`ContentScreen should render correctly 1`] = `
                   "borderRadius": 12,
                   "elevation": 6,
                   "overflow": "hidden",
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
               ]
@@ -3863,12 +3863,12 @@ exports[`ContentScreen should render correctly 1`] = `
           "bottom": 0,
           "elevation": 4,
           "position": "absolute",
-          "shadowColor": "rgba(33, 33, 33, 0.08)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": -1,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.08,
           "shadowRadius": 8,
           "width": "100%",
           "zIndex": 14,
@@ -3922,12 +3922,12 @@ exports[`ContentScreen should render correctly 1`] = `
             "paddingLeft": 8,
             "paddingRight": 8,
             "paddingTop": 8,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
             "width": 120,
           }
@@ -4067,7 +4067,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-dkzDqf jiBkTT"
+              className="sc-dkzDqf eBVftw"
             >
               <react-native-svg
                 height={16}
@@ -4463,12 +4463,12 @@ exports[`ContentScreen should render correctly 1`] = `
             "paddingLeft": 8,
             "paddingRight": 8,
             "paddingTop": 8,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
             "width": 120,
           }
@@ -4704,12 +4704,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "paddingLeft": 12,
                 "paddingRight": 12,
                 "paddingTop": 12,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               }
             }
@@ -4823,12 +4823,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
               "elevation": 6,
               "paddingHorizontal": 24,
               "paddingVertical": 8,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             },
             Object {
@@ -5638,12 +5638,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               },
             ]
@@ -6399,12 +6399,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -6679,12 +6679,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -6959,12 +6959,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -7239,12 +7239,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -7551,12 +7551,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -7892,12 +7892,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     "paddingLeft": 16,
                     "paddingRight": 16,
                     "paddingTop": 16,
-                    "shadowColor": "rgba(33, 33, 33, 0.16)",
+                    "shadowColor": "#212121",
                     "shadowOffset": Object {
                       "height": 1,
                       "width": 1,
                     },
-                    "shadowOpacity": 1,
+                    "shadowOpacity": 0.16,
                     "shadowRadius": 8,
                   }
                 }
@@ -8162,12 +8162,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Object {
                 "elevation": 6,
                 "marginHorizontal": 24,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               },
             ]
@@ -8336,12 +8336,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "borderRadius": 12,
                   "elevation": 6,
                   "overflow": "hidden",
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 },
               ]
@@ -8493,12 +8493,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
           "bottom": 0,
           "elevation": 4,
           "position": "absolute",
-          "shadowColor": "rgba(33, 33, 33, 0.08)",
+          "shadowColor": "#212121",
           "shadowOffset": Object {
             "height": -1,
             "width": 0,
           },
-          "shadowOpacity": 1,
+          "shadowOpacity": 0.08,
           "shadowRadius": 8,
           "width": "100%",
           "zIndex": 14,
@@ -8552,12 +8552,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
             "paddingLeft": 8,
             "paddingRight": 8,
             "paddingTop": 8,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
             "width": 120,
           }
@@ -8697,7 +8697,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-dkzDqf jiBkTT"
+              className="sc-dkzDqf eBVftw"
             >
               <react-native-svg
                 height={16}
@@ -9093,12 +9093,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
             "paddingLeft": 8,
             "paddingRight": 8,
             "paddingTop": 8,
-            "shadowColor": "rgba(33, 33, 33, 0.16)",
+            "shadowColor": "#212121",
             "shadowOffset": Object {
               "height": 1,
               "width": 1,
             },
-            "shadowOpacity": 1,
+            "shadowOpacity": 0.16,
             "shadowRadius": 8,
             "width": 120,
           }
@@ -9320,12 +9320,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "paddingLeft": 12,
                 "paddingRight": 12,
                 "paddingTop": 12,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               }
             }
@@ -9428,12 +9428,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "paddingLeft": 12,
                 "paddingRight": 12,
                 "paddingTop": 12,
-                "shadowColor": "rgba(33, 33, 33, 0.16)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.16,
                 "shadowRadius": 8,
               }
             }

@@ -65,12 +65,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
               "paddingLeft": 12,
               "paddingRight": 12,
               "paddingTop": 12,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             }
           }
@@ -845,12 +845,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
               "paddingLeft": 24,
               "paddingRight": 24,
               "paddingTop": 24,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             },
           ]
@@ -1375,12 +1375,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
               "paddingLeft": 24,
               "paddingRight": 24,
               "paddingTop": 24,
-              "shadowColor": "rgba(33, 33, 33, 0.16)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.16,
               "shadowRadius": 8,
             },
           ]
@@ -1647,12 +1647,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
                 "paddingLeft": 18,
                 "paddingRight": 18,
                 "paddingTop": 18,
-                "shadowColor": "rgba(33, 33, 33, 0.4)",
+                "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
                   "width": 1,
                 },
-                "shadowOpacity": 1,
+                "shadowOpacity": 0.4,
                 "shadowRadius": 2,
                 "width": "auto",
               }
@@ -2212,12 +2212,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
               "paddingLeft": 18,
               "paddingRight": 18,
               "paddingTop": 18,
-              "shadowColor": "rgba(33, 33, 33, 0.4)",
+              "shadowColor": "#212121",
               "shadowOffset": Object {
                 "height": 1,
                 "width": 1,
               },
-              "shadowOpacity": 1,
+              "shadowOpacity": 0.4,
               "shadowRadius": 2,
               "width": "auto",
             }

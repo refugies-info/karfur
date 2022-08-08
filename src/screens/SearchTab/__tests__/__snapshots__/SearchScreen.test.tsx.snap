@@ -348,12 +348,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -421,12 +421,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -494,12 +494,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -567,12 +567,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -640,12 +640,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -713,12 +713,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -786,12 +786,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -859,12 +859,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -932,12 +932,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1005,12 +1005,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1078,12 +1078,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
@@ -1151,12 +1151,12 @@ exports[`Search Screen should render correctly 1`] = `
                   "paddingLeft": 16,
                   "paddingRight": 16,
                   "paddingTop": 16,
-                  "shadowColor": "rgba(33, 33, 33, 0.16)",
+                  "shadowColor": "#212121",
                   "shadowOffset": Object {
                     "height": 1,
                     "width": 1,
                   },
-                  "shadowOpacity": 1,
+                  "shadowOpacity": 0.16,
                   "shadowRadius": 8,
                 }
               }
