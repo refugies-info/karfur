@@ -6,10 +6,12 @@ const themeSchema = new mongoose.Schema(
     name: {
       type: Object,
       required: true,
+      unique: true,
     },
     short: {
       type: Object,
       required: true,
+      unique: true,
     },
     colors: {
       color100: {
@@ -38,19 +40,19 @@ const themeSchema = new mongoose.Schema(
       required: true,
     },
     icon: {
-      type: Object,
+      type: String,
       required: true,
     },
     banner: {
-      type: Object,
+      type: String,
       required: true,
     },
     appImage: {
-      type: Object,
+      type: String,
       required: true,
     },
     shareImage: {
-      type: Object,
+      type: String,
       required: true,
     },
   },

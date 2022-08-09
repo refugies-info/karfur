@@ -2,6 +2,10 @@ import mongoose, { ObjectId } from "mongoose";
 import { UserDoc } from "./schemaUser";
 import { StructureDoc } from "./schemaStructure";
 
+function arrayThemesLimit(val: any[]) {
+  return val.length <= 2;
+}
+
 var dispositifSchema = new mongoose.Schema(
   {
     titreMarque: {
@@ -54,6 +58,17 @@ var dispositifSchema = new mongoose.Schema(
       type: Object,
       unique: false,
       required: false
+    },
+    theme: {
+      type: mongoose.Types.ObjectId,
+      ref: "Theme",
+    },
+    secondaryThemes: {
+      type: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Theme",
+      }],
+      validate: [arrayThemesLimit, "{PATH} exceeds the limit of 2"]
     },
     localisation: {
       type: Object,
