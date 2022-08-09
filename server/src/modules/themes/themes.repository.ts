@@ -3,7 +3,6 @@ import { Theme, ThemeDoc } from "../../schema/schemaTheme";
 
 export const getAllThemes = async () => {
   return Theme.find()
-    .sort({ created_at: 1 });
 }
 
 export const createTheme = async (theme: ThemeDoc) => {

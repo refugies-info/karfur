@@ -53,6 +53,7 @@ import {
 } from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
 import { needsReducer, NeedsState } from "./Needs/needs.reducer";
 import { widgetsReducer, WidgetsState } from "./Widgets/widgets.reducer";
+import { themesReducer, ThemesState } from "./Themes/themes.reducer";
 import { HYDRATE } from "next-redux-wrapper"
 import { Reducer } from "typesafe-actions";
 
@@ -74,6 +75,7 @@ export interface RootState {
   userContributions: UserContributionsState;
   dispositifsWithTranslations: DispositifsWithTranslationsStatusState;
   needs: NeedsState;
+  themes: ThemesState;
   widgets: WidgetsState;
 }
 
@@ -95,6 +97,7 @@ const combinedReducer = combineReducers({
   userContributions: userContributionsReducer,
   dispositifsWithTranslations: dispositifsWithTranslationsStatusReducer,
   needs: needsReducer,
+  themes: themesReducer,
   widgets: widgetsReducer,
 });
 
@@ -117,6 +120,9 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     }
     if (action.payload.langue.langues.length > 0 && nextState.langue.langues.length === 0) {
       nextState.langue = action.payload.langue;
+    }
+    if (action.payload.themes.length > 0 && nextState.themes.length === 0) {
+      nextState.themes = action.payload.themes;
     }
     return nextState;
   }

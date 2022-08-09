@@ -21,6 +21,31 @@ export interface Picture {
   secure_url: string;
 }
 
+export interface Theme {
+  _id: ObjectId;
+  name: {
+    fr: string;
+    [key: string]: string;
+  };
+  short: {
+    fr: string;
+    [key: string]: string;
+  };
+  colors: {
+    color100: string;
+    color80: string;
+    color60: string;
+    color40: string;
+    color30: string;
+  }
+  position: number;
+  icon: Object;
+  banner: Object;
+  appImage: Object;
+  shareImage: Object;
+  created_at: Moment;
+}
+
 export interface SimplifiedStructure {
   _id: ObjectId;
   acronyme: string;
