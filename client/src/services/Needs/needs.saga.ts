@@ -41,6 +41,7 @@ export function* saveNeed(
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     const newNeed = action.payload;
     logger.info("[saveNeed] start saving need");
+    //@ts-ignore
     yield call(API.saveNeed, { query: newNeed });
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
@@ -61,6 +62,7 @@ export function* createNeed(
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     const newNeed = action.payload;
     logger.info("[createNeed] start creating need");
+    //@ts-ignore
     yield call(API.createNeed, { query: newNeed });
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));

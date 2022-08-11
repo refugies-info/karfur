@@ -85,4 +85,4 @@ export interface ThemeDoc extends mongoose.Document {
 }
 
 
-export const Theme = mongoose.model<ThemeDoc>("themes", themeSchema);
+export const Theme = mongoose.model<ThemeDoc>("Theme", themeSchema);
