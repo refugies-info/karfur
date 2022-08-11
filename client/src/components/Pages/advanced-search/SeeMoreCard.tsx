@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import CustomCard from "components/UI/CustomCard/CustomCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {colors} from "colors";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 
 const CardText = styled.p`
   font-size: 32px;
@@ -33,7 +33,7 @@ const SeeMoreText = styled.p`
 `
 
 interface Props {
-  theme: Tag
+  theme: Theme
   seeMore: any
   isRTL: boolean
 }
@@ -45,11 +45,12 @@ const SeeMoreCard = (props: Props) => {
     <div className="card-col puff-in-center dispositif">
       <CustomCard onClick={props.seeMore} className="border-none">
         <CardBody>
-          <CardText color={props.theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
-          <SeeMoreButton color={props.theme.darkColor}>
+          <CardText color={props.theme.colors.color100}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
+          <SeeMoreButton color={props.theme.colors.color100}>
           <EVAIcon name="expand-outline" fill={colors.gray10} />
             <SeeMoreText mr={props.isRTL ? 8 : 0}>
-              {t("Tags." + props.theme.short, props.theme.short)}
+              {/* TODO: translate */}
+              {t("Tags." + props.theme.short.fr, props.theme.short.fr)}
             </SeeMoreText>
           </SeeMoreButton>
         </CardBody>

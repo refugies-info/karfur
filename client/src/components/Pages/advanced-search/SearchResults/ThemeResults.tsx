@@ -4,7 +4,7 @@ import { cls } from "lib/classname";
 import { DispositifsFilteredState } from "lib/filterContents";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
-import { IDispositif, IUserFavorite, Language, Tag } from "types/interface";
+import { IDispositif, IUserFavorite, Language, Theme } from "types/interface";
 import NoResultPlaceholder from "../NoResultPlaceholder";
 import SearchResultCard from "../SearchResultCard";
 import styles from "./SearchResults.module.scss";
@@ -12,7 +12,7 @@ import styles from "./SearchResults.module.scss";
 interface Props {
   langueCode: string;
   flagIconCode: string;
-  selectedTag: Tag | null;
+  selectedTheme: Theme | null;
   filterLanguage: Language | null;
   currentLanguage: Language | null;
   queryResults: DispositifsFilteredState;
@@ -37,7 +37,7 @@ export const ThemeResults = (props: Props) => {
     filterLanguage,
     currentLanguage,
     flagIconCode,
-    selectedTag,
+    selectedTheme,
   } = props;
 
   const {
@@ -73,17 +73,17 @@ export const ThemeResults = (props: Props) => {
           )}
           <span
             className={cls(styles.button, styles.inline_button)}
-            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+            style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
             <Streamline
-              name={selectedTag ? selectedTag.icon : undefined}
+              name={selectedTheme ? selectedTheme.icon : undefined}
               stroke={"white"}
               width={22}
               height={22}
             />
             <p className={styles.text}>
-              {selectedTag
-                ? t("Tags." + selectedTag.short, selectedTag.short)
+              {selectedTheme
+                ? t("Tags." + selectedTheme.short, selectedTheme.short)
                 : null}
             </p>
           </span>
@@ -194,17 +194,17 @@ export const ThemeResults = (props: Props) => {
           )}
           <span
             className={cls(styles.button, styles.inline_button)}
-            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+            style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
             <Streamline
-              name={selectedTag ? selectedTag.icon : undefined}
+              name={selectedTheme ? selectedTheme.icon : undefined}
               stroke={"white"}
               width={22}
               height={22}
             />
             <p className={styles.text}>
-              {selectedTag
-                ? t("Tags." + selectedTag.short, selectedTag.short)
+              {selectedTheme
+                ? t("Tags." + selectedTheme.short, selectedTheme.short)
                 : null}
             </p>
           </span>

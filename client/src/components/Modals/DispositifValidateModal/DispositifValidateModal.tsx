@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import Check from "./components/Check";
 import styles from "./DispositifValidateModal.module.scss";
-import { Structure } from "types/interface";
+import { Structure, Theme } from "types/interface";
 
 interface Props {
   show: boolean
@@ -19,10 +19,10 @@ interface Props {
     saveType: "auto"|"save"|"validate"
   ) => void;
   toggleTutorielModal: any
-  tags: any[]
+  theme: Theme | undefined
   mainSponsor: Structure | undefined
   menu: any
-  toggleTagsModal: any
+  toggleThemesModal: any
   toggleSponsorModal: any
   toggleGeolocModal: any
   addItem: any
@@ -84,9 +84,9 @@ const DispositifValidateModal = (props: Props) => {
         />
 
         <Check
-          section="tags"
-          missingElement={props.tags.length === 0}
-          toggleModal={props.toggleTagsModal}
+          section="themes"
+          missingElement={props.theme}
+          toggleModal={props.toggleThemesModal}
         />
 
         <Check
@@ -96,10 +96,9 @@ const DispositifValidateModal = (props: Props) => {
           missingElement={
             (props.abstract || "").length > 110 || !props.abstract
           }
-          toggleTagsModal={props.toggleTagsModal}
           titreInformatif={props.titreInformatif}
           titreMarque={props.titreMarque}
-          tags={props.tags}
+          theme={props.theme}
           typeContenu={props.typeContenu}
         />
       </div>
@@ -141,7 +140,7 @@ const DispositifValidateModal = (props: Props) => {
               props.abstract === "" ||
               props.abstract.length > 110 ||
               (!geoloc && props.typeContenu !== "demarche") ||
-              props.tags.length === 0
+              !!props.theme
                 ? " disabled"
                 : ""}
             disabled={
@@ -149,7 +148,7 @@ const DispositifValidateModal = (props: Props) => {
               props.abstract === "" ||
               props.abstract.length > 110 ||
               (!geoloc && props.typeContenu !== "demarche") ||
-              props.tags.length === 0
+              !!props.theme
             }
             onClick={validateAndClose}
           >

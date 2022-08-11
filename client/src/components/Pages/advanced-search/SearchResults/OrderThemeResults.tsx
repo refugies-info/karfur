@@ -25,50 +25,52 @@ export const OrderThemeResults = (props: Props) => {
 
   return (
     <div style={{ width: "100%" }}>
-    {themesObject.map((theme, index: number) => {
+    {themesObject.map((object, index: number) => {
       return (
         <div
           className={styles.theme_container}
           key={index}
-          style={{backgroundColor: theme.tag.lightColor}}
+          style={{backgroundColor: object.theme.colors.color30}}
         >
           <div className={styles.header}>
             <div
               className={styles.button}
               style={{
-                backgroundColor: theme.tag.darkColor,
+                backgroundColor: object.theme.colors.color100,
                 marginLeft: isRTL ? 20 : 0
               }}
             >
               <Streamline
-                name={theme.tag.icon}
+                name={object.theme.icon}
                 stroke={"white"}
                 width={22}
                 height={22}
               />
               <p className={styles.text}>
+                {/* TODO: translate */}
                 {t(
-                  "Tags." + theme.tag.short,
-                  theme.tag.short
+                  "Tags." + object.theme.short.fr,
+                  object.theme.short.fr
                 )}
               </p>
             </div>
             <p
               className={styles.title}
-              style={{color: theme.tag.darkColor}}
+              style={{color: object.theme.colors.color100}}
             >
+              {/* TODO: translate */}
               {t(
-                "Tags." + theme.tag.name,
-                theme.tag.name
+                "Tags." + object.theme.name.fr,
+                object.theme.name.fr
               )[0].toUpperCase() +
                 t(
-                  "Tags." + theme.tag.name,
-                  theme.tag.name
+                  "Tags." + object.theme.name.fr,
+                  object.theme.name.fr
                 ).slice(1)}
             </p>
           </div>
           <div className={styles.theme_grid}>
-            {theme.dispositifs.slice(0, 4)
+            {object.dispositifs.slice(0, 4)
               .map((dispositif, index) => {
                 return (
                   <SearchResultCard
@@ -82,8 +84,8 @@ export const OrderThemeResults = (props: Props) => {
               })
             }
             <SeeMoreCard
-              seeMore={() => props.addToQuery({theme: [theme.tag.name]})}
-              theme={theme.tag}
+              seeMore={() => props.addToQuery({theme: [object.theme.name.fr]})}
+              theme={object.theme}
               isRTL={isRTL}
             />
           </div>

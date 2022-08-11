@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "reactstrap";
 import { Need } from "types/interface";
 import styled from "styled-components";
-import { getTagColor } from "./lib";
 import { jsUcfirst } from "lib/index";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
@@ -84,7 +83,7 @@ export const NeedDetailsModal = (props: Props) => {
       </Modal>
     );
   }
-  const tagColor = getTagColor(props.selectedNeed.tagName);
+
   return (
     <Modal
       isOpen={props.show}
@@ -94,8 +93,8 @@ export const NeedDetailsModal = (props: Props) => {
     >
       <Title>Modifier un besoin existant</Title>
       <SubTitle>Thème actuel (non modifiable)</SubTitle>
-      <StyledTagContainer color={tagColor}>
-        <StyledTagName>{jsUcfirst(props.selectedNeed.tagName)}</StyledTagName>
+      <StyledTagContainer color={props.selectedNeed.theme.colors.color100}>
+        <StyledTagName>{jsUcfirst(props.selectedNeed.theme.name.fr)}</StyledTagName>
       </StyledTagContainer>
       <SubTitle>Nom du besoin*</SubTitle>
       <FInput

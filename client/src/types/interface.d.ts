@@ -21,6 +21,23 @@ export interface Picture {
   secure_url: string;
 }
 
+type iconName = "house" |
+  "elearning" |
+  "briefcase" |
+  "measure" |
+  "glasses" |
+  "bus" |
+  "triumph" |
+  "heartBeat" |
+  "couple" |
+  "soccer" |
+  "flag" |
+  "office" |
+  "search" |
+  "message" |
+  "menu" |
+  "tag" |
+  "";
 export interface Theme {
   _id: ObjectId;
   name: {
@@ -39,11 +56,11 @@ export interface Theme {
     color30: string;
   }
   position: number;
-  icon: Object;
-  banner: Object;
-  appImage: Object;
-  shareImage: Object;
-  created_at: Moment;
+  icon: iconName;
+  banner: string;
+  appImage: string;
+  shareImage: string;
+  created_at?: Moment;
 }
 
 export interface SimplifiedStructure {
@@ -66,33 +83,6 @@ export interface UiObject {
   children: any
 }
 
-// TAGS
-type iconName = "house" |
-  "elearning" |
-  "briefcase" |
-  "measure" |
-  "glasses" |
-  "bus" |
-  "triumph" |
-  "heartBeat" |
-  "couple" |
-  "soccer" |
-  "flag" |
-  "office" |
-  "search" |
-  "message" |
-  "menu" |
-  "tag" |
-  "";
-export interface Tag {
-  darkColor: string;
-  hoverColor: string;
-  illustrationColor: string;
-  lightColor: string;
-  name: string;
-  short: string;
-  icon: iconName;
-}
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
@@ -154,7 +144,8 @@ export interface SimplifiedDispositif {
     username: string
   }
   needs?: ObjectId[];
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   nbMercis: number;
   nbVues: number;
 }
@@ -342,7 +333,8 @@ export interface IDispositif {
   sponsors: Structure[];
   status: string;
   suggestions: any[];
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   titreInformatif: string;
   titreMarque: string;
   typeContenu: "dispositif" | "demarche";
@@ -388,7 +380,8 @@ interface SimplifiedDispositifAssocie {
   titreInformatif: string;
   titreMarque: string;
   _id: ObjectId;
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   abstract: string;
   status: string;
 }
@@ -424,7 +417,7 @@ export interface IUserFavorite {
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
-  tags: Tag[];
+  theme: Theme;
 }
 
 export interface IUserContribution {
@@ -479,7 +472,7 @@ export interface Need {
   fa?: NeedDetail;
   uk?: NeedDetail;
   _id: ObjectId;
-  tagName: string;
+  theme: Theme;
   created_at: Moment;
   updatedAt: Moment;
 }
@@ -539,6 +532,7 @@ export interface Widget {
   _id: ObjectId;
   name: string;
   tags: string[];
+  themes: Theme[];
   typeContenu: ("dispositifs"|"demarches")[];
   location?: {
     city: string;

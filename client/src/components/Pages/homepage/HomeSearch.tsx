@@ -5,7 +5,7 @@ import { colors } from "colors";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
 import { isMobile } from "react-device-detect";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./HomeSearch.module.scss";
 import { SearchItemType } from "data/searchFilters";
 import { cls } from "lib/classname";
@@ -74,7 +74,7 @@ const HomeSearch = (props: Props) => {
   };
 
   const { searchItem } = props;
-  const tags: Tag[] = searchItem.children as Tag[];
+  const themes: Theme[] = searchItem.children as Theme[];
 
   return (
     <div onClick={open} className={styles.col}>
@@ -95,20 +95,21 @@ const HomeSearch = (props: Props) => {
                 styles.flippy_btn +
                 " search-home " +
                 "bg-" +
-                (tags[indexFront].short || "").replace(/ /g, "-")
+                (themes[indexFront].short.fr || "").replace(/ /g, "-")
               }
             >
-              {tags[indexFront].icon ? (
+              {themes[indexFront].icon ? (
                 <div className={styles.icon}>
                   <Streamline
-                    name={tags[indexFront].icon}
+                    name={themes[indexFront].icon}
                     stroke={"white"}
                     width={22}
                     height={22}
                   />
                 </div>
               ) : null}
-              {t("Tags." + tags[indexFront].name, tags[indexFront].name)}
+              {/* TODO: translate */}
+              {t("Tags." + themes[indexFront].name.fr, themes[indexFront].name.fr)}
             </button>
           </FrontSide>
           {isLoaded &&
@@ -119,20 +120,20 @@ const HomeSearch = (props: Props) => {
                   styles.flippy_btn +
                   " search-home " +
                   "bg-" +
-                  (tags[indexBack].short || "").replace(/ /g, "-")
+                  (themes[indexBack].short.fr || "").replace(/ /g, "-")
                 }
               >
-                {tags[indexBack].icon ? (
+                {themes[indexBack].icon ? (
                   <div className={styles.icon}>
                     <Streamline
-                      name={tags[indexBack].icon}
+                      name={themes[indexBack].icon}
                       stroke={"white"}
                       width={22}
                       height={22}
                     />
                   </div>
                 ) : null}
-                {t("Tags." + tags[indexBack].name, tags[indexBack].name)}
+                {t("Tags." + themes[indexBack].name.fr, themes[indexBack].name.fr)}
               </button>
             </BackSide>
           }

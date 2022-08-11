@@ -19,12 +19,12 @@ import {
   Filtres,
   searchAge,
   searchLoc,
-  searchTheme,
+  getSearchTheme,
   searchFrench,
   AvailableFilters,
+  SearchItemType,
 } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { tags } from "data/tags";
 import FButton from "components/UI/FButton/FButton";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import { BookmarkedModal } from "components/Modals/index";
@@ -46,6 +46,7 @@ import {
   IDispositif,
   IUserFavorite,
   Language,
+  Theme,
   User,
 } from "types/interface";
 import isInBrowser from "lib/isInBrowser";
@@ -132,7 +133,6 @@ const FilterTitle = styled.p`
   margin-right: 10px;
 `;
 
-const pageFilters = [searchTheme, searchLoc, searchAge, searchFrench];
 export type SearchQuery = {
   theme?: string[];
   age?: string;
@@ -152,6 +152,7 @@ interface Props {
   languei18nCode: string;
   user: User | null;
   langues: Language[];
+  themes: Theme[];
   isLoading: boolean;
   t: any;
   fetchUser: any;
@@ -167,6 +168,7 @@ interface State {
   geoSearch: boolean;
   wrapperRef: any;
   languageDropdown: boolean;
+  pageFilters: SearchItemType[];
 }
 export class AdvancedSearch extends Component<Props, State> {
   constructor(props: Props) {
@@ -176,9 +178,13 @@ export class AdvancedSearch extends Component<Props, State> {
     const queryResults = queryDispositifs(
       this.props.dispositifs,
       initialQuery.query,
-      this.props.languei18nCode
+      this.props.languei18nCode,
+      this.props.themes
     );
+
     if (isInBrowser()) this.updateUrl(initialQuery.query);
+
+    const searchTheme = getSearchTheme(this.props.themes);
 
     this.state = {
       query: initialQuery.query,
@@ -191,6 +197,7 @@ export class AdvancedSearch extends Component<Props, State> {
       geoSearch: initialQuery.geoSearch,
       wrapperRef: null,
       languageDropdown: false,
+      pageFilters: [searchTheme, searchLoc, searchAge, searchFrench]
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -276,7 +283,8 @@ export class AdvancedSearch extends Component<Props, State> {
     const queryResults = queryDispositifs(
       this.props.dispositifs,
       this.state.query,
-      this.props.languei18nCode
+      this.props.languei18nCode,
+      this.props.themes
     );
     this.setState({ queryResults });
   };
@@ -495,8 +503,8 @@ export class AdvancedSearch extends Component<Props, State> {
           (x) => x.i18nCode === this.state.query.langue
         )
       : null;
-    const selectedTag = this.state.query.theme && this.state.query.theme.length === 1
-      ? tags.find((tag) => tag.name === this.state.query?.theme?.[0])
+    const selectedTheme = this.state.query.theme && this.state.query.theme.length === 1
+      ? this.props.themes.find((theme) => theme.name.fr === this.state.query?.theme?.[0])
       : null;
     const pinnedList = (this.props.user?.cookies?.dispositifsPinned || []).map(
       (d) => d._id.toString()
@@ -531,7 +539,7 @@ export class AdvancedSearch extends Component<Props, State> {
             )}
           >
             <div className="search-bar">
-              {pageFilters.map((filter, i: number) => (
+              {this.state.pageFilters.map((filter, i: number) => (
                 <SearchItem
                   key={i}
                   searchItem={filter}
@@ -705,9 +713,9 @@ export class AdvancedSearch extends Component<Props, State> {
               style={{
                 backgroundColor:
                   this.state.query.order === "theme"
-                    ? themesObject[0]?.tag?.lightColor || "#f1e8f5"
-                    : selectedTag
-                    ? selectedTag?.lightColor
+                    ? themesObject[0]?.theme.colors.color30 || "#f1e8f5"
+                    : selectedTheme
+                    ? selectedTheme.colors.color30
                     : "#e4e5e6",
               }}
             >
@@ -718,11 +726,11 @@ export class AdvancedSearch extends Component<Props, State> {
                   pinnedList={pinnedList}
                   addToQuery={this.addToQuery}
                 />
-              ) : selectedTag ? (
+              ) : selectedTheme ? (
                 <ThemeResults
                   langueCode={langueCode}
                   flagIconCode={flagIconCode}
-                  selectedTag={selectedTag || null}
+                  selectedTheme={selectedTheme || null}
                   filterLanguage={filterLanguage || null}
                   currentLanguage={currentLanguage || null}
                   queryResults={this.state.queryResults}
@@ -785,6 +793,7 @@ const mapStateToProps = (state: RootState) => {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,
+    themes: state.themes,
     isLoading: isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS)(
       state
     ),

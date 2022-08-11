@@ -16,13 +16,12 @@ import { Need } from "../../../../types/interface";
 import styled from "styled-components";
 import { jsUcfirst } from "../../../../lib/index";
 import { NeedDetailsModal } from "./NeedDetailsModal";
-import { getTagColor } from "./lib";
 import FButton from "../../../../components/UI/FButton/FButton";
 import { AddNeedModal } from "./AddNeedModal";
 import { LoadingNeeds } from "./LoadingNeeds";
 
 export const needsHeaders = [
-  { name: "Thème", order: "tagName" },
+  { name: "Thème", order: "theme.name.fr" },
   { name: "Besoin", order: "besoin" },
   { name: "", order: "" },
 ];
@@ -91,7 +90,7 @@ export const Needs = () => {
   const defaultSortedHeader = {
     name: "Thème",
     sens: "up",
-    orderColumn: "tagName",
+    orderColumn: "theme.name.fr",
   };
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
@@ -169,15 +168,14 @@ export const Needs = () => {
           </thead>
           <tbody>
             {sortedNeeds.map((need, key) => {
-              const color = getTagColor(need.tagName);
               return (
                 <tr
                   key={key}
                   onClick={() => setSelectedNeedAndToggleModal(need)}
                 >
                   <td className="align-middle" style={{ width: 300 }}>
-                    <StyledTagContainer color={color}>
-                      <StyledTagName>{jsUcfirst(need.tagName)}</StyledTagName>
+                    <StyledTagContainer color={need.theme.colors.color100}>
+                      <StyledTagName>{jsUcfirst(need.theme.name.fr)}</StyledTagName>
                     </StyledTagContainer>
                   </td>
                   <td className="align-middle">{need.fr.text}</td>

@@ -29,7 +29,7 @@ import styles from "./Sponsors.module.scss";
 import { getBaseUrl } from "lib/getBaseUrl";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { Structure, Tag, User, Picture } from "types/interface";
+import { Structure, User, Picture, Theme } from "types/interface";
 import { RootState } from "services/rootReducer";
 import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { isValidPhone } from "lib/validateFields";
@@ -213,7 +213,7 @@ interface Props {
   ) => void
   typeContenu?: "dispositif" | "demarche"
   toggleDispositifValidateModal: () => void
-  mainTag: Tag
+  mainTheme: Theme
   locale: string | undefined
 
   user: User
@@ -530,7 +530,7 @@ class Sponsors extends Component<Props, State> {
       <div
         className={styles.container}
         onMouseEnter={() => this.props.updateUIArray(-7)}
-        style={{ backgroundColor: this.props.mainTag.darkColor }}
+        style={{ backgroundColor: this.props.mainTheme.colors.color100 }}
       >
         <div className={styles.wrapper}>
           <h5>{"Proposé par"}</h5>
@@ -1046,7 +1046,6 @@ class Sponsors extends Component<Props, State> {
           <CreationContent
             handleChange={this.handleChange}
             setStructureContactAsMe={this.setStructureContactAsMe}
-            mainTag={this.props.mainTag}
             nom={this.state.structure.nom}
             contact={this.state.structure.contact}
             phone_contact={this.state.structure.phone_contact}
@@ -1267,7 +1266,6 @@ class Sponsors extends Component<Props, State> {
           edit={this.state.edit}
           editSponsor={this.editSponsor}
           sponsorKey={this.state.sponsorKey}
-          mainTag={this.props.mainTag}
         />
       </div>
     );

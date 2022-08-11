@@ -6,7 +6,9 @@ import { Structure } from "types/interface";
 import { activities } from "data/activities";
 import { ActivityCard } from "./ActivityCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { tags } from "data/tags";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { colors } from "colors";
 
 const MainContainer = styled.div``;
 const HelpContainer = styled.div`
@@ -74,7 +76,8 @@ interface Props {
 
 export const Step3 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
-  const groupedActivities = groupBy(activities, (activity) => activity.tag);
+  const themes = useSelector(themesSelector);
+  const groupedActivities = groupBy(activities, (activity) => activity.theme);
 
   const getUpdatedActivities = (selectedActivity: string) => {
     if (!props.structure) return [];
@@ -124,32 +127,32 @@ export const Step3 = (props: Props) => {
           </HelpDescription>
         </HelpContainer>
       ) : (
-        <div style={{ marginTop: "24px" }} />
+        <div style={{ marginTop: 24 }} />
       )}
       {Object.keys(groupedActivities).map((activity) => {
-        const correspondingTag = tags.filter(
-          (tag) => tag.short === activity
+        const correspondingTheme = themes.find(
+          (theme) => theme.short.fr === activity
         );
 
         const correspondingActivities = activities.filter(
-          (activity2) => activity2.tag === activity
+          (activity2) => activity2.theme === activity
         );
         return (
           <TagActivity
+            backgroundColor={correspondingTheme?.colors.color30 || colors.gray10}
             key={activity}
-            backgroundColor={correspondingTag[0].lightColor}
-            color={correspondingTag[0].darkColor}
+            color={correspondingTheme?.colors.color100 || colors.gray90}
           >
             <div style={{ marginLeft: "8px", marginBottom: "8px" }}>
-              {jsUcfirst(correspondingTag[0].name)}
+              {jsUcfirst(correspondingTheme?.name.fr || "")}
             </div>
             <ActivityCardsContainer>
               {correspondingActivities.map((detailedActivity) => (
                 <ActivityCard
                   key={detailedActivity.activity}
                   activity={detailedActivity.activity}
-                  darkColor={correspondingTag[0].darkColor}
-                  lightColor={correspondingTag[0].lightColor}
+                  darkColor={correspondingTheme?.colors.color100 || colors.gray90}
+                  lightColor={correspondingTheme?.colors.color30 || colors.gray10}
                   selectActivity={selectActivity}
                   isSelected={
                     props.structure && props.structure.activities

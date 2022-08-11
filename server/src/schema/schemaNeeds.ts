@@ -5,6 +5,11 @@ var needsSchema = new mongoose.Schema(
   {
     tagName: {
       type: String,
+      required: false,
+    },
+    theme: {
+      type: mongoose.Types.ObjectId,
+      ref: "Theme",
       required: true,
     },
     fr: { text: String, updatedAt: Date },
@@ -25,6 +30,7 @@ export interface NeedTranslation {
 }
 export interface NeedDoc extends mongoose.Document {
   tagName: string;
+  theme: ObjectId;
   fr: NeedTranslation;
   ar?: NeedTranslation;
   en?: NeedTranslation;

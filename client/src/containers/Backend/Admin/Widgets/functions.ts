@@ -11,8 +11,8 @@ export const generateIframe = (widget: Widget) => {
   const langueParam = widget.languages && widget.languages.length > 0 ?
     `langue=${widget.languages[0]}`
     : "";
-  const tagParam = widget.tags ?
-    `tag=${widget.tags.join(",")}`
+  const tagParam = widget.themes ?
+    `tag=${widget.themes.map(t => t.name.fr).join(",")}`
     : "";
   const urlParams = [locationParam, typeContenuParam, langueParam, tagParam]
     .filter(t => t !== "")

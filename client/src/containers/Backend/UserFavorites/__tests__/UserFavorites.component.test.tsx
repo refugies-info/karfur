@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import UserFavorites from "../UserFavorites";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
@@ -77,17 +77,23 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque1",
     abstract: "abstract1",
     typeContenu: "dispositif",
-    tags: [
-      {
-        short: "Français",
-        icon: "elearning",
-        name: "apprendre le français",
-        darkColor: "#3E2884",
-        lightColor: "#F0E8F5",
-        hoverColor: "#3E2884",
-        illustrationColor: "#F9AA38",
+    theme: {
+      _id: "",
+      short: {fr: "Français"},
+      name: {fr: "apprendre le français"},
+      icon: "elearning",
+      colors: {
+        color100: "#aaa",
+        color80: "#aaa",
+        color60: "#aaa",
+        color40: "#aaa",
+        color30: "#aaa",
       },
-    ],
+      position: 0,
+      banner: "",
+      appImage: "",
+      shareImage: ""
+    },
   };
 
   const fav2 = {
@@ -96,17 +102,23 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque2",
     abstract: "abstract2",
     typeContenu: "dispositif",
-    tags: [
-      {
-        short: "Administratif",
-        icon: "office",
-        name: "gérer mes papiers",
-        darkColor: "#443023",
-        lightColor: "#EAE2E1",
-        hoverColor: "#fcb21c",
-        illustrationColor: "#1FC2C1",
+    theme: {
+      _id: "",
+      short: {fr: "Administratif"},
+      name: {fr: "gérer mes papiers"},
+      icon: "office",
+      colors: {
+        color100: "#aaa",
+        color80: "#aaa",
+        color60: "#aaa",
+        color40: "#aaa",
+        color30: "#aaa",
       },
-    ],
+      position: 0,
+      banner: "",
+      appImage: "",
+      shareImage: ""
+    },
   };
 
   const fav3 = {
@@ -115,17 +127,23 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque3",
     abstract: "abstract3",
     typeContenu: "demarche",
-    tags: [
-      {
-        short: "Logement",
-        icon: "house",
-        name: "me loger",
-        darkColor: "#188CC6",
-        lightColor: "#DDF3FA",
-        hoverColor: "#188CC6",
-        illustrationColor: "#F77B0B",
+    theme: {
+      _id: "",
+      short: {fr: "Logement"},
+      name: {fr: "me loger"},
+      icon: "house",
+      colors: {
+        color100: "#aaa",
+        color80: "#aaa",
+        color60: "#aaa",
+        color40: "#aaa",
+        color30: "#aaa",
       },
-    ],
+      position: 0,
+      banner: "",
+      appImage: "",
+      shareImage: ""
+    },
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();

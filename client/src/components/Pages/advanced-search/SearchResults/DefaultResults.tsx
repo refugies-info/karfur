@@ -1,7 +1,7 @@
 import useRTL from "hooks/useRTL";
 import { DispositifsFilteredState } from "lib/filterContents";
 import { useTranslation } from "next-i18next";
-import { IDispositif, IUserFavorite, Language, Tag } from "types/interface";
+import { IDispositif, IUserFavorite, Language } from "types/interface";
 import NoResultPlaceholder from "../NoResultPlaceholder";
 import SearchResultCard from "../SearchResultCard";
 import styles from "./SearchResults.module.scss";

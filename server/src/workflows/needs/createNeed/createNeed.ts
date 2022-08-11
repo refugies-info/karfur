@@ -1,4 +1,5 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { ObjectId } from "mongoose";
 
 import {
   checkRequestIsFromSite,
@@ -8,7 +9,7 @@ import logger = require("../../../logger");
 import { createNeedInDB } from "../../../modules/needs/needs.repository";
 
 interface Query {
-  query: { name: string; tag: string };
+  query: { name: string; theme: ObjectId };
 }
 export const createNeed = async (
   req: RequestFromClientWithBody<Query>,
@@ -28,7 +29,7 @@ export const createNeed = async (
 
     const needDB = {
       fr: { text: need.name, updatedAt: Date.now() },
-      tagName: need.tag,
+      theme: need.theme,
     };
     // @ts-ignore
     await createNeedInDB(needDB);

@@ -1,15 +1,13 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import { Tag, IDispositif } from "types/interface";
+import { IDispositif, Theme } from "types/interface";
 import { FicheOnMobile } from "./FicheOnMobile/FicheOnMobile";
 import { LoadingFicheOnMobile } from "./LoadingFicheOnMobile";
 import NoResultPlaceholder from "components/Pages/advanced-search/NoResultPlaceholder";
-import { useRouter } from "next/router";
-import { getPath } from "routes";
 import styles from "./SearchResultsDisplayedOnMobile.module.scss";
 
 interface Props {
-  tagSelected: null | Tag;
+  themeSelected: null | Theme;
   ville: string;
   principalThemeList: IDispositif[];
   principalThemeListFullFrance: IDispositif[];
@@ -26,7 +24,6 @@ interface Props {
 
 export const SearchResultsDisplayedOnMobile = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
 
   if (props.isLoading) {
     return (
@@ -48,10 +45,10 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
         <NoResultPlaceholder restart={props.restart} />
       )}
 
-      {props.tagSelected && props.ville === "" ? ( // 1. Tag selected and no location
+      {props.themeSelected && props.ville === "" ? ( // 1. Theme selected and no location
         <>
           {props.principalThemeList.map((item: IDispositif, index: number) => {
-            return ( // all dispositif about this tag as primary tag
+            return ( // all dispositif about this theme as primary theme
               <FicheOnMobile
                 key={index}
                 dispositif={item}
@@ -61,7 +58,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           {props.secondaryThemeList
             .concat(props.secondaryThemeListFullFrance)
             .map((item: IDispositif, index: number) => {
-              return ( // all dispositif about this tag as secondary tag
+              return ( // all dispositif about this theme as secondary theme
                 <FicheOnMobile
                   key={index}
                   dispositif={item}
@@ -69,7 +66,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               );
             })}
         </>
-      ) : props.tagSelected && props.ville !== "" ? ( // 2. Tag and location selected
+      ) : props.themeSelected && props.ville !== "" ? ( // 2. Theme and location selected
         <>
           <h5 className={styles.title}>
             {props.nbFilteredResults > 0
@@ -81,7 +78,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           {props.principalThemeList
             .concat(props.secondaryThemeList)
             .map((item: IDispositif, index: number) => {
-              return ( // all dispositif about this tag as primary or secondary tag and this location
+              return ( // all dispositif about this theme as primary or secondary theme and this location
                 <FicheOnMobile
                   key={index}
                   dispositif={item}
@@ -97,7 +94,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
           {props.principalThemeListFullFrance
             .concat(props.secondaryThemeListFullFrance)
             .map((item: IDispositif, index: number) => {
-              return ( // all dispositif about this tag as primary or secondary tag and all France as location
+              return ( // all dispositif about this theme as primary or secondary theme and all France as location
                 <FicheOnMobile
                   dispositif={item}
                   key={index}
@@ -105,7 +102,7 @@ export const SearchResultsDisplayedOnMobile = (props: Props) => {
               );
             })}
         </>
-      ) : ( // 3. All others filters selected but not Tag
+      ) : ( // 3. All others filters selected but not Theme
         <>
           {props.ville !== "" && (
             <h5 className={styles.title}>

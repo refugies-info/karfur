@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
-import { Widget } from "types/interface";
+import { Theme, Widget } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
 import FButton from "components/UI/FButton";
@@ -22,8 +22,8 @@ interface Props {
 export const EditWidgetModal = (props: Props) => {
   const dispatch = useDispatch();
 
-  const [selectedTags, setSelectedTags] = useState<string[]>(
-    props.widget?.tags || []
+  const [selectedThemes, setSelectedThemes] = useState<Theme[]>(
+    props.widget?.themes || []
   );
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<
     ("demarches" | "dispositifs")[]
@@ -42,13 +42,13 @@ export const EditWidgetModal = (props: Props) => {
 
   useEffect(() => {
     if (props.widget) {
-      setSelectedTags(props.widget.tags);
+      setSelectedThemes(props.widget.themes);
       setSelectedTypeContenu(props.widget.typeContenu);
       setSelectedLanguages(props.widget.languages || []);
       setSelectedCity(props.widget?.location?.city || "");
       setSelectedDepartment(props.widget?.location?.department || "");
     } else {
-      setSelectedTags([]);
+      setSelectedThemes([]);
       setSelectedTypeContenu([]);
       setSelectedLanguages([]);
       setSelectedCity("");
@@ -60,7 +60,7 @@ export const EditWidgetModal = (props: Props) => {
     e.preventDefault();
     dispatch(saveWidgetActionCreator({
       _id: props.widget?._id,
-      tags: selectedTags,
+      themes: selectedThemes,
       typeContenu: selectedTypeContenu,
       languages: selectedLanguages,
       location: {
@@ -91,7 +91,7 @@ export const EditWidgetModal = (props: Props) => {
 
   const languages = useSelector(allLanguesSelector);
 
-  const canSubmit = selectedTypeContenu.length > 0 && selectedTags.length > 0;
+  const canSubmit = selectedTypeContenu.length > 0 && selectedThemes.length > 0;
 
   return (
     <DetailsModal
@@ -107,8 +107,9 @@ export const EditWidgetModal = (props: Props) => {
         <Col sm="6">
           <form>
             <ThemesInput
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
+              selectedThemes={selectedThemes}
+              //@ts-ignore
+              setSelectedThemes={setSelectedThemes}
             />
 
             <LocationInput

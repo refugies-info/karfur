@@ -5,43 +5,38 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Streamline from "assets/streamline";
 import {
   AvailableFilters,
-  searchTheme,
+  getSearchTheme,
   searchAge,
   searchFrench,
 } from "data/searchFilters";
-import { Language, Tag } from "types/interface";
+import { Language, Theme } from "types/interface";
 import { AgeFilter, FrenchLevelFilter } from "data/searchFilters";
 import styles from "./MobileSearchFilterModal.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
-import { tags } from "data/tags";
 import LanguageText from "components/UI/Language";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface ThemeButtonProps {
-  item: Tag;
+  theme: Theme;
   onClick: () => void;
 }
 const ThemeButton = (props: ThemeButtonProps) => {
   const { t } = useTranslation();
 
-  const findTag = (tagName: string) => {
-    return tags.find((tag) => tag.name === tagName);
-  };
-
   return (
     <button
       onClick={props.onClick}
       className={`${styles.filter_btn} ${styles.theme}`}
-      style={{ backgroundColor: findTag(props.item.name)?.darkColor }}
+      style={{ backgroundColor: props.theme.colors.color100 }}
     >
-      {t("Tags." + props.item.name, props.item.name)}
-      {findTag(props.item.name)?.icon ? (
-        <Streamline
-          name={findTag(props.item.name)?.icon}
-          stroke={"white"}
-          width={22}
-          height={22}
-        />
-      ) : null}
+      {t("Tags." + props.theme.name.fr, props.theme.name.fr)}
+      <Streamline
+        name={props.theme.icon}
+        stroke={"white"}
+        width={22}
+        height={22}
+      />
     </button>
   );
 };
@@ -94,7 +89,9 @@ interface Props {
 export const MobileSearchFilterModal = (props: Props) => {
   const { t } = useTranslation();
 
-  let data: Tag[] | AgeFilter[] | FrenchLevelFilter[] | Language[] = [];
+  const themes = useSelector(themesSelector);
+  const searchTheme = getSearchTheme(themes);
+  let data: Theme[] | AgeFilter[] | FrenchLevelFilter[] | Language[] = [];
   if (props.type === "theme") {
     data = searchTheme.children || [];
   } else if (props.type === "age") {
@@ -131,8 +128,8 @@ export const MobileSearchFilterModal = (props: Props) => {
         <div key={index}>
           {props.type === "theme" ? (
             <ThemeButton
-              item={item as Tag}
-              onClick={() => selectOption((item as Tag).name, props.type)}
+              theme={item as Theme}
+              onClick={() => selectOption((item as Theme).name.fr, props.type)}
             />
           ) : props.type === "age" || props.type === "frenchLevel" ? (
             <FilterButton

@@ -8,7 +8,6 @@ import FButton from "components/UI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import { TagButton } from "../../Needs/TagButton";
-import { getTagColor, getTag } from "../../Needs/lib";
 import { jsUcfirst, removeAccents } from "lib";
 import FInput from "components/UI/FInput/FInput";
 import { needsSelector } from "services/Needs/needs.selectors";
@@ -112,8 +111,8 @@ export const NeedsChoiceModal = (props: Props) => {
   const allPossibleNeeds = dispositif
     ? allNeeds.filter((need) => {
         let isPossible = false;
-        dispositif.tags.forEach((tag) => {
-          if (tag && tag.name === need.tagName) {
+        [dispositif.theme, ...dispositif.secondaryThemes].forEach((theme) => {
+          if (theme._id === need.theme._id) {
             isPossible = true;
             return;
           }
@@ -210,20 +209,16 @@ export const NeedsChoiceModal = (props: Props) => {
           <SubTitle>Thème(s) de la fiche</SubTitle>
           <TagsContainer>
             {dispositif &&
-              dispositif.tags &&
-              dispositif.tags.map((tag, index) => {
-                if (tag && tag.name) {
-                  const tagColor = getTagColor(tag.name);
-                  return (
-                    <TagButton
-                      name={jsUcfirst(tag.short) || ""}
-                      icon={tag.icon}
-                      isSelected={true}
-                      color={tagColor}
-                    />
-                  );
-                }
-                return <div key={index} />;
+              [dispositif.theme, ...(dispositif.secondaryThemes || [])].map((theme, index) => {
+                return (
+                  <TagButton
+                    key={index}
+                    name={jsUcfirst(theme.short.fr) || ""}
+                    icon={theme.icon}
+                    isSelected={true}
+                    color={theme.colors.color100}
+                  />
+                );
               })}
           </TagsContainer>
 
@@ -238,9 +233,7 @@ export const NeedsChoiceModal = (props: Props) => {
 
           <PossibleNeedsContainer>
             {filteredPossibleNeeds.map((possibleNeed) => {
-              const needTag = getTag(possibleNeed.tagName);
-
-              if (!needTag) return;
+              if (!possibleNeed.theme) return;
               return (
                 <PossibleNeedContainer
                   key={possibleNeed.fr.text}
@@ -248,10 +241,10 @@ export const NeedsChoiceModal = (props: Props) => {
                 >
                   <div>{possibleNeed.fr.text}</div>
                   <TagButton
-                    name={jsUcfirst(needTag.short) || ""}
-                    icon={needTag.icon}
+                    name={jsUcfirst(possibleNeed.theme.short.fr) || ""}
+                    icon={possibleNeed.theme.icon}
                     isSelected={true}
-                    color={needTag.darkColor}
+                    color={possibleNeed.theme.colors.color100}
                   />
                 </PossibleNeedContainer>
               );
@@ -273,20 +266,20 @@ export const NeedsChoiceModal = (props: Props) => {
                 const filteredNeeds = allNeeds.filter((el) => el._id === need);
                 const needPopulate =
                   filteredNeeds.length > 0 ? filteredNeeds[0] : null;
-                const needTag = needPopulate
-                  ? getTag(needPopulate.tagName)
+                const needTheme = needPopulate
+                  ? needPopulate.theme
                   : null;
-                if (!needTag || !needPopulate) return;
+                if (!needTheme || !needPopulate) return;
                 return (
                   <tr key={key}>
                     <td className="align-middle">{needPopulate.fr.text}</td>
                     <td className="align-middle">
                       <div style={{ marginLeft: -4 }}>
                         <TagButton
-                          name={jsUcfirst(needTag.short) || ""}
-                          icon={needTag.icon}
+                          name={jsUcfirst(needTheme.short.fr) || ""}
+                          icon={needTheme.icon}
                           isSelected={true}
-                          color={needTag.darkColor}
+                          color={needTheme.colors.color100}
                         />
                       </div>
                     </td>

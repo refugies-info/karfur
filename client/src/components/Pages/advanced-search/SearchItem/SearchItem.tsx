@@ -14,9 +14,10 @@ import {
   AgeFilter,
   FrenchLevelFilter,
 } from "data/searchFilters";
-import { tags } from "data/tags";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import { cls } from "lib/classname";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   geoSearch: boolean;
@@ -71,15 +72,16 @@ const SearchItem = (props: Props) => {
     setVille("");
     setVilleAuto("");
   };
-  const selectOption = (item: Tag | AgeFilter | FrenchLevelFilter) => {
+  const selectOption = (item: Theme | AgeFilter | FrenchLevelFilter) => {
     const value = props.searchItem.type === "theme" ? [item.name] : item.name;
     props.addToQuery({ [props.searchItem.type]: value });
     toggle();
   };
 
+  const themes = useSelector(themesSelector);
   const active = !!props.query[props.searchItem.type];
-  const currentTag = props.searchItem.type === "theme" && active
-    ? tags.find((tag) => tag.name === props.query.theme?.[0])
+  const currentTheme = props.searchItem.type === "theme" && active
+    ? themes.find((theme) => theme.name.fr === props.query.theme?.[0])
     : null;
 
   useEffect(() => {
@@ -175,11 +177,11 @@ const SearchItem = (props: Props) => {
               fsb_styles.search_btn,
               fsb_styles.extra_padding,
               fsb_styles.in_header,
-              !!currentTag && "bg-" + currentTag.short.split(" ").join("-"),
+              !!currentTheme && "bg-" + currentTheme.short.fr.split(" ").join("-"),
               props.searchItem.type !== "theme" && active && fsb_styles.active,
             )}
           >
-            {active && props.searchItem.type === "theme" && currentTag && (
+            {active && props.searchItem.type === "theme" && currentTheme && (
               <div
                 style={{
                   display: "flex",
@@ -190,7 +192,7 @@ const SearchItem = (props: Props) => {
                 }}
               >
                 <Streamline
-                  name={currentTag.icon}
+                  name={currentTheme.icon}
                   stroke={"white"}
                   width={22}
                   height={22}

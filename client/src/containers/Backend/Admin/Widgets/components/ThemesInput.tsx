@@ -1,50 +1,54 @@
 import FilterButton from "components/UI/FilterButton";
 import TagName from "components/UI/TagName";
-import { tags } from "data/tags";
 import { cls } from "lib/classname";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { Theme } from "types/interface";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
-  selectedTags: string[];
-  setSelectedTags: (callback: any) => void;
+  selectedThemes: Theme[];
+  setSelectedThemes: (callback: (themes: Theme[]) => void) => void;
 }
 
 export const ThemesInput = (props: Props) => {
-  const onTagsChange = (tag: string) => {
-    if (props.selectedTags.includes(tag)) {
+  const themes = useSelector(themesSelector);
+
+  const onTagsChange = (theme: Theme) => {
+    if (props.selectedThemes.find(t => t._id === theme._id)) {
       // remove
-      props.setSelectedTags((tags: string[]) => tags.filter((t) => t !== tag));
+      props.setSelectedThemes((themes: Theme[]) => themes.filter((t) => t._id !== theme._id));
     } else {
       // add
-      props.setSelectedTags((tags: string[]) => [...tags, tag]);
+      props.setSelectedThemes((themes: Theme[]) => [...themes, theme]);
     }
   };
 
   return (
     <div className={parentStyles.form_block}>
       <label className={cls(parentStyles.label, "d-block mb-4")}>Thème(s)</label>
-      {tags.map((tag) => (
+      {themes.map((theme) => (
         <FilterButton
-          key={tag.short}
-          active={props.selectedTags.includes(tag.name)}
-          color={tag.darkColor}
+          key={theme.short.fr}
+          active={props.selectedThemes.find(t => t._id === theme._id)}
+          color={theme.colors.color100}
           onClick={(e: any) => {
             e.preventDefault();
-            onTagsChange(tag.name);
+            onTagsChange(theme);
           }}
           className="mr-2 mb-2"
         >
-          <TagName name={tag.short} icon={tag.icon} />
+          <TagName name={theme.short.fr} icon={theme.icon} />
         </FilterButton>
       ))}
       <FilterButton
-        active={props.selectedTags.length === tags.length}
+        active={props.selectedThemes.length === themes.length}
         onClick={(e: any) => {
           e.preventDefault();
-          if (props.selectedTags.length === tags.length) {
-            props.setSelectedTags([]);
+          if (props.selectedThemes.length === themes.length) {
+            props.setSelectedThemes(() => []);
           } else {
-            props.setSelectedTags(tags.map(tag => tag.name))
+            props.setSelectedThemes(() => themes);
           }
         }}
         className="mr-2 mb-2"

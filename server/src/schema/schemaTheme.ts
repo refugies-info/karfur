@@ -77,10 +77,10 @@ export interface ThemeDoc extends mongoose.Document {
     color30: string;
   }
   position: number;
-  icon: Object;
-  banner: Object;
-  appImage: Object;
-  shareImage: Object;
+  icon: string;
+  banner: string;
+  appImage: string;
+  shareImage: string;
   created_at: Moment;
 }
 

@@ -5,9 +5,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
+import { useSelector } from "react-redux";
 import qs from "query-string";
 import { colors } from "colors";
-import { searchTheme } from "data/searchFilters";
+import { getSearchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { MobileSearchFilterModal } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
@@ -18,6 +19,7 @@ import HomeSearch from "components/Pages/homepage/HomeSearch";
 import CatList from "components/Pages/homepage/CatList";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton";
+import { themesSelector } from "services/Themes/themes.selectors";
 import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
@@ -29,7 +31,6 @@ import { assetsOnServer } from "assets/assetsOnServer";
 import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import useRTL from "hooks/useRTL";
-import { tags } from "data/tags";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 import { getPath } from "routes";
@@ -58,16 +59,18 @@ const Homepage = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const selectOption =  (tagName: string) => {
+  const selectOption =  (themeName: string) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
-      search: qs.stringify({tag: tagName}),
+      search: qs.stringify({tag: themeName}),
     });
   };
   const togglePopup = () => setPopup(!popup);
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleOverlay = () => setOverlay(!overlay);
+  const themes = useSelector(themesSelector);
+  const searchTheme = getSearchTheme(themes);
 
   const isRTL = useRTL();
 
@@ -92,7 +95,7 @@ const Homepage = (props: Props) => {
             />
           </div>
         </div>
-        {popup ? <CatList tags={tags} /> : null}
+        {popup ? <CatList themes={themes} /> : null}
         <div className="chevron-wrapper">
           <a
             href="#plan"

@@ -4,9 +4,10 @@ import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { colors } from "colors";
 import Streamline from "assets/streamline";
-import { tags } from "data/tags";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   dispositif: IDispositif;
@@ -56,6 +57,7 @@ const PictoCircle = styled.div`
 export const FicheOnMobile = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const themes = useSelector(themesSelector);
 
   const navigateToContent = () => {
     const route = props.dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
@@ -66,14 +68,14 @@ export const FicheOnMobile = (props: Props) => {
   };
   return (
     <div>
-      {props.dispositif.tags[0] && (
+      {props.dispositif.theme && (
         <ItemContainer
-          darkColor={props.dispositif.tags[0].darkColor}
+          darkColor={props.dispositif.theme.colors.color100}
           typeContenu={props.dispositif.typeContenu}
-          lightColor={props.dispositif.tags[0].lightColor}
+          lightColor={props.dispositif.theme.colors.color30}
           onClick={navigateToContent}
         >
-          <TitleText color={props.dispositif.tags[0].darkColor}>
+          <TitleText color={props.dispositif.theme.colors.color100}>
             {props.dispositif.titreInformatif}
             {props.dispositif.titreMarque && (
               <SubTitleText>
@@ -83,15 +85,10 @@ export const FicheOnMobile = (props: Props) => {
             )}
           </TitleText>
 
-          <PictoCircle color={props.dispositif.tags[0].darkColor}>
+          <PictoCircle color={props.dispositif.theme.colors.color100}>
             <Streamline
-              name={
-                props.dispositif.tags[0].icon
-                  ? props.dispositif.tags[0].icon
-                  : tags.filter(
-                      (el) => el.short === props.dispositif.tags[0].short
-                    )[0].icon
-              }
+              /* TODO: ensure populate */
+              name={props.dispositif.theme.icon}
               stroke={"white"}
               width={22}
               height={22}

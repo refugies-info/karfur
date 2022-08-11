@@ -29,9 +29,7 @@ export const getStructureWithAllInformationRequired = (
         created_at: simplifiedDispositif.created_at,
         _id: simplifiedDispositif._id,
         status: simplifiedDispositif.status,
-        color: simplifiedDispositif.tags.length
-          ? simplifiedDispositif.tags[0].darkColor
-          : "#000000",
+        color: simplifiedDispositif.theme.colors.color100 || "#000000",
         hasCreatedStructure: index === 0
       };
       dispositifsWithAllInformation.push(element);

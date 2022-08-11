@@ -4,10 +4,10 @@ import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import { TagButton } from "./TagButton";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNeedActionCreator } from "services/Needs/needs.actions";
-import { tags } from "data/tags";
 import styles from "./NeedDetailsModal.module.scss";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   show: boolean;
@@ -43,25 +43,26 @@ const TagsContainer = styled.div`
 `;
 export const AddNeedModal = (props: Props) => {
   const [value, setValue] = useState("");
-  const [tagSelected, setTagSelected] = useState<null | string>(null);
+  const [themeSelected, setThemeSelected] = useState<null | string>(null);
+  const themes = useSelector(themesSelector);
 
   const dispatch = useDispatch();
 
   const onSave = () => {
-    if (value && tagSelected) {
-      dispatch(createNeedActionCreator({ name: value, tag: tagSelected }));
+    if (value && themeSelected) {
+      dispatch(createNeedActionCreator({ name: value, theme: themeSelected }));
     }
     props.toggleModal();
   };
 
   const onValueChange = (e: any) => setValue(e.target.value);
 
-  const onTagClick = (tagName: string) => {
-    if (tagSelected === tagName) {
-      setTagSelected(null);
+  const onThemeClick = (themeId: string) => {
+    if (themeSelected === themeId) {
+      setThemeSelected(null);
       return;
     }
-    setTagSelected(tagName);
+    setThemeSelected(themeId);
     return;
   };
 
@@ -75,14 +76,14 @@ export const AddNeedModal = (props: Props) => {
       <Title>Ajouter un nouveau besoin</Title>
       <SubTitle>Choix du thème*</SubTitle>
       <TagsContainer>
-        {tags.map((tag) => (
+        {themes.map((theme) => (
           <TagButton
-            key={tag.short}
-            name={tag.short}
-            icon={tag.icon}
-            isSelected={!tagSelected || tagSelected === tag.name}
-            color={tag.darkColor}
-            onClick={() => onTagClick(tag.name)}
+            key={theme.short.fr}
+            name={theme.short.fr}
+            icon={theme.icon}
+            isSelected={!themeSelected || themeSelected === theme._id.toString()}
+            color={theme.colors.color100}
+            onClick={() => onThemeClick(theme._id.toString())}
           />
         ))}
       </TagsContainer>
@@ -109,7 +110,7 @@ export const AddNeedModal = (props: Props) => {
           type="validate"
           name="checkmark-outline"
           onClick={onSave}
-          disabled={!tagSelected || !value}
+          disabled={!themeSelected || !value}
         >
           Enregistrer
         </FButton>

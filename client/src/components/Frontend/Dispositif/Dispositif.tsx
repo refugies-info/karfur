@@ -44,7 +44,6 @@ import BackButton from "components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
 import SEO from "components/Seo";
 // data
-import { tags } from "data/tags";
 import {
   contenu,
   menu as menuDispositif,
@@ -63,16 +62,16 @@ import {
   generateUiArray,
   generateMenu,
   handleContentClickInComponent,
-  getMainTag,
   isPinned,
   generateContenu,
   generateAudienceAge,
   getContent,
   isContentForbidden,
+  getMainTheme,
 } from "lib/dispositifPage";
 import { logger } from "logger";
 import { initializeTimer } from "containers/Translation/functions";
-import { DispositifContent, IDispositif, Language, Structure, Tag } from "types/interface";
+import { DispositifContent, IDispositif, Language, Structure, Theme } from "types/interface";
 import useRTL from "hooks/useRTL";
 import { getPath, isRoute, PathNames } from "routes";
 // store
@@ -97,6 +96,7 @@ import styles from "scss/pages/dispositif.module.scss";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
 import { isUserAllowedToModify } from "./TopRightHeader/functions";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
 
@@ -263,7 +263,9 @@ const Dispositif = (props: Props) => {
           sponsors: [],
           status: "Brouillon",
           suggestions: [],
-          tags: [],
+          //@ts-ignore
+          theme: null,
+          secondaryThemes: [],
           titreInformatif: contenu.titreInformatif,
           titreMarque: contenu.titreMarque,
           typeContenu: props.typeContenu,
@@ -900,25 +902,12 @@ const Dispositif = (props: Props) => {
     setIsModified(true);
   };
 
-  // TAGS
-  const changeTag = (key: number, value: Tag) => {
-    if (!dispositif) return;
-    const newTags = dispositif.tags.map((x, i) => (i === key ? value : x));
-    dispatch(updateSelectedDispositifActionCreator({ tags: newTags }));
-  };
-  const addTag = (tags: Tag[]) => {
-    dispatch(updateSelectedDispositifActionCreator({ tags: tags }));
-  };
-  const validateTags = (tags: Tag[]) => {
-    dispatch(updateSelectedDispositifActionCreator({ tags: tags }));
-  };
-  const deleteTag = (idx: number) => {
-    if (!dispositif) return;
-    dispatch(
-      updateSelectedDispositifActionCreator({
-        tags: [...dispositif.tags].filter((_, i) => i !== idx),
-      })
-    );
+  // THEMES
+  const themes = useSelector(themesSelector);
+  const validateThemes = (theme: Theme | null, secondaryThemes: Theme[]) => {
+    const newDispositif: Partial<IDispositif> = { secondaryThemes };
+    if (theme) newDispositif.theme = theme;
+    dispatch(updateSelectedDispositifActionCreator(newDispositif));
   };
 
   // SPONSORS
@@ -1246,10 +1235,10 @@ const Dispositif = (props: Props) => {
   }
 
   const isRTL = useRTL();
-  const mainTag = getMainTag(dispositif);
-  const tag = mainTag.short.split(" ").join("-");
+  const mainTheme = getMainTheme(dispositif);
+  const theme = mainTheme.short.fr.split(" ").join("-") || "";
   //@ts-ignore
-  const bannerStyle = styles[tag];
+  const bannerStyle = styles[theme];
   const possibleLanguages = createPossibleLanguagesObject(
     dispositif?.avancement,
     langues
@@ -1392,7 +1381,7 @@ const Dispositif = (props: Props) => {
                 status={dispositif?.status || ""}
                 typeContenu={dispositif?.typeContenu || "dispositif"}
                 langue={router.locale || "fr"}
-                mainTag={mainTag}
+                mainTheme={mainTheme}
               />
             </Row>
             <Col lg="12" md="12" sm="12" xs="12" className={styles.title}>
@@ -1487,7 +1476,7 @@ const Dispositif = (props: Props) => {
 
           <Row
             className={cls(mobile.hidden_flex, "tags-row bg-darkColor")}
-            style={{ backgroundColor: mainTag?.darkColor || "dark" }}
+            style={{ backgroundColor: mainTheme.colors.color100 }}
           >
             <Col
               style={{ display: "flex", alignItems: "center" }}
@@ -1508,11 +1497,11 @@ const Dispositif = (props: Props) => {
 
             <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
               {
-                // Tags on the right of a dispositif or a demarche
+                // Themes on the right of a dispositif or a demarche
                 <Tags
-                  tags={dispositif?.tags || []}
+                  theme={dispositif?.theme}
+                  secondaryThemes={dispositif?.secondaryThemes || []}
                   disableEdit={disableEdit}
-                  changeTag={changeTag}
                   openTag={() => setShowTagsModal(true)}
                   toggleTutorielModal={toggleTutorielModal}
                   displayTuto={displayTuto}
@@ -1554,7 +1543,7 @@ const Dispositif = (props: Props) => {
                     displayTuto={displayTuto}
                     updateUIArray={updateUIArray}
                     toggleShowPdfModal={() => setShowPdfModal(!showPdfModal)}
-                    mainTag={mainTag}
+                    mainTheme={mainTheme}
                   />
                 }
               </Col>
@@ -1748,7 +1737,7 @@ const Dispositif = (props: Props) => {
                     !showShareContentOnMobileModal
                   )
                 }
-                mainTag={mainTag}
+                mainTheme={mainTheme}
                 toggleTooltip={() => setTooltipOpen(!tooltipOpen)}
               />
 
@@ -1758,7 +1747,7 @@ const Dispositif = (props: Props) => {
                     <FeedbackFooter
                       pushReaction={pushReaction}
                       didThank={didThank}
-                      color={mainTag?.darkColor || "dark"}
+                      color={mainTheme.colors.color100}
                       nbThanks={
                         dispositif?.merci ? dispositif?.merci.length : 0
                       }
@@ -1767,7 +1756,7 @@ const Dispositif = (props: Props) => {
                   {!printing && (
                     <div
                       className={cls(mobile.hidden, "discussion-footer bg-darkColor")}
-                      style={{ backgroundColor: mainTag?.darkColor || "dark" }}
+                      style={{ backgroundColor: mainTheme.colors.color100 }}
                     >
                       <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
                       <span>
@@ -1811,7 +1800,7 @@ const Dispositif = (props: Props) => {
                 updateUIArray={updateUIArray}
                 typeContenu={dispositif?.typeContenu}
                 toggleDispositifValidateModal={toggleDispositifValidateModal}
-                mainTag={mainTag}
+                mainTheme={mainTheme}
                 locale={router.locale}
               />
             </Col>
@@ -1890,10 +1879,10 @@ const Dispositif = (props: Props) => {
             saveDispositif={saveDispositif}
             status={dispositif?.status}
             toggleTutorielModal={toggleTutorielModal}
-            tags={dispositif?.tags || []}
+            theme={dispositif?.theme}
             mainSponsor={dispositif?.mainSponsor}
             menu={menu}
-            toggleTagsModal={() => setShowTagsModal(!showTagsModal)}
+            toggleThemesModal={() => setShowTagsModal(!showTagsModal)}
             toggleSponsorModal={() =>
               //@ts-ignore
               sponsorsRef.current.toggleModal("responsabilite")
@@ -1902,9 +1891,10 @@ const Dispositif = (props: Props) => {
             addItem={addItem}
           />
           <TagsModal
-            tags={dispositif?.tags || []}
-            validate={validateTags}
-            categories={tags}
+            theme={dispositif?.theme}
+            secondaryThemes={dispositif?.secondaryThemes || []}
+            validate={validateThemes}
+            allThemes={themes}
             show={showTagsModal}
             toggle={() => setShowTagsModal(!showTagsModal)}
             toggleTutorielModal={toggleTutorielModal}

@@ -15,7 +15,7 @@ export const setNeedsActionCreator = (value: Need[]) =>
 export const saveNeedActionCreator = (value: Partial<Need>) =>
   action(SAVE_NEED, value);
 
-export const createNeedActionCreator = (value: { name: string; tag: string }) =>
+export const createNeedActionCreator = (value: { name: string; theme: string }) =>
   action(CREATE_NEED, value);
 
 const actions = {

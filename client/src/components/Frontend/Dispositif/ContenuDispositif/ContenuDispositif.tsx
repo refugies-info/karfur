@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import QuickToolbar from "components/Pages/dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe";
-import { DispositifContent, IDispositif, Tag } from "types/interface";
+import { DispositifContent, IDispositif, Theme } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
@@ -33,7 +33,7 @@ interface Props {
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;
-  mainTag: Tag;
+  mainTheme: Theme;
   toggleModal: (show: boolean, name: string) => void
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (val: boolean) => void;
@@ -91,7 +91,7 @@ const ContenuDispositif = (props: Props) => {
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <h3
                   className={"contenu-title " + (key !== 0 ? " mt-20" : "")}
-                  style={{ color: props.mainTag.darkColor }}
+                  style={{ color: props.mainTheme.colors.color100 }}
                 >
                   {dispositifContent.title && getTitle(dispositifContent.title)}
                 </h3>
@@ -172,7 +172,7 @@ const ContenuDispositif = (props: Props) => {
               displayTuto={props.displayTuto}
               addMapBtn={props.addMapBtn}
               printing={props.printing}
-              mainTag={props.mainTag}
+              mainTheme={props.mainTheme}
               showMapButton={props.showMapButton}
               changeTitle={props.changeTitle}
               changeAge={props.changeAge}
