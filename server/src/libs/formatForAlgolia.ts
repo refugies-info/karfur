@@ -28,6 +28,7 @@ export const formatForAlgolia = (
   activeLanguages: LangueDoc[]|null = null
 ): AlgoliaObject => {
 
+  // TODO: handle themes
   if (content.typeContenu === "dispositif" || content.typeContenu === "demarche") {
     const tags = content.tags.map((t: any) => t ? t.name : null).filter((t: any) => t !== null);
     return {

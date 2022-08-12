@@ -30,6 +30,7 @@ const getFormattedAvancement = (
     .filter((langue) => langue !== "fr")
     .map((langue) => getFormattedLocale(langue, "short"));
 };
+/* NOT USED: REPLACE TAGS BY THEMES BEFORE USE */
 const addOrUpdateDispositifInContenusAirtable = async (
   id: string | null,
   title: string,
@@ -72,7 +73,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
     logger.error("[addOrUpdateDispositifInContenusAirtable] error while adding a new line", e)
   }
 };
-
+/* DOES NOT WORK, STILL USING TAGS INSTEAD OF THEMES */
 const exportDispositifInAirtable = (
   titleInformatif: string,
   titreMarque: string,

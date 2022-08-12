@@ -9,8 +9,6 @@ import Streamline from "assets/streamline";
 import { IDispositif, IUserFavorite } from "types/interface";
 import styles from "./SearchResultCard.module.scss";
 import { getPath } from "routes";
-import { useSelector } from "react-redux";
-import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   pin?: (e: any, dispositif: IDispositif|IUserFavorite) => void
@@ -22,17 +20,14 @@ interface Props {
 
 const SearchResultCard = (props: Props) => {
   const router = useRouter();
-  const themes = useSelector(themesSelector);
   const pinned = !props.pinnedList ? false : !!props.pinnedList.find(
     (pinnedDispostifId) => pinnedDispostifId === props.dispositif._id.toString()
   );
 
     let shortTheme = "";
-    let shortThemeFull = "";
     const theme = props.dispositif.theme;
     if (props.dispositif.theme) {
       shortTheme = props.dispositif.theme.short.fr.replace(/ /g, "-");
-      shortThemeFull = props.dispositif.theme.short.fr;
     }
 
   const typeContenu = props.dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";

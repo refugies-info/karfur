@@ -1,11 +1,14 @@
 import { IDispositif, AudienceAge } from "../../types/interface";
 import { Dispositif, DispositifPopulatedDoc, DispositifDoc } from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
+import { StructureDoc } from "src/schema/schemaStructure";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 export const getDispositifsFromDB = async (needFields: Object): Promise<IDispositif[]> =>
   await Dispositif.find({}, needFields)
-    .populate("mainSponsor creatorId")
+    .populate("mainSponsor creatorId theme secondaryThemes")
     .populate("lastModificationAuthor publishedAtAuthor", "username");
+
 
 export const getDispositifArray = async (query: any, extraFields: any = {}, populate: string = "") => {
   const neededFields = {
@@ -13,7 +16,8 @@ export const getDispositifArray = async (query: any, extraFields: any = {}, popu
     titreMarque: 1,
     abstract: 1,
     contenu: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
     created_at: 1,
     publishedAt: 1,
     typeContenu: 1,
@@ -47,7 +51,8 @@ export const updateDispositifInDB = async (
     | { draftSecondReminderMailSentDate: number }
     | { lastReminderMailSentToUpdateContentDate: number }
     | { $pull: { [x: string]: { suggestionId: string } } }
-    | { tags: any }
+    | { theme: ObjectId }
+    | { secondaryThemes: ObjectId[] }
     | { needs: any }
     | { nbVuesMobile: number }
     | { nbFavoritesMobile: number }
@@ -57,7 +62,10 @@ export const updateDispositifInDB = async (
     upsert: true,
     // @ts-ignore
     new: true
-  });
+  }).populate<{
+    theme: ThemeDoc,
+    secondaryThemes: ThemeDoc[]
+  }>("theme secondaryThemes");
 
 export const getActiveDispositifsFromDBWithoutPopulate = async (needFields: Object): Promise<IDispositif[]> =>
   await Dispositif.find({ status: "Actif", typeContenu: "dispositif" }, needFields);
@@ -94,17 +102,27 @@ export const modifyReadSuggestionInDispositif = async (dispositifId: ObjectId, s
     { $set: { ["suggestions.$.read"]: true } }
   );
 
-export const getDispositifById = async (id: ObjectId | string, neededFields: Record<string, number>) =>
-  await Dispositif.findOne({ _id: id }, neededFields);
+export const getDispositifById = async (id: ObjectId | string, neededFields: Record<string, number>, populate: string = "") =>
+  await Dispositif.findOne({ _id: id }, neededFields).populate(populate);
 
 export const getDispositifsWithCreatorId = async (creatorId: ObjectId, neededFields: Record<string, number>) =>
   await Dispositif.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
 
 export const getDispositifByIdWithMainSponsor = async (id: ObjectId, neededFields: Record<string, number> | "all") => {
   if (neededFields === "all") {
-    return await Dispositif.findOne({ _id: id }).populate("mainSponsor");
+    return await Dispositif.findOne({ _id: id })
+      .populate<{
+        mainSponsor: StructureDoc,
+        theme: ThemeDoc,
+        secondaryThemes: ThemeDoc[]
+      }>("mainSponsor theme secondaryThemes");
   }
-  return await Dispositif.findOne({ _id: id }, neededFields).populate("mainSponsor");
+  return await Dispositif.findOne({ _id: id }, neededFields)
+    .populate<{
+      mainSponsor: StructureDoc,
+      theme: ThemeDoc,
+      secondaryThemes: ThemeDoc[]
+    }>("mainSponsor theme secondaryThemes");
 };
 
 export const getPublishedDispositifWithMainSponsor = async (): Promise<DispositifPopulatedDoc[]> =>
@@ -126,7 +144,8 @@ export const getActiveContents = async (neededFields: Record<string, number>) =>
   await Dispositif.find({ status: "Actif" }, neededFields);
 
 export const getActiveContentsFiltered = async (neededFields: Record<string, number>, query: any) =>
-  await Dispositif.find(query, neededFields).populate("mainSponsor");
+  await Dispositif.find(query, neededFields)
+    .populate("mainSponsor theme secondaryThemes");
 
 export const getDispositifByIdWithAllFields = async (id: ObjectId) => await Dispositif.findOne({ _id: id });
 

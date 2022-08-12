@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Highlighter from "react-highlight-words";
 import debounce from "lodash.debounce";
 import type { IDispositif } from "types/interface";
-import * as themes from "data/synonym";
+import * as synonyms from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
@@ -195,10 +195,11 @@ const AdvancedSearchBar = (props: Props) => {
       .replace(/[\u0300-\u036f]/g, "")
       .trim()
       .toLowerCase();
+
     const themesMatchedArray: string[] = [];
     for (const [key, theme] of Object.entries(
       //@ts-ignore
-      themes[router.locale || "fr"]
+      synonyms[router.locale || "fr"]
     )) {
       for (const synonym of theme as string[]) {
         if (

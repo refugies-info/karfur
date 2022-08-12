@@ -12,19 +12,19 @@ var base = new Airtable({
 const logger = require("../../logger");
 const { getFormattedLocale } = require("../../libs/getFormattedLocale");
 
-const addDispositifInContenusAirtable = async (title, link, tagsList, type, departments) => {
+const addDispositifInContenusAirtable = async (title, link, themesList, type, departments) => {
   try {
 
     logger.info("[addDispositifInContenusAirtable] adding a new line", {
       title,
-      tagsList,
+      themesList,
     });
 
     await base("CONTENUS").create(
       [{
         fields: {
           "! Titre": title,
-          "! Thèmes": tagsList,
+          "! Thèmes": themesList,
           "! Réfugiés.info": link,
           "! À traduire ?": true,
           "! Priorité": ["Normale"],
@@ -42,7 +42,7 @@ const addDispositifInContenusAirtable = async (title, link, tagsList, type, depa
 const removeTraductionDispositifInContenusAirtable = async (
   recordId,
   title,
-  tagsList,
+  themesList,
   departments
 ) => {
   try {
@@ -55,7 +55,7 @@ const removeTraductionDispositifInContenusAirtable = async (
     await base("CONTENUS").update([
       {
         id: recordId,
-        fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": tagsList, "! Départements": departments },
+        fields: { "! Titre": title, "! Traduits ?": [], "! Thèmes": themesList, "! Départements": departments },
       },
     ], {typecast: true});
   } catch (e) {
@@ -104,7 +104,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
   titleInformatif,
   titreMarque,
   id,
-  tags,
+  themesList,
   type,
   locale,
   departments,
@@ -115,7 +115,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
       {
         env: process.env.NODE_ENV,
-        data: { titleInformatif, titreMarque, id, tags, locale, departments },
+        data: { titleInformatif, titreMarque, id, themesList, locale, departments },
       }
     );
 
@@ -131,9 +131,6 @@ const addOrUpdateDispositifInContenusAirtable = async (
   });
   const link = "https://www.refugies.info/" + type + "/" + id;
 
-  const tagsList = tags
-    ? tags.filter((tag) => !!tag).map((tag) => tag.short)
-    : [];
   const formula = "({! Réfugiés.info} ='" + link + "')";
   const recordsList = [];
   base("CONTENUS")
@@ -169,7 +166,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
             return;
           }
           // add content in airtable
-          await addDispositifInContenusAirtable(title, link, tagsList, type, departments);
+          await addDispositifInContenusAirtable(title, link, themesList, type, departments);
           return;
         }
         if (hasContentBeenDeleted) {
@@ -181,7 +178,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
           await removeTraductionDispositifInContenusAirtable(
             recordsList[0].id,
             title,
-            tagsList,
+            themesList,
             departments
           );
           return;

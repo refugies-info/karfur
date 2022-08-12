@@ -236,18 +236,18 @@ const SearchItem = (props: Props) => {
                 props.searchItem.type === "theme" && styles.tags,
               )}
             >
-              {(props.searchItem?.children || []).map(
-                (item: any, idx: number) => {
+              {((props.searchItem?.children || []) as Theme[]).map(
+                (theme: Theme, idx: number) => {
                   return (
                     <FSearchBtn
                       key={idx}
-                      onClick={() => selectOption(item)}
-                      filter={!item.short}
+                      onClick={() => selectOption(theme)}
+                      filter={!theme.short?.fr}
                       searchOption
                       inHeader
-                      color={(item.short || "").replace(/ /g, "-")}
+                      color={(theme.short?.fr || "").replace(/ /g, "-")}
                     >
-                      {item.icon ? (
+                      {theme.icon ? (
                         <div
                           style={{
                             display: "flex",
@@ -258,14 +258,14 @@ const SearchItem = (props: Props) => {
                           }}
                         >
                           <Streamline
-                            name={item.icon}
+                            name={theme.icon}
                             stroke={"white"}
                             width={22}
                             height={22}
                           />
                         </div>
                       ) : null}
-                      {t("Tags." + item.name, item.name)}
+                      {t("Tags." + (theme.name.fr || theme.name), theme.name.fr || theme.name)}
                     </FSearchBtn>
                   );
                 }

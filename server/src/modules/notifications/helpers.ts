@@ -81,6 +81,7 @@ const parseTargetAge = (targetAge: string) => {
 };
 
 //Extracts age, french level, departments from a dispositif
+/* TODO: handle tags here */
 export const parseDispositif = (dispositif: IDispositif): Requirements => {
   const target = dispositif?.contenu?.find((item: any) => getTitle(item.title) === TARGET_AUDIENCE);
 
@@ -127,6 +128,7 @@ export const filterTargetsForDemarche = (targets: AppUserType[], requirements: R
   });
 };
 
+/* TODO: handle tags here */
 export const getNotificationEmoji = (dispositif: IDispositif) => {
   if (dispositif?.tags?.length) {
     switch (dispositif.tags[0].name) {

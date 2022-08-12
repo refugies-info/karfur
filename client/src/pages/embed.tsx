@@ -22,6 +22,7 @@ import { ThemeResults } from "components/Pages/advanced-search/SearchResults/The
 import { CityResults } from "components/Pages/advanced-search/SearchResults/CityResults";
 import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 export type SearchQuery = {
   theme?: string;
@@ -123,6 +124,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         store.dispatch(fetchActiveDispositifsActionsCreator());
       }
       store.dispatch(fetchLanguesActionCreator());
+      store.dispatch(fetchThemesActionCreator());
       store.dispatch(END);
       await store.sagaTask?.toPromise();
 

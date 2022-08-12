@@ -24,6 +24,7 @@ import { UserDoc } from "../../../schema/schemaUser";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 export interface Request {
   titreInformatif: string;
@@ -34,7 +35,8 @@ export interface Request {
   typeContenu: "dispositif" | "demarche";
   mainSponsor: ObjectId;
   titreMarque: string;
-  tags?: any[];
+  theme?: ThemeDoc;
+  secondaryThemes?: ThemeDoc[];
   needs?: ObjectId[];
   saveType: "auto" | "validate"| "save"
 }
@@ -157,10 +159,10 @@ export const addDispositif = async (
       });
 
       if (originalDispositif.needs) {
-        // if a need of the content has a tag that is not a tag of the content we remove the need
+        // if a need of the content has a theme that is not a theme of the content we remove the need
         const newNeeds = await computePossibleNeeds(
           originalDispositif.needs,
-          dispositif.tags
+          [dispositif.theme._id, ...dispositif.secondaryThemes.map(t => t._id)]
         );
         dispositif.needs = newNeeds;
       }
@@ -184,6 +186,13 @@ export const addDispositif = async (
       // @ts-ignore
       dispositif.lastModificationAuthor = req.userId;
 
+      // format themes to keep ids only
+      const themesList = [dispositif.theme, ...dispositif.secondaryThemes].map(t => t.short.fr);
+      // @ts-ignore
+      dispositif.theme = dispositif.theme._id;
+      // @ts-ignore
+      dispositif.secondaryThemes = dispositif.secondaryThemes.map(t => t._id);
+
       //now I need to save the dispositif and the translation
       dispResult = await updateDispositifInDB(
         dispositif.dispositifId,
@@ -203,7 +212,7 @@ export const addDispositif = async (
             dispResult.titreInformatif,
             dispResult.titreMarque,
             dispResult._id,
-            dispResult.tags,
+            themesList,
             dispResult.typeContenu,
             null,
             getDispositifDepartments(dispResult),
@@ -261,6 +270,10 @@ export const addDispositif = async (
       dispositif.creatorId = req.userId;
       // @ts-ignore
       dispositif.lastModificationAuthor = req.userId;
+      // @ts-ignore
+      dispositif.theme = dispositif.theme?._id;
+      // @ts-ignore
+      dispositif.secondaryThemes = (dispositif.secondaryThemes || []).map(t => t._id);
       // @ts-ignore
       dispResult = await createDispositifInDB(dispositif);
 

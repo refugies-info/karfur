@@ -60,6 +60,7 @@ import { CityResults } from "components/Pages/advanced-search/SearchResults/City
 import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
 import { OrderThemeResults } from "components/Pages/advanced-search/SearchResults/OrderThemeResults";
 import { LoadingResults } from "components/Pages/advanced-search/SearchResults/LoadingResults";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface SearchToggleProps {
   isRtl: boolean;
@@ -812,6 +813,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       } else {
         store.dispatch(fetchActiveDispositifsActionsCreator());
       }
+      store.dispatch(fetchThemesActionCreator());
       store.dispatch(END);
       await store.sagaTask?.toPromise();
 

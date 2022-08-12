@@ -3,10 +3,18 @@ import { addLog } from "../../../modules/logs/logs.service";
 import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { Request } from "./addDispositif";
 import logger from "../../../logger";
+import { StructureDoc } from "src/schema/schemaStructure";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 export const log = async (
   dispositif: Request,
-  originalDispositif: DispositifDoc & { mainSponsor: {_id: ObjectId} },
+  originalDispositif: DispositifDoc & {
+    _id: ObjectId;
+  } & {
+    mainSponsor: StructureDoc;
+    theme: ThemeDoc;
+    secondaryThemes: ThemeDoc[];
+  },
   authorId: ObjectId
 ) => {
   try {
@@ -40,10 +48,16 @@ export const log = async (
       );
     }
 
-    const newTags = JSON.stringify(dispositif.tags.filter(t => !!t).map(tag => tag.short).sort());
+    const newThemes = JSON.stringify(
+      [dispositif.theme, ...dispositif.secondaryThemes.sort()]
+        .filter(t => !!t)
+    );
     // @ts-ignore
-    const oldTags = JSON.stringify(originalDispositif.tags.filter(t => !!t).map(tag => tag.short).sort());
-    if (newTags !== oldTags) {
+    const oldThemes = JSON.stringify(
+      [originalDispositif.theme, ...originalDispositif.secondaryThemes.sort()]
+        .filter(t => !!t)
+    );
+    if (newThemes !== oldThemes) {
       await addLog(
         dispositif.dispositifId,
         "Dispositif",

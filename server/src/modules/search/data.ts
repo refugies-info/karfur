@@ -1,5 +1,6 @@
 import { AlgoliaObject } from "../../types/interface";
 
+/* TODO: remove this */
 export const indexableTags: AlgoliaObject[] = [
   {
     "objectID": "Français",

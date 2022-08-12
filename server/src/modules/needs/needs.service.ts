@@ -4,25 +4,19 @@ import { ObjectId } from "mongoose";
 
 export const computePossibleNeeds = async (
   actualNeeds: ObjectId[],
-  contentTags: any[]
+  contentThemes: ObjectId[]
 ) => {
   try {
     const allNeeds = await getNeedsFromDB();
 
     const newNeeds = actualNeeds.filter((needId) => {
-      const correspondingNeedArray = allNeeds.filter(
-        (need) => need._id.toString() === needId.toString()
-      );
-      const correspondingNeedTheme =
-        correspondingNeedArray.length > 0
-          ? correspondingNeedArray[0].tagName
-          : null;
+      const need = allNeeds.find((n) => n._id === needId);
+      const correspondingNeedTheme = need?.theme || null;
       if (!correspondingNeedTheme) return false;
       let isNeedInTags = false;
-      if (contentTags) {
-        // @ts-ignore
-        contentTags.forEach((tag) => {
-          if (tag && tag.name === correspondingNeedTheme) {
+      if (contentThemes) {
+        contentThemes.forEach((themeId) => {
+          if (themeId === correspondingNeedTheme._id) {
             isNeedInTags = true;
             return;
           }

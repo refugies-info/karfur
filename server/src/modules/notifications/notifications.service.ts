@@ -63,6 +63,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
   if (notificationActive) {
     logger.error("[sendNotificationsForDispositif] notifications actives");
     try {
+      /* TODO: get theme here */
       const dispositif = await getDispositifById(dispositifId, {
         status: 1,
         titreMarque: 1,
@@ -151,6 +152,7 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
   if (notificationActive) {
     logger.error("[sendNotificationsForDemarche] notifications actives");
     try {
+      /* TODO: get theme here */
       const demarche = await getDispositifById(demarcheId, {
         status: 1,
         typeContenu: 1,

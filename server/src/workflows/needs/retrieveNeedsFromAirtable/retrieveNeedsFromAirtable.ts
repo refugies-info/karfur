@@ -5,7 +5,7 @@ var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY_APPLI }).base(
   process.env.AIRTABLE_BASE_APPLI
 );
-// TODO: switch from tag to theme
+/* NOT USED: REPLACE TAGS BY THEMES BEFORE USE */
 export const retrieveNeedsFromAirtable = async (req: {}, res: Res) => {
   try {
     logger.info("[retrieveNeedsFromAirtable]");

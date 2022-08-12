@@ -14,7 +14,8 @@ import { log } from "./log";
 
 interface QueryUpdate {
   dispositifId: ObjectId;
-  tags?: Object[];
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
   needs?: ObjectId[];
 }
 export const updateDispositifTagsOrNeeds = async (
@@ -27,26 +28,29 @@ export const updateDispositifTagsOrNeeds = async (
     if (!req.body || !req.body.query) {
       throw new Error("INVALID_REQUEST");
     }
-    const { dispositifId, tags, needs } = req.body.query;
-    logger.info("[updateDispositifTagsOrNeeds]", { dispositifId, tags });
+    const { dispositifId, theme, secondaryThemes, needs } = req.body.query;
+    logger.info("[updateDispositifTagsOrNeeds]", { dispositifId, theme, secondaryThemes });
 
     // @ts-ignore
     checkIfUserIsAdmin(req.user.roles);
+    const allThemes: ObjectId[] = [];
+    if (theme) allThemes.push(theme);
+    if (secondaryThemes?.length) allThemes.push(...secondaryThemes);
 
     let newNeeds: ObjectId[] = [];
-    if (tags) {
+    if (theme || secondaryThemes) {
       const originalDispositif = await getDispositifById(dispositifId, {
         needs: 1,
       });
       if (originalDispositif.needs) {
         // if a need of the content has a tag that is not a tag of the content we remove the need
-        newNeeds = await computePossibleNeeds(originalDispositif.needs, tags);
+        newNeeds = await computePossibleNeeds(originalDispositif.needs, allThemes);
       }
     }
 
-    const newDispositif = tags ? { tags, needs: newNeeds } : { needs };
+    const newDispositif = theme ? { theme, secondaryThemes, needs: newNeeds } : { needs };
 
-    await log(dispositifId, !!tags, req.user._id)
+    await log(dispositifId, allThemes.length > 0, req.user._id)
 
     await updateDispositifInDB(dispositifId, newDispositif);
     return res.status(200).json({ text: "OK" });
