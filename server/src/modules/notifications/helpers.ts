@@ -96,7 +96,7 @@ export const parseDispositif = (dispositif: IDispositif): Requirements => {
   };
 };
 
-export const filterTargets = (targets: AppUserType[], requirements: Requirements) => {
+export const filterTargets = (targets: AppUserType[], requirements: Requirements, lang: string) => {
   return targets.filter((target) => {
     const { age, departments, type, mainTheme } = requirements;
     const { notificationsSettings } = target;
@@ -108,7 +108,9 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const typeOk = type === "dispositif" ? true : notificationsSettings?.demarches;
     const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
 
-    return ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
+    const langOk = target.selectedLanguage === lang;
+
+    return langOk && ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
