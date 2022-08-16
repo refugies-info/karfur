@@ -82,7 +82,8 @@ describe("getUserFavoritesInLocale", () => {
     titreInformatif: 1,
     titreMarque: 1,
     _id: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
     abstract: 1,
     status: 1,
     typeContenu: 1,
@@ -126,8 +127,8 @@ describe("getUserFavoritesInLocale", () => {
     };
     await getUserFavoritesInLocale(req, res);
 
-    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields);
-    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields);
+    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields, "theme secondaryThemes");
+    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields, "theme secondaryThemes");
     expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo1, "fr");
     expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo3, "fr");
 
