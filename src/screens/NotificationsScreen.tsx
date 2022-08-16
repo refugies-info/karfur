@@ -113,17 +113,11 @@ export const NotificationsScreen = () => {
       <HeaderWithBack navigation={navigation} />
       <View style={styles.container}>
         <View
-          style={[
-            styles.titleContainer,
-            isRTL && {
-              flexDirection: "row-reverse",
-            },
-          ]}
+          style={styles.titleContainer}
         >
           <View
             style={{
-              display: "flex",
-              flexDirection: isRTL ? "row-reverse" : "row",
+              flexDirection: "row",
               alignItems: "center",
             }}
           >
@@ -173,6 +167,7 @@ export const NotificationsScreen = () => {
             style={[
               {
                 display: "flex",
+                marginBottom: theme.margin * 4
               },
               !isLoading &&
                 !notifications?.notifications?.length && {
@@ -214,7 +209,7 @@ export const NotificationsScreen = () => {
               <FlatList
                 contentContainerStyle={{
                   marginBottom: theme.margin * 2,
-                  paddingBottom: theme.margin * 2,
+                  paddingBottom: theme.margin * 4,
                 }}
                 data={notifications?.notifications || []}
                 renderItem={({ item }) => renderCard(item)}
