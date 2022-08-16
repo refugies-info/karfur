@@ -85,7 +85,7 @@ const DispositifValidateModal = (props: Props) => {
 
         <Check
           section="themes"
-          missingElement={props.theme}
+          missingElement={!props.theme}
           toggleModal={props.toggleThemesModal}
         />
 

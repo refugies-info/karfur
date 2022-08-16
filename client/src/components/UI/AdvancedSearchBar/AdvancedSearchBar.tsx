@@ -353,8 +353,8 @@ const AdvancedSearchBar = (props: Props) => {
                             <ThemeText rtl={isRTL}>
                               {selectedTheme
                                 ? t(
-                                    "Tags." + selectedTheme.short,
-                                    selectedTheme.short
+                                    "Tags." + selectedTheme.short.fr,
+                                    selectedTheme.short.fr
                                   )
                                 : null}
                             </ThemeText>

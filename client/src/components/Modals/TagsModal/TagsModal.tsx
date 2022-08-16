@@ -70,9 +70,9 @@ const DispositifValidateModal = (props: Props) => {
   useEffect(() => {
     if (props.theme) setTheme1(props.theme);
     if (props.secondaryThemes.length > 0) {
-      if (props.secondaryThemes[1]) setTheme2(props.secondaryThemes[1]);
-      if (props.secondaryThemes[2]) setTheme3(props.secondaryThemes[2]);
-      if (!props.secondaryThemes[1] && !props.secondaryThemes[2]) setNoTheme(true);
+      if (props.secondaryThemes[0]) setTheme2(props.secondaryThemes[0]);
+      if (props.secondaryThemes[1]) setTheme3(props.secondaryThemes[1]);
+      if (!props.secondaryThemes[0] && !props.secondaryThemes[1]) setNoTheme(true);
     }
     return () => {
       setTheme1(null);
@@ -86,7 +86,7 @@ const DispositifValidateModal = (props: Props) => {
     if (theme1 && theme1._id === theme._id) {
       setTheme1(null);
     } else {
-      setTheme1(theme1);
+      setTheme1(theme);
     }
 
     if (theme2 && theme._id === theme2._id) setTheme2(null);

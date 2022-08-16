@@ -73,7 +73,7 @@ const SearchItem = (props: Props) => {
     setVilleAuto("");
   };
   const selectOption = (item: Theme | AgeFilter | FrenchLevelFilter) => {
-    const value = props.searchItem.type === "theme" ? [item.name] : item.name;
+    const value = props.searchItem.type === "theme" ? [(item as Theme).name.fr] : item.name;
     props.addToQuery({ [props.searchItem.type]: value });
     toggle();
   };
@@ -198,7 +198,7 @@ const SearchItem = (props: Props) => {
                   height={22}
                 />
               </div>
-            )}
+                )}
             {active
               ? t("Tags." + props.query[props.searchItem.type], props.query[props.searchItem.type])
               : t(

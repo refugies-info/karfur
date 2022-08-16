@@ -83,7 +83,7 @@ export const ThemeResults = (props: Props) => {
             />
             <p className={styles.text}>
               {selectedTheme
-                ? t("Tags." + selectedTheme.short, selectedTheme.short)
+                ? t("Tags." + selectedTheme.short.fr, selectedTheme.short.fr)
                 : null}
             </p>
           </span>
@@ -204,7 +204,7 @@ export const ThemeResults = (props: Props) => {
             />
             <p className={styles.text}>
               {selectedTheme
-                ? t("Tags." + selectedTheme.short, selectedTheme.short)
+                ? t("Tags." + selectedTheme.short.fr, selectedTheme.short.fr)
                 : null}
             </p>
           </span>
