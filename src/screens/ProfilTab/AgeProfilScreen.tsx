@@ -7,7 +7,7 @@ import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ageFilters } from "../../data/filtersData";
 import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
@@ -19,11 +19,11 @@ import {
 } from "../../services/redux/User/user.actions";
 
 const ContentContainer = styled.View`
-  padding: ${theme.margin * 3}px;
+  padding: ${styles.margin * 3}px;
 `;
 
 const Title = styled(TextBigBold)`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 
 export const AgeProfilScreen = ({

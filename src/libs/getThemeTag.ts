@@ -1,12 +1,12 @@
-import { theme } from "../theme"
+import { styles } from "../theme"
 import { tags } from "../data/tagData";
 import { ThemeTag } from "../types/interface";
 
 export const defaultColors: ThemeTag = {
-  tagDarkColor: theme.colors.black,
-  tagVeryLightColor: theme.colors.white,
+  tagDarkColor: styles.colors.black,
+  tagVeryLightColor: styles.colors.white,
   tagName: "",
-  tagLightColor: theme.colors.white,
+  tagLightColor: styles.colors.white,
   iconName: ""
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Animated, StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { HeaderWithLogo, HeaderWithBackForWrapper } from "./HeaderWithLogo";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -18,20 +18,20 @@ interface Props {
 const MainSimpleContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: ${theme.margin}px;
-  background-color: ${theme.colors.lightGrey};
+  padding-bottom: ${styles.margin}px;
+  background-color: ${styles.colors.lightGrey};
   z-index: 4;
   ${(props: { useShadow: boolean, showSimplifiedHeader: boolean }) =>
-    props.useShadow && props.showSimplifiedHeader ? theme.shadows.xs : ""}
+    props.useShadow && props.showSimplifiedHeader ? styles.shadows.xs : ""}
 `;
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   headerText: {
-    fontSize: theme.fonts.sizes.big,
-    fontFamily: theme.fonts.families.circularBold,
+    fontSize: styles.fonts.sizes.big,
+    fontFamily: styles.fonts.families.circularBold,
     lineHeight: 32,
     position: "absolute",
-    left: theme.margin * 3
+    left: styles.margin * 3
   },
 });
 
@@ -78,7 +78,7 @@ export const HeaderAnimated = (props: Props) => {
           style={
             [{
               justifyContent: "flex-end",
-              paddingLeft: theme.margin * 3,
+              paddingLeft: styles.margin * 3,
               position: "relative"
             },
             { height: headerHeight }
@@ -86,14 +86,14 @@ export const HeaderAnimated = (props: Props) => {
         >
           <Animated.Text
             style={[
-              styles.headerText,
+              stylesheet.headerText,
               {
                 textAlign: isRTL ? "right" : "left",
-                marginRight: isRTL ? 0 : theme.margin,
-                marginLeft: isRTL ? theme.margin : 0,
+                marginRight: isRTL ? 0 : styles.margin,
+                marginLeft: isRTL ? styles.margin : 0,
                 fontSize: headerFontSize,
                 paddingBottom: textPaddingBottom,
-                color: theme.colors.black,
+                color: styles.colors.black,
               },
             ]}
           >
@@ -119,11 +119,11 @@ interface HeaderBackProps {
 }
 
 const MainContainer = styled.View`
-  background-color: ${theme.colors.lightGrey};
-  padding-bottom: ${theme.margin}px;
+  background-color: ${styles.colors.lightGrey};
+  padding-bottom: ${styles.margin}px;
   z-index: 4;
   ${(props: { showShadow: boolean }) =>
-    props.showShadow ? theme.shadows.xs : ""}
+    props.showShadow ? styles.shadows.xs : ""}
 `;
 
 export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
@@ -150,7 +150,7 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
 
   const headerTop = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [theme.margin * 4, theme.margin],
+    outputRange: [styles.margin * 4, styles.margin],
   });
 
   return (
@@ -159,13 +159,13 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
         onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
         navigation={props.navigation}
       />
-      <View style={{ paddingHorizontal:theme.margin * 3 }}>
+      <View style={{ paddingHorizontal:styles.margin * 3 }}>
         <Animated.Text
           style={[
             {
-              fontFamily: theme.fonts.families.circularBold,
+              fontFamily: styles.fonts.families.circularBold,
               textAlign: isRTL ? "right" : "left",
-              color: theme.colors.black,
+              color: styles.colors.black,
             },
             {
               fontSize: headerFontSize,

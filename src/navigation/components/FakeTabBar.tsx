@@ -3,20 +3,20 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import styled from "styled-components";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TabBarItem } from "./TabBarItem";
 
 interface TabBarProps {
   width: number
 }
 const FakeTabBarContainer = styled(View)`
-  background-color: ${theme.colors.greyF7};
+  background-color: ${styles.colors.greyF7};
   height: 40px;
   width: ${(props: {width: number}) => props.width}px;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border-radius: ${theme.radius * 2}px;
+  border-radius: ${styles.radius * 2}px;
 `;
 export const FakeTabBar = (props: TabBarProps) => {
   const { t } = useTranslation();

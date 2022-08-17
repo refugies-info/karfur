@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
 import { getThemeTag } from "../../libs/getThemeTag";
 import { sortByOrder } from "../../libs";
@@ -15,8 +15,8 @@ import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 import { ReadableText } from "../ReadableText";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
-  margin-top: ${theme.margin * 7}px;
-  margin-bottom: ${theme.margin * 3}px;
+  margin-top: ${styles.margin * 7}px;
+  margin-bottom: ${styles.margin * 3}px;
 `;
 
 interface Props {
@@ -46,10 +46,10 @@ const SearchSuggestions = (props: Props) => {
       onMomentumScrollEnd={props.onScrollEnd}
       onScrollEndDrag={props.onScrollEnd}
       contentContainerStyle={{
-        paddingBottom: theme.margin * 5 + (insets.bottom || 0)
+        paddingBottom: styles.margin * 5 + (insets.bottom || 0)
       }}
     >
-      <View style={{ marginHorizontal: theme.margin * 3 }}>
+      <View style={{ marginHorizontal: styles.margin * 3 }}>
         <ListSubtitle isRTL={isRTL}>
           <ReadableText>
             {t("search_screen.most_searched_content", "Les fiches les plus recherchées")}
@@ -69,14 +69,14 @@ const SearchSuggestions = (props: Props) => {
               titreMarque={content.titreMarque}
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
-              style={{ marginBottom: theme.margin * 3 }}
+              style={{ marginBottom: styles.margin * 3 }}
               backScreen="Search"
             />
           )
         })}
       </View>
       <View>
-        <ListSubtitle style={{ marginHorizontal: theme.margin * 3 }} isRTL={isRTL}>
+        <ListSubtitle style={{ marginHorizontal: styles.margin * 3 }} isRTL={isRTL}>
             <ReadableText>
               {t("search_screen.themes", "Les thèmes")}
             </ReadableText>
@@ -87,9 +87,9 @@ const SearchSuggestions = (props: Props) => {
             flexDirection: !isRTL ? "row" : "row-reverse",
             flexWrap: "wrap",
             width: 1100,
-            paddingHorizontal: theme.margin * 3,
-            paddingBottom: theme.margin,
-            marginBottom: theme.margin
+            paddingHorizontal: styles.margin * 3,
+            paddingBottom: styles.margin,
+            marginBottom: styles.margin
           }}
           horizontal={true}
         >

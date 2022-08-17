@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import { getTabBarIcon } from "../../libs/getTabBarIcon";
 import { hasUserNewFavoritesSelector } from "../../services/redux/User/user.selectors";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TabBarIcon } from "./TabBarIcon";
 import { TabBarLabel } from "./TabBarLabel";
 
@@ -28,7 +28,7 @@ export const TabBarItem = (props: Props) => {
       style={{ flex: 1, alignItems: "center" }}
     >
       <TabBarIcon
-        color={props.isFocused ? theme.colors.darkBlue : theme.colors.darkGrey}
+        color={props.isFocused ? styles.colors.darkBlue : styles.colors.darkGrey}
         focused={props.isFocused}
         iconName={getTabBarIcon(props.route.name)}
         badge={props.route.name === "Favoris" ? hasUserNewFavorites : false}

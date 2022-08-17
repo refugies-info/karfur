@@ -15,7 +15,7 @@ import { ProfileParamList, BottomTabParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
@@ -37,68 +37,68 @@ const LOGO_WIDTH = 104;
 const LOGO_HEIGHT = 80;
 
 const ContentContainer = styled.ScrollView`
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${styles.margin * 3}px;
+  padding-top: ${styles.margin * 2}px;
 `;
 const Card = styled.View`
   width: ${CARD_WIDTH}px;
-  padding: ${theme.margin * 2}px;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
-  ${theme.shadows.lg}
+  padding: ${styles.margin * 2}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
+  ${styles.shadows.lg}
 `;
 const CardImage = styled.Image`
   width: 248px;
   height: 176px;
   align-self: center;
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 const CardTitle = styled(TextNormalBold)`
-  margin-bottom: ${theme.margin}px;
-  margin-top: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin}px;
+  margin-top: ${styles.margin * 2}px;
 `;
 const Title = styled(TextBigBold)`
-  margin-bottom: ${theme.margin}px;
-  margin-top: ${theme.margin * 7}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-bottom: ${styles.margin}px;
+  margin-top: ${styles.margin * 7}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 const LogoContainer = styled.View`
-  padding: ${theme.margin * 2}px;
+  padding: ${styles.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? theme.margin * 3 : 0}px;
+  !props.isRTL ? styles.margin * 3 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? theme.margin * 3 : 0}px;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
+  props.isRTL ? styles.margin * 3 : 0}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
 `;
 const LogoImage = styled.Image`
   width: ${LOGO_WIDTH}px;
   height: ${LOGO_HEIGHT}px;
 `;
 const TeamContainer = styled.ScrollView`
-  padding-horizontal: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  margin-bottom: ${styles.margin * 3}px;
 `;
 const TeamItem = styled(RTLView)`
-  padding: ${theme.margin * 2}px;
+  padding: ${styles.margin * 2}px;
   border-width: 2px;
-  border-color: ${theme.colors.benevolat100};
-  background-color: ${theme.colors.benevolat30};
-  border-radius: ${theme.radius * 2}px;
-  margin-bottom: ${theme.margin * 2}px;
+  border-color: ${styles.colors.benevolat100};
+  background-color: ${styles.colors.benevolat30};
+  border-radius: ${styles.radius * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 const TeamDetails = styled.View`
   margin-right: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? theme.margin * 3 : 0}px;
+  props.isRTL ? styles.margin * 3 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? theme.margin * 3 : 0}px;
+  !props.isRTL ? styles.margin * 3 : 0}px;
   flex-shrink: 1;
   flex-grow: 0;
 `;
 const TeamName = styled(TextSmallBold)`
-  background-color: ${theme.colors.white};
-  margin-bottom: ${theme.margin}px;
-  padding: ${theme.margin / 2}px;
+  background-color: ${styles.colors.white};
+  margin-bottom: ${styles.margin}px;
+  padding: ${styles.margin / 2}px;
   width: auto;
 `;
 const TeamRole = styled(TextSmallNormal)`
@@ -107,16 +107,16 @@ const TeamRole = styled(TextSmallNormal)`
 
 const styles = StyleSheet.create({
   scrollview: {
-    paddingHorizontal: theme.margin * 3,
-    paddingTop: theme.margin * 2,
-    paddingBottom: theme.margin,
-    marginBottom: theme.margin
+    paddingHorizontal: styles.margin * 3,
+    paddingTop: styles.margin * 2,
+    paddingBottom: styles.margin,
+    marginBottom: styles.margin
   },
   logoScrollview: {
-    paddingHorizontal: theme.margin * 3,
-    paddingTop: theme.margin * 2,
-    paddingBottom: theme.margin,
-    marginBottom: theme.margin
+    paddingHorizontal: styles.margin * 3,
+    paddingTop: styles.margin * 2,
+    paddingBottom: styles.margin,
+    marginBottom: styles.margin
   },
 });
 
@@ -173,7 +173,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         onScroll={handleScroll}
         scrollEventThrottle={5}
       >
-        <TextNormal style={{ marginHorizontal: theme.margin * 3 }}>
+        <TextNormal style={{ marginHorizontal: styles.margin * 3 }}>
           {t("about_screen.subheader1")} {t("about_screen.subheader2")}
         </TextNormal>
 
@@ -188,8 +188,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           horizontal={true}
         >
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0,
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0,
             justifyContent: "space-between"
           }}>
             <CardImage
@@ -201,8 +201,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
             <TextSmallNormal>{t("about_screen.mission_3_subheader")}</TextSmallNormal>
           </Card>
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0,
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0,
             justifyContent: "space-between"
           }}>
             <CardImage
@@ -235,8 +235,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           horizontal={true}
         >
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0
           }}>
             <CardImage
               source={Problematique1}
@@ -247,8 +247,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
             <TextSmallNormal>{t("about_screen.problem_1_subheader")}</TextSmallNormal>
           </Card>
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0
           }}>
             <CardImage
               source={Problematique2}
@@ -275,14 +275,14 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           ref={scrollviewContributif}
           contentContainerStyle={{
             ...styles.scrollview,
-            paddingBottom: theme.margin * 4,
+            paddingBottom: styles.margin * 4,
             flexDirection: !isRTL ? "row" : "row-reverse",
           }}
           horizontal={true}
         >
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0,
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0,
             justifyContent: "space-between"
           }}>
             <View>
@@ -296,8 +296,8 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
             </View>
           </Card>
           <Card style={{
-            marginRight: !isRTL ? theme.margin * 3 : 0,
-            marginLeft: isRTL ? theme.margin * 3 : 0,
+            marginRight: !isRTL ? styles.margin * 3 : 0,
+            marginLeft: isRTL ? styles.margin * 3 : 0,
             justifyContent: "space-between"
           }}>
             <View>
@@ -324,10 +324,10 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         </ScrollView>
 
         {/* PARTENAIRES */}
-        <Title style={{ marginBottom: theme.margin * 3 }}>
+        <Title style={{ marginBottom: styles.margin * 3 }}>
           {t("about_screen.partners")}
         </Title>
-        <TextSmallBold style={{ marginHorizontal: theme.margin * 3 }}>
+        <TextSmallBold style={{ marginHorizontal: styles.margin * 3 }}>
           {t("about_screen.call_1")}
         </TextSmallBold>
 
@@ -351,25 +351,25 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         ))}
         </ScrollView>
 
-        <TextSmallNormal style={{ marginHorizontal: theme.margin * 3 }}>
+        <TextSmallNormal style={{ marginHorizontal: styles.margin * 3 }}>
           {t("about_screen.call_2")}
         </TextSmallNormal>
         <RTLView>
           <CustomButton
             i18nKey="about_screen.download_call_button"
             defaultText="Télécharger l’appel [PDF]"
-            backgroundColor={theme.colors.black}
+            backgroundColor={styles.colors.black}
             iconName="download-outline"
-            textColor={theme.colors.white}
+            textColor={styles.colors.white}
             onPress={( ) => Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")}
             notFullWidth={true}
             iconFirst={true}
-            style={{marginTop: theme.margin * 3, marginHorizontal: theme.margin * 3}}
+            style={{marginTop: styles.margin * 3, marginHorizontal: styles.margin * 3}}
           />
         </RTLView>
 
         {/* L'ÉQUIPE */}
-        <Title style={{ marginBottom: theme.margin * 3 }}>
+        <Title style={{ marginBottom: styles.margin * 3 }}>
           {t("about_screen.team")}
         </Title>
         <TeamContainer>

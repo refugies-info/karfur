@@ -4,7 +4,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { Dimensions } from "react-native";
 import { MapGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 interface PropsType {
   map: MapGoogle;
@@ -14,13 +14,13 @@ interface PropsType {
 interface StateType {}
 
 const MainContainer = styled.View`
-  margin-horizontal: ${theme.margin * 3}px;
-  ${theme.shadows.lg};
+  margin-horizontal: ${styles.margin * 3}px;
+  ${styles.shadows.lg};
 `;
 const MapViewContainer = styled.View`
-  border-radius: ${theme.radius * 2}px;
+  border-radius: ${styles.radius * 2}px;
   overflow:hidden;
-  ${theme.shadows.lg};
+  ${styles.shadows.lg};
 `; // repeat shadow to work with ios and android
 const ContentContainer = styled.View`
   flex-direction: row;
@@ -39,7 +39,7 @@ export class MiniMap extends React.Component<PropsType, StateType> {
   render() {
     const markers = this.props.map.markers;
     const mapHeight = 240;
-    const mapWidth = Dimensions.get("window").width - theme.margin * 2 * 3;
+    const mapWidth = Dimensions.get("window").width - styles.margin * 2 * 3;
 
     return (
       <MainContainer>

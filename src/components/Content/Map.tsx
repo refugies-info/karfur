@@ -8,7 +8,7 @@ import BottomSheet, {
 import { MapGoogle, MarkerGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { MapBottomBar } from "./MapBottomBar";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -143,7 +143,7 @@ export const Map = (props: PropsType) => {
                 name="pin"
                 fill={
                   markerOpen?.place_id === marker.place_id
-                    ? theme.colors.red
+                    ? styles.colors.red
                     : props.markersColor
                 }
                 width={40}

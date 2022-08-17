@@ -1,6 +1,6 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallNormal } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
@@ -18,8 +18,8 @@ export const TextFromHtml = (props: Props) => {
           source={{ html: props.htmlContent }}
           defaultTextProps={{ selectable: true }}
           baseFontStyle={{
-            fontSize: theme.fonts.sizes.small,
-            fontFamily: theme.fonts.families.circularStandard,
+            fontSize: styles.fonts.sizes.small,
+            fontFamily: styles.fonts.families.circularStandard,
             textAlign: isRTL ? "right" : "left",
             margin: 0,
           }}

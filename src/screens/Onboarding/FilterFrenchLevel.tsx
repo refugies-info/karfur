@@ -12,7 +12,7 @@ import { frenchLevelFilters } from "../../data/filtersData";
 import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import {
   saveUserFrenchLevelActionCreator,
@@ -21,7 +21,7 @@ import {
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 
 const ContentContainer = styled.View`
-  padding-bottom: ${theme.margin * 3}px;
+  padding-bottom: ${styles.margin * 3}px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,8 +29,8 @@ const ContentContainer = styled.View`
 `;
 
 const BottomContainer = styled.View`
-  padding-horizontal: ${theme.margin * 3}px;
-  margin-top: ${theme.margin}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  margin-top: ${styles.margin}px;
 `;
 
 export const FilterFrenchLevel = ({
@@ -96,7 +96,7 @@ export const FilterFrenchLevel = ({
       />
       <ContentContainer>
         <ScrollView
-          contentContainerStyle={{ padding: theme.margin * 3 }}
+          contentContainerStyle={{ padding: styles.margin * 3 }}
           scrollIndicatorInsets={{ right: 1 }}
         >
           <Title>

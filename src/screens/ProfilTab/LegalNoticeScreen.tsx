@@ -8,7 +8,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
 import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
@@ -22,8 +22,8 @@ import { UpdatedDate } from "../../components/Profil/UpdatedDate";
 import { ContactButton } from "../../components/Profil/ContactButton";
 
 const ContentContainer = styled.ScrollView`
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${styles.margin * 3}px;
+  padding-top: ${styles.margin * 2}px;
 `;
 
 export const LegalNoticeScreen = ({
@@ -54,11 +54,11 @@ export const LegalNoticeScreen = ({
         scrollEventThrottle={5}
         contentContainerStyle={{
           overflow: "visible",
-          paddingHorizontal: theme.margin * 3
+          paddingHorizontal: styles.margin * 3
         }}
       >
 
-        <P style={{marginTop: theme.margin * 2}}>
+        <P style={{marginTop: styles.margin * 2}}>
           Sur cette page, tu trouveras toutes les informations obligatoires sur l’application Réfugiés.info. Par exemple : Qui est notre hébergeur ? Qui détient les droits d’auteur sur les contenus que nous publions ?
         </P>
 
@@ -68,7 +68,7 @@ export const LegalNoticeScreen = ({
         />
 
         <H1>Qui est l’éditeur de Réfugiés.info ?</H1>
-        <P style={{marginBottom: theme.margin}}>
+        <P style={{marginBottom: styles.margin}}>
           L’application Réfugiés.info a été créée par la Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur.
         </P>
         <RTLView>
@@ -76,16 +76,16 @@ export const LegalNoticeScreen = ({
             name="pin-outline"
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
             style={{
-              marginRight: !isRTL ? theme.margin : 0,
-              marginLeft: isRTL ? theme.margin : 0
+              marginRight: !isRTL ? styles.margin : 0,
+              marginLeft: isRTL ? styles.margin : 0
             }}
           />
           <TextSmallNormal>Place Beauvau, 75800 Paris Cedex 08</TextSmallNormal>
         </RTLView>
 
-        <P style={{marginTop: theme.margin * 3, marginBottom: theme.margin}}>
+        <P style={{marginTop: styles.margin * 3, marginBottom: styles.margin}}>
           Elle est développée par la MedNum, société coopérative d’intérêt collectif spécialisée sur la médiation et l’inclusion numérique.
         </P>
         <RTLView>
@@ -93,21 +93,21 @@ export const LegalNoticeScreen = ({
             name="pin-outline"
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
             style={{
-              marginRight: !isRTL ? theme.margin : 0,
-              marginLeft: isRTL ? theme.margin : 0
+              marginRight: !isRTL ? styles.margin : 0,
+              marginLeft: isRTL ? styles.margin : 0
             }}
           />
           <TextSmallNormal>135 Boulevard Chanzy, 93100 Montreuil</TextSmallNormal>
         </RTLView>
 
-        <P style={{marginTop: theme.margin * 3 }}>
+        <P style={{marginTop: styles.margin * 3 }}>
           Monsieur Nour ALLAZKANI, est le responsable de publication de l’application.
         </P>
 
         <H1>Qui héberge Réfugiés.info ?</H1>
-        <P style={{marginBottom: theme.margin}}>
+        <P style={{marginBottom: styles.margin}}>
           L’application Réfugiés.info est hébergée par la société Google Cloud.
         </P>
         <RTLView>
@@ -115,16 +115,16 @@ export const LegalNoticeScreen = ({
             name="pin-outline"
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
             style={{
-              marginRight: !isRTL ? theme.margin : 0,
-              marginLeft: isRTL ? theme.margin : 0
+              marginRight: !isRTL ? styles.margin : 0,
+              marginLeft: isRTL ? styles.margin : 0
             }}
           />
           <TextSmallNormal>8 rue de Londres, 75009 PARIS</TextSmallNormal>
         </RTLView>
 
-        <P style={{marginTop: theme.margin * 3 }}>
+        <P style={{marginTop: styles.margin * 3 }}>
           Les serveurs qui hébergent l’application sont situés en Europe.
         </P>
 
@@ -145,15 +145,15 @@ export const LegalNoticeScreen = ({
             ]}
           ></List>
 
-          <RTLView style={{ marginVertical: theme.margin * 4 }}>
+          <RTLView style={{ marginVertical: styles.margin * 4 }}>
             <Icon
               name="book-open-outline"
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
               style={{
-                marginRight: !isRTL ? theme.margin : 0,
-                marginLeft: isRTL ? theme.margin : 0
+                marginRight: !isRTL ? styles.margin : 0,
+                marginLeft: isRTL ? styles.margin : 0
               }}
             />
             <TextSmallNormal style={{ flexShrink: 1 }}>(Art. L. 122-5 du Code de la propriété intellectuelle)</TextSmallNormal>
@@ -174,15 +174,15 @@ export const LegalNoticeScreen = ({
           title={"Les créations graphiques"}
         >
           <P>Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.</P>
-          <RTLView style={{marginBottom: theme.margin * 3}}>
+          <RTLView style={{marginBottom: styles.margin * 3}}>
             <Icon
               name="book-open-outline"
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
               style={{
-                marginRight: !isRTL ? theme.margin : 0,
-                marginLeft: isRTL ? theme.margin : 0
+                marginRight: !isRTL ? styles.margin : 0,
+                marginLeft: isRTL ? styles.margin : 0
               }}
             />
             <TextSmallNormal style={{ flexShrink: 1 }}>(Art L.122-4 du Code de la propriété Intellectuelle)</TextSmallNormal>
@@ -218,7 +218,7 @@ export const LegalNoticeScreen = ({
               </Link> qui répond à toutes tes questions sur tes données dans l’application.
             </>
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
         <List
           isRTL={isRTL}
@@ -232,7 +232,7 @@ export const LegalNoticeScreen = ({
               </Link> qui t’en dit plus sur notre plateforme numérique Réfugiés.info.
             </>
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
 
         <P>Sinon, n’hésite pas à nous contacter directement :</P>

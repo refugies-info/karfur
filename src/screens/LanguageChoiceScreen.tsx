@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { useDispatch } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { HeaderWithLogo } from "../components/HeaderWithLogo";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
@@ -42,9 +42,9 @@ export const LanguageChoiceScreen = ({
       <ScrollView
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
-          paddingHorizontal: theme.margin * 3,
-          paddingBottom: theme.margin * 4,
-          paddingTop: theme.margin,
+          paddingHorizontal: styles.margin * 3,
+          paddingBottom: styles.margin * 4,
+          paddingTop: styles.margin,
 
           justifyContent: "center",
           flexGrow: 1,

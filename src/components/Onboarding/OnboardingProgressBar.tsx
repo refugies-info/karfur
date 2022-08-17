@@ -1,19 +1,19 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { Animated } from "react-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 const MainContainer = styled.View`
   flex-direction: row;
-  margin-horizontal: -${theme.margin * 0.75}px;
+  margin-horizontal: -${styles.margin * 0.75}px;
 `;
 const ProgressBarContainer = styled.View`
   height: 4px;
   width: 100%;
   background-color: ${(props: { isDone: boolean }) =>
-  props.isDone ? theme.colors.darkBlue : theme.colors.grey60};
-  border-radius: ${theme.radius * 2}px;
-  margin-horizontal: ${theme.margin * 0.75}px;
+  props.isDone ? styles.colors.darkBlue : styles.colors.grey60};
+  border-radius: ${styles.radius * 2}px;
+  margin-horizontal: ${styles.margin * 0.75}px;
   flex: 1;
   overflow: hidden;
 `;
@@ -22,7 +22,7 @@ const ProgressBar = styled(Animated.View)`
   left: 0;
   top: 0;
   height: 100%;
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${styles.colors.darkBlue};
 `;
 
 interface Props {

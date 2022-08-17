@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import { connectHighlight } from "react-instantsearch-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 
 interface Props {
@@ -24,11 +24,11 @@ const Highlight = ({ attribute, hit, highlight, capitalize, color, colorNotHighl
     <Text>
       {highlights.map(({ value, isHighlighted }: any, index: number) => {
         const style: any = isHighlighted ? {
-          backgroundColor: theme.colors.lightBlue,
-          fontFamily:theme.fonts.families.circularBold,
+          backgroundColor: styles.colors.lightBlue,
+          fontFamily:styles.fonts.families.circularBold,
         } : {
           backgroundColor: "transparent",
-          fontFamily: theme.fonts.families.circularStandard,
+          fontFamily: styles.fonts.families.circularStandard,
         };
 
         if (color) {

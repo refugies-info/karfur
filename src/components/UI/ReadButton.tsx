@@ -11,7 +11,7 @@ import {
   setReadingItem
 } from "../../services/redux/VoiceOver/voiceOver.actions";
 import { currentItemSelector, currentScrollSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
@@ -43,11 +43,11 @@ const PlayButton = styled(View)`
   width: 56px;
   height: 56px;
   border-radius: 28px;
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${styles.colors.darkBlue};
   z-index: 20;
   align-items: center;
   justify-content: center;
-  ${theme.shadows.blue}
+  ${styles.shadows.blue}
 `;
 const Buttons = styled(Animated.View)`
   flex-direction: row;
@@ -84,7 +84,7 @@ const Button = styled(TouchableOpacity)`
   align-items:center;
   margin-right: ${(props: ButtonProps) => props.mr ? "8px" : "0"};
   margin-left: ${(props: ButtonProps) => props.ml ? "8px" : "0"};
-  ${theme.shadows.blue}
+  ${styles.shadows.blue}
 `;
 
 const MAX_RATE = 1.2;
@@ -287,7 +287,7 @@ export const ReadButton = (props: Props) => {
             <Play width={16} height={16} />
           }
         </PlayButton>
-        <StyledTextVerySmall style={{ color: theme.colors.darkGrey }}>
+        <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
           Écouter
         </StyledTextVerySmall>
       </PlayContainer>
@@ -308,7 +308,7 @@ export const ReadButton = (props: Props) => {
             name={"arrow-back-outline"}
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
           />
         </Button>
         <Space />
@@ -317,15 +317,15 @@ export const ReadButton = (props: Props) => {
             name={"arrow-forward-outline"}
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
           />
         </Button>
-        <Button onPress={stopVoiceOver} background={theme.colors.red}>
+        <Button onPress={stopVoiceOver} background={styles.colors.red}>
           <Icon
             name={"close-outline"}
             height={24}
             width={24}
-            fill={theme.colors.white}
+            fill={styles.colors.white}
           />
         </Button>
       </Buttons>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Linking } from "react-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { CustomButton } from "../../components/CustomButton";
 
 interface Props {
@@ -17,8 +17,8 @@ export const ContactButton = (props: Props) => (
       i18nKey={"contact@refugies.info"}
       defaultText="contact@refugies.info"
       iconName="email-outline"
-      backgroundColor={theme.colors.black}
-      textColor={theme.colors.white}
+      backgroundColor={styles.colors.black}
+      textColor={styles.colors.white}
       onPress={() => {Linking.openURL("mailto://contact@refugies.info")}}
       iconFirst={true}
       notFullWidth={true}

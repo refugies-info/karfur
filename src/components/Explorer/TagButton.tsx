@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -11,7 +11,7 @@ import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 
 interface Props {
-  tagName?: string;
+  name?: string;
   backgroundColor: string;
   iconName: string;
   onPress: () => void;
@@ -27,21 +27,21 @@ const StyledContainer = styled(RTLTouchableOpacity)`
   ${(props: { inline: boolean }) => !props.inline ? `
   flex: 1;
   ` : `
-  margin-right: ${theme.margin * 2}px;
+  margin-right: ${styles.margin * 2}px;
   `}
-  padding: ${theme.margin * 2}px;
-  margin-vertical: ${theme.margin}px;
-  border-radius: ${theme.radius * 2}px;
+  padding: ${styles.margin * 2}px;
+  margin-vertical: ${styles.margin}px;
+  border-radius: ${styles.radius * 2}px;
   justify-content: space-between;
   align-items: center;
-  ${theme.shadows.lg}
+  ${styles.shadows.lg}
 `;
 const StyledText = styled(StyledTextNormalBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   flex-shrink: 1;
 `;
 export const TagButton = (props: Props) => {
@@ -65,10 +65,10 @@ export const TagButton = (props: Props) => {
             //@ts-ignore
             color={props.backgroundColor}
             //@ts-ignore
-            colorNotHighlighted={theme.colors.white}
+            colorNotHighlighted={styles.colors.white}
           /> :
           <ReadableText>
-            {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) || ""}
+            {firstLetterUpperCase(t("tags." + props.name, props.name)) || ""}
           </ReadableText>
         }
       </StyledText>

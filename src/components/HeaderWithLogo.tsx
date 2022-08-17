@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRoute } from "@react-navigation/native";
 import styled from "styled-components/native";
 
-import { theme } from "../theme";
+import { styles } from "../theme";
 import Logo from "../theme/images/logo.svg";
 
 import { logEventInFirebase } from "../utils/logEvent";
@@ -20,17 +20,17 @@ import NotificationsIcon from "./Notifications/NotificationsIcon";
 import { StyledTextSmallBold } from "./StyledText";
 
 const MainContainer = styled(RowContainer)`
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
   align-items: center;
   justify-content: space-between;
   display: flex;
-  padding-top: ${theme.margin}px;
+  padding-top: ${styles.margin}px;
 `;
 const StyledText = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const LOGO_WIDTH = 58;
@@ -56,7 +56,7 @@ export const HeaderWithLogo = ({
   const { name: routeName } = useRoute();
 
   return (
-    <View style={{ paddingTop: insets.top, paddingBottom: theme.margin }}>
+    <View style={{ paddingTop: insets.top, paddingBottom: styles.margin }}>
       <MainContainer isRTL={false}>
         {!hideLogo ? (
           <Logo
@@ -72,8 +72,8 @@ export const HeaderWithLogo = ({
           <RTLView
             style={{
               flex: 1,
-              marginRight: hideLanguageSwitch && !isRTL ? theme.margin * 7 : 0,
-              marginLeft: hideLanguageSwitch && isRTL ? theme.margin * 7 : 0,
+              marginRight: hideLanguageSwitch && !isRTL ? styles.margin * 7 : 0,
+              marginLeft: hideLanguageSwitch && isRTL ? styles.margin * 7 : 0,
               justifyContent: "center",
             }}
           >
@@ -82,7 +82,7 @@ export const HeaderWithLogo = ({
                 name={iconName}
                 width={ICON_SIZE}
                 height={ICON_SIZE}
-                fill={theme.colors.black}
+                fill={styles.colors.black}
               />
             )}
             <StyledText isRTL={isRTL}>{text}</StyledText>

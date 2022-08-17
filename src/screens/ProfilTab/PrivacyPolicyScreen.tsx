@@ -10,7 +10,7 @@ import { Icon } from "react-native-eva-icons";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
 import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
@@ -28,8 +28,8 @@ import { UpdatedDate } from "../../components/Profil/UpdatedDate";
 import { ContactButton } from "../../components/Profil/ContactButton";
 
 const ContentContainer = styled.ScrollView`
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${styles.margin * 3}px;
+  padding-top: ${styles.margin * 2}px;
 `;
 
 export const PrivacyPolicyScreen = ({
@@ -60,10 +60,10 @@ export const PrivacyPolicyScreen = ({
         scrollEventThrottle={5}
         contentContainerStyle={{
           overflow: "visible",
-          paddingHorizontal: theme.margin * 3
+          paddingHorizontal: styles.margin * 3
         }}
       >
-        <P style={{marginTop: theme.margin * 2}}>
+        <P style={{marginTop: styles.margin * 2}}>
           Nous avons créé cette page pour répondre en quelques minutes à toutes les questions que tu te poses sur tes données et comment on s’en sert dans l’application réfugiés.info.
         </P>
         <P>
@@ -90,13 +90,13 @@ export const PrivacyPolicyScreen = ({
               width: 200,
               height: 92,
               alignSelf: "center",
-              marginBottom: theme.margin * 3
+              marginBottom: styles.margin * 3
             }}
           />
           <ContentHighlight>
             <TextSmallNormal>Tu n’es pas obligé de partager ces informations pour avoir accès à l’application.</TextSmallNormal>
           </ContentHighlight>
-          <P style={{ marginBottom: 0, marginTop: theme.margin * 3 }}>
+          <P style={{ marginBottom: 0, marginTop: styles.margin * 3 }}>
             Nous utilisons ces informations comme des filtres, pour te proposer uniquement le contenu qui est le plus adapté à ce que tu recherches.
           </P>
         </ContentCard>
@@ -108,41 +108,41 @@ export const PrivacyPolicyScreen = ({
           <P>
             Quand tu ouvres l’application et à tout moment dans l’onglet “Moi”, tu peux décider de nous partager :
           </P>
-          <RTLView style={{marginBottom: theme.margin}}>
+          <RTLView style={{marginBottom: styles.margin}}>
             <Icon
               name="pin-outline"
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
               style={{
-                marginRight: !isRTL ? theme.margin : 0,
-                marginLeft: isRTL ? theme.margin : 0
+                marginRight: !isRTL ? styles.margin : 0,
+                marginLeft: isRTL ? styles.margin : 0
                }}
             />
             <TextSmallNormal>la ville dans laquelle tu habites</TextSmallNormal>
           </RTLView>
-          <RTLView style={{marginBottom: theme.margin}}>
+          <RTLView style={{marginBottom: styles.margin}}>
             <Icon
               name="calendar-outline"
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
               style={{
-                marginRight: !isRTL ? theme.margin : 0,
-                marginLeft: isRTL ? theme.margin : 0
+                marginRight: !isRTL ? styles.margin : 0,
+                marginLeft: isRTL ? styles.margin : 0
                }}
             />
             <TextSmallNormal>ta tranche d’âge</TextSmallNormal>
           </RTLView>
-          <RTLView style={{marginBottom: theme.margin * 3}}>
+          <RTLView style={{marginBottom: styles.margin * 3}}>
             <Icon
               name="message-circle-outline"
               height={24}
               width={24}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
               style={{
-                marginRight: !isRTL ? theme.margin : 0,
-                marginLeft: isRTL ? theme.margin : 0
+                marginRight: !isRTL ? styles.margin : 0,
+                marginLeft: isRTL ? styles.margin : 0
                }}
             />
             <TextSmallNormal>ton niveau en français</TextSmallNormal>
@@ -199,7 +199,7 @@ export const PrivacyPolicyScreen = ({
               width: 210,
               height: 130,
               alignSelf: "center",
-              marginBottom: theme.margin * 3
+              marginBottom: styles.margin * 3
             }}
           />
           <P style={{ marginBottom: 0 }}>
@@ -234,13 +234,13 @@ export const PrivacyPolicyScreen = ({
               Voici comment ces sociétés partenaires traitent tes données.
             </TextSmallNormal>
 
-            <RTLView style={{ marginVertical: theme.margin * 2 }}>
+            <RTLView style={{ marginVertical: styles.margin * 2 }}>
               <FirebaseLogo
                 width={34}
                 height={34}
                 style={{
-                  marginRight: !isRTL ? theme.margin : 0,
-                  marginLeft: isRTL ? theme.margin : 0
+                  marginRight: !isRTL ? styles.margin : 0,
+                  marginLeft: isRTL ? styles.margin : 0
                 }}
               />
               <TextSmallBold>Firebase</TextSmallBold>
@@ -260,13 +260,13 @@ export const PrivacyPolicyScreen = ({
               ]}
             ></List>
 
-            <RTLView style={{ marginVertical: theme.margin * 2 }}>
+            <RTLView style={{ marginVertical: styles.margin * 2 }}>
               <AnalyticsLogo
                 width={32}
                 height={32}
                 style={{
-                  marginRight: !isRTL ? theme.margin : 0,
-                  marginLeft: isRTL ? theme.margin : 0,
+                  marginRight: !isRTL ? styles.margin : 0,
+                  marginLeft: isRTL ? styles.margin : 0,
                   width: 32,
                   height: 32
                 }}

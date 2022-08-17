@@ -16,12 +16,12 @@ import InfiniteHits from "../../components/Search/InfiniteHits";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { getSearchableAttributes } from "../../libs/search";
 import Config from "../../libs/getEnvironment";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 const SearchBoxContainer = styled.View`
-  padding-bottom: ${theme.margin * 3}px;
-  ${theme.shadows.xs}
-  background-color: ${theme.colors.lightGrey};
+  padding-bottom: ${styles.margin * 3}px;
+  ${styles.shadows.xs}
+  background-color: ${styles.colors.lightGrey};
 `;
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || "");
@@ -69,7 +69,7 @@ export const SearchResultsScreen = ({
           restrictSearchableAttributes={searchableAttributes}
           queryLanguages={queryLanguages}
         />
-        <SearchBoxContainer style={{ paddingTop: (insets.top + theme.margin * 3) }}>
+        <SearchBoxContainer style={{ paddingTop: (insets.top + styles.margin * 3) }}>
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
         {searchState.query !== "" ?

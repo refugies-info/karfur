@@ -10,7 +10,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ProfileParamList } from "../../../types";
 import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
@@ -25,18 +25,18 @@ import { UpdatedDate } from "../../components/Profil/UpdatedDate";
 import { ContactButton } from "../../components/Profil/ContactButton";
 
 const ContentContainer = styled.ScrollView`
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${styles.margin * 3}px;
+  padding-top: ${styles.margin * 2}px;
 `;
 const Legend = styled.View`
-  width: ${theme.margin * 3}px;
-  height: ${theme.margin * 3}px;
+  width: ${styles.margin * 3}px;
+  height: ${styles.margin * 3}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? theme.margin * 2 : 0}px;
+  !props.isRTL ? styles.margin * 2 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? theme.margin * 2 : 0}px;
+  props.isRTL ? styles.margin * 2 : 0}px;
   background-color: ${(props: { color: string }) => props.color};
-  border-radius: ${theme.radius}px;
+  border-radius: ${styles.radius}px;
 `;
 
 export const AccessibilityScreen = ({
@@ -69,11 +69,11 @@ export const AccessibilityScreen = ({
         scrollEventThrottle={5}
         contentContainerStyle={{
           overflow: "visible",
-          paddingHorizontal: theme.margin * 3
+          paddingHorizontal: styles.margin * 3
         }}
       >
 
-        <P style={{marginTop: theme.margin * 2}}>
+        <P style={{marginTop: styles.margin * 2}}>
           Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application {isIOS ? "iOS" : "Android"} Réfugiés.info.
         </P>
         <P>
@@ -112,15 +112,15 @@ export const AccessibilityScreen = ({
           >Ipedis</Link>
           {" "}révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN 301 549 V3.2.1 sont respectés.
         </P>
-        <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin }}>
+        <RTLView style={{ alignItems: "flex-start", marginBottom: styles.margin }}>
           <TextSmallNormal style={{ lineHeight: 22 }}>  ✅  </TextSmallNormal>
           <TextSmallNormal>{isIOS ? "12" : "11"} critères sont respectés</TextSmallNormal>
         </RTLView>
-        <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin}}>
+        <RTLView style={{ alignItems: "flex-start", marginBottom: styles.margin}}>
           <TextSmallNormal style={{ lineHeight: 22 }}>  ❌  </TextSmallNormal>
           <TextSmallNormal>{isIOS ? "12" : "13"} critères ne sont pas respectés</TextSmallNormal>
         </RTLView>
-        <RTLView style={{ alignItems: "flex-start", marginBottom: theme.margin * 3}}>
+        <RTLView style={{ alignItems: "flex-start", marginBottom: styles.margin * 3}}>
           <TextSmallNormal style={{ lineHeight: 22 }}>  🚫  </TextSmallNormal>
           <TextSmallNormal>19 critères ne sont pas applicables</TextSmallNormal>
         </RTLView>
@@ -134,15 +134,15 @@ export const AccessibilityScreen = ({
               width: 276,
               height: 228,
               alignSelf: "center",
-              marginBottom: theme.margin * 3
+              marginBottom: styles.margin * 3
             }}
           />
-          <RTLView style={{ alignItems: "center", justifyContent: "center", marginBottom: theme.margin}}>
-            <Legend isRTL={isRTL} color={theme.colors.travail80} />
+          <RTLView style={{ alignItems: "center", justifyContent: "center", marginBottom: styles.margin}}>
+            <Legend isRTL={isRTL} color={styles.colors.travail80} />
             <TextSmallNormal style={{ width: 180 }}>critères conformes</TextSmallNormal>
           </RTLView>
-          <RTLView style={{ alignItems: "center", justifyContent: "center", marginBottom: theme.margin}}>
-            <Legend isRTL={isRTL} color={theme.colors.sante80} />
+          <RTLView style={{ alignItems: "center", justifyContent: "center", marginBottom: styles.margin}}>
+            <Legend isRTL={isRTL} color={styles.colors.sante80} />
             <TextSmallNormal style={{ width: 180 }}>critères non conformes</TextSmallNormal>
           </RTLView>
         </Card>
@@ -175,7 +175,7 @@ export const AccessibilityScreen = ({
             "Certains boutons/listes de suggestion/boutons radio/liens ne sont pas reconnus comme tels",
             "Les messages de statut ne sont pas restitués par le lecteur d'écran",
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
 
         <H2>Dérogations pour charge disproportionnée</H2>
@@ -192,7 +192,7 @@ export const AccessibilityScreen = ({
           items={[
             "React Native"
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
 
         <P style={{marginBottom: 0}}>Les tests des pages web ont été effectués avec les combinaisons d'agents utilisateurs et de lecteurs d’écran suivants :</P>
@@ -201,7 +201,7 @@ export const AccessibilityScreen = ({
           items={[
             isIOS ? "iOS Voiceover" : "Android Talkback"
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
 
         <P style={{marginBottom: 0}}>Les outils suivants ont été utilisés lors de l’évaluation :</P>
@@ -211,7 +211,7 @@ export const AccessibilityScreen = ({
             "Contrast Color checker WCAG",
             isIOS ? "iOS Voiceover" : "Android Talkback"
           ]}
-          style={{marginBottom: theme.margin * 3}}
+          style={{marginBottom: styles.margin * 3}}
         ></List>
 
         <P style={{marginBottom: 0}}>Pages du site ayant fait l’objet de la vérification de conformité :</P>
@@ -259,15 +259,15 @@ export const AccessibilityScreen = ({
             "Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) à l’adresse suivante :",
             ]}
         ></List>
-        <RTLView style={{ marginTop: theme.margin * 3 }}>
+        <RTLView style={{ marginTop: styles.margin * 3 }}>
           <Icon
             name="pin-outline"
             height={24}
             width={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
             style={{
-              marginRight: !isRTL ? theme.margin : theme.margin * 2,
-              marginLeft: isRTL ? theme.margin : theme.margin * 2
+              marginRight: !isRTL ? styles.margin : styles.margin * 2,
+              marginLeft: isRTL ? styles.margin : styles.margin * 2
             }}
           />
           <TextSmallNormal>

@@ -2,14 +2,14 @@ import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import { theme } from "../theme";
+import { styles } from "../theme";
 
 const ButtonContainer = styled.TouchableOpacity`
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   border-radius: ${(props: { rounded: boolean }) =>
-    !props.rounded ? theme.radius * 2 : theme.radius * 10}px;
-  padding: ${theme.radius * 2}px;
-  ${theme.shadows.lg}
+    !props.rounded ? styles.radius * 2 : styles.radius * 10}px;
+  padding: ${styles.radius * 2}px;
+  ${styles.shadows.lg}
 `;
 
 const ICON_SIZE = 24;
@@ -34,7 +34,7 @@ export const SmallButton = (props: Props) => (
       name={props.iconName}
       width={ICON_SIZE}
       height={ICON_SIZE}
-      fill={theme.colors.black}
+      fill={styles.colors.black}
     />
   </ButtonContainer>
 );

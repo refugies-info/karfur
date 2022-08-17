@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { RTLView } from "../BasicComponents";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import {
   TextSmallNormal,
   TextSmallBold,
@@ -11,20 +11,20 @@ import {
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const InfoMessage = styled(RTLView)`
-  background-color: ${theme.colors.lightBlue};
-  border-radius: ${theme.radius}px;
-  ${theme.shadows.sm}
-  margin-top: ${theme.margin * 2}px;
-  margin-horizontal: ${theme.margin * 3}px;
-  padding: ${theme.margin}px;
+  background-color: ${styles.colors.lightBlue};
+  border-radius: ${styles.radius}px;
+  ${styles.shadows.sm}
+  margin-top: ${styles.margin * 2}px;
+  margin-horizontal: ${styles.margin * 3}px;
+  padding: ${styles.margin}px;
 `;
 const InfoMessageText = styled(TextSmallNormal)`
-  color: ${theme.colors.darkBlue};
-  margin-horizontal: ${theme.margin}px;
+  color: ${styles.colors.darkBlue};
+  margin-horizontal: ${styles.margin}px;
   flex-shrink: 1;
 `;
 const InfoMessageLink = styled(TextSmallBold)`
-  color: ${theme.colors.darkBlue};
+  color: ${styles.colors.darkBlue};
   text-decoration-line: underline;
 `;
 
@@ -44,7 +44,7 @@ export const LocalizedWarningMessage = (props: Props) => {
         name="info"
         height={24}
         width={24}
-        fill={theme.colors.darkBlue}
+        fill={styles.colors.darkBlue}
       />
       <InfoMessageText>
         {t("explorer_screen.warning_nb_contents", {
@@ -69,7 +69,7 @@ export const LocalizedWarningMessage = (props: Props) => {
           name="close-outline"
           height={24}
           width={24}
-          fill={theme.colors.darkBlue}
+          fill={styles.colors.darkBlue}
         />
       </TouchableOpacity>
     </InfoMessage>

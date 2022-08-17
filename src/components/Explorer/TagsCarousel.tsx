@@ -4,7 +4,7 @@ import { View, Dimensions } from "react-native";
 import { tags } from "../../data/tagData";
 import { CarousselCard } from "./CarousselCard";
 import { sortByOrder } from "../../libs";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ExpandedTag } from "../../types/interface";
 
@@ -54,14 +54,14 @@ export const TagsCarousel = (props: any) => {
           : activeIndex
         }
         dotStyle={{
-          width: theme.margin,
-          height: theme.margin,
-          borderRadius: theme.margin / 2,
+          width: styles.margin,
+          height: styles.margin,
+          borderRadius: styles.margin / 2,
           backgroundColor: tags[activeIndex].lightColor,
           marginHorizontal: -2,
         }}
         inactiveDotStyle={{
-          backgroundColor: theme.colors.darkGrey,
+          backgroundColor: styles.colors.darkGrey,
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}

@@ -134,7 +134,7 @@ const shadowsStylesheet = {
   },
 };
 
-export const theme = {
+export const styles = {
   colors,
   images,
   margin: 8,

@@ -1,7 +1,7 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
 import { View } from "react-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { TextSmallNormal } from "../StyledText";
@@ -29,14 +29,14 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
           defaultTextProps={{ selectable: true }}
           classesStyles={{
             "bloc-rouge": {
-              backgroundColor: theme.colors.lightRed,
-              borderRadius: theme.radius * 2,
-              padding: theme.margin * 2,
+              backgroundColor: styles.colors.lightRed,
+              borderRadius: styles.radius * 2,
+              padding: styles.margin * 2,
               display: "flex",
-              marginBottom: theme.margin,
+              marginBottom: styles.margin,
               flexDirection: isRTL ? "row-reverse" : "row",
               textAlign: isRTL ? "right" : "left",
-              marginTop: theme.margin,
+              marginTop: styles.margin,
               alignItems: "center",
             },
             "icon-left-side": {
@@ -46,35 +46,35 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: theme.colors.black,
-              marginRight: isRTL ? 0 : theme.margin * 2,
-              marginLeft: isRTL ? theme.margin * 2 : 0,
+              backgroundColor: styles.colors.black,
+              marginRight: isRTL ? 0 : styles.margin * 2,
+              marginLeft: isRTL ? styles.margin * 2 : 0,
               borderRadius: "50%",
-              color: theme.colors.lightRed,
+              color: styles.colors.lightRed,
             },
             "right-side": {
-              color: theme.colors.black,
+              color: styles.colors.black,
               textAlign: isRTL ? "right" : "left",
               flexShrink: 1,
             },
           }}
           tagsStyles={{
             strong: {
-              fontFamily: theme.fonts.families.circularBold,
+              fontFamily: styles.fonts.families.circularBold,
               fontWeight: null,
             },
             em: {
-              fontFamily: theme.fonts.families.circularItalic,
+              fontFamily: styles.fonts.families.circularItalic,
             },
             b: {
-              fontFamily: theme.fonts.families.circularBold,
+              fontFamily: styles.fonts.families.circularBold,
               textAlign: isRTL ? "right" : "left",
               fontWeight: null,
             },
           }}
           baseFontStyle={{
-            fontSize: theme.fonts.sizes.small,
-            fontFamily: theme.fonts.families.circularStandard,
+            fontSize: styles.fonts.sizes.small,
+            fontFamily: styles.fonts.families.circularStandard,
             textAlign: isRTL ? "right" : "left",
             lineHeight: 20,
           }}
@@ -86,8 +86,8 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  marginBottom: theme.margin,
-                  marginTop: theme.margin,
+                  marginBottom: styles.margin,
+                  marginTop: styles.margin,
                 }}
               >
                 {children}
@@ -98,14 +98,14 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               <RTLView
                 key={passProps.key}
                 style={{
-                  marginBottom: theme.margin,
+                  marginBottom: styles.margin,
                   alignItems: "flex-start",
                 }}
               >
                 <View
                   style={{
-                    marginLeft: isRTL ? theme.margin : 0,
-                    marginRight: isRTL ? 0 : theme.margin,
+                    marginLeft: isRTL ? styles.margin : 0,
+                    marginRight: isRTL ? 0 : styles.margin,
                     marginTop: 3,
                   }}
                 >
@@ -113,7 +113,7 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
                     name={isRTL ? "arrow-left" : "arrow-right"}
                     height={18}
                     width={18}
-                    fill={theme.colors.black}
+                    fill={styles.colors.black}
                   />
                 </View>
                 <TextSmallNormal style={{ flexShrink: 1 }}>
@@ -126,8 +126,8 @@ export const ContentFromHtml = React.forwardRef((props: Props, ref: any) => {
               <TextSmallNormal
                 key={passProps.key}
                 style={{
-                  marginBottom: theme.margin,
-                  marginTop: theme.margin,
+                  marginBottom: styles.margin,
+                  marginTop: styles.margin,
                   flexShrink: 1,
                 }}
               >

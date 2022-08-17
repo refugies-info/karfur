@@ -2,19 +2,19 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { RTLTouchableOpacity } from "./BasicComponents";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 
 const ButtonContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor || theme.colors.white};
+    props.backgroundColor || styles.colors.white};
   justify-content: center;
   padding: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? theme.radius * 3 : theme.margin}px;
+    !props.isSmall ? styles.radius * 3 : styles.margin}px;
   border-radius: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? theme.radius * 2 : 8}px;
+    !props.isSmall ? styles.radius * 2 : 8}px;
   align-items: center;
   width: ${(props: { notFullWidth: boolean }) =>
     props.notFullWidth ? "auto" : "100%"};
@@ -28,8 +28,8 @@ const ButtonContainer = styled(RTLTouchableOpacity)`
     props.isDisabled || !props.withShadows
       ? ""
       : props.isSmall || !props.backgroundColor
-      ? theme.shadows.lg
-      : theme.shadows.sm};
+      ? styles.shadows.lg
+      : styles.shadows.sm};
   opacity: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0.4 : 1)};
 `;
 
@@ -43,14 +43,14 @@ const ColoredTextBold = styled(StyledTextSmallBold)`
     props.hasIcon &&
     (props.iconFirst || props.isRTL) &&
     props.isRTL !== props.iconFirst
-      ? theme.margin
+      ? styles.margin
       : 0}px;
   margin-right: ${(props: {
     isRTL: boolean;
     iconFirst: boolean;
     hasIcon: boolean;
   }) =>
-    props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
+    props.hasIcon && props.isRTL === props.iconFirst ? styles.margin : 0}px;
 `;
 
 const ColoredTextNormal = styled(StyledTextSmall)`
@@ -63,14 +63,14 @@ const ColoredTextNormal = styled(StyledTextSmall)`
     props.hasIcon &&
     (props.iconFirst || props.isRTL) &&
     props.isRTL !== props.iconFirst
-      ? theme.margin
+      ? styles.margin
       : 0}px;
   margin-right: ${(props: {
     isRTL: boolean;
     iconFirst: boolean;
     hasIcon: boolean;
   }) =>
-    props.hasIcon && props.isRTL === props.iconFirst ? theme.margin : 0}px;
+    props.hasIcon && props.isRTL === props.iconFirst ? styles.margin : 0}px;
 `;
 
 interface Props {

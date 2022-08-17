@@ -19,7 +19,7 @@ import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { SearchNavigator } from "./BottomTabBar/SearchNavigator";
 import { ReadButton } from "../components/UI/ReadButton";
 import { TabBarItem } from "./components/TabBarItem";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
@@ -35,7 +35,7 @@ const BottomTabBarContainer = styled(View)`
 `;
 const Space = styled(View)`
   width: 56px;
-  margin: ${theme.margin}px;
+  margin: ${styles.margin}px;
 `
 
 function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {

@@ -6,7 +6,7 @@ import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { RTLTouchableOpacity } from "./BasicComponents";
 import { TextBigBold, TextSmallNormal, TextSmallBold } from "./StyledText";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import ErrorImage from "../theme/images/error.png";
 
 interface Props {
@@ -19,17 +19,17 @@ interface Props {
 }
 
 const ErrorContainer = styled.View`
-  margin-top: ${theme.margin * 7}px;
+  margin-top: ${styles.margin * 7}px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
 `;
 
 const RestartButton = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.black};
-  padding: ${theme.margin * 2}px;
-  border-radius: ${theme.radius * 2}px;
+  background-color: ${styles.colors.black};
+  padding: ${styles.margin * 2}px;
+  border-radius: ${styles.radius * 2}px;
 `;
 
 export const ErrorScreen = (props: Props) => {
@@ -41,7 +41,7 @@ export const ErrorScreen = (props: Props) => {
       style={{
         width: 240,
         height: 160,
-        marginBottom: theme.margin * 4
+        marginBottom: styles.margin * 4
       }}
     />
   );
@@ -51,10 +51,10 @@ export const ErrorScreen = (props: Props) => {
 
       {!props.imageLast && image}
 
-      <TextBigBold style={{ marginBottom: theme.margin * 2, textAlign: "center" }}>
+      <TextBigBold style={{ marginBottom: styles.margin * 2, textAlign: "center" }}>
         {props.title || t("content_screen.error_title", "Oh non !")}
       </TextBigBold>
-      <TextSmallNormal style={{ textAlign: "center", marginBottom: theme.margin * 4 }}>
+      <TextSmallNormal style={{ textAlign: "center", marginBottom: styles.margin * 4 }}>
         {props.text}
       </TextSmallNormal>
 
@@ -69,13 +69,13 @@ export const ErrorScreen = (props: Props) => {
           name={props.buttonIcon}
           height={20}
           width={20}
-          fill={theme.colors.white}
+          fill={styles.colors.white}
         />
         <TextSmallBold
           style={{
-            color: theme.colors.white,
-            marginLeft: isRTL ? 0 : theme.margin,
-            marginRight: isRTL ? theme.margin : 0,
+            color: styles.colors.white,
+            marginLeft: isRTL ? 0 : styles.margin,
+            marginRight: isRTL ? styles.margin : 0,
           }}
         >
           {props.buttonText}

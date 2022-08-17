@@ -1,6 +1,6 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ReadableText } from "../ReadableText";
@@ -20,8 +20,8 @@ export const AccordionHeaderFromHtml = (props: Props) => {
         contentWidth={props.windowWidth}
         source={{ html: props.htmlContent }}
         baseFontStyle={{
-          fontSize: theme.fonts.sizes.small,
-          fontFamily: theme.fonts.families.circularBold,
+          fontSize: styles.fonts.sizes.small,
+          fontFamily: styles.fonts.families.circularBold,
           textAlign: isRTL ? "right" : "left",
           lineHeight: 20,
           flexShrink: 1,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { Icon } from "react-native-eva-icons";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import { View } from "react-native";
@@ -9,25 +9,25 @@ import { View } from "react-native";
 const ButtonContainer = styled(RTLTouchableOpacity)`
   align-items: center;
   height: 56px;
-  padding-left: ${theme.margin * 2}px;
-  padding-right: ${theme.margin}px;
+  padding-left: ${styles.margin * 2}px;
+  padding-right: ${styles.margin}px;
 
   justify-content: space-between;
 `;
 
 const StyledCategoryText = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? 0 : theme.margin}px;
+    !props.isRTL ? 0 : styles.margin}px;
 `;
 
 const StyledChoiceText = styled(StyledTextVerySmall)`
-  color: ${theme.colors.darkGrey};
+  color: ${styles.colors.darkGrey};
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? 0 : theme.margin}px;
+    !props.isRTL ? 0 : styles.margin}px;
   max-width: 150px;
   flex-shrink: 1;
   text-align: ${(props: { isRTL: boolean }) =>
@@ -36,7 +36,7 @@ const StyledChoiceText = styled(StyledTextVerySmall)`
 
 const Separator = styled.View`
   height: 1px;
-  background-color: ${theme.colors.grey};
+  background-color: ${styles.colors.grey};
 `;
 
 interface Props {
@@ -65,7 +65,7 @@ export const ProfilDetailButton = (props: Props) => (
             name={props.iconName}
             width={ICON_SIZE}
             height={ICON_SIZE}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
           />
         }
         {props.iconImage &&
@@ -90,7 +90,7 @@ export const ProfilDetailButton = (props: Props) => (
           }
           width={24}
           height={24}
-          fill={theme.colors.darkGrey}
+          fill={styles.colors.darkGrey}
         />
       </RTLView>
     </ButtonContainer>

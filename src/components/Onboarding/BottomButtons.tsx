@@ -1,15 +1,15 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { RowContainer, RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextSmallBold } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
 import { View } from "react-native";
 
 const LeftButtonContainer = styled.TouchableOpacity`
-  padding-vertical: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
+  padding-vertical: ${styles.radius * 3}px;
+  border-radius: ${styles.radius * 2}px;
   height: 56px;
   display: flex;
   flex-direction: row;
@@ -17,31 +17,31 @@ const LeftButtonContainer = styled.TouchableOpacity`
 `;
 
 const RightButtonContainer = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${styles.colors.darkBlue};
   opacity: ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? 0.4 : 1};
-  border-radius: ${theme.radius * 2}px;
+  border-radius: ${styles.radius * 2}px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   height: 56px;
   align-items: center;
   ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? "" : theme.shadows.sm}
+    props.isDisabled ? "" : styles.shadows.sm}
 `;
 
 const BottomButtonsContainer = styled(RowContainer)`
-  margin-top: ${theme.margin * 3}px;
+  margin-top: ${styles.margin * 3}px;
 `;
 
 const TextBold = styled(StyledTextSmallBold)`
-  margin-right: ${theme.margin}px;
+  margin-right: ${styles.margin}px;
   color: ${(props: { color: string }) => props.color};
   align-items: center;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const ICON_SIZE = 24;
@@ -61,7 +61,7 @@ export const BottomButtons = (props: Props) => {
           onPress={props.onLeftButtonClick}
           accessibilityRole="button"
         >
-          <StyledTextSmallBold style={{color: theme.colors.darkBlue}}>
+          <StyledTextSmallBold style={{color: styles.colors.darkBlue}}>
             {t("onboarding_screens.skip_step_button", "Passer l'étape")}
           </StyledTextSmallBold>
         </LeftButtonContainer>
@@ -78,9 +78,9 @@ export const BottomButtons = (props: Props) => {
             name={"checkmark-outline"}
             width={ICON_SIZE}
             height={ICON_SIZE}
-            fill={theme.colors.white}
+            fill={styles.colors.white}
           />
-          <TextBold color={theme.colors.white}>
+          <TextBold color={styles.colors.white}>
             {t("global.validate", "Valider")}
           </TextBold>
         </RightButtonContainer>

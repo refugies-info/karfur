@@ -8,7 +8,7 @@ import {
   readingListLengthSelector,
 } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { generateId } from "../libs/generateId";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { useIsFocused } from "@react-navigation/native";
 import { ReadingItem } from "../types/interface";
 
@@ -63,7 +63,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
       ref={refView}
       style={
         isActive
-          ? { backgroundColor: theme.colors.lightBlue, maxWidth: "100%" }
+          ? { backgroundColor: styles.colors.lightBlue, maxWidth: "100%" }
           : { maxWidth: "100%" }
       }
       collapsable={false}>
@@ -72,7 +72,7 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   ) : (
     // else, include content in a Text
     <>
-      <Text style={isActive ? { backgroundColor: theme.colors.lightBlue } : {}}>
+      <Text style={isActive ? { backgroundColor: styles.colors.lightBlue } : {}}>
         {props.children}
       </Text>
       <View ref={refView}></View>

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Switch, StyleSheet } from "react-native";
 
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -16,17 +16,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: theme.margin * 2,
+    padding: styles.margin * 2,
   },
   leftContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: theme.margin,
+    paddingHorizontal: styles.margin,
     flex: 1,
   },
   icon: {
-    marginRight: theme.margin * 2,
+    marginRight: styles.margin * 2,
   },
   titleContainer: {
     display: "flex",
@@ -81,15 +81,15 @@ export const ToggleButton = ({
         {icon && (
           <View
             style={{
-              marginRight: isRTL ? 0 : theme.margin,
-              marginLeft: isRTL ? theme.margin : 0,
+              marginRight: isRTL ? 0 : styles.margin,
+              marginLeft: isRTL ? styles.margin : 0,
             }}
           >
             <StreamlineIcon
               name={icon}
               width={ICON_SIZE}
               height={ICON_SIZE}
-              stroke={disabled ? theme.colors.greyDisabled : theme.colors.black}
+              stroke={disabled ? styles.colors.greyDisabled : styles.colors.black}
             />
           </View>
         )}
@@ -104,7 +104,7 @@ export const ToggleButton = ({
           <TextSmallBold
             style={
               disabled && {
-                color: theme.colors.greyDisabled,
+                color: styles.colors.greyDisabled,
               }
             }
           >
@@ -114,11 +114,11 @@ export const ToggleButton = ({
             <TextVerySmallNormal
               style={[
                 {
-                  color: theme.colors.darkGrey,
-                  marginTop: theme.margin
+                  color: styles.colors.darkGrey,
+                  marginTop: styles.margin * 2
                 },
                 disabled && {
-                  color: theme.colors.greyDisabled,
+                  color: styles.colors.greyDisabled,
                 },
               ]}
             >
@@ -135,7 +135,7 @@ export const ToggleButton = ({
           trackColor={
             disabled
               ? {
-                  true: theme.colors.greyDisabled,
+                  true: styles.colors.greyDisabled,
                 }
               : {
                   true: undefined,

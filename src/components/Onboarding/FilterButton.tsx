@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallBold } from "../StyledText";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ChoiceButton } from "../UI/ChoiceButton";
@@ -14,7 +14,7 @@ interface Props {
 
 const StyledText = styled(TextSmallBold)`
   color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.darkBlue : theme.colors.black};
+    props.isSelected ? styles.colors.darkBlue : styles.colors.black};
 `;
 
 export const FilterButton = (props: Props) => {

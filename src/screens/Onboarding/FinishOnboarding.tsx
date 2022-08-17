@@ -4,7 +4,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -28,22 +28,22 @@ const MainView = styled(SafeAreaView)`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${styles.colors.darkBlue};
 
-  padding-bottom: ${theme.margin * 3}px;
+  padding-bottom: ${styles.margin * 3}px;
 `;
 const StyledText = styled(StyledTextBigBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   text-align: center;
   margin-top: ${(props: { marginTop: number | undefined }) =>
-    props.marginTop ? props.marginTop : theme.margin * 2}px;
-  margin-bottom: ${theme.margin}px;
+    props.marginTop ? props.marginTop : styles.margin * 2}px;
+  margin-bottom: ${styles.margin}px;
 `;
 const ElementsContainer = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
 `;
 const LottieContainer = styled.View`
   height: 100px;
@@ -52,10 +52,10 @@ const LottieContainer = styled.View`
 const FakeTabBarArrowContainer = styled.View`
   width: ${(props: { width: number }) => props.width}px;
   align-items: flex-end;
-  margin-top: ${theme.margin * 2}px;
+  margin-top: ${styles.margin * 2}px;
 `;
 const ButtonContainer = styled.View`
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
 `;
 
 export const FinishOnboarding = ({
@@ -110,7 +110,7 @@ export const FinishOnboarding = ({
           <StyledText>{t("onboarding_screens.thank_you", "Merci !")}</StyledText>
         )}
         <StyledText
-          marginTop={hasUserEnteredInfos ? theme.margin * 2 : theme.margin * 6}
+          marginTop={hasUserEnteredInfos ? styles.margin * 2 : styles.margin * 6}
         >
           {hasUserEnteredInfos
             ? t(
@@ -127,7 +127,7 @@ export const FinishOnboarding = ({
         <CustomButton
           i18nKey="onboarding_screens.start_searching_button"
           defaultText="Démarrer"
-          textColor={theme.colors.darkBlue}
+          textColor={styles.colors.darkBlue}
           onPress={finishOnboarding}
           iconName="arrow-forward-outline"
         />

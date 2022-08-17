@@ -2,7 +2,7 @@ import * as Location from "expo-location";
 import styled from "styled-components/native";
 import { ScrollView } from "react-native";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallBold, StyledTextSmallBold } from "../StyledText";
 import React from "react";
 import { GoogleAPISuggestion } from "../../../types";
@@ -34,47 +34,47 @@ import { BottomButtons } from "../Onboarding/BottomButtons";
 import { CustomButton } from "../CustomButton";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.lightBlue};
-  margin-vertical: ${theme.margin * 2}px;
-  border-radius: ${theme.radius * 2}px;
+  background-color: ${styles.colors.lightBlue};
+  margin-vertical: ${styles.margin * 2}px;
+  border-radius: ${styles.radius * 2}px;
   align-items: center;
-  ${theme.shadows.sm}
-  padding: ${(theme.margin * 2) - 2}px;
+  ${styles.shadows.sm}
+  padding: ${(styles.margin * 2) - 2}px;
   border-width: 2px;
   border-style: solid;
   border-color: ${(props: { hasError: boolean }) =>
-    props.hasError ? theme.colors.red : theme.colors.lightBlue};
+    props.hasError ? styles.colors.red : styles.colors.lightBlue};
 `;
 
 const GeolocText = styled(TextSmallBold)`
-  color: ${theme.colors.darkBlue};
+  color: ${styles.colors.darkBlue};
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const SelectedCityContainer = styled(RTLTouchableOpacity)`
-  background-color: ${theme.colors.black};
-  padding: ${theme.margin * 2}px;
-  border-radius: ${theme.radius * 2}px;
-  margin-bottom: ${theme.margin * 4}px;
+  background-color: ${styles.colors.black};
+  padding: ${styles.margin * 2}px;
+  border-radius: ${styles.radius * 2}px;
+  margin-bottom: ${styles.margin * 4}px;
   align-items: center;
   align-self: flex-start;
 `;
 
 const SelectedCityText = styled(StyledTextSmallBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const BottomButtonsContainer = styled.View``;
 
 const ValidateButtonContainer = styled.View`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 
 const ICON_SIZE = 24;
@@ -264,7 +264,7 @@ export const FilterCityComponent = (props: Props) => {
     <ScrollView
       contentContainerStyle={{
         justifyContent: "space-between",
-        padding: theme.margin * 3,
+        padding: styles.margin * 3,
         flexGrow: 1
       }}
     >
@@ -293,7 +293,7 @@ export const FilterCityComponent = (props: Props) => {
                   name="pin"
                   width={ICON_SIZE}
                   height={ICON_SIZE}
-                  fill={theme.colors.darkBlue}
+                  fill={styles.colors.darkBlue}
                 />
                 <GeolocText isRTL={isRTL}>
                   {t("onboarding_screens.position_button", "Utiliser ma position")}
@@ -302,7 +302,7 @@ export const FilterCityComponent = (props: Props) => {
             )}
           </View>
         )}
-        {isGeolocLoading && <ActivityIndicator color={theme.colors.grey60} />}
+        {isGeolocLoading && <ActivityIndicator color={styles.colors.grey60} />}
         {!!selectedCity && !!selectedDepartment && (
           <RTLView>
             <SelectedCityContainer
@@ -316,7 +316,7 @@ export const FilterCityComponent = (props: Props) => {
               </SelectedCityText>
               <Icon
                 name="close-outline"
-                fill={theme.colors.white}
+                fill={styles.colors.white}
                 height={24}
                 width={24}
               />
@@ -324,7 +324,7 @@ export const FilterCityComponent = (props: Props) => {
           </RTLView>
         )}
         {!!error &&
-          <View style={{ marginBottom: theme.margin * 3 }}>
+          <View style={{ marginBottom: styles.margin * 3 }}>
             <ErrorComponent text={error} />
           </View>
         }
@@ -346,12 +346,12 @@ export const FilterCityComponent = (props: Props) => {
               <CustomButton
                 i18nKey="global.validate"
                 defaultText="Valider"
-                textColor={theme.colors.white}
+                textColor={styles.colors.white}
                 onPress={() => {
                   if (isOnValidateDisabled) return;
                   onValidate();
                 }}
-                backgroundColor={theme.colors.darkBlue}
+                backgroundColor={styles.colors.darkBlue}
                 iconName="checkmark-outline"
                 isDisabled={isOnValidateDisabled}
                 iconFirst={true}
@@ -361,7 +361,7 @@ export const FilterCityComponent = (props: Props) => {
             <CustomButton
               i18nKey="global.cancel"
               defaultText="Annuler"
-              textColor={theme.colors.black}
+              textColor={styles.colors.black}
               onPress={props.navigation.goBack}
               isTextNotBold={true}
               isDisabled={isOnValidateDisabled}

@@ -1,6 +1,6 @@
 import HTML from "react-native-render-html";
 import * as React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 interface Props {
@@ -18,11 +18,11 @@ export const MapContentFromHtml = (props: Props) => {
       defaultTextProps={{ selectable: true }}
       baseFontStyle={{
         fontSize: props.isLarge
-          ? theme.fonts.sizes.normal
-          : theme.fonts.sizes.small,
+          ? styles.fonts.sizes.normal
+          : styles.fonts.sizes.small,
         fontFamily: props.isBold
-          ? theme.fonts.families.circularBold
-          : theme.fonts.families.circularStandard,
+          ? styles.fonts.families.circularBold
+          : styles.fonts.families.circularStandard,
         textAlign: isRTL ? "right" : "left",
         lineHeight: props.isLarge ? 24 : 20,
         flexShrink: 1,

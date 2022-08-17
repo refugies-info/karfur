@@ -1,6 +1,6 @@
 import { Animated, StyleSheet } from "react-native";
 import React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
@@ -13,9 +13,9 @@ import { ReadableText } from "../ReadableText";
 const ThemeText = styled(TextSmallNormal)`
   color: white;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
   text-decoration-line: underline;
 `;
 
@@ -24,8 +24,8 @@ const ThemeContainer = styled(RTLTouchableOpacity)`
 `;
 
 const IndicatorContainer = styled(RTLView)`
-  background-color: ${theme.colors.white};
-  padding: ${theme.margin}px;
+  background-color: ${styles.colors.white};
+  padding: ${styles.margin}px;
   align-self: center;
   border-radius: 8px;
   height: 32px;
@@ -38,14 +38,14 @@ const IndicatorContainer = styled(RTLView)`
 `;
 
 const IndicatorText = styled(TextVerySmallNormal)`
-  color: ${theme.colors.black};
+  color: ${styles.colors.black};
 `;
 
 const IndicatorNumber = styled(TextVerySmallNormal)`
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin / 2}px;
+    props.isRTL ? 0 : styles.margin / 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin / 2 : 0}px;
+    props.isRTL ? styles.margin / 2 : 0}px;
 `;
 
 interface Props {
@@ -63,22 +63,16 @@ interface Props {
   tagHeight: any;
 }
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   bodyBackground: {
     overflow: "hidden",
-    paddingHorizontal: theme.margin * 3,
-  },
-
-  bodyContainer: {
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
+    paddingHorizontal: styles.margin * 3,
   },
   headerText: {
-    fontSize: theme.fonts.sizes.big,
-    fontFamily: theme.fonts.families.circularBold,
+    fontSize: styles.fonts.sizes.big,
+    fontFamily: styles.fonts.families.circularBold,
     lineHeight: 32,
-    color: theme.colors.white,
+    color: styles.colors.white,
   },
 });
 
@@ -91,7 +85,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
   return (
     <Animated.View
       style={[
-        styles.bodyBackground,
+        stylesheet.bodyBackground,
         {
           backgroundColor: props.tagDarkColor,
           borderBottomRightRadius: props.headerBottomRadius,
@@ -125,11 +119,11 @@ export const ContentsHeaderAnimated = (props: Props) => {
       </Animated.View>
       {/* <Text
         style={[
-          styles.headerText,
+          stylesheet.headerText,
           {
             textAlign: isRTL ? "right" : "left",
-            marginRight: isRTL ? 0 : theme.margin,
-            marginLeft: isRTL ? theme.margin : 0,
+            marginRight: isRTL ? 0 : styles.margin,
+            marginLeft: isRTL ? styles.margin : 0,
             fontSize: props.showSimplifiedHeader ? 16 : 25,
           },
         ]}
@@ -138,11 +132,11 @@ export const ContentsHeaderAnimated = (props: Props) => {
       </Text> */}
       <Animated.Text
         style={[
-          styles.headerText,
+          stylesheet.headerText,
           {
             textAlign: isRTL ? "right" : "left",
-            marginRight: isRTL ? 0 : theme.margin,
-            marginLeft: isRTL ? theme.margin : 0,
+            marginRight: isRTL ? 0 : styles.margin,
+            marginLeft: isRTL ? styles.margin : 0,
             fontSize: props.headerFontSize,
           },
         ]}
@@ -155,8 +149,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
         ? !props.showSimplifiedHeader && (
             <SkeletonContent
               containerStyle={{
-                marginTop: theme.margin * 2,
-                marginBottom: theme.margin * 4,
+                marginTop: styles.margin * 2,
+                marginBottom: styles.margin * 4,
                 alignSelf: isRTL ? "flex-end" : "flex-start",
               }}
               isLoading={true}
@@ -167,8 +161,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
                   height: 32,
                 },
               ]}
-              boneColor={theme.colors.grey}
-              highlightColor={theme.colors.lightGrey}
+              boneColor={styles.colors.grey}
+              highlightColor={styles.colors.lightGrey}
             />
           )
         : !props.showSimplifiedHeader && (
@@ -176,8 +170,8 @@ export const ContentsHeaderAnimated = (props: Props) => {
               style={{
                 display: "flex",
                 height: props.tagHeight,
-                marginTop: theme.margin * 2,
-                marginBottom: theme.margin * 4,
+                marginTop: styles.margin * 2,
+                marginBottom: styles.margin * 4,
               }}
             >
               <IndicatorContainer isRTL={isRTL}>

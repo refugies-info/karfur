@@ -14,32 +14,32 @@ import { RTLTouchableOpacity } from "../../components/BasicComponents";
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useVoiceover } from "../../hooks/useVoiceover";
 import { ScrollView } from "react-native-gesture-handler";
 
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
   width 100%;
-  border-radius:${theme.radius * 2}px;
-  padding:${theme.margin * 2}px;
-  background-color: ${theme.colors.white};
-  border: 1px solid ${theme.colors.darkGrey};
-  margin-horizontal: ${theme.margin * 3}px;
+  border-radius:${styles.radius * 2}px;
+  padding:${styles.margin * 2}px;
+  background-color: ${styles.colors.white};
+  border: 1px solid ${styles.colors.darkGrey};
+  margin-horizontal: ${styles.margin * 3}px;
   justify-content: flex-start;
   align-items: center;
 `;
 const FakeInputText = styled.Text`
-  color: ${theme.colors.darkGrey};
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
+  color: ${styles.colors.darkGrey};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
 `;
 const ShadowView = styled.View`
-  background-color: ${theme.colors.lightGrey};
-  padding-bottom: ${theme.margin * 2}px;
+  background-color: ${styles.colors.lightGrey};
+  padding-bottom: ${styles.margin * 2}px;
   z-index: 4;
   ${(props: { showShadow: boolean }) =>
-    props.showShadow ? theme.shadows.xs : ""}
+    props.showShadow ? styles.shadows.xs : ""}
 `;
 
 export const SearchScreen = ({
@@ -81,7 +81,7 @@ export const SearchScreen = ({
           title={t("tab_bar.search", "Rechercher")}
           showSimplifiedHeader={showSimplifiedHeader}
           onLongPressSwitchLanguage={toggleLanguageModal}
-          extraHeight={theme.margin * 3}
+          extraHeight={styles.margin * 3}
         />
 
         <FakeInput
@@ -92,7 +92,7 @@ export const SearchScreen = ({
             name="search-outline"
             height={24}
             width={24}
-            fill={theme.colors.darkGrey}
+            fill={styles.colors.darkGrey}
           />
           <FakeInputText isRTL={isRTL}>
             {t("search_screen.search", "Rechercher")}

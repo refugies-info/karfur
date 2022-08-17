@@ -12,12 +12,12 @@ import { selectedI18nCodeSelector } from "../../services/redux/User/user.selecto
 import { AvailableLanguageI18nCode } from "../../types/interface";
 import { activatedLanguages } from "../../data/languagesData";
 import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const MainContainer = styled.View`
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
   justify-content: center;
   flex: 1;
   display: flex;
@@ -25,8 +25,8 @@ const MainContainer = styled.View`
 `;
 
 const HeaderText = styled(TextBigBold)`
-  margin-horizontal: ${theme.margin * 3}px;
-  margin-top: ${theme.margin * 3}px;
+  margin-horizontal: ${styles.margin * 3}px;
+  margin-top: ${styles.margin * 3}px;
 `;
 
 export const LangueProfilScreen = ({
@@ -65,8 +65,8 @@ export const LangueProfilScreen = ({
       </HeaderText>
       <ScrollView
         contentContainerStyle={{
-          paddingTop: theme.margin * 2,
-          paddingBottom: theme.margin * 3,
+          paddingTop: styles.margin * 2,
+          paddingBottom: styles.margin * 3,
           justifyContent: "center",
           flexGrow: 1,
           flexDirection: "column",

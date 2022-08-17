@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { View, TextInput, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { GoogleAPISuggestion } from "../../../types";
 import { StyledTextSmall } from "../StyledText";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
@@ -17,49 +17,49 @@ const MainContainer = styled.View`
 const InputContainer = styled(RTLView)`
   height:56px;
   width 100%;
-  border-radius:${theme.radius * 2}px;
-  padding:${theme.margin * 2}px;
-  background-color : ${theme.colors.white};
-  border: 1px solid ${theme.colors.darkGrey};
+  border-radius:${styles.radius * 2}px;
+  padding:${styles.margin * 2}px;
+  background-color : ${styles.colors.white};
+  border: 1px solid ${styles.colors.darkGrey};
   flex: 1;
 `;
 const StyledInput = styled.TextInput`
   height:100%;
   width 100%;
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
   text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
   flex: 1;
 `;
 const FakeInput = styled(RTLTouchableOpacity)`
   height:56px;
   width 100%;
-  border-radius:${theme.radius * 2}px;
-  padding:${theme.margin * 2}px;
-  background-color: ${theme.colors.white};
-  border: 1px solid ${theme.colors.darkGrey};
+  border-radius:${styles.radius * 2}px;
+  padding:${styles.margin * 2}px;
+  background-color: ${styles.colors.white};
+  border: 1px solid ${styles.colors.darkGrey};
   justify-content: flex-start;
   align-items: center;
 `;
 const FakeInputText = styled.Text`
-  color: ${theme.colors.darkGrey};
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
+  color: ${styles.colors.darkGrey};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
 `;
 const SuggestionsContainer = styled.ScrollView`
-  margin-top: ${theme.margin}px;
+  margin-top: ${styles.margin}px;
 `;
 const SuggestionContainer = styled(RTLTouchableOpacity)`
-  padding: ${theme.margin * 2}px;
+  padding: ${styles.margin * 2}px;
 `;
 const Separator = styled.View`
   height: 1px;
-  background-color: ${theme.colors.grey60};
-  margin-horizontal: ${theme.margin * 2}px;
+  background-color: ${styles.colors.grey60};
+  margin-horizontal: ${styles.margin * 2}px;
 `;
 const TextModal = styled(Modal)`
   justify-content: flex-start;
-  padding-top: ${theme.margin * 6}px;
+  padding-top: ${styles.margin * 6}px;
 `;
 
 interface Props {
@@ -92,7 +92,7 @@ export const SearchBarCity = (props: Props) => {
           name="search-outline"
           height={24}
           width={24}
-          fill={theme.colors.darkGrey}
+          fill={styles.colors.darkGrey}
         />
         <FakeInputText isRTL={isRTL}>
           {t("onboarding_screens.placeholder", "Exemple : Paris")}
@@ -103,14 +103,14 @@ export const SearchBarCity = (props: Props) => {
         isVisible={modalOpened}
         onBackdropPress={() => setModalOpened(false)}
         statusBarTranslucent={true}
-        backdropColor={theme.colors.greyF7}
+        backdropColor={styles.colors.greyF7}
         backdropOpacity={1}
       >
         <FixSafeAreaView>
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
-              style={{ marginRight: theme.margin }}
+              style={{ marginRight: styles.margin }}
               accessibilityRole="button"
               accessible={true}
               accessibilityLabel={t("global.back")}
@@ -119,7 +119,7 @@ export const SearchBarCity = (props: Props) => {
                 name="arrow-back-outline"
                 height={24}
                 width={24}
-                fill={theme.colors.darkGrey}
+                fill={styles.colors.darkGrey}
               />
             </TouchableOpacity>
             <InputContainer>
@@ -127,13 +127,13 @@ export const SearchBarCity = (props: Props) => {
                 name="search-outline"
                 height={24}
                 width={24}
-                fill={theme.colors.darkGrey}
+                fill={styles.colors.darkGrey}
               />
               <StyledInput
                 ref={input}
                 value={props.enteredText}
                 placeholder={t("onboarding_screens.placeholder", "Exemple : Paris")}
-                placeholderTextColor={theme.colors.darkGrey}
+                placeholderTextColor={styles.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}
                 testID="test-city-input"
@@ -148,7 +148,7 @@ export const SearchBarCity = (props: Props) => {
                   name="close-outline"
                   height={24}
                   width={24}
-                  fill={theme.colors.darkGrey}
+                  fill={styles.colors.darkGrey}
                 />
               </TouchableOpacity>
             </InputContainer>

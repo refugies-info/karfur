@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ThemeTag, ObjectId } from "../../types/interface";
 import { TextSmallBold, TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import { RTLView } from "../BasicComponents";
@@ -19,10 +19,10 @@ const IMAGE_SIZE = 58;
 
 const ContentContainer = styled.TouchableOpacity`
   background-color: ${(props: { isDispo: boolean }) => (props.isDispo ?
-    theme.colors.white : theme.colors.lightGrey)};
+    styles.colors.white : styles.colors.lightGrey)};
   min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
-  border-radius: ${theme.radius * 2}px;
-  ${theme.shadows.lg}
+  border-radius: ${styles.radius * 2}px;
+  ${styles.shadows.lg}
   border-width: ${(props: { isDispo: boolean }) => (!props.isDispo ? 2 : 0)}px;
   border-color: ${(props: { color: string }) => props.color || "transparent"};
   border-style: solid;
@@ -39,25 +39,25 @@ const ImageContainer = styled.View`
   height: 64px;
   align-items: center;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 2}px;
+    props.isRTL ? 0 : styles.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
   border-width: 6px;
   border-color: ${(props: { hasMatch: boolean }) =>
-    props.hasMatch ? theme.colors.lightBlue : "transparent"};
-  border-radius: ${theme.radius * 2}px;
+    props.hasMatch ? styles.colors.lightBlue : "transparent"};
+  border-radius: ${styles.radius * 2}px;
 `;
 
 const TitreInfoText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
   margin-bottom: ${(props: { isDispo: boolean }) =>
-    props.isDispo ? theme.margin : 0}px;
+    props.isDispo ? styles.margin : 0}px;
   flex-shrink: 1;
 `;
 
 const DescInfoText = styled(TextSmallNormal)`
   color: ${(props: { color: string }) => props.color};
-  margin: ${theme.margin * 2}px;
+  margin: ${styles.margin * 2}px;
 `;
 
 const TitreMarqueText = styled(TextVerySmallNormal)`
@@ -74,7 +74,7 @@ const TitlesContainer = styled.View`
 `;
 
 const ActionButton = styled.TouchableOpacity`
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-horizontal: ${styles.margin * 2}px;
   height: 100%;
   justify-content: center;
 `;
@@ -119,7 +119,7 @@ export const ContentSummary = (props: Props) => {
         name={props.actionIcon || ""}
         width={16}
         height={16}
-        fill={theme.colors.black}
+        fill={styles.colors.black}
       />
     </ActionButton>
     : null;

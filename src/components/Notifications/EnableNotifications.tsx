@@ -2,7 +2,7 @@ import React from "react";
 import LottieView from "lottie-react-native";
 import { StyleSheet, View } from "react-native";
 
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -16,12 +16,12 @@ import { CustomButton } from "../CustomButton";
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    marginTop: theme.margin * 2,
-    borderRadius: theme.radius * 2,
-    backgroundColor: theme.colors.white,
+    margin: styles.margin * 2,
+    borderRadius: styles.radius * 2,
+    backgroundColor: styles.colors.white,
     alignItems: "flex-start",
     justifyContent: "space-between",
-    padding: theme.margin * 3,
+    padding: styles.margin * 2,
   },
   lottieContainer: {
     height: 160,
@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
   },
   titles: {
     alignSelf: "center",
-    marginBottom: theme.margin * 2,
+    marginBottom: styles.margin * 2,
   },
   separator: {
-    marginVertical: theme.margin * 2,
+    marginVertical: styles.margin * 2,
   },
 });
 
@@ -84,10 +84,10 @@ export const EnableNotifications = ({
       </View>
       <CustomButton
         i18nKey="notifications.enableNotifications"
-        backgroundColor={theme.colors.darkBlue}
+        backgroundColor={styles.colors.darkBlue}
         iconName="checkmark-outline"
         defaultText="Activer les notifications"
-        textColor={theme.colors.white}
+        textColor={styles.colors.white}
         onPress={registerForNotifications}
         isTextNotBold={true}
       />
@@ -95,14 +95,14 @@ export const EnableNotifications = ({
         <>
           <View
             style={{
-              marginVertical: theme.margin,
+              marginVertical: styles.margin,
             }}
           />
           <CustomButton
             i18nKey="notifications.notNow"
-            backgroundColor={theme.colors.white}
+            backgroundColor={styles.colors.white}
             defaultText="Pas maintenant"
-            textColor={theme.colors.black}
+            textColor={styles.colors.black}
             onPress={onDismiss}
             isTextNotBold={true}
             withShadows={false}

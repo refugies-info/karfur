@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledTextBigBold } from "../StyledText";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { StreamlineIcon } from "../StreamlineIcon";
 
@@ -18,20 +18,20 @@ const MainContainer = styled.View`
   height: 90px;
   display: flex;
   flex-direction: column;
-  padding-horizontal: ${theme.margin * 3}px;
-  padding-bottom: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  padding-bottom: ${styles.margin * 3}px;
   justify-content: flex-end;
-  border-bottom-left-radius: ${theme.radius * 2}px;
-  border-bottom-right-radius: ${theme.radius * 2}px;
+  border-bottom-left-radius: ${styles.radius * 2}px;
+  border-bottom-right-radius: ${styles.radius * 2}px;
 `;
 
 const Text = styled(StyledTextBigBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 2}px;
+    props.isRTL ? 0 : styles.margin * 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
-  margin-bottom: ${theme.margin}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
+  margin-bottom: ${styles.margin}px;
 `;
 
 export const NeedsHeader = (props: Props) => (

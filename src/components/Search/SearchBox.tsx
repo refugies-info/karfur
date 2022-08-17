@@ -2,30 +2,30 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity, TextInput } from "react-native";
 import { connectSearchBox } from "react-instantsearch-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import {  RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const MainContainer = styled.View`
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-horizontal: ${styles.margin * 3}px;
   flex-direction: row;
   align-items: center;
 `;
 const InputContainer = styled(RTLView)`
   height:56px;
   width 100%;
-  border-radius:${theme.radius * 2}px;
-  padding:${theme.margin * 2}px;
-  background-color : ${theme.colors.white};
-  border: 1px solid ${theme.colors.darkGrey};
+  border-radius:${styles.radius * 2}px;
+  padding:${styles.margin * 2}px;
+  background-color : ${styles.colors.white};
+  border: 1px solid ${styles.colors.darkGrey};
   flex: 1;
 `;
 const StyledInput = styled.TextInput`
   height:100%;
   width 100%;
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : theme.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? theme.margin : 0)}px;
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
   text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
   flex: 1;
 `;
@@ -50,7 +50,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
     <MainContainer>
       <TouchableOpacity
         onPress={backCallback}
-        style={{ marginRight: theme.margin }}
+        style={{ marginRight: styles.margin }}
         accessibilityRole="button"
         accessible={true}
         accessibilityLabel={t("global.back")}
@@ -59,7 +59,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           name="arrow-back-outline"
           height={24}
           width={24}
-          fill={theme.colors.darkGrey}
+          fill={styles.colors.darkGrey}
         />
       </TouchableOpacity>
       <InputContainer>
@@ -67,14 +67,14 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           name="search-outline"
           height={24}
           width={24}
-          fill={theme.colors.darkGrey}
+          fill={styles.colors.darkGrey}
         />
         <StyledInput
           ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
           placeholder={t("search_screen.search", "Rechercher")}
-          placeholderTextColor={theme.colors.darkGrey}
+          placeholderTextColor={styles.colors.darkGrey}
           isRTL={isRTL}
           testID="test-city-search"
         />
@@ -88,7 +88,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
             name="close-outline"
             height={24}
             width={24}
-            fill={theme.colors.darkGrey}
+            fill={styles.colors.darkGrey}
           />
         </TouchableOpacity>
       </InputContainer>

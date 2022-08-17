@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 interface TabBarIconProps {
   color: string;
@@ -27,14 +27,14 @@ export const TabBarIcon = (props: TabBarIconProps) => {
       {props.badge &&
       <View
         style={{
-          width: theme.margin,
-          height: theme.margin,
+          width: styles.margin,
+          height: styles.margin,
           position: "absolute",
           top: 2,
           left: "50%",
           marginLeft: 10,
-          backgroundColor: theme.colors.darkBlue,
-          borderRadius: theme.margin / 2
+          backgroundColor: styles.colors.darkBlue,
+          borderRadius: styles.margin / 2
         }}
       ></View>
       }

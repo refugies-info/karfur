@@ -1,37 +1,37 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { theme } from "../../../theme";
+import { styles } from "../../../theme";
 import { TextNormalBold } from "../../StyledText";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 
 const ContentCardContainer = styled.View`
-  background-color: ${theme.colors.white};
-  padding: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 3}px;
-  border-radius: ${theme.radius * 2}px;
-  ${theme.shadows.lg}
+  background-color: ${styles.colors.white};
+  padding: ${styles.margin * 3}px;
+  margin-bottom: ${styles.margin * 3}px;
+  border-radius: ${styles.radius * 2}px;
+  ${styles.shadows.lg}
 `;
 const ContentCardTitle = styled.View`
   flex-direction: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "row-reverse" : "row"};
   align-items: center;
-  margin-bottom: ${theme.margin * 3}px;
+  margin-bottom: ${styles.margin * 3}px;
   max-width: 100%;
 `;
 const ContentCardTitleNumber = styled.View`
-  background-color: ${theme.colors.black};
+  background-color: ${styles.colors.black};
   width: 32px;
   height: 32px;
   border-radius: 16px;
   align-items: center;
   justify-content: center;
   margin-right: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? theme.margin * 2 : 0}px;
+    !props.isRTL ? styles.margin * 2 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
 `;
 const ContentCardTitleNumberText = styled(TextNormalBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 
 interface Props {

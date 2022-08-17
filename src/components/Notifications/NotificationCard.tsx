@@ -5,7 +5,7 @@ import { useQueryClient } from "react-query";
 //@ts-expect-error
 import moment from "moment/min/moment-with-locales";
 
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 import { Notification } from "../../hooks/useNotifications";
 import { markNotificationAsSeen } from "../../utils/API";
@@ -21,11 +21,18 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     flexDirection: "row",
-    marginVertical: theme.margin * 2,
-    paddingVertical: theme.margin * 2,
-    paddingHorizontal: theme.margin * 3,
-    backgroundColor: theme.colors.white,
-    borderRadius: theme.radius * 2,
+    marginHorizontal: styles.margin * 2,
+    marginVertical: styles.margin * 2,
+    padding: styles.margin * 2,
+    backgroundColor: styles.colors.white,
+    borderRadius: styles.radius * 2,
+    ...styles.shadowsStylesheet.lg,
+  },
+  leftContainer: {
+    display: "flex",
+    marginRight: styles.margin,
+    marginTop: styles.margin / 2,
+    alignItems: "flex-end",
   },
   rightContainer: {
     display: "flex",
@@ -33,22 +40,22 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   title: {
-    fontSize: theme.fonts.sizes.small,
-    color: theme.colors.black,
+    fontSize: styles.fonts.sizes.small,
+    color: styles.colors.black,
     marginBottom: 10,
     fontWeight: "500",
   },
   subtitle: {
-    fontSize: theme.fonts.sizes.verySmall,
-    color: theme.colors.darkGrey,
+    fontSize: styles.fonts.sizes.verySmall,
+    color: styles.colors.darkGrey,
     marginBottom: 10,
   },
   cta: {
-    backgroundColor: theme.colors.darkBlue,
-    paddingHorizontal: theme.margin * 2,
-    paddingVertical: theme.margin,
-    marginTop: theme.margin,
-    borderRadius: theme.radius * 2,
+    backgroundColor: styles.colors.darkBlue,
+    paddingHorizontal: styles.margin * 2,
+    paddingVertical: styles.margin,
+    marginTop: styles.margin,
+    borderRadius: styles.radius * 2,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -96,7 +103,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       style={[
         styles.container,
         !seen && {
-          backgroundColor: theme.colors.lightBlue,
+          backgroundColor: styles.colors.lightBlue,
         },
         isRTL && {
           flexDirection: "row-reverse",
@@ -105,12 +112,22 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     >
       <View
         style={[
-          styles.dot,
-          seen && {
-            backgroundColor: theme.colors.white,
+          styles.leftContainer,
+          isRTL && {
+            marginLeft: styles.margin,
+            marginRight: 0,
           },
         ]}
-      />
+      >
+        <View
+          style={[
+            styles.dot,
+            seen && {
+              backgroundColor: styles.colors.white,
+            },
+          ]}
+        />
+      </View>
       <View
         style={[
           styles.rightContainer,
@@ -154,10 +171,10 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
           <CustomButton
             i18nKey="notifications.viewFiche"
             backgroundColor={
-              seen ? theme.colors.lightBlue : theme.colors.darkBlue
+              seen ? styles.colors.lightBlue : styles.colors.darkBlue
             }
             defaultText="Voir la fiche"
-            textColor={seen ? theme.colors.darkBlue : theme.colors.white}
+            textColor={seen ? styles.colors.darkBlue : styles.colors.white}
             isTextNotBold={seen}
             notFullWidth={true}
             isSmall={true}
@@ -165,12 +182,10 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             iconName={isRTL ? "arrow-back" : "arrow-forward"}
             onPress={navigateToContent}
             style={{
-              marginTop: theme.margin,
-              marginRight: theme.margin,
-              flexGrow: !seen ? 1 : 0
+              marginTop: styles.margin,
             }}
             textStyle={{
-              fontSize: theme.fonts.sizes.verySmall,
+              fontSize: styles.fonts.sizes.verySmall,
             }}
             iconSize={16}
           />
@@ -178,21 +193,21 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             <CustomButton
               i18nKey="notifications.markAsSeen"
               defaultText="Marquer comme vu"
-              textColor={theme.colors.darkBlue}
-              backgroundColor={theme.colors.lightBlue}
+              textColor={styles.colors.darkBlue}
+              backgroundColor={styles.colors.lightBlue}
               isTextNotBold={true}
               notFullWidth={true}
               isSmall={true}
               withShadows={false}
               onPress={markAsSeen}
               style={{
-                marginTop: theme.margin,
-                borderColor: theme.colors.darkBlue,
+                marginTop: styles.margin,
+                borderColor: styles.colors.darkBlue,
                 borderWidth: 1,
                 flexGrow: 1
               }}
               textStyle={{
-                fontSize: theme.fonts.sizes.verySmall,
+                fontSize: styles.fonts.sizes.verySmall,
               }}
             />
           )}

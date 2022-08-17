@@ -5,7 +5,7 @@ import { MarkerGoogle } from "../../types/interface";
 import { TextSmallNormal } from "../StyledText";
 import { RTLView, RTLTouchableOpacity } from "../BasicComponents";
 import { CustomButton } from "../CustomButton";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { MapContentFromHtml } from "./MapContentHtml";
 import { Icon } from "react-native-eva-icons";
@@ -37,42 +37,42 @@ const MainContainer = styled.View`
   flex-direction: column;
   justify-content: space-between;
   padding: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.margin * 3 : 0}px;
+    props.isSelected ? styles.margin * 3 : 0}px;
 `;
 
 const ContentContainer = styled(RTLView)`
   margin-bottom: ${(props: { marginBottom: number }) =>
     props.marginBottom !== undefined
-      ? theme.margin * props.marginBottom
-      : theme.margin}px;
+      ? styles.margin * props.marginBottom
+      : styles.margin}px;
   margin-top: ${(props: { marginTop: number }) =>
     props.marginTop !== undefined
-      ? theme.margin * props.marginTop
-      : theme.margin}px;
+      ? styles.margin * props.marginTop
+      : styles.margin}px;
   align-items: flex-start;
 `;
 
 const ContentTouchableOpacity = styled(RTLTouchableOpacity)`
   margin-bottom: ${(props: { marginBottom: number }) =>
     props.marginBottom !== undefined
-      ? theme.margin * props.marginBottom
-      : theme.margin}px;
+      ? styles.margin * props.marginBottom
+      : styles.margin}px;
   margin-top: ${(props: { marginTop: number }) =>
     props.marginTop !== undefined
-      ? theme.margin * props.marginTop
-      : theme.margin}px;
+      ? styles.margin * props.marginTop
+      : styles.margin}px;
   align-items: flex-start;
 `;
 
 const TextValue = styled(TextSmallNormal)`
-  margin-bottom: ${theme.margin}px;
+  margin-bottom: ${styles.margin}px;
   color: ${(props: { color: string }) => props.color};
 `;
 const TextIcon = styled(Icon)`
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 2}px;
+    props.isRTL ? 0 : styles.margin * 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
 `;
 
 const HTMLContainer = styled.View`
@@ -92,7 +92,7 @@ export const MapBottomBar = (props: Props) => {
       : "";
   return (
     <MainContainer isSelected={true}>
-      <View style={{ marginBottom: theme.margin * 4 }}>
+      <View style={{ marginBottom: styles.margin * 4 }}>
         <ContentContainer
           color={props.textColor}
           marginBottom={4}
@@ -203,9 +203,9 @@ export const MapBottomBar = (props: Props) => {
         )}
       </View>
 
-      <View style={{ alignItems: "center", paddingBottom: theme.margin * 2 }}>
+      <View style={{ alignItems: "center", paddingBottom: styles.margin * 2 }}>
         <CustomButton
-          textColor={theme.colors.black}
+          textColor={styles.colors.black}
           i18nKey="global.close"
           onPress={props.hideSideBar}
           defaultText="Fermer"

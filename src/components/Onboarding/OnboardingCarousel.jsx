@@ -1,7 +1,7 @@
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { OnboardingCarouselElement } from "./OnboardingCarouselElement";
 import { CustomButton } from "../../components/CustomButton";
 import { SmallButton } from "../SmallButton";
@@ -20,20 +20,20 @@ const TopButtonsContainer = styled(SafeAreaView)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
   width: 100%;
-  padding-top: ${theme.margin}px;
+  padding-top: ${styles.margin}px;
 `;
 
 const NextButtonContainer = styled(SafeAreaView)`
   position: absolute;
-  bottom: ${theme.margin * 3}px;
+  bottom: ${styles.margin * 3}px;
   z-index: 2;
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
 `;
 
 const carouselItems = onboardingCarouselData;
@@ -61,14 +61,14 @@ class OnboardingCarousel extends React.Component {
           width: 8,
           height: 8,
           borderRadius: 5,
-          backgroundColor: theme.colors.white,
+          backgroundColor: styles.colors.white,
           borderWidth: 1,
-          borderColor: theme.colors.white,
+          borderColor: styles.colors.white,
         }}
         inactiveDotStyle={{
           backgroundColor: "transparent",
           borderWidth: 1,
-          borderColor: theme.colors.white,
+          borderColor: styles.colors.white,
           width: 8,
           height: 8,
           borderRadius: 5,
@@ -124,7 +124,7 @@ class OnboardingCarousel extends React.Component {
           <CustomButton
             i18nKey={activeIndex !== 3 ? "onboarding_screens.next_button" : "onboarding_screens.continue_button"}
             defaultText={activeIndex !== 3 ? "Suivant" : "Continuer"}
-            textColor={theme.colors.black}
+            textColor={styles.colors.black}
             onPress={() => {
               if (activeIndex === carouselItems.length - 1) {
                 this.props.finishOnboarding();

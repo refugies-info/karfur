@@ -1,5 +1,5 @@
 import React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import styled from "styled-components/native";
 import { Flag } from "./Flag";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,8 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { newReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 const ButtonContainerCommon = styled.View`
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
@@ -28,34 +28,35 @@ const ButtonContainerCommon = styled.View`
 
 const ButtonContainer = styled.TouchableOpacity`
   margin-right: ${(props: { isRTL: any }) =>
-    props.isRTL ? theme.margin : 0}px;
-  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? 0 : theme.margin)}px;
+    props.isRTL ? 0 : styles.margin}px;
+  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? styles.margin : 0)}px;
 
-  background-color: ${theme.colors.grey60};
-  border-radius: ${theme.radius * 2}px;
+  background-color: ${styles.colors.grey60};
+  border-radius: ${styles.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${theme.shadows.lg}
+  ${styles.shadows.lg}
 `;
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
   width: 48px;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
+  margin-right: ${styles.margin}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${theme.shadows.lg}
+  ${styles.shadows.lg}
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)`
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : theme.colors.grey60 };
+    props.isSelected ? styles.colors.white : styles.colors.grey60 };
   width: 48px;
   ${(props: { isSelected: boolean }) => props.isSelected ? `
   z-index: 3;
@@ -64,7 +65,7 @@ const LanguageContainer = styled(ButtonContainerCommon)`
 
 const FlagBackground = styled.View`
   margin: 4px;
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   width: 22px;
   height: 17px;
   display: flex;

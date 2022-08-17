@@ -30,26 +30,26 @@ import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { getThemeTag } from "../../libs/getThemeTag";
-import { theme } from "../../theme"
+import { styles } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
 import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { useVoiceover } from "../../hooks/useVoiceover";
 
 const EmptyContainer = styled.ScrollView`
-  padding-horizontal: ${theme.margin * 4}px;
+  padding-horizontal: ${styles.margin * 4}px;
 `;
 const EmptyTitle = styled(StyledTextBigBold)`
   text-align: center;
-  margin-top: ${theme.margin * 4}px;
-  margin-bottom: ${theme.margin * 2}px;
+  margin-top: ${styles.margin * 4}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 const EmptyText = styled(StyledTextSmall)`
   text-align: center;
-  margin-bottom: ${theme.margin * 4}px;
+  margin-bottom: ${styles.margin * 4}px;
 `;
 const CardItem = styled.View`
-  marginBottom: ${theme.margin * 1}px;
+  marginBottom: ${styles.margin * 1}px;
   flex: 1;
 `;
 
@@ -155,21 +155,21 @@ export const FavorisScreen = ({
     return (
       <View
         style={{
-          backgroundColor: theme.colors.red,
+          backgroundColor: styles.colors.red,
           justifyContent: "center",
           alignItems: !isRTL ? "flex-end" : "flex-start",
           flex: 1,
-          paddingHorizontal: theme.margin * 2,
-          marginHorizontal:  theme.margin * 3,
-          borderRadius: theme.radius * 2,
-          marginBottom: theme.margin * 2,
+          paddingHorizontal: styles.margin * 2,
+          marginHorizontal:  styles.margin * 3,
+          borderRadius: styles.radius * 2,
+          marginBottom: styles.margin * 2,
         }}
       >
         <Icon
           name="trash-2-outline"
           width={24}
           height={24}
-          fill={theme.colors.white}
+          fill={styles.colors.white}
         ></Icon>
       </View>
     )
@@ -195,15 +195,15 @@ export const FavorisScreen = ({
           onScrollEndDrag={onScrollEnd}
           contentContainerStyle={{
             justifyContent: "space-between",
-            paddingHorizontal: theme.margin * 3,
-            paddingTop: theme.margin * 3,
-            paddingBottom: theme.margin * 5 + (insets.bottom || 0),
+            paddingHorizontal: styles.margin * 3,
+            paddingTop: styles.margin * 3,
+            paddingBottom: styles.margin * 5 + (insets.bottom || 0),
             flexShrink: 0,
             flexGrow: 1
           }}
         >
-          <View style={{ marginBottom: theme.margin * 2 }}>
-            <View style={{ marginHorizontal: -theme.margin * 3, flex: 1, justifyContent: "flex-start" }}>
+          <View style={{ marginBottom: styles.margin * 2 }}>
+            <View style={{ marginHorizontal: -styles.margin * 3, flex: 1, justifyContent: "flex-start" }}>
               {contentsToDisplay.map((content: SimplifiedContent) => {
                 const tagName = content.tags.length > 0 ? content.tags[0].name : "";
                 const colors = getThemeTag(tagName);
@@ -217,7 +217,7 @@ export const FavorisScreen = ({
                       onSwipeableRightOpen={!isRTL ? () => deleteFavorite(content._id) : undefined}
                       onSwipeableLeftOpen={isRTL ? () => deleteFavorite(content._id) : undefined}
                       overshootFriction={8}
-                      childrenContainerStyle={{ paddingBottom: theme.margin * 2 }}
+                      childrenContainerStyle={{ paddingBottom: styles.margin * 2 }}
                     >
                       <ContentSummary
                         navigation={navigation}
@@ -230,7 +230,7 @@ export const FavorisScreen = ({
                         actionPress={() => showDeleteModal(content._id)}
                         actionIcon={"trash-2-outline"}
                         actionLabel={t("favorites_screen.delete_content_accessibility")}
-                        style={{ marginHorizontal: theme.margin * 3 }}
+                        style={{ marginHorizontal: styles.margin * 3 }}
                         backScreen="Favoris"
                       />
                     </Swipeable>
@@ -241,11 +241,11 @@ export const FavorisScreen = ({
           </View>
 
           <CustomButton
-            textColor={theme.colors.black}
+            textColor={styles.colors.black}
             i18nKey="favorites_screen.delete_all_accessibility"
             defaultText="Supprimer toutes mes fiches"
             onPress={() => showDeleteModal("all")}
-            backgroundColor={theme.colors.grey60}
+            backgroundColor={styles.colors.grey60}
             iconName="trash-2-outline"
             iconFirst={true}
             isTextNotBold={true}
@@ -259,12 +259,12 @@ export const FavorisScreen = ({
             alignItems: "center",
             justifyContent: "center",
             flexGrow: 1,
-            paddingBottom: theme.margin * 5 + (insets.bottom || 0)
+            paddingBottom: styles.margin * 5 + (insets.bottom || 0)
           }}
         >
           <Image
             source={EmptyIllu}
-            style={{ width: 312, height: 250, marginTop: theme.margin * 4 }}
+            style={{ width: 312, height: 250, marginTop: styles.margin * 4 }}
           />
           <EmptyTitle>
             {t("favorites_screen.empty", "C'est vide")}
@@ -276,11 +276,11 @@ export const FavorisScreen = ({
             )}
           </EmptyText>
           <CustomButton
-            textColor={theme.colors.white}
+            textColor={styles.colors.white}
             i18nKey="tab_bar.explorer"
             onPress={() => navigation.navigate("Explorer")}
             defaultText="Explorer"
-            backgroundColor={theme.colors.black}
+            backgroundColor={styles.colors.black}
             iconName="compass-outline"
             iconFirst={true}
             notFullWidth={true}

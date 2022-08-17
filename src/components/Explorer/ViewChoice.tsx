@@ -1,5 +1,5 @@
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import React from "react";
 import styled from "styled-components/native";
 import { TextVerySmallBold, TextVerySmallNormal } from "../StyledText";
@@ -12,21 +12,21 @@ import { useTranslation } from "react-i18next";
 const ICON_SIZE = 16;
 
 const ChoiceTextBold = styled(TextVerySmallBold)`
-  margin-left: ${theme.margin}px;
-  margin-right: ${theme.margin}px;
+  margin-left: ${styles.margin}px;
+  margin-right: ${styles.margin}px;
 `;
 
 const ChoiceText = styled(TextVerySmallNormal)`
-  margin-left: ${theme.margin}px;
-  margin-right: ${theme.margin}px;
+  margin-left: ${styles.margin}px;
+  margin-right: ${styles.margin}px;
 `;
 
 const StyledButton = styled(RTLTouchableOpacity)`
-  padding-horizontal: ${theme.margin * 3}px;
-  padding-vertical: ${theme.margin * 2}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  padding-vertical: ${styles.margin * 2}px;
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? theme.colors.white : "transparent" };
-  border-radius: ${theme.radius * 2}px;
+    props.isSelected ? styles.colors.white : "transparent" };
+  border-radius: ${styles.radius * 2}px;
   flex-basis: 50%;
   justify-content: center;
 `;

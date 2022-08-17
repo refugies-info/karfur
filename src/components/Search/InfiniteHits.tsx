@@ -5,7 +5,7 @@ import { connectInfiniteHits } from "react-instantsearch-native";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
 import { ErrorScreen } from "../ErrorScreen";
 import NbResults from "./NbResults";
-import { theme } from "../../theme"
+import { styles } from "../../theme"
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const ErrorContainer = styled.View`
@@ -74,7 +74,7 @@ const InfiniteHits = ({
         data={hits}
         keyExtractor={item => item.objectID}
         onEndReached={() => hasMore && refineNext()}
-        contentContainerStyle={{ paddingBottom: theme.margin * 6 }}
+        contentContainerStyle={{ paddingBottom: styles.margin * 6 }}
         {...keyboardDismissProp}
         ListHeaderComponent={<NbResults />}
         renderItem={({ item }) => {
@@ -83,8 +83,8 @@ const InfiniteHits = ({
               key={item.objectID}
               style={{
                 flex: 1,
-                marginBottom: theme.margin * 2,
-                paddingHorizontal: theme.margin * 3
+                marginBottom: styles.margin * 2,
+                paddingHorizontal: styles.margin * 3
               }}
             >
               <SearchContentSummary

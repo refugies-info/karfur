@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { StyleProp, ViewStyle } from "react-native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import {
   TextVerySmallNormal,
   TextSmallBold
@@ -15,10 +15,10 @@ import { ThemeTag } from "../../types/interface";
 import { ReadableText } from "../ReadableText";
 
 const NeedContainer = styled(RTLTouchableOpacity)`
-  padding:${theme.margin * 2}px
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
-  ${theme.shadows.lg}
+  padding:${styles.margin * 2}px
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
+  ${styles.shadows.lg}
   justify-content:space-between;
   align-items :center;
 `;
@@ -30,26 +30,26 @@ const IndicatorContainer = styled(RTLView)`
   border-radius: 8px;
   height: 32px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
   minWidth: 64px;
-  paddingHorizontal: ${theme.margin}px;
+  paddingHorizontal: ${styles.margin}px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const IndicatorText = styled(TextVerySmallNormal)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 
 const IndicatorNumber = styled(TextVerySmallNormal)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin / 2}px;
+    props.isRTL ? 0 : styles.margin / 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin / 2 : 0}px;
+    props.isRTL ? styles.margin / 2 : 0}px;
 `;
 const StyledText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};

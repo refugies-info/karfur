@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components/native";
 import { StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { onboardingCarouselData } from "./OnboardingCarouselData";
 import { TextBigBold } from "../StyledText";
 import { CarouselStepImage } from "./CarouselStepImage";
@@ -14,9 +14,9 @@ interface Props {
 }
 
 const StyledText = styled(TextBigBold)`
-  color: ${theme.colors.white};
-  margin-bottom: ${theme.margin * 25}px;
-  margin-top: ${theme.margin * 3}px;
+  color: ${styles.colors.white};
+  margin-bottom: ${styles.margin * 25}px;
+  margin-top: ${styles.margin * 3}px;
   width: 100%;
 `;
 const ImagesContainer = styled.View`
@@ -24,7 +24,7 @@ const ImagesContainer = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  margin-top: ${theme.margin * 5}px;
+  margin-top: ${styles.margin * 5}px;
 `;
 const styles = StyleSheet.create({
   card: {
@@ -33,8 +33,8 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: theme.margin * 3,
-    paddingTop: theme.margin * 6,
+    paddingHorizontal: styles.margin * 3,
+    paddingTop: styles.margin * 6,
   },
 });
 export const OnboardingCarouselElement = (props: Props) => {

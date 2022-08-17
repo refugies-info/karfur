@@ -11,7 +11,7 @@ import Culture from "../../theme/images/tags-illus/culture.svg";
 import Rencontre from "../../theme/images/tags-illus/rencontres.svg";
 import Benevolat from "../../theme/images/tags-illus/benevolat.svg";
 import Soccer from "../../theme/images/tags-illus/loisirs.svg";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 interface Props {
   name: string;
@@ -33,7 +33,7 @@ export const TagImage = ({ name }: Props) => {
     case "triumph":
       return <Culture />;
     case "heartBeat":
-      return <Soin style={{ marginBottom: theme.margin * 2 }} />;
+      return <Soin style={{ marginBottom: styles.margin * 2 }} />;
     case "couple":
       return <Rencontre />;
     case "soccer":

@@ -2,7 +2,7 @@ import * as React from "react";
 import { SmallButton } from "./SmallButton";
 import { RowContainer, RTLView } from "./BasicComponents";
 import styled from "styled-components/native";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { StyledTextSmallBold } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
@@ -13,16 +13,16 @@ import { View } from "react-native";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: flex-start;
-  padding-horizontal: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
   z-index: 2;
-  padding-top: ${theme.margin}px;
+  padding-top: ${styles.margin}px;
 `;
 
 const StyledText = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const ICON_SIZE = 24;
@@ -46,18 +46,17 @@ export const HeaderWithBack = (props: Props) => {
         label={t("global.back_button_accessibility")}
       />
       {props.iconName && props.text && (
-        <RTLView
-          style={{
-            flex: 1,
-            marginRight: !isRTL ? theme.margin * 7 : 0,
-            marginLeft: isRTL ? theme.margin * 7 : 0,
-            justifyContent: "center",
-          }}>
+        <RTLView style={{
+          flex: 1,
+          marginRight: !isRTL ? styles.margin * 7 : 0,
+          marginLeft: isRTL ? styles.margin * 7 : 0,
+          justifyContent: "center",
+        }}>
           <Icon
             name={props.iconName}
             width={ICON_SIZE}
             height={ICON_SIZE}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
           />
           <StyledText isRTL={isRTL}>{props.text}</StyledText>
         </RTLView>

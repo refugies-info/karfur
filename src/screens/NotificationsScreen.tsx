@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
-import { theme } from "../theme/index";
+import { styles } from "../theme";
 
 import { useNotifications, Notification } from "../hooks/useNotifications";
 import { useNotificationsStatus } from "../hooks/useNotificationsStatus";
@@ -29,66 +29,65 @@ import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 
 const ICON_SIZE = 24;
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   container: {
     display: "flex",
+    margin: styles.margin * 2,
     flex: 1,
   },
   settingsButton: {
     width: 40,
     height: 40,
-    backgroundColor: theme.colors.white,
-    borderRadius: theme.radius,
+    backgroundColor: styles.colors.white,
+    borderRadius: styles.radius,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    ...theme.shadowsStylesheet.lg,
+    ...styles.shadowsStylesheet.lg,
   },
   titleContainer: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: theme.margin * 2,
-    marginBottom: theme.margin,
-    marginHorizontal: theme.margin * 3,
+    margin: styles.margin * 2,
   },
   unseenCount: {
     display: "flex",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal: theme.margin,
-    fontSize: theme.fonts.sizes.small,
-    backgroundColor: theme.colors.lighterRed,
+    marginHorizontal: styles.margin,
+    fontSize: styles.fonts.sizes.small,
+    backgroundColor: styles.colors.lighterRed,
     borderRadius: 100,
     height: 24,
     width: 24,
   },
   unseenCountText: {
-    fontSize: theme.fonts.sizes.small,
-    fontFamily: theme.fonts.families.circularBold,
-    color: theme.colors.white,
+    fontSize: styles.fonts.sizes.small,
+    fontFamily: styles.fonts.families.circularBold,
+    color: styles.colors.white,
   },
   noNotifications: {
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
-    marginHorizontal: theme.margin * 2,
+    marginHorizontal: styles.margin * 2,
   },
   noNotificationsTitle: {
-    fontSize: theme.fonts.sizes.normal,
-    color: theme.colors.darkGrey,
-    fontFamily: theme.fonts.families.circularBold,
+    fontSize: styles.fonts.sizes.normal,
+    color: styles.colors.darkGrey,
+    fontFamily: styles.fonts.families.circularBold,
     lineHeight: 24,
-    marginVertical: theme.margin * 2,
+    marginVertical: styles.margin * 2,
     textAlign: "center",
   },
   noNotificationsSubtitle: {
-    fontSize: theme.fonts.sizes.small,
-    color: theme.colors.darkGrey,
-    fontFamily: theme.fonts.families.circularStandard,
+    fontSize: styles.fonts.sizes.small,
+    color: styles.colors.darkGrey,
+    fontFamily: styles.fonts.families.circularStandard,
     textAlign: "center",
     lineHeight: 20,
   },
@@ -114,14 +113,15 @@ export const NotificationsScreen = () => {
   setLanguageModalVisible(!isLanguageModalVisible);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <HeaderWithBack
-        navigation={navigation}
-        onLongPressSwitchLanguage={toggleLanguageModal}
-      />
-      <View style={styles.container}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <HeaderWithBack navigation={navigation} />
+      <View style={stylesheet.container}>
         <View
-          style={styles.titleContainer}
+          style={stylesheet.titleContainer}
         >
           <View
             style={{
@@ -132,16 +132,16 @@ export const NotificationsScreen = () => {
             <StyledTextBigBold>
               {t("notifications.notifications")}
             </StyledTextBigBold>
-            {accessGranted && !!count && (
-              <View style={styles.unseenCount}>
-                <Text style={styles.unseenCountText}>
+            {!!count && (
+              <View style={stylesheet.unseenCount}>
+                <Text style={stylesheet.unseenCountText}>
                   {count > 9 ? "9" : count}
                 </Text>
               </View>
             )}
           </View>
           <TouchableOpacity
-            style={styles.settingsButton}
+            style={stylesheet.settingsButton}
             activeOpacity={0.8}
             onPress={() =>
               navigation.navigate("Profil", {
@@ -154,7 +154,7 @@ export const NotificationsScreen = () => {
               name="settings-outline"
               width={ICON_SIZE}
               height={ICON_SIZE}
-              fill={theme.colors.black}
+              fill={styles.colors.black}
             />
           </TouchableOpacity>
         </View>
@@ -178,9 +178,7 @@ export const NotificationsScreen = () => {
             style={[
               {
                 display: "flex",
-                marginTop: theme.margin,
-                marginHorizontal: theme.margin * 3,
-                marginBottom: theme.margin * 4
+                marginBottom: styles.margin * 4
               },
               !isLoading &&
                 !notifications?.notifications?.length && {
@@ -190,25 +188,25 @@ export const NotificationsScreen = () => {
             ]}
           >
             {isLoading && (
-              <ActivityIndicator size="small" color={theme.colors.black} />
+              <ActivityIndicator size="small" color={styles.colors.black} />
             )}
             {!isLoading && !notifications?.notifications.length && (
-              <View style={styles.noNotifications}>
+              <View style={stylesheet.noNotifications}>
                 <Icon
                   name="bell-off-outline"
                   width={60}
                   height={60}
-                  fill={theme.colors.darkGrey}
+                  fill={styles.colors.darkGrey}
                 />
-                <Text style={styles.noNotificationsTitle}>
+                <Text style={stylesheet.noNotificationsTitle}>
                   {t("notifications.noneYet")}
                 </Text>
-                <Text style={styles.noNotificationsSubtitle}>
+                <Text style={stylesheet.noNotificationsSubtitle}>
                   {t("notifications.noneYetSubtitle1")}
                   <Text
                     onPress={() => navigation.navigate("Profil")}
                     style={{
-                      fontFamily: theme.fonts.families.circularBold,
+                      fontFamily: styles.fonts.families.circularBold,
                       textDecorationLine: "underline",
                     }}
                   >
@@ -221,8 +219,8 @@ export const NotificationsScreen = () => {
             {!isLoading && !!notifications?.notifications.length && (
               <FlatList
                 contentContainerStyle={{
-                  marginBottom: theme.margin * 2,
-                  paddingBottom: theme.margin * 4,
+                  marginBottom: styles.margin * 2,
+                  paddingBottom: styles.margin * 4,
                 }}
                 data={notifications?.notifications || []}
                 renderItem={({ item }) => renderCard(item)}

@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 
 import { userLocationSelector } from "../../services/redux/User/user.selectors";
 
@@ -25,7 +25,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
 
 const Title = styled(TextBigBold)`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 
 const THEMES = [
@@ -82,17 +82,17 @@ const THEMES = [
 const styles = StyleSheet.create({
   toggleContainer: {
     display: "flex",
-    marginVertical: theme.margin * 4,
-    borderRadius: theme.radius * 2,
-    backgroundColor: theme.colors.white,
-    ...theme.shadowsStylesheet.lg,
+    marginVertical: styles.margin * 4,
+    borderRadius: styles.radius * 2,
+    backgroundColor: styles.colors.white,
+    ...styles.shadowsStylesheet.lg,
   },
   separator: {
     height: 1,
     width: "90%",
     alignSelf: "center",
-    backgroundColor: theme.colors.grey,
-    marginVertical: theme.margin / 2,
+    backgroundColor: styles.colors.grey,
+    marginVertical: styles.margin / 2,
   },
 });
 
@@ -134,19 +134,19 @@ export const NotificationsSettingsScreen = () => {
       />
       <View
         style={{
-          marginHorizontal: theme.margin * 3,
-          marginTop: theme.margin * 3,
+          marginHorizontal: styles.margin * 3,
+          marginTop: styles.margin * 3,
         }}
       >
         <Title>{t("notifications.notifications")}</Title>
       </View>
 
       {!settings ?
-        <ActivityIndicator size="small" color={theme.colors.black} /> :
+        <ActivityIndicator size="small" color={styles.colors.black} /> :
         <ScrollView
           contentContainerStyle={{
-            paddingTop: theme.margin * 2,
-            paddingHorizontal: theme.margin * 3,
+            paddingTop: styles.margin * 2,
+            paddingHorizontal: styles.margin * 3,
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >

@@ -6,7 +6,7 @@ import {
 import { View } from "react-native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import Constants from "expo-constants";
 import * as Analytics from "expo-firebase-analytics";
@@ -42,25 +42,25 @@ import { firstLetterUpperCase } from "../../libs";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
-  margin-bottom: ${theme.margin * 7}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-bottom: ${styles.margin * 7}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const ContentContainer = styled.ScrollView`
-  padding-bottom: ${theme.margin * 3}px;
-  padding-top: ${theme.margin * 2}px;
+  padding-bottom: ${styles.margin * 3}px;
+  padding-top: ${styles.margin * 2}px;
 `;
 const StyledText = styled(TextSmallNormal)`
-  padding-horizontal: ${theme.margin * 3}px;
-  margin-bottom: ${theme.margin * 3}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  margin-bottom: ${styles.margin * 3}px;
 `;
 
 const ProfilButtonsContainer = styled.View`
-  margin-horizontal: ${theme.margin * 3}px;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
-  margin-bottom: ${theme.margin * 5}px;
-  ${theme.shadows.lg}
+  margin-horizontal: ${styles.margin * 3}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
+  margin-bottom: ${styles.margin * 5}px;
+  ${styles.shadows.lg}
 `;
 
 export const ProfilScreen = ({
@@ -198,11 +198,11 @@ export const ProfilScreen = ({
 
         <DeleteDataContainer>
           <CustomButton
-            textColor={theme.colors.black}
+            textColor={styles.colors.black}
             i18nKey="profile_screens.delete_informations_button"
             defaultText="Supprimer les données de mon profil"
             onPress={toggleDeleteDataModal}
-            backgroundColor={theme.colors.grey60}
+            backgroundColor={styles.colors.grey60}
             isTextNotBold={true}
           />
         </DeleteDataContainer>
@@ -265,17 +265,17 @@ export const ProfilScreen = ({
         </ProfilButtonsContainer>
         <DeleteDataContainer>
           <CustomButton
-            textColor={theme.colors.black}
+            textColor={styles.colors.black}
             i18nKey="profile_screens.reinit_app_button"
             defaultText="Réinitialiser l'application"
             onPress={toggleReinitAppModal}
-            backgroundColor={theme.colors.grey60}
+            backgroundColor={styles.colors.grey60}
             isTextNotBold={true}
           />
         </DeleteDataContainer>
-        <View style={{ marginBottom: theme.margin * 7 }}>
+        <View style={{ marginBottom: styles.margin * 7 }}>
           <TextVerySmallNormal
-            style={{ textAlign: "center", color: theme.colors.darkGrey }}
+            style={{ textAlign: "center", color: styles.colors.darkGrey }}
           >
             Version {Constants.manifest?.extra?.displayVersionNumber}
           </TextVerySmallNormal>

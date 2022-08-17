@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from "react-native";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { RTLView } from "../BasicComponents";
@@ -22,17 +22,17 @@ const getContainerDimensions = (imageName: string) => {
       "titreSejour",
     ].includes(imageName)
   ) {
-    return { width: CONTAINER_SIZE, height: (56 + theme.margin * 2) };
+    return { width: CONTAINER_SIZE, height: (56 + styles.margin * 2) };
   }
 
   if (imageName === "passeport") {
-    return { width: (60 + theme.margin * 2), height: CONTAINER_SIZE };
+    return { width: (60 + styles.margin * 2), height: CONTAINER_SIZE };
   }
 
   return { width: CONTAINER_SIZE, height: CONTAINER_SIZE };
 };
 const StructureImageContainer = styled.View`
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   display: flex;
   flex: 1;
   justify-content: center;
@@ -52,18 +52,18 @@ const IconTextContainer = styled(RTLView)``;
 const SponsorImageContainer = styled.View`
   width: ${(props: { width: number }) => props.width}px;
   height: ${(props: { height: number }) => props.height}px;
-  background-color: ${theme.colors.lightGrey};
+  background-color: ${styles.colors.lightGrey};
   z-index: 2;
   margin-top: ${(props: { height: number }) => -props.height / 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 3}px;
+    props.isRTL ? 0 : styles.margin * 3}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 3 : 0}px;
+    props.isRTL ? styles.margin * 3 : 0}px;
 
-  border-radius: ${theme.radius * 2}px;
-  padding: ${theme.margin}px;
+  border-radius: ${styles.radius * 2}px;
+  padding: ${styles.margin}px;
   display: flex;
-  margin-bottom: ${theme.margin}px;
+  margin-bottom: ${styles.margin}px;
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
 `;
@@ -95,8 +95,8 @@ export const ContentImage = (props: Props) => {
               source={{ uri: props.sponsorPictureUrl }}
               resizeMode={"contain"}
               style={{
-                height: CONTAINER_SIZE - (theme.margin * 2),
-                width: CONTAINER_SIZE - (theme.margin * 2),
+                height: CONTAINER_SIZE - (styles.margin * 2),
+                width: CONTAINER_SIZE - (styles.margin * 2),
               }}
             />
           </StructureImageContainer>
@@ -145,12 +145,12 @@ export const ContentImage = (props: Props) => {
           name={props.iconName}
           width={16}
           height={16}
-          stroke={theme.colors.black}
+          stroke={styles.colors.black}
         />
         <TextSmallNormal
           style={{
-            marginLeft: isRTL ? 0 : theme.margin,
-            marginRight: isRTL ? theme.margin : 0
+            marginLeft: isRTL ? 0 : styles.margin,
+            marginRight: isRTL ? styles.margin : 0
           }}
         >
           {t("content_screen.procedure", "Démarche")}

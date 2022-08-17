@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { TextSmallBold } from "../StyledText";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { ContentFromHtml } from "./ContentFromHtml";
@@ -25,23 +25,23 @@ interface Props {
 
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
-    props.isExpanded ? props.lightColor : theme.colors.white};
-  padding:${theme.margin * 2}px;
-  border-radius:${theme.radius * 2}px
+    props.isExpanded ? props.lightColor : styles.colors.white};
+  padding:${styles.margin * 2}px;
+  border-radius:${styles.radius * 2}px
   ${(props: { isExpanded: boolean }) =>
-    !props.isExpanded ? theme.shadows.lg : ""};
+    !props.isExpanded ? styles.shadows.lg : ""};
   justify-content:space-between;
   border: ${(props: { isExpanded: boolean; darkColor: string }) =>
     props.isExpanded
       ? `2px solid ${props.darkColor}`
-      : `2px solid ${theme.colors.white}`} ;
+      : `2px solid ${styles.colors.white}`} ;
     align-items:center;
 `;
 
 const AccordionContainer = styled.View`
-  margin-bottom: ${theme.margin}px;
-  margin-top: ${theme.margin}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-bottom: ${styles.margin}px;
+  margin-top: ${styles.margin}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const StepContainer = styled.View`
@@ -54,23 +54,23 @@ const StepContainer = styled.View`
   justify-content: center;
   align-items: center;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 2}px;
+    props.isRTL ? 0 : styles.margin * 2}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
 `;
 
 const StepText = styled(TextSmallBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 
 const ExpandedContentContainer = styled.View`
-  padding: ${theme.margin}px;
+  padding: ${styles.margin}px;
 `;
 const IconContainer = styled.View`
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 
 const TitleText = styled(TextSmallBold)`

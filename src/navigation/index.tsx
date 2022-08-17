@@ -14,7 +14,7 @@ import * as Notifications from "expo-notifications";
 import { useQueryClient } from "react-query";
 
 import { logger } from "../logger";
-import { theme } from "../theme";
+import { styles } from "../theme";
 
 import { AvailableLanguageI18nCode } from "../types/interface";
 import { RootStackParamList } from "../../types";
@@ -154,7 +154,7 @@ export const RootNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: theme.colors.lightGrey,
+      background: styles.colors.lightGrey,
     },
   };
 

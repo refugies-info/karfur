@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../services/redux/User/user.selectors";
 import { contentsSelector } from "../services/redux/Contents/contents.selectors";
 import { ScrollView, View, Animated, Platform, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { needNameSelector } from "../services/redux/Needs/needs.selectors";
 import { groupedContentsSelector } from "../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { isLoadingSelector } from "../services/redux/LoadingStatus/loadingStatus.selectors";
@@ -29,8 +29,8 @@ import { useVoiceover } from "../hooks/useVoiceover";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
-  margin-top: ${theme.margin * 6}px;
-  margin-bottom: ${theme.margin * 3}px;
+  margin-top: ${styles.margin * 6}px;
+  margin-bottom: ${styles.margin * 3}px;
 `;
 
 const sortByNbVues = (data: SimplifiedContent[]) =>
@@ -248,8 +248,8 @@ export const ContentsScreen = ({
           containerStyle={{
             display: "flex",
             flex: 1,
-            marginTop: theme.margin * 3,
-            marginHorizontal: theme.margin * 3,
+            marginTop: styles.margin * 3,
+            marginHorizontal: styles.margin * 3,
           }}
           isLoading={true}
           layout={[
@@ -257,23 +257,23 @@ export const ContentsScreen = ({
               key: "Section1",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
             {
               key: "Section2",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
             {
               key: "Section3",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
           ]}
-          boneColor={theme.colors.grey}
-          highlightColor={theme.colors.lightGrey}
+          boneColor={styles.colors.grey}
+          highlightColor={styles.colors.lightGrey}
         />
         <LanguageChoiceModal
           isModalVisible={isLanguageModalVisible}
@@ -311,9 +311,9 @@ export const ContentsScreen = ({
         ref={scrollview}
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
-          paddingHorizontal: theme.margin * 3,
-          paddingTop: theme.margin * 3,
-          paddingBottom: theme.margin * 5 + (insets.bottom || 0),
+          paddingHorizontal: styles.margin * 3,
+          paddingTop: styles.margin * 3,
+          paddingBottom: styles.margin * 5 + (insets.bottom || 0),
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -333,7 +333,7 @@ export const ContentsScreen = ({
               titreMarque={content.titreMarque}
               typeContenu={content.typeContenu}
               sponsorUrl={content.sponsorUrl}
-              style={{marginBottom: theme.margin * 3}}
+              style={{marginBottom: styles.margin * 3}}
             />
           );
         })}
@@ -355,7 +355,7 @@ export const ContentsScreen = ({
                   titreMarque={content.titreMarque}
                   typeContenu={content.typeContenu}
                   sponsorUrl={content.sponsorUrl}
-                  style={{marginBottom: theme.margin * 3}}
+                  style={{marginBottom: styles.margin * 3}}
                 />
               );
             })}

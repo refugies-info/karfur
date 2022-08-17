@@ -3,7 +3,7 @@ import { Icon } from "react-native-eva-icons";
 import { Animated, Easing } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import { RTLView } from "./BasicComponents";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { StyledTextVerySmallBold } from "./StyledText";
@@ -23,21 +23,21 @@ const ToastContainer = styled(Animated.View)`
   z-index: 13;
 `;
 const ToastView = styled(RTLView)`
-  background-color: ${theme.colors.black};
-  border-radius: ${theme.radius * 2}px;
+  background-color: ${styles.colors.black};
+  border-radius: ${styles.radius * 2}px;
   justify-content: space-between;
-  padding: ${theme.margin * 2}px;
-  margin-horizontal: ${theme.margin * 3}px;
-  ${theme.shadows.lg}
+  padding: ${styles.margin * 2}px;
+  margin-horizontal: ${styles.margin * 3}px;
+  ${styles.shadows.lg}
 `;
 const TextIcon = styled(Icon)`
   marginRight: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin * 2}px;
+    props.isRTL ? 0 : styles.margin * 2}px;
   marginLeft: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
 `;
 const StyledText = styled(StyledTextVerySmallBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 
 
@@ -91,7 +91,7 @@ export const Toast = (props: Props) => {
             name={props.icon}
             height={16}
             width={16}
-            fill={theme.colors.white}
+            fill={styles.colors.white}
             isRTL={isRTL}
           />
           {props.i18nKey ?
@@ -110,7 +110,7 @@ export const Toast = (props: Props) => {
             name="close"
             height={24}
             width={24}
-            fill={theme.colors.white}
+            fill={styles.colors.white}
           />
         </TouchableOpacity>
       </ToastView>

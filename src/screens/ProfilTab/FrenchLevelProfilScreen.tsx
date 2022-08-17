@@ -6,7 +6,7 @@ import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
 import { frenchLevelFilters } from "../../data/filtersData";
@@ -19,7 +19,7 @@ import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 
 const Title = styled(TextBigBold)`
-  margin-bottom: ${theme.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
 `;
 
 export const FrenchLevelProfilScreen = ({
@@ -75,8 +75,8 @@ export const FrenchLevelProfilScreen = ({
       <View style={{ flex: 1 }}>
         <View
           style={{
-            marginHorizontal: theme.margin * 3,
-            marginTop: theme.margin * 3
+            marginHorizontal: styles.margin * 3,
+            marginTop: styles.margin * 3
           }}
         >
           <Title>
@@ -90,8 +90,8 @@ export const FrenchLevelProfilScreen = ({
         <ScrollView
            style={{ flex: 1 }}
           contentContainerStyle={{
-            paddingTop: theme.margin * 2,
-            paddingHorizontal: theme.margin * 3,
+            paddingTop: styles.margin * 2,
+            paddingHorizontal: styles.margin * 3,
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >

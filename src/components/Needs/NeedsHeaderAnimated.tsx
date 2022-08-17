@@ -1,6 +1,6 @@
 import { Animated, StyleSheet } from "react-native";
 import React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { RTLView } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
@@ -18,10 +18,10 @@ interface Props {
   showSimplifiedHeader: boolean;
 }
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   bodyBackground: {
     overflow: "hidden",
-    paddingHorizontal: theme.margin * 3,
+    paddingHorizontal: styles.margin * 3,
   },
 
   bodyContainer: {
@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   headerText: {
-    fontSize: theme.fonts.sizes.big,
-    fontFamily: theme.fonts.families.circularBold,
+    fontSize: styles.fonts.sizes.big,
+    fontFamily: styles.fonts.families.circularBold,
     lineHeight: 32,
-    color: theme.colors.white,
+    color: styles.colors.white,
   },
 });
 
@@ -42,7 +42,7 @@ export const NeedsHeaderAnimated = (props: Props) => {
   return (
     <Animated.View
       style={[
-        styles.bodyBackground,
+        stylesheet.bodyBackground,
         {
           height: props.headerHeight,
           backgroundColor: props.tagDarkColor,
@@ -55,11 +55,11 @@ export const NeedsHeaderAnimated = (props: Props) => {
       <RTLView>
         <Animated.Text
           style={[
-            styles.headerText,
+            stylesheet.headerText,
             {
               textAlign: isRTL ? "right" : "left",
-              marginRight: isRTL ? 0 : theme.margin,
-              marginLeft: isRTL ? theme.margin : 0,
+              marginRight: isRTL ? 0 : styles.margin,
+              marginLeft: isRTL ? styles.margin : 0,
               fontSize: props.headerFontSize,
             },
           ]}

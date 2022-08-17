@@ -2,7 +2,7 @@ import * as React from "react";
 import { View } from "react-native";
 import styled from "styled-components/native";
 import { RTLView } from "../BasicComponents";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { StyledTextSmallBold } from "../StyledText";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
@@ -21,28 +21,28 @@ interface Props {
 }
 
 const ButtonContainer = styled.TouchableOpacity`
-  padding-vertical: ${theme.margin}px;
+  padding-vertical: ${styles.margin}px;
 `;
 const StyledContainer = styled(RTLView)`
-  margin-horizontal: ${theme.margin * 2}px;
-  margin-bottom: ${theme.margin * 2}px;
-  margin-top: ${theme.margin * 3}px;
-  padding-vertical: ${theme.margin * 2}px;
-  padding-horizontal: ${theme.margin}px;
+  margin-horizontal: ${styles.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
+  margin-top: ${styles.margin * 3}px;
+  padding-vertical: ${styles.margin * 2}px;
+  padding-horizontal: ${styles.margin}px;
   align-items: center;
   align-self: stretch;
   justify-content: center;
-  border-radius: ${theme.radius * 2}px;
+  border-radius: ${styles.radius * 2}px;
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
-  ${theme.shadows.lg}
+  ${styles.shadows.lg}
 `;
 const StyledText = styled(StyledTextSmallBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
   margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : theme.margin}px;
+    props.isRTL ? 0 : styles.margin}px;
   flex-shrink: 1;
   flex-grow: 0;
 `;
@@ -51,7 +51,7 @@ const CardGradient = styled(LinearGradient)`
   align-items: center;
   width: ${(props: { width: number }) => props.width}px;
   height: ${(props: { height: number }) => props.height}px;
-  borderRadius: ${theme.radius * 2}px;
+  borderRadius: ${styles.radius * 2}px;
 `;
 
 export const CarousselCard = (props: Props) => {

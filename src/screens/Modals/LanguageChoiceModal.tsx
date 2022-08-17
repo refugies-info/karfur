@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import {
   StyledTextNormalBold,
   StyledTextSmallBold,
@@ -36,57 +36,57 @@ const styles = StyleSheet.create({
 });
 const StyledTextBold = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? theme.margin * 2 : 0}px;
+    !props.isRTL ? styles.margin * 2 : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin * 2 : 0}px;
-  color: ${theme.colors.black};
+    props.isRTL ? styles.margin * 2 : 0}px;
+  color: ${styles.colors.black};
 `;
 
 const StyledText = styled(StyledTextSmall)`
   text-align: left;
-  color: ${theme.colors.darkGrey};
+  color: ${styles.colors.darkGrey};
 `;
 
 const ModalView = styled.View`
-  background-color: ${theme.colors.lightGrey};
+  background-color: ${styles.colors.lightGrey};
   display: flex;
-  padding-vertical: ${theme.margin}px;
-  padding-horizontal: ${theme.margin * 3}px;
-  border-top-right-radius: ${theme.radius * 2}px;
-  border-top-left-radius: ${theme.radius * 2}px;
+  padding-vertical: ${styles.margin}px;
+  padding-horizontal: ${styles.margin * 3}px;
+  border-top-right-radius: ${styles.radius * 2}px;
+  border-top-left-radius: ${styles.radius * 2}px;
 `;
 
 const TitleContainer = styled(RTLView)`
   justify-content: center;
-  margin-top: ${theme.margin * 3}px;
+  margin-top: ${styles.margin * 3}px;
 `;
 
 const LanguagesContainer = styled.ScrollView`
-  margin-top: ${theme.margin * 2}px;
-  margin-bottom: ${theme.margin}px;
+  margin-top: ${styles.margin * 2}px;
+  margin-bottom: ${styles.margin}px;
 `;
 
 const Separator = styled.View`
   height: 1px;
-  background-color: ${theme.colors.grey};
-  margin-left: ${theme.margin * 2}px;
-  margin-right: ${theme.margin * 2}px;
+  background-color: ${styles.colors.grey};
+  margin-left: ${styles.margin * 2}px;
+  margin-right: ${styles.margin * 2}px;
 `;
 
 const FlagBackground = styled.View`
   margin: 4px;
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   width: 22px;
   height: 17px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  ${theme.shadows.sm}
+  ${styles.shadows.sm}
 `;
 const Backdrop = styled.View`
   flex: 1;
-  background-color: ${theme.colors.black};
+  background-color: ${styles.colors.black};
 `;
 
 export const LanguageChoiceModal = (props: Props) => {
@@ -134,10 +134,10 @@ export const LanguageChoiceModal = (props: Props) => {
             name="globe-2-outline"
             width={24}
             height={24}
-            fill={theme.colors.black}
+            fill={styles.colors.black}
             style={{
-              marginLeft: isRTL ? theme.margin : 0,
-              marginRight: !isRTL ? theme.margin : 0
+              marginLeft: isRTL ? styles.margin : 0,
+              marginRight: !isRTL ? styles.margin : 0
             }}
           />
           <StyledTextNormalBold>{t("global.language", "Langue de l'application")}</StyledTextNormalBold>
@@ -181,7 +181,7 @@ export const LanguageChoiceModal = (props: Props) => {
           defaultText="Fermer"
           iconName="close-outline"
           iconFirst={true}
-          textColor={theme.colors.black}
+          textColor={styles.colors.black}
           onPress={props.toggleModal}
           isTextNotBold={true}
         />

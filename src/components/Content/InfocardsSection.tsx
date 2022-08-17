@@ -6,7 +6,7 @@ import {
   TextSmallNormal,
 } from "../StyledText";
 import { DispositifContent } from "../../types/interface";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { formatInfocards, getDescription } from "../../libs/content";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { infocardsCorrespondencyNames } from "./data";
@@ -25,21 +25,21 @@ interface Props {
 const MainContainer = styled.View`
   display: flex;
   flex-direction: column;
-  background-color: ${theme.colors.white};
-  border-radius: ${theme.radius * 2}px;
-  padding-top: ${theme.margin * 2}px;
-  ${theme.shadows.lg}
-  margin-top: ${theme.margin}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  background-color: ${styles.colors.white};
+  border-radius: ${styles.radius * 2}px;
+  padding-top: ${styles.margin * 2}px;
+  ${styles.shadows.lg}
+  margin-top: ${styles.margin}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const TitleText = styled(TextNormalBold)`
   color: ${(props: { color: string }) => props.color};
-  margin-bottom: ${theme.radius * 2}px;
+  margin-bottom: ${styles.radius * 2}px;
 `;
 
 const SubtitleText = styled(TextVerySmallNormal)`
-  color: ${theme.colors.darkGrey};
+  color: ${styles.colors.darkGrey};
 `;
 
 const DescriptionText = styled(TextSmallNormal)`
@@ -48,20 +48,20 @@ const DescriptionText = styled(TextSmallNormal)`
 `;
 
 const SectionContainer = styled.View`
-  padding-horizontal: ${theme.margin * 2}px;
+  padding-horizontal: ${styles.margin * 2}px;
 `;
 
 const InfocardContainer = styled.View`
   margin-bottom: ${(props: { isDuree: boolean }) =>
-    props.isDuree ? theme.margin : theme.margin * 3}px;
+    props.isDuree ? styles.margin : styles.margin * 3}px;
 `;
 
 const Separator = styled.View`
   width: 100%;
   height: 1px;
-  background-color: ${theme.colors.grey};
-  margin-bottom: ${theme.margin * 3}px;
-  margin-top: ${theme.margin}px;
+  background-color: ${styles.colors.grey};
+  margin-bottom: ${styles.margin * 3}px;
+  margin-top: ${styles.margin}px;
 `;
 
 const InfocardTextContainer = styled.View`
