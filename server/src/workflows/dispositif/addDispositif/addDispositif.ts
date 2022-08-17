@@ -19,12 +19,12 @@ import {
   checkUserIsAuthorizedToModifyDispositif,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
-import { DispositifDoc } from "../../../schema/schemaDispositif";
+import { DispositifPopulatedThemesDoc } from "../../../schema/schemaDispositif";
 import { UserDoc } from "../../../schema/schemaUser";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 
 export interface Request {
   titreInformatif: string;
@@ -130,7 +130,7 @@ export const addDispositif = async (
       dispositifId: dispositif.dispositifId,
     });
 
-    let dispResult: DispositifDoc;
+    let dispResult: DispositifPopulatedThemesDoc;
 
     if (dispositif.contenu) {
       // transform dispositif.contenu in json

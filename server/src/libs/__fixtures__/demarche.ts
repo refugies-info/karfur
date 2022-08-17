@@ -5,26 +5,8 @@ export const demarche = {
   _id: "5dd7cf3b6f0ac0004c87c8b6",
   titreInformatif: "Comprendre le Droit du Travail",
   abstract: "Connaître et comprendre les bases du droit du travail en France",
-  tags: [
-    {
-      short: "Insertion pro",
-      name: "trouver un travail",
-      darkColor: "#149295",
-      lightColor: "#D6EFF4",
-      hoverColor: "#4FD3BD",
-      illustrationColor: "#DD0539"
-    },
-    {
-      short: "Administratif",
-      icon: "office",
-      name: "gérer mes papiers",
-      darkColor: "#443023",
-      lightColor: "#EAE2E1",
-      hoverColor: "#fcb21c",
-      illustrationColor: "#1FC2C1"
-    },
-    null
-  ],
+  theme: {_id: "themeId1"},
+  secondaryThemes: [{_id: "themeId2"}],
   typeContenu: "demarche",
   mainSponsor: {
     dispositifsAssocies: [

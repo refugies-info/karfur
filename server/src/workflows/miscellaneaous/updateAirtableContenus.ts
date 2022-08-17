@@ -149,8 +149,10 @@ export const updateAirtableContenus = async (
         //@ts-ignore
         dispositif.tags,
         dispositif._id,
+        //@ts-ignore
         dispositif.avancement,
         dispositif.typeContenu,
+        //@ts-ignore
         getDispositifDepartments(dispositif)
       );
     });

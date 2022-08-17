@@ -3,11 +3,12 @@ import { formatForAlgolia } from "../formatForAlgolia";
 import { demarche } from "../__fixtures__/demarche";
 import { dispositif } from "../__fixtures__/dispositif";
 import { besoin } from "../__fixtures__/besoin";
+import { theme } from "../__fixtures__/theme";
 import { activeLanguages } from "../__fixtures__/activeLanguages";
 
 describe("formatForAlgolia", () => {
   it("should format a dispositif", () => {
-    const res = formatForAlgolia(dispositif);
+    const res = formatForAlgolia(dispositif, [], "dispositif");
     expect(res).toEqual({
       objectID: "5ce7ab7383983700167bc9da",
       title_fr: "Parrainer un réfugié",
@@ -28,7 +29,8 @@ describe("formatForAlgolia", () => {
       titreMarque_fa: "MAINtenant",
       titreMarque_ru: "MAINtenant",
       titreMarque_uk: "MAINtenant",
-      tags: [ "aider une association" ],
+      theme: "themeId1",
+      secondaryThemes: [],
       needs: [],
       nbVues: 685,
       typeContenu: "dispositif",
@@ -38,12 +40,13 @@ describe("formatForAlgolia", () => {
     });
   });
   it("should format a demarche", () => {
-    const res = formatForAlgolia(demarche);
+    const res = formatForAlgolia(demarche, [], "dispositif");
     expect(res).toEqual({
       objectID: "5dd7cf3b6f0ac0004c87c8b6",
       title_fr: "Comprendre le Droit du Travail",
       abstract_fr: "Connaître et comprendre les bases du droit du travail en France",
-      tags: [ "trouver un travail", "gérer mes papiers" ],
+      theme: "themeId1",
+      secondaryThemes: ["themeId2"],
       needs: ["613721a409c5190dfa70d053","614d8fb095b9b700142ee846"],
       nbVues: 383,
       typeContenu: "demarche",
@@ -53,7 +56,7 @@ describe("formatForAlgolia", () => {
     });
   });
   it("should format a besoin", () => {
-    const res = formatForAlgolia(besoin, activeLanguages);
+    const res = formatForAlgolia(besoin, activeLanguages, "need");
     expect(res).toEqual({
       objectID: "613721a409c5190dfa70d052",
       title_fr: "Obtenir des aides financières (RSA, CAF)",
@@ -63,9 +66,31 @@ describe("formatForAlgolia", () => {
       title_ti: undefined,
       title_ru: undefined,
       title_ar: undefined,
-      tagName: "trouver un travail",
+      theme: "themeId",
       typeContenu: "besoin",
       priority: 20
+    });
+  });
+  it("should format a theme", () => {
+    const res = formatForAlgolia(theme, activeLanguages, "theme");
+    expect(res).toEqual({
+      objectID: "theme1",
+      title_fr: "Court",
+      title_ps: undefined,
+      title_fa: undefined,
+      title_en: "Short",
+      title_ti: undefined,
+      title_ru: undefined,
+      title_ar: undefined,
+      name_fr: "Titre theme",
+      name_ps: undefined,
+      name_fa: undefined,
+      name_en: "Theme title",
+      name_ti: undefined,
+      name_ru: undefined,
+      name_ar: undefined,
+      typeContenu: "theme",
+      priority: 10
     });
   });
 });

@@ -3,8 +3,8 @@ import { addLog } from "../../../modules/logs/logs.service";
 import { DispositifDoc } from "../../../schema/schemaDispositif";
 import { Request } from "./addDispositif";
 import logger from "../../../logger";
-import { StructureDoc } from "src/schema/schemaStructure";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { StructureDoc } from "../../../schema/schemaStructure";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 
 export const log = async (
   dispositif: Request,

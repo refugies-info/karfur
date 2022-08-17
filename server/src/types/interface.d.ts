@@ -194,7 +194,8 @@ export interface AlgoliaObject {
   sponsorName?: string;
   sponsorUrl?: string;
   nbVues?: number;
-  themes?: string[];
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
   needs?: ObjectId[];
   typeContenu: "demarche"|"dispositif"|"besoin"|"theme";
   priority: number;

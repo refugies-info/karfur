@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from "mongoose";
 import { UserDoc } from "./schemaUser";
 import { StructureDoc } from "./schemaStructure";
+import { ThemeDoc } from "./schemaTheme";
 
 function arrayThemesLimit(val: any[]) {
   return val.length <= 2;
@@ -238,7 +239,6 @@ export interface DispositifDoc extends mongoose.Document {
   sponsors?: Object;
   audience?: Object;
   audienceAge?: Object;
-  tags?: Object;
   localisation?: Object;
   niveauFrancais?: Object;
   creatorId: ObjectId | UserDoc;
@@ -278,16 +278,27 @@ export interface DispositifDoc extends mongoose.Document {
 export interface DispositifNotPopulateDoc extends DispositifDoc {
   creatorId: ObjectId;
   mainSponsor: ObjectId;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
 }
 
 export interface DispositifPopulatedDoc extends DispositifDoc {
   creatorId: UserDoc;
   mainSponsor: ObjectId;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
 }
 
 export interface DispositifPopulatedMainSponsorDoc extends DispositifDoc {
   mainSponsor: StructureDoc;
   creatorId: UserDoc;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
+}
+
+export interface DispositifPopulatedThemesDoc extends DispositifDoc {
+  theme: ThemeDoc;
+  secondaryThemes: ThemeDoc[];
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>("Dispositif", dispositifSchema);

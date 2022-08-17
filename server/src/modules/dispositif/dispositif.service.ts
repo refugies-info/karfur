@@ -14,7 +14,6 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
     publishedAtAuthor: userId
   };
 
-  // @ts-ignore : updateDispositifInDB returns object with creatorId not populate
   const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
   try {
     await updateLanguagesAvancement();

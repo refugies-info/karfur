@@ -1,4 +1,4 @@
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { ThemeDoc } from "../../schema/schemaTheme";
 import { NeedDoc, Need } from "../../schema/schemaNeeds";
 
 export const createNeedInDB = async (need: NeedDoc) =>

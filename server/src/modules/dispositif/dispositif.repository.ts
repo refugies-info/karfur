@@ -1,8 +1,8 @@
 import { IDispositif, AudienceAge } from "../../types/interface";
-import { Dispositif, DispositifPopulatedDoc, DispositifDoc } from "../../schema/schemaDispositif";
+import { Dispositif, DispositifPopulatedDoc, DispositifDoc, DispositifPopulatedThemesDoc } from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
-import { StructureDoc } from "src/schema/schemaStructure";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { StructureDoc } from "../../schema/schemaStructure";
+import { ThemeDoc } from "../../schema/schemaTheme";
 
 export const getDispositifsFromDB = async (needFields: Object): Promise<IDispositif[]> =>
   await Dispositif.find({}, needFields)
@@ -57,7 +57,7 @@ export const updateDispositifInDB = async (
     | { nbVuesMobile: number }
     | { nbFavoritesMobile: number }
     | { notificationsSent: {} }
-) =>
+): Promise<DispositifPopulatedThemesDoc> =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
     upsert: true,
     // @ts-ignore
