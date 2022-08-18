@@ -26,6 +26,7 @@ import styled from "styled-components/native";
 import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { useVoiceover } from "../hooks/useVoiceover";
+import { defaultColors } from "../libs/getThemeTag";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -111,7 +112,7 @@ export const ContentsScreen = ({
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const contents = useSelector(contentsSelector);
   const {
-    colors,
+    theme,
     needId,
     backScreen
   } = route.params;
@@ -219,10 +220,12 @@ export const ContentsScreen = ({
     outputRange: [32, 0],
   });
 
+  const colors = theme?.colors || defaultColors;
+
   if (isLoading) {
     return (
       <View>
-        <View style={{ backgroundColor: colors.tagDarkColor }}>
+        <View style={{ backgroundColor: colors.color100 }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -230,12 +233,12 @@ export const ContentsScreen = ({
           />
         </View>
         <ContentsHeaderAnimated
-          tagDarkColor={colors.tagDarkColor}
+          themeDarkColor={colors.color100}
           headerBottomRadius={headerBottomRadius}
           headerPaddingTop={headerPaddingTop}
-          tagName={colors.tagName}
+          themeName={theme?.name.fr || ""}
           headerFontSize={headerFontSize}
-          iconName={colors.iconName}
+          iconName={theme?.icon || ""}
           showSimplifiedHeader={showSimplifiedHeader}
           navigation={navigation}
           needName={needName}
@@ -285,7 +288,7 @@ export const ContentsScreen = ({
 
   return (
     <View style={{ display: "flex", flex: 1 }}>
-      <View style={{ backgroundColor: colors.tagDarkColor }}>
+      <View style={{ backgroundColor: colors.color100 }}>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
@@ -293,12 +296,12 @@ export const ContentsScreen = ({
         />
       </View>
       <ContentsHeaderAnimated
-        tagDarkColor={colors.tagDarkColor}
+        themeDarkColor={colors.color100}
         headerBottomRadius={headerBottomRadius}
         headerPaddingTop={headerPaddingTop}
-        tagName={colors.tagName}
+        themeName={theme?.name.fr || ""}
         headerFontSize={headerFontSize}
-        iconName={colors.iconName}
+        iconName={theme?.icon || ""}
         showSimplifiedHeader={showSimplifiedHeader}
         navigation={navigation}
         needName={needName}
@@ -326,7 +329,7 @@ export const ContentsScreen = ({
             <ContentSummary
               key={content._id}
               navigation={navigation}
-              themeTag={colors}
+              theme={theme}
               contentId={content._id}
               needId={needId}
               titreInfo={content.titreInformatif}
@@ -340,7 +343,7 @@ export const ContentsScreen = ({
 
         {sortedNonTranslatedContents.length > 0 && (
           <View>
-            <SectionHeaderText color={colors.tagDarkColor}>
+            <SectionHeaderText color={colors.color100}>
               {t("contents_screen.non_translated_content", "Fiches non traduites")}
             </SectionHeaderText>
             {sortedNonTranslatedContents.map((content) => {
@@ -348,7 +351,7 @@ export const ContentsScreen = ({
                 <ContentSummary
                   key={content._id}
                   navigation={navigation}
-                  themeTag={colors}
+                  theme={theme}
                   contentId={content._id}
                   needId={needId}
                   titreInfo={content.titreInformatif}

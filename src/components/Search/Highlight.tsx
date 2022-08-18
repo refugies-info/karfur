@@ -4,7 +4,7 @@ import { connectHighlight } from "react-instantsearch-native";
 import { styles } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 
-interface Props {
+interface Props {
   hit: any[];
   attribute: string;
   highlight: any;

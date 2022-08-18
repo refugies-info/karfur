@@ -25,16 +25,6 @@ const ElementsContainer = styled.View`
   padding: ${styles.margin * 3}px;
 `;
 
-const styles = StyleSheet.create({
-  backgroundImage: {
-    height: 370,
-    width: "100%",
-
-    position: "absolute",
-    top: 0,
-  },
-});
-
 const StyledText = styled(StyledTextBigBold)`
   color: ${styles.colors.white};
   text-align: center;
@@ -53,7 +43,12 @@ export const OnboardingStart = ({
       <HeaderWithBack navigation={navigation} />
       <Image
         source={IlluOnboarding}
-        style={styles.backgroundImage}
+        style={{
+          height: 370,
+          width: "100%",
+          position: "absolute",
+          top: 0,
+        }}
         resizeMode="cover"
       />
       <ElementsContainer>

@@ -26,7 +26,7 @@ const ImagesContainer = styled.View`
   justify-content: center;
   margin-top: ${styles.margin * 5}px;
 `;
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   card: {
     width: "100%",
     height: "100%",
@@ -46,7 +46,7 @@ export const OnboardingCarouselElement = (props: Props) => {
     <LinearGradient
       colors={[correspondingData.lightColor, correspondingData.darkColor]}
       // @ts-ignore
-      style={[styles.card]}
+      style={[stylesheet.card]}
     >
       <ImagesContainer>
         <CarouselStepImage step={props.step} />

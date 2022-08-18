@@ -1,7 +1,6 @@
 import { styles } from "../theme";
-import { ExpandedTag } from "../types/interface";
 
-export const tags: ExpandedTag[] = [
+export const tags = [
   {
     short: "Français",
     icon: "elearning",

@@ -169,20 +169,24 @@ export const selectedContent: Content = {
       ]
     }
   ],
-  "tags": [
-    {
-      "short": "Logement",
-      "name": "me loger",
+  "theme": {
+    "_id": "1",
+    "short": { "fr": "" },
+    "name": { "fr": "" },
+    "colors": {
+      "color100": "",
+      "color80": "",
+      "color60": "",
+      "color40": "",
+      "color30": "",
     },
-    {
-      "short": "Administratif",
-      "name": "gérer mes papiers",
-    },
-    {
-      "short": "Insertion pro",
-      "name": "trouver un travail",
-    }
-  ],
+    "position": 0,
+    "icon":"",
+    "banner":"",
+    "appImage": "",
+    "shareImage": ""
+ },
+  "secondaryThemes": [],
   "avancement": {
     "fr": 1,
     "fa": 1,

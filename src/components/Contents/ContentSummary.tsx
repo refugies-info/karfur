@@ -2,7 +2,7 @@ import React from "react";
 import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
-import { ThemeTag, ObjectId } from "../../types/interface";
+import { ObjectId, Theme } from "../../types/interface";
 import { TextSmallBold, TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import { RTLView } from "../BasicComponents";
 import { Image } from "react-native";
@@ -14,6 +14,7 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
+import { defaultColors } from "../../libs/getThemeTag";
 
 const IMAGE_SIZE = 58;
 
@@ -83,7 +84,7 @@ interface Props {
   navigation: any;
   contentId: ObjectId;
   needId?: ObjectId;
-  themeTag: ThemeTag;
+  theme: Theme | null;
   titreInfo?: string;
   titreMarque?: string | undefined;
   typeContenu: "dispositif" | "demarche";
@@ -107,6 +108,8 @@ export const ContentSummary = (props: Props) => {
       contentId: id
     });
   }
+
+  const colors = props.theme?.colors || defaultColors;
 
   const actionButton = (props.actionPress !== undefined) ?
     <ActionButton
@@ -137,7 +140,7 @@ export const ContentSummary = (props: Props) => {
             params: {
               contentId: props.contentId,
               needId: props.needId,
-              colors: props.themeTag,
+              theme: props.theme,
               backScreen: props.backScreen
             }
           });
@@ -160,13 +163,13 @@ export const ContentSummary = (props: Props) => {
           )}
 
           <TitlesContainer isRTL={isRTL}>
-            <TitreInfoText color={props.themeTag.tagDarkColor} isDispo={true}>
+            <TitreInfoText color={colors.color100} isDispo={true}>
               {props.searchItem ?
                 <Highlight
                   hit={props.searchItem}
                   attribute={`title_${props.searchLanguageMatch||"fr"}`}
                   //@ts-ignore
-                  color={props.tagDarkColor}
+                  color={colors.color100}
                 /> :
                 <ReadableText>
                   {props.titreInfo || ""}
@@ -174,13 +177,13 @@ export const ContentSummary = (props: Props) => {
               }
             </TitreInfoText>
             {(!!props.titreMarque || !!props?.searchItem[`titreMarque_${props.searchLanguageMatch||"fr"}`]) && (
-              <TitreMarqueText color={props.themeTag.tagDarkColor}>
+              <TitreMarqueText color={colors.color100}>
                  {props.searchItem ?
                     <Highlight
                       hit={props.searchItem}
                       attribute={`titreMarque_${props.searchLanguageMatch||"fr"}`}
                       //@ts-ignore
-                      color={props.tagDarkColor}
+                      color={colors.color100}
                   /> :
                   <ReadableText>
                     {props.titreMarque || ""}
@@ -193,12 +196,12 @@ export const ContentSummary = (props: Props) => {
         </TitleContainer>
 
         {props.showAbstract &&
-          <DescInfoText color={props.themeTag.tagDarkColor}>
+          <DescInfoText color={colors.color100}>
             <Highlight
               hit={props.searchItem}
               attribute={`abstract_${props.searchLanguageMatch||"fr"}`}
               //@ts-ignore
-              color={props.tagDarkColor}
+              color={colors.color100}
             />
           </DescInfoText>
         }
@@ -209,7 +212,7 @@ export const ContentSummary = (props: Props) => {
   return (
     <ContentContainer
       isDispo={false}
-      color={props.themeTag.tagDarkColor}
+      color={colors.color100}
       style={props.style || {}}
       activeOpacity={0.8}
       accessibilityRole="button"
@@ -219,7 +222,7 @@ export const ContentSummary = (props: Props) => {
           params: {
             contentId: props.contentId,
             needId: props.needId,
-            colors: props.themeTag,
+            theme: props.theme,
             backScreen: props.backScreen
           }
         });
@@ -227,23 +230,23 @@ export const ContentSummary = (props: Props) => {
       }}
     >
       <TitleContainer>
-        <ImageContainer lightColor={props.themeTag.tagVeryLightColor} isRTL={isRTL}>
+        <ImageContainer lightColor={colors.color30} isRTL={isRTL}>
           <DemarcheImage
-            name={props.themeTag.iconName}
-            stroke={props.themeTag.tagDarkColor}
+            name={props.theme?.icon || ""}
+            stroke={colors.color100}
             contentId={props.contentId}
             isSmall={true}
           />
         </ImageContainer>
 
         <TitlesContainer isRTL={isRTL}>
-          <TitreInfoText color={props.themeTag.tagDarkColor}>
+          <TitreInfoText color={colors.color100}>
             {props.searchItem ?
               <Highlight
                 hit={props.searchItem}
                 attribute={`title_${props.searchLanguageMatch||"fr"}`}
                 //@ts-ignore
-                color={props.tagDarkColor}
+                color={colors.color100}
               /> :
               <ReadableText>
                 {props.titreInfo}
@@ -255,12 +258,12 @@ export const ContentSummary = (props: Props) => {
       </TitleContainer>
 
       {props.showAbstract &&
-        <DescInfoText color={props.themeTag.tagDarkColor}>
+        <DescInfoText color={colors.color100}>
           <Highlight
             hit={props.searchItem}
             attribute={`abstract_${props.searchLanguageMatch||"fr"}`}
             //@ts-ignore
-            color={props.tagDarkColor}
+            color={colors.color100}
           />
         </DescInfoText>
       }

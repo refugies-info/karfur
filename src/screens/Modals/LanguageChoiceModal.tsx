@@ -28,12 +28,6 @@ interface Props {
   hideRadio?: boolean;
 }
 
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: "flex-end",
-    margin: 0,
-  },
-});
 const StyledTextBold = styled(StyledTextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
     !props.isRTL ? styles.margin * 2 : 0}px;
@@ -116,7 +110,7 @@ export const LanguageChoiceModal = (props: Props) => {
   return (
     <Modal
       isVisible={props.isModalVisible}
-      style={styles.view}
+      style={{justifyContent: "flex-end", margin: 0}}
       onBackdropPress={props.toggleModal}
       customBackdrop={
         <TouchableWithoutFeedback

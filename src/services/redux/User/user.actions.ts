@@ -30,7 +30,7 @@ import {
   SET_INITIAL_URL_USED,
   SET_REDIRECT_DISPOSITIF
 } from "./user.actionTypes";
-import { AvailableLanguageI18nCode, ObjectId, ThemeTag } from "../../../types/interface";
+import { AvailableLanguageI18nCode, ObjectId, Theme } from "../../../types/interface";
 
 export const setHasUserSeenOnboardingActionCreator = (value: boolean) =>
   action(SET_USER_HAS_SEEN_ONBOARDING, value);
@@ -65,7 +65,7 @@ export const setInitialUrlUsed = (value: boolean) =>
 export const setRedirectDispositifActionCreator = (value: {
   needId: ObjectId,
   contentId: ObjectId,
-  colors: ThemeTag,
+  theme: Theme,
 } | null) =>
   action(SET_REDIRECT_DISPOSITIF, value);
 

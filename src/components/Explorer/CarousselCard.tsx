@@ -11,10 +11,10 @@ import { TagImage } from "./TagImage";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
-import { ExpandedTag } from "../../types/interface";
+import { Theme } from "../../types/interface";
 
 interface Props {
-  tag: ExpandedTag;
+  theme: Theme;
   navigation: any;
   cardWidth: number;
   cardHeight: number;
@@ -71,42 +71,36 @@ export const CarousselCard = (props: Props) => {
   return (
     <ButtonContainer
       accessibilityRole="button"
-      accessibilityLabel={t("tags." + props.tag.name)}
+      accessibilityLabel={t("tags." + props.theme.name.fr)}
       activeOpacity={0.7}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-          theme: props.tag.name,
+          theme: props.theme.name.fr,
           view: "carousel",
         });
         props.navigation.navigate("NeedsScreen", {
-          colors: {
-            tagName: props.tag.name,
-            tagDarkColor: props.tag.darkColor,
-            tagVeryLightColor: props.tag.color30,
-            tagLightColor: props.tag.lightColor,
-            iconName: props.tag.icon,
-          }
+          theme: props.theme
         });
         return;
       }}
     >
       <CardGradient
-        colors={[props.tag.mdLightColor, props.tag.lightColor]}
+        colors={[props.theme.colors.color60, props.theme.colors.color40]}
         style={{
-          alignItems: getIconHorizontalAlignment(props.tag.icon),
-          justifyContent: getIconVerticalAlignment(props.tag.icon)
+          alignItems: getIconHorizontalAlignment(props.theme.icon),
+          justifyContent: getIconVerticalAlignment(props.theme.icon)
         }}
         width={props.cardWidth}
         height={props.cardHeight}
       >
         <View style={{ flexShrink: 1 }}>
-          <TagImage name={props.tag.icon} />
+          <TagImage name={props.theme.icon} />
         </View>
-        <StyledContainer backgroundColor={props.tag.darkColor}>
+        <StyledContainer backgroundColor={props.theme.colors.color100}>
           <StyledText isRTL={isRTL}>
-            {firstLetterUpperCase(t("tags." + props.tag.name, props.tag.name))}
+            {firstLetterUpperCase(t("tags." + props.theme.name.fr, props.theme.name.fr))}
           </StyledText>
-          <StreamlineIcon name={props.tag.icon} width={20} height={20} />
+          <StreamlineIcon name={props.theme.icon} width={20} height={20} />
         </StyledContainer>
       </CardGradient>
     </ButtonContainer>

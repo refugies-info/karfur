@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedContentActionCreator } from "../services/redux/SelectedContent/selectedContent.actions";
 import { setRedirectDispositifActionCreator } from "../services/redux/User/user.actions";
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
-import { theme } from "../theme";
+import { styles } from "../theme";
 import Config from "../libs/getEnvironment";
 import { TextBigBold, TextSmallNormal, TextSmallBold } from "../components/StyledText";
 import {
@@ -40,7 +40,7 @@ import {
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
 } from "../services/redux/User/user.actions";
-import { Content } from "../types/interface";
+import { Content, Theme, ThemeColors } from "../types/interface";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -69,7 +69,7 @@ import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 import { updateNbVuesOrFavoritesOnContent } from "../utils/API";
 import { registerBackButton } from "../libs/backButton";
 import { Trans } from "react-i18next";
-import { getThemeTag, defaultColors } from "../libs/getThemeTag";
+import { defaultColors } from "../libs/getThemeTag";
 import { ReadableText } from "../components/ReadableText";
 import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions";
 import { useVoiceover } from "../hooks/useVoiceover";
@@ -93,12 +93,12 @@ const TitlesContainer = styled(View)`
 
 const TitreInfoText = styled(TextBigBold)`
   opacity: 0.9;
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
   line-height: 40px;
-  margin-bottom: ${theme.margin * 2}px;
-  padding: ${theme.margin}px;
+  margin-bottom: ${styles.margin * 2}px;
+  padding: ${styles.margin}px;
 `;
 
 const HeaderImageContainer = styled.View`
@@ -109,20 +109,20 @@ const HeaderImageContainer = styled.View`
 `;
 
 const TitreMarqueText = styled(TextSmallNormal)`
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   opacity: 0.9;
   line-height: 32px;
   align-self: ${(props: { isRTL: boolean }) =>
     props.isRTL ? "flex-end" : "flex-start"};
-  padding: ${theme.margin}px;
+  padding: ${styles.margin}px;
 `;
 
 const HeaderText = styled(TextBigBold)`
-  margin-top: ${theme.margin * 2}px;
-  margin-bottom: ${theme.margin * 2}px;
+  margin-top: ${styles.margin * 2}px;
+  margin-bottom: ${styles.margin * 2}px;
   color: ${(props: { textColor: string }) => props.textColor};
   flex-shrink: 1;
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const FixedContainerForHeader = styled.View`
@@ -134,62 +134,62 @@ const FixedContainerForHeader = styled.View`
 `;
 
 const LastUpdateDateContainer = styled(RTLView)`
-  margin-top: ${theme.margin * 4}px;
-  margin-bottom: ${theme.margin * 2}px;
-  margin-horizontal: ${theme.margin * 3}px;
+  margin-top: ${styles.margin * 4}px;
+  margin-bottom: ${styles.margin * 2}px;
+  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
-  color: ${theme.colors.green};
+  color: ${styles.colors.green};
 `;
 
 const LastUpdateText = styled(TextSmallNormal)`
-  color: ${theme.colors.darkGrey};
+  color: ${styles.colors.darkGrey};
   margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 4 : 0)}px;
   margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 4)}px;
 `;
 
 const SimplifiedHeaderContainer = styled.View`
-  padding-horizontal: ${theme.margin * 3}px;
-  padding-vertical: ${theme.margin}px;
-  ${theme.shadows.lg}
+  padding-horizontal: ${styles.margin * 3}px;
+  padding-vertical: ${styles.margin}px;
+  ${styles.shadows.lg}
 `;
 const FakeMapButton = styled(RTLView)`
-  background-color: ${theme.colors.white};
+  background-color: ${styles.colors.white};
   justify-content: center;
   align-items: center;
-  padding: ${theme.radius * 3}px;
-  border-radius: ${theme.radius * 2}px;
+  padding: ${styles.radius * 3}px;
+  border-radius: ${styles.radius * 2}px;
   width: auto;
   height: 56px;
 `;
 const FakeMapButtonText = styled(TextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
-    !props.isRTL ? theme.margin : 0}px;
+    !props.isRTL ? styles.margin : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? theme.margin : 0}px;
+    props.isRTL ? styles.margin : 0}px;
 `;
 const ModalContainer = styled.View`
   display: flex;
   position: absolute;
   width: 100%;
   top: 0;
-  padding: ${theme.margin * 2}px;
+  padding: ${styles.margin * 2}px;
   z-index: 2;
 `;
 const TabBarContainer = styled.View`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: ${theme.colors.white};
-  ${theme.shadows.xs}
+  background-color: ${styles.colors.white};
+  ${styles.shadows.xs}
   z-index: 14;
 `;
 const ToastText = styled(TextSmallNormal)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 const ToastTextBold = styled(TextSmallBold)`
-  color: ${theme.colors.white};
+  color: ${styles.colors.white};
 `;
 
 const headersDispositif = [
@@ -206,7 +206,7 @@ const headersDemarche = [
   "what_next",
 ];
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   bodyBackground: {
     overflow: "hidden",
   },
@@ -267,7 +267,8 @@ export const ContentScreen = ({
   );
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
-  const [themeTag, setThemeTag] = React.useState(route.params.colors || defaultColors);
+  const [theme, setTheme] = React.useState<Theme|null>(route.params.theme || null);
+  const colors = theme?.colors || defaultColors;
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
   const [
@@ -343,10 +344,10 @@ export const ContentScreen = ({
       outputRange: ["transparent", color],
     });
   }
-  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(themeTag.tagDarkColor));
+  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(colors.color100));
   React.useEffect(() => {
-    setBoxInterpolation(getInterpolation(themeTag.tagDarkColor));
-  }, [themeTag.tagDarkColor]);
+    setBoxInterpolation(getInterpolation(colors.color100));
+  }, [colors.color100]);
 
   // Load content
   let unsubscribeConnectionListener: any;
@@ -397,11 +398,8 @@ export const ContentScreen = ({
       });
 
       // Load colors if not available in route
-      if (!route.params.colors) {
-        const primaryTagName = selectedContent.tags.length > 0
-          ? selectedContent.tags[0].name
-          : "";
-        setThemeTag(getThemeTag(primaryTagName));
+      if (!route.params.theme) {
+        setTheme(selectedContent.theme);
       }
     }
   }, [selectedContent]);
@@ -480,8 +478,8 @@ export const ContentScreen = ({
             { key: "Title", width: 130, height: 35, marginBottom: 16 },
             { key: "Section1", width: "100%", height: 100 },
           ]}
-          boneColor={theme.colors.grey}
-          highlightColor={theme.colors.lightGrey}
+          boneColor={styles.colors.grey}
+          highlightColor={styles.colors.lightGrey}
         />
       </WrapperWithHeaderAndLanguageModal>
     );
@@ -606,10 +604,11 @@ export const ContentScreen = ({
   };
 
   const navigateToFavorites = () => {
+    const redirectTheme = theme || selectedContent.theme;
     dispatch(setRedirectDispositifActionCreator({
       contentId,
       needId,
-      colors: themeTag
+      theme: redirectTheme
     }))
     navigation.popToTop();
     navigation.navigate("Favoris", { screen: "FavorisScreen" });
@@ -630,7 +629,7 @@ export const ContentScreen = ({
 
         <Animated.View
           style={[
-            styles.bodyBackground,
+            stylesheet.bodyBackground,
             { height: bodyHeight, backgroundColor: boxInterpolation },
           ]}
         >
@@ -638,9 +637,9 @@ export const ContentScreen = ({
             onLayout={(event: any) =>
               setBodySectionHeight(event.nativeEvent.layout.height)
             }
-            style={styles.bodyContainer}
+            style={stylesheet.bodyContainer}
           >
-            <TextSmallNormal style={{ color: theme.colors.white }}>
+            <TextSmallNormal style={{ color: styles.colors.white }}>
               {selectedContent.titreInformatif}
             </TextSmallNormal>
           </SimplifiedHeaderContainer>
@@ -648,7 +647,7 @@ export const ContentScreen = ({
       </FixedContainerForHeader>
       <ScrollView
         ref={scrollview}
-        contentContainerStyle={{ paddingBottom: theme.margin * 5 + (insets.bottom || 0) }}
+        contentContainerStyle={{ paddingBottom: styles.margin * 5 + (insets.bottom || 0) }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}
@@ -657,7 +656,7 @@ export const ContentScreen = ({
       >
         {
           <>
-            <HeaderImage tagName={themeTag.tagName} height={headerImageHeight} />
+            <HeaderImage themeName={theme?.name.fr || ""} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>
               <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
                 <TitreInfoText
@@ -686,7 +685,7 @@ export const ContentScreen = ({
               sponsorName={sponsor.nom}
               sponsorPictureUrl={sponsorPictureUrl}
               typeContenu={selectedContent.typeContenu}
-              iconName={themeTag.iconName}
+              iconName={theme?.icon || ""}
               contentId={selectedContent._id}
             />
           </>
@@ -704,19 +703,19 @@ export const ContentScreen = ({
                   content={selectedContent.contenu[1].children.filter(
                     (element) => element.type === "card"
                   )}
-                  color={themeTag.tagDarkColor}
+                  color={colors.color100}
                   typeContenu={selectedContent.typeContenu}
                 />
               );
             if (index === 0 && selectedContent.contenu[0].content) {
               return (
                 <View key={index}>
-                  <HeaderText textColor={themeTag.tagDarkColor}>
+                  <HeaderText textColor={colors.color100}>
                     <ReadableText>
                       {t("content_screen." + header, header)}
                     </ReadableText>
                   </HeaderText>
-                  <View style={{ marginHorizontal: theme.margin * 3 }}>
+                  <View style={{ marginHorizontal: styles.margin * 3 }}>
                     <ContentFromHtml
                       htmlContent={selectedContent.contenu[index].content}
                       windowWidth={windowWidth}
@@ -728,7 +727,7 @@ export const ContentScreen = ({
             if (index === 1) {
               return (
                 <View key={index}>
-                  <HeaderText textColor={themeTag.tagDarkColor}>
+                  <HeaderText textColor={colors.color100}>
                     <ReadableText>
                       {t("content_screen." + header, header)}
                     </ReadableText>
@@ -739,7 +738,7 @@ export const ContentScreen = ({
 
             return (
               <View key={index}>
-                <HeaderText textColor={themeTag.tagDarkColor}>
+                <HeaderText textColor={colors.color100}>
                   <ReadableText>
                     {t("content_screen." + header, header)}
                   </ReadableText>
@@ -774,8 +773,8 @@ export const ContentScreen = ({
                             }
                             currentLanguage={currentLanguage}
                             windowWidth={windowWidth}
-                            darkColor={themeTag.tagDarkColor}
-                            lightColor={themeTag.tagVeryLightColor}
+                            darkColor={colors.color100}
+                            lightColor={colors.color30}
                             isContentTranslated={
                               isContentTranslatedInCurrentLanguage
                             }
@@ -794,17 +793,17 @@ export const ContentScreen = ({
           {!!selectedContent.externalLink && (
             <View
               style={{
-                marginTop: theme.margin,
-                marginHorizontal: theme.margin * 3,
-                marginBottom: theme.margin * 2,
+                marginTop: styles.margin,
+                marginHorizontal: styles.margin * 3,
+                marginBottom: styles.margin * 2,
               }}
             >
               <CustomButton
-                textColor={theme.colors.white}
+                textColor={styles.colors.white}
                 i18nKey="content_screen.go_website_button"
                 onPress={handleClick}
                 defaultText="Voir le site"
-                backgroundColor={themeTag.tagDarkColor}
+                backgroundColor={colors.color100}
                 iconName="external-link-outline"
                 accessibilityLabel={t("content_screen.go_website_accessibility")}
               />
@@ -813,7 +812,7 @@ export const ContentScreen = ({
 
           {!!map && map.markers.length > 0 && (
             <>
-              <HeaderText key={1} textColor={themeTag.tagDarkColor}>
+              <HeaderText key={1} textColor={colors.color100}>
                 <ReadableText>
                   {t(
                     "content_screen.where",
@@ -821,7 +820,7 @@ export const ContentScreen = ({
                   )}
                 </ReadableText>
               </HeaderText>
-              <MiniMap map={map} markersColor={themeTag.tagDarkColor}>
+              <MiniMap map={map} markersColor={colors.color100}>
                 <TouchableOpacity
                   onPress={toggleMap}
                   accessibilityLabel={t("content_screen.see_map_button")}
@@ -838,7 +837,7 @@ export const ContentScreen = ({
                       name="eye-outline"
                       width={24}
                       height={24}
-                      fill={theme.colors.black}
+                      fill={styles.colors.black}
                     />
                     <FakeMapButtonText isRTL={isRTL}>
                       {t("content_screen.see_map_button", "Voir la carte")}
@@ -866,9 +865,9 @@ export const ContentScreen = ({
         <RTLView
           style={{
             justifyContent: "center",
-            paddingTop: theme.margin,
-            paddingBottom: insets.bottom || theme.margin,
-            paddingHorizontal: theme.margin
+            paddingTop: styles.margin,
+            paddingBottom: insets.bottom || styles.margin,
+            paddingHorizontal: styles.margin
           }}
         >
           <CustomButton
@@ -876,14 +875,14 @@ export const ContentScreen = ({
             iconName={isContentFavorite ? "star" : "star-outline"}
             i18nKey="favorites_screen.my_content"
             defaultText={"Mes fiches"}
-            textColor={theme.colors.black}
-            backgroundColor={theme.colors.white}
+            textColor={styles.colors.black}
+            backgroundColor={styles.colors.white}
             notFullWidth={true}
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
-            style={{ marginHorizontal: theme.margin, width: 120 }}
-            textStyle={{fontSize: theme.fonts.sizes.verySmall}}
+            style={{ marginHorizontal: styles.margin, width: 120 }}
+            textStyle={{fontSize: styles.fonts.sizes.verySmall}}
             accessibilityLabel={isContentFavorite ?
               t("content_screen.remove_button_accessibility") :
               t("content_screen.add_button_accessibility")
@@ -893,7 +892,7 @@ export const ContentScreen = ({
             <View style={{
               width: 56,
               height: "100%",
-              marginHorizontal: theme.margin * 3,
+              marginHorizontal: styles.margin * 3,
             }}>
               <ReadButton bottomInset={0} />
             </View>
@@ -903,15 +902,15 @@ export const ContentScreen = ({
             iconName="undo-outline"
             i18nKey="content_screen.share_button"
             defaultText={"Partager"}
-            textColor={theme.colors.black}
-            backgroundColor={theme.colors.white}
+            textColor={styles.colors.black}
+            backgroundColor={styles.colors.white}
             notFullWidth={true}
             iconStyle={{ transform: [{ scaleX: -1 }] }}
             iconFirst={true}
             isTextNotBold={true}
             isSmall={true}
-            style={{ marginHorizontal: theme.margin, width: 120 }}
-            textStyle={{fontSize: theme.fonts.sizes.verySmall}}
+            style={{ marginHorizontal: styles.margin, width: 120 }}
+            textStyle={{fontSize: styles.fonts.sizes.verySmall}}
             accessibilityLabel={ t("content_screen.share_button_accessibility")}
           />
         </RTLView>
@@ -939,8 +938,8 @@ export const ContentScreen = ({
                     onPress={navigateToFavorites}
                     style={{
                       textDecorationLine: "underline",
-                      textDecorationColor: theme.colors.white,
-                      marginHorizontal: theme.margin
+                      textDecorationColor: styles.colors.white,
+                      marginHorizontal: styles.margin
                     }}
                     accessibilityRole="button"
                   >Mes fiches</ToastTextBold>
@@ -972,7 +971,7 @@ export const ContentScreen = ({
               />
             </FixSafeAreaView>
           </ModalContainer>
-          <Map map={map} markersColor={themeTag.tagDarkColor} />
+          <Map map={map} markersColor={colors.color100} />
         </Modal>
       </Portal>
     </View>

@@ -13,7 +13,7 @@ import {
 } from "../../components/StyledText";
 import { CustomButton } from "../CustomButton";
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   container: {
     display: "flex",
     margin: styles.margin * 2,
@@ -53,7 +53,7 @@ export const EnableNotifications = ({
   return (
     <View
       style={[
-        styles.container,
+        stylesheet.container,
         !withMargin && {
           margin: 0,
         },
@@ -66,18 +66,18 @@ export const EnableNotifications = ({
       ]}
     >
       <LottieView
-        colorFilters={[{ keypath: "bell icon", color: "#c8c8c8" }]}
-        style={styles.lottieContainer}
+        colorFilters={[{ keypath: "bell icon", color: "#ffcd31" }]}
+        style={stylesheet.lottieContainer}
         source={require("../../theme/lottie/notification-bell-animation.json")}
         autoPlay
         loop
         speed={1.2}
       />
-      <View style={styles.titles}>
+      <View style={stylesheet.titles}>
         <StyledTextBigBold isRTL={isRTL}>
           {t("notifications.newInfoEveryWeek")}
         </StyledTextBigBold>
-        <View style={styles.separator} />
+        <View style={stylesheet.separator} />
         <StyledTextNormal isRTL={isRTL}>
           {t("notifications.beInformed")}
         </StyledTextNormal>

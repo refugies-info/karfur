@@ -26,7 +26,7 @@ interface Props {
   city: string;
 }
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   subtitle: {
     color: styles.colors.darkBlue,
     textAlign: "center",
@@ -60,12 +60,12 @@ export const LocalizedWarningModal = (props: Props) => {
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
             <Map width={102} height={104} style={{ marginBottom: styles.margin }} />
-            <TextNormalBold style={styles.subtitle}>
+            <TextNormalBold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbGlobalContent
               })}
             </TextNormalBold>
-            <TextSmallBold style={styles.subtitle}>
+            <TextSmallBold style={stylesheet.subtitle}>
               {t("explorer_screen.country_content")}
             </TextSmallBold>
           </View>
@@ -78,12 +78,12 @@ export const LocalizedWarningModal = (props: Props) => {
           />
           <View>
             <Pin width={114} height={104} style={{ marginBottom: styles.margin }} />
-            <TextNormalBold style={styles.subtitle}>
+            <TextNormalBold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbLocalizedContent
               })}
             </TextNormalBold>
-            <TextSmallBold style={styles.subtitle}>
+            <TextSmallBold style={stylesheet.subtitle}>
               {t("explorer_screen.city_content", {
                 city: props.city
               })}
@@ -92,11 +92,11 @@ export const LocalizedWarningModal = (props: Props) => {
         </RTLView>
 
         <View style={{ marginTop: styles.margin * 5 }}>
-          <TextBigBold style={styles.centerText}>
+          <TextBigBold style={stylesheet.centerText}>
             {t("explorer_screen.development_in_progress")}
           </TextBigBold>
           <TextNormal
-            style={{ ...styles.centerText, marginVertical: styles.margin * 2 }}
+            style={{ ...stylesheet.centerText, marginVertical: styles.margin * 2 }}
           >
             {t("explorer_screen.adding_new_content")}
           </TextNormal>
@@ -111,7 +111,7 @@ export const LocalizedWarningModal = (props: Props) => {
               }}
             />
             <TextNormalBold
-              style={styles.centerText}
+              style={stylesheet.centerText}
               onPress={() => Linking.openURL("https://www.refugies.info")}
               accessibilityRole="link"
             >

@@ -16,7 +16,7 @@ import { CustomButton } from "../CustomButton";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../../types";
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   container: {
     display: "flex",
     flex: 1,
@@ -101,7 +101,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       activeOpacity={0.8}
       onPress={navigateToContent}
       style={[
-        styles.container,
+        stylesheet.container,
         !seen && {
           backgroundColor: styles.colors.lightBlue,
         },
@@ -112,7 +112,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     >
       <View
         style={[
-          styles.leftContainer,
+          stylesheet.leftContainer,
           isRTL && {
             marginLeft: styles.margin,
             marginRight: 0,
@@ -121,7 +121,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       >
         <View
           style={[
-            styles.dot,
+            stylesheet.dot,
             seen && {
               backgroundColor: styles.colors.white,
             },
@@ -130,7 +130,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
       </View>
       <View
         style={[
-          styles.rightContainer,
+          stylesheet.rightContainer,
           isRTL && {
             alignItems: "flex-end",
           },
@@ -139,7 +139,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
         <View>
           <Text
             style={[
-              styles.title,
+              stylesheet.title,
               !seen && {
                 fontWeight: "bold",
               },
@@ -152,7 +152,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
           </Text>
           <Text
             style={[
-              styles.subtitle &&
+              stylesheet.subtitle &&
                 isRTL && {
                   textAlign: "right",
                 },

@@ -6,6 +6,8 @@ export const getLanguages = () => apiCaller.get("/langues/getLanguages");
 
 export const getNeeds = () => apiCaller.get("/needs/getNeeds");
 
+export const getThemes = () => apiCaller.get("/themes");
+
 export const getCitiesFromGoogleAPI = (text: string) =>
   apiCaller.post(
     `https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${text}&language=fr&types=(cities)&components=country:fr&key=${process.env.GOOGLE_API_KEY}`

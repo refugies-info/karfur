@@ -17,13 +17,6 @@ interface Props {
   defaultTextValidateButton?: string;
 }
 
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: "flex-end",
-    margin: 0,
-  },
-});
-
 const ModalView = styled.View`
   background-color: ${styles.colors.lightGrey};
   display: flex;
@@ -60,7 +53,7 @@ export const ConfirmationModal = (props: Props) => {
   return (
     <Modal
       isVisible={props.isModalVisible}
-      style={styles.view}
+      style={{ justifyContent: "flex-end", margin: 0}}
       customBackdrop={
         <TouchableWithoutFeedback
           onPress={props.toggleModal}

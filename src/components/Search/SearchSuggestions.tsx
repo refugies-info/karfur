@@ -4,15 +4,15 @@ import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styles } from "../../theme";
 import { SimplifiedContent } from "../../types/interface";
-import { getThemeTag } from "../../libs/getThemeTag";
 import { sortByOrder } from "../../libs";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { tags } from "../../data/tagData";
 import { StyledTextNormalBold } from "../StyledText";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 import { ReadableText } from "../ReadableText";
+import { themesSelector } from "../../services/redux/Themes/themes.selectors";
+import { useSelector } from "react-redux";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
   margin-top: ${styles.margin * 7}px;
@@ -30,6 +30,7 @@ interface Props {
 const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const scrollview = React.useRef<ScrollView>(null);
+  const themes = useSelector(themesSelector);
 
   const insets = useSafeAreaInsets();
 
@@ -57,13 +58,11 @@ const SearchSuggestions = (props: Props) => {
         </ListSubtitle>
 
         {(props.contents || []).map((content: SimplifiedContent) => {
-          const tagName = content.tags.length > 0 ? content.tags[0].name : "";
-          const colors = getThemeTag(tagName)
           return (
             <ContentSummary
               key={content._id}
               navigation={props.navigation}
-              themeTag={colors}
+              theme={content.theme}
               contentId={content._id}
               titreInfo={content.titreInformatif}
               titreMarque={content.titreMarque}
@@ -93,22 +92,16 @@ const SearchSuggestions = (props: Props) => {
           }}
           horizontal={true}
         >
-          {tags.sort(sortByOrder).map((tag, index) => (
+          {themes.sort(sortByOrder).map((theme, index) => (
             <TagButton
               key={index}
-              tagName={tag.name}
-              backgroundColor={tag.darkColor}
-              iconName={tag.icon}
+              name={theme.name.fr}
+              backgroundColor={theme.colors.color100}
+              iconName={theme.icon}
               inline={true}
               onPress={() => {
                 props.navigation.navigate("NeedsScreen", {
-                  colors: {
-                    tagName: tag.name,
-                    tagDarkColor: tag.darkColor,
-                    tagVeryLightColor: tag.color30,
-                    tagLightColor: tag.lightColor,
-                    iconName: tag.icon,
-                  },
+                  theme: theme,
                   backScreen: "Search"
                 });
                 return;

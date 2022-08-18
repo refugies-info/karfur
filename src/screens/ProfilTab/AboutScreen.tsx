@@ -105,7 +105,7 @@ const TeamRole = styled(TextSmallNormal)`
   flex-wrap: wrap;
 `;
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   scrollview: {
     paddingHorizontal: styles.margin * 3,
     paddingTop: styles.margin * 2,
@@ -182,7 +182,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         <ScrollView
           ref={scrollviewMissions}
           contentContainerStyle={{
-            ...styles.scrollview,
+            ...stylesheet.scrollview,
             flexDirection: !isRTL ? "row" : "row-reverse",
           }}
           horizontal={true}
@@ -229,7 +229,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         <ScrollView
           ref={scrollviewProblematiques}
           contentContainerStyle={{
-            ...styles.scrollview,
+            ...stylesheet.scrollview,
             flexDirection: !isRTL ? "row" : "row-reverse",
           }}
           horizontal={true}
@@ -274,7 +274,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         <ScrollView
           ref={scrollviewContributif}
           contentContainerStyle={{
-            ...styles.scrollview,
+            ...stylesheet.scrollview,
             paddingBottom: styles.margin * 4,
             flexDirection: !isRTL ? "row" : "row-reverse",
           }}
@@ -334,7 +334,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         <ScrollView
           ref={scrollviewPartners}
           contentContainerStyle={{
-            ...styles.logoScrollview,
+            ...stylesheet.logoScrollview,
             flexDirection: !isRTL ? "row" : "row-reverse",
           }}
           horizontal={true}

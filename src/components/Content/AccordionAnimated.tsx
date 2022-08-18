@@ -69,7 +69,7 @@ const TitleText = styled(TextSmallBold)`
   width: ${(props: { width: number }) => props.width}px;
   color: ${(props: { darkColor: string }) => props.darkColor};
 `;
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   bodyBackground: {
     overflow: "hidden",
     textAlign: "right",
@@ -205,13 +205,13 @@ export const AccordionAnimated = (props: Props) => {
         </TitleContainer>
         {
           <Animated.View
-            style={[styles.bodyBackground, { height: bodyHeight }]}
+            style={[stylesheet.bodyBackground, { height: bodyHeight }]}
           >
             <View
               onLayout={(event: any) =>
                 setBodySectionHeight(event.nativeEvent.layout.height)
               }
-              style={styles.bodyContainer}
+              style={stylesheet.bodyContainer}
             >
               <ExpandedContentContainer>
                 {!!props.content && (

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -25,11 +25,11 @@ import { useVoiceover } from "../../hooks/useVoiceover";
 const computeNeedsToDisplay = (
   allNeeds: Need[],
   groupedContents: Record<ObjectId, ObjectId[]>,
-  tagName: string
+  themeId: string
 ) => {
   const filteredNeeds = allNeeds.filter((need) => {
     if (
-      need.tagName === tagName &&
+      need.theme === themeId &&
       groupedContents[need._id] &&
       groupedContents[need._id].length > 0
     )
@@ -143,7 +143,7 @@ export const NeedsScreen = ({
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const {
-    colors,
+    theme,
     backScreen
   } = route.params;
 
@@ -156,13 +156,13 @@ export const NeedsScreen = ({
   const needsToDisplay = computeNeedsToDisplay(
     allNeeds,
     groupedContents,
-    colors.tagName
+    theme._id
   );
 
   if (isLoading) {
     return (
       <View>
-        <View style={{ backgroundColor: colors.tagDarkColor }}>
+        <View style={{ backgroundColor: theme.colors.color100 }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -170,13 +170,13 @@ export const NeedsScreen = ({
           />
         </View>
         <NeedsHeaderAnimated
-          tagDarkColor={colors.tagDarkColor}
+          themeDarkColor={theme.colors.color100}
           headerBottomRadius={headerBottomRadius}
           headerHeight={headerHeight}
           headerPaddingTop={headerPaddingTop}
-          tagName={colors.tagName}
+          themeName={theme.name.fr}
           headerFontSize={headerFontSize}
-          iconName={colors.iconName}
+          iconName={theme.icon}
           showSimplifiedHeader={showSimplifiedHeader}
         />
 
@@ -184,8 +184,8 @@ export const NeedsScreen = ({
           containerStyle={{
             display: "flex",
             flex: 1,
-            marginTop: theme.margin * 3,
-            marginHorizontal: theme.margin * 3,
+            marginTop: styles.margin * 3,
+            marginHorizontal: styles.margin * 3,
           }}
           isLoading={true}
           layout={[
@@ -193,23 +193,23 @@ export const NeedsScreen = ({
               key: "Section1",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
             {
               key: "Section2",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
             {
               key: "Section3",
               width: "100%",
               height: 80,
-              marginBottom: theme.margin * 3,
+              marginBottom: styles.margin * 3,
             },
           ]}
-          boneColor={theme.colors.grey}
-          highlightColor={theme.colors.lightGrey}
+          boneColor={styles.colors.grey}
+          highlightColor={styles.colors.lightGrey}
         />
         <LanguageChoiceModal
           isModalVisible={isLanguageModalVisible}
@@ -222,7 +222,7 @@ export const NeedsScreen = ({
   if (needsToDisplay.length === 0) {
     return (
       <View style={{ display: "flex", flex: 1 }}>
-        <View style={{ backgroundColor: colors.tagDarkColor }}>
+        <View style={{ backgroundColor: theme.colors.color100 }}>
           <HeaderWithBackForWrapper
             onLongPressSwitchLanguage={toggleLanguageModal}
             navigation={navigation}
@@ -230,13 +230,13 @@ export const NeedsScreen = ({
           />
         </View>
         <NeedsHeaderAnimated
-          tagDarkColor={colors.tagDarkColor}
+          themeDarkColor={theme.colors.color100}
           headerBottomRadius={headerBottomRadius}
           headerHeight={headerHeight}
           headerPaddingTop={headerPaddingTop}
-          tagName={colors.tagName}
+          themeName={theme.name.fr}
           headerFontSize={headerFontSize}
-          iconName={colors.iconName}
+          iconName={theme.icon}
           showSimplifiedHeader={showSimplifiedHeader}
         />
         <ErrorScreen
@@ -254,7 +254,7 @@ export const NeedsScreen = ({
 
   return (
     <View style={{ display: "flex", flex: 1 }}>
-      <View style={{ backgroundColor: colors.tagDarkColor }}>
+      <View style={{ backgroundColor: theme.colors.color100 }}>
         <HeaderWithBackForWrapper
           onLongPressSwitchLanguage={toggleLanguageModal}
           navigation={navigation}
@@ -262,13 +262,13 @@ export const NeedsScreen = ({
         />
       </View>
       <NeedsHeaderAnimated
-        tagDarkColor={colors.tagDarkColor}
+        themeDarkColor={theme.colors.color100}
         headerBottomRadius={headerBottomRadius}
         headerHeight={headerHeight}
         headerPaddingTop={headerPaddingTop}
-        tagName={colors.tagName}
+        themeName={theme.name.fr}
         headerFontSize={headerFontSize}
-        iconName={colors.iconName}
+        iconName={theme.icon}
         showSimplifiedHeader={showSimplifiedHeader}
       />
 
@@ -276,9 +276,9 @@ export const NeedsScreen = ({
         ref={scrollview}
         scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
-          paddingHorizontal: theme.margin * 3,
-          paddingTop: theme.margin * 3,
-          paddingBottom: theme.margin * 5 + (insets.bottom || 0),
+          paddingHorizontal: styles.margin * 3,
+          paddingTop: styles.margin * 3,
+          paddingBottom: styles.margin * 5 + (insets.bottom || 0),
         }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -302,8 +302,8 @@ export const NeedsScreen = ({
               needTextFr={need.fr.text}
               nbContents={need.nbContents}
               navigation={navigation}
-              themeTag={colors}
-              style={{ marginBottom: theme.margin * 3 }}
+              theme={theme}
+              style={{ marginBottom: styles.margin * 3 }}
             />
           )
         })}

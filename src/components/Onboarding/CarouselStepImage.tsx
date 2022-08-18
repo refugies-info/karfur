@@ -10,7 +10,7 @@ interface Props {
   step: number;
 }
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   step0: {
     width: 250,
     resizeMode: "contain", // or 'stretch'
@@ -27,13 +27,13 @@ const styles = StyleSheet.create({
 export const CarouselStepImage = ({ step }: Props) => {
   switch (step) {
     case 0:
-      return <Image source={Step0} style={styles.step0} />;
+      return <Image source={Step0} style={stylesheet.step0} />;
     case 1:
-      return <Image source={Step1} style={styles.step1} />;
+      return <Image source={Step1} style={stylesheet.step1} />;
     case 2:
       return <Image
         source={Step2}
-        style={styles.step2}
+        style={stylesheet.step2}
         accessible={true}
         accessibilityLabel="Gouvernement Liberté Egalité Fraternité. Délégation interministérielle à l'accueil et à l'intégration des réfugiés."
       />;

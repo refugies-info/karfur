@@ -20,9 +20,9 @@ import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ToggleButton } from "../../components/UI/ToggleButton";
 import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
 
-import { tags } from "../../data/tagData";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
+import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 
 const Title = styled(TextBigBold)`
   margin-bottom: ${styles.margin * 2}px;
@@ -79,7 +79,7 @@ const THEMES = [
   },
 ];
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   toggleContainer: {
     display: "flex",
     marginVertical: styles.margin * 4,
@@ -102,6 +102,7 @@ export const NotificationsSettingsScreen = () => {
   const [settings, updateSettings] = useNotificationsSettings();
   const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
+  const themes = useSelector(themesSelector);
 
   const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
   useEffect(() => {
@@ -155,7 +156,7 @@ export const NotificationsSettingsScreen = () => {
           ) : (
             <>
               <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
-              <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
+              <View accessibilityRole="radiogroup" style={stylesheet.toggleContainer}>
                 <ToggleButton
                   title={`${t("notifications.settingsLocal")} ${
                     !!location.city ? `: ${location.city}` : ""
@@ -164,14 +165,14 @@ export const NotificationsSettingsScreen = () => {
                   enabled={hasSetLocation && settings?.local}
                   onToggle={updateLocalSettings}
                 />
-                <View style={styles.separator} />
+                <View style={stylesheet.separator} />
                 <ToggleButton
                   title={t("notifications.settingsGlobal")}
                   subtitle={t("notifications.settingsGlobalSubtitle")}
                   enabled={settings?.global}
                   onToggle={(state) => updateSettings("global", state)}
                 />
-                <View style={styles.separator} />
+                <View style={stylesheet.separator} />
                 <ToggleButton
                   title={t("notifications.settingsDemarches")}
                   subtitle={t("notifications.settingsDemarchesSubtitle")}
@@ -180,26 +181,26 @@ export const NotificationsSettingsScreen = () => {
                 />
               </View>
               <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
-              <View accessibilityRole="radiogroup" style={styles.toggleContainer}>
-                {tags.map((tag, index) => (
-                  <View key={tag.name}>
+              <View accessibilityRole="radiogroup" style={stylesheet.toggleContainer}>
+                {themes.map((theme, index) => (
+                  <View key={index}>
                     <ToggleButton
                       title={
                         firstLetterUpperCase(
-                          t(`tags.${tag.name}`, tag.name)
+                          t(`tags.${theme.name.fr}`, theme.name.fr)
                         ) as string
                       }
-                      icon={tag.icon}
-                      enabled={settings?.themes[tag.name]}
+                      icon={theme.icon}
+                      enabled={settings?.themes[theme.name.fr]}
                       onToggle={(state) =>
-                        updateSettings(`themes.${tag.name}`, state)
+                        updateSettings(`themes.${theme.name.fr}`, state)
                       }
                       disabled={themesDisabled}
                     />
                     {index < THEMES.length - 1 && (
                       <View
-                        style={styles.separator}
-                        key={`separator-${tag.name}`}
+                        style={stylesheet.separator}
+                        key={`separator-${theme.name.fr}`}
                       />
                     )}
                   </View>

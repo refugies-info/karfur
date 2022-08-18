@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserActions } from "./user.actions";
-import { AvailableLanguageI18nCode, ObjectId, ThemeTag } from "../../../types/interface";
+import { AvailableLanguageI18nCode, ObjectId, Theme } from "../../../types/interface";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean | null;
@@ -17,7 +17,7 @@ export interface UserState {
   redirectDispositif: {
     contentId: ObjectId;
     needId: ObjectId;
-    colors: ThemeTag;
+    theme: Theme;
   } | null;
 }
 

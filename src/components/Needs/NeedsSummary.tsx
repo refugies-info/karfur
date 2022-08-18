@@ -11,7 +11,7 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
-import { ThemeTag } from "../../types/interface";
+import { Theme } from "../../types/interface";
 import { ReadableText } from "../ReadableText";
 
 const NeedContainer = styled(RTLTouchableOpacity)`
@@ -62,7 +62,7 @@ interface Props {
   nbContents?: number
   searchLanguageMatch?: string;
   navigation: any;
-  themeTag: ThemeTag;
+  theme: Theme;
   searchItem?: any;
   style?: StyleProp<ViewStyle>;
   backScreen?: string;
@@ -86,29 +86,29 @@ export const NeedsSummary = (props: Props) => {
         props.navigation.navigate("Explorer", {
           screen: "ContentsScreen",
           params: {
-            colors: props.themeTag,
+            theme: props.theme,
             needId: props.id,
             backScreen: props.backScreen
           }
         });
         return;
       }}
-      style={props.style || {}}
+      style={props.style || {}}
     >
-      <StyledText color={props.themeTag.tagDarkColor}>
+      <StyledText color={props.theme.colors.color100}>
         {props.searchItem ?
           <Highlight
             hit={props.searchItem}
             attribute={`title_${props.searchLanguageMatch || "fr"}`}
             //@ts-ignore
-            color={props.tagDarkColor}
+            color={props.theme.colors.color100}
           /> :
           <ReadableText>{props.needText || ""}</ReadableText>
         }
       </StyledText>
 
       {!!props.nbContents &&
-        <IndicatorContainer backgroundColor={props.themeTag.tagDarkColor} isRTL={isRTL}>
+        <IndicatorContainer backgroundColor={props.theme.colors.color100} isRTL={isRTL}>
           <IndicatorNumber isRTL={isRTL}>
             {props.nbContents}
           </IndicatorNumber>

@@ -49,10 +49,10 @@ const IndicatorNumber = styled(TextVerySmallNormal)`
 `;
 
 interface Props {
-  tagDarkColor: string;
+  themeDarkColor: string;
   headerBottomRadius: any;
   headerPaddingTop: any;
-  tagName: string;
+  themeName: string;
   headerFontSize: any;
   iconName: string;
   showSimplifiedHeader: boolean;
@@ -87,7 +87,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
       style={[
         stylesheet.bodyBackground,
         {
-          backgroundColor: props.tagDarkColor,
+          backgroundColor: props.themeDarkColor,
           borderBottomRightRadius: props.headerBottomRadius,
           borderBottomLeftRadius: props.headerBottomRadius,
           paddingTop: props.headerPaddingTop,
@@ -107,7 +107,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
             <ThemeText isRTL={isRTL}>
               <ReadableText overridePosY={0}>
                 {firstLetterUpperCase(
-                  t("tags." + props.tagName, props.tagName)
+                  t("tags." + props.themeName, props.themeName)
                 ) || ""}
               </ReadableText>
             </ThemeText>

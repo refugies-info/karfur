@@ -1,12 +1,12 @@
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import React from "react";
 import { View, Dimensions } from "react-native";
-import { tags } from "../../data/tagData";
 import { CarousselCard } from "./CarousselCard";
 import { sortByOrder } from "../../libs";
 import { styles } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { ExpandedTag } from "../../types/interface";
+import { useSelector } from "react-redux";
+import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 
 const MIN_CARD_WIDTH = 248;
 const CARD_RATIO = 0.775;
@@ -14,7 +14,8 @@ const CARD_RATIO = 0.775;
 export const TagsCarousel = (props: any) => {
   const { isRTL } = useTranslationWithRTL();
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const carouselItems = tags.sort(sortByOrder);
+  const themes = useSelector(themesSelector);
+  const carouselItems = themes.sort(sortByOrder);
 
   // TODO : improve here to have responsive cards
   const cardWidth = Math.max(Dimensions.get("window").width * 0, MIN_CARD_WIDTH);
@@ -23,7 +24,7 @@ export const TagsCarousel = (props: any) => {
   const renderItem = ({ item }: { item: any }) => {
     return (
       <CarousselCard
-        tag={item as ExpandedTag}
+        theme={item}
         navigation={props.navigation}
         cardWidth={cardWidth}
         cardHeight={cardHeight}
@@ -57,7 +58,7 @@ export const TagsCarousel = (props: any) => {
           width: styles.margin,
           height: styles.margin,
           borderRadius: styles.margin / 2,
-          backgroundColor: tags[activeIndex].lightColor,
+          backgroundColor: themes[activeIndex].colors.color40,
           marginHorizontal: -2,
         }}
         inactiveDotStyle={{

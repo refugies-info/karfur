@@ -10,7 +10,7 @@ import { StreamlineIcon } from "../StreamlineIcon";
 
 const ICON_SIZE = 24;
 
-const styles = StyleSheet.create({
+const stylesheet = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
@@ -64,7 +64,7 @@ export const ToggleButton = ({
   return (
     <View
       style={[
-        styles.container,
+        stylesheet.container,
         isRTL && {
           flexDirection: "row-reverse",
         },
@@ -72,7 +72,7 @@ export const ToggleButton = ({
     >
       <View
         style={[
-          styles.leftContainer,
+          stylesheet.leftContainer,
           isRTL && {
             flexDirection: "row-reverse",
           },
@@ -95,7 +95,7 @@ export const ToggleButton = ({
         )}
         <View
           style={[
-            styles.titleContainer,
+            stylesheet.titleContainer,
             isRTL && {
               alignItems: "flex-end",
             },

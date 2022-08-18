@@ -8,11 +8,11 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import { ReadableText } from "../ReadableText";
 
 interface Props {
-  tagDarkColor: string;
+  themeDarkColor: string;
   headerBottomRadius: any;
   headerHeight: any;
   headerPaddingTop: any;
-  tagName: string;
+  themeName: string;
   headerFontSize: any;
   iconName: string;
   showSimplifiedHeader: boolean;
@@ -45,7 +45,7 @@ export const NeedsHeaderAnimated = (props: Props) => {
         stylesheet.bodyBackground,
         {
           height: props.headerHeight,
-          backgroundColor: props.tagDarkColor,
+          backgroundColor: props.themeDarkColor,
           borderBottomRightRadius: props.headerBottomRadius,
           borderBottomLeftRadius: props.headerBottomRadius,
           paddingTop: props.headerPaddingTop,
@@ -65,7 +65,7 @@ export const NeedsHeaderAnimated = (props: Props) => {
           ]}
         >
           <ReadableText overridePosY={0}>
-            {firstLetterUpperCase(t("tags." + props.tagName, props.tagName)) || ""}
+            {firstLetterUpperCase(t("tags." + props.themeName, props.themeName)) || ""}
           </ReadableText>
         </Animated.Text>
 

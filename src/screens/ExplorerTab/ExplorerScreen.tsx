@@ -18,7 +18,6 @@ import {
 import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
-import { tags } from "../../data/tagData";
 import { TagButton } from "../../components/Explorer/TagButton";
 import { TagsCarousel } from "../../components/Explorer/TagsCarousel";
 import { nbContentsSelector } from "../../services/redux/Contents/contents.selectors";
@@ -33,22 +32,24 @@ import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { sortByOrder } from "../../libs";
 import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
-import { theme } from "../../theme";
+import { styles } from "../../theme";
 import { LocalizedWarningModal } from "../../components/Explorer/LocalizedWarningModal";
 import { LocalizedWarningMessage } from "../../components/Explorer/LocalizedWarningMessage";
 import { logger } from "../../logger";
+import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
+import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 
 const MAX_CONTENT_LOCALIZED = 10;
 
 const ViewChoiceContainer = styled(RTLView)`
-  margin-top: ${theme.margin * 4}px;
-  background-color: ${theme.colors.grey60};
-  margin-bottom: ${theme.margin * 3}px;
-  border-radius: ${theme.radius * 2}px;
+  margin-top: ${styles.margin * 4}px;
+  background-color: ${styles.colors.grey60};
+  margin-bottom: ${styles.margin * 3}px;
+  border-radius: ${styles.radius * 2}px;
   justify-content: center;
   align-items: center;
   align-self: center;
-  ${theme.shadows.lg}
+  ${styles.shadows.lg}
   width: 270px;
 `;
 const CarousselContainer = styled.View`
@@ -70,6 +71,7 @@ export const ExplorerScreen = ({
 
   const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
+  const themes = useSelector(themesSelector);
 
   // Handle share link
   const handleOpenUrl = (event: Linking.EventType | string | null) => {
@@ -101,17 +103,17 @@ export const ExplorerScreen = ({
   const redirect = React.useCallback(() => {
     if (redirectDispositif) {
       navigation.navigate("NeedsScreen", {
-        colors: redirectDispositif.colors,
+        theme: redirectDispositif.theme,
       });
       navigation.navigate("ContentsScreen", {
         needId: redirectDispositif.needId,
-        colors: redirectDispositif.colors,
+        theme: redirectDispositif.theme,
         backScreen: "",
       });
       navigation.navigate("ContentScreen", {
         contentId: redirectDispositif.contentId,
         needId: redirectDispositif.needId,
-        colors: redirectDispositif.colors,
+        theme: redirectDispositif.theme,
         backScreen: "",
       });
       dispatch(setRedirectDispositifActionCreator(null));
@@ -205,37 +207,31 @@ export const ExplorerScreen = ({
       {tabSelected === "list" ? (
         <ScrollView
           contentContainerStyle={{
-            paddingHorizontal: theme.margin * 3,
-            paddingBottom: theme.margin * 3,
-            paddingTop: theme.margin,
+            paddingHorizontal: styles.margin * 3,
+            paddingBottom: styles.margin * 3,
+            paddingTop: styles.margin,
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >
-          {tags.sort(sortByOrder).map((tag, index) => (
+          {themes.sort(sortByOrder).map((currentTheme, index) => (
             <TagButton
               key={index}
-              tagName={tag.name}
-              backgroundColor={tag.darkColor}
-              iconName={tag.icon}
+              name={currentTheme.name.fr}
+              backgroundColor={currentTheme.colors.color100}
+              iconName={currentTheme.icon}
               onPress={() => {
                 logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-                  theme: tag.name,
+                  theme: currentTheme.name.fr,
                   view: "list",
                 });
 
                 navigation.navigate("NeedsScreen", {
-                  colors: {
-                    tagName: tag.name,
-                    tagDarkColor: tag.darkColor,
-                    tagVeryLightColor: tag.color30,
-                    tagLightColor: tag.lightColor,
-                    iconName: tag.icon,
-                  },
+                  theme: currentTheme
                 });
                 return;
               }}
               style={{
-                marginBottom: theme.margin * 3,
+                marginBottom: styles.margin * 3,
                 marginTop: 0,
               }}
             />

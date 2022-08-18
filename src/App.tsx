@@ -10,11 +10,13 @@ import { getExpoPushTokenAsync } from "expo-notifications";
 
 import useCachedResources from "./hooks/useCachedResources";
 import { RootNavigator } from "./navigation";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { store } from "./services/redux/store";
 
 import { ConnexionTest } from "./components/ConnexionTest";
 import { updateAppUser } from "./utils/API";
+import { fetchThemesActionCreator } from "./services/redux/Themes/themes.actions";
+import { themesSelector } from "./services/redux/Themes/themes.selectors";
 
 const queryClient = new QueryClient();
 
@@ -43,12 +45,15 @@ const updateUserInfo = async () => {
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
+  const dispatch = useDispatch();
+  const themes = useSelector(themesSelector);
 
   useEffect(() => {
+    dispatch(fetchThemesActionCreator());
     updateUserInfo();
   }, []);
 
-  if (!isLoadingComplete) {
+  if (!isLoadingComplete && themes.length > 0) {
     return null;
   }
 

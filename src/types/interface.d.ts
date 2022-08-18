@@ -8,39 +8,43 @@ export interface Language {
   avancementTrad: number;
 }
 
-interface Tag {
-  short: string;
-  name: string;
-}
-interface ExpandedTag {
-  short: string;
-  icon: string;
-  name: string;
-  darkColor: string;
-  lightColor: string;
-  mdLightColor: string;
-  veryLightColor: string;
+export interface ThemeColors {
+  color100: string;
+  color80: string;
+  color60: string;
+  color40: string;
   color30: string;
-  order: number;
+}
+
+export interface Theme {
+  _id: ObjectId;
+  name: {
+    fr: string;
+    [key: string]: string;
+  };
+  short: {
+    fr: string;
+    [key: string]: string;
+  };
+  colors: ThemeColors;
+  position: number;
+  icon: string;
+  banner: string;
+  appImage: string;
+  shareImage: string;
+  created_at?: Moment;
 }
 export interface SimplifiedContent {
   _id: ObjectId;
   titreInformatif: string;
   titreMarque?: string;
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   needs?: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   nbVues: number;
   sponsorUrl: string | null;
   avancement: number | Record<AvailableLanguageI18nCode, string>;
-}
-
-export interface ThemeTag {
-  tagName: string;
-  iconName: string;
-  tagDarkColor: string;
-  tagLightColor: string;
-  tagVeryLightColor: string;
 }
 
 export type AvailableLanguageI18nCode =
@@ -91,7 +95,8 @@ export interface Content {
   contenu: DispositifContent[];
   externalLink: string;
   mainSponsor: Sponsor;
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   titreInformatif: string;
   titreMarque: string;
   typeContenu: "dispositif" | "demarche";
@@ -130,7 +135,7 @@ export interface Need {
   fa?: NeedDetail;
   uk?: NeedDetail;
   _id: ObjectId;
-  tagName: string;
+  theme: ObjectId;
   created_at: Moment;
   updatedAt: Moment;
 }

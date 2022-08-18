@@ -35,6 +35,11 @@ import {
   initialVoiceOverState,
   voiceOverReducer,
 } from "./VoiceOver/voiceOver.reducer";
+import {
+  ThemeState,
+  initialThemeState,
+  themesReducer,
+} from "./Themes/themes.reducer";
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
   languages: languagesReducer,
@@ -44,6 +49,7 @@ const appReducer = combineReducers({
   needs: needsReducer,
   groupedContents: groupedContentsReducer,
   voiceOver: voiceOverReducer,
+  themes: themesReducer,
 });
 
 export interface RootState {
@@ -55,6 +61,7 @@ export interface RootState {
   needs: NeedState;
   groupedContents: GroupedContentsState;
   voiceOver: VoiceOverState;
+  themes: ThemeState;
 }
 
 type RootReducer = ReturnType<typeof appReducer>;
@@ -68,6 +75,7 @@ export const initialRootStateFactory = (): RootState => ({
   needs: initialNeedState,
   groupedContents: initialGroupedContentsState,
   voiceOver: initialVoiceOverState,
+  themes: initialThemeState,
 });
 
 export const rootReducer = (

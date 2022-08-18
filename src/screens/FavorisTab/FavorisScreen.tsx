@@ -29,7 +29,6 @@ import { StyledTextBigBold, StyledTextSmall } from "../../components/StyledText"
 import { CustomButton } from "../../components/CustomButton"
 import { ContentSummary } from "../../components/Contents/ContentSummary";
 import { ConfirmationModal } from "../../components/ConfirmationModal";
-import { getThemeTag } from "../../libs/getThemeTag";
 import { styles } from "../../theme"
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png"
 import { HeaderAnimated } from "../../components/HeaderAnimated";
@@ -205,8 +204,6 @@ export const FavorisScreen = ({
           <View style={{ marginBottom: styles.margin * 2 }}>
             <View style={{ marginHorizontal: -styles.margin * 3, flex: 1, justifyContent: "flex-start" }}>
               {contentsToDisplay.map((content: SimplifiedContent) => {
-                const tagName = content.tags.length > 0 ? content.tags[0].name : "";
-                const colors = getThemeTag(tagName);
                 return (
                   <CardItem key={content._id}>
                     <Swipeable
@@ -221,7 +218,7 @@ export const FavorisScreen = ({
                     >
                       <ContentSummary
                         navigation={navigation}
-                        themeTag={colors}
+                        theme={content.theme}
                         contentId={content._id}
                         titreInfo={content.titreInformatif}
                         titreMarque={content.titreMarque}

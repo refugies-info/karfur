@@ -15,13 +15,13 @@ import React from "react";
 import { Image } from "react-native";
 
 export const HeaderImage = ({
-  tagName,
+  themeName,
   height,
 }: {
-  tagName: string;
+  themeName: string;
   height: number;
 }) => {
-  switch (tagName) {
+  switch (themeName) {
     case "apprendre le français":
       return (
         <Image
