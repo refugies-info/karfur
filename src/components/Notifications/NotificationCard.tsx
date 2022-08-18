@@ -21,18 +21,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     flexDirection: "row",
-    marginHorizontal: theme.margin * 2,
     marginVertical: theme.margin * 2,
-    padding: theme.margin * 2,
+    paddingVertical: theme.margin * 2,
+    paddingHorizontal: theme.margin * 3,
     backgroundColor: theme.colors.white,
     borderRadius: theme.radius * 2,
-    ...theme.shadowsStylesheet.lg,
-  },
-  leftContainer: {
-    display: "flex",
-    marginRight: theme.margin,
-    marginTop: theme.margin / 2,
-    alignItems: "flex-end",
   },
   rightContainer: {
     display: "flex",
@@ -65,6 +58,9 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 100,
+    position: "absolute",
+    left: theme.margin,
+    top: theme.margin * 3
   },
 });
 
@@ -109,22 +105,12 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
     >
       <View
         style={[
-          styles.leftContainer,
-          isRTL && {
-            marginLeft: theme.margin,
-            marginRight: 0,
+          styles.dot,
+          seen && {
+            backgroundColor: theme.colors.white,
           },
         ]}
-      >
-        <View
-          style={[
-            styles.dot,
-            seen && {
-              backgroundColor: theme.colors.white,
-            },
-          ]}
-        />
-      </View>
+      />
       <View
         style={[
           styles.rightContainer,
@@ -180,6 +166,8 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             onPress={navigateToContent}
             style={{
               marginTop: theme.margin,
+              marginRight: theme.margin,
+              flexGrow: !seen ? 1 : 0
             }}
             textStyle={{
               fontSize: theme.fonts.sizes.verySmall,
@@ -201,6 +189,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
                 marginTop: theme.margin,
                 borderColor: theme.colors.darkBlue,
                 borderWidth: 1,
+                flexGrow: 1
               }}
               textStyle={{
                 fontSize: theme.fonts.sizes.verySmall,

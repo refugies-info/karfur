@@ -16,12 +16,12 @@ import { CustomButton } from "../CustomButton";
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    margin: theme.margin * 2,
+    marginTop: theme.margin * 2,
     borderRadius: theme.radius * 2,
     backgroundColor: theme.colors.white,
     alignItems: "flex-start",
     justifyContent: "space-between",
-    padding: theme.margin * 2,
+    padding: theme.margin * 3,
   },
   lottieContainer: {
     height: 160,
@@ -66,7 +66,7 @@ export const EnableNotifications = ({
       ]}
     >
       <LottieView
-        colorFilters={[{ keypath: "bell icon", color: "#ffcd31" }]}
+        colorFilters={[{ keypath: "bell icon", color: "#c8c8c8" }]}
         style={styles.lottieContainer}
         source={require("../../theme/lottie/notification-bell-animation.json")}
         autoPlay

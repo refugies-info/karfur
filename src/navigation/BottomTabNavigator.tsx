@@ -77,8 +77,13 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const explorerScreen = state.routes.find(route => route.name === "Explorer")?.state?.index
     || 0; // will return undefined if explorerScreen just mounted, 0 else
+
+  const hasNotificationScreen = (state.routes.find(route => route.name === "Explorer")?.state?.routes || [] as any[])
+    .find(route => route.name === "NotificationsScreen");
+
   const noReadButton = state.index === 3 // profil tab
     || (state.index === 0 && explorerScreen === 0) // explorer screen
+    || (state.index === 0 && hasNotificationScreen) // notification screen
     || ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
   if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 

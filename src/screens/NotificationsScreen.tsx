@@ -3,6 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import {
   View,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   FlatList,
@@ -24,13 +25,13 @@ import { EnableNotifications } from "../components/Notifications/EnableNotificat
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabParamList, ExplorerParamList } from "../../types";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 
 const ICON_SIZE = 24;
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    margin: theme.margin * 2,
     flex: 1,
   },
   settingsButton: {
@@ -49,7 +50,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    margin: theme.margin * 2,
+    marginTop: theme.margin * 2,
+    marginBottom: theme.margin,
+    marginHorizontal: theme.margin * 3,
   },
   unseenCount: {
     display: "flex",
@@ -104,13 +107,18 @@ export const NotificationsScreen = () => {
 
   const count = notifications ? notifications?.unseenCount : null;
 
+  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
+    false
+  );
+  const toggleLanguageModal = () =>
+  setLanguageModalVisible(!isLanguageModalVisible);
+
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}
-    >
-      <HeaderWithBack navigation={navigation} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <HeaderWithBack
+        navigation={navigation}
+        onLongPressSwitchLanguage={toggleLanguageModal}
+      />
       <View style={styles.container}>
         <View
           style={styles.titleContainer}
@@ -124,7 +132,7 @@ export const NotificationsScreen = () => {
             <StyledTextBigBold>
               {t("notifications.notifications")}
             </StyledTextBigBold>
-            {!!count && (
+            {accessGranted && !!count && (
               <View style={styles.unseenCount}>
                 <Text style={styles.unseenCountText}>
                   {count > 9 ? "9" : count}
@@ -152,21 +160,26 @@ export const NotificationsScreen = () => {
         </View>
 
         {!accessGranted && (
-          <View
+          <ScrollView
             style={{
               display: "flex",
               flex: 1,
-              justifyContent: "center",
+              padding: theme.margin * 2
+            }}
+            contentContainerStyle={{
+              paddingBottom: theme.margin * 4
             }}
           >
             <EnableNotifications />
-          </View>
+          </ScrollView>
         )}
         {!!accessGranted && (
           <View
             style={[
               {
                 display: "flex",
+                marginTop: theme.margin,
+                marginHorizontal: theme.margin * 3,
                 marginBottom: theme.margin * 4
               },
               !isLoading &&
@@ -219,6 +232,11 @@ export const NotificationsScreen = () => {
           </View>
         )}
       </View>
+
+      <LanguageChoiceModal
+        isModalVisible={isLanguageModalVisible}
+        toggleModal={toggleLanguageModal}
+      />
     </SafeAreaView>
   );
 };

@@ -6,6 +6,10 @@ import { theme } from "../theme";
 import { StyledTextSmallBold } from "./StyledText";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
+import { LanguageSwitch } from "./Language/LanguageSwitch";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
+import { View } from "react-native";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: flex-start;
@@ -27,7 +31,8 @@ interface Props {
   iconName?: string;
   text?: string;
   navigation: any;
-  backHandler?: () => void
+  backHandler?: () => void;
+  onLongPressSwitchLanguage?: () => void;
 }
 
 export const HeaderWithBack = (props: Props) => {
@@ -41,12 +46,13 @@ export const HeaderWithBack = (props: Props) => {
         label={t("global.back_button_accessibility")}
       />
       {props.iconName && props.text && (
-        <RTLView style={{
-          flex: 1,
-          marginRight: !isRTL ? theme.margin * 7 : 0,
-          marginLeft: isRTL ? theme.margin * 7 : 0,
-          justifyContent: "center",
-        }}>
+        <RTLView
+          style={{
+            flex: 1,
+            marginRight: !isRTL ? theme.margin * 7 : 0,
+            marginLeft: isRTL ? theme.margin * 7 : 0,
+            justifyContent: "center",
+          }}>
           <Icon
             name={props.iconName}
             width={ICON_SIZE}
@@ -55,6 +61,18 @@ export const HeaderWithBack = (props: Props) => {
           />
           <StyledText isRTL={isRTL}>{props.text}</StyledText>
         </RTLView>
+      )}
+      {!!props.onLongPressSwitchLanguage && (
+        <View style={{ marginLeft: "auto" }}>
+          <LanguageSwitch
+            onLongPressSwitchLanguage={() => {
+              logEventInFirebase(FirebaseEvent.LONG_PRESS_CHANGE_LANGUAGE, {});
+              if (props.onLongPressSwitchLanguage) {
+                props.onLongPressSwitchLanguage();
+              }
+            }}
+          />
+        </View>
       )}
     </TopButtonsContainer>
   );

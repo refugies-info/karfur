@@ -28,8 +28,8 @@ const ButtonContainerCommon = styled.View`
 
 const ButtonContainer = styled.TouchableOpacity`
   margin-right: ${(props: { isRTL: any }) =>
-    props.isRTL ? 0 : theme.margin}px;
-  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? theme.margin : 0)}px;
+    props.isRTL ? theme.margin : 0}px;
+  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? 0 : theme.margin)}px;
 
   background-color: ${theme.colors.grey60};
   border-radius: ${theme.radius * 2}px;
@@ -43,7 +43,6 @@ const ButtonContainer = styled.TouchableOpacity`
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
   width: 48px;
-  margin-right: ${theme.margin}px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.radius * 2}px;
   height: 48px;

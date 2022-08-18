@@ -115,7 +115,7 @@ export const ToggleButton = ({
               style={[
                 {
                   color: theme.colors.darkGrey,
-                  marginTop: theme.margin * 2
+                  marginTop: theme.margin
                 },
                 disabled && {
                   color: theme.colors.greyDisabled,

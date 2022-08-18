@@ -7,6 +7,7 @@ import { theme } from "../../theme";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useNotifications } from "../../hooks/useNotifications";
+import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 
 const ICON_WIDTH = 24;
 const ICON_HEIGHT = 24;
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
     fontSize: theme.fonts.sizes.verySmall,
     textAlign: "center",
     fontWeight: "500",
+    lineHeight: theme.margin * 2,
   },
 });
 
@@ -49,6 +51,7 @@ const NotificationsIcon = () => {
   const { t } = useTranslationWithRTL();
   const { navigate } = useNavigation();
   const { data: notifications } = useNotifications();
+  const [accessGranted] = useNotificationsStatus();
 
   return (
     <TouchableOpacity
@@ -63,7 +66,7 @@ const NotificationsIcon = () => {
         name="bell-outline"
         fill={theme.colors.black}
       />
-      {notifications && notifications.unseenCount > 0 && (
+      {accessGranted && notifications && notifications.unseenCount > 0 && (
         <View style={styles.unseenContainer}>
           <Text style={styles.unseenText}>
             {notifications.unseenCount > 9 ? "9" : notifications.unseenCount}

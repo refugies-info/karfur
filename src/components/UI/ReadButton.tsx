@@ -85,7 +85,7 @@ const Button = styled(TouchableOpacity)`
   ${theme.shadows.blue}
 `;
 
-const MAX_RATE = Platform.OS === "android" ? 1.4 : 1.2;
+const MAX_RATE = 1.2;
 
 const sortItems = (a: ReadingItem, b: ReadingItem) => {
   if (a.posY < b.posY) return -1;
