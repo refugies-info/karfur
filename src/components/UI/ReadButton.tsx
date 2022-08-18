@@ -17,6 +17,8 @@ import Play from "../../theme/images/voiceover/play_icon.svg";
 import { ReadingItem } from "../../types/interface";
 import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import { Animated } from "react-native";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const Container = styled(View)`
   position: absolute;
@@ -154,6 +156,9 @@ export const ReadButton = (props: Props) => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
       Promise.all(readingList).then((res) => {
+        logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
+          locale: currentLanguageI18nCode,
+        });
         const sortedReadingList = res.sort(sortItems);
         setResolvedReadingList(sortedReadingList);
         const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);

@@ -30,6 +30,8 @@ import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -86,6 +88,63 @@ export const RootNavigator = () => {
     dispatch(getUserInfosActionCreator());
     dispatch(fetchNeedsActionCreator());
   }, []);
+
+  //Notifications listener
+  useEffect(() => {
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener(
+        async (response) => {
+          switch (response?.notification?.request?.content?.data?.type) {
+            case "dispositif": {
+              logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
+                contentId: response.notification.request.content.data.contentId,
+              });
+
+              navigationRef?.current.navigate("Explorer", {
+                screen: "ContentScreen",
+                params: {
+                  contentId:
+                    response.notification.request.content.data.contentId,
+                },
+              });
+              await markNotificationAsSeen(
+                response.notification.request.content.data
+                  .notificationId as string
+              );
+              queryClient.invalidateQueries("notifications");
+            }
+            default:
+              break;
+          }
+        }
+      );
+
+    //This handler is triggered when a notification is received when the app is foregrounded
+    notificationsListener.current =
+      Notifications.addNotificationReceivedListener(() => {
+        queryClient.invalidateQueries("notifications");
+      });
+
+    return () => {
+      if (responseListener.current) {
+        Notifications.removeNotificationSubscription(responseListener.current);
+      }
+
+      if (notificationsListener.current) {
+        Notifications.removeNotificationSubscription(
+          notificationsListener.current
+        );
+      }
+    };
+  }, []);
+
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
 
   if (!isI18nInitialized || hasUserSeenOnboarding === null) {
     return null;

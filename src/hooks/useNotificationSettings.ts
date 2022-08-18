@@ -1,6 +1,8 @@
 import { useQueryClient } from "react-query";
 import set from "lodash/set";
 import { useApi, useApiMutation } from "./useApi";
+import { logEventInFirebase } from "../utils/logEvent";
+import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
 
 export type NotificationsSettings = {
   global: boolean;
@@ -10,6 +12,16 @@ export type NotificationsSettings = {
     [key: string]: boolean;
   };
 };
+
+const logSettingsUpdate = (key: string, value: boolean) => {
+  const event = key.includes("themes") ?
+    FirebaseEvent.TOGGLE_NOTIFICATION_THEME :
+    FirebaseEvent.TOGGLE_NOTIFICATION_TYPE;
+  logEventInFirebase(event, {
+    id: key,
+    value: value
+  })
+}
 
 export const useNotificationsSettings = (): [
   NotificationsSettings | undefined,
@@ -36,6 +48,7 @@ export const useNotificationsSettings = (): [
 
   const updateSettings = async (key: string, value: boolean) => {
     try {
+      logSettingsUpdate(key, value);
       const payload: any = {};
       set(payload, key, value);
       queryClient.setQueryData("notificationsSettings", (current: any) => {

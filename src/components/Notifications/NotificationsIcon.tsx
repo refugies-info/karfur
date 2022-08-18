@@ -8,6 +8,8 @@ import { theme } from "../../theme";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useNotifications } from "../../hooks/useNotifications";
 import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
+import { logEventInFirebase } from "../../utils/logEvent";
+import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const ICON_WIDTH = 24;
 const ICON_HEIGHT = 24;
@@ -58,7 +60,11 @@ const NotificationsIcon = () => {
       style={styles.buttonContainer}
       accessibilityRole="button"
       accessibilityLabel={t("notifications.settings")}
-      onPress={() => navigate("NotificationsScreen")}
+      onPress={() => {
+        logEventInFirebase(FirebaseEvent.CLIC_NOTIFICATION_ICON, {});
+        //@ts-ignore
+        navigate("NotificationsScreen")
+      }}
     >
       <Icon
         width={ICON_WIDTH}
