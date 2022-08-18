@@ -151,7 +151,7 @@ export const getNotificationEmoji = (dispositif: IDispositif) => {
       case "me déplacer":
         return "🚗";
       case "me soigner":
-        return "🩺";
+        return "🥼";
       case "aider une association":
         return "🤝";
       case "rencontrer des gens":
