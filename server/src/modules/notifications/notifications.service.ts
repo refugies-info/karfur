@@ -61,7 +61,7 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
 export const sendNotificationsForDispositif = async (dispositifId: string | ObjectId, lang: string = "en") => {
   const notificationActive = await isNotificationsActive();
   if (notificationActive) {
-    logger.error("[sendNotificationsForDispositif] notifications actives");
+    logger.info("[sendNotificationsForDispositif] notifications actives");
     try {
       const dispositif = await getDispositifById(dispositifId, {
         status: 1,
