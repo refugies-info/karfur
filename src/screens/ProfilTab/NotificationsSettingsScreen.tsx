@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, ScrollView, View, ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -103,7 +103,13 @@ export const NotificationsSettingsScreen = () => {
   const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
 
-  const hasSetLocation = !!(location && location.department && location.city);
+  const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
+  useEffect(() => {
+    const newHasSetLocation = !!(location && location.department && location.city);
+    if (hasSetLocation !== newHasSetLocation) {
+      setHasSetLocation(newHasSetLocation)
+    }
+  }, [location])
 
   const themesDisabled =
     !!settings && !settings?.global && !settings?.local && !settings?.demarches;
