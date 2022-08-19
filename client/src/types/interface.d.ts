@@ -60,6 +60,7 @@ export interface Theme {
   banner: string;
   appImage: string;
   shareImage: string;
+  notificationEmoji: string;
   created_at?: Moment;
 }
 

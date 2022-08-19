@@ -55,6 +55,10 @@ const themeSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    notificationEmoji: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );
@@ -81,6 +85,7 @@ export interface ThemeDoc extends mongoose.Document {
   banner: string;
   appImage: string;
   shareImage: string;
+  notificationEmoji: string;
   created_at: Moment;
 }
 

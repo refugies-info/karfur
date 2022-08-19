@@ -29,6 +29,7 @@ const handler = async (
       banner: req.body.banner,
       appImage: req.body.appImage,
       shareImage: req.body.shareImage,
+      notificationEmoji: req.body.notificationEmoji,
     });
 
     const dbTheme = await createTheme(theme);

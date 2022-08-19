@@ -63,7 +63,6 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
   if (notificationActive) {
     logger.error("[sendNotificationsForDispositif] notifications actives");
     try {
-      /* TODO: get theme here */
       const dispositif = await getDispositifById(dispositifId, {
         status: 1,
         titreMarque: 1,
@@ -72,7 +71,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
         contenu: 1,
         tags: 1,
         notificationsSent: 1
-      });
+      }, "theme");
 
       if (!dispositif) {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
@@ -152,7 +151,6 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
   if (notificationActive) {
     logger.error("[sendNotificationsForDemarche] notifications actives");
     try {
-      /* TODO: get theme here */
       const demarche = await getDispositifById(demarcheId, {
         status: 1,
         typeContenu: 1,
@@ -160,7 +158,7 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
         contenu: 1,
         tags: 1,
         notificationsSent: 1
-      });
+      }, "theme");
 
       if (!demarche || demarche.typeContenu !== "demarche") { // not a demarche: error
         logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} not found`);

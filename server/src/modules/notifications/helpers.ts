@@ -128,38 +128,7 @@ export const filterTargetsForDemarche = (targets: AppUserType[], requirements: R
   });
 };
 
-/* TODO: handle tags here */
+
 export const getNotificationEmoji = (dispositif: IDispositif) => {
-  if (dispositif?.tags?.length) {
-    switch (dispositif.tags[0].name) {
-      case "apprendre le français":
-        return "🇫🇷";
-      case "trouver un travail":
-        return "💼";
-      case "faire des études":
-        return "🎓";
-      case "occuper mon temps libre":
-        return "⚽";
-      case "me loger":
-        return "🏡";
-      case "apprendre un métier":
-        return "👩🏼‍🏫";
-      case "découvrir la culture":
-        return "🏰";
-      case "gérer mes papiers":
-        return "📝";
-      case "me déplacer":
-        return "🚗";
-      case "me soigner":
-        return "🩺";
-      case "aider une association":
-        return "🤝";
-      case "rencontrer des gens":
-        return "💬";
-      default:
-        return "🔔";
-    }
-  } else {
-    return "🔔";
-  }
+  return dispositif.theme.notificationEmoji || "🔔";
 };

@@ -25,6 +25,7 @@ export const getValidator = (type: "post" | "patch") => {
       banner: Joi.any(),
       appImage: Joi.any(),
       shareImage: Joi.any(),
+      notificationEmoji: Joi.string(),
     })
   };
 
@@ -58,4 +59,5 @@ export interface Request {
   banner: Object;
   appImage: Object;
   shareImage: Object;
+  notificationEmoji: string;
 }

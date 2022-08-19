@@ -92,7 +92,8 @@ describe("UserFavorites", () => {
       position: 0,
       banner: "",
       appImage: "",
-      shareImage: ""
+      shareImage: "",
+      notificationEmoji: "",
     },
   };
 
@@ -117,7 +118,8 @@ describe("UserFavorites", () => {
       position: 0,
       banner: "",
       appImage: "",
-      shareImage: ""
+      shareImage: "",
+      notificationEmoji: "",
     },
   };
 
@@ -142,7 +144,8 @@ describe("UserFavorites", () => {
       position: 0,
       banner: "",
       appImage: "",
-      shareImage: ""
+      shareImage: "",
+      notificationEmoji: "",
     },
   };
   it("should render correctly when 3 favorites", () => {

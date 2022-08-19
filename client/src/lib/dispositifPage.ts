@@ -239,6 +239,7 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
       banner: "",
       appImage: "",
       shareImage: "",
+      notificationEmoji: "",
   };
 }
 

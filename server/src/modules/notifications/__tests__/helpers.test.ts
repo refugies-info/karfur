@@ -99,10 +99,9 @@ describe("notification helpers", () => {
     const disp1 = {
       _id: "id",
       typeContenu: "dispositif",
-      tags: [
-        { name: "trouver un travail" },
-        { name: "découvrir la culture" },
-      ],
+      theme: {
+        notificationEmoji: "💼"
+      }
     }
     const res1 = getNotificationEmoji(disp1)
     expect(res1).toEqual("💼");
@@ -110,19 +109,10 @@ describe("notification helpers", () => {
     const disp2 = {
       _id: "id",
       typeContenu: "dispositif",
-      tags: [
-        { name: "trouver un job" },
-      ],
+      theme: {}
     }
     const res2 = getNotificationEmoji(disp2)
     expect(res2).toEqual("🔔");
-
-    const disp3 = {
-      _id: "id",
-      typeContenu: "dispositif",
-    }
-    const res3 = getNotificationEmoji(disp3)
-    expect(res3).toEqual("🔔");
   });
 
 
