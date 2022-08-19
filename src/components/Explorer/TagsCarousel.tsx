@@ -58,7 +58,7 @@ export const TagsCarousel = (props: any) => {
           width: styles.margin,
           height: styles.margin,
           borderRadius: styles.margin / 2,
-          backgroundColor: themes[activeIndex].colors.color40,
+          backgroundColor: themes[activeIndex].colors.color80,
           marginHorizontal: -2,
         }}
         inactiveDotStyle={{

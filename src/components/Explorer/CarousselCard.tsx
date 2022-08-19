@@ -85,7 +85,7 @@ export const CarousselCard = (props: Props) => {
       }}
     >
       <CardGradient
-        colors={[props.theme.colors.color60, props.theme.colors.color40]}
+        colors={[props.theme.colors.color60, props.theme.colors.color80]}
         style={{
           alignItems: getIconHorizontalAlignment(props.theme.icon),
           justifyContent: getIconVerticalAlignment(props.theme.icon)
