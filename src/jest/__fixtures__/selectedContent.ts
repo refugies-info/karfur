@@ -174,7 +174,7 @@ export const selectedContent: Content = {
     "short": { "fr": "" },
     "name": { "fr": "" },
     "colors": {
-      "color100": "",
+      "color100": "#3D2884",
       "color80": "",
       "color60": "",
       "color40": "",

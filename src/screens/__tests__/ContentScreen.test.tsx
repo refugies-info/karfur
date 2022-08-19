@@ -5,6 +5,8 @@ import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { initialUserState } from "../../services/redux/User/user.reducer";
+import { mockedThemesData } from "../../jest/__fixtures__/themes";
+const theme = mockedThemesData[0];
 
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -78,13 +80,7 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        colors: {
-          tagName: "",
-          iconName: "",
-          tagDarkColor: "#3D2884",
-          tagLightColor: "#705FA4",
-          tagVeryLightColor: "#EFE8F4",
-        }
+        theme: theme
       },
     };
     const component = wrapWithProvidersAndRender({
@@ -117,13 +113,7 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        colors: {
-          tagName: "",
-          iconName: "",
-          tagDarkColor: "#3D2884",
-          tagLightColor: "#705FA4",
-          tagVeryLightColor: "#EFE8F4",
-        }
+        theme: theme
       },
     };
     const component = wrapWithProvidersAndRender({

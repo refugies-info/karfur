@@ -15,6 +15,8 @@ import {
 } from "../../User/user.selectors";
 import { groupResultsByNeed } from "../functions";
 import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
+import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
+const theme = mockedThemesData[0];
 
 describe("[Saga] contents", () => {
   describe("pilot", () => {
@@ -75,7 +77,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "idFr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -84,7 +87,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1Fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -100,7 +104,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "idFr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -109,7 +114,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1Fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -123,7 +129,8 @@ describe("[Saga] contents", () => {
           {
             _id: "idFr",
             titreInformatif: "titre",
-            tags: [],
+            theme: theme,
+            secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
@@ -132,7 +139,8 @@ describe("[Saga] contents", () => {
           {
             _id: "id1Fr",
             titreInformatif: "titre",
-            tags: [],
+            theme: theme,
+            secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
@@ -178,7 +186,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id_ar",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -187,7 +196,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1_ar",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -198,7 +208,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id_fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -207,7 +218,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1_fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -223,7 +235,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id_ar",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -232,7 +245,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1_ar",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -249,7 +263,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id_fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -258,7 +273,8 @@ describe("[Saga] contents", () => {
               {
                 _id: "id1_fr",
                 titreInformatif: "titre",
-                tags: [],
+                theme: theme,
+                secondaryThemes: [],
                 typeContenu: "dispositif",
                 nbVues: 1,
                 sponsorUrl: null,
@@ -272,7 +288,8 @@ describe("[Saga] contents", () => {
           {
             _id: "id_fr",
             titreInformatif: "titre",
-            tags: [],
+            theme: theme,
+            secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
@@ -281,7 +298,8 @@ describe("[Saga] contents", () => {
           {
             _id: "id1_fr",
             titreInformatif: "titre",
-            tags: [],
+            theme: theme,
+            secondaryThemes: [],
             typeContenu: "dispositif",
             nbVues: 1,
             sponsorUrl: null,
