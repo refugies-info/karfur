@@ -28,57 +28,6 @@ const Title = styled(TextBigBold)`
   margin-bottom: ${styles.margin * 2}px;
 `;
 
-const THEMES = [
-  {
-    key: "gérer mes papiers",
-    icon: "bell",
-  },
-  {
-    key: "apprendre le français",
-    icon: "bell",
-  },
-  {
-    key: "trouver un travail",
-    icon: "bell",
-  },
-  {
-    key: "faire des études",
-    icon: "bell",
-  },
-  {
-    key: "occuper mon temps libre",
-    icon: "bell",
-  },
-  {
-    key: "me loger",
-    icon: "bell",
-  },
-  {
-    key: "apprendre un métier",
-    icon: "bell",
-  },
-  {
-    key: "découvrir la culture",
-    icon: "bell",
-  },
-  {
-    key: "me déplacer",
-    icon: "bell",
-  },
-  {
-    key: "me soigner",
-    icon: "bell",
-  },
-  {
-    key: "aider une association",
-    icon: "bell",
-  },
-  {
-    key: "rencontrer des gens",
-    icon: "bell",
-  },
-];
-
 const stylesheet = StyleSheet.create({
   toggleContainer: {
     display: "flex",
@@ -191,13 +140,13 @@ export const NotificationsSettingsScreen = () => {
                         ) as string
                       }
                       icon={theme.icon}
-                      enabled={settings?.themes[theme.name.fr]}
+                      enabled={settings?.themes[theme._id]}
                       onToggle={(state) =>
-                        updateSettings(`themes.${theme.name.fr}`, state)
+                        updateSettings(`themes.${theme._id}`, state)
                       }
                       disabled={themesDisabled}
                     />
-                    {index < THEMES.length - 1 && (
+                    {index < themes.length - 1 && (
                       <View
                         style={stylesheet.separator}
                         key={`separator-${theme.name.fr}`}

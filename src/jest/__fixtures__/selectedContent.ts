@@ -184,7 +184,8 @@ export const selectedContent: Content = {
     "icon":"",
     "banner":"",
     "appImage": "",
-    "shareImage": ""
+    "shareImage": "",
+    "notificationEmoji": ""
  },
   "secondaryThemes": [],
   "avancement": {

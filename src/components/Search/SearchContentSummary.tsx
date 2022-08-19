@@ -19,15 +19,13 @@ export const SearchContentSummary = (props: Props) => {
   const themes = useSelector(themesSelector);
 
   if (props.item.typeContenu === "besoin") {
-    const theme = themes.find(t => t._id === props.item.theme);
-    if (!theme) return null;
     return ( // BESOIN
       <NeedsSummary
         id={props.item.objectID}
         needTextFr={props.item.title_fr}
         searchLanguageMatch={props.languageMatch}
         navigation={props.navigation}
-        theme={theme}
+        theme={props.item.theme}
         searchItem={props.item}
         nbContents={props.nbContents || 0}
         backScreen="Search"
@@ -36,12 +34,10 @@ export const SearchContentSummary = (props: Props) => {
   } else if (
     props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche"
   ) { // DISPOSITIF & DEMARCHE
-    const theme = themes.find(t => t._id === props.item.theme);
-    if (!theme) return null;
     return (
       <ContentSummary
         navigation={props.navigation}
-        theme={theme}
+        theme={props.item.theme}
         contentId={props.item.objectID}
         searchLanguageMatch={props.languageMatch}
         typeContenu={props.item.typeContenu}
@@ -54,25 +50,23 @@ export const SearchContentSummary = (props: Props) => {
     );
   }
 
-  const theme = themes.find(t => t._id === props.item._id);
-  if (!theme) return null;
   return ( // THEME
     <TagButton
       key={props.item.objectID}
       searchLanguageMatch={props.languageMatch}
-      backgroundColor={theme.colors.color100}
-      iconName={theme.icon}
+      backgroundColor={props.item.colors.color100}
+      iconName={props.item.icon}
       searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-          theme: theme.name.fr,
+          theme: props.item.name.fr,
           view: "list",
         });
 
         props.navigation.navigate("Explorer", {
           screen: "NeedsScreen",
           params: {
-            theme,
+            theme: props.item,
             backScreen: "Search"
           }
         });

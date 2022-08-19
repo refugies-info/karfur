@@ -1,6 +1,7 @@
 import { SearchResultsScreen } from "../SearchResultsScreen";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
+import { mockedThemesData } from "../../../jest/__fixtures__/themes";
 
 jest.useFakeTimers();
 
@@ -32,6 +33,7 @@ describe("Search results screen", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
+        themes: mockedThemesData
       },
     });
     expect(component).toMatchSnapshot();

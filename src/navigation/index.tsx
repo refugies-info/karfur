@@ -30,8 +30,8 @@ import { fetchNeedsActionCreator } from "../services/redux/Needs/needs.actions";
 
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
-import { logEventInFirebase } from "../utils/logEvent";
-import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
+import { themesSelector } from "../services/redux/Themes/themes.selectors";
+import { fetchThemesActionCreator } from "../services/redux/Themes/themes.actions";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -45,8 +45,10 @@ export const RootNavigator = () => {
   const queryClient = useQueryClient();
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
+  const themes = useSelector(themesSelector);
   const dispatch = useDispatch();
   useEffect(() => {
+    // i18n
     const setLanguage = async () => {
       try {
         i18n.use(initReactI18next);
@@ -71,6 +73,10 @@ export const RootNavigator = () => {
       }
     };
 
+    // themes
+    dispatch(fetchThemesActionCreator());
+
+    // favorites
     const checkIfUserHasNewFavorites = async () => {
       try {
         const value = await AsyncStorage.getItem("HAS_USER_NEW_FAVORITES");
@@ -146,7 +152,7 @@ export const RootNavigator = () => {
     }),
   });
 
-  if (!isI18nInitialized || hasUserSeenOnboarding === null) {
+  if (!isI18nInitialized || themes.length === 0 || hasUserSeenOnboarding === null) {
     return null;
   }
 
@@ -159,19 +165,19 @@ export const RootNavigator = () => {
   };
 
   return (
-      <NavigationContainer theme={MyTheme}>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {!hasUserSeenOnboarding ? (
-            <Stack.Screen
-              name="OnboardingNavigator"
-              component={OnboardingStackNavigator}
-            />
-          ) : (
-            <>
+    <NavigationContainer theme={MyTheme} ref={navigationRef}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {!hasUserSeenOnboarding ? (
+          <Stack.Screen
+            name="OnboardingNavigator"
+            component={OnboardingStackNavigator}
+          />
+        ) : (
+          <>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
-            </>
-          )}
-        </Stack.Navigator>
-      </NavigationContainer>
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };

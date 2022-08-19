@@ -29,7 +29,7 @@ const computeNeedsToDisplay = (
 ) => {
   const filteredNeeds = allNeeds.filter((need) => {
     if (
-      need.theme === themeId &&
+      need.theme._id === themeId &&
       groupedContents[need._id] &&
       groupedContents[need._id].length > 0
     )
