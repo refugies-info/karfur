@@ -107,7 +107,9 @@ export const NotificationsSettingsScreen = () => {
   useEffect(() => {
     const newHasSetLocation = !!(location && location.department && location.city);
     if (hasSetLocation !== newHasSetLocation) {
-      setHasSetLocation(newHasSetLocation)
+      setHasSetLocation(newHasSetLocation);
+      if (!settings?.local && newHasSetLocation) updateSettings("local", true);
+      if (settings?.local && !newHasSetLocation) updateSettings("local", false);
     }
   }, [location])
 
