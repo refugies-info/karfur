@@ -87,7 +87,6 @@ export const FicheOnMobile = (props: Props) => {
 
           <PictoCircle color={props.dispositif.theme.colors.color100}>
             <Streamline
-              /* TODO: ensure populate */
               name={props.dispositif.theme.icon}
               stroke={"white"}
               width={22}

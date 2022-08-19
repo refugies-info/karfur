@@ -221,7 +221,7 @@ describe("updateDispositifStatus", () => {
       titreInformatif: "TI",
       titreMarque: "TM",
       _id: "id",
-      tags: [],
+      theme: {_id: "theme"},
     };
     updateDispositifInDB.mockResolvedValueOnce(dispo);
 

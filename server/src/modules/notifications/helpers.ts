@@ -1,5 +1,5 @@
-import { IDispositif } from "../../types/interface";
 import { AppUserType } from "../../schema/schemaAppUser";
+import { DispositifPopulatedThemesDoc } from "../../schema/schemaDispositif";
 
 const ACTION_ZONE = "Zone d'action";
 const TARGET_AUDIENCE = "C'est pour qui ?";
@@ -12,7 +12,7 @@ interface Requirements {
   age: { min: number; max: number };
   departments: string[] | null;
   type: "dispositif" | "demarche";
-  mainTheme: string | null;
+  mainThemeId: string | null;
 }
 
 export const getTitle = (title: string | Record<string, string>, lang: string = "fr") => {
@@ -81,9 +81,8 @@ const parseTargetAge = (targetAge: string) => {
 };
 
 //Extracts age, french level, departments from a dispositif
-/* TODO: handle tags here */
-export const parseDispositif = (dispositif: IDispositif): Requirements => {
-  const target = dispositif?.contenu?.find((item: any) => getTitle(item.title) === TARGET_AUDIENCE);
+export const parseDispositif = (dispositif: DispositifPopulatedThemesDoc): Requirements => {
+  const target = (dispositif?.contenu as any)?.find((item: any) => getTitle(item.title) === TARGET_AUDIENCE);
 
   if (!target) {
     return null;
@@ -93,13 +92,13 @@ export const parseDispositif = (dispositif: IDispositif): Requirements => {
     departments: getDepartments(target),
     age: getAge(target),
     type: dispositif.typeContenu,
-    mainTheme: dispositif?.tags?.length ? dispositif.tags[0].name : null
+    mainThemeId: dispositif?.theme?._id.toString() || null
   };
 };
 
 export const filterTargets = (targets: AppUserType[], requirements: Requirements) => {
   return targets.filter((target) => {
-    const { age, departments, type, mainTheme } = requirements;
+    const { age, departments, type, mainThemeId } = requirements;
     const { notificationsSettings } = target;
     const parsedAge = parseTargetAge(target.age);
 
@@ -107,7 +106,7 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const departmentsOk = departments.includes(target.department) || departments.includes(ALL);
 
     const typeOk = type === "dispositif" ? true : notificationsSettings?.demarches;
-    const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
+    const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
     return ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
   });
@@ -115,20 +114,20 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
 
 export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements) => {
   return targets.filter((target) => {
-    const { age, mainTheme } = requirements;
+    const { age, mainThemeId } = requirements;
     const { notificationsSettings } = target;
     const parsedAge = parseTargetAge(target.age);
 
     const ageOk = !target.age || parsedAge.min >= 18 || (parsedAge.max < 18 && age.min === 0);
 
     const typeOk = notificationsSettings?.demarches;
-    const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
+    const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
     return ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
 
-export const getNotificationEmoji = (dispositif: IDispositif) => {
+export const getNotificationEmoji = (dispositif: DispositifPopulatedThemesDoc) => {
   return dispositif.theme.notificationEmoji || "🔔";
 };

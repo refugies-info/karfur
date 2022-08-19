@@ -11,7 +11,7 @@ export const targets = [
       local: true,
       demarches: true,
       themes: {
-        "trouver un travail": true
+        "theme1": true
       }
     }
   },
@@ -24,7 +24,7 @@ export const targets = [
       local: true,
       demarches: true,
       themes: {
-        "trouver un travail": true
+        "theme1": true
       }
     }
   },
@@ -38,7 +38,7 @@ export const targets = [
       local: false,
       demarches: true,
       themes: {
-        "trouver un travail": true
+        "theme1": true
       }
     }
   },
@@ -51,7 +51,7 @@ export const targets = [
       local: true,
       demarches: false,
       themes: {
-        "trouver un travail": true
+        "theme1": true
       }
     }
   },
@@ -64,7 +64,7 @@ export const targets = [
       local: true,
       demarches: true,
       themes: {
-        "trouver un travail": false
+        "theme1": false
       }
     }
   },
@@ -80,7 +80,7 @@ export const targets = [
       local: false,
       demarches: true,
       themes: {
-        "trouver un travail": true
+        "theme1": true
       }
     }
   },

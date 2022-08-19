@@ -79,12 +79,12 @@ export const getContentsForApp = async (
           ? content.mainSponsor.picture.secure_url
           : null;
 
-      // TODO: themes here
       return {
         _id: content._id,
         titreInformatif,
         titreMarque,
-        tags: content.tags,
+        theme: content.theme,
+        secondaryThemes: content.secondaryThemes,
         needs: content.needs,
         nbVues: content.nbVues,
         typeContenu: content.typeContenu,
@@ -121,7 +121,8 @@ export const getContentsForApp = async (
         _id: content._id,
         titreInformatif,
         titreMarque,
-        tags: content.tags,
+        theme: content.theme,
+        secondaryThemes: content.secondaryThemes,
         needs: content.needs,
         nbVues: content.nbVues,
         typeContenu: content.typeContenu,
