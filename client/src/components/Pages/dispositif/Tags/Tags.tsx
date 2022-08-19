@@ -7,6 +7,8 @@ import styles from "./Tags.module.scss";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
+import { useRouter } from "next/router";
+import { getThemeName } from "lib/getThemeName";
 
 interface Props {
   theme: Theme | undefined;
@@ -22,6 +24,7 @@ interface Props {
 
 const Tags = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const allThemes: Theme[] = [];
   if (props.theme) allThemes.push(props.theme);
   if (props.secondaryThemes.length) allThemes.push(...props.secondaryThemes);
@@ -52,8 +55,7 @@ const Tags = (props: Props) => {
                       height={20}
                     />
                   </div>
-                  {/* TODO: translate */}
-                  {t("Tags." + theme.short.fr)}
+                  {getThemeName(theme, router.locale, "short")}
                 </div>
               </FSearchBtn>
             </div>

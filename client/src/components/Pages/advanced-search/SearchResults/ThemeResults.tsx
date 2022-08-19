@@ -2,7 +2,9 @@ import Streamline from "assets/streamline";
 import useRTL from "hooks/useRTL";
 import { cls } from "lib/classname";
 import { DispositifsFilteredState } from "lib/filterContents";
+import { getThemeName } from "lib/getThemeName";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { IDispositif, IUserFavorite, Language, Theme } from "types/interface";
 import NoResultPlaceholder from "../NoResultPlaceholder";
@@ -25,6 +27,7 @@ interface Props {
 
 export const ThemeResults = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const isRTL = useRTL();
 
   const [showGeolocFullFrancePrincipal, setShowGeolocFullFrancePrincipal] =
@@ -83,7 +86,7 @@ export const ThemeResults = (props: Props) => {
             />
             <p className={styles.text}>
               {selectedTheme
-                ? t("Tags." + selectedTheme.short.fr, selectedTheme.short.fr)
+                ? getThemeName(selectedTheme, router.locale, "short")
                 : null}
             </p>
           </span>
@@ -204,7 +207,7 @@ export const ThemeResults = (props: Props) => {
             />
             <p className={styles.text}>
               {selectedTheme
-                ? t("Tags." + selectedTheme.short.fr, selectedTheme.short.fr)
+                ? getThemeName(selectedTheme, router.locale, "short")
                 : null}
             </p>
           </span>

@@ -16,6 +16,8 @@ import { activatedLanguages } from "data/activatedLanguages";
 import LanguageText from "components/UI/Language";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { useRouter } from "next/router";
+import { getThemeName } from "lib/getThemeName";
 
 interface ThemeButtonProps {
   theme: Theme;
@@ -23,6 +25,7 @@ interface ThemeButtonProps {
 }
 const ThemeButton = (props: ThemeButtonProps) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <button
@@ -30,7 +33,7 @@ const ThemeButton = (props: ThemeButtonProps) => {
       className={`${styles.filter_btn} ${styles.theme}`}
       style={{ backgroundColor: props.theme.colors.color100 }}
     >
-      {t("Tags." + props.theme.name.fr, props.theme.name.fr)}
+      {getThemeName(props.theme, router.locale)}
       <Streamline
         name={props.theme.icon}
         stroke={"white"}
@@ -47,6 +50,7 @@ interface FilterButtonProps {
 }
 const FilterButton = (props: FilterButtonProps) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <button

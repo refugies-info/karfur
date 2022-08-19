@@ -6,6 +6,8 @@ import CustomCard from "components/UI/CustomCard/CustomCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {colors} from "colors";
 import { Theme } from "types/interface";
+import { useRouter } from "next/router";
+import { getThemeName } from "lib/getThemeName";
 
 const CardText = styled.p`
   font-size: 32px;
@@ -40,6 +42,7 @@ interface Props {
 
 const SeeMoreCard = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <div className="card-col puff-in-center dispositif">
@@ -49,8 +52,7 @@ const SeeMoreCard = (props: Props) => {
           <SeeMoreButton color={props.theme.colors.color100}>
           <EVAIcon name="expand-outline" fill={colors.gray10} />
             <SeeMoreText mr={props.isRTL ? 8 : 0}>
-              {/* TODO: translate */}
-              {t("Tags." + props.theme.short.fr, props.theme.short.fr)}
+              {getThemeName(props.theme, router.locale, "short")}
             </SeeMoreText>
           </SeeMoreButton>
         </CardBody>

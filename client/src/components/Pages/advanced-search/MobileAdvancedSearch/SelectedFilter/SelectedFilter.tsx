@@ -8,6 +8,8 @@ import { AvailableFilters } from "data/searchFilters";
 import { cls } from "lib/classname";
 import styles from "../MobileAdvancedSearch.module.scss";
 import Language from "components/UI/Language";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
 
 interface Props {
   themeSelected?: Theme | null;
@@ -22,6 +24,7 @@ interface Props {
 
 export const SelectedFilter = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter()
 
   if (props.type === "theme") {
     return (
@@ -47,8 +50,7 @@ export const SelectedFilter = (props: Props) => {
               />
             ) : null}
             <div className={styles.theme_name}>
-              {/* TODO: translate */}
-              {t("Tags." + props.themeSelected.name.fr, props.themeSelected.name.fr)}
+              {getThemeName(props.themeSelected, router.locale)}
             </div>
             <span
               onClick={(e: any) => {

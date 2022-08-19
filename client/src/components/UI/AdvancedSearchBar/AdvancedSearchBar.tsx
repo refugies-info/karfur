@@ -19,6 +19,7 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { getThemeName } from "lib/getThemeName";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -331,13 +332,10 @@ const AdvancedSearchBar = (props: Props) => {
                           <ThemeActionText
                             color={selectedTheme ? selectedTheme.colors.color100 : ""}
                           >
-                            { // TODO : translate
-                              selectedTheme ? t(
-                                "Tags." + selectedTheme.name.fr, selectedTheme.name.fr
-                              )[0].toUpperCase() +
-                              t("Tags." + selectedTheme.name.fr, selectedTheme.name.fr).slice(1)
-                              : ""
-                            }
+                             {selectedTheme ?
+                                getThemeName(selectedTheme, router.locale)[0].toUpperCase() +
+                                getThemeName(selectedTheme, router.locale).slice(1) : ""
+                              }
                           </ThemeActionText>
                           <ThemeButton
                             ml={isRTL ? false : true}
@@ -352,10 +350,7 @@ const AdvancedSearchBar = (props: Props) => {
                             />
                             <ThemeText rtl={isRTL}>
                               {selectedTheme
-                                ? t(
-                                    "Tags." + selectedTheme.short.fr,
-                                    selectedTheme.short.fr
-                                  )
+                                ? getThemeName(selectedTheme, router.locale, "short")
                                 : null}
                             </ThemeText>
                           </ThemeButton>

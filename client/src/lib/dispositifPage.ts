@@ -221,7 +221,7 @@ export const handleContentClickInComponent = (
 };
 
 export const getMainTheme = (dispositif: IDispositif | null): Theme => {
-  return dispositif ?
+  return dispositif?.theme ?
     dispositif.theme :
     {
       _id: {} as ObjectId,

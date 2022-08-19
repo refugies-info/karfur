@@ -1,7 +1,9 @@
 import Streamline from "assets/streamline";
 import useRTL from "hooks/useRTL";
 import { DispositifsFilteredState } from "lib/filterContents";
+import { getThemeName } from "lib/getThemeName";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { SearchQuery } from "pages/recherche";
 import { IDispositif, IUserFavorite } from "types/interface";
 import SearchResultCard from "../SearchResultCard";
@@ -18,6 +20,7 @@ interface Props {
 export const OrderThemeResults = (props: Props) => {
   const { t } = useTranslation();
   const isRTL = useRTL();
+  const router = useRouter();
 
   const {
     themesObject
@@ -47,26 +50,17 @@ export const OrderThemeResults = (props: Props) => {
                 height={22}
               />
               <p className={styles.text}>
-                {/* TODO: translate */}
-                {t(
-                  "Tags." + object.theme.short.fr,
-                  object.theme.short.fr
-                )}
+                {getThemeName(object.theme, router.locale, "short")}
               </p>
             </div>
             <p
               className={styles.title}
               style={{color: object.theme.colors.color100}}
             >
-              {/* TODO: translate */}
-              {t(
-                "Tags." + object.theme.name.fr,
-                object.theme.name.fr
-              )[0].toUpperCase() +
-                t(
-                  "Tags." + object.theme.name.fr,
-                  object.theme.name.fr
-                ).slice(1)}
+              {
+                getThemeName(object.theme, router.locale)[0].toUpperCase() +
+                getThemeName(object.theme, router.locale).slice(1)
+              }
             </p>
           </div>
           <div className={styles.theme_grid}>

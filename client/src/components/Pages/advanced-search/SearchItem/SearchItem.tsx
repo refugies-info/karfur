@@ -18,6 +18,8 @@ import { Theme } from "types/interface";
 import { cls } from "lib/classname";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
 
 interface Props {
   geoSearch: boolean;
@@ -33,6 +35,7 @@ const SearchItem = (props: Props) => {
   const [villeAuto, setVilleAuto] = useState("");
 
   const { t } = useTranslation();
+  const router = useRouter();
   const isRTL = useRTL();
 
   const autocompleteRef = createRef<any>();
@@ -265,7 +268,7 @@ const SearchItem = (props: Props) => {
                           />
                         </div>
                       ) : null}
-                      {t("Tags." + (theme.name.fr || theme.name), theme.name.fr || theme.name)}
+                      {getThemeName(theme, router.locale)}
                     </FSearchBtn>
                   );
                 }

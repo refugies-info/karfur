@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { Theme } from "types/interface";
 import Streamline from "assets/streamline";
+import { useRouter } from "next/router";
+import { getThemeName } from "lib/getThemeName";
 
 const ThemeButtonContainer = styled.div`
   background-color: ${(props: {color: string}) => props.color};
@@ -32,6 +34,7 @@ interface Props {
 
 export const ThemeButton = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <ThemeButtonContainer color={props.theme ? props.theme.colors.color100 : ""}>
@@ -42,8 +45,7 @@ export const ThemeButton = (props: Props) => {
         height={14}
       />
       <ThemeText mr={props.isRTL ? 8 : 0}>
-        {/* TODO: translate */}
-        {props.theme ? t("themes." + props.theme.short.fr, props.theme.short.fr) : null}
+        {getThemeName(props.theme, router.locale, "short")}
       </ThemeText>
     </ThemeButtonContainer>
   );

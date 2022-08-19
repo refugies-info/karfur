@@ -9,6 +9,8 @@ import { Theme } from "types/interface";
 import styles from "./HomeSearch.module.scss";
 import { SearchItemType } from "data/searchFilters";
 import { cls } from "lib/classname";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
 
 interface Props {
   searchItem: SearchItemType;
@@ -22,6 +24,7 @@ const HomeSearch = (props: Props) => {
   const [indexBack, setIndexBack] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const router = useRouter();
   const { t } = useTranslation();
   const flippy: any = useRef();
 
@@ -108,8 +111,7 @@ const HomeSearch = (props: Props) => {
                   />
                 </div>
               ) : null}
-              {/* TODO: translate */}
-              {t("Tags." + themes[indexFront].name.fr, themes[indexFront].name.fr)}
+              {getThemeName(themes[indexFront], router.locale)}
             </button>
           </FrontSide>
           {isLoaded &&
@@ -133,7 +135,7 @@ const HomeSearch = (props: Props) => {
                     />
                   </div>
                 ) : null}
-                {t("Tags." + themes[indexBack].name.fr, themes[indexBack].name.fr)}
+                {getThemeName(themes[indexBack], router.locale)}
               </button>
             </BackSide>
           }
