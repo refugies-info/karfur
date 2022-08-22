@@ -2,8 +2,8 @@ import { Theme } from "../types/interface";
 
 export const firstLetterUpperCase = (string: string) =>
   string &&
-  string.length > 1 &&
-  string.charAt(0).toUpperCase() + string.slice(1, string.length);
+  string.length > 1 ?
+  string.charAt(0).toUpperCase() + string.slice(1, string.length) : "";
 
 export const sortByOrder = (a: Theme, b: Theme) => {
   const orderA = a.position;

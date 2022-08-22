@@ -3,7 +3,7 @@ import * as Updates from "expo-updates";
 // use .env for development
 let Config = {
   envName: process.env.ENV_NAME || "",
-  dbUrl: process.env.API_URL || "",
+  dbUrl: "http://2290-45-91-22-229.ngrok.io",// process.env.API_URL || "",
   siteUrl: process.env.SITE_URL || "",
   siteSecret: process.env.SITE_SECRET,
   debugModeFirebase: true,

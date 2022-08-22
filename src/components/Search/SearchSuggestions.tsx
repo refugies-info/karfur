@@ -13,6 +13,7 @@ import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
 import { ReadableText } from "../ReadableText";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import { useSelector } from "react-redux";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 
 const ListSubtitle = styled(StyledTextNormalBold)`
   margin-top: ${styles.margin * 7}px;
@@ -31,6 +32,7 @@ const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const scrollview = React.useRef<ScrollView>(null);
   const themes = useSelector(themesSelector);
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const insets = useSafeAreaInsets();
 
@@ -95,7 +97,7 @@ const SearchSuggestions = (props: Props) => {
           {themes.sort(sortByOrder).map((theme, index) => (
             <TagButton
               key={index}
-              name={theme.name.fr}
+              name={theme.name[currentLanguageI18nCode || "fr"]}
               backgroundColor={theme.colors.color100}
               iconName={theme.icon}
               inline={true}

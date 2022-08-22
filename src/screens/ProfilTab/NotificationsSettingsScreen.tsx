@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import { styles } from "../../theme";
 
-import { userLocationSelector } from "../../services/redux/User/user.selectors";
+import { currentI18nCodeSelector, userLocationSelector } from "../../services/redux/User/user.selectors";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useNotificationsSettings } from "../../hooks/useNotificationSettings";
@@ -52,6 +52,7 @@ export const NotificationsSettingsScreen = () => {
   const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
   const themes = useSelector(themesSelector);
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
   useEffect(() => {
@@ -134,11 +135,7 @@ export const NotificationsSettingsScreen = () => {
                 {themes.map((theme, index) => (
                   <View key={index}>
                     <ToggleButton
-                      title={
-                        firstLetterUpperCase(
-                          t(`tags.${theme.name.fr}`, theme.name.fr)
-                        ) as string
-                      }
+                      title={firstLetterUpperCase(theme.name[currentLanguageI18nCode||"fr"])}
                       icon={theme.icon}
                       enabled={settings?.themes[theme._id]}
                       onToggle={(state) =>

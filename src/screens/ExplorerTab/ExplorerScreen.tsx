@@ -26,6 +26,7 @@ import {
   isLocalizedWarningHiddenSelector,
   isInitialUrlUsedSelector,
   redirectDispositifSelector,
+  currentI18nCodeSelector,
 } from "../../services/redux/User/user.selectors";
 import { ExplorerParamList } from "../../../types";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -72,6 +73,7 @@ export const ExplorerScreen = ({
   const [tabSelected, setTabSelected] = React.useState("galery");
   const selectedLocation = useSelector(userLocationSelector);
   const themes = useSelector(themesSelector);
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   // Handle share link
   const handleOpenUrl = (event: Linking.EventType | string | null) => {
@@ -216,7 +218,7 @@ export const ExplorerScreen = ({
           {themes.sort(sortByOrder).map((currentTheme, index) => (
             <TagButton
               key={index}
-              name={currentTheme.name.fr}
+              name={currentTheme.name[currentLanguageI18nCode || "fr"]}
               backgroundColor={currentTheme.colors.color100}
               iconName={currentTheme.icon}
               onPress={() => {

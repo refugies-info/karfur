@@ -46,33 +46,6 @@
     "development_in_progress": "Réfugiés.info знаходиться в розробці\r\n ",
     "adding_new_content": "Нові файли додаються щотижня. Допоможи нам з написанням та перекладом важливої інформації!"
   },
-  "tags": {
-    "Français": "Французька мова",
-    "Logement": "Житло",
-    "Insertion pro": "Професійна інтеграція",
-    "Formation pro": "Професійна освіта",
-    "Études": "Навчання",
-    "Mobilité": "Транспорт",
-    "Bénévolat": "Волонтерство",
-    "Rencontre": "Зустрічі",
-    "Loisir": "Відпочинок",
-    "Culture": "Культура",
-    "Santé": "Охорона здоров'я",
-    "Administratif": "Адміністративні питання",
-    "Autre": "Інше",
-    "apprendre le français": "Курси французької мови",
-    "me loger": "Житло",
-    "trouver un travail": "Працевлаштування",
-    "apprendre un métier": "Професійна підготовка",
-    "faire des études": "Навчання",
-    "me déplacer": "Транспорт",
-    "aider une association": "Волонтерство",
-    "rencontrer des gens": "Зустрічі",
-    "occuper mon temps libre": "Дозвілля",
-    "découvrir la culture": "Знайомство з культурою",
-    "me soigner": "Медичні послуги",
-    "gérer mes papiers": "Адміністративні питання"
-  },
   "filters": {
     "age_10_17": "10-17 років",
     "age_18_25": "18-25 років",
@@ -157,7 +130,9 @@
     "fiche": "запис",
     "no_result": "На жаль, у нас ще немає жодного запису тут."
   },
-  "contents_screen": { "non_translated_content": "Записи без перекладу" },
+  "contents_screen": {
+    "non_translated_content": "Записи без перекладу"
+  },
   "favorites_screen": {
     "my_content": "Мої записи",
     "empty": "0 записів",

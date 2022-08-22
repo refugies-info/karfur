@@ -12,6 +12,8 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { Theme } from "../../types/interface";
+import { useSelector } from "react-redux";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 
 interface Props {
   theme: Theme;
@@ -55,7 +57,8 @@ const CardGradient = styled(LinearGradient)`
 `;
 
 export const CarousselCard = (props: Props) => {
-  const { t, isRTL } = useTranslationWithRTL();
+  const { isRTL } = useTranslationWithRTL();
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   const getIconHorizontalAlignment = (iconName: string) => {
     if (["measure"].includes(iconName)) return "flex-start";
@@ -71,7 +74,7 @@ export const CarousselCard = (props: Props) => {
   return (
     <ButtonContainer
       accessibilityRole="button"
-      accessibilityLabel={t("tags." + props.theme.name.fr)}
+      accessibilityLabel={props.theme.name[currentLanguageI18nCode || "fr"]}
       activeOpacity={0.7}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
@@ -98,7 +101,7 @@ export const CarousselCard = (props: Props) => {
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
           <StyledText isRTL={isRTL}>
-            {firstLetterUpperCase(t("tags." + props.theme.name.fr, props.theme.name.fr))}
+            {firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}
           </StyledText>
           <StreamlineIcon name={props.theme.icon} width={20} height={20} />
         </StyledContainer>

@@ -68,7 +68,7 @@ export const TagButton = (props: Props) => {
             colorNotHighlighted={styles.colors.white}
           /> :
           <ReadableText>
-            {firstLetterUpperCase(t("tags." + props.name, props.name)) || ""}
+            {firstLetterUpperCase(props.name || "")}
           </ReadableText>
         }
       </StyledText>

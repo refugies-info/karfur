@@ -106,9 +106,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
           >
             <ThemeText isRTL={isRTL}>
               <ReadableText overridePosY={0}>
-                {firstLetterUpperCase(
-                  t("tags." + props.themeName, props.themeName)
-                ) || ""}
+                {firstLetterUpperCase(props.themeName)}
               </ReadableText>
             </ThemeText>
             {!props.showSimplifiedHeader && (
