@@ -68,8 +68,8 @@ describe("notification helpers", () => {
       type: "dispositif",
       mainThemeId: "theme1"
     }
-    const res1 = filterTargets(targets, req1);
-    expect(res1.map(r => r.uid)).toEqual(["1", "2", "4", "6"]);
+    const res1 = filterTargets(targets, req1, "fr");
+    expect(res1.map(r => r.uid)).toEqual(["1", "4", "6"]);
 
     const req2 = {
       age: { min: 18, max: 25 },
@@ -77,7 +77,7 @@ describe("notification helpers", () => {
       type: "dispositif",
       mainThemeId: "theme1"
     }
-    const res2 = filterTargets(targets, req2);
+    const res2 = filterTargets(targets, req2, "fr");
     expect(res2.map(r => r.uid)).toEqual(["1", "6"]);
   });
 

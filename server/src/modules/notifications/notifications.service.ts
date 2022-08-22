@@ -62,7 +62,7 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
 export const sendNotificationsForDispositif = async (dispositifId: string | ObjectId, lang: string = "en") => {
   const notificationActive = await isNotificationsActive();
   if (notificationActive) {
-    logger.error("[sendNotificationsForDispositif] notifications actives");
+    logger.info("[sendNotificationsForDispositif] notifications actives");
     try {
       const dispositif: DispositifPopulatedThemesDoc = (await getDispositifById(dispositifId, {
         status: 1,
@@ -92,7 +92,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
         return;
       }
 
-      const targetUsers = filterTargets(await getAllAppUsers(), requirements);
+      const targetUsers = filterTargets(await getAllAppUsers(), requirements, lang);
 
       logger.info(`[sendNotificationsForDispositif] dispositif ${dispositifId} - ${targetUsers.length} users found`);
 
@@ -109,7 +109,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
             uid: user.uid,
             seen: false,
             title: `${getNotificationEmoji(dispositif)} ${t(lang, "notifications.newOffer")} - ${getTitle(
-              dispositif.titreInformatif
+              dispositif.titreInformatif, lang
             )} ${t(lang, "notifications.with")} ${getTitle(dispositif.titreMarque)}`,
             data: {
               type: "dispositif",
@@ -189,7 +189,7 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
           return {
             uid: user.uid,
             seen: false,
-            title: `${t(lang, "notifications.newOffer")} ${getNotificationEmoji(demarche)} : ${getTitle(
+            title: `${getNotificationEmoji(demarche)} ${t(lang, "notifications.newOffer")} : ${getTitle(
               demarche.titreInformatif, lang
             )}`,
             data: {
