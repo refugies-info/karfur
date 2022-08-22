@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectedStructureIdSelector, selectedStructureSelector } from "services/SelectedStructure/selectedStructure.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import { Structure } from "types/interface";
 import styles from "scss/pages/annuaire-create.module.scss";
 import SEO from "components/Seo";
@@ -222,6 +222,6 @@ const AnnuaireCreate = () => {
   );
 };
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = defaultStaticPropsWithThemes;
 
 export default AnnuaireCreate;

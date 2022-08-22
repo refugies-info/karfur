@@ -29,7 +29,7 @@ import {
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
 import SEO from "components/Seo";
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import useRTL from "hooks/useRTL";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
@@ -340,6 +340,6 @@ const Homepage = (props: Props) => {
   );
 };
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = defaultStaticPropsWithThemes;
 
 export default Homepage;

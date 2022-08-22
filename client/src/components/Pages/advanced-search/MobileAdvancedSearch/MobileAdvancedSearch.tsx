@@ -90,7 +90,7 @@ export const MobileAdvancedSearch = (props: Props) => {
       setLanguage(null);
       setVille("");
     };
-  }, [props.query]);
+  }, [props.query, themes]);
 
   const isSearchButtonDisabled =
     !themeSelected &&
