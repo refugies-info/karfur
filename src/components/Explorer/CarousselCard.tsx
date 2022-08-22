@@ -97,7 +97,7 @@ export const CarousselCard = (props: Props) => {
         height={props.cardHeight}
       >
         <View style={{ flexShrink: 1 }}>
-          <TagImage name={props.theme.icon} />
+          <TagImage theme={props.theme} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
           <StyledText isRTL={isRTL}>
