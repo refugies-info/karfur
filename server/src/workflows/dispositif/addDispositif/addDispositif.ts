@@ -193,6 +193,13 @@ export const addDispositif = async (
       // @ts-ignore
       dispositif.secondaryThemes = dispositif.secondaryThemes.map(t => t._id);
 
+      // @ts-ignore
+      const isAdmin = req.user.roles.find((x: any) => x.nom === "Admin");
+      if (isAdmin) {
+        // @ts-ignore
+        dispositif.themesSelectedByAuthor = false;
+      }
+
       //now I need to save the dispositif and the translation
       dispResult = await updateDispositifInDB(
         dispositif.dispositifId,
@@ -274,6 +281,9 @@ export const addDispositif = async (
       dispositif.theme = dispositif.theme?._id;
       // @ts-ignore
       dispositif.secondaryThemes = (dispositif.secondaryThemes || []).map(t => t._id);
+      // @ts-ignore
+      dispositif.themesSelectedByAuthor = true;
+
       // @ts-ignore
       dispResult = await createDispositifInDB(dispositif);
 

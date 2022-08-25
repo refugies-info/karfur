@@ -42,13 +42,20 @@ export const updateDispositifTagsOrNeeds = async (
       const originalDispositif = await getDispositifById(dispositifId, {
         needs: 1,
       });
-      if (originalDispositif.needs) {
+      if (needs || originalDispositif.needs) {
         // if a need of the content has a tag that is not a tag of the content we remove the need
-        newNeeds = await computePossibleNeeds(originalDispositif.needs, allThemes);
+        newNeeds = await computePossibleNeeds(needs || originalDispositif.needs, allThemes);
       }
     }
 
     const newDispositif = theme ? { theme, secondaryThemes, needs: newNeeds } : { needs };
+
+    // @ts-ignore
+    const isAdmin = req.user.roles.find((x: any) => x.nom === "Admin");
+    if ((theme || secondaryThemes) && isAdmin) {
+      // @ts-ignore
+      newDispositif.themesSelectedByAuthor = false;
+    }
 
     await log(dispositifId, allThemes.length > 0, req.user._id)
 

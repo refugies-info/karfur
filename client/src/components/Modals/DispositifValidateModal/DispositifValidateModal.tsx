@@ -148,7 +148,7 @@ const DispositifValidateModal = (props: Props) => {
               props.abstract === "" ||
               props.abstract.length > 110 ||
               (!geoloc && props.typeContenu !== "demarche") ||
-              !!props.theme
+              !props.theme
             }
             onClick={validateAndClose}
           >

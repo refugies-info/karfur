@@ -65,7 +65,8 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       theme: 1,
       secondaryThemes: 1,
       merci: 1,
-      nbVues: 1
+      nbVues: 1,
+      themesSelectedByAuthor: 1
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);

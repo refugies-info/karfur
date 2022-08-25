@@ -149,6 +149,7 @@ export interface SimplifiedDispositif {
   secondaryThemes: Theme[];
   nbMercis: number;
   nbVues: number;
+  themesSelectedByAuthor?: boolean
 }
 
 export interface Role {

@@ -149,7 +149,11 @@ export const getActiveContentsFiltered = async (neededFields: Record<string, num
 
 export const getDispositifByIdWithAllFields = async (id: ObjectId) => await Dispositif.findOne({ _id: id });
 
-export const createDispositifInDB = async (dispositif: DispositifDoc) => await new Dispositif(dispositif).save();
+export const createDispositifInDB = async (dispositif: DispositifDoc) => {
+  const disp = new Dispositif(dispositif);
+  await disp.save();
+  return disp.populate("theme secondaryThemes");
+}
 
 export const getNbMercis = async () => {
   return Dispositif.aggregate([

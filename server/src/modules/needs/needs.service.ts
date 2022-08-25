@@ -10,13 +10,13 @@ export const computePossibleNeeds = async (
     const allNeeds = await getNeedsFromDB();
 
     const newNeeds = actualNeeds.filter((needId) => {
-      const need = allNeeds.find((n) => n._id === needId);
+      const need = allNeeds.find((n) => n._id.toString() === needId.toString());
       const correspondingNeedTheme = need?.theme || null;
       if (!correspondingNeedTheme) return false;
       let isNeedInTags = false;
       if (contentThemes) {
         contentThemes.forEach((themeId) => {
-          if (themeId === correspondingNeedTheme._id) {
+          if (themeId.toString() === correspondingNeedTheme._id.toString()) {
             isNeedInTags = true;
             return;
           }

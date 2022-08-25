@@ -1,0 +1,42 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.btn {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: $radius;
+  height: 46px;
+  padding: 0 16px;
+  cursor: pointer;
+  color: $dark;
+  text-decoration: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 0 solid dark;
+  margin: 1px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border-width: 1px !important;
+    margin: 0 !important;
+
+    .hoverVisible {
+      display: inline;
+    }
+    .hoverHidden {
+      display: none;
+    }
+  }
+
+  .hoverVisible {
+    display: none;
+  }
+}
+
