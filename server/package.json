@@ -39,7 +39,7 @@
     "lodash": "^4.17.21",
     "mockdate": "^3.0.2",
     "moment": "^2.29.1",
-    "mongoose": "^6.1.4",
+    "mongoose": "^6.4.6",
     "node-mailjet": "^3.3.5",
     "nodemailer": "^6.4.16",
     "password-hash": "^1.2.2",
