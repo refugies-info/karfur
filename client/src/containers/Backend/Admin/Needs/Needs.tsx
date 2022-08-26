@@ -1,190 +1,125 @@
 import React, { useState } from "react";
-import {
-  StyledTitle,
-  FigureContainer,
-  Content,
-  StyledHeaderInner,
-} from "../sharedComponents/StyledAdmin";
-import { Table } from "reactstrap";
-import { TabHeader } from "../sharedComponents/SubComponents";
-
+import { ObjectId } from "mongodb";
+import { Col, Row, Container } from "reactstrap";
 import { useSelector } from "react-redux";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { needsSelector } from "../../../../services/Needs/needs.selectors";
-import { Need } from "../../../../types/interface";
-import styled from "styled-components";
-import { jsUcfirst } from "../../../../lib/index";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { needsSelector } from "services/Needs/needs.selectors";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import AdminThemeButton from "components/UI/AdminThemeButton";
+import AdminNeedButton from "components/UI/AdminNeedButton";
+import AdminDispositifButton from "components/UI/AdminDispositifButton";
+import { Need } from "types/interface";
 import { NeedDetailsModal } from "./NeedDetailsModal";
-import FButton from "../../../../components/UI/FButton/FButton";
 import { AddNeedModal } from "./AddNeedModal";
 import { LoadingNeeds } from "./LoadingNeeds";
-
-export const needsHeaders = [
-  { name: "Thème", order: "theme.name.fr" },
-  { name: "Besoin", order: "besoin" },
-  { name: "", order: "" },
-];
-
-const StyledTagName = styled.div`
-  font-weight: bold;
-  color: white;
-`;
-
-const StyledTagContainer = styled.div`
-  background-color: ${(props) => props.color};
-  padding: 12px;
-  width: fit-content;
-  border-radius: 12px;
-`;
-
-const StyledHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-bottom: 8px;
-  margin-left: 24px;
-  justify-content: space-between;
-  margin-right: 24px;
-`;
-
-const sortNeeds = (
-  needs: Need[],
-  sortedHeader: { name: string; sens: string; orderColumn: string }
-) => {
-  return needs
-    .sort((a: Need, b: Need) => {
-      return a.updatedAt > b.updatedAt ? 1 : -1;
-    })
-    .sort((a: Need, b: Need) => {
-      const valueA =
-        sortedHeader.orderColumn === "besoin"
-          ? a.fr.text
-          : //@ts-ignore
-            a[sortedHeader.orderColumn];
-
-      const valueB =
-        sortedHeader.orderColumn === "besoin"
-          ? b.fr.text
-          : //@ts-ignore
-            b[sortedHeader.orderColumn];
-
-      const lowerValueA = valueA ? valueA.toLowerCase() : "";
-      const valueAWithoutAccent = lowerValueA
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-      const lowerValueB = valueB ? valueB.toLowerCase() : "";
-      const valueBWithoutAccent = lowerValueB
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-      if (valueAWithoutAccent > valueBWithoutAccent)
-        return sortedHeader.sens === "up" ? 1 : -1;
-
-      return sortedHeader.sens === "up" ? -1 : 1;
-    });
-};
+import styles from "./Needs.module.scss";
+import { cls } from "lib/classname";
 
 export const Needs = () => {
-  const defaultSortedHeader = {
-    name: "Thème",
-    sens: "up",
-    orderColumn: "theme.name.fr",
-  };
-  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
   const [showNeedDetailModal, setShowNeedDetailModal] = useState(false);
   const [showAddNeedModal, setShowAddNeedModal] = useState(false);
+  const allNeeds = useSelector(needsSelector);
+  const themes = useSelector(themesSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
+
+  const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
+  const [currentNeed, setCurrentNeed] = useState<ObjectId | null>(null);
 
   const setSelectedNeedAndToggleModal = (need: Need) => {
     setSelectedNeed(need);
     setShowNeedDetailModal(true);
   };
 
-  const isLoadingFetch = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
-  );
-  const isLoadingSave = useSelector(
-    isLoadingSelector(LoadingStatusKey.SAVE_NEED)
-  );
+  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
+  const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_NEED));
 
   const isLoading = isLoadingFetch || isLoadingSave;
 
-  const needs = useSelector(needsSelector);
-
-  const reorder = (element: { name: string; order: string }) => {
-    if (sortedHeader.name === element.name) {
-      const sens = sortedHeader.sens === "up" ? "down" : "up";
-      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
-    } else {
-      setSortedHeader({
-        name: element.name,
-        sens: "up",
-        orderColumn: element.order,
-      });
-    }
-  };
-
-  const sortedNeeds = sortNeeds(needs, sortedHeader);
   if (isLoading) {
     return <LoadingNeeds />;
   }
+
+  const needsToDisplay = allNeeds.filter((need) => currentTheme && need.theme._id === currentTheme);
+  const dispositifsToDisplay = dispositifs.filter((disp) => currentNeed && disp.needs?.includes(currentNeed));
   return (
-    <div>
-      <StyledHeader>
-        <StyledHeaderInner>
-          <StyledTitle>Besoins</StyledTitle>
-          <FigureContainer>{needs.length}</FigureContainer>
-        </StyledHeaderInner>
-        <FButton type="dark" onClick={() => setShowAddNeedModal(true)}>
-          Ajouter un besoin
-        </FButton>
-      </StyledHeader>
-      <Content>
-        <Table responsive borderless>
-          <thead>
-            <tr>
-              {needsHeaders.map((element, key) => (
-                <th
-                  key={key}
-                  onClick={() => {
-                    reorder(element);
+    <Container fluid>
+      <Row className="mt-4 mb-5">
+        <Col md="auto">
+          <h3 className={styles.subtitle}>
+            Thèmes
+            <span className={styles.badge}>{themes.length}</span>
+          </h3>
+          <div className={cls(styles.column, styles.scroll_column, styles.themes)}>
+            {themes.map((theme, i) => (
+              <div key={i} className="mb-2">
+                <AdminThemeButton
+                  theme={theme}
+                  onPress={() => {
+                    setCurrentTheme(theme._id);
+                    setCurrentNeed(null);
                   }}
-                >
-                  <TabHeader
-                    name={element.name}
-                    order={element.order}
-                    isSortedHeader={sortedHeader.name === element.name}
-                    sens={
-                      sortedHeader.name === element.name
-                        ? sortedHeader.sens
-                        : "down"
-                    }
+                  onSelectTheme={() => {}}
+                  opened={currentTheme === theme._id}
+                  selected={false}
+                  editButton={true}
+                />
+              </div>
+            ))}
+          </div>
+        </Col>
+        <Col>
+          <h3 className={styles.subtitle}>
+            Besoins
+            {needsToDisplay.length > 0 && <span className={styles.badge}>{needsToDisplay.length}</span>}
+          </h3>
+          <div className={cls(styles.column, styles.scroll_column)}>
+            {needsToDisplay.length > 0 ? (
+              needsToDisplay.map((need, i) => (
+                <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
+                  <AdminNeedButton
+                    need={need}
+                    onPress={() => {
+                      setCurrentNeed(need._id);
+                    }}
+                    selected={false}
+                    editButton={true}
+                    opened={currentNeed === need._id}
                   />
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {sortedNeeds.map((need, key) => {
-              return (
-                <tr
-                  key={key}
-                  onClick={() => setSelectedNeedAndToggleModal(need)}
-                >
-                  <td className="align-middle" style={{ width: 300 }}>
-                    <StyledTagContainer color={need.theme.colors.color100}>
-                      <StyledTagName>{jsUcfirst(need.theme.name.fr)}</StyledTagName>
-                    </StyledTagContainer>
-                  </td>
-                  <td className="align-middle">{need.fr.text}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      </Content>
+                </div>
+              ))
+            ) : (
+              <p className={styles.empty}>
+                Sélectionne un thème
+                <br /> pour voir les besoins associés
+              </p>
+            )}
+          </div>
+        </Col>
+        <Col>
+          <h3 className={styles.subtitle}>
+            Fiches associées
+            {dispositifsToDisplay.length > 0 && <span className={styles.badge}>{dispositifsToDisplay.length}</span>}
+          </h3>
+          <div className={cls(styles.column, styles.scroll_column)}>
+            {dispositifsToDisplay.length > 0 ? (
+              dispositifsToDisplay.map((disp, i) => (
+                <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
+                  <AdminDispositifButton dispositif={disp} onPress={() => {}} />
+                </div>
+              ))
+            ) : (
+              <p className={styles.empty}>
+                Sélectionne un besoin
+                <br /> pour voir les fiches associées
+              </p>
+            )}
+          </div>
+        </Col>
+      </Row>
+
       <NeedDetailsModal
         show={showNeedDetailModal}
         selectedNeed={selectedNeed}
@@ -202,6 +137,6 @@ export const Needs = () => {
           }}
         />
       )}
-    </div>
+    </Container>
   );
 };

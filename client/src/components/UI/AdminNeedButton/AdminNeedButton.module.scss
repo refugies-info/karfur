@@ -40,3 +40,18 @@
   }
 }
 
+.edit {
+  width: 30px;
+  height: 30px;
+  background: $dark;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    line-height: 16px;
+  }
+}
+
+

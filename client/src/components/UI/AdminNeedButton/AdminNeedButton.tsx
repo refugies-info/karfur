@@ -9,6 +9,8 @@ interface Props {
   onPress: () => void;
   selected: boolean;
   showCross?: boolean;
+  opened?: boolean
+  editButton?: boolean
 }
 
 const AdminThemeButton = (props: Props) => (
@@ -18,9 +20,9 @@ const AdminThemeButton = (props: Props) => (
     style={{
       background: props.need.theme.colors.color30,
       borderColor: props.need.theme.colors.color100,
-      borderWidth: props.selected ? 1 : 0,
+      borderWidth: props.selected || props.opened ? 1 : 0,
       borderStyle: "solid",
-      margin: props.selected ? 0 : 1,
+      margin: props.selected || props.opened ? 0 : 1,
       color: props.need.theme.colors.color100
     }}
   >
@@ -37,6 +39,21 @@ const AdminThemeButton = (props: Props) => (
           <EVAIcon name="checkmark-outline" fill={props.need.theme.colors.color100} size={20} />
         </span>
       )}
+      {props.editButton &&
+        <span className={styles.edit} style={{backgroundColor: props.need.theme.colors.color100}}>
+          <EVAIcon
+            name="edit-outline"
+            fill="white"
+            size={16}
+            onClick={(e: any) => {
+              e.stopPropagation();
+            }}
+          />
+        </span>
+      }
+      {props.opened &&
+        <EVAIcon name="arrow-forward" fill={props.need.theme.colors.color100} size={20} className="ml-2" />
+      }
     </span>
   </button>
 );

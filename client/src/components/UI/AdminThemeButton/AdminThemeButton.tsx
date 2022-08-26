@@ -12,7 +12,8 @@ interface Props {
   onSelectTheme: (id: ObjectId) => void;
   selected: boolean;
   opened: boolean;
-  hasWarning: boolean;
+  hasWarning?: boolean;
+  editButton?: boolean;
 }
 
 const AdminThemeButton = (props: Props) => (
@@ -50,6 +51,18 @@ const AdminThemeButton = (props: Props) => (
           </span>
         </>
       )}
+      {props.editButton &&
+        <span className={styles.edit}>
+          <EVAIcon
+            name="edit-outline"
+            fill="dark"
+            size={16}
+            onClick={(e: any) => {
+              e.stopPropagation();
+            }}
+          />
+        </span>
+      }
       {props.opened && <EVAIcon name="arrow-forward" fill="white" size={20} className="ml-2" />}
     </span>
   </button>
