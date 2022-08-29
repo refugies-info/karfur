@@ -32,3 +32,50 @@ export const computePossibleNeeds = async (
     });
   }
 };
+
+
+import { celebrate, Joi, Segments } from "celebrate";
+import { Picture } from "src/types/interface";
+
+/**
+ * Request validator
+ */
+export const getValidator = (type: "post" | "patch") => {
+  const baseValidator: any = {
+    [Segments.BODY]: Joi.object({
+      fr: Joi.object({
+        text: Joi.string(),
+        subtitle: Joi.string()
+      }),
+      theme: Joi.string(),
+      image: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string(),
+        imgId: Joi.string(),
+      }).allow(null),
+
+      ...(type === "patch" ? {
+        adminComments: Joi.string()
+      } : {})
+    })
+  };
+
+  if (type === "patch") {
+    baseValidator[Segments.PARAMS] = Joi.object({
+      id: Joi.string()
+    })
+  }
+
+  return celebrate(baseValidator);
+}
+
+export interface Request {
+  fr: {
+    text: string;
+    subtitle: string
+  };
+  theme: ObjectId;
+  image: Picture;
+  adminComments?: string;
+}
+

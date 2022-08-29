@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
+import { Picture } from "../types/interface";
 
 var needsSchema = new mongoose.Schema(
   {
@@ -12,24 +13,70 @@ var needsSchema = new mongoose.Schema(
       ref: "Theme",
       required: true,
     },
-    fr: { text: String, updatedAt: Date },
-    ar: { text: String, updatedAt: Date },
-    en: { text: String, updatedAt: Date },
-    ru: { text: String, updatedAt: Date },
-    fa: { text: String, updatedAt: Date },
-    ti: { text: String, updatedAt: Date },
-    ps: { text: String, updatedAt: Date },
-    uk: { text: String, updatedAt: Date },
+    fr: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    ar: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    en: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    ru: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    fa: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    ti: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    ps: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    uk: {
+      text: String,
+      subtitle: String,
+      updatedAt: Date
+    },
+    image: {
+      secure_url: String,
+      public_id: String,
+      imgId: String
+    },
+    adminComments: {
+      type: String,
+      required: false
+    },
+    nbVues: {
+      type: Number,
+      required: false,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );
 
 export interface NeedTranslation {
   text: string;
+  subtitle: string;
   updatedAt: Moment;
 }
 export interface NeedDoc extends mongoose.Document {
-  tagName: string;
+  tagName?: string;
   theme: ObjectId;
   fr: NeedTranslation;
   ar?: NeedTranslation;
@@ -39,6 +86,9 @@ export interface NeedDoc extends mongoose.Document {
   fa?: NeedTranslation;
   ru?: NeedTranslation;
   uk?: NeedTranslation;
+  image?: Picture|null;
+  adminComments?: string;
+  nbVues?: number;
 
   createdAt: Moment;
   _id: ObjectId;

@@ -11,16 +11,15 @@ import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
 import AdminDispositifButton from "components/UI/AdminDispositifButton";
 import { Need } from "types/interface";
-import { NeedDetailsModal } from "./NeedDetailsModal";
-import { AddNeedModal } from "./AddNeedModal";
+import { NeedFormModal } from "./NeedFormModal";
 import { LoadingNeeds } from "./LoadingNeeds";
 import styles from "./Needs.module.scss";
 import { cls } from "lib/classname";
+import FButton from "components/UI/FButton";
 
 export const Needs = () => {
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
-  const [showNeedDetailModal, setShowNeedDetailModal] = useState(false);
-  const [showAddNeedModal, setShowAddNeedModal] = useState(false);
+  const [showNeedFormModal, setShowNeedFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
   const themes = useSelector(themesSelector);
   const dispositifs = useSelector(allDispositifsSelector);
@@ -28,9 +27,13 @@ export const Needs = () => {
   const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
   const [currentNeed, setCurrentNeed] = useState<ObjectId | null>(null);
 
-  const setSelectedNeedAndToggleModal = (need: Need) => {
+  const editNeed = (need: Need) => {
     setSelectedNeed(need);
-    setShowNeedDetailModal(true);
+    setShowNeedFormModal(true);
+  };
+  const addNeed = () => {
+    setSelectedNeed(null);
+    setShowNeedFormModal(true);
   };
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
@@ -46,6 +49,22 @@ export const Needs = () => {
   const dispositifsToDisplay = dispositifs.filter((disp) => currentNeed && disp.needs?.includes(currentNeed));
   return (
     <Container fluid>
+      <div>
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          onClick={() => {}}
+        >
+          Ajouter un thème
+        </FButton>
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          onClick={addNeed}
+        >
+          Ajouter un besoin
+        </FButton>
+      </div>
       <Row className="mt-4 mb-5">
         <Col md="auto">
           <h3 className={styles.subtitle}>
@@ -87,6 +106,7 @@ export const Needs = () => {
                     selected={false}
                     editButton={true}
                     opened={currentNeed === need._id}
+                    onClickEdit={() => editNeed(need)}
                   />
                 </div>
               ))
@@ -120,23 +140,14 @@ export const Needs = () => {
         </Col>
       </Row>
 
-      <NeedDetailsModal
-        show={showNeedDetailModal}
+      <NeedFormModal
+        show={showNeedFormModal}
         selectedNeed={selectedNeed}
         toggleModal={() => {
           setSelectedNeed(null);
-          setShowNeedDetailModal(!showNeedDetailModal);
+          setShowNeedFormModal(!showNeedFormModal);
         }}
       />
-
-      {showAddNeedModal && (
-        <AddNeedModal
-          show={showAddNeedModal}
-          toggleModal={() => {
-            setShowAddNeedModal(!showAddNeedModal);
-          }}
-        />
-      )}
     </Container>
   );
 };

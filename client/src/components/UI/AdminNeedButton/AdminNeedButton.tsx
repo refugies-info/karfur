@@ -7,6 +7,7 @@ import styles from "./AdminNeedButton.module.scss";
 interface Props {
   need: Need;
   onPress: () => void;
+  onClickEdit?: () => void;
   selected: boolean;
   showCross?: boolean;
   opened?: boolean
@@ -47,6 +48,7 @@ const AdminThemeButton = (props: Props) => (
             size={16}
             onClick={(e: any) => {
               e.stopPropagation();
+              if(props.onClickEdit) props.onClickEdit();
             }}
           />
         </span>

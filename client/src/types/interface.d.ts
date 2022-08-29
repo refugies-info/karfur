@@ -462,7 +462,8 @@ export type ITypeContenu = "dispositif" | "demarche";
 
 export interface NeedDetail {
   text: string;
-  updatedAt: Moment;
+  subtitle: string;
+  updatedAt?: Moment;
 }
 export interface Need {
   fr: NeedDetail;
@@ -475,6 +476,9 @@ export interface Need {
   uk?: NeedDetail;
   _id: ObjectId;
   theme: Theme;
+  adminComments: string;
+  image: Picture;
+  nbVues?: number;
   created_at: Moment;
   updatedAt: Moment;
 }
