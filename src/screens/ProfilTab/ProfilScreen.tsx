@@ -38,6 +38,7 @@ import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import AccessibleIcon from "../../theme/images/accessibility/accessible-icon.svg";
 import { ageFilters } from "../../data/filtersData";
 import { updateAppUser } from "../../utils/API";
+import { firstLetterUpperCase } from "../../libs";
 
 const DeleteDataContainer = styled.TouchableOpacity`
   align-items: center;
@@ -205,11 +206,11 @@ export const ProfilScreen = ({
             isTextNotBold={true}
           />
         </DeleteDataContainer>
-        <StyledText>{t("profile_screens.settings", "Paramètres")}</StyledText>
+        <StyledText>{firstLetterUpperCase(t("notifications.settings", "Paramètres"))}</StyledText>
         <ProfilButtonsContainer>
           <ProfilDetailButton
             iconName="bell-outline"
-            category={t("profile_screens.notifications", "Notifications")}
+            category={t("notifications.notifications", "Notifications")}
             isFirst={true}
             isLast={true}
             isRTL={isRTL}
