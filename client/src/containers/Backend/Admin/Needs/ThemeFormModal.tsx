@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Picture, Theme } from "types/interface";
+import { Language, Picture, Theme } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,10 +10,14 @@ import { Col, Input, Row } from "reactstrap";
 import ImageInput from "components/UI/ImageInput";
 import Swal from "sweetalert2";
 import { colors as themeColors } from "colors";
-import { createThemeActionCreator, deleteThemeActionCreator, saveThemeActionCreator } from "services/Themes/themes.actions";
+import {
+  createThemeActionCreator,
+  deleteThemeActionCreator,
+  saveThemeActionCreator
+} from "services/Themes/themes.actions";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
-import { LangueDetail } from "../AdminUsers/ components/AdminUsersComponents";
+import { LangueButton } from "../AdminUsers/ components/AdminUsersComponents";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 
 interface Props {
@@ -27,22 +31,28 @@ const EMPTY_COLORS: Theme["colors"] = {
   color80: "#000000",
   color60: "#000000",
   color40: "#000000",
-  color30: "#000000",
-}
+  color30: "#000000"
+};
 
 type colorKey = "color100" | "color80" | "color60" | "color40" | "color30";
 const COLOR_KEYS: colorKey[] = ["color100", "color80", "color60", "color40", "color30"];
+type title = {
+  [key: string]: string;
+  fr: string;
+};
 
 export const ThemeFormModal = (props: Props) => {
-  const [short, setShort] = useState(props.selectedTheme?.short.fr || "");
-  const [name, setName] = useState(props.selectedTheme?.name.fr || "");
+  const [short, setShort] = useState<title | undefined>(props.selectedTheme?.short || undefined);
+  const [name, setName] = useState<title | undefined>(props.selectedTheme?.name || undefined);
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
   const [colors, setColors] = useState<Theme["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
   const [notes, setNotes] = useState("");
-  const [banner, setBanner] = useState<Picture|undefined>(props.selectedTheme?.banner || undefined);
-  const [appImage, setAppImage] = useState<Picture|undefined>(props.selectedTheme?.appImage || undefined);
-  const [shareImage, setShareImage] = useState<Picture|undefined>(props.selectedTheme?.shareImage || undefined);
-  const [icon, setIcon] = useState<Picture|undefined>(props.selectedTheme?.icon || undefined);
+  const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
+  const [appImage, setAppImage] = useState<Picture | undefined>(props.selectedTheme?.appImage || undefined);
+  const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
+  const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
+
+  const [selectedLanguageModal, setSelectedLanguageModal] = useState<Language | null>(null);
 
   const needs = useSelector(needsSelector);
   const languages = useSelector(allLanguesSelector);
@@ -50,15 +60,15 @@ export const ThemeFormModal = (props: Props) => {
 
   const hasNeeds = useMemo(() => {
     if (!props.selectedTheme) return false;
-    return needs.filter(need =>
-      props.selectedTheme ? need.theme._id === props.selectedTheme._id : false
-    ).length > 0
+    return (
+      needs.filter((need) => (props.selectedTheme ? need.theme._id === props.selectedTheme._id : false)).length > 0
+    );
   }, [props.selectedTheme, needs]);
 
   useEffect(() => {
     if (props.selectedTheme) {
-      setShort(props.selectedTheme.short.fr);
-      setName(props.selectedTheme.name.fr);
+      setShort(props.selectedTheme.short);
+      setName(props.selectedTheme.name);
       setEmoji(props.selectedTheme.notificationEmoji);
       setColors(props.selectedTheme.colors);
       setNotes(props.selectedTheme.adminComments);
@@ -67,8 +77,8 @@ export const ThemeFormModal = (props: Props) => {
       setShareImage(props.selectedTheme.shareImage);
       setIcon(props.selectedTheme.icon);
     } else {
-      setShort("");
-      setName("");
+      setShort(undefined);
+      setName(undefined);
       setEmoji("");
       setColors(EMPTY_COLORS);
       setNotes("");
@@ -81,16 +91,17 @@ export const ThemeFormModal = (props: Props) => {
 
   const onSave = () => {
     const theme: Partial<Theme> = {
-      short: { fr: short },
-      name: { fr: name },
+      short,
+      name,
       notificationEmoji: emoji,
       colors,
       banner,
       appImage,
       shareImage,
-      icon,
-    }
-    if (props.selectedTheme) { // edition
+      icon
+    };
+    if (props.selectedTheme) {
+      // edition
       dispatch(
         saveThemeActionCreator({
           _id: props.selectedTheme._id,
@@ -98,7 +109,8 @@ export const ThemeFormModal = (props: Props) => {
           adminComments: notes
         })
       );
-    } else { // creation
+    } else {
+      // creation
       dispatch(createThemeActionCreator(theme));
     }
     props.toggleModal();
@@ -114,17 +126,17 @@ export const ThemeFormModal = (props: Props) => {
         confirmButtonColor: themeColors.rouge,
         cancelButtonColor: themeColors.vert,
         confirmButtonText: "Oui, le supprimer",
-        cancelButtonText: "Annuler",
-      }).then(res => {
+        cancelButtonText: "Annuler"
+      }).then((res) => {
         if (res.value && props.selectedTheme) {
           dispatch(deleteThemeActionCreator(props.selectedTheme._id));
         }
-      })
+      });
     }
     props.toggleModal();
   };
 
-  const isInvalid = false//[...emoji].length !== 1;
+  const isInvalid = false; //[...emoji].length !== 1;
 
   return (
     <DetailsModal
@@ -138,26 +150,15 @@ export const ThemeFormModal = (props: Props) => {
       }
       rightHead={
         <>
-          {props.selectedTheme &&
-            <FButton
-              className="mr-2"
-              type="error"
-              name="trash-2-outline"
-              onClick={onDelete}
-              disabled={hasNeeds}
-            >
+          {props.selectedTheme && (
+            <FButton className="mr-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasNeeds}>
               Supprimer
             </FButton>
-          }
+          )}
           <FButton className="mr-2" type="white" name="close-outline" onClick={props.toggleModal}>
             Annuler
           </FButton>
-          <FButton
-            type="validate"
-            name="save-outline"
-            onClick={onSave}
-            disabled={isInvalid}
-          >
+          <FButton type="validate" name="save-outline" onClick={onSave} disabled={isInvalid}>
             Valider
           </FButton>
         </>
@@ -166,11 +167,11 @@ export const ThemeFormModal = (props: Props) => {
       <Row className="mt-4">
         <Col md="5">
           <div>
-              <Label htmlFor="short">Intitulé court du thème</Label>
+            <Label htmlFor="short">Intitulé court du thème</Label>
             <FInput
               id="short"
-              value={short}
-              onChange={(e: any) => setShort(e.target.value)}
+              value={short?.fr}
+              onChange={(e: any) => setShort((short) => ({ ...short, fr: e.target.value }))}
               newSize={true}
               autoFocus={false}
               placeholder="Écrire ici..."
@@ -180,8 +181,8 @@ export const ThemeFormModal = (props: Props) => {
             <Label htmlFor="name">Intitulé long du thème</Label>
             <FInput
               id="name"
-              value={name}
-              onChange={(e: any) => setName(e.target.value)}
+              value={name?.fr}
+              onChange={(e: any) => setName((name) => ({ ...name, fr: e.target.value }))}
               newSize={true}
               autoFocus={false}
               placeholder="Écrire ici..."
@@ -190,9 +191,16 @@ export const ThemeFormModal = (props: Props) => {
           <div>
             <Label htmlFor="theme">Traduire les intitulés</Label>
             <div>
-            {languages.map((langue) => (
-              <LangueDetail key={langue.langueCode} langue={langue} />
-            ))}
+              {languages.filter(ln => ln.i18nCode !== "fr").map((langue) => (
+                <LangueButton
+                  key={langue.langueCode}
+                  onClick={() => {
+                    setSelectedLanguageModal(langue);
+                  }}
+                  langue={langue}
+                  valid={!!short?.[langue.i18nCode] && !!name?.[langue.i18nCode]}
+                />
+              ))}
             </div>
           </div>
           <div>
@@ -210,15 +218,15 @@ export const ThemeFormModal = (props: Props) => {
             <Label htmlFor="colors">Couleurs principales du thème</Label>
             <div className={styles.colors}>
               {COLOR_KEYS.map((i: colorKey) => (
-              <div key={i}>
-                <Input
+                <div key={i}>
+                  <Input
                     type="text"
                     className={styles.color_input}
-                  value={colors[i]}
+                    value={colors[i]}
                     onChange={(e: any) => setColors({ ...colors, [i]: e.target.value as string })}
-                    style={{backgroundColor:colors[i]}}
-                />
-              </div>
+                    style={{ backgroundColor: colors[i] }}
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -239,7 +247,6 @@ export const ThemeFormModal = (props: Props) => {
               placeholder="Notes..."
             />
           </div>
-
         </Col>
 
         <Col md="4">
@@ -295,9 +302,71 @@ export const ThemeFormModal = (props: Props) => {
               dimensionsHelp="20x20px"
             />
           </div>
-
         </Col>
       </Row>
+
+      <DetailsModal
+        show={!!selectedLanguageModal}
+        toggleModal={() => setSelectedLanguageModal(null)}
+        isLoading={false}
+        size="lg"
+        leftHead={<h2>Traduction du thème en : {selectedLanguageModal?.langueFr || ""}</h2>}
+        rightHead={
+          <>
+            <FButton className="mr-2" type="white" name="close-outline" onClick={() => setSelectedLanguageModal(null)}>
+              Annuler
+            </FButton>
+            <FButton type="validate" name="save-outline" onClick={() => setSelectedLanguageModal(null)}>
+              Valider
+            </FButton>
+          </>
+        }
+      >
+        {selectedLanguageModal && (
+          <>
+            <div>
+              <Label htmlFor="shortFr">Intitulé court du thème en français</Label>
+              <FInput id="shortFr" value={short?.fr} disabled={true} newSize={true} autoFocus={false} />
+            </div>
+            <div>
+              <Label htmlFor="shortLn">Intitulé court du thème en {selectedLanguageModal.langueFr}</Label>
+              <FInput
+                id="shortLn"
+                value={short?.[selectedLanguageModal.i18nCode]}
+                newSize={true}
+                onChange={(e: any) =>
+                  setShort((short) => ({
+                    ...short,
+                    fr: short?.fr || "", // for typescript validation
+                    [selectedLanguageModal.i18nCode]: e.target.value
+                  }))
+                }
+                autoFocus={false}
+              />
+            </div>
+            <div>
+              <Label htmlFor="nameFr">Intitulé long du thème en français</Label>
+              <FInput id="nameFr" value={name?.fr} disabled={true} newSize={true} autoFocus={false} />
+            </div>
+            <div>
+              <Label htmlFor="nameLn">Intitulé long du thème en {selectedLanguageModal.langueFr}</Label>
+              <FInput
+                id="nameLn"
+                value={name?.[selectedLanguageModal.i18nCode]}
+                newSize={true}
+                onChange={(e: any) =>
+                  setName((name) => ({
+                    ...name,
+                    fr: name?.fr || "", // for typescript validation
+                    [selectedLanguageModal.i18nCode]: e.target.value
+                  }))
+                }
+                autoFocus={false}
+              />
+            </div>
+          </>
+        )}
+      </DetailsModal>
     </DetailsModal>
   );
 };

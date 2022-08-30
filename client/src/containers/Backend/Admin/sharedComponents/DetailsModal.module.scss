@@ -2,8 +2,10 @@
 @import "src/scss/mixins/responsive";
 
 .modal {
-  @include media-min("xl-limit"){
-    max-width: 1200px !important;
+  &.xl {
+    @include media-min("xl-limit"){
+      max-width: 1200px !important;
+    }
   }
 
   .modal_content {
