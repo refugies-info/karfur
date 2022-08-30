@@ -175,6 +175,27 @@
     "no_result": "Неможливо знайти «{{search}}»",
     "try_new_search": "Спробуй ще раз, перевір орфографію або скористайся іншим ключовим словом."
   },
+  "notifications": {
+    "notifications": "Сповіщення",
+    "noneYet": "Сповіщень немає",
+    "noneYetSubtitle1": "Коли ви отримаєте сповіщення, вони з’являться тут. Заходьте в",
+    "settings": "налаштування",
+    "noneYetSubtitle2": "щоб обрати ті, які ви б хотіли отримати.",
+    "newInfoEveryWeek": "Нова інформація щотижня!",
+    "beInformed": "Будьте в курсі, коли ми опублікуємо запис, який може вас зацікавити.",
+    "enableNotifications": "Увімкнути сповіщення",
+    "markAsSeen": "Позначити як прочитано",
+    "notNow": "Не зараз",
+    "viewFiche": "Відкрити запис",
+    "newFiches": "Нові записи",
+    "themes": "Теми",
+    "settingsLocal": "Записи твого міста",
+    "settingsLocalSubtitle": "Наприклад: Курси французької мови у Парижі",
+    "settingsGlobal": "Записи по усій Франції",
+    "settingsGlobalSubtitle": "Наприклад: Онлайн-курси",
+    "settingsDemarches": "Записи процедур",
+    "settingsDemarchesSubtitle": "Наприклад: Отримати громадянство"
+  },
   "global": {
     "close": "Закрити",
     "cancel": "Відмінити",

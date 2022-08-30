@@ -193,6 +193,27 @@
     "call_2": "آیا شما  سازمانی دارید که با ادغام پناهندگان مرتبط است و می خواهید با ما درین ما جراجوی بپیوندید؟ آدرس تماس زیر را بارگیری کرده و به nour@refugies.info ارسال نمایید. ما برای معلومات وشرایط همکاری با شما به تماس خواهیم شد.",
     "download_call_button": "بروشور را بارگیری (Télécharger PDF) کنید"
   },
+  "notifications": {
+    "notifications": "اعلان‌ها",
+    "noneYet": "هنوز هیچ اطلاعیه ای وجود ندارد!",
+    "noneYetSubtitle1": "هنگامی که اعلان‌ها را دریافت می‌ کنید، در اینجا ظاهر می‌شوند. بروید به ",
+    "settings": "تنظیمات",
+    "noneYetSubtitle2": "انتخاب کنید که کدام یک را می خواهید دریافت کنید.",
+    "newInfoEveryWeek": "معلومات جدید هر هفته!",
+    "beInformed": "مطلع شوید، وقتی برگه ای را منتشر می کنیم که ممکن است مورد علاقه شما باشد.",
+    "enableNotifications": "اعلان ها را فعال کنید",
+    "markAsSeen": "خوانده شد",
+    "notNow": "الان نه",
+    "viewFiche": "برگه را ببینید",
+    "newFiches": "برگه های جدید",
+    "themes": "موضوعات",
+    "settingsLocal": "برگه ها برای شهر شما",
+    "settingsLocalSubtitle": "مثال: دوره های زبان فرانسوی در پاریس",
+    "settingsGlobal": "برگه ها برای تمام فرانسه",
+    "settingsGlobalSubtitle": "مثال: دوره آنلاین",
+    "settingsDemarches": "برگه های روند اداری",
+    "settingsDemarchesSubtitle": "مثال: اخذ تابعیت"
+  },
   "global": {
     "close": "خروج",
     "no_connection": "بدون اتصال به اینترنت!",

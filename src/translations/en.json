@@ -195,6 +195,27 @@
     "call_2": "If you represent an organisation linked to the integration of refugees and wish to join the adventure, download the call below and send it to nour@refugies.info. We will contact you to define the terms of our partnership.",
     "download_call_button": "Download the call  [PDF]"
   },
+  "notifications": {
+    "notifications": "Notifications",
+    "noneYet": "There are no notifications yet!",
+    "noneYetSubtitle1": "When you receive notifications, they will appear here. Go to the",
+    "settings": "settings",
+    "noneYetSubtitle2": "to choose which ones you want to receive.",
+    "newInfoEveryWeek": "New information every week!",
+    "beInformed": "Be notified when we publish a new entry that might interest you.",
+    "enableNotifications": "Activate notifications",
+    "markAsSeen": "Mark as seen",
+    "notNow": "Not now",
+    "viewFiche": "View the sheet",
+    "newFiches": "New sheets",
+    "themes": "Topics",
+    "settingsLocal": "Sheets for your city",
+    "settingsLocalSubtitle": "Example: French courses in Paris",
+    "settingsGlobal": "Sheets for the whole of France",
+    "settingsGlobalSubtitle": "Example: Online courses",
+    "settingsDemarches": "Sheets on procedures",
+    "settingsDemarchesSubtitle": "Example: Obtaining citizenship"
+  },
   "global": {
     "close": "Close",
     "no_connection": "No internet connection!",
