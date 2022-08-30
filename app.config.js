@@ -89,6 +89,6 @@ export default {
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   extra: {
-    displayVersionNumber: "2022.08.2"
+    displayVersionNumber: "2022.08.3"
   }
 };
