@@ -193,6 +193,27 @@
     "call_2": "ሓንቲ ማሕበር ንስዴተኛታት ኣብ ምትሕጋዝን ኣብ ምውህሃድን ትነጥፉ እንተ ኮንኩም\\ክን፤ ናብዚ ናትና መደብ ክትሳተፍ ምስ እተደልዩ ነዚ ኣፕልኬሽን ኣውሪድኩም\\ክን  በዚ ዝስዕብ ኢመይል ለኣኹ\\ኻ ፤፣  nour@refugies.info.",
     "download_call_button": "ብመንገዲ ናይ  ፔዲ ኤፍ ጌርና ከንውርድ ን ጻውዒት ከንውርድ  ንክእል"
   },
+  "notifications": {
+    "notifications": "ምልክታታት",
+    "noneYet": "ጌና ምልክታ ወይ ሓበሬታ የልቦን",
+    "noneYetSubtitle1": "ሓበሬታ ምስ መጸኩም፣ ኣብዚ ክሕበረኩም ፣ ድሕሪኡ ",
+    "settings": "ኣብ ሰቲንግ ወይ ፓራመተር እተዉ",
+    "noneYetSubtitle2": "እትደልይዎ ምረጹ",
+    "newInfoEveryWeek": "ነፍስ-ወከፍ ሰሙን ሓደሽ ሓበሬታታት!",
+    "beInformed": "ሓደሽቲ ሓበሬታታት ምስ ዝህልወና/ክንሕብረኩም ኢና",
+    "enableNotifications": "ነቲ ምልክት፣ ንጡፍ ወይ ኣክቲቭ ግበርዎ",
+    "markAsSeen": "ከም ዝረኣኹሞ  ዝሕብር",
+    "notNow": "ንካልእ እዋን፣ ወይ ንሕጂ ኣይደልን እየ",
+    "viewFiche": "ሓበሬታ ተመልከቱ",
+    "newFiches": "ሓድሽ ሓበሬታ",
+    "themes": "ዛዕባታት",
+    "settingsLocal": "ናይ ከተማ ዝምልከት ሓበሬታ",
+    "settingsLocalSubtitle": "ንኣብነት፣ ትምህርቲ ቋንቋ ፈረንሳ ኣብ ፓሪስ",
+    "settingsGlobal": "ንመላእ ረፓብሊክ ፈረንሳ ዝምልከት ሓበሬታ",
+    "settingsGlobalSubtitle": "ንኣብነት ፣ ኣብ ኦን -ላይን ምዕዳግ",
+    "settingsDemarches": "ምምሕዳራዊ ምልክታት",
+    "settingsDemarchesSubtitle": "ንኣብነት ዜግነት ንምሓዝ"
+  },
   "global": {
     "close": "ተዓጽዩ",
     "no_connection": "መስመር መርበብ ሓበሬታ የለን",

@@ -145,6 +145,25 @@ export const ExplorerScreen = ({
     setIsLocalizedWarningVisible(isWarningVisible);
   }, [isLocalizedWarningHidden, selectedLocation, nbContents]);
 
+  const [accessGranted] = useNotificationsStatus();
+  const [notificationsModalVisible, setNotificationsModalVisible] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    const showModal = async () => {
+      const keyExists = await AsyncStorage.getItem("notificationsModal");
+      if (!accessGranted) {
+        if (!keyExists) {
+          await AsyncStorage.setItem("notificationsModal", "true");
+          setNotificationsModalVisible(true);
+        }
+      } else if (accessGranted && notificationsModalVisible) {
+        setNotificationsModalVisible(false);
+      }
+    };
+
+    showModal();
+  }, [accessGranted]);
 
   return (
     <WrapperWithHeaderAndLanguageModal>

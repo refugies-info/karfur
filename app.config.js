@@ -3,7 +3,7 @@ import deepLinks from "./androidDeepLinks";
 export default {
   name: "Réfugiés.info",
   slug: "refugies-info-app",
-  version: "1.0.12",
+  version: "1.0.13",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -20,7 +20,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.12",
+    buildNumber: "1.0.13",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -41,7 +41,7 @@ export default {
     fr: "./src/translations/fr.json"
   },
   android: {
-    versionCode: 12,
+    versionCode: 13,
     userInterfaceStyle: "light",
     adaptiveIcon: {
       foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
