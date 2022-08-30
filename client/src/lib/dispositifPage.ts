@@ -221,6 +221,11 @@ export const handleContentClickInComponent = (
 };
 
 export const getMainTheme = (dispositif: IDispositif | null): Theme => {
+  const emptyImage = {
+    secure_url: "",
+    public_id: "",
+    imgId: ""
+  };
   return dispositif?.theme ?
     dispositif.theme :
     {
@@ -235,11 +240,12 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
         color30: colors.gray20,
       },
       position: 0,
-      icon: "",
-      banner: "",
-      appImage: "",
-      shareImage: "",
+      icon: emptyImage,
+      banner: emptyImage,
+      appImage: emptyImage,
+      shareImage: emptyImage,
       notificationEmoji: "",
+      adminComments: ""
   };
 }
 

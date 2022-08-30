@@ -16,23 +16,12 @@ export interface Indicator {
 }
 
 export interface Picture {
-  imgId: ObjectId;
+  imgId: string;
   public_id: string;
   secure_url: string;
 }
 
 type iconName = "house" |
-  "elearning" |
-  "briefcase" |
-  "measure" |
-  "glasses" |
-  "bus" |
-  "triumph" |
-  "heartBeat" |
-  "couple" |
-  "soccer" |
-  "flag" |
-  "office" |
   "search" |
   "message" |
   "menu" |
@@ -56,11 +45,12 @@ export interface Theme {
     color30: string;
   }
   position: number;
-  icon: iconName;
-  banner: string;
-  appImage: string;
-  shareImage: string;
+  icon: Picture;
+  banner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
+  adminComments: string;
   created_at?: Moment;
 }
 
@@ -358,11 +348,6 @@ export interface UserStructureMembre {
 }
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];
-}
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
 }
 export interface Translation {
   _id?: ObjectId;

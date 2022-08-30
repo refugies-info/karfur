@@ -1,5 +1,4 @@
 import React from "react";
-import Streamline from "assets/streamline";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
@@ -10,6 +9,7 @@ import styles from "../MobileAdvancedSearch.module.scss";
 import Language from "components/UI/Language";
 import { getThemeName } from "lib/getThemeName";
 import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   themeSelected?: Theme | null;
@@ -42,12 +42,7 @@ export const SelectedFilter = (props: Props) => {
         {props.themeSelected ? (
           <>
             {props.themeSelected?.icon ? (
-              <Streamline
-                name={props.themeSelected.icon}
-                stroke={"white"}
-                width={20}
-                height={20}
-              />
+              <ThemeIcon theme={props.themeSelected} size={20} />
             ) : null}
             <div className={styles.theme_name}>
               {getThemeName(props.themeSelected, router.locale)}

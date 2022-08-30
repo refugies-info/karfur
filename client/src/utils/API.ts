@@ -341,7 +341,9 @@ const API = {
   },
   patchTheme: (query: Partial<Theme>) =>{
     const headers = getHeaders();
-    return instance.patch(`/themes/${query._id}`, query, {
+    const newTheme = {...query};
+    delete newTheme._id;
+    return instance.patch(`/themes/${query._id}`, newTheme, {
       headers,
     })
   },

@@ -10,6 +10,7 @@ interface Props {
   theme: Theme;
   onPress: () => void;
   onSelectTheme: (id: ObjectId) => void;
+  onClickEdit?: () => void;
   selected: boolean;
   opened: boolean;
   hasWarning?: boolean;
@@ -25,7 +26,7 @@ const AdminThemeButton = (props: Props) => (
       boxShadow: props.opened ? `0 0 4px 3px ${props.theme.colors.color30}, inset white 0 0 0 1px` : "none"
     }}
   >
-    <Image src={props.theme.appImage} width={30} height={30} alt="" />
+    <Image src={props.theme.appImage.secure_url} width={30} height={30} alt="" />
     <span className="ml-2">{props.theme.name.fr}</span>
 
     <span className="ml-auto">
@@ -59,6 +60,7 @@ const AdminThemeButton = (props: Props) => (
             size={16}
             onClick={(e: any) => {
               e.stopPropagation();
+              if(props.onClickEdit) props.onClickEdit();
             }}
           />
         </span>

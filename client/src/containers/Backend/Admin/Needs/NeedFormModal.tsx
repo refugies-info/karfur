@@ -30,7 +30,7 @@ export const NeedFormModal = (props: Props) => {
   const [subtitle, setSubtitle] = useState("");
   const [notes, setNotes] = useState("");
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
-  const [image, setImage] = useState<Picture|null>(null);
+  const [image, setImage] = useState<Picture|undefined>(undefined);
 
   const themes = useSelector(themesSelector);
   const dispositifs = useSelector(allDispositifsSelector);
@@ -49,13 +49,13 @@ export const NeedFormModal = (props: Props) => {
       setSubtitle(props.selectedNeed.fr.subtitle || "");
       setNotes(props.selectedNeed.adminComments);
       setThemeSelected(props.selectedNeed.theme._id);
-      setImage(props.selectedNeed.image || null);
+      setImage(props.selectedNeed.image || undefined);
     } else {
       setName("");
       setSubtitle("");
       setNotes("");
       setThemeSelected(null);
-      setImage(null);
+      setImage(undefined);
     }
   }, [props.selectedNeed]);
 
@@ -186,7 +186,7 @@ export const NeedFormModal = (props: Props) => {
                   }}
                   className="mr-2 mb-2"
                 >
-                  <TagName name={theme.short.fr} icon={theme.icon} />
+                  <TagName theme={theme} />
                 </FilterButton>
               ))}
             </div>

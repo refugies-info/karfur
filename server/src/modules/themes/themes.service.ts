@@ -21,11 +21,31 @@ export const getValidator = (type: "post" | "patch") => {
         color30: Joi.string(),
       }),
       position: Joi.number(),
-      icon: Joi.any(), // TODO: update type here
-      banner: Joi.any(),
-      appImage: Joi.any(),
-      shareImage: Joi.any(),
+      icon: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string().allow(""),
+        imgId: Joi.string().allow(""),
+      }),
+      banner: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string().allow(""),
+        imgId: Joi.string().allow(""),
+      }),
+      appImage: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string().allow(""),
+        imgId: Joi.string().allow(""),
+      }),
+      shareImage: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string().allow(""),
+        imgId: Joi.string().allow(""),
+      }),
       notificationEmoji: Joi.string(),
+
+      ...(type === "patch" ? {
+        adminComments: Joi.string()
+      } : {})
     })
   };
 
@@ -55,9 +75,26 @@ export interface Request {
     color30: string;
   }
   position: number;
-  icon: Object;
-  banner: Object;
-  appImage: Object;
-  shareImage: Object;
+  icon: {
+    secure_url: string;
+    public_id: string;
+    imgId: string;
+  };
+  banner: {
+    secure_url: string;
+    public_id: string;
+    imgId: string;
+  };
+  appImage: {
+    secure_url: string;
+    public_id: string;
+    imgId: string;
+  };
+  shareImage: {
+    secure_url: string;
+    public_id: string;
+    imgId: string;
+  };
   notificationEmoji: string;
+  adminComments?: string;
 }

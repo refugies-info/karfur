@@ -5,7 +5,7 @@ import {
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { ThemeDoc, Theme } from "../../../schema/schemaTheme";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 import { Request, getValidator } from "../../../modules/themes/themes.service";
 
 const validator = getValidator("patch");
@@ -22,7 +22,7 @@ const handler = async (
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
-    const theme: ThemeDoc = new Theme({
+    const theme: Partial<ThemeDoc> = {
       name: req.body.name,
       short: req.body.short,
       colors: req.body.colors,
@@ -32,7 +32,8 @@ const handler = async (
       appImage: req.body.appImage,
       shareImage: req.body.shareImage,
       notificationEmoji: req.body.notificationEmoji,
-    });
+      adminComments: req.body.adminComments
+    };
 
     const dbTheme = await updateTheme(req.params.id, theme);
 

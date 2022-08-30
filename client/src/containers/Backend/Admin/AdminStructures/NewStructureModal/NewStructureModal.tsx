@@ -174,7 +174,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     API.set_image(formData).then(
       (data_res: {
         data: {
-          data: { secure_url: string; public_id: string; imgId: ObjectId };
+          data: { secure_url: string; public_id: string; imgId: string };
         };
       }) => {
         const imgData = data_res.data.data;

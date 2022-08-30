@@ -2,7 +2,6 @@ import React from "react";
 import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Streamline from "assets/streamline";
 import {
   AvailableFilters,
   getSearchTheme,
@@ -18,6 +17,7 @@ import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { useRouter } from "next/router";
 import { getThemeName } from "lib/getThemeName";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface ThemeButtonProps {
   theme: Theme;
@@ -34,12 +34,7 @@ const ThemeButton = (props: ThemeButtonProps) => {
       style={{ backgroundColor: props.theme.colors.color100 }}
     >
       {getThemeName(props.theme, router.locale)}
-      <Streamline
-        name={props.theme.icon}
-        stroke={"white"}
-        width={22}
-        height={22}
-      />
+      <ThemeIcon theme={props.theme} />
     </button>
   );
 };

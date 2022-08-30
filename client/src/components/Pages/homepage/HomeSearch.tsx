@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "next-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import { colors } from "colors";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
 import { isMobile } from "react-device-detect";
@@ -11,6 +10,7 @@ import { SearchItemType } from "data/searchFilters";
 import { cls } from "lib/classname";
 import { getThemeName } from "lib/getThemeName";
 import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   searchItem: SearchItemType;
@@ -103,12 +103,7 @@ const HomeSearch = (props: Props) => {
             >
               {themes[indexFront].icon ? (
                 <div className={styles.icon}>
-                  <Streamline
-                    name={themes[indexFront].icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
+                  <ThemeIcon theme={themes[indexFront]} />
                 </div>
               ) : null}
               {getThemeName(themes[indexFront], router.locale)}
@@ -127,12 +122,7 @@ const HomeSearch = (props: Props) => {
               >
                 {themes[indexBack].icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={themes[indexBack].icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
+                    <ThemeIcon theme={themes[indexBack]} />
                   </div>
                 ) : null}
                 {getThemeName(themes[indexBack], router.locale)}

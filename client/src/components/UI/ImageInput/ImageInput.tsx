@@ -9,9 +9,11 @@ import { Picture } from "types/interface";
 
 interface Props {
   onImageUploaded: (image: Picture) => void;
-  image: Picture | null;
+  image: Picture | undefined;
   minHeight?: number;
   imageSize?: number;
+  dimensionsHelp?: string;
+  labelNoBackground?: boolean
 }
 
 const AdminThemeButton = (props: Props) => {
@@ -48,20 +50,23 @@ const AdminThemeButton = (props: Props) => {
           </div>
         </Col>
         <Col className={styles.col}>
-          <div>
-            <FButton type="fill-dark" name="upload-outline" className="position-relative">
-              <Input
-                className={styles.file_input}
-                type="file"
-                id="picture"
-                name="structure"
-                accept="image/*"
-                onChange={handleFileInputChange}
-              />
-              {props.image?.secure_url ? <span>Choisir une autre image</span> : <span>Choisir une image</span>}
+          <div className={props.labelNoBackground ? "bg-transparent" : ""}>
+            <div>
+              <FButton type="fill-dark" name="upload-outline" className="position-relative">
+                <Input
+                  className={styles.file_input}
+                  type="file"
+                  id="picture"
+                  name="structure"
+                  accept="image/*"
+                  onChange={handleFileInputChange}
+                />
+                {props.image?.secure_url ? <span>Choisir une autre image</span> : <span>Choisir une image</span>}
 
-              {uploading && <Spinner color="success" className="ml-10" />}
-            </FButton>
+                {uploading && <Spinner color="success" className="ml-10" />}
+              </FButton>
+              <p className={styles.help}>{props.dimensionsHelp}</p>
+            </div>
           </div>
         </Col>
       </Row>

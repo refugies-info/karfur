@@ -10,16 +10,19 @@ import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.s
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
 import AdminDispositifButton from "components/UI/AdminDispositifButton";
-import { Need } from "types/interface";
+import { Need, Theme } from "types/interface";
 import { NeedFormModal } from "./NeedFormModal";
 import { LoadingNeeds } from "./LoadingNeeds";
 import styles from "./Needs.module.scss";
 import { cls } from "lib/classname";
 import FButton from "components/UI/FButton";
+import { ThemeFormModal } from "./ThemeFormModal";
 
 export const Needs = () => {
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
   const [showNeedFormModal, setShowNeedFormModal] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState<null | Theme>(null);
+  const [showThemeFormModal, setShowThemeFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
   const themes = useSelector(themesSelector);
   const dispositifs = useSelector(allDispositifsSelector);
@@ -34,6 +37,14 @@ export const Needs = () => {
   const addNeed = () => {
     setSelectedNeed(null);
     setShowNeedFormModal(true);
+  };
+  const editTheme = (theme: Theme) => {
+    setSelectedTheme(theme);
+    setShowThemeFormModal(true);
+  };
+  const addTheme = () => {
+    setSelectedTheme(null);
+    setShowThemeFormModal(true);
   };
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
@@ -53,7 +64,7 @@ export const Needs = () => {
         <FButton
           type="dark"
           name="plus-circle-outline"
-          onClick={() => {}}
+          onClick={addTheme}
         >
           Ajouter un thème
         </FButton>
@@ -84,6 +95,7 @@ export const Needs = () => {
                   opened={currentTheme === theme._id}
                   selected={false}
                   editButton={true}
+                  onClickEdit={() => editTheme(theme)}
                 />
               </div>
             ))}
@@ -146,6 +158,14 @@ export const Needs = () => {
         toggleModal={() => {
           setSelectedNeed(null);
           setShowNeedFormModal(!showNeedFormModal);
+        }}
+      />
+      <ThemeFormModal
+        show={showThemeFormModal}
+        selectedTheme={selectedTheme}
+        toggleModal={() => {
+          setSelectedTheme(null);
+          setShowThemeFormModal(!showThemeFormModal);
         }}
       />
     </Container>

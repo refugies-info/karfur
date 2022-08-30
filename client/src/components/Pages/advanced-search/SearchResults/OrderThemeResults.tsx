@@ -1,9 +1,9 @@
-import Streamline from "assets/streamline";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 import useRTL from "hooks/useRTL";
 import { DispositifsFilteredState } from "lib/filterContents";
 import { getThemeName } from "lib/getThemeName";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { SearchQuery } from "pages/recherche";
 import { IDispositif, IUserFavorite } from "types/interface";
 import SearchResultCard from "../SearchResultCard";
@@ -43,12 +43,7 @@ export const OrderThemeResults = (props: Props) => {
                 marginLeft: isRTL ? 20 : 0
               }}
             >
-              <Streamline
-                name={object.theme.icon}
-                stroke={"white"}
-                width={22}
-                height={22}
-              />
+              <ThemeIcon theme={object.theme} />
               <p className={styles.text}>
                 {getThemeName(object.theme, router.locale, "short")}
               </p>
