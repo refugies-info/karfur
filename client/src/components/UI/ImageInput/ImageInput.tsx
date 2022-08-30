@@ -6,6 +6,7 @@ import emptyImage from "assets/empty-image.svg";
 import styles from "./ImageInput.module.scss";
 import Image from "next/image";
 import { Picture } from "types/interface";
+import { cls } from "lib/classname";
 
 interface Props {
   onImageUploaded: (image: Picture) => void;
@@ -14,6 +15,7 @@ interface Props {
   imageSize?: number;
   dimensionsHelp?: string;
   labelNoBackground?: boolean
+  darkBackground?: boolean
 }
 
 const AdminThemeButton = (props: Props) => {
@@ -38,7 +40,7 @@ const AdminThemeButton = (props: Props) => {
 
   return (
     <>
-      <Row style={{ minHeight: props.minHeight || 0 }}>
+      <Row className={cls(props.darkBackground && styles.dark)} style={{ minHeight: props.minHeight || 0 }}>
         <Col className={styles.col}>
           <div>
             <div

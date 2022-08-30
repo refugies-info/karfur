@@ -19,6 +19,9 @@ import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
 import { LangueButton } from "../AdminUsers/ components/AdminUsersComponents";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { toArray } from "lodash";
+import { isThemeTitleOk } from "./lib";
+
 
 interface Props {
   show: boolean;
@@ -136,7 +139,13 @@ export const ThemeFormModal = (props: Props) => {
     props.toggleModal();
   };
 
-  const isInvalid = false; //[...emoji].length !== 1;
+  const isInvalid = toArray(emoji).length !== 1 ||
+    !short || isThemeTitleOk(short, languages) ||
+    !name || isThemeTitleOk(name, languages) ||
+    !banner || !banner.secure_url
+    !appImage || !appImage.secure_url
+    !shareImage || !shareImage.secure_url
+    !icon || !icon.secure_url;
 
   return (
     <DetailsModal
@@ -300,6 +309,7 @@ export const ThemeFormModal = (props: Props) => {
               imageSize={80}
               labelNoBackground={true}
               dimensionsHelp="20x20px"
+              darkBackground={true}
             />
           </div>
         </Col>
