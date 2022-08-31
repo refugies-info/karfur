@@ -73,7 +73,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
         notificationsSent: 1
       });
 
-      if (!dispositif) {
+      if (!dispositif || dispositif.typeContenu !== "dispositif") {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
         return;
       }
