@@ -9,10 +9,11 @@ export type Dispositif = {
   _id: ObjectId;
   status: string;
   color: string;
+  color30: string;
   hasCreatedStructure: boolean;
 };
 
-export const getStructureWithAllInformationRequired = (
+export const getDispositifsWithAllInformationRequired = (
   dispositifsIds: ObjectId[],
   allDispositifs: SimplifiedDispositif[]
 ): Dispositif[] => {
@@ -30,6 +31,7 @@ export const getStructureWithAllInformationRequired = (
         _id: simplifiedDispositif._id,
         status: simplifiedDispositif.status,
         color: simplifiedDispositif.theme.colors.color100 || "#000000",
+        color30: simplifiedDispositif.theme.colors.color30 || "#CCCCCC",
         hasCreatedStructure: index === 0
       };
       dispositifsWithAllInformation.push(element);

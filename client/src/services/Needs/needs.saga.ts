@@ -87,7 +87,7 @@ export function* deleteNeed(
     logger.info("[deleteNeed] start deleting need");
     yield call(API.deleteNeed, action.payload);
 
-    const needs: Need[] = yield select(needsSelector);
+    const needs: Need[] = [...yield select(needsSelector)];
     yield put(setNeedsActionCreator(needs.filter(n => n._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));

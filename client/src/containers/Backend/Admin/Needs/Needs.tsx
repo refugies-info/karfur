@@ -9,7 +9,6 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
-import AdminDispositifButton from "components/UI/AdminDispositifButton";
 import { Need, Theme } from "types/interface";
 import { NeedFormModal } from "./NeedFormModal";
 import { LoadingNeeds } from "./LoadingNeeds";
@@ -17,6 +16,9 @@ import styles from "./Needs.module.scss";
 import { cls } from "lib/classname";
 import FButton from "components/UI/FButton";
 import { ThemeFormModal } from "./ThemeFormModal";
+import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
+import { SmallDispositif } from "../sharedComponents/SmallDispositif";
+import { getDispositifsWithAllInformationRequired } from "../AdminStructures/StructureDetailsModal/functions";
 
 export const Needs = () => {
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
@@ -24,11 +26,13 @@ export const Needs = () => {
   const [selectedTheme, setSelectedTheme] = useState<null | Theme>(null);
   const [showThemeFormModal, setShowThemeFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(themesSelector).sort((a, b) => a.position < b.position ? -1 : 1);
   const dispositifs = useSelector(allDispositifsSelector);
 
   const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
   const [currentNeed, setCurrentNeed] = useState<ObjectId | null>(null);
+
+  const [selectedDispositifModal, setSelectedDispositifModal] = useState<ObjectId | null>(null);
 
   const editNeed = (need: Need) => {
     setSelectedNeed(need);
@@ -47,24 +51,32 @@ export const Needs = () => {
     setShowThemeFormModal(true);
   };
 
-  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
-  const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_NEED));
+  const isLoadingFetchThemes = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
+  const isLoadingFetchNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
 
-  const isLoading = isLoadingFetch || isLoadingSave;
+  const isLoading = isLoadingFetchThemes || isLoadingFetchNeeds;
 
   if (isLoading) {
     return <LoadingNeeds />;
   }
 
   const needsToDisplay = allNeeds.filter((need) => currentTheme && need.theme._id === currentTheme);
-  const dispositifsToDisplay = dispositifs.filter((disp) => currentNeed && disp.needs?.includes(currentNeed));
+  const dispositifsIds = dispositifs
+    .filter((disp) => currentNeed && disp.needs?.includes(currentNeed))
+    .map(d => d._id);
+  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(
+      dispositifsIds || [],
+      dispositifs
+    );
+
   return (
     <Container fluid>
-      <div>
+      <div className={styles.buttons}>
         <FButton
           type="dark"
           name="plus-circle-outline"
           onClick={addTheme}
+          className="mr-2"
         >
           Ajouter un thème
         </FButton>
@@ -139,7 +151,11 @@ export const Needs = () => {
             {dispositifsToDisplay.length > 0 ? (
               dispositifsToDisplay.map((disp, i) => (
                 <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
-                  <AdminDispositifButton dispositif={disp} onPress={() => {}} />
+                  <SmallDispositif
+                    dispositif={disp}
+                    onClick={() => setSelectedDispositifModal(disp._id)}
+                    bgColor={true}
+                  />
                 </div>
               ))
             ) : (
@@ -167,6 +183,11 @@ export const Needs = () => {
           setSelectedTheme(null);
           setShowThemeFormModal(!showThemeFormModal);
         }}
+      />
+      <NeedsChoiceModal
+        show={!!selectedDispositifModal}
+        toggleModal={() => setSelectedDispositifModal(null)}
+        dispositifId={selectedDispositifModal}
       />
     </Container>
   );

@@ -50,6 +50,7 @@ export const NeedsChoiceModal = (props: Props) => {
       if (dispositif.needs && dispositif.needs.length > 0) {
         setSelectedNeeds(dispositif.needs);
       }
+      setPrimaryTheme(dispositif.theme._id);
       setSelectedThemes(getThemes(dispositif));
     }
   }, [dispositif]);
