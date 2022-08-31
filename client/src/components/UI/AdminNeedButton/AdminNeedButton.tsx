@@ -1,4 +1,5 @@
 import { cls } from "lib/classname";
+import Image from "next/image";
 import React from "react";
 import { Need } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";
@@ -10,8 +11,9 @@ interface Props {
   onClickEdit?: () => void;
   selected: boolean;
   showCross?: boolean;
-  opened?: boolean
-  editButton?: boolean
+  opened?: boolean;
+  editButton?: boolean;
+  draggable?: boolean;
 }
 
 const AdminThemeButton = (props: Props) => (
@@ -20,14 +22,27 @@ const AdminThemeButton = (props: Props) => (
     className={cls(styles.btn)}
     style={{
       background: props.need.theme.colors.color30,
-      borderColor: props.need.theme.colors.color100,
-      borderWidth: props.selected || props.opened ? 1 : 0,
-      borderStyle: "solid",
-      margin: props.selected || props.opened ? 0 : 1,
+      borderColor: props.selected || props.opened ? props.need.theme.colors.color100 : "transparent",
       color: props.need.theme.colors.color100
     }}
   >
-    <span>{props.need.fr.text}</span>
+    <EVAIcon
+      name="menu"
+      size={20}
+      fill={props.need.theme.colors.color100}
+      className="mr-4"
+    />
+
+    {props.need.image?.secure_url &&
+      <div className="mr-4" >
+        <Image src={props.need.image?.secure_url} width={30} height={30} alt="" />
+      </div>
+    }
+
+    <div>
+      <div className={styles.text}>{props.need.fr.text}</div>
+      {props.need.fr.subtitle && <div className={styles.subtitle}>{props.need.fr.subtitle}</div>}
+    </div>
 
     <span className="ml-auto">
       {(props.selected || props.showCross) && (

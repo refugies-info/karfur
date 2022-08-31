@@ -14,6 +14,10 @@
     height: 730px;
     overflow: scroll;
   }
+
+  :global(.sortable-ghost) {
+    opacity: .4;
+  }
 }
 
 .subtitle {

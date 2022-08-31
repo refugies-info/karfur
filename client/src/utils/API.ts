@@ -324,6 +324,13 @@ const API = {
       headers,
     })
   },
+  orderNeeds: (query: ObjectId[]) =>{
+    const headers = getHeaders();
+    return instance.post("/needs/positions",
+      { orderedNeedIds: query },
+      { headers }
+    )
+  },
   deleteNeed: (query: ObjectId) =>{
     const headers = getHeaders();
     return instance.delete(`/needs/${query}`, { headers })

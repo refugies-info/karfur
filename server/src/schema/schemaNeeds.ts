@@ -66,6 +66,10 @@ var needsSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
+    position: {
+      type: Number,
+      required: false,
+    }
   },
   { timestamps: { createdAt: "created_at" } }
 );
@@ -89,6 +93,7 @@ export interface NeedDoc extends mongoose.Document {
   image?: Picture|null;
   adminComments?: string;
   nbVues?: number;
+  position?: number;
 
   createdAt: Moment;
   _id: ObjectId;

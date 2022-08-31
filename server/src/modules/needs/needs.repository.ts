@@ -19,3 +19,13 @@ export const deleteNeedById = async (needId: ObjectId) => {
   return Need.deleteOne({ _id: needId });
 }
 
+export const updatePositions = async (needIds: ObjectId[]) => {
+  return Promise.all(
+    needIds.map((needId, i) => Need.findOneAndUpdate(
+      { _id: needId },
+      { position: i },
+      { upsert: true, new: true }
+    ).populate<{ theme: ThemeDoc }>("theme"))
+  )
+}
+

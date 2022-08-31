@@ -45,7 +45,7 @@ export const getValidator = (type: "post" | "patch") => {
     [Segments.BODY]: Joi.object({
       fr: Joi.object({
         text: Joi.string(),
-        subtitle: Joi.string()
+        subtitle: Joi.string().allow("")
       }),
       theme: Joi.string(),
       image: Joi.object({

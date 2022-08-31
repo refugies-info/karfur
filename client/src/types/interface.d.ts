@@ -464,6 +464,7 @@ export interface Need {
   adminComments: string;
   image: Picture;
   nbVues?: number;
+  position?: number;
   created_at: Moment;
   updatedAt: Moment;
 }

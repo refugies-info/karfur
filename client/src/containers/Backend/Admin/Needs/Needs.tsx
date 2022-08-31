@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ObjectId } from "mongodb";
 import { Col, Row, Container } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { needsSelector } from "services/Needs/needs.selectors";
@@ -19,6 +19,12 @@ import { ThemeFormModal } from "./ThemeFormModal";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { SmallDispositif } from "../sharedComponents/SmallDispositif";
 import { getDispositifsWithAllInformationRequired } from "../AdminStructures/StructureDetailsModal/functions";
+import { ReactSortable } from "react-sortablejs";
+import { orderNeedsActionCreator } from "services/Needs/needs.actions";
+
+type ItemType = {
+  id: string;
+} & Need;
 
 export const Needs = () => {
   const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
@@ -33,6 +39,11 @@ export const Needs = () => {
   const [currentNeed, setCurrentNeed] = useState<ObjectId | null>(null);
 
   const [selectedDispositifModal, setSelectedDispositifModal] = useState<ObjectId | null>(null);
+
+  const [displayedNeeds, setDisplayedNeeds] = useState<ItemType[]>([]);
+  const [positionsToSave, setPositionsToSave] = useState(false);
+
+  const dispatch = useDispatch();
 
   const editNeed = (need: Need) => {
     setSelectedNeed(need);
@@ -56,11 +67,33 @@ export const Needs = () => {
 
   const isLoading = isLoadingFetchThemes || isLoadingFetchNeeds;
 
+  useEffect(() => {
+    const newNeeds = [...allNeeds
+      .filter((need) => currentTheme && need.theme._id === currentTheme)
+      .map(need => ({ id: need._id.toString(), ...need }))
+      .sort((a, b) => {
+        if (a.position !== undefined && b.position !== undefined) {
+          return a.position < b.position ? -1 : 1
+        }
+        return 0
+      })];
+    setDisplayedNeeds(newNeeds);
+  }, [currentTheme, allNeeds]);
+
+  const updatePositions = () => setPositionsToSave(true);
+
+  useEffect(() => {
+    if (positionsToSave) {
+      dispatch(orderNeedsActionCreator(displayedNeeds.map(n => n._id)))
+      setPositionsToSave(false)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayedNeeds])
+
   if (isLoading) {
     return <LoadingNeeds />;
   }
 
-  const needsToDisplay = allNeeds.filter((need) => currentTheme && need.theme._id === currentTheme);
   const dispositifsIds = dispositifs
     .filter((disp) => currentNeed && disp.needs?.includes(currentNeed))
     .map(d => d._id);
@@ -116,24 +149,32 @@ export const Needs = () => {
         <Col>
           <h3 className={styles.subtitle}>
             Besoins
-            {needsToDisplay.length > 0 && <span className={styles.badge}>{needsToDisplay.length}</span>}
+            {displayedNeeds.length > 0 && <span className={styles.badge}>{displayedNeeds.length}</span>}
           </h3>
           <div className={cls(styles.column, styles.scroll_column)}>
-            {needsToDisplay.length > 0 ? (
-              needsToDisplay.map((need, i) => (
-                <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
-                  <AdminNeedButton
-                    need={need}
-                    onPress={() => {
-                      setCurrentNeed(need._id);
-                    }}
-                    selected={false}
-                    editButton={true}
-                    opened={currentNeed === need._id}
-                    onClickEdit={() => editNeed(need)}
-                  />
-                </div>
-              ))
+            {displayedNeeds.length > 0 ? (
+              <>
+                <ReactSortable
+                  list={displayedNeeds}
+                  setList={setDisplayedNeeds}
+                  onUpdate={updatePositions}
+                >
+                  {displayedNeeds.map((need, i) => (
+                    <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
+                      <AdminNeedButton
+                        need={need}
+                        onPress={() => {
+                          setCurrentNeed(need._id);
+                        }}
+                        selected={false}
+                        editButton={true}
+                        opened={currentNeed === need._id}
+                        onClickEdit={() => editNeed(need)}
+                      />
+                    </div>
+                  ))}
+                </ReactSortable>
+              </>
             ) : (
               <p className={styles.empty}>
                 Sélectionne un thème

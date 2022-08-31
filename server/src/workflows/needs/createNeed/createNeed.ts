@@ -32,6 +32,7 @@ const createNeed = async (
       },
       image: need.image || null,
       theme: need.theme,
+      position: 0
     };
 
     await createNeedInDB(needDB);
