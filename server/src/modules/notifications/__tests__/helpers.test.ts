@@ -72,7 +72,7 @@ describe("notification helpers", () => {
       mainTheme: "trouver un travail"
     }
     const res1 = filterTargets(targets, req1, "fr");
-    expect(res1.map(r => r.uid)).toEqual(["1", "4", "6"]);
+    expect(res1.map(r => r.uid)).toEqual(["1", "6"]);
 
     const req2 = {
       age: { min: 18, max: 25 },

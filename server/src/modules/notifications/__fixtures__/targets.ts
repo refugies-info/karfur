@@ -84,5 +84,21 @@ export const targets = [
       }
     }
   },
+  {
+    uid: "7",
+    city: "Paris",
+    department: "Paris",
+    selectedLanguage: "fr",
+    age: null,
+    expoPushToken: "7",
+    notificationsSettings: {
+      global: false,
+      local: true,
+      demarches: false,
+      themes: {
+        "trouver un travail": true
+      }
+    }
+  },
 ]
 
