@@ -32,6 +32,7 @@ interface Props {
   errorIcon?: string;
   errorType?: string;
   name?: string
+  maxlength?: number
 }
 
 const FInput = (props: Props) => {
@@ -68,6 +69,7 @@ const FInput = (props: Props) => {
         autoComplete={props.autoComplete}
         disabled={props.disabled}
         name={props.name}
+        maxlength={props.maxlength || undefined}
         className={cls(
           props.inputClassName || "",
           !!props.prepend && styles.has_prepend,

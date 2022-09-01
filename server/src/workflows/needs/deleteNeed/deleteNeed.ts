@@ -6,7 +6,7 @@ import {
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { getActiveContents } from "src/modules/dispositif/dispositif.repository";
+import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({

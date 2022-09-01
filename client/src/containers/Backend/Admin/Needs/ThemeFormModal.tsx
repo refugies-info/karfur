@@ -184,6 +184,7 @@ export const ThemeFormModal = (props: Props) => {
               newSize={true}
               autoFocus={false}
               placeholder="Écrire ici..."
+              maxlength={25}
             />
           </div>
           <div>
@@ -195,6 +196,7 @@ export const ThemeFormModal = (props: Props) => {
               newSize={true}
               autoFocus={false}
               placeholder="Écrire ici..."
+              maxlength={100}
             />
           </div>
           <div>
@@ -254,6 +256,7 @@ export const ThemeFormModal = (props: Props) => {
               newSize={true}
               autoFocus={false}
               placeholder="Notes..."
+              maxlength={3000}
             />
           </div>
         </Col>

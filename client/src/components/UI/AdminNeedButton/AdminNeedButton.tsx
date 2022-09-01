@@ -26,12 +26,14 @@ const AdminThemeButton = (props: Props) => (
       color: props.need.theme.colors.color100
     }}
   >
-    <EVAIcon
-      name="menu"
-      size={20}
-      fill={props.need.theme.colors.color100}
-      className="mr-4"
-    />
+    {props.draggable &&
+      <EVAIcon
+        name="menu"
+        size={20}
+        fill={props.need.theme.colors.color100}
+        className="mr-4"
+      />
+    }
 
     {props.need.image?.secure_url &&
       <div className="mr-4" >

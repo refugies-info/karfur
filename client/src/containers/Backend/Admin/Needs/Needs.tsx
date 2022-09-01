@@ -21,6 +21,15 @@ import { SmallDispositif } from "../sharedComponents/SmallDispositif";
 import { getDispositifsWithAllInformationRequired } from "../AdminStructures/StructureDetailsModal/functions";
 import { ReactSortable } from "react-sortablejs";
 import { orderNeedsActionCreator } from "services/Needs/needs.actions";
+import isInBrowser from "lib/isInBrowser";
+
+let NotificationContainer: any = null;
+let NotificationManager: any = null;
+if (isInBrowser()) {
+  const ReactNotifications = require("react-notifications/dist/react-notifications.js");
+  NotificationContainer = ReactNotifications.NotificationContainer;
+  NotificationManager = ReactNotifications.NotificationManager;
+}
 
 type ItemType = {
   id: string;
@@ -84,8 +93,13 @@ export const Needs = () => {
 
   useEffect(() => {
     if (positionsToSave) {
-      dispatch(orderNeedsActionCreator(displayedNeeds.map(n => n._id)))
-      setPositionsToSave(false)
+      dispatch(orderNeedsActionCreator(displayedNeeds.map(n => n._id)));
+      setPositionsToSave(false);
+      NotificationManager.success(
+        "L'ordre des besoins a été enregistré",
+        "Enregistré !",
+        5000
+      );
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [displayedNeeds])
@@ -170,6 +184,7 @@ export const Needs = () => {
                         editButton={true}
                         opened={currentNeed === need._id}
                         onClickEdit={() => editNeed(need)}
+                        draggable={true}
                       />
                     </div>
                   ))}
@@ -230,6 +245,10 @@ export const Needs = () => {
         toggleModal={() => setSelectedDispositifModal(null)}
         dispositifId={selectedDispositifModal}
       />
+
+      {isInBrowser() && NotificationContainer !== null &&
+        <NotificationContainer />
+      }
     </Container>
   );
 };

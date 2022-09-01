@@ -1236,9 +1236,6 @@ const Dispositif = (props: Props) => {
 
   const isRTL = useRTL();
   const mainTheme = getMainTheme(dispositif);
-  const theme = mainTheme.short.fr.split(" ").join("-") || "";
-  //@ts-ignore
-  const bannerStyle = styles[theme];
   const possibleLanguages = createPossibleLanguagesObject(
     dispositif?.avancement,
     langues
@@ -1340,7 +1337,10 @@ const Dispositif = (props: Props) => {
           xs={props.type === "translation" ? "8" : "12"}
           className="main-col"
         >
-          <section className={styles.banniere + " " + bannerStyle}>
+          <section
+            className={styles.banniere}
+            style={{backgroundImage: `url(${mainTheme.banner.secure_url})`}}
+          >
             {!disableEdit && (
               // yellow banner in top of a demarche to create a variante
               // To see this component, create a new demarche then select an existing demarche
