@@ -81,7 +81,7 @@ describe("notification helpers", () => {
       mainTheme: "trouver un travail"
     }
     const res2 = filterTargets(targets, req2, "fr");
-    expect(res2.map(r => r.uid)).toEqual(["1", "6"]);
+    expect(res2.map(r => r.uid)).toEqual(["1"]);
   });
 
   it("should filterTargetsForDemarche", () => {

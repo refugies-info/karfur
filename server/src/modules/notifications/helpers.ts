@@ -103,7 +103,9 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const parsedAge = parseTargetAge(target.age);
 
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
-    const departmentsOk = departments.includes(target.department) || (
+    const departmentsOk = (
+      departments.includes(target.department) && notificationsSettings.local
+    ) || (
       departments.includes(ALL) && notificationsSettings.global
     );
 
