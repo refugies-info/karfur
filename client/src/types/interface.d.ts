@@ -92,6 +92,7 @@ export interface SimplifiedCreator {
   picture: Picture | undefined;
   _id: ObjectId;
   email: string | undefined;
+  roles?: string[]
 }
 
 export interface SimplifiedMainSponsor {
@@ -523,6 +524,13 @@ export interface Widget {
     _id: ObjectId;
     username: string;
   }
+  created_at: Moment;
+}
+
+export interface AdminOption {
+  _id: ObjectId;
+  key: string;
+  value: any;
   created_at: Moment;
 }
 

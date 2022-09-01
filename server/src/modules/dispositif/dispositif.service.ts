@@ -7,6 +7,7 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/misce
 import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
+import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
 
 export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId) => {
   const newDispositif = {
@@ -16,17 +17,11 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
   };
 
   // @ts-ignore : updateDispositifInDB returns object with creatorId not populate
-  const newDispo: DispositifNotPopulateDoc = await updateDispositifInDB(
-    dispositifId,
-    newDispositif
-  );
+  const newDispo: DispositifNotPopulateDoc = await updateDispositifInDB(dispositifId, newDispositif);
   try {
     await updateLanguagesAvancement();
   } catch (error) {
-    logger.error(
-      "[publishDispositif] error while updating languages avancement",
-      { error: error.message }
-    );
+    logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
 
   try {
@@ -43,17 +38,20 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
       false
     );
   } catch (error) {
-    logger.error(
-      "[publishDispositif] error while updating contenu in airtable",
-      { error: error.message }
-    );
+    logger.error("[publishDispositif] error while updating contenu in airtable", { error: error.message });
+  }
+
+  try {
+    await sendNotificationsForDispositif(dispositifId, "fr");
+  } catch (error) {
+    logger.error("[publishDispositif] error while sending notifications", error);
   }
 
   try {
     await sendMailWhenDispositifPublished(newDispo);
   } catch (error) {
     logger.error("[publishDispositif] error while sending email", {
-      error: error.message,
+      error: error.message
     });
   }
 };

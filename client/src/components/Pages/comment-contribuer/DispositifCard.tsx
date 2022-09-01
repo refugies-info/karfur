@@ -22,7 +22,7 @@ const TitleFramed = styled.div`
   color: #fbfbfb;
   background: #212121;
   padding: 4px 8px;
-  width: ${(props: {width: string}) => props.width};
+  width: ${(props: { width: string }) => props.width};
   margin-top: 4px;
 `;
 const DescriptionText = styled.div`
@@ -53,7 +53,12 @@ const DispositifCard = (props: Props) => {
       className={styles.container}
       onClick={() => {
         if (!props.user) {
-          return router.push(getPath("/login", router.locale));
+          return router.push({
+            pathname: getPath("/login", router.locale),
+            query: {
+              redirect: getPath("/dispositif", router.locale)
+            }
+          });
         }
         if (props.user.email !== "") {
           return router.push(getPath("/dispositif", router.locale));
@@ -61,20 +66,11 @@ const DispositifCard = (props: Props) => {
         return props.toggleModal("dispositif");
       }}
     >
-      <Image
-        src={assetsOnServer.commentContribuer.dispositif}
-        alt="dispositif"
-        width={200}
-        height={162}
-      />
+      <Image src={assetsOnServer.commentContribuer.dispositif} alt="dispositif" width={200} height={162} />
       <div className={styles.inner}>
         <div>
-          <TitleContainer>
-            {t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
-          </TitleContainer>
-          <TitleFramed width={"113px"}>
-            {t("CommentContribuer.Dispositif", "Dispositif")}
-          </TitleFramed>
+          <TitleContainer>{t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}</TitleContainer>
+          <TitleFramed width={"113px"}>{t("CommentContribuer.Dispositif", "Dispositif")}</TitleFramed>
           <DescriptionText>
             {t(
               "CommentContribuer.DispositifDescription",
@@ -84,12 +80,7 @@ const DispositifCard = (props: Props) => {
           </DescriptionText>
         </div>
         <TimeContainer>
-          <EVAIcon
-            name="clock-outline"
-            fill="#000000"
-            size={10}
-            className="mr-10"
-          />
+          <EVAIcon name="clock-outline" fill="#000000" size={10} className="mr-10" />
           {"~ 20 "}
           {t("CommentContribuer.minutes", "minutes")}
         </TimeContainer>

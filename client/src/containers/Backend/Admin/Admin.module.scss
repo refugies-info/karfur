@@ -50,8 +50,19 @@
   .sponsor_img {
     margin-right: 8px;
   }
+  &.wrap {
+    width: fit-content;
+  }
 }
 
+.tags {
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    margin-left: 8px;
+  }
+}
 .text {
   margin-bottom: 0;
   font-size: 12px;

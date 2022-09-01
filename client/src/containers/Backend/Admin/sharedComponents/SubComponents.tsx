@@ -79,10 +79,6 @@ const getStructureNameAndStatus = (
   if (!sponsor || !sponsor.nom)
     return { structureName: "Sans structure", statusColor: red };
 
-  // @ts-ignore
-  if (sponsor._id === "5e5fdb7b361338004e16e75f")
-    return { structureName: "Structure temporaire", statusColor: red };
-
   const structureName = limitNbCaracters(sponsor.nom, 80);
   const statusColor =
     sponsor.status === "Actif"

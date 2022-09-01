@@ -31,8 +31,8 @@ import useRTL from "hooks/useRTL";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 
 interface Props {
-  nbExperts: number
-  nbTraductors: number
+  nbExperts: number;
+  nbTraductors: number;
 }
 
 const CommentContribuer = (props: Props) => {
@@ -54,135 +54,107 @@ const CommentContribuer = (props: Props) => {
   const activeLangues = getActiveLangues();
   const isRTL = useRTL();
 
+  const translationLink = user?.user
+    ? {
+        pathname: "/backend/user-translation"
+      }
+    : {
+        pathname: "/login",
+        query: {
+          redirect: "/backend/user-translation"
+        }
+      };
+
   return (
     <div className={styles.container}>
       <SEO title="Comment contribuer ?" />
       <div className={styles.header}>
-        <h1>
-          {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
-        </h1>
+        <h1>{t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}</h1>
         <div className={styles.row}>
-          <div
-            className={styles.col}
-            style={isRTL ? { marginRight: 0 } : {}}
-          >
+          <div className={styles.col} style={isRTL ? { marginRight: 0 } : {}}>
             <a href="#ecrire-card">
-              <HeaderCard
-                title={t("CommentContribuer.écrire", "écrire")}
-                iconName="edit-outline"
-                eva={true}
-              />
+              <HeaderCard title={t("CommentContribuer.écrire", "écrire")} iconName="edit-outline" eva={true} />
             </a>
           </div>
           <div className={styles.col}>
             <a href="#traduire-card">
-              <HeaderCard
-                title={t("CommentContribuer.traduire", "traduire")}
-                iconName="edit-outline"
-              />
+              <HeaderCard title={t("CommentContribuer.traduire", "traduire")} iconName="edit-outline" />
             </a>
           </div>
           <a href="#corriger">
             <div className={styles.col}>
-              <HeaderCard
-                title={t("CommentContribuer.corriger", "corriger")}
-                iconName="done-all-outline"
-                eva={true}
-              />
+              <HeaderCard title={t("CommentContribuer.corriger", "corriger")} iconName="done-all-outline" eva={true} />
             </div>
           </a>
-          <div
-            className={styles.col}
-            style={!isRTL ? { marginRight: 0 } : {}}
-          >
+          <div className={styles.col} style={!isRTL ? { marginRight: 0 } : {}}>
             <a href="#deployer-card">
-              <HeaderCard
-                title={t("CommentContribuer.déployer", "déployer")}
-                iconName="icon_France"
-              />
+              <HeaderCard title={t("CommentContribuer.déployer", "déployer")} iconName="icon_France" />
             </a>
           </div>
         </div>
-        <div id="ecrire" style={{marginTop: 150}} />
+        <div id="ecrire" style={{ marginTop: 150 }} />
       </div>
       <div className={styles.redaction}>
         <span id="ecrire-card" className={styles.anchor}></span>
         {t("CommentContribuer.Redaction", "Rédiger de nouveaux contenus")}
         <div className={styles.redaction_cards}>
-          <DispositifCard
-            user={user.user}
-            toggleModal={toggleCompleteProfilModal}
-          />
+          <DispositifCard user={user.user} toggleModal={toggleCompleteProfilModal} />
 
-          <DemarcheCard
-            user={user.user}
-            toggleModal={toggleCompleteProfilModal}
-          />
+          <DemarcheCard user={user.user} toggleModal={toggleCompleteProfilModal} />
 
           <StructureCard />
           <LexiqueCard />
         </div>
-        <div id="traduire" style={{marginTop: 50}} />
+        <div id="traduire" style={{ marginTop: 50 }} />
       </div>
       <div
         className={styles.traduction}
         style={{
           paddingRight: isRTL ? 0 : 120,
-          paddingLeft: isRTL ? 120 : 0,
+          paddingLeft: isRTL ? 120 : 0
         }}
       >
         <span id="traduire-card" className={styles.anchor}></span>
         <div
           style={{
             marginLeft: isRTL ? 0 : 120,
-            marginRight: isRTL ? 120 : 0,
+            marginRight: isRTL ? 120 : 0
           }}
         >
           {t("CommentContribuer.Traduction", "Traduire pour rendre accessible")}
         </div>
         <div className={styles.row}>
-          <Image
-            src={assetsOnServer.commentContribuer.traduction}
-            alt="traduction"
-            width={590}
-            height={562}
-          />
+          <Image src={assetsOnServer.commentContribuer.traduction} alt="traduction" width={590} height={562} />
           <div className={styles.column}>
             <h2 className={styles.trad_header}>
-              {t(
-                "CommentContribuer.TraductionReseau",
-                "Vous parlez une autre langue ? Rejoignez un réseau de :"
-              )}
+              {t("CommentContribuer.TraductionReseau", "Vous parlez une autre langue ? Rejoignez un réseau de :")}
             </h2>
             <div className={styles.row}>
-              <Link href="/backend/user-translation" passHref>
+              <Link href={translationLink} passHref>
                 <NumberTraduction
                   amount={props.nbTraductors}
-                  text={t(
-                    "CommentContribuer.traducteurs actifs",
-                    "traducteurs actifs"
-                  )}
+                  text={t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}
                   isRTL={isRTL}
                 />
               </Link>
-              <Link href="/backend/user-translation" passHref>
+              <Link href={translationLink} passHref>
                 <NumberTraduction
                   amount={props.nbExperts}
-                  text={t(
-                    "CommentContribuer.experts en traduction",
-                    "experts en traduction"
-                  )}
+                  text={t("CommentContribuer.experts en traduction", "experts en traduction")}
                   isRTL={isRTL}
                 />
               </Link>
             </div>
+            {/* TODO : This should be a loop? */}
             <div className={styles.langues_cards}>
               <Langue
+                href={translationLink}
                 langue={activeLangues[0] || {}}
                 key={activeLangues[0] && activeLangues[0].i18nCode}
                 isRTL={isRTL}
               />
               <Langue
+                href={translationLink}
                 langue={activeLangues[1] || {}}
                 key={activeLangues[1] && activeLangues[1].i18nCode}
                 isRTL={isRTL}
@@ -190,11 +162,13 @@ const CommentContribuer = (props: Props) => {
             </div>
             <div className={styles.langues_cards}>
               <Langue
+                href={translationLink}
                 langue={activeLangues[2] || {}}
                 key={activeLangues[2] && activeLangues[2].i18nCode}
                 isRTL={isRTL}
               />
               <Langue
+                href={translationLink}
                 langue={activeLangues[3] || {}}
                 key={activeLangues[3] ? activeLangues[3].i18nCode : ""}
                 isRTL={isRTL}
@@ -202,11 +176,13 @@ const CommentContribuer = (props: Props) => {
             </div>
             <div className={styles.langues_cards}>
               <Langue
+                href={translationLink}
                 langue={activeLangues[4] || {}}
                 key={activeLangues[4] && activeLangues[4].i18nCode}
                 isRTL={isRTL}
               />
               <Langue
+                href={translationLink}
                 langue={activeLangues[5] || {}}
                 key={activeLangues[5] ? activeLangues[5].i18nCode : ""}
                 isRTL={isRTL}
@@ -214,6 +190,7 @@ const CommentContribuer = (props: Props) => {
             </div>
             <div className={styles.langues_cards}>
               <Langue
+                href={translationLink}
                 langue={activeLangues[6] || {}}
                 key={activeLangues[6] && activeLangues[6].i18nCode}
                 isRTL={isRTL}
@@ -226,10 +203,7 @@ const CommentContribuer = (props: Props) => {
         <span id="deployer-card" className={styles.anchor}></span>
         <br />
         <h2 className={styles.deployons_header}>
-          {t(
-            "CommentContribuer.Déployons ensemble",
-            "Déployons ensemble la plateforme sur votre territoire"
-          )}
+          {t("CommentContribuer.Déployons ensemble", "Déployons ensemble la plateforme sur votre territoire")}
         </h2>
         <div className={styles.section}>
           <div className={styles.text}>
@@ -292,43 +266,23 @@ const CommentContribuer = (props: Props) => {
         <div className={styles.rdv}>
           <div className={styles.inner}>
             <p>{t("CommentContribuer.Convaincu ?", "Convaincu ?")}</p>
-            <p>
-              {t(
-                "CommentContribuer.Prenons rendez-vous !",
-                "Prenons rendez-vous !"
-              )}
-            </p>
+            <p>{t("CommentContribuer.Prenons rendez-vous !", "Prenons rendez-vous !")}</p>
           </div>
           <div className={styles.contact}>
-            <Image
-              src={Nour}
-              alt="Photo Nour"
-              width={190}
-              height={190}
-            />
+            <Image src={Nour} alt="Photo Nour" width={190} height={190} />
             <div className={styles.infos}>
-              <p style={{ fontWeight: "bold" }}>
-                Nour Allazkani
-              </p>
-              <p>
-                {t("CommentContribuer.Ambassadeur", "Ambassadeur")}
-              </p>
+              <p style={{ fontWeight: "bold" }}>Nour Allazkani</p>
+              <p>{t("CommentContribuer.Ambassadeur", "Ambassadeur")}</p>
               <FButton
                 name="calendar-outline"
                 target="_blank"
                 href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info?month=2021-05"
                 type="validate"
               >
-                {t(
-                  "CommentContribuer.Prendre rendez-vous",
-                  "Prendre rendez-vous"
-                )}
+                {t("CommentContribuer.Prendre rendez-vous", "Prendre rendez-vous")}
               </FButton>
               <div className={styles.dispo}>
-                {t(
-                  "CommentContribuer.Selon vos disponibilités",
-                  "Selon vos disponibilités"
-                )}
+                {t("CommentContribuer.Selon vos disponibilités", "Selon vos disponibilités")}
               </div>
             </div>
           </div>
@@ -336,23 +290,12 @@ const CommentContribuer = (props: Props) => {
       </div>
       <div className={styles.correction}>
         <span id="corriger" className={styles.anchor}></span>
-        <h2>
-          {t(
-            "CommentContribuer.Corriger",
-            "Corriger et enrichir l'information"
-          )}
-        </h2>
+        <h2>{t("CommentContribuer.Corriger", "Corriger et enrichir l'information")}</h2>
         <div className={styles.inner}>
           <div className={styles.icon}>
-            <EVAIcon
-              name="message-circle-outline"
-              fill="#212121"
-              size="xlarge"
-            />
+            <EVAIcon name="message-circle-outline" fill="#212121" size="xlarge" />
           </div>
-          <div className={styles.title}>
-            {t("CommentContribuer.Commentaires ciblés", "Commentaires ciblés")}
-          </div>
+          <div className={styles.title}>{t("CommentContribuer.Commentaires ciblés", "Commentaires ciblés")}</div>
           <div className={styles.description}>
             {t(
               "CommentContribuer.Commentaires ciblés explications",
@@ -362,14 +305,8 @@ const CommentContribuer = (props: Props) => {
           <div className={styles.icon}>
             <EVAIcon name="edit-outline" fill="#828282" size="xlarge" />
           </div>
-          <div
-            className={styles.title}
-            style={{ color: "#828282" }}
-          >
-            {t(
-              "CommentContribuer.Suggestion",
-              "Suggestion de modification (prochainement)"
-            )}
+          <div className={styles.title} style={{ color: "#828282" }}>
+            {t("CommentContribuer.Suggestion", "Suggestion de modification (prochainement)")}
           </div>
           <div className={styles.description}>
             {t(
@@ -382,47 +319,32 @@ const CommentContribuer = (props: Props) => {
           style={{
             position: "absolute",
             top: 328,
-            right: (isRTL ? 992 : "inherit"),
-            left: (!isRTL ? 992 : "inherit"),
+            right: isRTL ? 992 : "inherit",
+            left: !isRTL ? 992 : "inherit"
           }}
         >
-          <Image
-            src={PapillonRose}
-            alt=""
-            width={410}
-            height={410}
-          />
+          <Image src={PapillonRose} alt="" width={410} height={410} />
         </div>
         <div
           style={{
             position: "absolute",
             top: 268,
-            right: (isRTL ? 676 : "inherit"),
-            left: (!isRTL ? 676 : "inherit"),
-            zIndex: 3,
+            right: isRTL ? 676 : "inherit",
+            left: !isRTL ? 676 : "inherit",
+            zIndex: 3
           }}
         >
-          <Image
-            src={gif}
-            alt="loading..."
-            width={600}
-            height={350}
-          />
+          <Image src={gif} alt="loading..." width={600} height={350} />
         </div>
         <div
           style={{
             position: "absolute",
             top: 0,
-            left: (!isRTL ? 556 : "inherit"),
-            right: (isRTL ? 556 : "inherit"),
+            left: !isRTL ? 556 : "inherit",
+            right: isRTL ? 556 : "inherit"
           }}
         >
-          <Image
-            src={PapillonViolet}
-            alt=""
-            width={485}
-            height={492}
-          />
+          <Image src={PapillonViolet} alt="" width={485} height={492} />
         </div>
       </div>
       <CompleteProfilModal
@@ -432,10 +354,10 @@ const CommentContribuer = (props: Props) => {
         type={typeModal}
       />
     </div>
-  )
+  );
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) => {
+export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
   store.dispatch(fetchLanguesActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
@@ -446,13 +368,13 @@ export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) =
     const usersStats = await API.getFiguresOnUsers();
     nbExperts = usersStats.data.data.nbExperts;
     nbTraductors = usersStats.data.data.nbTraductors;
-  } catch (e) { }
+  } catch (e) {}
 
   return {
     props: {
       nbExperts,
       nbTraductors,
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
     },
     revalidate: 60
   };
