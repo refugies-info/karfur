@@ -1,24 +1,23 @@
-import { ObjectId } from "mongodb";
-import React, { useState } from "react";
-import { Modal, Spinner } from "reactstrap";
-import styled from "styled-components";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Image from "next/image";
+import { Col, Input, Row } from "reactstrap";
+import { ObjectId } from "mongodb";
+import Swal from "sweetalert2";
+import { cls } from "lib/classname";
+import FButton from "components/UI/FButton/FButton";
 import { dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
-import { correspondingStatus } from "../data";
-import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
-import { getUsersToSendMail } from "./functions";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { StyledStatus } from "../../sharedComponents/SubComponents";
-import { SimplifiedCreator } from "types/interface";
-import marioProfile from "assets/mario-profile.jpg";
-import { colors } from "colors";
-import { Category } from "./Components";
-import FButton from "components/UI/FButton/FButton";
+import { Log } from "types/interface";
 import API from "utils/API";
-import Swal from "sweetalert2";
+import { LogList } from "../../Logs/LogList";
+import { DetailsModal } from "../../sharedComponents/DetailsModal";
+import { StyledStatus } from "../../sharedComponents/SubComponents";
+import { UserButton } from "../../sharedComponents/UserButton";
+import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
+import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
 
 interface Props {
@@ -27,87 +26,33 @@ interface Props {
   selectedDispositifId: ObjectId | null;
 }
 
-const Header = styled.div`
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 0px 0px 12px 0px;
-`;
-
-const Text = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  margin-right: 10px;
-`;
-
-const RowContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 12px 0px 12px 0px;
-`;
-
-const UserContainer = styled.div`
-  border-radius: 12px;
-  padding: 8px;
-  display: flex;
-  flex-direction: row;
-  width: fit-content;
-  align-items: center;
-`;
-
-const EmailText = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: ${(props: {hasEmail: boolean}) => (props.hasEmail ? colors.gray90 : colors.error)};
-  margin-left: 5px;
-`;
-
-const CategoriesContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
-const RecapContainer = styled.div`
-  background: ${colors.erreur};
-  width: 100%;
-  padding: 8px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  margin-top: 12px;
-`;
-
-const getFormattedStatus = (dispoStatus: string) => {
-  const corresStatus = correspondingStatus.filter(
-    (status) => status.storedStatus === dispoStatus
-  );
-  return corresStatus[0];
-};
-const getTitle = (
-  titreInformatif: string,
-  typeContenu: string,
-  titreMarque: string | undefined
-) => {
-  if (typeContenu === "dispositif") {
-    return titreInformatif + " avec " + titreMarque;
-  }
-  return titreInformatif;
-};
 
 export const ImprovementsMailModal = (props: Props) => {
+  const { selectedDispositifId } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [logs, setLogs] = useState<Log[]>([]);
+  const [message, setMessage] = useState<string>("");
 
-  const dispositif = useSelector(
-    dispositifSelector(props.selectedDispositifId)
-  );
+  const handleChange = (event: any) => {
+    setMessage(event.target.value);
+  };
+
+  const dispositif = useSelector(dispositifSelector(selectedDispositifId));
+
+  const updateLogs = useCallback(() => {
+    if (selectedDispositifId) {
+      API.logs(selectedDispositifId).then((res) => {
+        setLogs(res.data.data
+          // keep only improvement logs
+          .filter((log: Log) => log?.link?.next === "ModalImprovements")
+        );
+      });
+    }
+  }, [selectedDispositifId]);
+
+  useEffect(() => {
+    updateLogs();
+  }, [updateLogs]);
 
   const users = useSelector(activeUsersSelector);
   const structures = useSelector(allStructuresSelector);
@@ -126,28 +71,29 @@ export const ImprovementsMailModal = (props: Props) => {
 
   if (isLoading) {
     return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
+      <DetailsModal
+        show={props.show}
+        toggleModal={props.toggleModal}
+        isLoading={true}
+        leftHead={null}
+        rightHead={null}
       >
-        <Spinner />
-      </Modal>
+        <div></div>
+      </DetailsModal>
     );
   }
 
   if (!props.selectedDispositifId || !dispositif) {
     return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-        size="lg"
+      <DetailsModal
+        show={props.show}
+        toggleModal={props.toggleModal}
+        isLoading={false}
+        leftHead={null}
+        rightHead={null}
       >
-        <Header>Erreur</Header>
-      </Modal>
+        <div>Erreur</div>
+      </DetailsModal>
     );
   }
 
@@ -161,6 +107,8 @@ export const ImprovementsMailModal = (props: Props) => {
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
+  const formattedStatusStructure =
+    dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
 
   const title = getTitle(
     dispositif.titreInformatif,
@@ -172,11 +120,6 @@ export const ImprovementsMailModal = (props: Props) => {
     dispositif && dispositif.mainSponsor && dispositif.mainSponsor.nom
       ? dispositif.mainSponsor.nom
       : "";
-
-  const getUserImage = (user: SimplifiedCreator) =>
-    user.picture && user.picture.secure_url
-      ? user.picture.secure_url
-      : marioProfile;
 
   const dispositifCategories = [
     "C'est quoi ?",
@@ -213,6 +156,7 @@ export const ImprovementsMailModal = (props: Props) => {
       titreInformatif: dispositif.titreInformatif,
       titreMarque: dispositif.titreMarque,
       sections: selectedCategories,
+      message,
     };
 
     API.sendAdminImprovementsMail(data)
@@ -239,88 +183,145 @@ export const ImprovementsMailModal = (props: Props) => {
   const nbUsersWithEmail = usersToDisplay.filter((user) => user.email).length;
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggleModal}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-      size="lg"
+    <DetailsModal
+      show={props.show}
+      toggleModal={props.toggleModal}
+      isLoading={false}
+      leftHead={null}
+      rightHead={null}
     >
-      <Header>Demande d'informations complémentaires pour la fiche :</Header>
-      <RowContainer>
-        <Text>{title}</Text>
-        <StyledStatus
-          text={formattedStatus.displayedStatus}
-          textToDisplay={formattedStatus.displayedStatus}
-          color={formattedStatus.color}
-          disabled={true}
-          textColor={formattedStatus.textColor}
-        />
-      </RowContainer>
-      {["En attente admin", "Accepté structure"].includes(
-        dispositif.status
-      ) && <Title>{"Membres de la structure " + mainSponsorName}</Title>}
-      {dispositif.status === "En attente" && (
-        <Title>Créateur de la fiche</Title>
-      )}
-
-      {usersToDisplay.map((user, index) => {
-        const hasEmail = !!user.email;
-        const email = user.email || "pas d'email renseigné";
-        return (
-          <UserContainer key={index}>
-            <Image
-              className={styles.user_img}
-              src={getUserImage(user)}
-              alt=""
-              width={70}
-              height={40}
-              objectFit="contain"
+      <Row>
+        <Col lg="8">
+          <div className={cls(modalStyles.title, "mb-4")}>
+            <h2 className="ml-0">Demande d'informations complémentaires</h2>
+          </div>
+          <p className={cls(styles.infoline, styles.text)}>
+            <span className="mr-3">
+              Fiche : <strong>{title}</strong>
+            </span>
+            <StyledStatus
+              text={formattedStatus.displayedStatus}
+              textToDisplay={formattedStatus.displayedStatus}
+              color={formattedStatus.color}
+              disabled={true}
+              textColor={formattedStatus.textColor}
             />
-            {user.username + " - "}
-            <EmailText hasEmail={hasEmail}>{email}</EmailText>
-          </UserContainer>
-        );
-      })}
-      <Title>{"Sections à revoir (" + selectedCategories.length + ")"} </Title>
-      <CategoriesContainer>
-        {dispositifCategories.map((categorie, index) => (
-          <Category
-            categorieName={categorie}
-            onClick={() => onClickCategory(categorie)}
-            key={index}
-            isSelected={selectedCategories.includes(categorie)}
-          />
-        ))}
-      </CategoriesContainer>
-      <RecapContainer>
-        Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b> utilisateur(s)
-        avec <b>{selectedCategories.length}</b> section(s) à revoir.
-      </RecapContainer>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <FButton
-          className="mr-8"
-          type="white"
-          onClick={props.toggleModal}
-          name="close-outline"
-        >
-          Annuler
-        </FButton>
-        <FButton
-          type="validate"
-          name="checkmark-outline"
-          onClick={sendMail}
-          disabled={nbUsersWithEmail === 0 || selectedCategories.length === 0}
-        >
-          Envoyer
-        </FButton>
-      </div>
-    </Modal>
+          </p>
+
+          <p className={cls(styles.infoline, styles.text)}>
+            <span className="mr-3">
+              Structure : <strong>{mainSponsorName}</strong>
+            </span>
+            {formattedStatusStructure && (
+              <StyledStatus
+                text={formattedStatusStructure.displayedStatus}
+                textToDisplay={formattedStatusStructure.displayedStatus}
+                color={formattedStatusStructure.color}
+                disabled={true}
+                textColor={formattedStatusStructure.textColor}
+              />
+            )}
+          </p>
+
+          <p className={cls(styles.text, "mb-3")}>
+            La demande sera envoyée à :
+          </p>
+
+          {usersToDisplay.map((user, index) => (
+            <UserButton
+              key={index}
+              user={user}
+              tags={user.roles}
+              wrap={true}
+            />
+          ))}
+
+          <Row className="mt-6">
+            <Col lg="4">
+              <p className={cls(styles.text, "mb-3")}>
+                {"Sections à revoir (" + selectedCategories.length + ")"}{" "}
+              </p>
+              <div className={styles.categories}>
+                {dispositifCategories.map((category, index) => (
+                  <FButton
+                    className={styles.category}
+                    key={index}
+                    type={
+                      selectedCategories.includes(category) ? "dark" : "white"
+                    }
+                    onClick={() => onClickCategory(category)}
+                  >
+                    {category}
+                  </FButton>
+                ))}
+              </div>
+            </Col>
+            <Col lg="8">
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <p className={cls(styles.text, "mb-3")}>Ajouter un message</p>
+                <p className={cls(styles.text, "mb-3 text-muted")}>
+                  {message.length.toString()} sur 3000 caractères
+                </p>
+              </div>
+              <Input
+                type="textarea"
+                placeholder="Précisions sur les modifications attendues..."
+                rows={10}
+                maxLength={3000}
+                onChange={handleChange}
+                value={message}
+                id="message"
+                className={styles.input}
+              />
+            </Col>
+          </Row>
+
+          <div className={styles.recap}>
+            Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b>{" "}
+            utilisateur(s) avec <b>{selectedCategories.length}</b> section(s) à
+            revoir.
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "end",
+            }}
+          >
+            <FButton
+              className="mr-8"
+              type="white"
+              onClick={props.toggleModal}
+              name="close-outline"
+            >
+              Annuler
+            </FButton>
+            <FButton
+              type="validate"
+              name="checkmark-outline"
+              onClick={sendMail}
+              disabled={
+                nbUsersWithEmail === 0 || selectedCategories.length === 0
+              }
+            >
+              Envoyer
+            </FButton>
+          </div>
+        </Col>
+        <Col lg="4">
+          <div className={cls(modalStyles.title, "mb-4")}>
+            <h2>Emails envoyés</h2>
+          </div>
+          {logs.length > 0 && <LogList logs={logs} />}
+        </Col>
+      </Row>
+    </DetailsModal>
   );
 };

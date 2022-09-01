@@ -4,6 +4,7 @@ import { updateLanguagesAvancement } from "../../../modules/langues/langues.serv
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { publishDispositif } from "../dispositif.service";
 import { sendMailWhenDispositifPublished } from "../../mail/sendMailWhenDispositifPublished";
+import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
 
 jest.mock("../../../modules/langues/langues.service", () => ({
   updateLanguagesAvancement: jest.fn(),
@@ -19,6 +20,10 @@ jest.mock("../dispositif.repository", () => ({
 
 jest.mock("../../mail/sendMailWhenDispositifPublished", () => ({
   sendMailWhenDispositifPublished: jest.fn(),
+}));
+
+jest.mock("../../../modules/notifications/notifications.service", () => ({
+  sendNotificationsForDispositif: jest.fn(),
 }));
 
 describe("publish dispositif", () => {
@@ -98,6 +103,7 @@ describe("publish dispositif", () => {
       false
     );
     expect(sendMailWhenDispositifPublished).toHaveBeenCalledWith(dispositif);
+    expect(sendNotificationsForDispositif).toHaveBeenCalled();
   });
 
   it("should return a 200 when new status is actif and a demarche ", async () => {
@@ -116,5 +122,6 @@ describe("publish dispositif", () => {
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(addOrUpdateDispositifInContenusAirtable).toHaveBeenCalled();
     expect(sendMailWhenDispositifPublished).toHaveBeenCalled();
+    expect(sendNotificationsForDispositif).toHaveBeenCalled();
   });
 });

@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
 import { ObjectId } from "mongodb";
+import Swal from "sweetalert2";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
 import { Log } from "types/interface";
@@ -158,6 +159,24 @@ export const ContentDetailsModal = (props: Props) => {
     "Accepté structure",
   ];
 
+  const sendPushNotification = async () => {
+    const res = await Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "Vous allez envoyer une notification push à tous les utilisateurs de l'application mobile abonnés à ce thème.",
+
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, envoyer",
+      cancelButtonText: "Annuler",
+    });
+
+    if (!res.value || !dispositif) return;
+    await API.sendNotification(dispositif._id);
+    updateLogs();
+  }
+
 
   const members = (structure?.membres || [])
     .filter((m) => m.roles.includes("administrateur"))
@@ -185,6 +204,17 @@ export const ContentDetailsModal = (props: Props) => {
         }
         rightHead={
           <>
+            {dispositif.status === "Actif" &&
+              dispositif.typeContenu === "demarche" && (
+                <FButton
+                  className="mr-2"
+                  type="dark"
+                  name="alert-triangle-outline"
+                  onClick={sendPushNotification}
+                >
+                  Push
+                </FButton>
+              )}
             {["En attente admin", "En attente", "Accepté structure"].includes(
               dispositif.status
             ) &&

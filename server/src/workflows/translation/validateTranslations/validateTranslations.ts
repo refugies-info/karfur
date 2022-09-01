@@ -2,26 +2,21 @@ import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
-import {
-  validateTradInDB,
-  deleteTradsInDB,
-} from "../../../modules/traductions/traductions.repository";
+import { validateTradInDB, deleteTradsInDB } from "../../../modules/traductions/traductions.repository";
 import { insertInDispositif } from "../../../modules/dispositif/insertInDispositif";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import { getLanguageByCode } from "../../../modules/langues/langues.repository";
 import { getDispositifByIdWithAllFields } from "../../../modules/dispositif/dispositif.repository";
 import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
-import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdminOrExpert,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite, checkIfUserIsAdminOrExpert } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
 import { TraductionDoc } from "../../../schema/schemaTraduction";
 import ErrorDB from "../../../schema/schemaError";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
+import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
 
 interface Query {
   articleId: ObjectId;
@@ -30,10 +25,7 @@ interface Query {
   locale: string;
   _id: ObjectId;
 }
-export const validateTranslations = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+export const validateTranslations = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.body || !req.body.articleId || !req.body.translatedText) {
@@ -48,13 +40,13 @@ export const validateTranslations = async (
 
       if (!body.traductions.length) {
         logger.info("[validateTranslations] validate the trad", {
-          _id: body._id,
+          _id: body._id
         });
         await validateTradInDB(body._id, req.userId);
       } else {
         await asyncForEach(body.traductions, async (trad) => {
           logger.info("[validateTranslations] validate trad", {
-            _id: trad._id,
+            _id: trad._id
           });
           await validateTradInDB(trad._id, req.userId);
         });
@@ -63,18 +55,13 @@ export const validateTranslations = async (
       await deleteTradsInDB(body.articleId, body.locale);
 
       // @ts-ignore
-      const dispositifFromDB: DispositifNotPopulateDoc =
-        await getDispositifByIdWithAllFields(body.articleId);
+      const dispositifFromDB: DispositifNotPopulateDoc = await getDispositifByIdWithAllFields(body.articleId);
 
       // !IMPORTANT We insert the validated translation in the dispositif
-      const { insertedDispositif, traductorIdsList } = await insertInDispositif(
-        body,
-        body.locale,
-        dispositifFromDB
-      );
+      const { insertedDispositif, traductorIdsList } = await insertInDispositif(body, body.locale, dispositifFromDB);
 
       const language = await getLanguageByCode(body.locale);
-      await log(dispositifFromDB._id, req.userId, language._id)
+      await log(dispositifFromDB._id, req.userId, language._id);
 
       try {
         await addOrUpdateDispositifInContenusAirtable(
@@ -88,12 +75,15 @@ export const validateTranslations = async (
           false
         );
       } catch (error) {
-        logger.error(
-          "[validateTranslations] error while updating contenu in airtable",
-          {
-            error,
-          }
-        );
+        logger.error("[validateTranslations] error while updating contenu in airtable", {
+          error
+        });
+      }
+
+      try {
+        await sendNotificationsForDispositif(body.articleId, body.locale);
+      } catch (error) {
+        logger.error("[validateTranslations] error while sending notifications", error);
       }
 
       try {
@@ -101,7 +91,7 @@ export const validateTranslations = async (
         await updateLanguagesAvancement();
       } catch (error) {
         logger.error("[validateTranslations] error while updating avancement", {
-          error,
+          error
         });
       }
 
@@ -109,20 +99,16 @@ export const validateTranslations = async (
         try {
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
-          logger.error(
-            "[validateTranslations] error while sending mails to structure members",
-            {
-              error: error.message,
-            }
-          );
+          logger.error("[validateTranslations] error while sending mails to structure members", {
+            error: error.message
+          });
         }
       }
 
       try {
         // we do not want to send a mail to the expert
         const traductorNotExpertIdsList = traductorIdsList.filter(
-          (tradId: string) =>
-            tradId && tradId.toString() !== req.userId.toString()
+          (tradId: string) => tradId && tradId.toString() !== req.userId.toString()
         );
         await sendPublishedTradMailToTraductors(
           traductorNotExpertIdsList,
@@ -133,29 +119,23 @@ export const validateTranslations = async (
           dispositifFromDB._id
         );
       } catch (error) {
-        logger.error(
-          "[validateTranslations] error while sending mails to traductors",
-          {
-            error: error.message,
-          }
-        );
+        logger.error("[validateTranslations] error while sending mails to traductors", {
+          error: error.message
+        });
       }
 
       return res.status(200).json({
-        text: "Succès",
+        text: "Succès"
       });
     } catch (err) {
-      logger.error(
-        "[validateTranslations] error in validating, saving error to db",
-        { error: err.message }
-      );
+      logger.error("[validateTranslations] error in validating, saving error to db", { error: err.message });
       new ErrorDB({
         name: "validateTradModifications",
         userId: req.userId,
         dataObject: {
-          body: req.body,
+          body: req.body
         },
-        error: err,
+        error: err
       }).save();
 
       throw err;
