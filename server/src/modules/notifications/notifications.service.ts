@@ -171,7 +171,7 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
         return;
       }
 
-      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements);
+      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements, demarche.avancement);
 
       logger.info(`[sendNotificationsForDemarche] demarche ${demarcheId} - ${targetUsers.length} users found`);
 

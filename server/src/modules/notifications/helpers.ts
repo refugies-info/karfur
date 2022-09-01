@@ -116,7 +116,7 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
   });
 };
 
-export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements) => {
+export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements, avancement: any) => {
   return targets.filter((target) => {
     const { age, mainTheme } = requirements;
     const { notificationsSettings } = target;
@@ -127,7 +127,9 @@ export const filterTargetsForDemarche = (targets: AppUserType[], requirements: R
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
 
-    return ageOk && themeOk && typeOk && target.expoPushToken;
+    const langOk = target.selectedLanguage === "fr" || avancement[target.selectedLanguage] === 1;
+
+    return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
