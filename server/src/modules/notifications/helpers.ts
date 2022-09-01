@@ -96,23 +96,29 @@ export const parseDispositif = (dispositif: IDispositif): Requirements => {
   };
 };
 
-export const filterTargets = (targets: AppUserType[], requirements: Requirements) => {
+export const filterTargets = (targets: AppUserType[], requirements: Requirements, lang: string) => {
   return targets.filter((target) => {
     const { age, departments, type, mainTheme } = requirements;
     const { notificationsSettings } = target;
     const parsedAge = parseTargetAge(target.age);
 
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
-    const departmentsOk = departments.includes(target.department) || departments.includes(ALL);
+    const departmentsOk = (
+      departments.includes(target.department) && notificationsSettings.local
+    ) || (
+      departments.includes(ALL) && notificationsSettings.global
+    );
 
     const typeOk = type === "dispositif" ? true : notificationsSettings?.demarches;
     const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
 
-    return ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
+    const langOk = target.selectedLanguage === lang;
+
+    return langOk && ageOk && departmentsOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
-export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements) => {
+export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements, avancement: any) => {
   return targets.filter((target) => {
     const { age, mainTheme } = requirements;
     const { notificationsSettings } = target;
@@ -123,7 +129,9 @@ export const filterTargetsForDemarche = (targets: AppUserType[], requirements: R
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainTheme || notificationsSettings?.themes?.[mainTheme];
 
-    return ageOk && themeOk && typeOk && target.expoPushToken;
+    const langOk = target.selectedLanguage === "fr" || avancement[target.selectedLanguage] === 1;
+
+    return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
@@ -149,7 +157,7 @@ export const getNotificationEmoji = (dispositif: IDispositif) => {
       case "me déplacer":
         return "🚗";
       case "me soigner":
-        return "🩺";
+        return "👨‍⚕️";
       case "aider une association":
         return "🤝";
       case "rencontrer des gens":
