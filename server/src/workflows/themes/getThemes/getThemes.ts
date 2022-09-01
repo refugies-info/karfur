@@ -1,6 +1,8 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
+import { isThemeActive } from "../../../modules/themes/themes.service";
+import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 export interface Request {
 }
@@ -13,9 +15,11 @@ const handler = async (
     logger.info("[getThemes] received");
 
     const themes = await getAllThemes();
+    const activeLanguages = await getActiveLanguagesFromDB();
+
     return res.status(200).json({
       text: "Succès",
-      data: themes,
+      data: themes.map(t => ({...t.toObject(), active: isThemeActive(t, activeLanguages)})),
     });
   } catch (error) {
     logger.error("[getThemes] error", { error: error.message });

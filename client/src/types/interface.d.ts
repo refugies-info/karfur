@@ -51,6 +51,7 @@ export interface Theme {
   shareImage: Picture;
   notificationEmoji: string;
   adminComments: string;
+  active: boolean;
   created_at?: Moment;
 }
 

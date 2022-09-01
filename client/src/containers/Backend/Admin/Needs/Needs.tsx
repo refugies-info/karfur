@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { needsSelector } from "services/Needs/needs.selectors";
-import { themesSelector } from "services/Themes/themes.selectors";
+import { allThemesSelector } from "services/Themes/themes.selectors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
@@ -41,7 +41,7 @@ export const Needs = () => {
   const [selectedTheme, setSelectedTheme] = useState<null | Theme>(null);
   const [showThemeFormModal, setShowThemeFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(themesSelector).sort((a, b) => a.position < b.position ? -1 : 1);
+  const themes = useSelector(allThemesSelector).sort((a, b) => a.position < b.position ? -1 : 1);
   const dispositifs = useSelector(allDispositifsSelector);
 
   const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);

@@ -23,7 +23,8 @@ const AdminThemeButton = (props: Props) => (
     className={cls(styles.btn)}
     style={{
       background: `linear-gradient(90deg, ${props.theme.colors.color80} 25%, ${props.theme.colors.color100} 100%)`,
-      boxShadow: props.opened ? `0 0 4px 3px ${props.theme.colors.color30}, inset white 0 0 0 1px` : "none"
+      boxShadow: props.opened ? `0 0 4px 3px ${props.theme.colors.color30}, inset white 0 0 0 1px` : "none",
+      opacity: props.theme.active ? 1 : 0.4
     }}
   >
     <Image src={props.theme.appImage.secure_url} width={30} height={30} alt="" />

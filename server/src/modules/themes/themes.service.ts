@@ -1,5 +1,32 @@
 
 import { celebrate, Joi, Segments } from "celebrate";
+import { LangueDoc } from "../../schema/schemaLangue";
+import { ThemeDoc } from "../../schema/schemaTheme";
+
+export const isThemeActive = (theme: ThemeDoc, activeLanguages: LangueDoc[]) => {
+  // titles
+  for (const ln of activeLanguages) {
+    if (!theme.name[ln.i18nCode] || !theme.short[ln.i18nCode]) return false
+  }
+
+  if (
+    // colors
+    !theme.colors.color100 ||
+    !theme.colors.color80 ||
+    !theme.colors.color60 ||
+    !theme.colors.color40 ||
+    !theme.colors.color30 ||
+
+    // images
+    !theme.icon.secure_url ||
+    !theme.banner.secure_url ||
+    !theme.appImage.secure_url ||
+    !theme.shareImage.secure_url ||
+
+    !theme.notificationEmoji
+  ) return false;
+  return true;
+}
 
 /**
  * Request validator
