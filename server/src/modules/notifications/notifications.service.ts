@@ -157,7 +157,8 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
         titreInformatif: 1,
         contenu: 1,
         tags: 1,
-        notificationsSent: 1
+        notificationsSent: 1,
+        avancement: 1
       });
 
       if (!demarche || demarche.typeContenu !== "demarche") { // not a demarche: error
