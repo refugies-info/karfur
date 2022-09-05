@@ -1,5 +1,5 @@
 import Dispositif from "components/Frontend/Dispositif/Dispositif"
-import { defaultStaticProps } from "lib/getDefaultStaticProps";
+import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 
 interface Props {
   history: string[]
@@ -7,6 +7,6 @@ interface Props {
 
 const DispositifPage = (props: Props) => <Dispositif type="create" typeContenu="dispositif" history={props.history} />
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = defaultStaticPropsWithThemes;
 
 export default DispositifPage;

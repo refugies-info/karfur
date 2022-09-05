@@ -17,3 +17,5 @@ export const getNeeds = async (req: {}, res: Res) => {
     });
   }
 };
+
+export default [getNeeds];

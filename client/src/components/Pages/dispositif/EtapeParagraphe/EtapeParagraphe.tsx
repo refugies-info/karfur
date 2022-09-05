@@ -26,7 +26,7 @@ import { colors } from "colors";
 import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import styles from "./EtapeParagraphe.module.scss";
-import { DispositifContent, Tag} from "types/interface";
+import { DispositifContent, Theme} from "types/interface";
 import { demarcheSteps, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
@@ -111,7 +111,7 @@ interface Props {
   addItem: (key: any, type?: string, subkey?: string | number | null) => void;
   toggleModal: (show: boolean, name: string) => void
   removeItem: any;
-  mainTag: Tag;
+  theme: Theme;
   typeContenu: "dispositif" | "demarche";
   uiArray: UiElement[];
   disableEdit: boolean;
@@ -297,8 +297,8 @@ const EtapeParagraphe = (props: Props) => {
   }
 
   const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(keyValue, subkey, "accordion");
-  const darkColor = props.mainTag?.darkColor || colors.gray90;
-  const lightColor = props.mainTag?.lightColor || colors.gray20;
+  const darkColor = props.theme?.colors.color100 || colors.gray90;
+  const lightColor = props.theme?.colors.color30 || colors.gray20;
   const isRTL = useRTL();
 
   return (

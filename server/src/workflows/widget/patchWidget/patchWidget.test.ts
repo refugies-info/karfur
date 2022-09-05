@@ -74,7 +74,7 @@ describe("patchWidget", () => {
       userId: "userId",
       body: {
         typeContenu: ["dispositifs"],
-        tags: ["administratif"],
+        themes: [{_id: "xyz"}],
         languages: [],
         location: {
           city: "",
@@ -86,7 +86,7 @@ describe("patchWidget", () => {
     expect(updateWidget).toHaveBeenCalledWith("widgetId", {
       author: "userId",
       typeContenu: ["dispositifs"],
-      tags: ["administratif"],
+      themes: ["xyz"],
       languages: [],
       location: {
         city: "",

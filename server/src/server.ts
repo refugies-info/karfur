@@ -89,6 +89,7 @@ const logController = require(__dirname + "/controllers/logController");
 const appuserController = require(__dirname + "/controllers/appusersController");
 const notificationsController = require(__dirname + "/controllers/notificationsController");
 const adminOptionController = require(__dirname + "/controllers/adminOptionController");
+const themeController = require(__dirname + "/controllers/themeController");
 
 app.enable("strict routing");
 app.use("/user", userController);
@@ -110,6 +111,7 @@ app.use("/widgets", widgetController);
 app.use("/appuser", appuserController);
 app.use("/notifications", notificationsController);
 app.use("/options", adminOptionController);
+app.use("/themes", themeController);
 
 app.use(errors()); // Joi middleware for validation errors
 

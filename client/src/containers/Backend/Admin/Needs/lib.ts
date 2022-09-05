@@ -1,27 +1,8 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { tags } from "data/tags";
 import { ObjectId } from "mongodb";
-import { SimplifiedDispositif } from "types/interface";
-
-export const getTagColor = (tagName: string) => {
-  const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
-
-  if (data && data.length > 0) {
-    return data[0].darkColor;
-  }
-  return "#212121";
-};
-
-export const getTag = (tagName: string) => {
-  const data = tags.filter((tag) => tag.name === tagName.toLowerCase());
-
-  if (data && data.length > 0) {
-    return data[0];
-  }
-  return null;
-};
+import { Language, SimplifiedDispositif } from "types/interface";
 
 // TODO: move function
 export const prepareDeleteContrib = (
@@ -71,3 +52,8 @@ export const prepareDeleteContrib = (
     return;
   });
 };
+
+export const isThemeTitleOk = (title: Record<string, string>, languages: Language[]) => {
+  const emptyLn = languages.filter(ln => !title[ln.i18nCode]);
+  return emptyLn.length > 0;
+}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import Streamline from "assets/streamline";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
@@ -11,7 +10,9 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
-import { Tag, User } from "types/interface";
+import { Theme, User } from "types/interface";
+import { ObjectId } from "mongodb";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const Step = ({ ...props }) => {
   return (
@@ -49,64 +50,65 @@ const StyledSub = (props: SubProps) => {
 
 interface Props {
   show: boolean;
-  toggle: any;
-  tags: Tag[];
-  validate: any;
-  categories: Tag[];
+  toggle: () => void;
+  theme: Theme | undefined;
+  secondaryThemes: Theme[];
+  validate: (theme: Theme|null, secondaryThemes: Theme[]) => void;
+  allThemes: Theme[];
   toggleTutorielModal: any;
   user: User | null;
   dispositifId: string;
 }
 
 const DispositifValidateModal = (props: Props) => {
-  const [tag1, setTag1] = useState<Tag|null>(null);
-  const [tag2, setTag2] = useState<Tag|null>(null);
-  const [tag3, setTag3] = useState<Tag|null>(null);
-  const [noTag, setNoTag] = useState(false);
+  const [theme1, setTheme1] = useState<Theme|null>(null);
+  const [theme2, setTheme2] = useState<Theme|null>(null);
+  const [theme3, setTheme3] = useState<Theme|null>(null);
+  const [noTheme, setNoTheme] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    if (props.tags.length > 0) {
-      if (props.tags[0]) setTag1(props.tags[0]);
-      if (props.tags[1]) setTag2(props.tags[1]);
-      if (props.tags[2]) setTag3(props.tags[2]);
-      if (!props.tags[1] && !props.tags[2]) setNoTag(true);
+    if (props.theme) setTheme1(props.theme);
+    if (props.secondaryThemes.length > 0) {
+      if (props.secondaryThemes[0]) setTheme2(props.secondaryThemes[0]);
+      if (props.secondaryThemes[1]) setTheme3(props.secondaryThemes[1]);
+      if (!props.secondaryThemes[0] && !props.secondaryThemes[1]) setNoTheme(true);
     }
     return () => {
-      setTag1(null);
-      setTag2(null);
-      setTag3(null);
-      setNoTag(false);
+      setTheme1(null);
+      setTheme2(null);
+      setTheme3(null);
+      setNoTheme(false);
     }
-  }, [props.tags]);
+  }, [props.theme, props.secondaryThemes]);
 
-  const selectTag1 = (subi: any) => {
-    if (tag1 && tag1.short === subi.short) {
-      setTag1(null);
+  const selectTheme1 = (theme: Theme) => {
+    if (theme1 && theme1._id === theme._id) {
+      setTheme1(null);
     } else {
-      setTag1(subi);
+      setTheme1(theme);
     }
 
-    if (tag2 && subi.short === tag2.short) setTag2(null);
-    if (tag3 && subi.short === tag3.short) setTag3(null);
+    if (theme2 && theme._id === theme2._id) setTheme2(null);
+    if (theme3 && theme._id === theme3._id) setTheme3(null);
     //props.selectParam(props.keyValue, subi);
     //this.toggle();
   };
 
-  const selectTag2 = (subi: any) => {
-    if (tag2 && subi.short === tag2.short) {
-      setTag2(null);
-    } else if (tag3 && subi.short === tag3.short) {
-      setTag3(null);
-    } else if ((tag2 && tag3) || (tag2 && !tag3)) {
-      setTag3(subi);
-      setNoTag(false);
-    } else if (!tag2 && !tag3) {
-      setTag2(subi);
-      setNoTag(false);
-    } else if (!tag2 && tag3) {
-      setTag2(subi);
-      setNoTag(false);
+  const selectTheme2 = (theme: Theme) => {
+    if (theme2 && theme._id === theme2._id) {
+      setTheme2(null);
+    } else if (theme3 && theme._id === theme3._id) {
+      setTheme3(null);
+    } else if ((theme2 && theme3) || (theme2 && !theme3)) {
+      setTheme3(theme);
+      setNoTheme(false);
+    } else if (!theme2 && !theme3) {
+      setTheme2(theme);
+      setNoTheme(false);
+    } else if (!theme2 && theme3) {
+      setTheme2(theme);
+      setNoTheme(false);
     }
     //this.props.selectParam(this.props.keyValue, subi);
     //this.toggle();
@@ -114,21 +116,29 @@ const DispositifValidateModal = (props: Props) => {
 
   const handleCheckboxChange = (e: any) => {
     e.stopPropagation();
-    setNoTag(!noTag);
-    setTag2(null);
-    setTag3(null);
+    setNoTheme(!noTheme);
+    setTheme2(null);
+    setTheme3(null);
   };
 
   const validateAndClose = () => {
-    props.validate([tag1, tag2, tag3]);
+    const secondaryThemes = [];
+    if (theme2) secondaryThemes.push(theme2);
+    if (theme3) secondaryThemes.push(theme3);
+    props.validate(theme1, secondaryThemes);
     props.toggle();
   };
 
   const validateThemes = () => {
+    const secondaryThemes: ObjectId[] = [];
+    if (theme2) secondaryThemes.push(theme2._id);
+    if (theme3) secondaryThemes.push(theme3._id);
+
     API.updateDispositifTagsOrNeeds({
       query: {
         dispositifId: props.dispositifId,
-        tags: [tag1, tag2, tag3],
+        ...(theme1 ? {theme: theme1._id} : {}),
+        secondaryThemes,
       },
     });
     validateAndClose();
@@ -169,41 +179,38 @@ const DispositifValidateModal = (props: Props) => {
             "Ce thème catégorise votre fiche pour le moteur de recherche"
           }
           step={"1"}
-          done={tag1 ? true : false}
+          done={theme1 ? true : false}
         />
-        {props.categories.map((subi, idx) => {
+        {props.allThemes.map((theme, idx) => {
           return (
             <FSearchBtn
               key={idx}
-              onClick={() => selectTag1(subi)}
+              onClick={() => selectTheme1(theme)}
               className={
-                !tag1
+                !theme1
                   ? "d-inline-block mr-10 mt-10"
-                  : tag1.short === subi.short
+                  : theme1._id === theme._id
                   ? "d-inline-block mr-10 mt-10"
                   : "d-inline-block mr-10 mt-10 bg-dark-gris"
               }
               color={
-                tag1 && tag1.short === subi.short
-                  ? (subi.short || "").replace(/ /g, "-")
+                theme1 && theme1._id === theme._id
+                  ? (theme.short.fr || "").replace(/ /g, "-")
                   : "dark-gris"
               }
               withMargins
               smallFont
             >
               <span className={styles.inner_btn}>
-                {subi.icon ? (
+                {theme.icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={subi.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={theme}
                     />
                   </div>
                 ) : null}
-                {subi.short}
-                {tag1 && tag1.short === subi.short ? (
+                {theme.short.fr}
+                {theme1 && theme1._id === theme._id ? (
                   <EVAIcon
                     onClick={() => {}}
                     name="close-outline"
@@ -221,32 +228,32 @@ const DispositifValidateModal = (props: Props) => {
             "Ces thèmes secondaires permettent de compléter le référencement"
           }
           step={"2"}
-          done={tag2 || tag3 || noTag ? true : false}
+          done={theme2 || theme3 || noTheme ? true : false}
         />
-        {props.categories.map((subi, idx) => {
+        {props.allThemes.map((theme, idx) => {
           return (
             <FSearchBtn
               key={idx}
               onClick={() =>
-                tag1 && subi.short === tag1.short ? null : selectTag2(subi)
+                theme1 && theme._id === theme1._id ? null : selectTheme2(theme)
               }
               color={
-                tag1 && subi.short === tag1.short
+                theme1 && theme._id === theme1._id
                   ? "dark-gris"
-                  : (tag2 && tag2.short === subi.short) ||
-                    (tag3 && tag3.short === subi.short) ||
-                    (!tag2 && tag3) ||
-                    (tag2 && !tag3) ||
-                    (!tag2 && !tag3 && !noTag)
-                  ? (subi.short || "").replace(/ /g, "-")
+                  : (theme2 && theme2._id === theme._id) ||
+                    (theme3 && theme3._id === theme._id) ||
+                    (!theme2 && theme3) ||
+                    (theme2 && !theme3) ||
+                    (!theme2 && !theme3 && !noTheme)
+                  ? (theme.short.fr || "").replace(/ /g, "-")
                   : "dark-gris"
               }
               lighter={
-                tag1 && subi.short === tag1.short
+                theme1 && theme._id === theme1._id
                   ? false
-                  : (!noTag && !tag3 && !tag2) ||
-                    (!tag3 && tag2 && tag2.short !== subi.short) ||
-                    (tag3 && !tag2 && tag3.short !== subi.short)
+                  : (!noTheme && !theme3 && !theme2) ||
+                    (!theme3 && theme2 && theme2._id !== theme._id) ||
+                    (theme3 && !theme2 && theme3._id !== theme._id)
                   ? true
                   : false
               }
@@ -255,19 +262,16 @@ const DispositifValidateModal = (props: Props) => {
               smallFont
             >
               <span className={styles.inner_btn}>
-                {subi.icon ? (
+                {theme.icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={subi.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={theme}
                     />
                   </div>
                 ) : null}
-                {subi.short}
-                {(tag2 && tag2.short === subi.short) ||
-                (tag3 && tag3.short === subi.short) ? (
+                {theme.short.fr}
+                {(theme2 && theme2._id === theme._id) ||
+                (theme3 && theme3._id === theme._id) ? (
                   <EVAIcon
                     onClick={() => {}}
                     name="close-outline"
@@ -279,12 +283,12 @@ const DispositifValidateModal = (props: Props) => {
             </FSearchBtn>
           );
         })}
-        <div className={cls(styles.no_tag, noTag && styles.enabled)}>
+        <div className={cls(styles.no_tag, noTheme && styles.enabled)}>
           <label className={checkStyles.checkbox}>
             <input
               onChange={handleCheckboxChange}
               type="checkbox"
-              checked={noTag}
+              checked={noTheme}
             />
             <span className={cls(checkStyles.checkmark, styles.checkmark)}></span>
             <p className={styles.label}>
@@ -300,7 +304,7 @@ const DispositifValidateModal = (props: Props) => {
               className="footer-btn"
               type="dark"
               name="shield-outline"
-              disabled={!tag1 || (tag1 && !tag2 && !tag3 && !noTag)}
+              disabled={!theme1 || (theme1 && !theme2 && !theme3 && !noTheme)}
               fill={colors.gray90}
               onClick={validateThemes}
             >
@@ -346,7 +350,7 @@ const DispositifValidateModal = (props: Props) => {
             name="checkmark"
             type="validate"
             onClick={validateAndClose}
-            disabled={!tag1 || (tag1 && !tag2 && !tag3 && !noTag)}
+            disabled={!theme1 || (theme1 && !theme2 && !theme3 && !noTheme)}
           >
             Valider
           </FButton>

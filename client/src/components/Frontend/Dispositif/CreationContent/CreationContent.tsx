@@ -11,7 +11,6 @@ import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
-import { Tag } from "types/interface";
 import styles from "./CreationContent.module.scss";
 import parentStyles from "../Sponsors/Sponsors.module.scss";
 
@@ -22,7 +21,6 @@ interface Props {
   phone_contact: string
   mail_contact: string
   setStructureContactAsMe: () => void
-  mainTag: Tag
   phoneError: boolean
 }
 

@@ -6,12 +6,17 @@ import { Dispositif } from "../AdminStructures/StructureDetailsModal/functions";
 interface Props {
   dispositif: Dispositif;
   onClick: () => void;
+  bgColor?: boolean;
 }
 
 export const SmallDispositif = (props: Props) => {
   const { dispositif, onClick } = props;
   return (
-    <div className={styles.container} onClick={onClick}>
+    <div
+      className={styles.container}
+      onClick={onClick}
+      style={props.bgColor ? { background: dispositif.color30 } : {}}
+    >
       <div className={styles.title} style={{color: dispositif.color}}>
         {dispositif.titreInformatif}
       </div>

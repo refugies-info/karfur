@@ -528,7 +528,7 @@ export const AdminUsers = () => {
       {showNeedsChoiceModal && (
         <NeedsChoiceModal
           show={showNeedsChoiceModal}
-          toggle={toggleNeedsChoiceModal}
+          toggleModal={toggleNeedsChoiceModal}
           dispositifId={selectedContentId}
         />
       )}

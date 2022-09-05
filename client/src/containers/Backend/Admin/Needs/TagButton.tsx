@@ -1,16 +1,13 @@
 import React from "react";
-import Streamline from "assets/streamline";
-import { iconName } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./TagButton.module.scss";
 import { cls } from "lib/classname";
+import { jsUcfirst } from "lib";
 
 // TODO: replace by FilterButton or FButton
-
 interface Props {
-  name: string;
-  icon?: iconName;
+  theme: Theme;
   isSelected: boolean;
-  color: string;
   onClick?: () => void;
 }
 
@@ -29,19 +26,9 @@ export const TagButton = (props: Props) => {
         !!props.isSelected && styles.selected,
         !!props.onClick && styles.clickable
       )}
-      style={{ backgroundColor: props.color }}
+      style={{ backgroundColor: props.theme.colors.color100 }}
     >
-      {props.icon ? (
-        <div className={styles.inner}>
-          <Streamline
-            name={props.icon}
-            stroke={"white"}
-            width={22}
-            height={22}
-          />
-        </div>
-      ) : null}
-      <div>{props.name}</div>
+      <div>{jsUcfirst(props.theme.short.fr)}</div>
     </button>
   );
 };

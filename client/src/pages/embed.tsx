@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { tags } from "data/tags";
 import { decodeQuery, queryDispositifs } from "lib/filterContents";
 import {
   fetchLanguesActionCreator,
@@ -22,6 +21,8 @@ import styles from "scss/pages/advanced-search.module.scss";
 import { ThemeResults } from "components/Pages/advanced-search/SearchResults/ThemeResults";
 import { CityResults } from "components/Pages/advanced-search/SearchResults/CityResults";
 import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 export type SearchQuery = {
   theme?: string;
@@ -40,13 +41,15 @@ const Embed = () => {
   const allDispositifs = useSelector(activeDispositifsSelector);
   const languei18nCode = useSelector(languei18nSelector);
   const langues = useSelector(allLanguesSelector);
+  const themes = useSelector(themesSelector);
   const router = useRouter();
 
   const initialQuery = decodeQuery(router.query);
   const queryResults = queryDispositifs(
     allDispositifs,
     initialQuery.query,
-    languei18nCode
+    languei18nCode,
+    themes
   );
   const {
     themesObject,
@@ -61,8 +64,8 @@ const Embed = () => {
   const filterLanguage = query.langue
     ? langues.find((x) => x.i18nCode === query.langue)
     : undefined;
-  const selectedTag = query.theme && query.theme.length === 1
-    ? tags.find((tag) => tag.name === query.theme?.[0])
+  const selectedTheme = query.theme && query.theme.length === 1
+    ? themes.find((theme) => theme.name.fr === query.theme?.[0])
     : undefined;
 
   const flagIconCode = filterLanguage?.langueCode || langueCode;
@@ -75,17 +78,17 @@ const Embed = () => {
           style={{
             backgroundColor:
               query.order === "theme"
-                ? themesObject[0]?.tag?.lightColor || "#f1e8f5"
+                ? themesObject[0]?.theme.colors.color30 || "#f1e8f5"
                 : query.theme
-                ? selectedTag?.lightColor
+                ? selectedTheme?.colors.color30
                 : "#e4e5e6",
           }}
         >
-          {selectedTag ? (
+          {selectedTheme ? (
             <ThemeResults
               langueCode={langueCode}
               flagIconCode={flagIconCode}
-              selectedTag={selectedTag || null}
+              selectedTheme={selectedTheme || null}
               filterLanguage={filterLanguage || null}
               currentLanguage={currentLanguage || null}
               queryResults={queryResults}
@@ -121,6 +124,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         store.dispatch(fetchActiveDispositifsActionsCreator());
       }
       store.dispatch(fetchLanguesActionCreator());
+      store.dispatch(fetchThemesActionCreator());
       store.dispatch(END);
       await store.sagaTask?.toPromise();
 

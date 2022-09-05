@@ -1,16 +1,18 @@
 import React from "react";
-import Streamline from "assets/streamline";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import { AvailableFilters } from "data/searchFilters";
 import { cls } from "lib/classname";
 import styles from "../MobileAdvancedSearch.module.scss";
 import Language from "components/UI/Language";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
-  tagSelected?: Tag | null;
+  themeSelected?: Theme | null;
   otherFilterSelected?: string | null;
   toggleShowModal: (a: AvailableFilters) => void;
   type: AvailableFilters;
@@ -22,32 +24,28 @@ interface Props {
 
 export const SelectedFilter = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter()
 
   if (props.type === "theme") {
     return (
       <button
         className={cls(
           styles.search_btn,
-          !!props.tagSelected && styles.selected
+          !!props.themeSelected && styles.selected
         )}
-        style={props.tagSelected ? {
-          backgroundColor: props.tagSelected.darkColor,
-          borderColor: props.tagSelected.darkColor
+        style={props.themeSelected ? {
+          backgroundColor: props.themeSelected.colors.color100,
+          borderColor: props.themeSelected.colors.color100
         } : {}}
         onClick={() => props.toggleShowModal(props.type)}
       >
-        {props.tagSelected ? (
+        {props.themeSelected ? (
           <>
-            {props.tagSelected?.icon ? (
-              <Streamline
-                name={props.tagSelected.icon}
-                stroke={"white"}
-                width={20}
-                height={20}
-              />
+            {props.themeSelected?.icon ? (
+              <ThemeIcon theme={props.themeSelected} size={20} />
             ) : null}
             <div className={styles.theme_name}>
-              {t("Tags." + props.tagSelected.name, props.tagSelected.name)}
+              {getThemeName(props.themeSelected, router.locale)}
             </div>
             <span
               onClick={(e: any) => {

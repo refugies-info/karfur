@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
-import type { Tag } from "types/interface";
+import type { Theme } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";
 import useRTL from "hooks/useRTL";
 
@@ -15,7 +15,7 @@ interface Props {
   image: any | null;
   isLectureMode: boolean;
   t?: any;
-  tag?: Tag;
+  theme?: Theme;
 }
 
 interface CardContainerProps {
@@ -114,8 +114,8 @@ export const ActivityCard = (props: Props) => {
         </div>
       </ImageContainer>
       <Text>{props.activity}</Text>
-      {props.isLectureMode && props.tag && (
-        <ThemeButton isRTL={isRTL} tag={props.tag} />
+      {props.isLectureMode && props.theme && (
+        <ThemeButton isRTL={isRTL} theme={props.theme} />
       )}
     </CardContainer>
   );

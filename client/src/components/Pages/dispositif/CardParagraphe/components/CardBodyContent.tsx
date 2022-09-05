@@ -1,6 +1,6 @@
 import React from "react";
 import { cardTitlesDispositif } from "data/dispositif";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import { DropDownContent } from "./CardParagrapheComponents";
 
 import styled from "styled-components";
@@ -42,7 +42,7 @@ interface Props {
   toggleGeolocModal: (arg: boolean) => void;
   handleMenuChange: (ev: any, value?: any) => any
   emptyPlaceholder: (e: any) => void;
-  mainTag: Tag;
+  theme: Theme;
 }
 
 export const CardBodyContent = (props: Props) => {
@@ -69,7 +69,7 @@ export const CardBodyContent = (props: Props) => {
         keyValue={props.keyValue}
         subkey={props.subkey}
         cardTitle={cardTitle}
-        mainTag={props.mainTag}
+        theme={props.theme}
         t={props.t}
       />
     );
@@ -88,7 +88,7 @@ export const CardBodyContent = (props: Props) => {
         changePrice={props.changePrice}
         isOptionsOpen={props.isOptionsOpen}
         toggleOptions={props.toggleOptions}
-        mainTag={props.mainTag}
+        theme={props.theme}
       />
     );
   }

@@ -1,0 +1,59 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.btn {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: $radius;
+  padding: 8px;
+  cursor: pointer;
+  color: $dark;
+  text-decoration: none;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 1px solid transparent;
+  min-height: 46px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    .hoverVisible {
+      display: inline;
+    }
+    .hoverHidden {
+      display: none;
+    }
+  }
+
+  .hoverVisible {
+    display: none;
+  }
+}
+
+.edit {
+  width: 30px;
+  height: 30px;
+  background: $dark;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    line-height: 16px;
+  }
+}
+
+
+.text, .subtitle {
+  line-height: 16px;
+}
+.subtitle {
+  font-weight: normal;
+}

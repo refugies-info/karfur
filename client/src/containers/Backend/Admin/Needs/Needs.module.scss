@@ -1,0 +1,50 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.column {
+  background: $white;
+  border-radius: $radius;
+  padding: 16px;
+
+  &.themes {
+    width: 350px;
+  }
+
+  &.scroll_column {
+    height: 730px;
+    overflow: scroll;
+  }
+
+  :global(.sortable-ghost) {
+    opacity: .4;
+  }
+}
+
+.subtitle {
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.empty {
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: bold;
+  color: $gray80;
+}
+
+.badge {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 8px;
+}
+
+.buttons {
+  position: absolute;
+  top: 150px;
+  right: 40px;
+}

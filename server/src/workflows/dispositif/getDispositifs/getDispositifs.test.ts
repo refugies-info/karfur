@@ -110,7 +110,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -131,7 +131,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -151,7 +151,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "en");
@@ -172,7 +172,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).not.toHaveBeenCalled();
     expect(turnToLocalized).not.toHaveBeenCalled();
@@ -195,7 +195,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 
@@ -217,7 +217,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query);
+    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 

@@ -20,7 +20,7 @@ import {
   ShortContent,
 } from "data/dispositif";
 import styles from "./ContenuParagraphe.module.scss";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
 import { useRouter } from "next/router";
@@ -97,7 +97,7 @@ interface Props {
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;
-  mainTag: Tag;
+  mainTheme: Theme;
   toggleModal: (show: boolean, name: string) => void
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (val: boolean) => void;
@@ -137,16 +137,8 @@ const ContenuParagraphe = (props: Props) => {
   const cards = (props.dispositifContent.children || [])
     .filter((x) => x.type === "card")
     .map((x) => x.title || "");
-  const darkColor =
-    props.mainTag && props.mainTag.darkColor
-      ? props.mainTag.darkColor
-      : colors.gray90;
-
-  const lightColor =
-    props.mainTag && props.mainTag.lightColor
-      ? props.mainTag.lightColor
-      : colors.gray20;
-
+  const darkColor = props.mainTheme.colors.color100 || colors.gray90;
+  const lightColor = props.mainTheme.colors.color30 || colors.gray20;
   const nbChildren = (props.dispositifContent?.children || []).length;
 
   return (
@@ -180,7 +172,7 @@ const ContenuParagraphe = (props: Props) => {
                   content={props.content}
                   keyValue={props.keyValue}
                   cards={cards}
-                  mainTag={props.mainTag}
+                  theme={props.mainTheme}
                   toggleTutorielModal={props.toggleTutorielModal}
                   admin={props.admin}
                   toggleGeolocModal={props.toggleGeolocModal}
@@ -237,7 +229,7 @@ const ContenuParagraphe = (props: Props) => {
                     content={props.content}
                     keyValue={props.keyValue}
                     cards={cards}
-                    mainTag={props.mainTag}
+                    theme={props.mainTheme}
                     toggleTutorielModal={props.toggleTutorielModal}
                     admin={props.admin}
                     toggleGeolocModal={props.toggleGeolocModal}
@@ -251,7 +243,7 @@ const ContenuParagraphe = (props: Props) => {
                   subkey={index}
                   subitem={subitem}
                   disableEdit={props.disableEdit}
-                  mainTag={props.mainTag}
+                  theme={props.mainTheme}
                   showMapButton={props.showMapButton}
                   displayTuto={props.displayTuto}
                   updateUIArray={props.updateUIArray}
@@ -265,7 +257,7 @@ const ContenuParagraphe = (props: Props) => {
                 <MapParagraphePrint
                   updateUIArray={props.updateUIArray}
                   subitem={subitem}
-                  mainTag={props.mainTag}
+                  theme={props.mainTheme}
                 />
               ) : subitem.type === "etape" ? (
                 <EtapeParagraphe
@@ -278,7 +270,7 @@ const ContenuParagraphe = (props: Props) => {
                   onEditorStateChange={props.onEditorStateChange}
                   addItem={props.addItem}
                   removeItem={props.removeItem}
-                  mainTag={props.mainTag}
+                  theme={props.mainTheme}
                   typeContenu={props.typeContenu}
                   uiArray={props.uiArray}
                   upcoming={props.upcoming}
@@ -526,7 +518,7 @@ const ContenuParagraphe = (props: Props) => {
             keyValue={props.keyValue}
             cards={cards}
             typeContenu={props.typeContenu}
-            mainTag={props.mainTag}
+            theme={props.mainTheme}
           />
         )}
 
@@ -544,7 +536,7 @@ const ContenuParagraphe = (props: Props) => {
             keyValue={props.keyValue}
             cards={cards}
             typeContenu={props.typeContenu}
-            mainTag={props.mainTag}
+            theme={props.mainTheme}
           />
         )}
       {props.disableEdit &&

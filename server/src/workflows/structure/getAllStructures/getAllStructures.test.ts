@@ -31,7 +31,8 @@ const dispositif1 = {
   unusedField: "unusedField",
   abstract: "abstract",
   status: "Actif",
-  tags: [],
+  theme: { _id: "theme1" },
+  secondaryThemes: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
 };
@@ -42,7 +43,8 @@ const dispositif2 = {
   unusedField: "unusedField",
   abstract: "abstract",
   status: "Actif",
-  tags: [],
+  theme: { _id: "theme1" },
+  secondaryThemes: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
 };
@@ -52,7 +54,8 @@ const dispositif3 = {
   unusedField: "unusedField",
   abstract: "abstract",
   status: "Supprimé",
-  tags: [],
+  theme: { _id: "theme1" },
+  secondaryThemes: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
 };
@@ -63,7 +66,8 @@ const dispositif4 = {
   unusedField: "unusedField",
   abstract: "abstract",
   status: "Brouillon",
-  tags: [],
+  theme: { _id: "theme1" },
+  secondaryThemes: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
 };
