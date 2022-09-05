@@ -68,7 +68,7 @@ export const updateDispositifStatus = async (
         dispositif.titreInformatif,
         dispositif.titreMarque,
         dispositif._id,
-        dispositif.tags,
+        [],
         dispositif.typeContenu,
         null,
         getDispositifDepartments(dispositif),

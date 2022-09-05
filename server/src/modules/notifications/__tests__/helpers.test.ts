@@ -47,10 +47,7 @@ describe("notification helpers", () => {
     const res = parseDispositif({
       _id: "id",
       typeContenu: "dispositif",
-      tags: [
-        { name: "Administratif" },
-        { name: "Loisirs" },
-      ],
+      theme: {_id: "theme1"},
       contenu: fakeContenuWithZoneDAction
     });
     expect(res).toEqual({
@@ -60,7 +57,7 @@ describe("notification helpers", () => {
         min: 18
       },
       type: "dispositif",
-      mainTheme: "Administratif"
+      mainThemeId: "theme1"
     });
   });
 
@@ -69,7 +66,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "dispositif",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res1 = filterTargets(targets, req1, "fr");
     expect(res1.map(r => r.uid)).toEqual(["1", "6"]);
@@ -78,7 +75,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["Ille-et-Vilaine"],
       type: "dispositif",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res2 = filterTargets(targets, req2, "fr");
     expect(res2.map(r => r.uid)).toEqual(["1"]);
@@ -89,7 +86,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "demarche",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res1 = filterTargetsForDemarche(targets, req1, 1);
     expect(res1.map(r => r.uid)).toEqual(["1", "6"]);
@@ -98,7 +95,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "demarche",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res2 = filterTargetsForDemarche(targets, req2, {fr: 1, en: 1});
     expect(res2.map(r => r.uid)).toEqual(["1", "2", "6"]);
@@ -107,7 +104,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "demarche",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res3 = filterTargetsForDemarche(targets, req3, {fr: 1, ar: 1});
     expect(res3.map(r => r.uid)).toEqual(["1", "6"]);
@@ -117,10 +114,9 @@ describe("notification helpers", () => {
     const disp1 = {
       _id: "id",
       typeContenu: "dispositif",
-      tags: [
-        { name: "trouver un travail" },
-        { name: "découvrir la culture" },
-      ],
+      theme: {
+        notificationEmoji: "💼"
+      }
     }
     const res1 = getNotificationEmoji(disp1)
     expect(res1).toEqual("💼");
@@ -128,19 +124,10 @@ describe("notification helpers", () => {
     const disp2 = {
       _id: "id",
       typeContenu: "dispositif",
-      tags: [
-        { name: "trouver un job" },
-      ],
+      theme: {}
     }
     const res2 = getNotificationEmoji(disp2)
     expect(res2).toEqual("🔔");
-
-    const disp3 = {
-      _id: "id",
-      typeContenu: "dispositif",
-    }
-    const res3 = getNotificationEmoji(disp3)
-    expect(res3).toEqual("🔔");
   });
 
 

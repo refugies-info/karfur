@@ -1,6 +1,11 @@
 import mongoose, { ObjectId } from "mongoose";
 import { UserDoc } from "./schemaUser";
 import { StructureDoc } from "./schemaStructure";
+import { ThemeDoc } from "./schemaTheme";
+
+function arrayThemesLimit(val: any[]) {
+  return val.length <= 2;
+}
 
 var dispositifSchema = new mongoose.Schema(
   {
@@ -54,6 +59,17 @@ var dispositifSchema = new mongoose.Schema(
       type: Object,
       unique: false,
       required: false
+    },
+    theme: {
+      type: mongoose.Types.ObjectId,
+      ref: "Theme",
+    },
+    secondaryThemes: {
+      type: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Theme",
+      }],
+      validate: [arrayThemesLimit, "{PATH} exceeds the limit of 2"]
     },
     localisation: {
       type: Object,
@@ -206,6 +222,10 @@ var dispositifSchema = new mongoose.Schema(
       type: Object,
       unique: false,
       required: false
+    },
+    themesSelectedByAuthor: {
+      type: Boolean,
+      required: false
     }
   },
   // @ts-ignore
@@ -223,7 +243,6 @@ export interface DispositifDoc extends mongoose.Document {
   sponsors?: Object;
   audience?: Object;
   audienceAge?: Object;
-  tags?: Object;
   localisation?: Object;
   niveauFrancais?: Object;
   creatorId: ObjectId | UserDoc;
@@ -258,21 +277,33 @@ export interface DispositifDoc extends mongoose.Document {
   nbVuesMobile?: number;
   nbFavoritesMobile?: number;
   notificationsSent?: Record<string, boolean>;
+  themesSelectedByAuthor?: boolean;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {
   creatorId: ObjectId;
   mainSponsor: ObjectId;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
 }
 
 export interface DispositifPopulatedDoc extends DispositifDoc {
   creatorId: UserDoc;
   mainSponsor: ObjectId;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
 }
 
 export interface DispositifPopulatedMainSponsorDoc extends DispositifDoc {
   mainSponsor: StructureDoc;
   creatorId: UserDoc;
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
+}
+
+export interface DispositifPopulatedThemesDoc extends DispositifDoc {
+  theme: ThemeDoc;
+  secondaryThemes: ThemeDoc[];
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>("Dispositif", dispositifSchema);

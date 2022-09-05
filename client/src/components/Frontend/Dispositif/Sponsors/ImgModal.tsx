@@ -12,7 +12,7 @@ import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import { colors } from "colors";
 import styles from "./Sponsors.module.scss";
-import { Picture, Tag } from "types/interface";
+import { Picture } from "types/interface";
 
 interface Props {
   modal: any
@@ -31,7 +31,6 @@ interface Props {
   edit: boolean
   editSponsor: any
   sponsorKey: string
-  mainTag: Tag
 }
 
 const ImgModal = (props: Props) => {

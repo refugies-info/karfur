@@ -1,5 +1,4 @@
-import { Tag } from "types/interface";
-import { tags } from "./tags";
+import { Theme } from "types/interface";
 
 // FILTERS
 export type AvailableFilters = "theme" | "age" | "frenchLevel" | "loc" | "langue";
@@ -16,17 +15,23 @@ export type SearchItemType = {
   title: string
   type: AvailableFilters;
   placeholder: string
-  children?: Tag[] | AgeFilter[] | FrenchLevelFilter[];
+  children?: Theme[] | AgeFilter[] | FrenchLevelFilter[];
   title2?: string
   append?: string
 }
 
-export const searchTheme: SearchItemType = {
+const searchTheme: SearchItemType = {
   title: "J'ai besoin de",
   placeholder: "thème",
   type: "theme",
-  children: tags,
+  children: [],
 };
+export const getSearchTheme = (themes: Theme[]): SearchItemType => {
+  return {
+    ...searchTheme,
+    children: themes
+  }
+}
 export const searchLoc: SearchItemType = {
   title: "J'habite à",
   type: "loc",

@@ -5,6 +5,7 @@ import { asyncForEach } from "../../../libs/asyncForEach";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
 import { ObjectId } from "mongoose";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 interface Query {
   locale: string;
@@ -14,7 +15,8 @@ interface Dispositif {
   titreInformatif: string;
   titreMarque: string;
   _id: ObjectId;
-  tags: any;
+  theme: ThemeDoc;
+  secondaryThemes: ThemeDoc[];
   abstract: string;
   status: string;
   typeContenu: string;
@@ -51,11 +53,13 @@ export const getUserFavoritesInLocale = async (
     if (favorites.length === 0) {
       return res.status(200).json({ data: [] });
     }
+
     const neededFields = {
       titreInformatif: 1,
       titreMarque: 1,
       _id: 1,
-      tags: 1,
+      theme: 1,
+      secondaryThemes: 1,
       abstract: 1,
       status: 1,
       typeContenu: 1,
@@ -67,7 +71,7 @@ export const getUserFavoritesInLocale = async (
     const result: any = [];
 
     await asyncForEach(favorites, async (favorite) => {
-      const dispositif = await getDispositifById(favorite._id, neededFields);
+      const dispositif = await getDispositifById(favorite._id, neededFields, "theme secondaryThemes");
       if (dispositif.status !== "Actif") return;
       const localizedDispositif = turnToLocalized(dispositif, locale);
 

@@ -161,7 +161,6 @@ export interface Need {
   fa?: NeedDetail;
   uk?: NeedDetail;
   _id: ObjectId;
-  tagName: string;
   created_at: Moment;
   updatedAt: Moment;
 }
@@ -195,7 +194,8 @@ export interface AlgoliaObject {
   sponsorName?: string;
   sponsorUrl?: string;
   nbVues?: number;
-  tags?: string[];
+  theme?: ObjectId;
+  secondaryThemes?: ObjectId[];
   needs?: ObjectId[];
   typeContenu: "demarche"|"dispositif"|"besoin"|"theme";
   priority: number;

@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { AdminOption, IDispositif, NbDispositifsByRegion, Statistics, User, Widget } from "types/interface";
+import { AdminOption, IDispositif, NbDispositifsByRegion, Need, Statistics, Theme, User, Widget } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -308,19 +308,55 @@ const API = {
 
   // Needs
   getNeeds: () => {
-    return instance.get("/needs/getNeeds")
+    return instance.get("/needs")
   },
-  saveNeed: (query: any) =>{
+  postNeeds: (query: Partial<Need>) =>{
     const headers = getHeaders();
-    return instance.post("/needs/saveNeed", query, {
+    return instance.post("/needs", query, {
       headers,
     })
   },
-  createNeed: (query: any) =>{
+  patchNeed: (query: Partial<Need>) =>{
     const headers = getHeaders();
-    return instance.post("/needs/createNeed", query, {
+    const newNeed = {...query};
+    delete newNeed._id;
+    return instance.patch(`/needs/${query._id}`, newNeed, {
       headers,
     })
+  },
+  orderNeeds: (query: ObjectId[]) =>{
+    const headers = getHeaders();
+    return instance.post("/needs/positions",
+      { orderedNeedIds: query },
+      { headers }
+    )
+  },
+  deleteNeed: (query: ObjectId) =>{
+    const headers = getHeaders();
+    return instance.delete(`/needs/${query}`, { headers })
+  },
+
+  // Themes
+  getThemes: () => {
+    return instance.get("/themes")
+  },
+  postThemes: (query: Partial<Theme>) =>{
+    const headers = getHeaders();
+    return instance.post("/themes", query, {
+      headers,
+    })
+  },
+  patchTheme: (query: Partial<Theme>) =>{
+    const headers = getHeaders();
+    const newTheme = {...query};
+    delete newTheme._id;
+    return instance.patch(`/themes/${query._id}`, newTheme, {
+      headers,
+    })
+  },
+  deleteTheme: (query: ObjectId) =>{
+    const headers = getHeaders();
+    return instance.delete(`/themes/${query}`, { headers })
   },
 
   // Widgets

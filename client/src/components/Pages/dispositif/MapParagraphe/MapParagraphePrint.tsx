@@ -4,12 +4,12 @@ import { Table } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";
 import styles from "./MapParagraphe.module.scss";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 
 interface Props {
   subitem: any
   updateUIArray: any
-  mainTag: Tag
+  theme: Theme
 }
 
 const MapParagraphePrint = (props: Props) => {
@@ -24,9 +24,7 @@ const MapParagraphePrint = (props: Props) => {
         <div
           className={styles.header}
           style={{
-            backgroundColor: (props.mainTag && props.mainTag.darkColor)
-              ? props.mainTag.darkColor
-              : "#000000"
+            backgroundColor: props.theme?.colors.color100 || "#000000"
           }}
         >
           <div

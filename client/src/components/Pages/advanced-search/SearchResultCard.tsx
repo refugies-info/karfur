@@ -5,11 +5,10 @@ import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import Streamline from "assets/streamline";
-import { tags } from "data/tags";
 import { IDispositif, IUserFavorite } from "types/interface";
 import styles from "./SearchResultCard.module.scss";
 import { getPath } from "routes";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   pin?: (e: any, dispositif: IDispositif|IUserFavorite) => void
@@ -25,20 +24,10 @@ const SearchResultCard = (props: Props) => {
     (pinnedDispostifId) => pinnedDispostifId === props.dispositif._id.toString()
   );
 
-    let shortTag = "";
-    let shortTagFull = "";
-    let iconTag = null;
-    if (
-      props.dispositif.tags &&
-      props.dispositif.tags.length > 0 &&
-      props.dispositif.tags[0] &&
-      props.dispositif.tags[0].short
-    ) {
-      shortTag = (props.dispositif.tags[0].short || "").replace(/ /g, "-");
-      shortTagFull = props.dispositif.tags[0].short;
-    }
-    if (shortTagFull) {
-      iconTag = tags.find((tag) => tag.short === shortTagFull);
+    let shortTheme = "";
+    const theme = props.dispositif.theme;
+    if (props.dispositif.theme) {
+      shortTheme = props.dispositif.theme.short.fr.replace(/ /g, "-");
     }
 
   const typeContenu = props.dispositif.typeContenu === "demarche" ? "/demarche/[id]" : "/dispositif/[id]";
@@ -60,11 +49,11 @@ const SearchResultCard = (props: Props) => {
               className={
                 props.dispositif.typeContenu === "demarche"
                   ? "texte-" +
-                    shortTag +
+                    shortTheme +
                     " bg-light-" +
-                    shortTag +
+                    shortTheme +
                     " border-" +
-                    shortTag
+                    shortTheme
                   : "border-none"
               }
             >
@@ -87,11 +76,11 @@ const SearchResultCard = (props: Props) => {
                 <CardFooter
                   className={
                     "correct-radius align-right bg-" +
-                    shortTag +
-                    (iconTag ? "" : " no-icon")
+                    shortTheme +
+                    (theme ? "" : " no-icon")
                   }
                 >
-                  {iconTag ? (
+                  {theme ? (
                     <div
                       style={{
                         width: 35,
@@ -100,12 +89,7 @@ const SearchResultCard = (props: Props) => {
                         alignItems: "flex-start",
                       }}
                     >
-                      <Streamline
-                        name={iconTag.icon}
-                        stroke={"white"}
-                        width={20}
-                        height={20}
-                      />
+                      <ThemeIcon theme={theme} size={20} />
                     </div>
                   ) : null}
                   <span>{props.dispositif.titreMarque}</span>

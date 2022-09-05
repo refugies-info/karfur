@@ -30,11 +30,16 @@ export const updateNotificationsSettings = async (uid: string, payload: Partial<
   return appUser.notificationsSettings;
 };
 
-export const updateOrCreateAppUser = async (payload: AppUserType) => {
+export const updateOrCreateAppUser = async (payload: AppUserType, themeIds: string[]) => {
   const appUser = await AppUser.findOne({ uid: payload.uid });
 
   if (appUser) {
     return AppUser.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+  }
+
+  const themes: Record<string, boolean> = {};
+  for (const themeId of themeIds) {
+    themes[themeId] = true
   }
   return AppUser.create({
     ...payload,
@@ -42,20 +47,7 @@ export const updateOrCreateAppUser = async (payload: AppUserType) => {
       global: true,
       local: true,
       demarches: true,
-      themes: {
-        "apprendre le français": true,
-        "trouver un travail": true,
-        "faire des études": true,
-        "occuper mon temps libre": true,
-        "me loger": true,
-        "apprendre un métier": true,
-        "découvrir la culture": true,
-        "gérer mes papiers": true,
-        "me déplacer": true,
-        "me soigner": true,
-        "aider une association": true,
-        "rencontrer des gens": true
-      }
+      themes: themes
     }
   });
 };

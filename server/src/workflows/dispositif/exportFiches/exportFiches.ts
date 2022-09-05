@@ -122,19 +122,6 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
 const formatFiche = (fiche: any) => {
   turnToLocalizedTitles(fiche, "fr");
 
-  const tag1 =
-    fiche.tags && fiche.tags.length > 0 && fiche.tags[0] && fiche.tags[0].name
-      ? fiche.tags[0].name
-      : "";
-  const tag2 =
-    fiche.tags && fiche.tags.length > 0 && fiche.tags[1] && fiche.tags[1].name
-      ? fiche.tags[1].name
-      : "";
-  const tag3 =
-    fiche.tags && fiche.tags.length > 0 && fiche.tags[2] && fiche.tags[2].name
-      ? fiche.tags[2].name
-      : "";
-
   const infocards =
     fiche.contenu &&
     fiche.contenu[1] &&
@@ -156,9 +143,9 @@ const formatFiche = (fiche: any) => {
     "Titre marque": fiche.titreMarque,
     "Type de contenu": [fiche.typeContenu],
     Lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
-    "Thème principal": tag1,
-    "Thème secondaire 1": tag2,
-    "Thème secondaire 2": tag3,
+    "Thème principal": fiche.theme.short.fr,
+    "Thème secondaire 1": fiche.secondaryThemes?.[0]?.short.fr || "",
+    "Thème secondaire 2": fiche.secondaryThemes?.[1]?.short.fr || "",
     "Zone d'action": zoneAction,
     "Age requis": ageRequis,
     "Public visé": publicVise,
@@ -187,7 +174,7 @@ export const exportFiches = async (
         updatedAt: 1,
         needs: 1
       },
-      "needs"
+      "needs secondaryThemes"
     );
 
     let result: { fields: Result }[] = [];

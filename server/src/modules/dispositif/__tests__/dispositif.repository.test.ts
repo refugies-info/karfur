@@ -36,7 +36,9 @@ describe("getDispositifsFromDB", () => {
 
 describe("updateDispositifStatus", () => {
   it("should call Dispositif", async () => {
-    Dispositif.findOneAndUpdate.mockResolvedValueOnce({ id: "id1" });
+    Dispositif.findOneAndUpdate.mockReturnValueOnce({
+      populate: jest.fn().mockResolvedValue({ id: "id1" }),
+    });
 
     const res = await updateDispositifInDB("id1", {
       status: "Actif",
@@ -61,7 +63,8 @@ describe("getDispositifArray", () => {
     titreMarque: 1,
     abstract: 1,
     contenu: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
     created_at: 1,
     publishedAt: 1,
     typeContenu: 1,
@@ -140,6 +143,9 @@ describe("getDispositifArray", () => {
 
 describe("updateDispositifInDB", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
+    Dispositif.findOneAndUpdate.mockReturnValueOnce({
+      populate: jest.fn().mockResolvedValue(null),
+    });
     await updateDispositifInDB("dispositifId", {
       mainSponsor: "sponsorId",
       status: "Actif",

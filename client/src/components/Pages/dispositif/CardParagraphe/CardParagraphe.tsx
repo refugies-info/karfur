@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
-import isEmpty from "lodash/isEmpty";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import {
   cardTitlesDispositif,
   cardTitlesDemarche,
@@ -49,7 +48,7 @@ interface Props {
   showGeolocModal: boolean;
   typeContenu: "dispositif" | "demarche";
   disableEdit: boolean;
-  mainTag: Tag;
+  theme: Theme;
   visibleOnMobile?: boolean;
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (arg1: boolean) => void;
@@ -157,10 +156,7 @@ const CardParagraphe = (props: Props) => {
       : cardTitlesDemarche.filter((x) => !props.cards.includes(x.title));
 
   const computeCardClassName = () => {
-    const safeMainTag =
-      isEmpty(props.mainTag) || !props.mainTag.short
-        ? "noImage"
-        : props.mainTag.short.replace(/ /g, "-");
+    const safeMainTheme = !props.theme ? "noImage" : props.theme.short.fr.replace(/ /g, "-");
 
     const className =
       (props.subitem.title || "")
@@ -169,7 +165,7 @@ const CardParagraphe = (props: Props) => {
         .replace("-!", "")
         .replace("'", "-") +
       "-" +
-      safeMainTag;
+      safeMainTheme;
 
     if (props.subitem.title === "Combien ça coûte ?")
       //@ts-ignore
@@ -193,7 +189,7 @@ const CardParagraphe = (props: Props) => {
         >
           <CardHeader
             className={styles.card_header + " bg-darkColor"}
-            style={{ backgroundColor: props.mainTag.darkColor }}
+            style={{ backgroundColor: props.theme.colors.color100 }}
           >
             <CardHeaderContent
               subitem={props.subitem}
@@ -208,7 +204,7 @@ const CardParagraphe = (props: Props) => {
           <CardBody className={styles.card_body}>
             <span
               className={styles.card_title}
-              style={{ color: props.mainTag.darkColor }}
+              style={{ color: props.theme.colors.color100 }}
             >
               <CardBodyContent
                 subitem={props.subitem}
@@ -225,7 +221,7 @@ const CardParagraphe = (props: Props) => {
                 toggleGeolocModal={props.toggleGeolocModal}
                 handleMenuChange={props.handleMenuChange}
                 emptyPlaceholder={emptyPlaceholder}
-                mainTag={props.mainTag}
+                theme={props.theme}
                 visibleOnMobile={props.visibleOnMobile}
               />
             </span>
@@ -234,7 +230,7 @@ const CardParagraphe = (props: Props) => {
               (props.subitem.niveaux || []).length > 0 && (
                 <FrenchCECRLevel
                   subitem={props.subitem}
-                  mainTag={props.mainTag}
+                  theme={props.theme}
                 />
               )}
             {props.subitem.title === "Zone d'action" &&
@@ -242,7 +238,7 @@ const CardParagraphe = (props: Props) => {
                 <DepartmentsSelected
                   subitem={props.subitem}
                   disableEdit={props.disableEdit}
-                  mainTag={props.mainTag}
+                  theme={props.theme}
                 />
               )}
             <AdminGeolocPublicationButton

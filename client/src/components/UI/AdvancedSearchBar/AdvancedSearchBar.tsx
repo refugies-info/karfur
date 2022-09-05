@@ -7,7 +7,7 @@ import styled from "styled-components";
 import Highlighter from "react-highlight-words";
 import debounce from "lodash.debounce";
 import type { IDispositif } from "types/interface";
-import * as themes from "data/synonym";
+import * as synonyms from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
@@ -17,8 +17,10 @@ import useOutsideClick from "hooks/useOutsideClick";
 
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import useRTL from "hooks/useRTL";
-import { tags } from "data/tags";
 import { getPath } from "routes";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { getThemeName } from "lib/getThemeName";
+import ThemeIcon from "../ThemeIcon";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -187,6 +189,7 @@ const AdvancedSearchBar = (props: Props) => {
     val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
   ), []);
 
+  const themes = useSelector(themesSelector);
   const dispositifs = useSelector(activeDispositifsSelector);
   const search = (value: string) => {
     const text = value
@@ -194,10 +197,11 @@ const AdvancedSearchBar = (props: Props) => {
       .replace(/[\u0300-\u036f]/g, "")
       .trim()
       .toLowerCase();
+
     const themesMatchedArray: string[] = [];
     for (const [key, theme] of Object.entries(
       //@ts-ignore
-      themes[router.locale || "fr"]
+      synonyms[router.locale || "fr"]
     )) {
       for (const synonym of theme as string[]) {
         if (
@@ -301,7 +305,7 @@ const AdvancedSearchBar = (props: Props) => {
                   <>
                     <SectionTitle>Thèmes</SectionTitle>
                     {searchThemes.map((elem, index) => {
-                      const selectedTag = tags.find((tag) => tag.short === elem);
+                      const selectedTheme = themes.find((theme) => theme.short.fr === elem);
                       return (
                         <ThemeContainer
                           key={"theme-" + index}
@@ -314,46 +318,35 @@ const AdvancedSearchBar = (props: Props) => {
                             ) {
                               router.push({
                                 pathname: getPath("/recherche", router.locale),
-                                search: selectedTag ? "?tag=" + selectedTag.name : "",
+                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
                               });
                               window.location.reload();
                             } else {
                               router.push({
                                 pathname: getPath("/recherche", router.locale),
-                                search: selectedTag ? "?tag=" + selectedTag.name : "",
+                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
                               });
                             }
                           }}
-                          color={selectedTag ? selectedTag.lightColor : ""}
+                          color={selectedTheme ? selectedTheme.colors.color30 : ""}
                         >
                           <ThemeActionText
-                            color={selectedTag ? selectedTag.darkColor : ""}
+                            color={selectedTheme ? selectedTheme.colors.color100 : ""}
                           >
-                            {
-                              selectedTag ? t(
-                                "Tags." + selectedTag.name, selectedTag.name
-                              )[0].toUpperCase() +
-                              t("Tags." + selectedTag.name, selectedTag.name).slice(1)
-                              : ""
-                            }
+                             {selectedTheme ?
+                                getThemeName(selectedTheme, router.locale)[0].toUpperCase() +
+                                getThemeName(selectedTheme, router.locale).slice(1) : ""
+                              }
                           </ThemeActionText>
                           <ThemeButton
                             ml={isRTL ? false : true}
                             mr={isRTL ? true : false}
-                            color={selectedTag ? selectedTag.darkColor : ""}
+                            color={selectedTheme ? selectedTheme.colors.color100 : ""}
                           >
-                            <Streamline
-                              name={selectedTag ? selectedTag.icon : undefined}
-                              stroke={"white"}
-                              width={22}
-                              height={22}
-                            />
+                            <ThemeIcon theme={selectedTheme} />
                             <ThemeText rtl={isRTL}>
-                              {selectedTag
-                                ? t(
-                                    "Tags." + selectedTag.short,
-                                    selectedTag.short
-                                  )
+                              {selectedTheme
+                                ? getThemeName(selectedTheme, router.locale, "short")
                                 : null}
                             </ThemeText>
                           </ThemeButton>
@@ -372,45 +365,35 @@ const AdvancedSearchBar = (props: Props) => {
                 {searchDispositifs.length > 0 ? (
                   <>
                     <SectionTitle>Fiches</SectionTitle>
-                    {searchDispositifs.map((elem, index) => {
-                      var selectedTag = tags.find((tag) => (
-                        elem.tags[0] ? tag.short === elem.tags[0].short : false
-                      ));
+                    {searchDispositifs.map((dispositif, index) => {
                       return (
                         <ThemeContainer
                           key={"disp-" + index}
-                          color={selectedTag ? selectedTag.lightColor : ""}
+                          color={dispositif.theme.colors.color30 || ""}
                           onClick={() => {
                             setSearchText("");
-                            const route = elem.typeContenu === "demarche"
+                            const route = dispositif.typeContenu === "demarche"
                               ? "/demarche/[id]" : "/dispositif/[id]";
                             router.push({
                               pathname: getPath(route, router.locale),
-                              query: {id: elem._id.toString() || ""}});
+                              query: {id: dispositif._id.toString() || ""}});
                             }}
                         >
                           <ThemeButton
-                            color={selectedTag ? selectedTag.darkColor : ""}
+                            color={dispositif.theme.colors.color100 || ""}
                             mr={isRTL ? false : true}
                             ml={isRTL ? true : false}
                           >
-                            <Streamline
-                              name={selectedTag ? selectedTag.icon : undefined}
-                              stroke={"white"}
-                              width={22}
-                              height={22}
-                            />
+                            <ThemeIcon theme={dispositif.theme} />
                           </ThemeButton>
                           <ThemeDispositifText
-                            color={selectedTag ? selectedTag.darkColor : ""}
+                            color={dispositif.theme.colors.color100 || ""}
                           >
                             <Highlighter
                               //highlightClassName="highlighter"
                               highlightStyle={{
                                 fontWeight: "bold",
-                                color: selectedTag
-                                  ? selectedTag.darkColor
-                                  : "black",
+                                color: dispositif.theme.colors.color100 || "black",
                                 backgroundColor: "white",
                                 padding: "0px",
                               }}
@@ -424,19 +407,17 @@ const AdvancedSearchBar = (props: Props) => {
                                   .toLowerCase()
                               }
                               textToHighlight={
-                                elem.titreInformatif.slice(0, 30) +
-                                (elem.titreInformatif.length > 30 ? "..." : "")
+                                dispositif.titreInformatif.slice(0, 30) +
+                                (dispositif.titreInformatif.length > 30 ? "..." : "")
                               }
                             />
-                            {elem.titreMarque && " avec "}
-                            {elem.titreMarque ? (
+                            {dispositif.titreMarque && " avec "}
+                            {dispositif.titreMarque ? (
                               <Highlighter
                                 //highlightClassName="highlighter"
                                 highlightStyle={{
                                   fontWeight: "bold",
-                                  color: selectedTag
-                                    ? selectedTag.darkColor
-                                    : "black",
+                                  color: dispositif.theme.colors.color100 || "black",
                                   backgroundColor: "white",
                                   padding: "0px",
                                 }}
@@ -450,8 +431,8 @@ const AdvancedSearchBar = (props: Props) => {
                                     .toLowerCase()
                                 }
                                 textToHighlight={
-                                  elem.titreMarque.slice(0, 25) +
-                                  (elem.titreMarque.length > 25 ? "..." : "")
+                                  dispositif.titreMarque.slice(0, 25) +
+                                  (dispositif.titreMarque.length > 25 ? "..." : "")
                                 }
                               />
                             ) : null}

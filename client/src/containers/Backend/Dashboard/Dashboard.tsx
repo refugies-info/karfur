@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/fr";
 import API from "utils/API";
@@ -9,11 +10,11 @@ import { NoGeolocModal } from "./NoGeolocModal";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import styles from "./Dashboard.module.scss";
-import { tags } from "data/tags";
 import { RegionFigures, Statistics } from "types/interface";
 import { ObjectId } from "mongodb";
 import { colors } from "colors";
 import { Spinner } from "reactstrap";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 moment.locale("fr");
 const formatter = new Intl.NumberFormat();
@@ -30,10 +31,10 @@ const Dashboard = (props: Props) => {
   const [nbDemarches, setNbDemarches] = useState(0);
   const [nbDemarchesActives, setNbDemarchesActives] = useState(0);
   const [nbContributors, setNbContributors] = useState(0);
-  const [nbDispositifsByMainTag, setNbDispositifsByMainTag] = useState<{
+  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<{
     [key: string]: number;
   }>({});
-  const [nbDemarchesByMainTag, setNbDemarchesByMainTag] = useState<{
+  const [nbDemarchesByTheme, setNbDemarchesByTheme] = useState<{
     [key: string]: number;
   }>({});
   const [nbTraductors, setNbTraductors] = useState(0);
@@ -45,6 +46,7 @@ const Dashboard = (props: Props) => {
   const [statistics, setStatistics] = useState<Statistics | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [notificationsActive, setNotificationsActive] = useState<boolean|null>(null);
+  const themes = useSelector(themesSelector);
 
   useEffect(() => {
     if (props.visible && !loaded) {
@@ -80,26 +82,26 @@ const Dashboard = (props: Props) => {
         })
       ];
 
-      for (const tag of tags) {
+      for (const theme of themes) {
         promises.push(
           API.count_dispositifs({
-            "tags.0.name": tag.name,
+            "theme": theme._id,
             status: "Actif",
             typeContenu: "dispositif",
           }).then((data) => {
-            setNbDispositifsByMainTag((prev) => ({
+            setNbDispositifsByTheme((prev) => ({
               ...prev,
-              [tag.name]: data.data,
+              [theme.name.fr]: data.data,
             }));
           }),
           API.count_dispositifs({
-            "tags.0.name": tag.name,
+            "theme": theme._id,
             status: "Actif",
             typeContenu: "demarche",
           }).then((data) => {
-            setNbDemarchesByMainTag((prev) => ({
+            setNbDemarchesByTheme((prev) => ({
               ...prev,
-              [tag.name]: data.data,
+              [theme.name.fr]: data.data,
             }));
           })
         );
@@ -180,26 +182,26 @@ const Dashboard = (props: Props) => {
         <NavLink to="backend/admin">Admin</NavLink>
         <ul>
           <b>
-            Contenus par thème (nombre de dispositifs/démarches avec tag
+            Contenus par thème (nombre de dispositifs/démarches avec thème
             principal xxx (vs objectif)):
           </b>
-          {Object.keys(nbDispositifsByMainTag).map((tag, key) => {
-            const targetTag = find(targetByTag, { name: tag });
+          {Object.keys(nbDispositifsByTheme).map((theme, key) => {
+            const targetTheme = find(targetByTag, { name: theme });
             const targetDispo =
-              targetTag && targetTag.targetDispositif
-                ? targetTag.targetDispositif
+              targetTheme && targetTheme.targetDispositif
+                ? targetTheme.targetDispositif
                 : 0;
 
             const targetDemarche =
-              targetTag && targetTag.targetDemarche
-                ? targetTag.targetDemarche
+              targetTheme && targetTheme.targetDemarche
+                ? targetTheme.targetDemarche
                 : 0;
-            const currentValueDispositif = nbDispositifsByMainTag[tag]
-              ? nbDispositifsByMainTag[tag]
+            const currentValueDispositif = nbDispositifsByTheme[theme]
+              ? nbDispositifsByTheme[theme]
               : 0;
 
-            const currentValueDemarche = nbDemarchesByMainTag[tag]
-              ? nbDemarchesByMainTag[tag]
+            const currentValueDemarche = nbDemarchesByTheme[theme]
+              ? nbDemarchesByTheme[theme]
               : 0;
             const colorDispo =
               currentValueDispositif < targetDispo ? "red" : "green";
@@ -207,7 +209,7 @@ const Dashboard = (props: Props) => {
               currentValueDemarche < targetDemarche ? "red" : "green";
             return (
               <li key={key}>
-                {tag}{" "}
+                {theme}{" "}
                 <b style={{ color: colorDispo }}>{currentValueDispositif}</b>
                 {""}/{targetDispo} -{" "}
                 <b style={{ color: colorDemarche }}>{currentValueDemarche}</b>

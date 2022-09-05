@@ -1,15 +1,17 @@
 import get from "lodash/get";
 import { searchFrench, FrenchLevelFilter, AgeFilter, searchAge } from "data/searchFilters";
 import { SearchQuery } from "pages/recherche";
-import { IDispositif, Tag } from "types/interface";
-import { tags } from "data/tags";
+import { IDispositif, Theme } from "types/interface";
 
-const filterContentsByTheme = (contents: IDispositif[], tagFilter: string[] | undefined) => {
-  if (!tagFilter) return contents;
+const filterContentsByTheme = (contents: IDispositif[], themeFilter: string[] | undefined) => {
+  if (!themeFilter) return contents;
 
   return contents.filter((content) => {
-    if (content.tags && content.tags.length > 0) {
-      const hasContentTheme = content.tags.filter((tag) => tag && tagFilter.includes(tag.name)).length > 0;
+    if (content.theme && themeFilter.includes(content.theme.name.fr)) return true;
+    if (content.secondaryThemes && content.secondaryThemes.length > 0) {
+      const hasContentTheme = content.secondaryThemes.filter(
+        (theme) => theme && themeFilter.includes(theme.name.fr)
+      ).length > 0;
       return hasContentTheme;
     }
     return false;
@@ -120,7 +122,7 @@ export interface DispositifsFilteredState {
   nonTranslated: IDispositif[]
   dispositifsFullFrance: IDispositif[]
   themesObject: {
-    tag: Tag
+    theme: Theme
     dispositifs: IDispositif[]
   }[]
   principalThemeList: IDispositif[]
@@ -133,7 +135,8 @@ export interface DispositifsFilteredState {
 export const queryDispositifs = (
   allDispositifs: IDispositif[],
   query: SearchQuery,
-  ln: string
+  ln: string,
+  themes: Theme[]
 ) => {
   const filteredDispositifs = filterContents(
     allDispositifs,
@@ -148,11 +151,11 @@ export const queryDispositifs = (
   const countTotal = dispositifs.length;
 
   if (query.theme) {
-    //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier, sinon trié par date de création
+    //On réarrange les résultats pour avoir les dispositifs dont le theme est le principal en premier, sinon trié par date de création
     dispositifs = dispositifs.sort((a, b) =>
-      query.theme?.includes(get(a, "tags.0.name", {}))
+      query.theme?.includes(get(a, "theme.name.fr", {}))
         ? -1
-        : query.theme?.includes(get(b, "tags.0.name", {}))
+        : query.theme?.includes(get(b, "theme.name.fr", {}))
         ? 1
         : 0
     );
@@ -235,15 +238,15 @@ export const queryDispositifs = (
 
   // ORDER BY THEME
   let themesObject: {
-    tag: Tag;
+    theme: Theme;
     dispositifs: IDispositif[];
   }[] = [];
   if (query.order === "theme") {
-    themesObject = tags.map((tag) => {
+    themesObject = themes.map((theme) => {
       return {
-        tag: tag,
-        dispositifs: dispositifs.filter((elem) => (
-          elem.tags[0] ? elem.tags[0].short === tag.short : ""
+        theme: theme,
+        dispositifs: dispositifs.filter((dispositif) => (
+          dispositif.theme ? dispositif.theme._id === theme._id : null
         )),
       };
     }).filter(themeObject => themeObject.dispositifs.length > 0);
@@ -257,22 +260,17 @@ export const queryDispositifs = (
 
   if (query.theme) {
     const principalThemeList = dispositifs.filter((elem) => (
-      elem?.tags[0] ? query.theme?.includes(elem.tags[0].name) : ""
+      elem.theme ? query.theme?.includes(elem.theme.name.fr) : ""
     ));
     principalThemeListSorted = sortDispositifs(
       principalThemeList,
       query.order
     );
 
-    const secondaryThemeList = dispositifs.filter((element) => {
-      if (element.tags && element.tags.length > 0) {
-        for (var index = 1; index < element.tags.length; index++) {
-          if (
-            index !== 0 &&
-            element.tags[index] &&
-            query.theme?.includes(element.tags[index].name)
-          )
-          return true;
+    const secondaryThemeList = dispositifs.filter((dispositif) => {
+      if (dispositif.secondaryThemes && dispositif.secondaryThemes.length > 0) {
+        for (const dispositifTheme of dispositif.secondaryThemes) {
+          if (query.theme?.includes(dispositifTheme.name.fr)) return true;
         }
       }
       return false;
@@ -285,27 +283,20 @@ export const queryDispositifs = (
     // THEME + LOCATION
     if (query.loc?.city) {
       var principalThemeListFullFrance = dispositifsFullFrance.filter(
-        (elem) => (elem?.tags[0] ? query.theme?.includes(elem.tags[0].name) : "")
+        (disp) => (disp?.theme ? query.theme?.includes(disp.theme.name.fr) : "")
       );
       principalThemeListFullFranceSorted = sortDispositifs(
         principalThemeListFullFrance,
         query.order
       );
-      var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
-        (element) => {
-          if (element.tags && element.tags.length > 0) {
-            for (var index = 1; index < element.tags.length; index++) {
-              if (
-                index !== 0 &&
-                element.tags[index] &&
-                query.theme?.includes(element.tags[index].name)
-              )
-                return true;
-            }
+      const secondaryThemeListFullFrance = dispositifsFullFrance.filter((dispositif) => {
+        if (dispositif.secondaryThemes && dispositif.secondaryThemes.length > 0) {
+          for (const dispositifTheme of dispositif.secondaryThemes) {
+            if (query.theme?.includes(dispositifTheme.name.fr)) return true;
           }
-          return false;
         }
-      );
+        return false;
+      });
       secondaryThemeListFullFranceSorted = sortDispositifs(
         secondaryThemeListFullFrance,
         query.order

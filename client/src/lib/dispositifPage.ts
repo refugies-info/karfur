@@ -1,4 +1,4 @@
-import { DispositifContent, IDispositif, User, Tag } from "types/interface";
+import { DispositifContent, IDispositif, User, Theme } from "types/interface";
 import API from "utils/API";
 import {
   contenu,
@@ -18,7 +18,8 @@ import {
 } from "draft-js";
 import h2p from "html2plaintext";
 import { colors } from "colors";
-import { tags } from "data/tags";
+import { ObjectId } from "mongodb";
+import { Moment } from "moment";
 
 let htmlToDraft: any = null;
 if (isInBrowser()) {
@@ -219,21 +220,33 @@ export const handleContentClickInComponent = (
   return null;
 };
 
-export const getMainTag = (dispositif: IDispositif | null): Tag => {
-  if (dispositif && (dispositif.tags || []).length > 0) {
-    const tag = tags.find(
-      (x) => x && x.name === dispositif.tags[0].name
-    )
-    if (tag) return tag;
-  }
-  return {
-    darkColor: colors.gray90,
-    lightColor: colors.gray20,
-    hoverColor: colors.gray20,
-    short: "noImage",
-    illustrationColor: "",
-    name: "",
-    icon: "",
+export const getMainTheme = (dispositif: IDispositif | null): Theme => {
+  const emptyImage = {
+    secure_url: "",
+    public_id: "",
+    imgId: ""
+  };
+  return dispositif?.theme ?
+    dispositif.theme :
+    {
+      _id: {} as ObjectId,
+      name: {fr: ""},
+      short: { fr: "" },
+      colors: {
+        color100: colors.gray90,
+        color80: colors.gray20,
+        color60: colors.gray20,
+        color40: colors.gray20,
+        color30: colors.gray20,
+      },
+      position: 0,
+      icon: emptyImage,
+      banner: emptyImage,
+      appImage: emptyImage,
+      shareImage: emptyImage,
+      notificationEmoji: "",
+      adminComments: "",
+      active: true
   };
 }
 

@@ -351,23 +351,21 @@ export const AdminContenu = () => {
     if (
       !element.needs ||
       element.needs.length === 0 ||
-      !element.tags ||
-      element.tags.length === 0
+      !element.theme
     )
       return false;
 
     const formattedNeedsTheme = element.needs.map((needId) => {
       const needArray = allNeeds.filter((need) => need._id === needId);
-      const needTheme = needArray.length > 0 ? needArray[0].tagName : null;
+      const needTheme = needArray.length > 0 ? needArray[0].theme.name.fr : null;
       return needTheme;
     });
 
     const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
-    const uniqueTags = element.tags
-      .filter((tag) => !!tag)
-      .map((tag) => tag.name);
+    const uniqueThemes = [element.theme, ...element.secondaryThemes]
+      .map((theme) => theme.name.fr);
 
-    return uniqueNeedsTheme.sort().join(",") === uniqueTags.sort().join(",");
+    return uniqueNeedsTheme.sort().join(",") === uniqueThemes.sort().join(",");
   };
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
@@ -632,7 +630,7 @@ export const AdminContenu = () => {
       {showNeedsChoiceModal && (
         <NeedsChoiceModal
           show={showNeedsChoiceModal}
-          toggle={toggleNeedsChoiceModal}
+          toggleModal={toggleNeedsChoiceModal}
           dispositifId={selectedContentId}
         />
       )}

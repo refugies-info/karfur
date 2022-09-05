@@ -1,6 +1,6 @@
 import React from "react";
 import FSwitch from "components/UI/FSwitch/FSwitch";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import {
   Input,
   ButtonDropdown,
@@ -22,7 +22,7 @@ interface Props {
   changePrice: (arg1: any, arg2: any, arg3: any) => void;
   isOptionsOpen: boolean;
   toggleOptions: any;
-  mainTag: Tag;
+  theme: Theme;
 }
 
 const frequencesPay = [
@@ -55,7 +55,7 @@ export const CombienCaCouteContent = (props: Props) => {
       {!props.subitem.free && (
         <span
           className={styles.price_details}
-          style={{color: props.mainTag.darkColor}}
+          style={{color: props.theme.colors.color100}}
         >
           {props.disableEdit ? (
             <span>{props.subitem.price}</span>
@@ -63,7 +63,7 @@ export const CombienCaCouteContent = (props: Props) => {
             <Input
               type="number"
               className={parentStyles.age_input}
-              style={{color: props.mainTag.darkColor}}
+              style={{color: props.theme.colors.color100}}
               disabled={props.disableEdit}
               value={props.subitem.price}
               onMouseUp={() =>

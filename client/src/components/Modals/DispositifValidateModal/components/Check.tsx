@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import Streamline from "assets/streamline/index";
-import styles from "./DispositifValidateModal.module.scss";
-import { tags } from "data/tags";
+import { Theme } from "types/interface";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const CheckContainer = styled.div`
   background: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
@@ -111,8 +109,10 @@ const MockupCardContainer = styled.div`
       : ""};
 `;
 
-const getTitle = (section: string) =>
-  section === "tags"
+type section = "themes" | "geoloc" | "sentence" | "structure";
+
+const getTitle = (section: section) =>
+  section === "themes"
     ? "Choix des thèmes"
     : section === "geoloc"
     ? "Géolocalisation"
@@ -124,29 +124,21 @@ const onCheckContainerClick = (section: string, toggleModal: any, missingElement
   if (!missingElement || section === "sentence") return;
   return toggleModal(true);
 };
-
-const getTagElement = (tag: any) => {
-  return tag ? tags.filter((item) => item.name === tag.name)[0] : null;
-};
-
 interface Props {
-  section: string
+  section: section
   missingElement: any
   toggleModal?: any
   addItem?: any
   geolocInfoCard?: any
-  tags?: any[]
+  theme?: Theme
   abstract?: string
   onChange?: any
-  toggleTagsModal?: any
   titreInformatif?: string
   titreMarque?: string
   typeContenu?: string
 }
 
 const Check = (props: Props) => {
-  const tag = getTagElement(props.tags?.[0] || null);
-
   return (
     <CheckContainer
       missingElement={props.missingElement}
@@ -198,19 +190,19 @@ const Check = (props: Props) => {
               />
             </div>
             <MockupCardContainer
-              color={tag ? tag.darkColor : "#000"}
-              lightColor={tag ? tag.lightColor : "#FFF"}
+              color={props.theme?.colors.color100 || "#000"}
+              lightColor={props.theme?.colors.color30 || "#FFF"}
               typeContenu={props.typeContenu}
             >
               <CardContainer typeContenu={props.typeContenu}>
                 <TitleMockup
-                  color={tag ? tag.darkColor : "#000"}
+                  color={props.theme?.colors.color100 || "#000"}
                   typeContenu={props.typeContenu}
                 >
                   {props.titreInformatif}
                 </TitleMockup>
                 <TextMockup
-                  color={tag ? tag.darkColor : "#000"}
+                  color={props.theme?.colors.color100 || "#000"}
                   typeContenu={props.typeContenu}
                   textlength={props.abstract?.length || 0}
                 >
@@ -220,14 +212,11 @@ const Check = (props: Props) => {
                   {props.abstract && props.abstract.length > 0 ? props.abstract : ""}
                 </TextMockup>
               </CardContainer>
-              {props.tags && props.typeContenu === "dispositif" && (
-                <TagContainer color={tag ? tag.darkColor : "#000"}>
+              {props.theme && props.typeContenu === "dispositif" && (
+                <TagContainer color={props.theme?.colors.color100 || "#000"}>
                   <TagContainerContent>
-                    <Streamline
-                      name={tag ? tag.icon : ""}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={props.theme}
                     />
                     <TagNameContainer> {props.titreMarque}</TagNameContainer>
                   </TagContainerContent>

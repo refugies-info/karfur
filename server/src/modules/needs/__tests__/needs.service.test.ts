@@ -10,23 +10,23 @@ describe("computePossibleNeeds", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const contentTags = [{ name: "name1" }, null];
+  const contentThemes = ["id1"];
   it("should return correct value when no need in entry", async () => {
     const actualNeeds = [];
-    const res = await computePossibleNeeds(actualNeeds, contentTags);
+    const res = await computePossibleNeeds(actualNeeds, contentThemes);
     expect(getNeedsFromDB).toHaveBeenCalledWith();
     expect(res).toEqual([]);
   });
 
   const allNeeds = [
-    { _id: "id1", tagName: "name1" },
-    { _id: "id2", tagName: "name1" },
-    { _id: "id3", tagName: "name2" },
+    { _id: "id1", theme: {_id: "id1"} },
+    { _id: "id2", theme: {_id: "id1"} },
+    { _id: "id3", theme: {_id: "id2"} },
   ];
-  it("should return correct value when all needs are in tag", async () => {
+  it("should return correct value when all needs are in theme", async () => {
     getNeedsFromDB.mockResolvedValueOnce(allNeeds);
     const actualNeeds = ["id1", "id2"];
-    const res = await computePossibleNeeds(actualNeeds, contentTags);
+    const res = await computePossibleNeeds(actualNeeds, contentThemes);
     expect(getNeedsFromDB).toHaveBeenCalledWith();
     expect(res).toEqual(["id1", "id2"]);
   });
@@ -34,7 +34,7 @@ describe("computePossibleNeeds", () => {
   it("should remove one need", async () => {
     getNeedsFromDB.mockResolvedValueOnce(allNeeds);
     const actualNeeds = ["id1", "id2", "id3"];
-    const res = await computePossibleNeeds(actualNeeds, contentTags);
+    const res = await computePossibleNeeds(actualNeeds, contentThemes);
     expect(getNeedsFromDB).toHaveBeenCalledWith();
     expect(res).toEqual(["id1", "id2"]);
   });
