@@ -95,7 +95,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "demarche",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res2 = filterTargetsForDemarche(targets, req2, {fr: 1, en: 1});
     expect(res2.map(r => r.uid)).toEqual(["1", "2", "6"]);
@@ -104,7 +104,7 @@ describe("notification helpers", () => {
       age: { min: 18, max: 25 },
       departments: ["All"],
       type: "demarche",
-      mainTheme: "trouver un travail"
+      mainThemeId: "theme1"
     }
     const res3 = filterTargetsForDemarche(targets, req3, {fr: 1, ar: 1});
     expect(res3.map(r => r.uid)).toEqual(["1", "6"]);
