@@ -7,6 +7,8 @@ export const createNeedInDB = async (need: Partial<NeedDoc>) =>
 
 export const getNeedsFromDB = async () => Need.find().populate<{ theme: ThemeDoc }>("theme");
 
+export const getNeedFromDB = async (id: ObjectId) => Need.findOne({ _id: id });
+
 export const saveNeedInDB = async (needId: ObjectId, need: Partial<NeedDoc>) => {
   return Need.findOneAndUpdate(
     { _id: needId },
