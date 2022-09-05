@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import { Tag } from "types/interface";
-import Streamline from "assets/streamline";
+import { Theme } from "types/interface";
+import { useRouter } from "next/router";
+import { getThemeName } from "lib/getThemeName";
+import ThemeIcon from "../ThemeIcon";
 
 const ThemeButtonContainer = styled.div`
   background-color: ${(props: {color: string}) => props.color};
@@ -26,23 +28,19 @@ const ThemeText = styled.p`
 `;
 
 interface Props {
-  tag: Tag;
+  theme: Theme;
   isRTL?: boolean;
 }
 
 export const ThemeButton = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
-    <ThemeButtonContainer color={props.tag ? props.tag.darkColor : ""}>
-      <Streamline
-        name={props.tag ? props.tag.icon : undefined}
-        stroke={"white"}
-        width={14}
-        height={14}
-      />
+    <ThemeButtonContainer color={props.theme ? props.theme.colors.color100 : ""}>
+      <ThemeIcon theme={props.theme} size={14} />
       <ThemeText mr={props.isRTL ? 8 : 0}>
-        {props.tag ? t("Tags." + props.tag.short, props.tag.short) : null}
+        {getThemeName(props.theme, router.locale, "short")}
       </ThemeText>
     </ThemeButtonContainer>
   );

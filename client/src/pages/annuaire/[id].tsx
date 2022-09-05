@@ -19,6 +19,7 @@ import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaire
 import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire-id.module.scss";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface Props {
   history: string[]
@@ -42,7 +43,7 @@ const AnnuaireDetail = (props: Props) => {
 
   // Reload structure if locale change
   useEffect(() => {
-    if (structureId) {
+    if (structureId && currentLoadedLocale !== locale) {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: structureId as string,
@@ -84,9 +85,10 @@ const AnnuaireDetail = (props: Props) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query, locale}) => {
   if (query.id) {
+    store.dispatch(fetchThemesActionCreator());
     const action = fetchSelectedStructureActionCreator({
       id: query.id as string,
-      locale: locale || "fr"
+      locale: !locale || locale === "default" ? "fr" : locale
     });
     store.dispatch(action);
     store.dispatch(END);

@@ -1,24 +1,18 @@
 import React from "react";
-import Streamline from "assets/streamline";
-import { iconName } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./TagName.module.scss";
+import ThemeIcon from "../ThemeIcon";
 
 interface Props {
-  name: string
-  icon: iconName
+  theme: Theme
 }
 
 const TagName = (props: Props) => (
   <div className={styles.container}>
     <span className={styles.icon}>
-      <Streamline
-        name={props.icon}
-        stroke="white"
-        width={20}
-        height={20}
-      />
+      <ThemeIcon theme={props.theme} />
     </span>
-    <span>{props.name}</span>
+    <span>{props.theme.short.fr}</span>
   </div>
 );
 

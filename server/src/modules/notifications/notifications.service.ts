@@ -11,6 +11,7 @@ import { availableLanguages } from "../../libs/getFormattedLocale";
 
 import { parseDispositif, filterTargets, filterTargetsForDemarche, getNotificationEmoji, getTitle } from "./helpers";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
+import { DispositifPopulatedThemesDoc } from "../../schema/schemaDispositif";
 
 const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
 
@@ -63,15 +64,15 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
   if (notificationActive) {
     logger.info("[sendNotificationsForDispositif] notifications actives");
     try {
-      const dispositif = await getDispositifById(dispositifId, {
+      const dispositif: DispositifPopulatedThemesDoc = (await getDispositifById(dispositifId, {
         status: 1,
         titreMarque: 1,
         typeContenu: 1,
         titreInformatif: 1,
         contenu: 1,
-        tags: 1,
+        theme: 1,
         notificationsSent: 1
-      });
+      }, "theme")) as DispositifPopulatedThemesDoc;
 
       if (!dispositif || dispositif.typeContenu !== "dispositif") {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
@@ -151,15 +152,15 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
   if (notificationActive) {
     logger.error("[sendNotificationsForDemarche] notifications actives");
     try {
-      const demarche = await getDispositifById(demarcheId, {
+      const demarche: DispositifPopulatedThemesDoc = (await getDispositifById(demarcheId, {
         status: 1,
         typeContenu: 1,
         titreInformatif: 1,
         contenu: 1,
-        tags: 1,
+        theme: 1,
         notificationsSent: 1,
         avancement: 1
-      });
+      }, "theme")) as DispositifPopulatedThemesDoc;
 
       if (!demarche || demarche.typeContenu !== "demarche") { // not a demarche: error
         logger.error(`[sendNotificationsForDemarche] demarche ${demarcheId} not found`);

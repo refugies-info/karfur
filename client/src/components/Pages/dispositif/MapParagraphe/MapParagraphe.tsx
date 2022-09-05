@@ -8,7 +8,7 @@ import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { markerInfo } from "data/markerInfo";
 import { colors } from "colors";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./MapParagraphe.module.scss";
 import mobile from "scss/components/mobile.module.scss";
 import { cls } from "lib/classname";
@@ -26,7 +26,7 @@ interface Props {
   toggleShareContentOnMobileModal: any;
   toggleTutorielModal: any;
   deleteCard: any;
-  mainTag: Tag;
+  theme: Theme;
 }
 const MapParagraphe = (props: Props) => {
   const [center, setCenter] = useState({ lat: 48.856614, lng: 2.3522219 });
@@ -146,7 +146,7 @@ const MapParagraphe = (props: Props) => {
           </div>
           <div
             className={styles.header}
-            style={{backgroundColor: props.mainTag.darkColor}}
+            style={{backgroundColor: props.theme.colors.color100}}
           >
             <div className={styles.tuto}>
               <div className={styles.label}>
@@ -234,7 +234,7 @@ const MapParagraphe = (props: Props) => {
                         disabled={props.disableEdit}
                         onChange={(e) => handleMarkerChange(e, field.item)}
                         className={styles.marker_input + " " +field.customClass}
-                        style={{color: props.mainTag.darkColor}}
+                        style={{color: props.theme.colors.color100}}
                         placeholder="test"
                       />
                     </React.Fragment>
@@ -258,7 +258,7 @@ const MapParagraphe = (props: Props) => {
                       }
                       onChange={(e) => handleMarkerChange(e, field.item)}
                       className={styles.marker_input + "  " + field.customClass}
-                      style={{color: props.mainTag.darkColor}}
+                      style={{color: props.theme.colors.color100}}
                       placeholder={field.placeholder}
                     />
                   </React.Fragment>

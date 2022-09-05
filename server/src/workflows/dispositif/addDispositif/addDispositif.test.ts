@@ -158,7 +158,10 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
-      lastModificationAuthor: "userId"
+      lastModificationAuthor: "userId",
+      theme: undefined,
+      themesSelectedByAuthor: true,
+      secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -195,7 +198,10 @@ describe("addDispositif", () => {
       titreInformatif: "TI",
       status: "Brouillon",
       creatorId: "userId",
-      lastModificationAuthor: "userId"
+      lastModificationAuthor: "userId",
+      theme: undefined,
+      themesSelectedByAuthor: true,
+      secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -244,7 +250,10 @@ describe("addDispositif", () => {
       titreMarque: "TM",
       typeContenu: "dispositif",
       creatorId: "userId",
-      lastModificationAuthor: "userId"
+      lastModificationAuthor: "userId",
+      theme: undefined,
+      themesSelectedByAuthor: true,
+      secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
     expect(addRoleAndContribToUser).toHaveBeenCalledWith(
@@ -281,6 +290,8 @@ describe("addDispositif", () => {
       dispositifId: "dispoId",
       contenu: "contenu",
       typeContenu: "Brouillon",
+      theme: { _id: "theme1", short: {fr: "theme"} },
+      secondaryThemes: []
     };
     const req = {
       fromSite: true,
@@ -332,6 +343,8 @@ describe("addDispositif", () => {
       typeContenu: "dispositif",
       titreMarque: "TM",
       mainSponsor: "sponsorId",
+      theme: { _id: "themeId", short: {fr: "theme"} },
+      secondaryThemes: []
     };
     const req = {
       fromSite: true,
@@ -378,6 +391,8 @@ describe("addDispositif", () => {
       typeContenu: "dispositif",
       titreMarque: "TM",
       mainSponsor: "sponsorId",
+      theme: { _id: "themeId", short: {fr: "theme"} },
+      secondaryThemes: []
     };
     const req = {
       fromSite: true,

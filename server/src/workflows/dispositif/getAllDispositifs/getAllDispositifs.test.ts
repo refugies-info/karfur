@@ -21,7 +21,7 @@ jest.mock("../../../controllers/dispositif/functions", () => ({
   turnToLocalizedTitles: jest.fn(),
 }));
 
-describe("getAllispositifs", () => {
+describe("getAllDispositifs", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -47,7 +47,9 @@ describe("getAllispositifs", () => {
     lastModificationDate: 1,
     lastModificationAuthor: 1,
     needs: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
+    themesSelectedByAuthor: 1
   };
 
   const dispositifsToJson = [

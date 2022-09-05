@@ -94,9 +94,4 @@ export const selectedDispositifReducer = createReducer<
   //@ts-ignore
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
     ({ ...state, ...action.payload }),
-  //@ts-ignore
-  DELETE_TAG: (state, action) =>
-    ({...state,
-      tags: state ? state.tags.filter((_, i) => i !== action.payload) : [],
-    }),
 });

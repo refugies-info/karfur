@@ -11,13 +11,15 @@ export const getStructureFromDB = async (
   try {
     if (withDispositifsAssocies) {
       if (fields === "all") {
-        return await Structure.findOne({ _id: id }).populate(
-          "dispositifsAssocies"
-        );
+        return await Structure.findOne({ _id: id }).populate({
+          path: "dispositifsAssocies",
+          populate: { path: "theme secondaryThemes" }
+        });
       }
-      return await Structure.findOne({ _id: id }, fields).populate(
-        "dispositifsAssocies"
-      );
+      return await Structure.findOne({ _id: id }, fields).populate({
+        path: "dispositifsAssocies",
+        populate: { path: "theme secondaryThemes" }
+      });
     }
     if (fields === "all") {
       return await Structure.findOne({ _id: id });

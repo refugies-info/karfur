@@ -5,13 +5,14 @@ import { MobileSearchFilterModal } from "./MobileSearchFilterModal/MobileSearchF
 import FButton from "components/UI/FButton";
 import { LocalisationFilter } from "./LocalisationFilter/LocalisationFilter";
 import { SearchResultsDisplayedOnMobile } from "./SearchResultsDisplayedOnMobile/SearchResultsDisplayedOnMobile";
-import { Tag, IDispositif } from "types/interface";
+import { IDispositif, Theme } from "types/interface";
 import { SelectedFilter } from "./SelectedFilter/SelectedFilter";
 import { AvailableFilters } from "data/searchFilters";
-import { tags } from "data/tags";
 import { SearchQuery } from "pages/recherche";
 import { cls } from "lib/classname";
 import styles from "./MobileAdvancedSearch.module.scss";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   nbFilteredResults: number;
@@ -30,16 +31,17 @@ interface Props {
   isLoading: boolean;
 }
 
-const findTag = (theme: string|undefined) => tags.find((tag) => tag.name === theme) || null;
+const findTheme = (themeName: string|undefined, themes: Theme[]) => themes.find((theme) => theme.name.fr === themeName) || null;
 
 export const MobileAdvancedSearch = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
   const hasInitialSearch = Object.keys(router.query).filter(key => key !== "tri").length > 0;
+  const themes = useSelector(themesSelector);
 
   const [showTagModal, setShowTagModal] = useState(false);
-  const [tagSelected, setTagSelected] = useState<Tag | null>(findTag(props.query.theme?.[0]));
+  const [themeSelected, setThemeSelected] = useState<Theme | null>(findTheme(props.query.theme?.[0], themes));
   const [showAgeModal, setShowAgeModal] = useState(false);
   const [ageSelected, setAgeSelected] = useState<string | null>(props.query.age || null);
   const [showFrenchModal, setShowFrenchModal] = useState(false);
@@ -75,23 +77,23 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   useEffect(() => {
-    setTagSelected(findTag(props.query.theme?.[0]));
+    setThemeSelected(findTheme(props.query.theme?.[0], themes));
     setVille(props.query.loc?.city || "");
     setAgeSelected(props.query.age || null);
     setFrenchSelected(props.query.frenchLevel || null);
     setLanguage(props.query.langue || null);
 
     return () => {
-      setTagSelected(null);
+      setThemeSelected(null);
       setAgeSelected(null);
       setFrenchSelected(null);
       setLanguage(null);
       setVille("");
     };
-  }, [props.query]);
+  }, [props.query, themes]);
 
   const isSearchButtonDisabled =
-    !tagSelected &&
+    !themeSelected &&
     !ageSelected &&
     !frenchSelected &&
     !language &&
@@ -103,7 +105,7 @@ export const MobileAdvancedSearch = (props: Props) => {
   };
 
   const getFilterCount = () => {
-    return [tagSelected, ageSelected, frenchSelected, language, ville].filter(
+    return [themeSelected, ageSelected, frenchSelected, language, ville].filter(
       (filter) => !!filter
     ).length;
   };
@@ -123,11 +125,11 @@ export const MobileAdvancedSearch = (props: Props) => {
             </label>
             <SelectedFilter
               toggleShowModal={toggleShowModal}
-              tagSelected={tagSelected}
+              themeSelected={themeSelected}
               type="theme"
               title={"Tags.choisir un thème"}
               defaultTitle={"choisir un thème"}
-              setState={setTagSelected}
+              setState={setThemeSelected}
               removeFromQuery={() => props.removeFromQuery("theme")}
             />
           </div>
@@ -271,7 +273,7 @@ export const MobileAdvancedSearch = (props: Props) => {
             <span className={styles.badge}>{getFilterCount()}</span>
           </FButton>
           <SearchResultsDisplayedOnMobile
-            tagSelected={tagSelected}
+            themeSelected={themeSelected}
             ville={ville}
             principalThemeList={props.principalThemeList}
             principalThemeListFullFrance={props.principalThemeListFullFrance}

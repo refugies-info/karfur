@@ -37,7 +37,7 @@ import { LogList } from "../../Logs/LogList";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
 import { SmallDispositif } from "../../sharedComponents/SmallDispositif";
-import { getStructureWithAllInformationRequired } from "./functions";
+import { getDispositifsWithAllInformationRequired } from "./functions";
 import styles from "./StructureDetailsModal.module.scss";
 import Swal from "sweetalert2";
 import { colors } from "colors";
@@ -165,7 +165,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
   const isLoading = isLoadingDispositifs || isLoadingStructures;
   const secureUrl = structure?.picture?.secure_url;
-  const dispositifsWithAllInformation = getStructureWithAllInformationRequired(
+  const dispositifsWithAllInformation = getDispositifsWithAllInformationRequired(
     structure?.dispositifsIds || [],
     allDispositifs
   );

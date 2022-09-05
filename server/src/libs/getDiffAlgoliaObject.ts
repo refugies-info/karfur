@@ -11,8 +11,8 @@ export const getDiffAlgoliaObject = (
     else if (Array.isArray(localObject[key])) {
       let diff = localObject[key]
         .filter((x: any) => !!x)
-        .filter((x: any) => !algoliaObject[key].includes(x.toString()))
-        .concat(algoliaObject[key]
+        .filter((x: any) => !algoliaObject[key] || !algoliaObject[key].includes(x.toString()))
+        .concat((algoliaObject[key] || [])
           .filter((x: any) => !!x)
           .filter((x: any) => !localObject[key].includes(x.toString()))
         );

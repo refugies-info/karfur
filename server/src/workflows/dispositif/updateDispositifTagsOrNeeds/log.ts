@@ -3,13 +3,13 @@ import { addLog } from "../../../modules/logs/logs.service";
 
 export const log = async (
   dispositifId: ObjectId,
-  tags: boolean,
+  themes: boolean,
   authorId: ObjectId,
 ) => {
   await addLog(
     dispositifId,
     "Dispositif",
-    tags ? "Thèmes modifiés" : "Besoins modifiés",
+    themes ? "Thèmes modifiés" : "Besoins modifiés",
     {
       link: {
         id: dispositifId,

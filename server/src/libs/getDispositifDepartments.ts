@@ -1,7 +1,7 @@
-import { DispositifDoc } from "../schema/schemaDispositif";
+import { DispositifPopulatedThemesDoc } from "../schema/schemaDispositif";
 
 export const getDispositifDepartments = (
-  dispositif: DispositifDoc
+  dispositif: DispositifPopulatedThemesDoc
 ) => {
   //@ts-ignore
   const infocards = (dispositif.contenu?.[1]?.children || []).find(card => card.title === "Zone d'action");
