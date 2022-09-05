@@ -245,7 +245,8 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
       appImage: emptyImage,
       shareImage: emptyImage,
       notificationEmoji: "",
-      adminComments: ""
+      adminComments: "",
+      active: true
   };
 }
 
