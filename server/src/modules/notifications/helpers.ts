@@ -103,7 +103,11 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const parsedAge = parseTargetAge(target.age);
 
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
-    const departmentsOk = departments.includes(target.department) || departments.includes(ALL);
+    const departmentsOk = (
+      departments.includes(target.department) && notificationsSettings.local
+    ) || (
+      departments.includes(ALL) && notificationsSettings.global
+    );
 
     const typeOk = type === "dispositif" ? true : notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
@@ -114,7 +118,7 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
   });
 };
 
-export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements) => {
+export const filterTargetsForDemarche = (targets: AppUserType[], requirements: Requirements, avancement: any) => {
   return targets.filter((target) => {
     const { age, mainThemeId } = requirements;
     const { notificationsSettings } = target;
@@ -125,7 +129,9 @@ export const filterTargetsForDemarche = (targets: AppUserType[], requirements: R
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
-    return ageOk && themeOk && typeOk && target.expoPushToken;
+    const langOk = target.selectedLanguage === "fr" || avancement[target.selectedLanguage] === 1;
+
+    return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 

@@ -74,7 +74,7 @@ export const sendNotificationsForDispositif = async (dispositifId: string | Obje
         notificationsSent: 1
       }, "theme")) as DispositifPopulatedThemesDoc;
 
-      if (!dispositif) {
+      if (!dispositif || dispositif.typeContenu !== "dispositif") {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
         return;
       }
@@ -158,7 +158,8 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
         titreInformatif: 1,
         contenu: 1,
         theme: 1,
-        notificationsSent: 1
+        notificationsSent: 1,
+        avancement: 1
       }, "theme")) as DispositifPopulatedThemesDoc;
 
       if (!demarche || demarche.typeContenu !== "demarche") { // not a demarche: error
@@ -172,7 +173,7 @@ export const sendNotificationsForDemarche = async (demarcheId: string | ObjectId
         return;
       }
 
-      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements);
+      const targetUsers = filterTargetsForDemarche(await getAllAppUsers(), requirements, demarche.avancement);
 
       logger.info(`[sendNotificationsForDemarche] demarche ${demarcheId} - ${targetUsers.length} users found`);
 
