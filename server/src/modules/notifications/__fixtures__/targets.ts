@@ -89,7 +89,6 @@ export const targets = [
     city: "Paris",
     department: "Paris",
     selectedLanguage: "fr",
-    age: null,
     expoPushToken: "7",
     notificationsSettings: {
       global: false,
