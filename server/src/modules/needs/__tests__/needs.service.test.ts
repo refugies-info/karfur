@@ -10,7 +10,7 @@ describe("computePossibleNeeds", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  const contentThemes = ["id1", null];
+  const contentThemes = ["id1"];
   it("should return correct value when no need in entry", async () => {
     const actualNeeds = [];
     const res = await computePossibleNeeds(actualNeeds, contentThemes);

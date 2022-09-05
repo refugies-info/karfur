@@ -1,12 +1,13 @@
 // @ts-nocheck
 import deleteNeed from "./deleteNeed";
-import { deleteNeedById } from "../../../modules/themes/themes.repository";
+import { deleteNeedById } from "../../../modules/needs/needs.repository";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
+import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 
-jest.mock("../../../modules/themes/themes.repository", () => ({
+jest.mock("../../../modules/needs/needs.repository", () => ({
   deleteNeedById: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
@@ -14,8 +15,11 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
 }));
 
-jest.mock("../../../schema/schemaNeed", () => ({
+jest.mock("../../../schema/schemaNeeds", () => ({
   Need: jest.fn().mockImplementation(w => w)
+}));
+jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
+  getActiveContents: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -55,13 +59,35 @@ describe("deleteNeed", () => {
     await deleteNeed[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
   });
+  it("should return 400 if dispositifs associated", async () => {
+    const req = {
+      user: { roles: [], userId: "id" },
+      params: {id: "needId2"}
+    };
+    getActiveContents.mockImplementationOnce(() => {
+      return [
+        {_id: "1", needs: ["needId1"]},
+        {_id: "2", needs: ["needId1", "needId2"]}
+      ]
+    });
+    await deleteNeed[1](req, res);
+    expect(getActiveContents).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(400);
+  });
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: {id: "themeId"}
+      params: {id: "needId"}
     };
+    getActiveContents.mockImplementationOnce(() => {
+      return [
+        { _id: "1", needs: ["needId1", "needId2"] },
+        {_id: "2", needs: ["needId1"]}
+      ]
+    });
     await deleteNeed[1](req, res);
-    expect(deleteNeedById).toHaveBeenCalledWith("themeId");
+    expect(getActiveContents).toHaveBeenCalled();
+    expect(deleteNeedById).toHaveBeenCalledWith("needId");
     expect(res.status).toHaveBeenCalledWith(200);
   });
 

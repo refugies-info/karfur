@@ -160,6 +160,7 @@ describe("addDispositif", () => {
       creatorId: "userId",
       lastModificationAuthor: "userId",
       theme: undefined,
+      themesSelectedByAuthor: true,
       secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
@@ -199,6 +200,7 @@ describe("addDispositif", () => {
       creatorId: "userId",
       lastModificationAuthor: "userId",
       theme: undefined,
+      themesSelectedByAuthor: true,
       secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
@@ -250,6 +252,7 @@ describe("addDispositif", () => {
       creatorId: "userId",
       lastModificationAuthor: "userId",
       theme: undefined,
+      themesSelectedByAuthor: true,
       secondaryThemes: []
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");

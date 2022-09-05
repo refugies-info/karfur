@@ -1,9 +1,13 @@
 // @ts-nocheck
 import getThemes from "./getThemes";
 import {getAllThemes} from "../../../modules/themes/themes.repository";
+import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 jest.mock("../../../modules/themes/themes.repository", () => ({
   getAllThemes: jest.fn(),
+}));
+jest.mock("../../../modules/langues/langues.repository", () => ({
+  getActiveLanguagesFromDB: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -25,6 +29,7 @@ describe("getThemes", () => {
     const req = {};
     await getThemes[0](req, res);
     expect(getAllThemes).toHaveBeenCalled();
+    expect(getActiveLanguagesFromDB).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 

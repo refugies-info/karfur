@@ -1,20 +1,20 @@
 // @ts-nocheck
-import deleteNeed from "./deleteNeed";
-import { deleteNeedById } from "../../../modules/themes/themes.repository";
+import updatePositionsEndpoint from "./updatePositions";
+import { updatePositions } from "../../../modules/needs/needs.repository";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 
-jest.mock("../../../modules/themes/themes.repository", () => ({
-  deleteNeedById: jest.fn(),
+jest.mock("../../../modules/needs/needs.repository", () => ({
+  updatePositions: jest.fn(),
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
   checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
 }));
 
-jest.mock("../../../schema/schemaNeed", () => ({
+jest.mock("../../../schema/schemaNeeds", () => ({
   Need: jest.fn().mockImplementation(w => w)
 }));
 
@@ -26,7 +26,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("deleteNeed", () => {
+describe("updatePositions", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -39,9 +39,9 @@ describe("deleteNeed", () => {
     });
     const req = {
       fromSite: false,
-      params: {}
+      body: {}
     };
-    await deleteNeed[1](req, res);
+    await updatePositionsEndpoint[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
   });
   it("should return 403 if not admin", async () => {
@@ -50,18 +50,18 @@ describe("deleteNeed", () => {
     })
     const req = {
       user: { roles: [] },
-      params: {}
+      body: {}
     };
-    await deleteNeed[1](req, res);
+    await updatePositionsEndpoint[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
   });
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: {id: "themeId"}
+      body: {orderedNeedIds: ["1", "2", "3"]}
     };
-    await deleteNeed[1](req, res);
-    expect(deleteNeedById).toHaveBeenCalledWith("themeId");
+    await updatePositionsEndpoint[1](req, res);
+    expect(updatePositions).toHaveBeenCalledWith(["1", "2", "3"]);
     expect(res.status).toHaveBeenCalledWith(200);
   });
 

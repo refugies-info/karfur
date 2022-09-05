@@ -49,6 +49,7 @@ describe("getAllDispositifs", () => {
     needs: 1,
     theme: 1,
     secondaryThemes: 1,
+    themesSelectedByAuthor: 1
   };
 
   const dispositifsToJson = [

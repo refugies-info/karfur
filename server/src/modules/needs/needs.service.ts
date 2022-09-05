@@ -27,7 +27,7 @@ export const computePossibleNeeds = async (
     });
     return newNeeds;
   } catch (error) {
-    logger.error("[addDispositif] error while updating needs", {
+    logger.error("[computePossibleNeeds] error while getting needs", {
       error: error.message,
     });
   }
