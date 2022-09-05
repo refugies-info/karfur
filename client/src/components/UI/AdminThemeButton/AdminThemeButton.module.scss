@@ -35,3 +35,21 @@
     }
   }
 }
+
+.edit {
+  width: 30px;
+  height: 30px;
+  background: $white;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: $gray20;
+  }
+
+  & > span {
+    line-height: 16px;
+  }
+}

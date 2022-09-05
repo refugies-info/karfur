@@ -5,10 +5,10 @@ import CustomCard from "components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import Streamline from "assets/streamline";
 import { IDispositif, IUserFavorite } from "types/interface";
 import styles from "./SearchResultCard.module.scss";
 import { getPath } from "routes";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   pin?: (e: any, dispositif: IDispositif|IUserFavorite) => void
@@ -89,12 +89,7 @@ const SearchResultCard = (props: Props) => {
                         alignItems: "flex-start",
                       }}
                     >
-                      <Streamline
-                        name={theme.icon}
-                        stroke={"white"}
-                        width={20}
-                        height={20}
-                      />
+                      <ThemeIcon theme={theme} size={20} />
                     </div>
                   ) : null}
                   <span>{props.dispositif.titreMarque}</span>

@@ -81,7 +81,7 @@ describe("UserFavorites", () => {
       _id: "",
       short: {fr: "Français"},
       name: {fr: "apprendre le français"},
-      icon: "elearning",
+      icon:{secure_url: ""},
       colors: {
         color100: "#aaa",
         color80: "#aaa",
@@ -107,7 +107,7 @@ describe("UserFavorites", () => {
       _id: "",
       short: {fr: "Administratif"},
       name: {fr: "gérer mes papiers"},
-      icon: "office",
+      icon:{secure_url: ""},
       colors: {
         color100: "#aaa",
         color80: "#aaa",
@@ -133,7 +133,7 @@ describe("UserFavorites", () => {
       _id: "",
       short: {fr: "Logement"},
       name: {fr: "me loger"},
-      icon: "house",
+      icon:{secure_url: ""},
       colors: {
         color100: "#aaa",
         color80: "#aaa",

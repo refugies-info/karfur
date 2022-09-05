@@ -3,11 +3,11 @@ import { IDispositif } from "types/interface";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import { colors } from "colors";
-import Streamline from "assets/streamline";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   dispositif: IDispositif;
@@ -86,12 +86,7 @@ export const FicheOnMobile = (props: Props) => {
           </TitleText>
 
           <PictoCircle color={props.dispositif.theme.colors.color100}>
-            <Streamline
-              name={props.dispositif.theme.icon}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
+            <ThemeIcon theme={props.dispositif.theme} />
           </PictoCircle>
         </ItemContainer>
       )}

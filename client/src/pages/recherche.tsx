@@ -794,7 +794,7 @@ const mapStateToProps = (state: RootState) => {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,
-    themes: state.themes,
+    themes: state.themes.activeThemes,
     isLoading: isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS)(
       state
     ),

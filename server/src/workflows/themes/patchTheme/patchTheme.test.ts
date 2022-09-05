@@ -5,6 +5,7 @@ import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
+import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 jest.mock("../../../modules/themes/themes.repository", () => ({
   updateTheme: jest.fn(),
@@ -16,6 +17,9 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
 
 jest.mock("../../../schema/schemaTheme", () => ({
   Theme: jest.fn().mockImplementation(w => w)
+}));
+jest.mock("../../../modules/langues/langues.repository", () => ({
+  getActiveLanguagesFromDB: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -70,6 +74,8 @@ describe("patchTheme", () => {
     expect(updateTheme).toHaveBeenCalledWith("themeId", {
       name: {fr: "test"}
     });
+    expect(getActiveLanguagesFromDB).toHaveBeenCalled();
+
     expect(res.status).toHaveBeenCalledWith(200);
   });
 

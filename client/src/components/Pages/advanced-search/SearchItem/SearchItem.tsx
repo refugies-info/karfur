@@ -3,7 +3,6 @@ import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
-import Streamline from "assets/streamline";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRTL from "hooks/useRTL";
 import styles from "./SearchItem.module.scss";
@@ -20,6 +19,7 @@ import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getThemeName } from "lib/getThemeName";
 import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   geoSearch: boolean;
@@ -194,12 +194,7 @@ const SearchItem = (props: Props) => {
                   alignItems: "center",
                 }}
               >
-                <Streamline
-                  name={currentTheme.icon}
-                  stroke={"white"}
-                  width={22}
-                  height={22}
-                />
+                <ThemeIcon theme={currentTheme} />
               </div>
                 )}
             {active
@@ -260,12 +255,7 @@ const SearchItem = (props: Props) => {
                             alignItems: "center",
                           }}
                         >
-                          <Streamline
-                            name={theme.icon}
-                            stroke={"white"}
-                            width={22}
-                            height={22}
-                          />
+                          <ThemeIcon theme={theme} />
                         </div>
                       ) : null}
                       {getThemeName(theme, router.locale)}

@@ -1,10 +1,10 @@
-import Streamline from "assets/streamline";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 import useRTL from "hooks/useRTL";
 import { cls } from "lib/classname";
 import { DispositifsFilteredState } from "lib/filterContents";
 import { getThemeName } from "lib/getThemeName";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { IDispositif, IUserFavorite, Language, Theme } from "types/interface";
 import NoResultPlaceholder from "../NoResultPlaceholder";
@@ -78,12 +78,7 @@ export const ThemeResults = (props: Props) => {
             className={cls(styles.button, styles.inline_button)}
             style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
-            <Streamline
-              name={selectedTheme ? selectedTheme.icon : undefined}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
+            <ThemeIcon theme={selectedTheme} />
             <p className={styles.text}>
               {selectedTheme
                 ? getThemeName(selectedTheme, router.locale, "short")
@@ -199,12 +194,7 @@ export const ThemeResults = (props: Props) => {
             className={cls(styles.button, styles.inline_button)}
             style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
-            <Streamline
-              name={selectedTheme ? selectedTheme.icon : undefined}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
+            <ThemeIcon theme={selectedTheme} />
             <p className={styles.text}>
               {selectedTheme
                 ? getThemeName(selectedTheme, router.locale, "short")

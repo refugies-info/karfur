@@ -1,11 +1,7 @@
-import videoBtn from "./videoBtn.svg";
-import countrySide from "./countrySide.svg";
 import interieur_2 from "./interieur_2.svg";
 import interieur_3 from "./interieur_3.svg";
 import interieur_4 from "./interieur_4.svg";
 import logo_google from "./logo_google.svg";
-import logo_header from "./logo_header.svg";
-import minInt from "./minInt.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
 import logoRI from "./logoRI.svg";
@@ -23,14 +19,10 @@ import icon_France from "./icon_France.svg";
 import structure_definie from "./structure_definie.svg";
 
 export {
-  videoBtn,
-  countrySide,
   interieur_2,
   interieur_3,
   interieur_4,
   logo_google,
-  logo_header,
-  minInt,
   rejectionFiche,
   responsableFiche,
   logoRI,

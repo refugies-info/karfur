@@ -1,12 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import Streamline from "assets/streamline/index";
-import styles from "./DispositifValidateModal.module.scss";
 import { Theme } from "types/interface";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const CheckContainer = styled.div`
   background: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
@@ -217,11 +215,8 @@ const Check = (props: Props) => {
               {props.theme && props.typeContenu === "dispositif" && (
                 <TagContainer color={props.theme?.colors.color100 || "#000"}>
                   <TagContainerContent>
-                    <Streamline
-                      name={props.theme?.icon || ""}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={props.theme}
                     />
                     <TagNameContainer> {props.titreMarque}</TagNameContainer>
                   </TagContainerContent>

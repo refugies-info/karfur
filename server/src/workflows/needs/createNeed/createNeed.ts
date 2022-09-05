@@ -1,5 +1,4 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { ObjectId } from "mongoose";
 
 import {
   checkRequestIsFromSite,
@@ -7,31 +6,35 @@ import {
 } from "../../../libs/checkAuthorizations";
 import logger = require("../../../logger");
 import { createNeedInDB } from "../../../modules/needs/needs.repository";
+import { Request, getValidator } from "../../../modules/needs/needs.service";
+import { NeedDoc } from "../../../schema/schemaNeeds";
 
-interface Query {
-  query: { name: string; theme: ObjectId };
-}
-export const createNeed = async (
-  req: RequestFromClientWithBody<Query>,
+const validator = getValidator("post");
+
+const createNeed = async (
+  req: RequestFromClientWithBody<Request>,
   res: Res
 ) => {
   try {
+    logger.info("[createNeed] received", req.body);
     checkRequestIsFromSite(req.fromSite);
-
     // @ts-ignore : populate roles
     checkIfUserIsAdmin(req.user.roles);
 
-    if (!req.body.query) {
-      throw new Error("INVALID_REQUEST");
-    }
+    const need = req.body;
 
-    const need = req.body.query;
-
-    const needDB = {
-      fr: { text: need.name, updatedAt: Date.now() },
+    const needDB: Partial<NeedDoc> = {
+      fr: {
+        text: need.fr.text,
+        subtitle: need.fr.subtitle,
+        //@ts-ignore
+        updatedAt: Date.now()
+      },
+      image: need.image || null,
       theme: need.theme,
+      position: 0
     };
-    // @ts-ignore
+
     await createNeedInDB(needDB);
 
     return res.status(200).json({
@@ -53,3 +56,5 @@ export const createNeed = async (
     }
   }
 };
+
+export default [validator, createNeed];

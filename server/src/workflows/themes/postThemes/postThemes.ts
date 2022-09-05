@@ -6,7 +6,8 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { Theme } from "../../../schema/schemaTheme";
-import { Request, getValidator } from "../../../modules/themes/themes.service";
+import { Request, getValidator, isThemeActive } from "../../../modules/themes/themes.service";
+import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
 const validator = getValidator("post");
 
@@ -33,10 +34,11 @@ const handler = async (
     });
 
     const dbTheme = await createTheme(theme);
+    const activeLanguages = await getActiveLanguagesFromDB();
 
     return res.status(200).json({
       text: "Succès",
-      data: dbTheme,
+      data: {...dbTheme.toObject(), active: isThemeActive(dbTheme, activeLanguages)},
     });
   } catch (error) {
     logger.error("[postThemes] error", { error: error.message });

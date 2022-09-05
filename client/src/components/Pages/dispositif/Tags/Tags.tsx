@@ -9,6 +9,7 @@ import { cls } from "lib/classname";
 import { Theme } from "types/interface";
 import { useRouter } from "next/router";
 import { getThemeName } from "lib/getThemeName";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   theme: Theme | undefined;
@@ -48,12 +49,7 @@ const Tags = (props: Props) => {
                       props.isRTL && styles.rtl,
                     )}
                   >
-                    <Streamline
-                      name={theme.icon}
-                      stroke={"white"}
-                      width={20}
-                      height={20}
-                    />
+                    <ThemeIcon theme={theme} size={20}/>
                   </div>
                   {getThemeName(theme, router.locale, "short")}
                 </div>

@@ -38,7 +38,7 @@ export const ThemesInput = (props: Props) => {
           }}
           className="mr-2 mb-2"
         >
-          <TagName name={theme.short.fr} icon={theme.icon} />
+          <TagName theme={theme} />
         </FilterButton>
       ))}
       <FilterButton

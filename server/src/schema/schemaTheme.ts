@@ -1,5 +1,12 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Moment } from "moment";
+import { Picture } from "../types/interface";
+
+const imageSchema = {
+  secure_url: String,
+  public_id: String,
+  imgId: String,
+};
 
 const themeSchema = new mongoose.Schema(
   {
@@ -39,25 +46,17 @@ const themeSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    icon: {
-      type: String,
-      required: true,
-    },
-    banner: {
-      type: String,
-      required: true,
-    },
-    appImage: {
-      type: String,
-      required: true,
-    },
-    shareImage: {
-      type: String,
-      required: true,
-    },
+    icon: imageSchema,
+    banner: imageSchema,
+    appImage: imageSchema,
+    shareImage: imageSchema,
     notificationEmoji: {
       type: String,
       required: true,
+    },
+    adminComments: {
+      type: String,
+      required: false
     },
   },
   { timestamps: { createdAt: "created_at" } }
@@ -81,11 +80,12 @@ export interface ThemeDoc extends mongoose.Document {
     color30: string;
   }
   position: number;
-  icon: string;
-  banner: string;
-  appImage: string;
-  shareImage: string;
+  icon: Picture;
+  banner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
+  adminComments?: string;
   created_at: Moment;
 }
 

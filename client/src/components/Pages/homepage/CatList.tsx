@@ -9,6 +9,7 @@ import { Theme } from "types/interface";
 import styles from "./CatList.module.scss";
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const InnerButton = styled.div`
   display: flex;
@@ -83,13 +84,7 @@ const CatList = (props: Props) => {
               <InnerButton>
                 {theme.icon ? (
                   <IconContainer isRTL={isRTL}>
-                    <Streamline
-                      //@ts-ignore
-                      name={theme.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
+                    <ThemeIcon theme={theme} />
                   </IconContainer>
                 ) : null}
                 {theme.name.fr}

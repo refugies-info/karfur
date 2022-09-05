@@ -16,23 +16,12 @@ export interface Indicator {
 }
 
 export interface Picture {
-  imgId: ObjectId;
+  imgId: string;
   public_id: string;
   secure_url: string;
 }
 
 type iconName = "house" |
-  "elearning" |
-  "briefcase" |
-  "measure" |
-  "glasses" |
-  "bus" |
-  "triumph" |
-  "heartBeat" |
-  "couple" |
-  "soccer" |
-  "flag" |
-  "office" |
   "search" |
   "message" |
   "menu" |
@@ -56,11 +45,13 @@ export interface Theme {
     color30: string;
   }
   position: number;
-  icon: iconName;
-  banner: string;
-  appImage: string;
-  shareImage: string;
+  icon: Picture;
+  banner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
+  adminComments: string;
+  active: boolean;
   created_at?: Moment;
 }
 
@@ -359,11 +350,6 @@ export interface UserStructureMembre {
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];
 }
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
-}
 export interface Translation {
   _id?: ObjectId;
   initialText?: object;
@@ -462,7 +448,8 @@ export type ITypeContenu = "dispositif" | "demarche";
 
 export interface NeedDetail {
   text: string;
-  updatedAt: Moment;
+  subtitle: string;
+  updatedAt?: Moment;
 }
 export interface Need {
   fr: NeedDetail;
@@ -475,6 +462,10 @@ export interface Need {
   uk?: NeedDetail;
   _id: ObjectId;
   theme: Theme;
+  adminComments: string;
+  image: Picture;
+  nbVues?: number;
+  position?: number;
   created_at: Moment;
   updatedAt: Moment;
 }

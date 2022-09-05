@@ -168,7 +168,19 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-
+        <NavItem>
+          <NavLink
+            active={activeTab === "categories"}
+            onClick={() => toggleTab("categories")}
+          >
+            <Onglet
+              iconSelected="settings-2"
+              iconNotSelected="settings-2-outline"
+              text="Catégories"
+              isSelected={activeTab === "categories"}
+            />
+          </NavLink>
+        </NavItem>
         <NavItem>
           <NavLink
             active={activeTab === "divers"}
@@ -179,19 +191,6 @@ export const Admin = (props: Props) => {
               iconNotSelected="pie-chart-outline"
               text="Divers"
               isSelected={activeTab === "divers"}
-            />
-          </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            active={activeTab === "besoins"}
-            onClick={() => toggleTab("besoins")}
-          >
-            <Onglet
-              iconSelected="pie-chart"
-              iconNotSelected="pie-chart-outline"
-              text="Besoins"
-              isSelected={activeTab === "besoins"}
             />
           </NavLink>
         </NavItem>

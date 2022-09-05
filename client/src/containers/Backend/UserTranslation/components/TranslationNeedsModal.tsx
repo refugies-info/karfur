@@ -219,9 +219,8 @@ export const TranslationNeedsModal = (props: Props) => {
                 <td className="align-middle">
                   <div style={{ marginLeft: -4, width: 130 }}>
                     <TagButton
-                      name={jsUcfirst(need.theme.short.fr) || ""}
+                      theme={need.theme}
                       isSelected={true}
-                      color={need.theme.colors.color100}
                     />
                   </div>
                 </td>

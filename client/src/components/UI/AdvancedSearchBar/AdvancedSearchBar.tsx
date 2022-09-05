@@ -20,6 +20,7 @@ import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getThemeName } from "lib/getThemeName";
+import ThemeIcon from "../ThemeIcon";
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -342,12 +343,7 @@ const AdvancedSearchBar = (props: Props) => {
                             mr={isRTL ? true : false}
                             color={selectedTheme ? selectedTheme.colors.color100 : ""}
                           >
-                            <Streamline
-                              name={selectedTheme ? selectedTheme.icon : undefined}
-                              stroke={"white"}
-                              width={22}
-                              height={22}
-                            />
+                            <ThemeIcon theme={selectedTheme} />
                             <ThemeText rtl={isRTL}>
                               {selectedTheme
                                 ? getThemeName(selectedTheme, router.locale, "short")
@@ -388,12 +384,7 @@ const AdvancedSearchBar = (props: Props) => {
                             mr={isRTL ? false : true}
                             ml={isRTL ? true : false}
                           >
-                            <Streamline
-                              name={dispositif.theme.icon || undefined}
-                              stroke={"white"}
-                              width={22}
-                              height={22}
-                            />
+                            <ThemeIcon theme={dispositif.theme} />
                           </ThemeButton>
                           <ThemeDispositifText
                             color={dispositif.theme.colors.color100 || ""}

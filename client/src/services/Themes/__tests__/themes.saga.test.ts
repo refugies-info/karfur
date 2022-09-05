@@ -18,7 +18,7 @@ import {
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
 import { setThemesActionCreator } from "../themes.actions";
-import { themesSelector } from "../themes.selectors";
+import { allThemesSelector } from "../themes.selectors";
 
 describe("[Saga] Themes", () => {
   describe("pilot", () => {
@@ -84,7 +84,7 @@ describe("[Saga] Themes", () => {
           name: "new"
         })
         .next({ data: { data: {_id: "id3",name:"new"} } })
-        .select(themesSelector)
+        .select(allThemesSelector)
         .next([{_id: "id1"}, {_id: "id2"}, {_id: "id3", name: "old"}])
         .put(setThemesActionCreator([{_id: "id1"}, {_id: "id2"}, {_id: "id3", name: "new"}]))
         .next()
@@ -111,7 +111,7 @@ describe("[Saga] Themes", () => {
           name: "new"
         })
         .next({ data: { data: { _id: "id3", name:"new" } } })
-        .select(themesSelector)
+        .select(allThemesSelector)
         .next([{_id: "id1"}, {_id: "id2"}])
         .put(setThemesActionCreator([{_id: "id3", name: "new"}, {_id: "id1"}, {_id: "id2"}]))
         .next()
@@ -132,7 +132,7 @@ describe("[Saga] Themes", () => {
         .next()
         .call(API.deleteTheme, "id2")
         .next()
-        .select(themesSelector)
+        .select(allThemesSelector)
         .next([{_id: "id1"}, {_id: "id2"}])
         .put(setThemesActionCreator([{_id: "id1"}]))
         .next()

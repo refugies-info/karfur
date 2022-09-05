@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
-import Streamline from "assets/streamline";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
@@ -13,6 +12,7 @@ import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
 import { Theme, User } from "types/interface";
 import { ObjectId } from "mongodb";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const Step = ({ ...props }) => {
   return (
@@ -204,11 +204,8 @@ const DispositifValidateModal = (props: Props) => {
               <span className={styles.inner_btn}>
                 {theme.icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={theme.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={theme}
                     />
                   </div>
                 ) : null}
@@ -267,11 +264,8 @@ const DispositifValidateModal = (props: Props) => {
               <span className={styles.inner_btn}>
                 {theme.icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={theme.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
+                    <ThemeIcon
+                      theme={theme}
                     />
                   </div>
                 ) : null}

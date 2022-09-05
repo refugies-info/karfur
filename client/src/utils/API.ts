@@ -308,19 +308,32 @@ const API = {
 
   // Needs
   getNeeds: () => {
-    return instance.get("/needs/getNeeds")
+    return instance.get("/needs")
   },
-  saveNeed: (query: Partial<Need>) =>{
+  postNeeds: (query: Partial<Need>) =>{
     const headers = getHeaders();
-    return instance.post("/needs/saveNeed", query, {
+    return instance.post("/needs", query, {
       headers,
     })
   },
-  createNeed: (query: {name: string, theme: string}) =>{
+  patchNeed: (query: Partial<Need>) =>{
     const headers = getHeaders();
-    return instance.post("/needs/createNeed", query, {
+    const newNeed = {...query};
+    delete newNeed._id;
+    return instance.patch(`/needs/${query._id}`, newNeed, {
       headers,
     })
+  },
+  orderNeeds: (query: ObjectId[]) =>{
+    const headers = getHeaders();
+    return instance.post("/needs/positions",
+      { orderedNeedIds: query },
+      { headers }
+    )
+  },
+  deleteNeed: (query: ObjectId) =>{
+    const headers = getHeaders();
+    return instance.delete(`/needs/${query}`, { headers })
   },
 
   // Themes
@@ -335,7 +348,9 @@ const API = {
   },
   patchTheme: (query: Partial<Theme>) =>{
     const headers = getHeaders();
-    return instance.patch(`/themes/${query._id}`, query, {
+    const newTheme = {...query};
+    delete newTheme._id;
+    return instance.patch(`/themes/${query._id}`, newTheme, {
       headers,
     })
   },
