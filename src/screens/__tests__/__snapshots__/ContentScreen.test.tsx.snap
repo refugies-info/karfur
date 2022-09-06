@@ -252,13 +252,12 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View>
-      <Image
-        resizeMode="cover"
-        source={1}
+      <View
         style={
           Object {
+            "alignItems": "center",
+            "display": "flex",
             "height": 330,
-            "width": "100%",
           }
         }
       />
@@ -4882,13 +4881,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View>
-      <Image
-        resizeMode="cover"
-        source={1}
+      <View
         style={
           Object {
+            "alignItems": "center",
+            "display": "flex",
             "height": 330,
-            "width": "100%",
           }
         }
       />

@@ -181,10 +181,27 @@ export const selectedContent: Content = {
       "color30": "",
     },
     "position": 0,
-    "icon":"",
-    "banner":"",
-    "appImage": "",
-    "shareImage": "",
+    "icon":{
+      "secure_url": "",
+      "public_id": "",
+      "imgId": ""
+    },
+    "banner":{
+      "secure_url": "",
+      "public_id": "",
+      "imgId": ""
+    },
+    "appImage":{
+      "secure_url": "",
+      "public_id": "",
+      "imgId": ""
+    },
+    "shareImage":{
+      "secure_url": "",
+      "public_id": "",
+      "imgId": ""
+    },
+    "active": true,
     "notificationEmoji": ""
  },
   "secondaryThemes": [],

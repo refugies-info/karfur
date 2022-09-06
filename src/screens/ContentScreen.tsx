@@ -656,7 +656,7 @@ export const ContentScreen = ({
       >
         {
           <>
-            <HeaderImage themeName={theme?.name.fr || ""} height={headerImageHeight} />
+            <HeaderImage theme={theme} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>
               <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
                 <TitreInfoText
