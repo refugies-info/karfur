@@ -492,16 +492,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -565,16 +578,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -638,16 +664,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -711,16 +750,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -784,16 +836,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -857,16 +922,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -930,16 +1008,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -1003,16 +1094,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -1076,16 +1180,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -1149,16 +1266,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -1222,16 +1352,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
             <View
               accessibilityRole="button"
@@ -1295,16 +1438,29 @@ exports[`Search results screen should render correctly 1`] = `
                 </Text>
                 <View />
               </Text>
-              <react-native-svg
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
                 height={20}
                 style={
-                  Object {
-                    "stroke": "white",
-                    "strokeWidth": 2,
-                  }
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
                 }
                 width={20}
-              />
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
             </View>
           </View>
         </RCTScrollView>
