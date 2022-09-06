@@ -26,7 +26,7 @@ export const StreamlineIcon = (props: Props) => {
       width={props.size || 22}
       height={props.size || 22}
       xml={imgXml
-        .replace(/stroke="((#[0-9a-f]{6})|([a-z]+))"/g, `stroke="${props.stroke || "white"}"`)
+        .replace(/stroke="((#[0-9a-f]{6})|(#[0-9a-f]{3})|([a-z]+))"/g, `stroke="${props.stroke || "white"}"`)
       }
     />
   )
