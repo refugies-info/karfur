@@ -67,7 +67,6 @@ const InfiniteHits = ({
       </ErrorContainer>
     )
   }
-
   return (
     <View>
       <FlatList

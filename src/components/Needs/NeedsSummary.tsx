@@ -62,7 +62,7 @@ interface Props {
   nbContents?: number
   searchLanguageMatch?: string;
   navigation: any;
-  theme: Theme;
+  theme?: Theme;
   searchItem?: any;
   style?: StyleProp<ViewStyle>;
   backScreen?: string;
@@ -95,7 +95,7 @@ export const NeedsSummary = (props: Props) => {
       }}
       style={props.style || {}}
     >
-      <StyledText color={props.theme.colors.color100}>
+      <StyledText color={props.theme?.colors.color100}>
         {props.searchItem ?
           <Highlight
             hit={props.searchItem}
@@ -108,7 +108,7 @@ export const NeedsSummary = (props: Props) => {
       </StyledText>
 
       {!!props.nbContents &&
-        <IndicatorContainer backgroundColor={props.theme.colors.color100} isRTL={isRTL}>
+        <IndicatorContainer backgroundColor={props.theme?.colors.color100} isRTL={isRTL}>
           <IndicatorNumber isRTL={isRTL}>
             {props.nbContents}
           </IndicatorNumber>

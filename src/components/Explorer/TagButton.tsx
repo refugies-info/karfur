@@ -9,11 +9,12 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
+import { Picture } from "../../types/interface";
 
 interface Props {
   name?: string;
   backgroundColor: string;
-  iconName: string;
+  icon: Picture;
   onPress: () => void;
   inline?: boolean;
   searchItem?: any;
@@ -72,7 +73,7 @@ export const TagButton = (props: Props) => {
           </ReadableText>
         }
       </StyledText>
-      <StreamlineIcon name={props.iconName} width={20} height={20} />
+      {props.icon && <StreamlineIcon icon={props.icon} size={20} />}
     </StyledContainer>
   );
 };

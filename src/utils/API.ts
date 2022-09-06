@@ -4,7 +4,7 @@ import { apiCaller } from "./ConfigAPI";
 
 export const getLanguages = () => apiCaller.get("/langues/getLanguages");
 
-export const getNeeds = () => apiCaller.get("/needs/getNeeds");
+export const getNeeds = () => apiCaller.get("/needs");
 
 export const getThemes = () => apiCaller.get("/themes");
 
@@ -72,6 +72,10 @@ export const updateNbVuesOrFavoritesOnContent = (
     | { query: { id: ObjectId; nbVuesMobile: number } }
     | { query: { id: ObjectId; nbFavoritesMobile: number } }
 ) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
+
+export const addNeedView = (
+  params: { id: ObjectId }
+) => apiCaller.post("/needs/views", params);
 
 export const updateAppUser = async (payload: AppUser) =>
   makeApiRequest("/appuser/", payload, "POST");

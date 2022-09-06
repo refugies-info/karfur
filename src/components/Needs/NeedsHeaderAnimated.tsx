@@ -6,6 +6,7 @@ import { RTLView } from "../BasicComponents";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { ReadableText } from "../ReadableText";
+import { Picture } from "../../types/interface";
 
 interface Props {
   themeDarkColor: string;
@@ -14,7 +15,7 @@ interface Props {
   headerPaddingTop: any;
   themeName: string;
   headerFontSize: any;
-  iconName: string;
+  icon: Picture;
   showSimplifiedHeader: boolean;
 }
 
@@ -70,9 +71,8 @@ export const NeedsHeaderAnimated = (props: Props) => {
         </Animated.Text>
 
         <StreamlineIcon
-          name={props.iconName}
-          width={props.showSimplifiedHeader ? 16 : 24}
-          height={props.showSimplifiedHeader ? 16 : 24}
+          icon={props.icon}
+          size={props.showSimplifiedHeader ? 16 : 24}
         />
       </RTLView>
     </Animated.View>

@@ -1,6 +1,12 @@
 import { Moment } from "moment";
 
 export type ObjectId = any;
+
+export interface Picture {
+  secure_url: string;
+  public_id: string;
+  imgId: string;
+}
 export interface Language {
   langueFr: string;
   i18nCode: string;
@@ -28,10 +34,11 @@ export interface Theme {
   };
   colors: ThemeColors;
   position: number;
-  icon: string;
-  banner: string;
-  appImage: string;
-  shareImage: string;
+  icon: Picture;
+  banner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
+  active: boolean;
   notificationEmoji: string;
   created_at?: Moment;
 }
@@ -137,6 +144,7 @@ export interface Need {
   uk?: NeedDetail;
   _id: ObjectId;
   theme: ObjectId;
+  position?: number;
   created_at: Moment;
   updatedAt: Moment;
 }

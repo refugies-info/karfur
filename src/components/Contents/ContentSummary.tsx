@@ -84,7 +84,7 @@ interface Props {
   navigation: any;
   contentId: ObjectId;
   needId?: ObjectId;
-  theme: Theme | null;
+  theme?: Theme | null;
   titreInfo?: string;
   titreMarque?: string | undefined;
   typeContenu: "dispositif" | "demarche";
@@ -232,7 +232,7 @@ export const ContentSummary = (props: Props) => {
       <TitleContainer>
         <ImageContainer lightColor={colors.color30} isRTL={isRTL}>
           <DemarcheImage
-            name={props.theme?.icon || ""}
+            icon={props.theme?.icon}
             stroke={colors.color100}
             contentId={props.contentId}
             isSmall={true}

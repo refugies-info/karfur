@@ -99,7 +99,7 @@ const SearchSuggestions = (props: Props) => {
               key={index}
               name={theme.name[currentLanguageI18nCode || "fr"]}
               backgroundColor={theme.colors.color100}
-              iconName={theme.icon}
+              icon={theme.icon}
               inline={true}
               onPress={() => {
                 props.navigation.navigate("NeedsScreen", {

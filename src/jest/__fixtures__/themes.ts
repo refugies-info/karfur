@@ -29,10 +29,10 @@ export const mockedThemesData = [
           "ti": "ፈረንሳይ"
       },
       "position": 2,
-      "icon": "elearning",
-      "banner": "/images/illustration_Français.svg",
-      "appImage": "/images/app/francais.svg",
-      "shareImage": "/images/illustration_Français.svg",
+      "icon": {"secure_url": "elearning"},
+      "banner": {"secure_url": "/images/illustration_Français.svg"},
+      "appImage": {"secure_url": "/images/app/francais.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Français.svg"},
       "notificationEmoji": "🇫🇷"
   },
   {
@@ -65,10 +65,10 @@ export const mockedThemesData = [
           "ti": "ቤት ጽሕፈታት"
       },
       "position": 1,
-      "icon": "office",
-      "banner": "/images/illustration_Administratif.svg",
-      "appImage": "/images/app/admin.svg",
-      "shareImage": "/images/illustration_Administratif.svg",
+      "icon": {"secure_url": "office"},
+      "banner": {"secure_url": "/images/illustration_Administratif.svg"},
+      "appImage": {"secure_url": "/images/app/admin.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Administratif.svg"},
       "notificationEmoji": "📝"
   },
   {
@@ -101,10 +101,10 @@ export const mockedThemesData = [
           "ti": "መንበሪ ገዛ"
       },
       "position": 5,
-      "icon": "house",
-      "banner": "/images/illustration_Logement.svg",
-      "appImage": "/images/app/logement.svg",
-      "shareImage": "/images/illustration_Logement.svg",
+      "icon": {"secure_url": "house"},
+      "banner": {"secure_url": "/images/illustration_Logement.svg"},
+      "appImage": {"secure_url": "/images/app/logement.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Logement.svg"},
       "notificationEmoji": "🏡"
   },
   {
@@ -137,10 +137,10 @@ export const mockedThemesData = [
           "ti": "ብቅዓት = ክእለት"
       },
       "position": 7,
-      "icon": "bus",
-      "banner": "/images/illustration_Mobilité.svg",
-      "appImage": "/images/app/transport.svg",
-      "shareImage": "/images/illustration_Mobilité.svg",
+      "icon": {"secure_url": "bus"},
+      "banner": {"secure_url": "/images/illustration_Mobilité.svg"},
+      "appImage": {"secure_url": "/images/app/transport.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Mobilité.svg"},
       "notificationEmoji": "🚗"
   },
   {
@@ -173,10 +173,10 @@ export const mockedThemesData = [
           "ti": "ምትእትታው ሞያ ብውሕልልነት"
       },
       "position": 4,
-      "icon": "briefcase",
-      "banner": "/images/illustration_Insertion-pro.svg",
-      "appImage": "/images/app/travail.svg",
-      "shareImage": "/images/illustration_Insertion-pro.svg",
+      "icon": {"secure_url": "briefcase"},
+      "banner": {"secure_url": "/images/illustration_Insertion-pro.svg"},
+      "appImage": {"secure_url": "/images/app/travail.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Insertion-pro.svg"},
       "notificationEmoji": "💼"
   },
   {
@@ -209,10 +209,10 @@ export const mockedThemesData = [
           "ti": "ጥዕና"
       },
       "position": 6,
-      "icon": "heartBeat",
-      "banner": "/images/illustration_Santé.svg",
-      "appImage": "/images/app/sante.svg",
-      "shareImage": "/images/illustration_Santé.svg",
+      "icon": {"secure_url": "heartBeat"},
+      "banner": {"secure_url": "/images/illustration_Santé.svg"},
+      "appImage": {"secure_url": "/images/app/sante.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Santé.svg"},
       "notificationEmoji": "👨‍⚕️"
   },
   {
@@ -245,10 +245,10 @@ export const mockedThemesData = [
           "ti": "ምስልጣን ሞያ"
       },
       "position": 3,
-      "icon": "measure",
-      "banner": "/images/illustration_Formation-pro.svg",
-      "appImage": "/images/app/metier.svg",
-      "shareImage": "/images/illustration_Formation-pro.svg",
+      "icon": {"secure_url": "measure"},
+      "banner": {"secure_url": "/images/illustration_Formation-pro.svg"},
+      "appImage": {"secure_url": "/images/app/metier.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Formation-pro.svg"},
       "notificationEmoji": "👩🏼‍🏫"
   },
   {
@@ -281,10 +281,10 @@ export const mockedThemesData = [
           "ti": "ምምሃር"
       },
       "position": 9,
-      "icon": "glasses",
-      "banner": "/images/illustration_Études.svg",
-      "appImage": "/images/app/etudes.svg",
-      "shareImage": "/images/illustration_Études.svg",
+      "icon": {"secure_url": "glasses"},
+      "banner": {"secure_url": "/images/illustration_Études.svg"},
+      "appImage": {"secure_url": "/images/app/etudes.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Études.svg"},
       "notificationEmoji": "🎓"
   },
   {
@@ -317,10 +317,10 @@ export const mockedThemesData = [
           "ti": "ወልንታዊ"
       },
       "position": 10,
-      "icon": "flag",
-      "banner": "/images/illustration_Bénévolat.svg",
-      "appImage": "/images/app/benevolat.svg",
-      "shareImage": "/images/illustration_Bénévolat.svg",
+      "icon": {"secure_url": "flag"},
+      "banner": {"secure_url": "/images/illustration_Bénévolat.svg"},
+      "appImage": {"secure_url": "/images/app/benevolat.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Bénévolat.svg"},
       "notificationEmoji": "🤝"
   },
   {
@@ -353,10 +353,10 @@ export const mockedThemesData = [
           "ti": "ምርኻብ ወይ ምዝታይ"
       },
       "position": 8,
-      "icon": "couple",
-      "banner": "/images/illustration_Rencontre.svg",
-      "appImage": "/images/app/rencontres.svg",
-      "shareImage": "/images/illustration_Rencontre.svg",
+      "icon": {"secure_url": "couple"},
+      "banner": {"secure_url": "/images/illustration_Rencontre.svg"},
+      "appImage": {"secure_url": "/images/app/rencontres.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Rencontre.svg"},
       "notificationEmoji": "💬"
   },
   {
@@ -389,10 +389,10 @@ export const mockedThemesData = [
           "ti": "ምዝንጋዕ"
       },
       "position": 11,
-      "icon": "soccer",
-      "banner": "/images/illustration_Loisir.svg",
-      "appImage": "/images/app/loisirs.svg",
-      "shareImage": "/images/illustration_Loisir.svg",
+      "icon": {"secure_url": "soccer"},
+      "banner": {"secure_url": "/images/illustration_Loisir.svg"},
+      "appImage": {"secure_url": "/images/app/loisirs.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Loisir.svg"},
       "notificationEmoji": "⚽"
   },
   {
@@ -425,10 +425,10 @@ export const mockedThemesData = [
           "ti": "ባህሊ"
       },
       "position": 12,
-      "icon": "triumph",
-      "banner": "/images/illustration_Culture.svg",
-      "appImage": "/images/app/culture.svg",
-      "shareImage": "/images/illustration_Culture.svg",
+      "icon": {"secure_url": "triumph"},
+      "banner": {"secure_url": "/images/illustration_Culture.svg"},
+      "appImage": {"secure_url": "/images/app/culture.svg"},
+      "shareImage": {"secure_url": "/images/illustration_Culture.svg"},
       "notificationEmoji": "🏰"
   }
 ]

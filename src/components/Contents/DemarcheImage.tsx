@@ -1,4 +1,4 @@
-import { ObjectId } from "../../types/interface";
+import { ObjectId, Picture } from "../../types/interface";
 import { StreamlineIcon } from "../StreamlineIcon";
 import React from "react";
 import ameli from "../../theme/images/demarche/ameli.png";
@@ -17,8 +17,8 @@ import { Image } from "react-native";
 import { getImageNameFromContentId } from "./contentsIdDemarcheImageCorrespondency";
 
 interface Props {
-  name: string;
-  stroke: string;
+  icon?: Picture;
+  stroke?: string;
   contentId: ObjectId;
   isSmall?: boolean;
 }
@@ -60,11 +60,11 @@ export const DemarcheImage = (props: Props) => {
   }
 
   return (
-    <StreamlineIcon
-      name={props.name}
-      width={24}
-      height={24}
+    props.icon ?
+      <StreamlineIcon
+      icon={props.icon}
+      size={24}
       stroke={props.stroke}
-    />
+    /> : null
   );
 };

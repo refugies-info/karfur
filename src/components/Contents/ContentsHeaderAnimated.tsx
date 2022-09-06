@@ -9,6 +9,7 @@ import { TextSmallNormal, TextVerySmallNormal } from "../StyledText";
 import styled from "styled-components/native";
 import SkeletonContent from "@03balogun/react-native-skeleton-content";
 import { ReadableText } from "../ReadableText";
+import { Picture } from "../../types/interface";
 
 const ThemeText = styled(TextSmallNormal)`
   color: white;
@@ -54,7 +55,7 @@ interface Props {
   headerPaddingTop: any;
   themeName: string;
   headerFontSize: any;
-  iconName: string;
+  icon: Picture;
   showSimplifiedHeader: boolean;
   navigation: any;
   needName: string;
@@ -110,7 +111,7 @@ export const ContentsHeaderAnimated = (props: Props) => {
               </ReadableText>
             </ThemeText>
             {!props.showSimplifiedHeader && (
-              <StreamlineIcon name={props.iconName} width={16} height={16} />
+              <StreamlineIcon icon={props.icon} size={16} />
             )}
           </ThemeContainer>
         )}

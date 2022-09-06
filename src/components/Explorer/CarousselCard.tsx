@@ -60,14 +60,15 @@ export const CarousselCard = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const getIconHorizontalAlignment = (iconName: string) => {
-    if (["measure"].includes(iconName)) return "flex-start";
-    if (["glasses", "flag"].includes(iconName)) return "flex-end";
+  // TODO: update here
+  const getIconHorizontalAlignment = (themeName: string) => {
+    if (["Formation pro"].includes(themeName)) return "flex-start";
+    if (["Études", "Bénévolat"].includes(themeName)) return "flex-end";
     return "center";
   };
 
-  const getIconVerticalAlignment = (iconName: string) => {
-    if (["house", "glasses"].includes(iconName)) return "space-between";
+  const getIconVerticalAlignment = (themeName: string) => {
+    if ([ "Études"].includes(themeName)) return "space-between";
     return "flex-end";
   };
 
@@ -90,8 +91,8 @@ export const CarousselCard = (props: Props) => {
       <CardGradient
         colors={[props.theme.colors.color60, props.theme.colors.color80]}
         style={{
-          alignItems: getIconHorizontalAlignment(props.theme.icon),
-          justifyContent: getIconVerticalAlignment(props.theme.icon)
+          alignItems: getIconHorizontalAlignment(props.theme.short.fr),
+          justifyContent: getIconVerticalAlignment(props.theme.short.fr)
         }}
         width={props.cardWidth}
         height={props.cardHeight}
@@ -103,7 +104,7 @@ export const CarousselCard = (props: Props) => {
           <StyledText isRTL={isRTL}>
             {firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}
           </StyledText>
-          <StreamlineIcon name={props.theme.icon} width={20} height={20} />
+          <StreamlineIcon icon={props.theme.icon} size={20} />
         </StyledContainer>
       </CardGradient>
     </ButtonContainer>

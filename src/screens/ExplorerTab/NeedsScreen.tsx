@@ -42,7 +42,13 @@ const computeNeedsToDisplay = (
       return { ...need, nbContents: groupedContents[need._id].length };
     })
     .sort((a, b) => {
-      if (a.nbContents > b.nbContents) return -1;
+      // if no position, sort as before
+      if (!a.position || !b.position) {
+        if (a.nbContents > b.nbContents) return -1;
+        return 1;
+      }
+      // else, sort with position
+      if (a.position > b.position) return -1;
       return 1;
     });
 };
@@ -176,7 +182,7 @@ export const NeedsScreen = ({
           headerPaddingTop={headerPaddingTop}
           themeName={theme.name[currentLanguageI18nCode || "fr"]}
           headerFontSize={headerFontSize}
-          iconName={theme.icon}
+          icon={theme.icon}
           showSimplifiedHeader={showSimplifiedHeader}
         />
 
@@ -236,7 +242,7 @@ export const NeedsScreen = ({
           headerPaddingTop={headerPaddingTop}
           themeName={theme.name[currentLanguageI18nCode || "fr"]}
           headerFontSize={headerFontSize}
-          iconName={theme.icon}
+          icon={theme.icon}
           showSimplifiedHeader={showSimplifiedHeader}
         />
         <ErrorScreen
@@ -268,7 +274,7 @@ export const NeedsScreen = ({
         headerPaddingTop={headerPaddingTop}
         themeName={theme.name[currentLanguageI18nCode || "fr"]}
         headerFontSize={headerFontSize}
-        iconName={theme.icon}
+        icon={theme.icon}
         showSimplifiedHeader={showSimplifiedHeader}
       />
 

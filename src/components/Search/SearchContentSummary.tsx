@@ -17,6 +17,7 @@ interface Props {
 
 export const SearchContentSummary = (props: Props) => {
   const themes = useSelector(themesSelector);
+  const theme = themes.find(t => t._id === props.item.theme);
 
   if (props.item.typeContenu === "besoin") {
     return ( // BESOIN
@@ -25,7 +26,7 @@ export const SearchContentSummary = (props: Props) => {
         needTextFr={props.item.title_fr}
         searchLanguageMatch={props.languageMatch}
         navigation={props.navigation}
-        theme={props.item.theme}
+        theme={theme}
         searchItem={props.item}
         nbContents={props.nbContents || 0}
         backScreen="Search"
@@ -37,7 +38,7 @@ export const SearchContentSummary = (props: Props) => {
     return (
       <ContentSummary
         navigation={props.navigation}
-        theme={props.item.theme}
+        theme={theme}
         contentId={props.item.objectID}
         searchLanguageMatch={props.languageMatch}
         typeContenu={props.item.typeContenu}
@@ -55,7 +56,7 @@ export const SearchContentSummary = (props: Props) => {
       key={props.item.objectID}
       searchLanguageMatch={props.languageMatch}
       backgroundColor={props.item.colors.color100}
-      iconName={props.item.icon}
+      icon={props.item.icon}
       searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {

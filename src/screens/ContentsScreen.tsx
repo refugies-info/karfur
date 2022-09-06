@@ -27,6 +27,7 @@ import { registerBackButton } from "../libs/backButton";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { useVoiceover } from "../hooks/useVoiceover";
 import { defaultColors } from "../libs/getThemeTag";
+import { addNeedView } from "../utils/API";
 
 const SectionHeaderText = styled(TextBigBold)`
   color: ${(props: { color: string }) => props.color};
@@ -133,7 +134,9 @@ export const ContentsScreen = ({
     needNameSelector(needId, currentLanguageI18nCode)
   );
 
-
+  React.useEffect(() => {
+    addNeedView({ id: needId });
+  }, [])
 
   // Back button
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
@@ -238,7 +241,7 @@ export const ContentsScreen = ({
           headerPaddingTop={headerPaddingTop}
           themeName={theme?.name[currentLanguageI18nCode || "fr"] || ""}
           headerFontSize={headerFontSize}
-          iconName={theme?.icon || ""}
+          icon={theme?.icon}
           showSimplifiedHeader={showSimplifiedHeader}
           navigation={navigation}
           needName={needName}
@@ -301,7 +304,7 @@ export const ContentsScreen = ({
         headerPaddingTop={headerPaddingTop}
         themeName={theme?.name[currentLanguageI18nCode || "fr"] || ""}
         headerFontSize={headerFontSize}
-        iconName={theme?.icon || ""}
+        icon={theme?.icon}
         showSimplifiedHeader={showSimplifiedHeader}
         navigation={navigation}
         needName={needName}

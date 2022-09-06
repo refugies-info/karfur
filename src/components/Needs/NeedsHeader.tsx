@@ -4,11 +4,12 @@ import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { RTLView } from "../BasicComponents";
 import { StreamlineIcon } from "../StreamlineIcon";
+import { Picture } from "../../types/interface";
 
 interface Props {
   text: string;
   color: string;
-  iconName: string;
+  icon: Picture;
   isRTL: boolean;
 }
 
@@ -38,7 +39,7 @@ export const NeedsHeader = (props: Props) => (
   <MainContainer color={props.color}>
     <RTLView>
       <Text isRTL={props.isRTL}>{props.text}</Text>
-      <StreamlineIcon name={props.iconName} width={24} height={24} />
+      <StreamlineIcon icon={props.icon} size={24} />
     </RTLView>
   </MainContainer>
 );

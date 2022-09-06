@@ -7,6 +7,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { TextSmallBold, TextVerySmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
+import { Picture } from "../../types/interface";
 
 const ICON_SIZE = 24;
 
@@ -40,7 +41,7 @@ interface Props {
   enabled?: boolean; // Switch state
   title: string;
   subtitle?: string;
-  icon?: string;
+  icon?: Picture;
   onToggle?: (value: boolean) => void;
   disabled?: boolean; // Toggle button disabled
 }
@@ -86,9 +87,8 @@ export const ToggleButton = ({
             }}
           >
             <StreamlineIcon
-              name={icon}
-              width={ICON_SIZE}
-              height={ICON_SIZE}
+              icon={icon}
+              size={ICON_SIZE}
               stroke={disabled ? styles.colors.greyDisabled : styles.colors.black}
             />
           </View>

@@ -220,7 +220,7 @@ export const ExplorerScreen = ({
               key={index}
               name={currentTheme.name[currentLanguageI18nCode || "fr"]}
               backgroundColor={currentTheme.colors.color100}
-              iconName={currentTheme.icon}
+              icon={currentTheme.icon}
               onPress={() => {
                 logEventInFirebase(FirebaseEvent.CLIC_THEME, {
                   theme: currentTheme.name.fr,

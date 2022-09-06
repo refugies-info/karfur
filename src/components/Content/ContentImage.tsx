@@ -7,7 +7,7 @@ import { StreamlineIcon } from "../StreamlineIcon";
 import { RTLView } from "../BasicComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
-import { ObjectId } from "../../types/interface";
+import { ObjectId, Picture } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
 
 const CONTAINER_SIZE = 100;
@@ -72,7 +72,7 @@ interface Props {
   sponsorPictureUrl: string | null;
   sponsorName: string;
   typeContenu: "dispositif" | "demarche";
-  iconName: string;
+  icon?: Picture;
   contentId: ObjectId;
 }
 
@@ -128,7 +128,7 @@ export const ContentImage = (props: Props) => {
         isRTL={isRTL}
         style={{ justifyContent: "center", alignItems: "center" }}
       >
-        <DemarcheImage name="" stroke="" contentId={props.contentId} />
+        <DemarcheImage contentId={props.contentId} />
       </SponsorImageContainer>
     );
   }
@@ -141,12 +141,13 @@ export const ContentImage = (props: Props) => {
       style={{ justifyContent: "center" }}
     >
       <IconTextContainer>
-        <StreamlineIcon
-          name={props.iconName}
-          width={16}
-          height={16}
+        {props.icon &&
+          <StreamlineIcon
+          icon={props.icon}
+          size={16}
           stroke={styles.colors.black}
-        />
+          />
+        }
         <TextSmallNormal
           style={{
             marginLeft: isRTL ? 0 : styles.margin,

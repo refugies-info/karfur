@@ -685,7 +685,7 @@ export const ContentScreen = ({
               sponsorName={sponsor.nom}
               sponsorPictureUrl={sponsorPictureUrl}
               typeContenu={selectedContent.typeContenu}
-              iconName={theme?.icon || ""}
+              icon={theme?.icon}
               contentId={selectedContent._id}
             />
           </>
