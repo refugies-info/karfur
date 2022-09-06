@@ -44,3 +44,18 @@
   margin-top: 8px;
   text-align: center;
 }
+
+.uploading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  background: rgba(0,0,0,0.4);
+  border-radius: $radius;
+
+}
