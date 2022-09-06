@@ -1270,7 +1270,11 @@ const Dispositif = (props: Props) => {
       dir={isRTL ? "rtl" : "ltr"} // needed here for printing
       ref={newRef}
     >
-      <SEO title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}/>
+      <SEO
+        title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
+        description={dispositif?.abstract || ""}
+        image={dispositif?.theme.shareImage.secure_url}
+      />
       <Row className="main-row">
         {props.type === "translation" &&
           (
