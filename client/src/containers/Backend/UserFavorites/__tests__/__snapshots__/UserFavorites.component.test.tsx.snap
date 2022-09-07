@@ -941,7 +941,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               onMouseEnter={[Function]}
             >
               <div
-                className="custom-card border-none card"
+                className="custom-card  card"
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
               >
                 <div
                   className="card-body"
@@ -971,7 +976,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  className="correct-radius align-right bg-Français card-footer"
+                  className="correct-radius align-right  card-footer"
+                  style={
+                    Object {
+                      "backgroundColor": "#aaa",
+                    }
+                  }
                 >
                   <div
                     style={
@@ -1003,7 +1013,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               onMouseEnter={[Function]}
             >
               <div
-                className="custom-card border-none card"
+                className="custom-card  card"
+                style={
+                  Object {
+                    "border": "none",
+                  }
+                }
               >
                 <div
                   className="card-body"
@@ -1033,7 +1048,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   </p>
                 </div>
                 <div
-                  className="correct-radius align-right bg-Administratif card-footer"
+                  className="correct-radius align-right  card-footer"
+                  style={
+                    Object {
+                      "backgroundColor": "#aaa",
+                    }
+                  }
                 >
                   <div
                     style={
@@ -1065,7 +1085,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               onMouseEnter={[Function]}
             >
               <div
-                className="custom-card texte-Logement bg-light-Logement border-Logement card"
+                className="custom-card  card"
+                style={
+                  Object {
+                    "backgroundColor": "#aaa",
+                    "borderColor": "#aaa",
+                    "color": "#aaa",
+                  }
+                }
               >
                 <div
                   className="card-body"
