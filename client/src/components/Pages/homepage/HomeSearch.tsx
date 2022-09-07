@@ -94,12 +94,8 @@ const HomeSearch = (props: Props) => {
           <FrontSide className={styles.flippy_side}>
             <button
               onClick={open}
-              className={
-                styles.flippy_btn +
-                " search-home " +
-                "bg-" +
-                (themes[indexFront].short.fr || "").replace(/ /g, "-")
-              }
+              className={styles.flippy_btn + " search-home "}
+              style={{backgroundColor: themes[indexFront].colors.color100}}
             >
               {themes[indexFront].icon ? (
                 <div className={styles.icon}>
@@ -115,10 +111,9 @@ const HomeSearch = (props: Props) => {
                 onClick={open}
                 className={
                   styles.flippy_btn +
-                  " search-home " +
-                  "bg-" +
-                  (themes[indexBack].short.fr || "").replace(/ /g, "-")
+                  " search-home "
                 }
+                style={{backgroundColor: themes[indexBack].colors.color100}}
               >
                 {themes[indexBack].icon ? (
                   <div className={styles.icon}>

@@ -2,21 +2,6 @@
 @import 'colors';
 @import "src/scss/variables";
 
-$theme-list: (
-  Français #37277c #f0e8f5 #ada8d4,
-  Logement #1174ba #ddf3fa #55a6ce,
-  Insertion-pro #149295 #d6eff4 #4fd3bd,
-  Formation-pro #095411 #e8f4e9 #7dc690,
-  Études #378e04 #e8f7cd #adea5c,
-  Mobilité #ea6206 #fff0e7 #f9d1b7,
-  Bénévolat #0A54BF#FFEEEE #fda8ad,
-  Rencontre #a50455 #ffebf5 #fda5c4,
-  Loisir #ab2dc1 #f6e6fc #e595f9,
-  Culture #ce310d #fff0e7 #fec396,
-  Santé #c6093f #ffeeee #f985a6,
-  Administratif #443023 #eae2e1 #fcb21c
-);
-
 $list: top bottom left right;
 
 html body{
@@ -214,23 +199,6 @@ html body {
     align-items: center;
   }
 
-  @each $value in $theme-list {
-    .bg-#{nth($value, 1)} {
-      background-color: nth($value, 2);
-    }
-    .bg-light-#{nth($value, 1)} {
-      background-color: nth($value, 3);
-    }
-    .border-#{nth($value, 1)} {
-      border-color: nth($value, 2);
-    }
-    .texte-#{nth($value, 1)} {
-      color: nth($value, 2);
-    }
-    .texte-light-#{nth($value, 1)} {
-      color: nth($value, 2);
-    }
-  }
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
