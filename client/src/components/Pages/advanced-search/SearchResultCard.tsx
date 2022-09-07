@@ -46,16 +46,11 @@ const SearchResultCard = (props: Props) => {
         }}>
           <a target={props.linkBlank ? "_blank" : undefined}>
             <CustomCard
-              className={
-                props.dispositif.typeContenu === "demarche"
-                  ? "texte-" +
-                    shortTheme +
-                    " bg-light-" +
-                    shortTheme +
-                    " border-" +
-                    shortTheme
-                  : "border-none"
-              }
+              style={props.dispositif.typeContenu === "demarche" ? {
+                color: theme.colors.color100,
+                backgroundColor: theme.colors.color30,
+                borderColor: theme.colors.color100,
+              } : {border: "none"}}
             >
               <CardBody>
                 {props.showPinned && (
@@ -75,10 +70,10 @@ const SearchResultCard = (props: Props) => {
               {props.dispositif.typeContenu !== "demarche" && (
                 <CardFooter
                   className={
-                    "correct-radius align-right bg-" +
-                    shortTheme +
+                    "correct-radius align-right " +
                     (theme ? "" : " no-icon")
                   }
+                  style={{backgroundColor: theme.colors.color100}}
                 >
                   {theme ? (
                     <div

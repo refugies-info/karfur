@@ -69,7 +69,7 @@ const FInput = (props: Props) => {
         autoComplete={props.autoComplete}
         disabled={props.disabled}
         name={props.name}
-        maxlength={props.maxlength || undefined}
+        maxLength={props.maxlength || undefined}
         className={cls(
           props.inputClassName || "",
           !!props.prepend && styles.has_prepend,

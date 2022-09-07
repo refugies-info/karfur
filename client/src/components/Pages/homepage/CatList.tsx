@@ -78,7 +78,7 @@ const CatList = (props: Props) => {
             <FSearchBtn
               key={idx}
               onClick={() => goToTheme(theme)}
-              color={(theme.short.fr || "").replace(/ /g, "-")}
+              color={theme.colors.color100}
               withMargins
             >
               <InnerButton>
