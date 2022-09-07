@@ -56,10 +56,11 @@ const FSearchBtn = (props: Props) => {
         !!searchOption && styles.search_option,
         !!noHover && styles.no_hover,
         !!smallFont && styles.small_font,
-        !!color && styles.color + (" bg-" + color),
+        !!color && styles.color,
         className || "",
       )}
       {...bProps}
+      style={{ backgroundColor: color || "" }}
     >
       {children}
       {active && !noIcon && (

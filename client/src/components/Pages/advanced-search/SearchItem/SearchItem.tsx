@@ -159,6 +159,7 @@ const SearchItem = (props: Props) => {
               inHeader
               extraPadding
               onClick={() => { props.switchGeoSearch(true) }}
+              color="gray"
             >
               {t("SearchItem.ma ville", "ma ville")}
             </FSearchBtn>
@@ -180,9 +181,10 @@ const SearchItem = (props: Props) => {
               fsb_styles.search_btn,
               fsb_styles.extra_padding,
               fsb_styles.in_header,
-              !!currentTheme && "bg-" + currentTheme.short.fr.split(" ").join("-"),
               props.searchItem.type !== "theme" && active && fsb_styles.active,
             )}
+            style={currentTheme ? {backgroundColor: currentTheme.colors.color100} : {}}
+
           >
             {active && props.searchItem.type === "theme" && currentTheme && (
               <div
@@ -198,7 +200,14 @@ const SearchItem = (props: Props) => {
               </div>
                 )}
             {active
-              ? t("Tags." + props.query[props.searchItem.type], props.query[props.searchItem.type])
+                  ? (props.searchItem.type === "theme" ?
+                    getThemeName(
+                      //@ts-ignore
+                      themes.find(t => t.name.fr === props.query[props.searchItem.type][0]),
+                      router.locale
+                    ) :
+                    t("Tags." + props.query[props.searchItem.type], props.query[props.searchItem.type])
+                  )
               : t(
                   "Tags." + props.searchItem.placeholder,
                   props.searchItem.placeholder
@@ -234,31 +243,46 @@ const SearchItem = (props: Props) => {
                 props.searchItem.type === "theme" && styles.tags,
               )}
             >
-              {((props.searchItem?.children || []) as Theme[]).map(
-                (theme: Theme, idx: number) => {
+              {((props.searchItem?.children || []) as Theme[] | AgeFilter[] | FrenchLevelFilter[]).map(
+                (item, idx: number) => {
+                  if (props.searchItem.type === "theme") {
+                    const theme = item as Theme;
+                    return (
+                      <FSearchBtn
+                        key={idx}
+                        onClick={() => selectOption(theme)}
+                        filter={!theme.short?.fr}
+                        searchOption
+                        inHeader
+                        color={theme?.colors?.color100}
+                      >
+                        {theme.icon ? (
+                          <div
+                            style={{
+                              display: "flex",
+                              marginRight: isRTL ? 0 : 10,
+                              marginLeft: isRTL ? 10 : 0,
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <ThemeIcon theme={theme} />
+                          </div>
+                        ) : null}
+                        {getThemeName(theme, router.locale)}
+                      </FSearchBtn>
+                    );
+                  }
+                  const element = item as FrenchLevelFilter | AgeFilter;
                   return (
                     <FSearchBtn
                       key={idx}
-                      onClick={() => selectOption(theme)}
-                      filter={!theme.short?.fr}
+                      onClick={() => selectOption(element)}
+                      filter={true}
                       searchOption
                       inHeader
-                      color={(theme.short?.fr || "").replace(/ /g, "-")}
                     >
-                      {theme.icon ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: isRTL ? 0 : 10,
-                            marginLeft: isRTL ? 10 : 0,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <ThemeIcon theme={theme} />
-                        </div>
-                      ) : null}
-                      {getThemeName(theme, router.locale)}
+                      {t("Tags." + item.name, item.name)}
                     </FSearchBtn>
                   );
                 }
