@@ -191,6 +191,11 @@ export const selectedContent: Content = {
       "public_id": "",
       "imgId": ""
     },
+    "appBanner":{
+      "secure_url": "",
+      "public_id": "",
+      "imgId": ""
+    },
     "appImage":{
       "secure_url": "",
       "public_id": "",

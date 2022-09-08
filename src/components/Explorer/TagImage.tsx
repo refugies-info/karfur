@@ -9,7 +9,7 @@ interface Props {
 }
 export const TagImage = ({ theme }: Props) => {
   return (
-    <View style={{width: 190, height: 190}}>
+    <View>
       <SvgUri
         width={"100%"}
         height={"100%"}

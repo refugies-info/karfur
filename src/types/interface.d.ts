@@ -36,6 +36,7 @@ export interface Theme {
   position: number;
   icon: Picture;
   banner: Picture;
+  appBanner: Picture;
   appImage: Picture;
   shareImage: Picture;
   active: boolean;

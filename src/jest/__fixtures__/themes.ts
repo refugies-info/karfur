@@ -32,6 +32,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "elearning"},
       "banner": {"secure_url": "/images/illustration_Français.svg"},
       "appImage": {"secure_url": "/images/app/francais.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/francais.png"},
       "shareImage": {"secure_url": "/images/illustration_Français.svg"},
       "notificationEmoji": "🇫🇷"
   },
@@ -68,6 +69,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "office"},
       "banner": {"secure_url": "/images/illustration_Administratif.svg"},
       "appImage": {"secure_url": "/images/app/admin.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/admin.png"},
       "shareImage": {"secure_url": "/images/illustration_Administratif.svg"},
       "notificationEmoji": "📝"
   },
@@ -104,6 +106,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "house"},
       "banner": {"secure_url": "/images/illustration_Logement.svg"},
       "appImage": {"secure_url": "/images/app/logement.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/logement.png"},
       "shareImage": {"secure_url": "/images/illustration_Logement.svg"},
       "notificationEmoji": "🏡"
   },
@@ -140,6 +143,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "bus"},
       "banner": {"secure_url": "/images/illustration_Mobilité.svg"},
       "appImage": {"secure_url": "/images/app/transport.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/transport.png"},
       "shareImage": {"secure_url": "/images/illustration_Mobilité.svg"},
       "notificationEmoji": "🚗"
   },
@@ -176,6 +180,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "briefcase"},
       "banner": {"secure_url": "/images/illustration_Insertion-pro.svg"},
       "appImage": {"secure_url": "/images/app/travail.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/travail.png"},
       "shareImage": {"secure_url": "/images/illustration_Insertion-pro.svg"},
       "notificationEmoji": "💼"
   },
@@ -212,6 +217,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "heartBeat"},
       "banner": {"secure_url": "/images/illustration_Santé.svg"},
       "appImage": {"secure_url": "/images/app/sante.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/sante.png"},
       "shareImage": {"secure_url": "/images/illustration_Santé.svg"},
       "notificationEmoji": "👨‍⚕️"
   },
@@ -248,6 +254,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "measure"},
       "banner": {"secure_url": "/images/illustration_Formation-pro.svg"},
       "appImage": {"secure_url": "/images/app/metier.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/metier.png"},
       "shareImage": {"secure_url": "/images/illustration_Formation-pro.svg"},
       "notificationEmoji": "👩🏼‍🏫"
   },
@@ -284,6 +291,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "glasses"},
       "banner": {"secure_url": "/images/illustration_Études.svg"},
       "appImage": {"secure_url": "/images/app/etudes.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/etudes.png"},
       "shareImage": {"secure_url": "/images/illustration_Études.svg"},
       "notificationEmoji": "🎓"
   },
@@ -320,6 +328,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "flag"},
       "banner": {"secure_url": "/images/illustration_Bénévolat.svg"},
       "appImage": {"secure_url": "/images/app/benevolat.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/benevolat.png"},
       "shareImage": {"secure_url": "/images/illustration_Bénévolat.svg"},
       "notificationEmoji": "🤝"
   },
@@ -356,6 +365,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "couple"},
       "banner": {"secure_url": "/images/illustration_Rencontre.svg"},
       "appImage": {"secure_url": "/images/app/rencontres.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/rencontres.png"},
       "shareImage": {"secure_url": "/images/illustration_Rencontre.svg"},
       "notificationEmoji": "💬"
   },
@@ -392,6 +402,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "soccer"},
       "banner": {"secure_url": "/images/illustration_Loisir.svg"},
       "appImage": {"secure_url": "/images/app/loisirs.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/loisirs.png"},
       "shareImage": {"secure_url": "/images/illustration_Loisir.svg"},
       "notificationEmoji": "⚽"
   },
@@ -428,6 +439,7 @@ export const mockedThemesData = [
       "icon": {"secure_url": "triumph"},
       "banner": {"secure_url": "/images/illustration_Culture.svg"},
       "appImage": {"secure_url": "/images/app/culture.svg"},
+      "appBanner": {"secure_url": "/images/app-banner/culture.png"},
       "shareImage": {"secure_url": "/images/illustration_Culture.svg"},
       "notificationEmoji": "🏰"
   }

@@ -1,8 +1,7 @@
 import React from "react";
 import { Theme } from "../../types/interface";
-import { SvgUri } from "react-native-svg";
 import { getImageUri } from "../../libs/getImageUri";
-import { View } from "react-native";
+import { Image, View } from "react-native";
 
 interface Props {
   theme: Theme | null;
@@ -11,9 +10,9 @@ interface Props {
 export const HeaderImage = (props: Props) => {
   return props.theme ? (
     <View style={{height: props.height, display: "flex", alignItems: "center"}}>
-      <SvgUri
-        uri={getImageUri(props.theme.banner.secure_url)}
-        height={props.height}
+      <Image
+        source={{ uri: getImageUri(props.theme.appBanner.secure_url) }}
+        style={{height: props.height, width: "100%"}}
       />
     </View>
   ) : null;

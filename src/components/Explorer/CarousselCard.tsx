@@ -60,18 +60,6 @@ export const CarousselCard = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  // TODO: update here
-  const getIconHorizontalAlignment = (themeName: string) => {
-    if (["Formation pro"].includes(themeName)) return "flex-start";
-    if (["Études", "Bénévolat"].includes(themeName)) return "flex-end";
-    return "center";
-  };
-
-  const getIconVerticalAlignment = (themeName: string) => {
-    if ([ "Études"].includes(themeName)) return "space-between";
-    return "flex-end";
-  };
-
   return (
     <ButtonContainer
       accessibilityRole="button"
@@ -90,14 +78,10 @@ export const CarousselCard = (props: Props) => {
     >
       <CardGradient
         colors={[props.theme.colors.color60, props.theme.colors.color80]}
-        style={{
-          alignItems: getIconHorizontalAlignment(props.theme.short.fr),
-          justifyContent: getIconVerticalAlignment(props.theme.short.fr)
-        }}
         width={props.cardWidth}
         height={props.cardHeight}
       >
-        <View style={{ flexShrink: 1 }}>
+        <View style={{ position: "absolute", top:0, left:0, right:0, bottom:0 }}>
           <TagImage theme={props.theme} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
