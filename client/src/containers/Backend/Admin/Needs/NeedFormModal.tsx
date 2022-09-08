@@ -135,7 +135,7 @@ export const NeedFormModal = (props: Props) => {
             type="validate"
             name="save-outline"
             onClick={onSave}
-            disabled={totalChar > TITLE_MAX_CHAR || !image || !name || !themeSelected}
+            disabled={totalChar > TITLE_MAX_CHAR || !name || !themeSelected}
           >
             Valider
           </FButton>

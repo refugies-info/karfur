@@ -139,12 +139,10 @@ export const ThemeFormModal = (props: Props) => {
     props.toggleModal();
   };
 
-  const isInvalid = false;
-  /* TODO: validate that this is useless
-  toArray(emoji).length !== 1 ||
-    !short || isThemeTitleOk(short, languages) ||
-    !name || isThemeTitleOk(name, languages) ||
-    !banner || !banner.secure_url
+  const isInvalid = toArray(emoji).length !== 1 ||
+    !short || /* isThemeTitleOk(short, languages) || */
+    !name /* || isThemeTitleOk(name, languages) || */
+    /* !banner || !banner.secure_url
     !appImage || !appImage.secure_url
     !shareImage || !shareImage.secure_url
     !icon || !icon.secure_url; */
