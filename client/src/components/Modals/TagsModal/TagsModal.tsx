@@ -195,8 +195,8 @@ const DispositifValidateModal = (props: Props) => {
               }
               color={
                 theme1 && theme1._id === theme._id
-                  ? (theme.short.fr || "").replace(/ /g, "-")
-                  : "dark-gris"
+                  ? theme.colors.color100
+                  : "gray"
               }
               withMargins
               smallFont
@@ -239,14 +239,14 @@ const DispositifValidateModal = (props: Props) => {
               }
               color={
                 theme1 && theme._id === theme1._id
-                  ? "dark-gris"
+                  ? "gray"
                   : (theme2 && theme2._id === theme._id) ||
                     (theme3 && theme3._id === theme._id) ||
                     (!theme2 && theme3) ||
                     (theme2 && !theme3) ||
                     (!theme2 && !theme3 && !noTheme)
-                  ? (theme.short.fr || "").replace(/ /g, "-")
-                  : "dark-gris"
+                  ? theme.colors.color100
+                  : "gray"
               }
               lighter={
                 theme1 && theme._id === theme1._id

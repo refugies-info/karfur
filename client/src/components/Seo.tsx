@@ -6,9 +6,11 @@ import { getPath, PathNames } from "routes";
 interface Props {
   description?: string;
   title?: string;
+  image?: string;
 }
 
 const defaultTitle = "Réfugiés.info";
+const defaultImage = "/images/og-image-refugies.jpg";
 
 const getAlternateLocales = (locales: string[] | undefined, currentLocale: string|undefined) => {
   if (!locales || locales.length === 0) return [];
@@ -41,7 +43,9 @@ const SEO = (props: Props) => {
         <meta property="og:description" content={props.description} />
       }
       <meta property="og:site_name" content={defaultTitle} />
-      {/* <meta property="og:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"> */}
+      <meta property="og:image" content={props.image || defaultImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       {/* TWITTER */}
       <meta property="twitter:card" content="summary" />
@@ -52,7 +56,7 @@ const SEO = (props: Props) => {
       {props.description &&
         <meta property="twitter:description" content={props.description} />
       }
-      {/* <meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"> */}
+      <meta property="twitter:image" content={props.image || defaultImage} />
 
 
       {getAlternateLocales(router.locales, router.locale).map((ln: string, i: number) => (

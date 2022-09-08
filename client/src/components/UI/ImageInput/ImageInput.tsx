@@ -47,7 +47,12 @@ const AdminThemeButton = (props: Props) => {
               className={styles.image_container}
               style={props.imageSize ? { width: props.imageSize, height: props.imageSize } : {}}
             >
-              <Image src={props.image?.secure_url || emptyImage} alt="" layout="fill" />
+              {uploading &&
+                <div className={styles.uploading}>
+                  <Spinner color="white" />
+                </div>
+              }
+              <Image src={props.image?.secure_url || emptyImage} alt="" layout="fill" objectFit="contain" />
             </div>
           </div>
         </Col>
@@ -64,8 +69,6 @@ const AdminThemeButton = (props: Props) => {
                   onChange={handleFileInputChange}
                 />
                 {props.image?.secure_url ? <span>Choisir une autre image</span> : <span>Choisir une image</span>}
-
-                {uploading && <Spinner color="success" className="ml-10" />}
               </FButton>
               <p className={styles.help}>{props.dimensionsHelp}</p>
             </div>

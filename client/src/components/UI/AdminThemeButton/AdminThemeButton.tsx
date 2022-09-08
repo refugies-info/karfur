@@ -27,7 +27,9 @@ const AdminThemeButton = (props: Props) => (
       opacity: props.theme.active ? 1 : 0.4
     }}
   >
-    <Image src={props.theme.appImage.secure_url} width={30} height={30} alt="" />
+    <div className={styles.image}>
+      <Image src={props.theme.appImage.secure_url} width={36} height={50} alt="" />
+    </div>
     <span className="ml-2">{props.theme.name.fr}</span>
 
     <span className="ml-auto">

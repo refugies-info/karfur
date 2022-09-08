@@ -38,7 +38,7 @@ const Tags = (props: Props) => {
             <div key={key}>
               <FSearchBtn
                 className="mr-10 color"
-                color={(theme.short.fr || "").replace(/ /g, "-")}
+                color={theme.colors.color100}
                 noHover
                 onMouseEnter={() => props.updateUIArray(-6)}
               >

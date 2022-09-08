@@ -32,6 +32,7 @@ const createNeed = async (
       },
       image: need.image || null,
       theme: need.theme,
+      adminComments: need.adminComments || "",
       position: 0
     };
 
