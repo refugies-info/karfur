@@ -260,7 +260,21 @@ exports[`ContentScreen should render correctly 1`] = `
             "height": 330,
           }
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://staging.refugies.info/images/app-banner/francais.png",
+            }
+          }
+          style={
+            Object {
+              "height": 330,
+              "width": "100%",
+            }
+          }
+        />
+      </View>
       <View
         height={330}
         style={
@@ -4889,7 +4903,21 @@ exports[`ContentScreen should toggle map modal 1`] = `
             "height": 330,
           }
         }
-      />
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://staging.refugies.info/images/app-banner/francais.png",
+            }
+          }
+          style={
+            Object {
+              "height": 330,
+              "width": "100%",
+            }
+          }
+        />
+      </View>
       <View
         height={330}
         style={
