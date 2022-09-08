@@ -78,7 +78,10 @@ export const NeedFormModal = (props: Props) => {
         })
       );
     } else { // creation
-      dispatch(createNeedActionCreator(need));
+      dispatch(createNeedActionCreator({
+        ...need,
+        adminComments: notes
+      }));
     }
     props.toggleModal();
   };
@@ -204,27 +207,24 @@ export const NeedFormModal = (props: Props) => {
               minHeight={220}
             />
           </div>
-          {props.selectedNeed && (
-            <>
-              <div className="mb-2">
-                <Label htmlFor="notes">Notes internes</Label>
-                <FInput
-                  id="notes"
-                  type="textarea"
-                  value={notes}
-                  onChange={(e: any) => setNotes(e.target.value)}
-                  newSize={true}
-                  autoFocus={false}
-                  placeholder="Notes..."
-                />
-              </div>
-
+            <div className="mb-2">
+              <Label htmlFor="notes">Notes internes</Label>
+              <FInput
+                id="notes"
+                type="textarea"
+                value={notes}
+                onChange={(e: any) => setNotes(e.target.value)}
+                newSize={true}
+                autoFocus={false}
+                placeholder="Notes..."
+              />
+            </div>
+            {props.selectedNeed && (
               <div>
                 <Label>Nombre de clics</Label>
                 <p>Total : {props.selectedNeed.nbVues || 0}</p>
               </div>
-            </>
-          )}
+            )}
         </Col>
       </Row>
     </DetailsModal>

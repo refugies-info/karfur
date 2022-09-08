@@ -33,7 +33,7 @@ It includes the following libraries:
   ```bash
   > npm install
   ```
-3. Copy the `/example-env-file.env` to `env.local` and replace `demo` with the right values.
+3. Copy the `/example-env-file.env` to `.env.local` and replace `demo` with the right values.
 
 
 ## Development
