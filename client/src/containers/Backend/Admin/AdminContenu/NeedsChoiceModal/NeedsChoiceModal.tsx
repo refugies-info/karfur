@@ -14,7 +14,7 @@ import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import { themesSelector } from "services/Themes/themes.selectors";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
-import { SimplifiedDispositif } from "types/interface";
+import { Need, SimplifiedDispositif } from "types/interface";
 import { cls } from "lib/classname";
 
 interface Props {
@@ -27,6 +27,10 @@ const getThemes = (dispositif: SimplifiedDispositif | null) => {
   if (!dispositif) return [];
   return [dispositif.theme._id, ...dispositif.secondaryThemes.map((t) => t._id)];
 };
+
+const getNeed = (needId: ObjectId, allNeeds: Need[]) => {
+  return allNeeds.find((n) => n._id === needId);
+}
 
 export const NeedsChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
@@ -55,25 +59,35 @@ export const NeedsChoiceModal = (props: Props) => {
     }
   }, [dispositif]);
 
+  const addTheme = (needId: ObjectId) => { // add theme based on need
+    const needTheme = getNeed(needId, allNeeds)?.theme._id;
+    if (needTheme) {
+      setSelectedThemes(themes => [...new Set([...themes, needTheme])]);
+    }
+  }
+  const removeTheme = (needId: ObjectId, newNeeds: ObjectId[]) => { // remove theme based on need
+    const needTheme = getNeed(needId, allNeeds)?.theme._id;
+    const stillHasTheme = newNeeds.find(currentNeedId => {
+      const currentNeedTheme = getNeed(currentNeedId, allNeeds)?.theme._id;
+      return currentNeedTheme === needTheme;
+    })
+    if (needTheme && !stillHasTheme) {
+      setSelectedThemes(themes => themes.filter(t => t !== needTheme));
+    }
+  }
+
   const selectNeed = (needId: ObjectId) => {
     if (selectedNeeds.includes(needId)) { // remove need
-      setSelectedNeeds((s) => s.filter((need) => need !== needId));
+      setSelectedNeeds((s) => {
+        const newNeeds = s.filter((need) => need !== needId);
+        removeTheme(needId, newNeeds);
+        return newNeeds;
+      });
     } else { // add need
       setSelectedNeeds((s) => [...s, needId]);
+      addTheme(needId);
     }
   };
-
-  useEffect(() => { // update selected themes based on needs
-    const newThemes = [
-      ...new Set(
-        selectedNeeds.map((needId) => allNeeds.find((n) => n._id === needId)?.theme._id).filter((t) => t) as ObjectId[]
-      )
-    ];
-
-    setSelectedThemes(newThemes);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedNeeds]);
 
   const selectTheme = (themeId: ObjectId) => {
     if (selectedThemes.includes(themeId)) { // remove theme
