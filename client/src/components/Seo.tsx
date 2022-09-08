@@ -57,6 +57,7 @@ const SEO = (props: Props) => {
         <meta property="twitter:description" content={props.description} />
       }
       <meta property="twitter:image" content={props.image || defaultImage} />
+      <meta property="twitter:card" content="summary_large_image" />
 
 
       {getAlternateLocales(router.locales, router.locale).map((ln: string, i: number) => (
