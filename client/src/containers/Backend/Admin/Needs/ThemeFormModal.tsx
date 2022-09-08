@@ -51,6 +51,7 @@ export const ThemeFormModal = (props: Props) => {
   const [colors, setColors] = useState<Theme["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
   const [notes, setNotes] = useState("");
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
+  const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
   const [appImage, setAppImage] = useState<Picture | undefined>(props.selectedTheme?.appImage || undefined);
   const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
   const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
@@ -76,6 +77,7 @@ export const ThemeFormModal = (props: Props) => {
       setColors(props.selectedTheme.colors);
       setNotes(props.selectedTheme.adminComments);
       setBanner(props.selectedTheme.banner);
+      setAppBanner(props.selectedTheme.appBanner);
       setAppImage(props.selectedTheme.appImage);
       setShareImage(props.selectedTheme.shareImage);
       setIcon(props.selectedTheme.icon);
@@ -86,6 +88,7 @@ export const ThemeFormModal = (props: Props) => {
       setColors(EMPTY_COLORS);
       setNotes("");
       setBanner(undefined);
+      setAppBanner(undefined);
       setAppImage(undefined);
       setShareImage(undefined);
       setIcon(undefined);
@@ -99,6 +102,7 @@ export const ThemeFormModal = (props: Props) => {
       notificationEmoji: emoji,
       colors,
       banner,
+      appBanner,
       appImage,
       shareImage,
       icon
@@ -273,6 +277,19 @@ export const ThemeFormModal = (props: Props) => {
               imageSize={80}
               labelNoBackground={true}
               dimensionsHelp="1440x500px"
+            />
+          </div>
+          <div className="mb-2">
+            <Label>Bannière mobile du thème</Label>
+            <ImageInput
+              image={appBanner}
+              onImageUploaded={(e) => {
+                setAppBanner(e);
+              }}
+              minHeight={90}
+              imageSize={80}
+              labelNoBackground={true}
+              dimensionsHelp="720x560px"
             />
           </div>
           <div className="mb-2">

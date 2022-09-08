@@ -243,6 +243,7 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
       icon: emptyImage,
       banner: emptyImage,
       appImage: emptyImage,
+      appBanner: emptyImage,
       shareImage: emptyImage,
       notificationEmoji: "",
       adminComments: "",

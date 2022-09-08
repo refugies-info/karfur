@@ -28,6 +28,7 @@ const handler = async (
       position: req.body.position,
       icon: req.body.icon,
       banner: req.body.banner,
+      appBanner: req.body.appBanner,
       appImage: req.body.appImage,
       shareImage: req.body.shareImage,
       notificationEmoji: req.body.notificationEmoji,
