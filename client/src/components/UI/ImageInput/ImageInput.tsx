@@ -52,7 +52,7 @@ const AdminThemeButton = (props: Props) => {
                   <Spinner color="white" />
                 </div>
               }
-              <Image src={props.image?.secure_url || emptyImage} alt="" layout="fill" />
+              <Image src={props.image?.secure_url || emptyImage} alt="" layout="fill" objectFit="contain" />
             </div>
           </div>
         </Col>

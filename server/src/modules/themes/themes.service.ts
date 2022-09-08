@@ -58,6 +58,11 @@ export const getValidator = (type: "post" | "patch") => {
         public_id: Joi.string().allow(""),
         imgId: Joi.string().allow(""),
       }),
+      appBanner: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string().allow(""),
+        imgId: Joi.string().allow(""),
+      }),
       appImage: Joi.object({
         secure_url: Joi.string(),
         public_id: Joi.string().allow(""),
@@ -108,6 +113,11 @@ export interface Request {
     imgId: string;
   };
   banner: {
+    secure_url: string;
+    public_id: string;
+    imgId: string;
+  };
+  appBanner: {
     secure_url: string;
     public_id: string;
     imgId: string;

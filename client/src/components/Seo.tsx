@@ -44,6 +44,8 @@ const SEO = (props: Props) => {
       }
       <meta property="og:site_name" content={defaultTitle} />
       <meta property="og:image" content={props.image || defaultImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
 
       {/* TWITTER */}
       <meta property="twitter:card" content="summary" />
