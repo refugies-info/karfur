@@ -5,7 +5,9 @@ import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { initialUserState } from "../../services/redux/User/user.reducer";
+import { getImageUri } from "../../libs/getImageUri";
 import { mockedThemesData } from "../../jest/__fixtures__/themes";
+
 const theme = mockedThemesData[0];
 
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
@@ -14,6 +16,10 @@ jest.mock("../../hooks/useTranslationWithRTL", () => ({
     t: jest.fn().mockImplementation((_, arg2) => arg2),
     isRTL: false,
   }),
+}));
+
+jest.mock("../../libs/getImageUri", () => ({
+  getImageUri: jest.fn().mockImplementation((arg1) => arg1),
 }));
 
 jest.mock("../../utils/logEvent", () => ({

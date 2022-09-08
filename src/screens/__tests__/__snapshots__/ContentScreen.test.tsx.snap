@@ -264,7 +264,7 @@ exports[`ContentScreen should render correctly 1`] = `
         <Image
           source={
             Object {
-              "uri": "https://staging.refugies.info/images/app-banner/francais.png",
+              "uri": "/images/app-banner/francais.png",
             }
           }
           style={
@@ -4907,7 +4907,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         <Image
           source={
             Object {
-              "uri": "https://staging.refugies.info/images/app-banner/francais.png",
+              "uri": "/images/app-banner/francais.png",
             }
           }
           style={
