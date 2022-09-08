@@ -48,6 +48,7 @@ const themeSchema = new mongoose.Schema(
     },
     icon: imageSchema,
     banner: imageSchema,
+    appBanner: imageSchema,
     appImage: imageSchema,
     shareImage: imageSchema,
     notificationEmoji: {
@@ -82,6 +83,7 @@ export interface ThemeDoc extends mongoose.Document {
   position: number;
   icon: Picture;
   banner: Picture;
+  appBanner: Picture;
   appImage: Picture;
   shareImage: Picture;
   notificationEmoji: string;
