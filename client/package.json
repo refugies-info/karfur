@@ -35,7 +35,7 @@
     "next": "^12.1.0",
     "next-i18next": "^10.3.0",
     "next-redux-wrapper": "^7.0.5",
-    "node-sass": "^7.0.1",
+    "node-sass": "^7.0.3",
     "process": "^0.11.10",
     "query-string": "^7.1.0",
     "rc-time-picker": "^3.7.3",
