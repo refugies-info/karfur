@@ -48,7 +48,7 @@ const SEO = (props: Props) => {
       <meta property="og:image:height" content="630" />
 
       {/* TWITTER */}
-      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:creator" content="@refugies_info" />
       {props.title &&
         <meta property="twitter:title" content={props.title} />
