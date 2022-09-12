@@ -43,13 +43,13 @@ const computeNeedsToDisplay = (
     })
     .sort((a, b) => {
       // if no position, sort as before
-      if (!a.position || !b.position) {
+      if (a.position === undefined || b.position === undefined) {
         if (a.nbContents > b.nbContents) return -1;
         return 1;
       }
       // else, sort with position
-      if (a.position > b.position) return -1;
-      return 1;
+      if (a.position > b.position) return 1;
+      return -1;
     });
 };
 
