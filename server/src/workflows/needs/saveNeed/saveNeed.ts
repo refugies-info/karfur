@@ -23,17 +23,10 @@ const saveNeed = async (
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
-    const need: Partial<NeedDoc> = {
-      fr: {
-        text: req.body.fr.text,
-        subtitle: req.body.fr.subtitle,
-        //@ts-ignore
-        updatedAt: Date.now()
-      },
-      image: req.body.image || null,
-      theme: req.body.theme,
-      adminComments: req.body.adminComments || ""
-    };
+    //@ts-ignore
+    const need: Partial<NeedDoc> = {...req.body};
+    //@ts-ignore
+    if (req.body.fr) need.fr.updatedAt = Date.now()
 
     const dbNeed = await saveNeedInDB(req.params.id, need);
 
