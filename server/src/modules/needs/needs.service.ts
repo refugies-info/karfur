@@ -41,23 +41,38 @@ import { Picture } from "src/types/interface";
  * Request validator
  */
 export const getValidator = (type: "post" | "patch") => {
-  const baseValidator: any = {
-    [Segments.BODY]: Joi.object({
+  const baseValidator: any = {};
+  if (type === "post") {
+    baseValidator[Segments.BODY]= Joi.object({
+        fr: Joi.object({
+          text: Joi.string(),
+          subtitle: Joi.string().allow("")
+        }),
+        theme: Joi.string(),
+        image: Joi.object({
+          secure_url: Joi.string(),
+          public_id: Joi.string(),
+          imgId: Joi.string(),
+        }).allow(null),
+        adminComments: Joi.string().allow("")
+      })
+  }
+
+  if (type === "patch") {
+    baseValidator[Segments.BODY]= Joi.object().keys({
       fr: Joi.object({
         text: Joi.string(),
         subtitle: Joi.string().allow("")
-      }),
-      theme: Joi.string(),
+      }).allow(null),
+      theme: Joi.string().allow(null),
       image: Joi.object({
         secure_url: Joi.string(),
         public_id: Joi.string(),
         imgId: Joi.string(),
       }).allow(null),
-      adminComments: Joi.string().allow("")
-    })
-  };
+      adminComments: Joi.string().allow(null)
+    }).unknown(true);
 
-  if (type === "patch") {
     baseValidator[Segments.PARAMS] = Joi.object({
       id: Joi.string()
     })
@@ -67,12 +82,12 @@ export const getValidator = (type: "post" | "patch") => {
 }
 
 export interface Request {
-  fr: {
+  fr?: {
     text: string;
     subtitle: string
   };
-  theme: ObjectId;
-  image: Picture;
+  theme?: ObjectId;
+  image?: Picture;
   adminComments?: string;
 }
 
