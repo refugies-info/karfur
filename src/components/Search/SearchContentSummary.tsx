@@ -17,7 +17,12 @@ interface Props {
 
 export const SearchContentSummary = (props: Props) => {
   const themes = useSelector(themesSelector);
-  const theme = themes.find(t => t._id === props.item.theme);
+  const theme = themes.find(t => {
+    if (props.item.typeContenu === "theme") {
+      return t._id.toString() === props.item.objectID
+    }
+    return t._id.toString() === props.item.theme
+  });
 
   if (props.item.typeContenu === "besoin") {
     return ( // BESOIN
@@ -50,13 +55,13 @@ export const SearchContentSummary = (props: Props) => {
       />
     );
   }
-
+  if (!theme) return null;
   return ( // THEME
     <TagButton
       key={props.item.objectID}
       searchLanguageMatch={props.languageMatch}
-      backgroundColor={props.item.colors.color100}
-      icon={props.item.icon}
+      backgroundColor={theme.colors.color100}
+      icon={theme.icon}
       searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
