@@ -1273,7 +1273,7 @@ const Dispositif = (props: Props) => {
       <SEO
         title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
         description={dispositif?.abstract || ""}
-        image={dispositif?.theme.shareImage.secure_url}
+        image={dispositif?.theme?.shareImage.secure_url}
       />
       <Row className="main-row">
         {props.type === "translation" &&
@@ -1342,8 +1342,8 @@ const Dispositif = (props: Props) => {
           className="main-col"
         >
           <section
-            className={styles.banniere}
-            style={{backgroundImage: `url(${mainTheme.banner.secure_url})`}}
+            className={cls(styles.banniere, !dispositif?.theme?.banner.secure_url && styles.no_image)}
+            style={mainTheme.banner.secure_url ? {backgroundImage: `url(${mainTheme.banner.secure_url})`} : {}}
           >
             {!disableEdit && (
               // yellow banner in top of a demarche to create a variante
