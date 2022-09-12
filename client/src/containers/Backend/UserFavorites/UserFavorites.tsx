@@ -8,7 +8,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { userFavoritesSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import styled from "styled-components";
-import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
+// import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import { NoFavorites } from "./components/NoFavorites.component";
 import {
   CardContainer,
@@ -155,12 +155,13 @@ const UserFavorites = (props: Props) => {
           <CardsContainer>
             {favorites.map((fav, index) => (
               <CardContainer key={index}>
+                {/* TODO: update ?
                 <SearchResultCard
                   pin={removePinnedDispositif}
                   pinnedList={pinnedList}
                   dispositif={fav}
                   showPinned={true}
-                />
+                /> */}
               </CardContainer>
             ))}
           </CardsContainer>

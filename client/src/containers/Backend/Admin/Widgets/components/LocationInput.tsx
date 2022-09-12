@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LocalisationFilter } from "components/Pages/advanced-search/MobileAdvancedSearch/LocalisationFilter/LocalisationFilter";
+// import { LocalisationFilter } from "components/Pages/advanced-search/MobileAdvancedSearch/LocalisationFilter/LocalisationFilter";
 import { cls } from "lib/classname";
 import parentStyles from "../Widgets.module.scss";
 
@@ -21,6 +21,7 @@ export const LocationInput = (props: Props) => {
       )}
     >
       <label className={cls(parentStyles.label, "mr-4")}>Ville</label>
+      {/* TODO: make generic
       <LocalisationFilter
         setVille={props.setSelectedCity}
         ville={props.selectedCity}
@@ -35,7 +36,7 @@ export const LocationInput = (props: Props) => {
           props.setSelectedDepartment("");
         }}
         className="p-10"
-      ></LocalisationFilter>
+      ></LocalisationFilter> */}
     </div>
   );
 };

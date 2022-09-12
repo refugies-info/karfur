@@ -313,7 +313,7 @@ const AdvancedSearchBar = (props: Props) => {
                             setSearchText("");
                             if (
                               router.pathname.includes(
-                                "/advanced-search"
+                                "/advanced-search" /* TODO: update here? */
                               )
                             ) {
                               router.push({

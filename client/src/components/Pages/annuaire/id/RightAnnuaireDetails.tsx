@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { IDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
-import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
+// import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import styles from "./RightAnnuaireDetails.module.scss";
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin
@@ -52,13 +52,14 @@ export const RightAnnuaireDetails = (props: Props) => {
               key={dispositif._id.toString()}
               className={styles.card}
             >
-              <SearchResultCard
+              {/* TODO update here?
+               <SearchResultCard
                 // @ts-ignore
                 pin={() => {}}
                 pinnedList={[]}
                 dispositif={dispositif}
                 showPinned={false}
-              />
+              /> */}
             </div>
           ))}
       </div>

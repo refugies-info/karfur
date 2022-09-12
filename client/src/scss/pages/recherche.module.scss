@@ -1,0 +1,6 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+
+.container {
+  background: $gray40;
+}

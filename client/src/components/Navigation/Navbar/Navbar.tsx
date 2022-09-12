@@ -86,7 +86,7 @@ const Navbar = (props: Props) => {
       (router.pathname.includes("dispositif") && router.query.edit !== undefined) ||
       (router.pathname.includes("demarche") && router.query.edit !== undefined) ||
       router.pathname.includes("user-profile") ||
-      router.pathname.includes("advanced-search") ||
+      router.pathname.includes("advanced-search") || /* TODO: check here */
       router.pathname.includes("qui-sommes-nous") ||
       router.pathname === "/dispositif" ||
       router.pathname === "/demarche"

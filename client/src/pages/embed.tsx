@@ -17,10 +17,7 @@ import {
   allLanguesSelector,
   languei18nSelector,
 } from "services/Langue/langue.selectors";
-import styles from "scss/pages/advanced-search.module.scss";
-import { ThemeResults } from "components/Pages/advanced-search/SearchResults/ThemeResults";
-import { CityResults } from "components/Pages/advanced-search/SearchResults/CityResults";
-import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
+import styles from "scss/pages/recherche.module.scss";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
@@ -71,7 +68,7 @@ const Embed = () => {
   const flagIconCode = filterLanguage?.langueCode || langueCode;
 
   return (
-    <div className={cls(styles.container, styles.embed, "advanced-search")}>
+    <div className={cls(styles.container, styles.embed)}>
       <div className="w-100">
         <div
           className={cls(styles.search_wrapper)}
@@ -84,31 +81,6 @@ const Embed = () => {
                 : "#e4e5e6",
           }}
         >
-          {selectedTheme ? (
-            <ThemeResults
-              langueCode={langueCode}
-              flagIconCode={flagIconCode}
-              selectedTheme={selectedTheme || null}
-              filterLanguage={filterLanguage || null}
-              currentLanguage={currentLanguage || null}
-              queryResults={queryResults}
-              embed={true}
-            />
-          ) : filterVille ? (
-              <CityResults
-                queryResults={queryResults}
-                embed={true}
-              />
-          ) : (
-            <DefaultResults
-              langueCode={langueCode}
-              filterLanguage={filterLanguage || null}
-              currentLanguage={currentLanguage || null}
-              queryResults={queryResults}
-              embed={true}
-              isLoading={false}
-            />
-          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import get from "lodash/get";
 import { searchFrench, FrenchLevelFilter, AgeFilter, searchAge } from "data/searchFilters";
-import { SearchQuery } from "pages/recherche";
 import { IDispositif, Theme } from "types/interface";
 
 const filterContentsByTheme = (contents: IDispositif[], themeFilter: string[] | undefined) => {
@@ -80,7 +79,7 @@ const filterContentsByType = (contents: IDispositif[], typeContenuFilter: "dispo
   return contents;
 };
 
-const filterContents = (contents: IDispositif[], query: SearchQuery) => {
+const filterContents = (contents: IDispositif[], query: any) => {
   if (!query) return contents;
   const contentsFilteredByTheme = filterContentsByTheme(contents, query.theme);
   const contentsFilteredByAge = filterContentsByAge(
@@ -134,7 +133,7 @@ export interface DispositifsFilteredState {
 
 export const queryDispositifs = (
   allDispositifs: IDispositif[],
-  query: SearchQuery,
+  query: any,
   ln: string,
   themes: Theme[]
 ) => {
@@ -323,7 +322,7 @@ export const queryDispositifs = (
 interface QueryState {
   searchToggleVisible: boolean
   geoSearch: boolean
-  query: SearchQuery
+  query: any
 }
 export const decodeQuery = (routerQuery: any): QueryState => {
   const {
@@ -331,7 +330,7 @@ export const decodeQuery = (routerQuery: any): QueryState => {
   } = routerQuery;
   let searchToggleVisible = false;
   let geoSearch = false;
-  let query: SearchQuery = { order: "" }
+  let query: any = { order: "" }
 
   if (filter || langue || tri) searchToggleVisible = true;
 
