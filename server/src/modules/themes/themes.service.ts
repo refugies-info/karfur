@@ -74,10 +74,7 @@ export const getValidator = (type: "post" | "patch") => {
         imgId: Joi.string().allow(""),
       }),
       notificationEmoji: Joi.string(),
-
-      ...(type === "patch" ? {
-        adminComments: Joi.string()
-      } : {})
+      adminComments: Joi.string().allow("")
     })
   };
 
