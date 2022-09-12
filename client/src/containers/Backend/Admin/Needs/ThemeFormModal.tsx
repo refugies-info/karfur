@@ -20,7 +20,8 @@ import { cls } from "lib/classname";
 import { LangueButton } from "../AdminUsers/ components/AdminUsersComponents";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toArray } from "lodash";
-import { isThemeTitleOk } from "./lib";
+// import { isThemeTitleOk } from "./lib";
+import { allThemesSelector } from "services/Themes/themes.selectors";
 
 
 interface Props {
@@ -95,6 +96,7 @@ export const ThemeFormModal = (props: Props) => {
     }
   }, [props.selectedTheme]);
 
+  const themes = useSelector(allThemesSelector);
   const onSave = () => {
     const theme: Partial<Theme> = {
       short,
@@ -118,7 +120,10 @@ export const ThemeFormModal = (props: Props) => {
       );
     } else {
       // creation
-      dispatch(createThemeActionCreator(theme));
+      dispatch(createThemeActionCreator({
+        ...theme,
+        position: themes.length + 1
+      }));
     }
     props.toggleModal();
   };
