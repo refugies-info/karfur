@@ -589,13 +589,17 @@ export const ContentScreen = ({
     });
 
     const siteUrl = Config.siteUrl;
+    let urlType: string = content.typeContenu;
+    if (currentLanguage !== "fr") {
+      urlType = content.typeContenu === "demarche" ? "procedure" : "program"
+    }
     try {
       const shareData = (Platform.OS === "ios") ? {
         message: `${content.titreInformatif}`,
-        url: `${siteUrl}/dispositif/${content._id}`,
+        url: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
       } : {
         title: `${content.titreInformatif}`,
-        message: `${siteUrl}/dispositif/${content._id}`,
+        message: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
       };
       await Share.share(shareData);
     } catch (error: any) {
