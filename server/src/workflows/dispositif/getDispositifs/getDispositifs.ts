@@ -21,7 +21,7 @@ export const getDispositifs = async (
       let { query, locale } = req.body;
       locale = locale || "fr";
 
-      const dispositifArray = await getDispositifArray(query, {}, "theme secondaryThemes");
+      const dispositifArray = await getDispositifArray(query, {mainSponsor: 1}, "theme secondaryThemes mainSponsor");
       // @ts-ignore
       const adaptedDispositifArray = removeUselessContent(dispositifArray);
       const array: string[] = [];

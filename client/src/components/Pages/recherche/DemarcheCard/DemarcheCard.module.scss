@@ -1,0 +1,39 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  display: block;
+  width: 190px;
+  background: $white;
+  box-shadow: 0 4px 18px 0 #0000001A;
+  padding: 32px 16px 16px 16px;
+  margin-right: 32px;
+  margin-bottom: 32px;
+  border-radius: $radius;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $dark;
+    background-color: $gray30;
+    box-shadow: none;
+
+    :global(.theme-badge) {
+      background-color: $white !important;
+    }
+  }
+}
+
+.title {
+  font-size: $text-large;
+  line-height: 22px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.badges {
+  margin-bottom: 4px;
+  margin-right: 4px;
+}

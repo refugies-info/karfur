@@ -1,0 +1,56 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1B62D8 100%);
+  padding: 56px;
+  width: 100%;
+}
+
+.filters {
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin-top: 56px;
+}
+
+.filter {
+  padding: 16px;
+  margin: 8px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+
+  .label {
+    font-size: 12px;
+    line-height: 15px;
+    color: $gray80;
+    text-transform: uppercase;
+    display: block;
+    text-align: left;
+  }
+
+  .value {
+    display: block;
+    text-align: left;
+  }
+  .input {
+    border: none;
+    outline: none;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: $gray30;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

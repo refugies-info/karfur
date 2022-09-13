@@ -131,7 +131,11 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
     const selectZoneAction = dispositif.contenu[1].children.map(
       (child: any) => {
-        if (child.title === "Zone d'action") {
+        if (
+          child.title === "Zone d'action" ||
+          child.title === "Durée" ||
+          child.title === "Combien ça coûte ?"
+        ) {
           return child;
         }
         return {};
@@ -139,7 +143,14 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
     );
 
     const simplifiedContent = [{}, { children: selectZoneAction }];
-    return { ...dispositif, contenu: simplifiedContent };
+
+    const simplifiedMainSponsor = {
+      nom: dispositif.mainSponsor.nom,
+      picture: {
+        secure_url: dispositif.mainSponsor?.picture?.secure_url || null,
+      }
+    }
+    return { ...dispositif, contenu: simplifiedContent, mainSponsor: simplifiedMainSponsor };
   });
 
 export const countDispositifMercis = (

@@ -1,0 +1,69 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  display: block;
+  width: 248px;
+  background: $white;
+  box-shadow: 0 4px 18px 0 #0000001A;
+  padding: 16px;
+  margin-right: 32px;
+  margin-bottom: 32px;
+  border-radius: $radius;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $dark;
+    background-color: $gray30;
+    box-shadow: none;
+
+    :global(.theme-badge) {
+      background-color: $white !important;
+    }
+  }
+}
+
+.location {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: $text-large;
+  line-height: 22px;
+  height: 92px;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.abstract {
+  height: 45px;
+}
+
+.text {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.badges {
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.sponsor {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  padding-top: 8px;
+  border-top: 1px solid $dark;
+
+  .picture {
+    width: 48px;
+    height: 48px;
+    background-color: $white;
+    border-radius: 8px;
+    padding: 4px;
+  }
+}

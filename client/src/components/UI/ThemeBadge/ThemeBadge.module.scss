@@ -1,0 +1,18 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.icon {
+  margin-right: 4px;
+  position: relative;
+  top: -2px;
+}
