@@ -127,6 +127,14 @@
       background-position: calc(100% - 20px) calc(100% + 25px), center;
     }
 
+    &.Public-visé-Famille {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
+
     &.Public-visé-Culture {
       background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -224,6 +232,14 @@
     }
 
     &.Âge-requis-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+
+    &.Âge-requis-Famille {
       background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Loisir.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
       background-size: 80%, cover;
@@ -335,6 +351,14 @@
       background-position: calc(100% - 30px) calc(100% + 0px), center;
     }
 
+    &.Durée-Famille {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
     &.Durée-Culture {
       background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -432,6 +456,14 @@
     }
 
     &.Titre-de-séjour-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+
+    &.Titre-de-séjour-Famille {
       background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_loisir.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
       background-size: 80%, cover;
@@ -543,6 +575,14 @@
       background-position: calc(100% - 30px) calc(100% + 90px), center;
     }
 
+    &.Acte-de-naissance-OFPRA-Famille {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_loisirs.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
+
     &.Acte-de-naissance-OFPRA-Culture {
       background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -640,6 +680,14 @@
     }
 
     &.Niveau-de-français-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+
+    &.Niveau-de-français-Famille {
       background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Loisir.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
       background-size: 80%, cover;
@@ -751,6 +799,14 @@
       background-position: calc(100% - 0px) calc(100% + 0px), center;
     }
 
+    &.Combien-ça-coûte-Famille-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
     &.Combien-ça-coûte-Culture-false {
       background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -848,6 +904,14 @@
     }
 
     &.Combien-ça-coûte-Loisir-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+
+    &.Combien-ça-coûte-Famille-true {
       background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Loisir.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
       background-size: 70%, cover;
@@ -959,6 +1023,14 @@
       background-position: calc(100% - 60px) calc(100% + 0px), center;
     }
 
+    &.Justificatif-demandé-Famille {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
+
     &.Justificatif-demandé-Culture {
       background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -1063,6 +1135,14 @@
       background-position: calc(100% - 20px) 150px, center;
     }
 
+    &.Zone-d-action-Famille {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+
     &.Zone-d-action-Culture {
       background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
@@ -1160,6 +1240,14 @@
     }
 
     &.Important-Loisir {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Loisir.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
+
+    &.Important-Famille {
       background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Loisir.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
       background-size: 80%, cover;
