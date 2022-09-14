@@ -70,7 +70,7 @@ export const getValidator = (type: "post" | "patch") => {
         public_id: Joi.string(),
         imgId: Joi.string(),
       }).allow(null),
-      adminComments: Joi.string().allow(null)
+      adminComments: Joi.string().allow(null).allow("")
     }).unknown(true);
 
     baseValidator[Segments.PARAMS] = Joi.object({
