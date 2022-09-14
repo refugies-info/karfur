@@ -15,6 +15,7 @@ import DemarcheCard from "components/Pages/recherche/DemarcheCard";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { Container } from "reactstrap";
 import DispositifCard from "components/Pages/recherche/DispositifCard";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 
 export type SearchQuery = {
   departments?: string[];
@@ -36,7 +37,7 @@ const Recherche = () => {
       <SEO title="Recherche" />
       <SearchHeader />
 
-      <Container>
+      <Container className="mt-4">
         <div className="d-flex flex-wrap">
           {dispositifs
             .filter((d) => d.typeContenu === "dispositif")
@@ -65,6 +66,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   } else {
     store.dispatch(fetchActiveDispositifsActionsCreator());
   }
+  store.dispatch(fetchNeedsActionCreator());
   store.dispatch(fetchThemesActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();

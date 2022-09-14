@@ -1,64 +1,50 @@
-import React from "react";
-import { cls } from "lib/classname";
+import React, { useState } from "react";
 import styles from "./SearchHeader.module.scss";
-import { Container } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import SearchInput from "../SearchInput";
+import ThemeDropdown from "../ThemeDropdown";
 
 interface Props {}
 
 const SearchHeader = (props: Props) => {
+  const [departementsFocused, setDepartementsFocused] = useState(false);
+  const [searchFocused, setSearchFocused] = useState(false);
+
+  const [themesFocused, setThemesFocused] = useState(false);
+  const [themesOpen, setThemesOpen] = useState(false);
+  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+
   return (
     <div className={styles.container}>
-
       <Container>
         <h1 className="h3 text-white">135 fiches disponibles pour votre recherche</h1>
         <div className={styles.filters}>
-          <button className={styles.filter}>
-            <span className={styles.icon}>
-              <EVAIcon
-                name="pin-outline"
-                fill="black"
-                size="large"
-              />
-            </span>
-            <span>
-              <span className={styles.label}>Département</span>
-              <span className={styles.value}>Tous</span>
-            </span>
-          </button>
+          <SearchInput
+            label="Département"
+            icon="pin-outline"
+            active={departementsFocused}
+            setActive={setDepartementsFocused}
+          />
 
-          <button className={styles.filter}>
-            <span className={styles.icon}>
-              <EVAIcon
-                name="list-outline"
-                fill="black"
-                size="large"
+          <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
+            <DropdownToggle>
+              <SearchInput
+                label="Thèmes"
+                icon="list-outline"
+                active={themesFocused || themesOpen}
+                setActive={setThemesFocused}
               />
-            </span>
-            <span>
-              <span className={styles.label}>Thèmes</span>
-              <span className={styles.value}>Tous</span>
-            </span>
-          </button>
+            </DropdownToggle>
+            <DropdownMenu>
+              <ThemeDropdown />
+            </DropdownMenu>
+          </Dropdown>
 
-          <div className={styles.filter}>
-            <span className={styles.icon}>
-              <EVAIcon
-                name="search-outline"
-                fill="black"
-                size="large"
-              />
-            </span>
-            <span>
-              <label className={styles.label}>Mot-clé</label>
-              <input type="search" placeholder="Rechercher..." className={styles.input} />
-            </span>
-          </div>
+          <SearchInput label="Mot-clé" icon="search-outline" active={searchFocused} setActive={setSearchFocused} />
         </div>
       </Container>
-
     </div>
-  )
+  );
 };
 
 export default SearchHeader;

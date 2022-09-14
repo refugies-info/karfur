@@ -1,0 +1,58 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.filter {
+  padding: 16px;
+  margin: 8px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: $radius;
+
+  &:hover {
+    background-color: $gray40b;
+  }
+  &.active {
+    box-shadow: 0 0 40px 0 #00000040;
+    background-color: $white;
+  }
+
+  .label {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 8px;
+    color: $gray80;
+    text-transform: uppercase;
+    display: block;
+    text-align: left;
+  }
+
+  .value {
+    display: block;
+    text-align: left;
+  }
+  .input {
+    border: none;
+    outline: none;
+    background:transparent;
+    font-weight: bold;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: $gray30;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+      background: $bleuCharte;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border-radius: $radius;
+  display: flex;
+  position: absolute;
+  width: 720px;
+  box-shadow: 0 0 40px 0 #00000040;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  border: 2px solid transparent;
+  color: $dark;
+  border-radius: 8px;
+  margin-bottom: 4px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.themes {
+  background: $gray30;
+  padding: 16px;
+  width: 220px;
+  flex-shrink: 0;
+
+  .btn {
+    justify-content: space-between;
+    padding: 8px;
+    font-weight: bold;
+  }
+}
+
+.needs {
+  padding: 16px;
+  flex-grow: 1;
+
+  .btn {
+    padding: 8px 12px;
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+.all {
+  font-weight: bold;
+  display:flex;
+  align-items: center;
+
+  & > span {
+    position: relative;
+    top: -1px;
+    margin-right: 8px;
+  }
+}

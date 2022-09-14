@@ -16,41 +16,14 @@
   margin-top: 56px;
 }
 
-.filter {
-  padding: 16px;
-  margin: 8px;
-  background: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
+.dropdown {
+  flex-shrink: 0;
   flex-grow: 1;
 
-  .label {
-    font-size: 12px;
-    line-height: 15px;
-    color: $gray80;
-    text-transform: uppercase;
-    display: block;
-    text-align: left;
-  }
-
-  .value {
-    display: block;
-    text-align: left;
-  }
-  .input {
+  & > button {
+    background: transparent !important;
     border: none;
-    outline: none;
-  }
-
-  .icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: $gray30;
-    margin-right: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0;
+    width: 100%;
   }
 }
