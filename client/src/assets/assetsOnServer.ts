@@ -23,7 +23,7 @@ export const assetsOnServer = {
     pdfAMI: bucketUrlQSN + "AMI-structures-2022.pdf",
   },
   homepage: {
-    CarteDeploiement: bucketUrl + "home/Carte_deploiement_juin2022.svg",
+    CarteDeploiement: bucketUrl + "home/Carte_deploiement_septembre2022.svg",
   },
   commentContribuer: {
     traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
