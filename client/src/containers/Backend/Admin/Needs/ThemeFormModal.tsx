@@ -307,7 +307,7 @@ export const ThemeFormModal = (props: Props) => {
               minHeight={90}
               imageSize={80}
               labelNoBackground={true}
-              dimensionsHelp="360x280px"
+              dimensionsHelp="248x320px"
             />
           </div>
           <div className="mb-2">
