@@ -3,6 +3,7 @@ import styles from "./SearchHeader.module.scss";
 import { Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
+import { ObjectId } from "mongodb";
 
 interface Props {}
 
@@ -13,6 +14,8 @@ const SearchHeader = (props: Props) => {
   const [themesFocused, setThemesFocused] = useState(false);
   const [themesOpen, setThemesOpen] = useState(false);
   const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+
+  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
 
   return (
     <div className={styles.container}>
@@ -36,7 +39,10 @@ const SearchHeader = (props: Props) => {
               />
             </DropdownToggle>
             <DropdownMenu>
-              <ThemeDropdown />
+              <ThemeDropdown
+                needsSelected={needsSelected}
+                setNeedsSelected={setNeedsSelected}
+              />
             </DropdownMenu>
           </Dropdown>
 

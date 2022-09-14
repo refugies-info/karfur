@@ -325,6 +325,7 @@ export interface IDispositif {
   participants: User[];
   signalements: any[];
   sponsors: Structure[];
+  needs: ObjectId[];
   status: string;
   suggestions: any[];
   theme: Theme;

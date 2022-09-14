@@ -27,6 +27,10 @@
   }
 }
 
+.btn_content {
+  display:flex;
+}
+
 .themes {
   background: $gray30;
   padding: 16px;
@@ -48,6 +52,12 @@
     padding: 8px 12px;
     justify-content: flex-start;
     text-align: left;
+
+    &:hover {
+      .badge {
+        background: $white !important;
+      }
+    }
   }
 }
 
@@ -61,4 +71,24 @@
     top: -1px;
     margin-right: 8px;
   }
+}
+
+.badge {
+  padding: 0 2px;
+  margin-left: 8px;
+  border-radius: 2px;
+  font-weight: normal;
+}
+
+.theme_badge {
+  font-size: 12px;
+  line-height: 12px;
+  color: $white;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
 }
