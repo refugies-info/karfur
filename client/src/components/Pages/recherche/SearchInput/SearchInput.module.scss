@@ -20,6 +20,11 @@
     background-color: $white;
   }
 
+  .search {
+    text-align: left;
+    min-width: 0;
+  }
+
   .label {
     font-size: 12px;
     line-height: 15px;
@@ -30,15 +35,23 @@
     text-align: left;
   }
 
-  .value {
-    display: block;
-    text-align: left;
-  }
   .input {
     border: none;
     outline: none;
     background:transparent;
+    padding: 0;
+  }
+
+  .value {
     font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &.empty {
+      font-weight: normal;
+    }
   }
 
   .icon {
@@ -48,6 +61,7 @@
     background: $gray30;
     margin-right: 16px;
     display: flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
 

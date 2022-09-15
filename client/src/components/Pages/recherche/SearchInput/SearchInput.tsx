@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import styles from "./SearchInput.module.scss";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
@@ -6,19 +6,21 @@ import { cls } from "lib/classname";
 interface Props {
   label: string;
   icon: string;
+  placeholder: string;
+  value: string;
   active: boolean;
   setActive: (active: boolean) => void
+  onChange?: (e: any) => void
+  loading?: boolean
 }
 
 const SearchInput = (props: Props) => {
+  const { active, setActive } = props;
   const ref = useRef<HTMLInputElement | null>(null);
-  const setFocus = () => {
-    ref.current?.focus();
-  };
 
   const handleFocusIn = useCallback(() => {
-    props.setActive(document.activeElement === ref.current);
-  }, []);
+    setActive((document.activeElement === ref.current));
+  }, [setActive]);
 
   useEffect(() => {
     document.addEventListener("focusin", handleFocusIn)
@@ -29,18 +31,33 @@ const SearchInput = (props: Props) => {
   };
   }, [handleFocusIn])
 
+  const hasBlueIcon = active || !!props.value;
+
   return (
-    <div className={cls(styles.filter, props.active && styles.active)} onClick={setFocus}>
-      <span className={cls(styles.icon, props.active && styles.active)}>
+    <div className={cls(styles.filter, active && styles.active)}>
+      <span className={cls(styles.icon, hasBlueIcon && styles.active)}>
         <EVAIcon
           name={props.icon}
-          fill={props.active ? "white" : "black"}
+          fill={hasBlueIcon ? "white" : "black"}
           size="large"
         />
       </span>
-      <span>
+      <span className={styles.search}>
         <label className={styles.label} htmlFor={props.label}>{props.label}</label>
-        <input ref={ref} id={props.label} type="text" placeholder="Rechercher..." className={styles.input} />
+        {active ?
+          <input
+            ref={ref}
+            id={props.label}
+            type="text"
+            placeholder="Rechercher..."
+            className={styles.input}
+            onChange={props.onChange}
+            autoFocus
+          /> :
+          <div className={cls(styles.value, !props.value && styles.empty)}>
+            {props.value || props.placeholder}
+          </div>
+        }
       </span>
     </div>
   )

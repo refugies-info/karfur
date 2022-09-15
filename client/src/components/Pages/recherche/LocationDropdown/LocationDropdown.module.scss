@@ -1,0 +1,78 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border-radius: $radius;
+  position: absolute;
+  width: 380px;
+  box-shadow: 0 0 40px 0 #00000040;
+  overflow: hidden;
+  z-index: 3;
+  padding: 16px;
+}
+
+.header {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid $grey50b;
+}
+
+.selected {
+  background-color: $bleuCharte;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  border:none;
+  color: white;
+  margin-right: 4px;
+  margin-bottom: 4px;
+
+  &:hover {
+    background-color: darken($bleuCharte, 5);
+    color: white;
+  }
+  &:active, &:focus {
+    background-color: darken($bleuCharte, 10) !important;
+    color: white !important;
+  }
+
+  .icon {
+    margin-left: 8px;
+  }
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 8px;
+  border-radius: 8px;
+
+  &:hover{
+    background: $gray10;
+  }
+
+  .icon {
+    margin-right: 8px;
+    background: $gray40b;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+}
+
