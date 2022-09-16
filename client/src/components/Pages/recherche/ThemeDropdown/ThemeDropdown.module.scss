@@ -37,6 +37,10 @@
   width: 220px;
   flex-shrink: 0;
 
+  &.hidden {
+    display: none;
+  }
+
   .btn {
     justify-content: space-between;
     padding: 8px;
@@ -59,6 +63,12 @@
       }
     }
   }
+}
+
+.list_theme {
+  font-weight: bold;
+  padding: 12px 8px;
+  border: 2px solid transparent;
 }
 
 .all {

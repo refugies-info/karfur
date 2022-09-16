@@ -9,6 +9,7 @@ import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import Checkbox from "components/UI/Checkbox";
+import { cls } from "lib/classname";
 
 type ButtonThemeProps = {
   color100: string;
@@ -40,7 +41,8 @@ const ButtonNeed = styled.button`
 
 interface Props {
   needsSelected: ObjectId[];
-  setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void
+  setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
+  search: string;
 }
 
 const ThemeDropdown = (props: Props) => {
@@ -68,8 +70,8 @@ const ThemeDropdown = (props: Props) => {
       }
     }
     setNbDispositifsByNeed(nbDispositifsByNeed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   const { needsSelected, setNeedsSelected } = props;
 
@@ -101,14 +103,21 @@ const ThemeDropdown = (props: Props) => {
   };
 
   const displayedNeeds = useMemo(() => {
-    return needs.filter((need) => need.theme._id === themeSelected);
-  }, [themeSelected, needs]);
+    if (props.search) {
+      return needs
+        .filter((need) => need.fr.text.includes(props.search))
+        .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
+    }
+    return needs
+      .filter((need) => need.theme._id === themeSelected)
+      .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
+  }, [themeSelected, needs, props.search]);
 
   const isAllSelected = !displayedNeeds.find((need) => !needsSelected.includes(need._id));
 
   return (
     <div className={styles.container}>
-      <div className={styles.themes}>
+      <div className={cls(styles.themes, props.search && styles.hidden)}>
         {themes.map((theme, i) => {
           const selected = themeSelected === theme._id;
           return (
@@ -136,7 +145,7 @@ const ThemeDropdown = (props: Props) => {
         })}
       </div>
       <div className={styles.needs}>
-        {themeSelected && (
+        {themeSelected && !props.search && (
           <ButtonNeed
             className={styles.btn}
             color100={colors?.color100 || "black"}
@@ -169,27 +178,36 @@ const ThemeDropdown = (props: Props) => {
         {displayedNeeds.map((need, i) => {
           const selected = needsSelected.includes(need._id);
           return (
-            <ButtonNeed
-              key={i}
-              className={styles.btn}
-              color100={need.theme.colors.color100}
-              color30={need.theme.colors.color30}
-              selected={selected}
-              onClick={() => selectNeed(need._id)}
-            >
-              <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
-                {need.fr.text}
-                <span
-                  className={styles.badge}
-                  style={{
-                    backgroundColor: need.theme.colors.color30,
-                    color: need.theme.colors.color100
-                  }}
-                >
-                  {nbDispositifsByNeed[need._id.toString()] || 0}
-                </span>
-              </Checkbox>
-            </ButtonNeed>
+            <>
+              {props.search &&
+                // check if this need has a different theme from previous one
+                (i === 0 || displayedNeeds[i - 1].theme._id !== need.theme._id) && (
+                <div className={styles.list_theme}>
+                  <TagName theme={need.theme} colored={true} size={20} />
+                </div>
+              )}
+              <ButtonNeed
+                key={i}
+                className={styles.btn}
+                color100={need.theme.colors.color100}
+                color30={need.theme.colors.color30}
+                selected={selected}
+                onClick={() => selectNeed(need._id)}
+              >
+                <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
+                  {need.fr.text}
+                  <span
+                    className={styles.badge}
+                    style={{
+                      backgroundColor: need.theme.colors.color30,
+                      color: need.theme.colors.color100
+                    }}
+                  >
+                    {nbDispositifsByNeed[need._id.toString()] || 0}
+                  </span>
+                </Checkbox>
+              </ButtonNeed>
+            </>
           );
         })}
       </div>

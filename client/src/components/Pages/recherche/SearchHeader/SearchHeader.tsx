@@ -27,6 +27,7 @@ const SearchHeader = (props: Props) => {
   const [themesOpen, setThemesOpen] = useState(false);
   const toggleThemes = () => setThemesOpen((prevState) => !prevState);
   const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
+  const [themeSearch, setThemeSearch] = useState("");
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);
@@ -103,12 +104,17 @@ const SearchHeader = (props: Props) => {
                 icon="list-outline"
                 active={themesFocused || themesOpen}
                 setActive={setThemesFocused}
+                onChange={(evt) => setThemeSearch(evt.target.value)}
                 value={needsSelected.join(", ")}
                 placeholder="Tous"
               />
             </DropdownToggle>
             <DropdownMenu>
-              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} />
+              <ThemeDropdown
+                needsSelected={needsSelected}
+                setNeedsSelected={setNeedsSelected}
+                search={themeSearch}
+              />
             </DropdownMenu>
           </Dropdown>
 
