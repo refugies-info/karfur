@@ -1,6 +1,33 @@
 import { Theme } from "types/interface";
 
-// FILTERS
+export type Filters = {
+  key: string;
+  value: string
+}[];
+
+export const ageFilters: Filters = [
+  { key: "-18", value: "Moins de 18 ans" },
+  { key: "18-25", value: "Entre 18 et 25 ans" },
+  { key: "+25", value: "Plus de 25 ans" }
+];
+export const frenchLevelFilter: Filters = [
+  { key: "a", value: "Débutant A1/A2" },
+  { key: "b", value: "Intermédiaire B1/B2" },
+  { key: "c", value: "Avancé C1/C2" }
+];
+export const sortOptions: Filters = [
+  { key: "theme", value: "Par thématique" },
+  { key: "date", value: "Les plus récentes" },
+  { key: "view", value: "Les plus vues" }
+];
+export const filterType: Filters = [
+  { key: "all", value: "Tout" },
+  { key: "dispositif", value: "Fiches dispositifs" },
+  { key: "demarche", value: "Fiches demarches" },
+];
+
+
+// UNUSED ??
 export type AvailableFilters = "theme" | "age" | "frenchLevel" | "loc" | "langue";
 export type AgeFilter = {
   name: "moins de 18 ans" | "entre 18 et 25 ans" | "entre 25 et 56 ans" | "56 ans et plus";

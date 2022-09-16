@@ -8,7 +8,7 @@
   width: 100%;
 }
 
-.filters {
+.inputs {
   background: $white;
   border-radius: $radius;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
@@ -27,4 +27,34 @@
     padding: 0;
     width: 100%;
   }
+}
+
+.reset {
+  background: transparent;
+  color: $white;
+  border-color: $white;
+  border-width: 2px;
+  border-radius: 8px;
+
+  &:hover, &:active, &:focus {
+    color: $dark;
+    background-color: $white;
+    border-color: $white;
+
+    svg {
+      fill: $dark;
+    }
+  }
+}
+
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.filters {
+  display: inline-flex;
+  background: $gray30;
+  border-radius: 8px;
 }

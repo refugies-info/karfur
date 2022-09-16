@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { END } from "redux-saga";
 import SEO from "components/Seo";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -16,6 +16,7 @@ import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDisp
 import { Container } from "reactstrap";
 import DispositifCard from "components/Pages/recherche/DispositifCard";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import ResultsFilter from "components/Pages/recherche/ResultsFilter";
 
 export type SearchQuery = {
   departments?: string[];
@@ -32,12 +33,26 @@ export type SearchQuery = {
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
 
+  const [selectedSort, setSelectedSort] = useState<string>("view");
+  const [selectedType, setSelectedType] = useState<string>("all");
+
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
-      <SearchHeader />
+      <SearchHeader
+        nbResults={dispositifs.length}
+      />
 
-      <Container className="mt-4">
+      <Container>
+        <ResultsFilter
+          nbDemarches={dispositifs.filter((d) => d.typeContenu === "demarche").length}
+          nbDispositifs={dispositifs.filter((d) => d.typeContenu === "dispositif").length}
+          selectedSort={selectedSort}
+          setSelectedSort={setSelectedSort}
+          selectedType={selectedType}
+          setSelectedType={setSelectedType}
+        />
+
         <div className="d-flex flex-wrap">
           {dispositifs
             .filter((d) => d.typeContenu === "dispositif")

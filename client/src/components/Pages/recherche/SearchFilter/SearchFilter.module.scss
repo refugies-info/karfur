@@ -1,0 +1,83 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+
+.dropdown {
+  margin: 4px;
+
+  & > button {
+    background: $gray30;
+    color: $gray80;
+    border: none;
+    padding: 12px 8px;
+    border-radius: 8px;
+
+    &:hover, &:focus, &:active {
+      background: $gray40b !important;
+      color: $gray80 !important;
+    }
+
+    &> span {
+      margin-left: 8px;
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  &.show > button {
+    background: $white !important;
+    color: $darkColor !important;
+  }
+
+  &.selected > button {
+    background: $bleuCharte !important;
+    color: $white !important;
+    font-weight: bold;
+
+    &:hover, &:focus, &:active {
+      background: $bleuCharte !important;
+      color: $white !important;
+    }
+  }
+}
+
+/* Override global style */
+html body .dropdown.show > button {
+  box-shadow: 0 0 40px 0 #00000040 !important;
+}
+
+.menu {
+  box-shadow: 0 0 40px 0 #00000040;
+  padding: 16px;
+  border-radius: $radius;
+  margin-top: 8px;
+}
+
+.item {
+  padding: 12px 8px;
+  border-radius: 8px !important;
+  margin-bottom: 4px;
+  border: none;
+
+  &:hover {
+    background: $gray40b;
+    color: $dark;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+
+  i {
+    margin: 0 8px 0 0;
+  }
+
+  &.selected {
+    background: $bleuCharte !important;
+    color: $white !important;
+  }
+}

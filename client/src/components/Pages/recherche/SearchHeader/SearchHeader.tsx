@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./SearchHeader.module.scss";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchInput from "../SearchInput";
@@ -7,13 +7,15 @@ import { ObjectId } from "mongodb";
 import LocationDropdown from "../LocationDropdown";
 
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import SearchFilter from "../SearchFilter";
+import { ageFilters, frenchLevelFilter } from "data/searchFilters";
+import { useSelector } from "react-redux";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
-type Prediction = {
-  place_id: string;
-  description: string;
-};
-
-interface Props {}
+interface Props {
+  nbResults: number
+}
 
 const SearchHeader = (props: Props) => {
   // SEARCH
@@ -50,11 +52,27 @@ const SearchHeader = (props: Props) => {
     });
   };
 
+  // FILTERS
+  const languages = useSelector(allLanguesSelector);
+
+  const [filterAge, setFilterAge] = useState<string[]>([]);
+  const [filterFrenchLevel, setFilterFrenchLevel] = useState<string[]>([]);
+  const [filterLanguage, setFilterLanguage] = useState<string[]>([]);
+
+  const resetFilters = () => {
+    setSearch("");
+    setNeedsSelected([]);
+    setDepartmentsSelected([]);
+    setFilterAge([]);
+    setFilterFrenchLevel([]);
+    setFilterLanguage([]);
+  }
+
   return (
     <div className={styles.container}>
       <Container>
-        <h1 className="h3 text-white">135 fiches disponibles pour votre recherche</h1>
-        <div className={styles.filters}>
+        <h1 className="h3 text-white">{props.nbResults} fiches disponibles pour votre recherche</h1>
+        <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
             <DropdownToggle>
               <SearchInput
@@ -107,6 +125,40 @@ const SearchHeader = (props: Props) => {
               />
             </Button>
           </div>
+        </div>
+
+        <div className={styles.subheader}>
+          <div className={styles.filters}>
+            <SearchFilter
+              label={filterAge.length === 0 ? "Tranche d'âge" : filterAge.join(", ")}
+              selected={filterAge}
+              setSelected={setFilterAge}
+              options={ageFilters}
+            />
+            <SearchFilter
+              label={filterFrenchLevel.length === 0 ? "Niveau de français" : filterFrenchLevel.join(", ")}
+              selected={filterFrenchLevel}
+              setSelected={setFilterFrenchLevel}
+              options={frenchLevelFilter}
+            />
+            <SearchFilter
+              label={filterLanguage.length === 0 ? "Fiches traduites en" : filterLanguage.join(", ")}
+              selected={filterLanguage}
+              setSelected={setFilterLanguage}
+              options={languages.map((ln) => ({ key: ln.i18nCode, value: ln.langueFr }))}
+            />
+          </div>
+          <Button
+            className={styles.reset}
+            onClick={resetFilters}
+          >
+            <EVAIcon
+              name="refresh-outline"
+              fill="white"
+              className="mr-2"
+            />
+            Effacer tous les filtres
+          </Button>
         </div>
       </Container>
     </div>
