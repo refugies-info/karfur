@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Theme } from "types/interface";
+import styles from "./ThemeIcon.module.scss";
 
 interface Props {
   theme: Theme | undefined | null;
@@ -30,6 +31,7 @@ const ThemeIcon = (props: Props) => {
     /* to color icon, fetch svg text, and replace stroke color in code */
     return (
       <span
+        className={styles.icon}
         dangerouslySetInnerHTML={{
           __html:
             imgXml
