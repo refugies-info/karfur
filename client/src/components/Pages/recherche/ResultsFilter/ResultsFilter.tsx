@@ -3,15 +3,15 @@ import styles from "./ResultsFilter.module.scss";
 import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
-import { filterType, sortOptions } from "data/searchFilters";
+import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 
 interface Props {
   nbDemarches: number;
   nbDispositifs: number;
-  selectedSort: string;
-  setSelectedSort: Dispatch<SetStateAction<string>>;
-  selectedType: string;
-  setSelectedType: Dispatch<SetStateAction<string>>;
+  selectedSort: SortOptions;
+  setSelectedSort: Dispatch<SetStateAction<SortOptions>>;
+  selectedType: TypeOptions;
+  setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
 }
 
 const ResultsFilter = (props: Props) => {

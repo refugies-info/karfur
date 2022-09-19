@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import styles from "./SearchHeader.module.scss";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchInput from "../SearchInput";
@@ -8,32 +8,56 @@ import LocationDropdown from "../LocationDropdown";
 
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import SearchFilter from "../SearchFilter";
-import { ageFilters, frenchLevelFilter } from "data/searchFilters";
+import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 
 interface Props {
-  nbResults: number
+  nbResults: number;
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
+  needsSelected: ObjectId[];
+  setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
+  departmentsSelected: string[];
+  setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
+  filterAge: AgeOptions[];
+  setFilterAge:Dispatch<SetStateAction<AgeOptions[]>>;
+  filterFrenchLevel: FrenchOptions[];
+  setFilterFrenchLevel:Dispatch<SetStateAction<FrenchOptions[]>>;
+  filterLanguage: string[];
+  setFilterLanguage:Dispatch<SetStateAction<string[]>>;
 }
 
 const SearchHeader = (props: Props) => {
-  // SEARCH
-  const [search, setSearch] = useState("");
+  const {
+    search,
+    setSearch,
+    needsSelected,
+    setNeedsSelected,
+    departmentsSelected,
+    setDepartmentsSelected,
+    filterAge,
+    setFilterAge,
+    filterFrenchLevel,
+    setFilterFrenchLevel,
+    filterLanguage,
+    setFilterLanguage,
+  } = props;
+
+  // KEYWORD
   const [searchFocused, setSearchFocused] = useState(false);
 
   // THEMES
   const [themesFocused, setThemesFocused] = useState(false);
   const [themesOpen, setThemesOpen] = useState(false);
   const toggleThemes = () => setThemesOpen((prevState) => !prevState);
-  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
   const [themeSearch, setThemeSearch] = useState("");
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
   const toggleLocation = () => setLocationOpen((prevState) => !prevState);
-  const [departmentsSelected, setDepartmentsSelected] = useState<string[]>([]);
 
   const { placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading } = usePlacesService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
@@ -55,10 +79,6 @@ const SearchHeader = (props: Props) => {
 
   // FILTERS
   const languages = useSelector(allLanguesSelector);
-
-  const [filterAge, setFilterAge] = useState<string[]>([]);
-  const [filterFrenchLevel, setFilterFrenchLevel] = useState<string[]>([]);
-  const [filterLanguage, setFilterLanguage] = useState<string[]>([]);
 
   const resetFilters = () => {
     setSearch("");

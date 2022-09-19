@@ -1,6 +1,7 @@
 import get from "lodash/get";
 import { searchFrench, FrenchLevelFilter, AgeFilter, searchAge } from "data/searchFilters";
 import { IDispositif, Theme } from "types/interface";
+import { SearchQuery } from "pages/recherche";
 
 const filterContentsByTheme = (contents: IDispositif[], themeFilter: string[] | undefined) => {
   if (!themeFilter) return contents;
@@ -114,209 +115,20 @@ const sortDispositifs = (dispositifs: IDispositif[], order: string) => {
 };
 
 
-export interface DispositifsFilteredState {
+export interface SearchResult {
   dispositifs: IDispositif[]
-  countTotal: number
-  countShow: number
-  nonTranslated: IDispositif[]
-  dispositifsFullFrance: IDispositif[]
-  themesObject: {
-    theme: Theme
-    dispositifs: IDispositif[]
-  }[]
-  principalThemeList: IDispositif[]
-  secondaryThemeList: IDispositif[]
-  principalThemeListFullFrance: IDispositif[]
-  secondaryThemeListFullFrance: IDispositif[]
-  filterVille: string
+  demarches: IDispositif[]
 }
 
 export const queryDispositifs = (
-  allDispositifs: IDispositif[],
-  query: any,
-  ln: string,
-  themes: Theme[]
-) => {
-  const filteredDispositifs = filterContents(
-    allDispositifs,
-    query
-  );
-  const sortedDispositifs = sortDispositifs(
-    filteredDispositifs,
-    query.order
-  );
+  query: SearchQuery,
+  dispositifs: IDispositif[],
+): SearchResult => {
 
-  let dispositifs = sortedDispositifs;
-  const countTotal = dispositifs.length;
-
-  if (query.theme) {
-    //On réarrange les résultats pour avoir les dispositifs dont le theme est le principal en premier, sinon trié par date de création
-    dispositifs = dispositifs.sort((a, b) =>
-      query.theme?.includes(get(a, "theme.name.fr", {}))
-        ? -1
-        : query.theme?.includes(get(b, "theme.name.fr", {}))
-        ? 1
-        : 0
-    );
-  } else {
-    //@ts-ignore
-    dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
+  return {
+    dispositifs: dispositifs.filter(d => d.typeContenu === "dispositif"),
+    demarches: dispositifs.filter(d => d.typeContenu === "demarche")
   }
-
-  // TRANSLATION
-  let nonTranslated: IDispositif[] = [];
-  if (ln !== "fr" || query.langue) {
-    nonTranslated = dispositifs.filter((dispo) => {
-      const lnCode = ln !== "fr" ? ln : query.langue;
-      if (!lnCode) return false
-      if (dispo.avancement?.[lnCode]) return false;
-      return true;
-    });
-
-    dispositifs = dispositifs.filter((dispo) => {
-      const lnCode = ln !== "fr"
-        ? ln : query.langue;
-        if (!lnCode) return false
-        if (dispo.avancement?.[lnCode]) return true;
-        return false;
-    });
-  }
-
-  // LOCATION
-  let dispositifsFullFrance: IDispositif[] = [];
-  let filterVille = "";
-  if (query.loc?.dep) {
-    var index;
-    var i;
-    var dispositifsFrance = [];
-    var dispositifsVille = [];
-    var dispositifsEmpty = [];
-    filterVille = query.loc?.city || "";
-    for (index = 0; index < dispositifs.length; index++) {
-      if (dispositifs[index]?.contenu?.[1]?.children) {
-        var geolocInfocard = (dispositifs[index].contenu[1].children || []).find(
-          (infocard) => infocard.title === "Zone d'action"
-        );
-        if (geolocInfocard && geolocInfocard.departments) {
-          for (i = 0; i < geolocInfocard.departments.length; i++) {
-            if (
-              geolocInfocard.departments[i] === "All" &&
-              dispositifs[index].typeContenu === "dispositif"
-            ) {
-              dispositifsFrance.push(dispositifs[index]);
-            } else if (
-              geolocInfocard.departments[i].split(" - ")[1] ===
-                query.loc?.dep ||
-              geolocInfocard.departments[i].split(" - ")[1] ===
-                query.loc?.city ||
-              dispositifs[index].typeContenu === "demarche"
-            ) {
-              dispositifsVille.push(dispositifs[index]);
-            }
-          }
-        } else if (dispositifs[index].typeContenu === "dispositif") {
-          dispositifsEmpty.push(dispositifs[index]);
-        } else if (dispositifs[index].typeContenu === "demarche") {
-          dispositifsVille.push(dispositifs[index]);
-        }
-      } else if (dispositifs[index].typeContenu === "dispositif") {
-        dispositifsEmpty.push(dispositifs[index]);
-      } else if (dispositifs[index].typeContenu === "demarche") {
-        dispositifsVille.push(dispositifs[index]);
-      }
-    }
-    dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
-
-    dispositifs = dispositifsVille;
-  }
-
-  dispositifs = dispositifs.map((x) => ({
-    ...x,
-    nbVues: x.nbVues || 0,
-  }));
-
-  // ORDER BY THEME
-  let themesObject: {
-    theme: Theme;
-    dispositifs: IDispositif[];
-  }[] = [];
-  if (query.order === "theme") {
-    themesObject = themes.map((theme) => {
-      return {
-        theme: theme,
-        dispositifs: dispositifs.filter((dispositif) => (
-          dispositif.theme ? dispositif.theme._id === theme._id : null
-        )),
-      };
-    }).filter(themeObject => themeObject.dispositifs.length > 0);
-  }
-
-  // THEME
-  let principalThemeListSorted: IDispositif[] = [];
-  let secondaryThemeListSorted: IDispositif[] = [];
-  let principalThemeListFullFranceSorted: IDispositif[] = [];
-  let secondaryThemeListFullFranceSorted: IDispositif[] = [];
-
-  if (query.theme) {
-    const principalThemeList = dispositifs.filter((elem) => (
-      elem.theme ? query.theme?.includes(elem.theme.name.fr) : ""
-    ));
-    principalThemeListSorted = sortDispositifs(
-      principalThemeList,
-      query.order
-    );
-
-    const secondaryThemeList = dispositifs.filter((dispositif) => {
-      if (dispositif.secondaryThemes && dispositif.secondaryThemes.length > 0) {
-        for (const dispositifTheme of dispositif.secondaryThemes) {
-          if (query.theme?.includes(dispositifTheme.name.fr)) return true;
-        }
-      }
-      return false;
-    });
-    secondaryThemeListSorted = sortDispositifs(
-      secondaryThemeList,
-      query.order
-    );
-
-    // THEME + LOCATION
-    if (query.loc?.city) {
-      var principalThemeListFullFrance = dispositifsFullFrance.filter(
-        (disp) => (disp?.theme ? query.theme?.includes(disp.theme.name.fr) : "")
-      );
-      principalThemeListFullFranceSorted = sortDispositifs(
-        principalThemeListFullFrance,
-        query.order
-      );
-      const secondaryThemeListFullFrance = dispositifsFullFrance.filter((dispositif) => {
-        if (dispositif.secondaryThemes && dispositif.secondaryThemes.length > 0) {
-          for (const dispositifTheme of dispositif.secondaryThemes) {
-            if (query.theme?.includes(dispositifTheme.name.fr)) return true;
-          }
-        }
-        return false;
-      });
-      secondaryThemeListFullFranceSorted = sortDispositifs(
-        secondaryThemeListFullFrance,
-        query.order
-      );
-    }
-  }
-  const newState: DispositifsFilteredState = {
-    dispositifs,
-    countTotal,
-    countShow: dispositifs.length,
-    nonTranslated,
-    dispositifsFullFrance,
-    themesObject,
-    principalThemeList: principalThemeListSorted,
-    secondaryThemeList: secondaryThemeListSorted,
-    principalThemeListFullFrance: principalThemeListFullFranceSorted,
-    secondaryThemeListFullFrance: secondaryThemeListFullFranceSorted,
-    filterVille
-  };
-
-  return newState
 };
 
 interface QueryState {

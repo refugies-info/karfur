@@ -17,30 +17,86 @@ import { Container } from "reactstrap";
 import DispositifCard from "components/Pages/recherche/DispositifCard";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
+import { ObjectId } from "mongodb";
+import { queryDispositifs } from "lib/filterContents";
+import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 
 export type SearchQuery = {
-  departments?: string[];
-  needs?: string[];
-  theme?: string;
-  keyword?: string;
-  age?: string;
-  frenchLevel?: string;
-  langue?: string;
-  order: "date" | "views" | "theme" | "";
-  type?: "dispositifs" | "demarches";
+  search: string;
+  departmentsSelected: string[];
+  needsSelected: ObjectId[];
+  filterAge: AgeOptions[];
+  filterFrenchLevel: FrenchOptions[];
+  filterLanguage: string[];
+  selectedSort: SortOptions;
+  selectedType: TypeOptions;
 };
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
 
-  const [selectedSort, setSelectedSort] = useState<string>("view");
-  const [selectedType, setSelectedType] = useState<string>("all");
+  // search
+  const [search, setSearch] = useState("");
+  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
+  const [departmentsSelected, setDepartmentsSelected] = useState<string[]>([]);
+
+  // additional search
+  const [filterAge, setFilterAge] = useState<AgeOptions[]>([]);
+  const [filterFrenchLevel, setFilterFrenchLevel] = useState<FrenchOptions[]>([]);
+  const [filterLanguage, setFilterLanguage] = useState<string[]>([]);
+
+  // sort and filter
+  const [selectedSort, setSelectedSort] = useState<SortOptions>("view");
+  const [selectedType, setSelectedType] = useState<TypeOptions>("all");
+
+  // results
+  const [filteredDispositifs, setFilteredDispositifs] = useState(dispositifs.filter((d) => d.typeContenu === "dispositif"))
+  const [filteredDemarches, setFilteredDemarches] = useState(dispositifs.filter((d) => d.typeContenu === "demarche"))
+
+  useEffect(() => {
+    const query: SearchQuery = {
+      search,
+      needsSelected,
+      departmentsSelected,
+      filterAge,
+      filterFrenchLevel,
+      filterLanguage,
+      selectedSort,
+      selectedType
+    };
+
+    const res = queryDispositifs(query, dispositifs);
+    setFilteredDispositifs(res.dispositifs);
+    setFilteredDemarches(res.dispositifs);
+  }, [
+    search,
+    needsSelected,
+    departmentsSelected,
+    filterAge,
+    filterFrenchLevel,
+    filterLanguage,
+    selectedSort,
+    selectedType,
+    dispositifs
+  ]);
 
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
       <SearchHeader
         nbResults={dispositifs.length}
+        search={search}
+        setSearch={setSearch}
+        needsSelected={needsSelected}
+        setNeedsSelected={setNeedsSelected}
+        departmentsSelected={departmentsSelected}
+        setDepartmentsSelected={setDepartmentsSelected}
+        filterAge={filterAge}
+        setFilterAge={setFilterAge}
+        filterFrenchLevel={filterFrenchLevel}
+        setFilterFrenchLevel={setFilterFrenchLevel}
+        filterLanguage={filterLanguage}
+        setFilterLanguage={setFilterLanguage}
       />
 
       <Container>
@@ -54,18 +110,14 @@ const Recherche = () => {
         />
 
         <div className="d-flex flex-wrap">
-          {dispositifs
-            .filter((d) => d.typeContenu === "dispositif")
-            .slice(0, 10)
+          {filteredDispositifs
             .map((d, i) => (
               <DispositifCard key={i} dispositif={d} />
             ))}
         </div>
 
         <div className="d-flex flex-wrap">
-          {dispositifs
-            .filter((d) => d.typeContenu === "demarche")
-            .slice(0, 10)
+          {filteredDemarches
             .map((d, i) => (
               <DemarcheCard key={i} demarche={d} />
             ))}
@@ -74,6 +126,7 @@ const Recherche = () => {
     </div>
   );
 };
+
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   if (locale) {

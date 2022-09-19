@@ -4,11 +4,17 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import Checkbox from "components/UI/Checkbox";
+import { AgeOptions, FrenchOptions } from "data/searchFilters";
+
+type SetSelected = Dispatch<SetStateAction<AgeOptions[]>> |
+  Dispatch<SetStateAction<FrenchOptions[]>> |
+  Dispatch<SetStateAction<string[]>>;
+type Selected = AgeOptions | FrenchOptions | string;
 
 interface Props {
-  options: { key: string; value: string }[];
-  selected: string[];
-  setSelected: Dispatch<SetStateAction<string[]>>;
+  options: { key: Selected; value: string }[];
+  selected: Selected[];
+  setSelected: SetSelected;
   label: string;
 }
 
@@ -17,11 +23,11 @@ const SearchFilter = (props: Props) => {
 
   const selectItem = (option: string) => {
     if (props.selected.includes(option)) {
-      // remove
-      props.setSelected((o) => [...o].filter((opt) => opt !== option));
+      //@ts-ignore remove
+      props.setSelected((o: Selected[]) => [...o].filter((opt) => opt !== option));
     } else {
-      // add
-      props.setSelected((o) => [...o, option]);
+      //@ts-ignore add
+      props.setSelected((o: Selected[]) => [...o, option]);
     }
   };
 
