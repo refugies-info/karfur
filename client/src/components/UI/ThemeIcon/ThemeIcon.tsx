@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Theme } from "types/interface";
 import styles from "./ThemeIcon.module.scss";
+import useThemeIcon from "hooks/useThemeIcon";
 
 interface Props {
   theme: Theme | undefined | null;
@@ -11,19 +12,7 @@ interface Props {
 
 const ThemeIcon = (props: Props) => {
   const size = props.size || 22;
-  const [imgXml, setImgXml] = useState(`<svg width="${size}" height="${size}"></svg>`);
-  const [hasBeenFetched, setHasBeenFetched] = useState(false);
-
-  useEffect(() => {
-    const getImgXml = async () => {
-      if (!props.theme) return;
-      const xml = await (await fetch(props.theme.icon.secure_url)).text();
-      setHasBeenFetched(true);
-      setImgXml(xml);
-    };
-    getImgXml();
-  }, [props.theme]);
-
+  const {imgXml, hasBeenFetched} = useThemeIcon(props.theme, size);
 
   if (!props.theme) return null;
 

@@ -178,7 +178,7 @@ const ThemeDropdown = (props: Props) => {
         {displayedNeeds.map((need, i) => {
           const selected = needsSelected.includes(need._id);
           return (
-            <>
+            <span key={i}>
               {props.search &&
                 // check if this need has a different theme from previous one
                 (i === 0 || displayedNeeds[i - 1].theme._id !== need.theme._id) && (
@@ -187,7 +187,6 @@ const ThemeDropdown = (props: Props) => {
                 </div>
               )}
               <ButtonNeed
-                key={i}
                 className={styles.btn}
                 color100={need.theme.colors.color100}
                 color30={need.theme.colors.color30}
@@ -207,7 +206,7 @@ const ThemeDropdown = (props: Props) => {
                   </span>
                 </Checkbox>
               </ButtonNeed>
-            </>
+            </span>
           );
         })}
       </div>

@@ -1,119 +1,98 @@
-import get from "lodash/get";
-import { searchFrench, FrenchLevelFilter, AgeFilter, searchAge } from "data/searchFilters";
-import { IDispositif, Theme } from "types/interface";
+import { AgeOptions, FrenchOptions, SortOptions } from "data/searchFilters";
+import { IDispositif } from "types/interface";
 import { SearchQuery } from "pages/recherche";
+import { ObjectId } from "mongodb";
+import { getDispositifInfos } from "./getDispositifInfos";
 
-const filterContentsByTheme = (contents: IDispositif[], themeFilter: string[] | undefined) => {
-  if (!themeFilter) return contents;
 
-  return contents.filter((content) => {
-    if (content.theme && themeFilter.includes(content.theme.name.fr)) return true;
-    if (content.secondaryThemes && content.secondaryThemes.length > 0) {
-      const hasContentTheme = content.secondaryThemes.filter(
-        (theme) => theme && themeFilter.includes(theme.name.fr)
-      ).length > 0;
-      return hasContentTheme;
+const filterByNeed = (dispositif: IDispositif, needsSelected: ObjectId[]) => {
+  if (needsSelected.length === 0) return true;
+  for (const need of dispositif.needs) {
+    if (needsSelected.includes(need)) return true;
+  }
+  return false;
+};
+
+const filterByLocation = (dispositif: IDispositif, departmentsSelected: string[]) => {
+  if (departmentsSelected.length === 0) return true;
+  const location = getDispositifInfos(dispositif, "location");
+  if (!location?.departments) return false;
+  for (const dep of location?.departments) {
+    if (departmentsSelected.includes(dep.split(" - ")[1])) return true;
+  }
+  return false;
+};
+
+
+const filterAgeValues = {
+  "-18": [0, 18],
+  "18-25": [18, 25],
+  "+25": [25, 99]
+}
+
+const filterByAge = (dispositif: IDispositif, ageFilters: AgeOptions[]) => {
+  if (ageFilters.length === 0) return true;
+  const audienceAge = dispositif.audienceAge[0];
+  if (!audienceAge.bottomValue || !audienceAge.topValue) return true;
+  for (const age of ageFilters) {
+    if (audienceAge.bottomValue <= filterAgeValues[age][0] &&
+      audienceAge.topValue >= filterAgeValues[age][1]
+    ) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const filterFrenchLevelValues = {
+  "a": ["Débutant"],
+  "b": ["Débutant", "Intermédiaire"],
+  "c": []
+}
+// TODO: improve, check old function
+const filterByFrenchLevel = (dispositif: IDispositif, frenchLevelFilters: FrenchOptions[]) => {
+  if (frenchLevelFilters.length === 0) return true;
+  const frenchLevels = dispositif.niveauFrancais;
+  if (!frenchLevels) return true;
+
+  if (frenchLevelFilters.includes("c")) {
+    return true;
+  } else if (frenchLevelFilters.includes("b")) {
+    for (const frenchLevel of frenchLevels) {
+      if (filterFrenchLevelValues["b"].includes(frenchLevel)) return true;
     }
     return false;
-  });
-};
-
-const filterContentsByAge = (
-  contents: IDispositif[],
-  age: string | undefined,
-) => {
-  if (!age || !searchAge.children) return contents;
-
-  const currentAgeFilter = (searchAge.children as AgeFilter[]).find(
-    (filter: AgeFilter) => filter.name === age
-  );
-  if (!currentAgeFilter || !currentAgeFilter.bottomValue || !currentAgeFilter.topValue) {
-    return contents;
+  } else if (frenchLevelFilters.includes("a")) {
+    for (const frenchLevel of frenchLevels) {
+      if (filterFrenchLevelValues["a"].includes(frenchLevel)) return true;
+    }
+    return false;
   }
 
-  return contents.filter((content) => {
-    if (content.audienceAge && content.audienceAge.length > 0) {
-      const ageFilter = content.audienceAge[0];
-
-      if (!ageFilter.bottomValue || !ageFilter.topValue) return true;
-      if (
-        ageFilter.bottomValue <= currentAgeFilter.bottomValue &&
-        ageFilter.topValue >= currentAgeFilter.topValue
-      ) {
-        return true;
-      }
-      return false;
-    }
-    return true;
-  });
+  return false;
 };
 
-const filterContentsByFrenchLevel = (contents: IDispositif[], frenchLevelFilter: string | undefined) => {
-  if (!frenchLevelFilter || frenchLevelFilter === "bien" || !searchFrench.children) return contents;
-
-  const levelsNotAccepted = (searchFrench.children as FrenchLevelFilter[]).find(
-    (filter: FrenchLevelFilter) => filter.name === frenchLevelFilter
-  )?.query || [];
-
-  return contents.filter((content) => {
-    if (
-      content.niveauFrancais &&
-      levelsNotAccepted.includes(content.niveauFrancais[0])
-    ) {
-      return false;
+const filterByLanguage = (dispositif: IDispositif, languageFilters: string[]) => {
+  if (languageFilters.length === 0) return true;
+  for (const ln of languageFilters) {
+    if (dispositif.avancement?.[ln]) {
+      return true;
     }
-    return true;
-  });
-};
-
-const filterContentsByType = (contents: IDispositif[], typeContenuFilter: "dispositifs" | "demarches" | undefined) => {
-  if (!typeContenuFilter) return contents;
-
-  if (typeContenuFilter === "demarches") {
-    return contents.filter((content) => content.typeContenu === "demarche");
   }
-
-  if (typeContenuFilter === "dispositifs") {
-    return contents.filter((content) => content.typeContenu === "dispositif");
-  }
-
-  return contents;
+  return false;
 };
 
-const filterContents = (contents: IDispositif[], query: any) => {
-  if (!query) return contents;
-  const contentsFilteredByTheme = filterContentsByTheme(contents, query.theme);
-  const contentsFilteredByAge = filterContentsByAge(
-    contentsFilteredByTheme,
-    query.age
-  );
-  const contentsFilteredByFrenchLevel = filterContentsByFrenchLevel(
-    contentsFilteredByAge,
-    query.frenchLevel
-  );
-  const contentsFilterByType = filterContentsByType(
-    contentsFilteredByFrenchLevel,
-    query.type
-  );
+const sortOptionsValues = {
+  "date": "created_at",
+  "view": "nbVues",
+  "theme": "theme"
+}
 
-  return contentsFilterByType;
-};
-
-const sortDispositifs = (dispositifs: IDispositif[], order: string) => {
-  return dispositifs.sort((a, b) => {
-    var aValue = 0;
-    var bValue = 0;
-    if (order === "created_at") {
-      aValue = get(a, "publishedAt", get(a, "created_at"));
-      bValue = get(b, "publishedAt", get(b, "created_at"));
-    } else {
-      aValue = get(a, order);
-      bValue = get(b, order);
-    }
-    return aValue > bValue ? -1 : aValue < bValue ? 1 : 0;
-  });
-};
-
+const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: SortOptions) => {
+  const sortKey = sortOptionsValues[sortOption];
+  //@ts-ignore
+  return dispA[sortKey] > dispB[sortKey] ? -1 : dispA[sortKey] < dispB[sortKey] ? 1 : 0;
+}
 
 export interface SearchResult {
   dispositifs: IDispositif[]
@@ -124,12 +103,20 @@ export const queryDispositifs = (
   query: SearchQuery,
   dispositifs: IDispositif[],
 ): SearchResult => {
+  let filteredDispositifs = [...dispositifs]
+    .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
+    .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
+    .filter(dispositif => filterByAge(dispositif, query.filterAge))
+    .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
+    .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
+    .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
 
   return {
-    dispositifs: dispositifs.filter(d => d.typeContenu === "dispositif"),
-    demarches: dispositifs.filter(d => d.typeContenu === "demarche")
+    dispositifs: filteredDispositifs.filter(d => d.typeContenu === "dispositif"),
+    demarches: filteredDispositifs.filter(d => d.typeContenu === "demarche")
   }
 };
+
 
 interface QueryState {
   searchToggleVisible: boolean

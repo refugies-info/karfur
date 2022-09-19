@@ -67,7 +67,7 @@ const Recherche = () => {
 
     const res = queryDispositifs(query, dispositifs);
     setFilteredDispositifs(res.dispositifs);
-    setFilteredDemarches(res.dispositifs);
+    setFilteredDemarches(res.demarches);
   }, [
     search,
     needsSelected,
@@ -84,7 +84,7 @@ const Recherche = () => {
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
       <SearchHeader
-        nbResults={dispositifs.length}
+        nbResults={filteredDispositifs.length + filteredDemarches.length}
         search={search}
         setSearch={setSearch}
         needsSelected={needsSelected}
@@ -101,26 +101,19 @@ const Recherche = () => {
 
       <Container>
         <ResultsFilter
-          nbDemarches={dispositifs.filter((d) => d.typeContenu === "demarche").length}
-          nbDispositifs={dispositifs.filter((d) => d.typeContenu === "dispositif").length}
+          nbDemarches={filteredDemarches.length}
+          nbDispositifs={filteredDispositifs.length}
           selectedSort={selectedSort}
           setSelectedSort={setSelectedSort}
           selectedType={selectedType}
           setSelectedType={setSelectedType}
         />
 
-        <div className="d-flex flex-wrap">
-          {filteredDispositifs
-            .map((d, i) => (
-              <DispositifCard key={i} dispositif={d} />
-            ))}
+        <div className={cls("d-flex flex-wrap", selectedType === "dispositif" && styles.hidden)}>
+          {filteredDemarches.map(d => <DemarcheCard key={d._id.toString()} demarche={d} /> )}
         </div>
-
-        <div className="d-flex flex-wrap">
-          {filteredDemarches
-            .map((d, i) => (
-              <DemarcheCard key={i} demarche={d} />
-            ))}
+        <div className={cls("d-flex flex-wrap", selectedType === "demarche" && styles.hidden)}>
+          {filteredDispositifs.map(d => <DispositifCard key={d._id.toString()} dispositif={d} />)}
         </div>
       </Container>
     </div>
