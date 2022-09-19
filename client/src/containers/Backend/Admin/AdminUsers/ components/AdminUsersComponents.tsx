@@ -2,6 +2,8 @@ import React from "react";
 import checkStyles from "scss/components/checkbox.module.scss";
 import { cls } from "lib/classname";
 import styles from "./AdminUsersComponent.module.scss";
+import { Language } from "types/interface";
+import { Button } from "reactstrap";
 interface RoleProps {
   role: string;
 }
@@ -60,4 +62,26 @@ export const LangueDetail = (props: LangueDetailProps) => (
     </div>
     {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
   </div>
+);
+
+interface LangueButtonProps {
+  langue: Language;
+  onClick: () => void;
+  valid?: boolean;
+}
+export const LangueButton = (props: LangueButtonProps) => (
+  <Button
+    className={cls(styles.langue, styles.btn, props.valid && styles.valid)}
+    onClick={props.onClick}
+  >
+    <span style={{ marginRight: "8px" }}>
+      <i
+        className={"flag-icon flag-icon-" + props.langue.langueCode}
+        title={props.langue.langueCode}
+        id={props.langue.langueCode}
+        key={props.langue.langueCode}
+      />
+    </span>
+    {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
+  </Button>
 );

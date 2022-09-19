@@ -31,8 +31,12 @@ describe("publish dispositif", () => {
     jest.clearAllMocks();
   });
 
-  it("should update languages avancement and add content in airtble", async () => {
-    updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
+  it("should update languages avancement and add content in airtable", async () => {
+    updateDispositifInDB.mockResolvedValueOnce({
+      typeContenu: "demarche",
+      theme: { _id: "theme1", short: {fr: "short title"} },
+      secondaryThemes: []
+    });
     const date = 148707670800;
     Date.now = jest.fn(() => date);
 
@@ -52,7 +56,8 @@ describe("publish dispositif", () => {
     titreInformatif: "ti",
     titreMarque: "tm",
     _id: "id",
-    tags: [],
+    theme: {_id: "theme1", short: {fr: "short title"}},
+    secondaryThemes: [],
     creatorId: "creatorId",
   };
 
@@ -72,7 +77,7 @@ describe("publish dispositif", () => {
       "ti",
       "tm",
       "id",
-      [],
+      ["short title"],
       "dispositif",
       null,
       [],
@@ -96,7 +101,7 @@ describe("publish dispositif", () => {
       "ti",
       "tm",
       "id",
-      [],
+      ["short title"],
       "dispositif",
       null,
       [],

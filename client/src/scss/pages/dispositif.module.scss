@@ -18,7 +18,7 @@
     padding-top: 60px;
   }
 
-  &.noImage {
+  &.no_image {
     background-image: url(../../assets/figma/placeholder_no_theme.svg);
   }
 
@@ -114,103 +114,6 @@
 
     @media print {
       display: none;
-    }
-  }
-
-  &.Logement {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Logement.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Logement_mobile.svg);
-    }
-  }
-  &.Bénévolat {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Bénévolat.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Bénévolat_mobile.svg);
-    }
-  }
-  &.Loisir {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Loisir.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Loisirs_mobile.svg);
-    }
-  }
-  &.Mobilité {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Mobilité.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Mobilité_mobile.svg);
-    }
-  }
-  &.Rencontre {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Rencontre.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Rencontres_mobile.svg);
-    }
-  }
-  &.Santé {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Santé.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Santé_mobile.svg);
-    }
-  }
-  &.Études {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Études.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Etudes_mobile.svg);
-    }
-  }
-  &.Formation-pro {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Formation-pro.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Formation-pro_mobile.svg);
-    }
-  }
-  &.Français {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Français.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Français_Mobile.svg);
-    }
-  }
-  &.Insertion-pro {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Insertion-pro.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Insertion-pro_mobile.svg);
-    }
-  }
-  &.Administratif {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Administratif.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Administratif_Mobile.svg);
-    }
-  }
-  &.Culture {
-    @include media-min("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Culture.svg);
-    }
-    @include media-max("tablet-up", $screen: false) {
-      background-image: url(../../assets/figma/illustration_Culture_mobile.svg);
     }
   }
 }

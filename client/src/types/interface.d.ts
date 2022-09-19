@@ -16,9 +16,44 @@ export interface Indicator {
 }
 
 export interface Picture {
-  imgId: ObjectId;
+  imgId: string;
   public_id: string;
   secure_url: string;
+}
+
+type iconName = "house" |
+  "search" |
+  "message" |
+  "menu" |
+  "tag" |
+  "";
+export interface Theme {
+  _id: ObjectId;
+  name: {
+    fr: string;
+    [key: string]: string;
+  };
+  short: {
+    fr: string;
+    [key: string]: string;
+  };
+  colors: {
+    color100: string;
+    color80: string;
+    color60: string;
+    color40: string;
+    color30: string;
+  }
+  position: number;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
+  notificationEmoji: string;
+  adminComments: string;
+  active: boolean;
+  created_at?: Moment;
 }
 
 export interface SimplifiedStructure {
@@ -41,33 +76,6 @@ export interface UiObject {
   children: any
 }
 
-// TAGS
-type iconName = "house" |
-  "elearning" |
-  "briefcase" |
-  "measure" |
-  "glasses" |
-  "bus" |
-  "triumph" |
-  "heartBeat" |
-  "couple" |
-  "soccer" |
-  "flag" |
-  "office" |
-  "search" |
-  "message" |
-  "menu" |
-  "tag" |
-  "";
-export interface Tag {
-  darkColor: string;
-  hoverColor: string;
-  illustrationColor: string;
-  lightColor: string;
-  name: string;
-  short: string;
-  icon: iconName;
-}
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
@@ -129,9 +137,11 @@ export interface SimplifiedDispositif {
     username: string
   }
   needs?: ObjectId[];
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   nbMercis: number;
   nbVues: number;
+  themesSelectedByAuthor?: boolean
 }
 
 export interface Role {
@@ -317,7 +327,8 @@ export interface IDispositif {
   sponsors: Structure[];
   status: string;
   suggestions: any[];
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   titreInformatif: string;
   titreMarque: string;
   typeContenu: "dispositif" | "demarche";
@@ -340,11 +351,6 @@ export interface UserStructureMembre {
 export interface UserStructure extends Structure {
   membres: UserStructureMembre[];
 }
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
-}
 export interface Translation {
   _id?: ObjectId;
   initialText?: object;
@@ -363,7 +369,8 @@ interface SimplifiedDispositifAssocie {
   titreInformatif: string;
   titreMarque: string;
   _id: ObjectId;
-  tags: Tag[];
+  theme: Theme;
+  secondaryThemes: Theme[];
   abstract: string;
   status: string;
 }
@@ -399,7 +406,7 @@ export interface IUserFavorite {
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
-  tags: Tag[];
+  theme: Theme;
 }
 
 export interface IUserContribution {
@@ -442,7 +449,8 @@ export type ITypeContenu = "dispositif" | "demarche";
 
 export interface NeedDetail {
   text: string;
-  updatedAt: Moment;
+  subtitle: string;
+  updatedAt?: Moment;
 }
 export interface Need {
   fr: NeedDetail;
@@ -454,7 +462,11 @@ export interface Need {
   fa?: NeedDetail;
   uk?: NeedDetail;
   _id: ObjectId;
-  tagName: string;
+  theme: Theme;
+  adminComments: string;
+  image: Picture;
+  nbVues?: number;
+  position?: number;
   created_at: Moment;
   updatedAt: Moment;
 }
@@ -514,6 +526,7 @@ export interface Widget {
   _id: ObjectId;
   name: string;
   tags: string[];
+  themes: Theme[];
   typeContenu: ("dispositifs"|"demarches")[];
   location?: {
     city: string;

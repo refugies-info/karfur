@@ -3,6 +3,7 @@
 .langue {
   padding: 8px;
   font-size: 12px;
+  line-height: 15px;
   background: $gray50;
   width: fit-content;
   height: fit-content;
@@ -11,6 +12,24 @@
   margin-bottom: 8px;
   display: inline-flex;
   flex-direction: row;
+
+  &.btn {
+    background: $gray20;
+    border-radius: 6px;
+    border: none;
+
+    &:hover {
+      background: $gray40;
+    }
+
+    &.valid {
+      background: $validation;
+
+      &:hover {
+        background: $greenValidate;
+      }
+    }
+  }
 }
 
 .role_checkbox {

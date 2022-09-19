@@ -14,11 +14,11 @@ import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { NoActivity } from "./NoActivity";
 
 import { activities } from "data/activities";
-import { tags } from "data/tags";
-import { Structure } from "types/interface";
+import { Structure, Theme } from "types/interface";
 import { getPath } from "routes";
 
 import styles from "./MiddleAnnuaireDetails.module.scss";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
   structure: Structure | null;
@@ -92,32 +92,32 @@ const Placeholder = (props: {
   );
 }
 
-const getActivityDetails = (activity: string) => {
+const getActivityDetails = (activity: string, themes: Theme[]) => {
   const correspondingActivity = activities.filter(
     (activityData) => activityData.activity === activity
   );
 
-  if (!correspondingActivity) return { tag: null };
-  const theme = correspondingActivity[0].tag;
+  if (!correspondingActivity) return { theme: null };
+  const themeShort = correspondingActivity[0].theme;
 
-  const correspondingTag = tags.filter((tag) => tag.short === theme);
-  return { tag: correspondingTag[0], image: correspondingActivity[0].image };
+  const correspondingTheme = themes.filter((theme) => theme.short.fr === themeShort);
+  return { theme: correspondingTheme[0], image: correspondingActivity[0].image };
 };
 
-const sortStructureActivities = (structure: Structure | null) => {
-  let structureActivities: { title: string; tagName: string }[] = [];
+const sortStructureActivities = (structure: Structure | null, themes: Theme[]) => {
+  let structureActivities: { title: string; themeName: string }[] = [];
   if (structure && structure.activities) {
     structure.activities.forEach((element) => {
-      let detail = getActivityDetails(element);
-      let el = { title: element, tagName: detail.tag ? detail.tag.name : "" };
+      let detail = getActivityDetails(element, themes);
+      let el = { title: element, themeName: detail.theme ? detail.theme.name.fr : "" };
       structureActivities.push(el);
     });
   }
   structureActivities.sort(function (a, b) {
-    if (a.tagName > b.tagName) {
+    if (a.themeName > b.themeName) {
       return -1;
     }
-    if (b.tagName > a.tagName) {
+    if (b.themeName > a.themeName) {
       return 1;
     }
     return 0;
@@ -132,7 +132,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
   const router = useRouter();
   const structure = props.structure;
   const admin = useSelector(userSelector).admin;
-  const activitiesSortedByTheme = sortStructureActivities(structure);
+  const themes = useSelector(themesSelector);
+  const activitiesSortedByTheme = sortStructureActivities(structure, themes);
   const hasUpdatePermission = props.isMember || admin;
 
   if (!props.isLoading && structure) {
@@ -299,19 +300,19 @@ export const MiddleAnnuaireDetail = (props: Props) => {
         <div className={styles.activity_container}>
           {activitiesSortedByTheme &&
             activitiesSortedByTheme.map((activity) => {
-              const { tag, image } = getActivityDetails(activity);
-              if (!tag) return;
+              const { theme, image } = getActivityDetails(activity, themes);
+              if (!theme) return;
               return (
                 <ActivityCard
                   activity={t("Annuaire." + activity, activity)}
                   key={activity}
-                  darkColor={tag.darkColor}
-                  lightColor={tag.lightColor}
+                  darkColor={theme.colors.color100}
+                  lightColor={theme.colors.color30}
                   selectActivity={() => {}}
                   isSelected={true}
                   image={image}
                   isLectureMode={true}
-                  tag={tag}
+                  theme={theme}
                 />
               );
             })}

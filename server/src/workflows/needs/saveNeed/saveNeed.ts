@@ -1,4 +1,4 @@
-import { RequestFromClientWithBody, Res, Need } from "../../../types/interface";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
 
 import {
   checkRequestIsFromSite,
@@ -6,30 +6,33 @@ import {
 } from "../../../libs/checkAuthorizations";
 import logger = require("../../../logger");
 import { saveNeedInDB } from "../../../modules/needs/needs.repository";
+import { Request, getValidator } from "../../../modules/needs/needs.service";
+import { NeedDoc } from "../../../schema/schemaNeeds";
 
-interface Query {
-  query: Partial<Need>;
-}
-export const saveNeed = async (
-  req: RequestFromClientWithBody<Query>,
+const validator = getValidator("patch");
+
+const saveNeed = async (
+  req: RequestFromClientWithBody<Request>,
   res: Res
 ) => {
   try {
+    logger.info("[saveNeed] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-
     // @ts-ignore : populate roles
     checkIfUserIsAdminOrExpert(req.user.roles);
 
-    if (!req.body.query) {
-      throw new Error("INVALID_REQUEST");
-    }
+    if (!req.params.id) throw new Error("INVALID_REQUEST");
 
-    const need = req.body.query;
+    //@ts-ignore
+    const need: Partial<NeedDoc> = {...req.body};
+    //@ts-ignore
+    if (req.body.fr) need.fr.updatedAt = Date.now()
 
-    await saveNeedInDB(need);
+    const dbNeed = await saveNeedInDB(req.params.id, need);
 
     return res.status(200).json({
       text: "OK",
+      data: dbNeed
     });
   } catch (error) {
     logger.error("[saveNeed] error", {
@@ -47,3 +50,5 @@ export const saveNeed = async (
     }
   }
 };
+
+export default [validator, saveNeed];

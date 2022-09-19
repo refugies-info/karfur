@@ -30,7 +30,7 @@ export function* fetchSelectedDispositif(
       const data = yield call(API.get_dispositif, {
         query: { _id: selectedDispositifId },
         sort: {},
-        populate: "creatorId mainSponsor participants",
+        populate: "creatorId mainSponsor participants theme secondaryThemes",
         locale,
       });
 

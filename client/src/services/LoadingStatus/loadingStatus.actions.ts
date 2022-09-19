@@ -24,6 +24,10 @@ export enum LoadingStatusKey {
   SAVE_WIDGET = "SAVE_WIDGET",
   CREATE_WIDGET = "CREATE_WIDGET",
   DELETE_WIDGET = "DELETE_WIDGET",
+  FETCH_THEMES = "FETCH_THEMES",
+  SAVE_THEME = "SAVE_THEME",
+  CREATE_THEME = "CREATE_THEME",
+  DELETE_THEME = "DELETE_THEME",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { setMail } from "../workflows/miscellaneaous/setMail";
+import setMail from "../workflows/miscellaneaous/setMail";
 // import { updateAirtableContenus } from "../workflows/miscellaneaous/updateAirtableContenus";
 const sms = require("./miscellaneous/sms.js");
 

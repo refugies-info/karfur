@@ -27,18 +27,8 @@ export const dispositif = {
     ru: "Познакомьтесь и поддержите беженца в его интеграции во Франции.",
     uk: "Зустрічайте та супроводжуйте біженця під час його інтеграції у Франції."
   },
-  tags: [
-    {
-      short: "Bénévolat",
-      name: "aider une association",
-      darkColor: "#0A54BF",
-      lightColor: "#FFEEEE",
-      hoverColor: "#FDA8AD",
-      illustrationColor: "#1FC2C1"
-    },
-    null,
-    null
-  ],
+  theme: { _id: "themeId1" },
+  secondaryThemes: [],
   mainSponsor: {
     dispositifsAssocies: [
       "zzz",
@@ -98,7 +88,8 @@ export const dispositifAlgolia = {
   titreMarque_ps: "له MAINtenant سره",
   titreMarque_fa: "MAINtenant",
   titreMarque_ru: "MAINtenant",
-  tags: [ "aider une association" ],
+  theme: "themeId1",
+  secondaryThemes: [],
   needs: ["aaa", "bbb"],
   nbVues: 685,
   typeContenu: "dispositif",

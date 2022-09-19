@@ -1,1 +1,2 @@
-export { getNeeds } from "./getNeeds";
+import getNeeds from "./getNeeds";
+export default getNeeds;

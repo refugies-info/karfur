@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Need, AvailableLanguageI18nCode } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
-import { getTag } from "../../Admin/Needs/lib";
 import { TagButton } from "../../Admin/Needs/TagButton";
 import { jsUcfirst } from "lib";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
@@ -88,9 +87,9 @@ export const TranslationNeedsModal = (props: Props) => {
     return { ...need, statusText, statusColor };
   });
 
-  const sortedNeeds = needsWithStatus.sort((a: any, b: any) => {
+  const sortedNeeds = needsWithStatus.sort((a, b) => {
     if (a.statusText === b.statusText) {
-      return a.tagName > b.tagName ? 1 : -1;
+      return a.theme.name.fr > b.theme.name.fr ? 1 : -1;
     }
     if (a.statusText === "À revoir") return -1;
     if (b.statusText === "À revoir") return 1;
@@ -205,14 +204,13 @@ export const TranslationNeedsModal = (props: Props) => {
         </thead>
         <tbody>
           {sortedNeeds.map((need, key) => {
-            const needTag = getTag(need.tagName);
             const translatedNeed =
               // @ts-ignore
               need[props.langueI18nCode] && need[props.langueI18nCode].text
                 ? //@ts-ignore
                   need[props.langueI18nCode].text
                 : "";
-            if (!needTag) return;
+            if (!need.theme) return;
             return (
               <tr key={key} onClick={() => onNeedClick(need)}>
                 <td className="align-middle" style={{ width: 300 }}>
@@ -221,9 +219,8 @@ export const TranslationNeedsModal = (props: Props) => {
                 <td className="align-middle">
                   <div style={{ marginLeft: -4, width: 130 }}>
                     <TagButton
-                      name={jsUcfirst(needTag.short) || ""}
+                      theme={need.theme}
                       isSelected={true}
-                      color={needTag.darkColor}
                     />
                   </div>
                 </td>

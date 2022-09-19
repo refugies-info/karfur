@@ -4,8 +4,6 @@ import {
   UPDATE_UI_ARRAY,
   SET_UI_ARRAY,
   UPDATE_SELECTED_DISPOSITIF,
-  DELETE_TAG,
-  ADD_TAG,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
 import { IDispositif } from "../../types/interface";
@@ -37,17 +35,11 @@ export const updateSelectedDispositifActionCreator = (
   value: Partial<IDispositif>
 ) => action(UPDATE_SELECTED_DISPOSITIF, value);
 
-export const deleteTagActionCreator = (value: number) =>
-  action(DELETE_TAG, value);
-
-export const addTagActionCreator = () => action(ADD_TAG);
-
 const actions = {
   fetchSelectedDispositifActionCreator,
   setSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
-  deleteTagActionCreator,
 };
 
 export type SelectedDispositifActions = ActionType<typeof actions>;

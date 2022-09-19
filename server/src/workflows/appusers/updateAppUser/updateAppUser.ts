@@ -1,8 +1,9 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Request, Response } from "express";
+import { getAllThemes } from "../../../modules/themes/themes.repository";
+import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.repository";
 import logger from "../../../logger";
 
-import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.repository";
 
 const validator = celebrate({
   [Segments.HEADERS]: Joi.object({
@@ -23,11 +24,13 @@ const validator = celebrate({
 const handler = async (req: Request, res: Response) => {
   logger.info("[updateAppUser] received");
 
+  const themes = await getAllThemes();
+
   const uid = req.headers["x-app-uid"];
   const updated = await updateOrCreateAppUser({
     ...req.body,
     uid
-  });
+  }, themes.map(t => t._id.toString()));
 
   res.status(200).json({
     updated

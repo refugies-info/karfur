@@ -7,7 +7,7 @@ import { isUserAllowedToModify, isUserAuthor, isUserSponsor } from "./functions"
 import { userDetailsSelector, userSelector } from "services/User/user.selectors";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { ContribStyledStatus } from "containers/Backend/UserContributions/components/SubComponents";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import { useTranslation } from "next-i18next";
 import styles from "./TopRightHeader.module.scss";
 import mobile from "scss/components/mobile.module.scss";
@@ -29,7 +29,7 @@ interface Props {
   status: string;
   typeContenu: "dispositif" | "demarche";
   langue: string;
-  mainTag: Tag | null;
+  mainTheme: Theme | null;
 }
 
 /**
@@ -78,7 +78,7 @@ const TopRightHeader = (props: Props) => {
           )}
           <CardBody
             className={styles.card_body + " bg-lightColor"}
-            style={{ backgroundColor: props.mainTag?.lightColor || "light" }}
+            style={{ backgroundColor: props.mainTheme?.colors.color30 || "light" }}
           >
             <span className="text-center">
               Souhaitez-vous récupérer ce contenu ?
@@ -101,7 +101,7 @@ const TopRightHeader = (props: Props) => {
           <CardFooter
             className={styles.card_footer}
             onClick={props.toggleDispositifCreateModal}
-            style={{ color: props.mainTag?.darkColor || "dark" }}
+            style={{ color: props.mainTheme?.colors.color100 || "dark"  }}
           >
             <EVAIcon
               className="mr-8"
