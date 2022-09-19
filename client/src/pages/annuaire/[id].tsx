@@ -26,10 +26,10 @@ interface Props {
 }
 
 const AnnuaireDetail = (props: Props) => {
+  const structure = useSelector(selectedStructureSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
-  );
-  const structure = useSelector(selectedStructureSelector);
+  ) && !structure;
   const user = useSelector(userSelector);
 
   const [isMember, setIsMember] = useState(false);
@@ -43,7 +43,7 @@ const AnnuaireDetail = (props: Props) => {
 
   // Reload structure if locale change
   useEffect(() => {
-    if (structureId && currentLoadedLocale !== locale) {
+    if ((structureId && currentLoadedLocale !== locale) || !structure?.membres) {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: structureId as string,
@@ -52,7 +52,7 @@ const AnnuaireDetail = (props: Props) => {
       );
       setCurrentLoadedLocale(locale);
     }
-  }, [dispatch, locale, currentLoadedLocale, structureId]);
+  }, [dispatch, locale, currentLoadedLocale, structureId, structure]);
 
   useEffect(() => {
     setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId))
