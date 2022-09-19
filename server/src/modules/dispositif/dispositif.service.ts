@@ -3,8 +3,6 @@ import { updateDispositifInDB } from "./dispositif.repository";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import logger from "../../logger";
 import { addOrUpdateDispositifInContenusAirtable } from "../../controllers/miscellaneous/airtable";
-
-import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { sendMailWhenDispositifPublished } from "../mail/sendMailWhenDispositifPublished";
 import { getDispositifDepartments } from "../../libs/getDispositifDepartments";
 import { sendNotificationsForDispositif } from "../../modules/notifications/notifications.service";
@@ -16,13 +14,14 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
     publishedAtAuthor: userId
   };
 
-  // @ts-ignore : updateDispositifInDB returns object with creatorId not populate
-  const newDispo: DispositifNotPopulateDoc = await updateDispositifInDB(dispositifId, newDispositif);
+  const newDispo = await updateDispositifInDB(dispositifId, newDispositif);
   try {
     await updateLanguagesAvancement();
   } catch (error) {
     logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
   }
+
+  const themesList = [newDispo.theme, ...newDispo.secondaryThemes].map(t => t.short.fr);
 
   try {
     await addOrUpdateDispositifInContenusAirtable(
@@ -31,7 +30,7 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
       //@ts-ignore
       newDispo.titreMarque?.fr || newDispo.titreMarque,
       newDispo._id,
-      newDispo.tags,
+      themesList,
       newDispo.typeContenu,
       null,
       getDispositifDepartments(newDispo),
@@ -48,6 +47,7 @@ export const publishDispositif = async (dispositifId: ObjectId, userId: ObjectId
   }
 
   try {
+    //@ts-ignore
     await sendMailWhenDispositifPublished(newDispo);
   } catch (error) {
     logger.error("[publishDispositif] error while sending email", {

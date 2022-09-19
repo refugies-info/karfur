@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "next-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import { colors } from "colors";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
 import { isMobile } from "react-device-detect";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./HomeSearch.module.scss";
 import { SearchItemType } from "data/searchFilters";
 import { cls } from "lib/classname";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   searchItem: SearchItemType;
@@ -22,6 +24,7 @@ const HomeSearch = (props: Props) => {
   const [indexBack, setIndexBack] = useState(1);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const router = useRouter();
   const { t } = useTranslation();
   const flippy: any = useRef();
 
@@ -74,7 +77,7 @@ const HomeSearch = (props: Props) => {
   };
 
   const { searchItem } = props;
-  const tags: Tag[] = searchItem.children as Tag[];
+  const themes: Theme[] = searchItem.children as Theme[];
 
   return (
     <div onClick={open} className={styles.col}>
@@ -91,24 +94,15 @@ const HomeSearch = (props: Props) => {
           <FrontSide className={styles.flippy_side}>
             <button
               onClick={open}
-              className={
-                styles.flippy_btn +
-                " search-home " +
-                "bg-" +
-                (tags[indexFront].short || "").replace(/ /g, "-")
-              }
+              className={styles.flippy_btn + " search-home "}
+              style={{backgroundColor: themes[indexFront].colors.color100}}
             >
-              {tags[indexFront].icon ? (
+              {themes[indexFront].icon ? (
                 <div className={styles.icon}>
-                  <Streamline
-                    name={tags[indexFront].icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
+                  <ThemeIcon theme={themes[indexFront]} />
                 </div>
               ) : null}
-              {t("Tags." + tags[indexFront].name, tags[indexFront].name)}
+              {getThemeName(themes[indexFront], router.locale)}
             </button>
           </FrontSide>
           {isLoaded &&
@@ -117,22 +111,16 @@ const HomeSearch = (props: Props) => {
                 onClick={open}
                 className={
                   styles.flippy_btn +
-                  " search-home " +
-                  "bg-" +
-                  (tags[indexBack].short || "").replace(/ /g, "-")
+                  " search-home "
                 }
+                style={{backgroundColor: themes[indexBack].colors.color100}}
               >
-                {tags[indexBack].icon ? (
+                {themes[indexBack].icon ? (
                   <div className={styles.icon}>
-                    <Streamline
-                      name={tags[indexBack].icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
+                    <ThemeIcon theme={themes[indexBack]} />
                   </div>
                 ) : null}
-                {t("Tags." + tags[indexBack].name, tags[indexBack].name)}
+                {getThemeName(themes[indexBack], router.locale)}
               </button>
             </BackSide>
           }

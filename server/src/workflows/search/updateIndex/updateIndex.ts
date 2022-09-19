@@ -3,10 +3,10 @@ import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { indexableTags } from "../../../modules/search/data";
 import { updateAlgoliaIndex } from "../../../modules/search/search.service";
 import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaData";
 import { formatForAlgolia } from "../../../libs/formatForAlgolia";
+import { getAllThemes } from "../../../modules/themes/themes.repository";
 
 interface Query {
 }
@@ -16,7 +16,8 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     titreInformatif: 1,
     titreMarque: 1,
     abstract: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
     needs: 1,
     typeContenu: 1,
     nbVues: 1,
@@ -26,13 +27,21 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     neededFields,
     { status: "Actif" }
   );
-  return contentsArray.map((content) => formatForAlgolia(content));
+  //@ts-ignore
+  return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
 }
 
 const getNeedsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
   const activeLanguages = await getActiveLanguagesFromDB();
-  return needs.map((content) => formatForAlgolia(content, activeLanguages));
+  //@ts-ignore
+  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need"));
+}
+
+const getThemesForAlgolia = async (): Promise<AlgoliaObject[]> => {
+  const themes = await getAllThemes();
+  const activeLanguages = await getActiveLanguagesFromDB();
+  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
 }
 
 // REQUEST
@@ -43,10 +52,11 @@ export const updateIndex = async (
   try {
     logger.info("[updateIndex] received");
 
+    const themes = await getThemesForAlgolia();
     const needs = await getNeedsForAlgolia();
     const dispositifs = await getDispositifsForAlgolia();
     const localContents = [
-      ...indexableTags,
+      ...themes,
       ...needs,
       ...dispositifs
     ];

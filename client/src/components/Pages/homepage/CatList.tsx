@@ -5,10 +5,11 @@ import styled from "styled-components";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
 import Streamline from "assets/streamline";
 import { motion } from "framer-motion";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import styles from "./CatList.module.scss";
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 const InnerButton = styled.div`
   display: flex;
@@ -46,7 +47,7 @@ const itemanim = {
 };
 
 interface Props {
-  tags: Tag[];
+  themes: Theme[];
 }
 
 const CatList = (props: Props) => {
@@ -54,10 +55,10 @@ const CatList = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const goToTag = (tag: string) => {
+  const goToTheme = (theme: Theme) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
-      search: "?tag=" + tag,
+      search: "?tag=" + theme.name.fr,
     });
   };
 
@@ -68,7 +69,7 @@ const CatList = (props: Props) => {
       initial="hidden"
       animate="visible"
     >
-      {props.tags.map((tag: Tag, idx: number) => {
+      {props.themes.map((theme: Theme, idx: number) => {
         return (
           <motion.li
             key={idx}
@@ -76,30 +77,24 @@ const CatList = (props: Props) => {
           >
             <FSearchBtn
               key={idx}
-              onClick={() => goToTag(tag.name)}
-              color={(tag.short || "").replace(/ /g, "-")}
+              onClick={() => goToTheme(theme)}
+              color={theme.colors.color100}
               withMargins
             >
               <InnerButton>
-                {tag.icon ? (
+                {theme.icon ? (
                   <IconContainer isRTL={isRTL}>
-                    <Streamline
-                      //@ts-ignore
-                      name={tag.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
+                    <ThemeIcon theme={theme} />
                   </IconContainer>
                 ) : null}
-                {t("Tags." + tag.name, tag.name)}
+                {theme.name.fr}
               </InnerButton>
             </FSearchBtn>
           </motion.li>
         );
       })}
       <motion.li
-        key={props.tags.length}
+        key={props.themes.length}
         className={styles.link + " bg-gray90"}
         variants={itemanim}
       >
@@ -117,7 +112,7 @@ const CatList = (props: Props) => {
           </InnerButton>
         </a>
       </motion.li>
-      <motion.li key={props.tags.length + 1} variants={itemanim}>
+      <motion.li key={props.themes.length + 1} variants={itemanim}>
         <button
           onClick={() => {
             router.push(getPath("/recherche", router.locale));

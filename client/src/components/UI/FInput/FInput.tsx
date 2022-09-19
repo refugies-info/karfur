@@ -13,6 +13,7 @@ interface Props {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   autoComplete?: string;
   disabled?: boolean;
+  className?: string;
   inputClassName?: string;
   newSize?: boolean;
   height?: number;
@@ -31,12 +32,13 @@ interface Props {
   errorIcon?: string;
   errorType?: string;
   name?: string
+  maxlength?: number
 }
 
 const FInput = (props: Props) => {
   const autoFocus = props.autoFocus === false ? false : true;
   return (
-    <InputGroup className={styles.input + " mb-10"}>
+    <InputGroup className={cls(styles.input, "mb-10", props.className || "")}>
       {props.prepend && (
         <InputGroupAddon
           addonType="prepend"
@@ -67,6 +69,7 @@ const FInput = (props: Props) => {
         autoComplete={props.autoComplete}
         disabled={props.disabled}
         name={props.name}
+        maxLength={props.maxlength || undefined}
         className={cls(
           props.inputClassName || "",
           !!props.prepend && styles.has_prepend,

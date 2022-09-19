@@ -3,7 +3,6 @@ import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";
-import Streamline from "assets/streamline";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRTL from "hooks/useRTL";
 import styles from "./SearchItem.module.scss";
@@ -14,9 +13,13 @@ import {
   AgeFilter,
   FrenchLevelFilter,
 } from "data/searchFilters";
-import { tags } from "data/tags";
-import { Tag } from "types/interface";
+import { Theme } from "types/interface";
 import { cls } from "lib/classname";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { getThemeName } from "lib/getThemeName";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 
 interface Props {
   geoSearch: boolean;
@@ -32,6 +35,7 @@ const SearchItem = (props: Props) => {
   const [villeAuto, setVilleAuto] = useState("");
 
   const { t } = useTranslation();
+  const router = useRouter();
   const isRTL = useRTL();
 
   const autocompleteRef = createRef<any>();
@@ -71,15 +75,16 @@ const SearchItem = (props: Props) => {
     setVille("");
     setVilleAuto("");
   };
-  const selectOption = (item: Tag | AgeFilter | FrenchLevelFilter) => {
-    const value = props.searchItem.type === "theme" ? [item.name] : item.name;
+  const selectOption = (item: Theme | AgeFilter | FrenchLevelFilter) => {
+    const value = props.searchItem.type === "theme" ? [(item as Theme).name.fr] : item.name;
     props.addToQuery({ [props.searchItem.type]: value });
     toggle();
   };
 
+  const themes = useSelector(themesSelector);
   const active = !!props.query[props.searchItem.type];
-  const currentTag = props.searchItem.type === "theme" && active
-    ? tags.find((tag) => tag.name === props.query.theme?.[0])
+  const currentTheme = props.searchItem.type === "theme" && active
+    ? themes.find((theme) => theme.name.fr === props.query.theme?.[0])
     : null;
 
   useEffect(() => {
@@ -154,6 +159,7 @@ const SearchItem = (props: Props) => {
               inHeader
               extraPadding
               onClick={() => { props.switchGeoSearch(true) }}
+              color="gray"
             >
               {t("SearchItem.ma ville", "ma ville")}
             </FSearchBtn>
@@ -175,11 +181,12 @@ const SearchItem = (props: Props) => {
               fsb_styles.search_btn,
               fsb_styles.extra_padding,
               fsb_styles.in_header,
-              !!currentTag && "bg-" + currentTag.short.split(" ").join("-"),
               props.searchItem.type !== "theme" && active && fsb_styles.active,
             )}
+            style={currentTheme ? {backgroundColor: currentTheme.colors.color100} : {}}
+
           >
-            {active && props.searchItem.type === "theme" && currentTag && (
+            {active && props.searchItem.type === "theme" && currentTheme && (
               <div
                 style={{
                   display: "flex",
@@ -189,16 +196,18 @@ const SearchItem = (props: Props) => {
                   alignItems: "center",
                 }}
               >
-                <Streamline
-                  name={currentTag.icon}
-                  stroke={"white"}
-                  width={22}
-                  height={22}
-                />
+                <ThemeIcon theme={currentTheme} />
               </div>
-            )}
+                )}
             {active
-              ? t("Tags." + props.query[props.searchItem.type], props.query[props.searchItem.type])
+                  ? (props.searchItem.type === "theme" ?
+                    getThemeName(
+                      //@ts-ignore
+                      themes.find(t => t.name.fr === props.query[props.searchItem.type][0]),
+                      router.locale
+                    ) :
+                    t("Tags." + props.query[props.searchItem.type], props.query[props.searchItem.type])
+                  )
               : t(
                   "Tags." + props.searchItem.placeholder,
                   props.searchItem.placeholder
@@ -234,35 +243,45 @@ const SearchItem = (props: Props) => {
                 props.searchItem.type === "theme" && styles.tags,
               )}
             >
-              {(props.searchItem?.children || []).map(
-                (item: any, idx: number) => {
+              {((props.searchItem?.children || []) as Theme[] | AgeFilter[] | FrenchLevelFilter[]).map(
+                (item, idx: number) => {
+                  if (props.searchItem.type === "theme") {
+                    const theme = item as Theme;
+                    return (
+                      <FSearchBtn
+                        key={idx}
+                        onClick={() => selectOption(theme)}
+                        filter={!theme.short?.fr}
+                        searchOption
+                        inHeader
+                        color={theme?.colors?.color100}
+                      >
+                        {theme.icon ? (
+                          <div
+                            style={{
+                              display: "flex",
+                              marginRight: isRTL ? 0 : 10,
+                              marginLeft: isRTL ? 10 : 0,
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <ThemeIcon theme={theme} />
+                          </div>
+                        ) : null}
+                        {getThemeName(theme, router.locale)}
+                      </FSearchBtn>
+                    );
+                  }
+                  const element = item as FrenchLevelFilter | AgeFilter;
                   return (
                     <FSearchBtn
                       key={idx}
-                      onClick={() => selectOption(item)}
-                      filter={!item.short}
+                      onClick={() => selectOption(element)}
+                      filter={true}
                       searchOption
                       inHeader
-                      color={(item.short || "").replace(/ /g, "-")}
                     >
-                      {item.icon ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: isRTL ? 0 : 10,
-                            marginLeft: isRTL ? 10 : 0,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Streamline
-                            name={item.icon}
-                            stroke={"white"}
-                            width={22}
-                            height={22}
-                          />
-                        </div>
-                      ) : null}
                       {t("Tags." + item.name, item.name)}
                     </FSearchBtn>
                   );

@@ -1,14 +1,33 @@
+import { ObjectId } from "mongoose";
+import { ThemeDoc } from "../../schema/schemaTheme";
 import { NeedDoc, Need } from "../../schema/schemaNeeds";
 
-export const createNeedInDB = async (need: NeedDoc) =>
+export const createNeedInDB = async (need: Partial<NeedDoc>) =>
   await new Need(need).save();
 
-export const getNeedsFromDB = async () => await Need.find();
+export const getNeedsFromDB = async () => Need.find().populate<{ theme: ThemeDoc }>("theme");
 
-export const saveNeedInDB = async (need: any) =>
-  await Need.findOneAndUpdate(
-    { _id: need._id },
+export const getNeedFromDB = async (id: ObjectId) => Need.findOne({ _id: id });
+
+export const saveNeedInDB = async (needId: ObjectId, need: Partial<NeedDoc>) => {
+  return Need.findOneAndUpdate(
+    { _id: needId },
     need,
-    // @ts-ignore
     { upsert: true, new: true }
   );
+}
+
+export const deleteNeedById = async (needId: ObjectId) => {
+  return Need.deleteOne({ _id: needId });
+}
+
+export const updatePositions = async (needIds: ObjectId[]) => {
+  return Promise.all(
+    needIds.map((needId, i) => Need.findOneAndUpdate(
+      { _id: needId },
+      { position: i },
+      { upsert: true, new: true }
+    ).populate<{ theme: ThemeDoc }>("theme"))
+  )
+}
+

@@ -1,10 +1,12 @@
-import Streamline from "assets/streamline";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import ThemeIcon from "components/UI/ThemeIcon";
 import useRTL from "hooks/useRTL";
 import { cls } from "lib/classname";
 import { DispositifsFilteredState } from "lib/filterContents";
-import { useTranslation } from "next-i18next";
+import { getThemeName } from "lib/getThemeName";
 import { useState } from "react";
-import { IDispositif, IUserFavorite, Language, Tag } from "types/interface";
+import { IDispositif, IUserFavorite, Language, Theme } from "types/interface";
 import NoResultPlaceholder from "../NoResultPlaceholder";
 import SearchResultCard from "../SearchResultCard";
 import styles from "./SearchResults.module.scss";
@@ -12,7 +14,7 @@ import styles from "./SearchResults.module.scss";
 interface Props {
   langueCode: string;
   flagIconCode: string;
-  selectedTag: Tag | null;
+  selectedTheme: Theme | null;
   filterLanguage: Language | null;
   currentLanguage: Language | null;
   queryResults: DispositifsFilteredState;
@@ -25,6 +27,7 @@ interface Props {
 
 export const ThemeResults = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const isRTL = useRTL();
 
   const [showGeolocFullFrancePrincipal, setShowGeolocFullFrancePrincipal] =
@@ -37,7 +40,7 @@ export const ThemeResults = (props: Props) => {
     filterLanguage,
     currentLanguage,
     flagIconCode,
-    selectedTag,
+    selectedTheme,
   } = props;
 
   const {
@@ -73,17 +76,12 @@ export const ThemeResults = (props: Props) => {
           )}
           <span
             className={cls(styles.button, styles.inline_button)}
-            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+            style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
-            <Streamline
-              name={selectedTag ? selectedTag.icon : undefined}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
+            <ThemeIcon theme={selectedTheme} />
             <p className={styles.text}>
-              {selectedTag
-                ? t("Tags." + selectedTag.short, selectedTag.short)
+              {selectedTheme
+                ? getThemeName(selectedTheme, router.locale, "short")
                 : null}
             </p>
           </span>
@@ -194,17 +192,12 @@ export const ThemeResults = (props: Props) => {
           )}
           <span
             className={cls(styles.button, styles.inline_button)}
-            style={selectedTag ? { backgroundColor: selectedTag.darkColor } : {}}
+            style={selectedTheme ? { backgroundColor: selectedTheme.colors.color100 } : {}}
           >
-            <Streamline
-              name={selectedTag ? selectedTag.icon : undefined}
-              stroke={"white"}
-              width={22}
-              height={22}
-            />
+            <ThemeIcon theme={selectedTheme} />
             <p className={styles.text}>
-              {selectedTag
-                ? t("Tags." + selectedTag.short, selectedTag.short)
+              {selectedTheme
+                ? getThemeName(selectedTheme, router.locale, "short")
                 : null}
             </p>
           </span>

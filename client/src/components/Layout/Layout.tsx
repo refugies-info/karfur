@@ -30,6 +30,8 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
 import useRTL from "hooks/useRTL";
 import { getPath, PathNames } from "routes";
+import { themesSelector } from "services/Themes/themes.selectors";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface Props {
   children: any
@@ -108,6 +110,22 @@ const Layout = (props: Props) => {
     user,
     isUserLoading,
     hasUserError,
+    dispatch
+  ]);
+
+  // THEMES
+  const themes = useSelector(themesSelector);
+  const isThemesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
+  const hasThemesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_THEMES));
+  useEffect(() => {
+    if (languageLoaded && themes.length === 0 && !isThemesLoading && !hasThemesError) {
+      dispatch(fetchThemesActionCreator());
+    }
+  }, [
+    languageLoaded,
+    themes.length,
+    isThemesLoading,
+    hasThemesError,
     dispatch
   ]);
 

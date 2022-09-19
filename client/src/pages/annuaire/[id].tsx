@@ -19,16 +19,17 @@ import { RightAnnuaireDetails } from "components/Pages/annuaire/id/RightAnnuaire
 import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire-id.module.scss";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface Props {
   history: string[]
 }
 
 const AnnuaireDetail = (props: Props) => {
+  const structure = useSelector(selectedStructureSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
-  );
-  const structure = useSelector(selectedStructureSelector);
+  ) && !structure;
   const user = useSelector(userSelector);
 
   const [isMember, setIsMember] = useState(false);
@@ -42,7 +43,7 @@ const AnnuaireDetail = (props: Props) => {
 
   // Reload structure if locale change
   useEffect(() => {
-    if (structureId) {
+    if ((structureId && currentLoadedLocale !== locale) || !structure?.membres) {
       dispatch(
         fetchSelectedStructureActionCreator({
           id: structureId as string,
@@ -51,7 +52,7 @@ const AnnuaireDetail = (props: Props) => {
       );
       setCurrentLoadedLocale(locale);
     }
-  }, [dispatch, locale, currentLoadedLocale, structureId]);
+  }, [dispatch, locale, currentLoadedLocale, structureId, structure]);
 
   useEffect(() => {
     setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId))
@@ -84,9 +85,10 @@ const AnnuaireDetail = (props: Props) => {
 
 export const getServerSideProps = wrapper.getServerSideProps(store => async ({query, locale}) => {
   if (query.id) {
+    store.dispatch(fetchThemesActionCreator());
     const action = fetchSelectedStructureActionCreator({
       id: query.id as string,
-      locale: locale || "fr"
+      locale: !locale || locale === "default" ? "fr" : locale
     });
     store.dispatch(action);
     store.dispatch(END);

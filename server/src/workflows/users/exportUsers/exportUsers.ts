@@ -46,7 +46,7 @@ const exportUsersInAirtable = (users: { fields: UserToExport }[]) => {
   logger.info(
     `[exportUsersInAirtable] export ${users.length} users in airtable`
   );
-  base("Users").create(users, function (err: Error) {
+  base("Users").create(users, {typecast: true}, function (err: Error) {
     if (err) {
       logger.error(
         "[exportUsersInAirtable] error while exporting users to airtable",

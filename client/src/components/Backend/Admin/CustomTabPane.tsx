@@ -27,7 +27,7 @@ const CustomTabPane = (props: Props) => {
       <TabPane tabId="divers" className="p-0">
         <Dashboard visible={props.activeTab === "divers"} />
       </TabPane>
-      <TabPane tabId="besoins" className="p-0">
+      <TabPane tabId="categories" className="p-0">
         <Needs />
       </TabPane>
       <TabPane tabId="widgets" className="p-0">

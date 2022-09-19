@@ -22,6 +22,7 @@ import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
 import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
 import styles from "./Widgets.module.scss";
+import { Theme } from "types/interface";
 
 let NotificationContainer: any = null;
 if (isInBrowser()) {
@@ -32,7 +33,7 @@ if (isInBrowser()) {
 
 export const Widgets = () => {
   const [name, setName] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedThemes, setSelectedThemes] = useState<Theme[]>([]);
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<
     ("demarches" | "dispositifs")[]
   >(["demarches", "dispositifs"]);
@@ -57,7 +58,7 @@ export const Widgets = () => {
 
   const resetForm = useCallback(() => {
     setName("");
-    setSelectedTags([]);
+    setSelectedThemes([]);
     setSelectedTypeContenu(["demarches", "dispositifs"]);
     setSelectedLanguages([]);
     setSelectedCity("");
@@ -69,7 +70,7 @@ export const Widgets = () => {
     dispatch(
       createWidgetActionCreator({
         name: name,
-        tags: selectedTags,
+        themes: selectedThemes,
         typeContenu: selectedTypeContenu,
         languages: selectedLanguages,
         location: {
@@ -97,7 +98,7 @@ export const Widgets = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCreatingInDb]);
 
-  const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedTags.length > 0;
+  const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedThemes.length > 0;
 
   return (
     <div>
@@ -119,8 +120,9 @@ export const Widgets = () => {
               />
 
               <ThemesInput
-                selectedTags={selectedTags}
-                setSelectedTags={setSelectedTags}
+                selectedThemes={selectedThemes}
+                //@ts-ignore
+                setSelectedThemes={setSelectedThemes}
               />
 
               <LocationInput

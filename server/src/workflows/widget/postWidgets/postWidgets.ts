@@ -6,10 +6,11 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { Widget } from "../../../schema/schemaWidget";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 export interface Request {
   name: string;
-  tags: string[];
+  themes: ThemeDoc[];
   typeContenu: ("dispositifs" | "demarches")[];
   languages: string[];
   location: {
@@ -30,13 +31,13 @@ export const postWidgets = async (
 
     if (
       !req.body.name ||
-      !req.body.tags || req.body.tags.length === 0 ||
+      !req.body.themes || req.body.themes.length === 0 ||
       !req.body.typeContenu || req.body.typeContenu.length === 0
     ) throw new Error("INVALID_REQUEST");
 
     const widget = new Widget({
       name: req.body.name,
-      tags: req.body.tags,
+      themes: req.body.themes.map(t => t._id),
       typeContenu: req.body.typeContenu,
       author: req.userId
     });

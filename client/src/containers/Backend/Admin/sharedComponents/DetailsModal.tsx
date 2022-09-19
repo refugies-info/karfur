@@ -12,6 +12,7 @@ interface Props {
   children: any
   className?: string
   contentClassName?: string
+  size?: "xl" | "lg"
 }
 
 export const DetailsModal = (props: Props) => {
@@ -19,8 +20,12 @@ export const DetailsModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      size="xl"
-      className={cls(styles.modal, props.className || "")}
+      size={props.size || "xl"}
+      className={cls(
+        styles.modal,
+        !props.size || props.size === "xl" ? styles.xl : "",
+        props.className || ""
+      )}
       contentClassName={cls(styles.modal_content, props.contentClassName || "")}
     >
       {props.isLoading ? <Spinner /> :

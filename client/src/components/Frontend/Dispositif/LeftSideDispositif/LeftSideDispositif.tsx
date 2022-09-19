@@ -11,7 +11,7 @@ import ReactToPrint from "react-to-print";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
-import { DispositifContent, Tag } from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import { send_sms } from "components/Pages/dispositif/function";
 import { useTranslation } from "next-i18next";
 import { Event } from "lib/tracking";
@@ -40,7 +40,7 @@ interface Props {
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
   toggleShowPdfModal: () => void;
-  mainTag: Tag;
+  mainTheme?: Theme;
 }
 
 const LeftSideDispositif = (props: Props) => {
@@ -139,7 +139,7 @@ const LeftSideDispositif = (props: Props) => {
                     type={"theme"}
                     name="external-link-outline"
                     onClick={onLinkClicked}
-                    theme={props.mainTag.darkColor}
+                    theme={props.mainTheme?.colors.color100}
                     wrap
                   >
                     {t("Dispositif.Voir le site", "Voir le site")}

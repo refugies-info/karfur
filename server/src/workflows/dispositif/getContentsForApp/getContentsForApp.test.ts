@@ -13,7 +13,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-describe("getDispositifsWithTranslationAvancement", () => {
+describe("getContentsForApp", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -23,7 +23,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
     titreMarque: 1,
     avancement: 1,
     contenu: 1,
-    tags: 1,
+    theme: 1,
+    secondaryThemes: 1,
     needs: 1,
     typeContenu: 1,
     nbVues: 1,
@@ -54,7 +55,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
       _id: "_id",
       nbVues: 2,
       needs: [],
-      tags: [],
+      theme: { _id: "theme1" },
+      secondaryThemes: [],
       typeContenu: "dispositif",
     };
     const contents = [
@@ -80,7 +82,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
       titreMarque: { ar: "TM_ar", fr: "tm" },
       nbVues: 2,
       needs: [],
-      tags: [],
+      theme: { _id: "theme1" },
+      secondaryThemes: [],
       typeContenu: "dispositif",
       mainSponsor: { picture: { secure_url: "url" } },
     },
@@ -101,7 +104,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
           titreMarque: "TM_ar",
           nbVues: 2,
           needs: [],
-          tags: [],
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
           typeContenu: "dispositif",
           sponsorUrl: "url",
         },
@@ -112,7 +116,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
           titreMarque: "tm",
           nbVues: 2,
           needs: [],
-          tags: [],
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
           typeContenu: "dispositif",
           sponsorUrl: "url",
         },
@@ -136,7 +141,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
           titreMarque: "tm",
           nbVues: 2,
           needs: [],
-          tags: [],
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
           typeContenu: "dispositif",
           sponsorUrl: "url",
         },
@@ -242,7 +248,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
         needs: [],
         mainSponsor: { picture: { secure_url: "url" } },
 
-        tags: [],
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
         typeContenu: "dispositif",
       },
 
@@ -271,7 +278,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
         needs: [],
         mainSponsor: { picture: { secure_url: "url" } },
 
-        tags: [],
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
         typeContenu: "dispositif",
       },
       {
@@ -299,7 +307,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
         needs: [],
         mainSponsor: { picture: { secure_url: "url" } },
 
-        tags: [],
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
         typeContenu: "dispositif",
       },
     ];
@@ -327,7 +336,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
           nbVues: 2,
           needs: [],
           sponsorUrl: "url",
-          tags: [],
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
           typeContenu: "dispositif",
         },
         {
@@ -337,7 +347,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
           nbVues: 2,
           needs: [],
           sponsorUrl: "url",
-          tags: [],
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
           typeContenu: "dispositif",
         },
       ],

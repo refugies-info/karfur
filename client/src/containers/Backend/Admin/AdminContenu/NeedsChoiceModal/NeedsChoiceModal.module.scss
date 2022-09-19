@@ -1,14 +1,14 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 
-.modal {
-  .modal_content {
-    mix-blend-mode: normal;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border-radius: $radius;
-    border: none;
-    background: $gray20;
-    padding: 16px;
-    width: 748px;
-  }
+.column {
+  background: $white;
+  border-radius: $radius;
+  padding: 16px;
+}
+
+.subtitle {
+  font-size: $text-normal;
+  line-height: 20px;
+  margin-bottom: 8px;
 }

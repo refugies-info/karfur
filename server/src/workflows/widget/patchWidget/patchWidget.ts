@@ -6,10 +6,11 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { WidgetDoc } from "../../../schema/schemaWidget";
+import { ThemeDoc } from "src/schema/schemaTheme";
 
 export interface Request {
   name: string;
-  tags: string[];
+  themes: ThemeDoc[];
   typeContenu: ("dispositifs" | "demarches")[];
   languages: string[];
   location: {
@@ -33,7 +34,7 @@ export const patchWidget = async (
     const widget: Partial<WidgetDoc> = {
       author: req.userId,
       typeContenu: req.body.typeContenu,
-      tags: req.body.tags,
+      themes: req.body.themes.map(t => t._id),
       languages: req.body.languages,
       location: {
         city: req.body.location.city,
