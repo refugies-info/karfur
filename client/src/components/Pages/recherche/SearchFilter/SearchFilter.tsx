@@ -38,8 +38,15 @@ const SearchFilter = (props: Props) => {
       className={cls(styles.dropdown, open && styles.show, props.selected.length > 0 && styles.selected)}
     >
       <DropdownToggle>
-        {props.label}
-        <EVAIcon name="chevron-down-outline" fill={props.selected.length > 0 ? "white" : "gray"} size={20} />
+        <span className={styles.value}>
+          {props.label}
+        </span>
+        <EVAIcon
+          className={styles.icon}
+          name="chevron-down-outline"
+          fill={props.selected.length > 0 ? "white" : "gray"}
+          size={20}
+        />
       </DropdownToggle>
       <DropdownMenu className={styles.menu}>
         {props.options.map((option, i) => {

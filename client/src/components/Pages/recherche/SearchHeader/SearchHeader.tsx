@@ -12,6 +12,7 @@ import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/s
 import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { needsSelector } from "services/Needs/needs.selectors";
 
 interface Props {
   nbResults: number;
@@ -53,6 +54,16 @@ const SearchHeader = (props: Props) => {
   const [themesOpen, setThemesOpen] = useState(false);
   const toggleThemes = () => setThemesOpen((prevState) => !prevState);
   const [themeSearch, setThemeSearch] = useState("");
+  const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
+
+  const allNeeds = useSelector(needsSelector);
+  useEffect(() => {
+    const themes: string[] = [];
+    for (const need of props.needsSelected) {
+      themes.push(allNeeds.find(n => n._id === need)?.theme.short.fr || "");
+    }
+    setThemeDisplayedValue([...new Set(themes)].join(", "))
+  }, [props.needsSelected, allNeeds]);
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);
@@ -86,6 +97,30 @@ const SearchHeader = (props: Props) => {
 
   // FILTERS
   const languages = useSelector(allLanguesSelector);
+
+  const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
+  useEffect(() => {
+    if (filterAge.length) {
+      const value = filterAge.map(option => ageFilters.find(a => a.key === option)?.value).join(", ");
+      setAgeDisplayedValue(value);
+    }
+  }, [filterAge]);
+
+  const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
+    useEffect(() => {
+    if (filterFrenchLevel.length) {
+      const value = filterFrenchLevel.map(option => frenchLevelFilter.find(a => a.key === option)?.value).join(", ");
+      setFrenchLevelDisplayedValue(value);
+    }
+    }, [filterFrenchLevel]);
+
+  const [languageDisplayedValue, setLanguageDisplayedValue] = useState("");
+  useEffect(() => {
+    if (filterLanguage.length) {
+      const value = filterLanguage.map(option => languages.find(a => a.i18nCode === option)?.langueFr).join(", ");
+      setLanguageDisplayedValue(value);
+    }
+  }, [filterLanguage, languages]);
 
   const resetFilters = () => {
     setSearch("");
@@ -134,7 +169,7 @@ const SearchHeader = (props: Props) => {
                 setActive={setThemesFocused}
                 onChange={(evt) => setThemeSearch(evt.target.value)}
                 inputValue={themeSearch}
-                value={needsSelected.join(", ")}
+                value={themeDisplayedValue}
                 placeholder="Tous"
               />
             </DropdownToggle>
@@ -167,19 +202,19 @@ const SearchHeader = (props: Props) => {
         <div className={styles.subheader}>
           <div className={styles.filters}>
             <SearchFilter
-              label={filterAge.length === 0 ? "Tranche d'âge" : filterAge.join(", ")}
+              label={filterAge.length === 0 ? "Tranche d'âge" : ageDisplayedValue}
               selected={filterAge}
               setSelected={setFilterAge}
               options={ageFilters}
             />
             <SearchFilter
-              label={filterFrenchLevel.length === 0 ? "Niveau de français" : filterFrenchLevel.join(", ")}
+              label={filterFrenchLevel.length === 0 ? "Niveau de français" : frenchLevelDisplayedValue}
               selected={filterFrenchLevel}
               setSelected={setFilterFrenchLevel}
               options={frenchLevelFilter}
             />
             <SearchFilter
-              label={filterLanguage.length === 0 ? "Fiches traduites en" : filterLanguage.join(", ")}
+              label={filterLanguage.length === 0 ? "Fiches traduites en" : languageDisplayedValue}
               selected={filterLanguage}
               setSelected={setFilterLanguage}
               options={languages.map((ln) => ({ key: ln.i18nCode, value: ln.langueFr }))}
