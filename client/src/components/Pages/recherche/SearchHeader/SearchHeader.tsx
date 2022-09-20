@@ -12,7 +12,7 @@ import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/s
 import { useSelector } from "react-redux";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { needsSelector } from "services/Needs/needs.selectors";
+import { Theme } from "types/interface";
 
 interface Props {
   nbResults: number;
@@ -20,6 +20,7 @@ interface Props {
   setSearch: Dispatch<SetStateAction<string>>;
   needsSelected: ObjectId[];
   setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
+  themesSelected: Theme[];
   departmentsSelected: string[];
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   filterAge: AgeOptions[];
@@ -27,7 +28,7 @@ interface Props {
   filterFrenchLevel: FrenchOptions[];
   setFilterFrenchLevel:Dispatch<SetStateAction<FrenchOptions[]>>;
   filterLanguage: string[];
-  setFilterLanguage:Dispatch<SetStateAction<string[]>>;
+  setFilterLanguage: Dispatch<SetStateAction<string[]>>;
 }
 
 const SearchHeader = (props: Props) => {
@@ -56,14 +57,9 @@ const SearchHeader = (props: Props) => {
   const [themeSearch, setThemeSearch] = useState("");
   const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
 
-  const allNeeds = useSelector(needsSelector);
   useEffect(() => {
-    const themes: string[] = [];
-    for (const need of props.needsSelected) {
-      themes.push(allNeeds.find(n => n._id === need)?.theme.short.fr || "");
-    }
-    setThemeDisplayedValue([...new Set(themes)].join(", "))
-  }, [props.needsSelected, allNeeds]);
+    setThemeDisplayedValue(props.themesSelected.map(t => t.short.fr).join(", "))
+  }, [props.themesSelected]);
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);

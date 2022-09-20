@@ -20,7 +20,8 @@ import ResultsFilter from "components/Pages/recherche/ResultsFilter";
 import { queryDispositifs } from "lib/filterContents";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
-import { IDispositif } from "types/interface";
+import { IDispositif, Theme } from "types/interface";
+import { needsSelector } from "services/Needs/needs.selectors";
 
 export type SearchQuery = {
   search: string;
@@ -47,6 +48,7 @@ const Recherche = () => {
   // search
   const [search, setSearch] = useState("");
   const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
+  const [themesSelected, setThemesSelected] = useState<Theme[]>([]);
   const [departmentsSelected, setDepartmentsSelected] = useState<string[]>([]);
 
   // additional search
@@ -89,6 +91,17 @@ const Recherche = () => {
     dispositifs
   ]);
 
+  // set themes selected based on needs
+  const allNeeds = useSelector(needsSelector);
+  useEffect(() => {
+    const themes: Theme[] = [];
+    for (const need of needsSelected) {
+      const theme = allNeeds.find(n => n._id === need)?.theme
+      if (theme) themes.push(theme);
+    }
+    setThemesSelected([...new Set(themes)])
+  }, [needsSelected, allNeeds])
+
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
@@ -98,6 +111,7 @@ const Recherche = () => {
         setSearch={setSearch}
         needsSelected={needsSelected}
         setNeedsSelected={setNeedsSelected}
+        themesSelected={themesSelected}
         departmentsSelected={departmentsSelected}
         setDepartmentsSelected={setDepartmentsSelected}
         filterAge={filterAge}
@@ -121,6 +135,7 @@ const Recherche = () => {
         <SearchResults
           filteredResult={filteredResult}
           selectedType={selectedType}
+          themesSelected={themesSelected}
         />
       </Container>
     </div>
