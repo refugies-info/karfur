@@ -1,9 +1,21 @@
 import { AgeOptions, FrenchOptions, SortOptions } from "data/searchFilters";
 import { IDispositif } from "types/interface";
-import { SearchQuery } from "pages/recherche";
+import { Results, SearchQuery } from "pages/recherche";
 import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "./getDispositifInfos";
+import algoliasearch from "algoliasearch";
+import { logger } from "logger";
 
+const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
+const index = searchClient.initIndex(process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX || "");
+
+let oldSearch = "";
+
+const filterByKeyword = (dispositif: IDispositif, hits: string[], search: string) => {
+  if (!search) return true;
+  if (hits.length === 0) return false;
+  return hits.includes(dispositif._id.toString());
+};
 
 const filterByNeed = (dispositif: IDispositif, needsSelected: ObjectId[]) => {
   if (needsSelected.length === 0) return true;
@@ -94,22 +106,27 @@ const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: Sor
   return dispA[sortKey] > dispB[sortKey] ? -1 : dispA[sortKey] < dispB[sortKey] ? 1 : 0;
 }
 
-export interface SearchResult {
-  dispositifs: IDispositif[]
-  demarches: IDispositif[]
-}
-
-export const queryDispositifs = (
+export const queryDispositifs = async (
   query: SearchQuery,
   dispositifs: IDispositif[],
-): SearchResult => {
+): Promise<Results> => {
+
+  let hits: string[] = [];
+  if (query.search && query.search !== oldSearch) {
+    logger.info("algolia search", hits);
+    hits = await index.search(query.search).then(({ hits }) => hits.map(h => h.objectID));
+  }
+
   let filteredDispositifs = [...dispositifs]
+    .filter(dispositif => filterByKeyword(dispositif, hits, query.search))
     .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
     .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
     .filter(dispositif => filterByAge(dispositif, query.filterAge))
     .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
     .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
     .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
+
+  oldSearch = query.search;
 
   return {
     dispositifs: filteredDispositifs.filter(d => d.typeContenu === "dispositif"),

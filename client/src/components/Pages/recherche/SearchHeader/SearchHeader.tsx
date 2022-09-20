@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./SearchHeader.module.scss";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchInput from "../SearchInput";
@@ -58,6 +58,7 @@ const SearchHeader = (props: Props) => {
   const [locationFocused, setLocationFocused] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
   const toggleLocation = () => setLocationOpen((prevState) => !prevState);
+  const [locationSearch, setLocationSearch] = useState("");
 
   const { placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading } = usePlacesService({
     apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
@@ -76,6 +77,12 @@ const SearchHeader = (props: Props) => {
       });
     });
   };
+
+  useEffect(() => {
+    if (locationSearch) {
+      getPlacePredictions({ input: locationSearch })
+    }
+  }, [locationSearch, getPlacePredictions]);
 
   // FILTERS
   const languages = useSelector(allLanguesSelector);
@@ -101,7 +108,8 @@ const SearchHeader = (props: Props) => {
                 icon="pin-outline"
                 active={locationOpen || locationFocused}
                 setActive={setLocationFocused}
-                onChange={(evt) => getPlacePredictions({ input: evt.target.value })}
+                onChange={(evt) => setLocationSearch(evt.target.value)}
+                inputValue={locationSearch}
                 loading={isPlacePredictionsLoading}
                 value={departmentsSelected.join(", ")}
                 placeholder="Tous"
@@ -125,6 +133,7 @@ const SearchHeader = (props: Props) => {
                 active={themesFocused || themesOpen}
                 setActive={setThemesFocused}
                 onChange={(evt) => setThemeSearch(evt.target.value)}
+                inputValue={themeSearch}
                 value={needsSelected.join(", ")}
                 placeholder="Tous"
               />
@@ -146,8 +155,10 @@ const SearchHeader = (props: Props) => {
                 active={searchFocused}
                 setActive={setSearchFocused}
                 onChange={(evt) => setSearch(evt.target.value)}
+                inputValue={search}
                 value={search}
                 placeholder="Mission locale, titre de séjour..."
+                focusout
               />
             </Button>
           </div>

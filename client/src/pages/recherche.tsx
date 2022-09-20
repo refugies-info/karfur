@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { END } from "redux-saga";
-import SEO from "components/Seo";
+import { useSelector } from "react-redux";
+import { Container } from "reactstrap";
+import { ObjectId } from "mongodb";
+import { debounce } from "lodash";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
 import { toggleLangueActionCreator } from "services/Langue/langue.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
@@ -10,16 +14,13 @@ import { cls } from "lib/classname";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import styles from "scss/pages/recherche.module.scss";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
-import { useSelector } from "react-redux";
-import DemarcheCard from "components/Pages/recherche/DemarcheCard";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
-import { Container } from "reactstrap";
-import DispositifCard from "components/Pages/recherche/DispositifCard";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
-import { ObjectId } from "mongodb";
 import { queryDispositifs } from "lib/filterContents";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
+import SearchResults from "components/Pages/recherche/SearchResults";
+import { IDispositif } from "types/interface";
 
 export type SearchQuery = {
   search: string;
@@ -31,6 +32,14 @@ export type SearchQuery = {
   selectedSort: SortOptions;
   selectedType: TypeOptions;
 };
+export type Results = {
+  dispositifs: IDispositif[];
+  demarches: IDispositif[];
+};
+
+const debouncedQuery = debounce((query, dispositifs, setResult) => {
+  return queryDispositifs(query, dispositifs).then(res => setResult(res));
+ }, 500);
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -50,8 +59,10 @@ const Recherche = () => {
   const [selectedType, setSelectedType] = useState<TypeOptions>("all");
 
   // results
-  const [filteredDispositifs, setFilteredDispositifs] = useState(dispositifs.filter((d) => d.typeContenu === "dispositif"))
-  const [filteredDemarches, setFilteredDemarches] = useState(dispositifs.filter((d) => d.typeContenu === "demarche"))
+  const [filteredResult, setFilteredResult] = useState<Results>({
+    dispositifs: dispositifs.filter((d) => d.typeContenu === "dispositif"),
+    demarches: dispositifs.filter((d) => d.typeContenu === "demarche"),
+  })
 
   useEffect(() => {
     const query: SearchQuery = {
@@ -65,9 +76,7 @@ const Recherche = () => {
       selectedType
     };
 
-    const res = queryDispositifs(query, dispositifs);
-    setFilteredDispositifs(res.dispositifs);
-    setFilteredDemarches(res.demarches);
+    debouncedQuery(query, dispositifs, setFilteredResult);
   }, [
     search,
     needsSelected,
@@ -84,7 +93,7 @@ const Recherche = () => {
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
       <SearchHeader
-        nbResults={filteredDispositifs.length + filteredDemarches.length}
+        nbResults={filteredResult.dispositifs.length + filteredResult.demarches.length}
         search={search}
         setSearch={setSearch}
         needsSelected={needsSelected}
@@ -101,20 +110,18 @@ const Recherche = () => {
 
       <Container>
         <ResultsFilter
-          nbDemarches={filteredDemarches.length}
-          nbDispositifs={filteredDispositifs.length}
+          nbDemarches={filteredResult.demarches.length}
+          nbDispositifs={filteredResult.dispositifs.length}
           selectedSort={selectedSort}
           setSelectedSort={setSelectedSort}
           selectedType={selectedType}
           setSelectedType={setSelectedType}
         />
 
-        <div className={cls("d-flex flex-wrap", selectedType === "dispositif" && styles.hidden)}>
-          {filteredDemarches.map(d => <DemarcheCard key={d._id.toString()} demarche={d} /> )}
-        </div>
-        <div className={cls("d-flex flex-wrap", selectedType === "demarche" && styles.hidden)}>
-          {filteredDispositifs.map(d => <DispositifCard key={d._id.toString()} dispositif={d} />)}
-        </div>
+        <SearchResults
+          filteredResult={filteredResult}
+          selectedType={selectedType}
+        />
       </Container>
     </div>
   );

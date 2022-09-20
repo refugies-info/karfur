@@ -8,28 +8,28 @@ interface Props {
   icon: string;
   placeholder: string;
   value: string;
+  inputValue: string;
   active: boolean;
   setActive: (active: boolean) => void
   onChange?: (e: any) => void
   loading?: boolean
+  focusout?: boolean
 }
 
 const SearchInput = (props: Props) => {
   const { active, setActive } = props;
   const ref = useRef<HTMLInputElement | null>(null);
 
-  const handleFocusIn = useCallback(() => {
-    setActive((document.activeElement === ref.current));
-  }, [setActive]);
+  const handleFocusOut = useCallback(() => {
+    if (active) setActive(false);
+  }, [setActive, active]);
 
   useEffect(() => {
-    document.addEventListener("focusin", handleFocusIn)
-    document.addEventListener("focusout", handleFocusIn)
+    if (props.focusout) document.addEventListener("focusout", handleFocusOut)
     return () => {
-      document.removeEventListener("focusin", handleFocusIn)
-      document.removeEventListener("focusout", handleFocusIn)
+      document.removeEventListener("focusout", handleFocusOut)
   };
-  }, [handleFocusIn])
+  }, [handleFocusOut, props.focusout])
 
   const hasBlueIcon = active || !!props.value;
 
@@ -52,6 +52,7 @@ const SearchInput = (props: Props) => {
             placeholder="Rechercher..."
             className={styles.input}
             onChange={props.onChange}
+            value={props.inputValue}
             autoFocus
           /> :
           <div className={cls(styles.value, !props.value && styles.empty)}>
