@@ -129,7 +129,7 @@ const SearchHeader = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <Container>
+      <Container className={styles.container_inner}>
         <h1 className="h3 text-white">{props.nbResults} fiches disponibles pour votre recherche</h1>
         <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>

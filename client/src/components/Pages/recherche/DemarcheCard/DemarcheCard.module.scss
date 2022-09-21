@@ -7,12 +7,10 @@
 .container {
   display: block;
   position: relative;
-  width: 190px;
+  width: 208px;
   background: $white;
   box-shadow: 0 4px 18px 0 #0000001A;
   padding: u(8) u(4) u(4) u(4);
-  margin-right: u(8);
-  margin-bottom: u(8);
   border-radius: $radius;
   border: 2px solid transparent;
   cursor: pointer;

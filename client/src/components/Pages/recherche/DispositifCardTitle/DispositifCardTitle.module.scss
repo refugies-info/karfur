@@ -1,16 +1,15 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 248px;
+  width: 260px;
   box-shadow: 0 4px 18px 0 #0000001a;
-  padding: 16px;
-  margin-right: 32px;
-  margin-bottom: 32px;
+  padding: u(4);
   border-radius: $radius;
   border: 2px solid transparent;
   background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
@@ -29,14 +28,14 @@
 .title {
   font-size: 28px;
   line-height: 35px;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  margin-top: u(6);
+  margin-bottom: u(6);
   font-weight: bold;
   color: $white;
 }
 
 .badge {
-  padding: 4px 8px;
+  padding: u(1) u(2);
   background: $white;
   color: $bleuCharte;
   font-size: $text-large;

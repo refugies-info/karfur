@@ -27,20 +27,22 @@ const SearchResults = (props: Props) => {
 
   return (
     <>
-      <div className={cls(styles.results, props.selectedType === "dispositif" && styles.hidden)}>
-        <DemarcheCardTitle
-          count={props.filteredResult.demarches.length}
-          color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
-        />
-        {demarches.map((d) => (
-          <DemarcheCard key={d._id.toString()} demarche={d} />
-        ))}
+      <div className="position-relative">
+        <div className={cls(styles.results, styles.demarches, props.selectedType === "dispositif" && styles.hidden)}>
+          <DemarcheCardTitle
+            count={props.filteredResult.demarches.length}
+            color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
+          />
+          {demarches.map((d) => (
+            <DemarcheCard key={d._id.toString()} demarche={d} />
+          ))}
+        </div>
         <SeeMoreButton
           onClick={() => setHideDemarches(h => !h)}
           visible={!hideDemarches}
         />
       </div>
-      <div className={cls(styles.results, props.selectedType === "demarche" && styles.hidden)}>
+      <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
         <DispositifCardTitle
           count={props.filteredResult.dispositifs.length}
           color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}

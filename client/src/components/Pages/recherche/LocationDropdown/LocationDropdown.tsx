@@ -1,4 +1,5 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { logger } from "logger";
 import React, { useCallback } from "react";
 import { Button } from "reactstrap";
 
@@ -21,6 +22,15 @@ const LocationDropdown = (props: Props) => {
     [setDepartmentsSelected]
   );
 
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((res) => {
+        // TODO : find department
+        logger.info("location: ", res);
+      });
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -32,6 +42,13 @@ const LocationDropdown = (props: Props) => {
             </span>
           </Button>
         ))}
+
+        <Button onClick={getLocation} className={styles.btn}>
+          <span className={styles.icon}>
+            <EVAIcon name="navigation-2-outline" fill="black" size={16} />
+          </span>
+          Position actuelle
+        </Button>
       </div>
 
       {props.predictions.slice(0, 5).map((p, i) => (

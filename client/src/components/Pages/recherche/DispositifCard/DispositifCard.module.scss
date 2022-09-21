@@ -1,15 +1,14 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
   display: block;
-  width: 248px;
+  width: 260px;
   background: $white;
   box-shadow: 0 4px 18px 0 #0000001A;
-  padding: 16px;
-  margin-right: 32px;
-  margin-bottom: 32px;
+  padding: u(4);
   border-radius: $radius;
   border: 2px solid transparent;
   cursor: pointer;

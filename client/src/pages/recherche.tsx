@@ -122,7 +122,7 @@ const Recherche = () => {
         setFilterLanguage={setFilterLanguage}
       />
 
-      <Container>
+      <Container className={styles.container_inner}>
         <ResultsFilter
           nbDemarches={filteredResult.demarches.length}
           nbDispositifs={filteredResult.dispositifs.length}

@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .hidden {
@@ -7,8 +8,16 @@
 }
 
 .results {
-  margin-bottom: 80px;
+  margin-bottom: 120px;
   display: flex;
   flex-wrap: wrap;
-  position: relative
+  position: relative;
+
+  &.dispositifs {
+    gap: u(8);
+  }
+
+  &.demarches {
+    gap: u(6);
+  }
 }
