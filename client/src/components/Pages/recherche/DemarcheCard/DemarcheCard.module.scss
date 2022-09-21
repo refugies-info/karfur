@@ -1,15 +1,18 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
   display: block;
+  position: relative;
   width: 190px;
   background: $white;
   box-shadow: 0 4px 18px 0 #0000001A;
-  padding: 32px 16px 16px 16px;
-  margin-right: 32px;
-  margin-bottom: 32px;
+  padding: u(8) u(4) u(4) u(4);
+  margin-right: u(8);
+  margin-bottom: u(8);
   border-radius: $radius;
   border: 2px solid transparent;
   cursor: pointer;
@@ -26,14 +29,29 @@
 }
 
 .title {
-  font-size: $text-large;
-  line-height: 22px;
-  margin-top: 24px;
-  margin-bottom: 16px;
+  @include text("large");
+  margin-top: u(6);
+  margin-bottom: u(4);
   font-weight: bold;
 }
 
 .badges {
-  margin-bottom: 4px;
-  margin-right: 4px;
+  margin-bottom: u(1);
+  margin-right: u(1);
+}
+
+.update {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+
+  & > span {
+    @include text("very-small");
+    background-color: $vert2;
+    padding: u(1) u(2);
+    border-radius: 0 0 u(2) u(2);
+    color: $white;
+  }
 }

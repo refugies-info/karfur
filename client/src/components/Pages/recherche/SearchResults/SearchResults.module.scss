@@ -5,3 +5,10 @@
 .hidden {
   display: none !important;
 }
+
+.results {
+  margin-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative
+}

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { cls } from "lib/classname";
 import { TypeOptions } from "data/searchFilters";
 import { Results } from "pages/recherche";
@@ -8,6 +8,7 @@ import styles from "./SearchResults.module.scss";
 import DemarcheCardTitle from "../DemarcheCardTitle";
 import DispositifCardTitle from "../DispositifCardTitle";
 import { Theme } from "types/interface";
+import SeeMoreButton from "../SeeMoreButton";
 
 interface Props {
   filteredResult: Results;
@@ -16,18 +17,30 @@ interface Props {
 }
 
 const SearchResults = (props: Props) => {
+  const [hideDemarches, setHideDemarches] = useState(false);
+
+  useEffect(() => { // hide after loading for SEO purposes
+    setHideDemarches(true)
+  }, []);
+
+  const demarches = hideDemarches ? props.filteredResult.demarches.slice(0, 14) : props.filteredResult.demarches;
+
   return (
     <>
-      <div className={cls("d-flex flex-wrap", props.selectedType === "dispositif" && styles.hidden)}>
+      <div className={cls(styles.results, props.selectedType === "dispositif" && styles.hidden)}>
         <DemarcheCardTitle
           count={props.filteredResult.demarches.length}
           color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
         />
-        {props.filteredResult.demarches.map((d) => (
+        {demarches.map((d) => (
           <DemarcheCard key={d._id.toString()} demarche={d} />
         ))}
+        <SeeMoreButton
+          onClick={() => setHideDemarches(h => !h)}
+          visible={!hideDemarches}
+        />
       </div>
-      <div className={cls("d-flex flex-wrap", props.selectedType === "demarche" && styles.hidden)}>
+      <div className={cls(styles.results, props.selectedType === "demarche" && styles.hidden)}>
         <DispositifCardTitle
           count={props.filteredResult.dispositifs.length}
           color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}

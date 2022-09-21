@@ -29,6 +29,8 @@ const DemarcheCard = (props: Props) => {
   const router = useRouter();
   const colors = props.demarche.theme.colors;
   const themes = [props.demarche.theme, ...(props.demarche.secondaryThemes || [])];
+  const hasUpdate = props.demarche.lastModificationDate && props.demarche.publishedAt &&
+    new Date(props.demarche.lastModificationDate).toDateString() !== new Date(props.demarche.publishedAt).toDateString();
 
   return (
     <Link
@@ -39,6 +41,11 @@ const DemarcheCard = (props: Props) => {
       passHref
     >
       <DemarcheLink className={styles.container} background={colors.color30} border={colors.color100}>
+        {hasUpdate &&
+          <div className={styles.update}>
+            <span>mise à jour</span>
+          </div>
+        }
         <Image src={demarcheIcon} width={48} height={48} alt="" />
         <div className={styles.title} style={{ color: colors.color100 }}>
           {props.demarche.titreInformatif}

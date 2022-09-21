@@ -338,6 +338,7 @@ export interface IDispositif {
   nbMercis: number;
   timeSpent?: number;
   lastModificationDate?: number;
+  publishedAt?: number;
 }
 
 export interface UserStructureMembre {
