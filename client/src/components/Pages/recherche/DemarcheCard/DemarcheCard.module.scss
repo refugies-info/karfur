@@ -24,6 +24,10 @@
       background-color: $white !important;
     }
   }
+  em {
+    background-color: $bgfocus;
+    font-style: normal;
+  }
 }
 
 .title {

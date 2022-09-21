@@ -47,10 +47,11 @@ const DemarcheCard = (props: Props) => {
           </div>
         }
         <Image src={demarcheIcon} width={48} height={48} alt="" />
-        <div className={styles.title} style={{ color: colors.color100 }}>
-          {props.demarche.titreInformatif}
-        </div>
-
+        <div
+          className={styles.title}
+          style={{ color: colors.color100 }}
+          dangerouslySetInnerHTML={{__html: props.demarche.titreInformatif}}
+        />
         {themes.map((theme, i) => (
           <ThemeBadge key={i} theme={theme} className={styles.badges} />
         ))}

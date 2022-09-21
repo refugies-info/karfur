@@ -9,14 +9,6 @@ import { logger } from "logger";
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const index = searchClient.initIndex(process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX || "");
 
-let oldSearch = "";
-
-const filterByKeyword = (dispositif: IDispositif, hits: string[], search: string) => {
-  if (!search) return true;
-  if (hits.length === 0) return false;
-  return hits.includes(dispositif._id.toString());
-};
-
 const filterByNeed = (dispositif: IDispositif, needsSelected: ObjectId[]) => {
   if (needsSelected.length === 0) return true;
   for (const need of dispositif.needs) {
@@ -119,21 +111,62 @@ export const queryDispositifs = (
     .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
 }
 
+
+// ALGOLIA
+const commonSearchableAttributes = [
+  "sponsorName"
+];
+
+const localizedSearchableAttributes = [
+  "title",
+  "name",
+  "titreMarque",
+  "abstract"
+];
+
+const getSearchableAttributes = (selectedLanguage: string | null) => {
+  const localizedAttributes: string[] = []
+
+  for (const attr of localizedSearchableAttributes) {
+    localizedAttributes.push(`${attr}_fr`);
+    if (selectedLanguage && selectedLanguage !== "fr") localizedAttributes.push(`${attr}_${selectedLanguage}`);
+  }
+
+  return [
+    ...localizedAttributes,
+    ...commonSearchableAttributes,
+  ]
+};
+
+type Hit = { id: string, highlight: any };
+
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: IDispositif[],
+  locale: string
 ): Promise<Results> => {
 
-  let hits: string[] = [];
-  if (query.search && query.search !== oldSearch) {
-    logger.info("algolia search", hits);
-    hits = await index.search(query.search).then(({ hits }) => hits.map(h => h.objectID));
+  let filteredDispositifsByAlgolia: IDispositif[] = [...dispositifs];
+  if (query.search) { // TODO: do not relaunch if oldSearch
+    let hits: Hit[] = [];
+    hits = await index
+      .search(query.search, {
+        restrictSearchableAttributes: getSearchableAttributes(locale)
+      })
+      .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
+
+    filteredDispositifsByAlgolia = hits.map(hit => {
+      const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
+      if (dispositif) {
+        dispositif.abstract = hit.highlight.abstract_fr.value;
+        dispositif.titreInformatif = hit.highlight.title_fr.value;
+        dispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+      }
+      return dispositif;
+    }).filter(d => !!d) as IDispositif[];
   }
 
-  const filteredDispositifsByAlgolia = [...dispositifs]
-    .filter(dispositif => filterByKeyword(dispositif, hits, query.search));
   const filteredDispositifs = queryDispositifs(query, filteredDispositifsByAlgolia);
-  oldSearch = query.search;
 
   return {
     dispositifs: filteredDispositifs.filter(d => d.typeContenu === "dispositif"),

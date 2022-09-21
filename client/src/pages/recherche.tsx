@@ -25,6 +25,7 @@ import { IDispositif, Theme } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
+import { languei18nSelector } from "services/Langue/langue.selectors";
 
 export type SearchQuery = {
   search: string;
@@ -50,14 +51,15 @@ export type Results = {
   demarches: IDispositif[];
 };
 
-const debouncedQuery = debounce((query, dispositifs, callback) => {
-  return queryDispositifsWithAlgolia(query, dispositifs).then(res => callback(res));
+const debouncedQuery = debounce((query, dispositifs, locale, callback) => {
+  return queryDispositifsWithAlgolia(query, dispositifs, locale).then(res => callback(res));
  }, 500);
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
   const router = useRouter();
   const initialQuery = decodeQuery(router.query);
+  const languei18nCode = useSelector(languei18nSelector);
 
   // search
   const [search, setSearch] = useState("");
@@ -119,7 +121,7 @@ const Recherche = () => {
       selectedType
     };
 
-    debouncedQuery(query, dispositifs, (res: any) => {
+    debouncedQuery(query, dispositifs, languei18nCode, (res: any) => {
       setFilteredResult(res);
       updateUrl();
     });

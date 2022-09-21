@@ -61,13 +61,17 @@ const DispositifCard = (props: Props) => {
           <span style={{ color: colors.color100 }} className="ml-2">{getDepartement()}</span>
         </div>
 
-        <div className={styles.title} style={{ color: colors.color100 }}>
-          {props.dispositif.titreInformatif}
-        </div>
+        <div
+          className={styles.title}
+          style={{ color: colors.color100 }}
+          dangerouslySetInnerHTML={{__html: props.dispositif.titreInformatif}}
+        />
 
-        <div className={cls(styles.text, styles.abstract)} style={{ color: colors.color100 }}>
-          {props.dispositif.abstract}
-        </div>
+        <div
+          className={cls(styles.text, styles.abstract)}
+          style={{ color: colors.color100 }}
+          dangerouslySetInnerHTML={{__html: props.dispositif.abstract}}
+        />
 
         <div className={cls(styles.text, "my-4")} style={{ color: colors.color100 }}>
           <div className="d-flex">
@@ -102,13 +106,16 @@ const DispositifCard = (props: Props) => {
               />
             </span>
           )}
-          <span className={cls(styles.text, "ml-2")} style={{ color: colors.color100 }}>
-            {props.dispositif?.mainSponsor.nom}
-          </span>
+          <span
+            className={cls(styles.text, "ml-2")}
+            style={{ color: colors.color100 }}
+            dangerouslySetInnerHTML={{__html: props.dispositif?.mainSponsor.nom}}
+          />
         </div>
       </DispositifLink>
     </Link>
   );
 };
 
+// TODO: specify properties
 export default memo(DispositifCard);
