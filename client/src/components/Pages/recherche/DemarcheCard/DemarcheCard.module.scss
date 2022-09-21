@@ -4,32 +4,6 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
-.container {
-  display: block;
-  position: relative;
-  width: 208px;
-  background: $white;
-  box-shadow: 0 4px 18px 0 #0000001A;
-  padding: u(8) u(4) u(4) u(4);
-  border-radius: $radius;
-  border: 2px solid transparent;
-  cursor: pointer;
-
-  &:hover {
-    border-color: $dark;
-    background-color: $gray30;
-    box-shadow: none;
-
-    :global(.theme-badge) {
-      background-color: $white !important;
-    }
-  }
-  em {
-    background-color: $bgfocus;
-    font-style: normal;
-  }
-}
-
 .title {
   @include text("large");
   margin-top: u(6);

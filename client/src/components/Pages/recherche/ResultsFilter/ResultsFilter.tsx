@@ -20,15 +20,15 @@ const ResultsFilter = (props: Props) => {
   const getCount = (type: string) => {
     switch (type) {
       case "all":
-        return `(${props.nbDemarches + props.nbDispositifs})`
+        return `(${props.nbDemarches + props.nbDispositifs})`;
       case "demarche":
-        return `(${props.nbDemarches})`
+        return `(${props.nbDemarches})`;
       case "dispositif":
-        return `(${props.nbDispositifs})`
+        return `(${props.nbDispositifs})`;
       default:
-        return ""
+        return "";
     }
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -44,34 +44,29 @@ const ResultsFilter = (props: Props) => {
         ))}
       </div>
 
-      <Dropdown
-      isOpen={open}
-      toggle={() => setOpen((o) => !o)}
-    >
-      <DropdownToggle className={styles.dropdown}>
-        <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-        {sortOptions.find(opt => opt.key === props.selectedSort)?.value}
-      </DropdownToggle>
-      <DropdownMenu className={styles.menu}>
-      {sortOptions.map((option, i) => {
-          const isSelected = props.selectedSort === option.key;
-          return (
-            <DropdownItem
-              key={i}
-              onClick={() => props.setSelectedSort(option.key)}
-              className={cls(styles.item, isSelected && styles.selected)}
-            >
-              {option.value}
-              {isSelected &&
-                <EVAIcon name="checkmark-outline" fill="white" size={20} />
-              }
-            </DropdownItem>
-          );
-        })}
-      </DropdownMenu>
-    </Dropdown>
+      <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
+        <DropdownToggle className={styles.dropdown}>
+          <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
+          {sortOptions.find((opt) => opt.key === props.selectedSort)?.value}
+        </DropdownToggle>
+        <DropdownMenu className={styles.menu}>
+          {sortOptions.map((option, i) => {
+            const isSelected = props.selectedSort === option.key;
+            return (
+              <DropdownItem
+                key={i}
+                onClick={() => props.setSelectedSort(option.key)}
+                className={cls(styles.item, isSelected && styles.selected)}
+              >
+                {option.value}
+                {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
+              </DropdownItem>
+            );
+          })}
+        </DropdownMenu>
+      </Dropdown>
     </div>
-  )
+  );
 };
 
 export default ResultsFilter;

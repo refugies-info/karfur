@@ -10,10 +10,10 @@ interface Props {
   value: string;
   inputValue: string;
   active: boolean;
-  setActive: (active: boolean) => void
-  onChange?: (e: any) => void
-  loading?: boolean
-  focusout?: boolean
+  setActive: (active: boolean) => void;
+  onChange?: (e: any) => void;
+  loading?: boolean;
+  focusout?: boolean;
 }
 
 const SearchInput = (props: Props) => {
@@ -25,26 +25,24 @@ const SearchInput = (props: Props) => {
   }, [setActive, active]);
 
   useEffect(() => {
-    if (props.focusout) document.addEventListener("focusout", handleFocusOut)
+    if (props.focusout) document.addEventListener("focusout", handleFocusOut);
     return () => {
-      document.removeEventListener("focusout", handleFocusOut)
-  };
-  }, [handleFocusOut, props.focusout])
+      document.removeEventListener("focusout", handleFocusOut);
+    };
+  }, [handleFocusOut, props.focusout]);
 
   const hasBlueIcon = active || !!props.value;
 
   return (
     <div className={cls(styles.filter, active && styles.active)}>
       <span className={cls(styles.icon, hasBlueIcon && styles.active)}>
-        <EVAIcon
-          name={props.icon}
-          fill={hasBlueIcon ? "white" : "black"}
-          size="large"
-        />
+        <EVAIcon name={props.icon} fill={hasBlueIcon ? "white" : "black"} size="large" />
       </span>
       <span className={styles.search}>
-        <label className={styles.label} htmlFor={props.label}>{props.label}</label>
-        {active ?
+        <label className={styles.label} htmlFor={props.label}>
+          {props.label}
+        </label>
+        {active ? (
           <input
             ref={ref}
             id={props.label}
@@ -54,14 +52,13 @@ const SearchInput = (props: Props) => {
             onChange={props.onChange}
             value={props.inputValue}
             autoFocus
-          /> :
-          <div className={cls(styles.value, !props.value && styles.empty)}>
-            {props.value || props.placeholder}
-          </div>
-        }
+          />
+        ) : (
+          <div className={cls(styles.value, !props.value && styles.empty)}>{props.value || props.placeholder}</div>
+        )}
       </span>
     </div>
-  )
+  );
 };
 
 export default SearchInput;

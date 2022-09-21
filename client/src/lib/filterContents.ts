@@ -158,9 +158,10 @@ export const queryDispositifsWithAlgolia = async (
     filteredDispositifsByAlgolia = hits.map(hit => {
       const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
       if (dispositif) {
-        dispositif.abstract = hit.highlight.abstract_fr.value;
-        dispositif.titreInformatif = hit.highlight.title_fr.value;
-        dispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+        dispositif.abstract = hit.highlight[`abstract_${locale}`].value || dispositif.abstract;
+        dispositif.titreInformatif = hit.highlight[`title_${locale}`].value || dispositif.titreInformatif;
+        dispositif.titreMarque = hit.highlight[`titreMarque_${locale}`].value || dispositif.titreMarque;
+        // dispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
       }
       return dispositif;
     }).filter(d => !!d) as IDispositif[];

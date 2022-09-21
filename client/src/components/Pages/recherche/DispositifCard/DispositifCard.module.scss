@@ -1,33 +1,8 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
-
-.container {
-  display: block;
-  width: 260px;
-  background: $white;
-  box-shadow: 0 4px 18px 0 #0000001A;
-  padding: u(4);
-  border-radius: $radius;
-  border: 2px solid transparent;
-  cursor: pointer;
-
-  &:hover {
-    border-color: $dark;
-    background-color: $gray30;
-    box-shadow: none;
-
-    :global(.theme-badge) {
-      background-color: $white !important;
-    }
-  }
-
-  em {
-    background-color: $bgfocus;
-    font-style: normal;
-  }
-}
 
 .location {
   display: flex;
@@ -35,10 +10,9 @@
 }
 
 .title {
-  font-size: $text-large;
-  line-height: 22px;
+  @include text("large");
   height: 92px;
-  margin: 8px 0;
+  margin: u(2) 0;
   font-weight: bold;
 }
 
@@ -51,23 +25,32 @@
   line-height: 15px;
 }
 
+.infos {
+  height: 36px;
+}
+
 .badges {
-  margin-bottom: 4px;
-  margin-right: 4px;
+  margin-bottom: u(1);
+  margin-right: u(1);
+}
+
+.themes {
+  height: 57px;
 }
 
 .sponsor {
   display: flex;
   align-items: center;
-  margin-top: 16px;
-  padding-top: 8px;
+  margin-top: u(4);
+  padding-top: u(2);
   border-top: 1px solid $dark;
 
   .picture {
     width: 48px;
     height: 48px;
     background-color: $white;
-    border-radius: 8px;
-    padding: 4px;
+    border-radius: u(2);
+    padding: u(1);
+    flex-shrink: 0;
   }
 }

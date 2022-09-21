@@ -6,9 +6,10 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap
 import Checkbox from "components/UI/Checkbox";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 
-type SetSelected = Dispatch<SetStateAction<AgeOptions[]>> |
-  Dispatch<SetStateAction<FrenchOptions[]>> |
-  Dispatch<SetStateAction<string[]>>;
+type SetSelected =
+  | Dispatch<SetStateAction<AgeOptions[]>>
+  | Dispatch<SetStateAction<FrenchOptions[]>>
+  | Dispatch<SetStateAction<string[]>>;
 type Selected = AgeOptions | FrenchOptions | string;
 
 interface Props {
@@ -38,9 +39,7 @@ const SearchFilter = (props: Props) => {
       className={cls(styles.dropdown, open && styles.show, props.selected.length > 0 && styles.selected)}
     >
       <DropdownToggle>
-        <span className={styles.value}>
-          {props.label}
-        </span>
+        <span className={styles.value}>{props.label}</span>
         <EVAIcon
           className={styles.icon}
           name="chevron-down-outline"

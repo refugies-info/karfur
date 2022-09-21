@@ -22,16 +22,19 @@ interface Props {
 const SearchResults = (props: Props) => {
   const [hideDemarches, setHideDemarches] = useState(false);
 
-  useEffect(() => { // hide after loading for SEO purposes
-    setHideDemarches(true)
+  useEffect(() => {
+    // hide after loading for SEO purposes
+    setHideDemarches(true);
   }, []);
 
-  const demarches = hideDemarches ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS) : props.filteredResult.demarches;
+  const demarches = hideDemarches
+    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
+    : props.filteredResult.demarches;
 
   return (
     <>
       {/* <NotDeployedBanner /> */}
-      {demarches.length > 0 &&
+      {demarches.length > 0 && (
         <div className="position-relative">
           <div className={cls(styles.results, styles.demarches, props.selectedType === "dispositif" && styles.hidden)}>
             <DemarcheCardTitle
@@ -42,15 +45,12 @@ const SearchResults = (props: Props) => {
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          {props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS
-            && <SeeMoreButton
-              onClick={() => setHideDemarches(h => !h)}
-              visible={!hideDemarches}
-            />
-          }
+          {props.selectedType !== "dispositif" && props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
+            <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
+          )}
         </div>
-      }
-      {props.filteredResult.dispositifs.length > 0 &&
+      )}
+      {props.filteredResult.dispositifs.length > 0 && (
         <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
           <DispositifCardTitle
             count={props.filteredResult.dispositifs.length}
@@ -60,7 +60,7 @@ const SearchResults = (props: Props) => {
             <DispositifCard key={d._id.toString()} dispositif={d} />
           ))}
         </div>
-      }
+      )}
     </>
   );
 };

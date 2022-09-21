@@ -24,9 +24,9 @@ interface Props {
   departmentsSelected: string[];
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   filterAge: AgeOptions[];
-  setFilterAge:Dispatch<SetStateAction<AgeOptions[]>>;
+  setFilterAge: Dispatch<SetStateAction<AgeOptions[]>>;
   filterFrenchLevel: FrenchOptions[];
-  setFilterFrenchLevel:Dispatch<SetStateAction<FrenchOptions[]>>;
+  setFilterFrenchLevel: Dispatch<SetStateAction<FrenchOptions[]>>;
   filterLanguage: string[];
   setFilterLanguage: Dispatch<SetStateAction<string[]>>;
 }
@@ -44,7 +44,7 @@ const SearchHeader = (props: Props) => {
     filterFrenchLevel,
     setFilterFrenchLevel,
     filterLanguage,
-    setFilterLanguage,
+    setFilterLanguage
   } = props;
 
   // KEYWORD
@@ -58,7 +58,7 @@ const SearchHeader = (props: Props) => {
   const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
 
   useEffect(() => {
-    setThemeDisplayedValue(props.themesSelected.map(t => t.short.fr).join(", "))
+    setThemeDisplayedValue(props.themesSelected.map((t) => t.short.fr).join(", "));
   }, [props.themesSelected]);
 
   // LOCATION
@@ -87,9 +87,10 @@ const SearchHeader = (props: Props) => {
 
   useEffect(() => {
     if (locationSearch) {
-      getPlacePredictions({ input: locationSearch })
+      getPlacePredictions({ input: locationSearch });
     }
-  }, [locationSearch, getPlacePredictions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locationSearch]);
 
   // FILTERS
   const languages = useSelector(allLanguesSelector);
@@ -97,23 +98,25 @@ const SearchHeader = (props: Props) => {
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
   useEffect(() => {
     if (filterAge.length) {
-      const value = filterAge.map(option => ageFilters.find(a => a.key === option)?.value).join(", ");
+      const value = filterAge.map((option) => ageFilters.find((a) => a.key === option)?.value).join(", ");
       setAgeDisplayedValue(value);
     }
   }, [filterAge]);
 
   const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
-    useEffect(() => {
+  useEffect(() => {
     if (filterFrenchLevel.length) {
-      const value = filterFrenchLevel.map(option => frenchLevelFilter.find(a => a.key === option)?.value).join(", ");
+      const value = filterFrenchLevel
+        .map((option) => frenchLevelFilter.find((a) => a.key === option)?.value)
+        .join(", ");
       setFrenchLevelDisplayedValue(value);
     }
-    }, [filterFrenchLevel]);
+  }, [filterFrenchLevel]);
 
   const [languageDisplayedValue, setLanguageDisplayedValue] = useState("");
   useEffect(() => {
     if (filterLanguage.length) {
-      const value = filterLanguage.map(option => languages.find(a => a.i18nCode === option)?.langueFr).join(", ");
+      const value = filterLanguage.map((option) => languages.find((a) => a.i18nCode === option)?.langueFr).join(", ");
       setLanguageDisplayedValue(value);
     }
   }, [filterLanguage, languages]);
@@ -125,7 +128,7 @@ const SearchHeader = (props: Props) => {
     setFilterAge([]);
     setFilterFrenchLevel([]);
     setFilterLanguage([]);
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -170,11 +173,7 @@ const SearchHeader = (props: Props) => {
               />
             </DropdownToggle>
             <DropdownMenu>
-              <ThemeDropdown
-                needsSelected={needsSelected}
-                setNeedsSelected={setNeedsSelected}
-                search={themeSearch}
-              />
+              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} search={themeSearch} />
             </DropdownMenu>
           </Dropdown>
 
@@ -216,15 +215,8 @@ const SearchHeader = (props: Props) => {
               options={languages.map((ln) => ({ key: ln.i18nCode, value: ln.langueFr }))}
             />
           </div>
-          <Button
-            className={styles.reset}
-            onClick={resetFilters}
-          >
-            <EVAIcon
-              name="refresh-outline"
-              fill="white"
-              className="mr-2"
-            />
+          <Button className={styles.reset} onClick={resetFilters}>
+            <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
             Effacer tous les filtres
           </Button>
         </div>

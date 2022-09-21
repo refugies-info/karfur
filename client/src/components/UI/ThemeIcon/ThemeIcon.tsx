@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { Theme } from "types/interface";
 import styles from "./ThemeIcon.module.scss";

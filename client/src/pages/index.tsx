@@ -8,7 +8,6 @@ import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 import qs from "query-string";
 import { colors } from "colors";
-import { getSearchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
 import UkrainePopup from "components/Pages/homepage/UkrainePopup";
@@ -63,8 +62,6 @@ const Homepage = (props: Props) => {
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleOverlay = () => setOverlay(!overlay);
   const themes = useSelector(themesSelector);
-  const searchTheme = getSearchTheme(themes);
-
   const isRTL = useRTL();
 
   return (
@@ -84,7 +81,6 @@ const Homepage = (props: Props) => {
 
           <div className="search-row">
             <HomeSearch
-              searchItem={searchTheme}
               togglePopup={togglePopup}
               toggleOverlay={toggleOverlay}
               toggleModal={toggleShowTagModal}

@@ -182,10 +182,10 @@ const ThemeDropdown = (props: Props) => {
               {props.search &&
                 // check if this need has a different theme from previous one
                 (i === 0 || displayedNeeds[i - 1].theme._id !== need.theme._id) && (
-                <div className={styles.list_theme}>
-                  <TagName theme={need.theme} colored={true} size={20} />
-                </div>
-              )}
+                  <div className={styles.list_theme}>
+                    <TagName theme={need.theme} colored={true} size={20} />
+                  </div>
+                )}
               <ButtonNeed
                 className={styles.btn}
                 color100={need.theme.colors.color100}

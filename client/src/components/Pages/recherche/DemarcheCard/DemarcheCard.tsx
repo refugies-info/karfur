@@ -1,6 +1,5 @@
 import React, {memo} from "react";
 import styled from "styled-components";
-import styles from "./DemarcheCard.module.scss";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import { IDispositif } from "types/interface";
 import Image from "next/image";
@@ -8,6 +7,9 @@ import ThemeBadge from "components/UI/ThemeBadge";
 import Link from "next/link";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
+import styles from "./DemarcheCard.module.scss";
+import commonStyles from "scss/components/contentCard.module.scss";
+import { cls } from "lib/classname";
 
 type DemarcheLinkProps = {
   background: string;
@@ -15,9 +17,9 @@ type DemarcheLinkProps = {
 };
 const DemarcheLink = styled.a`
   :hover {
-    background-color: ${(props: DemarcheLinkProps) => props.background};
-    border-color: ${(props: DemarcheLinkProps) => props.border};
-    color: ${(props: DemarcheLinkProps) => props.border};
+    background-color: ${(props: DemarcheLinkProps) => props.background} !important;
+    border-color: ${(props: DemarcheLinkProps) => props.border} !important;
+    color: ${(props: DemarcheLinkProps) => props.border} !important;
   }
 `;
 
@@ -40,7 +42,11 @@ const DemarcheCard = (props: Props) => {
       }}
       passHref
     >
-      <DemarcheLink className={styles.container} background={colors.color30} border={colors.color100}>
+      <DemarcheLink
+        className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
+        background={colors.color30}
+        border={colors.color100}
+      >
         {hasUpdate &&
           <div className={styles.update}>
             <span>mise à jour</span>
