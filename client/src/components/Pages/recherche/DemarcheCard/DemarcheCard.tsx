@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import styled from "styled-components";
 import styles from "./DemarcheCard.module.scss";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
@@ -59,4 +59,4 @@ const DemarcheCard = (props: Props) => {
   );
 };
 
-export default DemarcheCard;
+export default memo(DemarcheCard);

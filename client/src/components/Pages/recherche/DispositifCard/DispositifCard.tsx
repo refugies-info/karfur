@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import styled from "styled-components";
 import styles from "./DispositifCard.module.scss";
 import { IDispositif } from "types/interface";
@@ -111,4 +111,4 @@ const DispositifCard = (props: Props) => {
   );
 };
 
-export default DispositifCard;
+export default memo(DispositifCard);
