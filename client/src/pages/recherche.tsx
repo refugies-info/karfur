@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { debounce } from "lodash";
+import qs from "query-string";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import SEO from "components/Seo";
 import { wrapper } from "services/configureStore";
@@ -17,11 +18,13 @@ import SearchHeader from "components/Pages/recherche/SearchHeader";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
-import { queryDispositifs } from "lib/filterContents";
+import { decodeQuery, queryDispositifs, queryDispositifsWithAlgolia } from "lib/filterContents";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import { IDispositif, Theme } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
+import { useRouter } from "next/router";
+import { getPath } from "routes";
 
 export type SearchQuery = {
   search: string;
@@ -33,40 +36,78 @@ export type SearchQuery = {
   selectedSort: SortOptions;
   selectedType: TypeOptions;
 };
+export type UrlSearchQuery = {
+  departments?: string | string[];
+  needs?: string | ObjectId[];
+  ages?: string | AgeOptions[];
+  frenchLevels?: string | FrenchOptions[];
+  language?: string | string[];
+  sort?: string | SortOptions;
+  type?: string | TypeOptions;
+};
 export type Results = {
   dispositifs: IDispositif[];
   demarches: IDispositif[];
 };
 
-const debouncedQuery = debounce((query, dispositifs, setResult) => {
-  return queryDispositifs(query, dispositifs).then(res => setResult(res));
+const debouncedQuery = debounce((query, dispositifs, callback) => {
+  return queryDispositifsWithAlgolia(query, dispositifs).then(res => callback(res));
  }, 500);
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
+  const router = useRouter();
+  const initialQuery = decodeQuery(router.query);
 
   // search
   const [search, setSearch] = useState("");
-  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([]);
+  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>(initialQuery.needsSelected);
   const [themesSelected, setThemesSelected] = useState<Theme[]>([]);
-  const [departmentsSelected, setDepartmentsSelected] = useState<string[]>([]);
+  const [departmentsSelected, setDepartmentsSelected] = useState<string[]>(initialQuery.departmentsSelected);
 
   // additional search
-  const [filterAge, setFilterAge] = useState<AgeOptions[]>([]);
-  const [filterFrenchLevel, setFilterFrenchLevel] = useState<FrenchOptions[]>([]);
-  const [filterLanguage, setFilterLanguage] = useState<string[]>([]);
+  const [filterAge, setFilterAge] = useState<AgeOptions[]>(initialQuery.filterAge);
+  const [filterFrenchLevel, setFilterFrenchLevel] = useState<FrenchOptions[]>(initialQuery.filterFrenchLevel);
+  const [filterLanguage, setFilterLanguage] = useState<string[]>(initialQuery.filterLanguage);
 
   // sort and filter
-  const [selectedSort, setSelectedSort] = useState<SortOptions>("view");
-  const [selectedType, setSelectedType] = useState<TypeOptions>("all");
+  const [selectedSort, setSelectedSort] = useState<SortOptions>(initialQuery.selectedSort);
+  const [selectedType, setSelectedType] = useState<TypeOptions>(initialQuery.selectedType);
 
   // results
-  const [filteredResult, setFilteredResult] = useState<Results>({
-    dispositifs: dispositifs.filter((d) => d.typeContenu === "dispositif"),
-    demarches: dispositifs.filter((d) => d.typeContenu === "demarche"),
-  })
+  const [filteredResult, setFilteredResult] = useState<Results>(() => {
+    const initialResults = queryDispositifs(initialQuery, dispositifs);
+    return {
+      dispositifs: initialResults.filter((d) => d.typeContenu === "dispositif"),
+      demarches: initialResults.filter((d) => d.typeContenu === "demarche"),
+    }
+  });
 
   useEffect(() => {
+    const updateUrl = () => {
+      const urlQuery: UrlSearchQuery = {  }
+      if (needsSelected) urlQuery.needs = needsSelected;
+      if (departmentsSelected) urlQuery.departments = departmentsSelected;
+      if (filterAge) urlQuery.ages = filterAge;
+      if (filterFrenchLevel) urlQuery.frenchLevels = filterFrenchLevel;
+      if (filterLanguage) urlQuery.language = filterLanguage;
+      if (selectedSort) urlQuery.sort = selectedSort;
+      if (selectedType) urlQuery.type = selectedType;
+
+      const locale = router.locale;
+      const oldQueryString = qs.stringify(router.query, { arrayFormat: "comma" });
+      const newQueryString = qs.stringify(urlQuery, { arrayFormat: "comma" });
+      if (oldQueryString !== newQueryString) {
+        router.push(
+          {
+            pathname: getPath("/recherche", router.locale),
+            search: newQueryString,
+          },
+          undefined,
+          { locale: locale, shallow: true }
+        );
+      }
+    };
     const query: SearchQuery = {
       search,
       needsSelected,
@@ -78,7 +119,11 @@ const Recherche = () => {
       selectedType
     };
 
-    debouncedQuery(query, dispositifs, setFilteredResult);
+    debouncedQuery(query, dispositifs, (res: any) => {
+      setFilteredResult(res);
+      updateUrl();
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     search,
     needsSelected,

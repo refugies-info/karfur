@@ -1,6 +1,6 @@
-import { AgeOptions, FrenchOptions, SortOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { IDispositif } from "types/interface";
-import { Results, SearchQuery } from "pages/recherche";
+import { Results, SearchQuery, UrlSearchQuery } from "pages/recherche";
 import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "./getDispositifInfos";
 import algoliasearch from "algoliasearch";
@@ -106,7 +106,20 @@ const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: Sor
   return dispA[sortKey] > dispB[sortKey] ? -1 : dispA[sortKey] < dispB[sortKey] ? 1 : 0;
 }
 
-export const queryDispositifs = async (
+export const queryDispositifs = (
+  query: SearchQuery,
+  dispositifs: IDispositif[],
+) => {
+  return [...dispositifs]
+    .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
+    .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
+    .filter(dispositif => filterByAge(dispositif, query.filterAge))
+    .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
+    .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
+    .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
+}
+
+export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: IDispositif[],
 ): Promise<Results> => {
@@ -117,15 +130,9 @@ export const queryDispositifs = async (
     hits = await index.search(query.search).then(({ hits }) => hits.map(h => h.objectID));
   }
 
-  let filteredDispositifs = [...dispositifs]
-    .filter(dispositif => filterByKeyword(dispositif, hits, query.search))
-    .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
-    .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
-    .filter(dispositif => filterByAge(dispositif, query.filterAge))
-    .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
-    .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
-    .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
-
+  const filteredDispositifsByAlgolia = [...dispositifs]
+    .filter(dispositif => filterByKeyword(dispositif, hits, query.search));
+  const filteredDispositifs = queryDispositifs(query, filteredDispositifsByAlgolia);
   oldSearch = query.search;
 
   return {
@@ -135,41 +142,32 @@ export const queryDispositifs = async (
 };
 
 
-interface QueryState {
-  searchToggleVisible: boolean
-  geoSearch: boolean
-  query: any
-}
-export const decodeQuery = (routerQuery: any): QueryState => {
+export const decodeQuery = (routerQuery: any): SearchQuery => {
   const {
-    tag, dep, city, age, niveauFrancais, filter, langue, tri
-  } = routerQuery;
-  let searchToggleVisible = false;
-  let geoSearch = false;
-  let query: any = { order: "" }
+    departments, needs, ages, frenchLevels, language, sort, type
+  } = routerQuery as UrlSearchQuery;
 
-  if (filter || langue || tri) searchToggleVisible = true;
+  let query: SearchQuery = {
+    search: "",
+    departmentsSelected: [],
+    needsSelected: [],
+    filterAge: [],
+    filterFrenchLevel: [],
+    filterLanguage: [],
+    selectedSort: "date",
+    selectedType: "all",
+  }
 
   // Reinject filters value in search
-  if (tag || age || niveauFrancais || dep || city || filter || langue || tri) {
-    if (tag) query.theme = decodeURIComponent(tag).split(",");
-    if (age) query.age = decodeURIComponent(age);
-    if (dep && city) {
-      query.loc = {
-        city: decodeURIComponent(city),
-        dep: decodeURIComponent(dep)
-      }
-      geoSearch = true;
-    }
-    if (niveauFrancais) query.frenchLevel = decodeURIComponent(niveauFrancais);
-    if (filter) query.type = decodeURIComponent(filter) as ("dispositifs" | "demarches" | undefined);
-    if (langue) query.langue = langue
-    if (tri) query.order = tri
+  if (departments || needs || ages || frenchLevels || language || sort || type) {
+    if (departments) query.departmentsSelected = decodeURIComponent(departments as string).split(",");
+    if (needs) query.needsSelected = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
+    if (ages) query.filterAge = decodeURIComponent(ages as string).split(",") as AgeOptions[];
+    if (frenchLevels) query.filterFrenchLevel = decodeURIComponent(frenchLevels as string).split(",") as FrenchOptions[];
+    if (language) query.filterLanguage = decodeURIComponent(language as string).split(",");
+    if (sort) query.selectedSort = decodeURIComponent(sort as string) as SortOptions;
+    if (type) query.selectedType = decodeURIComponent(type as string) as TypeOptions;
   }
 
-  return {
-    searchToggleVisible,
-    geoSearch,
-    query,
-  }
+  return query;
 }
