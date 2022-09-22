@@ -13,7 +13,7 @@ type SetSelected =
 type Selected = AgeOptions | FrenchOptions | string;
 
 interface Props {
-  options: { key: Selected; value: string }[];
+  options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
   setSelected: SetSelected;
   label: string;

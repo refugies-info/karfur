@@ -1,0 +1,70 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.section {
+  padding: u(30) 0;
+
+  &.white {
+    background-color: $white;
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.content {
+  margin-top: u(14);
+}
+
+.themes {
+  display:flex;
+  flex-wrap: wrap;
+  gap: u(3);
+  margin-top: u(16);
+}
+
+.results {
+  display: flex;
+  margin-top: u(8);
+
+  &.dispositifs {
+    gap: u(8);
+  }
+
+  &.demarches {
+    gap: u(6);
+    margin-bottom: 120px;
+  }
+}
+
+.departments {
+  margin-top: u(20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: u(4);
+
+  .btn {
+    @include text("large");
+    font-weight: bold;
+    box-shadow: 0 4px 18px 0 #0000001A;
+    padding: u(2) u(4);
+    border-radius: u(2);
+    border: 1px solid transparent;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: $dark;
+      background-color: $gray40b;
+      box-shadow: none;
+    }
+  }
+}
+
+.image {
+  margin-top: u(20);
+}

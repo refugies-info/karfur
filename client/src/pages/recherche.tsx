@@ -26,6 +26,7 @@ import { needsSelector } from "services/Needs/needs.selectors";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { languei18nSelector } from "services/Langue/langue.selectors";
+import HomeSearch from "components/Pages/recherche/HomeSearch";
 
 export type SearchQuery = {
   search: string;
@@ -52,8 +53,8 @@ export type Results = {
 };
 
 const debouncedQuery = debounce((query, dispositifs, locale, callback) => {
-  return queryDispositifsWithAlgolia(query, dispositifs, locale).then(res => callback(res));
- }, 500);
+  return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
+}, 500);
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -81,13 +82,28 @@ const Recherche = () => {
     const initialResults = queryDispositifs(initialQuery, dispositifs);
     return {
       dispositifs: initialResults.filter((d) => d.typeContenu === "dispositif"),
-      demarches: initialResults.filter((d) => d.typeContenu === "demarche"),
-    }
+      demarches: initialResults.filter((d) => d.typeContenu === "demarche")
+    };
   });
 
+  const [showHome, setShowHome] = useState(true);
+
   useEffect(() => {
+    // toggle home screen
+    const hideHome =
+      search ||
+      needsSelected.length ||
+      departmentsSelected.length ||
+      filterAge.length ||
+      filterFrenchLevel.length ||
+      filterLanguage.length ||
+      selectedSort !== "date" ||
+      selectedType !== "all";
+    setShowHome(!hideHome);
+
+    // update url
     const updateUrl = () => {
-      const urlQuery: UrlSearchQuery = {  }
+      const urlQuery: UrlSearchQuery = {};
       if (needsSelected) urlQuery.needs = needsSelected;
       if (departmentsSelected) urlQuery.departments = departmentsSelected;
       if (filterAge) urlQuery.ages = filterAge;
@@ -103,13 +119,17 @@ const Recherche = () => {
         router.push(
           {
             pathname: getPath("/recherche", router.locale),
-            search: newQueryString,
+            search: newQueryString
           },
           undefined,
           { locale: locale, shallow: true }
         );
       }
     };
+
+    updateUrl();
+
+    // query dispositifs
     const query: SearchQuery = {
       search,
       needsSelected,
@@ -120,12 +140,10 @@ const Recherche = () => {
       selectedSort,
       selectedType
     };
-
     debouncedQuery(query, dispositifs, languei18nCode, (res: any) => {
       setFilteredResult(res);
-      updateUrl();
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     search,
     needsSelected,
@@ -143,16 +161,19 @@ const Recherche = () => {
   useEffect(() => {
     const themes: Theme[] = [];
     for (const need of needsSelected) {
-      const theme = allNeeds.find(n => n._id === need)?.theme
-      if (theme) themes.push(theme);
+      const theme = allNeeds.find((n) => n._id === need)?.theme;
+      if (theme && !themes.find((t) => t._id === theme._id)) {
+        themes.push(theme);
+      }
     }
-    setThemesSelected([...new Set(themes)])
-  }, [needsSelected, allNeeds])
+    setThemesSelected(themes);
+  }, [needsSelected, allNeeds]);
 
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
       <SearchHeader
+        searchMinified={showHome}
         nbResults={filteredResult.dispositifs.length + filteredResult.demarches.length}
         search={search}
         setSearch={setSearch}
@@ -169,26 +190,30 @@ const Recherche = () => {
         setFilterLanguage={setFilterLanguage}
       />
 
-      <Container className={styles.container_inner}>
-        <ResultsFilter
-          nbDemarches={filteredResult.demarches.length}
-          nbDispositifs={filteredResult.dispositifs.length}
-          selectedSort={selectedSort}
-          setSelectedSort={setSelectedSort}
-          selectedType={selectedType}
+      {!showHome ? (
+        <Container className={styles.container_inner}>
+          <ResultsFilter
+            nbDemarches={filteredResult.demarches.length}
+            nbDispositifs={filteredResult.dispositifs.length}
+            selectedSort={selectedSort}
+            setSelectedSort={setSelectedSort}
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+          />
+          <SearchResults filteredResult={filteredResult} selectedType={selectedType} themesSelected={themesSelected} />
+        </Container>
+      ) : (
+        <HomeSearch
+          setDepartmentsSelected={setDepartmentsSelected}
           setSelectedType={setSelectedType}
+          setNeedsSelected={setNeedsSelected}
+          demarches={filteredResult.demarches.slice(0, 5)}
+          dispositifs={filteredResult.dispositifs.slice(0, 4)}
         />
-
-        <SearchResults
-          filteredResult={filteredResult}
-          selectedType={selectedType}
-          themesSelected={themesSelected}
-        />
-      </Container>
+      )}
     </div>
   );
 };
-
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ locale }) => {
   if (locale) {

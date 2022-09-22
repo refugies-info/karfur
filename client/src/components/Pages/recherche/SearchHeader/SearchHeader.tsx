@@ -15,6 +15,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { Theme } from "types/interface";
 
 interface Props {
+  searchMinified: boolean;
   nbResults: number;
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
@@ -133,7 +134,11 @@ const SearchHeader = (props: Props) => {
   return (
     <div className={styles.container}>
       <Container className={styles.container_inner}>
-        <h1 className="h3 text-white">{props.nbResults} fiches disponibles pour votre recherche</h1>
+        {props.searchMinified ? (
+          <h1 className="h3 text-white">Trouver l'information parmi nos {props.nbResults} fiches</h1>
+        ) : (
+          <h1 className="h3 text-white">{props.nbResults} fiches disponibles pour votre recherche</h1>
+        )}
         <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
             <DropdownToggle>
@@ -194,32 +199,42 @@ const SearchHeader = (props: Props) => {
           </div>
         </div>
 
-        <div className={styles.subheader}>
-          <div className={styles.filters}>
-            <SearchFilter
-              label={filterAge.length === 0 ? "Tranche d'âge" : ageDisplayedValue}
-              selected={filterAge}
-              setSelected={setFilterAge}
-              options={ageFilters}
-            />
-            <SearchFilter
-              label={filterFrenchLevel.length === 0 ? "Niveau de français" : frenchLevelDisplayedValue}
-              selected={filterFrenchLevel}
-              setSelected={setFilterFrenchLevel}
-              options={frenchLevelFilter}
-            />
-            <SearchFilter
-              label={filterLanguage.length === 0 ? "Fiches traduites en" : languageDisplayedValue}
-              selected={filterLanguage}
-              setSelected={setFilterLanguage}
-              options={languages.map((ln) => ({ key: ln.i18nCode, value: ln.langueFr }))}
-            />
+        {!props.searchMinified && (
+          <div className={styles.subheader}>
+            <div className={styles.filters}>
+              <SearchFilter
+                label={filterAge.length === 0 ? "Tranche d'âge" : ageDisplayedValue}
+                selected={filterAge}
+                setSelected={setFilterAge}
+                options={ageFilters}
+              />
+              <SearchFilter
+                label={filterFrenchLevel.length === 0 ? "Niveau de français" : frenchLevelDisplayedValue}
+                selected={filterFrenchLevel}
+                setSelected={setFilterFrenchLevel}
+                options={frenchLevelFilter}
+              />
+              <SearchFilter
+                label={filterLanguage.length === 0 ? "Fiches traduites en" : languageDisplayedValue}
+                selected={filterLanguage}
+                setSelected={setFilterLanguage}
+                options={languages.map((ln) => ({
+                  key: ln.i18nCode,
+                  value: (
+                    <>
+                      <i className={`flag-icon flag-icon-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode} />
+                      {ln.langueFr}
+                    </>
+                  )
+                }))}
+              />
+            </div>
+            <Button className={styles.reset} onClick={resetFilters}>
+              <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
+              Effacer tous les filtres
+            </Button>
           </div>
-          <Button className={styles.reset} onClick={resetFilters}>
-            <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
-            Effacer tous les filtres
-          </Button>
-        </div>
+        )}
       </Container>
     </div>
   );
