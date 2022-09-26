@@ -38,7 +38,6 @@ export const Widgets = () => {
     ("demarches" | "dispositifs")[]
   >(["demarches", "dispositifs"]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-  const [selectedCity, setSelectedCity] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
@@ -61,7 +60,6 @@ export const Widgets = () => {
     setSelectedThemes([]);
     setSelectedTypeContenu(["demarches", "dispositifs"]);
     setSelectedLanguages([]);
-    setSelectedCity("");
   }, []);
 
   const createWidget = (e: any) => {
@@ -73,10 +71,7 @@ export const Widgets = () => {
         themes: selectedThemes,
         typeContenu: selectedTypeContenu,
         languages: selectedLanguages,
-        location: {
-          city: selectedCity,
-          department: selectedDepartment,
-        },
+        department: selectedDepartment,
       })
     );
     resetForm();
@@ -126,9 +121,7 @@ export const Widgets = () => {
               />
 
               <LocationInput
-                selectedCity={selectedCity}
                 selectedDepartment={selectedDepartment}
-                setSelectedCity={setSelectedCity}
                 setSelectedDepartment={setSelectedDepartment}
               />
 

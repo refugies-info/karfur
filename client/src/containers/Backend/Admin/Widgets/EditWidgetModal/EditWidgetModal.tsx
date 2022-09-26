@@ -31,11 +31,8 @@ export const EditWidgetModal = (props: Props) => {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
     props.widget?.languages || []
   );
-  const [selectedCity, setSelectedCity] = useState(
-    props.widget?.location?.city || ""
-  );
   const [selectedDepartment, setSelectedDepartment] = useState(
-    props.widget?.location?.department || ""
+    props.widget?.department || ""
   );
   const [code, setCode] = useState(props.widget ? generateIframe(props.widget) : "");
   const [copyAndCloseAfterEdit, setCopyAndCloseAfterEdit] = useState(false);
@@ -45,13 +42,11 @@ export const EditWidgetModal = (props: Props) => {
       setSelectedThemes(props.widget.themes);
       setSelectedTypeContenu(props.widget.typeContenu);
       setSelectedLanguages(props.widget.languages || []);
-      setSelectedCity(props.widget?.location?.city || "");
-      setSelectedDepartment(props.widget?.location?.department || "");
+      setSelectedDepartment(props.widget?.department || "");
     } else {
       setSelectedThemes([]);
       setSelectedTypeContenu([]);
       setSelectedLanguages([]);
-      setSelectedCity("");
       setSelectedDepartment("");
     }
   }, [props.widget]);
@@ -63,10 +58,7 @@ export const EditWidgetModal = (props: Props) => {
       themes: selectedThemes,
       typeContenu: selectedTypeContenu,
       languages: selectedLanguages,
-      location: {
-        city: selectedCity,
-        department: selectedDepartment,
-      }
+      department: selectedDepartment,
     }));
   }
 
@@ -113,9 +105,7 @@ export const EditWidgetModal = (props: Props) => {
             />
 
             <LocationInput
-              selectedCity={selectedCity}
               selectedDepartment={selectedDepartment}
-              setSelectedCity={setSelectedCity}
               setSelectedDepartment={setSelectedDepartment}
             />
 

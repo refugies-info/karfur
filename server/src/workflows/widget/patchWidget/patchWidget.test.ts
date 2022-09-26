@@ -76,10 +76,7 @@ describe("patchWidget", () => {
         typeContenu: ["dispositifs"],
         themes: [{_id: "xyz"}],
         languages: [],
-        location: {
-          city: "",
-          department: ""
-        }
+        department: ""
       }
     };
     await patchWidget(req, res);
@@ -88,10 +85,7 @@ describe("patchWidget", () => {
       typeContenu: ["dispositifs"],
       themes: ["xyz"],
       languages: [],
-      location: {
-        city: "",
-        department: ""
-      }
+      department: ""
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });

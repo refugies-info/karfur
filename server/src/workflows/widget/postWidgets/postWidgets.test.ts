@@ -83,9 +83,7 @@ describe("postWidgets", () => {
         name: "test",
         typeContenu: ["demarches"],
         themes: [{_id: "xyz"}],
-        location: {
-          city: "Paris"
-        }
+        department: "Paris"
       },
       user: { roles: [] },
       userId: "id"
@@ -96,7 +94,8 @@ describe("postWidgets", () => {
       themes: ["xyz"],
       typeContenu: ["demarches"],
       author: "id",
-      // no city because no department
+      department: "Paris"
+
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });

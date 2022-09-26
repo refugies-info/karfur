@@ -208,3 +208,8 @@ html body {
     background-image: url(../assets/figma/sa_custom.svg);
   }
 }
+
+// GMap Autocomplete
+.pac-container {
+  z-index: 2000 !important;
+}

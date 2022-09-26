@@ -530,10 +530,7 @@ export interface Widget {
   tags: string[];
   themes: Theme[];
   typeContenu: ("dispositifs"|"demarches")[];
-  location?: {
-    city: string;
-    department: string;
-  }
+  department?: string;
   languages?: string[];
   author: {
     _id: ObjectId;
