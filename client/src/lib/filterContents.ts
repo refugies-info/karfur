@@ -9,6 +9,18 @@ import { logger } from "logger";
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const index = searchClient.initIndex(process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX || "");
 
+const filterByTheme = (dispositif: IDispositif, themesSelected: ObjectId[], withSecondaryTheme: boolean) => {
+  if (themesSelected.length === 0) return true;
+  if (!withSecondaryTheme) {
+    if (themesSelected.includes(dispositif.theme._id)) return true;
+  } else {
+    for (const theme of dispositif.secondaryThemes) {
+      if (themesSelected.includes(theme._id)) return true;
+    }
+  }
+  return false;
+};
+
 const filterByNeed = (dispositif: IDispositif, needsSelected: ObjectId[]) => {
   if (needsSelected.length === 0) return true;
   for (const need of dispositif.needs) {
@@ -98,17 +110,39 @@ const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: Sor
   return dispA[sortKey] > dispB[sortKey] ? -1 : dispA[sortKey] < dispB[sortKey] ? 1 : 0;
 }
 
-export const queryDispositifs = (
+const filterDispositifs = (
   query: SearchQuery,
   dispositifs: IDispositif[],
-) => {
+  secondaryThemes: boolean
+): IDispositif[] => {
   return [...dispositifs]
+    .filter(dispositif => filterByTheme(dispositif, query.themesSelected, secondaryThemes))
     .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
     .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
     .filter(dispositif => filterByAge(dispositif, query.filterAge))
     .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
     .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
     .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
+}
+
+export const queryDispositifs = (
+  query: SearchQuery,
+  dispositifs: IDispositif[],
+): Results => {
+  const res = filterDispositifs(query, dispositifs, false);
+
+  let dispositifsSecondaryTheme: IDispositif[] = [];
+  if (query.themesSelected) {
+    const leftDispositifs = [...dispositifs] // remove dispositifs already selected
+      .filter(dispositif => !res.map(d => d._id).includes(dispositif._id));
+    dispositifsSecondaryTheme = filterDispositifs(query, leftDispositifs, true);
+  }
+
+  return {
+    dispositifs: res.filter(d => d.typeContenu === "dispositif"),
+    demarches: res.filter(d => d.typeContenu === "demarche"),
+    dispositifsSecondaryTheme: dispositifsSecondaryTheme,
+  }
 }
 
 
@@ -167,24 +201,20 @@ export const queryDispositifsWithAlgolia = async (
     }).filter(d => !!d) as IDispositif[];
   }
 
-  const filteredDispositifs = queryDispositifs(query, filteredDispositifsByAlgolia);
-
-  return {
-    dispositifs: filteredDispositifs.filter(d => d.typeContenu === "dispositif"),
-    demarches: filteredDispositifs.filter(d => d.typeContenu === "demarche")
-  }
+  return queryDispositifs(query, filteredDispositifsByAlgolia);
 };
 
 
 export const decodeQuery = (routerQuery: any): SearchQuery => {
   const {
-    departments, needs, ages, frenchLevels, language, sort, type
+    departments, needs, themes, ages, frenchLevels, language, sort, type
   } = routerQuery as UrlSearchQuery;
 
   let query: SearchQuery = {
     search: "",
     departmentsSelected: [],
     needsSelected: [],
+    themesSelected: [],
     filterAge: [],
     filterFrenchLevel: [],
     filterLanguage: [],
@@ -193,9 +223,10 @@ export const decodeQuery = (routerQuery: any): SearchQuery => {
   }
 
   // Reinject filters value in search
-  if (departments || needs || ages || frenchLevels || language || sort || type) {
+  if (departments || needs || themes || ages || frenchLevels || language || sort || type) {
     if (departments) query.departmentsSelected = decodeURIComponent(departments as string).split(",");
     if (needs) query.needsSelected = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
+    if (themes) query.themesSelected = decodeURIComponent(themes as string).split(",") as unknown as ObjectId[];
     if (ages) query.filterAge = decodeURIComponent(ages as string).split(",") as AgeOptions[];
     if (frenchLevels) query.filterFrenchLevel = decodeURIComponent(frenchLevels as string).split(",") as FrenchOptions[];
     if (language) query.filterLanguage = decodeURIComponent(language as string).split(",");

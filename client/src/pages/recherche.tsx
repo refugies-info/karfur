@@ -21,7 +21,7 @@ import ResultsFilter from "components/Pages/recherche/ResultsFilter";
 import { decodeQuery, queryDispositifs, queryDispositifsWithAlgolia } from "lib/filterContents";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
-import { IDispositif, Theme } from "types/interface";
+import { IDispositif, Need, Theme } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -31,6 +31,7 @@ import HomeSearch from "components/Pages/recherche/HomeSearch";
 export type SearchQuery = {
   search: string;
   departmentsSelected: string[];
+  themesSelected: ObjectId[];
   needsSelected: ObjectId[];
   filterAge: AgeOptions[];
   filterFrenchLevel: FrenchOptions[];
@@ -41,6 +42,7 @@ export type SearchQuery = {
 export type UrlSearchQuery = {
   departments?: string | string[];
   needs?: string | ObjectId[];
+  themes?: string | ObjectId[];
   ages?: string | AgeOptions[];
   frenchLevels?: string | FrenchOptions[];
   language?: string | string[];
@@ -50,11 +52,42 @@ export type UrlSearchQuery = {
 export type Results = {
   dispositifs: IDispositif[];
   demarches: IDispositif[];
+  dispositifsSecondaryTheme: IDispositif[];
 };
 
 const debouncedQuery = debounce((query, dispositifs, locale, callback) => {
   return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
 }, 500);
+
+// TODO: move to lib
+const getThemesSelected = (needsSelected: ObjectId[], allNeeds: Need[]): {themes: ObjectId[], needs: ObjectId[]} => {
+  const needs = needsSelected
+    .map(need => allNeeds.find((n) => n._id === need))
+    .filter(n => !!n) as Need[];
+
+    // get all themes displayed
+    const themesDisplayed: Theme[] = [];
+    for (const need of needs) {
+      if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
+        themesDisplayed.push(need.theme);
+      }
+    }
+
+    // for each theme displayed, if all needs selected, set theme selected
+    const themesSelected: ObjectId[] = [];
+    for (const themeDisplayed of themesDisplayed) {
+      const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
+      const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
+      if (totalNeedsOfTheme === countNeedsOfThemeSelected) {
+        themesSelected.push(themeDisplayed._id)
+      }
+    }
+
+  return {
+    themes: themesSelected,
+    needs: needs.filter(n => !themesSelected.includes(n.theme._id)).map(n => n._id)
+  };
+}
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -65,7 +98,7 @@ const Recherche = () => {
   // search
   const [search, setSearch] = useState("");
   const [needsSelected, setNeedsSelected] = useState<ObjectId[]>(initialQuery.needsSelected);
-  const [themesSelected, setThemesSelected] = useState<Theme[]>([]);
+  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]);
   const [departmentsSelected, setDepartmentsSelected] = useState<string[]>(initialQuery.departmentsSelected);
 
   // additional search
@@ -78,21 +111,22 @@ const Recherche = () => {
   const [selectedType, setSelectedType] = useState<TypeOptions>(initialQuery.selectedType);
 
   // results
-  const [filteredResult, setFilteredResult] = useState<Results>(() => {
-    const initialResults = queryDispositifs(initialQuery, dispositifs);
-    return {
-      dispositifs: initialResults.filter((d) => d.typeContenu === "dispositif"),
-      demarches: initialResults.filter((d) => d.typeContenu === "demarche")
-    };
-  });
+  const [filteredResult, setFilteredResult] = useState<Results>(queryDispositifs(initialQuery, dispositifs));
 
   const [showHome, setShowHome] = useState(true);
+  const allNeeds = useSelector(needsSelector);
 
   useEffect(() => {
+    const {
+      themes,
+      needs,
+    } = getThemesSelected(needsSelected, allNeeds);
+
     // toggle home screen
     const hideHome =
       search ||
-      needsSelected.length ||
+      needs.length ||
+      themes.length ||
       departmentsSelected.length ||
       filterAge.length ||
       filterFrenchLevel.length ||
@@ -104,7 +138,8 @@ const Recherche = () => {
     // update url
     const updateUrl = () => {
       const urlQuery: UrlSearchQuery = {};
-      if (needsSelected) urlQuery.needs = needsSelected;
+      if (needs) urlQuery.needs = needs;
+      if (themes) urlQuery.themes = themes;
       if (departmentsSelected) urlQuery.departments = departmentsSelected;
       if (filterAge) urlQuery.ages = filterAge;
       if (filterFrenchLevel) urlQuery.frenchLevels = filterFrenchLevel;
@@ -133,6 +168,7 @@ const Recherche = () => {
     const query: SearchQuery = {
       search,
       needsSelected,
+      themesSelected: themes,
       departmentsSelected,
       filterAge,
       filterFrenchLevel,
@@ -156,17 +192,20 @@ const Recherche = () => {
     dispositifs
   ]);
 
-  // set themes selected based on needs
-  const allNeeds = useSelector(needsSelector);
+  // set themes displayed based on needs
   useEffect(() => {
-    const themes: Theme[] = [];
-    for (const need of needsSelected) {
-      const theme = allNeeds.find((n) => n._id === need)?.theme;
-      if (theme && !themes.find((t) => t._id === theme._id)) {
-        themes.push(theme);
+    const needs = needsSelected
+      .map(need => allNeeds.find((n) => n._id === need))
+      .filter(n => !!n) as Need[];
+
+    // get all themes displayed
+    const themesDisplayed: Theme[] = [];
+    for (const need of needs) {
+      if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
+        themesDisplayed.push(need.theme);
       }
     }
-    setThemesSelected(themes);
+    setThemesDisplayed(themesDisplayed);
   }, [needsSelected, allNeeds]);
 
   return (
@@ -179,7 +218,7 @@ const Recherche = () => {
         setSearch={setSearch}
         needsSelected={needsSelected}
         setNeedsSelected={setNeedsSelected}
-        themesSelected={themesSelected}
+        themesSelected={themesDisplayed}
         departmentsSelected={departmentsSelected}
         setDepartmentsSelected={setDepartmentsSelected}
         filterAge={filterAge}
@@ -200,7 +239,7 @@ const Recherche = () => {
             selectedType={selectedType}
             setSelectedType={setSelectedType}
           />
-          <SearchResults filteredResult={filteredResult} selectedType={selectedType} themesSelected={themesSelected} />
+          <SearchResults filteredResult={filteredResult} selectedType={selectedType} themesSelected={themesDisplayed} />
         </Container>
       ) : (
         <HomeSearch

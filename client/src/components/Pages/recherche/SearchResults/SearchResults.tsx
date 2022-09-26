@@ -61,6 +61,19 @@ const SearchResults = (props: Props) => {
           ))}
         </div>
       )}
+
+      {props.filteredResult.dispositifsSecondaryTheme.length > 0 && (
+        <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+          <DispositifCardTitle
+            count={props.filteredResult.dispositifsSecondaryTheme.length}
+            color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
+            theme={props.themesSelected[0]}
+          />
+          {props.filteredResult.dispositifsSecondaryTheme.map((d) => (
+            <DispositifCard key={d._id.toString()} dispositif={d} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
