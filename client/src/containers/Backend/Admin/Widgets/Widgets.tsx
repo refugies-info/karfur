@@ -22,7 +22,7 @@ import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
 import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
 import styles from "./Widgets.module.scss";
-import { Theme } from "types/interface";
+import { ContentType, Theme } from "types/interface";
 
 let NotificationContainer: any = null;
 if (isInBrowser()) {
@@ -34,9 +34,7 @@ if (isInBrowser()) {
 export const Widgets = () => {
   const [name, setName] = useState("");
   const [selectedThemes, setSelectedThemes] = useState<Theme[]>([]);
-  const [selectedTypeContenu, setSelectedTypeContenu] = useState<
-    ("demarches" | "dispositifs")[]
-  >(["demarches", "dispositifs"]);
+  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(["demarche", "dispositif"]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
@@ -58,7 +56,7 @@ export const Widgets = () => {
   const resetForm = useCallback(() => {
     setName("");
     setSelectedThemes([]);
-    setSelectedTypeContenu(["demarches", "dispositifs"]);
+    setSelectedTypeContenu(["demarche", "dispositif"]);
     setSelectedLanguages([]);
   }, []);
 

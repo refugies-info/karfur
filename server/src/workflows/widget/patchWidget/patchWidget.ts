@@ -11,7 +11,7 @@ import { ThemeDoc } from "src/schema/schemaTheme";
 export interface Request {
   name: string;
   themes: ThemeDoc[];
-  typeContenu: ("dispositifs" | "demarches")[];
+  typeContenu: ("dispositif" | "demarche")[];
   languages: string[];
   department: string;
 }

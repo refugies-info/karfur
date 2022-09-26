@@ -20,7 +20,7 @@ const widgetSchema = new mongoose.Schema(
     },
     typeContenu: {
       type: [String],
-      enum: ["dispositifs", "demarches"],
+      enum: ["dispositif", "demarche"],
       required: true,
     },
     department: {
@@ -43,7 +43,7 @@ export interface WidgetDoc extends mongoose.Document {
   name: string;
   tags: string[];
   themes: ObjectId[];
-  typeContenu: ("dispositifs"|"demarches")[];
+  typeContenu: ("dispositif"|"demarche")[];
   department: string;
   languages: string[];
   author: ObjectId;

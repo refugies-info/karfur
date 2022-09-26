@@ -524,12 +524,14 @@ export interface Log {
   created_at: Moment;
 }
 
+export type ContentType = "dispositif" | "demarche";
+
 export interface Widget {
   _id: ObjectId;
   name: string;
   tags: string[];
   themes: Theme[];
-  typeContenu: ("dispositifs"|"demarches")[];
+  typeContenu: ContentType[];
   department?: string;
   languages?: string[];
   author: {
