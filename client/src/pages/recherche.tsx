@@ -27,6 +27,7 @@ import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { languei18nSelector } from "services/Langue/langue.selectors";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
+import SearchHeaderMobile from "components/Pages/recherche/SearchHeaderMobile";
 
 export type SearchQuery = {
   search: string;
@@ -60,34 +61,32 @@ const debouncedQuery = debounce((query, dispositifs, locale, callback) => {
 }, 500);
 
 // TODO: move to lib
-const getThemesSelected = (needsSelected: ObjectId[], allNeeds: Need[]): {themes: ObjectId[], needs: ObjectId[]} => {
-  const needs = needsSelected
-    .map(need => allNeeds.find((n) => n._id === need))
-    .filter(n => !!n) as Need[];
+const getThemesSelected = (needsSelected: ObjectId[], allNeeds: Need[]): { themes: ObjectId[]; needs: ObjectId[] } => {
+  const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
 
-    // get all themes displayed
-    const themesDisplayed: Theme[] = [];
-    for (const need of needs) {
-      if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
-        themesDisplayed.push(need.theme);
-      }
+  // get all themes displayed
+  const themesDisplayed: Theme[] = [];
+  for (const need of needs) {
+    if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
+      themesDisplayed.push(need.theme);
     }
+  }
 
-    // for each theme displayed, if all needs selected, set theme selected
-    const themesSelected: ObjectId[] = [];
-    for (const themeDisplayed of themesDisplayed) {
-      const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
-      const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
-      if (totalNeedsOfTheme === countNeedsOfThemeSelected) {
-        themesSelected.push(themeDisplayed._id)
-      }
+  // for each theme displayed, if all needs selected, set theme selected
+  const themesSelected: ObjectId[] = [];
+  for (const themeDisplayed of themesDisplayed) {
+    const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
+    const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
+    if (totalNeedsOfTheme === countNeedsOfThemeSelected) {
+      themesSelected.push(themeDisplayed._id);
     }
+  }
 
   return {
     themes: themesSelected,
-    needs: needs.filter(n => !themesSelected.includes(n.theme._id)).map(n => n._id)
+    needs: needs.filter((n) => !themesSelected.includes(n.theme._id)).map((n) => n._id)
   };
-}
+};
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -117,10 +116,7 @@ const Recherche = () => {
   const allNeeds = useSelector(needsSelector);
 
   useEffect(() => {
-    const {
-      themes,
-      needs,
-    } = getThemesSelected(needsSelected, allNeeds);
+    const { themes, needs } = getThemesSelected(needsSelected, allNeeds);
 
     // toggle home screen
     const hideHome =
@@ -194,9 +190,7 @@ const Recherche = () => {
 
   // set themes displayed based on needs
   useEffect(() => {
-    const needs = needsSelected
-      .map(need => allNeeds.find((n) => n._id === need))
-      .filter(n => !!n) as Need[];
+    const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
 
     // get all themes displayed
     const themesDisplayed: Theme[] = [];
@@ -211,23 +205,42 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
-      <SearchHeader
-        searchMinified={showHome}
-        nbResults={filteredResult.dispositifs.length + filteredResult.demarches.length}
-        search={search}
-        setSearch={setSearch}
-        needsSelected={needsSelected}
-        setNeedsSelected={setNeedsSelected}
-        themesSelected={themesDisplayed}
-        departmentsSelected={departmentsSelected}
-        setDepartmentsSelected={setDepartmentsSelected}
-        filterAge={filterAge}
-        setFilterAge={setFilterAge}
-        filterFrenchLevel={filterFrenchLevel}
-        setFilterFrenchLevel={setFilterFrenchLevel}
-        filterLanguage={filterLanguage}
-        setFilterLanguage={setFilterLanguage}
-      />
+      <div className="d-none d-md-block">
+        <SearchHeader
+          searchMinified={showHome}
+          nbResults={filteredResult.dispositifs.length + filteredResult.demarches.length}
+          search={search}
+          setSearch={setSearch}
+          needsSelected={needsSelected}
+          setNeedsSelected={setNeedsSelected}
+          themesSelected={themesDisplayed}
+          departmentsSelected={departmentsSelected}
+          setDepartmentsSelected={setDepartmentsSelected}
+          filterAge={filterAge}
+          setFilterAge={setFilterAge}
+          filterFrenchLevel={filterFrenchLevel}
+          setFilterFrenchLevel={setFilterFrenchLevel}
+          filterLanguage={filterLanguage}
+          setFilterLanguage={setFilterLanguage}
+        />
+      </div>
+      <div className="d-md-none">
+        <SearchHeaderMobile
+          search={search}
+          setSearch={setSearch}
+          needsSelected={needsSelected}
+          setNeedsSelected={setNeedsSelected}
+          themesSelected={themesDisplayed}
+          departmentsSelected={departmentsSelected}
+          setDepartmentsSelected={setDepartmentsSelected}
+          filterAge={filterAge}
+          setFilterAge={setFilterAge}
+          filterFrenchLevel={filterFrenchLevel}
+          setFilterFrenchLevel={setFilterFrenchLevel}
+          filterLanguage={filterLanguage}
+          setFilterLanguage={setFilterLanguage}
+        />
+      </div>
 
       {!showHome ? (
         <Container className={styles.container_inner}>

@@ -18,6 +18,10 @@
   width: 270px;
   height: 76px;
   box-shadow: 0 4px 18px 0 #0000001A;
+
+  @include isMobile() {
+    width: 100%;
+  }
 }
 
 .image {

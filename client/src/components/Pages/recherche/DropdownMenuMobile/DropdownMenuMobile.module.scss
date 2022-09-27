@@ -1,0 +1,53 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  height: 100%;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+}
+
+.icon {
+  width: u(9);
+  height: u(9);
+  border-radius: 50%;
+  background: $bleuCharte;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: u(2);
+}
+
+.close {
+  background: transparent;
+  border: none;
+}
+
+.title {
+  display: flex;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  & > button {
+    border-radius: $radius;
+  }
+
+  .reset {
+    color: $bleuCharte;
+  }
+}

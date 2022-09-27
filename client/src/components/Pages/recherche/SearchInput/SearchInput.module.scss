@@ -12,6 +12,10 @@
   flex-grow: 1;
   border-radius: $radius;
 
+  @include isMobile() {
+    padding: 0;
+  }
+
   &:hover {
     background-color: $gray40b;
   }
@@ -33,6 +37,10 @@
     text-transform: uppercase;
     display: block;
     text-align: left;
+
+    @include isMobile() {
+      display: none;
+    }
   }
 
   .input {

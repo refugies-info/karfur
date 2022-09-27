@@ -1,0 +1,44 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.container {
+  margin-bottom: u(8);
+
+  label {
+    font-weight: bold;
+  }
+}
+
+.item {
+  padding: u(3) u(2);
+  border-radius: u(2);
+  margin-bottom: u(2);
+  margin-right: u(2);
+  border: 1px solid $bleuCharte;
+  color: $bleuCharte;
+  background: $white;
+
+  &:hover {
+    background: $gray40b;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+
+  i {
+    margin: 0 8px 0 0;
+  }
+
+  &.selected {
+    background: $bleuCharte !important;
+    color: $white !important;
+    border-color: $bleuCharte !important;
+  }
+}

@@ -11,6 +11,12 @@
   overflow: hidden;
   z-index: 3;
   padding: 16px;
+
+  @include isMobile() {
+    width: 100%;
+    box-shadow: none;
+    position: relative;
+  }
 }
 
 .header {
