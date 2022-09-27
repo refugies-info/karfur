@@ -1,16 +1,29 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
   background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1B62D8 100%);
   padding: 56px;
   width: 100%;
+
+  @include isMobile() {
+    padding: u(6) u(4);
+
+    h1 {
+      display: none;
+    }
+  }
 }
 
 .container_inner {
   padding-left: 2px;
   padding-right: 2px;
+
+  @include isMobile() {
+    max-width: none;
+  }
 }
 
 .inputs {
@@ -19,6 +32,10 @@
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
   display: flex;
   margin-top: 56px;
+
+  @include isMobile() {
+    margin-top: 0;
+  }
 }
 
 .dropdown {

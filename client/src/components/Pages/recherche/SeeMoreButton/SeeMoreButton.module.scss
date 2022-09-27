@@ -16,6 +16,10 @@
   justify-content: flex-end;
   align-items: center;
 
+  @include isMobile() {
+    display: none;
+  }
+
   &.visible {
     background: transparent;
     bottom: -80px;

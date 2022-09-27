@@ -15,6 +15,11 @@
 .container_inner {
   padding-left: 2px;
   padding-right: 2px;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .content {
@@ -30,6 +35,7 @@
 
 .results {
   display: flex;
+  flex-wrap: wrap;
   margin-top: u(8);
 
   &.dispositifs {
@@ -39,6 +45,22 @@
   &.demarches {
     gap: u(6);
     margin-bottom: 120px;
+
+    @include isMobile() {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+.location {
+  @include isMobile() {
+    display: none;
   }
 }
 

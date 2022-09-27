@@ -28,7 +28,7 @@ const SearchResults = (props: Props) => {
   }, []);
 
   const demarches = hideDemarches
-    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
+    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
     : props.filteredResult.demarches;
 
   return (
@@ -37,6 +37,7 @@ const SearchResults = (props: Props) => {
       {demarches.length > 0 && (
         <div className="position-relative">
           <div className={cls(styles.results, styles.demarches, props.selectedType === "dispositif" && styles.hidden)}>
+            {/* TODO: title for mobile */}
             <DemarcheCardTitle
               count={props.filteredResult.demarches.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -52,6 +53,7 @@ const SearchResults = (props: Props) => {
       )}
       {props.filteredResult.dispositifs.length > 0 && (
         <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+          {/* TODO: title for mobile */}
           <DispositifCardTitle
             count={props.filteredResult.dispositifs.length}
             color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -64,6 +66,7 @@ const SearchResults = (props: Props) => {
 
       {props.filteredResult.dispositifsSecondaryTheme.length > 0 && (
         <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+          {/* TODO: title for mobile */}
           <DispositifCardTitle
             count={props.filteredResult.dispositifsSecondaryTheme.length}
             color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}

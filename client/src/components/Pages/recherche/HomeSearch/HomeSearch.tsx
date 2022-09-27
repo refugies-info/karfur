@@ -105,7 +105,7 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <h2 className="h4">Deux types d'information</h2>
           <Row className={styles.content}>
-            <Col>
+            <Col md="6">
               <HomeTypeCard
                 image={illuDemarche}
                 title="Les fiches démarches"
@@ -114,7 +114,7 @@ const HomeSearch = (props: Props) => {
                 link={getSearchPath({ type: "demarche" }, router)}
               />
             </Col>
-            <Col>
+            <Col md="6">
               <HomeTypeCard
                 image={illuDispositif}
                 title="Les fiches dispositifs"
@@ -142,7 +142,7 @@ const HomeSearch = (props: Props) => {
           </div>
         </Container>
       </div>
-      <div className={cls(styles.section, styles.white)}>
+      <div className={cls(styles.section, styles.white, styles.location)}>
         <Container className={styles.container_inner}>
           <Row>
             <Col>

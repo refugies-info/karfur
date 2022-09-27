@@ -19,5 +19,15 @@
 
   &.demarches {
     gap: u(6);
+
+    @include isMobile() {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+    }
   }
 }

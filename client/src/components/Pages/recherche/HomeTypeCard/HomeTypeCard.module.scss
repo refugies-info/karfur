@@ -13,6 +13,10 @@
   border: 2px solid transparent;
   width: 100%;
 
+  @include isMobile() {
+    margin-bottom: u(4);
+  }
+
   .title {
     margin-top: u(8);
   }
