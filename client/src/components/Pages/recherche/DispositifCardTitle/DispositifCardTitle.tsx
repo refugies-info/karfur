@@ -11,28 +11,31 @@ import styles from "./DispositifCardTitle.module.scss";
 interface Props {
   color?: string;
   count?: number;
-  theme?: Theme; // available if cards for secondary themes
+  themes?: Theme[]; // available if cards for secondary themes
 }
 
 const DispositifCardTitle = (props: Props) => {
+  const isSecondaryCard = props.themes && props.themes.length > 0;
   return (
     <div
       className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.title)}
       style={props.color ? { background: props.color } : {}}
     >
       <div>
-        {!props.theme && (
+        {!isSecondaryCard && (
           <div className={commonStyles.icon}>
             <Image src={iconMap} width={32} height={32} alt="" />
           </div>
         )}
-        <div className={cls(commonStyles.text, props.theme && styles.title_theme)}>
-          {!props.theme ? "Les fiches dispositifs" : "Autres fiches dispositifs avec le thème"}
+        <div className={cls(commonStyles.text, isSecondaryCard && styles.title_theme)}>
+          {!isSecondaryCard ? "Les fiches dispositifs" : "Autres fiches dispositifs avec le thème"}
         </div>
 
-        {props.theme && (
+        {isSecondaryCard && (
           <div className={styles.theme}>
-            <ThemeBadge theme={props.theme} style={{ backgroundColor: "white" }} />
+            {props.themes?.map((theme, i) =>
+            <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="mr-2 mb-2" />
+            )}
           </div>
         )}
 

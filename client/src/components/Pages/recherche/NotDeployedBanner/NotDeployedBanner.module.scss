@@ -12,7 +12,30 @@
   align-items: center;
 }
 
+.title {
+  font-weight: bold;
+  margin-bottom: u(2);
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  &,
+  &:hover {
+    text-decoration: underline;
+    color: $bleuCharte;
+  }
+}
+
 .image {
   flex-shrink: 0;
   margin-right: u(10);
+}
+
+.actions {
+  padding-left: u(10);
+  .btn {
+    padding: 12px;
+    border-radius: 8px;
+  }
 }

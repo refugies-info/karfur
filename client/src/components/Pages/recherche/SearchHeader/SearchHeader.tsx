@@ -30,6 +30,7 @@ interface Props {
   setFilterFrenchLevel: Dispatch<SetStateAction<FrenchOptions[]>>;
   filterLanguage: string[];
   setFilterLanguage: Dispatch<SetStateAction<string[]>>;
+  resetFilters: () => void;
 }
 
 const SearchHeader = (props: Props) => {
@@ -45,7 +46,8 @@ const SearchHeader = (props: Props) => {
     filterFrenchLevel,
     setFilterFrenchLevel,
     filterLanguage,
-    setFilterLanguage
+    setFilterLanguage,
+    resetFilters
   } = props;
 
   // KEYWORD
@@ -121,15 +123,6 @@ const SearchHeader = (props: Props) => {
       setLanguageDisplayedValue(value);
     }
   }, [filterLanguage, languages]);
-
-  const resetFilters = () => {
-    setSearch("");
-    setNeedsSelected([]);
-    setDepartmentsSelected([]);
-    setFilterAge([]);
-    setFilterFrenchLevel([]);
-    setFilterLanguage([]);
-  };
 
   return (
     <div className={styles.container}>

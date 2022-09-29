@@ -12,6 +12,7 @@ interface Props {
   setSelectedSort: Dispatch<SetStateAction<SortOptions>>;
   selectedType: TypeOptions;
   setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
+  showSort: boolean;
 }
 
 const ResultsFilter = (props: Props) => {
@@ -44,27 +45,29 @@ const ResultsFilter = (props: Props) => {
         ))}
       </div>
 
-      <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
-        <DropdownToggle className={styles.dropdown}>
-          <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-          {sortOptions.find((opt) => opt.key === props.selectedSort)?.value}
-        </DropdownToggle>
-        <DropdownMenu className={styles.menu}>
-          {sortOptions.map((option, i) => {
-            const isSelected = props.selectedSort === option.key;
-            return (
-              <DropdownItem
-                key={i}
-                onClick={() => props.setSelectedSort(option.key)}
-                className={cls(styles.item, isSelected && styles.selected)}
-              >
-                {option.value}
-                {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
-              </DropdownItem>
-            );
-          })}
-        </DropdownMenu>
-      </Dropdown>
+      {props.showSort &&
+        <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
+          <DropdownToggle className={styles.dropdown}>
+            <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
+            {sortOptions.find((opt) => opt.key === props.selectedSort)?.value}
+          </DropdownToggle>
+          <DropdownMenu className={styles.menu}>
+            {sortOptions.map((option, i) => {
+              const isSelected = props.selectedSort === option.key;
+              return (
+                <DropdownItem
+                  key={i}
+                  onClick={() => props.setSelectedSort(option.key)}
+                  className={cls(styles.item, isSelected && styles.selected)}
+                >
+                  {option.value}
+                  {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
+                </DropdownItem>
+              );
+            })}
+          </DropdownMenu>
+        </Dropdown>
+      }
     </div>
   );
 };

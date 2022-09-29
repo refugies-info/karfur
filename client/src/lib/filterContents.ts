@@ -4,6 +4,7 @@ import { Results, SearchQuery, UrlSearchQuery } from "pages/recherche";
 import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "./getDispositifInfos";
 import algoliasearch from "algoliasearch";
+import get from "lodash/get";
 import { logger } from "logger";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
@@ -29,7 +30,7 @@ const filterByNeed = (dispositif: IDispositif, needsSelected: ObjectId[]) => {
   return false;
 };
 
-const filterByLocation = (dispositif: IDispositif, departmentsSelected: string[]) => {
+const filterByLocations = (dispositif: IDispositif, departmentsSelected: string[]) => {
   if (departmentsSelected.length === 0) return true;
   const location = getDispositifInfos(dispositif, "location");
   if (!location?.departments) return false;
@@ -99,15 +100,29 @@ const filterByLanguage = (dispositif: IDispositif, languageFilters: string[]) =>
 };
 
 const sortOptionsValues = {
-  "date": "created_at",
+  "date": "publishedAt",
   "view": "nbVues",
-  "theme": "theme"
+  "theme": "theme.position"
 }
 
-const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: SortOptions) => {
+const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: SortOptions, hasSearch: boolean) => {
+  if (hasSearch) return 0; // if algolia search, do not sort and use algolia order
   const sortKey = sortOptionsValues[sortOption];
-  //@ts-ignore
-  return dispA[sortKey] > dispB[sortKey] ? -1 : dispA[sortKey] < dispB[sortKey] ? 1 : 0;
+  const valA = get(dispA, sortKey);
+  const valB = get(dispB, sortKey);
+  return valA > valB ? -1 : valA < valB ? 1 : 0;
+}
+
+export const getCountDispositifsForDepartment = (
+  department: string,
+  dispositifs: IDispositif[],
+): number => {
+  return [...dispositifs]
+    .filter(dispositif => {
+      const location = getDispositifInfos(dispositif, "location");
+      if (!location?.departments) return false;
+      return location.departments.map(dep => dep.split(" - ")[1]).includes(department)
+    }).length
 }
 
 const filterDispositifs = (
@@ -118,11 +133,11 @@ const filterDispositifs = (
   return [...dispositifs]
     .filter(dispositif => filterByTheme(dispositif, query.themesSelected, secondaryThemes))
     .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
-    .filter(dispositif => filterByLocation(dispositif, query.departmentsSelected))
+    .filter(dispositif => filterByLocations(dispositif, query.departmentsSelected))
     .filter(dispositif => filterByAge(dispositif, query.filterAge))
     .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
     .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
-    .sort((a, b) => sortDispositifs(a, b, query.selectedSort));
+    .sort((a, b) => sortDispositifs(a, b, query.selectedSort, !!query.search));
 }
 
 export const queryDispositifs = (
@@ -132,7 +147,7 @@ export const queryDispositifs = (
   const res = filterDispositifs(query, dispositifs, false);
 
   let dispositifsSecondaryTheme: IDispositif[] = [];
-  if (query.themesSelected) {
+  if (query.themesSelected.length > 0) { // TODO: if some needs alone, no secondary themes
     const leftDispositifs = [...dispositifs] // remove dispositifs already selected
       .filter(dispositif => !res.map(d => d._id).includes(dispositif._id));
     dispositifsSecondaryTheme = filterDispositifs(query, leftDispositifs, true);

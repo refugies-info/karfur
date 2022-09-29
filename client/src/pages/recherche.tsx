@@ -18,7 +18,7 @@ import SearchHeader from "components/Pages/recherche/SearchHeader";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
-import { decodeQuery, queryDispositifs, queryDispositifsWithAlgolia } from "lib/filterContents";
+import { decodeQuery, getCountDispositifsForDepartment, queryDispositifs, queryDispositifsWithAlgolia } from "lib/filterContents";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import { IDispositif, Need, Theme } from "types/interface";
@@ -202,6 +202,28 @@ const Recherche = () => {
     setThemesDisplayed(themesDisplayed);
   }, [needsSelected, allNeeds]);
 
+  // check if department deployed
+  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>([]);
+  useEffect(() => {
+    const newDepartmentsNotDeployed: string[] = [];
+    for (const dep of departmentsSelected) {
+      const count = getCountDispositifsForDepartment(dep, dispositifs);
+      if (count < 10) {
+        newDepartmentsNotDeployed.push(dep);
+      }
+    }
+    setDepartmentsNotDeployed(newDepartmentsNotDeployed);
+  }, [departmentsSelected, dispositifs])
+
+  const resetFilters = () => {
+    setSearch("");
+    setNeedsSelected([]);
+    setDepartmentsSelected([]);
+    setFilterAge([]);
+    setFilterFrenchLevel([]);
+    setFilterLanguage([]);
+  };
+
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
@@ -222,6 +244,7 @@ const Recherche = () => {
           setFilterFrenchLevel={setFilterFrenchLevel}
           filterLanguage={filterLanguage}
           setFilterLanguage={setFilterLanguage}
+          resetFilters={resetFilters}
         />
       </div>
       <div className="d-md-none">
@@ -251,8 +274,16 @@ const Recherche = () => {
             setSelectedSort={setSelectedSort}
             selectedType={selectedType}
             setSelectedType={setSelectedType}
+            showSort={!search}
           />
-          <SearchResults filteredResult={filteredResult} selectedType={selectedType} themesSelected={themesDisplayed} />
+          <SearchResults
+            filteredResult={filteredResult}
+            selectedType={selectedType}
+            themesSelected={themesDisplayed}
+            departmentsSelected={departmentsSelected}
+            departmentsNotDeployed={departmentsNotDeployed}
+            resetFilters={resetFilters}
+          />
         </Container>
       ) : (
         <HomeSearch

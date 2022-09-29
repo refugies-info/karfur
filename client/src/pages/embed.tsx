@@ -41,6 +41,8 @@ const Embed = () => {
           filteredResult={filteredResult}
           selectedType={initialQuery.selectedType}
           themesSelected={themesSelected}
+          departmentsSelected={initialQuery.departmentsSelected}
+          departmentsNotDeployed={[]}
         />
       </Container>
     </div>
