@@ -145,6 +145,7 @@ const SearchHeader = (props: Props) => {
                 loading={isPlacePredictionsLoading}
                 value={departmentsSelected.join(", ")}
                 placeholder="Tous"
+                resetFilter={() => setDepartmentsSelected([])}
               />
             </DropdownToggle>
             <DropdownMenu>
@@ -168,6 +169,7 @@ const SearchHeader = (props: Props) => {
                 inputValue={themeSearch}
                 value={themeDisplayedValue}
                 placeholder="Tous"
+                resetFilter={() => setNeedsSelected([])}
               />
             </DropdownToggle>
             <DropdownMenu>
@@ -187,6 +189,7 @@ const SearchHeader = (props: Props) => {
                 value={search}
                 placeholder="Mission locale, titre de séjour..."
                 focusout
+                resetFilter={() => setSearch("")}
               />
             </Button>
           </div>

@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import styles from "./SearchInput.module.scss";
+import { Button } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
+import styles from "./SearchInput.module.scss";
 
 interface Props {
   label: string;
@@ -14,6 +15,7 @@ interface Props {
   onChange?: (e: any) => void;
   loading?: boolean;
   focusout?: boolean;
+  resetFilter?: () => void;
 }
 
 const SearchInput = (props: Props) => {
@@ -54,7 +56,22 @@ const SearchInput = (props: Props) => {
             autoFocus
           />
         ) : (
-          <div className={cls(styles.value, !props.value && styles.empty)}>{props.value || props.placeholder}</div>
+          <div className={cls(styles.value, !props.value && styles.empty)}>
+            {props.value || props.placeholder}
+            {props.value && (
+              <Button className={styles.empty_btn}>
+                <EVAIcon
+                  name="close-outline"
+                  fill="dark"
+                  onClick={(e: any) => {
+                    e.stopPropagation();
+                    if (props.resetFilter) props.resetFilter();
+                  }}
+                  size={20}
+                />
+              </Button>
+            )}
+          </div>
         )}
       </span>
     </div>

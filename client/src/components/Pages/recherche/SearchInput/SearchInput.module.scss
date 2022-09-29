@@ -27,6 +27,7 @@
   .search {
     text-align: left;
     min-width: 0;
+    flex-grow: 1;
   }
 
   .label {
@@ -56,6 +57,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    position: relative;
 
     &.empty {
       font-weight: normal;
@@ -76,5 +78,18 @@
     &.active {
       background: $bleuCharte;
     }
+  }
+}
+
+.empty_btn {
+  background: transparent;
+  padding: 2px;
+  border: none;
+  position: absolute;
+  right: 0;
+  top: -3px;
+
+  &:hover {
+    background: transparent;
   }
 }
