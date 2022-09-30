@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
@@ -7,47 +8,76 @@
   justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 120px;
+
+  @include isMobile() {
+    display: block;
+  }
+}
+
+.types {
+  @include isMobile() {
+    display:flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    padding: 0 15px u(2) 15px;
+    margin: 0 -15px;
+  }
 }
 
 .btn {
   background: $gray40b;
-  border-radius: 8px;
+  border-radius: u(2);
   border: none;
-  padding: 12px;
-  margin-right: 16px;
+  padding: u(3);
+  margin-right: u(4);
 
   &.selected {
-    background: $bleuCharte;
-    color: $white;
+    background: $bleuCharte !important;
+    color: $white !important;
     font-weight: bold;
+  }
+
+  @include isMobile() {
+    background: transparent;
+    border: 1px solid $bleuCharte;
+    color: $bleuCharte;
+    padding: u(2);
+    white-space: nowrap;
   }
 }
 
 .dropdown {
   background: $white;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 4px 18px 0 #0000001A;
+  padding: u(3);
+  border-radius: u(2);
+  box-shadow: 0 u(1) 18px 0 #0000001A;
   height: 45px;
 
   .icon {
-    margin-right: 8px;
+    margin-right: u(2);
     svg{
       transform: rotate(90deg);
     }
   }
+
+  @include isMobile() {
+    margin-top: u(8);
+    background: $gray40b;
+    box-shadow: none;
+    padding: u(2);
+  }
 }
 .menu {
   box-shadow: 0 0 40px 0 #00000040;
-  padding: 16px;
+  padding: u(4);
   border-radius: $radius;
-  margin-top: 8px;
+  margin-top: u(2);
 }
 .item {
-  padding: 12px 8px;
-  border-radius: 8px !important;
-  margin-bottom: 4px;
+  padding: u(3) u(2);
+  border-radius: u(2) !important;
+  margin-bottom: u(1);
   border: none;
 
   &:hover {
@@ -64,7 +94,7 @@
   }
 
   i {
-    margin: 0 0 0 8px;
+    margin: 0 0 0 u(2);
   }
 
   &.selected {

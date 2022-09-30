@@ -33,7 +33,7 @@ const ResultsFilter = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.types}>
         {filterType.map((option, i) => (
           <Button
             key={i}
