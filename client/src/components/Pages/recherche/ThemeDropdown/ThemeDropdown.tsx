@@ -1,15 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
-import styles from "./ThemeDropdown.module.scss";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { Collapse } from "reactstrap";
+import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
-import TagName from "components/UI/TagName";
-import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
 import { cls } from "lib/classname";
+import styles from "./ThemeDropdown.module.scss";
 
 type ButtonThemeProps = {
   color100: string;
@@ -22,6 +23,16 @@ const ButtonTheme = styled.button`
     background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color100 : props.color30)};
     border-color: ${(props: ButtonThemeProps) => props.color100};
     color: ${(props: ButtonThemeProps) => props.color100};
+  }
+
+  @media screen and (max-width: 767px) {
+    background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color30 : "transparent")} !important;
+    color: ${(props: ButtonThemeProps) => props.color100} !important;
+    ${(props: ButtonThemeProps) => (props.selected ? "border-color: white !important;" : "")}
+
+    :hover {
+      background-color: transparent;
+    }
   }
 `;
 
@@ -43,6 +54,7 @@ interface Props {
   needsSelected: ObjectId[];
   setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
+  mobile: boolean;
 }
 
 const ThemeDropdown = (props: Props) => {
@@ -115,101 +127,119 @@ const ThemeDropdown = (props: Props) => {
 
   const isAllSelected = !displayedNeeds.find((need) => !needsSelected.includes(need._id));
 
+  const needsList = (
+    <div className={styles.needs}>
+      {themeSelected && !props.search && (
+        <ButtonNeed
+          className={styles.btn}
+          color100={colors?.color100 || "black"}
+          color30={colors?.color30 || "gray"}
+          selected={isAllSelected}
+          onClick={() =>
+            selectAllNeeds(
+              displayedNeeds.map((n) => n._id),
+              isAllSelected
+            )
+          }
+        >
+          <Checkbox checked={isAllSelected} color={!isAllSelected && colors ? colors.color100 : "white"}>
+            <span className={styles.all}>
+              <EVAIcon name="grid" fill={!isAllSelected && colors ? colors.color100 : "white"} />
+              Tous
+              <span
+                className={styles.badge}
+                style={{
+                  backgroundColor: colors?.color30,
+                  color: colors?.color100
+                }}
+              >
+                {nbDispositifsByTheme[themeSelected.toString()] || 0}
+              </span>
+            </span>
+          </Checkbox>
+        </ButtonNeed>
+      )}
+      {displayedNeeds.map((need, i) => {
+        const selected = needsSelected.includes(need._id);
+        return (
+          <span key={i}>
+            {props.search &&
+              // check if this need has a different theme from previous one
+              (i === 0 || displayedNeeds[i - 1].theme._id !== need.theme._id) && (
+                <div className={styles.list_theme}>
+                  <TagName theme={need.theme} colored={true} size={20} />
+                </div>
+              )}
+            <ButtonNeed
+              className={styles.btn}
+              color100={need.theme.colors.color100}
+              color30={need.theme.colors.color30}
+              selected={selected}
+              onClick={() => selectNeed(need._id)}
+            >
+              <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
+                {need.fr.text}
+                <span
+                  className={styles.badge}
+                  style={{
+                    backgroundColor: need.theme.colors.color30,
+                    color: need.theme.colors.color100
+                  }}
+                >
+                  {nbDispositifsByNeed[need._id.toString()] || 0}
+                </span>
+              </Checkbox>
+            </ButtonNeed>
+          </span>
+        );
+      })}
+    </div>
+  );
+
   return (
     <div className={styles.container}>
       <div className={cls(styles.themes, props.search && styles.hidden)}>
         {themes.map((theme, i) => {
           const selected = themeSelected === theme._id;
           return (
-            <ButtonTheme
-              key={i}
-              className={styles.btn}
-              color100={theme.colors.color100}
-              color30={theme.colors.color30}
-              selected={selected}
-              onClick={() => setThemeSelected(theme._id)}
-            >
-              <span className={styles.btn_content}>
-                <TagName theme={theme} colored={themeSelected !== theme._id} size={20} />
-                {themeSelected !== theme._id &&
-                  nbNeedsSelectedByTheme[theme._id.toString()] &&
-                  nbNeedsSelectedByTheme[theme._id.toString()] > 0 && (
-                    <span style={{ backgroundColor: theme.colors.color100 }} className={styles.theme_badge}>
-                      {nbNeedsSelectedByTheme[theme._id.toString()] || 0}
-                    </span>
-                  )}
-              </span>
-              {themeSelected === theme._id && <EVAIcon name="chevron-right-outline" fill="white" className="ml-2" />}
-            </ButtonTheme>
-          );
-        })}
-      </div>
-      <div className={styles.needs}>
-        {themeSelected && !props.search && (
-          <ButtonNeed
-            className={styles.btn}
-            color100={colors?.color100 || "black"}
-            color30={colors?.color30 || "gray"}
-            selected={isAllSelected}
-            onClick={() =>
-              selectAllNeeds(
-                displayedNeeds.map((n) => n._id),
-                isAllSelected
-              )
-            }
-          >
-            <Checkbox checked={isAllSelected} color={!isAllSelected && colors ? colors.color100 : "white"}>
-              <span className={styles.all}>
-                <EVAIcon name="grid" fill={!isAllSelected && colors ? colors.color100 : "white"} />
-                Tous
-                <span
-                  className={styles.badge}
-                  style={{
-                    backgroundColor: colors?.color30,
-                    color: colors?.color100
-                  }}
-                >
-                  {nbDispositifsByTheme[themeSelected.toString()] || 0}
-                </span>
-              </span>
-            </Checkbox>
-          </ButtonNeed>
-        )}
-        {displayedNeeds.map((need, i) => {
-          const selected = needsSelected.includes(need._id);
-          return (
-            <span key={i}>
-              {props.search &&
-                // check if this need has a different theme from previous one
-                (i === 0 || displayedNeeds[i - 1].theme._id !== need.theme._id) && (
-                  <div className={styles.list_theme}>
-                    <TagName theme={need.theme} colored={true} size={20} />
-                  </div>
-                )}
-              <ButtonNeed
-                className={styles.btn}
-                color100={need.theme.colors.color100}
-                color30={need.theme.colors.color30}
+            <div key={i}>
+              <ButtonTheme
+                className={cls(styles.btn, styles.theme)}
+                color100={theme.colors.color100}
+                color30={theme.colors.color30}
                 selected={selected}
-                onClick={() => selectNeed(need._id)}
+                onClick={() =>
+                  setThemeSelected((old) => {
+                    if (old === theme._id) return null;
+                    return theme._id;
+                  })
+                }
               >
-                <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
-                  {need.fr.text}
-                  <span
-                    className={styles.badge}
-                    style={{
-                      backgroundColor: need.theme.colors.color30,
-                      color: need.theme.colors.color100
-                    }}
-                  >
-                    {nbDispositifsByNeed[need._id.toString()] || 0}
-                  </span>
-                </Checkbox>
-              </ButtonNeed>
-            </span>
+                <span className={styles.btn_content}>
+                  <TagName theme={theme} colored={props.mobile || themeSelected !== theme._id} size={20} />
+                  {themeSelected !== theme._id &&
+                    nbNeedsSelectedByTheme[theme._id.toString()] &&
+                    nbNeedsSelectedByTheme[theme._id.toString()] > 0 && (
+                      <span style={{ backgroundColor: theme.colors.color100 }} className={styles.theme_badge}>
+                        {nbNeedsSelectedByTheme[theme._id.toString()] || 0}
+                      </span>
+                    )}
+                </span>
+                {(props.mobile || themeSelected === theme._id) && (
+                  <EVAIcon
+                    name={!props.mobile ? "chevron-right-outline" : "chevron-down-outline"}
+                    fill={!props.mobile ? "white" : theme.colors.color100}
+                    className="ml-2"
+                  />
+                )}
+              </ButtonTheme>
+
+              {props.mobile && <Collapse isOpen={selected}>{needsList}</Collapse>}
+            </div>
           );
         })}
       </div>
+      {(!props.mobile || props.search) && needsList}
     </div>
   );
 };

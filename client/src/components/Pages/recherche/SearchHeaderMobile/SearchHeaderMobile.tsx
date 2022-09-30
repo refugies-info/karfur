@@ -132,6 +132,18 @@ const SearchHeaderMobile = (props: Props) => {
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             <DropdownMenuMobile title="Départements" icon="pin-outline" close={toggleLocation}>
+              <div className={styles.content}>
+                <div className={styles.input}>
+                  <EVAIcon name="search-outline" fill="dark" size={20} />
+                  <input
+                    type="text"
+                    placeholder="Département"
+                    onChange={(evt) => setLocationSearch(evt.target.value)}
+                    value={locationSearch}
+                    autoFocus
+                  />
+                </div>
+              </div>
               <LocationDropdown
                 departmentsSelected={departmentsSelected}
                 setDepartmentsSelected={setDepartmentsSelected}
@@ -157,7 +169,19 @@ const SearchHeaderMobile = (props: Props) => {
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             <DropdownMenuMobile title="Thèmes" icon="list-outline" close={toggleThemes}>
-              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} search={themeSearch} />
+              <div className={styles.content}>
+                <div className={styles.input}>
+                  <EVAIcon name="search-outline" fill="dark" size={20} />
+                  <input
+                    type="text"
+                    placeholder="Rechercher dans les thèmes"
+                    onChange={(evt) => setThemeSearch(evt.target.value)}
+                    value={themeSearch}
+                    autoFocus
+                  />
+                </div>
+              </div>
+              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} search={themeSearch} mobile={true} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -168,15 +192,15 @@ const SearchHeaderMobile = (props: Props) => {
           className={cls(styles.dropdown, styles.filters)}
         >
           <DropdownToggle>
-            <EVAIcon name="search-outline" fill="white" />
+            <EVAIcon name="options-2-outline" fill="white" />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             <DropdownMenuMobile
               title="Filtres de recherche"
-              icon="list-outline"
+              icon="options-2-outline"
               close={() => setShowFilters(!showFilters)}
             >
-              <div className={styles.subheader}>
+              <div className={cls(styles.content, styles.more_filters)}>
                 <SearchFilterMobile
                   label="Tranche d'âge"
                   selected={filterAge}

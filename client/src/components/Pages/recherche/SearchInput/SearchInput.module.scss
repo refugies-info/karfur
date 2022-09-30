@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .filter {
@@ -58,6 +59,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
+    padding-right: u(6);
 
     &.empty {
       font-weight: normal;

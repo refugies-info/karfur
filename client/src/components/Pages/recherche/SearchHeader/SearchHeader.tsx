@@ -173,7 +173,12 @@ const SearchHeader = (props: Props) => {
               />
             </DropdownToggle>
             <DropdownMenu>
-              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} search={themeSearch} />
+              <ThemeDropdown
+                needsSelected={needsSelected}
+                setNeedsSelected={setNeedsSelected}
+                search={themeSearch}
+                mobile={false}
+              />
             </DropdownMenu>
           </Dropdown>
 

@@ -33,6 +33,31 @@
   }
 }
 
+.input {
+  background: $gray30;
+  width: 100%;
+  padding: u(4);
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  & > span {
+    position: absolute;
+    top: u(3);
+    left: u(3);
+  }
+
+  & > input {
+    width: 100%;
+    border:none;
+    line-height: u(4);
+    outline: none;
+    background: transparent;
+    padding-left: u(6);
+  }
+}
+
 .dropdown {
   flex-shrink: 0;
   flex-grow: 1;
@@ -56,7 +81,11 @@
 }
 }
 
-.subheader {
-  margin-top: 32px;
+.content {
+  margin-top: u(8);
   padding: 0 u(4);
+
+  &.more_filters {
+    padding-bottom: u(20);
+  }
 }

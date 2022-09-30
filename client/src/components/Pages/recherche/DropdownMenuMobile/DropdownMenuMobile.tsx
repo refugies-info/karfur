@@ -34,7 +34,7 @@ const DropdownMenuMobile = (props: Props) => {
           <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
           Réinitialiser
         </Button>
-        <Button color="primary" className="font-weight-bold">
+        <Button color="primary" className={styles.btn_search}>
           Voir les fiches
         </Button>
       </div>
