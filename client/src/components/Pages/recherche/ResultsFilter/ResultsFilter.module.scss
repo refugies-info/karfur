@@ -11,6 +11,12 @@
 
   @include isMobile() {
     display: block;
+    margin-bottom: u(10);
+    order: 2;
+
+    &.no_result {
+      display: none;
+    }
   }
 }
 

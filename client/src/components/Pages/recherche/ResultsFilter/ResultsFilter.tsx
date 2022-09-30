@@ -31,8 +31,10 @@ const ResultsFilter = (props: Props) => {
     }
   };
 
+  const noResult = props.nbDemarches + props.nbDispositifs === 0;
+
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, noResult && styles.no_result)}>
       <div className={styles.types}>
         {filterType.map((option, i) => (
           <Button

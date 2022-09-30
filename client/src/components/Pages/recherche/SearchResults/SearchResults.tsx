@@ -81,9 +81,12 @@ const SearchResults = (props: Props) => {
     <>
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
       {demarches.length > 0 && (
-        <div className="position-relative">
+        <div className={styles.section}>
+          <div className={styles.title}>
+            <h2>Les fiches démarches</h2>
+            <span>{demarches.length}</span>
+          </div>
           <div className={cls(styles.results, styles.demarches, props.selectedType === "dispositif" && styles.hidden)}>
-            {/* TODO: title for mobile */}
             <DemarcheCardTitle
               count={props.filteredResult.demarches.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -98,9 +101,12 @@ const SearchResults = (props: Props) => {
         </div>
       )}
       {dispositifs.length > 0 && (
-        <div className="position-relative">
+        <div className={styles.section}>
+          <div className={styles.title}>
+            <h2>Les fiches dispositifs</h2>
+            <span>{dispositifs.length}</span>
+          </div>
           <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
-            {/* TODO: title for mobile */}
             <DispositifCardTitle
               count={props.filteredResult.dispositifs.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -116,16 +122,21 @@ const SearchResults = (props: Props) => {
       )}
 
       {props.filteredResult.dispositifsSecondaryTheme.length > 0 && (
-        <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
-          {/* TODO: title for mobile */}
-          <DispositifCardTitle
-            count={props.filteredResult.dispositifsSecondaryTheme.length}
-            color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
-            themes={props.themesSelected}
-          />
-          {props.filteredResult.dispositifsSecondaryTheme.map((d) => (
-            <DispositifCard key={d._id.toString()} dispositif={d} />
-          ))}
+        <div className={styles.section}>
+          <div className={styles.title}>
+            <h2>Autres fiches avec ce thème</h2>
+            <span>{props.filteredResult.dispositifsSecondaryTheme.length}</span>
+          </div>
+          <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+            <DispositifCardTitle
+              count={props.filteredResult.dispositifsSecondaryTheme.length}
+              color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
+              themes={props.themesSelected}
+            />
+            {props.filteredResult.dispositifsSecondaryTheme.map((d) => (
+              <DispositifCard key={d._id.toString()} dispositif={d} />
+            ))}
+          </div>
         </div>
       )}
     </>

@@ -8,6 +8,7 @@ interface Props {
   title: string;
   icon: string;
   close: () => void;
+  reset: () => void;
   children: any;
 }
 
@@ -30,11 +31,11 @@ const DropdownMenuMobile = (props: Props) => {
       {props.children}
 
       <div className={styles.footer}>
-        <Button color="white" className={styles.reset}>
+        <Button color="white" className={styles.reset} onClick={props.reset}>
           <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
           Réinitialiser
         </Button>
-        <Button color="primary" className={styles.btn_search}>
+        <Button color="primary" className={styles.btn_search} onClick={props.close}>
           Voir les fiches
         </Button>
       </div>

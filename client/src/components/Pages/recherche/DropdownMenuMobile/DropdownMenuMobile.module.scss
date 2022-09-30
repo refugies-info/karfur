@@ -45,6 +45,7 @@
   width: 100%;
   box-shadow: 0 -16px 16px 0 #0000000D;
   background: $white;
+  z-index: 3;
 
   & > button {
     border-radius: $radius;

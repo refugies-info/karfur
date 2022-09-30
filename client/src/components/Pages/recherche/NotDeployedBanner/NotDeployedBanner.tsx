@@ -20,7 +20,9 @@ const NotDeployedBanner = (props: Props) => {
       </div>
       <div>
         <p className={styles.title}>
-          <Image src={iconMap} width={16} height={16} alt="" />
+          <span className={styles.map_icon}>
+            <Image src={iconMap} width={16} height={16} alt="" />
+          </span>
           <span className="ml-1">{props.departments.join(", ")} : ce département est en cours de déploiement !</span>
         </p>
         <p className="mb-0">

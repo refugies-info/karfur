@@ -14,7 +14,7 @@
   border-radius: $radius;
 
   @include isMobile() {
-    padding: 0;
+    padding: u(1);
   }
 
   &:hover {
@@ -23,6 +23,10 @@
   &.active {
     box-shadow: 0 0 40px 0 #00000040;
     background-color: $white;
+
+    @include isMobile() {
+      box-shadow: none;
+    }
   }
 
   .search {
@@ -50,6 +54,10 @@
     outline: none;
     background:transparent;
     padding: 0;
+
+    @include isMobile() {
+      width: 100%;
+    }
   }
 
   .value {
@@ -60,6 +68,10 @@
     overflow: hidden;
     position: relative;
     padding-right: u(6);
+
+    @include isMobile() {
+      padding-right: 0;
+    }
 
     &.empty {
       font-weight: normal;
@@ -80,6 +92,11 @@
     &.active {
       background: $bleuCharte;
     }
+
+    @include isMobile() {
+      width: 32px;
+      height: 32px;
+    }
   }
 }
 
@@ -93,5 +110,9 @@
 
   &:hover {
     background: transparent;
+  }
+
+  @include isMobile() {
+    display: none;
   }
 }

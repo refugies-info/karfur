@@ -1,10 +1,37 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
+
+.section {
+  order: 3;
+}
 
 .hidden {
   display: none !important;
+}
+
+.title {
+  display: none;
+
+  @include isMobile() {
+    display: flex;
+    align-items: center;
+    margin-bottom: u(8);
+
+    h2 {
+      @include text("h4");
+      margin-right: u(4);
+    }
+    span {
+      padding: u(1) u(2);
+      background: $white;
+      @include text("h5");
+      font-weight: bold;
+      border-radius: u(1);
+    }
+  }
 }
 
 .results {
@@ -34,6 +61,14 @@
 
 .no_results {
   text-align: center;
+
+  @include isMobile() {
+    margin-top: u(10);
+
+    h5 {
+      @include text("h5");
+    }
+  }
 
   p {
     margin-top: u(4);

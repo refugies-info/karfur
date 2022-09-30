@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from "./SearchHeaderMobile.module.scss";
-import { Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import { ObjectId } from "mongodb";
@@ -102,16 +102,18 @@ const SearchHeaderMobile = (props: Props) => {
       <div className={styles.container}>
         <Container>
           <div className={styles.inputs}>
-            <SearchInput
-              label="Mot-clé"
-              icon="search-outline"
-              active={searchFocused}
-              setActive={setSearchFocused}
-              onChange={(evt) => setSearch(evt.target.value)}
-              inputValue={search}
-              value={search}
-              placeholder="Mission locale, titre de séjour..."
-            />
+            <Button onClick={() => setSearchFocused(true)}>
+              <SearchInput
+                label="Mot-clé"
+                icon="search-outline"
+                active={searchFocused}
+                setActive={setSearchFocused}
+                onChange={(evt) => setSearch(evt.target.value)}
+                inputValue={search}
+                value={search}
+                placeholder="Mission locale, titre de séjour..."
+              />
+            </Button>
           </div>
         </Container>
       </div>
@@ -131,7 +133,12 @@ const SearchHeaderMobile = (props: Props) => {
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
-            <DropdownMenuMobile title="Départements" icon="pin-outline" close={toggleLocation}>
+            <DropdownMenuMobile
+              title="Départements"
+              icon="pin-outline"
+              close={toggleLocation}
+              reset={() => setDepartmentsSelected([])}
+            >
               <div className={styles.content}>
                 <div className={styles.input}>
                   <EVAIcon name="search-outline" fill="dark" size={20} />
@@ -168,7 +175,12 @@ const SearchHeaderMobile = (props: Props) => {
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
-            <DropdownMenuMobile title="Thèmes" icon="list-outline" close={toggleThemes}>
+            <DropdownMenuMobile
+              title="Thèmes"
+              icon="list-outline"
+              close={toggleThemes}
+              reset={() => setNeedsSelected([])}
+            >
               <div className={styles.content}>
                 <div className={styles.input}>
                   <EVAIcon name="search-outline" fill="dark" size={20} />
@@ -181,60 +193,71 @@ const SearchHeaderMobile = (props: Props) => {
                   />
                 </div>
               </div>
-              <ThemeDropdown needsSelected={needsSelected} setNeedsSelected={setNeedsSelected} search={themeSearch} mobile={true} />
+              <ThemeDropdown
+                needsSelected={needsSelected}
+                setNeedsSelected={setNeedsSelected}
+                search={themeSearch}
+                mobile={true}
+              />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
-
-        <Dropdown
-          isOpen={showFilters}
-          toggle={() => setShowFilters(!showFilters)}
-          className={cls(styles.dropdown, styles.filters)}
-        >
-          <DropdownToggle>
-            <EVAIcon name="options-2-outline" fill="white" />
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
-            <DropdownMenuMobile
-              title="Filtres de recherche"
-              icon="options-2-outline"
-              close={() => setShowFilters(!showFilters)}
-            >
-              <div className={cls(styles.content, styles.more_filters)}>
-                <SearchFilterMobile
-                  label="Tranche d'âge"
-                  selected={filterAge}
-                  setSelected={setFilterAge}
-                  options={ageFilters}
-                />
-                <SearchFilterMobile
-                  label="Niveau de français"
-                  selected={filterFrenchLevel}
-                  setSelected={setFilterFrenchLevel}
-                  options={frenchLevelFilter}
-                />
-                <SearchFilterMobile
-                  label="Fiches traduites en"
-                  selected={filterLanguage}
-                  setSelected={setFilterLanguage}
-                  options={languages.map((ln) => ({
-                    key: ln.i18nCode,
-                    value: (
-                      <>
-                        <i
-                          className={`flag-icon flag-icon-${ln.langueCode}`}
-                          title={ln.langueCode}
-                          id={ln.langueCode}
-                        />
-                        {ln.langueFr}
-                      </>
-                    )
-                  }))}
-                />
-              </div>
-            </DropdownMenuMobile>
-          </DropdownMenu>
-        </Dropdown>
+        <div className={styles.right}>
+          <Dropdown
+            isOpen={showFilters}
+            toggle={() => setShowFilters(!showFilters)}
+            className={cls(styles.dropdown, styles.filters)}
+          >
+            <DropdownToggle>
+              <EVAIcon name="options-2-outline" fill="white" />
+            </DropdownToggle>
+            <DropdownMenu className={styles.menu}>
+              <DropdownMenuMobile
+                title="Filtres de recherche"
+                icon="options-2-outline"
+                close={() => setShowFilters(!showFilters)}
+                reset={() => {
+                  setFilterAge([]);
+                  setFilterFrenchLevel([]);
+                  setFilterLanguage([]);
+                }}
+              >
+                <div className={cls(styles.content, styles.more_filters)}>
+                  <SearchFilterMobile
+                    label="Tranche d'âge"
+                    selected={filterAge}
+                    setSelected={setFilterAge}
+                    options={ageFilters}
+                  />
+                  <SearchFilterMobile
+                    label="Niveau de français"
+                    selected={filterFrenchLevel}
+                    setSelected={setFilterFrenchLevel}
+                    options={frenchLevelFilter}
+                  />
+                  <SearchFilterMobile
+                    label="Fiches traduites en"
+                    selected={filterLanguage}
+                    setSelected={setFilterLanguage}
+                    options={languages.map((ln) => ({
+                      key: ln.i18nCode,
+                      value: (
+                        <>
+                          <i
+                            className={`flag-icon flag-icon-${ln.langueCode}`}
+                            title={ln.langueCode}
+                            id={ln.langueCode}
+                          />
+                          {ln.langueFr}
+                        </>
+                      )
+                    }))}
+                  />
+                </div>
+              </DropdownMenuMobile>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
       </div>
     </>
   );
