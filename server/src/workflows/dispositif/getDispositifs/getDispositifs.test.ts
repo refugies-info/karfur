@@ -18,14 +18,22 @@ jest.mock("../../../controllers/dispositif/functions", () => ({
   turnToLocalized: jest.fn(),
   turnJSONtoHTML: jest.fn(),
 }));
+const sponsor = {
+  nom: "sponsor",
+  picture: {
+    secure_url: "image"
+  }
+}
 const dispositifs = [
   {
     _id: "id1",
     contenu: fakeContenuWithZoneDAction,
+    mainSponsor: sponsor
   },
   {
     _id: "id2",
     contenu: fakeContenuWithoutZoneDAction,
+    mainSponsor: sponsor
   },
 ];
 
@@ -54,7 +62,27 @@ const contenu1 = [
       },
       {},
       {},
-      {},
+      {
+        content: [
+          {
+            "content": "undefined",
+            "type": "text",
+          },
+        ],
+        contentTitle: "une seule fois",
+        editable: false,
+        footer: "Ajouter un message complémentaire",
+        footerType: "text",
+        free: true,
+        isFakeContent: true,
+        price: 0,
+        title: "Combien ça coûte ?",
+        titleIcon: "pricetags-outline",
+        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
+        tooltipHeader: "Combien ça coûte ?",
+        type: "card",
+        typeIcon: "eva",
+      },
       {},
     ],
   },
@@ -62,17 +90,44 @@ const contenu1 = [
 const contenu2 = [
   {},
   {
-    children: [{}, {}, {}, {}],
+    children: [
+      {},
+      {},
+      {
+        type: "card",
+        isFakeContent: true,
+        title: "Combien ça coûte ?",
+        titleIcon: "pricetags-outline",
+        typeIcon: "eva",
+        free: true,
+        price: 0,
+        contentTitle: "une seule fois",
+        footer: "Ajouter un message complémentaire",
+        footerType: "text",
+        tooltipHeader: "Combien ça coûte ?",
+        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
+        editable: false,
+        content: [
+          {
+            type: "text",
+            content: "undefined",
+          },
+        ],
+      },
+      {}
+    ],
   },
 ];
 
 const adaptedDispositif1 = {
   _id: "id1",
   contenu: contenu1,
+  mainSponsor: sponsor
 };
 const adaptedDispositif2 = {
   _id: "id2",
   contenu: contenu2,
+  mainSponsor: sponsor
 };
 describe("getDispositifs", () => {
   beforeEach(() => {
@@ -96,21 +151,12 @@ describe("getDispositifs", () => {
   });
 
   it("should call getDispositifsArray and return correct result if one content has a zone d'action and an other not", async () => {
-    getDispositifArray.mockResolvedValue([
-      {
-        _id: "id1",
-        contenu: fakeContenuWithZoneDAction,
-      },
-      {
-        _id: "id2",
-        contenu: fakeContenuWithoutZoneDAction,
-      },
-    ]);
+    getDispositifArray.mockResolvedValue(dispositifs);
     const res = mockResponse();
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -131,7 +177,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -151,7 +197,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "en");
@@ -172,7 +218,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).not.toHaveBeenCalled();
     expect(turnToLocalized).not.toHaveBeenCalled();
@@ -195,7 +241,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 
@@ -217,7 +263,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, {}, "theme secondaryThemes");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 
