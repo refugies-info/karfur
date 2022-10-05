@@ -30,8 +30,8 @@ export const getDispositifsWithAllInformationRequired = (
         created_at: simplifiedDispositif.created_at,
         _id: simplifiedDispositif._id,
         status: simplifiedDispositif.status,
-        color: simplifiedDispositif.theme.colors.color100 || "#000000",
-        color30: simplifiedDispositif.theme.colors.color30 || "#CCCCCC",
+        color: simplifiedDispositif.theme?.colors?.color100 || "#000000",
+        color30: simplifiedDispositif.theme?.colors?.color30 || "#CCCCCC",
         hasCreatedStructure: index === 0
       };
       dispositifsWithAllInformation.push(element);
