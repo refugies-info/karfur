@@ -82,14 +82,14 @@ const Navbar = (props: Props) => {
   }, [user]);
 
   useEffect(() => {
+    const route = router.pathname;
     if (
-      (router.pathname.includes("dispositif") && router.query.edit !== undefined) ||
-      (router.pathname.includes("demarche") && router.query.edit !== undefined) ||
-      router.pathname.includes("user-profile") ||
-      router.pathname.includes("advanced-search") || /* TODO: check here */
-      router.pathname.includes("qui-sommes-nous") ||
-      router.pathname === "/dispositif" ||
-      router.pathname === "/demarche"
+      (isRoute(route, "/dispositif/[id]") && router.query.edit !== undefined) ||
+      (isRoute(route, "/demarche/[id]") && router.query.edit !== undefined) ||
+      isRoute(route, "/recherche") ||
+      isRoute(route, "/qui-sommes-nous") ||
+      isRoute(route, "/dispositif") ||
+      isRoute(route, "/demarche")
     ) {
       setScroll(true);
     } else {

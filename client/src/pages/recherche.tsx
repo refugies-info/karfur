@@ -224,13 +224,17 @@ const Recherche = () => {
     setFilterLanguage([]);
   };
 
+  const nbResults = filteredResult.dispositifs.length +
+    filteredResult.demarches.length +
+    filteredResult.dispositifsSecondaryTheme.length;
+
   return (
     <div className={cls(styles.container)}>
       <SEO title="Recherche" />
       <div className="d-none d-md-block">
         <SearchHeader
           searchMinified={showHome}
-          nbResults={filteredResult.dispositifs.length + filteredResult.demarches.length}
+          nbResults={nbResults}
           search={search}
           setSearch={setSearch}
           needsSelected={needsSelected}

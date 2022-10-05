@@ -1,5 +1,4 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { logger } from "logger";
 import React, { useCallback } from "react";
 import { Button } from "reactstrap";
 
@@ -25,11 +24,16 @@ const LocationDropdown = (props: Props) => {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((res) => {
-        // TODO : find department
-        logger.info("location: ", res);
+        fetch(
+          `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`
+        )
+          .then((dep) => dep.json())
+          .then((dep) => {
+            if (dep[0]?.departement?.nom) setDepartmentsSelected([dep[0].departement.nom]);
+          });
       });
     }
-  }
+  };
 
   return (
     <div className={styles.container}>

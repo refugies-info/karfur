@@ -17,7 +17,7 @@ import useOutsideClick from "hooks/useOutsideClick";
 
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import useRTL from "hooks/useRTL";
-import { getPath } from "routes";
+import { getPath, isRoute } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getThemeName } from "lib/getThemeName";
 import ThemeIcon from "../ThemeIcon";
@@ -311,22 +311,13 @@ const AdvancedSearchBar = (props: Props) => {
                           key={"theme-" + index}
                           onClick={() => {
                             setSearchText("");
-                            if (
-                              router.pathname.includes(
-                                "/advanced-search" /* TODO: update here? */
-                              )
-                            ) {
-                              router.push({
-                                pathname: getPath("/recherche", router.locale),
-                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
-                              });
-                              window.location.reload();
-                            } else {
-                              router.push({
-                                pathname: getPath("/recherche", router.locale),
-                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
-                              });
-                            }
+                            const needReload = isRoute(router.pathname, "/recherche");
+                            router.push({
+                              pathname: getPath("/recherche", router.locale),
+                              query: selectedTheme ? {theme: selectedTheme._id.toString()} : {}
+                            }).then(() => {
+                              if (needReload) window.location.reload();
+                            })
                           }}
                           color={selectedTheme ? selectedTheme.colors.color30 : ""}
                         >
