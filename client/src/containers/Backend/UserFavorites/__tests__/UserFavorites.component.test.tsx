@@ -77,6 +77,15 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque1",
     abstract: "abstract1",
     typeContenu: "dispositif",
+    contenu: [
+      {},
+      {children: [{
+        title: "Zone d'action",
+      }]}
+    ],
+    mainSponsor: {
+      picture: {secure_url: ""}
+    },
     theme: {
       _id: "",
       short: {fr: "Français"},
@@ -103,6 +112,15 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque2",
     abstract: "abstract2",
     typeContenu: "dispositif",
+    contenu: [
+      {},
+      {children: [{
+        title: "Zone d'action",
+      }]}
+    ],
+    mainSponsor: {
+      picture: {secure_url: ""}
+    },
     theme: {
       _id: "",
       short: {fr: "Administratif"},
@@ -129,6 +147,15 @@ describe("UserFavorites", () => {
     titreMarque: "titreMarque3",
     abstract: "abstract3",
     typeContenu: "demarche",
+    contenu: [
+      {},
+      {children: [{
+        title: "Zone d'action",
+      }]}
+    ],
+    mainSponsor: {
+      picture: {secure_url: ""}
+    },
     theme: {
       _id: "",
       short: {fr: "Logement"},
@@ -204,30 +231,6 @@ describe("UserFavorites", () => {
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
       locale: "en",
-    });
-  });
-
-  it("should dispatch updateUserFavoritesActionCreator when click on one dispositif and language is ps", () => {
-    routerMock.locale = "ps";
-    window.scrollTo = jest.fn();
-
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
-      });
-    });
-    expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("ps");
-
-    component.root
-      .findByProps({ "data-test-id": "test-toggle-pin-id1" })
-      .props.onClick({ preventDefault: jest.fn(), stopPropagation: jest.fn() });
-    expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
-      dispositifId: "id1",
-      type: "remove",
-      locale: "ps",
     });
   });
 });

@@ -4,7 +4,7 @@ import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
-import { removeUselessContent } from "src/modules/dispositif/dispositif.adapter";
+import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
 
 interface Query {
   locale: string;
