@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
@@ -97,4 +98,21 @@
   &.more_filters {
     padding-bottom: u(20);
   }
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include text("very-small");
+  line-height: 16px;
+  font-weight: bold;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $white;
+  color: $bleuCharte;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }

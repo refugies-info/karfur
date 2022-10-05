@@ -155,6 +155,7 @@ html body {
   .dropdown-menu.show {
     border-radius: $radius;
     border: none;
+    z-index: 2000000;
   }
   .profile-img-pin {
     height: 40px;

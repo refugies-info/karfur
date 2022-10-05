@@ -96,6 +96,7 @@ const SearchHeaderMobile = (props: Props) => {
   // FILTERS
   const [showFilters, setShowFilters] = useState(false);
   const languages = useSelector(allLanguesSelector);
+  const nbFilters = filterAge.length + filterFrenchLevel.length + filterLanguage.length;
 
   return (
     <>
@@ -210,6 +211,7 @@ const SearchHeaderMobile = (props: Props) => {
           >
             <DropdownToggle>
               <EVAIcon name="options-2-outline" fill="white" />
+              {nbFilters > 0 && <span className={styles.badge}>{nbFilters}</span>}
             </DropdownToggle>
             <DropdownMenu className={styles.menu}>
               <DropdownMenuMobile
