@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import { IDispositif } from "types/interface";
 import Image from "next/image";
@@ -45,9 +45,9 @@ const DispositifCard = (props: Props) => {
     if (!location || !location.departments) return null;
     if (props.selectedDepartment) return props.selectedDepartment;
     if (location.departments.length > 1) return `${location.departments.length} départements`;
-    if (location.departments.length === 1 && location.departments[0] === "All") return "Toute la France"
+    if (location.departments.length === 1 && location.departments[0] === "All") return "Toute la France";
     return location.departments[0];
-  }
+  };
 
   return (
     <Link
@@ -64,23 +64,25 @@ const DispositifCard = (props: Props) => {
       >
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />
-          <span style={{ color: colors.color100 }} className="ml-2">{getDepartement()}</span>
+          <span style={{ color: colors.color100 }} className="ml-2">
+            {getDepartement()}
+          </span>
         </div>
 
         <div
           className={styles.title}
           style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{__html: props.dispositif.titreInformatif}}
+          dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif }}
         />
 
         <div
           className={cls(styles.text, styles.abstract)}
           style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{__html: props.dispositif.abstract}}
+          dangerouslySetInnerHTML={{ __html: props.dispositif.abstract }}
         />
 
         <div className={cls(styles.infos, styles.text, "my-4")} style={{ color: colors.color100 }}>
-          {price?.price !== undefined &&
+          {price?.price !== undefined && (
             <div className="d-flex">
               <Image src={iconEuro} width={16} height={16} alt="" />
               {price?.price === 0 ? (
@@ -91,14 +93,14 @@ const DispositifCard = (props: Props) => {
                 </div>
               )}
             </div>
-          }
+          )}
 
-          {duration?.contentTitle &&
+          {duration?.contentTitle && (
             <div className="d-flex mt-1">
               <Image src={iconTime} width={16} height={16} alt="" />
               <div className="ml-2" dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}></div>
             </div>
-          }
+          )}
         </div>
 
         <div className={styles.themes}>
@@ -107,20 +109,20 @@ const DispositifCard = (props: Props) => {
           ))}
         </div>
 
-        <div className={styles.sponsor} style={{borderColor: colors.color80}}>
-            <span className={styles.picture}>
-              <Image
-                src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
-                alt={props.dispositif?.mainSponsor.nom}
-                width={40}
-                height={40}
-                objectFit="contain"
-              />
-            </span>
+        <div className={styles.sponsor} style={{ borderColor: colors.color80 }}>
+          <span className={styles.picture}>
+            <Image
+              src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
+              alt={props.dispositif?.mainSponsor.nom}
+              width={40}
+              height={40}
+              objectFit="contain"
+            />
+          </span>
           <span
             className={cls(styles.text, "ml-2")}
             style={{ color: colors.color100 }}
-            dangerouslySetInnerHTML={{__html: props.dispositif?.titreMarque}}
+            dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque }}
           />
         </div>
       </DispositifLink>
@@ -128,5 +130,18 @@ const DispositifCard = (props: Props) => {
   );
 };
 
-// TODO: specify properties
-export default memo(DispositifCard);
+const propsAreEqual = (prevProps: Props, nextProps: Props): boolean => {
+  const prevDisp = prevProps.dispositif;
+  const nextDisp = nextProps.dispositif;
+
+  const sameDisp = prevDisp._id === nextDisp._id;
+  const sameText =
+    prevDisp.titreInformatif === nextDisp.titreInformatif ||
+    prevDisp.abstract === nextDisp.abstract ||
+    (prevDisp?.titreMarque ? prevDisp.titreMarque === nextDisp?.titreMarque : true);
+  const sameDep = prevProps.selectedDepartment && prevProps.selectedDepartment === nextProps.selectedDepartment;
+
+  return !!sameDisp && !!sameText && !!sameDep;
+};
+
+export default memo(DispositifCard, propsAreEqual);

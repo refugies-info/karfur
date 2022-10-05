@@ -66,4 +66,15 @@ const DemarcheCard = (props: Props) => {
   );
 };
 
-export default memo(DemarcheCard);
+const propsAreEqual = (prevProps: Props, nextProps: Props): boolean => {
+  const prevDemarche = prevProps.demarche;
+  const nextDemarche = nextProps.demarche;
+
+  const sameDisp = prevDemarche._id === nextDemarche._id;
+  const sameText = prevDemarche.titreInformatif === nextDemarche.titreInformatif;
+
+  return !!sameDisp && !!sameText;
+};
+
+
+export default memo(DemarcheCard, propsAreEqual);
