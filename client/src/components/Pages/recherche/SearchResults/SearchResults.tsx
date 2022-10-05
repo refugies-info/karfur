@@ -13,6 +13,7 @@ import NotDeployedBanner from "../NotDeployedBanner";
 import SeeMoreButton from "../SeeMoreButton";
 import noResultsImage from "assets/no_results_alt.svg";
 import styles from "./SearchResults.module.scss";
+import useWindowSize from "hooks/useWindowSize";
 
 const MAX_SHOWN_ITEMS = 14;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
@@ -27,30 +28,33 @@ interface Props {
 }
 
 const SearchResults = (props: Props) => {
-  const [hideDemarches, setHideDemarches] = useState(false);
-  const [hideDispositifs, setHideDispositifs] = useState(false);
-  const [hideSecondaryDispositifs, setHideSecondaryDispositifs] = useState(false);
+  const [hideDemarches, setHideDemarches] = useState(true);
+  const [hideDispositifs, setHideDispositifs] = useState(true);
+  const [hideSecondaryDispositifs, setHideSecondaryDispositifs] = useState(true);
 
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
   useEffect(() => {
-    // hide after loading for SEO purposes
-    setHideDemarches(true);
-    setHideDispositifs(true);
-    setHideSecondaryDispositifs(true);
+    // BAD PERFORMANCES
+    // // hide after loading for SEO purposes
+    // setHideDemarches(true);
+    // setHideDispositifs(true);
+    // setHideSecondaryDispositifs(true);
 
     const savedDepartments = localStorage.getItem(HIDDEN_DEPS_KEY);
     if (savedDepartments) setDepartmentsMessageHidden(JSON.parse(savedDepartments));
   }, []);
 
-  const demarches = hideDemarches
-    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
+  const { isMobile } = useWindowSize();
+
+  const demarches = hideDemarches && !isMobile
+    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
     : props.filteredResult.demarches;
-  const dispositifs = hideDispositifs
-    ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
+  const dispositifs = hideDispositifs && !isMobile
+    ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS)
     : props.filteredResult.dispositifs;
-  const secondaryDispositifs = hideSecondaryDispositifs
-    ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
+  const secondaryDispositifs = hideSecondaryDispositifs && !isMobile
+    ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS)
     : props.filteredResult.dispositifsSecondaryTheme;
 
   const selectedDepartment = props.departmentsSelected.length === 1 ? props.departmentsSelected[0] : undefined;
@@ -82,6 +86,7 @@ const SearchResults = (props: Props) => {
       </div>
     );
   }
+
   return (
     <>
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
@@ -105,7 +110,7 @@ const SearchResults = (props: Props) => {
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          {props.selectedType !== "dispositif" && props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
+          {!isMobile && props.selectedType !== "dispositif" && props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
             <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
           )}
         </div>
@@ -129,7 +134,7 @@ const SearchResults = (props: Props) => {
               <DispositifCard key={d._id.toString()} dispositif={d} selectedDepartment={selectedDepartment} />
             ))}
           </div>
-          {props.filteredResult.dispositifs.length >= MAX_SHOWN_ITEMS && (
+          {!isMobile && props.filteredResult.dispositifs.length >= MAX_SHOWN_ITEMS && (
             <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
           )}
         </div>
@@ -151,7 +156,7 @@ const SearchResults = (props: Props) => {
               <DispositifCard key={d._id.toString()} dispositif={d} />
             ))}
           </div>
-          {props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
+          {!isMobile && props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
             <SeeMoreButton onClick={() => setHideSecondaryDispositifs((h) => !h)} visible={!hideSecondaryDispositifs} />
           )}
         </div>

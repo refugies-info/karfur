@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { END } from "redux-saga";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
@@ -215,14 +215,14 @@ const Recherche = () => {
     setDepartmentsNotDeployed(newDepartmentsNotDeployed);
   }, [departmentsSelected, dispositifs])
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     setSearch("");
     setNeedsSelected([]);
     setDepartmentsSelected([]);
     setFilterAge([]);
     setFilterFrenchLevel([]);
     setFilterLanguage([]);
-  };
+  }, []);
 
   const nbResults = filteredResult.dispositifs.length +
     filteredResult.demarches.length +
