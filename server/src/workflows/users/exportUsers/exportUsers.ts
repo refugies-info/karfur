@@ -3,7 +3,6 @@ import logger from "../../../logger";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { adaptUsers } from "../getAllUsers/getAllUsers";
 import { ObjectId } from "mongoose";
-import moment from "moment";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
@@ -70,14 +69,8 @@ const formatUser = (user: User) => {
     user.structures && user.structures.length > 0
       ? user.structures.map((structure) => structure.nom).join()
       : "";
-  const format2 = "YYYY/MM/DD";
-  const createdAt = user.created_at
-    ? moment(user.created_at).format(format2)
-    : "1900/01/01";
-
-  const last_connected = user.last_connected
-    ? moment(user.last_connected).format(format2)
-    : "1900/01/01";
+  const createdAt = user.created_at ? user.created_at.toISOString() : "";
+  const last_connected = user.last_connected ? user.last_connected.toISOString() : "";
   const rolesWithTraducteur =
     user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
 
