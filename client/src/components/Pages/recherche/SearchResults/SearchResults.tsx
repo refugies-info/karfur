@@ -29,6 +29,7 @@ interface Props {
 const SearchResults = (props: Props) => {
   const [hideDemarches, setHideDemarches] = useState(false);
   const [hideDispositifs, setHideDispositifs] = useState(false);
+  const [hideSecondaryDispositifs, setHideSecondaryDispositifs] = useState(false);
 
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
@@ -36,6 +37,7 @@ const SearchResults = (props: Props) => {
     // hide after loading for SEO purposes
     setHideDemarches(true);
     setHideDispositifs(true);
+    setHideSecondaryDispositifs(true);
 
     const savedDepartments = localStorage.getItem(HIDDEN_DEPS_KEY);
     if (savedDepartments) setDepartmentsMessageHidden(JSON.parse(savedDepartments));
@@ -47,12 +49,15 @@ const SearchResults = (props: Props) => {
   const dispositifs = hideDispositifs
     ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
     : props.filteredResult.dispositifs;
+  const secondaryDispositifs = hideSecondaryDispositifs
+    ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS) /* TODO: show all in mobile */
+    : props.filteredResult.dispositifsSecondaryTheme;
 
   const selectedDepartment = props.departmentsSelected.length === 1 ? props.departmentsSelected[0] : undefined;
   const noResults =
     demarches.length === 0 &&
     dispositifs.length === 0 &&
-    props.filteredResult.dispositifsSecondaryTheme.length === 0;
+    secondaryDispositifs.length === 0;
 
   // Banner
   const hideBanner = () => {
@@ -84,7 +89,7 @@ const SearchResults = (props: Props) => {
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "dispositif" && styles.hidden)}>
             <h2>Les fiches démarches</h2>
-            <span>{demarches.length}</span>
+            <span>{props.filteredResult.demarches.length}</span>
           </div>
           <div className={cls(
             styles.results,
@@ -109,7 +114,7 @@ const SearchResults = (props: Props) => {
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>
             <h2>Les fiches dispositifs</h2>
-            <span>{dispositifs.length}</span>
+            <span>{props.filteredResult.dispositifs.length}</span>
           </div>
           <div className={cls(
             styles.results,
@@ -130,7 +135,7 @@ const SearchResults = (props: Props) => {
         </div>
       )}
 
-      {props.filteredResult.dispositifsSecondaryTheme.length > 0 && (
+      {secondaryDispositifs.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>
             <h2>Autres fiches avec ce thème</h2>
@@ -142,10 +147,13 @@ const SearchResults = (props: Props) => {
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
               themes={props.themesSelected}
             />
-            {props.filteredResult.dispositifsSecondaryTheme.map((d) => (
+            {secondaryDispositifs.map((d) => (
               <DispositifCard key={d._id.toString()} dispositif={d} />
             ))}
           </div>
+          {props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
+            <SeeMoreButton onClick={() => setHideSecondaryDispositifs((h) => !h)} visible={!hideSecondaryDispositifs} />
+          )}
         </div>
       )}
     </>

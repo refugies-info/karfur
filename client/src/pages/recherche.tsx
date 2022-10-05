@@ -97,7 +97,7 @@ const Recherche = () => {
   // search
   const [search, setSearch] = useState("");
   const [needsSelected, setNeedsSelected] = useState<ObjectId[]>(initialQuery.needsSelected);
-  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]);
+  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]); //TODO: fix here
   const [departmentsSelected, setDepartmentsSelected] = useState<string[]>(initialQuery.departmentsSelected);
 
   // additional search
