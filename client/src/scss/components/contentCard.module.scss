@@ -29,6 +29,7 @@
   }
   &.dispositif {
     width: 260px;
+    max-width: 100%;
 
     @include isMobile() {
       width: 100%;

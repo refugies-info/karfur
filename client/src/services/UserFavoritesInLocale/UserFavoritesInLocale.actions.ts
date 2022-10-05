@@ -4,13 +4,13 @@ import {
   UPDATE_USER_FAVORITES,
 } from "./UserFavoritesInLocale.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { IUserFavorite } from "../../types/interface";
+import { IDispositif } from "../../types/interface";
 import { ObjectId } from "mongodb";
 
 export const fetchUserFavoritesActionCreator = (value: string) =>
   action(FETCH_USER_FAVORITES, value);
 
-export const setUserFavoritesActionCreator = (value: IUserFavorite[]) =>
+export const setUserFavoritesActionCreator = (value: IDispositif[]) =>
   action(SET_USER_FAVORITES, value);
 
 export const updateUserFavoritesActionCreator = (value: {

@@ -402,15 +402,6 @@ export interface SimplifiedStructureForAdmin {
   adminPercentageProgressionStatus?: string;
 }
 
-export interface IUserFavorite {
-  _id: ObjectId;
-  typeContenu: "dispositif" | "demarche";
-  titreInformatif: string;
-  titreMarque: string;
-  abstract: string;
-  theme: Theme;
-}
-
 export interface IUserContribution {
   _id: ObjectId;
   typeContenu: "dispositif" | "demarche";
