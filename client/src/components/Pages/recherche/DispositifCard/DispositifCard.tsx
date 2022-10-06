@@ -1,19 +1,19 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { IDispositif } from "types/interface";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { IDispositif } from "types/interface";
+import { getPath } from "routes";
+import { cls } from "lib/classname";
+import ThemeBadge from "components/UI/ThemeBadge";
+import { getDispositifInfos } from "lib/getDispositifInfos";
 import iconMap from "assets/recherche/icon-map.svg";
 import iconTime from "assets/recherche/icon-time.svg";
 import iconEuro from "assets/recherche/icon-euro.svg";
-import ThemeBadge from "components/UI/ThemeBadge";
-import Link from "next/link";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
-import { getDispositifInfos } from "lib/getDispositifInfos";
-import { cls } from "lib/classname";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
-import styles from "./DispositifCard.module.scss";
 import commonStyles from "scss/components/contentCard.module.scss";
+import styles from "./DispositifCard.module.scss";
 
 type DispositifLinkProps = {
   background: string;

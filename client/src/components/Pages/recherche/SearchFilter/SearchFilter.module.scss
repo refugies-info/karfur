@@ -1,28 +1,31 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .dropdown {
-  margin: 4px;
+  margin: u(1);
 
   & > button {
     background: $gray30;
     color: $gray80;
     border: none;
-    padding: 12px 24px 12px 8px;
-    border-radius: 8px;
+    padding: u(3) u(6) u(3) u(2);
+    border-radius: u(2);
     max-width: 200px;
     height: 45px;
     position: relative;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: $gray40b !important;
       color: $gray80 !important;
     }
 
     .icon {
       position: absolute;
-      right: 4px;
+      right: u(1);
       top: 11px;
     }
   }
@@ -37,7 +40,9 @@
     color: $white !important;
     font-weight: bold;
 
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       background: $bleuCharte !important;
       color: $white !important;
     }
@@ -47,9 +52,9 @@
 .value {
   display: inline-block;
   white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 /* Override global style */
@@ -59,15 +64,15 @@ html body .dropdown.show > button {
 
 .menu {
   box-shadow: 0 0 40px 0 #00000040;
-  padding: 16px;
+  padding: u(4);
   border-radius: $radius;
-  margin-top: 8px;
+  margin-top: u(2);
 }
 
 .item {
-  padding: 12px 8px;
-  border-radius: 8px !important;
-  margin-bottom: 4px;
+  padding: u(3) u(2);
+  border-radius: u(2) !important;
+  margin-bottom: u(1);
   border: none;
 
   &:hover {
@@ -84,7 +89,7 @@ html body .dropdown.show > button {
   }
 
   i {
-    margin: 0 8px 0 0;
+    margin: 0 u(2) 0 0;
   }
 
   &.selected {

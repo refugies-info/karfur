@@ -1,9 +1,9 @@
 import React from "react";
-import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import Image from "next/image";
-// import styles from "./DemarcheCardTitle.module.scss";
+import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import { cls } from "lib/classname";
+// import styles from "./DemarcheCardTitle.module.scss";
 
 interface Props {
   color?: string;

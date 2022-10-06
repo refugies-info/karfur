@@ -1,14 +1,14 @@
-
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .card {
   display: block;
   position: relative;
   background: $white;
-  box-shadow: 0 4px 18px 0 #0000001A;
+  box-shadow: 0 4px 18px 0 #0000001a;
   padding: u(4);
   border-radius: $radius;
   border: 2px solid transparent;
@@ -37,7 +37,7 @@
     }
 
     &.title {
-      display:flex;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
@@ -84,6 +84,7 @@
 .text {
   font-size: 28px;
   line-height: 35px;
+  @include text("h4");
   margin-top: u(6);
   margin-bottom: u(6);
   font-weight: bold;
@@ -92,11 +93,9 @@
 
 .badge {
   padding: u(1) u(2);
-
   background: $white;
   color: $bleuCharte;
-  font-size: $text-large;
-  line-height: 22px;
+  @include text("large");
   border-radius: 4px;
   font-weight: bold;
   display: inline-block;

@@ -10,8 +10,8 @@ interface Props {
   image: any;
   title: string;
   examples: string[];
-  onClick: () => void
-  link: string
+  onClick: () => void;
+  link: string;
 }
 
 const HomeTypeCard = (props: Props) => {

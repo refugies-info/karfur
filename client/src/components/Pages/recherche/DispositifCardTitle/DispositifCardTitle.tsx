@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
-import iconMap from "assets/recherche/icon-map.svg";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import commonStyles from "scss/components/contentCard.module.scss";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ThemeBadge from "components/UI/ThemeBadge";
+import iconMap from "assets/recherche/icon-map.svg";
+import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCardTitle.module.scss";
 
 interface Props {
@@ -33,9 +33,9 @@ const DispositifCardTitle = (props: Props) => {
 
         {isSecondaryCard && (
           <div className={styles.theme}>
-            {props.themes?.map((theme, i) =>
-            <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="mr-2 mb-2" />
-            )}
+            {props.themes?.map((theme, i) => (
+              <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="mr-2 mb-2" />
+            ))}
           </div>
         )}
 

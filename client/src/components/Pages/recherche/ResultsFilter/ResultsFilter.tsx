@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import styles from "./ResultsFilter.module.scss";
-import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import styles from "./ResultsFilter.module.scss";
 
 interface Props {
   nbDemarches: number;
@@ -47,7 +47,7 @@ const ResultsFilter = (props: Props) => {
         ))}
       </div>
 
-      {props.showSort &&
+      {props.showSort && (
         <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
           <DropdownToggle className={styles.dropdown}>
             <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
@@ -69,7 +69,7 @@ const ResultsFilter = (props: Props) => {
             })}
           </DropdownMenu>
         </Dropdown>
-      }
+      )}
     </div>
   );
 };

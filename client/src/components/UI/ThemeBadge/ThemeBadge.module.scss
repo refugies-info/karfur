@@ -1,18 +1,19 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
   display: inline-flex;
   align-items: center;
-  font-size: 12px;
-  line-height: 15px;
-  padding: 4px;
-  border-radius: 4px;
+  @include text("very-small");
+  padding: u(1);
+  border-radius: u(1);
 }
 
 .icon {
-  margin-right: 4px;
+  margin-right: u(1);
   position: relative;
   top: -2px;
 }

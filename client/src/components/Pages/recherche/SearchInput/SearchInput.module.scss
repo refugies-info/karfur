@@ -5,8 +5,8 @@
 @import "src/scss/variables";
 
 .filter {
-  padding: 16px;
-  margin: 8px;
+  padding: u(4);
+  margin: u(2);
   background: transparent;
   border: none;
   display: flex;
@@ -37,9 +37,8 @@
   }
 
   .label {
-    font-size: 12px;
-    line-height: 15px;
-    margin-bottom: 8px;
+    @include text("very-small");
+    margin-bottom: u(2);
     color: $gray80;
     text-transform: uppercase;
     display: block;
@@ -53,7 +52,7 @@
   .input {
     border: none;
     outline: none;
-    background:transparent;
+    background: transparent;
     padding: 0;
 
     @include isMobile() {
@@ -85,7 +84,7 @@
     height: 48px;
     border-radius: 50%;
     background: $gray30;
-    margin-right: 16px;
+    margin-right: u(4);
     display: flex;
     flex-shrink: 0;
     justify-content: center;

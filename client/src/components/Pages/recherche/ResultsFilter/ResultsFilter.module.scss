@@ -22,7 +22,7 @@
 
 .types {
   @include isMobile() {
-    display:flex;
+    display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
     padding: 0 15px u(2) 15px;
@@ -57,12 +57,12 @@
   border: none;
   padding: u(3);
   border-radius: u(2);
-  box-shadow: 0 u(1) 18px 0 #0000001A;
+  box-shadow: 0 u(1) 18px 0 #0000001a;
   height: 45px;
 
   .icon {
     margin-right: u(2);
-    svg{
+    svg {
       transform: rotate(90deg);
     }
   }
@@ -108,4 +108,3 @@
     color: $white !important;
   }
 }
-

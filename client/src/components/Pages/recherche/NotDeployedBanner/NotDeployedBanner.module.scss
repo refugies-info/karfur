@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
 
-  @include isMobile{
+  @include isMobile {
     order: 1;
     margin-left: -15px;
     margin-right: -15px;
@@ -27,7 +27,7 @@
 
   .map_icon {
     @include isMobile() {
-      display:none;
+      display: none;
     }
   }
 }
@@ -45,7 +45,7 @@
   margin-right: u(10);
 
   @include isMobile() {
-    display:none;
+    display: none;
   }
 }
 

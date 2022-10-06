@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
@@ -10,7 +11,7 @@
   box-shadow: 0 0 40px 0 #00000040;
   overflow: hidden;
   z-index: 3;
-  padding: 16px;
+  padding: u(4);
 
   @include isMobile() {
     width: 100%;
@@ -20,32 +21,33 @@
 }
 
 .header {
-  padding-bottom: 16px;
-  margin-bottom: 16px;
+  padding-bottom: u(4);
+  margin-bottom: u(4);
   border-bottom: 1px solid $grey50b;
 }
 
 .selected {
   background-color: $bleuCharte;
-  padding: 12px;
+  padding: u(3);
   font-weight: bold;
-  border-radius: 8px;
-  border:none;
+  border-radius: u(2);
+  border: none;
   color: white;
-  margin-right: 4px;
-  margin-bottom: 4px;
+  margin-right: u(1);
+  margin-bottom: u(1);
 
   &:hover {
     background-color: darken($bleuCharte, 5);
     color: white;
   }
-  &:active, &:focus {
+  &:active,
+  &:focus {
     background-color: darken($bleuCharte, 10) !important;
     color: white !important;
   }
 
   .icon {
-    margin-left: 8px;
+    margin-left: u(2);
   }
 }
 
@@ -55,21 +57,21 @@
   display: block;
   width: 100%;
   text-align: left;
-  padding: 12px 8px;
-  border-radius: 8px;
+  padding: u(3) u(2);
+  border-radius: u(2);
 
-  &:hover{
+  &:hover {
     background: $gray40b;
 
     .icon {
-      background: $white
+      background: $white;
     }
   }
 
   .icon {
-    margin-right: 8px;
+    margin-right: u(2);
     background: $gray40b;
-    border-radius: 4px;
+    border-radius: u(1);
     width: 24px;
     height: 24px;
   }
@@ -85,4 +87,3 @@
     top: -1px;
   }
 }
-

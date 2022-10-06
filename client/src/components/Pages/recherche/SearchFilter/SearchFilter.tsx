@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import styles from "./SearchFilter.module.scss";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
-import Checkbox from "components/UI/Checkbox";
+import { cls } from "lib/classname";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import Checkbox from "components/UI/Checkbox";
+import styles from "./SearchFilter.module.scss";
 
 type SetSelected =
   | Dispatch<SetStateAction<AgeOptions[]>>

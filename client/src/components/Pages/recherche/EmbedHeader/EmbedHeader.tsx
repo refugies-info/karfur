@@ -20,13 +20,13 @@ const EmbedHeader = (props: Props) => {
   const languages = useSelector(allLanguesSelector);
 
   const selectedTheme = props.themes.length === 1 ? props.themes[0] : null;
-  const department = props.departments.length === 1 ? props.departments[0] : null;
+  const selectedDepartment = props.departments.length === 1 ? props.departments[0] : null;
   const selectedLanguage =
     props.languages.length === 1 ? languages.find((ln) => ln.i18nCode === props.languages[0]) : null;
 
   return (
     <p className={styles.text}>
-      {selectedTheme && department && selectedLanguage && "Fiches "}
+      {selectedTheme && selectedDepartment && selectedLanguage && "Fiches "}
       {selectedTheme && (
         <>
           avec le thème{" "}
@@ -38,10 +38,10 @@ const EmbedHeader = (props: Props) => {
           </span>
         </>
       )}
-      {(selectedLanguage || department) && " disponibles "}
-      {department && (
+      {(selectedLanguage || selectedDepartment) && " disponibles "}
+      {selectedDepartment && (
         <>
-          en <span className={styles.btn}>{department}</span>
+          en <span className={styles.btn}>{selectedDepartment}</span>
         </>
       )}
       {selectedLanguage && (
