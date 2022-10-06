@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container } from "reactstrap";
 import Image from "next/image";
-import Link from "next/link";
-import qs from "query-string";
 import { cls } from "lib/classname";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
@@ -13,12 +11,7 @@ import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
 import illuLocation from "assets/recherche/illu-location.png";
 import styles from "./HomeSearch.module.scss";
-import { getPath } from "routes";
-import { useRouter } from "next/router";
 import { TypeOptions } from "data/searchFilters";
-import isInBrowser from "lib/isInBrowser";
-import { UrlSearchQuery } from "pages/recherche";
-import { needsSelector } from "services/Needs/needs.selectors";
 import { SearchDispositif } from "types/interface";
 import DemarcheCard from "../DemarcheCard";
 import DispositifCard from "../DispositifCard";
@@ -59,19 +52,13 @@ const departmentExamples = [
 interface Props {
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
-  setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
+  setThemesSelected: Dispatch<SetStateAction<ObjectId[]>>;
   dispositifs: SearchDispositif[];
   demarches: SearchDispositif[];
 }
 
 const HomeSearch = (props: Props) => {
-  const router = useRouter();
   const themes = useSelector(themesSelector);
-  const needs = useSelector(needsSelector);
-
-  const getNeedsOfTheme = (themeId: ObjectId) => {
-    return [...needs].filter((need) => need.theme._id === themeId).map((n) => n._id);
-  };
 
   return (
     <div>
@@ -81,12 +68,11 @@ const HomeSearch = (props: Props) => {
           <h2 className="h4">Les thématiques de l'intégration</h2>
           <div className={styles.themes}>
             {themes.map((theme, i) => {
-              const selectedNeeds = getNeedsOfTheme(theme._id);
               return (
                 <SearchThemeButton
                   key={i}
                   theme={theme}
-                  onClick={() => props.setNeedsSelected(selectedNeeds)}
+                  onClick={() => props.setThemesSelected([theme._id])}
                 />
               );
             })}

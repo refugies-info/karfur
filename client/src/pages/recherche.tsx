@@ -278,7 +278,7 @@ const Recherche = () => {
         <HomeSearch
           setDepartmentsSelected={setDepartmentsSelected}
           setSelectedType={setSelectedType}
-          setNeedsSelected={setNeedsSelected}
+          setThemesSelected={setThemesSelected}
           demarches={filteredResult.demarches.slice(0, 5)}
           dispositifs={filteredResult.dispositifs.slice(0, 4)}
         />

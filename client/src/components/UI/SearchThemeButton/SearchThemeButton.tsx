@@ -1,8 +1,8 @@
+import React from "react";
+import Image from "next/image";
+import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";
-import Image from "next/image";
-import React from "react";
-import styled from "styled-components";
 import { Theme } from "types/interface";
 import styles from "./SearchThemeButton.module.scss";
 

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { Button } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import styles from "./SearchInput.module.scss";
