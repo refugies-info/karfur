@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { decodeQuery, queryDispositifs } from "lib/filterContents";
+import { queryDispositifs } from "lib/recherche/queryContents";
+import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,

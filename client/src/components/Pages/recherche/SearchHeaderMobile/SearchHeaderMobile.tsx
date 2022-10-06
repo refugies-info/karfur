@@ -103,7 +103,7 @@ const SearchHeaderMobile = (props: Props) => {
       <div className={styles.container}>
         <Container>
           <div className={styles.inputs}>
-            <Button onClick={() => setSearchFocused(true)}>
+            <div onClick={() => setSearchFocused(true)}>
               <SearchInput
                 label="Mot-clé"
                 icon="search-outline"
@@ -114,7 +114,7 @@ const SearchHeaderMobile = (props: Props) => {
                 value={search}
                 placeholder="Mission locale, titre de séjour..."
               />
-            </Button>
+            </div>
           </div>
         </Container>
       </div>

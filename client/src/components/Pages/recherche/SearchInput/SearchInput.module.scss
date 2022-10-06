@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .filter {
@@ -68,6 +69,7 @@
     overflow: hidden;
     position: relative;
     padding-right: u(6);
+    @include text("small");
 
     @include isMobile() {
       padding-right: 0;

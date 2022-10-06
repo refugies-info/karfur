@@ -33,7 +33,7 @@
   display: flex;
   margin-top: 0;
 
-  & > button {
+  & > button, & > div {
     background: transparent !important;
     border: none;
     padding: 0;

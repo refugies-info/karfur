@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Theme } from "types/interface";
 
 type fetchPromise = Record<string, Promise<string>>;
-
 const fetching: fetchPromise = {};
 
 const useThemeIcon = (theme: Theme | undefined | null, size: number) => {
@@ -28,7 +27,7 @@ const useThemeIcon = (theme: Theme | undefined | null, size: number) => {
     getImgXml();
   }, [theme]);
 
-  return {imgXml, hasBeenFetched};
+  return { imgXml, hasBeenFetched };
 }
 
 export default useThemeIcon;

@@ -18,7 +18,8 @@ import SearchHeader from "components/Pages/recherche/SearchHeader";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
-import { decodeQuery, getCountDispositifsForDepartment, queryDispositifs, queryDispositifsWithAlgolia } from "lib/filterContents";
+import { getCountDispositifsForDepartment, queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
+import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import { IDispositif, Need, Theme } from "types/interface";
@@ -28,6 +29,7 @@ import { getPath } from "routes";
 import { languei18nSelector } from "services/Langue/langue.selectors";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
 import SearchHeaderMobile from "components/Pages/recherche/SearchHeaderMobile";
+import { getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 
 export type SearchQuery = {
   search: string;
@@ -56,37 +58,9 @@ export type Results = {
   dispositifsSecondaryTheme: IDispositif[];
 };
 
-const debouncedQuery = debounce((query, dispositifs, locale, callback) => {
+const debouncedQuery = debounce((query: SearchQuery, dispositifs: IDispositif[], locale: string, callback: any) => {
   return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
 }, 500);
-
-// TODO: move to lib
-const getThemesSelected = (needsSelected: ObjectId[], allNeeds: Need[]): { themes: ObjectId[]; needs: ObjectId[] } => {
-  const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
-
-  // get all themes displayed
-  const themesDisplayed: Theme[] = [];
-  for (const need of needs) {
-    if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
-      themesDisplayed.push(need.theme);
-    }
-  }
-
-  // for each theme displayed, if all needs selected, set theme selected
-  const themesSelected: ObjectId[] = [];
-  for (const themeDisplayed of themesDisplayed) {
-    const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
-    const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
-    if (totalNeedsOfTheme === countNeedsOfThemeSelected) {
-      themesSelected.push(themeDisplayed._id);
-    }
-  }
-
-  return {
-    themes: themesSelected,
-    needs: needs.filter((n) => !themesSelected.includes(n.theme._id)).map((n) => n._id)
-  };
-};
 
 const Recherche = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -116,7 +90,7 @@ const Recherche = () => {
   const allNeeds = useSelector(needsSelector);
 
   useEffect(() => {
-    const { themes, needs } = getThemesSelected(needsSelected, allNeeds);
+    const { themes, needs } = getThemesFromNeeds(needsSelected, allNeeds);
 
     // toggle home screen
     const hideHome =
@@ -133,15 +107,16 @@ const Recherche = () => {
 
     // update url
     const updateUrl = () => {
-      const urlQuery: UrlSearchQuery = {};
-      if (needs) urlQuery.needs = needs;
-      if (themes) urlQuery.themes = themes;
-      if (departmentsSelected) urlQuery.departments = departmentsSelected;
-      if (filterAge) urlQuery.ages = filterAge;
-      if (filterFrenchLevel) urlQuery.frenchLevels = filterFrenchLevel;
-      if (filterLanguage) urlQuery.language = filterLanguage;
-      if (selectedSort) urlQuery.sort = selectedSort;
-      if (selectedType) urlQuery.type = selectedType;
+      const urlQuery: UrlSearchQuery = {
+        needs: needs,
+        themes: themes,
+        departments: departmentsSelected,
+        ages: filterAge,
+        frenchLevels: filterFrenchLevel,
+        language: filterLanguage,
+        sort: selectedSort,
+        type: selectedType,
+      };
 
       const locale = router.locale;
       const oldQueryString = qs.stringify(router.query, { arrayFormat: "comma" });
@@ -193,13 +168,13 @@ const Recherche = () => {
     const needs = needsSelected.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
 
     // get all themes displayed
-    const themesDisplayed: Theme[] = [];
+    const newThemesDisplayed: Theme[] = [];
     for (const need of needs) {
-      if (need.theme && !themesDisplayed.find((t) => t._id === need.theme._id)) {
-        themesDisplayed.push(need.theme);
+      if (need.theme && !newThemesDisplayed.find((t) => t._id === need.theme._id)) {
+        newThemesDisplayed.push(need.theme);
       }
     }
-    setThemesDisplayed(themesDisplayed);
+    setThemesDisplayed(newThemesDisplayed);
   }, [needsSelected, allNeeds]);
 
   // check if department deployed
@@ -273,7 +248,7 @@ const Recherche = () => {
         <Container className={styles.container_inner}>
           <ResultsFilter
             nbDemarches={filteredResult.demarches.length}
-            nbDispositifs={filteredResult.dispositifs.length}
+            nbDispositifs={filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length}
             selectedSort={selectedSort}
             setSelectedSort={setSelectedSort}
             selectedType={selectedType}

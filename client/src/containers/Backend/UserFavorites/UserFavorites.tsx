@@ -12,7 +12,6 @@ import { NoFavorites } from "./components/NoFavorites.component";
 import { CardContainer, FavoritesContainer, CardsContainer } from "./components/SubComponents";
 import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import { IDispositif } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import Navigation from "../Navigation";
