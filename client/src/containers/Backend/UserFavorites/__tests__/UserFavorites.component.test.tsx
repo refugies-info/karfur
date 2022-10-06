@@ -15,6 +15,7 @@ jest.mock("next/image", () => {
 });
 jest.mock("axios", () => {
   return {
+    get: () => jest.fn(),
     create: jest.fn(() => ({
       get: jest.fn(),
       interceptors: {
