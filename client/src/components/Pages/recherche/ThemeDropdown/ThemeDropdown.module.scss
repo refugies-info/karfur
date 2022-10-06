@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -23,12 +24,12 @@
 }
 
 .btn {
-  display: flex;
+  display: inline-flex;
   width: 100%;
   align-items: center;
   border: 2px solid transparent;
   color: $dark;
-  border-radius: 8px;
+  border-radius: u(2);
   margin-bottom: 4px;
 
   &:focus {
@@ -57,7 +58,7 @@
 
   .btn {
     justify-content: space-between;
-    padding: 8px;
+    padding: u(2);
     font-weight: bold;
 
     @include isMobile() {
@@ -85,9 +86,13 @@
   }
 
   .btn {
-    padding: 8px 12px;
+    padding: u(2) 12px;
     justify-content: flex-start;
     text-align: left;
+
+    @include rtl() {
+      text-align: right;
+    }
 
     @include isMobile() {
       border-radius: 0;
@@ -106,7 +111,7 @@
 
 .list_theme {
   font-weight: bold;
-  padding: 12px 8px;
+  padding: 12px u(2);
   border: 2px solid transparent;
 }
 
@@ -118,15 +123,25 @@
   & > span {
     position: relative;
     top: -1px;
-    margin-right: 8px;
+    margin-right: u(2);
+
+    @include rtl() {
+      margin-left: u(2);
+      margin-right: 0;
+    }
   }
 }
 
 .badge {
   padding: 0 2px;
-  margin-left: 8px;
+  margin-left: u(2);
   border-radius: 2px;
   font-weight: normal;
+
+  @include rtl() {
+    margin-left: 0;
+    margin-right: u(2) !important;
+  }
 }
 
 .theme_badge {
@@ -139,5 +154,10 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  margin-left: 8px;
+  margin-left: u(2);
+
+  @include rtl() {
+    margin-left: 0;
+    margin-right: u(2);
+  }
 }

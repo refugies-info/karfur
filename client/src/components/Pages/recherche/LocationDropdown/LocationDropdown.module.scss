@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -24,6 +25,10 @@
   padding-bottom: u(4);
   margin-bottom: u(4);
   border-bottom: 1px solid $grey50b;
+
+  @include rtl() {
+    text-align: right;
+  }
 }
 
 .selected {
@@ -35,6 +40,13 @@
   color: white;
   margin-right: u(1);
   margin-bottom: u(1);
+  display: inline-flex;
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+    flex-direction: row-reverse;
+  }
 
   &:hover {
     background-color: darken($bleuCharte, 5);
@@ -60,6 +72,10 @@
   padding: u(3) u(2);
   border-radius: u(2);
 
+  @include rtl() {
+    text-align: right;
+  }
+
   &:hover {
     background: $gray40b;
 
@@ -74,6 +90,11 @@
     border-radius: u(1);
     width: 24px;
     height: 24px;
+
+    @include rtl() {
+      margin-right: 0;
+      margin-left: u(2);
+    }
   }
 }
 

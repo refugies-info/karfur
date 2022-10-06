@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -20,6 +21,11 @@
   color: $bleuCharte;
   background: $white;
 
+  @include rtl() {
+    margin-left: u(2);
+    margin-right: 0;
+  }
+
   &:hover {
     background: $gray40b;
   }
@@ -34,6 +40,10 @@
 
   i {
     margin: 0 u(2) 0 0;
+
+    @include rtl() {
+      margin: 0 0 0 u(2);
+    }
   }
 
   &.selected {

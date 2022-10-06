@@ -1,5 +1,6 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .checkbox {
@@ -18,6 +19,12 @@
     vertical-align: top;
     margin-left: 32px;
     cursor: pointer;
+    display: inline-flex;
+
+    @include rtl() {
+      margin-left: 0;
+      margin-right: 32px;
+    }
   }
 }
 .check {
@@ -26,4 +33,9 @@
   left: 0;
   display: block;
   pointer-events: none;
+
+  @include rtl() {
+    left: inherit;
+    right: 0;
+  }
 }

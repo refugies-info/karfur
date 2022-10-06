@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .section {
@@ -88,6 +89,10 @@
     white-space: nowrap;
     text-align: left;
     background: $white;
+
+    @include rtl() {
+      text-align: right;
+    }
 
     &:focus {
       outline: none;

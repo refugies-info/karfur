@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -25,6 +26,11 @@
   justify-content: center;
   align-items: center;
   margin-right: u(2);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(2);
+  }
 }
 
 .close {

@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .section {
@@ -24,6 +25,11 @@
     h2 {
       @include text("h4");
       margin-right: u(4);
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(4);
+      }
     }
     span {
       padding: u(1) u(2);

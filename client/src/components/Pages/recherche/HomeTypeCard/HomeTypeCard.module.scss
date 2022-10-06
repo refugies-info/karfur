@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .type_card {
@@ -13,6 +14,10 @@
   border: 2px solid transparent;
   width: 100%;
   text-align: left;
+
+  @include rtl() {
+    text-align: right;
+  }
 
   &:focus {
     outline: none;
@@ -30,6 +35,10 @@
     margin-top: u(4);
     padding-left: 0;
     list-style-type: none;
+
+    @include rtl() {
+      padding-right: 0;
+    }
 
     li {
       @include text("large");

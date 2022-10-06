@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -54,6 +55,11 @@
     position: absolute;
     top: u(3);
     left: u(3);
+
+    @include rtl() {
+      left: inherit;
+      right: u(3);
+    }
   }
 
   & > input {
@@ -63,6 +69,11 @@
     outline: none;
     background: transparent;
     padding-left: u(6);
+
+    @include rtl() {
+      padding-left: 0;
+      padding-right: u(6);
+    }
   }
 }
 
@@ -113,6 +124,11 @@
   background: $white;
   color: $bleuCharte;
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: u(2);
+  right: u(2);
+
+  @include rtl() {
+    right: inherit;
+    left: u(2);
+  }
 }

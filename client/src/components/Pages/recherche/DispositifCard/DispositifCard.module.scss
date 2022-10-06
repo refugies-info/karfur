@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .location {
@@ -44,6 +45,11 @@
 .badges {
   margin-bottom: u(1);
   margin-right: u(1);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+  }
 }
 
 .themes {

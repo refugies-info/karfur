@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .dropdown {
@@ -16,6 +17,10 @@
     height: 45px;
     position: relative;
 
+    @include rtl() {
+      padding: u(3) u(2) u(3) u(6);
+    }
+
     &:hover,
     &:focus,
     &:active {
@@ -27,6 +32,11 @@
       position: absolute;
       right: u(1);
       top: 11px;
+
+      @include rtl() {
+        right: inherit;
+        left: u(1);
+      }
     }
   }
 
@@ -90,6 +100,10 @@ html body .dropdown.show > button {
 
   i {
     margin: 0 u(2) 0 0;
+
+    @include rtl() {
+      margin: 0 0 0 u(2);
+    }
   }
 
   &.selected {

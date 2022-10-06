@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
@@ -37,6 +38,11 @@
   padding: u(3);
   margin-right: u(4);
 
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(4);
+  }
+
   &.selected {
     background: $bleuCharte !important;
     color: $white !important;
@@ -62,6 +68,12 @@
 
   .icon {
     margin-right: u(2);
+
+    @include rtl() {
+      margin-right: 0;
+      margin-left: u(2);
+    }
+
     svg {
       transform: rotate(90deg);
     }
@@ -101,6 +113,11 @@
 
   i {
     margin: 0 0 0 u(2);
+
+    @include rtl() {
+      margin: 0 u(2) 0 0;
+
+    }
   }
 
   &.selected {
