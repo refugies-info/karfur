@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,6 +37,7 @@ interface Props {
 }
 
 const DispositifCard = (props: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const themes = useSelector(themesSelector);
   const theme = getTheme(props.dispositif.theme, themes);
@@ -49,8 +51,8 @@ const DispositifCard = (props: Props) => {
   const getDepartement = () => {
     if (!location || !location.departments) return null;
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.departments.length > 1) return `${location.departments.length} départements`;
-    if (location.departments.length === 1 && location.departments[0] === "All") return "Toute la France";
+    if (location.departments.length > 1) return `${location.departments.length} ${t("Dispositif.Départements", "Départements")}`;
+    if (location.departments.length === 1 && location.departments[0] === "All") return t("Recherche.france", "toute la France");
     return location.departments[0];
   };
 
@@ -91,7 +93,7 @@ const DispositifCard = (props: Props) => {
             <div className="d-flex">
               <Image src={iconEuro} width={16} height={16} alt="" />
               {price?.price === 0 ? (
-                <div className="ml-2">Gratuit</div>
+                <div className="ml-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
                 <div className="ml-2">
                   {price?.price}€ {price?.contentTitle}

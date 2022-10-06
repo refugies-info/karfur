@@ -3,6 +3,7 @@ import { END } from "redux-saga";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { ObjectId } from "mongodb";
+import { useTranslation } from "next-i18next";
 import { debounce } from "lodash";
 import qs from "query-string";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -63,6 +64,7 @@ const debouncedQuery = debounce((query: SearchQuery, dispositifs: SearchDisposit
 }, 500);
 
 const Recherche = () => {
+  const { t } = useTranslation();
   const dispositifs = useSelector(activeDispositifsSelector);
   const router = useRouter();
   const initialQuery = decodeQuery(router.query);
@@ -211,7 +213,7 @@ const Recherche = () => {
 
   return (
     <div className={cls(styles.container)}>
-      <SEO title="Recherche" />
+      <SEO title={t("Recherche.pageTitle", "Recherche")} />
       <div className="d-none d-md-block">
         <SearchHeader
           searchMinified={showHome}

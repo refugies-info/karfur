@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container } from "reactstrap";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
 import { themesSelector } from "services/Themes/themes.selectors";
@@ -16,6 +17,7 @@ import { SearchDispositif } from "types/interface";
 import DemarcheCard from "../DemarcheCard";
 import DispositifCard from "../DispositifCard";
 
+/* TODO : translate */
 const demarchesExamples = [
   "Demander un logement social",
   "Ouvrir un compte bancaire",
@@ -58,6 +60,7 @@ interface Props {
 }
 
 const HomeSearch = (props: Props) => {
+  const { t } = useTranslation();
   const themes = useSelector(themesSelector);
 
   return (
@@ -65,7 +68,7 @@ const HomeSearch = (props: Props) => {
       {/* themes */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">Les thématiques de l'intégration</h2>
+          <h2 className="h4">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
           <div className={styles.themes}>
             {themes.map((theme, i) => {
               return (
@@ -83,12 +86,12 @@ const HomeSearch = (props: Props) => {
       {/* types */}
       <div className={cls(styles.section, styles.white)}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">Deux types d'information</h2>
+          <h2 className="h4">{t("Recherche.titleTypes", "Deux types d'information")}</h2>
           <Row className={styles.content}>
             <Col md="6">
               <HomeTypeCard
                 image={illuDemarche}
-                title="Les fiches démarches"
+                title={t("Recherche.demarcheTitle", "Les fiches démarches")}
                 examples={demarchesExamples}
                 onClick={() => props.setSelectedType("demarche")}
               />
@@ -96,7 +99,7 @@ const HomeSearch = (props: Props) => {
             <Col md="6">
               <HomeTypeCard
                 image={illuDispositif}
-                title="Les fiches dispositifs"
+                title={t("Recherche.dispositifTitle", "Les fiches dispositifs")}
                 examples={dispositifsExamples}
                 onClick={() => props.setSelectedType("dispositif")}
               />
@@ -108,13 +111,13 @@ const HomeSearch = (props: Props) => {
       {/* new */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">Nouveautés dans les fiches démarches</h2>
+          <h2 className="h4">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
           <div className={cls(styles.results, styles.demarches)}>
             {props.demarches.map((d) => (
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          <h2 className="h4">Nouveautés dans les fiches dispositifs</h2>
+          <h2 className="h4">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
           <div className={cls(styles.results, styles.dispositifs)}>
             {props.dispositifs.map((d) => (
               <DispositifCard key={d._id.toString()} dispositif={d} />
@@ -128,7 +131,7 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <Row>
             <Col>
-              <h2 className="h4">Trouvez les fiches près de chez vous</h2>
+              <h2 className="h4">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
               <div className={styles.departments}>
                 {departmentExamples.map((dep, i) => (
                   <button

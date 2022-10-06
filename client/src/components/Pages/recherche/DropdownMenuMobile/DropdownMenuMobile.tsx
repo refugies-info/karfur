@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "reactstrap";
+import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./DropdownMenuMobile.module.scss";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const DropdownMenuMobile = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -33,10 +35,10 @@ const DropdownMenuMobile = (props: Props) => {
       <div className={styles.footer}>
         <Button color="white" className={styles.reset} onClick={props.reset}>
           <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
-          Réinitialiser
+          {t("Recherche.resetButton", "Réinitialiser")}
         </Button>
         <Button color="primary" className={styles.btn_search} onClick={props.close}>
-          Voir les fiches
+          {t("Recherche.seeButton", "Voir les fiches")}
         </Button>
       </div>
     </div>

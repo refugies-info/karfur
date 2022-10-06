@@ -13,7 +13,7 @@ interface Props {
   departments: string[];
   languages: string[];
 }
-
+/* TODO : trad */
 const EmbedHeader = (props: Props) => {
   const router = useRouter();
   const isRTL = useRTL();

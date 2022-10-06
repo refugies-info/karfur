@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const DispositifCardTitle = (props: Props) => {
+  const { t } = useTranslation();
   const isSecondaryCard = props.themes && props.themes.length > 0;
   return (
     <div
@@ -28,7 +30,10 @@ const DispositifCardTitle = (props: Props) => {
           </div>
         )}
         <div className={cls(commonStyles.text, isSecondaryCard && styles.title_theme)}>
-          {!isSecondaryCard ? "Les fiches dispositifs" : "Autres fiches dispositifs avec le thème"}
+          {!isSecondaryCard ?
+            t("Recherche.dispositifTitle", "Les fiches dispositifs") :
+            t("Recherche.otherDispositifTitle", "Autres fiches dispositifs avec le thème")
+          }
         </div>
 
         {isSecondaryCard && (

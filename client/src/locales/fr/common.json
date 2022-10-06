@@ -57,6 +57,26 @@
     "mobile_app_qrcode": "Ouvrez votre appareil photo pour télécharger en quelques secondes :",
     "mobile_app_copy_link": "Copier le lien pour le partage"
   },
+  "Recherche": {
+    "pageTitle": "Recherche",
+    "updated": "mise à jour",
+    "demarcheTitle": "Les fiches démarches",
+    "dispositifTitle": "Les fiches dispositifs",
+    "otherDispositifTitle": "Autres fiches dispositifs avec le thème",
+    "resetButton": "Réinitialiser",
+    "seeButton": "Voir les fiches",
+    "titleThemes": "Les thématiques de l'intégration",
+    "titleTypes": "Deux types d'information",
+    "titleNewDemarches": "Nouveautés dans les fiches démarches",
+    "titleNewDispositifs": "Nouveautés dans les fiches dispositifs",
+    "titleNearLocation": "Trouvez les fiches près de chez vous",
+    "positionButton": "Position actuelle",
+    "notDeployedTitle": " : ce département est en cours de déploiement !",
+    "notDeployedText": "Réfugiés.info est collaboratif, alimenté directement par les acteurs associatifs, les bénévoles et les intervenants sociaux. Aidez-nous à l’enrichir ! ",
+    "notDeployedWriteLink": "Rédiger une fiche",
+    "notDeployedOkLink": "J'ai compris",
+    "france": "toute la France"
+  },
   "AdvancedSearch": {
     "Je cherche à": "Je cherche à",
     "A > Z": "A > Z",

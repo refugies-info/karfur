@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,6 +32,7 @@ interface Props {
 }
 
 const DemarcheCard = (props: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const themes = useSelector(themesSelector);
   const theme = getTheme(props.demarche.theme, themes);
@@ -58,7 +60,7 @@ const DemarcheCard = (props: Props) => {
       >
         {hasUpdate && (
           <div className={styles.update}>
-            <span>mise à jour</span>
+            <span>{t("Recherche.updated", "mise à jour")}</span>
           </div>
         )}
         <Image src={demarcheIcon} width={48} height={48} alt="" />

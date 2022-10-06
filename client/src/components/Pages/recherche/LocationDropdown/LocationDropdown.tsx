@@ -1,5 +1,6 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import React, { useCallback } from "react";
+import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
 
 import styles from "./LocationDropdown.module.scss";
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const LocationDropdown = (props: Props) => {
+  const { t } = useTranslation();
   const { setDepartmentsSelected } = props;
 
   const removeDepartement = useCallback(
@@ -51,7 +53,7 @@ const LocationDropdown = (props: Props) => {
           <span className={styles.icon}>
             <EVAIcon name="navigation-2-outline" fill="black" size={16} />
           </span>
-          Position actuelle
+          {t("Recherche.positionButton", "Position actuelle")}
         </Button>
       </div>
 
