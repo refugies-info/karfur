@@ -47,21 +47,21 @@ const SearchResults = (props: Props) => {
 
   const { isMobile } = useWindowSize();
 
-  const demarches = hideDemarches && !isMobile
-    ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
-    : props.filteredResult.demarches;
-  const dispositifs = hideDispositifs && !isMobile
-    ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS)
-    : props.filteredResult.dispositifs;
-  const secondaryDispositifs = hideSecondaryDispositifs && !isMobile
-    ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS)
-    : props.filteredResult.dispositifsSecondaryTheme;
+  const demarches =
+    hideDemarches && !isMobile
+      ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
+      : props.filteredResult.demarches;
+  const dispositifs =
+    hideDispositifs && !isMobile
+      ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS)
+      : props.filteredResult.dispositifs;
+  const secondaryDispositifs =
+    hideSecondaryDispositifs && !isMobile
+      ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS)
+      : props.filteredResult.dispositifsSecondaryTheme;
 
   const selectedDepartment = props.departmentsSelected.length === 1 ? props.departmentsSelected[0] : undefined;
-  const noResults =
-    demarches.length === 0 &&
-    dispositifs.length === 0 &&
-    secondaryDispositifs.length === 0;
+  const noResults = demarches.length === 0 && dispositifs.length === 0 && secondaryDispositifs.length === 0;
 
   // Banner
   const hideBanner = () => {
@@ -78,7 +78,9 @@ const SearchResults = (props: Props) => {
         <h5>Oups, aucun résultat</h5>
         <p>Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.</p>
 
-        <FButton type="login" name="refresh-outline" onClick={props.resetFilters}>Effacer tous les filtres</FButton>
+        <FButton type="login" name="refresh-outline" onClick={props.resetFilters}>
+          Effacer tous les filtres
+        </FButton>
 
         <div className={styles.image}>
           <Image src={noResultsImage} width={420} height={280} alt="No results" />
@@ -90,18 +92,22 @@ const SearchResults = (props: Props) => {
   return (
     <>
       {isBannerVisible && <NotDeployedBanner departments={props.departmentsNotDeployed} hideBanner={hideBanner} />}
+
+      {/* demarches */}
       {demarches.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "dispositif" && styles.hidden)}>
             <h2>Les fiches démarches</h2>
             <span>{props.filteredResult.demarches.length}</span>
           </div>
-          <div className={cls(
-            styles.results,
-            styles.demarches,
-            props.selectedType !== "demarche" && styles.horizontal_scroll,
-            props.selectedType === "dispositif" && styles.hidden
-          )}>
+          <div
+            className={cls(
+              styles.results,
+              styles.demarches,
+              props.selectedType !== "demarche" && styles.horizontal_scroll,
+              props.selectedType === "dispositif" && styles.hidden
+            )}
+          >
             <DemarcheCardTitle
               count={props.filteredResult.demarches.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -110,22 +116,22 @@ const SearchResults = (props: Props) => {
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          {!isMobile && props.selectedType !== "dispositif" && props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
-            <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
-          )}
+          {!isMobile &&
+            props.selectedType !== "dispositif" &&
+            props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
+              <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
+            )}
         </div>
       )}
+
+      {/* dispositifs */}
       {dispositifs.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>
             <h2>Les fiches dispositifs</h2>
             <span>{props.filteredResult.dispositifs.length}</span>
           </div>
-          <div className={cls(
-            styles.results,
-            styles.dispositifs,
-            props.selectedType === "demarche" && styles.hidden
-          )}>
+          <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
             <DispositifCardTitle
               count={props.filteredResult.dispositifs.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -140,6 +146,7 @@ const SearchResults = (props: Props) => {
         </div>
       )}
 
+      {/* other dispositifs */}
       {secondaryDispositifs.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>

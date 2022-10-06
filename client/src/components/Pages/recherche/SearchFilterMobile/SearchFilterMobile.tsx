@@ -39,7 +39,8 @@ const SearchFilterMobile = (props: Props) => {
               key={i}
               onClick={() => selectItem(option.key)}
               className={cls(styles.item, isSelected && styles.selected)}
-            >{option.value}
+            >
+              {option.value}
             </Button>
           );
         })}
