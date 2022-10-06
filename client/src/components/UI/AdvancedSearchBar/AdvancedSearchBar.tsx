@@ -315,7 +315,7 @@ const AdvancedSearchBar = (props: Props) => {
                             const needReload = isRoute(router.pathname, "/recherche");
                             router.push({
                               pathname: getPath("/recherche", router.locale),
-                              query: selectedTheme ? {theme: selectedTheme._id.toString()} : {}
+                              query: selectedTheme ? {themes: selectedTheme._id.toString()} : {}
                             }).then(() => {
                               if (needReload) window.location.reload();
                             })

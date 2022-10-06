@@ -29,7 +29,7 @@ import { getPath } from "routes";
 import { languei18nSelector } from "services/Langue/langue.selectors";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
 import SearchHeaderMobile from "components/Pages/recherche/SearchHeaderMobile";
-import { getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
+import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 
 export type SearchQuery = {
   search: string;
@@ -67,11 +67,15 @@ const Recherche = () => {
   const router = useRouter();
   const initialQuery = decodeQuery(router.query);
   const languei18nCode = useSelector(languei18nSelector);
+  const allNeeds = useSelector(needsSelector);
 
   // search
   const [search, setSearch] = useState("");
-  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>(initialQuery.needsSelected);
-  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]); //TODO: fix here
+  const [needsSelected, setNeedsSelected] = useState<ObjectId[]>([
+    ...initialQuery.needsSelected,
+    ...getNeedsFromThemes(initialQuery.themesSelected, allNeeds)
+  ]);
+  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]);
   const [departmentsSelected, setDepartmentsSelected] = useState<string[]>(initialQuery.departmentsSelected);
 
   // additional search
@@ -87,7 +91,6 @@ const Recherche = () => {
   const [filteredResult, setFilteredResult] = useState<Results>(queryDispositifs(initialQuery, dispositifs));
 
   const [showHome, setShowHome] = useState(true);
-  const allNeeds = useSelector(needsSelector);
 
   useEffect(() => {
     const { themes, needs } = getThemesFromNeeds(needsSelected, allNeeds);

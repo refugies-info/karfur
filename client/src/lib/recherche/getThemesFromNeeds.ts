@@ -33,3 +33,15 @@ export const getThemesFromNeeds = (needsSelected: ObjectId[], allNeeds: Need[]):
     needs: needs.filter((n) => !themesSelected.includes(n.theme._id)).map((n) => n._id)
   };
 };
+
+/**
+ * Get needs from selected themes
+ * @param themesSelected - list of theme ids
+ * @param allNeeds - all needs
+ * @returns - need ids
+ */
+export const getNeedsFromThemes = (themesSelected: ObjectId[], allNeeds: Need[]): ObjectId[] => {
+   return allNeeds
+     .filter(need => themesSelected.includes(need.theme._id))
+     .map(n => n._id);
+};
