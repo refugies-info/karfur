@@ -1,5 +1,6 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import React, { useCallback } from "react";
+import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
 
@@ -26,12 +27,12 @@ const LocationDropdown = (props: Props) => {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((res) => {
-        fetch(
-          `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`
-        )
-          .then((dep) => dep.json())
-          .then((dep) => {
-            if (dep[0]?.departement?.nom) setDepartmentsSelected([dep[0].departement.nom]);
+        axios({
+          method: "get",
+          url: `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
+        })
+          .then((response) => {
+            if (response.data[0]?.departement?.nom) setDepartmentsSelected([response.data[0].departement.nom]);
           });
       });
     }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { Theme } from "types/interface";
 
 type fetchPromise = Record<string, Promise<string>>;
@@ -16,7 +17,10 @@ const useThemeIcon = (theme: Theme | undefined | null, size: number) => {
       if (!xml) {
         const key = theme._id.toString();
         if (!fetching[key]) {
-          fetching[key] = fetch(theme.icon.secure_url).then(res => res.text());
+          fetching[key] = axios({
+            method: "get",
+            url: theme.icon.secure_url,
+          }).then(res => res.data)
         }
         xml = await fetching[key];
         sessionStorage.setItem(itemKey, xml);
