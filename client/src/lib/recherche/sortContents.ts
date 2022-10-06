@@ -5,7 +5,7 @@ import get from "lodash/get";
 const sortOptionsValues = {
   "date": "publishedAt",
   "view": "nbVues",
-  "theme": "theme.position"
+  "theme": "theme"
 }
 
 export const sortDispositifs = (dispA: SearchDispositif, dispB: SearchDispositif, sortOption: SortOptions, hasSearch: boolean) => {

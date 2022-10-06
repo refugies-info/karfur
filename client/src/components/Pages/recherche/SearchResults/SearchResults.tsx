@@ -140,9 +140,11 @@ const SearchResults = (props: Props) => {
               <DispositifCard key={d._id.toString()} dispositif={d} selectedDepartment={selectedDepartment} />
             ))}
           </div>
-          {!isMobile && props.filteredResult.dispositifs.length >= MAX_SHOWN_ITEMS && (
-            <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
-          )}
+          {!isMobile &&
+            props.selectedType !== "demarche" &&
+            props.filteredResult.dispositifs.length >= MAX_SHOWN_ITEMS && (
+              <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
+            )}
         </div>
       )}
 
@@ -163,9 +165,14 @@ const SearchResults = (props: Props) => {
               <DispositifCard key={d._id.toString()} dispositif={d} />
             ))}
           </div>
-          {!isMobile && props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
-            <SeeMoreButton onClick={() => setHideSecondaryDispositifs((h) => !h)} visible={!hideSecondaryDispositifs} />
-          )}
+          {!isMobile &&
+            props.selectedType !== "demarche" &&
+            props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
+              <SeeMoreButton
+                onClick={() => setHideSecondaryDispositifs((h) => !h)}
+                visible={!hideSecondaryDispositifs}
+              />
+            )}
         </div>
       )}
     </>

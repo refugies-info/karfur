@@ -54,6 +54,7 @@
     outline: none;
     background: transparent;
     padding: 0;
+    @include text("small");
 
     @include isMobile() {
       width: 100%;
