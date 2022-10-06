@@ -9,7 +9,9 @@
   border-radius: $radius;
   padding: 0 u(4);
   @include text("large");
-  cursor: pointer;
+  border: none;
+  text-align: left;
+  outline: none;
   color: $white !important;
   text-decoration: none;
   display: flex;
@@ -21,6 +23,10 @@
 
   @include isMobile() {
     width: 100%;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 

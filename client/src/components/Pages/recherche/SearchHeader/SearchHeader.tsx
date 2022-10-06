@@ -192,7 +192,7 @@ const SearchHeader = (props: Props) => {
           </Dropdown>
 
           <div className={styles.dropdown}>
-            <div onClick={() => setSearchFocused(true)} className="cursor-pointer">
+            <Button onClick={() => setSearchFocused(true)}>
               <SearchInput
                 label="Mot-clé"
                 icon="search-outline"
@@ -205,7 +205,7 @@ const SearchHeader = (props: Props) => {
                 focusout
                 resetFilter={() => setSearch("")}
               />
-            </div>
+            </Button>
           </div>
         </div>
 

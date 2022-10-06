@@ -96,7 +96,7 @@ export const queryDispositifsWithAlgolia = async (
 ): Promise<Results> => {
 
   let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
-  if (query.search) { // TODO : do not relaunch if oldSearch
+  if (query.search) { /* TODO : do not relaunch search if not changed */
     let hits: Hit[] = [];
     hits = await index
       .search(query.search, {
@@ -106,15 +106,16 @@ export const queryDispositifsWithAlgolia = async (
 
     filteredDispositifsByAlgolia = hits.map(hit => {
       const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
-      if (dispositif) {
-        dispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || dispositif.abstract;
-        dispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || dispositif.titreInformatif;
-        dispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || dispositif.titreMarque;
-        // dispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+      // deep clone object to make sure cards components re-renders
+      const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
+      if (newDispositif) {
+        newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
+        newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
+        newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
+        // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
       }
-      return dispositif;
+      return newDispositif;
     }).filter(d => !!d) as SearchDispositif[];
   }
-  // TODO : ability to remove sorting?
   return queryDispositifs(query, filteredDispositifsByAlgolia);
 };

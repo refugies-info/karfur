@@ -59,7 +59,7 @@ const SearchInput = (props: Props) => {
           <div className={cls(styles.value, !props.value && styles.empty)}>
             {props.value || props.placeholder}
             {props.value && (
-              <Button className={styles.empty_btn}>
+              <div className={styles.empty_btn}>
                 <EVAIcon
                   name="close-outline"
                   fill="dark"
@@ -69,7 +69,7 @@ const SearchInput = (props: Props) => {
                   }}
                   size={20}
                 />
-              </Button>
+              </div>
             )}
           </div>
         )}

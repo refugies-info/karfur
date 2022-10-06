@@ -56,13 +56,6 @@ const departmentExamples = [
   "Isère"
 ];
 
-const getSearchPath = (params: UrlSearchQuery, router: any) => {
-  if (isInBrowser()) return "#";
-  const defaultParams = { sort: "date", type: "all" };
-  const urlParams = `?${qs.stringify({ ...defaultParams, ...params }, { arrayFormat: "comma" })}`;
-  return getPath("/recherche", router.locale, urlParams);
-};
-
 interface Props {
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
@@ -82,10 +75,10 @@ const HomeSearch = (props: Props) => {
 
   return (
     <div>
+      {/* themes */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
           <h2 className="h4">Les thématiques de l'intégration</h2>
-
           <div className={styles.themes}>
             {themes.map((theme, i) => {
               const selectedNeeds = getNeedsOfTheme(theme._id);
@@ -93,7 +86,6 @@ const HomeSearch = (props: Props) => {
                 <SearchThemeButton
                   key={i}
                   theme={theme}
-                  link={getSearchPath({ needs: selectedNeeds }, router)}
                   onClick={() => props.setNeedsSelected(selectedNeeds)}
                 />
               );
@@ -101,6 +93,8 @@ const HomeSearch = (props: Props) => {
           </div>
         </Container>
       </div>
+
+      {/* types */}
       <div className={cls(styles.section, styles.white)}>
         <Container className={styles.container_inner}>
           <h2 className="h4">Deux types d'information</h2>
@@ -111,7 +105,6 @@ const HomeSearch = (props: Props) => {
                 title="Les fiches démarches"
                 examples={demarchesExamples}
                 onClick={() => props.setSelectedType("demarche")}
-                link={getSearchPath({ type: "demarche" }, router)}
               />
             </Col>
             <Col md="6">
@@ -120,12 +113,13 @@ const HomeSearch = (props: Props) => {
                 title="Les fiches dispositifs"
                 examples={dispositifsExamples}
                 onClick={() => props.setSelectedType("dispositif")}
-                link={getSearchPath({ type: "dispositif" }, router)}
               />
             </Col>
           </Row>
         </Container>
       </div>
+
+      {/* new */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
           <h2 className="h4">Nouveautés dans les fiches démarches</h2>
@@ -142,6 +136,8 @@ const HomeSearch = (props: Props) => {
           </div>
         </Container>
       </div>
+
+      {/* location */}
       <div className={cls(styles.section, styles.white, styles.location)}>
         <Container className={styles.container_inner}>
           <Row>
@@ -149,11 +145,16 @@ const HomeSearch = (props: Props) => {
               <h2 className="h4">Trouvez les fiches près de chez vous</h2>
               <div className={styles.departments}>
                 {departmentExamples.map((dep, i) => (
-                  <Link href={getSearchPath({ departments: [dep] }, router)} key={i}>
-                    <a className={styles.btn} onClick={() => props.setDepartmentsSelected([dep])}>
-                      {dep}
-                    </a>
-                  </Link>
+                  <button
+                    key={i}
+                    className={styles.btn}
+                    onClick={() => {
+                      props.setDepartmentsSelected([dep]);
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    {dep}
+                  </button>
                 ))}
               </div>
             </Col>

@@ -12,6 +12,11 @@
   padding: u(8);
   border: 2px solid transparent;
   width: 100%;
+  text-align: left;
+
+  &:focus {
+    outline: none;
+  }
 
   @include isMobile() {
     margin-bottom: u(4);
