@@ -13,6 +13,7 @@ jest.mock("next/image", () => {
   const Image = () => <></>;
   return Image
 });
+jest.mock("axios");
 
 import "jest-styled-components";
 
