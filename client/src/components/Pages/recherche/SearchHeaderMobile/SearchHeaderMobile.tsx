@@ -21,7 +21,9 @@ interface Props {
   setSearch: Dispatch<SetStateAction<string>>;
   needsSelected: ObjectId[];
   setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
-  themesSelected: Theme[];
+  themesSelected: ObjectId[];
+  setThemesSelected: Dispatch<SetStateAction<ObjectId[]>>;
+  themesDisplayed: Theme[];
   departmentsSelected: string[];
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   filterAge: AgeOptions[];
@@ -38,6 +40,8 @@ const SearchHeaderMobile = (props: Props) => {
     setSearch,
     needsSelected,
     setNeedsSelected,
+    themesSelected,
+    setThemesSelected,
     departmentsSelected,
     setDepartmentsSelected,
     filterAge,
@@ -59,8 +63,8 @@ const SearchHeaderMobile = (props: Props) => {
   const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
 
   useEffect(() => {
-    setThemeDisplayedValue(props.themesSelected.map((t) => t.short.fr).join(", "));
-  }, [props.themesSelected]);
+    setThemeDisplayedValue(props.themesDisplayed.map((t) => t.short.fr).join(", "));
+  }, [props.themesDisplayed]);
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);
@@ -180,7 +184,10 @@ const SearchHeaderMobile = (props: Props) => {
               title="Thèmes"
               icon="list-outline"
               close={toggleThemes}
-              reset={() => setNeedsSelected([])}
+              reset={() => {
+                setNeedsSelected([]);
+                setThemesSelected([]);
+              }}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -197,6 +204,8 @@ const SearchHeaderMobile = (props: Props) => {
               <ThemeDropdown
                 needsSelected={needsSelected}
                 setNeedsSelected={setNeedsSelected}
+                themesSelected={themesSelected}
+                setThemesSelected={setThemesSelected}
                 search={themeSearch}
                 mobile={true}
               />

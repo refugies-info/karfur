@@ -2,8 +2,7 @@ import { SearchDispositif } from "types/interface";
 import { Results, SearchQuery } from "pages/recherche";
 import { getDispositifInfos } from "../getDispositifInfos";
 import {
-  filterByTheme,
-  filterByNeed,
+  filterByThemeOrNeed,
   filterByLocations,
   filterByAge,
   filterByFrenchLevel,
@@ -47,8 +46,7 @@ const filterDispositifs = (
   secondaryThemes: boolean
 ): SearchDispositif[] => {
   return [...dispositifs]
-    .filter(dispositif => filterByTheme(dispositif, query.themesSelected, secondaryThemes))
-    .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
+    .filter(dispositif => filterByThemeOrNeed(dispositif, query.themesSelected, query.needsSelected, secondaryThemes))
     .filter(dispositif => filterByLocations(dispositif, query.departmentsSelected))
     .filter(dispositif => filterByAge(dispositif, query.filterAge))
     .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))

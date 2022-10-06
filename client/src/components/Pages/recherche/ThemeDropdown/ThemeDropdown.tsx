@@ -37,6 +37,8 @@ const ButtonTheme = styled.button`
 interface Props {
   needsSelected: ObjectId[];
   setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
+  themesSelected: ObjectId[];
+  setThemesSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
   mobile: boolean;
 }
@@ -47,7 +49,12 @@ const ThemeDropdown = (props: Props) => {
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
 
-  const { needsSelected, setNeedsSelected } = props;
+  const {
+    needsSelected,
+    setNeedsSelected,
+    themesSelected,
+    setThemesSelected
+  } = props;
 
   useEffect(() => {
     // count nb needs selected by theme
@@ -58,8 +65,14 @@ const ThemeDropdown = (props: Props) => {
         nbNeedsSelectedByTheme[needThemeId] = (nbNeedsSelectedByTheme[needThemeId] || 0) + 1;
       }
     }
+    for (const themeId of themesSelected) {
+      const theme = themes.find((t) => t._id === themeId);
+      if (theme) {
+        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter(need => need.theme._id === themeId).length;
+      }
+    }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
-  }, [needsSelected, needs]);
+  }, [needsSelected, themesSelected, themes, needs]);
 
   const displayedNeeds = useMemo(() => {
     if (props.search) {
@@ -115,6 +128,8 @@ const ThemeDropdown = (props: Props) => {
                   <NeedsList
                     needsSelected={needsSelected}
                     setNeedsSelected={setNeedsSelected}
+                    themesSelected={themesSelected}
+                    setThemesSelected={setThemesSelected}
                     search={props.search}
                     displayedNeeds={displayedNeeds}
                     themeSelected={themeSelected}
@@ -129,6 +144,8 @@ const ThemeDropdown = (props: Props) => {
         <NeedsList
           needsSelected={needsSelected}
           setNeedsSelected={setNeedsSelected}
+          themesSelected={themesSelected}
+          setThemesSelected={setThemesSelected}
           search={props.search}
           displayedNeeds={displayedNeeds}
           themeSelected={themeSelected}

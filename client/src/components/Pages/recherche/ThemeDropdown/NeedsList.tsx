@@ -9,6 +9,8 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
 import styles from "./ThemeDropdown.module.scss";
+import { needsSelector } from "services/Needs/needs.selectors";
+import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 
 type ButtonNeedProps = {
   color100: string;
@@ -27,6 +29,8 @@ const ButtonNeed = styled.button`
 interface Props {
   needsSelected: ObjectId[];
   setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
+  themesSelected: ObjectId[];
+  setThemesSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
   displayedNeeds: Need[];
   themeSelected: ObjectId | null;
@@ -34,6 +38,7 @@ interface Props {
 
 const NeedsList = (props: Props) => {
   const themes = useSelector(themesSelector);
+  const allNeeds = useSelector(needsSelector);
   const dispositifs = useSelector(activeDispositifsSelector);
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
@@ -62,24 +67,44 @@ const NeedsList = (props: Props) => {
     setNbDispositifsByNeed(newNbDispositifsByNeed);
   }, [dispositifs]);
 
-  const { needsSelected, setNeedsSelected } = props;
+  const {
+    needsSelected,
+    setNeedsSelected,
+    themesSelected,
+    setThemesSelected
+  } = props;
+
+  const isThemeSelected = !!(props.themeSelected && themesSelected.includes(props.themeSelected));
 
   const selectNeed = (id: ObjectId) => {
-    if (needsSelected.includes(id)) {
-      setNeedsSelected((needs) => needs.filter((n) => n !== id));
-    } else {
-      setNeedsSelected((needs) => [...needs, id]);
-    }
-  };
-  const selectAllNeeds = (ids: ObjectId[], allSelected: boolean) => {
-    if (allSelected) {
-      setNeedsSelected((needs) => needs.filter((n) => !ids.includes(n)));
-    } else {
-      setNeedsSelected((needs) => [...needs, ...ids]);
-    }
-  };
+    let allSelectedNeeds: ObjectId[] = [
+      ...needsSelected,
+      ...getNeedsFromThemes(themesSelected, allNeeds)
+    ];
 
-  const isAllSelected = !props.displayedNeeds.find((need) => !needsSelected.includes(need._id));
+    if (allSelectedNeeds.includes(id)) { // if need selected, remove
+      allSelectedNeeds = allSelectedNeeds.filter((n) => n !== id);
+    } else { // if not selected, add
+      allSelectedNeeds = [...allSelectedNeeds, id]
+    }
+
+    const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);
+    setNeedsSelected(res.needs);
+    setThemesSelected(res.themes);
+  }
+
+  const selectTheme = (id: ObjectId | null) => {
+    if (!id) return;
+    if (themesSelected.includes(id)) {
+      setThemesSelected((themes) => themes.filter((n) => n !== id));
+    } else {
+      const newNeeds = allNeeds.filter(n => {
+        return needsSelected.includes(n._id) && n.theme._id !== id
+      }).map(n => n._id);
+      setThemesSelected((themes) => [...themes, id]);
+      setNeedsSelected(newNeeds);
+    }
+  };
 
   return (
     <div className={styles.needs}>
@@ -88,17 +113,12 @@ const NeedsList = (props: Props) => {
           className={styles.btn}
           color100={colors?.color100 || "black"}
           color30={colors?.color30 || "gray"}
-          selected={isAllSelected}
-          onClick={() =>
-            selectAllNeeds(
-              props.displayedNeeds.map((n) => n._id),
-              isAllSelected
-            )
-          }
+          selected={isThemeSelected}
+          onClick={() => selectTheme(props.themeSelected)}
         >
-          <Checkbox checked={isAllSelected} color={!isAllSelected && colors ? colors.color100 : "white"}>
+          <Checkbox checked={isThemeSelected} color={!isThemeSelected && colors ? colors.color100 : "white"}>
             <span className={styles.all}>
-              <EVAIcon name="grid" fill={!isAllSelected && colors ? colors.color100 : "white"} />
+              <EVAIcon name="grid" fill={!isThemeSelected && colors ? colors.color100 : "white"} />
               Tous
               <span
                 className={styles.badge}
@@ -114,7 +134,7 @@ const NeedsList = (props: Props) => {
         </ButtonNeed>
       )}
       {props.displayedNeeds.map((need, i) => {
-        const selected = needsSelected.includes(need._id);
+        const selected = needsSelected.includes(need._id) || themesSelected.includes(need.theme._id);
         return (
           <span key={i}>
             {props.search &&

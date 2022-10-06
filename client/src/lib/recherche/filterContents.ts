@@ -3,22 +3,17 @@ import { SearchDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "../getDispositifInfos";
 
-export const filterByTheme = (dispositif: SearchDispositif, themesSelected: ObjectId[], withSecondaryTheme: boolean) => {
-  if (themesSelected.length === 0) return true;
-  if (!withSecondaryTheme) {
+export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needsSelected: ObjectId[], withSecondaryTheme: boolean) => {
+  if (themesSelected.length === 0 && needsSelected.length === 0) return true;
+  for (const need of dispositif.needs) { // return true if dispositif has need
+    if (needsSelected.includes(need)) return true;
+  }
+  if (!withSecondaryTheme) { // or has theme as primary one
     if (themesSelected.includes(dispositif.theme)) return true;
-  } else {
+  } else { // or has theme as secondary one
     for (const theme of dispositif.secondaryThemes) {
       if (themesSelected.includes(theme)) return true;
     }
-  }
-  return false;
-};
-
-export const filterByNeed = (dispositif: SearchDispositif, needsSelected: ObjectId[]) => {
-  if (needsSelected.length === 0) return true;
-  for (const need of dispositif.needs) {
-    if (needsSelected.includes(need)) return true;
   }
   return false;
 };
