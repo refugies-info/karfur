@@ -50,15 +50,10 @@ const contenu1 = [
   {
     children: [
       {
-        type: "card",
-        isFakeContent: false,
         title: "Zone d'action",
-        titleIcon: "pin-outline",
-        typeIcon: "eva",
         departments: ["All", "68 - Haut-Rhin"],
         free: true,
         contentTitle: "Sélectionner",
-        editable: false,
       },
       {},
       {},
@@ -70,18 +65,9 @@ const contenu1 = [
           },
         ],
         contentTitle: "une seule fois",
-        editable: false,
-        footer: "Ajouter un message complémentaire",
-        footerType: "text",
         free: true,
-        isFakeContent: true,
         price: 0,
         title: "Combien ça coûte ?",
-        titleIcon: "pricetags-outline",
-        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
-        tooltipHeader: "Combien ça coûte ?",
-        type: "card",
-        typeIcon: "eva",
       },
       {},
     ],
@@ -94,19 +80,10 @@ const contenu2 = [
       {},
       {},
       {
-        type: "card",
-        isFakeContent: true,
         title: "Combien ça coûte ?",
-        titleIcon: "pricetags-outline",
-        typeIcon: "eva",
         free: true,
         price: 0,
         contentTitle: "une seule fois",
-        footer: "Ajouter un message complémentaire",
-        footerType: "text",
-        tooltipHeader: "Combien ça coûte ?",
-        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
-        editable: false,
         content: [
           {
             type: "text",
@@ -156,7 +133,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -177,7 +154,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
@@ -197,7 +174,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "en");
@@ -218,7 +195,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).not.toHaveBeenCalled();
     expect(turnToLocalized).not.toHaveBeenCalled();
@@ -241,7 +218,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 
@@ -263,7 +240,7 @@ describe("getDispositifs", () => {
     const query = { status: "Actif" };
     const req = { body: { query, locale: "en" } };
     await getDispositifs(req, res);
-    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "theme secondaryThemes mainSponsor");
+    expect(getDispositifArray).toHaveBeenCalledWith(query, { mainSponsor: 1, needs: 1, lastModificationDate: 1 }, "mainSponsor");
 
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "en");
 

@@ -127,6 +127,18 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
   return formattedArray;
 };
 
+const keysToDelete: string[] = [
+  "isFakeContent",
+  "titleIcon",
+  "typeIcon",
+  "editable",
+  "type",
+  "footer",
+  "footerType",
+  "tooltipContent",
+  "tooltipHeader"
+]
+
 export const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
     const selectZoneAction = dispositif.contenu[1].children.map(
@@ -136,7 +148,11 @@ export const removeUselessContent = (dispositifArray: IDispositif[]) =>
           child.title === "Durée" ||
           child.title === "Combien ça coûte ?"
         ) {
-          return child;
+          const newChild = { ...child };
+          for (const key of keysToDelete) {
+            delete newChild[key];
+          }
+          return newChild;
         }
         return {};
       }

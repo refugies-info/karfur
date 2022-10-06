@@ -22,7 +22,7 @@ import { getCountDispositifsForDepartment, queryDispositifs, queryDispositifsWit
 import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
-import { IDispositif, Need, Theme } from "types/interface";
+import { SearchDispositif, Need, Theme } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -53,12 +53,12 @@ export type UrlSearchQuery = {
   type?: string | TypeOptions;
 };
 export type Results = {
-  dispositifs: IDispositif[];
-  demarches: IDispositif[];
-  dispositifsSecondaryTheme: IDispositif[];
+  dispositifs: SearchDispositif[];
+  demarches: SearchDispositif[];
+  dispositifsSecondaryTheme: SearchDispositif[];
 };
 
-const debouncedQuery = debounce((query: SearchQuery, dispositifs: IDispositif[], locale: string, callback: any) => {
+const debouncedQuery = debounce((query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: any) => {
   return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
 }, 500);
 

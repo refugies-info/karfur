@@ -1,11 +1,14 @@
 import React, { memo } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
+import { themesSelector } from "services/Themes/themes.selectors";
 import ThemeBadge from "components/UI/ThemeBadge";
+import { getTheme, getThemes } from "lib/getTheme";
 import { cls } from "lib/classname";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
@@ -24,13 +27,16 @@ const DemarcheLink = styled.a`
 `;
 
 interface Props {
-  demarche: IDispositif;
+  demarche: SearchDispositif;
 }
 
 const DemarcheCard = (props: Props) => {
   const router = useRouter();
-  const colors = props.demarche.theme.colors;
-  const themes = [props.demarche.theme, ...(props.demarche.secondaryThemes || [])];
+  const themes = useSelector(themesSelector);
+  const theme = getTheme(props.demarche.theme, themes);
+  const colors = theme.colors;
+  const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
+
   const hasUpdate =
     props.demarche.lastModificationDate &&
     props.demarche.publishedAt &&
@@ -61,7 +67,7 @@ const DemarcheCard = (props: Props) => {
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}
         />
-        {themes.map((theme, i) => (
+        {demarcheThemes.map((theme, i) => (
           <ThemeBadge key={i} theme={theme} className={styles.badges} />
         ))}
       </DemarcheLink>

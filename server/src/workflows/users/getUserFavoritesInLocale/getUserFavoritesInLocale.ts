@@ -54,7 +54,7 @@ export const getUserFavoritesInLocale = async (
     const dispositifs: IDispositif[] = [];
 
     await asyncForEach(favorites, async (favorite) => {
-      const dispositif = await getDispositifById(favorite._id, neededFields, "theme secondaryThemes mainSponsor");
+      const dispositif = await getDispositifById(favorite._id, neededFields, "mainSponsor");
       if (dispositif.status !== "Actif") return;
       dispositifs.push({...dispositif.toJSON()});
     });

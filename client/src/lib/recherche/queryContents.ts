@@ -1,4 +1,4 @@
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import { Results, SearchQuery } from "pages/recherche";
 import { getDispositifInfos } from "../getDispositifInfos";
 import {
@@ -24,7 +24,7 @@ const index = searchClient.initIndex(process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_I
  */
 export const getCountDispositifsForDepartment = (
   department: string,
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
 ): number => {
   return [...dispositifs]
     .filter(dispositif => {
@@ -43,9 +43,9 @@ export const getCountDispositifsForDepartment = (
  */
 const filterDispositifs = (
   query: SearchQuery,
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
   secondaryThemes: boolean
-): IDispositif[] => {
+): SearchDispositif[] => {
   return [...dispositifs]
     .filter(dispositif => filterByTheme(dispositif, query.themesSelected, secondaryThemes))
     .filter(dispositif => filterByNeed(dispositif, query.needsSelected))
@@ -64,12 +64,12 @@ const filterDispositifs = (
  */
 export const queryDispositifs = (
   query: SearchQuery,
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
 ): Results => {
   const results = filterDispositifs(query, dispositifs, false);
 
   // dispositifs which have theme in secondary themes
-  let dispositifsSecondaryTheme: IDispositif[] = [];
+  let dispositifsSecondaryTheme: SearchDispositif[] = [];
   if (query.themesSelected.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
       .filter(dispositif => !results.map(d => d._id).includes(dispositif._id));
@@ -93,11 +93,11 @@ export const queryDispositifs = (
  */
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
   locale: string
 ): Promise<Results> => {
 
-  let filteredDispositifsByAlgolia: IDispositif[] = [...dispositifs];
+  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
   if (query.search) { // TODO : do not relaunch if oldSearch
     let hits: Hit[] = [];
     hits = await index
@@ -115,7 +115,7 @@ export const queryDispositifsWithAlgolia = async (
         // dispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
       }
       return dispositif;
-    }).filter(d => !!d) as IDispositif[];
+    }).filter(d => !!d) as SearchDispositif[];
   }
   // TODO : ability to remove sorting?
   return queryDispositifs(query, filteredDispositifsByAlgolia);

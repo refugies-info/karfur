@@ -24,7 +24,7 @@ export const getDispositifs = async (
       const dispositifArray = await getDispositifArray(
         query,
         { mainSponsor: 1, needs: 1, lastModificationDate: 1 },
-        "theme secondaryThemes mainSponsor"
+        "mainSponsor"
       );
       // @ts-ignore
       const adaptedDispositifArray = removeUselessContent(dispositifArray);

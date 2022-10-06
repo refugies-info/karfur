@@ -86,24 +86,7 @@ describe("UserFavorites", () => {
     mainSponsor: {
       picture: {secure_url: ""}
     },
-    theme: {
-      _id: "",
-      short: {fr: "Français"},
-      name: {fr: "apprendre le français"},
-      icon:{secure_url: ""},
-      colors: {
-        color100: "#aaa",
-        color80: "#aaa",
-        color60: "#aaa",
-        color40: "#aaa",
-        color30: "#aaa",
-      },
-      position: 0,
-      banner: "",
-      appImage: "",
-      shareImage: "",
-      notificationEmoji: "",
-    },
+    theme: "6319f6b363ab2bbb162d7df5",
   };
 
   const fav2 = {
@@ -121,24 +104,7 @@ describe("UserFavorites", () => {
     mainSponsor: {
       picture: {secure_url: ""}
     },
-    theme: {
-      _id: "",
-      short: {fr: "Administratif"},
-      name: {fr: "gérer mes papiers"},
-      icon:{secure_url: ""},
-      colors: {
-        color100: "#aaa",
-        color80: "#aaa",
-        color60: "#aaa",
-        color40: "#aaa",
-        color30: "#aaa",
-      },
-      position: 0,
-      banner: "",
-      appImage: "",
-      shareImage: "",
-      notificationEmoji: "",
-    },
+    theme: "6319f6b363ab2bbb162d7df6",
   };
 
   const fav3 = {
@@ -156,24 +122,7 @@ describe("UserFavorites", () => {
     mainSponsor: {
       picture: {secure_url: ""}
     },
-    theme: {
-      _id: "",
-      short: {fr: "Logement"},
-      name: {fr: "me loger"},
-      icon:{secure_url: ""},
-      colors: {
-        color100: "#aaa",
-        color80: "#aaa",
-        color60: "#aaa",
-        color40: "#aaa",
-        color30: "#aaa",
-      },
-      position: 0,
-      banner: "",
-      appImage: "",
-      shareImage: "",
-      notificationEmoji: "",
-    },
+    theme: "6319f6b363ab2bbb162d7df7",
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();

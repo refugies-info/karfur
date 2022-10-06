@@ -1,5 +1,5 @@
 import { SortOptions } from "data/searchFilters";
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import get from "lodash/get";
 
 const sortOptionsValues = {
@@ -8,7 +8,7 @@ const sortOptionsValues = {
   "theme": "theme.position"
 }
 
-export const sortDispositifs = (dispA: IDispositif, dispB: IDispositif, sortOption: SortOptions, hasSearch: boolean) => {
+export const sortDispositifs = (dispA: SearchDispositif, dispB: SearchDispositif, sortOption: SortOptions, hasSearch: boolean) => {
   if (hasSearch) return 0; // if algolia search, do not sort and use algolia order
   const sortKey = sortOptionsValues[sortOption];
   const valA = get(dispA, sortKey);

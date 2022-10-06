@@ -1,13 +1,16 @@
 import React, { memo } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import { getPath } from "routes";
 import { cls } from "lib/classname";
-import ThemeBadge from "components/UI/ThemeBadge";
+import { getTheme, getThemes } from "lib/getTheme";
 import { getDispositifInfos } from "lib/getDispositifInfos";
+import { themesSelector } from "services/Themes/themes.selectors";
+import ThemeBadge from "components/UI/ThemeBadge";
 import iconMap from "assets/recherche/icon-map.svg";
 import iconTime from "assets/recherche/icon-time.svg";
 import iconEuro from "assets/recherche/icon-euro.svg";
@@ -28,14 +31,16 @@ const DispositifLink = styled.a`
 `;
 
 interface Props {
-  dispositif: IDispositif;
+  dispositif: SearchDispositif;
   selectedDepartment?: string;
 }
 
 const DispositifCard = (props: Props) => {
   const router = useRouter();
-  const colors = props.dispositif.theme.colors;
-  const themes = [props.dispositif.theme, ...(props.dispositif.secondaryThemes || [])];
+  const themes = useSelector(themesSelector);
+  const theme = getTheme(props.dispositif.theme, themes);
+  const colors = theme.colors;
+  const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
   const location = getDispositifInfos(props.dispositif, "location");
   const duration = getDispositifInfos(props.dispositif, "duration");
@@ -104,7 +109,7 @@ const DispositifCard = (props: Props) => {
         </div>
 
         <div className={styles.themes}>
-          {themes.map((theme, i) => (
+          {dispositifThemes.map((theme, i) => (
             <ThemeBadge key={i} theme={theme} className={styles.badges} />
           ))}
         </div>

@@ -107,7 +107,7 @@ export interface SimplifiedMainSponsor {
   _id: ObjectId;
   nom: string;
   status: string;
-  picture: Picture | undefined;
+  picture: Picture | null;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;
@@ -267,7 +267,7 @@ export interface Structure {
   created_at: Moment;
   createur: ObjectId;
   // eslint-disable-next-line no-use-before-define
-  dispositifsAssocies: ObjectId[] | IDispositif[];
+  dispositifsAssocies: ObjectId[] | SearchDispositif[];
   link: string;
   mail_contact: string;
   mail_generique: string;
@@ -299,6 +299,30 @@ export interface AudienceAge {
   contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
   bottomValue: number | string;
   topValue: number | string;
+}
+export interface SearchDispositif {
+  _id: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  audienceAge: AudienceAge[];
+  avancement: Record<string, number>;
+  contenu: DispositifContent[];
+  created_at: Moment;
+  mainSponsor: SimplifiedMainSponsor;
+  nbMots: number;
+  niveauFrancais: string[];
+  needs: ObjectId[];
+  theme: ObjectId;
+  status: string;
+  secondaryThemes: ObjectId[];
+  typeContenu: "dispositif" | "demarche";
+  suggestions?: any[];
+  nbMercis?: number;
+  lastModificationDate?: number;
+  nbVues: number;
+  lastModificationDate?: number;
+  publishedAt?: number;
 }
 export interface IDispositif {
   _id: ObjectId;

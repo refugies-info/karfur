@@ -153,9 +153,9 @@ describe("getUserFavoritesInLocale", () => {
     };
     await getUserFavoritesInLocale(req, res);
 
-    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields, "theme secondaryThemes mainSponsor");
-    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields, "theme secondaryThemes mainSponsor");
-    expect(getDispositifById).toHaveBeenCalledWith("id3", neededFields, "theme secondaryThemes mainSponsor");
+    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields, "mainSponsor");
+    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields, "mainSponsor");
+    expect(getDispositifById).toHaveBeenCalledWith("id3", neededFields, "mainSponsor");
     expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo1Data, "fr");
     expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo3Data, "fr");
 

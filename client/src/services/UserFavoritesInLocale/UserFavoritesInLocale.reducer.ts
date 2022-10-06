@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
 import { UserFavoritesActions } from "./UserFavoritesInLocale.actions";
-import { IDispositif } from "../../types/interface";
+import { SearchDispositif } from "../../types/interface";
 
-export type UserFavoritesState = IDispositif[];
+export type UserFavoritesState = SearchDispositif[];
 
 const initialUserFavoritesState: UserFavoritesState = [];
 

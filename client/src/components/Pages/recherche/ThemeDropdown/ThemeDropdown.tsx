@@ -75,10 +75,10 @@ const ThemeDropdown = (props: Props) => {
       for (const needId of dispositif.needs || []) {
         nbDispositifsByNeed[needId.toString()] = (nbDispositifsByNeed[needId.toString()] || 0) + 1;
       }
-      nbDispositifsByTheme[dispositif.theme._id.toString()] =
-        (nbDispositifsByTheme[dispositif.theme._id.toString()] || 0) + 1;
+      nbDispositifsByTheme[dispositif.theme.toString()] =
+        (nbDispositifsByTheme[dispositif.theme.toString()] || 0) + 1;
       for (const theme of dispositif.secondaryThemes || []) {
-        nbDispositifsByTheme[theme._id.toString()] = (nbDispositifsByTheme[theme._id.toString()] || 0) + 1;
+        nbDispositifsByTheme[theme.toString()] = (nbDispositifsByTheme[theme.toString()] || 0) + 1;
       }
     }
     setNbDispositifsByNeed(nbDispositifsByNeed);

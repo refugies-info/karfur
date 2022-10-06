@@ -651,16 +651,22 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   margin-bottom: 8px;
 }
 
-.c9:hover {
-  background-color: #aaa !important;
-  border-color: #aaa !important;
-  color: #aaa !important;
+.c10:hover {
+  background-color: #DDF2F9 !important;
+  border-color: #06508C !important;
+  color: #06508C !important;
 }
 
 .c8:hover {
-  background-color: #aaa !important;
-  border-color: #aaa !important;
-  color: #aaa !important;
+  background-color: #EFE8F4 !important;
+  border-color: #3D2884 !important;
+  color: #3D2884 !important;
+}
+
+.c9:hover {
+  background-color: #EEE7E5 !important;
+  border-color: #443023 !important;
+  color: #443023 !important;
 }
 
 .c0 {
@@ -956,7 +962,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="ml-2"
                 style={
                   Object {
-                    "color": "#aaa",
+                    "color": "#3D2884",
                   }
                 }
               />
@@ -970,7 +976,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#3D2884",
                 }
               }
             />
@@ -983,7 +989,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#3D2884",
                 }
               }
             />
@@ -991,7 +997,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="infos text my-4"
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#3D2884",
                 }
               }
             />
@@ -1002,7 +1008,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="container badges theme-badge"
                 style={
                   Object {
-                    "backgroundColor": "#aaa",
+                    "backgroundColor": "#EFE8F4",
                   }
                 }
               >
@@ -1027,7 +1033,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <span
                   style={
                     Object {
-                      "color": "#aaa",
+                      "color": "#3D2884",
                     }
                   }
                 >
@@ -1039,7 +1045,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="sponsor"
               style={
                 Object {
-                  "borderColor": "#aaa",
+                  "borderColor": "#705FA4",
                 }
               }
             >
@@ -1055,7 +1061,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 }
                 style={
                   Object {
-                    "color": "#aaa",
+                    "color": "#3D2884",
                   }
                 }
               />
@@ -1066,7 +1072,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
-            className="c8 card dispositif content"
+            className="c9 card dispositif content"
             href="/program/id2"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -1078,7 +1084,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="ml-2"
                 style={
                   Object {
-                    "color": "#aaa",
+                    "color": "#443023",
                   }
                 }
               />
@@ -1092,7 +1098,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#443023",
                 }
               }
             />
@@ -1105,7 +1111,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#443023",
                 }
               }
             />
@@ -1113,7 +1119,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="infos text my-4"
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#443023",
                 }
               }
             />
@@ -1124,7 +1130,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="container badges theme-badge"
                 style={
                   Object {
-                    "backgroundColor": "#aaa",
+                    "backgroundColor": "#EEE7E5",
                   }
                 }
               >
@@ -1149,7 +1155,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 <span
                   style={
                     Object {
-                      "color": "#aaa",
+                      "color": "#443023",
                     }
                   }
                 >
@@ -1161,7 +1167,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="sponsor"
               style={
                 Object {
-                  "borderColor": "#aaa",
+                  "borderColor": "#715F56",
                 }
               }
             >
@@ -1177,7 +1183,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 }
                 style={
                   Object {
-                    "color": "#aaa",
+                    "color": "#443023",
                   }
                 }
               />
@@ -1188,7 +1194,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
-            className="c9 card demarche content"
+            className="c10 card demarche content"
             href="/procedure/id3"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -1202,7 +1208,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
               style={
                 Object {
-                  "color": "#aaa",
+                  "color": "#06508C",
                 }
               }
             />
@@ -1210,7 +1216,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="container badges theme-badge"
               style={
                 Object {
-                  "backgroundColor": "#aaa",
+                  "backgroundColor": "#DDF2F9",
                 }
               }
             >
@@ -1235,7 +1241,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               <span
                 style={
                   Object {
-                    "color": "#aaa",
+                    "color": "#06508C",
                   }
                 }
               >

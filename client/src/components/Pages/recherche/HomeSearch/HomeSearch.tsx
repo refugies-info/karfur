@@ -19,7 +19,7 @@ import { TypeOptions } from "data/searchFilters";
 import isInBrowser from "lib/isInBrowser";
 import { UrlSearchQuery } from "pages/recherche";
 import { needsSelector } from "services/Needs/needs.selectors";
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import DemarcheCard from "../DemarcheCard";
 import DispositifCard from "../DispositifCard";
 
@@ -67,8 +67,8 @@ interface Props {
   setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
   setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
   setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
-  dispositifs: IDispositif[];
-  demarches: IDispositif[];
+  dispositifs: SearchDispositif[];
+  demarches: SearchDispositif[];
 }
 
 const HomeSearch = (props: Props) => {

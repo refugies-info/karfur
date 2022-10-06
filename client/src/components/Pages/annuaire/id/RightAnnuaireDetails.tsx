@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
-import { IDispositif } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import DispositifCard from "components/Pages/recherche/DispositifCard";
 import DemarcheCard from "components/Pages/recherche/DemarcheCard";
@@ -16,13 +16,13 @@ const BottomContainer = styled.div`
 `;
 
 interface Props {
-  dispositifsAssocies: ObjectId[] | IDispositif[];
+  dispositifsAssocies: ObjectId[] | SearchDispositif[];
 }
 
 export const RightAnnuaireDetails = (props: Props) => {
   // @ts-ignore
   const activeDispositifsAssocies = props.dispositifsAssocies.filter(
-    (dispositif: IDispositif) => dispositif.status === "Actif"
+    (dispositif: SearchDispositif) => dispositif.status === "Actif"
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export const RightAnnuaireDetails = (props: Props) => {
           </>
         )}
         {nbActiveDispositifs > 0 &&
-          activeDispositifsAssocies.map((dispositif: IDispositif) => (
+          activeDispositifsAssocies.map((dispositif: SearchDispositif) => (
             <div key={dispositif._id.toString()} className={styles.card}>
               {dispositif.typeContenu === "demarche" ? (
                 <DemarcheCard demarche={dispositif} />
