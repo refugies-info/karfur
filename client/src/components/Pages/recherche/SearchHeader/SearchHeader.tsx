@@ -6,6 +6,7 @@ import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
 import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
+import useWindowSize from "hooks/useWindowSize";
 
 interface Props {
   searchMinified: boolean;
@@ -43,7 +44,7 @@ const SearchHeader = (props: Props) => {
   const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
 
   useEffect(() => {
-    setThemeDisplayedValue(props.themesDisplayed.map((t) => (t.short[locale] || t.short.fr)).join(", "));
+    setThemeDisplayedValue(props.themesDisplayed.map((t) => t.short[locale] || t.short.fr).join(", "));
   }, [props.themesDisplayed, locale]);
 
   // LOCATION
@@ -75,10 +76,11 @@ const SearchHeader = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSearch]);
 
+  const { isMobile } = useWindowSize();
 
   return (
     <>
-      <div className="d-none d-md-block">
+      {!isMobile ? (
         <SearchHeaderDesktop
           searchMinified={props.searchMinified}
           nbResults={props.nbResults}
@@ -90,21 +92,18 @@ const SearchHeader = (props: Props) => {
           filterAgeState={[filterAge, setFilterAge]}
           filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
           filterLanguageState={[filterLanguage, setFilterLanguage]}
-
           locationFocusedState={[locationFocused, setLocationFocused]}
           searchFocusedState={[searchFocused, setSearchFocused]}
           locationSearchState={[locationSearch, setLocationSearch]}
           themeSearchState={[themeSearch, setThemeSearch]}
           themesFocusedState={[themesFocused, setThemesFocused]}
-
           resetFilters={resetFilters}
           isPlacePredictionsLoading={isPlacePredictionsLoading}
           placePredictions={placePredictions}
           onSelectPrediction={onSelectPrediction}
           themeDisplayedValue={themeDisplayedValue}
         />
-      </div>
-      <div className="d-md-none">
+      ) : (
         <SearchHeaderMobile
           searchState={[search, setSearch]}
           needsSelectedState={[needsSelected, setNeedsSelected]}
@@ -113,19 +112,17 @@ const SearchHeader = (props: Props) => {
           filterAgeState={[filterAge, setFilterAge]}
           filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
           filterLanguageState={[filterLanguage, setFilterLanguage]}
-
           locationFocusedState={[locationFocused, setLocationFocused]}
           searchFocusedState={[searchFocused, setSearchFocused]}
           locationSearchState={[locationSearch, setLocationSearch]}
           themeSearchState={[themeSearch, setThemeSearch]}
           themesFocusedState={[themesFocused, setThemesFocused]}
-
           isPlacePredictionsLoading={isPlacePredictionsLoading}
           placePredictions={placePredictions}
           onSelectPrediction={onSelectPrediction}
           themeDisplayedValue={themeDisplayedValue}
         />
-      </div>
+      )}
     </>
   );
 };
