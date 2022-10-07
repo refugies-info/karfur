@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { SearchDispositif } from "types/interface";
 import { getPath } from "routes";
+import { jsUcfirst, jsLcfirst } from "lib";
 import { cls } from "lib/classname";
 import { getTheme, getThemes } from "lib/getTheme";
 import { getDispositifInfos } from "lib/getDispositifInfos";
@@ -51,8 +52,8 @@ const DispositifCard = (props: Props) => {
   const getDepartement = () => {
     if (!location || !location.departments) return null;
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.departments.length > 1) return `${location.departments.length} ${t("Dispositif.Départements", "Départements")}`;
-    if (location.departments.length === 1 && location.departments[0] === "All") return t("Recherche.france", "toute la France");
+    if (location.departments.length > 1) return `${location.departments.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+    if (location.departments.length === 1 && location.departments[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
     return location.departments[0];
   };
 
