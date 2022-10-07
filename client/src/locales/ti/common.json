@@ -46,44 +46,9 @@
     "Déployez": "ኣብ ናትካ\\ኪ ከባቢ  ናይ ረፍጂ ኣንፎ ክፍሊ ሓበሬታ  መታን ናብ ኵሉ ክበጽሕ ሼር ግበር\\ሪ  ወይ  ምስ ካልእ ሰብ ተካፍል\\ሊ ፣፣",
     "Participe déploiement": "ኣብ ምምዕባል ተሳትፎይ የብርክት ፤፣",
     "Vous hésitez encore ?": "ክሳብ ሕጂ ትጠራጠር ኣለኻ\\ኺ ?",
-    "Déployez subheader": "ሳላ ወከልቲ  ናይ ረፍጂ ኣንፎ ክፍሊ ሓበሬታ፣  ኣብ ኩሉ መሬት ሃገረ ፈረንሳይ  ብቀሊል ብጻዕቒ ክብጸሕ ኪእሉ ፣ ናይ ሌላ መደብ ብሓባር ንመግንስቲ ወኪሎም ወይ ምስ ሓንቲ ማሕበር ብምትሕብባር ? ረፍጂ ኣንፎ ክፍሊ ሓበሬታ, ካርት ኣቀማምጣ ጆግራፊ ናይ ቦታ ቅርጺን ኣብ ናትካ\\ኪ ትቅመጥሉ ዞባ ፣  ኣብ ምውህሃድ ዝሕግዝ ሓደ መሳርሒ የዳልው፤፣"
-  },
-  "AdvancedSearch": {
-    "Je cherche à": "ኣብዚ ይደሊ",
-    "A > Z": "A ካብ ክሳብ Z",
-    "Derniers ajouts": "ኣብ መፍጸምታ ተውሳኺ",
-    "Les plus visités": "ብብዝሒ ምብጽሕ ፣ ወይ ብብዝሒ ዑደት ምፍጻም",
-    "Trier par": "ነገራት በብመዶቦም ምስራዕ",
-    "Filtrer par": "በዚ መንፊት፣",
-    "Trier par n": "በዚ ምስሓብ",
-    "Filtrer par n": "በዚ ምጽራይ",
-    "Plus de filtres": "ተውሳኺ መጻረዪ",
-    "Voir plus de filtres": "ተወሰኽቲ ምርጫታት ንምውካስ፣",
-    "Voir moins de filtres": "ናብ ሒደት ምርጫታት ንምምላስ፣",
-    "Dispositifs": "ዕዮ ፣ ኣብርክቶ",
-    "Démarches": "ዝቕጽል",
-    "Créer une fiche": "ሓደ ገጽ ፍጠር",
-    "Elargir recherche": "ናይ ምድልይካ ክእለትካ  ኣዕብዮ ፣ ነቶም ዘይንጥፉ ሓደ ሓደ መሰኻኹቲ ነገራት",
-    "Oups": "ኣብ ጌጋ ዝጥቀሙላ ቃል ልክዕ ከም ፣ ( ኦው)",
-    "Rédiger": "ምጽሓፍ",
-    "Par thème": "ቴማ\\ ኣርእስቲ",
-    "résultats": "ውጽኢት",
-    "Voir les fiches": "ንክሉ ፋይል ምርኣይ",
-    "Traduction": "ትርጉም",
-    "Résultats disponibles en": "ውጽኢት ኣሎ ኣብ",
-    "Résultats non disponibles en": "ውጽኢት የለን ኣብ",
-    "fiches avec le thème": "ፋይል ብቴማ ምስ ኣርእስቲ",
-    "autres fiches avec le thème": "ካልእ ፋይል ብቴማ ምስ ኣርእስቲ",
-    "avec le thème": "ብቴማ\\ ብኣርእስቲ",
-    "Autres fiches traduites en": "ካልእ ፋይል ዝዘተርገሙ",
-    "Afficher aussi les autres fiches disponibles dans": "ኣብዚ ውን ካልእ ፋይል \\ ዶሴ ምልክታት ክዳለው ኢዮም",
-    "Masquer les autres fiches disponibles dans": "ዝተዳለው ፋይል ንውጺኢት ምሽፋን",
-    "Masquer les résultats disponibles dans": "ዝተዳለው ንውጺኢት ምሽፋን",
-    "Afficher aussi les résultats disponibles dans": "ንዝተዳለው ውጺኢት ናይ ፋይል  ምልክታት ከም ዝርኣይ ምግባር ፤፣",
-    "Fiches valables": "ዘግልግሉ ፋይል",
-    "Modifier ma recherche": "ነቲ ዝደልዮ አለኹ ንምርካብ ኣደላልያይ እቕይር፣",
-    "0 fiche pour": "0 ፋይል ን",
-    "partout en France": "ኣብ ሙሉእ ሃገረ ፈረንሳይ፣"
+    "Déployez subheader": "ሳላ ወከልቲ  ናይ ረፍጂ ኣንፎ ክፍሊ ሓበሬታ፣  ኣብ ኩሉ መሬት ሃገረ ፈረንሳይ  ብቀሊል ብጻዕቒ ክብጸሕ ኪእሉ ፣ ናይ ሌላ መደብ ብሓባር ንመግንስቲ ወኪሎም ወይ ምስ ሓንቲ ማሕበር ብምትሕብባር ? ረፍጂ ኣንፎ ክፍሊ ሓበሬታ, ካርት ኣቀማምጣ ጆግራፊ ናይ ቦታ ቅርጺን ኣብ ናትካ\\ኪ ትቅመጥሉ ዞባ ፣  ኣብ ምውህሃድ ዝሕግዝ ሓደ መሳርሒ የዳልው፤፣",
+    "theme": "ኣርእስቲ",
+    "need": "ሓደ ነገር እደሊ፣"
   },
   "UserProfile": {
     "Pseudonyme": "ዝኾነ ስም",
@@ -224,46 +189,6 @@
     "age-18": "ትሕቲ 18 ዓመት",
     "age18-25": "ኣብ መንጎ 18 ን 25 ን",
     "age+25": "ካብ 25 ዕድመ ን ላዕሊ"
-  },
-  "Tags": {
-    "Autre": "ካልእ",
-    "réfugié ou accompagnant": "ስደተኛ፣ ወይ ተሓጋገዚ",
-    "une organisation": "ሓንቲ ማሕበር",
-    "moins de 18 ans": "ትሕቲ 18 ዓመት",
-    "entre 18 et 25 ans": "ኣብ መንጎ 18 ን 25 ን",
-    "entre 25 et 56 ans": "ካብ 25 ዓመት ክሳብ 56 ዓመት",
-    "56 ans et plus": "ካብ 56 ዕድመ ን ላዕሊ",
-    "pas du tout": "ፈጺሙ ከም ኡ ማለት ኣይኮነን፣",
-    "un peu": "ውሑድ / ቁሩብ",
-    "moyennement": "ተመጣጣኒ",
-    "bien": "ጽቡቕ",
-    "très bien": "ብጣዕሚ ጽቡቕ",
-    "Paris": "ፓሪስ",
-    "Lyon": "ሊዮን፣",
-    "Nantes": "ዝነብረሉ ከተማ ናንት፣",
-    "choisir un thème": "ሓደ  ኣርእስቲ ምረጽ",
-    "ma ville": "ዝነብረሉ ከተማ፣",
-    "âge": "ዕድመ",
-    "niveau de français": "ደረጃ ቃንቃ ፈረንሳይ",
-    "mon niveau": "ናተይ  ደረጃ",
-    "thème": "ኣርእስቲ"
-  },
-  "SearchItem": {
-    "Je cherche à": "ኣብ (ነገር ወይ ቦታ) ዝደልዮ ዘለኹ ነገር እደሊ፣",
-    "J'ai besoin de": "ሓደ ነገር እደሊ፣",
-    "choisir un thème": "ሓደ ኣርእስቲ ወይ መደብ ሕረይ፣",
-    "J'habite à": "ኣብዚ እነብር",
-    "ma ville": "ናተይ ከተማ",
-    "J'ai": "ኣለኒ",
-    "mon âge": "ዕድመይ",
-    "Je parle": "እዛረብ",
-    "mon niveau": "ናተይ ደርጃ",
-    "Je suis": "ኣነ",
-    "français": "ፈረንሳይ",
-    "bientot disponible": "ኣብ ቀጻሊ ክህልው ኢዩ",
-    "choisir ma ville": "ከተማ ይመርጽ",
-    "choisir mon âge": "ዕድመይ ይምረጽ",
-    "le français": "ቋንቋ ፈረንሳ፣"
   },
   "Status": {
     "En attente": "መጻንሒ",
@@ -510,16 +435,6 @@
     "créez un compte": "ብምሉ ሽምካን ናይ ግሊ ሓበሬታኻን ዝሓዘ ሕሳብ መርበብ ሓበሬታ ወይ ኮንት ኣካውንት ፍጠር፣",
     "favoriExplanation": "ንፋይል ናትኩም\\ክን ብቀሊል ንምርካብ ኣብ ናትኩም\\ክን ውልቃዊ  ቦታ  ( ኮኾብ ዝመስል ኣብ ፋቮሪ )ምልክት ግበሩ\\ራ"
   },
-  "CheckDemarche": {
-    "Êtes-vous sûr": "ርግጽኛ ዲኻ ?",
-    "Existe deja": "ብርግጽ ኣሎ ድዩ",
-    "Vous allez créer": "ኣብዚ ገጽ ንጥፈታት ከተዳልው ኢኩም ኣሰራርሓ ናይ ቤት ጽሕፈት",
-    "Ce type de fiche": "እዚ ገጽ ናይ ዓንቀጽ ን ኣካይዳን ምስላጥን ትእዛዝ ካብ መንግስቲ ጥራሕ ኢዩ ዝምልከት ፣ ወይ ሓደ ኣጋጣሚ ካብ ህዝቢ",
-    "Exemple": "ን ኣብነት ገዛ መንብሪ ናይ ሶ ሲያል ንምሕታት ሓደ ንጥፈታት ምስላጥ ናይ ቤት ጽሕፈታት ኢዩ",
-    "Le programme": "ፕሮግራም ሓገዝ ምስ ግብረ ሰናይ ፣ኣብ ከተማ ናይ ወልንታዊ",
-    "Finalement": "ከም ኣማራጺ ሓድሽ ገጽ ኣብ ምጽሓፍ ከብርክት ይሕሸኒ",
-    "je suis sur": "ኣነ ርግጽኛ ኢየ ሓደ ገጽ ዓንቐጽ ናይ ምስላጥ ክጽሕፍ ከም ዝኽእል"
-  },
   "Toolbar": {
     "Accueil": "መቀበሊ",
     "Tout voir": "ንኹሉ ምርኣይ፣",
@@ -718,7 +633,9 @@
     "Télécharger l'application": "እዚ መርበብ ሓበሬታ ወይ ኣፕሌኬሽን ኣብ ስልክኹም ጸዓንዎ፣"
   },
   "Recherche": {
-    "toute la France": "ኣብ ኵሉ ሃገረ ፈረንሳይ",
-    "Voir plus": "ተወሳኺ ርእይቶ"
+    "france": "ኣብ ኵሉ ሃገረ ፈረንሳይ",
+    "seeMore": "ተወሳኺ ርእይቶ",
+    "results": "ውጽኢት",
+    "seeAll": "ንክሉ ፋይል ምርኣይ"
   }
 }

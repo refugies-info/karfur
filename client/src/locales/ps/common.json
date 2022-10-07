@@ -46,44 +46,9 @@
     "Déployez": "په خپله سیمه کې ریفوجي.انفو (Réfugiés.info) خپور کړئ",
     "Participe déploiement": "زه د ویب پاڼې په نشر کې ونډه اخلم",
     "Vous hésitez encore ?": "لاهم تردد او شک لرئ ؟",
-    "Déployez subheader": "د همکارو کارکونکو په برکت ریفوجي.انفو په تدریجي ډول په ټوله فرانسه کې خپریږې. ایا تاسو د یوې ټولنې، دولت یا یوه انجمن (اسوسیشن) استازیتوب کوئ؟ Réfugiés.info ستاسو په سیمه کې د کډوالو د ادغام مسؤولو ادارو او ذیدخلو اطرافو برنامي او پروګرامونه په نښه کوي، نشر ته سپاري او معلومات خپروي."
-  },
-  "AdvancedSearch": {
-    "Je cherche à": "لټون",
-    "A > Z": "A &gt; Z له اې نه تر زید",
-    "Derniers ajouts": "اخري اضافه",
-    "Les plus visités": "ډیر لیدل شوی",
-    "Trier par": "ترتیب شوی په واسطه :",
-    "Filtrer par": "فلترکول په واسطه :",
-    "Trier par n": "ترتیبول",
-    "Filtrer par n": "فلټر کول",
-    "Plus de filtres": "نور انتخابونه",
-    "Voir plus de filtres": "نور فلټرونه وګورئ",
-    "Voir moins de filtres": "لږ فلټرونه وګورئ",
-    "Dispositifs": "پروګرامونه",
-    "Démarches": "تګلاره او اجراآت",
-    "Créer une fiche": "یوه فورمه جوړه کړئ",
-    "Elargir recherche": "د ځینو فلټرونو په خاموشه کولوسره خپل لټون پراخ کړئ",
-    "Oups": "اوه!",
-    "Rédiger": "انشا،",
-    "Par thème": "موضوع",
-    "résultats": "نتیجه",
-    "Voir les fiches": "ټول فایلونه کتل",
-    "Traduction": "ترجمه",
-    "Résultats disponibles en": "نتیجه شتون لري په",
-    "Résultats non disponibles en": "نتیجه شتون نه لري په",
-    "fiches avec le thème": "فایل له موضوع سره",
-    "autres fiches avec le thème": "نور فایلونه له موضوع سره",
-    "avec le thème": "له موضوع سره",
-    "Autres fiches traduites en": "نورژباړه شوي فایلونه په",
-    "Afficher aussi les autres fiches disponibles dans": "نوراضافې فایلونه او معلومات هم ښکاره کړئ",
-    "Masquer les autres fiches disponibles dans": "نور فایلونه او معلومات پټ کړئ",
-    "Masquer les résultats disponibles dans": "پایلي پټې کړئ",
-    "Afficher aussi les résultats disponibles dans": "شته ټولې پایلي راښکاره کړئ",
-    "Fiches valables": "تایید شوې معلومات (فیش)",
-    "Modifier ma recherche": "زما لټون اصلاح کړئ",
-    "0 fiche pour": "په دې اړه هیڅ معلومات ونه موندل شول",
-    "partout en France": "په ټوله فرانسه کې"
+    "Déployez subheader": "د همکارو کارکونکو په برکت ریفوجي.انفو په تدریجي ډول په ټوله فرانسه کې خپریږې. ایا تاسو د یوې ټولنې، دولت یا یوه انجمن (اسوسیشن) استازیتوب کوئ؟ Réfugiés.info ستاسو په سیمه کې د کډوالو د ادغام مسؤولو ادارو او ذیدخلو اطرافو برنامي او پروګرامونه په نښه کوي، نشر ته سپاري او معلومات خپروي.",
+    "theme": "موضوع",
+    "need": "زه اړتیا لرم"
   },
   "UserProfile": {
     "Pseudonyme": "مستعار(یوزر) نوم:",
@@ -224,46 +189,6 @@
     "age-18": "تر18 کلنولاندې",
     "age18-25": "د 18 او 25 کلونو ترمینځ",
     "age+25": "25 کلن او پورته کسان"
-  },
-  "Tags": {
-    "Autre": "نور",
-    "réfugié ou accompagnant": "کډوال یا سرپرست",
-    "une organisation": "یو سازمان",
-    "moins de 18 ans": "تر18 کلنولاندې",
-    "entre 18 et 25 ans": "د 18 او 25 کلونو ترمینځ",
-    "entre 25 et 56 ans": "د 25 او 56 کلونو ترمنځ",
-    "56 ans et plus": "56 کلن او پورته کسان",
-    "pas du tout": "هیڅ نه",
-    "un peu": "یو څه",
-    "moyennement": "متوسط",
-    "bien": "ښه",
-    "très bien": "ډیر ښه",
-    "Paris": "پاریس",
-    "Lyon": "Lyon لیون",
-    "Nantes": "Nantes نانت",
-    "choisir un thème": "یو موضوع غوره کړه",
-    "ma ville": "زما ښار",
-    "âge": "عمر",
-    "niveau de français": "د فرانسوي ژبي سویه",
-    "mon niveau": "زما سطح",
-    "thème": "موضوع"
-  },
-  "SearchItem": {
-    "Je cherche à": "په لټه ده",
-    "J'ai besoin de": "زه اړتیا لرم",
-    "choisir un thème": "یو موضوع غوره کړئ",
-    "J'habite à": "زه ژوند کوم په",
-    "ma ville": "زما ښار",
-    "J'ai": "زه",
-    "mon âge": "زما عمر",
-    "Je parle": "زه خبري کوم",
-    "mon niveau": "زما سطح (سویه)",
-    "Je suis": "زه یم",
-    "français": "فرانسوې",
-    "bientot disponible": "ډیرژر به دلاس رسې وړ وي",
-    "choisir ma ville": "خپل ښار غوره کول",
-    "choisir mon âge": "خپل عمر ټاکل",
-    "le français": "فرانسوې"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",
@@ -510,16 +435,6 @@
     "créez un compte": "یو حساب جوړکړئ",
     "favoriExplanation": "د خپلې علاقې وړ فایلونه په خپل شخصي بخش کې پیدا کولای شئ"
   },
-  "CheckDemarche": {
-    "Êtes-vous sûr": "ایا ته ډاډه یې؟",
-    "Existe deja": "ایا دا دمخکې نه شتون لري؟",
-    "Vous allez créer": "د اداري پروسیجر یوه عریضه (فورمه) جوړ کړئ",
-    "Ce type de fiche": "دغه ډول فورمونه  یوازې د دولت او عامه ادارو د پروسیجرونو او ادراي اجراآتو مربوط دي",
-    "Exemple": "مثال: ده اجتماعې (سوسیال) کورتقاضا کول یوه اداري پروسه ده",
-    "Le programme": "Volont'Rیوه برنامه ده د مدني خدمت پروګرام لپاره",
-    "Finalement": "په اخیره کې زه غواړم چې د<b>پروګرام فورمه</b> جوړه کړم",
-    "je suis sur": "زه ډاډه یم چې زه غواړم د <b>اداري طرزالعمل</b> پاڼه (فورمه) جوړه کړم"
-  },
   "Toolbar": {
     "Accueil": "ښه راغلاست (استقبال)",
     "Tout voir": "ټول وګوری",
@@ -719,6 +634,8 @@
   },
   "Recherche": {
     "seeMore": "نور وګورئ",
-    "toute la France": "ټوله فرانسه"
+    "france": "ټوله فرانسه",
+    "results": "نتیجه",
+    "seeAll": "ټول فایلونه کتل"
   }
 }
