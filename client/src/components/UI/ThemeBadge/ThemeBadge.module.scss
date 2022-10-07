@@ -16,7 +16,7 @@
 .icon {
   margin-right: u(1);
   position: relative;
-  top: -2px;
+  top: 1px;
 
   @include rtl() {
     margin-right: 0;
