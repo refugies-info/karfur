@@ -9,7 +9,7 @@ import { cls } from "lib/classname";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
-import SearchFilterMobile from "../SearchFilterMobile";
+import SearchFilter from "../SearchFilter";
 import DropdownMenuMobile from "../DropdownMenuMobile";
 import styles from "./SearchHeader.mobile.module.scss";
 
@@ -202,19 +202,22 @@ const SearchHeaderMobile = (props: Props) => {
                 }}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
-                  <SearchFilterMobile
+                  <SearchFilter
+                    mobile={true}
                     label="Tranche d'âge"
                     selected={filterAge}
                     setSelected={setFilterAge}
                     options={ageFilters}
                   />
-                  <SearchFilterMobile
+                  <SearchFilter
+                    mobile={true}
                     label="Niveau de français"
                     selected={filterFrenchLevel}
                     setSelected={setFilterFrenchLevel}
                     options={frenchLevelFilter}
                   />
-                  <SearchFilterMobile
+                  <SearchFilter
+                    mobile={true}
                     label="Fiches traduites en"
                     selected={filterLanguage}
                     setSelected={setFilterLanguage}
