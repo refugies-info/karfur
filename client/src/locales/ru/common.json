@@ -46,44 +46,9 @@
     "Déployez": "Запустите Réfugiés.info в вашем регионе",
     "Participe déploiement": "Я участвую в запуске",
     "Vous hésitez encore ?": "Все еще сомневаетесь?",
-    "Déployez subheader": "Réfugiés.info постепенно распространяется по всей Франции благодаря нашим амбассадорам. Вы являетесь представителем общины, государства или ассоциации? Réfugiés.info создает карту программ, способствующих интеграции и привлекает внимание к связанными инициативам на вашей территории."
-  },
-  "AdvancedSearch": {
-    "Je cherche à": "Я хочу:",
-    "A > Z": "А - Я",
-    "Derniers ajouts": "Добавлены последними",
-    "Les plus visités": "Популярное",
-    "Trier par": "Сортировать по:",
-    "Filtrer par": "Выбрать",
-    "Trier par n": "Сортировать по:",
-    "Filtrer par n": "Фильтр",
-    "Plus de filtres": "Больше фильтров",
-    "Voir plus de filtres": "Показать больше фильтров",
-    "Voir moins de filtres": "Скрыть часть фильтров",
-    "Dispositifs": "Программы",
-    "Démarches": "Процедуры",
-    "Créer une fiche": "Создать карточку информации",
-    "Elargir recherche": "Попробуйте расширить поиск, отключив некоторые фильтры.",
-    "Oups": "Ой!",
-    "Rédiger": "Создать",
-    "Par thème": "По теме",
-    "résultats": "результаты",
-    "Voir les fiches": "Посмотреть все страницы",
-    "Traduction": "Перевод",
-    "Résultats disponibles en": "Результаты доступны в",
-    "Résultats non disponibles en": "Результаты не доступны в",
-    "fiches avec le thème": "Страницы по теме",
-    "autres fiches avec le thème": "Другие страницы по теме",
-    "avec le thème": "по теме",
-    "Autres fiches traduites en": "Другие страницы переведенные на",
-    "Afficher aussi les autres fiches disponibles dans": "Показать остальную информацию по запросу",
-    "Masquer les autres fiches disponibles dans": "Скрыть остальную информацию по запросу",
-    "Masquer les résultats disponibles dans": "Скрыть результаты доступные в",
-    "Afficher aussi les résultats disponibles dans": "Показать также результаты доступные в",
-    "Fiches valables": "Действующие страницы",
-    "Modifier ma recherche": "Изменить мои запрос",
-    "0 fiche pour": "найдено 0 страниц по",
-    "partout en France": "на всей территории Франции"
+    "Déployez subheader": "Réfugiés.info постепенно распространяется по всей Франции благодаря нашим амбассадорам. Вы являетесь представителем общины, государства или ассоциации? Réfugiés.info создает карту программ, способствующих интеграции и привлекает внимание к связанными инициативам на вашей территории.",
+    "theme": "теме",
+    "need": "Я хочу"
   },
   "UserProfile": {
     "Pseudonyme": "Имя пользователя:",
@@ -224,46 +189,6 @@
     "age-18": "до 18 лет",
     "age18-25": "от 18 до 25 лет",
     "age+25": "25 лет и старше"
-  },
-  "Tags": {
-    "Autre": "Другое",
-    "réfugié ou accompagnant": "беженец или сопровождающий",
-    "une organisation": "организация",
-    "moins de 18 ans": "до 18 лет",
-    "entre 18 et 25 ans": "от 18 до 25 лет",
-    "entre 25 et 56 ans": "от 25 до 56 лет",
-    "56 ans et plus": "56 лет и старше",
-    "pas du tout": "не говорю",
-    "un peu": "немного",
-    "moyennement": "средне",
-    "bien": "хорошо",
-    "très bien": "очень хорошо",
-    "Paris": "Париж",
-    "Lyon": "Лион",
-    "Nantes": "Нант",
-    "choisir un thème": "выбрать тему",
-    "ma ville": "мой город",
-    "âge": "возраст",
-    "niveau de français": "уровень французского языка",
-    "mon niveau": "мой уровень",
-    "thème": "теме"
-  },
-  "SearchItem": {
-    "Je cherche à": "Я хочу",
-    "J'ai besoin de": "Я хочу",
-    "choisir un thème": "выбрать тему",
-    "J'habite à": "Я живу в",
-    "ma ville": "мой город",
-    "J'ai": "Мне",
-    "mon âge": "мой возраст",
-    "Je parle": "Я говорю",
-    "mon niveau": "мой уровень",
-    "Je suis": "Я",
-    "français": "французский",
-    "bientot disponible": "Скоро появится",
-    "choisir ma ville": "Выбрать мой город",
-    "choisir mon âge": "Выбрать мой возраст",
-    "le français": "французский"
   },
   "Status": {
     "En attente": "На проверке",
@@ -510,16 +435,6 @@
     "créez un compte": "создать профиль",
     "favoriExplanation": "чтобы легко найти избранное в вашем профиле"
   },
-  "CheckDemarche": {
-    "Êtes-vous sûr": "Вы уверены?",
-    "Existe deja": "Возможно процедура уже существует?",
-    "Vous allez créer": "Вы собираетесь создать карточку административной процедуры",
-    "Ce type de fiche": "Этот тип файла касается только процедур, предложенных государством или государственным учреждением",
-    "Exemple": "Пример: запрос социального жилья является административной процедурой",
-    "Le programme": "Например, программа Volont'R в рамках системы национального волонтерства  - это программа",
-    "Finalement": "Я предпочитаю создать карточку <b>программы</b>",
-    "je suis sur": "Я уверен, что хочу создать карточку <b>административной процедуры</b>"
-  },
   "Toolbar": {
     "Accueil": "Главная",
     "Tout voir": "Смотреть все",
@@ -719,6 +634,8 @@
   },
   "Recherche": {
     "seeMore": "Посмотреть больше",
-    "toute la France": "Вся Франция"
+    "france": "Вся Франция",
+    "results": "результаты",
+    "seeAll": "Посмотреть все страницы"
   }
 }
