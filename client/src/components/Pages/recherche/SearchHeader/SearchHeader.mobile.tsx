@@ -1,101 +1,69 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import styles from "./SearchHeaderMobile.module.scss";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { useSelector } from "react-redux";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { ObjectId } from "mongodb";
+import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { cls } from "lib/classname";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
-import { ObjectId } from "mongodb";
 import LocationDropdown from "../LocationDropdown";
-
-import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
-import { useSelector } from "react-redux";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { Theme } from "types/interface";
 import SearchFilterMobile from "../SearchFilterMobile";
-import { cls } from "lib/classname";
 import DropdownMenuMobile from "../DropdownMenuMobile";
+import styles from "./SearchHeader.mobile.module.scss";
 
 interface Props {
-  search: string;
-  setSearch: Dispatch<SetStateAction<string>>;
-  needsSelected: ObjectId[];
-  setNeedsSelected: Dispatch<SetStateAction<ObjectId[]>>;
-  themesSelected: ObjectId[];
-  setThemesSelected: Dispatch<SetStateAction<ObjectId[]>>;
-  themesDisplayed: Theme[];
-  departmentsSelected: string[];
-  setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
-  filterAge: AgeOptions[];
-  setFilterAge: Dispatch<SetStateAction<AgeOptions[]>>;
-  filterFrenchLevel: FrenchOptions[];
-  setFilterFrenchLevel: Dispatch<SetStateAction<FrenchOptions[]>>;
-  filterLanguage: string[];
-  setFilterLanguage: Dispatch<SetStateAction<string[]>>;
+  themeDisplayedValue: string
+  isPlacePredictionsLoading: boolean
+  placePredictions: any[]
+  onSelectPrediction: (place_id: string) => void
+
+  // state from recherche
+  searchState: [string, Dispatch<SetStateAction<string>>];
+  needsSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
+  themesSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
+  departmentsSelectedState: [string[], Dispatch<SetStateAction<string[]>>];
+  filterAgeState: [AgeOptions[], Dispatch<SetStateAction<AgeOptions[]>>];
+  filterFrenchLevelState: [FrenchOptions[], Dispatch<SetStateAction<FrenchOptions[]>>];
+  filterLanguageState: [string[], Dispatch<SetStateAction<string[]>>];
+
+  // state from SearchHeader
+  locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
+  searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
+  locationSearchState: [string, Dispatch<SetStateAction<string>>];
+  themeSearchState: [string, Dispatch<SetStateAction<string>>];
+  themesFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
 const SearchHeaderMobile = (props: Props) => {
   const {
-    search,
-    setSearch,
-    needsSelected,
-    setNeedsSelected,
-    themesSelected,
-    setThemesSelected,
-    departmentsSelected,
-    setDepartmentsSelected,
-    filterAge,
-    setFilterAge,
-    filterFrenchLevel,
-    setFilterFrenchLevel,
-    filterLanguage,
-    setFilterLanguage
+    themeDisplayedValue,
+    isPlacePredictionsLoading,
+    placePredictions,
+    onSelectPrediction,
   } = props;
 
-  // KEYWORD
-  const [searchFocused, setSearchFocused] = useState(false);
+  // state from recherche
+  const [search, setSearch] = props.searchState;
+  const [needsSelected, setNeedsSelected] = props.needsSelectedState;
+  const [themesSelected, setThemesSelected] = props.themesSelectedState;
+  const [departmentsSelected, setDepartmentsSelected] = props.departmentsSelectedState;
+  const [filterAge, setFilterAge] = props.filterAgeState;
+  const [filterFrenchLevel, setFilterFrenchLevel] = props.filterFrenchLevelState;
+  const [filterLanguage, setFilterLanguage] = props.filterLanguageState;
 
-  // THEMES
-  const [themesFocused, setThemesFocused] = useState(false);
-  const [themesOpen, setThemesOpen] = useState(false);
-  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
-  const [themeSearch, setThemeSearch] = useState("");
-  const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
+  // state from SearchHeader
+  const [locationFocused, setLocationFocused] = props.locationFocusedState;
+  const [searchFocused, setSearchFocused] = props.searchFocusedState;
+  const [locationSearch, setLocationSearch] = props.locationSearchState;
+  const [themeSearch, setThemeSearch] = props.themeSearchState;
+  const [themesFocused, setThemesFocused] = props.themesFocusedState;
 
-  useEffect(() => {
-    setThemeDisplayedValue(props.themesDisplayed.map((t) => t.short.fr).join(", "));
-  }, [props.themesDisplayed]);
-
-  // LOCATION
-  const [locationFocused, setLocationFocused] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
+  const [themesOpen, setThemesOpen] = useState(false);
   const toggleLocation = () => setLocationOpen((prevState) => !prevState);
-  const [locationSearch, setLocationSearch] = useState("");
-
-  const { placesService, placePredictions, getPlacePredictions, isPlacePredictionsLoading } = usePlacesService({
-    apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
-    //@ts-ignore
-    options: {
-      componentRestrictions: { country: "fr" },
-      types: ["(cities)"]
-    }
-  });
-
-  const onSelectPrediction = (place_id: string) => {
-    placesService?.getDetails({ placeId: place_id }, (placeDetails) => {
-      setDepartmentsSelected((deps) => {
-        const depName = placeDetails?.address_components?.[1].long_name;
-        return [...new Set(depName ? [...deps, depName] : [...deps])];
-      });
-    });
-  };
-
-  useEffect(() => {
-    if (locationSearch) {
-      getPlacePredictions({ input: locationSearch });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [locationSearch]);
+  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
 
   // FILTERS
   const [showFilters, setShowFilters] = useState(false);
