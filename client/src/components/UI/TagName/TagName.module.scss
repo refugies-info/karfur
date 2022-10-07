@@ -12,7 +12,7 @@
 
 .icon {
   margin-right: u(2);
-  margin-top: -3px;
+  display: inline-flex;
 
   @include rtl() {
     margin-right: 0;
