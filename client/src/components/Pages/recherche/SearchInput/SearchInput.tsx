@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import styles from "./SearchInput.module.scss";
@@ -18,6 +19,7 @@ interface Props {
 }
 
 const SearchInput = (props: Props) => {
+  const { t } = useTranslation();
   const { active, setActive } = props;
   const ref = useRef<HTMLInputElement | null>(null);
 
@@ -48,7 +50,7 @@ const SearchInput = (props: Props) => {
             ref={ref}
             id={props.label}
             type="text"
-            placeholder="Rechercher..."
+            placeholder={t("Rechercher2", "Rechercher...")}
             className={styles.input}
             onChange={props.onChange}
             value={props.inputValue}

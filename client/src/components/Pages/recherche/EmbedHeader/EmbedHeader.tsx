@@ -1,20 +1,22 @@
 import React from "react";
-import styles from "./EmbedHeader.module.scss";
-import { Theme } from "types/interface";
-import ThemeIcon from "components/UI/ThemeIcon";
-import { getThemeName } from "lib/getThemeName";
-import { useRouter } from "next/router";
-import useRTL from "hooks/useRTL";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { Theme } from "types/interface";
+import { getThemeName } from "lib/getThemeName";
+import useRTL from "hooks/useRTL";
+import ThemeIcon from "components/UI/ThemeIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import styles from "./EmbedHeader.module.scss";
 
 interface Props {
   themes: Theme[];
   departments: string[];
   languages: string[];
 }
-/* TODO : trad */
+
 const EmbedHeader = (props: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const isRTL = useRTL();
   const languages = useSelector(allLanguesSelector);
@@ -26,10 +28,10 @@ const EmbedHeader = (props: Props) => {
 
   return (
     <p className={styles.text}>
-      {selectedTheme && selectedDepartment && selectedLanguage && "Fiches "}
+      {selectedTheme && selectedDepartment && selectedLanguage && `${t("Widget.fiches", "Fiches")} `}
       {selectedTheme && (
         <>
-          avec le thème{" "}
+          {t("Widget.withTheme", "avec le thème")}{" "}
           <span className={styles.btn} style={{ backgroundColor: selectedTheme.colors.color100 }}>
             <span className={styles.theme_icon}>
               <ThemeIcon theme={selectedTheme} size={18} />
@@ -38,15 +40,15 @@ const EmbedHeader = (props: Props) => {
           </span>
         </>
       )}
-      {(selectedLanguage || selectedDepartment) && " disponibles "}
+      {(selectedLanguage || selectedDepartment) && ` ${t("Widget.available", "disponibles")} `}
       {selectedDepartment && (
         <>
-          en <span className={styles.btn}>{selectedDepartment}</span>
+          {t("Widget.inLocation", "en")} <span className={styles.btn}>{selectedDepartment}</span>
         </>
       )}
       {selectedLanguage && (
         <>
-          {" en "}
+          {" "}{t("Widget.inLanguage", "en")}{" "}
           <span className={styles.btn}>
             <i
               className={"flag-icon flag-icon-" + selectedLanguage.langueCode}

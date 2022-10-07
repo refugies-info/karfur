@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
+import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import NeedsList from "./NeedsList";
@@ -44,6 +45,7 @@ interface Props {
 }
 
 const ThemeDropdown = (props: Props) => {
+  const locale = useLocale();
   const themes = useSelector(themesSelector);
   const needs = useSelector(needsSelector);
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
@@ -77,13 +79,13 @@ const ThemeDropdown = (props: Props) => {
   const displayedNeeds = useMemo(() => {
     if (props.search) {
       return needs
-        .filter((need) => need.fr.text.includes(props.search))
+        .filter((need) => (need[locale]?.text || "").includes(props.search))
         .sort((a, b) => (a.theme.position > b.theme.position ? 1 : -1));
     }
     return needs
       .filter((need) => need.theme._id === themeSelected)
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
-  }, [themeSelected, needs, props.search]);
+  }, [themeSelected, needs, props.search, locale]);
 
   return (
     <div className={styles.container}>

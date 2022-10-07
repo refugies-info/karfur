@@ -13,7 +13,10 @@ import algoliasearch from "algoliasearch";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
-const index = searchClient.initIndex(process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX || "");
+const indexName = (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") ?
+  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD :
+  process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
+const index = searchClient.initIndex(indexName || "");
 
 /**
  * Return the number of dispositifs for a department
