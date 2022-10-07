@@ -8,26 +8,13 @@ import {
 } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { act } from "react-test-renderer";
 import routerMock from "next/router";
+import mockAxios from "jest-mock-axios";
+
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
   return Image
 });
-jest.mock("axios", () => {
-  return {
-    __esModule: true,
-    default: {
-      get: () => jest.fn(),
-      create: jest.fn(() => ({
-        get: jest.fn(() => Promise.resolve({ data: "data" })),
-        interceptors: {
-          request: { use: jest.fn(), eject: jest.fn() },
-          response: { use: jest.fn(), eject: jest.fn() }
-        }
-      }))
-    },
-  }
-})
 
 import "jest-styled-components";
 
@@ -52,6 +39,7 @@ jest.mock(
 describe("UserFavorites", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    mockAxios.reset();
   });
   it("should render correctly when loading", () => {
     window.scrollTo = jest.fn();
