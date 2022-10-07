@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
+import useLocale from "hooks/useLocale";
 import styles from "./SearchThemeButton.module.scss";
 
 interface Props {
@@ -26,26 +27,29 @@ const ThemeLink = styled.button`
   }
 `;
 
-const SearchThemeButton = (props: Props) => (
-  <ThemeLink
-    className={cls(styles.btn)}
-    color100={props.theme.colors.color100}
-    color80={props.theme.colors.color80}
-    color30={props.theme.colors.color30}
-    onClick={() => {
-      if (props.onClick) props.onClick();
-      window.scrollTo(0, 0);
-    }}
-  >
-    <span className="mr-4">{jsUcfirst(props.theme.name.fr)}</span>
-    <div className={styles.image}>
-      {props.theme?.appImage?.secure_url && (
-        <span className={styles.image_inner}>
-          <Image src={props.theme.appImage.secure_url} width={65} height={90} alt="" />
-        </span>
-      )}
-    </div>
-  </ThemeLink>
-);
+const SearchThemeButton = (props: Props) => {
+  const locale = useLocale();
 
+  return (
+    <ThemeLink
+      className={cls(styles.btn)}
+      color100={props.theme.colors.color100}
+      color80={props.theme.colors.color80}
+      color30={props.theme.colors.color30}
+      onClick={() => {
+        if (props.onClick) props.onClick();
+        window.scrollTo(0, 0);
+      }}
+    >
+      <span className="mr-4">{jsUcfirst(props.theme.name[locale] || "")}</span>
+      <div className={styles.image}>
+        {props.theme?.appImage?.secure_url && (
+          <span className={styles.image_inner}>
+            <Image src={props.theme.appImage.secure_url} width={65} height={90} alt="" />
+          </span>
+        )}
+      </div>
+    </ThemeLink>
+  );
+};
 export default SearchThemeButton;

@@ -120,7 +120,7 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?filter=dispositifs",
+                search: isMobile ? null : "?type=dispositif",
               });
             }}
           />
@@ -137,7 +137,7 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?filter=demarches",
+                search: isMobile ? null : "?type=demarche",
               });
             }}
           />

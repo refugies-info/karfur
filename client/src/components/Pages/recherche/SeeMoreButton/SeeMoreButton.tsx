@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./SeeMoreButton.module.scss";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { cls } from "lib/classname";
+import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
+import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import styles from "./SeeMoreButton.module.scss";
 
 interface Props {
   onClick: () => void;
@@ -10,10 +11,11 @@ interface Props {
 }
 
 const SeeMoreButton = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className={cls(styles.container, props.visible && styles.visible)}>
       <Button onClick={props.onClick} className={styles.btn}>
-        {!props.visible ? "Voir plus" : "Voir moins"}
+        {!props.visible ? t("Recherche.seeMore", "Voir plus") : t("Recherche.seeLess", "Voir moins")}
         <EVAIcon
           name={!props.visible ? "arrow-downward-outline" : "arrow-upward-outline"}
           fill="white"

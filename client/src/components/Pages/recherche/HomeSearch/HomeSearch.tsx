@@ -17,19 +17,18 @@ import { SearchDispositif } from "types/interface";
 import DemarcheCard from "../DemarcheCard";
 import DispositifCard from "../DispositifCard";
 
-/* TODO : translate */
 const demarchesExamples = [
-  "Demander un logement social",
-  "Ouvrir un compte bancaire",
-  "S’inscrire à Pôle Emploi",
-  "S’inscrire à la CAF",
+  "Recherche.demarcheExample1",
+  "Recherche.demarcheExample2",
+  "Recherche.demarcheExample3",
+  "Recherche.demarcheExample4",
   "..."
 ];
 const dispositifsExamples = [
-  "Apprendre le français",
-  "Faire une formation de commis",
-  "Trouver un logement",
-  "Avoir un soutien psychologique",
+  "Recherche.dispositifExample1",
+  "Recherche.dispositifExample2",
+  "Recherche.dispositifExample3",
+  "Recherche.dispositifExample4",
   "..."
 ];
 
@@ -92,7 +91,7 @@ const HomeSearch = (props: Props) => {
               <HomeTypeCard
                 image={illuDemarche}
                 title={t("Recherche.demarcheTitle", "Les fiches démarches")}
-                examples={demarchesExamples}
+                examples={demarchesExamples.map(d => t(d))}
                 onClick={() => props.setSelectedType("demarche")}
               />
             </Col>
@@ -100,7 +99,7 @@ const HomeSearch = (props: Props) => {
               <HomeTypeCard
                 image={illuDispositif}
                 title={t("Recherche.dispositifTitle", "Les fiches dispositifs")}
-                examples={dispositifsExamples}
+                examples={dispositifsExamples.map(d => t(d))}
                 onClick={() => props.setSelectedType("dispositif")}
               />
             </Col>

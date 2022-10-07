@@ -80,7 +80,7 @@ const HomeSearch = (props: Props) => {
   return (
     <div onClick={open} className={styles.col}>
       <span className="mr-10 mb-15">
-        {t("SearchItem.J'ai besoin de", "J'ai besoin de")}
+        {t("Homepage.need", "J'ai besoin de")}
       </span>
       {flip ? (
         <Flippy
@@ -132,7 +132,7 @@ const HomeSearch = (props: Props) => {
             <div className={styles.icon}>
               <Streamline name="search" width={20} height={20} />
             </div>
-            {t("Tags.thème", "thème")}
+            {t("Homepage.theme", "thème")}
           </button>
         </Ripples>
       )}

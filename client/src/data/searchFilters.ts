@@ -21,22 +21,22 @@ export type TypeFilters = {
 }[];
 
 export const ageFilters: AgeFilters = [
-  { key: "-18", value: "Moins de 18 ans" },
-  { key: "18-25", value: "Entre 18 et 25 ans" },
-  { key: "+25", value: "Plus de 25 ans" }
+  { key: "-18", value: "Filters.age-18" },
+  { key: "18-25", value: "Filters.age18-25" },
+  { key: "+25", value: "Filters.age+25" }
 ];
 export const frenchLevelFilter: FrenchFilters = [
-  { key: "a", value: "Débutant A1/A2" },
-  { key: "b", value: "Intermédiaire B1/B2" },
-  { key: "c", value: "Avancé C1/C2" }
+  { key: "a", value: "Filters.frenchLevelA" },
+  { key: "b", value: "Filters.frenchLevelB" },
+  { key: "c", value: "Filters.frenchLevelC" }
 ];
 export const sortOptions: SortFilters = [
-  { key: "theme", value: "Par thématique" },
-  { key: "date", value: "Les plus récentes" },
-  { key: "view", value: "Les plus vues" }
+  { key: "theme", value: "Filters.sortTheme" },
+  { key: "date", value: "Filters.sortDate" },
+  { key: "view", value: "Filters.sortView" },
 ];
 export const filterType: TypeFilters = [
-  { key: "all", value: "Tout" },
-  { key: "dispositif", value: "Fiches dispositifs" },
-  { key: "demarche", value: "Fiches demarches" },
+  { key: "all", value: "Filters.typeAll" },
+  { key: "dispositif", value: "Filters.typeDispositif" },
+  { key: "demarche", value: "Filters.typeDemarche" },
 ];

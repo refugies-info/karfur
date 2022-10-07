@@ -272,7 +272,7 @@ const AdvancedSearchBar = (props: Props) => {
                 />
                 <SeeAllSectionTitle rtl={isRTL} white>
                   {t(
-                    "AdvancedSearch.Voir les fiches",
+                    "Recherche.seeAll",
                     "Voir toutes les fiches"
                   )}
                 </SeeAllSectionTitle>
@@ -468,7 +468,7 @@ const AdvancedSearchBar = (props: Props) => {
                 />
                 <SeeAllSectionTitle rtl={isRTL}>
                   {t(
-                    "AdvancedSearch.Voir les fiches",
+                    "Recherche.seeAll",
                     "Voir toutes les fiches"
                   )}
                 </SeeAllSectionTitle>

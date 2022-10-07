@@ -58,7 +58,7 @@ const filterFrenchLevelValues = {
   "b": ["Débutant", "Intermédiaire"],
   "c": []
 }
-// TODO: improve, check old function
+
 export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
   const frenchLevels = dispositif.niveauFrancais;

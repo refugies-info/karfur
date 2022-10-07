@@ -2,9 +2,11 @@ import React, { useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { Need } from "types/interface";
+import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
@@ -37,6 +39,8 @@ interface Props {
 }
 
 const NeedsList = (props: Props) => {
+  const { t } = useTranslation();
+  const locale = useLocale();
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -46,7 +50,6 @@ const NeedsList = (props: Props) => {
   const colors = themes.find((t) => props.themeSelected === t._id)?.colors;
 
   useEffect(() => {
-    // TODO : here x14 -> should be x1
     // count initial dispositifs by need
     const newNbDispositifsByNeed: Record<string, number> = {};
     const newNbDispositifsByTheme: Record<string, number> = {};
@@ -65,7 +68,9 @@ const NeedsList = (props: Props) => {
 
     setNbDispositifsByTheme(newNbDispositifsByTheme);
     setNbDispositifsByNeed(newNbDispositifsByNeed);
-  }, [dispositifs]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const {
     needsSelected,
@@ -119,7 +124,7 @@ const NeedsList = (props: Props) => {
           <Checkbox checked={isThemeSelected} color={!isThemeSelected && colors ? colors.color100 : "white"}>
             <span className={styles.all}>
               <EVAIcon name="grid" fill={!isThemeSelected && colors ? colors.color100 : "white"} />
-              Tous
+              {t("Recherche.all", "Tous")}
               <span
                 className={styles.badge}
                 style={{
@@ -152,7 +157,7 @@ const NeedsList = (props: Props) => {
               onClick={() => selectNeed(need._id)}
             >
               <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
-                {need.fr.text}
+                {need[locale]?.text || ""}
                 <span
                   className={styles.badge}
                   style={{
