@@ -5,14 +5,18 @@ import { getDispositifInfos } from "../getDispositifInfos";
 
 export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needsSelected: ObjectId[], withSecondaryTheme: boolean) => {
   if (themesSelected.length === 0 && needsSelected.length === 0) return true;
-  for (const need of dispositif.needs) { // return true if dispositif has need
-    if (needsSelected.includes(need)) return true;
+  if (dispositif.needs) {
+    for (const need of dispositif.needs) { // return true if dispositif has need
+      if (needsSelected.includes(need)) return true;
+    }
   }
   if (!withSecondaryTheme) { // or has theme as primary one
-    if (themesSelected.includes(dispositif.theme)) return true;
+    if (dispositif.theme && themesSelected.includes(dispositif.theme)) return true;
   } else { // or has theme as secondary one
-    for (const theme of dispositif.secondaryThemes) {
-      if (themesSelected.includes(theme)) return true;
+    if (dispositif.secondaryThemes) {
+      for (const theme of dispositif.secondaryThemes) {
+        if (themesSelected.includes(theme)) return true;
+      }
     }
   }
   return false;
