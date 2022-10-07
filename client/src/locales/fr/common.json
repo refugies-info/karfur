@@ -95,7 +95,22 @@
     "seeMore": "Voir plus",
     "seeLess": "Voir moins",
     "results": "résultats",
-    "seeAll": "Voir toutes les fiches"
+    "seeAll": "Voir toutes les fiches",
+    "demarcheExample1": "Demander un logement social",
+    "demarcheExample2": "Ouvrir un compte bancaire",
+    "demarcheExample3": "S’inscrire à Pôle Emploi",
+    "demarcheExample4": "S’inscrire à la CAF",
+    "dispositifExample1": "Apprendre le français",
+    "dispositifExample2": "Faire une formation de commis",
+    "dispositifExample3": "Trouver un logement",
+    "dispositifExample4": "Avoir un soutien psychologique"
+  },
+  "Widget": {
+    "fiches": "Fiches",
+    "withTheme": "avec le thème",
+    "available": "disponibles",
+    "inLocation": "en",
+    "inLanguage": "en"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme :",
