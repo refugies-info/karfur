@@ -27,10 +27,7 @@ const LocationDropdown = (props: Props) => {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((res) => {
-        axios({
-          method: "get",
-          url: `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
-        })
+        axios.get(`https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`)
           .then((response) => {
             if (response.data[0]?.departement?.nom) setDepartmentsSelected([response.data[0].departement.nom]);
           });

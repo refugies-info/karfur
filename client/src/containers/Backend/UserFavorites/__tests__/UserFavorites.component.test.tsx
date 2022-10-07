@@ -15,14 +15,17 @@ jest.mock("next/image", () => {
 });
 jest.mock("axios", () => {
   return {
-    get: () => jest.fn(),
-    create: jest.fn(() => ({
-      get: jest.fn(),
-      interceptors: {
-        request: { use: jest.fn(), eject: jest.fn() },
-        response: { use: jest.fn(), eject: jest.fn() }
-      }
-    }))
+    __esModule: true,
+    default: {
+      get: () => jest.fn(),
+      create: jest.fn(() => ({
+        get: jest.fn(),
+        interceptors: {
+          request: { use: jest.fn(), eject: jest.fn() },
+          response: { use: jest.fn(), eject: jest.fn() }
+        }
+      }))
+    },
   }
 })
 

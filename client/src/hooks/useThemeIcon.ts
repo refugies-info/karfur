@@ -17,10 +17,7 @@ const useThemeIcon = (theme: Theme | undefined | null, size: number) => {
       if (!xml) {
         const key = theme._id.toString();
         if (!fetching[key]) {
-          fetching[key] = axios({
-            method: "get",
-            url: theme.icon.secure_url,
-          }).then(res => res.data)
+          fetching[key] = axios.get(theme.icon.secure_url).then(res => res.data)
         }
         xml = await fetching[key];
         sessionStorage.setItem(itemKey, xml);
