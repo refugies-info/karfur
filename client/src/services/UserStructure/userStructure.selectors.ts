@@ -1,7 +1,7 @@
 import { RootState } from "../rootReducer";
 import {
   UserStructure,
-  IDispositif,
+  SearchDispositif,
   UserStructureMembre,
 } from "../../types/interface";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
@@ -11,7 +11,7 @@ export const userStructureSelector = (state: RootState): UserStructure | null =>
 
 export const userStructureDisposAssociesSelector = (
   state: RootState
-): IDispositif[] => {
+): SearchDispositif[] => {
   if (!state.userStructure) return [];
   if (areDispositifsAssociesPopulate(state.userStructure.dispositifsAssocies)) {
     return state.userStructure.dispositifsAssocies;

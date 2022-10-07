@@ -1,0 +1,102 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.card {
+  display: block;
+  position: relative;
+  background: $white;
+  box-shadow: 0 4px 18px 0 #0000001a;
+  padding: u(4);
+  border-radius: $radius;
+  border: 2px solid transparent;
+  cursor: pointer;
+
+  // typeContenu
+  &.demarche {
+    width: 208px;
+
+    @include isMobile() {
+      width: 100%;
+      min-width: 180px;
+    }
+
+    &.content {
+      padding-top: u(8);
+    }
+  }
+  &.dispositif {
+    width: 260px;
+    max-width: 100%;
+
+    @include isMobile() {
+      width: 100%;
+      min-width: 300px;
+    }
+
+    &.title {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  // title / content
+  &.title {
+    background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
+    cursor: default;
+  }
+  &.content {
+    &:hover {
+      border-color: $dark;
+      background-color: $gray30;
+      box-shadow: none;
+      :global(.theme-badge) {
+        background-color: $white !important;
+      }
+    }
+  }
+
+  em {
+    background-color: $bgfocus;
+    font-style: normal;
+  }
+
+  &.title {
+    @include isMobile() {
+      display: none !important;
+    }
+  }
+}
+
+.icon {
+  width: u(12);
+  height: u(12);
+  background-color: $white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 28px;
+  line-height: 35px;
+  @include text("h4");
+  margin-top: u(6);
+  margin-bottom: u(6);
+  font-weight: bold;
+  color: $white;
+}
+
+.badge {
+  padding: u(1) u(2);
+  background: $white;
+  color: $bleuCharte;
+  @include text("large");
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+}

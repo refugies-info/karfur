@@ -1,9 +1,9 @@
-import { IUserContribution, IDispositif } from "../../../types/interface";
+import { IUserContribution, SearchDispositif } from "../../../types/interface";
 import { FormattedUserContribution } from "./types";
 
 export const formatContributions = (
   userContributions: IUserContribution[],
-  userStructureContributions: IDispositif[],
+  userStructureContributions: SearchDispositif[],
   userStructureName: string | null
 ): FormattedUserContribution[] => {
   let formattedContribs: FormattedUserContribution[] = [];
@@ -51,7 +51,7 @@ export const formatContributions = (
         titreInformatif: dispositif.titreInformatif,
         titreMarque: dispositif.titreMarque,
         typeContenu: dispositif.typeContenu,
-        nbMercis: dispositif.nbMercis,
+        nbMercis: dispositif.nbMercis || 0,
         nbVues: dispositif.nbVues,
         _id: dispositif._id,
         status: dispositif.status,

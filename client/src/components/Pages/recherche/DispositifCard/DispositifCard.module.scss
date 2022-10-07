@@ -1,0 +1,78 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.location {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  @include text("large");
+  height: 92px;
+  margin: u(2) 0;
+  font-weight: bold;
+
+  @include isMobile() {
+    height: auto;
+  }
+}
+
+.abstract {
+  height: 45px;
+
+  @include isMobile() {
+    height: auto;
+  }
+}
+
+.text {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.infos {
+  height: 36px;
+
+  @include isMobile() {
+    height: auto;
+  }
+}
+
+.badges {
+  margin-bottom: u(1);
+  margin-right: u(1);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+  }
+}
+
+.themes {
+  height: 57px;
+
+  @include isMobile() {
+    height: auto;
+  }
+}
+
+.sponsor {
+  display: flex;
+  align-items: center;
+  margin-top: u(4);
+  padding-top: u(2);
+  border-top: 1px solid $dark;
+
+  .picture {
+    width: 48px;
+    height: 48px;
+    background-color: $white;
+    border-radius: u(2);
+    padding: u(1);
+    flex-shrink: 0;
+  }
+}

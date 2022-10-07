@@ -58,7 +58,7 @@ const CatList = (props: Props) => {
   const goToTheme = (theme: Theme) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
-      search: "?tag=" + theme.name.fr,
+      search: "?themes=" + theme._id,
     });
   };
 

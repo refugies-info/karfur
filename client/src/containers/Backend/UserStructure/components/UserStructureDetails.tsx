@@ -7,7 +7,7 @@ import {
 import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import { Picture, UserStructureMembre } from "types/interface";
-import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
+import placeholder from "assets/no_results_alt.svg";
 import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
 import { MembresTable } from "./MembresTable";

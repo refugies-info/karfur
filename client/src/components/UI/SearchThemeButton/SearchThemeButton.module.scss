@@ -1,0 +1,46 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.btn {
+  font-weight: bold;
+  border-radius: $radius;
+  padding: 0 u(4);
+  @include text("large");
+  border: none;
+  text-align: left;
+  outline: none;
+  color: $white !important;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 270px;
+  height: 76px;
+  box-shadow: 0 4px 18px 0 #0000001A;
+
+  @include rtl() {
+    text-align: right;
+  }
+  @include isMobile() {
+    width: 100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.image {
+  position: relative;
+  height: 60px;
+  width: 60px;
+}
+.image_inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

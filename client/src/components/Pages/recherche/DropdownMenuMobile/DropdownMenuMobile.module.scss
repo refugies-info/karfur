@@ -1,0 +1,68 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  height: 100%;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+}
+
+.icon {
+  width: u(9);
+  height: u(9);
+  border-radius: 50%;
+  background: $bleuCharte;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: u(2);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(2);
+  }
+}
+
+.close {
+  background: transparent;
+  border: none;
+}
+
+.title {
+  display: flex;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: u(4);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -16px 16px 0 #0000000D;
+  background: $white;
+  z-index: 3;
+
+  & > button {
+    border-radius: $radius;
+
+    &.btn_search {
+      font-weight: bold;
+      padding: 12px;
+    }
+  }
+
+  .reset {
+    color: $bleuCharte;
+  }
+}

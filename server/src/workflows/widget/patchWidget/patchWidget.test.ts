@@ -73,25 +73,19 @@ describe("patchWidget", () => {
       params: { id: "widgetId" },
       userId: "userId",
       body: {
-        typeContenu: ["dispositifs"],
+        typeContenu: ["dispositif"],
         themes: [{_id: "xyz"}],
         languages: [],
-        location: {
-          city: "",
-          department: ""
-        }
+        department: ""
       }
     };
     await patchWidget(req, res);
     expect(updateWidget).toHaveBeenCalledWith("widgetId", {
       author: "userId",
-      typeContenu: ["dispositifs"],
+      typeContenu: ["dispositif"],
       themes: ["xyz"],
       languages: [],
-      location: {
-        city: "",
-        department: ""
-      }
+      department: ""
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });
