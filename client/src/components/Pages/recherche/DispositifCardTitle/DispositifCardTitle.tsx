@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
+import useRTL from "hooks/useRTL";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import ThemeBadge from "components/UI/ThemeBadge";
 import iconMap from "assets/recherche/icon-map.svg";
@@ -17,6 +18,7 @@ interface Props {
 
 const DispositifCardTitle = (props: Props) => {
   const { t } = useTranslation();
+  const isRTL = useRTL();
   const isSecondaryCard = props.themes && props.themes.length > 0;
   return (
     <div
@@ -50,7 +52,7 @@ const DispositifCardTitle = (props: Props) => {
           </div>
         )}
       </div>
-      <EVAIcon name="arrowhead-right-outline" fill="white" size={56} />
+      <EVAIcon name={!isRTL ? "arrowhead-right-outline" : "arrowhead-left-outline"} fill="white" size={56} />
     </div>
   );
 };

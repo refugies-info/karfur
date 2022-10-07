@@ -129,7 +129,10 @@ const SearchHeaderDesktop = (props: Props) => {
                 loading={isPlacePredictionsLoading}
                 value={departmentsSelected.join(", ")}
                 placeholder={t("Recherche.all", "Tous")}
-                resetFilter={() => setDepartmentsSelected([])}
+                resetFilter={() => {
+                  setLocationSearch("");
+                  setDepartmentsSelected([])
+                }}
               />
             </DropdownToggle>
             <DropdownMenu>
@@ -154,6 +157,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 value={themeDisplayedValue}
                 placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => {
+                  setThemeSearch("");
                   setNeedsSelected([]);
                   setThemesSelected([]);
                 }}
