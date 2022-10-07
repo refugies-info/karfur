@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
@@ -37,6 +38,7 @@ interface Props {
 }
 
 const SearchHeaderMobile = (props: Props) => {
+  const { t } = useTranslation();
   const {
     themeDisplayedValue,
     isPlacePredictionsLoading,
@@ -77,14 +79,14 @@ const SearchHeaderMobile = (props: Props) => {
           <div className={styles.inputs}>
             <Button onClick={() => setSearchFocused(true)}>
               <SearchInput
-                label="Mot-clé"
+                label={t("Recherche.keyword", "Mot-clé")}
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
                 onChange={(evt) => setSearch(evt.target.value)}
                 inputValue={search}
                 value={search}
-                placeholder="Mission locale, titre de séjour..."
+                placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
               />
             </Button>
           </div>
@@ -94,7 +96,7 @@ const SearchHeaderMobile = (props: Props) => {
         <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
           <DropdownToggle>
             <SearchInput
-              label="Département"
+              label={t("Dispositif.Département", "Département")}
               icon="pin-outline"
               active={locationOpen || locationFocused}
               setActive={setLocationFocused}
@@ -102,12 +104,12 @@ const SearchHeaderMobile = (props: Props) => {
               inputValue={locationSearch}
               loading={isPlacePredictionsLoading}
               value={departmentsSelected.join(", ")}
-              placeholder="Département"
+              placeholder={t("Dispositif.Département", "Département")}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             <DropdownMenuMobile
-              title="Départements"
+              title={t("Dispositif.Départements", "Départements")}
               icon="pin-outline"
               close={toggleLocation}
               reset={() => setDepartmentsSelected([])}
@@ -117,7 +119,7 @@ const SearchHeaderMobile = (props: Props) => {
                   <EVAIcon name="search-outline" fill="dark" size={20} />
                   <input
                     type="text"
-                    placeholder="Département"
+                    placeholder={t("Dispositif.Département", "Département")}
                     onChange={(evt) => setLocationSearch(evt.target.value)}
                     value={locationSearch}
                     autoFocus
@@ -137,19 +139,19 @@ const SearchHeaderMobile = (props: Props) => {
         <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
           <DropdownToggle>
             <SearchInput
-              label="Thèmes"
+              label={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
               active={themesFocused || themesOpen}
               setActive={setThemesFocused}
               onChange={(evt) => setThemeSearch(evt.target.value)}
               inputValue={themeSearch}
               value={themeDisplayedValue}
-              placeholder="Thèmes"
+              placeholder={t("Recherche.themes", "Thèmes")}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             <DropdownMenuMobile
-              title="Thèmes"
+              title={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
               close={toggleThemes}
               reset={() => {
@@ -162,7 +164,7 @@ const SearchHeaderMobile = (props: Props) => {
                   <EVAIcon name="search-outline" fill="dark" size={20} />
                   <input
                     type="text"
-                    placeholder="Rechercher dans les thèmes"
+                    placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
                     onChange={(evt) => setThemeSearch(evt.target.value)}
                     value={themeSearch}
                     autoFocus
@@ -192,7 +194,7 @@ const SearchHeaderMobile = (props: Props) => {
             </DropdownToggle>
             <DropdownMenu className={styles.menu}>
               <DropdownMenuMobile
-                title="Filtres de recherche"
+                title={t("Recherche.filters", "Filtres de recherche")}
                 icon="options-2-outline"
                 close={() => setShowFilters(!showFilters)}
                 reset={() => {
@@ -204,21 +206,21 @@ const SearchHeaderMobile = (props: Props) => {
                 <div className={cls(styles.content, styles.more_filters)}>
                   <SearchFilter
                     mobile={true}
-                    label="Tranche d'âge"
+                    label={t("Recherche.filterAge", "Tranche d'âge")}
                     selected={filterAge}
                     setSelected={setFilterAge}
                     options={ageFilters}
                   />
                   <SearchFilter
                     mobile={true}
-                    label="Niveau de français"
+                    label={t("Recherche.filterFrenchLevel", "Niveau de français")}
                     selected={filterFrenchLevel}
                     setSelected={setFilterFrenchLevel}
                     options={frenchLevelFilter}
                   />
                   <SearchFilter
                     mobile={true}
-                    label="Fiches traduites en"
+                    label={t("Recherche.filterLanguage", "Fiches traduites en")}
                     selected={filterLanguage}
                     setSelected={setFilterLanguage}
                     options={languages.map((ln) => ({
