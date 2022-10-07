@@ -198,6 +198,7 @@ const Recherche = () => {
 
   const resetFilters = useCallback(() => {
     setSearch("");
+    setSelectedType("all")
     setNeedsSelected([]);
     setThemesSelected([]);
     setDepartmentsSelected([]);
