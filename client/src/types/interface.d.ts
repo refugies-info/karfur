@@ -107,7 +107,7 @@ export interface SimplifiedMainSponsor {
   _id: ObjectId;
   nom: string;
   status: string;
-  picture: Picture | undefined;
+  picture: Picture | null;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;
@@ -267,7 +267,7 @@ export interface Structure {
   created_at: Moment;
   createur: ObjectId;
   // eslint-disable-next-line no-use-before-define
-  dispositifsAssocies: ObjectId[] | IDispositif[];
+  dispositifsAssocies: ObjectId[] | SearchDispositif[];
   link: string;
   mail_contact: string;
   mail_generique: string;
@@ -300,6 +300,30 @@ export interface AudienceAge {
   bottomValue: number | string;
   topValue: number | string;
 }
+export interface SearchDispositif {
+  _id: ObjectId;
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  audienceAge: AudienceAge[];
+  avancement: Record<string, number>;
+  contenu: DispositifContent[];
+  created_at: Moment;
+  mainSponsor: SimplifiedMainSponsor;
+  nbMots: number;
+  niveauFrancais: string[];
+  needs: ObjectId[];
+  theme: ObjectId;
+  status: string;
+  secondaryThemes: ObjectId[];
+  typeContenu: "dispositif" | "demarche";
+  suggestions?: any[];
+  nbMercis?: number;
+  lastModificationDate?: number;
+  nbVues: number;
+  lastModificationDate?: number;
+  publishedAt?: number;
+}
 export interface IDispositif {
   _id: ObjectId;
   abstract: string;
@@ -325,6 +349,7 @@ export interface IDispositif {
   participants: User[];
   signalements: any[];
   sponsors: Structure[];
+  needs: ObjectId[];
   status: string;
   suggestions: any[];
   theme: Theme;
@@ -337,6 +362,7 @@ export interface IDispositif {
   nbMercis: number;
   timeSpent?: number;
   lastModificationDate?: number;
+  publishedAt?: number;
 }
 
 export interface UserStructureMembre {
@@ -398,15 +424,6 @@ export interface SimplifiedStructureForAdmin {
   adminComments?: string;
   adminProgressionStatus?: string;
   adminPercentageProgressionStatus?: string;
-}
-
-export interface IUserFavorite {
-  _id: ObjectId;
-  typeContenu: "dispositif" | "demarche";
-  titreInformatif: string;
-  titreMarque: string;
-  abstract: string;
-  theme: Theme;
 }
 
 export interface IUserContribution {
@@ -522,16 +539,15 @@ export interface Log {
   created_at: Moment;
 }
 
+export type ContentType = "dispositif" | "demarche";
+
 export interface Widget {
   _id: ObjectId;
   name: string;
   tags: string[];
   themes: Theme[];
-  typeContenu: ("dispositifs"|"demarches")[];
-  location?: {
-    city: string;
-    department: string;
-  }
+  typeContenu: ContentType[];
+  department?: string;
   languages?: string[];
   author: {
     _id: ObjectId;

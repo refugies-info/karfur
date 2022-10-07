@@ -1,0 +1,113 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.dropdown {
+  margin: u(1);
+
+  & > button {
+    background: $gray30;
+    color: $gray80;
+    border: none;
+    padding: u(3) u(6) u(3) u(2);
+    border-radius: u(2);
+    max-width: 200px;
+    height: 45px;
+    position: relative;
+
+    @include rtl() {
+      padding: u(3) u(2) u(3) u(6);
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $gray40b !important;
+      color: $gray80 !important;
+    }
+
+    .icon {
+      position: absolute;
+      right: u(1);
+      top: 11px;
+
+      @include rtl() {
+        right: inherit;
+        left: u(1);
+      }
+    }
+  }
+
+  &.show > button {
+    background: $white !important;
+    color: $darkColor !important;
+  }
+
+  &.selected > button {
+    background: $bleuCharte !important;
+    color: $white !important;
+    font-weight: bold;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $bleuCharte !important;
+      color: $white !important;
+    }
+  }
+}
+
+.value {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Override global style */
+html body .dropdown.show > button {
+  box-shadow: 0 0 40px 0 #00000040 !important;
+}
+
+.menu {
+  box-shadow: 0 0 40px 0 #00000040;
+  padding: u(4);
+  border-radius: $radius;
+  margin-top: u(2);
+}
+
+.item {
+  padding: u(3) u(2);
+  border-radius: u(2) !important;
+  margin-bottom: u(1);
+  border: none;
+
+  &:hover {
+    background: $gray40b;
+    color: $dark;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+
+  i {
+    margin: 0 u(2) 0 0;
+
+    @include rtl() {
+      margin: 0 0 0 u(2);
+    }
+  }
+
+  &.selected {
+    background: $bleuCharte !important;
+    color: $white !important;
+  }
+}

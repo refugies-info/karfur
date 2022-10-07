@@ -88,26 +88,52 @@ describe("getUserFavoritesInLocale", () => {
     status: 1,
     typeContenu: 1,
     contenu: 1,
+    mainSponsor: 1,
+    needs: 1,
+    lastModificationDate: 1
   };
 
   it("should return 200 and get dispo if dispo pinned", async () => {
-    const functionToJSON = (element: any) => element;
+    const dispo1Data = {
+      titreInformatif: "TI1",
+      contenu: [{}, {children: []}],
+      mainSponsor: {
+        nom: "",
+        picture: {secure_url: null}
+      }
+    };
     const dispo1 = {
       titreInformatif: "TI1",
       contenu: [],
-      toJSON: () => ({ titreInformatif: "TI1" }),
+      toJSON: () => dispo1Data,
       status: "Actif",
+    };
+    const dispo2Data = {
+      titreInformatif: "TI2",
+      contenu: [{}, {children: []}],
+      mainSponsor: {
+        nom: "",
+        picture: {secure_url: null}
+      }
     };
     const dispo2 = {
       titreInformatif: "TI2",
       contenu: [],
-      toJSON: functionToJSON,
+      toJSON: () => dispo2Data,
       status: "En attente",
+    };
+    const dispo3Data = {
+      titreInformatif: "TI3",
+      contenu: [{}, {children: []}],
+      mainSponsor: {
+        nom: "",
+        picture: {secure_url: null}
+      }
     };
     const dispo3 = {
       titreInformatif: "TI3",
       contenu: [],
-      toJSON: () => ({ titreInformatif: "TI3" }),
+      toJSON: () => dispo3Data,
       status: "Actif",
     };
     getDispositifById.mockResolvedValueOnce(dispo1);
@@ -127,20 +153,17 @@ describe("getUserFavoritesInLocale", () => {
     };
     await getUserFavoritesInLocale(req, res);
 
-    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields, "theme secondaryThemes");
-    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields, "theme secondaryThemes");
-    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo1, "fr");
-    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo3, "fr");
+    expect(getDispositifById).toHaveBeenCalledWith("id1", neededFields, "mainSponsor");
+    expect(getDispositifById).toHaveBeenCalledWith("id2", neededFields, "mainSponsor");
+    expect(getDispositifById).toHaveBeenCalledWith("id3", neededFields, "mainSponsor");
+    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo1Data, "fr");
+    expect(functions.turnToLocalized).toHaveBeenCalledWith(dispo3Data, "fr");
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [
-        {
-          titreInformatif: "TI1",
-        },
-        {
-          titreInformatif: "TI3",
-        },
+        dispo1Data,
+        dispo3Data,
       ],
     });
   });

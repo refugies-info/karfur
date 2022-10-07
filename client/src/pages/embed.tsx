@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import { decodeQuery, queryDispositifs } from "lib/filterContents";
+import { queryDispositifs } from "lib/recherche/queryContents";
+import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
@@ -13,104 +14,39 @@ import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
-import {
-  allLanguesSelector,
-  languei18nSelector,
-} from "services/Langue/langue.selectors";
-import styles from "scss/pages/advanced-search.module.scss";
-import { ThemeResults } from "components/Pages/advanced-search/SearchResults/ThemeResults";
-import { CityResults } from "components/Pages/advanced-search/SearchResults/CityResults";
-import { DefaultResults } from "components/Pages/advanced-search/SearchResults/DefaultResults";
+import styles from "scss/pages/recherche.module.scss";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
-
-export type SearchQuery = {
-  theme?: string;
-  age?: string;
-  frenchLevel?: string;
-  type?: "dispositifs" | "demarches";
-  langue?: string;
-  loc?: {
-    city: string;
-    dep: string;
-  };
-  order: "created_at" | "nbVues" | "theme" | "";
-};
+import SearchResults from "components/Pages/recherche/SearchResults";
+import { Container } from "reactstrap";
+import EmbedHeader from "components/Pages/recherche/EmbedHeader";
 
 const Embed = () => {
-  const allDispositifs = useSelector(activeDispositifsSelector);
-  const languei18nCode = useSelector(languei18nSelector);
-  const langues = useSelector(allLanguesSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
   const themes = useSelector(themesSelector);
   const router = useRouter();
-
   const initialQuery = decodeQuery(router.query);
-  const queryResults = queryDispositifs(
-    allDispositifs,
-    initialQuery.query,
-    languei18nCode,
-    themes
-  );
-  const {
-    themesObject,
-    filterVille,
-  } = queryResults;
-  const { query } = initialQuery;
+  const filteredResult = queryDispositifs(initialQuery, dispositifs);
 
-  const currentLanguage = langues.find((x) => x.i18nCode === router.locale);
-  const langueCode = currentLanguage
-    ? currentLanguage.langueCode
-    : "fr";
-  const filterLanguage = query.langue
-    ? langues.find((x) => x.i18nCode === query.langue)
-    : undefined;
-  const selectedTheme = query.theme && query.theme.length === 1
-    ? themes.find((theme) => theme.name.fr === query.theme?.[0])
-    : undefined;
-
-  const flagIconCode = filterLanguage?.langueCode || langueCode;
+  const themesSelected = themes.filter(t => initialQuery.themesSelected.includes(t._id));
 
   return (
-    <div className={cls(styles.container, styles.embed, "advanced-search")}>
-      <div className="w-100">
-        <div
-          className={cls(styles.search_wrapper)}
-          style={{
-            backgroundColor:
-              query.order === "theme"
-                ? themesObject[0]?.theme.colors.color30 || "#f1e8f5"
-                : query.theme
-                ? selectedTheme?.colors.color30
-                : "#e4e5e6",
-          }}
-        >
-          {selectedTheme ? (
-            <ThemeResults
-              langueCode={langueCode}
-              flagIconCode={flagIconCode}
-              selectedTheme={selectedTheme || null}
-              filterLanguage={filterLanguage || null}
-              currentLanguage={currentLanguage || null}
-              queryResults={queryResults}
-              embed={true}
-            />
-          ) : filterVille ? (
-              <CityResults
-                queryResults={queryResults}
-                embed={true}
-              />
-          ) : (
-            <DefaultResults
-              langueCode={langueCode}
-              filterLanguage={filterLanguage || null}
-              currentLanguage={currentLanguage || null}
-              queryResults={queryResults}
-              embed={true}
-              isLoading={false}
-            />
-          )}
-        </div>
-      </div>
+    <div className={cls(styles.container, styles.embed)}>
+      <Container className={styles.container_inner}>
+        <EmbedHeader
+          themes={themesSelected}
+          languages={initialQuery.filterLanguage}
+          departments={initialQuery.departmentsSelected}
+        />
+        <SearchResults
+          filteredResult={filteredResult}
+          selectedType={initialQuery.selectedType}
+          themesSelected={themesSelected}
+          departmentsSelected={initialQuery.departmentsSelected}
+          departmentsNotDeployed={[]}
+          resetFilters={() => {}}
+        />
+      </Container>
     </div>
   );
 };

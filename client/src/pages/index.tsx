@@ -8,9 +8,7 @@ import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 import qs from "query-string";
 import { colors } from "colors";
-import { getSearchTheme } from "data/searchFilters";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { MobileSearchFilterModal } from "components/Pages/advanced-search/MobileAdvancedSearch/MobileSearchFilterModal/MobileSearchFilterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
 import UkrainePopup from "components/Pages/homepage/UkrainePopup";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
@@ -59,19 +57,11 @@ const Homepage = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const selectOption =  (themeName: string) => {
-    router.push({
-      pathname: getPath("/recherche", router.locale),
-      search: qs.stringify({tag: themeName}),
-    });
-  };
   const togglePopup = () => setPopup(!popup);
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
   const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleOverlay = () => setOverlay(!overlay);
   const themes = useSelector(themesSelector);
-  const searchTheme = getSearchTheme(themes);
-
   const isRTL = useRTL();
 
   return (
@@ -91,7 +81,6 @@ const Homepage = (props: Props) => {
 
           <div className="search-row">
             <HomeSearch
-              searchItem={searchTheme}
               togglePopup={togglePopup}
               toggleOverlay={toggleOverlay}
               toggleModal={toggleShowTagModal}
@@ -325,16 +314,6 @@ const Homepage = (props: Props) => {
           </section>
         </>
       )}
-      <MobileSearchFilterModal
-        selectOption={selectOption}
-        type="theme"
-        title="Tags.thème"
-        defaultTitle="thème"
-        sentence="SearchItem.J'ai besoin de"
-        defaultSentence="J'ai besoin de'"
-        toggle={toggleShowTagModal}
-        show={showTagModal}
-      />
       <SubscribeNewsletterModal
         toggle={toggleShowNewsletterModal}
         show={showNewslettreModal}

@@ -1,0 +1,39 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.title {
+  @include text("large");
+  margin-top: u(6);
+  margin-bottom: u(4);
+  font-weight: bold;
+}
+
+.badges {
+  margin-bottom: u(1);
+  margin-right: u(1);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+  }
+}
+
+.update {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+
+  & > span {
+    @include text("very-small");
+    background-color: $vert2;
+    padding: u(1) u(2);
+    border-radius: 0 0 u(2) u(2);
+    color: $white;
+  }
+}

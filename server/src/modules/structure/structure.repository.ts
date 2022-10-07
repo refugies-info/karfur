@@ -13,12 +13,12 @@ export const getStructureFromDB = async (
       if (fields === "all") {
         return await Structure.findOne({ _id: id }).populate({
           path: "dispositifsAssocies",
-          populate: { path: "theme secondaryThemes" }
+          populate: { path: "theme secondaryThemes mainSponsor" }
         });
       }
       return await Structure.findOne({ _id: id }, fields).populate({
         path: "dispositifsAssocies",
-        populate: { path: "theme secondaryThemes" }
+        populate: { path: "theme secondaryThemes mainSponsor" }
       });
     }
     if (fields === "all") {

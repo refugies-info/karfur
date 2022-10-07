@@ -1,0 +1,25 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  @include text("very-small");
+  padding: u(1);
+  border-radius: u(1);
+}
+
+.icon {
+  margin-right: u(1);
+  position: relative;
+  top: -2px;
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+  }
+}

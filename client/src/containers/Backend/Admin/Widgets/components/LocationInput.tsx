@@ -1,41 +1,71 @@
 import { useState } from "react";
-import { LocalisationFilter } from "components/Pages/advanced-search/MobileAdvancedSearch/LocalisationFilter/LocalisationFilter";
+import Autocomplete from "react-google-autocomplete";
 import { cls } from "lib/classname";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FilterButton from "components/UI/FilterButton";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
-  selectedCity: string;
-  setSelectedCity: (callback: any) => void;
   selectedDepartment: string;
   setSelectedDepartment: (callback: any) => void;
 }
 
 export const LocationInput = (props: Props) => {
   const [geoSearch, setGeoSearch] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const onPlaceSelected = (place: any) => {
+    if (place.address_components[0]?.short_name) {
+      props.setSelectedDepartment(place.address_components[0]?.short_name);
+      setGeoSearch(false);
+    }
+  };
+
+  const handleChange = (e: any) => setSearch(e.target.value);
 
   return (
-    <div
-      className={cls(
-        parentStyles.form_block,
-        "d-inline-flex align-items-center"
+    <div className={cls(parentStyles.form_block, "d-flex align-items-center")}>
+      <label className={cls(parentStyles.label, "mr-4")}>Département</label>
+
+      {/* maps autocomplete field */}
+      {geoSearch && (
+        <div>
+          <Autocomplete
+            apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+            value={search}
+            onChange={handleChange}
+            onPlaceSelected={onPlaceSelected}
+            options={{
+              componentRestrictions: { country: "fr" },
+              types: ["administrative_area_level_2"]
+            }}
+            autoFocus
+            className={parentStyles.fake_field}
+          />
+        </div>
       )}
-    >
-      <label className={cls(parentStyles.label, "mr-4")}>Ville</label>
-      <LocalisationFilter
-        setVille={props.setSelectedCity}
-        ville={props.selectedCity}
-        geoSearch={geoSearch}
-        setGeoSearch={setGeoSearch}
-        addToQuery={(data) => {
-          props.setSelectedCity(data?.loc?.city || "");
-          props.setSelectedDepartment(data?.loc?.dep || "");
-        }}
-        removeFromQuery={() => {
-          props.setSelectedCity("");
-          props.setSelectedDepartment("");
-        }}
-        className="p-10"
-      ></LocalisationFilter>
+
+      {/* dep selected */}
+      {props.selectedDepartment && !geoSearch && (
+        <FilterButton
+          onClick={(e: any) => {
+            e.preventDefault();
+            props.setSelectedDepartment("");
+          }}
+          active={!!props.selectedDepartment}
+          className="mr-2"
+        >
+          {props.selectedDepartment}
+        </FilterButton>
+      )}
+
+      {/* default state */}
+      {!props.selectedDepartment && !geoSearch && (
+        <button onClick={() => setGeoSearch(true)} className={parentStyles.fake_field}>
+          Choisis un département
+          <EVAIcon name="pin" fill="#212121" size="medium" className="ml-2" />
+        </button>
+      )}
     </div>
   );
 };

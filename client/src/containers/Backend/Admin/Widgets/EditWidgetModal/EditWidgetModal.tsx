@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col } from "reactstrap";
-import { Theme, Widget } from "types/interface";
+import { ContentType, Theme, Widget } from "types/interface";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { saveWidgetActionCreator } from "services/Widgets/widgets.actions";
 import FButton from "components/UI/FButton";
@@ -25,17 +25,12 @@ export const EditWidgetModal = (props: Props) => {
   const [selectedThemes, setSelectedThemes] = useState<Theme[]>(
     props.widget?.themes || []
   );
-  const [selectedTypeContenu, setSelectedTypeContenu] = useState<
-    ("demarches" | "dispositifs")[]
-  >(props.widget?.typeContenu || ["demarches", "dispositifs"]);
+  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(props.widget?.typeContenu || ["demarche", "dispositif"]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
     props.widget?.languages || []
   );
-  const [selectedCity, setSelectedCity] = useState(
-    props.widget?.location?.city || ""
-  );
   const [selectedDepartment, setSelectedDepartment] = useState(
-    props.widget?.location?.department || ""
+    props.widget?.department || ""
   );
   const [code, setCode] = useState(props.widget ? generateIframe(props.widget) : "");
   const [copyAndCloseAfterEdit, setCopyAndCloseAfterEdit] = useState(false);
@@ -45,13 +40,11 @@ export const EditWidgetModal = (props: Props) => {
       setSelectedThemes(props.widget.themes);
       setSelectedTypeContenu(props.widget.typeContenu);
       setSelectedLanguages(props.widget.languages || []);
-      setSelectedCity(props.widget?.location?.city || "");
-      setSelectedDepartment(props.widget?.location?.department || "");
+      setSelectedDepartment(props.widget?.department || "");
     } else {
       setSelectedThemes([]);
       setSelectedTypeContenu([]);
       setSelectedLanguages([]);
-      setSelectedCity("");
       setSelectedDepartment("");
     }
   }, [props.widget]);
@@ -63,10 +56,7 @@ export const EditWidgetModal = (props: Props) => {
       themes: selectedThemes,
       typeContenu: selectedTypeContenu,
       languages: selectedLanguages,
-      location: {
-        city: selectedCity,
-        department: selectedDepartment,
-      }
+      department: selectedDepartment,
     }));
   }
 
@@ -113,9 +103,7 @@ export const EditWidgetModal = (props: Props) => {
             />
 
             <LocationInput
-              selectedCity={selectedCity}
               selectedDepartment={selectedDepartment}
-              setSelectedCity={setSelectedCity}
               setSelectedDepartment={setSelectedDepartment}
             />
 

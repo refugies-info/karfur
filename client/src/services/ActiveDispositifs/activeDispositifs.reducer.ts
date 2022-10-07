@@ -1,8 +1,8 @@
-import { IDispositif } from "../../types/interface";
+import { SearchDispositif } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { ActiveDispositifsActions } from "./activeDispositifs.actions";
 
-export type ActiveDispositifsState = IDispositif[];
+export type ActiveDispositifsState = SearchDispositif[];
 
 const initialActiveDispositifsState: ActiveDispositifsState = [];
 

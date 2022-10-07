@@ -92,8 +92,7 @@ export const fakeContenuWithZoneDAction = [
         footer: "Ajouter un message complémentaire",
         footerType: "text",
         tooltipHeader: "Combien ça coûte ?",
-        tooltipContent:
-          "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire.",
+        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
         editable: false,
         content: [
           {
@@ -393,8 +392,7 @@ export const fakeContenuWithoutZoneDAction = [
         footer: "Ajouter un message complémentaire",
         footerType: "text",
         tooltipHeader: "Combien ça coûte ?",
-        tooltipContent:
-          "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire.",
+        tooltipContent: "Précisez si l’accès à votre dispositif est gratuit.",
         editable: false,
         content: [
           {

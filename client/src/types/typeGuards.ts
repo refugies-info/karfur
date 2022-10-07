@@ -1,11 +1,11 @@
-import { IDispositif } from "./interface";
+import { SearchDispositif } from "./interface";
 import { ObjectId } from "mongodb";
 
 export const areDispositifsAssociesPopulate = (
-  toBeDetermined: IDispositif[] | ObjectId[]
-): toBeDetermined is IDispositif[] => {
+  toBeDetermined: SearchDispositif[] | ObjectId[]
+): toBeDetermined is SearchDispositif[] => {
   if (toBeDetermined && !toBeDetermined[0]) return true;
-  if (toBeDetermined && (toBeDetermined as IDispositif[])[0].status) {
+  if (toBeDetermined && (toBeDetermined as SearchDispositif[])[0].status) {
     return true;
   }
   return false;
