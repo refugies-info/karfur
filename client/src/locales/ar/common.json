@@ -48,6 +48,10 @@
     "Vous hésitez encore ?": "هل ما زلت متردد ؟",
     "Déployez subheader": "ان منصة Réfugiés.info تنتشر تدريجيّاً في كل فرنسا, بفضل أشخاصٍ سفراء. هل تنتمي الى هيئة بلدية, أو لمؤسسات الدولة أو لجمعيّة ما ؟ ان منصة Réfugiés.info تعمل على حصر و اظهار البرامج المتاحة لادماج اللاجئين في منطقة سكنك."
   },
+  "Recherche": {
+    "seeMore": "رؤية المزيد",
+    "toute la France": "في كل فرنسا"
+  },
   "AdvancedSearch": {
     "Je cherche à": "أبحث عن",
     "A > Z": "من A إلى Z",
@@ -77,7 +81,6 @@
     "avec le thème": "مع الموضوع",
     "Autres fiches traduites en": "بطاقات معلومات أخرى مترجمة ب :",
     "Afficher aussi les autres fiches disponibles dans": "عرض نتائج البحث الأخرى في",
-    "toute la France": "في كل فرنسا",
     "Masquer les autres fiches disponibles dans": "اخفاء نتائج البحث الأخرى المتوفرة في",
     "Masquer les résultats disponibles dans": "اخفاء نتائج البحث المتوفرة في",
     "Afficher aussi les résultats disponibles dans": "عرض النتائج المتوفرة أيضاً في",
@@ -220,6 +223,11 @@
     "Vous pouvez la lire en français": "يمكنك قراءتها بالفرنسية في الأسفل",
     "Vous pouvez la lire en plusieurs langues": "يمكنك قراءتها بالفرنسية، و يُمكنك أيضاً اختيار لغةٍ أخرى.",
     "Subheader": "هنا يمكنكم فهم كيفية الحصول على حقوقكم الاجتماعية، أو العثور على وظيفة أو دروس لغة فرنسية"
+  },
+  "Filters": {
+    "age-18": "تحت سن 18",
+    "age18-25": "بين 18 و 25 سنة",
+    "age+25": "25 سنة وما فوق"
   },
   "Tags": {
     "Autre": "آخَر",

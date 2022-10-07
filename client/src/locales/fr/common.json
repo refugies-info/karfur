@@ -270,6 +270,20 @@
     "Vous pouvez la lire en plusieurs langues": " Vous pouvez la lire en français ou sélectionner une autre langue ci-dessous.",
     "Subheader": "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
+  "Filters": {
+    "age-18": "Moins de 18 ans",
+    "age18-25": "Entre 18 et 25 ans",
+    "age+25": "25 ans et plus",
+    "frenchLevelA": "Débutant A1/A2",
+    "frenchLevelB": "Intermédiaire B1/B2",
+    "frenchLevelC": "Avancé C1/C2",
+    "sortTheme": "Par thématique",
+    "sortDate": "Les plus récentes",
+    "sortView": "Les plus vues",
+    "typeAll": "Tout",
+    "typeDispositif": "Fiches dispositifs",
+    "typeDemarche": "Fiches demarches"
+  },
   "Tags": {
     "Autre": "Autre",
     "réfugié ou accompagnant": "réfugié ou accompagnant",

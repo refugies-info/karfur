@@ -80,7 +80,6 @@
     "avec le thème": "по темі",
     "Autres fiches traduites en": "Інші записи перекладені на",
     "Afficher aussi les autres fiches disponibles dans": "Відобразити також інші доступні записи",
-    "toute la France": "у всій Франції",
     "Masquer les autres fiches disponibles dans": "Приховати інші доступні записи",
     "Masquer les résultats disponibles dans": "Приховати результати доступні",
     "Afficher aussi les résultats disponibles dans": "Відобразити також результати доступні",
@@ -95,6 +94,11 @@
     "Vous pouvez la lire en français": "Ви можете прочитати запис французькою нижче.",
     "Vous pouvez la lire en plusieurs langues": "Ви можете прочитати запис французькою або обрати іншу мову нижче.",
     "Subheader": "Тут ви зможете дізнатися про ваші соціальні права, зрозуміти як знайти роботу, знайти курси французької мови."
+  },
+  "Filters": {
+    "age-18": "менше 18 років",
+    "age18-25": "від 18 до 25 років",
+    "age+25": "25 років і більше"
   },
   "Tags": {
     "Autre": "Інше",
@@ -484,5 +488,8 @@
     "Gratuite et plus facile à utiliser": "Безкоштовний і простий у використанні:",
     "Rester sur le navigateur": "Залишитися в браузері",
     "Télécharger l'application": "Завантажити додаток"
+  },
+  "Recherche": {
+    "toute la France": "у всій Франції"
   }
 }

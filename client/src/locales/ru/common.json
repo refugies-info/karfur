@@ -77,7 +77,6 @@
     "avec le thème": "по теме",
     "Autres fiches traduites en": "Другие страницы переведенные на",
     "Afficher aussi les autres fiches disponibles dans": "Показать остальную информацию по запросу",
-    "toute la France": "Вся Франция",
     "Masquer les autres fiches disponibles dans": "Скрыть остальную информацию по запросу",
     "Masquer les résultats disponibles dans": "Скрыть результаты доступные в",
     "Afficher aussi les résultats disponibles dans": "Показать также результаты доступные в",
@@ -220,6 +219,11 @@
     "Vous pouvez la lire en français": "Ниже вы можете почитать на французском",
     "Vous pouvez la lire en plusieurs langues": "Вы можете прочитать на французском или выбрать другой язык ниже.",
     "Subheader": "Здесь вы сможете разобраться как получить доступ к вашим социальным правам, найти работу, а также найти курсы французского языка"
+  },
+  "Filters": {
+    "age-18": "до 18 лет",
+    "age18-25": "от 18 до 25 лет",
+    "age+25": "25 лет и старше"
   },
   "Tags": {
     "Autre": "Другое",
@@ -712,5 +716,9 @@
     "Gratuite et plus facile à utiliser": "Бесплатно и просто использовать",
     "Rester sur le navigateur": "Продолжить в браузере",
     "Télécharger l'application": "Скачать мобильное приложение"
+  },
+  "Recherche": {
+    "seeMore": "Посмотреть больше",
+    "toute la France": "Вся Франция"
   }
 }

@@ -77,7 +77,6 @@
     "avec le thème": "له موضوع سره",
     "Autres fiches traduites en": "نورژباړه شوي فایلونه په",
     "Afficher aussi les autres fiches disponibles dans": "نوراضافې فایلونه او معلومات هم ښکاره کړئ",
-    "toute la France": "ټوله فرانسه",
     "Masquer les autres fiches disponibles dans": "نور فایلونه او معلومات پټ کړئ",
     "Masquer les résultats disponibles dans": "پایلي پټې کړئ",
     "Afficher aussi les résultats disponibles dans": "شته ټولې پایلي راښکاره کړئ",
@@ -220,6 +219,11 @@
     "Vous pouvez la lire en français": "تاسو کولای شئ چې په فرانسوې کې یې لاندې ولولئ.",
     "Vous pouvez la lire en plusieurs langues": "تاسو کولای شئ چې په فرانسوې کې یې ولولئ یا پورته یوه بله ژبه انتخاب کړئ.",
     "Subheader": "دلته به تاسو پوه شئ چې څنګه خپل ټولنیزوحقوقو ته لاس رسې پیدا کړی، دنده ومومئ اود فرانسوي ژبی کورسونه پیداکړي"
+  },
+  "Filters": {
+    "age-18": "تر18 کلنولاندې",
+    "age18-25": "د 18 او 25 کلونو ترمینځ",
+    "age+25": "25 کلن او پورته کسان"
   },
   "Tags": {
     "Autre": "نور",
@@ -712,5 +716,9 @@
     "Gratuite et plus facile à utiliser": "وړیا او کارول یې اسانه دي :",
     "Rester sur le navigateur": "په براوزر کې پاتې شئ",
     "Télécharger l'application": "اپلیکیشن راښکته کړئ"
+  },
+  "Recherche": {
+    "seeMore": "نور وګورئ",
+    "toute la France": "ټوله فرانسه"
   }
 }

@@ -209,14 +209,14 @@ const SearchHeaderMobile = (props: Props) => {
                     label={t("Recherche.filterAge", "Tranche d'âge")}
                     selected={filterAge}
                     setSelected={setFilterAge}
-                    options={ageFilters}
+                    options={ageFilters.map(filter => ({...filter, value: t(filter.value)}))}
                   />
                   <SearchFilter
                     mobile={true}
                     label={t("Recherche.filterFrenchLevel", "Niveau de français")}
                     selected={filterFrenchLevel}
                     setSelected={setFilterFrenchLevel}
-                    options={frenchLevelFilter}
+                    options={frenchLevelFilter.map(filter => ({...filter, value: t(filter.value)}))}
                   />
                   <SearchFilter
                     mobile={true}
