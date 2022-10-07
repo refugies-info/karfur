@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const ResultsFilter = (props: Props) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const getCount = (type: string) => {
@@ -42,7 +44,7 @@ const ResultsFilter = (props: Props) => {
             className={cls(styles.btn, props.selectedType === option.key && styles.selected)}
             onClick={() => props.setSelectedType(option.key)}
           >
-            {option.value} {getCount(option.key)}
+            {t(option.value)} {getCount(option.key)}
           </Button>
         ))}
       </div>
@@ -51,7 +53,7 @@ const ResultsFilter = (props: Props) => {
         <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
           <DropdownToggle className={styles.dropdown}>
             <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-            {sortOptions.find((opt) => opt.key === props.selectedSort)?.value}
+            {t(sortOptions.find((opt) => opt.key === props.selectedSort)?.value || "")}
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
             {sortOptions.map((option, i) => {
@@ -62,7 +64,7 @@ const ResultsFilter = (props: Props) => {
                   onClick={() => props.setSelectedSort(option.key)}
                   className={cls(styles.item, isSelected && styles.selected)}
                 >
-                  {option.value}
+                  {t(option.value)}
                   {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
                 </DropdownItem>
               );

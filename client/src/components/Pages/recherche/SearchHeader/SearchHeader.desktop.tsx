@@ -71,19 +71,29 @@ const SearchHeaderDesktop = (props: Props) => {
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
   useEffect(() => {
     if (filterAge.length) {
-      const value = filterAge.map((option) => ageFilters.find((a) => a.key === option)?.value).join(", ");
+      const value = filterAge.map((option) => {
+        const filter = ageFilters.find((a) => a.key === option)
+        if (filter) return t(filter.value)
+        return "";
+      }).join(", ");
       setAgeDisplayedValue(value);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterAge]);
 
   const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
   useEffect(() => {
     if (filterFrenchLevel.length) {
       const value = filterFrenchLevel
-        .map((option) => frenchLevelFilter.find((a) => a.key === option)?.value)
+        .map((option) => {
+          const filter = frenchLevelFilter.find((a) => a.key === option)
+          if (filter) return t(filter.value)
+          return "";
+        })
         .join(", ");
       setFrenchLevelDisplayedValue(value);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterFrenchLevel]);
 
   const [languageDisplayedValue, setLanguageDisplayedValue] = useState("");
@@ -187,7 +197,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 label={filterAge.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
                 selected={filterAge}
                 setSelected={setFilterAge}
-                options={ageFilters}
+                options={ageFilters.map(filter => ({...filter, value: t(filter.value)}))}
               />
               <SearchFilter
                 mobile={false}
@@ -198,7 +208,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 }
                 selected={filterFrenchLevel}
                 setSelected={setFilterFrenchLevel}
-                options={frenchLevelFilter}
+                options={frenchLevelFilter.map(filter => ({...filter, value: t(filter.value)}))}
               />
               <SearchFilter
                 mobile={false}

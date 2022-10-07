@@ -48,6 +48,10 @@
     "Vous hésitez encore ?": "هنوز هم مطمئن نیستید؟",
     "Déployez subheader": "Réfugiés.info به لطف سفیران خود به تدریج در سراسر فرانسه در حال گسترش است. آیا شما عضو یک مقام محلی ، ایالتی یا انجمن هستید؟ Réfugiés.info طرح های مختلف را به ارتقا ادغام در منطقه شما ترویج  می دهد."
   },
+  "Recherche": {
+    "seeMore": "بیشتربیبنید",
+    "toute la France": "کل فرانسه"
+  },
   "AdvancedSearch": {
     "Je cherche à": "من در جستجوی",
     "A > Z": "الف تا یا  (A > Z)",
@@ -77,7 +81,6 @@
     "avec le thème": "با موضوعی",
     "Autres fiches traduites en": "پرونده های دیگر ترجمه شده به",
     "Afficher aussi les autres fiches disponibles dans": "ملاحظه نمودن سایر پرونده های دیگر موجود در",
-    "toute la France": "کل فرانسه",
     "Masquer les autres fiches disponibles dans": "پرونده های دیگر موجود را در مخفی کنید",
     "Masquer les résultats disponibles dans": "نتایج موجود را در مخفی کنید",
     "Afficher aussi les résultats disponibles dans": "ملاحظه نمودن سایر پرونده های موجود در",
@@ -220,6 +223,11 @@
     "Vous pouvez la lire en français": "در زیر می توانید اطلاعات را به زبان فرانسوی بخوانید",
     "Vous pouvez la lire en plusieurs langues": "می توانید این برگه را به زبان فرانسوی بخوانید یا زبان دیگری را در زیر انتخاب کنید",
     "Subheader": "در اینجا شما میتوانید که چگونه حقوق اجتماعی خود را بفهمید، شغلی پیدا کنید و کلاسهای زبان فرانسوی را پیدا کنید."
+  },
+  "Filters": {
+    "age-18": "زیر 18 سال",
+    "age18-25": "بین 18 تا 25 سال",
+    "age+25": "25 ساله و بالاتر"
   },
   "Tags": {
     "Autre": "دیگر",

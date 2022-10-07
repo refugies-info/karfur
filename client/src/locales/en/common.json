@@ -48,6 +48,10 @@
     "Vous hésitez encore ?": "Still not sure?",
     "Déployez subheader": "Réfugiés.info is gradually being rolled out across France thanks to its ambassadors. Do you represent a local authority, the State or an association? Réfugiés.info will map and promote the various schemes in favour of integration in your area."
   },
+  "Recherche": {
+    "seeMore": "See more",
+    "toute la France": "all over France"
+  },
   "AdvancedSearch": {
     "Je cherche à": "I'm looking to",
     "A > Z": "A > Z",
@@ -77,7 +81,6 @@
     "avec le thème": "with the theme",
     "Autres fiches traduites en": "Other cards translated into",
     "Afficher aussi les autres fiches disponibles dans": "See also the other cards available in",
-    "toute la France": "all over France",
     "Masquer les autres fiches disponibles dans": "Hide other cards available in",
     "Masquer les résultats disponibles dans": "Hide available results in",
     "Afficher aussi les résultats disponibles dans": "Also display the results available in",
@@ -220,6 +223,11 @@
     "Vous pouvez la lire en français": "You can read it in French below.",
     "Vous pouvez la lire en plusieurs langues": "You can read it in French or select another language below.",
     "Subheader": "Here, you can discover how to access social aid, find a job, find French classes"
+  },
+  "Filters": {
+    "age-18": "under 18",
+    "age18-25": "between 18 and 25 years old",
+    "age+25": "25 years old and over"
   },
   "Tags": {
     "Autre": "Other",

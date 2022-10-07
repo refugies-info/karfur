@@ -77,7 +77,6 @@
     "avec le thème": "ብቴማ\\ ብኣርእስቲ",
     "Autres fiches traduites en": "ካልእ ፋይል ዝዘተርገሙ",
     "Afficher aussi les autres fiches disponibles dans": "ኣብዚ ውን ካልእ ፋይል \\ ዶሴ ምልክታት ክዳለው ኢዮም",
-    "toute la France": "ኣብ ኵሉ ሃገረ ፈረንሳይ",
     "Masquer les autres fiches disponibles dans": "ዝተዳለው ፋይል ንውጺኢት ምሽፋን",
     "Masquer les résultats disponibles dans": "ዝተዳለው ንውጺኢት ምሽፋን",
     "Afficher aussi les résultats disponibles dans": "ንዝተዳለው ውጺኢት ናይ ፋይል  ምልክታት ከም ዝርኣይ ምግባር ፤፣",
@@ -220,6 +219,11 @@
     "Vous pouvez la lire en français": "ዝስዕብ ትርጉም ብቋንቋ ፈረንሳ ክትውከሱ ትኽእሉ ኢኹም፣",
     "Vous pouvez la lire en plusieurs langues": "ዝስዕብ ብቋንቋ ፈረንሳ ወይ ብኻልኦት ቋንቋታት ዝተተርጎመ ክትውከሱ ትኽእሉ ኢኹም፣",
     "Subheader": "ኣብዚ ክትርድኡ ኢኹም ከምይ ጌርኩም መሰልኩም ናይ ሕብረተ ሰብ ትረክቡ ፣ ስራሕ ከመይ ጌርኩም ትረክቡ ፣ ከመይ ጌርኩም ትምህርቲ ቃንቃ ፈረንሳይ ትርክቡ"
+  },
+  "Filters": {
+    "age-18": "ትሕቲ 18 ዓመት",
+    "age18-25": "ኣብ መንጎ 18 ን 25 ን",
+    "age+25": "ካብ 25 ዕድመ ን ላዕሊ"
   },
   "Tags": {
     "Autre": "ካልእ",
@@ -712,5 +716,9 @@
     "Gratuite et plus facile à utiliser": "ናይ ነጻን ንኽትጥቀመሉ ድማ ቀሊልን፣",
     "Rester sur le navigateur": "ኣብዚ መርበብ ሓበሬታ ጽንሑ፣",
     "Télécharger l'application": "እዚ መርበብ ሓበሬታ ወይ ኣፕሌኬሽን ኣብ ስልክኹም ጸዓንዎ፣"
+  },
+  "Recherche": {
+    "toute la France": "ኣብ ኵሉ ሃገረ ፈረንሳይ",
+    "Voir plus": "ተወሳኺ ርእይቶ"
   }
 }
