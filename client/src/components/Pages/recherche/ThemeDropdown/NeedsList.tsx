@@ -50,7 +50,6 @@ const NeedsList = (props: Props) => {
   const colors = themes.find((t) => props.themeSelected === t._id)?.colors;
 
   useEffect(() => {
-    // TODO : here x14 -> should be x1
     // count initial dispositifs by need
     const newNbDispositifsByNeed: Record<string, number> = {};
     const newNbDispositifsByTheme: Record<string, number> = {};
@@ -69,7 +68,9 @@ const NeedsList = (props: Props) => {
 
     setNbDispositifsByTheme(newNbDispositifsByTheme);
     setNbDispositifsByNeed(newNbDispositifsByNeed);
-  }, [dispositifs]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const {
     needsSelected,
