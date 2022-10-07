@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { Theme } from "types/interface";
+import useLocale from "hooks/useLocale";
 import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
 
@@ -23,6 +24,7 @@ interface Props {
 
 const SearchHeader = (props: Props) => {
   const { resetFilters } = props;
+  const locale = useLocale();
 
   const [search, setSearch] = props.searchState;
   const [needsSelected, setNeedsSelected] = props.needsSelectedState;
@@ -41,8 +43,8 @@ const SearchHeader = (props: Props) => {
   const [themeDisplayedValue, setThemeDisplayedValue] = useState("");
 
   useEffect(() => {
-    setThemeDisplayedValue(props.themesDisplayed.map((t) => t.short.fr).join(", "));
-  }, [props.themesDisplayed]);
+    setThemeDisplayedValue(props.themesDisplayed.map((t) => (t.short[locale] || t.short.fr)).join(", "));
+  }, [props.themesDisplayed, locale]);
 
   // LOCATION
   const [locationFocused, setLocationFocused] = useState(false);

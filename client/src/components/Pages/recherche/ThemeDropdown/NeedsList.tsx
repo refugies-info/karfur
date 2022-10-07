@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { Need } from "types/interface";
+import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
@@ -39,6 +40,7 @@ interface Props {
 
 const NeedsList = (props: Props) => {
   const { t } = useTranslation();
+  const locale = useLocale();
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -154,7 +156,7 @@ const NeedsList = (props: Props) => {
               onClick={() => selectNeed(need._id)}
             >
               <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
-                {need.fr.text}
+                {need[locale]?.text || ""}
                 <span
                   className={styles.badge}
                   style={{
