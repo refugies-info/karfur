@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import { Theme } from "types/interface";
 import { cls } from "lib/classname";
 import { TypeOptions } from "data/searchFilters";
@@ -28,6 +29,7 @@ interface Props {
 }
 
 const SearchResults = (props: Props) => {
+  const { t } = useTranslation();
   const [hideDemarches, setHideDemarches] = useState(true);
   const [hideDispositifs, setHideDispositifs] = useState(true);
   const [hideSecondaryDispositifs, setHideSecondaryDispositifs] = useState(true);
@@ -75,11 +77,15 @@ const SearchResults = (props: Props) => {
   if (noResults) {
     return (
       <div className={styles.no_results}>
-        <h5>Oups, aucun résultat</h5>
-        <p>Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.</p>
+        <h5>
+          {t("Recherche.noResultTitle", "Oups, aucun résultat")}
+        </h5>
+        <p>
+          {t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}
+        </p>
 
         <FButton type="login" name="refresh-outline" onClick={props.resetFilters}>
-          Effacer tous les filtres
+          {t("Recherche.resetFilters", "Effacer tous les filtres")}
         </FButton>
 
         <div className={styles.image}>
@@ -97,7 +103,7 @@ const SearchResults = (props: Props) => {
       {demarches.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "dispositif" && styles.hidden)}>
-            <h2>Les fiches démarches</h2>
+            <h2>{t("Recherche.demarcheTitle", "Les fiches démarches")}</h2>
             <span>{props.filteredResult.demarches.length}</span>
           </div>
           <div
@@ -128,7 +134,7 @@ const SearchResults = (props: Props) => {
       {dispositifs.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>
-            <h2>Les fiches dispositifs</h2>
+            <h2>{t("Recherche.dispositifTitle", "Les fiches dispositifs")}</h2>
             <span>{props.filteredResult.dispositifs.length}</span>
           </div>
           <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
@@ -152,7 +158,7 @@ const SearchResults = (props: Props) => {
       {secondaryDispositifs.length > 0 && (
         <div className={styles.section}>
           <div className={cls(styles.title, props.selectedType === "demarche" && styles.hidden)}>
-            <h2>Autres fiches avec ce thème</h2>
+            <h2>{t("Recherche.otherDispositifTitle", "Autres fiches avec ce thème")}</h2>
             <span>{props.filteredResult.dispositifsSecondaryTheme.length}</span>
           </div>
           <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>

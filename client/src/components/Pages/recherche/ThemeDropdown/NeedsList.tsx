@@ -2,6 +2,7 @@ import React, { useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { Need } from "types/interface";
@@ -37,6 +38,7 @@ interface Props {
 }
 
 const NeedsList = (props: Props) => {
+  const { t } = useTranslation();
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -119,7 +121,7 @@ const NeedsList = (props: Props) => {
           <Checkbox checked={isThemeSelected} color={!isThemeSelected && colors ? colors.color100 : "white"}>
             <span className={styles.all}>
               <EVAIcon name="grid" fill={!isThemeSelected && colors ? colors.color100 : "white"} />
-              Tous
+              {t("Recherche.all", "Tous")}
               <span
                 className={styles.badge}
                 style={{

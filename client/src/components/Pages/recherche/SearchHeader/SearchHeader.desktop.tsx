@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { Theme } from "types/interface";
@@ -17,10 +18,10 @@ interface Props {
   nbResults: number;
   themesDisplayed: Theme[];
   resetFilters: () => void;
-  themeDisplayedValue: string
-  isPlacePredictionsLoading: boolean
-  placePredictions: any[]
-  onSelectPrediction: (place_id: string) => void
+  themeDisplayedValue: string;
+  isPlacePredictionsLoading: boolean;
+  placePredictions: any[];
+  onSelectPrediction: (place_id: string) => void;
 
   // state from recherche
   searchState: [string, Dispatch<SetStateAction<string>>];
@@ -40,13 +41,8 @@ interface Props {
 }
 
 const SearchHeaderDesktop = (props: Props) => {
-  const {
-    resetFilters,
-    themeDisplayedValue,
-    isPlacePredictionsLoading,
-    placePredictions,
-    onSelectPrediction,
-  } = props;
+  const { t } = useTranslation();
+  const { resetFilters, themeDisplayedValue, isPlacePredictionsLoading, placePredictions, onSelectPrediction } = props;
 
   // state from recherche
   const [search, setSearch] = props.searchState;
@@ -102,15 +98,19 @@ const SearchHeaderDesktop = (props: Props) => {
     <div className={styles.container}>
       <Container className={styles.container_inner}>
         {props.searchMinified ? (
-          <h1 className="h3 text-white">Trouver l'information parmi nos {props.nbResults} fiches</h1>
+          <h1 className="h3 text-white">
+            {t("Recherche.titleHome", {count: props.nbResults })}
+          </h1>
         ) : (
-          <h1 className="h3 text-white">{props.nbResults} fiches disponibles pour votre recherche</h1>
+          <h1 className="h3 text-white">
+            {t("Recherche.titleResults", { count: props.nbResults })}
+          </h1>
         )}
         <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
             <DropdownToggle>
               <SearchInput
-                label="Département"
+                label={t("Dispositif.Département", "Département")}
                 icon="pin-outline"
                 active={locationOpen || locationFocused}
                 setActive={setLocationFocused}
@@ -118,7 +118,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 inputValue={locationSearch}
                 loading={isPlacePredictionsLoading}
                 value={departmentsSelected.join(", ")}
-                placeholder="Tous"
+                placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => setDepartmentsSelected([])}
               />
             </DropdownToggle>
@@ -135,14 +135,14 @@ const SearchHeaderDesktop = (props: Props) => {
           <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
             <DropdownToggle>
               <SearchInput
-                label="Thèmes"
+                label={t("Recherche.themes", "Thèmes")}
                 icon="list-outline"
                 active={themesFocused || themesOpen}
                 setActive={setThemesFocused}
                 onChange={(evt) => setThemeSearch(evt.target.value)}
                 inputValue={themeSearch}
                 value={themeDisplayedValue}
-                placeholder="Tous"
+                placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => {
                   setNeedsSelected([]);
                   setThemesSelected([]);
@@ -164,14 +164,14 @@ const SearchHeaderDesktop = (props: Props) => {
           <div className={styles.dropdown}>
             <Button onClick={() => setSearchFocused(true)}>
               <SearchInput
-                label="Mot-clé"
+                label={t("Recherche.keyword", "Mot-clé")}
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
                 onChange={(evt) => setSearch(evt.target.value)}
                 inputValue={search}
                 value={search}
-                placeholder="Mission locale, titre de séjour..."
+                placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
                 focusout
                 resetFilter={() => setSearch("")}
               />
@@ -184,21 +184,29 @@ const SearchHeaderDesktop = (props: Props) => {
             <div className={styles.filters}>
               <SearchFilter
                 mobile={false}
-                label={filterAge.length === 0 ? "Tranche d'âge" : ageDisplayedValue}
+                label={filterAge.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
                 selected={filterAge}
                 setSelected={setFilterAge}
                 options={ageFilters}
               />
               <SearchFilter
                 mobile={false}
-                label={filterFrenchLevel.length === 0 ? "Niveau de français" : frenchLevelDisplayedValue}
+                label={
+                  filterFrenchLevel.length === 0
+                    ? t("Recherche.filterFrenchLevel", "Niveau de français")
+                    : frenchLevelDisplayedValue
+                }
                 selected={filterFrenchLevel}
                 setSelected={setFilterFrenchLevel}
                 options={frenchLevelFilter}
               />
               <SearchFilter
                 mobile={false}
-                label={filterLanguage.length === 0 ? "Fiches traduites en" : languageDisplayedValue}
+                label={
+                  filterLanguage.length === 0
+                    ? t("Recherche.filterLanguage", "Fiches traduites en")
+                    : languageDisplayedValue
+                }
                 selected={filterLanguage}
                 setSelected={setFilterLanguage}
                 options={languages.map((ln) => ({
@@ -214,7 +222,7 @@ const SearchHeaderDesktop = (props: Props) => {
             </div>
             <Button className={styles.reset} onClick={resetFilters}>
               <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
-              Effacer tous les filtres
+              {t("Recherche.resetFilters", "Effacer tous les filtres")}
             </Button>
           </div>
         )}
