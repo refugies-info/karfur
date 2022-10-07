@@ -183,18 +183,21 @@ const SearchHeaderDesktop = (props: Props) => {
           <div className={styles.subheader}>
             <div className={styles.filters}>
               <SearchFilter
+                mobile={false}
                 label={filterAge.length === 0 ? "Tranche d'âge" : ageDisplayedValue}
                 selected={filterAge}
                 setSelected={setFilterAge}
                 options={ageFilters}
               />
               <SearchFilter
+                mobile={false}
                 label={filterFrenchLevel.length === 0 ? "Niveau de français" : frenchLevelDisplayedValue}
                 selected={filterFrenchLevel}
                 setSelected={setFilterFrenchLevel}
                 options={frenchLevelFilter}
               />
               <SearchFilter
+                mobile={false}
                 label={filterLanguage.length === 0 ? "Fiches traduites en" : languageDisplayedValue}
                 selected={filterLanguage}
                 setSelected={setFilterLanguage}
