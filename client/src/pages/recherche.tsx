@@ -29,7 +29,6 @@ import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { languei18nSelector } from "services/Langue/langue.selectors";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
-import SearchHeaderMobile from "components/Pages/recherche/SearchHeaderMobile";
 import { themesSelector } from "services/Themes/themes.selectors";
 
 export type SearchQuery = {
@@ -214,47 +213,19 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <div className="d-none d-md-block">
-        <SearchHeader
-          searchMinified={showHome}
-          nbResults={nbResults}
-          search={search}
-          setSearch={setSearch}
-          needsSelected={needsSelected}
-          setNeedsSelected={setNeedsSelected}
-          themesSelected={themesSelected}
-          setThemesSelected={setThemesSelected}
-          themesDisplayed={themesDisplayed}
-          departmentsSelected={departmentsSelected}
-          setDepartmentsSelected={setDepartmentsSelected}
-          filterAge={filterAge}
-          setFilterAge={setFilterAge}
-          filterFrenchLevel={filterFrenchLevel}
-          setFilterFrenchLevel={setFilterFrenchLevel}
-          filterLanguage={filterLanguage}
-          setFilterLanguage={setFilterLanguage}
-          resetFilters={resetFilters}
-        />
-      </div>
-      <div className="d-md-none">
-        <SearchHeaderMobile
-          search={search}
-          setSearch={setSearch}
-          needsSelected={needsSelected}
-          setNeedsSelected={setNeedsSelected}
-          themesSelected={themesSelected}
-          setThemesSelected={setThemesSelected}
-          themesDisplayed={themesDisplayed}
-          departmentsSelected={departmentsSelected}
-          setDepartmentsSelected={setDepartmentsSelected}
-          filterAge={filterAge}
-          setFilterAge={setFilterAge}
-          filterFrenchLevel={filterFrenchLevel}
-          setFilterFrenchLevel={setFilterFrenchLevel}
-          filterLanguage={filterLanguage}
-          setFilterLanguage={setFilterLanguage}
-        />
-      </div>
+      <SearchHeader
+        searchMinified={showHome}
+        nbResults={nbResults}
+        themesDisplayed={themesDisplayed}
+        searchState={[search, setSearch]}
+        needsSelectedState={[needsSelected, setNeedsSelected]}
+        themesSelectedState={[themesSelected, setThemesSelected]}
+        departmentsSelectedState={[departmentsSelected, setDepartmentsSelected]}
+        filterAgeState={[filterAge, setFilterAge]}
+        filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
+        filterLanguageState={[filterLanguage, setFilterLanguage]}
+        resetFilters={resetFilters}
+      />
 
       {!showHome ? (
         <Container className={styles.container_inner}>
