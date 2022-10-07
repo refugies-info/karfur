@@ -1,0 +1,110 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border-radius: $radius;
+  position: absolute;
+  width: 380px;
+  box-shadow: 0 0 40px 0 #00000040;
+  overflow: hidden;
+  z-index: 3;
+  padding: u(4);
+
+  @include isMobile() {
+    width: 100%;
+    box-shadow: none;
+    position: relative;
+  }
+}
+
+.header {
+  padding-bottom: u(4);
+  margin-bottom: u(4);
+  border-bottom: 1px solid $grey50b;
+
+  @include rtl() {
+    text-align: right;
+  }
+}
+
+.selected {
+  background-color: $bleuCharte;
+  padding: u(3);
+  font-weight: bold;
+  border-radius: u(2);
+  border: none;
+  color: white;
+  margin-right: u(1);
+  margin-bottom: u(1);
+  display: inline-flex;
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+    flex-direction: row-reverse;
+  }
+
+  &:hover {
+    background-color: darken($bleuCharte, 5);
+    color: white;
+  }
+  &:active,
+  &:focus {
+    background-color: darken($bleuCharte, 10) !important;
+    color: white !important;
+  }
+
+  .icon {
+    margin-left: u(2);
+  }
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: u(3) u(2);
+  border-radius: u(2);
+
+  @include rtl() {
+    text-align: right;
+  }
+
+  &:hover {
+    background: $gray40b;
+
+    .icon {
+      background: $white;
+    }
+  }
+
+  .icon {
+    margin-right: u(2);
+    background: $gray40b;
+    border-radius: u(1);
+    width: 24px;
+    height: 24px;
+
+    @include rtl() {
+      margin-right: 0;
+      margin-left: u(2);
+    }
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  & > span {
+    position: relative;
+    top: -1px;
+  }
+}

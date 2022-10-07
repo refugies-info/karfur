@@ -1,0 +1,61 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.type_card {
+  display: block;
+  box-shadow: 0 4px 18px 0 #0000001A;
+  background: $white;
+  border-radius: $radius;
+  padding: u(8);
+  border: 2px solid transparent;
+  width: 100%;
+  text-align: left;
+
+  @include rtl() {
+    text-align: right;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  @include isMobile() {
+    margin-bottom: u(4);
+  }
+
+  .title {
+    margin-top: u(8);
+  }
+
+  ul {
+    margin-top: u(4);
+    padding-left: 0;
+    list-style-type: none;
+
+    @include rtl() {
+      padding-right: 0;
+    }
+
+    li {
+      @include text("large");
+      color: $gray80;
+      margin-bottom: 2px;
+
+      span {
+        line-height: 20px;
+        height: 20px;
+        display: inline-block;
+      }
+    }
+  }
+
+  &:hover {
+    background: $gray40b;
+    border-color: $gray80;
+    box-shadow: none;
+  }
+}

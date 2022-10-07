@@ -124,6 +124,9 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     if (action.payload.themes.activeThemes.length > 0 && nextState.themes.activeThemes.length === 0) {
       nextState.themes = action.payload.themes;
     }
+    if (action.payload.needs.length > 0 && nextState.needs.length === 0) {
+      nextState.needs = action.payload.needs;
+    }
     return nextState;
   }
   return combinedReducer(state, action);

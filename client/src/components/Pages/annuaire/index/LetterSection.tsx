@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { ObjectId } from "mongodb";
 import { Picture, SimplifiedStructure } from "types/interface";
-import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
+import placeholder from "assets/no_results_alt.svg";
 import styles from "./LetterSection.module.scss";
 import { getPath } from "routes";
 interface StructureCardProps {

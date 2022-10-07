@@ -1,0 +1,26 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.text {
+  @include text("h4");
+  font-weight: bold;
+  margin-bottom: u(20);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  @include text("large");
+  padding: u(3) u(4);
+  border-radius: 12px;
+  background-color: $bleuCharte;
+  color: white;
+}
+
+.theme_icon {
+  position: relative;
+  top: -2px;
+}

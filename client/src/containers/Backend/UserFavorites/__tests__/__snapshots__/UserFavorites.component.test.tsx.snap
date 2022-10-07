@@ -592,7 +592,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 
 .c7 {
   width: 248px;
-  height: 248px;
   margin-top: 8px;
   margin-bottom: 8px;
   margin-right: 8px;
@@ -650,6 +649,24 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
   font-size: 28px;
   line-height: 35px;
   margin-bottom: 8px;
+}
+
+.c10:hover {
+  background-color: #DDF2F9 !important;
+  border-color: #06508C !important;
+  color: #06508C !important;
+}
+
+.c8:hover {
+  background-color: #EFE8F4 !important;
+  border-color: #3D2884 !important;
+  color: #3D2884 !important;
+}
+
+.c9:hover {
+  background-color: #EEE7E5 !important;
+  border-color: #443023 !important;
+  color: #443023 !important;
 }
 
 .c0 {
@@ -932,198 +949,306 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <div
           className="c7"
         >
-          <div
-            className="card-col puff-in-center dispositif"
+          <a
+            className="c8 card dispositif content"
+            href="/program/id1"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
           >
-            <a
-              href="/program/id1"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+            <div
+              className="location"
             >
-              <div
-                className="custom-card  card"
+              <span
+                className="ml-2"
                 style={
                   Object {
-                    "border": "none",
+                    "color": "#3D2884",
+                  }
+                }
+              />
+            </div>
+            <div
+              className="title"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "tinfo1",
+                }
+              }
+              style={
+                Object {
+                  "color": "#3D2884",
+                }
+              }
+            />
+            <div
+              className="text abstract"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "abstract1",
+                }
+              }
+              style={
+                Object {
+                  "color": "#3D2884",
+                }
+              }
+            />
+            <div
+              className="infos text my-4"
+              style={
+                Object {
+                  "color": "#3D2884",
+                }
+              }
+            />
+            <div
+              className="themes"
+            >
+              <div
+                className="container badges theme-badge"
+                style={
+                  Object {
+                    "backgroundColor": "#EFE8F4",
                   }
                 }
               >
-                <div
-                  className="card-body"
+                <span
+                  className="icon"
                 >
-                  <div
-                    className="container bookmark-icon pinned"
-                    data-test-id="test-toggle-pin-id1"
-                    onClick={[Function]}
-                  >
-                    <span>
-                      <i
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fbfbfb\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                  <h5>
-                    tinfo1
-                  </h5>
-                  <p
-                    className="text"
-                  >
-                    abstract1
-                  </p>
-                </div>
-                <div
-                  className="correct-radius align-right  card-footer"
-                  style={
-                    Object {
-                      "backgroundColor": "#aaa",
+                  <span
+                    className="icon"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
+                      }
                     }
-                  }
-                >
-                  <div
                     style={
                       Object {
-                        "alignItems": "flex-start",
-                        "display": "flex",
-                        "justifyContent": "flex-start",
-                        "width": 35,
+                        "height": 12,
+                        "width": 12,
                       }
                     }
                   />
-                  <span>
-                    titreMarque1
-                  </span>
-                </div>
+                </span>
+                <span
+                  style={
+                    Object {
+                      "color": "#3D2884",
+                    }
+                  }
+                >
+                  Français
+                </span>
               </div>
-            </a>
-          </div>
+            </div>
+            <div
+              className="sponsor"
+              style={
+                Object {
+                  "borderColor": "#705FA4",
+                }
+              }
+            >
+              <span
+                className="picture"
+              />
+              <span
+                className="text ml-2"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "titreMarque1",
+                  }
+                }
+                style={
+                  Object {
+                    "color": "#3D2884",
+                  }
+                }
+              />
+            </div>
+          </a>
         </div>
         <div
           className="c7"
         >
-          <div
-            className="card-col puff-in-center dispositif"
+          <a
+            className="c9 card dispositif content"
+            href="/program/id2"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
           >
-            <a
-              href="/program/id2"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+            <div
+              className="location"
             >
-              <div
-                className="custom-card  card"
+              <span
+                className="ml-2"
                 style={
                   Object {
-                    "border": "none",
+                    "color": "#443023",
+                  }
+                }
+              />
+            </div>
+            <div
+              className="title"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "tinfo2",
+                }
+              }
+              style={
+                Object {
+                  "color": "#443023",
+                }
+              }
+            />
+            <div
+              className="text abstract"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "abstract2",
+                }
+              }
+              style={
+                Object {
+                  "color": "#443023",
+                }
+              }
+            />
+            <div
+              className="infos text my-4"
+              style={
+                Object {
+                  "color": "#443023",
+                }
+              }
+            />
+            <div
+              className="themes"
+            >
+              <div
+                className="container badges theme-badge"
+                style={
+                  Object {
+                    "backgroundColor": "#EEE7E5",
                   }
                 }
               >
-                <div
-                  className="card-body"
+                <span
+                  className="icon"
                 >
-                  <div
-                    className="container bookmark-icon pinned"
-                    data-test-id="test-toggle-pin-id2"
-                    onClick={[Function]}
-                  >
-                    <span>
-                      <i
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fbfbfb\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                  <h5>
-                    tinfo2
-                  </h5>
-                  <p
-                    className="text"
-                  >
-                    abstract2
-                  </p>
-                </div>
-                <div
-                  className="correct-radius align-right  card-footer"
-                  style={
-                    Object {
-                      "backgroundColor": "#aaa",
+                  <span
+                    className="icon"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
+                      }
                     }
-                  }
-                >
-                  <div
                     style={
                       Object {
-                        "alignItems": "flex-start",
-                        "display": "flex",
-                        "justifyContent": "flex-start",
-                        "width": 35,
+                        "height": 12,
+                        "width": 12,
                       }
                     }
                   />
-                  <span>
-                    titreMarque2
-                  </span>
-                </div>
+                </span>
+                <span
+                  style={
+                    Object {
+                      "color": "#443023",
+                    }
+                  }
+                >
+                  Administratif
+                </span>
               </div>
-            </a>
-          </div>
+            </div>
+            <div
+              className="sponsor"
+              style={
+                Object {
+                  "borderColor": "#715F56",
+                }
+              }
+            >
+              <span
+                className="picture"
+              />
+              <span
+                className="text ml-2"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "titreMarque2",
+                  }
+                }
+                style={
+                  Object {
+                    "color": "#443023",
+                  }
+                }
+              />
+            </div>
+          </a>
         </div>
         <div
           className="c7"
         >
-          <div
-            className="card-col puff-in-center demarche"
+          <a
+            className="c10 card demarche content"
+            href="/procedure/id3"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
           >
-            <a
-              href="/procedure/id3"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
+            <div
+              className="title"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "tinfo3",
+                }
+              }
+              style={
+                Object {
+                  "color": "#06508C",
+                }
+              }
+            />
+            <div
+              className="container badges theme-badge"
+              style={
+                Object {
+                  "backgroundColor": "#DDF2F9",
+                }
+              }
             >
-              <div
-                className="custom-card  card"
+              <span
+                className="icon"
+              >
+                <span
+                  className="icon"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 12,
+                      "width": 12,
+                    }
+                  }
+                />
+              </span>
+              <span
                 style={
                   Object {
-                    "backgroundColor": "#aaa",
-                    "borderColor": "#aaa",
-                    "color": "#aaa",
+                    "color": "#06508C",
                   }
                 }
               >
-                <div
-                  className="card-body"
-                >
-                  <div
-                    className="container bookmark-icon pinned"
-                    data-test-id="test-toggle-pin-id3"
-                    onClick={[Function]}
-                  >
-                    <span>
-                      <i
-                        dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fbfbfb\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                          }
-                        }
-                      />
-                    </span>
-                  </div>
-                  <h5>
-                    tinfo3
-                  </h5>
-                  <p
-                    className="text"
-                  >
-                    abstract3
-                  </p>
-                </div>
-              </div>
-            </a>
-          </div>
+                Logement
+              </span>
+            </div>
+          </a>
         </div>
       </div>
     </div>

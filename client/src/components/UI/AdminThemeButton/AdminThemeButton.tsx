@@ -28,7 +28,7 @@ const AdminThemeButton = (props: Props) => (
     }}
   >
     <div className={styles.image}>
-      {props.theme.appImage?.secure_url &&
+      {props.theme?.appImage?.secure_url &&
         <Image src={props.theme.appImage.secure_url} width={36} height={50} alt="" />
       }
     </div>

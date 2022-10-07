@@ -4,16 +4,15 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import Streamline from "assets/streamline";
 import Ripples from "react-ripples";
 import { isMobile } from "react-device-detect";
-import { Theme } from "types/interface";
 import styles from "./HomeSearch.module.scss";
-import { SearchItemType } from "data/searchFilters";
 import { cls } from "lib/classname";
 import { getThemeName } from "lib/getThemeName";
 import { useRouter } from "next/router";
 import ThemeIcon from "components/UI/ThemeIcon";
+import { useSelector } from "react-redux";
+import { themesSelector } from "services/Themes/themes.selectors";
 
 interface Props {
-  searchItem: SearchItemType;
   togglePopup: () => void;
   toggleOverlay: () => void;
   toggleModal: () => void;
@@ -76,13 +75,12 @@ const HomeSearch = (props: Props) => {
     props.toggleOverlay();
   };
 
-  const { searchItem } = props;
-  const themes: Theme[] = searchItem.children as Theme[];
+  const themes = useSelector(themesSelector)
 
   return (
     <div onClick={open} className={styles.col}>
       <span className="mr-10 mb-15">
-        {t("SearchItem." + searchItem.title, searchItem.title)}
+        {t("SearchItem.J'ai besoin de", "J'ai besoin de")}
       </span>
       {flip ? (
         <Flippy
@@ -134,7 +132,7 @@ const HomeSearch = (props: Props) => {
             <div className={styles.icon}>
               <Streamline name="search" width={20} height={20} />
             </div>
-            {t("Tags." + searchItem.placeholder, searchItem.placeholder)}
+            {t("Tags.thème", "thème")}
           </button>
         </Ripples>
       )}

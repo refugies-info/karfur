@@ -1,3 +1,5 @@
+import { activeThemesMock } from "./activeThemes";
+
 const initialMockUserState = {
   user: null,
   admin: false,
@@ -41,4 +43,8 @@ export const initialMockStore = {
   userFavorites: [],
   userContributions: [],
   needs: [],
+  themes: {
+    activeThemes: activeThemesMock,
+    inactiveThemes: []
+  }
 };
