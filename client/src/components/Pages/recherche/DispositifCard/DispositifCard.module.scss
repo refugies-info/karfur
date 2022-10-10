@@ -16,6 +16,12 @@
   margin: u(2) 0;
   font-weight: bold;
 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+
   @include isMobile() {
     height: auto;
   }
@@ -32,6 +38,12 @@
 .text {
   font-size: 12px;
   line-height: 15px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
 }
 
 .infos {
@@ -53,7 +65,7 @@
 }
 
 .themes {
-  height: 57px;
+  min-height: 57px;
 
   @include isMobile() {
     height: auto;

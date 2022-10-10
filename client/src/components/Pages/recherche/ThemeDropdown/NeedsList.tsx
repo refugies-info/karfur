@@ -140,6 +140,7 @@ const NeedsList = (props: Props) => {
       )}
       {props.displayedNeeds.map((need, i) => {
         const selected = needsSelected.includes(need._id) || themesSelected.includes(need.theme._id);
+        if (!nbDispositifsByNeed[need._id.toString()]) return null;
         return (
           <span key={i}>
             {props.search &&

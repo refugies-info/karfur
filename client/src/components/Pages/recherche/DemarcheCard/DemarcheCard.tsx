@@ -15,6 +15,8 @@ import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
 
+const ONE_DAY_MS = 86400000;
+
 type DemarcheLinkProps = {
   background: string;
   border: string;
@@ -39,11 +41,12 @@ const DemarcheCard = (props: Props) => {
   const colors = theme.colors;
   const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
 
+  const lastModificationDate = props.demarche.lastModificationDate ? new Date(props.demarche.lastModificationDate) :null;
+  const publishedAt = props.demarche.publishedAt ? new Date(props.demarche.publishedAt) : null;
+
   const hasUpdate =
-    props.demarche.lastModificationDate &&
-    props.demarche.publishedAt &&
-    new Date(props.demarche.lastModificationDate).toDateString() !==
-      new Date(props.demarche.publishedAt).toDateString();
+    lastModificationDate && publishedAt &&
+    lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS; // more than 1 day between publication and edition
 
   return (
     <Link
