@@ -138,6 +138,7 @@
   margin-left: u(2);
   border-radius: 2px;
   font-weight: normal;
+  align-self: flex-start;
 
   @include rtl() {
     margin-left: 0;
