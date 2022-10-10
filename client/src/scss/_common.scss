@@ -1,4 +1,5 @@
 @import 'mixins/responsive';
+@import 'mixins/rtl';
 @import 'colors';
 @import "src/scss/variables";
 
@@ -213,4 +214,12 @@ html body {
 // GMap Autocomplete
 .pac-container {
   z-index: 2000 !important;
+}
+
+// Dropdown
+.dropdown-menu.show {
+  @include rtl() {
+    left: inherit !important;
+    right: 0 !important;
+  }
 }
