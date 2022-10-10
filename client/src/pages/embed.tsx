@@ -44,6 +44,7 @@ const Embed = () => {
           themesSelected={themesSelected}
           departmentsSelected={initialQuery.departmentsSelected}
           departmentsNotDeployed={[]}
+          targetBlank={true}
           resetFilters={() => {}}
         />
       </Container>

@@ -35,6 +35,7 @@ const DispositifLink = styled.a`
 interface Props {
   dispositif: SearchDispositif;
   selectedDepartment?: string;
+  targetBlank?: boolean
 }
 
 const DispositifCard = (props: Props) => {
@@ -69,6 +70,8 @@ const DispositifCard = (props: Props) => {
         className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content)}
         background={colors.color30}
         border={colors.color100}
+        target={props.targetBlank ? "_blank" : undefined}
+        rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />

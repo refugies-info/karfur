@@ -31,6 +31,7 @@ const DemarcheLink = styled.a`
 
 interface Props {
   demarche: SearchDispositif;
+  targetBlank?: boolean
 }
 
 const DemarcheCard = (props: Props) => {
@@ -60,6 +61,8 @@ const DemarcheCard = (props: Props) => {
         className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}
         background={colors.color30}
         border={colors.color100}
+        target={props.targetBlank ? "_blank" : undefined}
+        rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
         {hasUpdate && (
           <div className={styles.update}>
