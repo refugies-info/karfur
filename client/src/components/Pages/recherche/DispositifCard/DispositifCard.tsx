@@ -51,9 +51,9 @@ const DispositifCard = (props: Props) => {
 
   const getDepartement = () => {
     if (!location || !location.departments) return null;
+    if (location.departments.length === 1 && location.departments[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
     if (props.selectedDepartment) return props.selectedDepartment;
     if (location.departments.length > 1) return `${location.departments.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
-    if (location.departments.length === 1 && location.departments[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
     return location.departments[0];
   };
 

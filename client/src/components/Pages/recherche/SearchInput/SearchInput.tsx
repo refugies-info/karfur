@@ -27,6 +27,18 @@ const SearchInput = (props: Props) => {
     if (active) setActive(false);
   }, [setActive, active]);
 
+  useEffect(() => { // prevent close on click input
+    const input = ref.current;
+    const handleClick = (e: any) => {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    if (input) input.addEventListener("click", handleClick);
+    return () => {
+      if (input) input.removeEventListener("click", handleClick);
+    };
+  }, [active]);
+
   useEffect(() => {
     if (props.focusout) document.addEventListener("focusout", handleFocusOut);
     return () => {
