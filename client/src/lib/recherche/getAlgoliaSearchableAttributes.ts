@@ -16,7 +16,7 @@ export const getSearchableAttributes = (selectedLanguage: string | null) => {
 
   for (const attr of localizedSearchableAttributes) {
     localizedAttributes.push(`${attr}_fr`);
-    if (selectedLanguage && selectedLanguage !== "fr") localizedAttributes.push(`${attr}_${selectedLanguage}`);
+    if (selectedLanguage && selectedLanguage !== "fr" && selectedLanguage !== "default") localizedAttributes.push(`${attr}_${selectedLanguage}`);
   }
 
   return [
