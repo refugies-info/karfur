@@ -63,7 +63,8 @@ const SearchHeader = (props: Props) => {
   const onSelectPrediction = (place_id: string) => {
     placesService?.getDetails({ placeId: place_id }, (placeDetails) => {
       setDepartmentsSelected((deps) => {
-        const depName = placeDetails?.address_components?.[1].long_name;
+        let depName = placeDetails?.address_components?.[1].long_name;
+        if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
         return [...new Set(depName ? [...deps, depName] : [...deps])];
       });
     });

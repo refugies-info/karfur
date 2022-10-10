@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -64,6 +64,22 @@ const SearchHeaderDesktop = (props: Props) => {
   const [themesOpen, setThemesOpen] = useState(false);
   const toggleLocation = () => setLocationOpen((prevState) => !prevState);
   const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+
+  const handleSpaceKey = useCallback((e: any) => {
+    if (e.keyCode === 13 || e.keyCode === 32) {
+      e.preventDefault();
+    }
+  }, []);
+
+  useEffect(() => { // prevent close dropdown on space
+    if (themesOpen || locationOpen) {
+      document.addEventListener("keyup", handleSpaceKey);
+    }
+
+    return () => {
+      document.removeEventListener("keyup", handleSpaceKey);
+    };
+  }, [themesOpen, locationOpen, handleSpaceKey]);
 
   // FILTERS
   const languages = useSelector(allLanguesSelector);
