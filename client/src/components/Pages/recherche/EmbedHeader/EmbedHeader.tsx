@@ -28,7 +28,7 @@ const EmbedHeader = (props: Props) => {
 
   return (
     <p className={styles.text}>
-      {selectedTheme && selectedDepartment && selectedLanguage && `${t("Widget.fiches", "Fiches")} `}
+      {(selectedTheme || selectedDepartment || selectedLanguage) && `${t("Widget.fiches", "Fiches")} `}
       {selectedTheme && (
         <>
           {t("Widget.withTheme", "avec le thème")}{" "}
