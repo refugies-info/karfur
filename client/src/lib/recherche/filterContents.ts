@@ -27,7 +27,9 @@ export const filterByLocations = (dispositif: SearchDispositif, departmentsSelec
   const location = getDispositifInfos(dispositif, "location");
   if (!location?.departments) return false;
   for (const dep of location?.departments) {
-    if (departmentsSelected.includes(dep.split(" - ")[1])) return true;
+    if (departmentsSelected.includes(dep.split(" - ")[1]) || dep === "All") {
+      return true;
+    }
   }
   return false;
 };
