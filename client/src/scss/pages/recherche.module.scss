@@ -27,3 +27,15 @@
 .hidden {
   display: none !important;
 }
+
+.embed {
+  footer p {
+    padding: u(2) u(8);
+    display: inline-flex;
+    align-items: center;
+
+    .logo {
+      margin: 0 u(6);
+    }
+  }
+}

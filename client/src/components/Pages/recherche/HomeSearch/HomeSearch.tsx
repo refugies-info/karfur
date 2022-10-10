@@ -34,7 +34,7 @@ const dispositifsExamples = [
 
 const departmentExamples = [
   "Paris",
-  "Haut-de-Seine",
+  "Hauts-de-Seine",
   "Seine-Saint-Denis",
   "Val-de-Marne",
   "Val-d'Oise",

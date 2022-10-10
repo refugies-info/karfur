@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
+import { Container } from "reactstrap";
+import Image from "next/image";
 import { queryDispositifs } from "lib/recherche/queryContents";
 import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import {
@@ -11,15 +13,16 @@ import {
 } from "services/Langue/langue.actions";
 import { wrapper } from "services/configureStore";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
-import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { cls } from "lib/classname";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
-import styles from "scss/pages/recherche.module.scss";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { cls } from "lib/classname";
 import SearchResults from "components/Pages/recherche/SearchResults";
-import { Container } from "reactstrap";
 import EmbedHeader from "components/Pages/recherche/EmbedHeader";
+import LogoDiair from "assets/embed/logo-diair.png";
+import LogoRI from "assets/embed/logo-ri-inline.png";
+import styles from "scss/pages/recherche.module.scss";
 
 const Embed = () => {
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -47,6 +50,18 @@ const Embed = () => {
           targetBlank={true}
           resetFilters={() => {}}
         />
+
+        <footer>
+          <p>
+            Contenu proposé par
+            <div className={styles.logo}>
+              <Image src={LogoDiair} width={88} height={90} alt="Logo DIAIR" />
+            </div>
+            <div className={styles.logo}>
+              <Image src={LogoRI} width={186} height={32} alt="Logo Réfugiés.info" />
+            </div>
+          </p>
+        </footer>
       </Container>
     </div>
   );
