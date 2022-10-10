@@ -25,6 +25,7 @@ interface Props {
   themesSelected: Theme[];
   departmentsSelected: string[];
   departmentsNotDeployed: string[];
+  targetBlank?: boolean;
   resetFilters: () => void;
 }
 
@@ -119,7 +120,7 @@ const SearchResults = (props: Props) => {
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
             />
             {demarches.map((d) => (
-              <DemarcheCard key={d._id.toString()} demarche={d} />
+              <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
             ))}
           </div>
           {!isMobile &&
@@ -143,7 +144,7 @@ const SearchResults = (props: Props) => {
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
             />
             {dispositifs.map((d) => (
-              <DispositifCard key={d._id.toString()} dispositif={d} selectedDepartment={selectedDepartment} />
+              <DispositifCard key={d._id.toString()} dispositif={d} selectedDepartment={selectedDepartment} targetBlank />
             ))}
           </div>
           {!isMobile &&
@@ -168,7 +169,7 @@ const SearchResults = (props: Props) => {
               themes={props.themesSelected}
             />
             {secondaryDispositifs.map((d) => (
-              <DispositifCard key={d._id.toString()} dispositif={d} />
+              <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
             ))}
           </div>
           {!isMobile &&

@@ -34,15 +34,15 @@ const dispositifsExamples = [
 
 const departmentExamples = [
   "Paris",
-  "Haut-de-Seine",
+  "Hauts-de-Seine",
   "Seine-Saint-Denis",
   "Val-de-Marne",
-  "Val-d’Oise",
+  "Val-d'Oise",
   "Seine-et-Marne",
   "Yvelines",
   "Essonne",
   "Rhône",
-  "Côtes-d’Or",
+  "Côte-d'Or",
   "Bouches-du-Rhône",
   "Puy-de-Dôme",
   "Ille-et-Vilaine",
