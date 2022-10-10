@@ -15,8 +15,10 @@ export const LocationInput = (props: Props) => {
   const [search, setSearch] = useState("");
 
   const onPlaceSelected = (place: any) => {
-    if (place.address_components[0]?.short_name) {
-      props.setSelectedDepartment(place.address_components[0]?.short_name);
+    let depName = place.address_components[0]?.short_name;
+    if (depName) {
+      if (depName === "Département de Paris") depName = "Paris";
+      props.setSelectedDepartment(depName);
       setGeoSearch(false);
     }
   };
