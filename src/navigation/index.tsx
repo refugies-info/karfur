@@ -32,6 +32,12 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 import { themesSelector } from "../services/redux/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "../services/redux/Themes/themes.actions";
+import { NotificationResponse } from "expo-notifications";
+import {
+  disableNotificationsListener,
+  getNotificationFromStack,
+  notificationDataStackLength,
+} from "../libs/notifications";
 
 // A root stack navigator is often used for displaying modals on top of all other content
 // Read more here: https://reactnavigation.org/docs/modal
@@ -43,6 +49,7 @@ export const RootNavigator = () => {
   const notificationsListener = useRef<Subscription>();
   const navigationRef = useRef<any>();
   const queryClient = useQueryClient();
+  const [navigationReady, setNavigationReady] = useState(false);
 
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
   const themes = useSelector(themesSelector);
@@ -96,40 +103,50 @@ export const RootNavigator = () => {
   }, []);
 
   //Notifications listener
-  useEffect(() => {
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener(
-        async (response) => {
-          switch (response?.notification?.request?.content?.data?.type) {
-            case "dispositif": {
-              logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
-                contentId: response.notification.request.content.data.contentId,
-              });
+  const handleNotification = async (
+    response: NotificationResponse | null | undefined
+  ) => {
+    if (!response) return;
+    switch (response?.notification?.request?.content?.data?.type) {
+      case "dispositif": {
+        logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
+          contentId: response.notification.request.content.data.contentId,
+        });
 
-              navigationRef?.current.navigate("Explorer", {
-                screen: "ContentScreen",
-                params: {
-                  contentId:
-                    response.notification.request.content.data.contentId,
-                },
-              });
-              await markNotificationAsSeen(
-                response.notification.request.content.data
-                  .notificationId as string
-              );
-              queryClient.invalidateQueries("notifications");
-            }
-            default:
-              break;
-          }
-        }
-      );
-
-    //This handler is triggered when a notification is received when the app is foregrounded
-    notificationsListener.current =
-      Notifications.addNotificationReceivedListener(() => {
+        navigationRef?.current.navigate("Explorer", {
+          screen: "ContentScreen",
+          params: {
+            contentId: response.notification.request.content.data.contentId,
+          },
+        });
+        await markNotificationAsSeen(
+          response.notification.request.content.data.notificationId as string
+        );
         queryClient.invalidateQueries("notifications");
-      });
+      }
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    if (navigationReady) {
+      // get initial notif. Read issue for more informations https://github.com/expo/expo/issues/14078#issuecomment-1041294084
+      while (notificationDataStackLength() > 0) {
+        handleNotification(getNotificationFromStack());
+      }
+      disableNotificationsListener();
+
+      // Listener for app backgrounded
+      responseListener.current =
+        Notifications.addNotificationResponseReceivedListener((response) => handleNotification(response));
+
+      // Listener for app is foregrounded
+      notificationsListener.current =
+        Notifications.addNotificationReceivedListener(() => {
+          queryClient.invalidateQueries("notifications");
+        });
+    }
 
     return () => {
       if (responseListener.current) {
@@ -142,7 +159,8 @@ export const RootNavigator = () => {
         );
       }
     };
-  }, []);
+  }, [navigationReady]);
+
 
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
@@ -165,7 +183,7 @@ export const RootNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={MyTheme} ref={navigationRef}>
+    <NavigationContainer theme={MyTheme} ref={navigationRef} onReady={() => setNavigationReady(true)}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!hasUserSeenOnboarding ? (
           <Stack.Screen

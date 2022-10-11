@@ -29,6 +29,7 @@ export default {
     },
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
+      UIBackgroundModes: ["remote-notification"]
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
     associatedDomains: [
@@ -89,6 +90,6 @@ export default {
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   extra: {
-    displayVersionNumber: "2022.09.1"
+    displayVersionNumber: "2022.10.6"
   }
 };
