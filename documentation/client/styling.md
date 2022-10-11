@@ -82,11 +82,28 @@ To use any color in a SCSS file, you must use it from the `scss/colors.scss` fil
 }
 ```
 
+### Texts
+
+All the texts sizes and line heights from the design system are defined in the `text` mixin:
+
+Example:
+```scss
+.text {
+  /* this */
+  @include text("large");
+
+  /* is the same as this */
+  font-size: 18px;
+  line-height: 23px;
+}
+```
+
 ### Responsive
 
 You must use the custom mixins to keep responsive consistent:
 - `media-max` will apply the styles for all the screens, up to your parameter.
 - `media-min` will apply the styles for all the screens, starting from your parameter.
+- `isMobile` is a shortcut to apply styles for all the screens below 768px.
 
 Example:
 ```scss
@@ -95,6 +112,10 @@ Example:
 
   @include media-max("sm-limit") {
     padding: 4px;
+  }
+
+  @include isMobile() {
+    padding: 2px;
   }
 }
 ```
@@ -114,4 +135,21 @@ xl-limit        1200px
 desktop-down    1280px
 widescreen-up   1440px
 big-desktop     1565px
+```
+
+### Dimensions
+
+The design system uses a multiple of 4 for the all the dimensions (spacing, sizes, ...).
+
+For this, you can use the mixin `unit` to keep it consistent.
+
+Example:
+```scss
+.btn {
+  /* this */
+  padding: 12px;
+
+  /* is the same as this */
+  padding: u(3);
+}
 ```
