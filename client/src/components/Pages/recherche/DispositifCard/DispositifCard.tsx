@@ -75,7 +75,7 @@ const DispositifCard = (props: Props) => {
       >
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />
-          <span style={{ color: colors.color100 }} className="ml-2">
+          <span style={{ color: colors.color100 }} className="ml-1">
             {getDepartement()}
           </span>
         </div>

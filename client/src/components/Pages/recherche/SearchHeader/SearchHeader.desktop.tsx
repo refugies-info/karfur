@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { Theme } from "types/interface";
+import { cls } from "lib/classname";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -87,14 +88,16 @@ const SearchHeaderDesktop = (props: Props) => {
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
   useEffect(() => {
     if (filterAge.length) {
-      const value = filterAge.map((option) => {
-        const filter = ageFilters.find((a) => a.key === option)
-        if (filter) return t(filter.value)
-        return "";
-      }).join(", ");
+      const value = filterAge
+        .map((option) => {
+          const filter = ageFilters.find((a) => a.key === option);
+          if (filter) return t(filter.value);
+          return "";
+        })
+        .join(", ");
       setAgeDisplayedValue(value);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterAge]);
 
   const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
@@ -102,14 +105,14 @@ const SearchHeaderDesktop = (props: Props) => {
     if (filterFrenchLevel.length) {
       const value = filterFrenchLevel
         .map((option) => {
-          const filter = frenchLevelFilter.find((a) => a.key === option)
-          if (filter) return t(filter.value)
+          const filter = frenchLevelFilter.find((a) => a.key === option);
+          if (filter) return t(filter.value);
           return "";
         })
         .join(", ");
       setFrenchLevelDisplayedValue(value);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterFrenchLevel]);
 
   const [languageDisplayedValue, setLanguageDisplayedValue] = useState("");
@@ -124,13 +127,9 @@ const SearchHeaderDesktop = (props: Props) => {
     <div className={styles.container}>
       <Container className={styles.container_inner}>
         {props.searchMinified ? (
-          <h1 className="h3 text-white">
-            {t("Recherche.titleHome", {count: props.nbResults })}
-          </h1>
+          <h1 className="h3 text-white">{t("Recherche.titleHome", { count: props.nbResults })}</h1>
         ) : (
-          <h1 className="h3 text-white">
-            {t("Recherche.titleResults", { count: props.nbResults })}
-          </h1>
+          <h1 className="h3 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
         )}
         <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
@@ -147,7 +146,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => {
                   setLocationSearch("");
-                  setDepartmentsSelected([])
+                  setDepartmentsSelected([]);
                 }}
               />
             </DropdownToggle>
@@ -159,6 +158,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 onSelectPrediction={onSelectPrediction}
               />
             </DropdownMenu>
+            {(locationOpen || locationFocused) && <div className={styles.backdrop} onClick={toggleLocation} />}
           </Dropdown>
 
           <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
@@ -189,9 +189,10 @@ const SearchHeaderDesktop = (props: Props) => {
                 mobile={false}
               />
             </DropdownMenu>
+            {(themesOpen || themesFocused) && <div className={styles.backdrop} onClick={toggleThemes} />}
           </Dropdown>
 
-          <div className={styles.dropdown}>
+          <div className={cls(styles.dropdown, searchFocused && "show")}>
             <Button onClick={() => setSearchFocused(true)}>
               <SearchInput
                 label={t("Recherche.keyword", "Mot-clé")}
@@ -206,6 +207,13 @@ const SearchHeaderDesktop = (props: Props) => {
                 resetFilter={() => setSearch("")}
               />
             </Button>
+            {searchFocused && (
+              <div
+                className={styles.backdrop}
+                onClick={() => setSearchFocused(false)}
+                style={{ height: props.searchMinified ? 389 : 474 }} /* dirty fix to cover only header */
+              />
+            )}
           </div>
         </div>
 
@@ -217,7 +225,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 label={filterAge.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
                 selected={filterAge}
                 setSelected={setFilterAge}
-                options={ageFilters.map(filter => ({...filter, value: t(filter.value)}))}
+                options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
               />
               <SearchFilter
                 mobile={false}
@@ -228,7 +236,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 }
                 selected={filterFrenchLevel}
                 setSelected={setFilterFrenchLevel}
-                options={frenchLevelFilter.map(filter => ({...filter, value: t(filter.value)}))}
+                options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
               />
               <SearchFilter
                 mobile={false}

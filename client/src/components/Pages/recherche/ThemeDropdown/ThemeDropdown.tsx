@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
+import { sortThemes } from "lib/sortThemes";
 import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
@@ -47,8 +48,9 @@ interface Props {
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
   const themes = useSelector(themesSelector);
+  const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
-  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
+  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(sortedThemes[0]._id);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
 
   const {
@@ -90,7 +92,7 @@ const ThemeDropdown = (props: Props) => {
   return (
     <div className={styles.container}>
       <div className={cls(styles.themes, props.search && styles.hidden)}>
-        {themes.map((theme, i) => {
+        {sortedThemes.map((theme, i) => {
           const selected = themeSelected === theme._id;
           return (
             <div key={i}>
@@ -108,10 +110,15 @@ const ThemeDropdown = (props: Props) => {
               >
                 <span className={styles.btn_content}>
                   <TagName theme={theme} colored={props.mobile || themeSelected !== theme._id} size={20} />
-                  {themeSelected !== theme._id &&
-                    nbNeedsSelectedByTheme[theme._id.toString()] &&
+                  {nbNeedsSelectedByTheme[theme._id.toString()] &&
                     nbNeedsSelectedByTheme[theme._id.toString()] > 0 && (
-                      <span style={{ backgroundColor: theme.colors.color100 }} className={styles.theme_badge}>
+                    <span
+                      style={{
+                        backgroundColor: themeSelected !== theme._id ? theme.colors.color100 : "white",
+                        color: themeSelected !== theme._id ? "white" : theme.colors.color100
+                      }}
+                      className={styles.theme_badge}
+                    >
                         {nbNeedsSelectedByTheme[theme._id.toString()] || 0}
                       </span>
                     )}

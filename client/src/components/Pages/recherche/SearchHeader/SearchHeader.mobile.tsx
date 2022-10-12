@@ -93,7 +93,7 @@ const SearchHeaderMobile = (props: Props) => {
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
+        <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
