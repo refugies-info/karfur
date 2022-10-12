@@ -56,17 +56,21 @@ const SearchHeader = (props: Props) => {
     //@ts-ignore
     options: {
       componentRestrictions: { country: "fr" },
-      types: ["(cities)"]
+      types: ["administrative_area_level_2", "locality", "postal_code"]
     }
   });
 
   const onSelectPrediction = (place_id: string) => {
     placesService?.getDetails({ placeId: place_id }, (placeDetails) => {
-      setDepartmentsSelected((deps) => {
-        let depName = placeDetails?.address_components?.[1].long_name;
-        if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
-        return [...new Set(depName ? [...deps, depName] : [...deps])];
-      });
+      const departement = (placeDetails?.address_components || [])
+        .find(comp => comp.types.includes("administrative_area_level_2"));
+      let depName = departement?.long_name;
+      if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
+      if (depName) {
+        setDepartmentsSelected((deps) => {
+          return [...new Set(depName ? [...deps, depName] : [...deps])];
+        });
+      }
     });
   };
 
