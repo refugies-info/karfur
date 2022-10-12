@@ -959,7 +959,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="location"
             >
               <span
-                className="ml-2"
+                className="ml-1"
                 style={
                   Object {
                     "color": "#3D2884",
@@ -1081,7 +1081,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="location"
             >
               <span
-                className="ml-2"
+                className="ml-1"
                 style={
                   Object {
                     "color": "#443023",
@@ -1199,6 +1199,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
+            <div />
             <div
               className="title"
               dangerouslySetInnerHTML={
@@ -1212,41 +1213,43 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 }
               }
             />
-            <div
-              className="container badges theme-badge"
-              style={
-                Object {
-                  "backgroundColor": "#DDF2F9",
+            <div>
+              <div
+                className="container badges theme-badge"
+                style={
+                  Object {
+                    "backgroundColor": "#DDF2F9",
+                  }
                 }
-              }
-            >
-              <span
-                className="icon"
               >
                 <span
                   className="icon"
-                  dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
+                >
+                  <span
+                    className="icon"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
+                      }
                     }
-                  }
+                    style={
+                      Object {
+                        "height": 12,
+                        "width": 12,
+                      }
+                    }
+                  />
+                </span>
+                <span
                   style={
                     Object {
-                      "height": 12,
-                      "width": 12,
+                      "color": "#06508C",
                     }
                   }
-                />
-              </span>
-              <span
-                style={
-                  Object {
-                    "color": "#06508C",
-                  }
-                }
-              >
-                Logement
-              </span>
+                >
+                  Logement
+                </span>
+              </div>
             </div>
           </a>
         </div>
