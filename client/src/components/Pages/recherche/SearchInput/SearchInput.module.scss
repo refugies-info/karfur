@@ -78,17 +78,22 @@
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
-    padding-right: u(6);
+    padding-right: u(16);
     @include text("small");
+
+    @include isMobile() {
+      padding-right: u(6);
+    }
 
     @include rtl() {
       text-align: right;
       padding-right: 0;
-      padding-left: u(6);
-    }
+      padding-left: u(16);
 
-    @include isMobile() {
-      padding-right: 0;
+      @include isMobile() {
+        padding-right: 0;
+        padding-left: u(6);
+      }
     }
 
     &.empty {
@@ -147,5 +152,26 @@
 
   @include isMobile() {
     display: none;
+  }
+}
+
+.plus {
+  position: absolute;
+  right: u(5);
+  width: u(10);
+
+  @include rtl() {
+    right: auto;
+    left: u(5);
+  }
+
+  @include isMobile() {
+    right: 0;
+    width: auto;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
   }
 }
