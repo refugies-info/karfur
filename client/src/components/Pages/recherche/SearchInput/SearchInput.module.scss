@@ -7,7 +7,6 @@
 
 .filter {
   padding: u(4);
-  margin: u(2);
   background: transparent;
   border: none;
   display: flex;
@@ -35,6 +34,7 @@
     text-align: left;
     min-width: 0;
     flex-grow: 1;
+    position: relative;
 
     @include rtl() {
       text-align: right;
@@ -44,6 +44,7 @@
   .label {
     @include text("very-small");
     margin-bottom: u(2);
+    font-weight: bold;
     color: $gray80;
     text-transform: uppercase;
     display: block;
@@ -77,17 +78,22 @@
     text-overflow: ellipsis;
     overflow: hidden;
     position: relative;
-    padding-right: u(6);
+    padding-right: u(16);
     @include text("small");
+
+    @include isMobile() {
+      padding-right: u(6);
+    }
 
     @include rtl() {
       text-align: right;
       padding-right: 0;
-      padding-left: u(6);
-    }
+      padding-left: u(16);
 
-    @include isMobile() {
-      padding-right: 0;
+      @include isMobile() {
+        padding-right: 0;
+        padding-left: u(6);
+      }
     }
 
     &.empty {
@@ -124,11 +130,16 @@
 
 .empty_btn {
   background: transparent;
-  padding: 2px;
   border: none;
   position: absolute;
   right: 0;
-  top: -3px;
+  bottom: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
 
   @include rtl() {
     right: inherit;
@@ -136,10 +147,31 @@
   }
 
   &:hover {
-    background: transparent;
+    background: $gray30;
   }
 
   @include isMobile() {
     display: none;
+  }
+}
+
+.plus {
+  position: absolute;
+  right: u(5);
+  width: u(10);
+
+  @include rtl() {
+    right: auto;
+    left: u(5);
+  }
+
+  @include isMobile() {
+    right: 0;
+    width: auto;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
   }
 }

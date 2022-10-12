@@ -16,7 +16,8 @@ import noResultsImage from "assets/no_results_alt.svg";
 import styles from "./SearchResults.module.scss";
 import useWindowSize from "hooks/useWindowSize";
 
-const MAX_SHOWN_ITEMS = 14;
+const MAX_SHOWN_DEMARCHES = 14;
+const MAX_SHOWN_DISPOSITIFS = 15;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
@@ -52,15 +53,15 @@ const SearchResults = (props: Props) => {
 
   const demarches =
     hideDemarches && !isMobile
-      ? props.filteredResult.demarches.slice(0, MAX_SHOWN_ITEMS)
+      ? props.filteredResult.demarches.slice(0, MAX_SHOWN_DEMARCHES)
       : props.filteredResult.demarches;
   const dispositifs =
     hideDispositifs && !isMobile
-      ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_ITEMS)
+      ? props.filteredResult.dispositifs.slice(0, MAX_SHOWN_DISPOSITIFS)
       : props.filteredResult.dispositifs;
   const secondaryDispositifs =
     hideSecondaryDispositifs && !isMobile
-      ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_ITEMS)
+      ? props.filteredResult.dispositifsSecondaryTheme.slice(0, MAX_SHOWN_DISPOSITIFS)
       : props.filteredResult.dispositifsSecondaryTheme;
 
   const selectedDepartment = props.departmentsSelected.length === 1 ? props.departmentsSelected[0] : undefined;
@@ -125,7 +126,7 @@ const SearchResults = (props: Props) => {
           </div>
           {!isMobile &&
             props.selectedType !== "dispositif" &&
-            props.filteredResult.demarches.length >= MAX_SHOWN_ITEMS && (
+            props.filteredResult.demarches.length >= MAX_SHOWN_DEMARCHES && (
               <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
             )}
         </div>
@@ -149,7 +150,7 @@ const SearchResults = (props: Props) => {
           </div>
           {!isMobile &&
             props.selectedType !== "demarche" &&
-            props.filteredResult.dispositifs.length >= MAX_SHOWN_ITEMS && (
+            props.filteredResult.dispositifs.length >= MAX_SHOWN_DISPOSITIFS && (
               <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
             )}
         </div>
@@ -174,7 +175,7 @@ const SearchResults = (props: Props) => {
           </div>
           {!isMobile &&
             props.selectedType !== "demarche" &&
-            props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_ITEMS && (
+            props.filteredResult.dispositifsSecondaryTheme.length >= MAX_SHOWN_DISPOSITIFS && (
               <SeeMoreButton
                 onClick={() => setHideSecondaryDispositifs((h) => !h)}
                 visible={!hideSecondaryDispositifs}

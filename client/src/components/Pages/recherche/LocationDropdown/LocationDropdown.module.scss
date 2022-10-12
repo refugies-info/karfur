@@ -13,11 +13,13 @@
   overflow: hidden;
   z-index: 3;
   padding: u(4);
+  margin-top: u(1);
 
   @include isMobile() {
     width: 100%;
     box-shadow: none;
     position: relative;
+    margin: 0;
   }
 }
 

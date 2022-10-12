@@ -41,7 +41,7 @@ const SearchThemeButton = (props: Props) => {
         window.scrollTo(0, 0);
       }}
     >
-      <span className="mr-4">{jsUcfirst(props.theme.name[locale] || "")}</span>
+      <span className="mr-4">{jsUcfirst(props.theme.short[locale] || "")}</span>
       <div className={styles.image}>
         {props.theme?.appImage?.secure_url && (
           <span className={styles.image_inner}>

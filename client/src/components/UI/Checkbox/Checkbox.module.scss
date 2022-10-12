@@ -1,10 +1,13 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .checkbox {
   position: relative;
+  display: flex;
+  align-items: center;
 
   input {
     position: absolute;
@@ -17,22 +20,24 @@
     position: relative;
     margin-bottom: 0;
     vertical-align: top;
-    margin-left: 32px;
+    margin-left: u(3);
     cursor: pointer;
     display: inline-flex;
+    align-items: center;
 
     @include rtl() {
       margin-left: 0;
-      margin-right: 32px;
+      margin-right: u(3);
     }
   }
 }
 .check {
-  position: absolute;
-  top: -1px;
-  left: 0;
-  display: block;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
   pointer-events: none;
+  position: relative;
+  top: -1px;
 
   @include rtl() {
     left: inherit;
