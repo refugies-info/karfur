@@ -7,9 +7,16 @@
 
 .title {
   @include text("large");
+  height: 69px;
   margin-top: u(6);
   margin-bottom: u(4);
   font-weight: bold;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
 }
 
 .badges {

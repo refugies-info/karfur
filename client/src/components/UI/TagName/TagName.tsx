@@ -22,7 +22,7 @@ const TagName = (props: Props) => {
           size={props.size}
         />
       </span>
-      <span>{props.theme.short[locale] || ""}</span>
+      <span className={styles.name}>{props.theme.short[locale] || ""}</span>
     </div>
   );
 };

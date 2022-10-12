@@ -7,6 +7,7 @@
 - [Routing](#routing)
 - [Assets](#assets)
 - [Styling](#styling)
+- [i18n](#i18n)
 - [Logging](#logging)
 
 ## Redux usage
@@ -41,7 +42,11 @@ In order to have a light bundle, put the assets on GCP bucket like explained in 
 
 ## Styling
 
-The project uses mainly scss modules for design. To know more, read the [styling guide](./styling.md).
+The project uses mainly scss modules for design. To learn more, read the [styling guide](./styling.md).
+
+## i18n
+
+The project uses `next-i18next` for internationalization. To learn more, read the [i18n guide](./i18n.md).
 
 ## Logging
 
