@@ -69,15 +69,19 @@ const DemarcheCard = (props: Props) => {
             <span>{t("Recherche.updated", "mise à jour")}</span>
           </div>
         )}
-        <Image src={demarcheIcon} width={48} height={48} alt="" />
+        <div>
+          <Image src={demarcheIcon} width={48} height={48} alt="" />
+        </div>
         <div
           className={styles.title}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}
         />
-        {demarcheThemes.map((theme, i) => (
-          <ThemeBadge key={i} theme={theme} className={styles.badges} />
-        ))}
+        <div>
+          {demarcheThemes.map((theme, i) => (
+            <ThemeBadge key={i} theme={theme} className={styles.badges} />
+          ))}
+        </div>
       </DemarcheLink>
     </Link>
   );

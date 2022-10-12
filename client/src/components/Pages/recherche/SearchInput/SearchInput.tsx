@@ -32,7 +32,7 @@ const SearchInput = (props: Props) => {
     const handleClick = (e: any) => {
       e.stopPropagation();
       e.preventDefault();
-    }
+    };
     if (input) input.addEventListener("click", handleClick);
     return () => {
       if (input) input.removeEventListener("click", handleClick);
@@ -69,8 +69,8 @@ const SearchInput = (props: Props) => {
             autoFocus
           />
         ) : (
-          <div className={cls(styles.value, !props.value && styles.empty)}>
-            {props.value || props.placeholder}
+          <>
+            <div className={cls(styles.value, !props.value && styles.empty)}>{props.value || props.placeholder}</div>
             {props.value && (
               <div className={styles.empty_btn}>
                 <EVAIcon
@@ -84,7 +84,7 @@ const SearchInput = (props: Props) => {
                 />
               </div>
             )}
-          </div>
+          </>
         )}
       </span>
     </div>

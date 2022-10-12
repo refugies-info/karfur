@@ -8,6 +8,7 @@
 .location {
   display: flex;
   align-items: center;
+  @include text("very-small");
 }
 
 .title {
@@ -48,6 +49,7 @@
 
 .infos {
   height: 36px;
+  width: 100%;
 
   @include isMobile() {
     height: auto;
@@ -66,6 +68,9 @@
 
 .themes {
   min-height: 57px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
 
   @include isMobile() {
     height: auto;

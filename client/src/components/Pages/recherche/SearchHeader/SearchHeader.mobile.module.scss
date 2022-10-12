@@ -33,6 +33,7 @@
   border-radius: $radius;
   display: flex;
   margin-top: 0;
+  padding: u(1);
 
   & > button, & > div {
     background: transparent !important;
@@ -82,11 +83,21 @@
   flex-grow: 1;
   min-width: 0;
 
+  &.separator::after {
+    content: "";
+    height: 100%;
+    width: 1px;
+    background-color: $gray60;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   & > button {
     background: transparent !important;
     border: none;
-    padding: 0;
     width: 100%;
+    padding: u(2);
   }
   &.filters{
     width: u(14);

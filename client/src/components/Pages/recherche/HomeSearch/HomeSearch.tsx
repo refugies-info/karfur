@@ -5,17 +5,18 @@ import { Row, Col, Container } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
+import { sortThemes } from "lib/sortThemes";
+import { TypeOptions } from "data/searchFilters";
+import { SearchDispositif } from "types/interface";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import HomeTypeCard from "../HomeTypeCard";
+import DemarcheCard from "../DemarcheCard";
+import DispositifCard from "../DispositifCard";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
 import illuLocation from "assets/recherche/illu-location.png";
 import styles from "./HomeSearch.module.scss";
-import { TypeOptions } from "data/searchFilters";
-import { SearchDispositif } from "types/interface";
-import DemarcheCard from "../DemarcheCard";
-import DispositifCard from "../DispositifCard";
 
 const demarchesExamples = [
   "Recherche.demarcheExample1",
@@ -69,7 +70,7 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <h2 className="h4">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
           <div className={styles.themes}>
-            {themes.map((theme, i) => {
+            {themes.sort(sortThemes).map((theme, i) => {
               return (
                 <SearchThemeButton
                   key={i}
