@@ -6,7 +6,7 @@
 @import "src/scss/variables";
 
 .container {
-  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1B62D8 100%);
+  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1b62d8 100%);
   padding: u(6) u(4);
   width: 100%;
 }
@@ -35,7 +35,8 @@
   margin-top: 0;
   padding: u(1);
 
-  & > button, & > div {
+  & > button,
+  & > div {
     background: transparent !important;
     border: none;
     padding: 0;
@@ -65,7 +66,7 @@
 
   & > input {
     width: 100%;
-    border:none;
+    border: none;
     line-height: u(4);
     outline: none;
     background: transparent;
@@ -91,6 +92,11 @@
     position: absolute;
     right: 0;
     top: 0;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
   }
 
   & > button {
@@ -99,18 +105,18 @@
     width: 100%;
     padding: u(2);
   }
-  &.filters{
+  &.filters {
     width: u(14);
     flex-grow: 0;
     flex-shrink: 0;
 
     & > button {
-    background: $bleuCharte !important;
-    height: 100%;
-    width: 100%;
-    border-radius: 0;
+      background: $bleuCharte !important;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
+    }
   }
-}
 }
 
 .content {

@@ -220,6 +220,6 @@ html body {
 .dropdown-menu.show {
   @include rtl() {
     left: inherit !important;
-    right: 0 !important;
+    right: 8px !important;
   }
 }
