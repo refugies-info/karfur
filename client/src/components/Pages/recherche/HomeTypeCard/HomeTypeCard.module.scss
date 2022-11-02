@@ -31,26 +31,10 @@
     margin-top: u(8);
   }
 
-  ul {
+  p {
     margin-top: u(4);
-    padding-left: 0;
-    list-style-type: none;
-
-    @include rtl() {
-      padding-right: 0;
-    }
-
-    li {
-      @include text("large");
-      color: $gray80;
-      margin-bottom: 2px;
-
-      span {
-        line-height: 20px;
-        height: 20px;
-        display: inline-block;
-      }
-    }
+    @include text("large");
+    color: $gray80;
   }
 
   &:hover {

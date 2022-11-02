@@ -10,9 +10,10 @@ import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
-import styles from "./ThemeDropdown.module.scss";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
+import { cls } from "lib/classname";
+import styles from "./ThemeDropdown.module.scss";
 
 type ButtonNeedProps = {
   color100: string;
@@ -20,11 +21,10 @@ type ButtonNeedProps = {
   selected: boolean;
 };
 const ButtonNeed = styled.button`
-  background-color: ${(props: ButtonNeedProps) => (props.selected ? props.color100 : "transparent")};
-  color: ${(props: ButtonNeedProps) => (props.selected ? "white" : props.color100)};
+  background-color: ${(props: ButtonNeedProps) => (props.selected ? props.color30 : "transparent")};
+  color: ${(props: ButtonNeedProps) => props.color100};
   :hover {
-    background-color: ${(props: ButtonNeedProps) => (props.selected ? props.color100 : props.color30)};
-    border-color: ${(props: ButtonNeedProps) => props.color100};
+    background-color: ${(props: ButtonNeedProps) => props.color30};
   }
 `;
 
@@ -115,15 +115,15 @@ const NeedsList = (props: Props) => {
     <div className={styles.needs}>
       {props.themeSelected && !props.search && (
         <ButtonNeed
-          className={styles.btn}
+          className={cls(styles.btn, styles.need)}
           color100={colors?.color100 || "black"}
           color30={colors?.color30 || "gray"}
           selected={isThemeSelected}
           onClick={() => selectTheme(props.themeSelected)}
         >
-          <Checkbox checked={isThemeSelected} color={!isThemeSelected && colors ? colors.color100 : "white"}>
+          <Checkbox checked={isThemeSelected} color={colors?.color100 || "black"}>
             <span className={styles.all}>
-              <EVAIcon name="grid" fill={!isThemeSelected && colors ? colors.color100 : "white"} />
+              <EVAIcon name="grid" fill={colors?.color100 || "black"} />
               {t("Recherche.all", "Tous")}
               <span
                 className={styles.badge}
@@ -151,13 +151,13 @@ const NeedsList = (props: Props) => {
                 </div>
               )}
             <ButtonNeed
-              className={styles.btn}
+              className={cls(styles.btn, styles.need)}
               color100={need.theme.colors.color100}
               color30={need.theme.colors.color30}
               selected={selected}
               onClick={() => selectNeed(need._id)}
             >
-              <Checkbox checked={selected} color={selected ? "white" : need.theme.colors.color100}>
+              <Checkbox checked={selected} color={colors?.color100 || "black"}>
                 {need[locale]?.text || ""}
                 <span
                   className={styles.badge}

@@ -22,7 +22,7 @@ const ThemeLink = styled.button`
 
   :hover {
     background: ${(props: ThemeLinkProps) => props.color30};
-    box-shadow: 0 0 0 2px ${(props: ThemeLinkProps) => props.color100};
+    box-shadow: 0 0 0 1px ${(props: ThemeLinkProps) => props.color100}, 0 0 40px 0 #00000040;
     color: ${(props: ThemeLinkProps) => props.color100} !important;
   }
 `;

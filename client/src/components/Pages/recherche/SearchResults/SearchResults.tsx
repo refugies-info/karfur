@@ -113,7 +113,8 @@ const SearchResults = (props: Props) => {
               styles.results,
               styles.demarches,
               props.selectedType !== "demarche" && styles.horizontal_scroll,
-              props.selectedType === "dispositif" && styles.hidden
+              props.selectedType === "dispositif" && styles.hidden,
+              !hideDemarches && styles.all_visible
             )}
           >
             <DemarcheCardTitle
@@ -139,7 +140,12 @@ const SearchResults = (props: Props) => {
             <h2>{t("Recherche.dispositifTitle", "Les fiches dispositifs")}</h2>
             <span>{props.filteredResult.dispositifs.length}</span>
           </div>
-          <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+          <div className={cls(
+            styles.results,
+            styles.dispositifs,
+            props.selectedType === "demarche" && styles.hidden,
+            !hideDispositifs && styles.all_visible
+          )}>
             <DispositifCardTitle
               count={props.filteredResult.dispositifs.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
@@ -163,7 +169,12 @@ const SearchResults = (props: Props) => {
             <h2>{t("Recherche.otherDispositifTitle", "Autres fiches avec ce thème")}</h2>
             <span>{props.filteredResult.dispositifsSecondaryTheme.length}</span>
           </div>
-          <div className={cls(styles.results, styles.dispositifs, props.selectedType === "demarche" && styles.hidden)}>
+          <div className={cls(
+            styles.results,
+            styles.dispositifs,
+            props.selectedType === "demarche" && styles.hidden,
+            !hideSecondaryDispositifs && styles.all_visible
+          )}>
             <DispositifCardTitle
               count={props.filteredResult.dispositifsSecondaryTheme.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}

@@ -23,14 +23,14 @@ const HomeTypeCard = (props: Props) => {
     >
       <Image src={props.image} width={160} height={160} alt={props.title} />
       <h3 className={cls("h5", styles.title)}>{props.title}</h3>
-      <ul>
+      <p>
         {props.examples.map((text, i) => (
-          <li key={i}>
-            <EVAIcon name="checkmark-outline" fill={colors.gray80} size={20} className="mr-2" />
+          <span key={i}>
             {text}
-          </li>
+            {i + 2 < props.examples.length && ", "}
+          </span>
         ))}
-      </ul>
+      </p>
     </button>
   );
 };

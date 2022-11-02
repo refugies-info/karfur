@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
-import styles from "./SearchInput.module.scss";
 import { checkIfEllipsis } from "lib/checkIfEllipsis";
+import styles from "./SearchInput.module.scss";
 
 interface Props {
   label: string;
@@ -11,6 +11,7 @@ interface Props {
   placeholder: string;
   value: string;
   inputValue: string;
+  inputPlaceholder?: string;
   active: boolean;
   setActive: (active: boolean) => void;
   onChange?: (e: any) => void;
@@ -76,7 +77,7 @@ const SearchInput = (props: Props) => {
             ref={ref}
             id={props.label}
             type="text"
-            placeholder={t("Rechercher2", "Rechercher...")}
+            placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
             className={styles.input}
             onChange={props.onChange}
             value={props.inputValue}

@@ -19,6 +19,7 @@ const SearchFilterDesktop = (props: Props) => {
   return (
     <Dropdown
       isOpen={open}
+      direction="down"
       toggle={() => setOpen((o) => !o)}
       className={cls(styles.dropdown, open && styles.show, props.selected.length > 0 && styles.selected)}
     >
@@ -31,7 +32,7 @@ const SearchFilterDesktop = (props: Props) => {
           size={20}
         />
       </DropdownToggle>
-      <DropdownMenu className={styles.menu}>
+      <DropdownMenu className={styles.menu} flip={false}>
         {props.options.map((option, i) => {
           const isSelected = props.selected.includes(option.key);
           return (

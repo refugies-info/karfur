@@ -48,3 +48,8 @@ $drawerLimit: 768px;
     @content;
   }
 }
+@mixin isDesktop() {
+  @include media-min("md-limit") {
+    @content;
+  }
+}

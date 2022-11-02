@@ -15,6 +15,12 @@
   &.white {
     background-color: $white;
   }
+
+  @include isMobile() {
+    h2 {
+      @include text("h4");
+    }
+  }
 }
 
 .container_inner {
@@ -53,7 +59,7 @@
 
   &.demarches {
     gap: u(6);
-    margin-bottom: 120px;
+    margin-bottom: 80px;
 
     @include isMobile() {
       flex-wrap: nowrap;

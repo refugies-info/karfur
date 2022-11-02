@@ -65,10 +65,7 @@
     background: transparent;
     padding: 0;
     @include text("small");
-
-    @include isMobile() {
-      width: 100%;
-    }
+    width: 100%;
   }
 
   .value {

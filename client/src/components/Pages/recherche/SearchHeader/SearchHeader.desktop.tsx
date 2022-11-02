@@ -127,9 +127,9 @@ const SearchHeaderDesktop = (props: Props) => {
     <div className={styles.container}>
       <Container className={styles.container_inner}>
         {props.searchMinified ? (
-          <h1 className="h3 text-white">{t("Recherche.titleHome", { count: props.nbResults })}</h1>
+          <h1 className="h1 text-white">{t("Recherche.titleHome", { count: props.nbResults })}</h1>
         ) : (
-          <h1 className="h3 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
+          <h1 className="h1 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
         )}
         <div className={styles.inputs}>
           <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
@@ -141,6 +141,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 setActive={setLocationFocused}
                 onChange={(evt) => setLocationSearch(evt.target.value)}
                 inputValue={locationSearch}
+                inputPlaceholder={t("Recherche.department")}
                 loading={isPlacePredictionsLoading}
                 value={departmentsSelected.join(", ")}
                 placeholder={t("Recherche.all", "Tous")}
@@ -155,7 +156,10 @@ const SearchHeaderDesktop = (props: Props) => {
                 departmentsSelected={departmentsSelected}
                 setDepartmentsSelected={setDepartmentsSelected}
                 predictions={placePredictions}
-                onSelectPrediction={onSelectPrediction}
+                onSelectPrediction={(id: string) => {
+                  onSelectPrediction(id);
+                  setLocationSearch("");
+                }}
               />
             </DropdownMenu>
             {(locationOpen || locationFocused) && <div className={styles.backdrop} onClick={toggleLocation} />}
@@ -207,13 +211,6 @@ const SearchHeaderDesktop = (props: Props) => {
                 resetFilter={() => setSearch("")}
               />
             </Button>
-            {searchFocused && (
-              <div
-                className={styles.backdrop}
-                onClick={() => setSearchFocused(false)}
-                style={{ height: props.searchMinified ? 389 : 474 }} /* dirty fix to cover only header */
-              />
-            )}
           </div>
         </div>
 
@@ -265,6 +262,13 @@ const SearchHeaderDesktop = (props: Props) => {
           </div>
         )}
       </Container>
+
+      {searchFocused && ( /* search backdrop placed here to cover only header */
+        <div
+          className={cls(styles.backdrop, styles.search)}
+          onClick={() => setSearchFocused(false)}
+        />
+      )}
     </div>
   );
 };

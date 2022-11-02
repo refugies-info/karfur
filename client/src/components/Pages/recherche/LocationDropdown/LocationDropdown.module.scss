@@ -31,6 +31,12 @@
   @include rtl() {
     text-align: right;
   }
+
+  &.no_results {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
 }
 
 .selected {

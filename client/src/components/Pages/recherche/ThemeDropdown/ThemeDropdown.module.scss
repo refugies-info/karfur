@@ -29,14 +29,19 @@
   display: inline-flex;
   width: 100%;
   align-items: center;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   color: $dark;
   border-radius: u(2);
   margin-bottom: 4px;
-  height: 41px;
+  height: 39px;
 
   &:focus {
     outline: none;
+  }
+
+  &.need {
+    height: auto;
+    border: none;
   }
 }
 

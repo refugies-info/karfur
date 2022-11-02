@@ -68,7 +68,7 @@ const HomeSearch = (props: Props) => {
       {/* themes */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
+          <h2 className="h3">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
           <div className={styles.themes}>
             {themes.sort(sortThemes).map((theme, i) => {
               return (
@@ -86,7 +86,7 @@ const HomeSearch = (props: Props) => {
       {/* types */}
       <div className={cls(styles.section, styles.white)}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">{t("Recherche.titleTypes", "Deux types d'information")}</h2>
+          <h2 className="h3">{t("Recherche.titleTypes", "Deux types d'information")}</h2>
           <Row className={styles.content}>
             <Col md="6">
               <HomeTypeCard
@@ -111,13 +111,13 @@ const HomeSearch = (props: Props) => {
       {/* new */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
-          <h2 className="h4">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
+          <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
           <div className={cls(styles.results, styles.demarches)}>
             {props.demarches.map((d) => (
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          <h2 className="h4">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
+          <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
           <div className={cls(styles.results, styles.dispositifs)}>
             {props.dispositifs.map((d) => (
               <DispositifCard key={d._id.toString()} dispositif={d} />
@@ -131,7 +131,7 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <Row>
             <Col>
-              <h2 className="h4">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
+              <h2 className="h3">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
               <div className={styles.departments}>
                 {departmentExamples.map((dep, i) => (
                   <button

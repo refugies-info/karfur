@@ -4,6 +4,7 @@ import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
 
+import { cls } from "lib/classname";
 import styles from "./LocationDropdown.module.scss";
 
 interface Props {
@@ -37,7 +38,7 @@ const LocationDropdown = (props: Props) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={cls(styles.header, props.predictions.length === 0 && styles.no_results)}>
         {props.departmentsSelected.map((dep, i) => (
           <Button key={i} className={styles.selected} onClick={() => removeDepartement(dep)}>
             {dep}
