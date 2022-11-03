@@ -181,7 +181,6 @@ const SearchHeaderMobile = (props: Props) => {
                     placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
                     onChange={(evt) => setThemeSearch(evt.target.value)}
                     value={themeSearch}
-                    autoFocus
                   />
                 </div>
               </div>
