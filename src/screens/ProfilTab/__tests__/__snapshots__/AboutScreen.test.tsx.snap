@@ -228,12 +228,10 @@ exports[`About screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 8,
               "marginHorizontal": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -302,11 +300,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -378,11 +374,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -449,11 +443,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -486,12 +478,10 @@ exports[`About screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 8,
               "marginHorizontal": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -559,11 +549,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -634,11 +622,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -705,11 +691,9 @@ exports[`About screen should render correctly 1`] = `
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
                     "marginBottom": 8,
                     "marginTop": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -742,12 +726,10 @@ exports[`About screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 8,
               "marginHorizontal": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -817,11 +799,9 @@ exports[`About screen should render correctly 1`] = `
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginBottom": 8,
                       "marginTop": 16,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -895,11 +875,9 @@ exports[`About screen should render correctly 1`] = `
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginBottom": 8,
                       "marginTop": 16,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -971,11 +949,9 @@ exports[`About screen should render correctly 1`] = `
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginBottom": 8,
                       "marginTop": 16,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -1009,12 +985,10 @@ exports[`About screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 8,
               "marginHorizontal": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
             Object {
               "marginBottom": 24,
@@ -2127,6 +2101,7 @@ exports[`About screen should render correctly 1`] = `
             hasIcon={true}
             iconFirst={true}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -2158,12 +2133,10 @@ exports[`About screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 8,
               "marginHorizontal": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
             Object {
               "marginBottom": 24,
@@ -2241,20 +2214,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2270,13 +2241,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2344,20 +2313,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2373,13 +2340,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2447,20 +2412,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2476,13 +2439,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2550,20 +2511,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2579,13 +2538,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2653,20 +2610,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2682,13 +2637,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2756,20 +2709,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2785,13 +2736,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2859,20 +2808,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2888,13 +2835,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -2962,20 +2907,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -2991,13 +2934,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -3065,20 +3006,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -3094,13 +3033,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -3168,20 +3105,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -3197,13 +3132,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }
@@ -3271,20 +3204,18 @@ exports[`About screen should render correctly 1`] = `
                   style={
                     Array [
                       Object {
+                        "backgroundColor": "#FFFFFF",
                         "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
-                        "backgroundColor": "#FFFFFF",
                         "marginBottom": 8,
                         "paddingBottom": 4,
                         "paddingLeft": 4,
                         "paddingRight": 4,
                         "paddingTop": 4,
+                        "textAlign": "left",
                         "width": "auto",
                       },
                     ]
@@ -3300,13 +3231,11 @@ exports[`About screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexWrap": "wrap",
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "flexWrap": "wrap",
                     },
                   ]
                 }

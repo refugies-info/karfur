@@ -308,15 +308,11 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
+                  "alignSelf": "flex-start",
+                  "backgroundColor": "#FFFFFF",
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
-                  "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
                   "lineHeight": 40,
                   "marginBottom": 16,
                   "opacity": 0.9,
@@ -324,6 +320,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   "paddingLeft": 8,
                   "paddingRight": 8,
                   "paddingTop": 8,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -342,21 +339,18 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
+                  "alignSelf": "flex-start",
+                  "backgroundColor": "#FFFFFF",
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
                   "lineHeight": 32,
                   "opacity": 0.9,
                   "paddingBottom": 8,
                   "paddingLeft": 8,
                   "paddingRight": 8,
                   "paddingTop": 8,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -434,18 +428,15 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -1046,15 +1037,12 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -1111,14 +1099,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -1138,14 +1123,12 @@ exports[`ContentScreen should render correctly 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -1202,15 +1185,12 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -1267,14 +1247,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -1294,14 +1271,12 @@ exports[`ContentScreen should render correctly 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -1371,14 +1346,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -1398,14 +1370,12 @@ exports[`ContentScreen should render correctly 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -1462,15 +1432,12 @@ exports[`ContentScreen should render correctly 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -1527,14 +1494,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -1639,14 +1603,11 @@ exports[`ContentScreen should render correctly 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -1666,14 +1627,12 @@ exports[`ContentScreen should render correctly 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -1708,18 +1667,15 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -1808,15 +1764,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -2088,15 +2041,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -2368,15 +2318,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -2648,15 +2595,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -2860,18 +2804,15 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -2960,15 +2901,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -3301,15 +3239,12 @@ exports[`ContentScreen should render correctly 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -3512,18 +3447,15 @@ exports[`ContentScreen should render correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#212121",
+                "color": "#3D2884",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
                 "marginBottom": 16,
                 "marginHorizontal": 24,
                 "marginTop": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -3695,11 +3627,9 @@ exports[`ContentScreen should render correctly 1`] = `
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
                         "marginLeft": 8,
                         "marginRight": 0,
+                        "textAlign": "left",
                       },
                     ]
                   }
@@ -3825,16 +3755,13 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#5E5E5E",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#5E5E5E",
                   "marginLeft": 0,
                   "marginRight": 4,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -3847,14 +3774,11 @@ exports[`ContentScreen should render correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#008205",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
-                },
-                Object {
-                  "color": "#008205",
                 },
               ]
             }
@@ -4023,6 +3947,7 @@ exports[`ContentScreen should render correctly 1`] = `
           hasIcon={true}
           iconFirst={true}
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -4055,7 +3980,7 @@ exports[`ContentScreen should render correctly 1`] = `
       >
         <View
           bottomInset={0}
-          className="sc-bczRLJ ivbfPp"
+          className="sc-bcXHqe dJXQSk"
         >
           <View
             accessibilityLabel="Écouter"
@@ -4077,7 +4002,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-dkzDqf eBVftw"
+              className="sc-dkrFOg eZCUAS"
             >
               <react-native-svg
                 height={16}
@@ -4085,6 +4010,8 @@ exports[`ContentScreen should render correctly 1`] = `
               />
             </View>
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -4104,7 +4031,7 @@ exports[`ContentScreen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            className="sc-hKMtZM ceTnCf"
+            className="sc-hLBbgP keDkga"
             collapsable={false}
             style={
               Object {
@@ -4117,7 +4044,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-eCYdqJ bIpvRt"
+              className="sc-eDvSVe lidJVV"
             >
               <Image
                 source={1}
@@ -4147,6 +4074,8 @@ exports[`ContentScreen should render correctly 1`] = `
               }
             >
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -4256,7 +4185,7 @@ exports[`ContentScreen should render correctly 1`] = `
               </View>
             </View>
             <View
-              className="sc-jSMfEi bPDEas"
+              className="sc-jSUZER fcQjdI"
             />
             <View
               accessible={true}
@@ -4580,6 +4509,7 @@ exports[`ContentScreen should render correctly 1`] = `
           hasIcon={true}
           iconFirst={true}
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -4948,15 +4878,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
+                  "alignSelf": "flex-start",
+                  "backgroundColor": "#FFFFFF",
                   "color": "#212121",
                   "fontFamily": "circularBold",
                   "fontSize": 25,
-                  "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
                   "lineHeight": 40,
                   "marginBottom": 16,
                   "opacity": 0.9,
@@ -4964,6 +4890,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "paddingLeft": 8,
                   "paddingRight": 8,
                   "paddingTop": 8,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -4982,21 +4909,18 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
+                  "alignSelf": "flex-start",
+                  "backgroundColor": "#FFFFFF",
                   "color": "#212121",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
-                  "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
                   "lineHeight": 32,
                   "opacity": 0.9,
                   "paddingBottom": 8,
                   "paddingLeft": 8,
                   "paddingRight": 8,
                   "paddingTop": 8,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -5074,18 +4998,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -5686,15 +5607,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -5751,14 +5669,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -5778,14 +5693,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -5842,15 +5755,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -5907,14 +5817,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -5934,14 +5841,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -6011,14 +5916,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -6038,14 +5940,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -6102,15 +6002,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#3D2884",
                       "fontFamily": "circularBold",
                       "fontSize": 19,
                       "lineHeight": 24,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#3D2884",
                       "marginBottom": 12,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -6167,14 +6064,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -6279,14 +6173,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       style={
                         Array [
                           Object {
-                            "color": "#212121",
+                            "color": "#5E5E5E",
                             "fontFamily": "circularBook",
                             "fontSize": 13,
                             "lineHeight": 16,
                             "textAlign": "left",
-                          },
-                          Object {
-                            "color": "#5E5E5E",
                           },
                         ]
                       }
@@ -6306,14 +6197,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           Array [
                             Object {
                               "color": "#212121",
+                              "flexShrink": 1,
                               "fontFamily": "circularBook",
                               "fontSize": 16,
                               "lineHeight": 20,
-                              "textAlign": "left",
-                            },
-                            Object {
-                              "flexShrink": 1,
                               "marginTop": 4,
+                              "textAlign": "left",
                             },
                           ]
                         }
@@ -6348,18 +6237,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -6448,15 +6334,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -6728,15 +6611,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -7008,15 +6888,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -7288,15 +7165,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -7500,18 +7374,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#3D2884",
+                  "flexShrink": 1,
                   "fontFamily": "circularBold",
                   "fontSize": 25,
                   "lineHeight": 32,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#3D2884",
-                  "flexShrink": 1,
                   "marginBottom": 16,
                   "marginHorizontal": 24,
                   "marginTop": 16,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -7600,15 +7471,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -7941,15 +7809,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#212121",
+                          "color": "#3D2884",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
                           "lineHeight": 20,
                           "textAlign": "left",
-                        },
-                        Object {
-                          "color": "#3D2884",
                           "width": 630,
                         },
                       ]
@@ -8152,18 +8017,15 @@ exports[`ContentScreen should toggle map modal 1`] = `
           style={
             Array [
               Object {
-                "color": "#212121",
+                "color": "#3D2884",
+                "flexShrink": 1,
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#3D2884",
-                "flexShrink": 1,
                 "marginBottom": 16,
                 "marginHorizontal": 24,
                 "marginTop": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -8335,11 +8197,9 @@ exports[`ContentScreen should toggle map modal 1`] = `
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                      Object {
                         "marginLeft": 8,
                         "marginRight": 0,
+                        "textAlign": "left",
                       },
                     ]
                   }
@@ -8465,16 +8325,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#5E5E5E",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#5E5E5E",
                   "marginLeft": 0,
                   "marginRight": 4,
+                  "textAlign": "left",
                 },
               ]
             }
@@ -8487,14 +8344,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
             style={
               Array [
                 Object {
-                  "color": "#212121",
+                  "color": "#008205",
                   "fontFamily": "circularBook",
                   "fontSize": 16,
                   "lineHeight": 20,
                   "textAlign": "left",
-                },
-                Object {
-                  "color": "#008205",
                 },
               ]
             }
@@ -8663,6 +8517,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           hasIcon={true}
           iconFirst={true}
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -8695,7 +8550,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
       >
         <View
           bottomInset={0}
-          className="sc-bczRLJ ivbfPp"
+          className="sc-bcXHqe dJXQSk"
         >
           <View
             accessibilityLabel="Écouter"
@@ -8717,7 +8572,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-dkzDqf eBVftw"
+              className="sc-dkrFOg eZCUAS"
             >
               <react-native-svg
                 height={16}
@@ -8725,6 +8580,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               />
             </View>
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -8744,7 +8601,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </Text>
           </View>
           <View
-            className="sc-hKMtZM ceTnCf"
+            className="sc-hLBbgP keDkga"
             collapsable={false}
             style={
               Object {
@@ -8757,7 +8614,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-eCYdqJ bIpvRt"
+              className="sc-eDvSVe lidJVV"
             >
               <Image
                 source={1}
@@ -8787,6 +8644,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
               }
             >
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -8896,7 +8755,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </View>
             </View>
             <View
-              className="sc-jSMfEi bPDEas"
+              className="sc-jSUZER fcQjdI"
             />
             <View
               accessible={true}
@@ -9220,6 +9079,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           hasIcon={true}
           iconFirst={true}
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {

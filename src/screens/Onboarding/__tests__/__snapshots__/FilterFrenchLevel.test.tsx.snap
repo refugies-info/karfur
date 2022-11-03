@@ -227,6 +227,7 @@ exports[`Filter french level should render correctly when french level selected 
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -284,10 +285,8 @@ exports[`Filter french level should render correctly when french level selected 
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -296,6 +295,7 @@ exports[`Filter french level should render correctly when french level selected 
         </Text>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -384,9 +384,6 @@ exports[`Filter french level should render correctly when french level selected 
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -404,9 +401,6 @@ exports[`Filter french level should render correctly when french level selected 
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -491,15 +485,12 @@ exports[`Filter french level should render correctly when french level selected 
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#0421B1",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#0421B1",
                     },
                   ]
                 }
@@ -512,15 +503,12 @@ exports[`Filter french level should render correctly when french level selected 
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
+                        "color": "#0421B1",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#0421B1",
                       },
                     ]
                   }
@@ -685,9 +673,6 @@ exports[`Filter french level should render correctly when french level selected 
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -705,9 +690,6 @@ exports[`Filter french level should render correctly when french level selected 
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -899,6 +881,8 @@ exports[`Filter french level should render correctly when french level selected 
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -1032,6 +1016,8 @@ exports[`Filter french level should render correctly when french level selected 
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -1285,6 +1271,7 @@ exports[`Filter french level should render correctly when no french level select
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1342,10 +1329,8 @@ exports[`Filter french level should render correctly when no french level select
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -1354,6 +1339,7 @@ exports[`Filter french level should render correctly when no french level select
         </Text>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -1442,9 +1428,6 @@ exports[`Filter french level should render correctly when no french level select
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -1462,9 +1445,6 @@ exports[`Filter french level should render correctly when no french level select
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -1564,9 +1544,6 @@ exports[`Filter french level should render correctly when no french level select
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -1584,9 +1561,6 @@ exports[`Filter french level should render correctly when no french level select
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -1686,9 +1660,6 @@ exports[`Filter french level should render correctly when no french level select
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -1706,9 +1677,6 @@ exports[`Filter french level should render correctly when no french level select
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -1900,6 +1868,8 @@ exports[`Filter french level should render correctly when no french level select
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -2025,6 +1995,8 @@ exports[`Filter french level should render correctly when no french level select
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -2278,6 +2250,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -2335,10 +2308,8 @@ exports[`Filter french level should select level when click on it 1`] = `
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -2347,6 +2318,7 @@ exports[`Filter french level should select level when click on it 1`] = `
         </Text>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -2435,9 +2407,6 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -2455,9 +2424,6 @@ exports[`Filter french level should select level when click on it 1`] = `
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -2542,15 +2508,12 @@ exports[`Filter french level should select level when click on it 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
+                      "color": "#0421B1",
                       "flexShrink": 1,
                       "fontFamily": "circularBold",
                       "fontSize": 16,
                       "lineHeight": 20,
                       "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#0421B1",
                     },
                   ]
                 }
@@ -2563,15 +2526,12 @@ exports[`Filter french level should select level when click on it 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#212121",
+                        "color": "#0421B1",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#0421B1",
                       },
                     ]
                   }
@@ -2736,9 +2696,6 @@ exports[`Filter french level should select level when click on it 1`] = `
                       "lineHeight": 20,
                       "textAlign": "left",
                     },
-                    Object {
-                      "color": "#212121",
-                    },
                   ]
                 }
               >
@@ -2756,9 +2713,6 @@ exports[`Filter french level should select level when click on it 1`] = `
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
-                        "color": "#212121",
                       },
                     ]
                   }
@@ -2950,6 +2904,8 @@ exports[`Filter french level should select level when click on it 1`] = `
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -3083,6 +3039,8 @@ exports[`Filter french level should select level when click on it 1`] = `
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {

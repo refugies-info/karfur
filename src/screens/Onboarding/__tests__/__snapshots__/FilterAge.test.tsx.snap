@@ -227,6 +227,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -275,10 +276,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 16,
+              "textAlign": "left",
             },
           ]
         }
@@ -287,6 +286,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       </Text>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -360,15 +360,12 @@ exports[`Filter age should render correctly when age selected 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#0421B1",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#0421B1",
                   },
                 ]
               }
@@ -529,9 +526,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     "lineHeight": 20,
                     "textAlign": "left",
                   },
-                  Object {
-                    "color": "#212121",
-                  },
                 ]
               }
             >
@@ -625,9 +619,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
                   },
                 ]
               }
@@ -805,6 +796,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -938,6 +931,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -1191,6 +1186,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1239,10 +1235,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 16,
+              "textAlign": "left",
             },
           ]
         }
@@ -1251,6 +1245,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       </Text>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1338,9 +1333,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
                   },
                 ]
               }
@@ -1436,9 +1428,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "lineHeight": 20,
                     "textAlign": "left",
                   },
-                  Object {
-                    "color": "#212121",
-                  },
                 ]
               }
             >
@@ -1532,9 +1521,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
                   },
                 ]
               }
@@ -1712,6 +1698,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -1837,6 +1825,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -2090,6 +2080,7 @@ exports[`Filter age should select age when click on it 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -2138,10 +2129,8 @@ exports[`Filter age should select age when click on it 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 16,
+              "textAlign": "left",
             },
           ]
         }
@@ -2150,6 +2139,7 @@ exports[`Filter age should select age when click on it 1`] = `
       </Text>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -2237,9 +2227,6 @@ exports[`Filter age should select age when click on it 1`] = `
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#212121",
                   },
                 ]
               }
@@ -2335,9 +2322,6 @@ exports[`Filter age should select age when click on it 1`] = `
                     "lineHeight": 20,
                     "textAlign": "left",
                   },
-                  Object {
-                    "color": "#212121",
-                  },
                 ]
               }
             >
@@ -2417,15 +2401,12 @@ exports[`Filter age should select age when click on it 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#0421B1",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#0421B1",
                   },
                 ]
               }
@@ -2668,6 +2649,8 @@ exports[`Filter age should select age when click on it 1`] = `
             }
           >
             <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -2801,6 +2784,8 @@ exports[`Filter age should select age when click on it 1`] = `
             </View>
             <Text
               color="#FFFFFF"
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {

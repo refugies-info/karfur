@@ -256,6 +256,7 @@ exports[`Search Screen should render correctly 1`] = `
       >
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -281,6 +282,7 @@ exports[`Search Screen should render correctly 1`] = `
       <View>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -359,6 +361,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -445,6 +448,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -531,6 +535,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -617,6 +622,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -703,6 +709,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -789,6 +796,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -875,6 +883,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -961,6 +970,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1047,6 +1057,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1133,6 +1144,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1219,6 +1231,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1305,6 +1318,7 @@ exports[`Search Screen should render correctly 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {

@@ -51,7 +51,7 @@ const CardGradient = styled(LinearGradient)<{ width: number; height: number }>`
   align-items: center;
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
-  borderradius: ${({ theme }) => theme.radius * 2}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
 export const CarousselCard = (props: Props) => {

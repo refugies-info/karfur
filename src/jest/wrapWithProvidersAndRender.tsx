@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-native-testing-library";
-import { NavigationContext } from "@react-navigation/native"
+import { NavigationContext } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import {
@@ -8,6 +8,7 @@ import {
   rootReducer,
   RootState,
 } from "../services/redux/reducers";
+import { ThemeProvider } from "../theme";
 
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<any>;
@@ -17,8 +18,8 @@ interface WrapWithProvidersAndRenderParams {
 
 const navContext = {
   isFocused: () => true,
-  addListener: jest.fn(() => jest.fn())
-}
+  addListener: jest.fn(() => jest.fn()),
+};
 
 /**
  * Provide all the ugly-to-set-up providers for your component to be ready to test
@@ -36,7 +37,9 @@ export function wrapWithProvidersAndRender({
   const componentWithReduxAndI18n = (
     <NavigationContext.Provider value={navContext as any}>
       <Provider store={store}>
-        <Component {...compProps} />
+        <ThemeProvider>
+          <Component {...compProps} />
+        </ThemeProvider>
       </Provider>
     </NavigationContext.Provider>
   );

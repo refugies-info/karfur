@@ -1,123 +1,74 @@
-import styled from "styled-components/native";
-import { styles } from "../theme";
 import React from "react";
+import { Text } from "react-native";
+import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
-export const StyledTextNormal = styled.Text`
-  font-size: ${styles.fonts.sizes.normal}px;
-  font-family: ${styles.fonts.families.circularStandard};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
-  line-height: 24px;
-  color: ${styles.colors.black};
+const StyledText = styled((props) => {
+  const { isRTL } = useTranslationWithRTL();
+  return <Text {...props} isRTL={isRTL} selectable />;
+})`
+  text-align: ${({ theme }) => (theme.i18n.isRTL ? "right" : "left")};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-export const StyledTextNormalBold = styled.Text`
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
-  font-size: ${styles.fonts.sizes.normal}px;
-  font-family: ${styles.fonts.families.circularBold};
+export const StyledTextNormal = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.normal}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularStandard};
   line-height: 24px;
-  color: ${styles.colors.black};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-export const StyledTextSmall = styled.Text`
-  font-size: ${styles.fonts.sizes.small}px;
-  font-family: ${styles.fonts.families.circularStandard};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextNormalBold = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.normal}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
+  line-height: 24px;
+`;
+
+export const StyledTextSmall = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.small}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularStandard};
   line-height: 20px;
-  color: ${styles.colors.black};
 `;
 
-export const StyledTextSmallBold = styled.Text`
-  font-size: ${styles.fonts.sizes.small}px;
-  font-family: ${styles.fonts.families.circularBold};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextSmallBold = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.small}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 20px;
   flex-shrink: 1;
-  color: ${styles.colors.black};
 `;
 
-export const StyledTextVerySmall = styled.Text`
-  font-size: ${styles.fonts.sizes.verySmall}px;
-  font-family: ${styles.fonts.families.circularStandard};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextVerySmall = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.verySmall}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularStandard};
   line-height: 16px;
-  color: ${styles.colors.black};
 `;
 
-export const StyledTextVerySmallBold = styled.Text`
-  font-size: ${styles.fonts.sizes.verySmall}px;
-  font-family: ${styles.fonts.families.circularBold};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextVerySmallBold = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.verySmall}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 16px;
-  color: ${styles.colors.black};
 `;
 
-export const StyledTextBig = styled.Text`
-  font-size: ${styles.fonts.sizes.big}px;
-  font-family: ${styles.fonts.families.circularStandard};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextBig = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.big}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularStandard};
   line-height: 32px;
-  color: ${styles.colors.black};
 `;
 
-export const StyledTextBigBold = styled.Text`
-  font-size: ${styles.fonts.sizes.big}px;
-  font-family: ${styles.fonts.families.circularBold};
-  text-align: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "right" : "left"};
+export const StyledTextBigBold = styled(StyledText)`
+  font-size: ${({ theme }) => theme.fonts.sizes.big}px;
+  font-family: ${({ theme }) => theme.fonts.families.circularBold};
   line-height: 32px;
-  color: ${styles.colors.black};
 `;
 
-export const TextNormal = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-  return <StyledTextNormal isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextNormalBold = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextNormalBold isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextBig = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-  return <StyledTextBig isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextBigBold = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextBigBold isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextVerySmallNormal = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextVerySmall isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextVerySmallBold = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextVerySmallBold isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextSmallNormal = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextSmall isRTL={isRTL} selectable={true} {...props} />;
-};
-
-export const TextSmallBold = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-
-  return <StyledTextSmallBold isRTL={isRTL} selectable={true} {...props} />;
+// For back-compatibility
+export {
+  StyledTextBig as TextBig,
+  StyledTextBigBold as TextBigBold,
+  StyledTextNormal as TextNormal,
+  StyledTextNormalBold as TextNormalBold,
+  StyledTextSmall as TextSmallNormal,
+  StyledTextSmallBold as TextSmallBold,
+  StyledTextVerySmall as TextVerySmallNormal,
+  StyledTextVerySmallBold as TextVerySmallBold,
 };

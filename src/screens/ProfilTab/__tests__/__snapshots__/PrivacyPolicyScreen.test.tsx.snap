@@ -214,10 +214,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
+              "textAlign": "left",
             },
             Object {
               "marginTop": 16,
@@ -237,10 +235,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -380,11 +376,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -450,14 +444,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -497,10 +488,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -676,10 +665,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -750,14 +737,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -797,10 +781,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1146,10 +1128,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1364,14 +1344,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -1411,10 +1388,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1431,10 +1406,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1451,10 +1424,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -1524,14 +1495,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -1571,10 +1539,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1591,10 +1557,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -1615,11 +1579,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -1685,14 +1647,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -1732,10 +1691,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1763,10 +1720,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -1836,14 +1791,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -1883,10 +1835,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -1903,10 +1853,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -1976,14 +1924,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -2023,10 +1968,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -2043,10 +1986,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -2272,11 +2213,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2290,15 +2229,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2331,11 +2268,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2349,15 +2284,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2390,11 +2323,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2408,15 +2339,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2449,11 +2378,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2467,15 +2394,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2508,11 +2433,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2526,15 +2449,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2555,8 +2476,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
                         "textDecorationColor": "black",
                         "textDecorationLine": "underline",
                         "textDecorationStyle": "solid",
@@ -2643,11 +2562,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2661,15 +2578,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2702,11 +2617,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2720,15 +2633,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2761,11 +2672,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2779,15 +2688,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2820,11 +2727,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
                       "marginLeft": 4,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2838,15 +2743,13 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                   Array [
                     Object {
                       "color": "#212121",
+                      "flexShrink": 1,
                       "fontFamily": "circularBook",
                       "fontSize": 16,
                       "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "flexShrink": 1,
                       "marginLeft": 8,
                       "marginRight": 0,
+                      "textAlign": "left",
                     },
                   ]
                 }
@@ -2867,8 +2770,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                         "fontSize": 16,
                         "lineHeight": 20,
                         "textAlign": "left",
-                      },
-                      Object {
                         "textDecorationColor": "black",
                         "textDecorationLine": "underline",
                         "textDecorationStyle": "solid",
@@ -2942,14 +2843,11 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#FFFFFF",
                     "fontFamily": "circularBold",
                     "fontSize": 19,
                     "lineHeight": 24,
                     "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
                   },
                 ]
               }
@@ -2989,10 +2887,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
             ]
           }
@@ -3009,10 +2905,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontFamily": "circularBook",
                 "fontSize": 16,
                 "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 24,
+                "textAlign": "left",
               },
               Object {
                 "marginBottom": 0,
@@ -3033,11 +2927,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -3054,10 +2946,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
+              "textAlign": "left",
             },
             Object {
               "marginBottom": 0,
@@ -3080,8 +2970,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
                 "fontSize": 16,
                 "lineHeight": 20,
                 "textAlign": "left",
-              },
-              Object {
                 "textDecorationColor": "black",
                 "textDecorationLine": "underline",
                 "textDecorationStyle": "solid",
@@ -3103,11 +2991,9 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBold",
               "fontSize": 25,
               "lineHeight": 32,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "marginTop": 56,
+              "textAlign": "left",
             },
           ]
         }
@@ -3124,10 +3010,8 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -3249,6 +3133,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             hasIcon={true}
             iconFirst={true}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {

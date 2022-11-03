@@ -129,11 +129,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -276,6 +274,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -308,6 +307,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -525,6 +525,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -557,6 +558,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -779,6 +781,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -811,6 +814,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1040,6 +1044,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1072,6 +1077,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1231,6 +1237,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -1261,11 +1268,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -1401,6 +1406,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1519,11 +1525,9 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -1677,6 +1681,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1906,6 +1911,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -2138,6 +2144,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -2304,6 +2311,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               />
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -2475,6 +2483,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -2740,11 +2749,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -2887,6 +2894,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -2919,6 +2927,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3136,6 +3145,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3168,6 +3178,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3390,6 +3401,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3422,6 +3434,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3651,6 +3664,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3683,6 +3697,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -3842,6 +3857,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -3872,11 +3888,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -4012,6 +4026,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -4130,11 +4145,9 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -4288,6 +4301,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -4517,6 +4531,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -4749,6 +4764,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -4915,6 +4931,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               />
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5086,6 +5103,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -5351,11 +5369,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -5498,6 +5514,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5530,6 +5547,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5747,6 +5765,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -5779,6 +5798,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6001,6 +6021,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6033,6 +6054,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6262,6 +6284,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6294,6 +6317,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             >
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6453,6 +6477,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -6483,11 +6508,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -6623,6 +6646,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -6741,11 +6765,9 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "fontFamily": "circularBook",
               "fontSize": 16,
               "lineHeight": 20,
-              "textAlign": "left",
-            },
-            Object {
               "marginBottom": 24,
               "paddingHorizontal": 24,
+              "textAlign": "left",
             },
           ]
         }
@@ -6899,6 +6921,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -7128,6 +7151,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -7360,6 +7384,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               </View>
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -7526,6 +7551,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               />
               <Text
                 isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -7697,6 +7723,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {
@@ -7869,6 +7896,8 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
         }
       >
         <Text
+          isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -7938,6 +7967,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               hasIcon={true}
               iconFirst={false}
               isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -8077,6 +8107,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             hasIcon={false}
             iconFirst={false}
             isRTL={false}
+            selectable={true}
             style={
               Array [
                 Object {

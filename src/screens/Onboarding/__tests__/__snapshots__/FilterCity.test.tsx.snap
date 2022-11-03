@@ -227,6 +227,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -267,10 +268,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -279,6 +278,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
         </Text>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -304,10 +304,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
                 "fontFamily": "circularBold",
                 "fontSize": 13,
                 "lineHeight": 16,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
                 "textTransform": "uppercase",
               },
             ]
@@ -358,6 +356,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
           >
             <Text
               isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
@@ -602,6 +601,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
               }
             >
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -735,6 +736,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
               </View>
               <Text
                 color="#FFFFFF"
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -989,6 +992,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       </View>
       <Text
         isRTL={false}
+        selectable={true}
         style={
           Array [
             Object {
@@ -1029,10 +1033,8 @@ exports[`Filter city should render correctly when no city 1`] = `
                 "fontFamily": "circularBold",
                 "fontSize": 25,
                 "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
               },
             ]
           }
@@ -1041,6 +1043,7 @@ exports[`Filter city should render correctly when no city 1`] = `
         </Text>
         <Text
           isRTL={false}
+          selectable={true}
           style={
             Array [
               Object {
@@ -1066,10 +1069,8 @@ exports[`Filter city should render correctly when no city 1`] = `
                 "fontFamily": "circularBold",
                 "fontSize": 13,
                 "lineHeight": 16,
-                "textAlign": "left",
-              },
-              Object {
                 "marginBottom": 16,
+                "textAlign": "left",
                 "textTransform": "uppercase",
               },
             ]
@@ -1332,17 +1333,14 @@ exports[`Filter city should render correctly when no city 1`] = `
               style={
                 Array [
                   Object {
-                    "color": "#212121",
+                    "color": "#0421B1",
                     "flexShrink": 1,
                     "fontFamily": "circularBold",
                     "fontSize": 16,
                     "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#0421B1",
                     "marginLeft": 8,
                     "marginRight": 0,
+                    "textAlign": "left",
                   },
                 ]
               }
@@ -1502,6 +1500,8 @@ exports[`Filter city should render correctly when no city 1`] = `
               }
             >
               <Text
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
@@ -1627,6 +1627,8 @@ exports[`Filter city should render correctly when no city 1`] = `
               </View>
               <Text
                 color="#FFFFFF"
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
