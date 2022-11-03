@@ -31,7 +31,6 @@ interface Props {
   iconName?: string;
   text?: string;
   navigation: any;
-  backHandler?: () => void;
   onLongPressSwitchLanguage?: () => void;
 }
 
@@ -42,16 +41,18 @@ export const HeaderWithBack = (props: Props) => {
     <TopButtonsContainer>
       <SmallButton
         iconName="arrow-back-outline"
-        onPress={props.backHandler || props.navigation.goBack}
+        onPress={props.navigation.goBack}
         label={t("global.back_button_accessibility")}
       />
       {props.iconName && props.text && (
-        <RTLView style={{
-          flex: 1,
-          marginRight: !isRTL ? styles.margin * 7 : 0,
-          marginLeft: isRTL ? styles.margin * 7 : 0,
-          justifyContent: "center",
-        }}>
+        <RTLView
+          style={{
+            flex: 1,
+            marginRight: !isRTL ? styles.margin * 7 : 0,
+            marginLeft: isRTL ? styles.margin * 7 : 0,
+            justifyContent: "center",
+          }}
+        >
           <Icon
             name={props.iconName}
             width={ICON_SIZE}
