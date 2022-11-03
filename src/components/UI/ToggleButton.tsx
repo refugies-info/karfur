@@ -2,6 +2,7 @@ import React from "react";
 import { View, Switch, StyleSheet } from "react-native";
 
 import { styles } from "../../theme";
+import styled from "styled-components/native";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -36,6 +37,11 @@ const stylesheet = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const SwitchContainer = styled(View)`
+  ${({ theme }) =>
+    theme.i18n.isRTL ? "marginRight: 20px" : "marginLeft: 20px"};
+`;
 
 interface Props {
   enabled?: boolean; // Switch state
@@ -89,7 +95,9 @@ export const ToggleButton = ({
             <StreamlineIcon
               icon={icon}
               size={ICON_SIZE}
-              stroke={disabled ? styles.colors.greyDisabled : styles.colors.black}
+              stroke={
+                disabled ? styles.colors.greyDisabled : styles.colors.black
+              }
             />
           </View>
         )}
@@ -115,7 +123,7 @@ export const ToggleButton = ({
               style={[
                 {
                   color: styles.colors.darkGrey,
-                  marginTop: styles.margin * 2
+                  marginTop: styles.margin,
                 },
                 disabled && {
                   color: styles.colors.greyDisabled,
@@ -127,22 +135,16 @@ export const ToggleButton = ({
           )}
         </View>
       </View>
-      <View>
+      <SwitchContainer>
         <Switch
           onValueChange={onToggleSwitch}
           value={enabled}
           disabled={disabled}
-          trackColor={
-            disabled
-              ? {
-                  true: styles.colors.greyDisabled,
-                }
-              : {
-                  true: undefined,
-                }
-          }
+          trackColor={{
+            true: disabled ? styles.colors.greyDisabled : undefined,
+          }}
         />
-      </View>
+      </SwitchContainer>
     </View>
   );
 };
