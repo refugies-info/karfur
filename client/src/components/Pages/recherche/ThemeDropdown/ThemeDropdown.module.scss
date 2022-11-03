@@ -22,6 +22,8 @@
     box-shadow: none;
     overflow-y: scroll;
     margin: 0;
+    padding-left: u(4);
+    padding-right: u(4);
   }
 }
 
@@ -43,6 +45,10 @@
     height: auto;
     border: none;
   }
+
+  @include isMobile() {
+    height: auto;
+  }
 }
 
 .btn_content {
@@ -51,13 +57,15 @@
 
 .themes {
   background: $gray30;
-  padding: 16px;
+  padding: u(4);
   width: 220px;
   flex-shrink: 0;
 
   @include isMobile() {
     width: 100%;
     background: $white;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   &.hidden {
@@ -70,16 +78,9 @@
     font-weight: bold;
 
     @include isMobile() {
-      padding: u(4) u(1);
+      padding: u(4) u(2);
       border: none;
-      border-radius: 0;
       margin: 0;
-    }
-
-    &.theme {
-      @include isMobile() {
-        border-bottom: 1px solid $gray60;
-      }
     }
   }
 }
@@ -89,8 +90,8 @@
   flex-grow: 1;
 
   @include isMobile() {
-    padding-left: u(2);
-    padding-right: u(2);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .btn {
@@ -103,10 +104,15 @@
     }
 
     @include isMobile() {
-      border-radius: 0;
       padding-left: u(2);
       padding-right: u(2);
       margin-bottom: u(1);
+
+      &.selected {
+        .badge {
+          background: $white !important;
+        }
+      }
     }
 
     &:hover {

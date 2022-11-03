@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
@@ -59,6 +60,7 @@
     background: $gray40b;
     padding: u(2);
     white-space: nowrap;
+    @include text("normal");
   }
 }
 
@@ -88,6 +90,13 @@
     background: $gray40b;
     box-shadow: none;
     padding: u(2);
+    height: auto;
+    @include text("normal");
+
+    .icon {
+      position: relative;
+      top: -2px;
+    }
   }
 }
 .menu {
@@ -127,5 +136,9 @@
   &.selected {
     background: $bleuCharte !important;
     color: $white !important;
+  }
+
+  @include isMobile() {
+    @include text("normal");
   }
 }

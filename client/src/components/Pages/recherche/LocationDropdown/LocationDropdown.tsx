@@ -12,6 +12,7 @@ interface Props {
   setDepartmentsSelected: (value: React.SetStateAction<string[]>) => void;
   predictions: any[];
   onSelectPrediction: (place_id: string) => void;
+  mobile?: boolean;
 }
 
 const LocationDropdown = (props: Props) => {
@@ -43,14 +44,14 @@ const LocationDropdown = (props: Props) => {
           <Button key={i} className={styles.selected} onClick={() => removeDepartement(dep)}>
             {dep}
             <span className={styles.icon}>
-              <EVAIcon name="close-outline" fill="white" size={18} />
+              <EVAIcon name="close-outline" fill="white" size={!props.mobile ? 18 : 24} />
             </span>
           </Button>
         ))}
 
         <Button onClick={getLocation} className={styles.btn}>
           <span className={styles.icon}>
-            <EVAIcon name="navigation-2-outline" fill="black" size={16} />
+            <EVAIcon name="navigation-2-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>
           {t("Recherche.positionButton", "Position actuelle")}
         </Button>
@@ -59,7 +60,7 @@ const LocationDropdown = (props: Props) => {
       {props.predictions.slice(0, 5).map((p, i) => (
         <Button key={i} onClick={() => props.onSelectPrediction(p.place_id)} className={styles.btn}>
           <span className={styles.icon}>
-            <EVAIcon name="pin-outline" fill="black" size={16} />
+            <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>
           {p.description}
         </Button>

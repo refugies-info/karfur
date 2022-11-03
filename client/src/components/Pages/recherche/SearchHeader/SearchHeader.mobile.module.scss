@@ -47,20 +47,26 @@
 .input {
   background: $gray30;
   width: 100%;
-  padding: u(4);
+  padding: u(3) u(4);
   border-radius: $radius;
   display: flex;
   align-items: center;
   position: relative;
+  @include text("normal");
 
   & > span {
     position: absolute;
-    top: u(3);
-    left: u(3);
+    width: u(6);
+    height: u(6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10px;
+    left: 10px;
 
     @include rtl() {
       left: inherit;
-      right: u(3);
+      right: 10px;
     }
   }
 

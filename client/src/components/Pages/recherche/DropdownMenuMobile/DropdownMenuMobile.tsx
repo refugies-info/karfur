@@ -22,11 +22,11 @@ const DropdownMenuMobile = (props: Props) => {
           <span className={styles.icon}>
             <EVAIcon name={props.icon} />
           </span>
-          <p className="h4">{props.title}</p>
+          <p className="h5">{props.title}</p>
         </div>
 
         <Button onClick={props.close} className={styles.close}>
-          <EVAIcon name="close-outline" fill="dark" />
+          <EVAIcon name="close-outline" fill="dark" size={24} />
         </Button>
       </div>
 

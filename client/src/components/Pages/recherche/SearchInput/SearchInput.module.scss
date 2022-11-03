@@ -66,6 +66,10 @@
     padding: 0;
     @include text("small");
     width: 100%;
+
+    @include isMobile() {
+      @include text("normal");
+    }
   }
 
   .value {
@@ -80,6 +84,7 @@
 
     @include isMobile() {
       padding-right: u(6);
+      @include text("normal");
     }
 
     @include rtl() {

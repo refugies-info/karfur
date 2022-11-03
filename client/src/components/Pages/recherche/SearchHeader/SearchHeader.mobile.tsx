@@ -131,6 +131,7 @@ const SearchHeaderMobile = (props: Props) => {
                 setDepartmentsSelected={setDepartmentsSelected}
                 predictions={placePredictions}
                 onSelectPrediction={onSelectPrediction}
+                mobile={true}
               />
             </DropdownMenuMobile>
           </DropdownMenu>

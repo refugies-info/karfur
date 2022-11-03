@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
@@ -56,6 +57,10 @@
     flex-direction: row-reverse;
   }
 
+  @include isMobile() {
+    @include text("normal");
+  }
+
   &:hover {
     background-color: darken($bleuCharte, 5);
     color: white;
@@ -74,14 +79,19 @@
 .btn {
   background: transparent;
   border: none;
-  display: block;
   width: 100%;
   text-align: left;
   padding: u(3) u(2);
   border-radius: u(2);
+  display: flex;
+  align-items: center;
 
   @include rtl() {
     text-align: right;
+  }
+
+  @include isMobile() {
+    @include text("normal");
   }
 
   &:hover {
@@ -102,6 +112,11 @@
     @include rtl() {
       margin-right: 0;
       margin-left: u(2);
+    }
+
+    @include isMobile() {
+      width: 32px;
+      height: 32px;
     }
   }
 }

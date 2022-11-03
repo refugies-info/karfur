@@ -27,8 +27,8 @@ const ButtonTheme = styled.button`
   }
 
   @media screen and (max-width: 767px) {
-    background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color30 : "transparent")} !important;
-    color: ${(props: ButtonThemeProps) => props.color100} !important;
+    background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color100 : "transparent")} !important;
+    color: white !important;
     ${(props: ButtonThemeProps) => (props.selected ? "border-color: white !important;" : "")}
 
     :hover {
@@ -97,7 +97,7 @@ const ThemeDropdown = (props: Props) => {
           return (
             <div key={i}>
               <ButtonTheme
-                className={cls(styles.btn, styles.theme)}
+                className={styles.btn}
                 color100={theme.colors.color100}
                 color30={theme.colors.color30}
                 selected={selected}
@@ -109,7 +109,7 @@ const ThemeDropdown = (props: Props) => {
                 }
               >
                 <span className={styles.btn_content}>
-                  <TagName theme={theme} colored={props.mobile || themeSelected !== theme._id} size={20} />
+                  <TagName theme={theme} colored={themeSelected !== theme._id} size={20} />
                   {nbNeedsSelectedByTheme[theme._id.toString()] &&
                     nbNeedsSelectedByTheme[theme._id.toString()] > 0 && (
                     <span
@@ -125,8 +125,8 @@ const ThemeDropdown = (props: Props) => {
                 </span>
                 {(props.mobile || themeSelected === theme._id) && (
                   <EVAIcon
-                    name={!props.mobile ? "chevron-right-outline" : "chevron-down-outline"}
-                    fill={!props.mobile ? "white" : theme.colors.color100}
+                    name={!props.mobile ? "chevron-right-outline" : (themeSelected === theme._id ? "chevron-up-outline" : "chevron-down-outline")}
+                    fill={themeSelected === theme._id ? "white" : theme.colors.color100}
                     className="ml-2"
                   />
                 )}

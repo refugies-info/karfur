@@ -151,7 +151,7 @@ const NeedsList = (props: Props) => {
                 </div>
               )}
             <ButtonNeed
-              className={cls(styles.btn, styles.need)}
+              className={cls(styles.btn, styles.need, selected && styles.selected)}
               color100={need.theme.colors.color100}
               color30={need.theme.colors.color30}
               selected={selected}

@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
@@ -18,8 +19,8 @@
 }
 
 .icon {
-  width: u(9);
-  height: u(9);
+  width: u(10);
+  height: u(10);
   border-radius: 50%;
   background: $bleuCharte;
   display: flex;
@@ -40,6 +41,7 @@
 
 .title {
   display: flex;
+  align-items: center;
 }
 
 .footer {
@@ -64,5 +66,11 @@
 
   .reset {
     color: $bleuCharte;
+    @include text("normal");
+
+    & > span {
+      position: relative;
+      top: -2px;
+    }
   }
 }
