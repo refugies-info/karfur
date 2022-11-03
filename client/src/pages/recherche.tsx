@@ -233,6 +233,7 @@ const Recherche = () => {
           <ResultsFilter
             nbDemarches={filteredResult.demarches.length}
             nbDispositifs={filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length}
+            nbThemesSelected={themesDisplayed.length}
             selectedSort={selectedSort}
             setSelectedSort={setSelectedSort}
             selectedType={selectedType}

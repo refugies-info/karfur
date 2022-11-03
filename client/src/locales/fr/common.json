@@ -64,6 +64,8 @@
     "updated": "actualisé",
     "demarcheTitle": "Les fiches démarches",
     "dispositifTitle": "Les fiches dispositifs",
+    "demarcheCardTitle": "Les fiches <strong>démarches</strong>",
+    "dispositifCardTitle": "Les fiches <strong>dispositifs</strong>",
     "otherDispositifTitle": "Autres fiches avec ce thème",
     "resetButton": "Réinitialiser",
     "seeButton": "Voir les fiches",
@@ -104,7 +106,9 @@
     "dispositifExample1": "Apprendre le français",
     "dispositifExample2": "Faire une formation de commis",
     "dispositifExample3": "Trouver un logement",
-    "dispositifExample4": "Avoir un soutien psychologique"
+    "dispositifExample4": "Avoir un soutien psychologique",
+    "seeAllDemarches": "Voir toutes les démarches",
+    "seeAllDispositifs": "Voir tous les dispositifs"
   },
   "Widget": {
     "fiches": "Fiches",

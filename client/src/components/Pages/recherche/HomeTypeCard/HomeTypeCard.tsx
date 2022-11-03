@@ -8,6 +8,7 @@ import styles from "./HomeTypeCard.module.scss";
 interface Props {
   image: any;
   title: string;
+  buttonTitle: string;
   examples: string[];
   onClick: () => void;
 }
@@ -21,8 +22,11 @@ const HomeTypeCard = (props: Props) => {
         window.scrollTo(0, 0);
       }}
     >
-      <Image src={props.image} width={160} height={160} alt={props.title} />
-      <h3 className={cls("h5", styles.title)}>{props.title}</h3>
+      <Image src={props.image} width={120} height={120} alt={props.title} />
+      <h3
+        className={cls("h4", styles.title)}
+        dangerouslySetInnerHTML={{ __html: props.title }}
+      ></h3>
       <p>
         {props.examples.map((text, i) => (
           <span key={i}>
@@ -31,6 +35,13 @@ const HomeTypeCard = (props: Props) => {
           </span>
         ))}
       </p>
+      <div className={styles.btn}>
+        {props.buttonTitle}
+        <EVAIcon
+          name="arrow-forward-outline"
+          fill="white"
+        />
+      </div>
     </button>
   );
 };

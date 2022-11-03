@@ -91,7 +91,8 @@ const HomeSearch = (props: Props) => {
             <Col md="6">
               <HomeTypeCard
                 image={illuDemarche}
-                title={t("Recherche.demarcheTitle", "Les fiches démarches")}
+                title={t("Recherche.demarcheCardTitle")}
+                buttonTitle={t("Recherche.seeAllDemarches", "Voir toutes les démarches")}
                 examples={demarchesExamples.map(d => t(d))}
                 onClick={() => props.setSelectedType("demarche")}
               />
@@ -99,7 +100,8 @@ const HomeSearch = (props: Props) => {
             <Col md="6">
               <HomeTypeCard
                 image={illuDispositif}
-                title={t("Recherche.dispositifTitle", "Les fiches dispositifs")}
+                title={t("Recherche.dispositifCardTitle")}
+                buttonTitle={t("Recherche.seeAllDispositifs", "Voir tous les dispositifs")}
                 examples={dispositifsExamples.map(d => t(d))}
                 onClick={() => props.setSelectedType("dispositif")}
               />
@@ -149,7 +151,7 @@ const HomeSearch = (props: Props) => {
             </Col>
             <Col>
               <div className={styles.image}>
-                <Image src={illuLocation} width={440} height={296} alt="" />
+                <Image src={illuLocation} width={440} height={332} alt="" />
               </div>
             </Col>
           </Row>
