@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -71,6 +71,15 @@ const SearchHeaderMobile = (props: Props) => {
   const [showFilters, setShowFilters] = useState(false);
   const languages = useSelector(allLanguesSelector);
   const nbFilters = filterAge.length + filterFrenchLevel.length + filterLanguage.length;
+
+  // hide axeptio button when popup opens
+  useEffect(() => {
+    if (showFilters || locationOpen || themesOpen) {
+      if(window.hideAxeptioButton) window.hideAxeptioButton();
+    } else {
+      if(window.showAxeptioButton) window.showAxeptioButton();
+    }
+  }, [locationOpen, themesOpen, showFilters]);
 
   return (
     <>
