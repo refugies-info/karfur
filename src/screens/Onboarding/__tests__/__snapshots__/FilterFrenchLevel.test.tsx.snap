@@ -779,7 +779,6 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -811,7 +810,6 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -843,7 +841,6 @@ exports[`Filter french level should render correctly when french level selected 
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1783,7 +1780,6 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1815,7 +1811,6 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1847,7 +1842,6 @@ exports[`Filter french level should render correctly when no french level select
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2836,7 +2830,6 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2868,7 +2861,6 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2900,7 +2892,6 @@ exports[`Filter french level should select level when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",

@@ -121,8 +121,8 @@ const shadows = {
     shadow-offset: 0 0;
     shadow-radius: 8px;
     elevation: 5;
-  `
-}
+  `,
+};
 
 const shadowsStylesheet = {
   lg: {
@@ -143,3 +143,5 @@ export const styles = {
   shadows,
   shadowsStylesheet,
 };
+
+export { default as ThemeProvider } from "./ThemeProvider";

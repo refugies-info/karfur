@@ -3,7 +3,11 @@ import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { ObjectId, Theme } from "../../types/interface";
-import { TextSmallBold, TextSmallNormal, TextVerySmallNormal } from "../StyledText";
+import {
+  TextSmallBold,
+  TextSmallNormal,
+  TextVerySmallNormal,
+} from "../StyledText";
 import { RTLView } from "../BasicComponents";
 import { Image } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -18,14 +22,17 @@ import { defaultColors } from "../../libs/getThemeTag";
 
 const IMAGE_SIZE = 58;
 
-const ContentContainer = styled.TouchableOpacity`
-  background-color: ${(props: { isDispo: boolean }) => (props.isDispo ?
-    styles.colors.white : styles.colors.lightGrey)};
-  min-height: ${(props: { isDispo: boolean }) => (props.isDispo ? 80 : 72)}px;
-  border-radius: ${styles.radius * 2}px;
-  ${styles.shadows.lg}
-  border-width: ${(props: { isDispo: boolean }) => (!props.isDispo ? 2 : 0)}px;
-  border-color: ${(props: { color: string }) => props.color || "transparent"};
+const ContentContainer = styled.TouchableOpacity<{
+  isDispo: boolean;
+  color?: string;
+}>`
+  background-color: ${({ isDispo, theme }) =>
+    isDispo ? theme.colors.white : theme.colors.lightGrey};
+  min-height: ${({ isDispo }) => (isDispo ? 80 : 72)}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
+  ${({ theme }) => theme.shadows.lg}
+  border-width: ${({ isDispo }) => (!isDispo ? 2 : 0)}px;
+  border-color: ${({ color }) => color || "transparent"};
   border-style: solid;
 `;
 
@@ -34,19 +41,17 @@ const TitleContainer = styled(RTLView)`
   flex: 1;
 `;
 
-const ImageContainer = styled.View`
+const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
   justify-content: center;
   width: 64px;
   height: 64px;
   align-items: center;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin * 2}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 2 : 0}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin * 2)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
   border-width: 6px;
-  border-color: ${(props: { hasMatch: boolean }) =>
-    props.hasMatch ? styles.colors.lightBlue : "transparent"};
-  border-radius: ${styles.radius * 2}px;
+  border-color: ${({ hasMatch, theme }) =>
+    hasMatch ? theme.colors.lightBlue : "transparent"};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
 `;
 
 const TitreInfoText = styled(TextSmallBold)`
@@ -105,27 +110,28 @@ export const ContentSummary = (props: Props) => {
 
   const logEventOnClick = (id: string) => {
     logEventInFirebase(FirebaseEvent.CLIC_CONTENT, {
-      contentId: id
+      contentId: id,
     });
-  }
+  };
 
   const colors = props.theme?.colors || defaultColors;
 
-  const actionButton = (props.actionPress !== undefined) ?
-    <ActionButton
-      onPress={props.actionPress}
-      accessibilityRole="button"
-      accessible={true}
-      accessibilityLabel={props.actionLabel}
-    >
-      <Icon
-        name={props.actionIcon || ""}
-        width={16}
-        height={16}
-        fill={styles.colors.black}
-      />
-    </ActionButton>
-    : null;
+  const actionButton =
+    props.actionPress !== undefined ? (
+      <ActionButton
+        onPress={props.actionPress}
+        accessibilityRole="button"
+        accessible={true}
+        accessibilityLabel={props.actionLabel}
+      >
+        <Icon
+          name={props.actionIcon || ""}
+          width={16}
+          height={16}
+          fill={styles.colors.black}
+        />
+      </ActionButton>
+    ) : null;
 
   if (props.typeContenu === "dispositif") {
     return (
@@ -141,71 +147,80 @@ export const ContentSummary = (props: Props) => {
               contentId: props.contentId,
               needId: props.needId,
               theme: props.theme,
-              backScreen: props.backScreen
-            }
+              backScreen: props.backScreen,
+            },
           });
           logEventOnClick(props.contentId);
         }}
       >
         <TitleContainer>
           {props.sponsorUrl ? (
-            <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
+            <ImageContainer hasMatch={props.hasSponsorMatch}>
               <Image
                 source={{ uri: props.sponsorUrl }}
                 resizeMode={"contain"}
-                style={{ height: IMAGE_SIZE, width: IMAGE_SIZE, maxWidth: "100%" }}
+                style={{
+                  height: IMAGE_SIZE,
+                  width: IMAGE_SIZE,
+                  maxWidth: "100%",
+                }}
               />
             </ImageContainer>
           ) : (
-            <ImageContainer isRTL={isRTL} hasMatch={props.hasSponsorMatch}>
-              <Image source={NoLogo} style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }} />
+            <ImageContainer hasMatch={props.hasSponsorMatch}>
+              <Image
+                source={NoLogo}
+                style={{ height: IMAGE_SIZE, width: IMAGE_SIZE }}
+              />
             </ImageContainer>
           )}
 
           <TitlesContainer isRTL={isRTL}>
             <TitreInfoText color={colors.color100} isDispo={true}>
-              {props.searchItem ?
+              {props.searchItem ? (
                 <Highlight
                   hit={props.searchItem}
-                  attribute={`title_${props.searchLanguageMatch||"fr"}`}
+                  attribute={`title_${props.searchLanguageMatch || "fr"}`}
                   //@ts-ignore
                   color={colors.color100}
-                /> :
-                <ReadableText>
-                  {props.titreInfo || ""}
-                </ReadableText>
-              }
+                />
+              ) : (
+                <ReadableText>{props.titreInfo || ""}</ReadableText>
+              )}
             </TitreInfoText>
-            {(!!props.titreMarque || !!props?.searchItem[`titreMarque_${props.searchLanguageMatch||"fr"}`]) && (
+            {(!!props.titreMarque ||
+              !!props?.searchItem[
+                `titreMarque_${props.searchLanguageMatch || "fr"}`
+              ]) && (
               <TitreMarqueText color={colors.color100}>
-                 {props.searchItem ?
-                    <Highlight
-                      hit={props.searchItem}
-                      attribute={`titreMarque_${props.searchLanguageMatch||"fr"}`}
-                      //@ts-ignore
-                      color={colors.color100}
-                  /> :
-                  <ReadableText>
-                    {props.titreMarque || ""}
-                  </ReadableText>
-                  }
+                {props.searchItem ? (
+                  <Highlight
+                    hit={props.searchItem}
+                    attribute={`titreMarque_${
+                      props.searchLanguageMatch || "fr"
+                    }`}
+                    //@ts-ignore
+                    color={colors.color100}
+                  />
+                ) : (
+                  <ReadableText>{props.titreMarque || ""}</ReadableText>
+                )}
               </TitreMarqueText>
             )}
           </TitlesContainer>
           {actionButton}
         </TitleContainer>
 
-        {props.showAbstract &&
+        {props.showAbstract && (
           <DescInfoText color={colors.color100}>
             <Highlight
               hit={props.searchItem}
-              attribute={`abstract_${props.searchLanguageMatch||"fr"}`}
+              attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
               //@ts-ignore
               color={colors.color100}
             />
           </DescInfoText>
-        }
-
+        )}
       </ContentContainer>
     );
   }
@@ -223,14 +238,14 @@ export const ContentSummary = (props: Props) => {
             contentId: props.contentId,
             needId: props.needId,
             theme: props.theme,
-            backScreen: props.backScreen
-          }
+            backScreen: props.backScreen,
+          },
         });
         logEventOnClick(props.contentId);
       }}
     >
       <TitleContainer>
-        <ImageContainer lightColor={colors.color30} isRTL={isRTL}>
+        <ImageContainer lightColor={colors.color30}>
           <DemarcheImage
             icon={props.theme?.icon}
             stroke={colors.color100}
@@ -241,33 +256,31 @@ export const ContentSummary = (props: Props) => {
 
         <TitlesContainer isRTL={isRTL}>
           <TitreInfoText color={colors.color100}>
-            {props.searchItem ?
+            {props.searchItem ? (
               <Highlight
                 hit={props.searchItem}
-                attribute={`title_${props.searchLanguageMatch||"fr"}`}
+                attribute={`title_${props.searchLanguageMatch || "fr"}`}
                 //@ts-ignore
                 color={colors.color100}
-              /> :
-              <ReadableText>
-                {props.titreInfo}
-              </ReadableText>
-            }
+              />
+            ) : (
+              <ReadableText>{props.titreInfo}</ReadableText>
+            )}
           </TitreInfoText>
         </TitlesContainer>
         {actionButton}
       </TitleContainer>
 
-      {props.showAbstract &&
+      {props.showAbstract && (
         <DescInfoText color={colors.color100}>
           <Highlight
             hit={props.searchItem}
-            attribute={`abstract_${props.searchLanguageMatch||"fr"}`}
+            attribute={`abstract_${props.searchLanguageMatch || "fr"}`}
             //@ts-ignore
             color={colors.color100}
           />
         </DescInfoText>
-      }
-
+      )}
     </ContentContainer>
   );
 };

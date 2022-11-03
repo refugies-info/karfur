@@ -15,14 +15,17 @@ interface Props {
   useShadow?: boolean;
 }
 
-const MainSimpleContainer = styled.View`
+const MainSimpleContainer = styled.View<{
+  useShadow?: boolean;
+  showSimplifiedHeader: boolean;
+}>`
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: ${styles.margin}px;
-  background-color: ${styles.colors.lightGrey};
+  padding-bottom: ${({ theme }) => theme.margin}px;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
   z-index: 4;
-  ${(props: { useShadow: boolean, showSimplifiedHeader: boolean }) =>
-    props.useShadow && props.showSimplifiedHeader ? styles.shadows.xs : ""}
+  ${({ useShadow, showSimplifiedHeader, theme }) =>
+    useShadow && showSimplifiedHeader ? theme.shadows.xs : ""}
 `;
 
 const stylesheet = StyleSheet.create({
@@ -31,7 +34,7 @@ const stylesheet = StyleSheet.create({
     fontFamily: styles.fonts.families.circularBold,
     lineHeight: 32,
     position: "absolute",
-    left: styles.margin * 3
+    left: styles.margin * 3,
   },
 });
 
@@ -50,12 +53,12 @@ export const HeaderAnimated = (props: Props) => {
   };
 
   React.useEffect(() => {
-    toggleSimplifiedHeader(props.showSimplifiedHeader)
-  }, [props.showSimplifiedHeader])
+    toggleSimplifiedHeader(props.showSimplifiedHeader);
+  }, [props.showSimplifiedHeader]);
 
   const headerHeight = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [100 + (props.extraHeight || 0), 50],
+    outputRange: [100 + (props.extraHeight || 0), 50],
   });
 
   const headerFontSize = animatedController.interpolate({
@@ -65,7 +68,7 @@ export const HeaderAnimated = (props: Props) => {
 
   const textPaddingBottom = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [(props.extraHeight || 0), 0],
+    outputRange: [props.extraHeight || 0, 0],
   });
 
   return (
@@ -75,13 +78,13 @@ export const HeaderAnimated = (props: Props) => {
     >
       <View style={{ paddingTop: insets.top }}>
         <Animated.View
-          style={
-            [{
+          style={[
+            {
               justifyContent: "flex-end",
               paddingLeft: styles.margin * 3,
-              position: "relative"
+              position: "relative",
             },
-            { height: headerHeight }
+            { height: headerHeight },
           ]}
         >
           <Animated.Text
@@ -97,9 +100,7 @@ export const HeaderAnimated = (props: Props) => {
               },
             ]}
           >
-            <ReadableText overridePosY={0}>
-              {props.title}
-            </ReadableText>
+            <ReadableText overridePosY={0}>{props.title}</ReadableText>
           </Animated.Text>
         </Animated.View>
       </View>
@@ -140,8 +141,8 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
   };
 
   React.useEffect(() => {
-    toggleSimplifiedHeader(props.showSimplifiedHeader)
-  }, [props.showSimplifiedHeader])
+    toggleSimplifiedHeader(props.showSimplifiedHeader);
+  }, [props.showSimplifiedHeader]);
 
   const headerFontSize = animatedController.interpolate({
     inputRange: [0, 1],
@@ -159,7 +160,7 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
         onLongPressSwitchLanguage={props.onLongPressSwitchLanguage}
         navigation={props.navigation}
       />
-      <View style={{ paddingHorizontal:styles.margin * 3 }}>
+      <View style={{ paddingHorizontal: styles.margin * 3 }}>
         <Animated.Text
           style={[
             {
@@ -169,7 +170,7 @@ export const HeaderWithBackAnimated = (props: HeaderBackProps) => {
             },
             {
               fontSize: headerFontSize,
-              marginTop: headerTop
+              marginTop: headerTop,
             },
           ]}
         >

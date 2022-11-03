@@ -26,9 +26,12 @@ const InputContainer = styled(RTLView)`
 const StyledInput = styled.TextInput`
   height:100%;
   width 100%;
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
-  text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : styles.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? styles.margin : 0}px;
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
   flex: 1;
 `;
 const FakeInput = styled(RTLTouchableOpacity)`
@@ -43,8 +46,10 @@ const FakeInput = styled(RTLTouchableOpacity)`
 `;
 const FakeInputText = styled.Text`
   color: ${styles.colors.darkGrey};
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : styles.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? styles.margin : 0}px;
 `;
 const SuggestionsContainer = styled.ScrollView`
   margin-top: ${styles.margin}px;
@@ -76,9 +81,9 @@ export const SearchBarCity = (props: Props) => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      if (input && input.current) input.current.focus()
+      if (input && input.current) input.current.focus();
     }, 100);
-  }, [modalOpened])
+  }, [modalOpened]);
 
   const clearInput = () => props.onChangeText("");
 
@@ -130,9 +135,13 @@ export const SearchBarCity = (props: Props) => {
                 fill={styles.colors.darkGrey}
               />
               <StyledInput
+                // @ts-ignore
                 ref={input}
                 value={props.enteredText}
-                placeholder={t("onboarding_screens.placeholder", "Exemple : Paris")}
+                placeholder={t(
+                  "onboarding_screens.placeholder",
+                  "Exemple : Paris"
+                )}
                 placeholderTextColor={styles.colors.darkGrey}
                 onChangeText={props.onChangeText}
                 isRTL={isRTL}
@@ -174,7 +183,7 @@ export const SearchBarCity = (props: Props) => {
                 </View>
               ))}
             </SuggestionsContainer>
-            )}
+          )}
         </FixSafeAreaView>
       </TextModal>
     </View>

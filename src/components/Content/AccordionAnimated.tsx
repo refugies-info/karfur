@@ -18,16 +18,16 @@ import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.se
 const TitleContainer = styled(RTLTouchableOpacity)`
   background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
     props.isExpanded ? props.lightColor : styles.colors.white};
-  padding:${styles.margin * 2}px;
-  border-radius:${styles.radius * 2}px
-  ${(props: { isExpanded: boolean }) =>
-    !props.isExpanded ? styles.shadows.lg : ""};
-  justify-content:space-between;
+  padding: ${styles.margin * 2}px;
+  border-radius: ${styles.radius * 2}px
+    ${(props: { isExpanded: boolean }) =>
+      !props.isExpanded ? styles.shadows.lg : ""};
+  justify-content: space-between;
   border: ${(props: { isExpanded: boolean; darkColor: string }) =>
     props.isExpanded
       ? `2px solid ${props.darkColor}`
-      : `2px solid ${styles.colors.white}`} ;
-    align-items:center;
+      : `2px solid ${styles.colors.white}`};
+  align-items: center;
 `;
 
 const AccordionContainer = styled.View`
@@ -36,19 +36,17 @@ const AccordionContainer = styled.View`
   margin-horizontal: ${styles.margin * 3}px;
 `;
 
-const StepContainer = styled.View`
+const StepContainer = styled.View<{ darkColor: string }>`
   width: 32px;
   height: 32px;
-  background-color: ${(props: { darkColor: string }) => props.darkColor};
+  background-color: ${({ darkColor }) => darkColor};
   border-radius: 50px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin * 2}px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin * 2 : 0}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : styles.margin * 2)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? styles.margin * 2 : 0)}px;
 `;
 
 const StepText = styled(TextSmallBold)`
@@ -101,9 +99,8 @@ export const AccordionAnimated = (props: Props) => {
   const toggleAccordion = () => setIsExpanded(!isExpanded);
   const animatedController = React.useRef(new Animated.Value(0)).current;
   const [bodySectionHeight, setBodySectionHeight] = React.useState(0);
-  const [hasSentEventInFirebase, setHasSentEventInFirebase] = React.useState(
-    false
-  );
+  const [hasSentEventInFirebase, setHasSentEventInFirebase] =
+    React.useState(false);
   const currentItemRef = React.useRef<string>("");
 
   const bodyHeight = animatedController.interpolate({
@@ -141,8 +138,8 @@ export const AccordionAnimated = (props: Props) => {
   const currentItem = useSelector(currentItemSelector);
 
   React.useEffect(() => {
-    const accordionIsReading = currentItem
-      && currentItem.id === currentItemRef.current;
+    const accordionIsReading =
+      currentItem && currentItem.id === currentItemRef.current;
     setIsExpanded(!!accordionIsReading);
 
     if (accordionIsReading) {
@@ -158,7 +155,6 @@ export const AccordionAnimated = (props: Props) => {
         useNativeDriver: false,
       }).start();
     }
-
   }, [currentItem]);
 
   return (
@@ -171,19 +167,17 @@ export const AccordionAnimated = (props: Props) => {
           onPress={() => toggleListItem()}
           accessibilityRole="button"
           accessibilityLabel={props.title}
-          accessibilityState={{expanded: isExpanded}}
+          accessibilityState={{ expanded: isExpanded }}
         >
           <RTLView>
             {props.stepNumber && (
-              <StepContainer isRTL={isRTL} darkColor={props.darkColor}>
+              <StepContainer darkColor={props.darkColor}>
                 <StepText>{props.stepNumber}</StepText>
               </StepContainer>
             )}
             {!props.isContentTranslated ? (
               <TitleText width={props.width} darkColor={props.darkColor}>
-                <ReadableText>
-                  {props.title}
-                </ReadableText>
+                <ReadableText>{props.title}</ReadableText>
               </TitleText>
             ) : (
               <AccordionHeaderFromHtml

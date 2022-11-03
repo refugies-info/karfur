@@ -28,7 +28,6 @@ exports[`About screen should render correctly 1`] = `
       }
     >
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -281,7 +280,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -293,7 +291,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -359,7 +356,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -371,7 +367,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -432,7 +427,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -444,7 +438,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -544,7 +537,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -556,7 +548,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -621,7 +612,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -633,7 +623,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -694,7 +683,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={176}
               source={1}
               style={
                 Array [
@@ -706,7 +694,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={248}
             />
             <Text
               isRTL={false}
@@ -808,7 +795,6 @@ exports[`About screen should render correctly 1`] = `
           >
             <View>
               <Image
-                height={176}
                 source={1}
                 style={
                   Array [
@@ -820,7 +806,6 @@ exports[`About screen should render correctly 1`] = `
                     },
                   ]
                 }
-                width={248}
               />
               <Text
                 isRTL={false}
@@ -888,7 +873,6 @@ exports[`About screen should render correctly 1`] = `
           >
             <View>
               <Image
-                height={176}
                 source={1}
                 style={
                   Array [
@@ -900,7 +884,6 @@ exports[`About screen should render correctly 1`] = `
                     },
                   ]
                 }
-                width={248}
               />
               <Text
                 isRTL={false}
@@ -966,7 +949,6 @@ exports[`About screen should render correctly 1`] = `
           >
             <View>
               <Image
-                height={176}
                 source={1}
                 style={
                   Array [
@@ -978,7 +960,6 @@ exports[`About screen should render correctly 1`] = `
                     },
                   ]
                 }
-                width={248}
               />
               <Text
                 isRTL={false}
@@ -1091,7 +1072,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1106,7 +1086,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1127,7 +1106,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1142,7 +1120,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1163,7 +1140,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1178,7 +1154,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1199,7 +1174,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1214,7 +1188,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1235,7 +1208,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1250,7 +1222,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1271,7 +1242,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1286,7 +1256,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1307,7 +1276,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1322,7 +1290,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1343,7 +1310,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1358,7 +1324,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1379,7 +1344,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1394,7 +1358,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1415,7 +1378,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1430,7 +1392,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1451,7 +1412,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1466,7 +1426,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1487,7 +1446,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1502,7 +1460,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1523,7 +1480,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1538,7 +1494,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1559,7 +1514,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1574,7 +1528,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1595,7 +1548,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1610,7 +1562,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1631,7 +1582,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1646,7 +1596,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1667,7 +1616,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1682,7 +1630,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1703,7 +1650,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1718,7 +1664,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1739,7 +1684,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1754,7 +1698,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1775,7 +1718,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1790,7 +1732,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1811,7 +1752,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1826,7 +1766,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1847,7 +1786,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1862,7 +1800,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1883,7 +1820,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1898,7 +1834,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1919,7 +1854,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1934,7 +1868,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1955,7 +1888,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -1970,7 +1902,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
           <View
@@ -1991,7 +1922,6 @@ exports[`About screen should render correctly 1`] = `
             }
           >
             <Image
-              height={80}
               resizeMode="contain"
               source={
                 Object {
@@ -2006,7 +1936,6 @@ exports[`About screen should render correctly 1`] = `
                   },
                 ]
               }
-              width={104}
             />
           </View>
         </View>

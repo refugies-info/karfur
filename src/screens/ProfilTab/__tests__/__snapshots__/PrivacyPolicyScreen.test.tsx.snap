@@ -28,7 +28,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
       }
     >
       <View
-        isRTL={false}
         style={
           Array [
             Object {

@@ -10,7 +10,6 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
   }
 >
   <View
-    isRTL={false}
     style={
       Array [
         Object {
@@ -57,7 +56,6 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
   }
 >
   <View
-    isRTL={false}
     style={
       Array [
         Object {

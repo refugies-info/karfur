@@ -28,7 +28,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
       }
     >
       <View
-        isRTL={false}
         style={
           Array [
             Object {

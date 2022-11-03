@@ -14,7 +14,7 @@ import * as Notifications from "expo-notifications";
 import { useQueryClient } from "react-query";
 
 import { logger } from "../logger";
-import { styles } from "../theme";
+import { styles, ThemeProvider } from "../theme";
 
 import { AvailableLanguageI18nCode } from "../types/interface";
 import { RootStackParamList } from "../../types";
@@ -139,7 +139,9 @@ export const RootNavigator = () => {
 
       // Listener for app backgrounded
       responseListener.current =
-        Notifications.addNotificationResponseReceivedListener((response) => handleNotification(response));
+        Notifications.addNotificationResponseReceivedListener((response) =>
+          handleNotification(response)
+        );
 
       // Listener for app is foregrounded
       notificationsListener.current =
@@ -161,7 +163,6 @@ export const RootNavigator = () => {
     };
   }, [navigationReady]);
 
-
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
@@ -170,7 +171,11 @@ export const RootNavigator = () => {
     }),
   });
 
-  if (!isI18nInitialized || themes.length === 0 || hasUserSeenOnboarding === null) {
+  if (
+    !isI18nInitialized ||
+    themes.length === 0 ||
+    hasUserSeenOnboarding === null
+  ) {
     return null;
   }
 
@@ -183,19 +188,25 @@ export const RootNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={MyTheme} ref={navigationRef} onReady={() => setNavigationReady(true)}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {!hasUserSeenOnboarding ? (
-          <Stack.Screen
-            name="OnboardingNavigator"
-            component={OnboardingStackNavigator}
-          />
-        ) : (
-          <>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </>
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer
+        theme={MyTheme}
+        ref={navigationRef}
+        onReady={() => setNavigationReady(true)}
+      >
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {!hasUserSeenOnboarding ? (
+            <Stack.Screen
+              name="OnboardingNavigator"
+              component={OnboardingStackNavigator}
+            />
+          ) : (
+            <>
+              <Stack.Screen name="Root" component={BottomTabNavigator} />
+            </>
+          )}
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };

@@ -8,7 +8,6 @@ import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
 import { LinearGradient } from "expo-linear-gradient";
 import { TagImage } from "./TagImage";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { Theme } from "../../types/interface";
@@ -39,25 +38,23 @@ const StyledContainer = styled(RTLView)`
     props.backgroundColor};
   ${styles.shadows.lg}
 `;
+
 const StyledText = styled(StyledTextSmallBold)`
-  color: ${styles.colors.white};
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
+  color: ${({ theme }) => theme.colors.white};
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
   flex-shrink: 1;
   flex-grow: 0;
 `;
-const CardGradient = styled(LinearGradient)`
+const CardGradient = styled(LinearGradient)<{ width: number; height: number }>`
   justify-content: flex-end;
   align-items: center;
-  width: ${(props: { width: number }) => props.width}px;
-  height: ${(props: { height: number }) => props.height}px;
-  borderRadius: ${styles.radius * 2}px;
+  width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
+  borderradius: ${({ theme }) => theme.radius * 2}px;
 `;
 
 export const CarousselCard = (props: Props) => {
-  const { isRTL } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
   return (
@@ -71,7 +68,7 @@ export const CarousselCard = (props: Props) => {
           view: "carousel",
         });
         props.navigation.navigate("NeedsScreen", {
-          theme: props.theme
+          theme: props.theme,
         });
         return;
       }}
@@ -81,12 +78,16 @@ export const CarousselCard = (props: Props) => {
         width={props.cardWidth}
         height={props.cardHeight}
       >
-        <View style={{ position: "absolute", top:0, left:0, right:0, bottom:0 }}>
+        <View
+          style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
+        >
           <TagImage theme={props.theme} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
-          <StyledText isRTL={isRTL}>
-            {firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}
+          <StyledText>
+            {firstLetterUpperCase(
+              props.theme.name[currentLanguageI18nCode || "fr"]
+            )}
           </StyledText>
           <StreamlineIcon icon={props.theme.icon} size={20} />
         </StyledContainer>

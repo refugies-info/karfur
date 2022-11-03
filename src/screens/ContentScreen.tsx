@@ -10,7 +10,7 @@ import {
   Platform,
   TouchableOpacity,
   NativeSyntheticEvent,
-  NativeScrollEvent
+  NativeScrollEvent,
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
@@ -28,7 +28,11 @@ import { setRedirectDispositifActionCreator } from "../services/redux/User/user.
 import { selectedContentSelector } from "../services/redux/SelectedContent/selectedContent.selectors";
 import { styles } from "../theme";
 import Config from "../libs/getEnvironment";
-import { TextBigBold, TextSmallNormal, TextSmallBold } from "../components/StyledText";
+import {
+  TextBigBold,
+  TextSmallNormal,
+  TextSmallBold,
+} from "../components/StyledText";
 import {
   selectedI18nCodeSelector,
   currentI18nCodeSelector,
@@ -192,19 +196,9 @@ const ToastTextBold = styled(TextSmallBold)`
   color: ${styles.colors.white};
 `;
 
-const headersDispositif = [
-  "what",
-  "who",
-  "why",
-  "how_involved",
-];
+const headersDispositif = ["what", "who", "why", "how_involved"];
 
-const headersDemarche = [
-  "what",
-  "who",
-  "how_to_do",
-  "what_next",
-];
+const headersDemarche = ["what", "who", "how_to_do", "what_next"];
 
 const stylesheet = StyleSheet.create({
   bodyBackground: {
@@ -250,31 +244,22 @@ type ContentScreenType = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList>
 >;
 
-export const ContentScreen = ({
-  navigation,
-  route,
-}: ContentScreenType) => {
-  const {
-    contentId,
-    needId,
-    backScreen,
-  } = route.params;
+export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
+  const { contentId, needId, backScreen } = route.params;
   const dispatch = useDispatch();
 
-
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+  const [isLanguageModalVisible, setLanguageModalVisible] =
+    React.useState(false);
   const [nbLinesTitreInfo, setNbLinesTitreInfo] = React.useState(2);
   const [nbLinesTitreMarque, setNbLinesTitreMarque] = React.useState(1);
-  const [theme, setTheme] = React.useState<Theme|null>(route.params.theme || null);
+  const [theme, setTheme] = React.useState<Theme | null>(
+    route.params.theme || null
+  );
   const colors = theme?.colors || defaultColors;
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-  const [
-    hasSentEventBottomReached,
-    setHasSentEventBottomReached,
-  ] = React.useState(false);
+  const [hasSentEventBottomReached, setHasSentEventBottomReached] =
+    React.useState(false);
 
   const insets = useSafeAreaInsets();
 
@@ -290,7 +275,6 @@ export const ContentScreen = ({
   });
 
   const { t, isRTL } = useTranslationWithRTL();
-
 
   const selectedLanguage = useSelector(selectedI18nCodeSelector);
   const currentLanguage = useSelector(currentI18nCodeSelector);
@@ -328,14 +312,16 @@ export const ContentScreen = ({
   };
 
   // Voiceover
-  const scrollview = React.useRef<ScrollView|null>(null);
+  const scrollview = React.useRef<ScrollView | null>(null);
   const offset = 250;
-  const {setScroll, saveList} = useVoiceover(scrollview, offset);
+  const { setScroll, saveList } = useVoiceover(scrollview, offset);
 
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0)
-  }
-
+    setScroll(
+      event.nativeEvent.contentOffset.y,
+      showSimplifiedHeader ? offset : 0
+    );
+  };
 
   // Header color
   const getInterpolation = (color: string) => {
@@ -343,15 +329,20 @@ export const ContentScreen = ({
       inputRange: [0, 1],
       outputRange: ["transparent", color],
     });
-  }
-  const [boxInterpolation, setBoxInterpolation] = React.useState(getInterpolation(colors.color100));
+  };
+  const [boxInterpolation, setBoxInterpolation] = React.useState(
+    getInterpolation(colors.color100)
+  );
   React.useEffect(() => {
     setBoxInterpolation(getInterpolation(colors.color100));
   }, [colors.color100]);
 
   // Load content
   let unsubscribeConnectionListener: any;
-  const fetchContent = (contentId: string, selectedLanguage: AvailableLanguageI18nCode) => {
+  const fetchContent = (
+    contentId: string,
+    selectedLanguage: AvailableLanguageI18nCode
+  ) => {
     dispatch(resetReadingList());
     dispatch(
       fetchSelectedContentActionCreator({
@@ -359,7 +350,7 @@ export const ContentScreen = ({
         locale: selectedLanguage,
       })
     );
-  }
+  };
   const handleFindConnection = (connectionInfo: NetInfoState) => {
     if (connectionInfo.isConnected) {
       if (contentId && selectedLanguage) {
@@ -367,13 +358,14 @@ export const ContentScreen = ({
         return fetchContent(contentId, selectedLanguage);
       }
     }
-  }
+  };
   React.useEffect(() => {
     if (contentId && selectedLanguage) {
-      NetInfo.fetch().then(connectionInfo => {
+      NetInfo.fetch().then((connectionInfo) => {
         fetchContent(contentId, selectedLanguage); // fetch in any case, to reset if needed
         if (!connectionInfo.isConnected) {
-          unsubscribeConnectionListener = NetInfo.addEventListener(handleFindConnection);
+          unsubscribeConnectionListener =
+            NetInfo.addEventListener(handleFindConnection);
         }
       });
     }
@@ -452,7 +444,7 @@ export const ContentScreen = ({
         });
       }
       logEventInFirebase(FirebaseEvent.ADD_FAVORITE, {
-        contentId: selectedContent?._id || "unknown"
+        contentId: selectedContent?._id || "unknown",
       });
     }
   };
@@ -541,10 +533,11 @@ export const ContentScreen = ({
   const isDispositif = selectedContent.typeContenu === "dispositif";
 
   const headers = isDispositif ? headersDispositif : headersDemarche;
-  const isContentTranslatedInCurrentLanguage = computeIfContentIsTranslatedInCurrentLanguage(
-    selectedContent.avancement,
-    currentLanguage
-  );
+  const isContentTranslatedInCurrentLanguage =
+    computeIfContentIsTranslatedInCurrentLanguage(
+      selectedContent.avancement,
+      currentLanguage
+    );
 
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
@@ -585,22 +578,25 @@ export const ContentScreen = ({
   const shareContent = async (content: Content) => {
     logEventInFirebase(FirebaseEvent.SHARE_CONTENT, {
       titreInformatif: content.titreInformatif,
-      contentId: content._id
+      contentId: content._id,
     });
 
     const siteUrl = Config.siteUrl;
     let urlType: string = content.typeContenu;
     if (currentLanguage !== "fr") {
-      urlType = content.typeContenu === "demarche" ? "procedure" : "program"
+      urlType = content.typeContenu === "demarche" ? "procedure" : "program";
     }
     try {
-      const shareData = (Platform.OS === "ios") ? {
-        message: `${content.titreInformatif}`,
-        url: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
-      } : {
-        title: `${content.titreInformatif}`,
-        message: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
-      };
+      const shareData =
+        Platform.OS === "ios"
+          ? {
+              message: `${content.titreInformatif}`,
+              url: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
+            }
+          : {
+              title: `${content.titreInformatif}`,
+              message: `${siteUrl}/${currentLanguage}/${urlType}/${content._id}`,
+            };
       await Share.share(shareData);
     } catch (error: any) {
       alert(error.message);
@@ -609,14 +605,16 @@ export const ContentScreen = ({
 
   const navigateToFavorites = () => {
     const redirectTheme = theme || selectedContent.theme;
-    dispatch(setRedirectDispositifActionCreator({
-      contentId,
-      needId,
-      theme: redirectTheme
-    }))
+    dispatch(
+      setRedirectDispositifActionCreator({
+        contentId,
+        needId,
+        theme: redirectTheme,
+      })
+    );
     navigation.popToTop();
     navigation.navigate("Favoris", { screen: "FavorisScreen" });
-  }
+  };
 
   const noReadButton = ["ps", "fa", "ti"].includes(currentLanguage || "fr");
 
@@ -651,7 +649,9 @@ export const ContentScreen = ({
       </FixedContainerForHeader>
       <ScrollView
         ref={scrollview}
-        contentContainerStyle={{ paddingBottom: styles.margin * 5 + (insets.bottom || 0) }}
+        contentContainerStyle={{
+          paddingBottom: styles.margin * 5 + (insets.bottom || 0),
+        }}
         onScroll={handleScroll}
         scrollEventThrottle={16}
         scrollIndicatorInsets={{ right: 1 }}
@@ -662,7 +662,7 @@ export const ContentScreen = ({
           <>
             <HeaderImage theme={theme} height={headerImageHeight} />
             <HeaderImageContainer height={headerImageHeight}>
-              <TitlesContainer width={windowWidth - 2 * 24} isRTL={isRTL}>
+              <TitlesContainer width={windowWidth - 2 * 24}>
                 <TitreInfoText
                   isRTL={isRTL}
                   onLayout={(e: any) => onLayoutTitre(e, "titreInfo")}
@@ -809,7 +809,9 @@ export const ContentScreen = ({
                 defaultText="Voir le site"
                 backgroundColor={colors.color100}
                 iconName="external-link-outline"
-                accessibilityLabel={t("content_screen.go_website_accessibility")}
+                accessibilityLabel={t(
+                  "content_screen.go_website_accessibility"
+                )}
               />
             </View>
           )}
@@ -818,10 +820,7 @@ export const ContentScreen = ({
             <>
               <HeaderText key={1} textColor={colors.color100}>
                 <ReadableText>
-                  {t(
-                    "content_screen.where",
-                    "Trouver un interlocuteur"
-                  )}
+                  {t("content_screen.where", "Trouver un interlocuteur")}
                 </ReadableText>
               </HeaderText>
               <MiniMap map={map} markersColor={colors.color100}>
@@ -871,7 +870,7 @@ export const ContentScreen = ({
             justifyContent: "center",
             paddingTop: styles.margin,
             paddingBottom: insets.bottom || styles.margin,
-            paddingHorizontal: styles.margin
+            paddingHorizontal: styles.margin,
           }}
         >
           <CustomButton
@@ -886,21 +885,24 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: styles.margin, width: 120 }}
-            textStyle={{fontSize: styles.fonts.sizes.verySmall}}
-            accessibilityLabel={isContentFavorite ?
-              t("content_screen.remove_button_accessibility") :
-              t("content_screen.add_button_accessibility")
+            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
+            accessibilityLabel={
+              isContentFavorite
+                ? t("content_screen.remove_button_accessibility")
+                : t("content_screen.add_button_accessibility")
             }
           />
-          {!noReadButton &&
-            <View style={{
-              width: 56,
-              height: "100%",
-              marginHorizontal: styles.margin * 3,
-            }}>
+          {!noReadButton && (
+            <View
+              style={{
+                width: 56,
+                height: "100%",
+                marginHorizontal: styles.margin * 3,
+              }}
+            >
               <ReadButton bottomInset={0} />
             </View>
-          }
+          )}
           <CustomButton
             onPress={() => shareContent(selectedContent)}
             iconName="undo-outline"
@@ -914,8 +916,8 @@ export const ContentScreen = ({
             isTextNotBold={true}
             isSmall={true}
             style={{ marginHorizontal: styles.margin, width: 120 }}
-            textStyle={{fontSize: styles.fonts.sizes.verySmall}}
-            accessibilityLabel={ t("content_screen.share_button_accessibility")}
+            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
+            accessibilityLabel={t("content_screen.share_button_accessibility")}
           />
         </RTLView>
       </TabBarContainer>
@@ -930,10 +932,14 @@ export const ContentScreen = ({
           icon={favoriteToast === "added" ? "star-outline" : "trash-2-outline"}
           onClose={() => setFavoriteToast("")}
         >
-          {favoriteToast === "removed" ?
+          {favoriteToast === "removed" ? (
             <ToastText>
-              {t("content_screen.favorite_deleted", "Fiche supprimée de tes favoris")}
-            </ToastText> :
+              {t(
+                "content_screen.favorite_deleted",
+                "Fiche supprimée de tes favoris"
+              )}
+            </ToastText>
+          ) : (
             <View>
               <ToastText>
                 <Trans i18nKey="content_screen.favorite_added">
@@ -943,14 +949,16 @@ export const ContentScreen = ({
                     style={{
                       textDecorationLine: "underline",
                       textDecorationColor: styles.colors.white,
-                      marginHorizontal: styles.margin
+                      marginHorizontal: styles.margin,
                     }}
                     accessibilityRole="button"
-                  >Mes fiches</ToastTextBold>
+                  >
+                    Mes fiches
+                  </ToastTextBold>
                 </Trans>
               </ToastText>
             </View>
-          }
+          )}
         </Toast>
       )}
       {/*

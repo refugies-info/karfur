@@ -9,10 +9,8 @@ const FavorisStack = createStackNavigator<FavorisParamList>();
 
 export const FavorisNavigator = () => {
   return (
-    <FavorisStack.Navigator
-      screenOptions={{ headerShown: false }}
-    >
+    <FavorisStack.Navigator screenOptions={{ headerShown: false }}>
       <FavorisStack.Screen name="FavorisScreen" component={FavorisScreen} />
     </FavorisStack.Navigator>
-  )
-}
+  );
+};

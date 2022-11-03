@@ -40,13 +40,13 @@ describe("LanguageChoiceScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (useRoute as jest.Mock).mockReturnValue({
-      name: "LanguageChoiceScreen"
+      name: "LanguageChoiceScreen",
     });
   });
 
   it("should render correctly", () => {
     const changeLanguage = jest.fn();
-    (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
+    (useTranslationWithRTL as jest.Mock).mockReturnValue({
       i18n: { changeLanguage },
       t: jest.fn().mockImplementationOnce((arg1, _) => arg1),
     });
@@ -63,6 +63,7 @@ describe("LanguageChoiceScreen", () => {
     act(() => {
       fireEvent.press(Button);
     });
+    expect(changeLanguage).toHaveBeenCalledTimes(1);
     expect(changeLanguage).toHaveBeenCalledWith("en");
     expect(saveSelectedLanguageActionCreator).toHaveBeenCalledWith({
       langue: "en",

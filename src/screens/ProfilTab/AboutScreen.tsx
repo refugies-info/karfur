@@ -8,10 +8,8 @@ import {
   TextNormalBold,
   TextSmallBold,
 } from "../../components/StyledText";
-import { CompositeNavigationProp } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { ProfileParamList, BottomTabParamList } from "../../../types";
+import { ProfileParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
@@ -65,9 +63,9 @@ const Title = styled(TextBigBold)`
 const LogoContainer = styled.View`
   padding: ${styles.margin * 2}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? styles.margin * 3 : 0}px;
+    !props.isRTL ? styles.margin * 3 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? styles.margin * 3 : 0}px;
+    props.isRTL ? styles.margin * 3 : 0}px;
   background-color: ${styles.colors.white};
   border-radius: ${styles.radius * 2}px;
 `;
@@ -89,9 +87,9 @@ const TeamItem = styled(RTLView)`
 `;
 const TeamDetails = styled.View`
   margin-right: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? styles.margin * 3 : 0}px;
+    props.isRTL ? styles.margin * 3 : 0}px;
   margin-left: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? styles.margin * 3 : 0}px;
+    !props.isRTL ? styles.margin * 3 : 0}px;
   flex-shrink: 1;
   flex-grow: 0;
 `;
@@ -110,13 +108,13 @@ const stylesheet = StyleSheet.create({
     paddingHorizontal: styles.margin * 3,
     paddingTop: styles.margin * 2,
     paddingBottom: styles.margin,
-    marginBottom: styles.margin
+    marginBottom: styles.margin,
   },
   logoScrollview: {
     paddingHorizontal: styles.margin * 3,
     paddingTop: styles.margin * 2,
     paddingBottom: styles.margin,
-    marginBottom: styles.margin
+    marginBottom: styles.margin,
   },
 });
 
@@ -127,16 +125,11 @@ const sortPartners = () =>
     return -1;
   });
 
-type AboutScreenType = CompositeNavigationProp<
-  //@ts-ignore
-  StackScreenProps<ProfileParamList, "AboutScreen">,
-  BottomTabScreenProps<BottomTabParamList>
->;
-
-export const AboutScreen = ({ navigation }: AboutScreenType) => {
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+export const AboutScreen = ({
+  navigation,
+}: StackScreenProps<ProfileParamList, "AboutScreen">) => {
+  const [isLanguageModalVisible, setLanguageModalVisible] =
+    React.useState(false);
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);
@@ -152,13 +145,16 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   React.useEffect(() => {
-    initHorizontalScroll([
-      scrollviewMissions,
-      scrollviewProblematiques,
-      scrollviewContributif,
-      scrollviewPartners
-    ], isRTL)
-  }, [isRTL])
+    initHorizontalScroll(
+      [
+        scrollviewMissions,
+        scrollviewProblematiques,
+        scrollviewContributif,
+        scrollviewPartners,
+      ],
+      isRTL
+    );
+  }, [isRTL]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -169,10 +165,7 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         navigation={navigation}
       />
 
-      <ContentContainer
-        onScroll={handleScroll}
-        scrollEventThrottle={5}
-      >
+      <ContentContainer onScroll={handleScroll} scrollEventThrottle={5}>
         <TextNormal style={{ marginHorizontal: styles.margin * 3 }}>
           {t("about_screen.subheader1")} {t("about_screen.subheader2")}
         </TextNormal>
@@ -187,40 +180,38 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           }}
           horizontal={true}
         >
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0,
-            justifyContent: "space-between"
-          }}>
-            <CardImage
-              source={Mission1}
-              width={248}
-              height={176}
-              />
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+              justifyContent: "space-between",
+            }}
+          >
+            <CardImage source={Mission1} />
             <CardTitle>{t("about_screen.mission_3_header")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.mission_3_subheader")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.mission_3_subheader")}
+            </TextSmallNormal>
           </Card>
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0,
-            justifyContent: "space-between"
-          }}>
-            <CardImage
-              source={Mission2}
-              width={248}
-              height={176}
-              />
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+              justifyContent: "space-between",
+            }}
+          >
+            <CardImage source={Mission2} />
             <CardTitle>{t("about_screen.mission_2_header")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.mission_2_subheader")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.mission_2_subheader")}
+            </TextSmallNormal>
           </Card>
           <Card>
-            <CardImage
-              source={Mission3}
-              width={248}
-              height={176}
-              />
+            <CardImage source={Mission3} />
             <CardTitle>{t("about_screen.mission_1_header")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.mission_1_subheader")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.mission_1_subheader")}
+            </TextSmallNormal>
           </Card>
         </ScrollView>
 
@@ -234,38 +225,36 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           }}
           horizontal={true}
         >
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0
-          }}>
-            <CardImage
-              source={Problematique1}
-              width={248}
-              height={176}
-              />
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+            }}
+          >
+            <CardImage source={Problematique1} />
             <CardTitle>{t("about_screen.problem_1_header")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.problem_1_subheader")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.problem_1_subheader")}
+            </TextSmallNormal>
           </Card>
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0
-          }}>
-            <CardImage
-              source={Problematique2}
-              width={248}
-              height={176}
-              />
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+            }}
+          >
+            <CardImage source={Problematique2} />
             <CardTitle>{t("about_screen.problem_2_header")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.problem_2_subheader")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.problem_2_subheader")}
+            </TextSmallNormal>
           </Card>
           <Card>
-            <CardImage
-              source={Problematique3}
-              width={248}
-              height={176}
-              />
+            <CardImage source={Problematique3} />
             <CardTitle>{t("about_screen.problem_3_header2")}</CardTitle>
-            <TextSmallNormal>{t("about_screen.problem_3_subheader2")}</TextSmallNormal>
+            <TextSmallNormal>
+              {t("about_screen.problem_3_subheader2")}
+            </TextSmallNormal>
           </Card>
         </ScrollView>
 
@@ -280,45 +269,43 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           }}
           horizontal={true}
         >
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0,
-            justifyContent: "space-between"
-          }}>
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+              justifyContent: "space-between",
+            }}
+          >
             <View>
-              <CardImage
-                source={Contributif1}
-                width={248}
-                height={176}
-                />
+              <CardImage source={Contributif1} />
               <CardTitle>{t("about_screen.contributive_1_header2")}</CardTitle>
-              <TextSmallNormal>{t("about_screen.contributive_1_subheader")}</TextSmallNormal>
+              <TextSmallNormal>
+                {t("about_screen.contributive_1_subheader")}
+              </TextSmallNormal>
             </View>
           </Card>
-          <Card style={{
-            marginRight: !isRTL ? styles.margin * 3 : 0,
-            marginLeft: isRTL ? styles.margin * 3 : 0,
-            justifyContent: "space-between"
-          }}>
+          <Card
+            style={{
+              marginRight: !isRTL ? styles.margin * 3 : 0,
+              marginLeft: isRTL ? styles.margin * 3 : 0,
+              justifyContent: "space-between",
+            }}
+          >
             <View>
-              <CardImage
-                source={Contributif2}
-                width={248}
-                height={176}
-                />
+              <CardImage source={Contributif2} />
               <CardTitle>{t("about_screen.contributive_2_header")}</CardTitle>
-              <TextSmallNormal>{t("about_screen.contributive_2_subheader")}</TextSmallNormal>
+              <TextSmallNormal>
+                {t("about_screen.contributive_2_subheader")}
+              </TextSmallNormal>
             </View>
           </Card>
           <Card style={{ justifyContent: "space-between" }}>
             <View>
-              <CardImage
-                source={Contributif3}
-                width={248}
-                height={176}
-                />
+              <CardImage source={Contributif3} />
               <CardTitle>{t("about_screen.contributive_3_header")}</CardTitle>
-              <TextSmallNormal>{t("about_screen.contributive_3_subheader")}</TextSmallNormal>
+              <TextSmallNormal>
+                {t("about_screen.contributive_3_subheader")}
+              </TextSmallNormal>
             </View>
           </Card>
         </ScrollView>
@@ -339,16 +326,11 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
           }}
           horizontal={true}
         >
-        {sortedPartners.map((partner, index) => (
-          <LogoContainer key={index} isRTL={isRTL}>
-            <LogoImage
-              source={{ uri: partner.logo }}
-              resizeMode="contain"
-              width={LOGO_WIDTH}
-              height={LOGO_HEIGHT}
-            />
-          </LogoContainer>
-        ))}
+          {sortedPartners.map((partner, index) => (
+            <LogoContainer key={index} isRTL={isRTL}>
+              <LogoImage source={{ uri: partner.logo }} resizeMode="contain" />
+            </LogoContainer>
+          ))}
         </ScrollView>
 
         <TextSmallNormal style={{ marginHorizontal: styles.margin * 3 }}>
@@ -361,10 +343,15 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
             backgroundColor={styles.colors.black}
             iconName="download-outline"
             textColor={styles.colors.white}
-            onPress={( ) => Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")}
+            onPress={() =>
+              Linking.openURL("https://refugies.info/AMI_REFUGIE_INFO.pdf")
+            }
             notFullWidth={true}
             iconFirst={true}
-            style={{marginTop: styles.margin * 3, marginHorizontal: styles.margin * 3}}
+            style={{
+              marginTop: styles.margin * 3,
+              marginHorizontal: styles.margin * 3,
+            }}
           />
         </RTLView>
 
@@ -375,15 +362,14 @@ export const AboutScreen = ({ navigation }: AboutScreenType) => {
         <TeamContainer>
           {membres.map((membre, index) => (
             <TeamItem key={index}>
-              <Image
-                source={membre.photo}
-                style={{ width: 80, height: 80 }}
-              />
+              <Image source={membre.photo} style={{ width: 80, height: 80 }} />
               <TeamDetails isRTL={isRTL}>
-                <View style={{
-                  flexShrink: 1,
-                  flexDirection: !isRTL ? "row" : "row-reverse"
-                }}>
+                <View
+                  style={{
+                    flexShrink: 1,
+                    flexDirection: !isRTL ? "row" : "row-reverse",
+                  }}
+                >
                   <TeamName>{membre.name}</TeamName>
                 </View>
                 <TeamRole>{membre.roleName}</TeamRole>

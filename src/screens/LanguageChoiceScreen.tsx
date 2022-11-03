@@ -17,7 +17,7 @@ const MainView = styled.View`
 `;
 export const LanguageChoiceScreen = ({
   navigation,
-}: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
+}: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
   const { i18n, t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 

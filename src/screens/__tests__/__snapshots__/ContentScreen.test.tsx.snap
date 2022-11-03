@@ -37,7 +37,6 @@ exports[`ContentScreen should render correctly 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -289,7 +288,6 @@ exports[`ContentScreen should render correctly 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -374,7 +372,6 @@ exports[`ContentScreen should render correctly 1`] = `
       </View>
       <View
         height={100}
-        isRTL={false}
         style={
           Array [
             Object {
@@ -4680,7 +4677,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -4932,7 +4928,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -5017,7 +5012,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
       </View>
       <View
         height={100}
-        isRTL={false}
         style={
           Array [
             Object {

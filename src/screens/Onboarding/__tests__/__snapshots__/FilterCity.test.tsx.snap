@@ -482,7 +482,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
           >
             <View
               collapsable={false}
-              isDone={true}
               style={
                 Object {
                   "backgroundColor": "#0421B1",
@@ -514,7 +513,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
           >
             <View
               collapsable={false}
-              isDone={false}
               style={
                 Object {
                   "backgroundColor": "#0421B1",
@@ -546,7 +544,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
           >
             <View
               collapsable={false}
-              isDone={false}
               style={
                 Object {
                   "backgroundColor": "#0421B1",
@@ -1385,7 +1382,6 @@ exports[`Filter city should render correctly when no city 1`] = `
           >
             <View
               collapsable={false}
-              isDone={true}
               style={
                 Object {
                   "backgroundColor": "#0421B1",
@@ -1417,7 +1413,6 @@ exports[`Filter city should render correctly when no city 1`] = `
           >
             <View
               collapsable={false}
-              isDone={false}
               style={
                 Object {
                   "backgroundColor": "#0421B1",
@@ -1449,7 +1444,6 @@ exports[`Filter city should render correctly when no city 1`] = `
           >
             <View
               collapsable={false}
-              isDone={false}
               style={
                 Object {
                   "backgroundColor": "#0421B1",

@@ -1,19 +1,17 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import { Animated } from "react-native";
-import { styles } from "../../theme";
 
 const MainContainer = styled.View`
   flex-direction: row;
-  margin-horizontal: -${styles.margin * 0.75}px;
+  margin-horizontal: -${({ theme }) => theme.margin * 0.75}px;
 `;
 const ProgressBarContainer = styled.View`
   height: 4px;
   width: 100%;
-  background-color: ${(props: { isDone: boolean }) =>
-  props.isDone ? styles.colors.darkBlue : styles.colors.grey60};
-  border-radius: ${styles.radius * 2}px;
-  margin-horizontal: ${styles.margin * 0.75}px;
+  background-color: ${({ theme }) => theme.colors.grey60};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
+  margin-horizontal: ${({ theme }) => theme.margin * 0.75}px;
   flex: 1;
   overflow: hidden;
 `;
@@ -22,7 +20,7 @@ const ProgressBar = styled(Animated.View)`
   left: 0;
   top: 0;
   height: 100%;
-  background-color: ${styles.colors.darkBlue};
+  background-color: ${({ theme }) => theme.colors.darkBlue};
 `;
 
 interface Props {
@@ -52,18 +50,18 @@ export const OnboardingProgressBar = (props: Props) => {
       return "100%";
     }
     return 0;
-  }
+  };
 
   return (
     <MainContainer>
       <ProgressBarContainer>
-        <ProgressBar isDone={props.step >= 1} style={[{width: getWidth(1)}]} />
+        <ProgressBar style={[{ width: getWidth(1) }]} />
       </ProgressBarContainer>
       <ProgressBarContainer>
-        <ProgressBar isDone={props.step >= 2} style={[{width: getWidth(2)}]} />
+        <ProgressBar style={[{ width: getWidth(2) }]} />
       </ProgressBarContainer>
       <ProgressBarContainer>
-        <ProgressBar isDone={props.step >= 3} style={[{width: getWidth(3)}]} />
+        <ProgressBar style={[{ width: getWidth(3) }]} />
       </ProgressBarContainer>
     </MainContainer>
   );

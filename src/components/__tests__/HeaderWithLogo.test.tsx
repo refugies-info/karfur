@@ -7,8 +7,15 @@ jest.mock("../../services/i18n", () => ({
   default: { isRTL: jest.fn() },
 }));
 
+jest.mock("../../hooks/useTranslationWithRTL", () => ({
+  useTranslationWithRTL: jest.fn().mockReturnValue({
+    i18n: { changeLanguage: jest.fn() },
+    t: jest.fn().mockImplementation((_, arg2) => arg2),
+  }),
+}));
+
 jest.mock("../../utils/logEvent", () => ({
-  logEventInFirebase: jest.fn()
+  logEventInFirebase: jest.fn(),
 }));
 
 jest.mock("react-native-safe-area-context", () => {
@@ -29,14 +36,16 @@ jest.mock("@react-navigation/native", () => {
 describe("HeaderWithLogo", () => {
   beforeEach(() => {
     (useRoute as jest.Mock).mockReturnValue({
-      name: "TestSreen"
+      name: "TestSreen",
     });
   }),
-  it("should render correctly with LTR", () => {
-    (i18n.isRTL as jest.Mock).mockReturnValueOnce(false);
-    const component = wrapWithProvidersAndRender({ Component: HeaderWithLogo });
-    expect(component).toMatchSnapshot();
-  });
+    it("should render correctly with LTR", () => {
+      (i18n.isRTL as jest.Mock).mockReturnValueOnce(false);
+      const component = wrapWithProvidersAndRender({
+        Component: HeaderWithLogo,
+      });
+      expect(component).toMatchSnapshot();
+    });
 
   it("should render correctly with RTL", () => {
     (i18n.isRTL as jest.Mock).mockReturnValueOnce(true);

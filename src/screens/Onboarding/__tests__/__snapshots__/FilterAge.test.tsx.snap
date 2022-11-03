@@ -685,7 +685,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -717,7 +716,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -749,7 +747,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={false}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1595,7 +1592,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1627,7 +1623,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -1659,7 +1654,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         >
           <View
             collapsable={false}
-            isDone={false}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2554,7 +2548,6 @@ exports[`Filter age should select age when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2586,7 +2579,6 @@ exports[`Filter age should select age when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={true}
             style={
               Object {
                 "backgroundColor": "#0421B1",
@@ -2618,7 +2610,6 @@ exports[`Filter age should select age when click on it 1`] = `
         >
           <View
             collapsable={false}
-            isDone={false}
             style={
               Object {
                 "backgroundColor": "#0421B1",

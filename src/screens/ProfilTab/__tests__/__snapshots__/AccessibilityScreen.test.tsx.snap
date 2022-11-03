@@ -28,7 +28,6 @@ exports[`Accessibility screen should render correctly 1`] = `
       }
     >
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -230,7 +229,8 @@ exports[`Accessibility screen should render correctly 1`] = `
       >
         Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application 
         iOS
-         Réfugiés.info.
+         
+        Réfugiés.info.
       </Text>
       <Text
         isRTL={false}
@@ -457,7 +457,8 @@ exports[`Accessibility screen should render correctly 1`] = `
           ]
         }
       >
-        Cette déclaration d'accessibilité s'applique à l'application mobile 
+        Cette déclaration d'accessibilité s'applique à l'application mobile
+         
         iOS
          Réfugiés.info.
       </Text>
@@ -634,7 +635,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-            ✅  
+           ✅ 
         </Text>
         <Text
           isRTL={false}
@@ -689,7 +690,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-            ❌  
+           ❌ 
         </Text>
         <Text
           isRTL={false}
@@ -744,7 +745,7 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-            🚫  
+           🚫 
         </Text>
         <Text
           isRTL={false}
@@ -845,7 +846,6 @@ exports[`Accessibility screen should render correctly 1`] = `
         >
           <View
             color="#27A8A5"
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -899,7 +899,6 @@ exports[`Accessibility screen should render correctly 1`] = `
         >
           <View
             color="#D64B71"
-            isRTL={false}
             style={
               Array [
                 Object {

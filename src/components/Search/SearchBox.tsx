@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { TouchableOpacity, TextInput } from "react-native";
 import { connectSearchBox } from "react-instantsearch-native";
 import { styles } from "../../theme";
-import {  RTLView } from "../BasicComponents";
+import { RTLView } from "../BasicComponents";
 import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
@@ -24,9 +24,12 @@ const InputContainer = styled(RTLView)`
 const StyledInput = styled.TextInput`
   height:100%;
   width 100%;
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : styles.margin)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? styles.margin : 0)}px;
-  text-align: ${(props: { isRTL: boolean }) => (props.isRTL ? "right" : "left")};
+  margin-left: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? 0 : styles.margin}px;
+  margin-right: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? styles.margin : 0}px;
+  text-align: ${(props: { isRTL: boolean }) =>
+    props.isRTL ? "right" : "left"};
   flex: 1;
 `;
 
@@ -40,11 +43,12 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
   const input = React.useRef<TextInput>();
   const { t, isRTL } = useTranslationWithRTL();
 
-  React.useEffect(() => { // set focus when component mounts
+  React.useEffect(() => {
+    // set focus when component mounts
     setTimeout(() => {
-      if (input && input.current) input.current.focus()
+      if (input && input.current) input.current.focus();
     }, 500);
-  }, [])
+  }, []);
 
   return (
     <MainContainer>
@@ -70,6 +74,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
           fill={styles.colors.darkGrey}
         />
         <StyledInput
+          // @ts-ignore
           ref={input}
           onChangeText={(value: string) => refine(value)}
           value={currentRefinement}
@@ -93,7 +98,7 @@ const SearchBox = ({ currentRefinement, refine, backCallback }: Props) => {
         </TouchableOpacity>
       </InputContainer>
     </MainContainer>
-  )
-}
+  );
+};
 
 export default connectSearchBox(SearchBox);
