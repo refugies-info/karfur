@@ -22,7 +22,9 @@ const HomeTypeCard = (props: Props) => {
         window.scrollTo(0, 0);
       }}
     >
-      <Image src={props.image} width={120} height={120} alt={props.title} />
+      <div className={styles.image}>
+        <Image src={props.image} width={120} height={120} alt={props.title} />
+      </div>
       <h3
         className={cls("h4", styles.title)}
         dangerouslySetInnerHTML={{ __html: props.title }}

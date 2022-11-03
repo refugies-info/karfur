@@ -20,7 +20,7 @@
 
     @include isMobile() {
       width: 100%;
-      min-width: 180px;
+      min-width: 60vw;
     }
 
     &.content {

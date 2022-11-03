@@ -9,6 +9,10 @@
   display: flex;
   align-items: center;
   @include text("small");
+
+  @include isMobile() {
+    @include text("normal");
+  }
 }
 
 .title {
@@ -52,6 +56,10 @@
 
 .text {
   @include text("small");
+
+  @include isMobile() {
+    @include text("normal");
+  }
 }
 
 .infos {

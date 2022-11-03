@@ -18,18 +18,30 @@
   @include rtl() {
     text-align: right;
   }
+  @include isMobile() {
+    margin-bottom: u(4);
+    padding: u(4);
+  }
 
   &:focus {
     outline: none;
   }
 
-  @include isMobile() {
-    margin-bottom: u(4);
+  .image {
+    @include isMobile() {
+      width: 80px;
+      height: 80px;
+    }
   }
 
   .title {
     margin-top: u(8);
     font-weight: normal;
+
+    @include isMobile() {
+      margin-top: u(4);
+      @include text("large");
+    }
   }
 
   p {
@@ -37,6 +49,11 @@
     margin-bottom: 0;
     @include text("large");
     color: $gray80;
+
+    @include isMobile() {
+      margin-top: u(2);
+      @include text("normal");
+    }
   }
 
   &:hover {
@@ -55,6 +72,10 @@
 
     span {
       margin-left: u(2);
+    }
+    @include isMobile() {
+      margin-top: u(4);
+      @include text("normal");
     }
   }
 }

@@ -11,6 +11,10 @@
   @include text("small");
   padding: u(1);
   border-radius: u(1);
+
+  @include isMobile() {
+    @include text("normal");
+  }
 }
 
 .icon {
@@ -21,5 +25,11 @@
   @include rtl() {
     margin-right: 0;
     margin-left: u(1);
+  }
+  @include isMobile() {
+    :global(.theme-icon) {
+      width: 16px !important;
+      height: 16px !important;
+    }
   }
 }
