@@ -7,7 +7,10 @@ import { useSelector } from "react-redux";
 
 import { styles } from "../../theme";
 
-import { currentI18nCodeSelector, userLocationSelector } from "../../services/redux/User/user.selectors";
+import {
+  currentI18nCodeSelector,
+  userLocationSelector,
+} from "../../services/redux/User/user.selectors";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { useNotificationsSettings } from "../../hooks/useNotificationSettings";
@@ -47,22 +50,31 @@ const stylesheet = StyleSheet.create({
 
 export const NotificationsSettingsScreen = () => {
   const { t } = useTranslationWithRTL();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<
+      StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">
+    >();
   const [settings, updateSettings] = useNotificationsSettings();
   const [accessGranted] = useNotificationsStatus();
   const location = useSelector(userLocationSelector);
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
+  const [hasSetLocation, setHasSetLocation] = useState(
+    !!(location && location.department && location.city)
+  );
   useEffect(() => {
-    const newHasSetLocation = !!(location && location.department && location.city);
+    const newHasSetLocation = !!(
+      location &&
+      location.department &&
+      location.city
+    );
     if (hasSetLocation !== newHasSetLocation) {
       setHasSetLocation(newHasSetLocation);
       if (!settings?.local && newHasSetLocation) updateSettings("local", true);
       if (settings?.local && !newHasSetLocation) updateSettings("local", false);
     }
-  }, [location])
+  }, [location]);
 
   const themesDisabled =
     !!settings && !settings?.global && !settings?.local && !settings?.demarches;
@@ -77,12 +89,7 @@ export const NotificationsSettingsScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
-      <HeaderWithBack
-        navigation={navigation}
-        backHandler={() => {
-          navigation.navigate("ProfilScreen");
-        }}
-      />
+      <HeaderWithBack navigation={navigation} />
       <View
         style={{
           marginHorizontal: styles.margin * 3,
@@ -92,8 +99,9 @@ export const NotificationsSettingsScreen = () => {
         <Title>{t("notifications.notifications")}</Title>
       </View>
 
-      {!settings ?
-        <ActivityIndicator size="small" color={styles.colors.black} /> :
+      {!settings ? (
+        <ActivityIndicator size="small" color={styles.colors.black} />
+      ) : (
         <ScrollView
           contentContainerStyle={{
             paddingTop: styles.margin * 2,
@@ -106,7 +114,10 @@ export const NotificationsSettingsScreen = () => {
           ) : (
             <>
               <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
-              <View accessibilityRole="radiogroup" style={stylesheet.toggleContainer}>
+              <View
+                accessibilityRole="radiogroup"
+                style={stylesheet.toggleContainer}
+              >
                 <ToggleButton
                   title={`${t("notifications.settingsLocal")} ${
                     !!location.city ? `: ${location.city}` : ""
@@ -131,11 +142,16 @@ export const NotificationsSettingsScreen = () => {
                 />
               </View>
               <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
-              <View accessibilityRole="radiogroup" style={stylesheet.toggleContainer}>
+              <View
+                accessibilityRole="radiogroup"
+                style={stylesheet.toggleContainer}
+              >
                 {themes.map((theme, index) => (
                   <View key={index}>
                     <ToggleButton
-                      title={firstLetterUpperCase(theme.name[currentLanguageI18nCode||"fr"])}
+                      title={firstLetterUpperCase(
+                        theme.name[currentLanguageI18nCode || "fr"]
+                      )}
                       icon={theme.icon}
                       enabled={settings?.themes[theme._id]}
                       onToggle={(state) =>
@@ -155,7 +171,7 @@ export const NotificationsSettingsScreen = () => {
             </>
           )}
         </ScrollView>
-      }
+      )}
     </SafeAreaView>
   );
 };
