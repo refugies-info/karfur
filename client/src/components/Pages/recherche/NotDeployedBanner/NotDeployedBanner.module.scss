@@ -31,6 +31,10 @@
       display: none;
     }
   }
+
+  @include isMobile() {
+    justify-content: space-between;
+  }
 }
 
 .link {
@@ -70,5 +74,16 @@
   .btn {
     padding: 12px;
     border-radius: 8px;
+  }
+}
+
+.mobile_btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: u(1);
+
+  @include isDesktop() {
+    display: none;
   }
 }

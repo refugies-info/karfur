@@ -140,7 +140,10 @@ const SearchHeaderMobile = (props: Props) => {
                 departmentsSelected={departmentsSelected}
                 setDepartmentsSelected={setDepartmentsSelected}
                 predictions={placePredictions}
-                onSelectPrediction={onSelectPrediction}
+                onSelectPrediction={(id: string) => {
+                  onSelectPrediction(id);
+                  setLocationSearch("");
+                }}
                 mobile={true}
               />
             </DropdownMenuMobile>
