@@ -4,11 +4,11 @@ import { ObjectId } from "mongodb";
 
 export const decodeQuery = (routerQuery: any): SearchQuery => {
   const {
-    departments, needs, themes, ages, frenchLevels, language, sort, type
+    departments, needs, themes, ages, frenchLevels, language, sort, type, search
   } = routerQuery as UrlSearchQuery;
 
   let query: SearchQuery = {
-    search: "",
+    search: search || "",
     departmentsSelected: [],
     needsSelected: [],
     themesSelected: [],
@@ -20,7 +20,7 @@ export const decodeQuery = (routerQuery: any): SearchQuery => {
   }
 
   // Reinject filters value in search
-  if (departments || needs || themes || ages || frenchLevels || language || sort || type) {
+  if (departments || needs || themes || ages || frenchLevels || language || sort || type || search) {
     if (departments) query.departmentsSelected = decodeURIComponent(departments as string).split(",");
     if (needs) query.needsSelected = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
     if (themes) query.themesSelected = decodeURIComponent(themes as string).split(",") as unknown as ObjectId[];
@@ -29,6 +29,7 @@ export const decodeQuery = (routerQuery: any): SearchQuery => {
     if (language) query.filterLanguage = decodeURIComponent(language as string).split(",");
     if (sort) query.selectedSort = decodeURIComponent(sort as string) as SortOptions;
     if (type) query.selectedType = decodeURIComponent(type as string) as TypeOptions;
+    if (search) query.search = decodeURIComponent(search as string);
   }
 
   return query;

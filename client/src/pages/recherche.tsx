@@ -51,6 +51,7 @@ export type UrlSearchQuery = {
   language?: string | string[];
   sort?: string | SortOptions;
   type?: string | TypeOptions;
+  search?: string;
 };
 export type Results = {
   dispositifs: SearchDispositif[];
@@ -72,7 +73,7 @@ const Recherche = () => {
   const allThemes = useSelector(themesSelector);
 
   // search
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialQuery.search);
   const [needsSelected, setNeedsSelected] = useState<ObjectId[]>(initialQuery.needsSelected);
   const [themesSelected, setThemesSelected] = useState<ObjectId[]>(initialQuery.themesSelected);
   const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]);
@@ -117,6 +118,7 @@ const Recherche = () => {
         language: filterLanguage,
         sort: selectedSort,
         type: selectedType,
+        search: search
       };
 
       const locale = router.locale;
