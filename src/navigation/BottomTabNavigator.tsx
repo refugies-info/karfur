@@ -4,14 +4,20 @@
  */
 
 import * as React from "react";
-import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabBarProps,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
-import { resetReadingList, setReadingItem } from "../services/redux/VoiceOver/voiceOver.actions";
+import {
+  resetReadingList,
+  setReadingItem,
+} from "../services/redux/VoiceOver/voiceOver.actions";
 import { BottomTabParamList } from "../../types";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
@@ -31,14 +37,19 @@ const BottomTabBarContainer = styled(View)`
   background-color: white;
   height: 48px;
   align-items: center;
-  box-shadow: 0px 0px 4px #2121210A;
+  box-shadow: 0px 0px 4px #2121210a;
 `;
 const Space = styled(View)`
   width: 56px;
   margin: ${styles.margin}px;
-`
+`;
 
-function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarProps) {
+function BottomTabBar({
+  state,
+  descriptors,
+  navigation,
+  insets,
+}: BottomTabBarProps) {
   // Hide tab bar if needed
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   //@ts-ignore
@@ -58,7 +69,11 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
 
       if (!isFocused && !event.defaultPrevented) {
         // The `merge: true` option makes sure that the params inside the tab screen are preserved
-        navigation.navigate({ name: route.name, merge: true , params: undefined });
+        navigation.navigate({
+          name: route.name,
+          merge: true,
+          params: undefined,
+        });
       }
     };
 
@@ -72,19 +87,22 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
         label={label}
       />
     );
-  })
+  });
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
-  const explorerScreen = state.routes.find(route => route.name === "Explorer")?.state?.index
-    || 0; // will return undefined if explorerScreen just mounted, 0 else
+  const explorerScreen =
+    state.routes.find((route) => route.name === "Explorer")?.state?.index || 0; // will return undefined if explorerScreen just mounted, 0 else
 
-  const hasNotificationScreen = (state.routes.find(route => route.name === "Explorer")?.state?.routes || [] as any[])
-    .find(route => route.name === "NotificationsScreen");
+  const hasNotificationScreen = (
+    state.routes.find((route) => route.name === "Explorer")?.state?.routes ||
+    ([] as any[])
+  ).find((route) => route.name === "NotificationsScreen");
 
-  const noReadButton = state.index === 3 // profil tab
-    || (state.index === 0 && explorerScreen === 0) // explorer screen
-    || (state.index === 0 && hasNotificationScreen) // notification screen
-    || ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
+  const noReadButton =
+    state.index === 3 || // profil tab
+    (state.index === 0 && explorerScreen === 0) || // explorer screen
+    (state.index === 0 && hasNotificationScreen) || // notification screen
+    ["ps", "fa", "ti"].includes(currentLanguageI18nCode || "fr");
   if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 
   const insetBottom = insets.bottom > 0 ? insets.bottom - 8 : 0;
@@ -93,11 +111,11 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     <BottomTabBarContainer
       style={{
         height: 48 + insetBottom,
-        paddingBottom: insetBottom
+        paddingBottom: insetBottom,
       }}
     >
       {!noReadButton && <ReadButton bottomInset={insetBottom} />}
-      {items.map(i => i)}
+      {items.map((i) => i)}
     </BottomTabBarContainer>
   );
 }
@@ -106,7 +124,6 @@ export default function BottomTabNavigator() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const dispatch = useDispatch();
-
 
   // stop voiceover when changing screen
   const navigation = useNavigation();
@@ -123,9 +140,10 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
+      backBehavior="history"
       initialRouteName="Explorer"
       screenOptions={{ headerShown: false }}
-      tabBar={props => <BottomTabBar {...props} insets={insets} />}
+      tabBar={(props) => <BottomTabBar {...props} insets={insets} />}
     >
       <BottomTab.Screen
         name="Explorer"
@@ -145,7 +163,7 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Profil"
         component={ProfileNavigator}
-        options={{ tabBarLabel:  t("tab_bar.profile", "Moi") }}
+        options={{ tabBarLabel: t("tab_bar.profile", "Moi") }}
       />
     </BottomTab.Navigator>
   );

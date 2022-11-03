@@ -15,7 +15,10 @@ import { NotificationsSettingsScreen } from "../../screens/ProfilTab/Notificatio
 const ProfileStack = createStackNavigator<ProfileParamList>();
 
 export const ProfileNavigator = () => (
-  <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
+  <ProfileStack.Navigator
+    initialRouteName="ProfilScreen"
+    screenOptions={{ headerShown: false }}
+  >
     <ProfileStack.Screen name="ProfilScreen" component={ProfilScreen} />
     <ProfileStack.Screen
       name="LangueProfilScreen"

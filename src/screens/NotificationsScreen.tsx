@@ -1,6 +1,9 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useNavigation } from "@react-navigation/native";
+import {
+  CompositeNavigationProp,
+  useNavigation,
+} from "@react-navigation/native";
 import {
   View,
   ScrollView,
@@ -106,11 +109,18 @@ export const NotificationsScreen = () => {
 
   const count = notifications ? notifications?.unseenCount : null;
 
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+  const [isLanguageModalVisible, setLanguageModalVisible] =
+    React.useState(false);
   const toggleLanguageModal = () =>
-  setLanguageModalVisible(!isLanguageModalVisible);
+    setLanguageModalVisible(!isLanguageModalVisible);
+
+  const goToNotificationsSettingsScreen = () =>
+    // FIXME : remove ts-ignore
+    //@ts-ignore
+    navigation.navigate("Profil", {
+      screen: "NotificationsSettingsScreen",
+      initial: false,
+    });
 
   return (
     <SafeAreaView
@@ -120,9 +130,7 @@ export const NotificationsScreen = () => {
     >
       <HeaderWithBack navigation={navigation} />
       <View style={stylesheet.container}>
-        <View
-          style={stylesheet.titleContainer}
-        >
+        <View style={stylesheet.titleContainer}>
           <View
             style={{
               flexDirection: "row",
@@ -143,12 +151,7 @@ export const NotificationsScreen = () => {
           <TouchableOpacity
             style={stylesheet.settingsButton}
             activeOpacity={0.8}
-            onPress={() =>
-              navigation.navigate("Profil", {
-                screen: "NotificationsSettingsScreen",
-                initial: false,
-              })
-            }
+            onPress={goToNotificationsSettingsScreen}
           >
             <Icon
               name="settings-outline"
@@ -164,10 +167,10 @@ export const NotificationsScreen = () => {
             style={{
               display: "flex",
               flex: 1,
-              padding: theme.margin * 2
+              padding: styles.margin * 2,
             }}
             contentContainerStyle={{
-              paddingBottom: theme.margin * 4
+              paddingBottom: styles.margin * 4,
             }}
           >
             <EnableNotifications />
@@ -178,7 +181,9 @@ export const NotificationsScreen = () => {
             style={[
               {
                 display: "flex",
-                marginBottom: styles.margin * 4
+                marginTop: styles.margin,
+                marginHorizontal: styles.margin * 3,
+                marginBottom: styles.margin * 4,
               },
               !isLoading &&
                 !notifications?.notifications?.length && {
@@ -204,7 +209,7 @@ export const NotificationsScreen = () => {
                 <Text style={stylesheet.noNotificationsSubtitle}>
                   {t("notifications.noneYetSubtitle1")}
                   <Text
-                    onPress={() => navigation.navigate("Profil")}
+                    onPress={goToNotificationsSettingsScreen}
                     style={{
                       fontFamily: styles.fonts.families.circularBold,
                       textDecorationLine: "underline",
