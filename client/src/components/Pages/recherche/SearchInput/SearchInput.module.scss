@@ -42,7 +42,7 @@
   }
 
   .label {
-    @include text("very-small");
+    @include text("small");
     margin-bottom: u(2);
     font-weight: bold;
     color: $gray80;

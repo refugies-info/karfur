@@ -67,7 +67,7 @@ const DispositifCard = (props: Props) => {
       passHref
     >
       <DispositifLink
-        className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content)}
+        className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content, styles.card)}
         background={colors.color30}
         border={colors.color100}
         target={props.targetBlank ? "_blank" : undefined}
@@ -87,12 +87,12 @@ const DispositifCard = (props: Props) => {
         />
 
         <div
-          className={cls(styles.text, styles.abstract)}
+          className={cls(styles.text, styles.max_lines, styles.abstract)}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.abstract }}
         />
 
-        <div className={cls(styles.infos, styles.text, "my-4")} style={{ color: colors.color100 }}>
+        <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
           {price?.price !== undefined && (
             <div className="d-flex">
               <Image src={iconEuro} width={16} height={16} alt="" />
@@ -109,7 +109,7 @@ const DispositifCard = (props: Props) => {
           {duration?.contentTitle && (
             <div className="d-flex mt-1">
               <Image src={iconTime} width={16} height={16} alt="" />
-              <div className="ml-2" dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}></div>
+              <div className={cls(styles.ellipsis, "ml-2")} dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}></div>
             </div>
           )}
         </div>
@@ -120,7 +120,7 @@ const DispositifCard = (props: Props) => {
           ))}
         </div>
 
-        <div className={styles.sponsor} style={{ borderColor: colors.color80 }}>
+        <div className={styles.sponsor} style={{ borderColor: colors.color100 }}>
           <span className={styles.picture}>
             <Image
               src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
@@ -131,7 +131,7 @@ const DispositifCard = (props: Props) => {
             />
           </span>
           <span
-            className={cls(styles.text, "ml-2")}
+            className={cls(styles.text, styles.max_lines, "ml-2")}
             style={{ color: colors.color100 }}
             dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque }}
           />

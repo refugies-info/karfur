@@ -8,7 +8,7 @@
 .container {
   display: inline-flex;
   align-items: center;
-  @include text("very-small");
+  @include text("small");
   padding: u(1);
   border-radius: u(1);
 }
