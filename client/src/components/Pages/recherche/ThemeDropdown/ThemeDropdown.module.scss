@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
@@ -48,6 +49,7 @@
 
   @include isMobile() {
     height: auto;
+    @include text("normal");
   }
 }
 
@@ -107,6 +109,7 @@
       padding-left: u(2);
       padding-right: u(2);
       margin-bottom: u(1);
+      font-weight: normal;
 
       &.selected {
         .badge {
@@ -134,6 +137,10 @@
   display:flex;
   align-items: center;
 
+  @include isMobile() {
+    font-weight: normal;
+  }
+
   & > span {
     position: relative;
     top: -1px;
@@ -155,6 +162,10 @@
   @include rtl() {
     margin-left: 0;
     margin-right: u(2) !important;
+  }
+
+  @include isMobile() {
+    @include text("very-small");
   }
 }
 

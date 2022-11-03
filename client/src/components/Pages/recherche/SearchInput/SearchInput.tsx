@@ -73,16 +73,30 @@ const SearchInput = (props: Props) => {
           {props.label}
         </label>
         {active ? (
-          <input
-            ref={ref}
-            id={props.label}
-            type="text"
-            placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
-            className={styles.input}
-            onChange={props.onChange}
-            value={props.inputValue}
-            autoFocus
-          />
+          <>
+            <input
+              ref={ref}
+              id={props.label}
+              type="text"
+              placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
+              className={styles.input}
+              onChange={props.onChange}
+              value={props.inputValue}
+              autoFocus
+            />
+            {props.inputValue && (
+              <EVAIcon
+                className={cls(styles.empty_btn, styles.mobile)}
+                name="close-outline"
+                fill="dark"
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  if (props.resetFilter) props.resetFilter();
+                }}
+                size={24}
+              />
+            )}
+          </>
         ) : (
           <>
             <div ref={valueRef} className={cls(styles.value, !props.value && styles.empty)}>

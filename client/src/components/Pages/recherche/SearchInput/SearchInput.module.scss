@@ -126,6 +126,12 @@
     @include isMobile() {
       width: 32px;
       height: 32px;
+      margin-right: u(2);
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(2);
+      }
     }
   }
 }
@@ -154,6 +160,11 @@
 
   @include isMobile() {
     display: none;
+
+    &.mobile {
+      display: flex;
+      bottom: -2px;
+    }
   }
 }
 

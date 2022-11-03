@@ -57,6 +57,7 @@
 
   & > button {
     border-radius: $radius;
+    @include text("normal");
 
     &.btn_search {
       font-weight: bold;
@@ -66,7 +67,6 @@
 
   .reset {
     color: $bleuCharte;
-    @include text("normal");
 
     & > span {
       position: relative;

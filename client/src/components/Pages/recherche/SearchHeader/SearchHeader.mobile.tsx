@@ -87,6 +87,7 @@ const SearchHeaderMobile = (props: Props) => {
                 inputValue={search}
                 value={search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
+                resetFilter={() => setSearch("")}
               />
             </Button>
           </div>
