@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, ReactElement, SetStateAction } from "react";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import SearchFilterMobile from "./SearchFilter.mobile";
 import SearchFilterDesktop from "./SearchFilter.desktop";
@@ -13,7 +13,7 @@ interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
   setSelected: SetSelected;
-  label: string;
+  label: string|ReactElement;
   mobile: boolean;
 }
 

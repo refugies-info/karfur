@@ -86,6 +86,10 @@
     background: transparent;
     padding-left: u(6);
 
+    &::placeholder {
+      color: $gray80;
+    }
+
     @include rtl() {
       padding-left: 0;
       padding-right: u(6);

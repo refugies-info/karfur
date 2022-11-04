@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Button } from "reactstrap";
 import { cls } from "lib/classname";
 import { Selected } from "./SearchFilter";
@@ -7,7 +7,7 @@ import styles from "./SearchFilter.mobile.module.scss";
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
-  label: string;
+  label: string|ReactElement;
   selectItem: (option: string) => void;
 }
 

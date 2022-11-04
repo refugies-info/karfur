@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import React, { Dispatch, ReactElement, SetStateAction, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -115,12 +115,20 @@ const SearchHeaderDesktop = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterFrenchLevel]);
 
-  const [languageDisplayedValue, setLanguageDisplayedValue] = useState("");
+  const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string|ReactElement>("");
   useEffect(() => {
     if (filterLanguage.length) {
-      const value = filterLanguage.map((option) => languages.find((a) => a.i18nCode === option)?.langueFr).join(", ");
-      setLanguageDisplayedValue(value);
+      const langueCodes = filterLanguage.map((option) => languages.find((a) => a.i18nCode === option)?.langueCode);
+      setLanguageDisplayedValue(
+        <>
+          {t("Recherche.fichesLanguageFilter")}
+          {langueCodes.map(code =>
+            <i key={code} className={cls(styles.flag, `flag-icon flag-icon-${code}`)} title={code} id={code} />
+          )}
+        </>
+      );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterLanguage, languages]);
 
   return (
