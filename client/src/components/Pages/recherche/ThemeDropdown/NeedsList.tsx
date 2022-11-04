@@ -69,43 +69,39 @@ const NeedsList = (props: Props) => {
     setNbDispositifsByTheme(newNbDispositifsByTheme);
     setNbDispositifsByNeed(newNbDispositifsByNeed);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {
-    needsSelected,
-    setNeedsSelected,
-    themesSelected,
-    setThemesSelected
-  } = props;
+  const { needsSelected, setNeedsSelected, themesSelected, setThemesSelected } = props;
 
   const isThemeSelected = !!(props.themeSelected && themesSelected.includes(props.themeSelected));
 
   const selectNeed = (id: ObjectId) => {
-    let allSelectedNeeds: ObjectId[] = [
-      ...needsSelected,
-      ...getNeedsFromThemes(themesSelected, allNeeds)
-    ];
+    let allSelectedNeeds: ObjectId[] = [...needsSelected, ...getNeedsFromThemes(themesSelected, allNeeds)];
 
-    if (allSelectedNeeds.includes(id)) { // if need selected, remove
+    if (allSelectedNeeds.includes(id)) {
+      // if need selected, remove
       allSelectedNeeds = allSelectedNeeds.filter((n) => n !== id);
-    } else { // if not selected, add
-      allSelectedNeeds = [...allSelectedNeeds, id]
+    } else {
+      // if not selected, add
+      allSelectedNeeds = [...allSelectedNeeds, id];
     }
 
     const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);
     setNeedsSelected(res.needs);
     setThemesSelected(res.themes);
-  }
+  };
 
   const selectTheme = (id: ObjectId | null) => {
     if (!id) return;
     if (themesSelected.includes(id)) {
       setThemesSelected((themes) => themes.filter((n) => n !== id));
     } else {
-      const newNeeds = allNeeds.filter(n => {
-        return needsSelected.includes(n._id) && n.theme._id !== id
-      }).map(n => n._id);
+      const newNeeds = allNeeds
+        .filter((n) => {
+          return needsSelected.includes(n._id) && n.theme._id !== id;
+        })
+        .map((n) => n._id);
       setThemesSelected((themes) => [...themes, id]);
       setNeedsSelected(newNeeds);
     }
@@ -157,7 +153,7 @@ const NeedsList = (props: Props) => {
               selected={selected}
               onClick={() => selectNeed(need._id)}
             >
-              <Checkbox checked={selected} color={colors?.color100 || "black"}>
+              <Checkbox checked={selected} color={need.theme.colors.color100 || "black"}>
                 {need[locale]?.text || ""}
                 <span
                   className={styles.badge}
