@@ -14,6 +14,8 @@ import { cls } from "lib/classname";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
+import FavoriteButton from "components/UI/FavoriteButton";
+import { ObjectId } from "mongodb";
 
 const ONE_DAY_MS = 86400000;
 
@@ -31,7 +33,7 @@ const DemarcheLink = styled.a`
 
 interface Props {
   demarche: SearchDispositif;
-  targetBlank?: boolean
+  targetBlank?: boolean;
 }
 
 const DemarcheCard = (props: Props) => {
@@ -42,12 +44,13 @@ const DemarcheCard = (props: Props) => {
   const colors = theme.colors;
   const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
 
-  const lastModificationDate = props.demarche.lastModificationDate ? new Date(props.demarche.lastModificationDate) :null;
+  const lastModificationDate = props.demarche.lastModificationDate
+    ? new Date(props.demarche.lastModificationDate)
+    : null;
   const publishedAt = props.demarche.publishedAt ? new Date(props.demarche.publishedAt) : null;
 
   const hasUpdate =
-    lastModificationDate && publishedAt &&
-    lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS; // more than 1 day between publication and edition
+    lastModificationDate && publishedAt && lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS; // more than 1 day between publication and edition
 
   return (
     <Link
@@ -64,6 +67,7 @@ const DemarcheCard = (props: Props) => {
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
+        <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
         {hasUpdate && (
           <div className={styles.update}>
             <span>{t("Recherche.updated", "mise à jour")}</span>

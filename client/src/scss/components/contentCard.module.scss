@@ -96,3 +96,17 @@
   border-radius: 4px;
   display: inline-block;
 }
+
+/* Favorite button */
+.card {
+  .favorite {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: none;
+    z-index: 5;
+  }
+  &:hover .favorite {
+    display: block;
+  }
+}

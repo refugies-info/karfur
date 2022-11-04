@@ -19,6 +19,7 @@ import iconEuro from "assets/recherche/icon-euro.svg";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCard.module.scss";
+import FavoriteButton from "components/UI/FavoriteButton";
 
 type DispositifLinkProps = {
   background: string;
@@ -35,7 +36,7 @@ const DispositifLink = styled.a`
 interface Props {
   dispositif: SearchDispositif;
   selectedDepartment?: string;
-  targetBlank?: boolean
+  targetBlank?: boolean;
 }
 
 const DispositifCard = (props: Props) => {
@@ -52,9 +53,11 @@ const DispositifCard = (props: Props) => {
 
   const getDepartement = () => {
     if (!location || !location.departments) return null;
-    if (location.departments.length === 1 && location.departments[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
+    if (location.departments.length === 1 && location.departments[0] === "All")
+      return jsUcfirst(t("Recherche.france", "toute la France"));
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.departments.length > 1) return `${location.departments.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+    if (location.departments.length > 1)
+      return `${location.departments.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
     return location.departments[0];
   };
 
@@ -73,6 +76,7 @@ const DispositifCard = (props: Props) => {
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
+        <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />
           <span style={{ color: colors.color100 }} className="ml-1">
@@ -109,7 +113,10 @@ const DispositifCard = (props: Props) => {
           {duration?.contentTitle && (
             <div className="d-flex mt-1">
               <Image src={iconTime} width={16} height={16} alt="" />
-              <div className={cls(styles.ellipsis, "ml-2")} dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}></div>
+              <div
+                className={cls(styles.ellipsis, "ml-2")}
+                dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}
+              ></div>
             </div>
           )}
         </div>
