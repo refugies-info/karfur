@@ -3,6 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 .container {
@@ -37,6 +38,8 @@
   border-radius: u(2);
   margin-bottom: 4px;
   height: 39px;
+  @include text("normal");
+  @include withIcon();
 
   &:focus {
     outline: none;
@@ -49,7 +52,6 @@
 
   @include isMobile() {
     height: auto;
-    @include text("normal");
   }
 }
 
@@ -97,7 +99,7 @@
   }
 
   .btn {
-    padding: u(2) 12px;
+    padding: 12px u(2);
     justify-content: flex-start;
     text-align: left;
 
@@ -130,6 +132,7 @@
   font-weight: bold;
   padding: 12px u(2);
   border: 2px solid transparent;
+  @include text("normal");
 }
 
 .all {
@@ -158,14 +161,11 @@
   margin-left: u(2);
   border-radius: 2px;
   font-weight: normal;
+  @include text("very-small");
 
   @include rtl() {
     margin-left: 0;
     margin-right: u(2) !important;
-  }
-
-  @include isMobile() {
-    @include text("very-small");
   }
 }
 

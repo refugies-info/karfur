@@ -3,6 +3,7 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 .container {
@@ -50,15 +51,12 @@
   margin-right: u(1);
   margin-bottom: u(1);
   display: inline-flex;
+  @include text("normal");
 
   @include rtl() {
     margin-right: 0;
     margin-left: u(1);
     flex-direction: row-reverse;
-  }
-
-  @include isMobile() {
-    @include text("normal");
   }
 
   &:hover {
@@ -85,13 +83,11 @@
   border-radius: u(2);
   display: flex;
   align-items: center;
+  @include text("normal");
+  @include withIcon();
 
   @include rtl() {
     text-align: right;
-  }
-
-  @include isMobile() {
-    @include text("normal");
   }
 
   &:hover {
@@ -125,9 +121,4 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  & > span {
-    position: relative;
-    top: -1px;
-  }
 }

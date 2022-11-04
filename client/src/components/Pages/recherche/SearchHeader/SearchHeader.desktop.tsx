@@ -256,7 +256,7 @@ const SearchHeaderDesktop = (props: Props) => {
                   key: ln.i18nCode,
                   value: (
                     <>
-                      <i className={`flag-icon flag-icon-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode} />
+                      <i className={cls(styles.flag,`flag-icon flag-icon-${ln.langueCode}`)} title={ln.langueCode} id={ln.langueCode} />
                       {ln.langueFr}
                     </>
                   )

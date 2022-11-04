@@ -42,7 +42,7 @@
   }
 
   .label {
-    @include text("small");
+    @include text("very-small");
     margin-bottom: u(2);
     font-weight: bold;
     color: $gray80;
@@ -64,12 +64,8 @@
     outline: none;
     background: transparent;
     padding: 0;
-    @include text("small");
+    @include text("normal");
     width: 100%;
-
-    @include isMobile() {
-      @include text("normal");
-    }
   }
 
   .value {
@@ -80,11 +76,10 @@
     overflow: hidden;
     position: relative;
     padding-right: u(16);
-    @include text("small");
+    @include text("normal");
 
     @include isMobile() {
       padding-right: u(6);
-      @include text("normal");
     }
 
     @include rtl() {

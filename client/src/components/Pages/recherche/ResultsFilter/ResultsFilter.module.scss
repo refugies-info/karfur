@@ -38,6 +38,7 @@
   border: none;
   padding: u(3);
   margin-right: u(4);
+  @include text("normal");
 
   &:hover,
   &:focus,
@@ -60,7 +61,6 @@
     background: $gray40b;
     padding: u(2);
     white-space: nowrap;
-    @include text("normal");
   }
 }
 
@@ -71,6 +71,7 @@
   border-radius: u(2);
   box-shadow: 0 u(1) 18px 0 #0000001a;
   height: 45px;
+  @include text("normal");
 
   .icon {
     margin-right: u(2);
@@ -91,7 +92,6 @@
     box-shadow: none;
     padding: u(2);
     height: auto;
-    @include text("normal");
 
     .icon {
       position: relative;
@@ -110,6 +110,7 @@
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
+  @include text("normal");
 
   &:hover {
     background: $gray40b;
@@ -136,9 +137,5 @@
   &.selected {
     background: $bleuCharte !important;
     color: $white !important;
-  }
-
-  @include isMobile() {
-    @include text("normal");
   }
 }
