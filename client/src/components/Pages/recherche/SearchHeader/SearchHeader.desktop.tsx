@@ -72,7 +72,8 @@ const SearchHeaderDesktop = (props: Props) => {
     }
   }, []);
 
-  useEffect(() => { // prevent close dropdown on space
+  useEffect(() => {
+    // prevent close dropdown on space
     if (themesOpen || locationOpen) {
       document.addEventListener("keyup", handleSpaceKey);
     }
@@ -88,14 +89,13 @@ const SearchHeaderDesktop = (props: Props) => {
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
   useEffect(() => {
     if (filterAge.length) {
-      const value = filterAge
-        .map((option) => {
-          const filter = ageFilters.find((a) => a.key === option);
-          if (filter) return t(filter.value);
-          return "";
-        })
-        .join(", ");
-      setAgeDisplayedValue(value);
+      let ageDisplayedValue = "";
+      const value = ageFilters.find((a) => a.key === filterAge[0])?.value;
+      if (value) ageDisplayedValue += t(value);
+      if (filterAge.length > 1) {
+        ageDisplayedValue += `, +${filterAge.length - 1}`;
+      }
+      setAgeDisplayedValue(ageDisplayedValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterAge]);
@@ -103,32 +103,31 @@ const SearchHeaderDesktop = (props: Props) => {
   const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
   useEffect(() => {
     if (filterFrenchLevel.length) {
-      const value = filterFrenchLevel
-        .map((option) => {
-          const filter = frenchLevelFilter.find((a) => a.key === option);
-          if (filter) return t(filter.value);
-          return "";
-        })
-        .join(", ");
-      setFrenchLevelDisplayedValue(value);
+      let frenchLevelDisplayedValue = "";
+      const value = frenchLevelFilter.find((a) => a.key === filterFrenchLevel[0])?.value;
+      if (value) frenchLevelDisplayedValue += t(value);
+      if (filterFrenchLevel.length > 1) {
+        frenchLevelDisplayedValue += `, +${filterFrenchLevel.length - 1}`;
+      }
+      setFrenchLevelDisplayedValue(frenchLevelDisplayedValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterFrenchLevel]);
 
-  const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string|ReactElement>("");
+  const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string | ReactElement>("");
   useEffect(() => {
     if (filterLanguage.length) {
       const langueCodes = filterLanguage.map((option) => languages.find((a) => a.i18nCode === option)?.langueCode);
       setLanguageDisplayedValue(
         <>
           {t("Recherche.fichesLanguageFilter")}
-          {langueCodes.map(code =>
+          {langueCodes.map((code) => (
             <i key={code} className={cls(styles.flag, `flag-icon flag-icon-${code}`)} title={code} id={code} />
-          )}
+          ))}
         </>
       );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterLanguage, languages]);
 
   return (
@@ -256,7 +255,11 @@ const SearchHeaderDesktop = (props: Props) => {
                   key: ln.i18nCode,
                   value: (
                     <>
-                      <i className={cls(styles.flag,`flag-icon flag-icon-${ln.langueCode}`)} title={ln.langueCode} id={ln.langueCode} />
+                      <i
+                        className={cls(styles.flag, `flag-icon flag-icon-${ln.langueCode}`)}
+                        title={ln.langueCode}
+                        id={ln.langueCode}
+                      />
                       {ln.langueFr}
                     </>
                   )
@@ -271,11 +274,8 @@ const SearchHeaderDesktop = (props: Props) => {
         )}
       </Container>
 
-      {searchFocused && ( /* search backdrop placed here to cover only header */
-        <div
-          className={cls(styles.backdrop, styles.search)}
-          onClick={() => setSearchFocused(false)}
-        />
+      {searchFocused /* search backdrop placed here to cover only header */ && (
+        <div className={cls(styles.backdrop, styles.search)} onClick={() => setSearchFocused(false)} />
       )}
     </div>
   );

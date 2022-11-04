@@ -40,6 +40,7 @@ const SearchFilterDesktop = (props: Props) => {
               key={i}
               onClick={() => props.selectItem(option.key)}
               className={cls(styles.item, isSelected && styles.selected)}
+              toggle={false}
             >
               <Checkbox checked={isSelected} color={isSelected ? "white" : "black"}>
                 {option.value}
