@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
@@ -71,13 +71,7 @@ const HomeSearch = (props: Props) => {
           <h2 className="h3">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
           <div className={styles.themes}>
             {themes.sort(sortThemes).map((theme, i) => {
-              return (
-                <SearchThemeButton
-                  key={i}
-                  theme={theme}
-                  onClick={() => props.setThemesSelected([theme._id])}
-                />
-              );
+              return <SearchThemeButton key={i} theme={theme} onClick={() => props.setThemesSelected([theme._id])} />;
             })}
           </div>
         </Container>
@@ -93,7 +87,7 @@ const HomeSearch = (props: Props) => {
                 image={illuDemarche}
                 title={t("Recherche.demarcheCardTitle")}
                 buttonTitle={t("Recherche.seeAllDemarches", "Voir toutes les démarches")}
-                examples={demarchesExamples.map(d => t(d))}
+                examples={demarchesExamples.map((d) => t(d))}
                 onClick={() => props.setSelectedType("demarche")}
               />
             </Col>
@@ -102,7 +96,7 @@ const HomeSearch = (props: Props) => {
                 image={illuDispositif}
                 title={t("Recherche.dispositifCardTitle")}
                 buttonTitle={t("Recherche.seeAllDispositifs", "Voir tous les dispositifs")}
-                examples={dispositifsExamples.map(d => t(d))}
+                examples={dispositifsExamples.map((d) => t(d))}
                 onClick={() => props.setSelectedType("dispositif")}
               />
             </Col>
@@ -113,13 +107,33 @@ const HomeSearch = (props: Props) => {
       {/* new */}
       <div className={styles.section}>
         <Container className={styles.container_inner}>
-          <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
+          <div className={styles.title_line}>
+            <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
+            <Button
+              onClick={() => {
+                props.setSelectedType("demarche");
+                window.scrollTo(0, 0);
+              }}
+            >
+              Voir tout
+            </Button>
+          </div>
           <div className={cls(styles.results, styles.demarches)}>
             {props.demarches.map((d) => (
               <DemarcheCard key={d._id.toString()} demarche={d} />
             ))}
           </div>
-          <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
+          <div className={styles.title_line}>
+            <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
+            <Button
+              onClick={() => {
+                props.setSelectedType("dispositif");
+                window.scrollTo(0, 0);
+              }}
+            >
+              Voir tout
+            </Button>
+          </div>
           <div className={cls(styles.results, styles.dispositifs)}>
             {props.dispositifs.map((d) => (
               <DispositifCard key={d._id.toString()} dispositif={d} />

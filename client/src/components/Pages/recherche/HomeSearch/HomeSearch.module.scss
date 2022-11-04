@@ -33,12 +33,34 @@
   }
 }
 
+.title_line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    @include text("large");
+    background: $gray40b;
+    border: none;
+    padding: u(2);
+    white-space: nowrap;
+
+    &:hover {
+      background: $gray60;
+    }
+
+    @include isMobile() {
+      display: none;
+    }
+  }
+}
+
 .content {
   margin-top: u(14);
 }
 
 .themes {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   gap: u(3);
   margin-top: u(16);
@@ -88,7 +110,7 @@
   .btn {
     @include text("large");
     font-weight: bold;
-    box-shadow: 0 4px 18px 0 #0000001A;
+    box-shadow: 0 4px 18px 0 #0000001a;
     padding: u(2) u(4);
     border-radius: u(2);
     border: 1px solid transparent;
