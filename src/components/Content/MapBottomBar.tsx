@@ -40,27 +40,27 @@ const MainContainer = styled.View`
     props.isSelected ? styles.margin * 3 : 0}px;
 `;
 
-const ContentContainer = styled(RTLView)`
-  margin-bottom: ${(props: { marginBottom: number }) =>
-    props.marginBottom !== undefined
-      ? styles.margin * props.marginBottom
-      : styles.margin}px;
-  margin-top: ${(props: { marginTop: number }) =>
-    props.marginTop !== undefined
-      ? styles.margin * props.marginTop
-      : styles.margin}px;
+const ContentContainer = styled(RTLView)<{
+  color?: string; // FIXME is it necessary ?
+  marginBottom?: number;
+  marginTop?: number;
+}>`
+  margin-bottom: ${({ marginBottom, theme }) =>
+    marginBottom !== undefined ? theme.margin * marginBottom : theme.margin}px;
+  margin-top: ${({ marginTop, theme }) =>
+    marginTop !== undefined ? theme.margin * marginTop : theme.margin}px;
   align-items: flex-start;
 `;
 
-const ContentTouchableOpacity = styled(RTLTouchableOpacity)`
-  margin-bottom: ${(props: { marginBottom: number }) =>
-    props.marginBottom !== undefined
-      ? styles.margin * props.marginBottom
-      : styles.margin}px;
-  margin-top: ${(props: { marginTop: number }) =>
-    props.marginTop !== undefined
-      ? styles.margin * props.marginTop
-      : styles.margin}px;
+const ContentTouchableOpacity = styled(RTLTouchableOpacity)<{
+  color?: string; // FIXME is it necessary ?
+  marginBottom?: number;
+  marginTop?: number;
+}>`
+  margin-bottom: ${({ marginBottom, theme }) =>
+    marginBottom !== undefined ? theme.margin * marginBottom : theme.margin}px;
+  margin-top: ${({ marginTop, theme }) =>
+    marginTop !== undefined ? theme.margin * marginTop : theme.margin}px;
   align-items: flex-start;
 `;
 

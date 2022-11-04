@@ -244,7 +244,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         Si tu ne trouves pas de réponse à ta question, n’hésite pas à nous la poser directement.
       </Text>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -790,7 +789,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           Quand tu ouvres l’application et à tout moment dans l’onglet “Moi”, tu peux décider de nous partager :
         </Text>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -894,7 +892,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </Text>
         </View>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -1003,7 +1000,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
           </Text>
         </View>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -2142,7 +2138,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             Voici comment ces sociétés partenaires traitent tes données.
           </Text>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -2189,7 +2184,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             style={Object {}}
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2244,7 +2238,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2299,7 +2292,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2354,7 +2346,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2409,7 +2400,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2489,7 +2479,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -2538,7 +2527,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
             style={Object {}}
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2593,7 +2581,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2648,7 +2635,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2703,7 +2689,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               </Text>
             </View>
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -3156,7 +3141,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
         </View>
       </View>
       <View
-        isRTL={false}
         style={
           Array [
             Object {

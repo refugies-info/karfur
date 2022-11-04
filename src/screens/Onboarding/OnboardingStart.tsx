@@ -40,7 +40,7 @@ export const OnboardingStart = ({
 
   return (
     <MainView>
-      <HeaderWithBack navigation={navigation} />
+      <HeaderWithBack />
       <Image
         source={IlluOnboarding}
         style={{

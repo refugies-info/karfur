@@ -1,79 +1,97 @@
 import * as React from "react";
+import { View } from "react-native";
+import styled from "styled-components/native";
+import useToggle from "react-use/lib/useToggle";
+import { Icon } from "react-native-eva-icons";
+
 import { SmallButton } from "./SmallButton";
 import { RowContainer, RTLView } from "./BasicComponents";
-import styled from "styled-components/native";
 import { styles } from "../theme";
 import { StyledTextSmallBold } from "./StyledText";
-import { Icon } from "react-native-eva-icons";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { LanguageSwitch } from "./Language/LanguageSwitch";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
-import { View } from "react-native";
+import { LanguageChoiceModal } from "../screens/Modals/LanguageChoiceModal";
+import { useNavigation } from "@react-navigation/native";
 
 const TopButtonsContainer = styled(RowContainer)`
   justify-content: flex-start;
-  padding-horizontal: ${styles.margin * 3}px;
+  padding-horizontal: ${({ theme }) => theme.margin * 3}px;
   z-index: 2;
-  padding-top: ${styles.margin}px;
+  padding-top: ${({ theme }) => theme.margin}px;
 `;
 
 const StyledText = styled(StyledTextSmallBold)`
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;
 
 const ICON_SIZE = 24;
 
+const LabelIconView = styled(RTLView)`
+  flex: 1;
+  margin-right: ${({ theme }) => (!theme.i18n.isRTL ? styles.margin * 7 : 0)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? styles.margin * 7 : 0)}px;
+  justify-content: center;
+`;
+
 interface Props {
   iconName?: string;
   text?: string;
-  navigation: any;
-  onLongPressSwitchLanguage?: () => void;
+  showLanguageSwitch?: boolean;
 }
 
-export const HeaderWithBack = (props: Props) => {
-  const { t, isRTL } = useTranslationWithRTL();
+export const HeaderWithBack = ({
+  iconName,
+  text,
+  showLanguageSwitch = false,
+}: Props) => {
+  const navigation = useNavigation();
+  const { t } = useTranslationWithRTL();
+  const [isLanguageModalVisible, toggleLanguageModal] = useToggle(false);
 
   return (
     <TopButtonsContainer>
       <SmallButton
         iconName="arrow-back-outline"
-        onPress={props.navigation.goBack}
+        onPress={navigation.goBack}
         label={t("global.back_button_accessibility")}
       />
-      {props.iconName && props.text && (
-        <RTLView
-          style={{
-            flex: 1,
-            marginRight: !isRTL ? styles.margin * 7 : 0,
-            marginLeft: isRTL ? styles.margin * 7 : 0,
-            justifyContent: "center",
-          }}
-        >
+      {iconName && text && (
+        <LabelIconView>
           <Icon
-            name={props.iconName}
+            name={iconName}
             width={ICON_SIZE}
             height={ICON_SIZE}
             fill={styles.colors.black}
           />
-          <StyledText isRTL={isRTL}>{props.text}</StyledText>
-        </RTLView>
+          <StyledText>{text}</StyledText>
+        </LabelIconView>
       )}
-      {!!props.onLongPressSwitchLanguage && (
-        <View style={{ marginLeft: "auto" }}>
-          <LanguageSwitch
-            onLongPressSwitchLanguage={() => {
-              logEventInFirebase(FirebaseEvent.LONG_PRESS_CHANGE_LANGUAGE, {});
-              if (props.onLongPressSwitchLanguage) {
-                props.onLongPressSwitchLanguage();
-              }
-            }}
+      {showLanguageSwitch && (
+        <>
+          <LanguageChoiceModal
+            isModalVisible={isLanguageModalVisible}
+            toggleModal={toggleLanguageModal}
           />
-        </View>
+          <View style={{ marginLeft: "auto" }}>
+            <LanguageSwitch
+              onLongPressSwitchLanguage={() => {
+                logEventInFirebase(
+                  FirebaseEvent.LONG_PRESS_CHANGE_LANGUAGE,
+                  {}
+                );
+                toggleLanguageModal();
+              }}
+            />
+          </View>
+        </>
       )}
     </TopButtonsContainer>
   );
+};
+
+HeaderWithBack.defaultProps = {
+  showLanguageSwitch: false,
 };

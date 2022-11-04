@@ -25,10 +25,8 @@ const Title = styled(TextBigBold)`
 export const FrenchLevelProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "FrenchLevelProfilScreen">) => {
-  const [
-    selectedFrenchLevel,
-    setSelectedFrenchLevel,
-  ] = React.useState<null | FrenchLevel>(null);
+  const [selectedFrenchLevel, setSelectedFrenchLevel] =
+    React.useState<null | FrenchLevel>(null);
 
   const dispatch = useDispatch();
 
@@ -68,7 +66,6 @@ export const FrenchLevelProfilScreen = ({
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
-        navigation={navigation}
         text={t("profile_screens.french_level", "Niveau de français")}
         iconName="message-circle-outline"
       />
@@ -76,11 +73,14 @@ export const FrenchLevelProfilScreen = ({
         <View
           style={{
             marginHorizontal: styles.margin * 3,
-            marginTop: styles.margin * 3
+            marginTop: styles.margin * 3,
           }}
         >
           <Title>
-            {t("onboarding_screens.french_level", "Quel est ton niveau en français ?")}
+            {t(
+              "onboarding_screens.french_level",
+              "Quel est ton niveau en français ?"
+            )}
           </Title>
           <Explaination
             step={3}
@@ -88,7 +88,7 @@ export const FrenchLevelProfilScreen = ({
           />
         </View>
         <ScrollView
-           style={{ flex: 1 }}
+          style={{ flex: 1 }}
           contentContainerStyle={{
             paddingTop: styles.margin * 2,
             paddingHorizontal: styles.margin * 3,

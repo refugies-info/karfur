@@ -37,7 +37,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -141,16 +141,15 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -314,7 +313,6 @@ exports[`Filter city should render correctly when city selected 1`] = `
           Ta ville
         </Text>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -802,7 +800,7 @@ exports[`Filter city should render correctly when no city 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -906,16 +904,15 @@ exports[`Filter city should render correctly when no city 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,

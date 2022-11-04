@@ -7,30 +7,29 @@ import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
 
-const ButtonContainer = styled(RTLTouchableOpacity)`
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor || styles.colors.white};
+const ButtonContainer = styled(RTLTouchableOpacity)<{
+  backgroundColor?: string;
+  isSmall?: boolean;
+  notFullWidth?: boolean;
+  isDisabled?: boolean;
+  withShadows: boolean;
+}>`
+  background-color: ${({ backgroundColor, theme }) =>
+    backgroundColor || theme.colors.white};
   justify-content: center;
-  padding: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? styles.radius * 3 : styles.margin}px;
-  border-radius: ${(props: { isSmall: boolean }) =>
-    !props.isSmall ? styles.radius * 2 : 8}px;
+  padding: ${({ isSmall, theme }) =>
+    !isSmall ? theme.radius * 3 : theme.margin}px;
+  border-radius: ${({ isSmall, theme }) => (!isSmall ? theme.radius * 2 : 8)}px;
   align-items: center;
-  width: ${(props: { notFullWidth: boolean }) =>
-    props.notFullWidth ? "auto" : "100%"};
-  height: ${(props: { isSmall: boolean }) => (!props.isSmall ? 56 : 40)}px;
-  ${(props: {
-    isDisabled: boolean;
-    isSmall: boolean;
-    backgroundColor: string;
-    withShadows: boolean;
-  }) =>
-    props.isDisabled || !props.withShadows
+  width: ${({ notFullWidth }) => (notFullWidth ? "auto" : "100%")};
+  height: ${({ isSmall }) => (!isSmall ? 56 : 40)}px;
+  ${({ isDisabled, isSmall, backgroundColor, withShadows, theme }) =>
+    isDisabled || !withShadows
       ? ""
-      : props.isSmall || !props.backgroundColor
-      ? styles.shadows.lg
-      : styles.shadows.sm};
-  opacity: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0.4 : 1)};
+      : isSmall || !backgroundColor
+      ? theme.shadows.lg
+      : theme.shadows.sm};
+  opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)};
 `;
 
 const ColoredTextBold = styled(StyledTextSmallBold)`

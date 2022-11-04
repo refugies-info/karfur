@@ -15,18 +15,20 @@ import { ReadableText } from "../ReadableText";
 import { useSelector } from "react-redux";
 import { currentItemSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
 
-const TitleContainer = styled(RTLTouchableOpacity)`
-  background-color: ${(props: { isExpanded: boolean; lightColor: string }) =>
-    props.isExpanded ? props.lightColor : styles.colors.white};
+const TitleContainer = styled(RTLTouchableOpacity)<{
+  darkColor: string;
+  isExpanded: boolean;
+  lightColor: string;
+}>`
+  background-color: ${({ isExpanded, lightColor, theme }) =>
+    isExpanded ? lightColor : theme.colors.white};
   padding: ${styles.margin * 2}px;
   border-radius: ${styles.radius * 2}px
     ${(props: { isExpanded: boolean }) =>
       !props.isExpanded ? styles.shadows.lg : ""};
   justify-content: space-between;
-  border: ${(props: { isExpanded: boolean; darkColor: string }) =>
-    props.isExpanded
-      ? `2px solid ${props.darkColor}`
-      : `2px solid ${styles.colors.white}`};
+  border: ${({ darkColor, isExpanded, theme }) =>
+    isExpanded ? `2px solid ${darkColor}` : `2px solid ${theme.colors.white}`};
   align-items: center;
 `;
 

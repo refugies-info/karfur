@@ -1,6 +1,4 @@
 import styled from "styled-components/native";
-import React from "react";
-import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 
 export const RowContainer = styled.View`
   display: flex;
@@ -10,21 +8,16 @@ export const RowContainer = styled.View`
 
 const RTLViewContainer = styled.View`
   display: flex;
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
+  flex-direction: ${({ theme }) => (theme.i18n.isRTL ? "row-reverse" : "row")};
   align-items: center;
 `;
-export const RTLView = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-  return <RTLViewContainer isRTL={isRTL} {...props} />;
-};
 
 const RTLTouchableOpacityContainer = styled.TouchableOpacity`
   display: flex;
-  flex-direction: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "row-reverse" : "row"};
+  flex-direction: ${({ theme }) => (theme.i18n.isRTL ? "row-reverse" : "row")};
 `;
-export const RTLTouchableOpacity = (props: any) => {
-  const { isRTL } = useTranslationWithRTL();
-  return <RTLTouchableOpacityContainer isRTL={isRTL} {...props} />;
+
+export {
+  RTLViewContainer as RTLView,
+  RTLTouchableOpacityContainer as RTLTouchableOpacity,
 };

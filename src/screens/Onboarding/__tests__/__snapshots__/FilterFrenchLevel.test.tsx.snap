@@ -37,7 +37,7 @@ exports[`Filter french level should render correctly when french level selected 
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -141,16 +141,15 @@ exports[`Filter french level should render correctly when french level selected 
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -355,7 +354,6 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_a"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -463,7 +461,6 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_b"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -644,7 +641,6 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_c"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1081,7 +1077,7 @@ exports[`Filter french level should render correctly when no french level select
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1185,16 +1181,15 @@ exports[`Filter french level should render correctly when no french level select
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -1399,7 +1394,6 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_a"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1515,7 +1509,6 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_b"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -1631,7 +1624,6 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_c"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2060,7 +2052,7 @@ exports[`Filter french level should select level when click on it 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -2164,16 +2156,15 @@ exports[`Filter french level should select level when click on it 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -2378,7 +2369,6 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_a"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2486,7 +2476,6 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_b"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {
@@ -2667,7 +2656,6 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_c"
           >
             <View
-              isRTL={false}
               style={
                 Array [
                   Object {

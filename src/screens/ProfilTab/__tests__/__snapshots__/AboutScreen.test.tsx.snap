@@ -1933,7 +1933,6 @@ exports[`About screen should render correctly 1`] = `
         }
       />
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -2156,19 +2155,16 @@ exports[`About screen should render correctly 1`] = `
       >
         <View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2255,19 +2251,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2354,19 +2347,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2453,19 +2443,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2552,19 +2539,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2651,19 +2635,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2750,19 +2731,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2849,19 +2827,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -2948,19 +2923,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -3047,19 +3019,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,
@@ -3146,19 +3115,16 @@ exports[`About screen should render correctly 1`] = `
             </View>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
                   "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
-                },
-                Object {
                   "backgroundColor": "#EEF8FF",
                   "borderColor": "#073099",
                   "borderRadius": 12,
                   "borderWidth": 2,
+                  "display": "flex",
+                  "flexDirection": "row",
                   "marginBottom": 16,
                   "paddingBottom": 16,
                   "paddingLeft": 16,

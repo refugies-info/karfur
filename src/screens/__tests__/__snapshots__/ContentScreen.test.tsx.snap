@@ -1065,7 +1065,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -1213,7 +1212,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -1312,7 +1310,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -1460,7 +1457,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -1569,7 +1565,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -1746,7 +1741,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -2023,7 +2017,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -2300,7 +2293,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -2577,7 +2569,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -2883,7 +2874,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -3221,7 +3211,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -3526,18 +3515,14 @@ exports[`ContentScreen should render correctly 1`] = `
               testID="test-button-map"
             >
               <View
-                isRTL={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "alignItems": "center",
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
+                      "display": "flex",
+                      "flexDirection": "row",
                       "height": 56,
                       "justifyContent": "center",
                       "paddingBottom": 18,
@@ -3733,15 +3718,12 @@ exports[`ContentScreen should render correctly 1`] = `
           </View>
         </View>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
                 "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
-              },
-              Object {
                 "marginBottom": 16,
                 "marginHorizontal": 24,
                 "marginTop": 32,
@@ -3811,7 +3793,6 @@ exports[`ContentScreen should render correctly 1`] = `
     }
   >
     <View
-      isRTL={false}
       style={
         Array [
           Object {
@@ -4002,7 +3983,7 @@ exports[`ContentScreen should render correctly 1`] = `
             }
           >
             <View
-              className="sc-dkrFOg eZCUAS"
+              className="sc-dkrFOg gFJRvG"
             >
               <react-native-svg
                 height={16}
@@ -5635,7 +5616,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -5783,7 +5763,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -5882,7 +5861,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -6030,7 +6008,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -6139,7 +6116,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -6316,7 +6292,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -6593,7 +6568,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -6870,7 +6844,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -7147,7 +7120,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -7453,7 +7425,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -7791,7 +7762,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 }
               >
                 <View
-                  isRTL={false}
                   style={
                     Array [
                       Object {
@@ -8096,18 +8066,14 @@ exports[`ContentScreen should toggle map modal 1`] = `
               testID="test-button-map"
             >
               <View
-                isRTL={false}
                 style={
                   Array [
                     Object {
                       "alignItems": "center",
-                      "display": "flex",
-                      "flexDirection": "row",
-                    },
-                    Object {
-                      "alignItems": "center",
                       "backgroundColor": "#FFFFFF",
                       "borderRadius": 12,
+                      "display": "flex",
+                      "flexDirection": "row",
                       "height": 56,
                       "justifyContent": "center",
                       "paddingBottom": 18,
@@ -8303,15 +8269,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
                 "alignItems": "center",
                 "display": "flex",
                 "flexDirection": "row",
-              },
-              Object {
                 "marginBottom": 16,
                 "marginHorizontal": 24,
                 "marginTop": 32,
@@ -8381,7 +8344,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
     }
   >
     <View
-      isRTL={false}
       style={
         Array [
           Object {
@@ -8572,7 +8534,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             }
           >
             <View
-              className="sc-dkrFOg eZCUAS"
+              className="sc-dkrFOg gFJRvG"
             >
               <react-native-svg
                 height={16}

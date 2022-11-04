@@ -22,20 +22,25 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-const StyledContainer = styled(RTLTouchableOpacity)`
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
-  ${(props: { inline: boolean }) => !props.inline ? `
+const StyledContainer = styled(RTLTouchableOpacity)<{
+  backgroundColor: string;
+  inline?: boolean;
+}>`
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  ${({ inline, theme }) =>
+    !inline
+      ? `
   flex: 1;
-  ` : `
-  margin-right: ${styles.margin * 2}px;
+  `
+      : `
+  margin-right: ${theme.margin * 2}px;
   `}
-  padding: ${styles.margin * 2}px;
-  margin-vertical: ${styles.margin}px;
-  border-radius: ${styles.radius * 2}px;
+  padding: ${({ theme }) => theme.margin * 2}px;
+  margin-vertical: ${({ theme }) => theme.margin}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
   justify-content: space-between;
   align-items: center;
-  ${styles.shadows.lg}
+  ${({ theme }) => theme.shadows.lg}
 `;
 const StyledText = styled(StyledTextNormalBold)`
   color: ${styles.colors.white};
@@ -54,10 +59,10 @@ export const TagButton = (props: Props) => {
       inline={props.inline}
       onPress={props.onPress}
       accessibilityRole="button"
-      style={props.style || {}}
+      style={props.style || {}}
     >
       <StyledText isRTL={isRTL}>
-        {props.searchItem ?
+        {props.searchItem ? (
           <Highlight
             hit={props.searchItem}
             attribute={`name_${props.searchLanguageMatch || "fr"}`}
@@ -67,11 +72,10 @@ export const TagButton = (props: Props) => {
             color={props.backgroundColor}
             //@ts-ignore
             colorNotHighlighted={styles.colors.white}
-          /> :
-          <ReadableText>
-            {firstLetterUpperCase(props.name || "")}
-          </ReadableText>
-        }
+          />
+        ) : (
+          <ReadableText>{firstLetterUpperCase(props.name || "")}</ReadableText>
+        )}
       </StyledText>
       {props.icon && <StreamlineIcon icon={props.icon} size={20} />}
     </StyledContainer>

@@ -36,10 +36,8 @@ const BottomContainer = styled.View`
 export const FilterFrenchLevel = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
-  const [
-    selectedFrenchLevel,
-    setSelectedFrenchLevel,
-  ] = React.useState<null | FrenchLevel>(null);
+  const [selectedFrenchLevel, setSelectedFrenchLevel] =
+    React.useState<null | FrenchLevel>(null);
   const { t } = useTranslationWithRTL();
 
   const navigateToNextScreen = () => navigation.navigate("FinishOnboarding");
@@ -90,7 +88,6 @@ export const FilterFrenchLevel = ({
       }}
     >
       <HeaderWithBack
-        navigation={navigation}
         iconName={"person-outline"}
         text={t("onboarding_screens.me", "Créer mon profil")}
       />

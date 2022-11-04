@@ -57,7 +57,6 @@ export const AgeProfilScreen = ({
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <HeaderWithBack
-        navigation={navigation}
         text={t("profile_screens.age", "Âge")}
         iconName="calendar-outline"
       />

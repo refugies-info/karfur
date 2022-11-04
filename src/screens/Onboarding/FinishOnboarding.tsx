@@ -87,7 +87,7 @@ export const FinishOnboarding = ({
   };
   return (
     <MainView>
-      <HeaderWithBack navigation={navigation} />
+      <HeaderWithBack />
 
       <ElementsContainer>
         {hasUserEnteredInfos ? (
@@ -102,15 +102,19 @@ export const FinishOnboarding = ({
           <View>
             <FakeTabBar width={fakeTabBarWidth} />
             <FakeTabBarArrowContainer width={fakeTabBarWidth}>
-              <ArrowOnboarding style={{ width: "100%" }}/>
+              <ArrowOnboarding style={{ width: "100%" }} />
             </FakeTabBarArrowContainer>
           </View>
         )}
         {hasUserEnteredInfos && (
-          <StyledText>{t("onboarding_screens.thank_you", "Merci !")}</StyledText>
+          <StyledText>
+            {t("onboarding_screens.thank_you", "Merci !")}
+          </StyledText>
         )}
         <StyledText
-          marginTop={hasUserEnteredInfos ? styles.margin * 2 : styles.margin * 6}
+          marginTop={
+            hasUserEnteredInfos ? styles.margin * 2 : styles.margin * 6
+          }
         >
           {hasUserEnteredInfos
             ? t(

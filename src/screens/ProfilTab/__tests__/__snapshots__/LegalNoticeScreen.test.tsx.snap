@@ -226,7 +226,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         Sur cette page, tu trouveras toutes les informations obligatoires sur l’application Réfugiés.info. Par exemple : Qui est notre hébergeur ? Qui détient les droits d’auteur sur les contenus que nous publions ?
       </Text>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -389,7 +388,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         L’application Réfugiés.info a été créée par la Délégation interministérielle à l'accueil et à l'intégration des réfugiés du Ministère de l’Intérieur.
       </Text>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -512,7 +510,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         Elle est développée par la MedNum, société coopérative d’intérêt collectif spécialisée sur la médiation et l’inclusion numérique.
       </Text>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -674,7 +671,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         L’application Réfugiés.info est hébergée par la société Google Cloud.
       </Text>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
@@ -932,7 +928,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
           style={Object {}}
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -987,7 +982,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
             </Text>
           </View>
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -1043,7 +1037,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
           </View>
         </View>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -1439,7 +1432,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
           Toute reproduction ou adaptation (retouchage, montage, recadrage...) des éléments graphiques et iconographiques du site est interdite sans l’accord de Réfugiés.info.
         </Text>
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -1918,7 +1910,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -2004,7 +1995,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         }
       >
         <View
-          isRTL={false}
           style={
             Array [
               Object {
@@ -2238,7 +2228,6 @@ exports[`LegalNotice screen should render correctly 1`] = `
         </View>
       </View>
       <View
-        isRTL={false}
         style={
           Array [
             Object {

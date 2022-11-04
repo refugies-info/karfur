@@ -135,21 +135,18 @@ exports[`Search results screen should render correctly 1`] = `
         </View>
       </View>
       <View
-        isRTL={false}
         style={
           Array [
             Object {
               "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-            Object {
               "backgroundColor": "#FFFFFF",
               "borderColor": "#5E5E5E",
               "borderRadius": 12,
               "borderStyle": "solid",
               "borderWidth": 1,
+              "display": "flex",
               "flexBasis": 0,
+              "flexDirection": "row",
               "flexGrow": 1,
               "flexShrink": 1,
               "height": 56,

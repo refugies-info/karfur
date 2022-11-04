@@ -37,7 +37,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -141,16 +141,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -338,7 +337,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
           testID="test-filter-age_10_17"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -497,7 +495,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
           testID="test-filter-age_18_25"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -591,7 +588,6 @@ exports[`Filter age should render correctly when age selected 1`] = `
           testID="test-filter-age_26_100"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -996,7 +992,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1100,16 +1096,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -1305,7 +1300,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           testID="test-filter-age_10_17"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -1399,7 +1393,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           testID="test-filter-age_18_25"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -1493,7 +1486,6 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           testID="test-filter-age_26_100"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -1890,7 +1882,7 @@ exports[`Filter age should select age when click on it 1`] = `
       accessibilityRole="button"
       accessible={true}
       collapsable={false}
-      focusable={true}
+      focusable={false}
       onClick={[Function]}
       onResponderGrant={[Function]}
       onResponderMove={[Function]}
@@ -1994,16 +1986,15 @@ exports[`Filter age should select age when click on it 1`] = `
       </View>
     </View>
     <View
-      isRTL={false}
       style={
         Array [
           Object {
             "alignItems": "center",
             "display": "flex",
+            "flexBasis": 0,
             "flexDirection": "row",
-          },
-          Object {
-            "flex": 1,
+            "flexGrow": 1,
+            "flexShrink": 1,
             "justifyContent": "center",
             "marginLeft": 0,
             "marginRight": 56,
@@ -2199,7 +2190,6 @@ exports[`Filter age should select age when click on it 1`] = `
           testID="test-filter-age_10_17"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -2293,7 +2283,6 @@ exports[`Filter age should select age when click on it 1`] = `
           testID="test-filter-age_18_25"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {
@@ -2379,7 +2368,6 @@ exports[`Filter age should select age when click on it 1`] = `
           testID="test-filter-age_26_100"
         >
           <View
-            isRTL={false}
             style={
               Array [
                 Object {

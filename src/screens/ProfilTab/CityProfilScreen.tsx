@@ -17,11 +17,10 @@ export const CityProfilScreen = ({
     <View
       style={{
         flex: 1,
-        paddingTop: insets.top
+        paddingTop: insets.top,
       }}
     >
       <HeaderWithBack
-        navigation={navigation}
         text={t("profile_screens.city", "Ville")}
         iconName="pin-outline"
       />

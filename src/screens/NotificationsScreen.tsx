@@ -28,7 +28,6 @@ import { EnableNotifications } from "../components/Notifications/EnableNotificat
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabParamList, ExplorerParamList } from "../../types";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { LanguageChoiceModal } from "./Modals/LanguageChoiceModal";
 
 const ICON_SIZE = 24;
 
@@ -109,11 +108,6 @@ export const NotificationsScreen = () => {
 
   const count = notifications ? notifications?.unseenCount : null;
 
-  const [isLanguageModalVisible, setLanguageModalVisible] =
-    React.useState(false);
-  const toggleLanguageModal = () =>
-    setLanguageModalVisible(!isLanguageModalVisible);
-
   const goToNotificationsSettingsScreen = () =>
     // FIXME : remove ts-ignore
     //@ts-ignore
@@ -123,12 +117,8 @@ export const NotificationsScreen = () => {
     });
 
   return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-      }}
-    >
-      <HeaderWithBack navigation={navigation} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <HeaderWithBack showLanguageSwitch />
       <View style={stylesheet.container}>
         <View style={stylesheet.titleContainer}>
           <View
@@ -235,11 +225,6 @@ export const NotificationsScreen = () => {
           </View>
         )}
       </View>
-
-      <LanguageChoiceModal
-        isModalVisible={isLanguageModalVisible}
-        toggleModal={toggleLanguageModal}
-      />
     </SafeAreaView>
   );
 };

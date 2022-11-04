@@ -21,7 +21,6 @@ import { firstLetterUpperCase } from "../../libs";
 import { TextBigBold, TextNormalBold } from "../../components/StyledText";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ToggleButton } from "../../components/UI/ToggleButton";
-import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
 
 import { StackNavigationProp } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
@@ -89,7 +88,7 @@ export const NotificationsSettingsScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
-      <HeaderWithBack navigation={navigation} />
+      <HeaderWithBack showLanguageSwitch />
       <View
         style={{
           marginHorizontal: styles.margin * 3,
@@ -109,67 +108,63 @@ export const NotificationsSettingsScreen = () => {
           }}
           scrollIndicatorInsets={{ right: 1 }}
         >
-          {!accessGranted ? (
-            <EnableNotifications withMargin={false} />
-          ) : (
-            <>
-              <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
-              <View
-                accessibilityRole="radiogroup"
-                style={stylesheet.toggleContainer}
-              >
-                <ToggleButton
-                  title={`${t("notifications.settingsLocal")} ${
-                    !!location.city ? `: ${location.city}` : ""
-                  }`}
-                  subtitle={t("notifications.settingsLocalSubtitle")}
-                  enabled={hasSetLocation && settings?.local}
-                  onToggle={updateLocalSettings}
-                />
-                <View style={stylesheet.separator} />
-                <ToggleButton
-                  title={t("notifications.settingsGlobal")}
-                  subtitle={t("notifications.settingsGlobalSubtitle")}
-                  enabled={settings?.global}
-                  onToggle={(state) => updateSettings("global", state)}
-                />
-                <View style={stylesheet.separator} />
-                <ToggleButton
-                  title={t("notifications.settingsDemarches")}
-                  subtitle={t("notifications.settingsDemarchesSubtitle")}
-                  enabled={settings?.demarches}
-                  onToggle={(state) => updateSettings("demarches", state)}
-                />
-              </View>
-              <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
-              <View
-                accessibilityRole="radiogroup"
-                style={stylesheet.toggleContainer}
-              >
-                {themes.map((theme, index) => (
-                  <View key={index}>
-                    <ToggleButton
-                      title={firstLetterUpperCase(
-                        theme.name[currentLanguageI18nCode || "fr"]
-                      )}
-                      icon={theme.icon}
-                      enabled={settings?.themes[theme._id]}
-                      onToggle={(state) =>
-                        updateSettings(`themes.${theme._id}`, state)
-                      }
-                      disabled={themesDisabled}
-                    />
-                    {index < themes.length - 1 && (
-                      <View
-                        style={stylesheet.separator}
-                        key={`separator-${theme.name.fr}`}
-                      />
+          <>
+            <TextNormalBold>{t("notifications.newFiches")}</TextNormalBold>
+            <View
+              accessibilityRole="radiogroup"
+              style={stylesheet.toggleContainer}
+            >
+              <ToggleButton
+                title={`${t("notifications.settingsLocal")} ${
+                  !!location.city ? `: ${location.city}` : ""
+                }`}
+                subtitle={t("notifications.settingsLocalSubtitle")}
+                enabled={hasSetLocation && settings?.local}
+                onToggle={updateLocalSettings}
+              />
+              <View style={stylesheet.separator} />
+              <ToggleButton
+                title={t("notifications.settingsGlobal")}
+                subtitle={t("notifications.settingsGlobalSubtitle")}
+                enabled={settings?.global}
+                onToggle={(state) => updateSettings("global", state)}
+              />
+              <View style={stylesheet.separator} />
+              <ToggleButton
+                title={t("notifications.settingsDemarches")}
+                subtitle={t("notifications.settingsDemarchesSubtitle")}
+                enabled={settings?.demarches}
+                onToggle={(state) => updateSettings("demarches", state)}
+              />
+            </View>
+            <TextNormalBold>{t("notifications.themes")}</TextNormalBold>
+            <View
+              accessibilityRole="radiogroup"
+              style={stylesheet.toggleContainer}
+            >
+              {themes.map((theme, index) => (
+                <View key={index}>
+                  <ToggleButton
+                    title={firstLetterUpperCase(
+                      theme.name[currentLanguageI18nCode || "fr"]
                     )}
-                  </View>
-                ))}
-              </View>
-            </>
-          )}
+                    icon={theme.icon}
+                    enabled={settings?.themes[theme._id]}
+                    onToggle={(state) =>
+                      updateSettings(`themes.${theme._id}`, state)
+                    }
+                    disabled={themesDisabled}
+                  />
+                  {index < themes.length - 1 && (
+                    <View
+                      style={stylesheet.separator}
+                      key={`separator-${theme.name.fr}`}
+                    />
+                  )}
+                </View>
+              ))}
+            </View>
+          </>
         </ScrollView>
       )}
     </SafeAreaView>

@@ -21,7 +21,6 @@ export const FilterCity = ({
       }}
     >
       <HeaderWithBack
-        navigation={navigation}
         iconName={"person-outline"}
         text={t("onboarding_screens.me", "Créer mon profil")}
       />

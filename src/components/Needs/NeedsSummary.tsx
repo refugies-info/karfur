@@ -4,7 +4,7 @@ import { StyleProp, ViewStyle } from "react-native";
 import { styles } from "../../theme";
 import {
   TextVerySmallNormal,
-  TextSmallBold
+  TextSmallBold,
 } from "../../components/StyledText";
 import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -23,18 +23,18 @@ const NeedContainer = styled(RTLTouchableOpacity)`
   align-items :center;
 `;
 
-const IndicatorContainer = styled(RTLView)`
-  background-color: ${(props: { backgroundColor: string }) =>
-    props.backgroundColor};
+const IndicatorContainer = styled(RTLView)<{
+  backgroundColor?: string;
+  isRTL: boolean;
+}>`
+  background-color: ${({ backgroundColor }) => backgroundColor};
   align-self: center;
   border-radius: 8px;
   height: 32px;
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
-  minWidth: 64px;
-  paddingHorizontal: ${styles.margin}px;
+  margin-left: ${({ isRTL, theme }) => (isRTL ? 0 : theme.margin)}px;
+  margin-right: ${({ isRTL, theme }) => (isRTL ? theme.margin : 0)}px;
+  minwidth: 64px;
+  paddinghorizontal: ${({ theme }) => theme.margin}px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,10 +56,10 @@ const StyledText = styled(TextSmallBold)`
 `;
 
 interface Props {
-  id: string
-  needText?: string
-  needTextFr: string
-  nbContents?: number
+  id: string;
+  needText?: string;
+  needTextFr: string;
+  nbContents?: number;
   searchLanguageMatch?: string;
   navigation: any;
   theme?: Theme;
@@ -71,9 +71,10 @@ interface Props {
 export const NeedsSummary = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
 
-  const indicatorText = props.nbContents && props.nbContents < 2
-    ? t("needs_screen.fiche", "fiche")
-    : t("needs_screen.fiches", "fiches");
+  const indicatorText =
+    props.nbContents && props.nbContents < 2
+      ? t("needs_screen.fiche", "fiche")
+      : t("needs_screen.fiches", "fiches");
 
   return (
     <NeedContainer
@@ -88,33 +89,35 @@ export const NeedsSummary = (props: Props) => {
           params: {
             theme: props.theme,
             needId: props.id,
-            backScreen: props.backScreen
-          }
+            backScreen: props.backScreen,
+          },
         });
         return;
       }}
       style={props.style || {}}
     >
       <StyledText color={props.theme?.colors.color100}>
-        {props.searchItem ?
+        {props.searchItem ? (
           <Highlight
             hit={props.searchItem}
             attribute={`title_${props.searchLanguageMatch || "fr"}`}
             //@ts-ignore
             color={props.theme.colors.color100}
-          /> :
+          />
+        ) : (
           <ReadableText>{props.needText || ""}</ReadableText>
-        }
+        )}
       </StyledText>
 
-      {!!props.nbContents &&
-        <IndicatorContainer backgroundColor={props.theme?.colors.color100} isRTL={isRTL}>
-          <IndicatorNumber isRTL={isRTL}>
-            {props.nbContents}
-          </IndicatorNumber>
+      {!!props.nbContents && (
+        <IndicatorContainer
+          backgroundColor={props.theme?.colors.color100}
+          isRTL={isRTL}
+        >
+          <IndicatorNumber isRTL={isRTL}>{props.nbContents}</IndicatorNumber>
           <IndicatorText>{indicatorText}</IndicatorText>
         </IndicatorContainer>
-      }
+      )}
     </NeedContainer>
-  )
-}
+  );
+};
