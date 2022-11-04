@@ -4,7 +4,7 @@ import { DefaultTheme } from "styled-components/native";
 
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { withProps } from "../../utils";
-import { styles } from "../index";
+import styles from "../styles";
 
 const ThemeProvider = withProps((props: any) => {
   const { isRTL } = useTranslationWithRTL();
