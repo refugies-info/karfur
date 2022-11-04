@@ -11,6 +11,7 @@ interface Props {
   close: () => void;
   reset: () => void;
   children: any;
+  nbResults: number;
 }
 
 const DropdownMenuMobile = (props: Props) => {
@@ -38,7 +39,7 @@ const DropdownMenuMobile = (props: Props) => {
           {t("Recherche.resetButton", "Réinitialiser")}
         </Button>
         <Button color="primary" className={styles.btn_search} onClick={props.close}>
-          {t("Recherche.seeButton", "Voir les fiches")}
+          {t("Recherche.seeButton", "Voir les fiches", { count: props.nbResults })}
         </Button>
       </div>
     </div>

@@ -68,7 +68,7 @@
     "dispositifCardTitle": "Les fiches <strong>dispositifs</strong>",
     "otherDispositifTitle": "Autres fiches avec ce thème",
     "resetButton": "Réinitialiser",
-    "seeButton": "Voir les fiches",
+    "seeButton": "Voir les {{count}} fiches",
     "titleThemes": "Les thématiques de l'intégration",
     "titleTypes": "Deux types d'information",
     "titleNewDemarches": "Nouveautés dans les fiches démarches",

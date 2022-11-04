@@ -15,10 +15,11 @@ import DropdownMenuMobile from "../DropdownMenuMobile";
 import styles from "./SearchHeader.mobile.module.scss";
 
 interface Props {
-  themeDisplayedValue: string
-  isPlacePredictionsLoading: boolean
-  placePredictions: any[]
-  onSelectPrediction: (place_id: string) => void
+  nbResults: number;
+  themeDisplayedValue: string;
+  isPlacePredictionsLoading: boolean;
+  placePredictions: any[];
+  onSelectPrediction: (place_id: string) => void;
 
   // state from recherche
   searchState: [string, Dispatch<SetStateAction<string>>];
@@ -39,12 +40,7 @@ interface Props {
 
 const SearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
-  const {
-    themeDisplayedValue,
-    isPlacePredictionsLoading,
-    placePredictions,
-    onSelectPrediction,
-  } = props;
+  const { themeDisplayedValue, isPlacePredictionsLoading, placePredictions, onSelectPrediction } = props;
 
   // state from recherche
   const [search, setSearch] = props.searchState;
@@ -75,9 +71,9 @@ const SearchHeaderMobile = (props: Props) => {
   // hide axeptio button when popup opens
   useEffect(() => {
     if (showFilters || locationOpen || themesOpen) {
-      if(window.hideAxeptioButton) window.hideAxeptioButton();
+      if (window.hideAxeptioButton) window.hideAxeptioButton();
     } else {
-      if(window.showAxeptioButton) window.showAxeptioButton();
+      if (window.showAxeptioButton) window.showAxeptioButton();
     }
   }, [locationOpen, themesOpen, showFilters]);
 
@@ -103,7 +99,11 @@ const SearchHeaderMobile = (props: Props) => {
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
+        <Dropdown
+          isOpen={locationOpen || locationFocused}
+          toggle={toggleLocation}
+          className={cls(styles.dropdown, styles.separator)}
+        >
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
@@ -123,6 +123,7 @@ const SearchHeaderMobile = (props: Props) => {
               icon="pin-outline"
               close={toggleLocation}
               reset={() => setDepartmentsSelected([])}
+              nbResults={props.nbResults}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -172,6 +173,7 @@ const SearchHeaderMobile = (props: Props) => {
                 setNeedsSelected([]);
                 setThemesSelected([]);
               }}
+              nbResults={props.nbResults}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -215,6 +217,7 @@ const SearchHeaderMobile = (props: Props) => {
                   setFilterFrenchLevel([]);
                   setFilterLanguage([]);
                 }}
+                nbResults={props.nbResults}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
                   <SearchFilter
@@ -222,14 +225,14 @@ const SearchHeaderMobile = (props: Props) => {
                     label={t("Recherche.filterAge", "Tranche d'âge")}
                     selected={filterAge}
                     setSelected={setFilterAge}
-                    options={ageFilters.map(filter => ({...filter, value: t(filter.value)}))}
+                    options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
                   />
                   <SearchFilter
                     mobile={true}
                     label={t("Recherche.filterFrenchLevel", "Niveau de français")}
                     selected={filterFrenchLevel}
                     setSelected={setFilterFrenchLevel}
-                    options={frenchLevelFilter.map(filter => ({...filter, value: t(filter.value)}))}
+                    options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
                   />
                   <SearchFilter
                     mobile={true}

@@ -62,8 +62,9 @@ const SearchHeader = (props: Props) => {
 
   const onSelectPrediction = (place_id: string) => {
     placesService?.getDetails({ placeId: place_id }, (placeDetails) => {
-      const departement = (placeDetails?.address_components || [])
-        .find(comp => comp.types.includes("administrative_area_level_2"));
+      const departement = (placeDetails?.address_components || []).find((comp) =>
+        comp.types.includes("administrative_area_level_2")
+      );
       let depName = departement?.long_name;
       if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
       if (depName) {
@@ -110,6 +111,7 @@ const SearchHeader = (props: Props) => {
         />
       ) : (
         <SearchHeaderMobile
+          nbResults={props.nbResults}
           searchState={[search, setSearch]}
           needsSelectedState={[needsSelected, setNeedsSelected]}
           themesSelectedState={[themesSelected, setThemesSelected]}
