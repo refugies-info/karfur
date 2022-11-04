@@ -44,6 +44,7 @@
   &.show > button {
     background: $white !important;
     color: $darkColor !important;
+    z-index: 12;
   }
 
   &.selected > button {
@@ -114,4 +115,16 @@ html body .dropdown.show > button {
     background: $bleuCharte !important;
     color: $white !important;
   }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
 }

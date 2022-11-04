@@ -9,7 +9,7 @@ import styles from "./SearchFilter.desktop.module.scss";
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
-  label: string|ReactElement;
+  label: string | ReactElement;
   selectItem: (option: string) => void;
 }
 
@@ -48,6 +48,7 @@ const SearchFilterDesktop = (props: Props) => {
           );
         })}
       </DropdownMenu>
+      {open && <div className={styles.backdrop} onClick={() => setOpen(false)} />}
     </Dropdown>
   );
 };
