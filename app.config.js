@@ -3,7 +3,7 @@ import deepLinks from "./androidDeepLinks";
 export default {
   name: "Réfugiés.info",
   slug: "refugies-info-app",
-  version: "1.0.14",
+  version: "1.0.15",
   orientation: "portrait",
   icon: "./src/theme/images/app-icon-ri.png",
   scheme: "refugies",
@@ -20,7 +20,7 @@ export default {
   },
   assetBundlePatterns: ["**/*"],
   ios: {
-    buildNumber: "1.0.14",
+    buildNumber: "1.0.15",
     supportsTablet: false,
     userInterfaceStyle: "light",
     bundleIdentifier: "refugiesInfo",
@@ -29,17 +29,14 @@ export default {
     },
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
-      UIBackgroundModes: ["remote-notification"]
+      UIBackgroundModes: ["remote-notification"],
     },
     googleServicesFile: "./src/utils/firebase/GoogleService-Info.plist",
-    associatedDomains: [
-      "applinks:refugies.info",
-      "applinks:www.refugies.info"
-    ]
+    associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
   },
   locales: {
     en: "./src/translations/en.json",
-    fr: "./src/translations/fr.json"
+    fr: "./src/translations/fr.json",
   },
   android: {
     versionCode: 14,
@@ -59,19 +56,16 @@ export default {
       hdpi: "./src/theme/images/splash/splash_hdpi.png",
       xhdpi: "./src/theme/images/splash/splash_xhdpi.png",
       xxhdpi: "./src/theme/images/splash/splash_xxhdpi.png",
-      xxxhdpi: "./src/theme/images/splash/splash_xxxhdpi.png"
+      xxxhdpi: "./src/theme/images/splash/splash_xxxhdpi.png",
     },
     intentFilters: [
       {
         action: "VIEW",
         autoVerify: true,
         data: deepLinks,
-        category: [
-          "BROWSABLE",
-          "DEFAULT"
-        ]
-      }
-    ]
+        category: ["BROWSABLE", "DEFAULT"],
+      },
+    ],
   },
   web: {
     config: {
@@ -90,6 +84,6 @@ export default {
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
   extra: {
-    displayVersionNumber: "2022.10.6"
-  }
+    displayVersionNumber: "2022.11.1",
+  },
 };
