@@ -79,6 +79,7 @@ import { resetReadingList } from "../services/redux/VoiceOver/voiceOver.actions"
 import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
+import { withProps } from "../utils";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -173,14 +174,21 @@ const FakeMapButtonText = styled(TextSmallBold)`
   margin-right: ${(props: { isRTL: boolean }) =>
     props.isRTL ? styles.margin : 0}px;
 `;
-const ModalContainer = styled.View`
+const ModalContainer = withProps(() => {
+  const insets = useSafeAreaInsets();
+  return {
+    paddingTop: insets.top,
+  };
+})(styled.View<{ paddingTop: number }>`
   display: flex;
   position: absolute;
   width: 100%;
-  top: 0;
-  padding: ${styles.margin * 2}px;
+  padding-horizontal: ${styles.margin * 2}px;
+  padding-top: ${({ paddingTop }) => paddingTop}px;
   z-index: 2;
-`;
+  flex-direction: row;
+  justify-content: space-between;
+`);
 const TabBarContainer = styled.View`
   position: absolute;
   bottom: 0;
@@ -965,27 +973,23 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
         Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
        */}
-      <Portal>
-        <Modal visible={mapModalVisible} animationType="slide">
+      <Modal visible={mapModalVisible} animationType="slide">
+        <FixSafeAreaView>
           <ModalContainer>
-            <FixSafeAreaView
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <SmallButton
-                iconName="arrow-back-outline"
-                onPress={toggleMap}
-                label={t("content_screen.back_content_accessibility")}
-              />
-              <SmallButton
-                iconName="close-outline"
-                onPress={toggleMap}
-                label={t("Content.Fermer la carte")}
-              />
-            </FixSafeAreaView>
+            <SmallButton
+              iconName="arrow-back-outline"
+              onPress={toggleMap}
+              label={t("content_screen.back_content_accessibility")}
+            />
+            <SmallButton
+              iconName="close-outline"
+              onPress={toggleMap}
+              label={t("content_screen.close_map_accessibility")}
+            />
           </ModalContainer>
-          <Map map={map} markersColor={colors.color100} />
-        </Modal>
-      </Portal>
+        </FixSafeAreaView>
+        <Map map={map} markersColor={colors.color100} />
+      </Modal>
     </View>
   );
 };

@@ -5,7 +5,6 @@ import { fireEvent, act } from "react-native-testing-library";
 import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { initialUserState } from "../../services/redux/User/user.reducer";
-import { getImageUri } from "../../libs/getImageUri";
 import { mockedThemesData } from "../../jest/__fixtures__/themes";
 
 const theme = mockedThemesData[0];
@@ -23,7 +22,7 @@ jest.mock("../../libs/getImageUri", () => ({
 }));
 
 jest.mock("../../utils/logEvent", () => ({
-  logEventInFirebase: jest.fn()
+  logEventInFirebase: jest.fn(),
 }));
 
 jest.mock("react-native-safe-area-context", () => {
@@ -35,7 +34,7 @@ jest.mock("react-native-safe-area-context", () => {
   };
 });
 jest.mock("@03balogun/react-native-skeleton-content", () => {
-  return null
+  return null;
 });
 jest.mock("react-native-maps", () => {
   const { View } = require("react-native");
@@ -86,7 +85,7 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        theme: theme
+        theme: theme,
       },
     };
     const component = wrapWithProvidersAndRender({
@@ -119,7 +118,7 @@ describe("ContentScreen", () => {
     const route = {
       params: {
         contentId: "",
-        theme: theme
+        theme: theme,
       },
     };
     const component = wrapWithProvidersAndRender({
