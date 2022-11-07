@@ -45,6 +45,7 @@ export const getContentsForApp = async (
       needs: 1,
       typeContenu: 1,
       nbVues: 1,
+      nbVuesMobile: 1
     };
 
     const initialQuery = {
@@ -87,6 +88,7 @@ export const getContentsForApp = async (
         secondaryThemes: content.secondaryThemes,
         needs: content.needs,
         nbVues: content.nbVues,
+        nbVuesMobile: content.nbVuesMobile,
         typeContenu: content.typeContenu,
         sponsorUrl,
         avancement: content.avancement,
