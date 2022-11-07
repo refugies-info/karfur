@@ -133,6 +133,7 @@ export interface MapGoogle {
 
 export interface NeedDetail {
   text: string;
+  subtitle?: string;
   updatedAt: Moment;
 }
 export interface Need {

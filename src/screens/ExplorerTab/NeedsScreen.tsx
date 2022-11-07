@@ -4,7 +4,12 @@ import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import { View, Animated, NativeScrollEvent, NativeSyntheticEvent } from "react-native";
+import {
+  View,
+  Animated,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+} from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
@@ -26,7 +31,7 @@ const computeNeedsToDisplay = (
   allNeeds: Need[],
   groupedContents: Record<ObjectId, ObjectId[]>,
   themeId: string
-) => {
+): Need[] => {
   const filteredNeeds = allNeeds.filter((need) => {
     if (
       need.theme._id === themeId &&
@@ -53,14 +58,12 @@ const computeNeedsToDisplay = (
     });
 };
 
-
 export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
-  const [isLanguageModalVisible, setLanguageModalVisible] = React.useState(
-    false
-  );
+  const [isLanguageModalVisible, setLanguageModalVisible] =
+    React.useState(false);
 
   const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
 
@@ -102,12 +105,15 @@ export const NeedsScreen = ({
   };
 
   // Voiceover
-  const scrollview = React.useRef<ScrollView|null>(null);
+  const scrollview = React.useRef<ScrollView | null>(null);
   const offset = 250;
-  const {setScroll, saveList} = useVoiceover(scrollview, offset);
+  const { setScroll, saveList } = useVoiceover(scrollview, offset);
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScroll(event.nativeEvent.contentOffset.y, showSimplifiedHeader ? offset : 0)
-  }
+    setScroll(
+      event.nativeEvent.contentOffset.y,
+      showSimplifiedHeader ? offset : 0
+    );
+  };
 
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
@@ -116,9 +122,10 @@ export const NeedsScreen = ({
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
   const isLoading = isLoadingContents || isLoadingNeeds;
-  React.useEffect(() => { // reset when finish loading
+  React.useEffect(() => {
+    // reset when finish loading
     if (!isLoading) {
-      setTimeout(() => saveList())
+      setTimeout(() => saveList());
     }
   }, [isLoading]);
 
@@ -148,10 +155,7 @@ export const NeedsScreen = ({
   const { t } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const {
-    theme,
-    backScreen
-  } = route.params;
+  const { theme, backScreen } = route.params;
 
   const allNeeds = useSelector(needsSelector);
   const groupedContents = useSelector(groupedContentsSelector);
@@ -292,13 +296,19 @@ export const NeedsScreen = ({
         onMomentumScrollEnd={onScrollEnd}
         onScrollEndDrag={onScrollEnd}
       >
-        {needsToDisplay.map((need) => {
+        {needsToDisplay.map((need: Need) => {
           const needText =
             currentLanguageI18nCode &&
-            need[currentLanguageI18nCode]?.text
+            need[currentLanguageI18nCode as keyof Need]?.text
               ? //@ts-ignore
                 need[currentLanguageI18nCode].text
               : need.fr.text;
+          const needSubtitle =
+            currentLanguageI18nCode &&
+            need[currentLanguageI18nCode as keyof Need]?.subtitle
+              ? //@ts-ignore
+                need[currentLanguageI18nCode].subtitle
+              : need.fr.subtitle;
 
           return (
             <NeedsSummary
@@ -306,12 +316,11 @@ export const NeedsScreen = ({
               id={need._id}
               needText={needText}
               needTextFr={need.fr.text}
-              nbContents={need.nbContents}
-              navigation={navigation}
+              needSubtitle={needSubtitle}
               theme={theme}
               style={{ marginBottom: styles.margin * 3 }}
             />
-          )
+          );
         })}
       </ScrollView>
       <LanguageChoiceModal

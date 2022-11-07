@@ -8,7 +8,7 @@ const StyledText = styled((props) => {
   return <Text {...props} isRTL={isRTL} selectable />;
 })`
   text-align: ${({ theme }) => (theme.i18n.isRTL ? "right" : "left")};
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme, color }) => color || theme.colors.black};
 `;
 
 export const StyledTextNormal = styled(StyledText)`

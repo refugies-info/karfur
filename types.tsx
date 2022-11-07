@@ -24,18 +24,18 @@ export type BottomTabParamList = {
 export type ExplorerParamList = {
   ExplorerScreen: undefined;
   ContentsScreen: {
-    theme: Theme,
+    theme: Theme;
     needId: ObjectId;
     backScreen?: string;
   };
   ContentScreen: {
     contentId: ObjectId;
     needId?: ObjectId;
-    theme?: Theme,
+    theme?: Theme;
     backScreen?: string;
   };
   NeedsScreen: {
-    theme: Theme,
+    theme: Theme;
     backScreen?: string;
   };
   NotificationsScreen: {};
@@ -87,4 +87,10 @@ export interface FrenchLevel {
   name: string;
   cecrCorrespondency?: string[];
   key: string;
+}
+
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
 }

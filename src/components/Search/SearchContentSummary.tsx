@@ -12,34 +12,36 @@ interface Props {
   item: any;
   languageMatch: string;
   hasSponsorMatch: boolean;
-  nbContents?: number|null;
+  nbContents?: number | null;
 }
 
 export const SearchContentSummary = (props: Props) => {
   const themes = useSelector(themesSelector);
-  const theme = themes.find(t => {
+  const theme = themes.find((t) => {
     if (props.item.typeContenu === "theme") {
-      return t._id.toString() === props.item.objectID
+      return t._id.toString() === props.item.objectID;
     }
-    return t._id.toString() === props.item.theme
+    return t._id.toString() === props.item.theme;
   });
+  if (!theme) return null;
 
   if (props.item.typeContenu === "besoin") {
-    return ( // BESOIN
+    return (
+      // BESOIN
       <NeedsSummary
         id={props.item.objectID}
         needTextFr={props.item.title_fr}
         searchLanguageMatch={props.languageMatch}
-        navigation={props.navigation}
         theme={theme}
         searchItem={props.item}
-        nbContents={props.nbContents || 0}
         backScreen="Search"
       />
-    )
+    );
   } else if (
-    props.item.typeContenu === "dispositif" || props.item.typeContenu === "demarche"
-  ) { // DISPOSITIF & DEMARCHE
+    props.item.typeContenu === "dispositif" ||
+    props.item.typeContenu === "demarche"
+  ) {
+    // DISPOSITIF & DEMARCHE
     return (
       <ContentSummary
         navigation={props.navigation}
@@ -55,8 +57,9 @@ export const SearchContentSummary = (props: Props) => {
       />
     );
   }
-  if (!theme) return null;
-  return ( // THEME
+
+  return (
+    // THEME
     <TagButton
       key={props.item.objectID}
       searchLanguageMatch={props.languageMatch}
@@ -73,11 +76,11 @@ export const SearchContentSummary = (props: Props) => {
           screen: "NeedsScreen",
           params: {
             theme: props.item,
-            backScreen: "Search"
-          }
+            backScreen: "Search",
+          },
         });
         return;
       }}
     />
-  )
+  );
 };
