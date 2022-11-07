@@ -33,8 +33,6 @@ const IndicatorContainer = styled(RTLView)<{
   height: 32px;
   margin-left: ${({ isRTL, theme }) => (isRTL ? 0 : theme.margin)}px;
   margin-right: ${({ isRTL, theme }) => (isRTL ? theme.margin : 0)}px;
-  minwidth: 64px;
-  paddinghorizontal: ${({ theme }) => theme.margin}px;
   display: flex;
   align-items: center;
   justify-content: center;

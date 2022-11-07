@@ -15,7 +15,6 @@ export const StyledTextNormal = styled(StyledText)`
   font-size: ${({ theme }) => theme.fonts.sizes.normal}px;
   font-family: ${({ theme }) => theme.fonts.families.circularStandard};
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.black};
 `;
 
 export const StyledTextNormalBold = styled(StyledText)`
