@@ -3,7 +3,7 @@ import { getContentsForApp } from "./getContentsForApp";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getActiveContentsFiltered: jest.fn().mockResolvedValue([]),
+  getActiveContentsFiltered: jest.fn().mockResolvedValue([])
 }));
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -28,6 +28,7 @@ describe("getContentsForApp", () => {
     needs: 1,
     typeContenu: 1,
     nbVues: 1,
+    nbVuesMobile: 1
   };
 
   it("should return 405 if not from site", async () => {
@@ -57,22 +58,20 @@ describe("getContentsForApp", () => {
       needs: [],
       theme: { _id: "theme1" },
       secondaryThemes: [],
-      typeContenu: "dispositif",
+      typeContenu: "dispositif"
     };
-    const contents = [
-      { ...content1, mainSponsor: { picture: { secure_url: "url" } } },
-    ];
+    const contents = [{ ...content1, mainSponsor: { picture: { secure_url: "url" } } }];
     getActiveContentsFiltered.mockResolvedValueOnce(contents);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
-      status: "Actif",
+      status: "Actif"
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
       data: [{ ...content1, sponsorUrl: "url" }],
-      dataFr: [{ ...content1, sponsorUrl: "url" }],
+      dataFr: [{ ...content1, sponsorUrl: "url" }]
     });
   });
 
@@ -85,15 +84,15 @@ describe("getContentsForApp", () => {
       theme: { _id: "theme1" },
       secondaryThemes: [],
       typeContenu: "dispositif",
-      mainSponsor: { picture: { secure_url: "url" } },
-    },
+      mainSponsor: { picture: { secure_url: "url" } }
+    }
   ];
   it("should return 200 when locale is ar", async () => {
     getActiveContentsFiltered.mockResolvedValueOnce(contentsInput);
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
-      status: "Actif",
+      status: "Actif"
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -107,8 +106,8 @@ describe("getContentsForApp", () => {
           theme: { _id: "theme1" },
           secondaryThemes: [],
           typeContenu: "dispositif",
-          sponsorUrl: "url",
-        },
+          sponsorUrl: "url"
+        }
       ],
       dataFr: [
         {
@@ -119,9 +118,9 @@ describe("getContentsForApp", () => {
           theme: { _id: "theme1" },
           secondaryThemes: [],
           typeContenu: "dispositif",
-          sponsorUrl: "url",
-        },
-      ],
+          sponsorUrl: "url"
+        }
+      ]
     });
   });
 
@@ -130,7 +129,7 @@ describe("getContentsForApp", () => {
     const req = { fromSite: true, query: { locale: "fr" } };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
-      status: "Actif",
+      status: "Actif"
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -144,9 +143,9 @@ describe("getContentsForApp", () => {
           theme: { _id: "theme1" },
           secondaryThemes: [],
           typeContenu: "dispositif",
-          sponsorUrl: "url",
-        },
-      ],
+          sponsorUrl: "url"
+        }
+      ]
     });
   });
 
@@ -155,7 +154,7 @@ describe("getContentsForApp", () => {
     const req = { fromSite: true, query: { locale: "ar" } };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, {
-      status: "Actif",
+      status: "Actif"
     });
     expect(res.status).toHaveBeenCalledWith(500);
   });
@@ -166,16 +165,13 @@ describe("getContentsForApp", () => {
       query: {
         locale: "fr",
         age: "0 à 17 ans",
-        frenchLevel: "Je parle un peu",
-      },
+        frenchLevel: "Je parle un peu"
+      }
     };
     const query = {
-      status: "Actif",
+      "status": "Actif",
       "audienceAge.bottomValue": { $lte: 17 },
-      $and: [
-        { niveauFrancais: { $ne: ["Avancé"] } },
-        { niveauFrancais: { $ne: ["Intermédiaire"] } },
-      ],
+      "$and": [{ niveauFrancais: { $ne: ["Avancé"] } }, { niveauFrancais: { $ne: ["Intermédiaire"] } }]
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -187,17 +183,14 @@ describe("getContentsForApp", () => {
       query: {
         locale: "fr",
         age: "18 à 25 ans",
-        frenchLevel: "Je parle un peu",
-      },
+        frenchLevel: "Je parle un peu"
+      }
     };
     const query = {
-      status: "Actif",
+      "status": "Actif",
       "audienceAge.bottomValue": { $lte: 25 },
       "audienceAge.topValue": { $gte: 18 },
-      $and: [
-        { niveauFrancais: { $ne: ["Avancé"] } },
-        { niveauFrancais: { $ne: ["Intermédiaire"] } },
-      ],
+      "$and": [{ niveauFrancais: { $ne: ["Avancé"] } }, { niveauFrancais: { $ne: ["Intermédiaire"] } }]
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -209,13 +202,13 @@ describe("getContentsForApp", () => {
       query: {
         locale: "fr",
         age: "26 ans et plus",
-        frenchLevel: "Je parle bien",
-      },
+        frenchLevel: "Je parle bien"
+      }
     };
     const query = {
-      status: "Actif",
+      "status": "Actif",
       "audienceAge.topValue": { $gte: 26 },
-      niveauFrancais: { $ne: ["Avancé"] },
+      "niveauFrancais": { $ne: ["Avancé"] }
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -239,10 +232,10 @@ describe("getContentsForApp", () => {
                 departments: ["38 - Isère"],
                 free: true,
                 contentTitle: "Sélectionner",
-                editable: false,
-              },
-            ],
-          },
+                editable: false
+              }
+            ]
+          }
         ],
         nbVues: 2,
         needs: [],
@@ -250,7 +243,7 @@ describe("getContentsForApp", () => {
 
         theme: { _id: "theme1" },
         secondaryThemes: [],
-        typeContenu: "dispositif",
+        typeContenu: "dispositif"
       },
 
       {
@@ -269,10 +262,10 @@ describe("getContentsForApp", () => {
                 departments: ["All"],
                 free: true,
                 contentTitle: "Sélectionner",
-                editable: false,
-              },
-            ],
-          },
+                editable: false
+              }
+            ]
+          }
         ],
         nbVues: 2,
         needs: [],
@@ -280,7 +273,7 @@ describe("getContentsForApp", () => {
 
         theme: { _id: "theme1" },
         secondaryThemes: [],
-        typeContenu: "dispositif",
+        typeContenu: "dispositif"
       },
       {
         _id: "id4",
@@ -298,10 +291,10 @@ describe("getContentsForApp", () => {
                 departments: ["75 - Paris"],
                 free: true,
                 contentTitle: "Sélectionner",
-                editable: false,
-              },
-            ],
-          },
+                editable: false
+              }
+            ]
+          }
         ],
         nbVues: 2,
         needs: [],
@@ -309,19 +302,19 @@ describe("getContentsForApp", () => {
 
         theme: { _id: "theme1" },
         secondaryThemes: [],
-        typeContenu: "dispositif",
-      },
+        typeContenu: "dispositif"
+      }
     ];
     getActiveContentsFiltered.mockResolvedValueOnce(data);
     const req = {
       fromSite: true,
       query: {
         locale: "fr",
-        department: "Paris",
-      },
+        department: "Paris"
+      }
     };
     const query = {
-      status: "Actif",
+      status: "Actif"
     };
     await getContentsForApp(req, res);
     expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
@@ -338,7 +331,7 @@ describe("getContentsForApp", () => {
           sponsorUrl: "url",
           theme: { _id: "theme1" },
           secondaryThemes: [],
-          typeContenu: "dispositif",
+          typeContenu: "dispositif"
         },
         {
           _id: "id4",
@@ -349,9 +342,9 @@ describe("getContentsForApp", () => {
           sponsorUrl: "url",
           theme: { _id: "theme1" },
           secondaryThemes: [],
-          typeContenu: "dispositif",
-        },
-      ],
+          typeContenu: "dispositif"
+        }
+      ]
     });
   });
 });
