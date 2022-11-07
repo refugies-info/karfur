@@ -19,7 +19,11 @@ import SearchHeader from "components/Pages/recherche/SearchHeader";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import ResultsFilter from "components/Pages/recherche/ResultsFilter";
-import { getCountDispositifsForDepartment, queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
+import {
+  getCountDispositifsForDepartment,
+  queryDispositifs,
+  queryDispositifsWithAlgolia
+} from "lib/recherche/queryContents";
 import { decodeQuery } from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
@@ -59,9 +63,12 @@ export type Results = {
   dispositifsSecondaryTheme: SearchDispositif[];
 };
 
-const debouncedQuery = debounce((query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: any) => {
-  return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
-}, 500);
+const debouncedQuery = debounce(
+  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: any) => {
+    return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
+  },
+  500
+);
 
 const Recherche = () => {
   const { t } = useTranslation();
@@ -174,7 +181,7 @@ const Recherche = () => {
     // get all themes displayed
     const newThemesDisplayed: Theme[] = [];
     for (const theme of themesSelected) {
-      const themeToAdd = allThemes.find(t => t._id === theme);
+      const themeToAdd = allThemes.find((t) => t._id === theme);
       if (themeToAdd) newThemesDisplayed.push(themeToAdd);
     }
     for (const need of needs) {
@@ -196,11 +203,11 @@ const Recherche = () => {
       }
     }
     setDepartmentsNotDeployed(newDepartmentsNotDeployed);
-  }, [departmentsSelected, dispositifs])
+  }, [departmentsSelected, dispositifs]);
 
   const resetFilters = useCallback(() => {
     setSearch("");
-    setSelectedType("all")
+    setSelectedType("all");
     setNeedsSelected([]);
     setThemesSelected([]);
     setDepartmentsSelected([]);
@@ -209,7 +216,8 @@ const Recherche = () => {
     setFilterLanguage([]);
   }, []);
 
-  const nbResults = filteredResult.dispositifs.length +
+  const nbResults =
+    filteredResult.dispositifs.length +
     filteredResult.demarches.length +
     filteredResult.dispositifsSecondaryTheme.length;
 
@@ -256,8 +264,8 @@ const Recherche = () => {
           setDepartmentsSelected={setDepartmentsSelected}
           setSelectedType={setSelectedType}
           setThemesSelected={setThemesSelected}
-          demarches={filteredResult.demarches.slice(0, 5)}
-          dispositifs={filteredResult.dispositifs.slice(0, 4)}
+          demarches={filteredResult.demarches.slice(0, 15)}
+          dispositifs={filteredResult.dispositifs.slice(0, 15)}
         />
       )}
     </div>

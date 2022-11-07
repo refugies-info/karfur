@@ -11,11 +11,10 @@ import { SearchDispositif } from "types/interface";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import HomeTypeCard from "../HomeTypeCard";
-import DemarcheCard from "../DemarcheCard";
-import DispositifCard from "../DispositifCard";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
 import illuLocation from "assets/recherche/illu-location.png";
+import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
 
 const demarchesExamples = [
@@ -118,11 +117,7 @@ const HomeSearch = (props: Props) => {
               Voir tout
             </Button>
           </div>
-          <div className={cls(styles.results, styles.demarches)}>
-            {props.demarches.map((d) => (
-              <DemarcheCard key={d._id.toString()} demarche={d} />
-            ))}
-          </div>
+          <CardSlider cards={props.demarches} type="demarche" />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
             <Button
@@ -134,11 +129,7 @@ const HomeSearch = (props: Props) => {
               Voir tout
             </Button>
           </div>
-          <div className={cls(styles.results, styles.dispositifs)}>
-            {props.dispositifs.map((d) => (
-              <DispositifCard key={d._id.toString()} dispositif={d} />
-            ))}
-          </div>
+          <CardSlider cards={props.dispositifs} type="dispositif" />
         </Container>
       </div>
 

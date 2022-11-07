@@ -1,0 +1,147 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$fadeWidth_lg: 160px;
+$fadeWidth_md: 50px;
+
+.container {
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  margin-top: u(4);
+  padding-top: u(4);
+  flex-wrap: nowrap;
+  overflow-x: hidden;
+  margin-left: -$fadeWidth_lg;
+  margin-right: -$fadeWidth_lg;
+  padding-left: $fadeWidth_lg;
+  padding-right: $fadeWidth_lg;
+
+  &.card {
+    flex-shrink: 0;
+  }
+
+  &.dispositifs {
+    gap: u(8);
+    padding-bottom: u(4);
+
+    @include media-max("lg-limit") {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  &.demarches {
+    gap: u(6);
+    margin-bottom: u(10);
+    padding-bottom: u(10);
+
+    & .card > a {
+      height: 100%;
+    }
+
+    @include media-max("lg-limit") {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: $fadeWidth_lg;
+    z-index: 2;
+  }
+  &:after {
+    right: -$fadeWidth_lg;
+    background: linear-gradient(to right, #f2f2f200 0%, #f2f2f2 60%, #f2f2f2 100%);
+  }
+  &:before {
+    left: -$fadeWidth_lg;
+    background: linear-gradient(to left, #f2f2f200 0%, #f2f2f2 60%, #f2f2f2 100%);
+  }
+
+  @include media-max("xl-limit") {
+    margin-left: -$fadeWidth_md;
+    margin-right: -$fadeWidth_md;
+    padding-left: $fadeWidth_md;
+    padding-right: $fadeWidth_md;
+
+    &:after,
+    &:before {
+      width: $fadeWidth_md;
+    }
+    &:after {
+      right: -$fadeWidth_md;
+    }
+    &:before {
+      left: -$fadeWidth_md;
+    }
+  }
+
+  @include media-max("lg-limit") {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: inherit;
+    padding-right: inherit;
+
+    &:after,
+    &:before {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  width: 64px;
+  height: 64px;
+  background: $bleuCharte;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 30px 0 #0421b14d;
+  transform: translateY(-50%);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken($bleuCharte, 10%) !important;
+  }
+
+  &.prev {
+    left: -32px;
+  }
+
+  &.next {
+    right: -32px;
+  }
+
+  @include media-max("lg-limit") {
+    display: none;
+  }
+}
