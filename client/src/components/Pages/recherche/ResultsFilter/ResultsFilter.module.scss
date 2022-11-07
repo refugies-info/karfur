@@ -6,19 +6,40 @@
 @import "src/scss/variables";
 
 .container {
-  display: flex;
-  justify-content: space-between;
   margin-top: 30px;
   margin-bottom: 80px;
 
   @include isMobile() {
-    display: block;
     margin-bottom: u(10);
-    order: 2;
 
     &.no_result {
       display: none;
     }
+  }
+}
+
+:global(.scrolled) {
+  .container {
+    padding-top: u(2);
+    padding-bottom: u(2);
+    margin: 0;
+    background: $white;
+    box-shadow: 0 8px 16px 0 #0000001a, 0 16px 16px -16px #00000052;
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+  display: flex;
+  justify-content: space-between;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    order: 2;
   }
 }
 
@@ -130,7 +151,6 @@
 
     @include rtl() {
       margin: 0 u(2) 0 0;
-
     }
   }
 

@@ -7,7 +7,7 @@
 @import "src/scss/variables";
 
 .container {
-  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1B62D8 100%);
+  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1b62d8 100%);
   padding: 56px;
   width: 100%;
   position: relative;
@@ -17,6 +17,20 @@
 
     h1 {
       display: none;
+    }
+  }
+}
+:global(.scrolled) {
+  .container {
+    padding-top: u(4);
+    padding-bottom: u(4);
+
+    h1,
+    .subheader {
+      display: none;
+    }
+    .inputs {
+      margin-top: 0;
     }
   }
 }
@@ -109,7 +123,9 @@
   @include text("normal");
   @include withIcon();
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     color: $dark;
     background-color: $white;
     border-color: $white;

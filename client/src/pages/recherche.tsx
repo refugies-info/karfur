@@ -18,7 +18,6 @@ import styles from "scss/pages/recherche.module.scss";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
-import ResultsFilter from "components/Pages/recherche/ResultsFilter";
 import {
   getCountDispositifsForDepartment,
   queryDispositifs,
@@ -236,20 +235,14 @@ const Recherche = () => {
         filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
         filterLanguageState={[filterLanguage, setFilterLanguage]}
         resetFilters={resetFilters}
+        selectedSortState={[selectedSort, setSelectedSort]}
+        selectedTypeState={[selectedType, setSelectedType]}
+        nbDemarches={filteredResult.demarches.length}
+        nbDispositifs={filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length}
       />
 
       {!showHome ? (
         <Container className={styles.container_inner}>
-          <ResultsFilter
-            nbDemarches={filteredResult.demarches.length}
-            nbDispositifs={filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length}
-            nbThemesSelected={themesDisplayed.length}
-            selectedSort={selectedSort}
-            setSelectedSort={setSelectedSort}
-            selectedType={selectedType}
-            setSelectedType={setSelectedType}
-            showSort={!search}
-          />
           <SearchResults
             filteredResult={filteredResult}
             selectedType={selectedType}
