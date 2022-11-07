@@ -52,6 +52,7 @@ export interface SimplifiedContent {
   needs?: ObjectId[];
   typeContenu: "dispositif" | "demarche";
   nbVues: number;
+  nbVuesMobile: number;
   sponsorUrl: string | null;
   avancement: number | Record<AvailableLanguageI18nCode, string>;
 }
@@ -151,8 +152,8 @@ export interface Need {
 }
 
 export interface ReadingItem {
-  id: string
-  posX: number
-  posY: number
-  text: string
+  id: string;
+  posX: number;
+  posY: number;
+  text: string;
 }
