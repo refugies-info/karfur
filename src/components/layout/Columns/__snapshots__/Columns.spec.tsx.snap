@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Columns snapshot test suite should be able to control flex layout 1`] = `
+<View
+  horizontalAlign="space-between"
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "space-between",
+      },
+    ]
+  }
+  verticalAlign="center"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 2,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 2,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Columns snapshot test suite should render without bug 1`] = `
+<View
+  horizontalAlign="flex-start"
+  style={
+    Array [
+      Object {
+        "alignItems": "flex-start",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      },
+    ]
+  }
+  verticalAlign="flex-start"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "marginRight": 8,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "flexBasis": 0,
+          "flexGrow": 1,
+        },
+      ]
+    }
+  >
+    <Text>
+      Test
+    </Text>
+  </View>
+</View>
+`;

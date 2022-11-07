@@ -134,11 +134,23 @@ const shadowsStylesheet = {
   },
 };
 
+const layout = {
+  columns: {
+    nospace: "0",
+    default: "8px",
+  },
+  rows: {
+    nospace: "0",
+    default: "8px",
+  },
+};
+
 export default {
   colors,
-  images,
-  margin: 8,
   fonts,
+  images,
+  layout,
+  margin: 8,
   radius: 6,
   shadows,
   shadowsStylesheet,
