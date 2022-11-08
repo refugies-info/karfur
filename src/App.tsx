@@ -3,7 +3,6 @@ import React, { Suspense, useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { Host } from "react-native-portalize";
 import { QueryClientProvider, QueryClient } from "react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getExpoPushTokenAsync } from "expo-notifications";
@@ -57,14 +56,8 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <SafeAreaProvider>
-            {/*
-            TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
-            Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
-          */}
-            <Host>
-              <RootNavigator />
-              <ConnexionTest />
-            </Host>
+            <RootNavigator />
+            <ConnexionTest />
             <StatusBar />
           </SafeAreaProvider>
         </Provider>

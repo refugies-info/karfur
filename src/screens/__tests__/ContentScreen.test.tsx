@@ -68,13 +68,6 @@ jest.mock("@gorhom/bottom-sheet", () => {
   };
 });
 
-jest.mock("react-native-portalize", () => {
-  const { View } = jest.requireActual("react-native");
-  return {
-    Portal: View,
-  };
-});
-
 describe("ContentScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

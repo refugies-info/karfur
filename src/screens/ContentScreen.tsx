@@ -66,7 +66,6 @@ import { ErrorScreen } from "../components/ErrorScreen";
 import { FixSafeAreaView } from "../components/FixSafeAreaView";
 import { Toast } from "../components/Toast";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Portal } from "react-native-portalize";
 import { ContentImage } from "../components/Content/ContentImage";
 import { logEventInFirebase } from "../utils/logEvent";
 import { FirebaseEvent } from "../utils/eventsUsedInFirebase";
@@ -969,10 +968,6 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           )}
         </Toast>
       )}
-      {/*
-        TODO: Fix for https://github.com/software-mansion/react-native-gesture-handler/issues/139
-        Remove when this released https://github.com/software-mansion/react-native-gesture-handler/pull/1603
-       */}
       <Modal visible={mapModalVisible} animationType="slide">
         <FixSafeAreaView>
           <ModalContainer>
