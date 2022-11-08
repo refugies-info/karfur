@@ -4,17 +4,17 @@ import * as Linking from "expo-linking";
 import { Icon } from "react-native-eva-icons";
 import Modal from "react-native-modal";
 import { StyleSheet } from "react-native";
-import { RTLView } from "../BasicComponents";
-import { styles } from "../../theme";
-import { SmallButton } from "../SmallButton";
+import { RTLView } from "../../../BasicComponents";
+import { styles } from "../../../../theme";
+import { SmallButton } from "../../../SmallButton";
 import {
   TextBigBold,
   TextNormal,
   TextNormalBold,
-  TextSmallBold
-} from "../StyledText";
-import { FixSafeAreaView } from "../FixSafeAreaView";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+  TextSmallBold,
+} from "../../../StyledText";
+import { FixSafeAreaView } from "../../../FixSafeAreaView";
+import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
 import Map from "../../theme/images/localizedWarning/france_map.svg";
 import Pin from "../../theme/images/localizedWarning/pin_traffic_cone.svg";
 
@@ -32,11 +32,11 @@ const stylesheet = StyleSheet.create({
     textAlign: "center",
   },
   centerText: {
-    textAlign: "center"
+    textAlign: "center",
   },
 });
 
-export const LocalizedWarningModal = (props: Props) => {
+export const LocationWarningModal = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   return (
@@ -53,16 +53,20 @@ export const LocalizedWarningModal = (props: Props) => {
           style={{
             position: "absolute",
             top: styles.margin * 3,
-            ...(!isRTL ? {right: 0} : {left: 0})
+            ...(!isRTL ? { right: 0 } : { left: 0 }),
           }}
           label={t("global.close", "Fermer")}
         />
         <RTLView style={{ justifyContent: "center", alignItems: "flex-end" }}>
           <View>
-            <Map width={102} height={104} style={{ marginBottom: styles.margin }} />
+            <Map
+              width={102}
+              height={104}
+              style={{ marginBottom: styles.margin }}
+            />
             <TextNormalBold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
-                nbContent: props.nbGlobalContent
+                nbContent: props.nbGlobalContent,
               })}
             </TextNormalBold>
             <TextSmallBold style={stylesheet.subtitle}>
@@ -77,15 +81,19 @@ export const LocalizedWarningModal = (props: Props) => {
             style={{ marginHorizontal: styles.margin * 2 }}
           />
           <View>
-            <Pin width={114} height={104} style={{ marginBottom: styles.margin }} />
+            <Pin
+              width={114}
+              height={104}
+              style={{ marginBottom: styles.margin }}
+            />
             <TextNormalBold style={stylesheet.subtitle}>
               {t("explorer_screen.nb_content", {
-                nbContent: props.nbLocalizedContent
+                nbContent: props.nbLocalizedContent,
               })}
             </TextNormalBold>
             <TextSmallBold style={stylesheet.subtitle}>
               {t("explorer_screen.city_content", {
-                city: props.city
+                city: props.city,
               })}
             </TextSmallBold>
           </View>
@@ -96,18 +104,23 @@ export const LocalizedWarningModal = (props: Props) => {
             {t("explorer_screen.development_in_progress")}
           </TextBigBold>
           <TextNormal
-            style={{ ...stylesheet.centerText, marginVertical: styles.margin * 2 }}
+            style={{
+              ...stylesheet.centerText,
+              marginVertical: styles.margin * 2,
+            }}
           >
             {t("explorer_screen.adding_new_content")}
           </TextNormal>
-          <RTLView style={{justifyContent: "center"}}>
+          <RTLView style={{ justifyContent: "center" }}>
             <Icon
               name="monitor-outline"
               height={24}
               width={24}
               fill={styles.colors.black}
               style={{
-                ...(!isRTL ? { marginRight: styles.margin } : { marginLeft: styles.margin })
+                ...(!isRTL
+                  ? { marginRight: styles.margin }
+                  : { marginLeft: styles.margin }),
               }}
             />
             <TextNormalBold
@@ -123,3 +136,5 @@ export const LocalizedWarningModal = (props: Props) => {
     </Modal>
   );
 };
+
+export default LocationWarningModal;
