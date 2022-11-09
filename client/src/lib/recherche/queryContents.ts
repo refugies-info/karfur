@@ -92,6 +92,7 @@ export const queryDispositifs = (
  * @param locale - language to use for Algolia
  * @returns - results
  */
+let searchCache = "";
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: SearchDispositif[],
@@ -99,7 +100,8 @@ export const queryDispositifsWithAlgolia = async (
 ): Promise<Results> => {
 
   let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
-  if (query.search) { /* TODO : do not relaunch search if not changed */
+  if (query.search && query.search !== searchCache) {
+    searchCache = query.search; // keep search in cache to prevent useless algolia searchs
     let hits: Hit[] = [];
     hits = await index
       .search(query.search, {
