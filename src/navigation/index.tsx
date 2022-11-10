@@ -183,7 +183,7 @@ export const RootNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: styles.colors.lightGrey,
+      background: styles.colors.white,
     },
   };
 
