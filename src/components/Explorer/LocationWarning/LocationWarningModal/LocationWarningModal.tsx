@@ -15,8 +15,8 @@ import {
 } from "../../../StyledText";
 import { FixSafeAreaView } from "../../../FixSafeAreaView";
 import { useTranslationWithRTL } from "../../../../hooks/useTranslationWithRTL";
-import Map from "../../theme/images/localizedWarning/france_map.svg";
-import Pin from "../../theme/images/localizedWarning/pin_traffic_cone.svg";
+import Map from "../../../../theme/images/localizedWarning/france_map.svg";
+import Pin from "../../../../theme/images/localizedWarning/pin_traffic_cone.svg";
 
 interface Props {
   isVisible: boolean;
