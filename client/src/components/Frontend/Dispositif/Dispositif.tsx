@@ -1181,7 +1181,7 @@ const Dispositif = (props: Props) => {
         description={dispositif?.abstract || ""}
         image={dispositif?.theme?.shareImage.secure_url}
       />
-      <Row className="main-row">
+      <Row className={styles.main}>
         {props.type === "translation" && (
           <Col xl="4" lg="4" md="4" sm="4" xs="4">
             {user &&
@@ -1442,7 +1442,7 @@ const Dispositif = (props: Props) => {
 
             <Col
               lg={props.type === "translation" || printing ? "12" : "7"}
-              sm={props.type === "translation" || printing ? "12" : "10"}
+              md={props.type === "translation" || printing ? "12" : "10"}
               xs="12"
               className="pt-40 col-middle"
               id={"pageContent"}
