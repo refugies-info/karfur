@@ -117,11 +117,13 @@ const SearchHeaderDesktop = (props: Props) => {
   const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string | ReactElement>("");
   useEffect(() => {
     if (filterLanguage.length) {
-      const langueCodes = filterLanguage.map((option) => languages.find((a) => a.i18nCode === option)?.langueCode);
+      const langueCodes = filterLanguage
+        .map((option) => languages.find((a) => a.i18nCode === option)?.langueCode)
+        .filter((ln) => !!ln);
       setLanguageDisplayedValue(
         <>
           {t("Recherche.fichesLanguageFilter")}
-          {langueCodes.map((code) => (
+          {langueCodes.map((code, i) => (
             <i key={code} className={cls(styles.flag, `flag-icon flag-icon-${code}`)} title={code} id={code} />
           ))}
         </>
