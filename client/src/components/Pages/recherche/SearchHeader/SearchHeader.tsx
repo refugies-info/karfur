@@ -160,16 +160,18 @@ const SearchHeader = (props: Props) => {
           />
         )}
 
-        <ResultsFilter
-          nbDemarches={props.nbDemarches}
-          nbDispositifs={props.nbDispositifs}
-          nbThemesSelected={props.themesDisplayed.length}
-          selectedSort={selectedSort}
-          setSelectedSort={setSelectedSort}
-          selectedType={selectedType}
-          setSelectedType={setSelectedType}
-          showSort={!search}
-        />
+        {!props.searchMinified && (
+          <ResultsFilter
+            nbDemarches={props.nbDemarches}
+            nbDispositifs={props.nbDispositifs}
+            nbThemesSelected={props.themesDisplayed.length}
+            selectedSort={selectedSort}
+            setSelectedSort={setSelectedSort}
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+            showSort={!search}
+          />
+        )}
       </div>
     </>
   );
