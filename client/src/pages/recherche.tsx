@@ -23,7 +23,7 @@ import {
   queryDispositifs,
   queryDispositifsWithAlgolia
 } from "lib/recherche/queryContents";
-import { decodeQuery } from "lib/recherche/decodeUrlQuery";
+import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import { SearchDispositif, Need, Theme } from "types/interface";
@@ -73,10 +73,10 @@ const Recherche = () => {
   const { t } = useTranslation();
   const dispositifs = useSelector(activeDispositifsSelector);
   const router = useRouter();
-  const initialQuery = decodeQuery(router.query);
   const languei18nCode = useSelector(languei18nSelector);
   const allNeeds = useSelector(needsSelector);
   const allThemes = useSelector(themesSelector);
+  const initialQuery = decodeQuery(router.query, allThemes);
 
   // search
   const [search, setSearch] = useState(initialQuery.search);

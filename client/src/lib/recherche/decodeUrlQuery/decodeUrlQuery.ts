@@ -1,8 +1,13 @@
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { SearchQuery, UrlSearchQuery } from "pages/recherche";
 import { ObjectId } from "mongodb";
+import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
+import { Theme } from "types/interface";
 
-export const decodeQuery = (routerQuery: any): SearchQuery => {
+export const decodeQuery = (
+  routerQuery: any,
+  allThemes: Theme[] // for backward compatibility
+): SearchQuery => {
   const {
     departments, needs, themes, ages, frenchLevels, language, sort, type, search
   } = routerQuery as UrlSearchQuery;
@@ -17,7 +22,9 @@ export const decodeQuery = (routerQuery: any): SearchQuery => {
     filterLanguage: [],
     selectedSort: "date",
     selectedType: "all",
-  }
+  };
+
+  query = backwardCompatibility(routerQuery, query, allThemes);
 
   // Reinject filters value in search
   if (departments || needs || themes || ages || frenchLevels || language || sort || type || search) {
