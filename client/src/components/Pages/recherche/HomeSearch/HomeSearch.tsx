@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
+import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
 import { SearchDispositif } from "types/interface";
 import { themesSelector } from "services/Themes/themes.selectors";
@@ -62,6 +63,21 @@ const HomeSearch = (props: Props) => {
   const { t } = useTranslation();
   const themes = useSelector(themesSelector);
 
+  const selectTheme = (themeId: ObjectId) => {
+    props.setThemesSelected([themeId]);
+    Event("USE_SEARCH", "use home search", "click theme");
+  };
+  const selectType = (type: TypeOptions) => {
+    props.setSelectedType(type);
+    window.scrollTo(0, 0);
+    Event("USE_SEARCH", "use home search", "click type");
+  };
+  const selectDepartment = (department: string) => {
+    props.setDepartmentsSelected([department]);
+    window.scrollTo(0, 0);
+    Event("USE_SEARCH", "use home search", "click department");
+  };
+
   return (
     <div>
       {/* themes */}
@@ -70,7 +86,7 @@ const HomeSearch = (props: Props) => {
           <h2 className="h3">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
           <div className={styles.themes}>
             {themes.sort(sortThemes).map((theme, i) => {
-              return <SearchThemeButton key={i} theme={theme} onClick={() => props.setThemesSelected([theme._id])} />;
+              return <SearchThemeButton key={i} theme={theme} onClick={() => selectTheme(theme._id)} />;
             })}
           </div>
         </Container>
@@ -87,7 +103,7 @@ const HomeSearch = (props: Props) => {
                 title={t("Recherche.demarcheCardTitle")}
                 buttonTitle={t("Recherche.seeAllDemarches", "Voir toutes les démarches")}
                 examples={demarchesExamples.map((d) => t(d))}
-                onClick={() => props.setSelectedType("demarche")}
+                onClick={() => selectType("demarche")}
               />
             </Col>
             <Col md="6">
@@ -96,7 +112,7 @@ const HomeSearch = (props: Props) => {
                 title={t("Recherche.dispositifCardTitle")}
                 buttonTitle={t("Recherche.seeAllDispositifs", "Voir tous les dispositifs")}
                 examples={dispositifsExamples.map((d) => t(d))}
-                onClick={() => props.setSelectedType("dispositif")}
+                onClick={() => selectType("dispositif")}
               />
             </Col>
           </Row>
@@ -108,26 +124,12 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
-            <Button
-              onClick={() => {
-                props.setSelectedType("demarche");
-                window.scrollTo(0, 0);
-              }}
-            >
-              Voir tout
-            </Button>
+            <Button onClick={() => selectType("demarche")}>Voir tout</Button>
           </div>
           <CardSlider cards={props.demarches} type="demarche" />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
-            <Button
-              onClick={() => {
-                props.setSelectedType("dispositif");
-                window.scrollTo(0, 0);
-              }}
-            >
-              Voir tout
-            </Button>
+            <Button onClick={() => selectType("dispositif")}>Voir tout</Button>
           </div>
           <CardSlider cards={props.dispositifs} type="dispositif" />
         </Container>
@@ -141,14 +143,7 @@ const HomeSearch = (props: Props) => {
               <h2 className="h3">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
               <div className={styles.departments}>
                 {departmentExamples.map((dep, i) => (
-                  <button
-                    key={i}
-                    className={styles.btn}
-                    onClick={() => {
-                      props.setDepartmentsSelected([dep]);
-                      window.scrollTo(0, 0);
-                    }}
-                  >
+                  <button key={i} className={styles.btn} onClick={() => selectDepartment(dep)}>
                     {dep}
                   </button>
                 ))}

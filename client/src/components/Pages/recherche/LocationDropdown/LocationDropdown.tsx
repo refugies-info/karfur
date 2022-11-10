@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import axios from "axios";
 import { useTranslation } from "next-i18next";
 import { Button } from "reactstrap";
-
+import { Event } from "lib/tracking";
 import { cls } from "lib/classname";
 import styles from "./LocationDropdown.module.scss";
 
@@ -17,7 +17,7 @@ interface Props {
 
 const LocationDropdown = (props: Props) => {
   const { t } = useTranslation();
-  const { setDepartmentsSelected } = props;
+  const { setDepartmentsSelected, onSelectPrediction } = props;
 
   const removeDepartement = useCallback(
     (dep: string) => {
@@ -29,13 +29,24 @@ const LocationDropdown = (props: Props) => {
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((res) => {
-        axios.get(`https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`)
+        axios
+          .get(
+            `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`
+          )
           .then((response) => {
             if (response.data[0]?.departement?.nom) setDepartmentsSelected([response.data[0].departement.nom]);
           });
       });
     }
   };
+
+  const selectPrediction = useCallback(
+    (placeId: any) => {
+      Event("USE_SEARCH", "click filter", "location");
+      onSelectPrediction(placeId);
+    },
+    [onSelectPrediction]
+  );
 
   return (
     <div className={styles.container}>
@@ -58,7 +69,7 @@ const LocationDropdown = (props: Props) => {
       </div>
 
       {props.predictions.slice(0, 5).map((p, i) => (
-        <Button key={i} onClick={() => props.onSelectPrediction(p.place_id)} className={styles.btn}>
+        <Button key={i} onClick={() => selectPrediction(p.place_id)} className={styles.btn}>
           <span className={styles.icon}>
             <EVAIcon name="pin-outline" fill="black" size={!props.mobile ? 16 : 24} />
           </span>

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
@@ -7,6 +7,7 @@ import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/s
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
@@ -60,13 +61,42 @@ const SearchHeaderMobile = (props: Props) => {
 
   const [locationOpen, setLocationOpen] = useState(false);
   const [themesOpen, setThemesOpen] = useState(false);
-  const toggleLocation = () => setLocationOpen((prevState) => !prevState);
-  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+  const toggleLocation = () =>
+    setLocationOpen((prevState) => {
+      if (!prevState) Event("USE_SEARCH", "open filter", "location");
+      return !prevState;
+    });
+  const toggleThemes = () =>
+    setThemesOpen((prevState) => {
+      if (!prevState) Event("USE_SEARCH", "open filter", "theme");
+      return !prevState;
+    });
+
+  const onChangeKeywordInput = useCallback(
+    (e: any) => {
+      setSearch(e.target.value);
+      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+    },
+    [setSearch]
+  );
+
+  const onChangeThemeInput = useCallback(
+    (e: any) => {
+      setThemeSearch(e.target.value);
+      Event("USE_SEARCH", "use theme filter", "use searchbar");
+    },
+    [setThemeSearch]
+  );
 
   // FILTERS
   const [showFilters, setShowFilters] = useState(false);
   const languages = useSelector(allLanguesSelector);
   const nbFilters = filterAge.length + filterFrenchLevel.length + filterLanguage.length;
+  const toggleFilters = () =>
+    setShowFilters((prevState) => {
+      if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
+      return !prevState;
+    });
 
   // hide axeptio button when popup opens
   useEffect(() => {
@@ -88,7 +118,7 @@ const SearchHeaderMobile = (props: Props) => {
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
-                onChange={(evt) => setSearch(evt.target.value)}
+                onChange={onChangeKeywordInput}
                 inputValue={search}
                 value={search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
@@ -181,7 +211,7 @@ const SearchHeaderMobile = (props: Props) => {
                   <input
                     type="text"
                     placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
-                    onChange={(evt) => setThemeSearch(evt.target.value)}
+                    onChange={onChangeThemeInput}
                     value={themeSearch}
                   />
                 </div>
@@ -198,11 +228,7 @@ const SearchHeaderMobile = (props: Props) => {
           </DropdownMenu>
         </Dropdown>
         <div className={styles.right}>
-          <Dropdown
-            isOpen={showFilters}
-            toggle={() => setShowFilters(!showFilters)}
-            className={cls(styles.dropdown, styles.filters)}
-          >
+          <Dropdown isOpen={showFilters} toggle={toggleFilters} className={cls(styles.dropdown, styles.filters)}>
             <DropdownToggle>
               <EVAIcon name="options-2-outline" fill="white" />
               {nbFilters > 0 && <span className={styles.badge}>{nbFilters}</span>}
@@ -211,7 +237,7 @@ const SearchHeaderMobile = (props: Props) => {
               <DropdownMenuMobile
                 title={t("Recherche.filters", "Filtres de recherche")}
                 icon="options-2-outline"
-                close={() => setShowFilters(!showFilters)}
+                close={toggleFilters}
                 reset={() => {
                   setFilterAge([]);
                   setFilterFrenchLevel([]);
@@ -226,6 +252,7 @@ const SearchHeaderMobile = (props: Props) => {
                     selected={filterAge}
                     setSelected={setFilterAge}
                     options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                    gaType="age"
                   />
                   <SearchFilter
                     mobile={true}
@@ -233,6 +260,7 @@ const SearchHeaderMobile = (props: Props) => {
                     selected={filterFrenchLevel}
                     setSelected={setFilterFrenchLevel}
                     options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                    gaType="frenchLevel"
                   />
                   <SearchFilter
                     mobile={true}
@@ -252,6 +280,7 @@ const SearchHeaderMobile = (props: Props) => {
                         </>
                       )
                     }))}
+                    gaType="language"
                   />
                 </div>
               </DropdownMenuMobile>

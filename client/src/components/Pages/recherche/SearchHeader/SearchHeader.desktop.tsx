@@ -5,6 +5,7 @@ import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "react
 import { ObjectId } from "mongodb";
 import { Theme } from "types/interface";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -63,8 +64,34 @@ const SearchHeaderDesktop = (props: Props) => {
 
   const [locationOpen, setLocationOpen] = useState(false);
   const [themesOpen, setThemesOpen] = useState(false);
-  const toggleLocation = () => setLocationOpen((prevState) => !prevState);
-  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+  const toggleLocation = () => {
+    setLocationOpen((prevState) => {
+      if (!prevState) Event("USE_SEARCH", "open filter", "location");
+      return !prevState;
+    });
+  };
+  const toggleThemes = () => {
+    setThemesOpen((prevState) => {
+      if (!prevState) Event("USE_SEARCH", "open filter", "theme");
+      return !prevState;
+    });
+  };
+
+  const onChangeKeywordInput = useCallback(
+    (e: any) => {
+      setSearch(e.target.value);
+      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+    },
+    [setSearch]
+  );
+
+  const onChangeThemeInput = useCallback(
+    (e: any) => {
+      setThemeSearch(e.target.value);
+      Event("USE_SEARCH", "use theme filter", "use searchbar");
+    },
+    [setThemeSearch]
+  );
 
   const handleSpaceKey = useCallback((e: any) => {
     if (e.keyCode === 13 || e.keyCode === 32) {
@@ -181,7 +208,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 icon="list-outline"
                 active={themesFocused || themesOpen}
                 setActive={setThemesFocused}
-                onChange={(evt) => setThemeSearch(evt.target.value)}
+                onChange={onChangeThemeInput}
                 inputValue={themeSearch}
                 value={themeDisplayedValue}
                 placeholder={t("Recherche.all", "Tous")}
@@ -212,7 +239,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
-                onChange={(evt) => setSearch(evt.target.value)}
+                onChange={onChangeKeywordInput}
                 inputValue={search}
                 value={search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
@@ -232,6 +259,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 selected={filterAge}
                 setSelected={setFilterAge}
                 options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                gaType="age"
               />
               <SearchFilter
                 mobile={false}
@@ -243,6 +271,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 selected={filterFrenchLevel}
                 setSelected={setFilterFrenchLevel}
                 options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                gaType="frenchLevel"
               />
               <SearchFilter
                 mobile={false}
@@ -266,6 +295,7 @@ const SearchHeaderDesktop = (props: Props) => {
                     </>
                   )
                 }))}
+                gaType="language"
               />
             </div>
             <Button className={styles.reset} onClick={resetFilters}>

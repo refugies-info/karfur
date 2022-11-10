@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, memo } from "react";
+import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
 import styled from "styled-components";
 import { Collapse } from "reactstrap";
 import { ObjectId } from "mongodb";
@@ -7,6 +7,7 @@ import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
+import { Event } from "lib/tracking";
 import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
@@ -55,12 +56,18 @@ const ThemeDropdown = (props: Props) => {
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
 
-  const {
-    needsSelected,
-    setNeedsSelected,
-    themesSelected,
-    setThemesSelected
-  } = props;
+  const { needsSelected, setNeedsSelected, themesSelected, setThemesSelected } = props;
+
+  const onClickTheme = useCallback(
+    (themeId: ObjectId) => {
+      setThemeSelected((old) => {
+        if (old === themeId) return null;
+        return themeId;
+      });
+      Event("USE_SEARCH", "use theme filter", "click theme");
+    },
+    [setThemeSelected]
+  );
 
   useEffect(() => {
     // count nb needs selected by theme
@@ -74,7 +81,7 @@ const ThemeDropdown = (props: Props) => {
     for (const themeId of themesSelected) {
       const theme = themes.find((t) => t._id === themeId);
       if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter(need => need.theme._id === themeId).length;
+        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
       }
     }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
@@ -103,12 +110,7 @@ const ThemeDropdown = (props: Props) => {
                 color100={theme.colors.color100}
                 color30={theme.colors.color30}
                 selected={selected}
-                onClick={() =>
-                  setThemeSelected((old) => {
-                    if (old === theme._id) return null;
-                    return theme._id;
-                  })
-                }
+                onClick={() => onClickTheme(theme._id)}
               >
                 <span className={styles.btn_content}>
                   <TagName theme={theme} colored={themeSelected !== theme._id} size={20} />

@@ -1,6 +1,7 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useCallback, useState } from "react";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Checkbox from "components/UI/Checkbox";
 import { Selected } from "./SearchFilter";
@@ -11,16 +12,33 @@ interface Props {
   selected: Selected[];
   label: string | ReactElement;
   selectItem: (option: string) => void;
+  gaType: string;
 }
 
 const SearchFilterDesktop = (props: Props) => {
+  const { selectItem, gaType } = props;
   const [open, setOpen] = useState(false);
+
+  const toggleDropdown = useCallback(() => {
+    setOpen((o) => {
+      if (!o) Event("USE_SEARCH", "open filter", gaType);
+      return !o;
+    });
+  }, [setOpen, gaType]);
+
+  const onSelectItem = useCallback(
+    (key: string) => {
+      selectItem(key);
+      Event("USE_SEARCH", "click filter", gaType);
+    },
+    [selectItem, gaType]
+  );
 
   return (
     <Dropdown
       isOpen={open}
       direction="down"
-      toggle={() => setOpen((o) => !o)}
+      toggle={toggleDropdown}
       className={cls(styles.dropdown, open && styles.show, props.selected.length > 0 && styles.selected)}
     >
       <DropdownToggle>
@@ -38,7 +56,7 @@ const SearchFilterDesktop = (props: Props) => {
           return (
             <DropdownItem
               key={i}
-              onClick={() => props.selectItem(option.key)}
+              onClick={() => onSelectItem(option.key)}
               className={cls(styles.item, isSelected && styles.selected)}
               toggle={false}
             >

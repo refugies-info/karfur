@@ -13,6 +13,7 @@ import Checkbox from "components/UI/Checkbox";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import styles from "./ThemeDropdown.module.scss";
 
 type ButtonNeedProps = {
@@ -85,6 +86,7 @@ const NeedsList = (props: Props) => {
     } else {
       // if not selected, add
       allSelectedNeeds = [...allSelectedNeeds, id];
+      Event("USE_SEARCH", "use theme filter", "select one need");
     }
 
     const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);
@@ -104,6 +106,7 @@ const NeedsList = (props: Props) => {
         .map((n) => n._id);
       setThemesSelected((themes) => [...themes, id]);
       setNeedsSelected(newNeeds);
+      Event("USE_SEARCH", "use theme filter", "select all needs");
     }
   };
 

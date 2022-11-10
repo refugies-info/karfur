@@ -13,8 +13,9 @@ interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
   setSelected: SetSelected;
-  label: string|ReactElement;
+  label: string | ReactElement;
   mobile: boolean;
+  gaType: string;
 }
 
 const SearchFilter = (props: Props) => {
@@ -34,6 +35,7 @@ const SearchFilter = (props: Props) => {
       selected={props.selected}
       options={props.options}
       selectItem={selectItem}
+      gaType={props.gaType}
     />
   ) : (
     <SearchFilterMobile
@@ -41,6 +43,7 @@ const SearchFilter = (props: Props) => {
       selected={props.selected}
       options={props.options}
       selectItem={selectItem}
+      gaType={props.gaType}
     />
   );
 };
