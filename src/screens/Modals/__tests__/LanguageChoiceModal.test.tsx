@@ -21,18 +21,11 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
     t: jest.fn(),
   }),
 }));
-jest.mock("react-native-safe-area-context", () => {
-  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
 
-  return {
-    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView,
-  };
-});
 describe("LanguageChoiceModal", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
+  // beforeEach(() => {
+  //   jest.clearAllMocks();
+  // });
 
   it("should render correctly", () => {
     const changeLanguage = jest.fn();

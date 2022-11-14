@@ -26,7 +26,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     <View
       style={
         Object {
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >
@@ -71,7 +71,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
       style={
         Object {
           "paddingBottom": 8,
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >
@@ -2628,7 +2628,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     <View
       style={
         Object {
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >
@@ -2673,7 +2673,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
       style={
         Object {
           "paddingBottom": 8,
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >
@@ -5230,7 +5230,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     <View
       style={
         Object {
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >
@@ -5275,7 +5275,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
       style={
         Object {
           "paddingBottom": 8,
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >

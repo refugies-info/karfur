@@ -16,29 +16,14 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 }));
 
 jest.mock("../../../utils/logEvent", () => ({
-  logEventInFirebase: jest.fn()
+  logEventInFirebase: jest.fn(),
 }));
-
-jest.mock("react-native-safe-area-context", () => {
-  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
-
-  return {
-    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView,
-  };
-});
-
-jest.mock("@react-navigation/native", () => {
-  return {
-    useRoute: () => ({ name: "LanguageChoiceScreen" }),
-  };
-});
 
 describe("Profil screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     (useRoute as jest.Mock).mockReturnValue({
-      name: "LanguageChoiceScreen"
+      name: "LanguageChoiceScreen",
     });
   });
 

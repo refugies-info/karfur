@@ -23,7 +23,7 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
     <View
       style={
         Object {
-          "paddingTop": undefined,
+          "paddingTop": 0,
         }
       }
     >

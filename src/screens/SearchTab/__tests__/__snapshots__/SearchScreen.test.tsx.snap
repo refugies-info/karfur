@@ -37,7 +37,7 @@ exports[`Search Screen should render correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": undefined,
+            "paddingTop": 0,
           }
         }
       >
@@ -82,7 +82,7 @@ exports[`Search Screen should render correctly 1`] = `
         style={
           Object {
             "paddingBottom": 8,
-            "paddingTop": undefined,
+            "paddingTop": 0,
           }
         }
       >

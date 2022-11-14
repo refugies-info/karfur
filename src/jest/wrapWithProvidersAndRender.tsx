@@ -9,6 +9,7 @@ import {
   RootState,
 } from "../services/redux/reducers";
 import { ThemeProvider } from "../theme";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 interface WrapWithProvidersAndRenderParams {
   Component: React.FunctionComponent<any>;
@@ -35,13 +36,15 @@ export function wrapWithProvidersAndRender({
   const store = createStore(rootReducer, reduxState);
 
   const componentWithReduxAndI18n = (
-    <NavigationContext.Provider value={navContext as any}>
-      <Provider store={store}>
-        <ThemeProvider>
-          <Component {...compProps} />
-        </ThemeProvider>
-      </Provider>
-    </NavigationContext.Provider>
+    <SafeAreaProvider>
+      <NavigationContext.Provider value={navContext as any}>
+        <Provider store={store}>
+          <ThemeProvider>
+            <Component {...compProps} />
+          </ThemeProvider>
+        </Provider>
+      </NavigationContext.Provider>
+    </SafeAreaProvider>
   );
 
   return render(componentWithReduxAndI18n);

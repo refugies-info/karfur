@@ -91,28 +91,14 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
     }
     swipeThreshold={100}
   >
-    <RNCSafeAreaView
-      edges={
-        Array [
-          "bottom",
-          "left",
-          "right",
-          "top",
-        ]
-      }
-      isIPhone12={false}
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-          Object {
-            "flex": 1,
-            "justifyContent": "center",
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
       }
     >
       <View
@@ -147,7 +133,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             },
             "shadowOpacity": 0.16,
             "shadowRadius": 8,
-            "top": 2,
+            "top": 0,
           }
         }
       >
@@ -613,7 +599,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </View>
   </View>
 </Modal>
 `;

@@ -12,20 +12,10 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   }),
 }));
 
-jest.mock("react-native-safe-area-context", () => {
-  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
-
-  return {
-    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView,
-  };
-});
-
 describe("Search results screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-
 
   it("should render correctly", () => {
     const component = wrapWithProvidersAndRender({
@@ -33,7 +23,7 @@ describe("Search results screen", () => {
       compProps: { navigation: { goBack: jest.fn() } },
       reduxState: {
         ...initialRootStateFactory(),
-        themes: mockedThemesData
+        themes: mockedThemesData,
       },
     });
     expect(component).toMatchSnapshot();

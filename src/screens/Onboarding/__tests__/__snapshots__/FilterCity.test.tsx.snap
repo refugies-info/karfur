@@ -1,19 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Filter city should render correctly when city selected 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
+<View
   style={
     Object {
-      "display": "flex",
-      "flex": 1,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
     }
   }
 >
@@ -760,23 +754,17 @@ exports[`Filter city should render correctly when city selected 1`] = `
       </View>
     </View>
   </RCTScrollView>
-</RNCSafeAreaView>
+</View>
 `;
 
 exports[`Filter city should render correctly when no city 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
+<View
   style={
     Object {
-      "display": "flex",
-      "flex": 1,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
     }
   }
 >
@@ -1650,5 +1638,5 @@ exports[`Filter city should render correctly when no city 1`] = `
       </View>
     </View>
   </RCTScrollView>
-</RNCSafeAreaView>
+</View>
 `;

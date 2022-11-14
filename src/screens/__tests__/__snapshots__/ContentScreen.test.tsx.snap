@@ -32,7 +32,7 @@ exports[`ContentScreen should render correctly 1`] = `
       <View
         style={
           Object {
-            "paddingTop": undefined,
+            "paddingTop": 0,
           }
         }
       >
@@ -4581,7 +4581,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
       <View
         style={
           Object {
-            "paddingTop": undefined,
+            "paddingTop": 0,
           }
         }
       >
@@ -9095,27 +9095,18 @@ exports[`ContentScreen should toggle map modal 1`] = `
     hardwareAccelerated={false}
     visible={true}
   >
-    <RNCSafeAreaView
-      edges={
-        Array [
-          "bottom",
-          "left",
-          "right",
-          "top",
-        ]
-      }
-      isIPhone12={false}
+    <View
       style={
-        Array [
-          Object {
-            "marginBottom": 0,
-            "position": "relative",
-            "zIndex": 2,
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
       }
     >
       <View
+        paddingTop={0}
         style={
           Array [
             Object {
@@ -9123,7 +9114,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingHorizontal": 16,
-              "paddingTop": "px",
+              "paddingTop": 0,
               "position": "absolute",
               "width": "100%",
               "zIndex": 2,
@@ -9348,7 +9339,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
       </View>
-    </RNCSafeAreaView>
+    </View>
     <View>
       <View>
         <View>

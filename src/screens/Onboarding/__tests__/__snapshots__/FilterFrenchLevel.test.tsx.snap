@@ -1,19 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Filter french level should render correctly when french level selected 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
+<View
   style={
     Object {
-      "display": "flex",
-      "flex": 1,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
     }
   }
 >
@@ -1037,23 +1031,17 @@ exports[`Filter french level should render correctly when french level selected 
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</View>
 `;
 
 exports[`Filter french level should render correctly when no french level selected 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
+<View
   style={
     Object {
-      "display": "flex",
-      "flex": 1,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
     }
   }
 >
@@ -2012,23 +2000,17 @@ exports[`Filter french level should render correctly when no french level select
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</View>
 `;
 
 exports[`Filter french level should select level when click on it 1`] = `
-<RNCSafeAreaView
-  edges={
-    Array [
-      "bottom",
-      "left",
-      "right",
-      "top",
-    ]
-  }
+<View
   style={
     Object {
-      "display": "flex",
-      "flex": 1,
+      "bottom": 0,
+      "left": 0,
+      "right": 0,
+      "top": 0,
     }
   }
 >
@@ -3052,5 +3034,5 @@ exports[`Filter french level should select level when click on it 1`] = `
       </View>
     </View>
   </View>
-</RNCSafeAreaView>
+</View>
 `;

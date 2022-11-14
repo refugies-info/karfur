@@ -5,7 +5,7 @@ exports[`HeaderWithLogo should render correctly with LTR 1`] = `
   style={
     Object {
       "paddingBottom": 8,
-      "paddingTop": undefined,
+      "paddingTop": 0,
     }
   }
 >
@@ -51,7 +51,7 @@ exports[`HeaderWithLogo should render correctly with RTL 1`] = `
   style={
     Object {
       "paddingBottom": 8,
-      "paddingTop": undefined,
+      "paddingTop": 0,
     }
   }
 >

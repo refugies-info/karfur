@@ -25,14 +25,6 @@ jest.mock("../../utils/logEvent", () => ({
   logEventInFirebase: jest.fn(),
 }));
 
-jest.mock("react-native-safe-area-context", () => {
-  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
-
-  return {
-    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView,
-  };
-});
 jest.mock("@03balogun/react-native-skeleton-content", () => {
   return null;
 });

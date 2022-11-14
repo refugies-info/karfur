@@ -16,7 +16,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     style={
       Object {
         "paddingBottom": 8,
-        "paddingTop": undefined,
+        "paddingTop": 0,
       }
     }
   >

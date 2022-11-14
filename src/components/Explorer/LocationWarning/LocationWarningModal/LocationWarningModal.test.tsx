@@ -19,12 +19,6 @@ jest.mock("@react-navigation/native", () => ({
     navigate: jest.fn(),
   }),
 }));
-jest.mock("react-native-safe-area-context", () => ({
-  ...jest.requireActual("react-native-safe-area-context"),
-  useSafeAreaInsets: jest
-    .fn()
-    .mockReturnValue({ top: 2, right: 2, left: 2, bottom: 2 }),
-}));
 
 // @see https://stackoverflow.com/questions/50793885/referenceerror-you-are-trying-to-import-a-file-after-the-jest-environment-has
 jest.useFakeTimers();

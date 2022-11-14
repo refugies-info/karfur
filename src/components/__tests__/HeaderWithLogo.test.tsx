@@ -18,21 +18,6 @@ jest.mock("../../utils/logEvent", () => ({
   logEventInFirebase: jest.fn(),
 }));
 
-jest.mock("react-native-safe-area-context", () => {
-  const { SafeAreaView } = jest.requireActual("react-native-safe-area-context");
-
-  return {
-    useSafeAreaInsets: () => ({ insets: { bottom: 0 } }),
-    SafeAreaView,
-  };
-});
-
-jest.mock("@react-navigation/native", () => {
-  return {
-    useRoute: () => ({ name: "TestSreen" }),
-  };
-});
-
 describe("HeaderWithLogo", () => {
   beforeEach(() => {
     (useRoute as jest.Mock).mockReturnValue({

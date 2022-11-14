@@ -8,7 +8,7 @@ import { StyledTextSmall } from "../StyledText";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import Modal from "react-native-modal";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { FixSafeAreaView } from "../FixSafeAreaView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const MainContainer = styled.View`
   flex-direction: row;
@@ -111,7 +111,7 @@ export const SearchBarCity = (props: Props) => {
         backdropColor={styles.colors.greyF7}
         backdropOpacity={1}
       >
-        <FixSafeAreaView>
+        <SafeAreaView>
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
@@ -184,7 +184,7 @@ export const SearchBarCity = (props: Props) => {
               ))}
             </SuggestionsContainer>
           )}
-        </FixSafeAreaView>
+        </SafeAreaView>
       </TextModal>
     </View>
   );
