@@ -4,7 +4,7 @@ import { initialMockStore } from "__fixtures__/reduxStore";
 import { wrapWithProvidersAndRender } from "../../../../../jest/lib/wrapWithProvidersAndRender";
 import {
   updateUserFavoritesActionCreator,
-  fetchUserFavoritesActionCreator,
+  fetchUserFavoritesActionCreator
 } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { act } from "react-test-renderer";
 import routerMock from "next/router";
@@ -13,28 +13,19 @@ import mockAxios from "jest-mock-axios";
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
-  return Image
+  return Image;
 });
 
 import "jest-styled-components";
 
-jest.mock(
-  "services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
-  () => {
-    const actions = jest.requireActual(
-      "services/UserFavoritesInLocale/UserFavoritesInLocale.actions"
-    );
+jest.mock("services/UserFavoritesInLocale/UserFavoritesInLocale.actions", () => {
+  const actions = jest.requireActual("services/UserFavoritesInLocale/UserFavoritesInLocale.actions");
 
-    return {
-      updateUserFavoritesActionCreator: jest.fn(
-        actions.updateUserFavoritesActionCreator
-      ),
-      fetchUserFavoritesActionCreator: jest.fn(
-        actions.fetchUserFavoritesActionCreator
-      ),
-    };
-  }
-);
+  return {
+    updateUserFavoritesActionCreator: jest.fn(actions.updateUserFavoritesActionCreator),
+    fetchUserFavoritesActionCreator: jest.fn(actions.fetchUserFavoritesActionCreator)
+  };
+});
 
 describe("UserFavorites", () => {
   beforeEach(() => {
@@ -49,9 +40,9 @@ describe("UserFavorites", () => {
         Component: UserFavorites,
         reduxState: {
           ...initialMockStore,
-          loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } },
+          loadingStatus: { FETCH_USER_FAVORITES: { isLoading: true } }
         },
-        compProps: { t: (_: string, element2: string) => element2 },
+        compProps: { t: (_: string, element2: string) => element2 }
       });
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
@@ -65,7 +56,7 @@ describe("UserFavorites", () => {
     act(() => {
       component = wrapWithProvidersAndRender({
         Component: UserFavorites,
-        compProps: { t: (_: string, element2: string) => element2 },
+        compProps: { t: (_: string, element2: string) => element2 }
       });
     });
 
@@ -82,14 +73,18 @@ describe("UserFavorites", () => {
     typeContenu: "dispositif",
     contenu: [
       {},
-      {children: [{
-        title: "Zone d'action",
-      }]}
+      {
+        children: [
+          {
+            title: "Zone d'action"
+          }
+        ]
+      }
     ],
     mainSponsor: {
-      picture: {secure_url: ""}
+      picture: { secure_url: "" }
     },
-    theme: "6319f6b363ab2bbb162d7df5",
+    theme: "6319f6b363ab2bbb162d7df5"
   };
 
   const fav2 = {
@@ -100,14 +95,18 @@ describe("UserFavorites", () => {
     typeContenu: "dispositif",
     contenu: [
       {},
-      {children: [{
-        title: "Zone d'action",
-      }]}
+      {
+        children: [
+          {
+            title: "Zone d'action"
+          }
+        ]
+      }
     ],
     mainSponsor: {
-      picture: {secure_url: ""}
+      picture: { secure_url: "" }
     },
-    theme: "6319f6b363ab2bbb162d7df6",
+    theme: "6319f6b363ab2bbb162d7df6"
   };
 
   const fav3 = {
@@ -118,14 +117,18 @@ describe("UserFavorites", () => {
     typeContenu: "demarche",
     contenu: [
       {},
-      {children: [{
-        title: "Zone d'action",
-      }]}
+      {
+        children: [
+          {
+            title: "Zone d'action"
+          }
+        ]
+      }
     ],
     mainSponsor: {
-      picture: {secure_url: ""}
+      picture: { secure_url: "" }
     },
-    theme: "6319f6b363ab2bbb162d7df7",
+    theme: "6319f6b363ab2bbb162d7df7"
   };
   it("should render correctly when 3 favorites", () => {
     window.scrollTo = jest.fn();
@@ -134,7 +137,7 @@ describe("UserFavorites", () => {
       component = wrapWithProvidersAndRender({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } }
       });
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
@@ -148,17 +151,15 @@ describe("UserFavorites", () => {
       component = wrapWithProvidersAndRender({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } }
       });
     });
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("fr");
-    component.root
-      .findByProps({ "data-test-id": "test-delete-button" })
-      .props.onClick();
+    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
-      locale: "fr",
+      locale: "fr"
     });
   });
 
@@ -171,18 +172,16 @@ describe("UserFavorites", () => {
       component = wrapWithProvidersAndRender({
         Component: UserFavorites,
         compProps: { t: (_: string, element2: string) => element2 },
-        reduxState: { ...initialMockStore, userFavorites: [fav1, fav2, fav3] },
+        reduxState: { ...initialMockStore, userFavorites: { favorites: [fav1, fav2, fav3] } }
       });
     });
 
     expect(fetchUserFavoritesActionCreator).toHaveBeenCalledWith("en");
-    component.root
-      .findByProps({ "data-test-id": "test-delete-button" })
-      .props.onClick();
+    component.root.findByProps({ "data-test-id": "test-delete-button" }).props.onClick();
 
     expect(updateUserFavoritesActionCreator).toHaveBeenCalledWith({
       type: "remove-all",
-      locale: "en",
+      locale: "en"
     });
   });
 });
