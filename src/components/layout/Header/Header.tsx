@@ -256,7 +256,7 @@ export const Header = ({
                   fontSize: headerFontSize,
                 }}
               >
-                <ReadableText overridePosY={0}>
+                <ReadableText overridePosY={5}>
                   {firstLetterUpperCase(title)}
                 </ReadableText>
               </Title>

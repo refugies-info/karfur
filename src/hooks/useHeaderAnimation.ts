@@ -1,19 +1,19 @@
-import * as React from "react";
+import { useState } from "react";
 
 export function useHeaderAnimation() {
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
+  const [showSimplifiedHeader, setShowSimplifiedHeader] = useState(false);
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 5 && !showSimplifiedHeader) {
+    if (event.nativeEvent.contentOffset.y > 10 && !showSimplifiedHeader) {
       setShowSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 5 && showSimplifiedHeader) {
+    if (event.nativeEvent.contentOffset.y < 10 && showSimplifiedHeader) {
       setShowSimplifiedHeader(false);
       return;
     }
     return;
   };
 
-  return { handleScroll, showSimplifiedHeader }
+  return { handleScroll, showSimplifiedHeader };
 }

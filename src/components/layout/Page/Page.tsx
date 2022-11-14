@@ -4,6 +4,7 @@ import {
   NativeSyntheticEvent,
   ScrollView,
 } from "react-native";
+import { useTheme } from "styled-components/native";
 import styled from "styled-components/native";
 import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
 import { useVoiceover } from "../../../hooks/useVoiceover";
@@ -17,18 +18,28 @@ const PageContainer = styled.View`
 export interface PageProps extends HeaderProps {
   children: ReactNode;
   disableAutomaticScroll?: boolean;
+  loading?: boolean;
 }
 
 const Page = ({
   disableAutomaticScroll,
   children,
+  loading,
   title,
   ...headerProps
 }: PageProps) => {
+  const theme = useTheme();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(); // Voiceover
   const scrollview = React.useRef<ScrollView>(null);
   const offset = 250;
   const { setScroll, saveList } = useVoiceover(scrollview, offset);
+
+  React.useEffect(() => {
+    // reset when finish loading
+    if (!loading) {
+      setTimeout(() => saveList());
+    }
+  }, [loading]);
 
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScroll(
@@ -53,11 +64,18 @@ const Page = ({
         children
       ) : (
         <ScrollableContent
+          alwaysBounceVertical={false}
+          contentContainerStyle={{
+            paddingHorizontal: theme.margin * 3,
+            paddingTop: theme.margin * 3,
+            paddingBottom: theme.margin * 5 + (theme.insets.bottom || 0),
+          }}
           onMomentumScrollEnd={onScrollEnd}
           onScroll={handleScroll}
           onScrollEndDrag={onScrollEnd}
           ref={scrollview}
-          scrollEventThrottle={5}
+          scrollEventThrottle={10}
+          scrollIndicatorInsets={{ right: 1 }}
         >
           {children}
         </ScrollableContent>
