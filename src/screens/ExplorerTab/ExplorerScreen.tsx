@@ -1,14 +1,10 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "react-native-modal";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import { EnableNotifications } from "../../components/Notifications/EnableNotifications";
 
 import {
   setInitialUrlUsed,
@@ -31,9 +27,9 @@ import { sortByOrder } from "../../libs";
 import { getScreenFromUrl } from "../../libs/getScreenFromUrl";
 import { styles } from "../../theme";
 import { logger } from "../../logger";
-import { useNotificationsStatus } from "../../hooks/useNotificationsStatus";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import LocationWarning from "../../components/Explorer/LocationWarning";
+import { NotificationsModal } from "../../components/Notifications";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${styles.margin * 4}px;
@@ -115,26 +111,6 @@ export const ExplorerScreen = ({
   }, [redirectDispositif]);
   useFocusEffect(redirect);
 
-  const [accessGranted] = useNotificationsStatus();
-  const [notificationsModalVisible, setNotificationsModalVisible] =
-    useState<boolean>(false);
-
-  useEffect(() => {
-    const showModal = async () => {
-      const keyExists = await AsyncStorage.getItem("notificationsModal");
-      if (!accessGranted) {
-        if (!keyExists) {
-          await AsyncStorage.setItem("notificationsModal", "true");
-          setNotificationsModalVisible(true);
-        }
-      } else if (accessGranted && notificationsModalVisible) {
-        setNotificationsModalVisible(false);
-      }
-    };
-
-    showModal();
-  }, [accessGranted]);
-
   return (
     <WrapperWithHeaderAndLanguageModal>
       <LocationWarning />
@@ -202,21 +178,7 @@ export const ExplorerScreen = ({
         </CenteredView>
       )}
 
-      <Modal isVisible={notificationsModalVisible}>
-        <View
-          style={{
-            flex: 0.5,
-          }}
-        >
-          <EnableNotifications
-            withMargin={false}
-            fullSize={false}
-            onDismiss={() => {
-              setNotificationsModalVisible(false);
-            }}
-          />
-        </View>
-      </Modal>
+      <NotificationsModal />
     </WrapperWithHeaderAndLanguageModal>
   );
 };

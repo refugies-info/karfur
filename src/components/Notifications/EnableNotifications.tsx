@@ -12,17 +12,19 @@ import {
   StyledTextNormal,
 } from "../../components/StyledText";
 import { CustomButton } from "../CustomButton";
+import styled, { useTheme } from "styled-components/native";
+
+const Container = styled.View`
+  display: flex;
+  margin-top: ${({ theme }) => theme.insets.top}px;
+  border-radius: ${({ theme }) => theme.radius * 2}px;
+  background-color: ${({ theme }) => theme.colors.white};
+  align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
+  justify-content: space-between;
+  padding: ${({ theme }) => theme.margin * 3}px;
+`;
 
 const stylesheet = StyleSheet.create({
-  container: {
-    display: "flex",
-    margin: styles.margin * 2,
-    borderRadius: styles.radius * 2,
-    backgroundColor: styles.colors.white,
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    padding: styles.margin * 2,
-  },
   lottieContainer: {
     height: 160,
     width: 160,
@@ -37,34 +39,16 @@ const stylesheet = StyleSheet.create({
 });
 
 interface Props {
-  withMargin?: boolean;
-  fullSize?: boolean;
   onDismiss?: () => void | undefined;
 }
 
-export const EnableNotifications = ({
-  withMargin = true,
-  fullSize = true,
-  onDismiss,
-}: Props) => {
-  const { t, isRTL } = useTranslationWithRTL();
+export const EnableNotifications = ({ onDismiss }: Props) => {
+  const { t } = useTranslationWithRTL();
+  const theme = useTheme();
   const [, registerForNotifications] = useNotificationsStatus();
 
   return (
-    <View
-      style={[
-        stylesheet.container,
-        !withMargin && {
-          margin: 0,
-        },
-        fullSize && {
-          flex: 1,
-        },
-        isRTL && {
-          alignItems: "flex-end",
-        },
-      ]}
-    >
+    <Container>
       <LottieView
         colorFilters={[{ keypath: "bell icon", color: "#ffcd31" }]}
         style={stylesheet.lottieContainer}
@@ -74,20 +58,18 @@ export const EnableNotifications = ({
         speed={1.2}
       />
       <View style={stylesheet.titles}>
-        <StyledTextBigBold isRTL={isRTL}>
+        <StyledTextBigBold>
           {t("notifications.newInfoEveryWeek")}
         </StyledTextBigBold>
         <View style={stylesheet.separator} />
-        <StyledTextNormal isRTL={isRTL}>
-          {t("notifications.beInformed")}
-        </StyledTextNormal>
+        <StyledTextNormal>{t("notifications.beInformed")}</StyledTextNormal>
       </View>
       <CustomButton
         i18nKey="notifications.enableNotifications"
-        backgroundColor={styles.colors.darkBlue}
+        backgroundColor={theme.colors.darkBlue}
         iconName="checkmark-outline"
         defaultText="Activer les notifications"
-        textColor={styles.colors.white}
+        textColor={theme.colors.white}
         onPress={registerForNotifications}
         isTextNotBold={true}
       />
@@ -95,20 +77,20 @@ export const EnableNotifications = ({
         <>
           <View
             style={{
-              marginVertical: styles.margin,
+              marginVertical: theme.margin,
             }}
           />
           <CustomButton
             i18nKey="notifications.notNow"
-            backgroundColor={styles.colors.white}
+            backgroundColor={theme.colors.white}
             defaultText="Pas maintenant"
-            textColor={styles.colors.black}
+            textColor={theme.colors.black}
             onPress={onDismiss}
             isTextNotBold={true}
             withShadows={false}
           />
         </>
       )}
-    </View>
+    </Container>
   );
 };
