@@ -21,7 +21,7 @@ const MainView = styled(SafeAreaView)`
   justify-content: space-between;
 `;
 
-const ElementsContainer = styled.View`
+const ElementsContainer = styled.ScrollView`
   padding: ${styles.margin * 3}px;
 `;
 
