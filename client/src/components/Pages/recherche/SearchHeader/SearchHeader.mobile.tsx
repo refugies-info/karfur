@@ -210,7 +210,7 @@ const SearchHeaderMobile = (props: Props) => {
               placeholder={t("Recherche.themes", "Thèmes")}
             />
           </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
+          <DropdownMenu className={styles.menu} persist>
             <DropdownMenuMobile
               title={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
@@ -229,7 +229,7 @@ const SearchHeaderMobile = (props: Props) => {
                   />
                 </div>
               </div>
-              <ThemeDropdown search={themeSearch} mobile={true} />
+              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen || themesFocused} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>

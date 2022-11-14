@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
@@ -59,8 +59,8 @@ const HomeSearch = () => {
   const themes = useSelector(themesSelector);
   const filteredResult = useSelector(searchResultsSelector);
 
-  const demarches = filteredResult.demarches.slice(0, 15);
-  const dispositifs = filteredResult.dispositifs.slice(0, 15);
+  const demarches = useMemo(() => filteredResult.demarches.slice(0, 15), [filteredResult]);
+  const dispositifs = useMemo(() => filteredResult.dispositifs.slice(0, 15), [filteredResult]);
 
   const selectTheme = (themeId: ObjectId) => {
     dispatch(addToQueryActionCreator({ themes: [themeId] }));

@@ -2,10 +2,14 @@ import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
 import { Collapse } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
+import { debounce } from "lodash";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { languei18nSelector } from "services/Langue/langue.selectors";
+import { SearchDispositif } from "types/interface";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
@@ -19,7 +23,20 @@ import ThemeButton from "./ThemeButton";
 interface Props {
   search: string;
   mobile: boolean;
+  isOpen: boolean;
 }
+
+const debouncedQuery = debounce(
+  (
+    query: SearchQuery,
+    dispositifs: SearchDispositif[],
+    locale: string,
+    callback: (res: SearchDispositif[]) => void
+  ) => {
+    return queryDispositifsWithoutThemes(query, dispositifs, locale).then((res) => callback(res));
+  },
+  500
+);
 
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
@@ -30,6 +47,7 @@ const ThemeDropdown = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const allDispositifs = useSelector(activeDispositifsSelector);
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
+  const languei18nCode = useSelector(languei18nSelector);
 
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
@@ -67,26 +85,30 @@ const ThemeDropdown = (props: Props) => {
 
   // count dispositifs by need and theme
   useEffect(() => {
-    const newNbDispositifsByNeed: Record<string, number> = {};
-    const newNbDispositifsByTheme: Record<string, number> = {};
+    if (props.isOpen) {
+      debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
+        const newNbDispositifsByNeed: Record<string, number> = {};
+        const newNbDispositifsByTheme: Record<string, number> = {};
+        for (const dispositif of dispositifs) {
+          for (const needId of dispositif.needs || []) {
+            newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+          }
 
-    queryDispositifsWithoutThemes(query, allDispositifs, "fr").then((dispositifs) => {
-      for (const dispositif of dispositifs) {
-        for (const needId of dispositif.needs || []) {
-          newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+          const themeId = dispositif.theme.toString();
+          newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
+          for (const theme of dispositif.secondaryThemes || []) {
+            newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
+          }
         }
 
-        const themeId = dispositif.theme.toString();
-        newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
-        for (const theme of dispositif.secondaryThemes || []) {
-          newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
-        }
-      }
+        setNbDispositifsByTheme(newNbDispositifsByTheme);
+        setNbDispositifsByNeed(newNbDispositifsByNeed);
 
-      setNbDispositifsByTheme(newNbDispositifsByTheme);
-      setNbDispositifsByNeed(newNbDispositifsByNeed);
-    });
-  }, [query, allDispositifs]);
+        // reset selected theme
+        setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
+      });
+    }
+  }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
 
   const displayedNeeds = useMemo(() => {
     if (props.search) {

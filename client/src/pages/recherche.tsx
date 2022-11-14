@@ -19,7 +19,7 @@ import { languei18nSelector } from "services/Langue/langue.selectors";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { addToQueryActionCreator, setSearchResultsActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
 import {
   getCountDispositifsForDepartment,
@@ -51,8 +51,8 @@ export type UrlSearchQuery = {
 };
 
 const debouncedQuery = debounce(
-  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: any) => {
-    return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res) => callback(res));
+  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: (res: Results) => void) => {
+    return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
   500
 );
@@ -93,10 +93,9 @@ const Recherche = () => {
       }
     };
 
-    updateUrl();
-
     // query dispositifs
-    debouncedQuery(query, dispositifs, languei18nCode, (res: any) => {
+    debouncedQuery(query, dispositifs, languei18nCode, (res) => {
+      updateUrl();
       dispatch(setSearchResultsActionCreator(res));
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

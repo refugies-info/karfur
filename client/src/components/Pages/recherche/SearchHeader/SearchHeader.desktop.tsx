@@ -214,8 +214,8 @@ const SearchHeaderDesktop = (props: Props) => {
                 resetFilter={resetTheme}
               />
             </DropdownToggle>
-            <DropdownMenu>
-              <ThemeDropdown search={themeSearch} mobile={false} />
+            <DropdownMenu persist>
+              <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || themesFocused} />
             </DropdownMenu>
             {(themesOpen || themesFocused) && <div className={styles.backdrop} onClick={toggleThemes} />}
           </Dropdown>

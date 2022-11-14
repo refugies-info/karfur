@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
 import { ContentType, SearchDispositif } from "types/interface";
@@ -21,11 +21,8 @@ const RESPONSIVE_WIDTH_LIMIT = 1400;
 const CardSlider = (props: Props) => {
   const slider = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(0);
-
-  const margins =
-    (slider.current?.clientWidth || 0) > RESPONSIVE_WIDTH_LIMIT ? NEGATIVE_MARGINS_LG : NEGATIVE_MARGINS_MD;
+  const [maxPage, setMaxPage] = useState(2);
   const gap = props.type === "dispositif" ? DISP_GAP : DEM_GAP;
-  const maxPage = slider.current ? (slider.current.scrollWidth - margins) / (slider.current.clientWidth - margins) : 0;
 
   const slide = (direction: "prev" | "next") => {
     let newPage = page;
@@ -36,6 +33,18 @@ const CardSlider = (props: Props) => {
     }
     setPage(newPage);
   };
+
+  const margins =
+    (slider.current?.clientWidth || 0) > RESPONSIVE_WIDTH_LIMIT ? NEGATIVE_MARGINS_LG : NEGATIVE_MARGINS_MD;
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      const newMaxPage = slider.current
+        ? (slider.current.scrollWidth - margins) / (slider.current.clientWidth - margins)
+        : 0;
+      setMaxPage(newMaxPage);
+    }, 200); // fix because scrollWidth seems not accurate for demarches
+  }, [margins]);
 
   useEffect(() => {
     if (!slider.current) return;
