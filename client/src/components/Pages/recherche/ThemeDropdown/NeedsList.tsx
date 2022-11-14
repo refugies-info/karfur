@@ -1,17 +1,20 @@
 import React, { useEffect, useState, memo } from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { needsSelector } from "services/Needs/needs.selectors";
 import { Need } from "types/interface";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import useLocale from "hooks/useLocale";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import TagName from "components/UI/TagName";
 import Checkbox from "components/UI/Checkbox";
-import { needsSelector } from "services/Needs/needs.selectors";
 import { getNeedsFromThemes, getThemesFromNeeds } from "lib/recherche/getThemesFromNeeds";
+import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import styles from "./ThemeDropdown.module.scss";
@@ -30,10 +33,6 @@ const ButtonNeed = styled.button`
 `;
 
 interface Props {
-  needsSelected: ObjectId[];
-  setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
-  themesSelected: ObjectId[];
-  setThemesSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
   displayedNeeds: Need[];
   themeSelected: ObjectId | null;
@@ -42,9 +41,13 @@ interface Props {
 const NeedsList = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const dispatch = useDispatch();
+
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
+  const allDispositifs = useSelector(activeDispositifsSelector);
+  const query = useSelector(searchQuerySelector);
+
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
 
@@ -55,30 +58,30 @@ const NeedsList = (props: Props) => {
     const newNbDispositifsByNeed: Record<string, number> = {};
     const newNbDispositifsByTheme: Record<string, number> = {};
 
-    for (const dispositif of dispositifs) {
-      for (const needId of dispositif.needs || []) {
-        newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+    queryDispositifsWithoutThemes(query, allDispositifs, "fr").then((dispositifs) => {
+      for (const dispositif of dispositifs) {
+        for (const needId of dispositif.needs || []) {
+          newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+        }
+
+        const themeId = dispositif.theme.toString();
+        newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
+        for (const theme of dispositif.secondaryThemes || []) {
+          newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
+        }
       }
 
-      const themeId = dispositif.theme.toString();
-      newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
-      for (const theme of dispositif.secondaryThemes || []) {
-        newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
-      }
-    }
-
-    setNbDispositifsByTheme(newNbDispositifsByTheme);
-    setNbDispositifsByNeed(newNbDispositifsByNeed);
+      setNbDispositifsByTheme(newNbDispositifsByTheme);
+      setNbDispositifsByNeed(newNbDispositifsByNeed);
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [query]);
 
-  const { needsSelected, setNeedsSelected, themesSelected, setThemesSelected } = props;
-
-  const isThemeSelected = !!(props.themeSelected && themesSelected.includes(props.themeSelected));
+  const isThemeSelected = !!(props.themeSelected && query.themes.includes(props.themeSelected));
 
   const selectNeed = (id: ObjectId) => {
-    let allSelectedNeeds: ObjectId[] = [...needsSelected, ...getNeedsFromThemes(themesSelected, allNeeds)];
+    let allSelectedNeeds: ObjectId[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
 
     if (allSelectedNeeds.includes(id)) {
       // if need selected, remove
@@ -90,22 +93,35 @@ const NeedsList = (props: Props) => {
     }
 
     const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);
-    setNeedsSelected(res.needs);
-    setThemesSelected(res.themes);
+    dispatch(
+      addToQueryActionCreator({
+        needs: res.needs,
+        themes: res.themes
+      })
+    );
   };
 
   const selectTheme = (id: ObjectId | null) => {
     if (!id) return;
-    if (themesSelected.includes(id)) {
-      setThemesSelected((themes) => themes.filter((n) => n !== id));
+    if (query.themes.includes(id)) {
+      dispatch(
+        addToQueryActionCreator({
+          themes: query.themes.filter((n) => n !== id)
+        })
+      );
     } else {
       const newNeeds = allNeeds
         .filter((n) => {
-          return needsSelected.includes(n._id) && n.theme._id !== id;
+          return query.needs.includes(n._id) && n.theme._id !== id;
         })
         .map((n) => n._id);
-      setThemesSelected((themes) => [...themes, id]);
-      setNeedsSelected(newNeeds);
+
+      dispatch(
+        addToQueryActionCreator({
+          needs: newNeeds,
+          themes: [...query.themes, id]
+        })
+      );
       Event("USE_SEARCH", "use theme filter", "select all needs");
     }
   };
@@ -138,7 +154,7 @@ const NeedsList = (props: Props) => {
         </ButtonNeed>
       )}
       {props.displayedNeeds.map((need, i) => {
-        const selected = needsSelected.includes(need._id) || themesSelected.includes(need.theme._id);
+        const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
         if (!nbDispositifsByNeed[need._id.toString()]) return null;
         return (
           <span key={i}>

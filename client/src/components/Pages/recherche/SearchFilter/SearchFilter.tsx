@@ -1,18 +1,14 @@
-import React, { Dispatch, ReactElement, SetStateAction } from "react";
+import React, { ReactElement } from "react";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import SearchFilterMobile from "./SearchFilter.mobile";
 import SearchFilterDesktop from "./SearchFilter.desktop";
 
-type SetSelected =
-  | Dispatch<SetStateAction<AgeOptions[]>>
-  | Dispatch<SetStateAction<FrenchOptions[]>>
-  | Dispatch<SetStateAction<string[]>>;
 export type Selected = AgeOptions | FrenchOptions | string;
 
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
   selected: Selected[];
-  setSelected: SetSelected;
+  setSelected: (selected: Selected[]) => void;
   label: string | ReactElement;
   mobile: boolean;
   gaType: string;
@@ -21,11 +17,9 @@ interface Props {
 const SearchFilter = (props: Props) => {
   const selectItem = (option: string) => {
     if (props.selected.includes(option)) {
-      //@ts-ignore remove
-      props.setSelected((o: Selected[]) => [...o].filter((opt) => opt !== option));
+      props.setSelected([...props.selected].filter((opt) => opt !== option));
     } else {
-      //@ts-ignore add
-      props.setSelected((o: Selected[]) => [...o, option]);
+      props.setSelected([...props.selected, option]);
     }
   };
 

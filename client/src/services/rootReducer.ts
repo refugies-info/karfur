@@ -54,6 +54,7 @@ import {
 import { needsReducer, NeedsState } from "./Needs/needs.reducer";
 import { widgetsReducer, WidgetsState } from "./Widgets/widgets.reducer";
 import { themesReducer, ThemesState } from "./Themes/themes.reducer";
+import { searchResultsReducer, SearchResultsState } from "./SearchResults/searchResults.reducer";
 import { HYDRATE } from "next-redux-wrapper"
 import { Reducer } from "typesafe-actions";
 
@@ -77,6 +78,7 @@ export interface RootState {
   needs: NeedsState;
   themes: ThemesState;
   widgets: WidgetsState;
+  searchResults: SearchResultsState;
 }
 
 const combinedReducer = combineReducers({
@@ -99,6 +101,7 @@ const combinedReducer = combineReducers({
   needs: needsReducer,
   themes: themesReducer,
   widgets: widgetsReducer,
+  searchResults: searchResultsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {
@@ -126,6 +129,9 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     }
     if (action.payload.needs.length > 0 && nextState.needs.length === 0) {
       nextState.needs = action.payload.needs;
+    }
+    if (action.payload.searchResults) {
+      nextState.searchResults = action.payload.searchResults;
     }
     return nextState;
   }

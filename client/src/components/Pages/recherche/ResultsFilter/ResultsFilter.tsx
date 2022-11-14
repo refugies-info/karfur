@@ -1,9 +1,12 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ResultsFilter.module.scss";
 
@@ -11,15 +14,13 @@ interface Props {
   nbDemarches: number;
   nbDispositifs: number;
   nbThemesSelected: number;
-  selectedSort: SortOptions;
-  setSelectedSort: Dispatch<SetStateAction<SortOptions>>;
-  selectedType: TypeOptions;
-  setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
-  showSort: boolean;
 }
 
 const ResultsFilter = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const query = useSelector(searchQuerySelector);
   const [open, setOpen] = useState(false);
 
   const getCount = (type: string) => {
@@ -37,21 +38,21 @@ const ResultsFilter = (props: Props) => {
 
   const noResult = props.nbDemarches + props.nbDispositifs === 0;
 
-  const { nbThemesSelected, setSelectedSort, selectedSort, setSelectedType } = props;
+  const { nbThemesSelected } = props;
   useEffect(() => {
     // if we select 1 theme, and sort option was "theme", change it
-    if (nbThemesSelected === 1 && selectedSort === "theme") {
-      setSelectedSort("date");
+    if (nbThemesSelected === 1 && query.sort === "theme") {
+      dispatch(addToQueryActionCreator({ sort: "date" }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nbThemesSelected]);
 
   const selectType = useCallback(
     (key: TypeOptions) => {
-      setSelectedType(key);
+      dispatch(addToQueryActionCreator({ type: key }));
       Event("USE_SEARCH", "use type filter", "click type");
     },
-    [setSelectedType]
+    [dispatch]
   );
 
   const toggleSort = useCallback(() => {
@@ -63,10 +64,10 @@ const ResultsFilter = (props: Props) => {
 
   const selectSort = useCallback(
     (key: SortOptions) => {
-      setSelectedSort(key);
+      dispatch(addToQueryActionCreator({ sort: key }));
       Event("USE_SEARCH", "click filter", "sort");
     },
-    [setSelectedSort]
+    [dispatch]
   );
 
   return (
@@ -76,7 +77,7 @@ const ResultsFilter = (props: Props) => {
           {filterType.map((option, i) => (
             <Button
               key={i}
-              className={cls(styles.btn, props.selectedType === option.key && styles.selected)}
+              className={cls(styles.btn, query.type === option.key && styles.selected)}
               onClick={() => selectType(option.key)}
             >
               {t(option.value)} {getCount(option.key)}
@@ -84,11 +85,11 @@ const ResultsFilter = (props: Props) => {
           ))}
         </div>
 
-        {props.showSort && (
+        {!query.search && (
           <Dropdown isOpen={open} toggle={toggleSort}>
             <DropdownToggle className={styles.dropdown}>
               <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-              {t(sortOptions.find((opt) => opt.key === props.selectedSort)?.value || "")}
+              {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
             </DropdownToggle>
             <DropdownMenu className={styles.menu}>
               {sortOptions
@@ -98,7 +99,7 @@ const ResultsFilter = (props: Props) => {
                   return true;
                 })
                 .map((option, i) => {
-                  const isSelected = props.selectedSort === option.key;
+                  const isSelected = query.sort === option.key;
                   return (
                     <DropdownItem
                       key={i}

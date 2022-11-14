@@ -1,5 +1,6 @@
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
-import { SearchQuery, UrlSearchQuery } from "pages/recherche";
+import { UrlSearchQuery } from "pages/recherche";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { ObjectId } from "mongodb";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
 import { Theme } from "types/interface";
@@ -14,28 +15,28 @@ export const decodeQuery = (
 
   let query: SearchQuery = {
     search: search || "",
-    departmentsSelected: [],
-    needsSelected: [],
-    themesSelected: [],
-    filterAge: [],
-    filterFrenchLevel: [],
-    filterLanguage: [],
-    selectedSort: "date",
-    selectedType: "all",
+    departments: [],
+    needs: [],
+    themes: [],
+    age: [],
+    frenchLevel: [],
+    language: [],
+    sort: "date",
+    type: "all",
   };
 
   query = backwardCompatibility(routerQuery, query, allThemes);
 
   // Reinject filters value in search
   if (departments || needs || themes || ages || frenchLevels || language || sort || type || search) {
-    if (departments) query.departmentsSelected = decodeURIComponent(departments as string).split(",");
-    if (needs) query.needsSelected = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
-    if (themes) query.themesSelected = decodeURIComponent(themes as string).split(",") as unknown as ObjectId[];
-    if (ages) query.filterAge = decodeURIComponent(ages as string).split(",") as AgeOptions[];
-    if (frenchLevels) query.filterFrenchLevel = decodeURIComponent(frenchLevels as string).split(",") as FrenchOptions[];
-    if (language) query.filterLanguage = decodeURIComponent(language as string).split(",");
-    if (sort) query.selectedSort = decodeURIComponent(sort as string) as SortOptions;
-    if (type) query.selectedType = decodeURIComponent(type as string) as TypeOptions;
+    if (departments) query.departments = decodeURIComponent(departments as string).split(",");
+    if (needs) query.needs = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
+    if (themes) query.themes = decodeURIComponent(themes as string).split(",") as unknown as ObjectId[];
+    if (ages) query.age = decodeURIComponent(ages as string).split(",") as AgeOptions[];
+    if (frenchLevels) query.frenchLevel = decodeURIComponent(frenchLevels as string).split(",") as FrenchOptions[];
+    if (language) query.language = decodeURIComponent(language as string).split(",");
+    if (sort) query.sort = decodeURIComponent(sort as string) as SortOptions;
+    if (type) query.type = decodeURIComponent(type as string) as TypeOptions;
     if (search) query.search = decodeURIComponent(search as string);
   }
 

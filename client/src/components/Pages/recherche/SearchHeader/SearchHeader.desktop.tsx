@@ -1,13 +1,15 @@
 import React, { Dispatch, ReactElement, SetStateAction, useCallback, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { Theme } from "types/interface";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
@@ -25,15 +27,6 @@ interface Props {
   placePredictions: any[];
   onSelectPrediction: (place_id: string) => void;
 
-  // state from recherche
-  searchState: [string, Dispatch<SetStateAction<string>>];
-  needsSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  themesSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  departmentsSelectedState: [string[], Dispatch<SetStateAction<string[]>>];
-  filterAgeState: [AgeOptions[], Dispatch<SetStateAction<AgeOptions[]>>];
-  filterFrenchLevelState: [FrenchOptions[], Dispatch<SetStateAction<FrenchOptions[]>>];
-  filterLanguageState: [string[], Dispatch<SetStateAction<string[]>>];
-
   // state from SearchHeader
   locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
   searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
@@ -44,16 +37,9 @@ interface Props {
 
 const SearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const { resetFilters, themeDisplayedValue, isPlacePredictionsLoading, placePredictions, onSelectPrediction } = props;
-
-  // state from recherche
-  const [search, setSearch] = props.searchState;
-  const [needsSelected, setNeedsSelected] = props.needsSelectedState;
-  const [themesSelected, setThemesSelected] = props.themesSelectedState;
-  const [departmentsSelected, setDepartmentsSelected] = props.departmentsSelectedState;
-  const [filterAge, setFilterAge] = props.filterAgeState;
-  const [filterFrenchLevel, setFilterFrenchLevel] = props.filterFrenchLevelState;
-  const [filterLanguage, setFilterLanguage] = props.filterLanguageState;
+  const query = useSelector(searchQuerySelector);
 
   // state from SearchHeader
   const [locationFocused, setLocationFocused] = props.locationFocusedState;
@@ -79,10 +65,10 @@ const SearchHeaderDesktop = (props: Props) => {
 
   const onChangeKeywordInput = useCallback(
     (e: any) => {
-      setSearch(e.target.value);
+      dispatch(addToQueryActionCreator({ search: e.target.value }));
       Event("USE_SEARCH", "use keyword filter", "use searchbar");
     },
-    [setSearch]
+    [dispatch]
   );
 
   const onChangeThemeInput = useCallback(
@@ -115,36 +101,36 @@ const SearchHeaderDesktop = (props: Props) => {
 
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
   useEffect(() => {
-    if (filterAge.length) {
+    if (query.age.length) {
       let ageDisplayedValue = "";
-      const value = ageFilters.find((a) => a.key === filterAge[0])?.value;
+      const value = ageFilters.find((a) => a.key === query.age[0])?.value;
       if (value) ageDisplayedValue += t(value);
-      if (filterAge.length > 1) {
-        ageDisplayedValue += `, +${filterAge.length - 1}`;
+      if (query.age.length > 1) {
+        ageDisplayedValue += `, +${query.age.length - 1}`;
       }
       setAgeDisplayedValue(ageDisplayedValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterAge]);
+  }, [query.age]);
 
   const [frenchLevelDisplayedValue, setFrenchLevelDisplayedValue] = useState("");
   useEffect(() => {
-    if (filterFrenchLevel.length) {
+    if (query.frenchLevel.length) {
       let frenchLevelDisplayedValue = "";
-      const value = frenchLevelFilter.find((a) => a.key === filterFrenchLevel[0])?.value;
+      const value = frenchLevelFilter.find((a) => a.key === query.frenchLevel[0])?.value;
       if (value) frenchLevelDisplayedValue += t(value);
-      if (filterFrenchLevel.length > 1) {
-        frenchLevelDisplayedValue += `, +${filterFrenchLevel.length - 1}`;
+      if (query.frenchLevel.length > 1) {
+        frenchLevelDisplayedValue += `, +${query.frenchLevel.length - 1}`;
       }
       setFrenchLevelDisplayedValue(frenchLevelDisplayedValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterFrenchLevel]);
+  }, [query.frenchLevel]);
 
   const [languageDisplayedValue, setLanguageDisplayedValue] = useState<string | ReactElement>("");
   useEffect(() => {
-    if (filterLanguage.length) {
-      const langueCodes = filterLanguage
+    if (query.language.length) {
+      const langueCodes = query.language
         .map((option) => languages.find((a) => a.i18nCode === option)?.langueCode)
         .filter((ln) => !!ln);
       setLanguageDisplayedValue(
@@ -157,7 +143,14 @@ const SearchHeaderDesktop = (props: Props) => {
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterLanguage, languages]);
+  }, [query.language, languages]);
+
+  const addToQuery = useCallback(
+    (query: Partial<SearchQuery>) => {
+      dispatch(addToQueryActionCreator(query));
+    },
+    [dispatch]
+  );
 
   return (
     <div className={styles.container}>
@@ -179,18 +172,16 @@ const SearchHeaderDesktop = (props: Props) => {
                 inputValue={locationSearch}
                 inputPlaceholder={t("Recherche.department")}
                 loading={isPlacePredictionsLoading}
-                value={departmentsSelected.join(", ")}
+                value={query.departments.join(", ")}
                 placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => {
                   setLocationSearch("");
-                  setDepartmentsSelected([]);
+                  addToQuery({ departments: [] });
                 }}
               />
             </DropdownToggle>
             <DropdownMenu>
               <LocationDropdown
-                departmentsSelected={departmentsSelected}
-                setDepartmentsSelected={setDepartmentsSelected}
                 predictions={placePredictions}
                 onSelectPrediction={(id: string) => {
                   onSelectPrediction(id);
@@ -214,20 +205,12 @@ const SearchHeaderDesktop = (props: Props) => {
                 placeholder={t("Recherche.all", "Tous")}
                 resetFilter={() => {
                   setThemeSearch("");
-                  setNeedsSelected([]);
-                  setThemesSelected([]);
+                  addToQuery({ needs: [], themes: [] });
                 }}
               />
             </DropdownToggle>
             <DropdownMenu>
-              <ThemeDropdown
-                needsSelected={needsSelected}
-                setNeedsSelected={setNeedsSelected}
-                themesSelected={themesSelected}
-                setThemesSelected={setThemesSelected}
-                search={themeSearch}
-                mobile={false}
-              />
+              <ThemeDropdown search={themeSearch} mobile={false} />
             </DropdownMenu>
             {(themesOpen || themesFocused) && <div className={styles.backdrop} onClick={toggleThemes} />}
           </Dropdown>
@@ -240,11 +223,11 @@ const SearchHeaderDesktop = (props: Props) => {
                 active={searchFocused}
                 setActive={setSearchFocused}
                 onChange={onChangeKeywordInput}
-                inputValue={search}
-                value={search}
+                inputValue={query.search}
+                value={query.search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
                 focusout
-                resetFilter={() => setSearch("")}
+                resetFilter={() => addToQuery({ search: "" })}
               />
             </Button>
           </div>
@@ -255,33 +238,35 @@ const SearchHeaderDesktop = (props: Props) => {
             <div className={styles.filters}>
               <SearchFilter
                 mobile={false}
-                label={filterAge.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
-                selected={filterAge}
-                setSelected={setFilterAge}
+                label={query.age.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
+                selected={query.age}
+                //@ts-ignore
+                setSelected={(selected: AgeOptions[]) => addToQuery({ age: selected as AgeOptions[] })}
                 options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
                 gaType="age"
               />
               <SearchFilter
                 mobile={false}
                 label={
-                  filterFrenchLevel.length === 0
+                  query.frenchLevel.length === 0
                     ? t("Recherche.filterFrenchLevel", "Niveau de français")
                     : frenchLevelDisplayedValue
                 }
-                selected={filterFrenchLevel}
-                setSelected={setFilterFrenchLevel}
+                selected={query.frenchLevel}
+                //@ts-ignore
+                setSelected={(selected: FrenchOptions[]) => addToQuery({ frenchLevel: selected as FrenchOptions[] })}
                 options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
                 gaType="frenchLevel"
               />
               <SearchFilter
                 mobile={false}
                 label={
-                  filterLanguage.length === 0
+                  query.language.length === 0
                     ? t("Recherche.filterLanguage", "Fiches traduites en")
                     : languageDisplayedValue
                 }
-                selected={filterLanguage}
-                setSelected={setFilterLanguage}
+                selected={query.language}
+                setSelected={(selected: string[]) => addToQuery({ language: selected as string[] })}
                 options={languages.map((ln) => ({
                   key: ln.i18nCode,
                   value: (

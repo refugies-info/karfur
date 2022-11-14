@@ -5,6 +5,7 @@ import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
@@ -39,24 +40,21 @@ const ButtonTheme = styled.button`
   }
 `;
 interface Props {
-  needsSelected: ObjectId[];
-  setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
-  themesSelected: ObjectId[];
-  setThemesSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
   mobile: boolean;
 }
 
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
+
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
-  const initialTheme = getInitialTheme(needs, sortedThemes, props.needsSelected, props.themesSelected, props.mobile);
+  const query = useSelector(searchQuerySelector);
+  const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
+
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
-
-  const { needsSelected, setNeedsSelected, themesSelected, setThemesSelected } = props;
 
   const onClickTheme = useCallback(
     (themeId: ObjectId) => {
@@ -72,20 +70,20 @@ const ThemeDropdown = (props: Props) => {
   useEffect(() => {
     // count nb needs selected by theme
     const nbNeedsSelectedByTheme: Record<string, number> = {};
-    for (const needId of needsSelected) {
+    for (const needId of query.needs) {
       const needThemeId = needs.find((n) => n._id === needId)?.theme._id.toString();
       if (needThemeId) {
         nbNeedsSelectedByTheme[needThemeId] = (nbNeedsSelectedByTheme[needThemeId] || 0) + 1;
       }
     }
-    for (const themeId of themesSelected) {
+    for (const themeId of query.themes) {
       const theme = themes.find((t) => t._id === themeId);
       if (theme) {
         nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
       }
     }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
-  }, [needsSelected, themesSelected, themes, needs]);
+  }, [query.needs, query.themes, themes, needs]);
 
   const displayedNeeds = useMemo(() => {
     if (props.search) {
@@ -143,15 +141,7 @@ const ThemeDropdown = (props: Props) => {
 
               {props.mobile && (
                 <Collapse isOpen={selected}>
-                  <NeedsList
-                    needsSelected={needsSelected}
-                    setNeedsSelected={setNeedsSelected}
-                    themesSelected={themesSelected}
-                    setThemesSelected={setThemesSelected}
-                    search={props.search}
-                    displayedNeeds={displayedNeeds}
-                    themeSelected={themeSelected}
-                  />
+                  <NeedsList search={props.search} displayedNeeds={displayedNeeds} themeSelected={themeSelected} />
                 </Collapse>
               )}
             </div>
@@ -159,15 +149,7 @@ const ThemeDropdown = (props: Props) => {
         })}
       </div>
       {(!props.mobile || props.search) && (
-        <NeedsList
-          needsSelected={needsSelected}
-          setNeedsSelected={setNeedsSelected}
-          themesSelected={themesSelected}
-          setThemesSelected={setThemesSelected}
-          search={props.search}
-          displayedNeeds={displayedNeeds}
-          themeSelected={themeSelected}
-        />
+        <NeedsList search={props.search} displayedNeeds={displayedNeeds} themeSelected={themeSelected} />
       )}
     </div>
   );

@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
@@ -9,6 +9,7 @@ import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
 import { SearchDispositif } from "types/interface";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import HomeTypeCard from "../HomeTypeCard";
@@ -52,28 +53,27 @@ const departmentExamples = [
 ];
 
 interface Props {
-  setDepartmentsSelected: Dispatch<SetStateAction<string[]>>;
-  setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
-  setThemesSelected: Dispatch<SetStateAction<ObjectId[]>>;
   dispositifs: SearchDispositif[];
   demarches: SearchDispositif[];
 }
 
 const HomeSearch = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const themes = useSelector(themesSelector);
 
   const selectTheme = (themeId: ObjectId) => {
-    props.setThemesSelected([themeId]);
+    dispatch(addToQueryActionCreator({ themes: [themeId] }));
     Event("USE_SEARCH", "use home search", "click theme");
   };
   const selectType = (type: TypeOptions) => {
-    props.setSelectedType(type);
+    dispatch(addToQueryActionCreator({ type: type }));
     window.scrollTo(0, 0);
     Event("USE_SEARCH", "use home search", "click type");
   };
   const selectDepartment = (department: string) => {
-    props.setDepartmentsSelected([department]);
+    dispatch(addToQueryActionCreator({ departments: [department] }));
     window.scrollTo(0, 0);
     Event("USE_SEARCH", "use home search", "click department");
   };

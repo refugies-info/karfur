@@ -1,11 +1,12 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { ObjectId } from "mongodb";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { throttle } from "lodash";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
-import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
 import { cls } from "lib/classname";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
 import useWindowSize from "hooks/useWindowSize";
@@ -21,31 +22,13 @@ interface Props {
   resetFilters: () => void;
   nbDemarches: number;
   nbDispositifs: number;
-
-  searchState: [string, Dispatch<SetStateAction<string>>];
-  needsSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  themesSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  departmentsSelectedState: [string[], Dispatch<SetStateAction<string[]>>];
-  filterAgeState: [AgeOptions[], Dispatch<SetStateAction<AgeOptions[]>>];
-  filterFrenchLevelState: [FrenchOptions[], Dispatch<SetStateAction<FrenchOptions[]>>];
-  filterLanguageState: [string[], Dispatch<SetStateAction<string[]>>];
-  selectedSortState: [SortOptions, Dispatch<SetStateAction<SortOptions>>];
-  selectedTypeState: [TypeOptions, Dispatch<SetStateAction<TypeOptions>>];
 }
 
 const SearchHeader = (props: Props) => {
   const { resetFilters } = props;
   const locale = useLocale();
-
-  const [search, setSearch] = props.searchState;
-  const [needsSelected, setNeedsSelected] = props.needsSelectedState;
-  const [themesSelected, setThemesSelected] = props.themesSelectedState;
-  const [departmentsSelected, setDepartmentsSelected] = props.departmentsSelectedState;
-  const [filterAge, setFilterAge] = props.filterAgeState;
-  const [filterFrenchLevel, setFilterFrenchLevel] = props.filterFrenchLevelState;
-  const [filterLanguage, setFilterLanguage] = props.filterLanguageState;
-  const [selectedSort, setSelectedSort] = props.selectedSortState;
-  const [selectedType, setSelectedType] = props.selectedTypeState;
+  const dispatch = useDispatch();
+  const query = useSelector(searchQuerySelector);
 
   // KEYWORD
   const [searchFocused, setSearchFocused] = useState(false);
@@ -80,9 +63,12 @@ const SearchHeader = (props: Props) => {
       let depName = departement?.long_name;
       if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
       if (depName) {
-        setDepartmentsSelected((deps) => {
-          return [...new Set(depName ? [...deps, depName] : [...deps])];
-        });
+        const oldDeps = query.departments;
+        dispatch(
+          addToQueryActionCreator({
+            departments: [...new Set(depName ? [...oldDeps, depName] : [...oldDeps])]
+          })
+        );
       }
     });
   };
@@ -120,13 +106,6 @@ const SearchHeader = (props: Props) => {
             searchMinified={props.searchMinified}
             nbResults={props.nbResults}
             themesDisplayed={props.themesDisplayed}
-            searchState={[search, setSearch]}
-            needsSelectedState={[needsSelected, setNeedsSelected]}
-            themesSelectedState={[themesSelected, setThemesSelected]}
-            departmentsSelectedState={[departmentsSelected, setDepartmentsSelected]}
-            filterAgeState={[filterAge, setFilterAge]}
-            filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
-            filterLanguageState={[filterLanguage, setFilterLanguage]}
             locationFocusedState={[locationFocused, setLocationFocused]}
             searchFocusedState={[searchFocused, setSearchFocused]}
             locationSearchState={[locationSearch, setLocationSearch]}
@@ -141,13 +120,6 @@ const SearchHeader = (props: Props) => {
         ) : (
           <SearchHeaderMobile
             nbResults={props.nbResults}
-            searchState={[search, setSearch]}
-            needsSelectedState={[needsSelected, setNeedsSelected]}
-            themesSelectedState={[themesSelected, setThemesSelected]}
-            departmentsSelectedState={[departmentsSelected, setDepartmentsSelected]}
-            filterAgeState={[filterAge, setFilterAge]}
-            filterFrenchLevelState={[filterFrenchLevel, setFilterFrenchLevel]}
-            filterLanguageState={[filterLanguage, setFilterLanguage]}
             locationFocusedState={[locationFocused, setLocationFocused]}
             searchFocusedState={[searchFocused, setSearchFocused]}
             locationSearchState={[locationSearch, setLocationSearch]}
@@ -165,11 +137,6 @@ const SearchHeader = (props: Props) => {
             nbDemarches={props.nbDemarches}
             nbDispositifs={props.nbDispositifs}
             nbThemesSelected={props.themesDisplayed.length}
-            selectedSort={selectedSort}
-            setSelectedSort={setSelectedSort}
-            selectedType={selectedType}
-            setSelectedType={setSelectedType}
-            showSort={!search}
           />
         )}
       </div>

@@ -1,5 +1,7 @@
+import algoliasearch from "algoliasearch";
 import { SearchDispositif } from "types/interface";
-import { Results, SearchQuery } from "pages/recherche";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { Results } from "services/SearchResults/searchResults.reducer";
 import { getDispositifInfos } from "../getDispositifInfos";
 import {
   filterByThemeOrNeed,
@@ -9,7 +11,6 @@ import {
   filterByLanguage,
 } from "./filterContents";
 import { sortDispositifs } from "./sortContents";
-import algoliasearch from "algoliasearch";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
@@ -49,12 +50,12 @@ const filterDispositifs = (
   secondaryThemes: boolean
 ): SearchDispositif[] => {
   return [...dispositifs]
-    .filter(dispositif => filterByThemeOrNeed(dispositif, query.themesSelected, query.needsSelected, secondaryThemes))
-    .filter(dispositif => filterByLocations(dispositif, query.departmentsSelected))
-    .filter(dispositif => filterByAge(dispositif, query.filterAge))
-    .filter(dispositif => filterByFrenchLevel(dispositif, query.filterFrenchLevel))
-    .filter(dispositif => filterByLanguage(dispositif, query.filterLanguage))
-    .sort((a, b) => sortDispositifs(a, b, query.selectedSort, !!query.search));
+    .filter(dispositif => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
+    .filter(dispositif => filterByLocations(dispositif, query.departments))
+    .filter(dispositif => filterByAge(dispositif, query.age))
+    .filter(dispositif => filterByFrenchLevel(dispositif, query.frenchLevel))
+    .filter(dispositif => filterByLanguage(dispositif, query.language))
+    .sort((a, b) => sortDispositifs(a, b, query.sort, !!query.search));
 }
 
 /**
@@ -71,7 +72,7 @@ export const queryDispositifs = (
 
   // dispositifs which have theme in secondary themes
   let dispositifsSecondaryTheme: SearchDispositif[] = [];
-  if (query.themesSelected.length > 0) {
+  if (query.themes.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
       .filter(dispositif => !results.map(d => d._id).includes(dispositif._id));
     dispositifsSecondaryTheme = filterDispositifs(query, remainingDispositifs, true);
@@ -84,6 +85,44 @@ export const queryDispositifs = (
   }
 }
 
+let searchCache = "";
+let searchCacheResults: SearchDispositif[] = [];
+const queryOnAlgolia = async (
+  search: string,
+  dispositifs: SearchDispositif[],
+  locale: string
+) => {
+  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
+  if (search) {
+    if (search !== searchCache) { // new search
+      searchCache = search; // keep search in cache to prevent useless algolia searchs
+      let hits: Hit[] = [];
+      hits = await index
+        .search(search, {
+          restrictSearchableAttributes: getSearchableAttributes(locale)
+        })
+        .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
+
+      filteredDispositifsByAlgolia = hits.map(hit => {
+        const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
+        // deep clone object to make sure cards components re-renders
+        const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
+        if (newDispositif) {
+          newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
+          newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
+          newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
+          // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+        }
+        return newDispositif;
+      }).filter(d => !!d) as SearchDispositif[];
+      searchCacheResults = filteredDispositifsByAlgolia;
+    } else { // same search
+      filteredDispositifsByAlgolia = [...searchCacheResults];
+    }
+  }
+  return filteredDispositifsByAlgolia;
+}
+
 /**
  * Use Algolia and the query to filter a list of dispositifs
  * @async
@@ -92,35 +131,32 @@ export const queryDispositifs = (
  * @param locale - language to use for Algolia
  * @returns - results
  */
-let searchCache = "";
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
   dispositifs: SearchDispositif[],
   locale: string
 ): Promise<Results> => {
-
-  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
-  if (query.search && query.search !== searchCache) {
-    searchCache = query.search; // keep search in cache to prevent useless algolia searchs
-    let hits: Hit[] = [];
-    hits = await index
-      .search(query.search, {
-        restrictSearchableAttributes: getSearchableAttributes(locale)
-      })
-      .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
-
-    filteredDispositifsByAlgolia = hits.map(hit => {
-      const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
-      // deep clone object to make sure cards components re-renders
-      const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
-      if (newDispositif) {
-        newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
-        newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
-        newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
-        // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
-      }
-      return newDispositif;
-    }).filter(d => !!d) as SearchDispositif[];
-  }
+  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
   return queryDispositifs(query, filteredDispositifsByAlgolia);
+};
+
+/**
+ * Query the dispositifs with all filters except themes or needs. Useful for the theme dropdown popup.
+ * @async
+ * @param query - search query
+ * @param dispositifs - list of dispositifs
+ * @param locale - language to use for Algolia
+ * @returns - results
+ */
+export const queryDispositifsWithoutThemes = async (
+  query: SearchQuery,
+  dispositifs: SearchDispositif[],
+  locale: string
+): Promise<SearchDispositif[]> => {
+  const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
+  return [...filteredDispositifsByAlgolia]
+    .filter(dispositif => filterByLocations(dispositif, query.departments))
+    .filter(dispositif => filterByAge(dispositif, query.age))
+    .filter(dispositif => filterByFrenchLevel(dispositif, query.frenchLevel))
+    .filter(dispositif => filterByLanguage(dispositif, query.language));
 };
