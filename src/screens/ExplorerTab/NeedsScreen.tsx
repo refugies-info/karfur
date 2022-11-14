@@ -1,31 +1,20 @@
-import * as React from "react";
+import React from "react";
 import { styles } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
-import {
-  View,
-  Animated,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-} from "react-native";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
 import { LoadingStatusKey } from "../../services/redux/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../services/redux/LoadingStatus/loadingStatus.selectors";
 import { groupedContentsSelector } from "../../services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { ObjectId, Need } from "../../types/interface";
-import { ScrollView } from "react-native-gesture-handler";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import SkeletonContent from "@03balogun/react-native-skeleton-content";
-import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
-import { HeaderWithBackForWrapper } from "../../components/HeaderWithLogo";
-import { NeedsHeaderAnimated } from "../../components/Needs/NeedsHeaderAnimated";
 import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
-import { useVoiceover } from "../../hooks/useVoiceover";
+import { Page, SkeletonListPage } from "../../components";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -62,59 +51,6 @@ export const NeedsScreen = ({
   navigation,
   route,
 }: StackScreenProps<ExplorerParamList, "NeedsScreen">) => {
-  const [isLanguageModalVisible, setLanguageModalVisible] =
-    React.useState(false);
-
-  const [showSimplifiedHeader, setShowSimplifiedHeader] = React.useState(false);
-
-  const animatedController = React.useRef(new Animated.Value(0)).current;
-  const insets = useSafeAreaInsets();
-
-  const toggleSimplifiedHeader = (displayHeader: boolean) => {
-    if (displayHeader && !showSimplifiedHeader) {
-      Animated.timing(animatedController, {
-        duration: 200,
-        toValue: 1,
-        useNativeDriver: false,
-      }).start();
-      setShowSimplifiedHeader(true);
-      return;
-    }
-
-    if (!displayHeader && showSimplifiedHeader) {
-      Animated.timing(animatedController, {
-        duration: 200,
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
-      setShowSimplifiedHeader(false);
-      return;
-    }
-  };
-
-  const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 10) {
-      toggleSimplifiedHeader(true);
-      return;
-    }
-    if (event.nativeEvent.contentOffset.y < 10) {
-      toggleSimplifiedHeader(false);
-      return;
-    }
-    return;
-  };
-
-  // Voiceover
-  const scrollview = React.useRef<ScrollView | null>(null);
-  const offset = 250;
-  const { setScroll, saveList } = useVoiceover(scrollview, offset);
-  const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setScroll(
-      event.nativeEvent.contentOffset.y,
-      showSimplifiedHeader ? offset : 0
-    );
-  };
-
   const isLoadingContents = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS)
   );
@@ -122,35 +58,6 @@ export const NeedsScreen = ({
     isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
   );
   const isLoading = isLoadingContents || isLoadingNeeds;
-  React.useEffect(() => {
-    // reset when finish loading
-    if (!isLoading) {
-      setTimeout(() => saveList());
-    }
-  }, [isLoading]);
-
-  const headerHeight = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [90, 40],
-  });
-
-  const headerBottomRadius = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [12, 0],
-  });
-
-  const headerPaddingTop = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [32, 0],
-  });
-
-  const headerFontSize = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [25, 16],
-  });
-
-  const toggleLanguageModal = () =>
-    setLanguageModalVisible(!isLanguageModalVisible);
 
   const { t } = useTranslationWithRTL();
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
@@ -171,84 +78,26 @@ export const NeedsScreen = ({
 
   if (isLoading) {
     return (
-      <View>
-        <View style={{ backgroundColor: theme.colors.color100 }}>
-          <HeaderWithBackForWrapper
-            onLongPressSwitchLanguage={toggleLanguageModal}
-            navigation={navigation}
-            backScreen={backScreen}
-          />
-        </View>
-        <NeedsHeaderAnimated
-          themeDarkColor={theme.colors.color100}
-          headerBottomRadius={headerBottomRadius}
-          headerHeight={headerHeight}
-          headerPaddingTop={headerPaddingTop}
-          themeName={theme.name[currentLanguageI18nCode || "fr"]}
-          headerFontSize={headerFontSize}
-          icon={theme.icon}
-          showSimplifiedHeader={showSimplifiedHeader}
-        />
-
-        <SkeletonContent
-          containerStyle={{
-            display: "flex",
-            flex: 1,
-            marginTop: styles.margin * 3,
-            marginHorizontal: styles.margin * 3,
-          }}
-          isLoading={true}
-          layout={[
-            {
-              key: "Section1",
-              width: "100%",
-              height: 80,
-              marginBottom: styles.margin * 3,
-            },
-            {
-              key: "Section2",
-              width: "100%",
-              height: 80,
-              marginBottom: styles.margin * 3,
-            },
-            {
-              key: "Section3",
-              width: "100%",
-              height: 80,
-              marginBottom: styles.margin * 3,
-            },
-          ]}
-          boneColor={styles.colors.grey}
-          highlightColor={styles.colors.lightGrey}
-        />
-        <LanguageChoiceModal
-          isModalVisible={isLanguageModalVisible}
-          toggleModal={toggleLanguageModal}
-        />
-      </View>
+      <Page
+        backScreen={backScreen}
+        headerBackgroundColor={theme.colors.color100}
+        loading
+        title={theme.name[currentLanguageI18nCode || "fr"]}
+        titleIcon={theme.icon}
+      >
+        <SkeletonListPage />
+      </Page>
     );
   }
 
   if (needsToDisplay.length === 0) {
     return (
-      <View style={{ display: "flex", flex: 1 }}>
-        <View style={{ backgroundColor: theme.colors.color100 }}>
-          <HeaderWithBackForWrapper
-            onLongPressSwitchLanguage={toggleLanguageModal}
-            navigation={navigation}
-            backScreen={backScreen}
-          />
-        </View>
-        <NeedsHeaderAnimated
-          themeDarkColor={theme.colors.color100}
-          headerBottomRadius={headerBottomRadius}
-          headerHeight={headerHeight}
-          headerPaddingTop={headerPaddingTop}
-          themeName={theme.name[currentLanguageI18nCode || "fr"]}
-          headerFontSize={headerFontSize}
-          icon={theme.icon}
-          showSimplifiedHeader={showSimplifiedHeader}
-        />
+      <Page
+        backScreen={backScreen}
+        headerBackgroundColor={theme.colors.color100}
+        title={theme.name[currentLanguageI18nCode || "fr"]}
+        titleIcon={theme.icon}
+      >
         <ErrorScreen
           buttonText={t("tab_bar.explorer")}
           text={t(
@@ -258,75 +107,43 @@ export const NeedsScreen = ({
           onButtonClick={navigation.goBack}
           buttonIcon="compass-outline"
         />
-      </View>
+      </Page>
     );
   }
 
   return (
-    <View style={{ display: "flex", flex: 1 }}>
-      <View style={{ backgroundColor: theme.colors.color100 }}>
-        <HeaderWithBackForWrapper
-          onLongPressSwitchLanguage={toggleLanguageModal}
-          navigation={navigation}
-          backScreen={backScreen}
-        />
-      </View>
-      <NeedsHeaderAnimated
-        themeDarkColor={theme.colors.color100}
-        headerBottomRadius={headerBottomRadius}
-        headerHeight={headerHeight}
-        headerPaddingTop={headerPaddingTop}
-        themeName={theme.name[currentLanguageI18nCode || "fr"]}
-        headerFontSize={headerFontSize}
-        icon={theme.icon}
-        showSimplifiedHeader={showSimplifiedHeader}
-      />
+    <Page
+      backScreen={backScreen}
+      headerBackgroundColor={theme.colors.color100}
+      title={theme.name[currentLanguageI18nCode || "fr"]}
+      titleIcon={theme.icon}
+    >
+      {needsToDisplay.map((need: Need) => {
+        const needText =
+          currentLanguageI18nCode &&
+          need[currentLanguageI18nCode as keyof Need]?.text
+            ? //@ts-ignore
+              need[currentLanguageI18nCode].text
+            : need.fr.text;
+        const needSubtitle =
+          currentLanguageI18nCode &&
+          need[currentLanguageI18nCode as keyof Need]?.subtitle
+            ? //@ts-ignore
+              need[currentLanguageI18nCode].subtitle
+            : need.fr.subtitle;
 
-      <ScrollView
-        ref={scrollview}
-        scrollIndicatorInsets={{ right: 1 }}
-        contentContainerStyle={{
-          paddingHorizontal: styles.margin * 3,
-          paddingTop: styles.margin * 3,
-          paddingBottom: styles.margin * 5 + (insets.bottom || 0),
-        }}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        alwaysBounceVertical={false}
-        onMomentumScrollEnd={onScrollEnd}
-        onScrollEndDrag={onScrollEnd}
-      >
-        {needsToDisplay.map((need: Need) => {
-          const needText =
-            currentLanguageI18nCode &&
-            need[currentLanguageI18nCode as keyof Need]?.text
-              ? //@ts-ignore
-                need[currentLanguageI18nCode].text
-              : need.fr.text;
-          const needSubtitle =
-            currentLanguageI18nCode &&
-            need[currentLanguageI18nCode as keyof Need]?.subtitle
-              ? //@ts-ignore
-                need[currentLanguageI18nCode].subtitle
-              : need.fr.subtitle;
-
-          return (
-            <NeedsSummary
-              key={need._id}
-              id={need._id}
-              needText={needText}
-              needTextFr={need.fr.text}
-              needSubtitle={needSubtitle}
-              theme={theme}
-              style={{ marginBottom: styles.margin * 3 }}
-            />
-          );
-        })}
-      </ScrollView>
-      <LanguageChoiceModal
-        isModalVisible={isLanguageModalVisible}
-        toggleModal={toggleLanguageModal}
-      />
-    </View>
+        return (
+          <NeedsSummary
+            key={need._id}
+            id={need._id}
+            needText={needText}
+            needTextFr={need.fr.text}
+            needSubtitle={needSubtitle}
+            theme={theme}
+            style={{ marginBottom: styles.margin * 3 }}
+          />
+        );
+      })}
+    </Page>
   );
 };
