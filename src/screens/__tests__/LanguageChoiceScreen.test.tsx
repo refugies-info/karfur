@@ -4,6 +4,12 @@ import { initialRootStateFactory } from "../../services/redux/reducers";
 import { fireEvent, act } from "react-native-testing-library";
 import { saveSelectedLanguageActionCreator } from "../../services/redux/User/user.actions";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { useRoute } from "@react-navigation/core";
+
+jest.mock("@react-navigation/core", () => ({
+  ...jest.requireActual("@react-navigation/core"),
+  useRoute: jest.fn(),
+}));
 
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
@@ -21,6 +27,8 @@ jest.mock("../../services/redux/User/user.actions", () => {
   };
 });
 
+jest.useFakeTimers();
+
 describe("LanguageChoiceScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -35,7 +43,7 @@ describe("LanguageChoiceScreen", () => {
       i18n: { changeLanguage },
       t: jest.fn().mockImplementationOnce((arg1, _) => arg1),
     });
-    const navigation = { navigate: jest.fn() };
+    const navigation = { navigate: jest.fn(), goBack: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: LanguageChoiceScreen,
       reduxState: {

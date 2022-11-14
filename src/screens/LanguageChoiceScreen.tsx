@@ -1,20 +1,14 @@
-import * as React from "react";
-import styled from "styled-components/native";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
-import { styles } from "../theme";
-import { HeaderWithLogo } from "../components/HeaderWithLogo";
 import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { AvailableLanguageI18nCode } from "../types/interface";
 import { OnboardingParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { ScrollView } from "react-native-gesture-handler";
+import { Page } from "../components";
 
-const MainView = styled.View`
-  flex: 1;
-`;
 export const LanguageChoiceScreen = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
@@ -33,34 +27,21 @@ export const LanguageChoiceScreen = ({
     return;
   };
   return (
-    <MainView>
-      <HeaderWithLogo
-        hideLanguageSwitch={true}
-        iconName="globe-2-outline"
-        text={t("global.language", "Langue")}
-      />
-      <ScrollView
-        scrollIndicatorInsets={{ right: 1 }}
-        contentContainerStyle={{
-          paddingHorizontal: styles.margin * 3,
-          paddingBottom: styles.margin * 4,
-          paddingTop: styles.margin,
-
-          justifyContent: "center",
-          flexGrow: 1,
-          flexDirection: "column",
-        }}
-      >
-        {activatedLanguages.map((language, index) => (
-          <LanguageDetailsButton
-            langueFr={language.langueFr}
-            key={index}
-            langueLoc={language.langueLoc}
-            onPress={() => changeLanguage(language.i18nCode)}
-            hideRadio={true}
-          />
-        ))}
-      </ScrollView>
-    </MainView>
+    <Page
+      headerIconName="globe-2-outline"
+      headerTitle={t("global.language", "Langue")}
+      hideLanguageSwitch
+      showLogo
+    >
+      {activatedLanguages.map((language, index) => (
+        <LanguageDetailsButton
+          langueFr={language.langueFr}
+          key={index}
+          langueLoc={language.langueLoc}
+          onPress={() => changeLanguage(language.i18nCode)}
+          hideRadio
+        />
+      ))}
+    </Page>
   );
 };

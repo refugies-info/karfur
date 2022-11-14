@@ -15,8 +15,10 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
   <View
     style={
       Object {
-        "paddingBottom": 8,
-        "paddingTop": 0,
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "top": 0,
       }
     }
   >
@@ -28,8 +30,6 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             "display": "flex",
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "paddingHorizontal": 24,
-            "paddingTop": 8,
           },
         ]
       }
@@ -40,16 +40,17 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         height={40}
         width={58}
       />
+      <View />
       <View
         style={
           Array [
             Object {
               "alignItems": "center",
               "display": "flex",
+              "flexBasis": 0,
               "flexDirection": "row",
-            },
-            Object {
-              "flex": 1,
+              "flexGrow": 1,
+              "flexShrink": 1,
               "justifyContent": "center",
               "marginLeft": 0,
               "marginRight": 56,
@@ -161,24 +162,57 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
       />
     </View>
   </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={0}
+    scrollTo={null}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    visible={false}
+  />
   <RCTScrollView
-    collapsable={false}
+    alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "flexDirection": "column",
-        "flexGrow": 1,
-        "justifyContent": "center",
-        "paddingBottom": 32,
+        "paddingBottom": 40,
         "paddingHorizontal": 24,
-        "paddingTop": 8,
+        "paddingTop": 24,
       }
     }
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollEndDrag={[Function]}
+    scrollEventThrottle={10}
     scrollIndicatorInsets={
       Object {
         "right": 1,
       }
+    }
+    style={
+      Array [
+        Object {
+          "paddingBottom": 24,
+        },
+      ]
     }
   >
     <View>
@@ -223,95 +257,145 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Français"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                Français
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Français
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              />
             </View>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -355,111 +439,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Ukrainien"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                Українська
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Українська
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Ukrainien
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Ukrainien
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -503,111 +638,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Persan/Dari"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                فارسی/ دری
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  فارسی/ دری
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Persan/Dari
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Persan/Dari
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -651,111 +837,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Arabe"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                العربية
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  العربية
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Arabe
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Arabe
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -799,111 +1036,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Anglais"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                English
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  English
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Anglais
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Anglais
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -947,111 +1235,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Pachto"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                پښتو
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  پښتو
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Pachto
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Pachto
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -1095,111 +1434,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Russe"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                Русский
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  Русский
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Russe
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Russe
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
       <View
@@ -1243,111 +1633,162 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
         testID="test-language-button-Tigrinya"
       >
         <View
+          RTLBehaviour={true}
+          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "display": "flex",
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
-                "flex": 1,
-                "justifyContent": "space-between",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
               },
             ]
           }
+          verticalAlign="flex-start"
         >
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
                 },
               ]
             }
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "backgroundColor": "#FFFFFF",
-                    "borderRadius": 4,
-                    "display": "flex",
-                    "elevation": 2,
-                    "height": 17,
-                    "justifyContent": "center",
-                    "marginBottom": 4,
-                    "marginLeft": 4,
-                    "marginRight": 4,
-                    "marginTop": 4,
-                    "shadowColor": "#212121",
-                    "shadowOffset": Object {
-                      "height": 1,
-                      "width": 1,
-                    },
-                    "shadowOpacity": 0.4,
-                    "shadowRadius": 2,
-                    "width": 22,
-                  },
-                ]
-              }
-            >
-              <react-native-svg
-                height={15}
-                width={20}
-              />
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 16,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                ትግርኛ
-              </Text>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#FFFFFF",
+                        "borderRadius": 4,
+                        "display": "flex",
+                        "elevation": 2,
+                        "height": 17,
+                        "justifyContent": "center",
+                        "marginBottom": 4,
+                        "marginLeft": 4,
+                        "marginRight": 4,
+                        "marginTop": 4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                        "width": 22,
+                      },
+                    ]
+                  }
+                >
+                  <react-native-svg
+                    height={15}
+                    width={20}
+                  />
+                </View>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#212121",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  ትግርኛ
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                    },
+                  ]
+                }
+              >
+                <Text
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#5E5E5E",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                   - Tigrinya
+                </Text>
+              </View>
             </View>
-            <Text
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-               - Tigrinya
-            </Text>
           </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          />
         </View>
       </View>
     </View>

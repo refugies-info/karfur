@@ -1,8 +1,9 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
+import { RTLTouchableOpacity } from "../BasicComponents";
 import { styles } from "../../theme";
 import { Icon } from "react-native-eva-icons";
+import { Columns } from "../layout";
 
 interface Props {
   testID: string;
@@ -16,10 +17,14 @@ interface Props {
 }
 
 const MainContainer = styled(RTLTouchableOpacity)`
-  background-color: ${(props: { isSelected: boolean, flatStyle: boolean }) =>
-    props.isSelected ? styles.colors.lightBlue : (props.flatStyle ? "transparent" : styles.colors.white)};
-  ${(props: { isSelected: boolean, flatStyle: boolean }) =>
-    props.isSelected || props.flatStyle ? "" : styles.shadows.lg};
+  background-color: ${(props: { isSelected: boolean; flatStyle: boolean }) =>
+    props.isSelected
+      ? styles.colors.lightBlue
+      : props.flatStyle
+      ? "transparent"
+      : styles.colors.white};
+  ${(props: { isSelected: boolean; flatStyle: boolean }) =>
+    props.isSelected || props.flatStyle ? "" : styles.shadows.lg};
   border-radius: ${styles.radius * 2}px;
   margin-bottom: ${(props: { flatStyle: boolean }) =>
     !props.flatStyle ? styles.margin * 3 : 0}px;
@@ -27,8 +32,12 @@ const MainContainer = styled(RTLTouchableOpacity)`
   flex-wrap: wrap;
   padding: ${styles.margin * 2 - 2}px;
   border-width: 2px;
-  border-color: ${(props: { isSelected: boolean, flatStyle: boolean }) =>
-    props.isSelected ? styles.colors.darkBlue : (props.flatStyle ? "transparent" : styles.colors.white)};
+  border-color: ${(props: { isSelected: boolean; flatStyle: boolean }) =>
+    props.isSelected
+      ? styles.colors.darkBlue
+      : props.flatStyle
+      ? "transparent"
+      : styles.colors.white};
 `;
 
 const RadioButton = styled.View`
@@ -54,9 +63,9 @@ export const ChoiceButton = (props: Props) => {
       style={props.style || {}}
       flatStyle={!!props.flatStyle}
     >
-      <RTLView style={{ justifyContent: "space-between", flex: 1 }}>
+      <Columns RTLBehaviour layout="1 auto">
         {props.children}
-        {!props.hideRadio &&
+        {!props.hideRadio && (
           <RadioButton isSelected={props.isSelected}>
             {props.isSelected && (
               <Icon
@@ -67,8 +76,8 @@ export const ChoiceButton = (props: Props) => {
               />
             )}
           </RadioButton>
-        }
-      </RTLView>
+        )}
+      </Columns>
     </MainContainer>
   );
 };

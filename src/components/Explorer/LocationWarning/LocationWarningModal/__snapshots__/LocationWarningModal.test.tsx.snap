@@ -497,6 +497,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 Object {
                   "flexBasis": "auto",
                   "flexGrow": 0,
+                  "marginRight": 16,
                 },
               ]
             }

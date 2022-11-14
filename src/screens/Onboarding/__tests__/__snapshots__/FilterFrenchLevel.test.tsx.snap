@@ -348,38 +348,32 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_a"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -397,29 +391,59 @@ exports[`Filter french level should render correctly when french level selected 
                     ]
                   }
                 >
-                   
-                  (
-                  A1/A2
-                  )
+                  french_level_a
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    A1/A2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -455,38 +479,32 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_b"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={true}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#0421B1",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={true}
@@ -504,92 +522,122 @@ exports[`Filter french level should render correctly when french level selected 
                     ]
                   }
                 >
-                   
-                  (
-                  B1/B2
-                  )
+                  french_level_b
+                  <Text
+                    isRTL={false}
+                    isSelected={true}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#0421B1",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    B1/B2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#0421B1",
-                      "borderColor": "transparent",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
               >
                 <View
-                  collapsable={false}
+                  isSelected={true}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "scale": 1,
-                        },
-                      ],
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0421B1",
+                        "borderColor": "transparent",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
                   }
                 >
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={16}
-                    bbWidth={16}
-                    fill="#FFFFFF"
-                    focusable={false}
-                    height={16}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
+                  <View
+                    collapsable={false}
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 16,
-                          "width": 16,
-                        },
-                      ]
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                        ],
+                      }
                     }
-                    vbHeight={24}
-                    vbWidth={24}
-                    width={16}
                   >
-                    <RNSVGGroup
-                      fill={4294967295}
-                      propList={
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight={16}
+                      bbWidth={16}
+                      fill="#FFFFFF"
+                      focusable={false}
+                      height={16}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
                         Array [
-                          "fill",
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 16,
+                            "width": 16,
+                          },
                         ]
                       }
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={16}
                     >
-                      <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={4294967295}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
                         <RNSVGGroup>
-                          <RNSVGRect
-                            height="24"
-                            opacity={0}
-                            width="24"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                          />
+                          <RNSVGGroup>
+                            <RNSVGRect
+                              height="24"
+                              opacity={0}
+                              width="24"
+                              x={0}
+                              y={0}
+                            />
+                            <RNSVGPath
+                              d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                            />
+                          </RNSVGGroup>
                         </RNSVGGroup>
                       </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
+                    </RNSVGSvgView>
+                  </View>
                 </View>
               </View>
             </View>
@@ -635,38 +683,32 @@ exports[`Filter french level should render correctly when french level selected 
             testID="test-filter-french_level_c"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -684,29 +726,59 @@ exports[`Filter french level should render correctly when french level selected 
                     ]
                   }
                 >
-                   
-                  (
-                  C1/C2
-                  )
+                  french_level_c
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    C1/C2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -1382,38 +1454,32 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_a"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1431,29 +1497,59 @@ exports[`Filter french level should render correctly when no french level select
                     ]
                   }
                 >
-                   
-                  (
-                  A1/A2
-                  )
+                  french_level_a
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    A1/A2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -1497,38 +1593,32 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_b"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1546,29 +1636,59 @@ exports[`Filter french level should render correctly when no french level select
                     ]
                   }
                 >
-                   
-                  (
-                  B1/B2
-                  )
+                  french_level_b
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    B1/B2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -1612,38 +1732,32 @@ exports[`Filter french level should render correctly when no french level select
             testID="test-filter-french_level_c"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -1661,29 +1775,59 @@ exports[`Filter french level should render correctly when no french level select
                     ]
                   }
                 >
-                   
-                  (
-                  C1/C2
-                  )
+                  french_level_c
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    C1/C2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -2351,38 +2495,32 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_a"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_a
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -2400,29 +2538,59 @@ exports[`Filter french level should select level when click on it 1`] = `
                     ]
                   }
                 >
-                   
-                  (
-                  A1/A2
-                  )
+                  french_level_a
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    A1/A2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
           <View
@@ -2458,38 +2626,32 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_b"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={true}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#0421B1",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_b
                 <Text
                   isRTL={false}
                   isSelected={true}
@@ -2507,92 +2669,122 @@ exports[`Filter french level should select level when click on it 1`] = `
                     ]
                   }
                 >
-                   
-                  (
-                  B1/B2
-                  )
+                  french_level_b
+                  <Text
+                    isRTL={false}
+                    isSelected={true}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#0421B1",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    B1/B2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={true}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#0421B1",
-                      "borderColor": "transparent",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
               >
                 <View
-                  collapsable={false}
+                  isSelected={true}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
-                          "scale": 1,
-                        },
-                      ],
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0421B1",
+                        "borderColor": "transparent",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
                   }
                 >
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={16}
-                    bbWidth={16}
-                    fill="#FFFFFF"
-                    focusable={false}
-                    height={16}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
+                  <View
+                    collapsable={false}
                     style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 16,
-                          "width": 16,
-                        },
-                      ]
+                      Object {
+                        "transform": Array [
+                          Object {
+                            "scale": 1,
+                          },
+                        ],
+                      }
                     }
-                    vbHeight={24}
-                    vbWidth={24}
-                    width={16}
                   >
-                    <RNSVGGroup
-                      fill={4294967295}
-                      propList={
+                    <RNSVGSvgView
+                      align="xMidYMid"
+                      bbHeight={16}
+                      bbWidth={16}
+                      fill="#FFFFFF"
+                      focusable={false}
+                      height={16}
+                      meetOrSlice={0}
+                      minX={0}
+                      minY={0}
+                      style={
                         Array [
-                          "fill",
+                          Object {
+                            "backgroundColor": "transparent",
+                            "borderWidth": 0,
+                          },
+                          Object {
+                            "flex": 0,
+                            "height": 16,
+                            "width": 16,
+                          },
                         ]
                       }
+                      vbHeight={24}
+                      vbWidth={24}
+                      width={16}
                     >
-                      <RNSVGGroup>
+                      <RNSVGGroup
+                        fill={4294967295}
+                        propList={
+                          Array [
+                            "fill",
+                          ]
+                        }
+                      >
                         <RNSVGGroup>
-                          <RNSVGRect
-                            height="24"
-                            opacity={0}
-                            width="24"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                          />
+                          <RNSVGGroup>
+                            <RNSVGRect
+                              height="24"
+                              opacity={0}
+                              width="24"
+                              x={0}
+                              y={0}
+                            />
+                            <RNSVGPath
+                              d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                            />
+                          </RNSVGGroup>
                         </RNSVGGroup>
                       </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
+                    </RNSVGSvgView>
+                  </View>
                 </View>
               </View>
             </View>
@@ -2638,38 +2830,32 @@ exports[`Filter french level should select level when click on it 1`] = `
             testID="test-filter-french_level_c"
           >
             <View
+              RTLBehaviour={true}
+              horizontalAlign="flex-start"
               style={
                 Array [
                   Object {
-                    "alignItems": "center",
-                    "display": "flex",
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
                     "flexDirection": "row",
-                  },
-                  Object {
-                    "flex": 1,
-                    "justifyContent": "space-between",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
                   },
                 ]
               }
+              verticalAlign="flex-start"
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
+              <View
                 style={
                   Array [
                     Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
                     },
                   ]
                 }
               >
-                french_level_c
                 <Text
                   isRTL={false}
                   isSelected={false}
@@ -2687,29 +2873,59 @@ exports[`Filter french level should select level when click on it 1`] = `
                     ]
                   }
                 >
-                   
-                  (
-                  C1/C2
-                  )
+                  french_level_c
+                  <Text
+                    isRTL={false}
+                    isSelected={false}
+                    selectable={true}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#212121",
+                          "flexShrink": 1,
+                          "fontFamily": "circularBold",
+                          "fontSize": 16,
+                          "lineHeight": 20,
+                          "textAlign": "left",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    (
+                    C1/C2
+                    )
+                  </Text>
                 </Text>
-              </Text>
+              </View>
               <View
-                isSelected={false}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
-              />
+              >
+                <View
+                  isSelected={false}
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "borderColor": "#5E5E5E",
+                        "borderRadius": 12,
+                        "borderWidth": 1,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "width": 24,
+                      },
+                    ]
+                  }
+                />
+              </View>
             </View>
           </View>
         </View>

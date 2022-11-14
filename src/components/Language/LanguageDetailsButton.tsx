@@ -6,13 +6,14 @@ import { Flag } from "./Flag";
 import { RowContainer, RTLView } from "../BasicComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ChoiceButton } from "../UI/ChoiceButton";
+import { Columns } from "../layout";
 
 const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;
   margin-left: ${(props: { isRTL: boolean }) =>
-  !props.isRTL ? styles.margin * 2 : 0}px;
+    !props.isRTL ? styles.margin * 2 : 0}px;
   margin-right: ${(props: { isRTL: boolean }) =>
-  props.isRTL ? styles.margin * 2 : 0}px;
+    props.isRTL ? styles.margin * 2 : 0}px;
   color: ${styles.colors.black};
 `;
 
@@ -44,28 +45,24 @@ export const LanguageDetailsButton = (props: Props) => {
   const { isRTL } = useTranslationWithRTL();
 
   return (
-  <ChoiceButton
-    onPress={props.onPress}
-    testID={"test-language-button-" + props.langueFr}
-    isSelected={!!props.isSelected}
-    accessibilityRole="button"
-    hideRadio={props.hideRadio}
-  >
-    <RTLView>
-      <FlagBackground>
-        <Flag langueFr={props.langueFr} />
-      </FlagBackground>
-      <RowContainer>
-        <StyledTextBold isRTL={isRTL}>
-          {props.langueLoc}
-        </StyledTextBold>
-      </RowContainer>
-      {props.langueFr !== "Français" && (
-        <StyledText>
-          {!isRTL ? " - " + props.langueFr : props.langueFr + " - "}
-        </StyledText>
-      )}
-    </RTLView>
-  </ChoiceButton>
-  )
-}
+    <ChoiceButton
+      onPress={props.onPress}
+      testID={"test-language-button-" + props.langueFr}
+      isSelected={!!props.isSelected}
+      accessibilityRole="button"
+      hideRadio={props.hideRadio}
+    >
+      <Columns RTLBehaviour layout="1">
+        <FlagBackground>
+          <Flag langueFr={props.langueFr} />
+        </FlagBackground>
+        <StyledTextBold>{props.langueLoc}</StyledTextBold>
+        {props.langueFr !== "Français" && (
+          <StyledText>
+            {!isRTL ? " - " + props.langueFr : props.langueFr + " - "}
+          </StyledText>
+        )}
+      </Columns>
+    </ChoiceButton>
+  );
+};

@@ -21,7 +21,6 @@ exports[`FlexItem snapshot test suite should render without bug 1`] = `
         "flexBasis": 0,
         "flexGrow": 1,
         "marginBottom": 0,
-        "marginRight": 16,
       },
     ]
   }
