@@ -1963,7 +1963,6 @@ exports[`About screen should render correctly 1`] = `
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
-              "height": 56,
               "justifyContent": "center",
               "marginHorizontal": 24,
               "marginTop": 24,

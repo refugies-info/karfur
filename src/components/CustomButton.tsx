@@ -22,7 +22,6 @@ const ButtonContainer = styled(RTLTouchableOpacity)<{
   border-radius: ${({ isSmall, theme }) => (!isSmall ? theme.radius * 2 : 8)}px;
   align-items: center;
   width: ${({ notFullWidth }) => (notFullWidth ? "auto" : "100%")};
-  height: ${({ isSmall }) => (!isSmall ? 56 : 40)}px;
   ${({ isDisabled, isSmall, backgroundColor, withShadows, theme }) =>
     isDisabled || !withShadows
       ? ""

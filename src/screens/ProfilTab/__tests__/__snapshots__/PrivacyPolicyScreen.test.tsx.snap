@@ -3030,7 +3030,6 @@ exports[`PrivacyPolicy screen should render correctly 1`] = `
               "display": "flex",
               "elevation": 2,
               "flexDirection": "row",
-              "height": 56,
               "justifyContent": "center",
               "opacity": 1,
               "paddingBottom": 18,
