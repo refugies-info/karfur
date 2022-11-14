@@ -14,11 +14,16 @@ interface Props {
 }
 
 const StyledText = styled(TextBigBold)`
-  color: ${styles.colors.white};
-  margin-bottom: ${styles.margin * 25}px;
-  margin-top: ${styles.margin * 3}px;
+  color: ${({ theme }) => theme.colors.white};
   width: 100%;
 `;
+
+const TextContainer = styled.ScrollView`
+  flex: 1;
+  max-width: 100%;
+  margin-bottom: ${({ theme }) => theme.margin * 25}px;
+`;
+
 const ImagesContainer = styled.View`
   display: flex;
   flex: 1;
@@ -51,9 +56,14 @@ export const OnboardingCarouselElement = (props: Props) => {
       <ImagesContainer>
         <CarouselStepImage step={props.step} />
       </ImagesContainer>
-      <StyledText>
-        {t("onboarding_screens." + correspondingData.text, correspondingData.text)}
-      </StyledText>
+      <TextContainer>
+        <StyledText>
+          {t(
+            "onboarding_screens." + correspondingData.text,
+            correspondingData.text
+          )}
+        </StyledText>
+      </TextContainer>
     </LinearGradient>
   );
 };
