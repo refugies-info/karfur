@@ -2,10 +2,7 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import {
-  getTitreInfoOrMarqueInLocale,
-  filterContentsOnGeoloc,
-} from "../../../modules/dispositif/dispositif.adapter";
+import { getTitreInfoOrMarqueInLocale, filterContentsOnGeoloc } from "../../../modules/dispositif/dispositif.adapter";
 import { addAgeQuery, addFrenchLevelQuery } from "./functions";
 
 interface Query {
@@ -13,12 +10,10 @@ interface Query {
   age?: string;
   department?: string;
   frenchLevel?: string;
+  strictLocation?: boolean | string;
 }
 
-export const getContentsForApp = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
+export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -28,11 +23,14 @@ export const getContentsForApp = async (
 
     const { locale, age, department, frenchLevel } = req.query;
 
+    const strictLocation = req.query.strictLocation === "true" || req.query.strictLocation === "1";
+
     logger.info("[getContentsForApp] called", {
       locale,
       age,
       department,
       frenchLevel,
+      strictLocation
     });
 
     const neededFields = {
@@ -49,34 +47,20 @@ export const getContentsForApp = async (
     };
 
     const initialQuery = {
-      status: "Actif",
+      status: "Actif"
     };
     const queryWithAge = addAgeQuery(age, initialQuery);
-    const queryWithAgeAndFrenchLevel = addFrenchLevelQuery(
-      frenchLevel,
-      queryWithAge
-    );
+    const queryWithAgeAndFrenchLevel = addFrenchLevelQuery(frenchLevel, queryWithAge);
 
-    const contentsArray = await getActiveContentsFiltered(
-      neededFields,
-      queryWithAgeAndFrenchLevel
-    );
+    const contentsArray = await getActiveContentsFiltered(neededFields, queryWithAgeAndFrenchLevel);
 
-    const filteredContents = filterContentsOnGeoloc(contentsArray, department, false);
+    const filteredContents = filterContentsOnGeoloc(contentsArray, department, strictLocation);
 
     const contentsArrayFr = filteredContents.map((content) => {
-      const titreInformatif = getTitreInfoOrMarqueInLocale(
-        content.titreInformatif,
-        "fr"
-      );
-      const titreMarque = getTitreInfoOrMarqueInLocale(
-        content.titreMarque,
-        "fr"
-      );
+      const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, "fr");
+      const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, "fr");
       const sponsorUrl =
-        content.mainSponsor &&
-        content.mainSponsor.picture &&
-        content.mainSponsor.picture.secure_url
+        content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
           ? content.mainSponsor.picture.secure_url
           : null;
 
@@ -91,31 +75,23 @@ export const getContentsForApp = async (
         nbVuesMobile: content.nbVuesMobile,
         typeContenu: content.typeContenu,
         sponsorUrl,
-        avancement: content.avancement,
+        avancement: content.avancement
       };
     });
 
     if (locale === "fr") {
       return res.status(200).json({
         text: "Succès",
-        dataFr: contentsArrayFr,
+        dataFr: contentsArrayFr
       });
     }
 
     const contentsArrayLocale = filteredContents.map((content) => {
-      const titreInformatif = getTitreInfoOrMarqueInLocale(
-        content.titreInformatif,
-        locale
-      );
-      const titreMarque = getTitreInfoOrMarqueInLocale(
-        content.titreMarque,
-        locale
-      );
+      const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, locale);
+      const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, locale);
 
       const sponsorUrl =
-        content.mainSponsor &&
-        content.mainSponsor.picture &&
-        content.mainSponsor.picture.secure_url
+        content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
           ? content.mainSponsor.picture.secure_url
           : null;
 
@@ -129,18 +105,18 @@ export const getContentsForApp = async (
         nbVues: content.nbVues,
         typeContenu: content.typeContenu,
         sponsorUrl,
-        avancement: content.avancement,
+        avancement: content.avancement
       };
     });
 
     res.status(200).json({
       text: "Succès",
       data: contentsArrayLocale,
-      dataFr: contentsArrayFr,
+      dataFr: contentsArrayFr
     });
   } catch (error) {
     logger.error("[getContentsForApp] error while getting dispositifs", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "INVALID_REQUEST":
@@ -149,7 +125,7 @@ export const getContentsForApp = async (
         return res.status(405).json({ text: "Requête bloquée par API" });
       default:
         return res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
     }
   }
