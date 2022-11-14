@@ -1,9 +1,16 @@
 import React, { ReactNode } from "react";
-import renderer from "react-test-renderer";
+import renderer, { act } from "react-test-renderer";
 import { ThemeProvider } from "../../../theme";
 
-const render = (JSX: ReactNode, toJson = true) => {
-  const tree = renderer.create(<ThemeProvider>{JSX}</ThemeProvider>);
+const render = async (JSX: ReactNode, toJson = true, doAct = false) => {
+  let tree: any = { toJSON: () => undefined };
+  if (doAct) {
+    await act(async () => {
+      tree = renderer.create(<ThemeProvider>{JSX}</ThemeProvider>);
+    });
+  } else {
+    tree = renderer.create(<ThemeProvider>{JSX}</ThemeProvider>);
+  }
   return toJson ? tree.toJSON() : tree;
 };
 export default render;

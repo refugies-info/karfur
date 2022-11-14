@@ -24,8 +24,8 @@ jest.mock("@react-navigation/native", () => ({
 jest.useFakeTimers();
 
 describe("LocationWarningModal snapshot test suite", () => {
-  it("should render without bug", () => {
-    const test = render(
+  it("should render without bug", async () => {
+    const test = await render(
       <LocationWarningModal
         isVisible
         nbGlobalContent={42}

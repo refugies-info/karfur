@@ -4,8 +4,8 @@ import Columns from "./Columns";
 import { render } from "../../utils/tests";
 
 describe("Columns snapshot test suite", () => {
-  it("should render without bug", () => {
-    const test = render(
+  it("should render without bug", async () => {
+    const test = await render(
       <Columns>
         <Text>Test</Text>
         <Text>Test</Text>
@@ -16,8 +16,8 @@ describe("Columns snapshot test suite", () => {
     expect(test).toMatchSnapshot();
   });
 
-  it("should be able to control flex layout", () => {
-    const test = render(
+  it("should be able to control flex layout", async () => {
+    const test = await render(
       <Columns
         layout="1 2"
         horizontalAlign="space-between"
