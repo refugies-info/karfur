@@ -38,3 +38,11 @@ $scrollLimit: 565px;
     transform: translateY(0);
   }
 }
+
+i.flag {
+  width: 19px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid $white;
+  margin-left: u(2);
+}

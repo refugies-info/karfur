@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
@@ -8,9 +8,9 @@ import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
-import { SearchDispositif } from "types/interface";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
@@ -52,16 +52,15 @@ const departmentExamples = [
   "Isère"
 ];
 
-interface Props {
-  dispositifs: SearchDispositif[];
-  demarches: SearchDispositif[];
-}
-
-const HomeSearch = (props: Props) => {
+const HomeSearch = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const themes = useSelector(themesSelector);
+  const filteredResult = useSelector(searchResultsSelector);
+
+  const demarches = filteredResult.demarches.slice(0, 15);
+  const dispositifs = filteredResult.dispositifs.slice(0, 15);
 
   const selectTheme = (themeId: ObjectId) => {
     dispatch(addToQueryActionCreator({ themes: [themeId] }));
@@ -125,12 +124,12 @@ const HomeSearch = (props: Props) => {
             <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
             <Button onClick={() => selectType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={props.demarches} type="demarche" />
+          <CardSlider cards={demarches} type="demarche" />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
             <Button onClick={() => selectType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-          <CardSlider cards={props.dispositifs} type="dispositif" />
+          <CardSlider cards={dispositifs} type="dispositif" />
         </Container>
       </div>
 
@@ -160,4 +159,4 @@ const HomeSearch = (props: Props) => {
   );
 };
 
-export default HomeSearch;
+export default memo(HomeSearch);

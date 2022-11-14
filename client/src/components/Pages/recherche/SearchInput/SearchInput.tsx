@@ -22,7 +22,7 @@ interface Props {
 
 const SearchInput = (props: Props) => {
   const { t } = useTranslation();
-  const { active, setActive } = props;
+  const { active, setActive, resetFilter } = props;
   const ref = useRef<HTMLInputElement | null>(null);
   const valueRef = useRef<HTMLDivElement | null>(null);
 
@@ -58,6 +58,14 @@ const SearchInput = (props: Props) => {
       setHasEllipsis(checkIfEllipsis(valueRef.current));
     }
   }, [props.value, active]);
+
+  const onClickCross = useCallback(
+    (e: any) => {
+      e.stopPropagation();
+      if (resetFilter) resetFilter();
+    },
+    [resetFilter]
+  );
 
   const hasBlueIcon = active || !!props.value;
   const countValues = !props.value ? 0 : (props.value.match(/,/g) || []).length + 1;
@@ -104,15 +112,7 @@ const SearchInput = (props: Props) => {
             </div>
             {props.value && (
               <div className={styles.empty_btn}>
-                <EVAIcon
-                  name="close-outline"
-                  fill="dark"
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    if (props.resetFilter) props.resetFilter();
-                  }}
-                  size={20}
-                />
+                <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
               </div>
             )}
           </>

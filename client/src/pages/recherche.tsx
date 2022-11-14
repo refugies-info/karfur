@@ -173,10 +173,7 @@ const Recherche = () => {
           />
         </Container>
       ) : (
-        <HomeSearch
-          demarches={filteredResult.demarches.slice(0, 15)}
-          dispositifs={filteredResult.dispositifs.slice(0, 15)}
-        />
+        <HomeSearch />
       )}
     </div>
   );

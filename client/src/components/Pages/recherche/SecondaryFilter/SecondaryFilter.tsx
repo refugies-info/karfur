@@ -4,9 +4,10 @@ import SecondaryFilterMobile from "./SecondaryFilter.mobile";
 import SecondaryFilterDesktop from "./SecondaryFilter.desktop";
 
 export type Selected = AgeOptions | FrenchOptions | string;
+export type SecondaryFilterOptions = { key: Selected; value: string | React.ReactNode }[];
 
 interface Props {
-  options: { key: Selected; value: string | React.ReactNode }[];
+  options: SecondaryFilterOptions;
   selected: Selected[];
   setSelected: (selected: Selected[]) => void;
   label: string | ReactElement;

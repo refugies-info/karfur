@@ -16,73 +16,112 @@ import LocationDropdown from "../LocationDropdown";
 import SecondaryFilter from "../SecondaryFilter";
 import DropdownMenuMobile from "../DropdownMenuMobile";
 import styles from "./SearchHeader.mobile.module.scss";
+import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 
 interface Props {
   nbResults: number;
   themeDisplayedValue: string;
-  isPlacePredictionsLoading: boolean;
-  placePredictions: any[];
-  onSelectPrediction: (place_id: string) => void;
 
-  // state from SearchHeader
+  // focusedStateProps
   locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
   searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  locationSearchState: [string, Dispatch<SetStateAction<string>>];
-  themeSearchState: [string, Dispatch<SetStateAction<string>>];
   themesFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
+
+  // filterProps
+  isPlacePredictionsLoading: boolean;
+  placePredictions: any[];
+  onSelectPrediction: (placeId: string) => void;
+  locationSearch: string;
+  themeSearch: string;
+  resetDepartment: () => void;
+  resetTheme: () => void;
+  resetSearch: () => void;
+  onChangeDepartmentInput: (e: any) => void;
+  onChangeThemeInput: (e: any) => void;
+  onChangeSearchInput: (e: any) => void;
+  ageOptions: SecondaryFilterOptions;
+  frenchLevelOptions: SecondaryFilterOptions;
+  languagesOptions: SecondaryFilterOptions;
+  selectAgeOption: (selected: AgeOptions[]) => void;
+  selectFrenchLevelOption: (selected: FrenchOptions[]) => void;
+  selectLanguageOption: (selected: string[]) => void;
 }
 
 const SearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
-  const { themeDisplayedValue, isPlacePredictionsLoading, placePredictions, onSelectPrediction } = props;
   const dispatch = useDispatch();
+
+  const {
+    themeDisplayedValue,
+    isPlacePredictionsLoading,
+    placePredictions,
+    locationSearch,
+    themeSearch,
+    onSelectPrediction,
+    resetDepartment,
+    onChangeDepartmentInput,
+    resetTheme,
+    onChangeThemeInput,
+    resetSearch,
+    onChangeSearchInput,
+    ageOptions,
+    selectAgeOption,
+    frenchLevelOptions,
+    selectFrenchLevelOption,
+    languagesOptions,
+    selectLanguageOption
+  } = props;
+
   const query = useSelector(searchQuerySelector);
 
   // state from SearchHeader
   const [locationFocused, setLocationFocused] = props.locationFocusedState;
   const [searchFocused, setSearchFocused] = props.searchFocusedState;
-  const [locationSearch, setLocationSearch] = props.locationSearchState;
-  const [themeSearch, setThemeSearch] = props.themeSearchState;
   const [themesFocused, setThemesFocused] = props.themesFocusedState;
 
-  const [locationOpen, setLocationOpen] = useState(false);
-  const [themesOpen, setThemesOpen] = useState(false);
-  const toggleLocation = () =>
-    setLocationOpen((prevState) => {
-      if (!prevState) Event("USE_SEARCH", "open filter", "location");
-      return !prevState;
-    });
-  const toggleThemes = () =>
-    setThemesOpen((prevState) => {
-      if (!prevState) Event("USE_SEARCH", "open filter", "theme");
-      return !prevState;
-    });
-
-  const onChangeKeywordInput = useCallback(
-    (e: any) => {
-      dispatch(addToQueryActionCreator({ search: e.target.value }));
-      Event("USE_SEARCH", "use keyword filter", "use searchbar");
+  const addToQuery = useCallback(
+    (query: Partial<SearchQuery>) => {
+      dispatch(addToQueryActionCreator(query));
     },
     [dispatch]
   );
 
-  const onChangeThemeInput = useCallback(
-    (e: any) => {
-      setThemeSearch(e.target.value);
-      Event("USE_SEARCH", "use theme filter", "use searchbar");
-    },
-    [setThemeSearch]
+  // LOCATION
+  const [locationOpen, setLocationOpen] = useState(false);
+  const toggleLocation = useCallback(
+    () =>
+      setLocationOpen((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "location");
+        return !prevState;
+      }),
+    [setLocationOpen]
+  );
+
+  // THEME
+  const [themesOpen, setThemesOpen] = useState(false);
+  const toggleThemes = useCallback(
+    () =>
+      setThemesOpen((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "theme");
+        return !prevState;
+      }),
+    [setThemesOpen]
   );
 
   // FILTERS
   const [showFilters, setShowFilters] = useState(false);
-  const languages = useSelector(allLanguesSelector);
   const nbFilters = query.age.length + query.frenchLevel.length + query.language.length;
-  const toggleFilters = () =>
-    setShowFilters((prevState) => {
-      if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
-      return !prevState;
-    });
+  const toggleFilters = useCallback(
+    () =>
+      setShowFilters((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
+        return !prevState;
+      }),
+    [setShowFilters]
+  );
+  const resetFilters = useCallback(() => {
+    addToQuery({ age: [], frenchLevel: [], language: [] });
+  }, [addToQuery]);
 
   // hide axeptio button when popup opens
   useEffect(() => {
@@ -92,13 +131,6 @@ const SearchHeaderMobile = (props: Props) => {
       if (window.showAxeptioButton) window.showAxeptioButton();
     }
   }, [locationOpen, themesOpen, showFilters]);
-
-  const addToQuery = useCallback(
-    (query: Partial<SearchQuery>) => {
-      dispatch(addToQueryActionCreator(query));
-    },
-    [dispatch]
-  );
 
   return (
     <>
@@ -111,11 +143,11 @@ const SearchHeaderMobile = (props: Props) => {
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
-                onChange={onChangeKeywordInput}
+                onChange={onChangeSearchInput}
                 inputValue={query.search}
                 value={query.search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
-                resetFilter={() => addToQuery({ search: "" })}
+                resetFilter={resetSearch}
               />
             </Button>
           </div>
@@ -133,7 +165,7 @@ const SearchHeaderMobile = (props: Props) => {
               icon="pin-outline"
               active={locationOpen || locationFocused}
               setActive={setLocationFocused}
-              onChange={(evt) => setLocationSearch(evt.target.value)}
+              onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
               loading={isPlacePredictionsLoading}
               value={query.departments.join(", ")}
@@ -145,7 +177,7 @@ const SearchHeaderMobile = (props: Props) => {
               title={t("Dispositif.Départements", "Départements")}
               icon="pin-outline"
               close={toggleLocation}
-              reset={() => addToQuery({ departments: [] })}
+              reset={resetDepartment}
               nbResults={props.nbResults}
             >
               <div className={styles.content}>
@@ -154,20 +186,13 @@ const SearchHeaderMobile = (props: Props) => {
                   <input
                     type="text"
                     placeholder={t("Dispositif.Département", "Département")}
-                    onChange={(evt) => setLocationSearch(evt.target.value)}
+                    onChange={onChangeDepartmentInput}
                     value={locationSearch}
                     autoFocus
                   />
                 </div>
               </div>
-              <LocationDropdown
-                predictions={placePredictions}
-                onSelectPrediction={(id: string) => {
-                  onSelectPrediction(id);
-                  setLocationSearch("");
-                }}
-                mobile={true}
-              />
+              <LocationDropdown predictions={placePredictions} onSelectPrediction={onSelectPrediction} mobile={true} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -179,7 +204,7 @@ const SearchHeaderMobile = (props: Props) => {
               icon="list-outline"
               active={themesFocused || themesOpen}
               setActive={setThemesFocused}
-              onChange={(evt) => setThemeSearch(evt.target.value)}
+              onChange={onChangeThemeInput}
               inputValue={themeSearch}
               value={themeDisplayedValue}
               placeholder={t("Recherche.themes", "Thèmes")}
@@ -190,9 +215,7 @@ const SearchHeaderMobile = (props: Props) => {
               title={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
               close={toggleThemes}
-              reset={() => {
-                addToQuery({ needs: [], themes: [] });
-              }}
+              reset={resetTheme}
               nbResults={props.nbResults}
             >
               <div className={styles.content}>
@@ -222,9 +245,7 @@ const SearchHeaderMobile = (props: Props) => {
                 title={t("Recherche.filters", "Filtres de recherche")}
                 icon="options-2-outline"
                 close={toggleFilters}
-                reset={() => {
-                  addToQuery({ age: [], frenchLevel: [], language: [] });
-                }}
+                reset={resetFilters}
                 nbResults={props.nbResults}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
@@ -233,8 +254,8 @@ const SearchHeaderMobile = (props: Props) => {
                     label={t("Recherche.filterAge", "Tranche d'âge")}
                     selected={query.age}
                     //@ts-ignore
-                    setSelected={(selected: AgeOptions[]) => addToQuery({ age: selected as AgeOptions[] })}
-                    options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                    setSelected={selectAgeOption}
+                    options={ageOptions}
                     gaType="age"
                   />
                   <SecondaryFilter
@@ -242,30 +263,16 @@ const SearchHeaderMobile = (props: Props) => {
                     label={t("Recherche.filterFrenchLevel", "Niveau de français")}
                     selected={query.frenchLevel}
                     //@ts-ignore
-                    setSelected={(selected: FrenchOptions[]) =>
-                      addToQuery({ frenchLevel: selected as FrenchOptions[] })
-                    }
-                    options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
+                    setSelected={selectFrenchLevelOption}
+                    options={frenchLevelOptions}
                     gaType="frenchLevel"
                   />
                   <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterLanguage", "Fiches traduites en")}
                     selected={query.language}
-                    setSelected={(selected: string[]) => addToQuery({ language: selected as string[] })}
-                    options={languages.map((ln) => ({
-                      key: ln.i18nCode,
-                      value: (
-                        <>
-                          <i
-                            className={`flag-icon flag-icon-${ln.langueCode}`}
-                            title={ln.langueCode}
-                            id={ln.langueCode}
-                          />
-                          {ln.langueFr}
-                        </>
-                      )
-                    }))}
+                    setSelected={selectLanguageOption}
+                    options={languagesOptions}
                     gaType="language"
                   />
                 </div>
