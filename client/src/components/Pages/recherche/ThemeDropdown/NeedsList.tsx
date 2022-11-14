@@ -36,6 +36,8 @@ interface Props {
   search: string;
   displayedNeeds: Need[];
   themeSelected: ObjectId | null;
+  nbDispositifsByNeed: Record<string, number>;
+  nbDispositifsByTheme: Record<string, number>;
 }
 
 const NeedsList = (props: Props) => {
@@ -45,38 +47,9 @@ const NeedsList = (props: Props) => {
 
   const themes = useSelector(themesSelector);
   const allNeeds = useSelector(needsSelector);
-  const allDispositifs = useSelector(activeDispositifsSelector);
   const query = useSelector(searchQuerySelector);
 
-  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
-  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
-
   const colors = themes.find((t) => props.themeSelected === t._id)?.colors;
-
-  useEffect(() => {
-    // count initial dispositifs by need
-    const newNbDispositifsByNeed: Record<string, number> = {};
-    const newNbDispositifsByTheme: Record<string, number> = {};
-
-    queryDispositifsWithoutThemes(query, allDispositifs, "fr").then((dispositifs) => {
-      for (const dispositif of dispositifs) {
-        for (const needId of dispositif.needs || []) {
-          newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
-        }
-
-        const themeId = dispositif.theme.toString();
-        newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
-        for (const theme of dispositif.secondaryThemes || []) {
-          newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
-        }
-      }
-
-      setNbDispositifsByTheme(newNbDispositifsByTheme);
-      setNbDispositifsByNeed(newNbDispositifsByNeed);
-    });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query]);
 
   const isThemeSelected = !!(props.themeSelected && query.themes.includes(props.themeSelected));
 
@@ -147,7 +120,7 @@ const NeedsList = (props: Props) => {
                   color: colors?.color100
                 }}
               >
-                {nbDispositifsByTheme[props.themeSelected.toString()] || 0}
+                {props.nbDispositifsByTheme[props.themeSelected.toString()] || 0}
               </span>
             </span>
           </Checkbox>
@@ -155,7 +128,7 @@ const NeedsList = (props: Props) => {
       )}
       {props.displayedNeeds.map((need, i) => {
         const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
-        if (!nbDispositifsByNeed[need._id.toString()]) return null;
+        if (!props.nbDispositifsByNeed[need._id.toString()]) return null;
         return (
           <span key={i}>
             {props.search &&
@@ -181,7 +154,7 @@ const NeedsList = (props: Props) => {
                     color: need.theme.colors.color100
                   }}
                 >
-                  {nbDispositifsByNeed[need._id.toString()] || 0}
+                  {props.nbDispositifsByNeed[need._id.toString()] || 0}
                 </span>
               </Checkbox>
             </ButtonNeed>

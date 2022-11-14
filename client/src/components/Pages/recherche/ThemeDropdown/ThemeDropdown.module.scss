@@ -45,6 +45,12 @@
     outline: none;
   }
 
+  &:disabled {
+    filter: grayscale(1);
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
   &.need {
     height: auto;
     border: none;
@@ -56,7 +62,7 @@
 }
 
 .btn_content {
-  display:flex;
+  display: flex;
 }
 
 .themes {
@@ -137,7 +143,7 @@
 
 .all {
   font-weight: bold;
-  display:flex;
+  display: flex;
   align-items: center;
 
   @include isMobile() {

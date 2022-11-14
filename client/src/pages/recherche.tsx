@@ -29,6 +29,7 @@ import {
 import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { SearchDispositif, Need, Theme } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
@@ -41,8 +42,8 @@ export type UrlSearchQuery = {
   departments?: string | string[];
   needs?: string | ObjectId[];
   themes?: string | ObjectId[];
-  ages?: string | AgeOptions[];
-  frenchLevels?: string | FrenchOptions[];
+  age?: string | AgeOptions[];
+  frenchLevel?: string | FrenchOptions[];
   language?: string | string[];
   sort?: string | SortOptions;
   type?: string | TypeOptions;
@@ -73,35 +74,13 @@ const Recherche = () => {
 
   useEffect(() => {
     // toggle home screen
-    const hideHome =
-      query.search ||
-      query.needs.length ||
-      query.themes.length ||
-      query.departments.length ||
-      query.age.length ||
-      query.frenchLevel.length ||
-      query.language.length ||
-      query.sort !== "date" ||
-      query.type !== "all";
-    setShowHome(!hideHome);
+    setShowHome(isHomeSearchVisible(query));
 
     // update url
     const updateUrl = () => {
-      const urlQuery: UrlSearchQuery = {
-        needs: query.needs,
-        themes: query.themes,
-        departments: query.departments,
-        ages: query.age,
-        frenchLevels: query.frenchLevel,
-        language: query.language,
-        sort: query.sort,
-        type: query.type,
-        search: query.search
-      };
-
       const locale = router.locale;
       const oldQueryString = qs.stringify(router.query, { arrayFormat: "comma" });
-      const newQueryString = qs.stringify(urlQuery, { arrayFormat: "comma" });
+      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma" });
       if (oldQueryString !== newQueryString) {
         router.push(
           {
