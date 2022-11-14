@@ -1,4 +1,6 @@
-export { ColumnsSpacing } from "./Columns";
-export { default as Columns } from "./Columns";
-export { RowsSpacing } from "./Rows";
-export { default as Rows } from "./Rows";
+export { default as Columns, ColumnsSpacing } from "./Columns";
+export { default as Content } from "./Content";
+export { default as Header, HeaderProps } from "./Header";
+export { default as Page } from "./Page";
+export { default as Rows, RowsSpacing } from "./Rows";
+export { default as ScrollableContent } from "./ScrollableContent";

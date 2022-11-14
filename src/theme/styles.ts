@@ -134,14 +134,20 @@ const shadowsStylesheet = {
   },
 };
 
+const margin = 8;
+
 const layout = {
   columns: {
     nospace: "0",
     default: "8px",
   },
+  content: {
+    normal: `${margin * 3}px`,
+    normalValue: margin * 3,
+  },
   rows: {
     nospace: "0",
-    default: "8px",
+    default: "16px",
   },
 };
 
@@ -150,7 +156,7 @@ export default {
   fonts,
   images,
   layout,
-  margin: 8,
+  margin,
   radius: 6,
   shadows,
   shadowsStylesheet,

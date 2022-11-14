@@ -55,4 +55,6 @@ const Rows = ({
   </RowsWrapper>
 );
 
+Rows.displayName = "Rows";
+
 export default Rows;

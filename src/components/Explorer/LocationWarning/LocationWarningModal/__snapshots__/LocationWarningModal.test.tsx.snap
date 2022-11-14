@@ -147,7 +147,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             },
             "shadowOpacity": 0.16,
             "shadowRadius": 8,
-            "top": 24,
+            "top": 2,
           }
         }
       >
@@ -372,7 +372,21 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
             </RNSVGGroup>
           </RNSVGSvgView>
         </View>
-        <View>
+        <View
+          accessibilityRole="button"
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
           <react-native-svg
             height={104}
             style={
@@ -476,108 +490,127 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
           explorer_screen.adding_new_content
         </Text>
         <View
+          RTLBehaviour={true}
+          horizontalAlign="center"
           style={
             Array [
               Object {
                 "alignItems": "center",
-                "display": "flex",
+                "flexBasis": "auto",
                 "flexDirection": "row",
-              },
-              Object {
+                "flexGrow": 1,
                 "justifyContent": "center",
               },
             ]
           }
+          verticalAlign="center"
         >
           <View
-            collapsable={false}
-            style={
-              Object {
-                "transform": Array [
-                  Object {
-                    "scale": 1,
-                  },
-                ],
-              }
-            }
-          >
-            <RNSVGSvgView
-              align="xMidYMid"
-              bbHeight={24}
-              bbWidth={24}
-              fill="#212121"
-              focusable={false}
-              height={24}
-              meetOrSlice={0}
-              minX={0}
-              minY={0}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "marginRight": 8,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 24,
-                    "width": 24,
-                  },
-                ]
-              }
-              vbHeight={24}
-              vbWidth={24}
-              width={24}
-            >
-              <RNSVGGroup
-                fill={4280361249}
-                propList={
-                  Array [
-                    "fill",
-                  ]
-                }
-              >
-                <RNSVGGroup>
-                  <RNSVGGroup>
-                    <RNSVGRect
-                      height="24"
-                      opacity={0}
-                      width="24"
-                      x={0}
-                      y={0}
-                    />
-                    <RNSVGPath
-                      d="M19 3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h6v2H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2h-4v-2h6a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1z"
-                    />
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGSvgView>
-          </View>
-          <Text
-            accessibilityRole="link"
-            isRTL={false}
-            onPress={[Function]}
-            selectable={true}
             style={
               Array [
                 Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 19,
-                  "lineHeight": 24,
-                  "textAlign": "left",
-                },
-                Object {
-                  "textAlign": "center",
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
                 },
               ]
             }
           >
-            www.refugies.info
-          </Text>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "transform": Array [
+                    Object {
+                      "scale": 1,
+                    },
+                  ],
+                }
+              }
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={24}
+                bbWidth={24}
+                fill="#212121"
+                focusable={false}
+                height={24}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                size={24}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 24,
+                      "width": 24,
+                    },
+                  ]
+                }
+                vbHeight={24}
+                vbWidth={24}
+                width={24}
+              >
+                <RNSVGGroup
+                  fill={4280361249}
+                  propList={
+                    Array [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGGroup>
+                    <RNSVGGroup>
+                      <RNSVGRect
+                        height="24"
+                        opacity={0}
+                        width="24"
+                        x={0}
+                        y={0}
+                      />
+                      <RNSVGPath
+                        d="M19 3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h6v2H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2h-4v-2h6a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1z"
+                      />
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                },
+              ]
+            }
+          >
+            <Text
+              accessibilityRole="link"
+              isRTL={false}
+              onPress={[Function]}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              www.refugies.info
+            </Text>
+          </View>
         </View>
       </View>
     </RNCSafeAreaView>

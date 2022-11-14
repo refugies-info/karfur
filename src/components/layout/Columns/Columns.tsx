@@ -5,11 +5,13 @@ import { isLastChild } from "../../utils";
 
 const ColumnsWrapper = styled.View<{
   horizontalAlign?: string;
+  RTLBehaviour: boolean;
   verticalAlign?: string;
 }>`
   flex-grow: 1;
   flex-basis: auto;
-  flex-direction: row;
+  flex-direction: ${({ theme, RTLBehaviour }) =>
+    RTLBehaviour && theme.i18n.isRTL ? "row-reverse" : "row"};
   ${({ verticalAlign }) => verticalAlign && `align-items: ${verticalAlign}`};
   ${({ horizontalAlign }) =>
     horizontalAlign && `justify-content: ${horizontalAlign}`};
@@ -23,20 +25,23 @@ export enum ColumnsSpacing {
 export interface ColumnsProps {
   children: ReactNode;
   horizontalAlign?: string;
-  verticalAlign?: string;
   layout?: string;
+  RTLBehaviour?: boolean;
   spacing?: ColumnsSpacing;
+  verticalAlign?: string;
 }
 
 const Columns = ({
   children,
   horizontalAlign = "flex-start",
-  verticalAlign = "flex-start",
   layout = "1",
+  RTLBehaviour = false,
   spacing = ColumnsSpacing.Default,
+  verticalAlign = "flex-start",
 }: ColumnsProps) => (
   <ColumnsWrapper
     horizontalAlign={horizontalAlign}
+    RTLBehaviour={RTLBehaviour}
     verticalAlign={verticalAlign}
   >
     {React.Children.map(children, (child, index) => (
@@ -44,7 +49,8 @@ const Columns = ({
         flex={getFlexValue(layout, index)}
         // eslint-disable-next-line react/no-array-index-key
         key={index}
-        marginRight={!isLastChild(children, index) && spacing}
+        RTLBehaviour={RTLBehaviour}
+        marginHorizontal={!isLastChild(children, index) && spacing}
       >
         {child}
       </FlexItem>

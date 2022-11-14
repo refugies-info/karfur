@@ -31,16 +31,19 @@ export const getContentsForApp = ({
   age,
   department,
   frenchLevel,
+  strictLocation = false,
 }: {
   locale: string;
-  age: string | null;
-  department: string | null;
-  frenchLevel: string | null;
+  age?: string | null;
+  department?: string | null;
+  frenchLevel?: string | null;
+  strictLocation?: boolean;
 }) => {
   const route =
     `/dispositifs/getContentsForApp?locale=${locale}` +
     (age ? `&age=${age}` : "") +
     (department ? `&department=${department}` : "") +
+    (strictLocation ? "&strictLocation=1" : "") +
     (frenchLevel ? `&frenchLevel=${frenchLevel}` : "");
 
   return apiCaller.get(route);
@@ -73,9 +76,8 @@ export const updateNbVuesOrFavoritesOnContent = (
     | { query: { id: ObjectId; nbFavoritesMobile: number } }
 ) => apiCaller.post("/dispositifs/updateNbVuesOrFavoritesOnContent", params);
 
-export const addNeedView = (
-  params: { id: ObjectId }
-) => apiCaller.post("/needs/views", params);
+export const addNeedView = (params: { id: ObjectId }) =>
+  apiCaller.post("/needs/views", params);
 
 export const updateAppUser = async (payload: AppUser) =>
   makeApiRequest("/appuser/", payload, "POST");

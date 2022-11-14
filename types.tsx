@@ -39,6 +39,7 @@ export type ExplorerParamList = {
     backScreen?: string;
   };
   NotificationsScreen: {};
+  NearMeCardsScreen: undefined;
 };
 
 export type FavorisParamList = {
