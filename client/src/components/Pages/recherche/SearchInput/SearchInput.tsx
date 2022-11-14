@@ -51,8 +51,6 @@ const SearchInput = (props: Props) => {
     };
   }, [handleFocusOut, props.focusout]);
 
-  const hasBlueIcon = active || !!props.value;
-
   // ellipsis
   const [hasEllipsis, setHasEllipsis] = useState(false);
   useEffect(() => {
@@ -61,6 +59,7 @@ const SearchInput = (props: Props) => {
     }
   }, [props.value, active]);
 
+  const hasBlueIcon = active || !!props.value;
   const countValues = !props.value ? 0 : (props.value.match(/,/g) || []).length + 1;
 
   return (

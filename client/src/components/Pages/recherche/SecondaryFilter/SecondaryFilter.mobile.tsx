@@ -2,8 +2,8 @@ import React, { ReactElement, useCallback } from "react";
 import { Button } from "reactstrap";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
-import { Selected } from "./SearchFilter";
-import styles from "./SearchFilter.mobile.module.scss";
+import { Selected } from "./SecondaryFilter";
+import styles from "./SecondaryFilter.mobile.module.scss";
 
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
@@ -13,7 +13,7 @@ interface Props {
   gaType: string;
 }
 
-const SearchFilterMobile = (props: Props) => {
+const SecondaryFilterMobile = (props: Props) => {
   const { selectItem, gaType } = props;
 
   const onSelectItem = useCallback(
@@ -45,4 +45,4 @@ const SearchFilterMobile = (props: Props) => {
   );
 };
 
-export default SearchFilterMobile;
+export default SecondaryFilterMobile;

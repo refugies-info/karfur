@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import SearchFilterMobile from "./SearchFilter.mobile";
-import SearchFilterDesktop from "./SearchFilter.desktop";
+import SecondaryFilterMobile from "./SecondaryFilter.mobile";
+import SecondaryFilterDesktop from "./SecondaryFilter.desktop";
 
 export type Selected = AgeOptions | FrenchOptions | string;
 
@@ -14,7 +14,7 @@ interface Props {
   gaType: string;
 }
 
-const SearchFilter = (props: Props) => {
+const SecondaryFilter = (props: Props) => {
   const selectItem = (option: string) => {
     if (props.selected.includes(option)) {
       props.setSelected([...props.selected].filter((opt) => opt !== option));
@@ -24,7 +24,7 @@ const SearchFilter = (props: Props) => {
   };
 
   return !props.mobile ? (
-    <SearchFilterDesktop
+    <SecondaryFilterDesktop
       label={props.label}
       selected={props.selected}
       options={props.options}
@@ -32,7 +32,7 @@ const SearchFilter = (props: Props) => {
       gaType={props.gaType}
     />
   ) : (
-    <SearchFilterMobile
+    <SecondaryFilterMobile
       label={props.label}
       selected={props.selected}
       options={props.options}
@@ -42,4 +42,4 @@ const SearchFilter = (props: Props) => {
   );
 };
 
-export default SearchFilter;
+export default SecondaryFilter;

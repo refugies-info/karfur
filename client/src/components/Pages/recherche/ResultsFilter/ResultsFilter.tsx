@@ -5,40 +5,41 @@ import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ResultsFilter.module.scss";
 
 interface Props {
-  nbDemarches: number;
-  nbDispositifs: number;
   nbThemesSelected: number;
 }
 
-const ResultsFilter = (props: Props) => {
+const ResultsFilter = ({ nbThemesSelected }: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const query = useSelector(searchQuerySelector);
+  const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
+
+  const nbDemarches = filteredResult.demarches.length;
+  const nbDispositifs = filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length;
 
   const getCount = (type: string) => {
     switch (type) {
       case "all":
-        return `(${props.nbDemarches + props.nbDispositifs})`;
+        return `(${nbDemarches + nbDispositifs})`;
       case "demarche":
-        return `(${props.nbDemarches})`;
+        return `(${nbDemarches})`;
       case "dispositif":
-        return `(${props.nbDispositifs})`;
+        return `(${nbDispositifs})`;
       default:
         return "";
     }
   };
 
-  const noResult = props.nbDemarches + props.nbDispositifs === 0;
+  const noResult = nbDemarches + nbDispositifs === 0;
 
-  const { nbThemesSelected } = props;
   useEffect(() => {
     // if we select 1 theme, and sort option was "theme", change it
     if (nbThemesSelected === 1 && query.sort === "theme") {
@@ -95,7 +96,7 @@ const ResultsFilter = (props: Props) => {
               {sortOptions
                 .filter((option) => {
                   // do not show theme option if 1 theme only is selected
-                  if (props.nbThemesSelected === 1) return option.key !== "theme";
+                  if (nbThemesSelected === 1) return option.key !== "theme";
                   return true;
                 })
                 .map((option, i) => {

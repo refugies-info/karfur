@@ -16,7 +16,7 @@ import { searchQuerySelector } from "services/SearchResults/searchResults.select
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
 import SearchResults from "components/Pages/recherche/SearchResults";
-import EmbedHeader from "components/Pages/recherche/EmbedHeader";
+import EmbedHeader from "components/Pages/embed/EmbedHeader";
 import LogoDiair from "assets/embed/logo-diair.png";
 import LogoRI from "assets/embed/logo-ri-inline.png";
 import styles from "scss/pages/recherche.module.scss";

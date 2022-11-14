@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
-import { ContentType, SearchDispositif } from "types/interface";
-import DemarcheCard from "../DemarcheCard";
-import DispositifCard from "../DispositifCard";
-import styles from "./CardSlider.module.scss";
 import { Button } from "reactstrap";
+import { ContentType, SearchDispositif } from "types/interface";
+import DemarcheCard from "components/UI/DemarcheCard";
+import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import styles from "./CardSlider.module.scss";
 
 interface Props {
   cards: SearchDispositif[];

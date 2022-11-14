@@ -4,8 +4,8 @@ import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import Checkbox from "components/UI/Checkbox";
-import { Selected } from "./SearchFilter";
-import styles from "./SearchFilter.desktop.module.scss";
+import { Selected } from "./SecondaryFilter";
+import styles from "./SecondaryFilter.desktop.module.scss";
 
 interface Props {
   options: { key: Selected; value: string | React.ReactNode }[];
@@ -15,7 +15,7 @@ interface Props {
   gaType: string;
 }
 
-const SearchFilterDesktop = (props: Props) => {
+const SecondaryFilterDesktop = (props: Props) => {
   const { selectItem, gaType } = props;
   const [open, setOpen] = useState(false);
 
@@ -72,4 +72,4 @@ const SearchFilterDesktop = (props: Props) => {
   );
 };
 
-export default SearchFilterDesktop;
+export default SecondaryFilterDesktop;

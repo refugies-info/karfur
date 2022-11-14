@@ -14,7 +14,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
-import SearchFilter from "../SearchFilter";
+import SecondaryFilter from "../SecondaryFilter";
 import styles from "./SearchHeader.desktop.module.scss";
 
 interface Props {
@@ -85,8 +85,8 @@ const SearchHeaderDesktop = (props: Props) => {
     }
   }, []);
 
+  // prevent close dropdown on space
   useEffect(() => {
-    // prevent close dropdown on space
     if (themesOpen || locationOpen) {
       document.addEventListener("keyup", handleSpaceKey);
     }
@@ -236,7 +236,7 @@ const SearchHeaderDesktop = (props: Props) => {
         {!props.searchMinified && (
           <div className={styles.subheader}>
             <div className={styles.filters}>
-              <SearchFilter
+              <SecondaryFilter
                 mobile={false}
                 label={query.age.length === 0 ? t("Recherche.filterAge", "Tranche d'âge") : ageDisplayedValue}
                 selected={query.age}
@@ -245,7 +245,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
                 gaType="age"
               />
-              <SearchFilter
+              <SecondaryFilter
                 mobile={false}
                 label={
                   query.frenchLevel.length === 0
@@ -258,7 +258,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
                 gaType="frenchLevel"
               />
-              <SearchFilter
+              <SecondaryFilter
                 mobile={false}
                 label={
                   query.language.length === 0

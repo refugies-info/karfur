@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { colors } from "colors";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./HomeTypeCard.module.scss";
@@ -25,10 +24,7 @@ const HomeTypeCard = (props: Props) => {
       <div className={styles.image}>
         <Image src={props.image} width={120} height={120} alt={props.title} />
       </div>
-      <h3
-        className={cls("h4", styles.title)}
-        dangerouslySetInnerHTML={{ __html: props.title }}
-      ></h3>
+      <h3 className={cls("h4", styles.title)} dangerouslySetInnerHTML={{ __html: props.title }}></h3>
       <p>
         {props.examples.map((text, i) => (
           <span key={i}>
@@ -39,10 +35,7 @@ const HomeTypeCard = (props: Props) => {
       </p>
       <div className={styles.btn}>
         {props.buttonTitle}
-        <EVAIcon
-          name="arrow-forward-outline"
-          fill="white"
-        />
+        <EVAIcon name="arrow-forward-outline" fill="white" />
       </div>
     </button>
   );

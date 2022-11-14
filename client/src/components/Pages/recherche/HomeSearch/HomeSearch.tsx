@@ -12,10 +12,10 @@ import { SearchDispositif } from "types/interface";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
-import HomeTypeCard from "../HomeTypeCard";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
 import illuLocation from "assets/recherche/illu-location.png";
+import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
 
@@ -69,7 +69,6 @@ const HomeSearch = (props: Props) => {
   };
   const selectType = (type: TypeOptions) => {
     dispatch(addToQueryActionCreator({ type: type }));
-    window.scrollTo(0, 0);
     Event("USE_SEARCH", "use home search", "click type");
   };
   const selectDepartment = (department: string) => {
@@ -124,12 +123,12 @@ const HomeSearch = (props: Props) => {
         <Container className={styles.container_inner}>
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
-            <Button onClick={() => selectType("demarche")}>Voir tout</Button>
+            <Button onClick={() => selectType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
           <CardSlider cards={props.demarches} type="demarche" />
           <div className={styles.title_line}>
             <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
-            <Button onClick={() => selectType("dispositif")}>Voir tout</Button>
+            <Button onClick={() => selectType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
           <CardSlider cards={props.dispositifs} type="dispositif" />
         </Container>

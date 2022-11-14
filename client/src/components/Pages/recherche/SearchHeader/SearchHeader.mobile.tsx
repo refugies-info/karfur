@@ -13,7 +13,7 @@ import { Event } from "lib/tracking";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
-import SearchFilter from "../SearchFilter";
+import SecondaryFilter from "../SecondaryFilter";
 import DropdownMenuMobile from "../DropdownMenuMobile";
 import styles from "./SearchHeader.mobile.module.scss";
 
@@ -210,6 +210,7 @@ const SearchHeaderMobile = (props: Props) => {
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
+
         <div className={styles.right}>
           <Dropdown isOpen={showFilters} toggle={toggleFilters} className={cls(styles.dropdown, styles.filters)}>
             <DropdownToggle>
@@ -227,7 +228,7 @@ const SearchHeaderMobile = (props: Props) => {
                 nbResults={props.nbResults}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterAge", "Tranche d'âge")}
                     selected={query.age}
@@ -236,7 +237,7 @@ const SearchHeaderMobile = (props: Props) => {
                     options={ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }))}
                     gaType="age"
                   />
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterFrenchLevel", "Niveau de français")}
                     selected={query.frenchLevel}
@@ -247,7 +248,7 @@ const SearchHeaderMobile = (props: Props) => {
                     options={frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }))}
                     gaType="frenchLevel"
                   />
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterLanguage", "Fiches traduites en")}
                     selected={query.language}

@@ -13,23 +13,23 @@ import { getTheme, getThemes } from "lib/getTheme";
 import { getDispositifInfos } from "lib/getDispositifInfos";
 import { themesSelector } from "services/Themes/themes.selectors";
 import ThemeBadge from "components/UI/ThemeBadge";
+import FavoriteButton from "components/UI/FavoriteButton";
 import iconMap from "assets/recherche/icon-map.svg";
 import iconTime from "assets/recherche/icon-time.svg";
 import iconEuro from "assets/recherche/icon-euro.svg";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCard.module.scss";
-import FavoriteButton from "components/UI/FavoriteButton";
 
 type DispositifLinkProps = {
   background: string;
   border: string;
 };
-const DispositifLink = styled.a`
+const DispositifLink = styled.a<DispositifLinkProps>`
   :hover {
-    background-color: ${(props: DispositifLinkProps) => props.background} !important;
-    border-color: ${(props: DispositifLinkProps) => props.border} !important;
-    color: ${(props: DispositifLinkProps) => props.border} !important;
+    background-color: ${(props) => props.background} !important;
+    border-color: ${(props) => props.border} !important;
+    color: ${(props) => props.border} !important;
   }
 `;
 

@@ -162,8 +162,6 @@ const Recherche = () => {
         nbResults={nbResults}
         themesDisplayed={themesDisplayed}
         resetFilters={resetFilters}
-        nbDemarches={filteredResult.demarches.length}
-        nbDispositifs={filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length}
       />
 
       {!showHome ? (

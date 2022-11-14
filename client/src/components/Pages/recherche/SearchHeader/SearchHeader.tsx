@@ -4,12 +4,12 @@ import { throttle } from "lodash";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
+import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import SearchHeaderMobile from "./SearchHeader.mobile";
 import SearchHeaderDesktop from "./SearchHeader.desktop";
-import useWindowSize from "hooks/useWindowSize";
 import ResultsFilter from "../ResultsFilter";
 import styles from "./SearchHeader.module.scss";
 
@@ -20,8 +20,6 @@ interface Props {
   nbResults: number;
   themesDisplayed: Theme[];
   resetFilters: () => void;
-  nbDemarches: number;
-  nbDispositifs: number;
 }
 
 const SearchHeader = (props: Props) => {
@@ -29,6 +27,7 @@ const SearchHeader = (props: Props) => {
   const locale = useLocale();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const { isMobile } = useWindowSize();
 
   // KEYWORD
   const [searchFocused, setSearchFocused] = useState(false);
@@ -80,8 +79,6 @@ const SearchHeader = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationSearch]);
 
-  const { isMobile } = useWindowSize();
-
   // SCROLL
   const [scrolled, setScrolled] = useState(true);
   useEffect(() => {
@@ -132,13 +129,7 @@ const SearchHeader = (props: Props) => {
           />
         )}
 
-        {!props.searchMinified && (
-          <ResultsFilter
-            nbDemarches={props.nbDemarches}
-            nbDispositifs={props.nbDispositifs}
-            nbThemesSelected={props.themesDisplayed.length}
-          />
-        )}
+        {!props.searchMinified && <ResultsFilter nbThemesSelected={props.themesDisplayed.length} />}
       </div>
     </>
   );
