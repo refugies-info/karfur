@@ -347,4 +347,131 @@ describe("getContentsForApp", () => {
       ]
     });
   });
+
+  it("should call getContentsForApp and filter geoloc (strict)", async () => {
+    const data = [
+      {
+        _id: "id1",
+        titreInformatif: "TI1",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["38 - Isère"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false
+              }
+            ]
+          }
+        ],
+        nbVues: 2,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
+        typeContenu: "dispositif"
+      },
+
+      {
+        _id: "id3",
+        titreInformatif: "TI3",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["All"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false
+              }
+            ]
+          }
+        ],
+        nbVues: 2,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
+        typeContenu: "dispositif"
+      },
+      {
+        _id: "id4",
+        titreInformatif: "TI4",
+        contenu: [
+          {},
+          {
+            children: [
+              {
+                type: "card",
+                isFakeContent: false,
+                title: "Zone d'action",
+                titleIcon: "pin-outline",
+                typeIcon: "eva",
+                departments: ["75 - Paris"],
+                free: true,
+                contentTitle: "Sélectionner",
+                editable: false
+              }
+            ]
+          }
+        ],
+        nbVues: 2,
+        nbVuesMobile: 5,
+        needs: [],
+        mainSponsor: { picture: { secure_url: "url" } },
+
+        theme: { _id: "theme1" },
+        secondaryThemes: [],
+        typeContenu: "dispositif"
+      }
+    ];
+    getActiveContentsFiltered.mockResolvedValueOnce(data);
+    const req = {
+      fromSite: true,
+      query: {
+        locale: "fr",
+        department: "Paris",
+        strictLocation: "1"
+      }
+    };
+    const query = {
+      status: "Actif"
+    };
+    await getContentsForApp(req, res);
+    expect(getActiveContentsFiltered).toHaveBeenCalledWith(neededFields, query);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      dataFr: [
+        {
+          _id: "id4",
+          avancement: undefined,
+          titreInformatif: "TI4",
+          titreMarque: "",
+          nbVues: 2,
+          nbVuesMobile: 5,
+          needs: [],
+          sponsorUrl: "url",
+          theme: { _id: "theme1" },
+          secondaryThemes: [],
+          typeContenu: "dispositif"
+        }
+      ]
+    });
+  });
 });
