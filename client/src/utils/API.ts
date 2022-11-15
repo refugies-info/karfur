@@ -9,7 +9,7 @@ import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
-type Response<T = any> = AxiosResponse<{text: string, data: T}>
+type Response<T = any> = AxiosResponse<{ text: string, data: T }>
 
 //@ts-ignore
 axios.withCredentials = true;
@@ -151,7 +151,7 @@ const API = {
     return instance.get("/dispositifs/getUserContributions", { headers })
   },
   updateUserFavorites: (query: {
-    dispositifId: ObjectId
+    dispositifId: ObjectId | null
     type: string
   }) => {
     const headers = getHeaders();
@@ -190,7 +190,7 @@ const API = {
       headers,
     });
   },
-  count_dispositifs: (query: any): Promise<AxiosResponse<number>>  => {
+  count_dispositifs: (query: any): Promise<AxiosResponse<number>> => {
     const headers = getHeaders();
     return instance.post("/dispositifs/count_dispositifs", query, {
       headers,
@@ -310,28 +310,28 @@ const API = {
   getNeeds: () => {
     return instance.get("/needs")
   },
-  postNeeds: (query: Partial<Need>) =>{
+  postNeeds: (query: Partial<Need>) => {
     const headers = getHeaders();
     return instance.post("/needs", query, {
       headers,
     })
   },
-  patchNeed: (query: Partial<Need>) =>{
+  patchNeed: (query: Partial<Need>) => {
     const headers = getHeaders();
-    const newNeed = {...query};
+    const newNeed = { ...query };
     delete newNeed._id;
     return instance.patch(`/needs/${query._id}`, newNeed, {
       headers,
     })
   },
-  orderNeeds: (query: ObjectId[]) =>{
+  orderNeeds: (query: ObjectId[]) => {
     const headers = getHeaders();
     return instance.post("/needs/positions",
       { orderedNeedIds: query },
       { headers }
     )
   },
-  deleteNeed: (query: ObjectId) =>{
+  deleteNeed: (query: ObjectId) => {
     const headers = getHeaders();
     return instance.delete(`/needs/${query}`, { headers })
   },
@@ -340,21 +340,21 @@ const API = {
   getThemes: () => {
     return instance.get("/themes")
   },
-  postThemes: (query: Partial<Theme>) =>{
+  postThemes: (query: Partial<Theme>) => {
     const headers = getHeaders();
     return instance.post("/themes", query, {
       headers,
     })
   },
-  patchTheme: (query: Partial<Theme>) =>{
+  patchTheme: (query: Partial<Theme>) => {
     const headers = getHeaders();
-    const newTheme = {...query};
+    const newTheme = { ...query };
     delete newTheme._id;
     return instance.patch(`/themes/${query._id}`, newTheme, {
       headers,
     })
   },
-  deleteTheme: (query: ObjectId) =>{
+  deleteTheme: (query: ObjectId) => {
     const headers = getHeaders();
     return instance.delete(`/themes/${query}`, { headers })
   },
@@ -364,19 +364,19 @@ const API = {
     const headers = getHeaders();
     return instance.get("/widgets", { headers });
   },
-  postWidgets: (query: Partial<Widget>) =>{
+  postWidgets: (query: Partial<Widget>) => {
     const headers = getHeaders();
     return instance.post("/widgets", query, {
       headers,
     })
   },
-  patchWidget: (query: Partial<Widget>) =>{
+  patchWidget: (query: Partial<Widget>) => {
     const headers = getHeaders();
     return instance.patch(`/widgets/${query._id}`, query, {
       headers,
     })
   },
-  deleteWidget: (query: ObjectId) =>{
+  deleteWidget: (query: ObjectId) => {
     const headers = getHeaders();
     return instance.delete(`/widgets/${query}`, { headers })
   },
@@ -482,7 +482,7 @@ const API = {
   },
 
   // Notifications
-  sendNotification: (demarcheId: string|ObjectId): Promise<Response<AdminOption>> => {
+  sendNotification: (demarcheId: string | ObjectId): Promise<Response<AdminOption>> => {
     const headers = getHeaders();
     return instance.post("/notifications/send", { demarcheId }, { headers });
   },
@@ -494,7 +494,7 @@ const API = {
   },
   setAdminOption: (key: string, value: any): Promise<Response<AdminOption>> => {
     const headers = getHeaders();
-    return instance.post(`/options/${key}`, {value} ,{ headers });
+    return instance.post(`/options/${key}`, { value }, { headers });
   },
 
   // tts

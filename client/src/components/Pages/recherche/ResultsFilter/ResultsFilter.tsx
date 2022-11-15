@@ -1,77 +1,121 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import React, { useCallback, useEffect, useState } from "react";
+import { Button, Container, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ResultsFilter.module.scss";
 
 interface Props {
-  nbDemarches: number;
-  nbDispositifs: number;
-  selectedSort: SortOptions;
-  setSelectedSort: Dispatch<SetStateAction<SortOptions>>;
-  selectedType: TypeOptions;
-  setSelectedType: Dispatch<SetStateAction<TypeOptions>>;
-  showSort: boolean;
+  nbThemesSelected: number;
 }
 
-const ResultsFilter = (props: Props) => {
+const ResultsFilter = ({ nbThemesSelected }: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const query = useSelector(searchQuerySelector);
+  const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
+
+  const nbDemarches = filteredResult.demarches.length;
+  const nbDispositifs = filteredResult.dispositifs.length + filteredResult.dispositifsSecondaryTheme.length;
 
   const getCount = (type: string) => {
     switch (type) {
       case "all":
-        return `(${props.nbDemarches + props.nbDispositifs})`;
+        return `(${nbDemarches + nbDispositifs})`;
       case "demarche":
-        return `(${props.nbDemarches})`;
+        return `(${nbDemarches})`;
       case "dispositif":
-        return `(${props.nbDispositifs})`;
+        return `(${nbDispositifs})`;
       default:
         return "";
     }
   };
 
-  const noResult = props.nbDemarches + props.nbDispositifs === 0;
+  const noResult = nbDemarches + nbDispositifs === 0;
+
+  useEffect(() => {
+    // if we select 1 theme, and sort option was "theme", change it
+    if (nbThemesSelected === 1 && query.sort === "theme") {
+      dispatch(addToQueryActionCreator({ sort: "date" }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nbThemesSelected]);
+
+  const selectType = useCallback(
+    (key: TypeOptions) => {
+      dispatch(addToQueryActionCreator({ type: key }));
+      Event("USE_SEARCH", "use type filter", "click type");
+    },
+    [dispatch]
+  );
+
+  const toggleSort = useCallback(() => {
+    setOpen((o) => {
+      if (!o) Event("USE_SEARCH", "open filter", "sort");
+      return !o;
+    });
+  }, [setOpen]);
+
+  const selectSort = useCallback(
+    (key: SortOptions) => {
+      dispatch(addToQueryActionCreator({ sort: key }));
+      Event("USE_SEARCH", "click filter", "sort");
+    },
+    [dispatch]
+  );
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
-      <div className={styles.types}>
-        {filterType.map((option, i) => (
-          <Button
-            key={i}
-            className={cls(styles.btn, props.selectedType === option.key && styles.selected)}
-            onClick={() => props.setSelectedType(option.key)}
-          >
-            {t(option.value)} {getCount(option.key)}
-          </Button>
-        ))}
-      </div>
+      <Container className={styles.container_inner}>
+        <div className={styles.types}>
+          {filterType.map((option, i) => (
+            <Button
+              key={i}
+              className={cls(styles.btn, query.type === option.key && styles.selected)}
+              onClick={() => selectType(option.key)}
+            >
+              {t(option.value)} {getCount(option.key)}
+            </Button>
+          ))}
+        </div>
 
-      {props.showSort && (
-        <Dropdown isOpen={open} toggle={() => setOpen((o) => !o)}>
-          <DropdownToggle className={styles.dropdown}>
-            <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-            {t(sortOptions.find((opt) => opt.key === props.selectedSort)?.value || "")}
-          </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
-            {sortOptions.map((option, i) => {
-              const isSelected = props.selectedSort === option.key;
-              return (
-                <DropdownItem
-                  key={i}
-                  onClick={() => props.setSelectedSort(option.key)}
-                  className={cls(styles.item, isSelected && styles.selected)}
-                >
-                  {t(option.value)}
-                  {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
-                </DropdownItem>
-              );
-            })}
-          </DropdownMenu>
-        </Dropdown>
-      )}
+        {!query.search && (
+          <Dropdown isOpen={open} toggle={toggleSort}>
+            <DropdownToggle className={styles.dropdown}>
+              <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
+              {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
+            </DropdownToggle>
+            <DropdownMenu className={styles.menu}>
+              {sortOptions
+                .filter((option) => {
+                  // do not show theme option if 1 theme only is selected
+                  if (nbThemesSelected === 1) return option.key !== "theme";
+                  return true;
+                })
+                .map((option, i) => {
+                  const isSelected = query.sort === option.key;
+                  return (
+                    <DropdownItem
+                      key={i}
+                      onClick={() => selectSort(option.key)}
+                      className={cls(styles.item, isSelected && styles.selected)}
+                    >
+                      {t(option.value)}
+                      {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
+                    </DropdownItem>
+                  );
+                })}
+            </DropdownMenu>
+          </Dropdown>
+        )}
+      </Container>
     </div>
   );
 };

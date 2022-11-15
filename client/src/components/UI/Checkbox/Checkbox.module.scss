@@ -37,10 +37,14 @@
   display: inline-block;
   pointer-events: none;
   position: relative;
-  top: -1px;
 
   @include rtl() {
     left: inherit;
     right: 0;
+  }
+
+  i {
+    display: inline-flex;
+    align-items: center;
   }
 }

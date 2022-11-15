@@ -1,3 +1,5 @@
+import { ObjectId } from "mongodb";
+
 export const activeThemesMock = [
   {
     colors: {
@@ -32,7 +34,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df5",
+    _id: "6319f6b363ab2bbb162d7df5" as unknown as ObjectId,
     name: {
       fr: "apprendre le français",
       en: "learn French",
@@ -55,7 +57,8 @@ export const activeThemesMock = [
     },
     position: 2,
     notificationEmoji: "🇫🇷",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -90,7 +93,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df6",
+    _id: "6319f6b363ab2bbb162d7df6" as unknown as ObjectId,
     name: {
       fr: "gérer mes papiers",
       en: "manage my paperwork",
@@ -113,7 +116,8 @@ export const activeThemesMock = [
     },
     position: 1,
     notificationEmoji: "📝",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -148,7 +152,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df7",
+    _id: "6319f6b363ab2bbb162d7df7" as unknown as ObjectId,
     name: {
       fr: "me loger",
       en: "find housing",
@@ -171,7 +175,8 @@ export const activeThemesMock = [
     },
     position: 5,
     notificationEmoji: "🏡",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -206,7 +211,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df8",
+    _id: "6319f6b363ab2bbb162d7df8" as unknown as ObjectId,
     name: {
       fr: "me déplacer",
       en: "move about",
@@ -229,7 +234,8 @@ export const activeThemesMock = [
     },
     position: 7,
     notificationEmoji: "🚗",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -264,7 +270,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7df9",
+    _id: "6319f6b363ab2bbb162d7df9" as unknown as ObjectId,
     name: {
       fr: "trouver un travail",
       en: "find a job",
@@ -287,7 +293,8 @@ export const activeThemesMock = [
     },
     position: 4,
     notificationEmoji: "💼",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -322,7 +329,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfa",
+    _id: "6319f6b363ab2bbb162d7dfa" as unknown as ObjectId,
     name: {
       fr: "me soigner",
       en: "get medical care",
@@ -345,7 +352,8 @@ export const activeThemesMock = [
     },
     position: 6,
     notificationEmoji: "👨\u200d⚕️",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -380,7 +388,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfb",
+    _id: "6319f6b363ab2bbb162d7dfb" as unknown as ObjectId,
     name: {
       fr: "apprendre un métier",
       en: "learn a job",
@@ -403,7 +411,8 @@ export const activeThemesMock = [
     },
     position: 3,
     notificationEmoji: "👩🏼\u200d🏫",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -438,7 +447,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfc",
+    _id: "6319f6b363ab2bbb162d7dfc" as unknown as ObjectId,
     name: {
       fr: "faire des études",
       en: "study",
@@ -461,7 +470,8 @@ export const activeThemesMock = [
     },
     position: 9,
     notificationEmoji: "🎓",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -496,7 +506,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfd",
+    _id: "6319f6b363ab2bbb162d7dfd" as unknown as ObjectId,
     name: {
       fr: "aider une association",
       en: "help an association",
@@ -519,7 +529,8 @@ export const activeThemesMock = [
     },
     position: 10,
     notificationEmoji: "🤝",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -554,7 +565,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dfe",
+    _id: "6319f6b363ab2bbb162d7dfe" as unknown as ObjectId,
     name: {
       fr: "rencontrer des gens",
       en: "meet people",
@@ -577,7 +588,8 @@ export const activeThemesMock = [
     },
     position: 8,
     notificationEmoji: "💬",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -612,7 +624,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7dff",
+    _id: "6319f6b363ab2bbb162d7dff" as unknown as ObjectId,
     name: {
       fr: "occuper mon temps libre",
       en: "occupy my free time",
@@ -635,7 +647,8 @@ export const activeThemesMock = [
     },
     position: 11,
     notificationEmoji: "⚽",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -670,7 +683,7 @@ export const activeThemesMock = [
       public_id: "",
       imgId: ""
     },
-    _id: "6319f6b363ab2bbb162d7e00",
+    _id: "6319f6b363ab2bbb162d7e00" as unknown as ObjectId,
     name: {
       fr: "découvrir la culture",
       en: "discover French culture",
@@ -693,7 +706,8 @@ export const activeThemesMock = [
     },
     position: 12,
     notificationEmoji: "🏰",
-    active: true
+    active: true,
+    adminComments: ""
   },
   {
     colors: {
@@ -728,7 +742,7 @@ export const activeThemesMock = [
       public_id: "pictures/wndug5571lzvcs1sguc1",
       imgId: "631f4d52d4047aca79ffd170"
     },
-    _id: "631f3bfe68917b340a04120c",
+    _id: "631f3bfe68917b340a04120c" as unknown as ObjectId,
     name: {
       fr: "famille",
       uk: "Сім‘я",
@@ -754,6 +768,7 @@ export const activeThemesMock = [
     created_at: "2022-09-12T14:02:38.447Z",
     updatedAt: "2022-09-13T08:41:38.952Z",
     __v: 0,
-    active: true
+    active: true,
+    adminComments: ""
   }
 ]

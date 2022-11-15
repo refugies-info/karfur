@@ -1,3 +1,6 @@
+import { RootState } from "services/rootReducer";
+import { SearchResultsState } from "services/SearchResults/searchResults.reducer";
+import { UserFavoritesState } from "services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { activeThemesMock } from "./activeThemes";
 
 const initialMockUserState = {
@@ -26,6 +29,30 @@ const initialMockTranslationState = {
   translations: [],
 };
 
+const initialUserFavoritesState: UserFavoritesState = {
+  favorites: [],
+  showFavoriteModal: false
+}
+
+const initialMockSearchReults: SearchResultsState = {
+  results: {
+    dispositifs: [],
+    demarches: [],
+    dispositifsSecondaryTheme: []
+  },
+  query: {
+    search: "",
+    departments: [],
+    themes: [],
+    needs: [],
+    age: [],
+    frenchLevel: [],
+    language: [],
+    sort: "date",
+    type: "all",
+  }
+}
+
 export const initialMockStore = {
   user: initialMockUserState,
   langue: initialMockLangueState,
@@ -40,11 +67,12 @@ export const initialMockStore = {
   allDispositifs: [],
   allStructures: [],
   users: [],
-  userFavorites: [],
+  userFavorites: initialUserFavoritesState,
   userContributions: [],
   needs: [],
   themes: {
     activeThemes: activeThemesMock,
     inactiveThemes: []
-  }
+  },
+  searchResults: initialMockSearchReults
 };

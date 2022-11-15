@@ -13,12 +13,12 @@ import { CardContainer, FavoritesContainer, CardsContainer } from "./components/
 import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import FButton from "components/UI/FButton/FButton";
+import DemarcheCard from "components/UI/DemarcheCard";
+import DispositifCard from "components/UI/DispositifCard";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import Navigation from "../Navigation";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import DemarcheCard from "components/Pages/recherche/DemarcheCard";
-import DispositifCard from "components/Pages/recherche/DispositifCard";
 
 export const MainContainer = styled.div`
   display: flex;

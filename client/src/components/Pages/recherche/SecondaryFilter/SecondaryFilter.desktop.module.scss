@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .dropdown {
@@ -11,9 +12,9 @@
     background: $gray30;
     color: $gray80;
     border: none;
-    padding: u(3) u(6) u(3) u(2);
+    padding: u(3) u(7) u(3) u(2);
     border-radius: u(2);
-    max-width: 200px;
+    max-width: 250px;
     height: 45px;
     position: relative;
 
@@ -43,6 +44,7 @@
   &.show > button {
     background: $white !important;
     color: $darkColor !important;
+    z-index: 12;
   }
 
   &.selected > button {
@@ -60,11 +62,13 @@
 }
 
 .value {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  @include text("normal");
 }
 
 /* Override global style */
@@ -84,6 +88,7 @@ html body .dropdown.show > button {
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
+  @include text("normal");
 
   &:hover {
     background: $gray40b;
@@ -110,4 +115,16 @@ html body .dropdown.show > button {
     background: $bleuCharte !important;
     color: $white !important;
   }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
 }

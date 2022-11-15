@@ -11,7 +11,7 @@
   box-shadow: 0 4px 18px 0 #0000001a;
   padding: u(4);
   border-radius: $radius;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
 
   // typeContenu
@@ -20,7 +20,7 @@
 
     @include isMobile() {
       width: 100%;
-      min-width: 180px;
+      min-width: 60vw;
     }
 
     &.content {
@@ -82,12 +82,9 @@
 }
 
 .text {
-  font-size: 28px;
-  line-height: 35px;
   @include text("h4");
   margin-top: u(6);
   margin-bottom: u(6);
-  font-weight: bold;
   color: $white;
 }
 
@@ -95,8 +92,21 @@
   padding: u(1) u(2);
   background: $white;
   color: $bleuCharte;
-  @include text("large");
+  @include text("h5");
   border-radius: 4px;
-  font-weight: bold;
   display: inline-block;
+}
+
+/* Favorite button */
+.card {
+  .favorite {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: none;
+    z-index: 5;
+  }
+  &:hover .favorite {
+    display: block;
+  }
 }

@@ -42,7 +42,7 @@
 }
 
 .results {
-  margin-bottom: 120px;
+  margin-bottom: 80px;
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -64,6 +64,12 @@
         padding-right: 15px;
         padding-bottom: 15px;
       }
+    }
+  }
+
+  @include isDesktop() {
+    &.all_visible {
+      margin-bottom: 220px;
     }
   }
 }

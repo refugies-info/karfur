@@ -2,6 +2,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 @import "src/scss/variables";
 
 .container {
@@ -9,6 +10,7 @@
 
   label {
     font-weight: bold;
+    @include text("normal");
   }
 }
 
@@ -20,6 +22,7 @@
   border: 1px solid $bleuCharte;
   color: $bleuCharte;
   background: $white;
+  @include text("normal");
 
   @include rtl() {
     margin-left: u(2);

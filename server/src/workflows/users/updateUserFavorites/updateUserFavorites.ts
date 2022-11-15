@@ -28,14 +28,14 @@ export const updateUserFavorites = async (
     const user = req.user;
 
     if (type === "remove-all") {
-      await updateUserInDB(user._id, { cookies: undefined });
+      await updateUserInDB(user._id, { cookies: { dispositifsPinned: [] } });
       return res.status(200).json({ text: "OK" });
     }
 
     const actualFavorites =
       user.cookies &&
-      user.cookies.dispositifsPinned &&
-      user.cookies.dispositifsPinned.length > 0
+        user.cookies.dispositifsPinned &&
+        user.cookies.dispositifsPinned.length > 0
         ? user.cookies.dispositifsPinned
         : [];
     const updatedFavorites = actualFavorites.filter(

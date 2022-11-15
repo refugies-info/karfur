@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { colors } from "colors";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./HomeTypeCard.module.scss";
@@ -8,6 +7,7 @@ import styles from "./HomeTypeCard.module.scss";
 interface Props {
   image: any;
   title: string;
+  buttonTitle: string;
   examples: string[];
   onClick: () => void;
 }
@@ -21,16 +21,22 @@ const HomeTypeCard = (props: Props) => {
         window.scrollTo(0, 0);
       }}
     >
-      <Image src={props.image} width={160} height={160} alt={props.title} />
-      <h3 className={cls("h5", styles.title)}>{props.title}</h3>
-      <ul>
+      <div className={styles.image}>
+        <Image src={props.image} width={120} height={120} alt={props.title} />
+      </div>
+      <h3 className={cls("h4", styles.title)} dangerouslySetInnerHTML={{ __html: props.title }}></h3>
+      <p>
         {props.examples.map((text, i) => (
-          <li key={i}>
-            <EVAIcon name="checkmark-outline" fill={colors.gray80} size={20} className="mr-2" />
+          <span key={i}>
             {text}
-          </li>
+            {i + 2 < props.examples.length && ", "}
+          </span>
         ))}
-      </ul>
+      </p>
+      <div className={styles.btn}>
+        {props.buttonTitle}
+        <EVAIcon name="arrow-forward-outline" fill="white" />
+      </div>
     </button>
   );
 };

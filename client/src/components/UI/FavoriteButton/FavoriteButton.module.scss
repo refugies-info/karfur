@@ -1,0 +1,48 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/btn";
+@import "src/scss/variables";
+
+.btn {
+  width: u(8);
+  height: u(8);
+  border-radius: 50%;
+  padding: 0;
+  background: $white;
+  border: none;
+
+  &,
+  & span,
+  & span > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon_fill {
+    display: none;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $white !important;
+  }
+
+  &:hover,
+  &.active {
+    .icon_outline {
+      display: none;
+    }
+
+    .icon_fill {
+      display: flex;
+    }
+  }
+
+  &.active {
+    background: $bleuCharte !important;
+    display: flex !important;
+  }
+}
