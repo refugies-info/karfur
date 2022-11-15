@@ -31,7 +31,7 @@ const MainContainer = Animated.createAnimatedComponent(styled(
   showSimplifiedHeader: boolean;
 }>`
   padding-bottom: ${({ showSimplifiedHeader, theme }) =>
-    showSimplifiedHeader ? 0 : theme.margin * 2}px;
+    showSimplifiedHeader ? 0 : theme.margin * 1}px;
   z-index: 4;
   ${({ showShadow, theme }) => (showShadow ? theme.shadows.xs : "")}
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -58,10 +58,12 @@ const ICON_SIZE = 24;
 const LOGO_WIDTH = 58;
 const LOGO_HEIGHT = 40;
 
-const TitleContainer = styled(Animated.View)<{ showSimplifiedHeader: boolean }>`
-  margin-bottom: ${({ showSimplifiedHeader, theme }) =>
-    showSimplifiedHeader ? 0 : theme.margin * 2}px;
-`;
+const TitleContainer = styled(Animated.View)<{
+  showSimplifiedHeader: boolean;
+}>``;
+
+//   margin-bottom: ${({ showSimplifiedHeader, theme }) =>
+// showSimplifiedHeader ? 0 : theme.margin * 2}px;
 
 const Title = styled(Animated.Text)<{
   hasBackgroundImage?: boolean;
