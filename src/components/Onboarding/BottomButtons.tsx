@@ -1,16 +1,16 @@
-import * as React from "react";
+import React from "react";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { styles } from "../../theme";
 import { RowContainer, RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextSmallBold } from "../StyledText";
 import { Icon } from "react-native-eva-icons";
-import { View } from "react-native";
+import { Columns } from "../layout";
 
 const LeftButtonContainer = styled.TouchableOpacity`
   padding-vertical: ${styles.radius * 3}px;
   border-radius: ${styles.radius * 2}px;
-  height: 56px;
+  min-height: 56px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,13 +18,12 @@ const LeftButtonContainer = styled.TouchableOpacity`
 
 const RightButtonContainer = styled(RTLTouchableOpacity)`
   background-color: ${styles.colors.darkBlue};
-  opacity: ${(props: { isDisabled: boolean }) =>
-    props.isDisabled ? 0.4 : 1};
+  opacity: ${(props: { isDisabled: boolean }) => (props.isDisabled ? 0.4 : 1)};
   border-radius: ${styles.radius * 2}px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 56px;
+  min-height: 56px;
   align-items: center;
   ${(props: { isDisabled: boolean }) =>
     props.isDisabled ? "" : styles.shadows.sm}
@@ -56,17 +55,15 @@ export const BottomButtons = (props: Props) => {
   const { t } = useTranslationWithRTL();
   return (
     <BottomButtonsContainer>
-      <View style={{ paddingRight: 4, width: "50%" }}>
+      <Columns>
         <LeftButtonContainer
           onPress={props.onLeftButtonClick}
           accessibilityRole="button"
         >
-          <StyledTextSmallBold style={{color: styles.colors.darkBlue}}>
+          <StyledTextSmallBold style={{ color: styles.colors.darkBlue }}>
             {t("onboarding_screens.skip_step_button", "Passer l'étape")}
           </StyledTextSmallBold>
         </LeftButtonContainer>
-      </View>
-      <View style={{ paddingLeft: 4, width: "50%" }}>
         <RightButtonContainer
           isDisabled={props.isRightButtonDisabled}
           onPress={props.onRightButtonClick}
@@ -84,7 +81,7 @@ export const BottomButtons = (props: Props) => {
             {t("global.validate", "Valider")}
           </TextBold>
         </RightButtonContainer>
-      </View>
+      </Columns>
     </BottomButtonsContainer>
   );
 };

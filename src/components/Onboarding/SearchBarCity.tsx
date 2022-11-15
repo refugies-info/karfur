@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { View, TextInput, TouchableOpacity } from "react-native";
+import { View, TextInput, TouchableOpacity, PixelRatio } from "react-native";
 import styled from "styled-components/native";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
@@ -15,7 +15,7 @@ const MainContainer = styled.View`
   align-items: center;
 `;
 const InputContainer = styled(RTLView)`
-  height:56px;
+  min-height:56px;
   width 100%;
   border-radius:${styles.radius * 2}px;
   padding:${styles.margin * 2}px;
@@ -35,7 +35,7 @@ const StyledInput = styled.TextInput`
   flex: 1;
 `;
 const FakeInput = styled(RTLTouchableOpacity)`
-  height:56px;
+  min-height:56px;
   width 100%;
   border-radius:${styles.radius * 2}px;
   padding:${styles.margin * 2}px;

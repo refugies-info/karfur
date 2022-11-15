@@ -21,7 +21,7 @@ import {
 import {
   saveUserLocationActionCreator,
   removeUserLocationActionCreator,
-  removeUserLocalizedWarningHiddenActionCreator
+  removeUserLocalizedWarningHiddenActionCreator,
 } from "../../services/redux/User/user.actions";
 import { Title, Label } from "../Onboarding/SharedStyledComponents";
 import { View, ActivityIndicator } from "react-native";
@@ -39,7 +39,7 @@ const GeolocContainer = styled(RTLTouchableOpacity)`
   border-radius: ${styles.radius * 2}px;
   align-items: center;
   ${styles.shadows.sm}
-  padding: ${(styles.margin * 2) - 2}px;
+  padding: ${styles.margin * 2 - 2}px;
   border-width: 2px;
   border-style: solid;
   border-color: ${(props: { hasError: boolean }) =>
@@ -265,11 +265,13 @@ export const FilterCityComponent = (props: Props) => {
       contentContainerStyle={{
         justifyContent: "space-between",
         padding: styles.margin * 3,
-        flexGrow: 1
+        flexGrow: 1,
       }}
     >
       <View>
-        <Title>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</Title>
+        <Title>
+          {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
+        </Title>
         <Explaination
           step={1}
           defaultText="C’est pour te montrer les associations et les activités dans ta ville."
@@ -296,7 +298,10 @@ export const FilterCityComponent = (props: Props) => {
                   fill={styles.colors.darkBlue}
                 />
                 <GeolocText isRTL={isRTL}>
-                  {t("onboarding_screens.position_button", "Utiliser ma position")}
+                  {t(
+                    "onboarding_screens.position_button",
+                    "Utiliser ma position"
+                  )}
                 </GeolocText>
               </GeolocContainer>
             )}
@@ -323,14 +328,13 @@ export const FilterCityComponent = (props: Props) => {
             </SelectedCityContainer>
           </RTLView>
         )}
-        {!!error &&
+        {!!error && (
           <View style={{ marginBottom: styles.margin * 3 }}>
             <ErrorComponent text={error} />
           </View>
-        }
+        )}
       </View>
       <View>
-
         {props.isOnboardingScreen ? (
           <>
             <OnboardingProgressBar step={1} />

@@ -1,12 +1,10 @@
-import * as React from "react";
-import { OnboardingParamList } from "../../../types";
+import React from "react";
 import { StackScreenProps } from "@react-navigation/stack";
-import { SafeAreaView } from "react-native-safe-area-context";
 
+import { OnboardingParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { HeaderWithBack } from "../../components/HeaderWithBack";
-
 import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
+import { Page } from "../../components";
 
 export const FilterCity = ({
   navigation,
@@ -14,17 +12,13 @@ export const FilterCity = ({
   const { t } = useTranslationWithRTL();
 
   return (
-    <SafeAreaView
-      style={{
-        display: "flex",
-        flex: 1,
-      }}
+    <Page
+      disableAutomaticScroll
+      hideLanguageSwitch
+      headerIconName={"person-outline"}
+      headerTitle={t("onboarding_screens.me", "Créer mon profil")}
     >
-      <HeaderWithBack
-        iconName={"person-outline"}
-        text={t("onboarding_screens.me", "Créer mon profil")}
-      />
       <FilterCityComponent navigation={navigation} isOnboardingScreen={true} />
-    </SafeAreaView>
+    </Page>
   );
 };

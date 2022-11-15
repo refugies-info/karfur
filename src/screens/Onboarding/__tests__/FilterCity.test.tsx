@@ -4,6 +4,7 @@ import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { act, fireEvent } from "react-native-testing-library";
 import { saveUserLocationActionCreator } from "../../../services/redux/User/user.actions";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
+import { useRoute } from "@react-navigation/native";
 
 jest.useFakeTimers();
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
@@ -28,9 +29,17 @@ jest.mock("../../../services/redux/User/user.actions", () => {
   };
 });
 
+jest.mock("@react-navigation/core", () => ({
+  ...jest.requireActual("@react-navigation/core"),
+  useRoute: jest.fn(),
+}));
+
 describe("Filter city", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "FilterCity",
+    });
   });
   it("should render correctly when no city", () => {
     let component;
