@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { styles } from "../../theme";
 import { Icon } from "react-native-eva-icons";
-import { Columns } from "../layout";
+import Columns from "../layout/Columns";
 
 interface Props {
   testID: string;
