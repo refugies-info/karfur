@@ -3718,79 +3718,92 @@ exports[`ContentScreen should render correctly 1`] = `
           </View>
         </View>
         <View
-          RTLBehaviour={true}
-          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "flex-start",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
               },
             ]
           }
-          verticalAlign="flex-start"
         >
           <View
+            RTLBehaviour={true}
+            horizontalAlign="flex-start"
             style={
               Array [
                 Object {
-                  "flexBasis": 0,
+                  "alignItems": "flex-start",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
                   "flexGrow": 1,
-                  "marginRight": 16,
+                  "justifyContent": "flex-start",
                 },
               ]
             }
+            verticalAlign="flex-start"
           >
-            <Text
-              isRTL={false}
-              selectable={true}
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 0,
-                    "marginRight": 4,
-                    "textAlign": "left",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 16,
                   },
                 ]
               }
             >
-              Dernière mise à jour :
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#5E5E5E",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 0,
+                      "marginRight": 4,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Dernière mise à jour :
+              </Text>
+            </View>
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#008205",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
                   },
                 ]
               }
             >
-              16 juil. 2021
-            </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#008205",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                16 juil. 2021
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -8270,79 +8283,92 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
         <View
-          RTLBehaviour={true}
-          horizontalAlign="flex-start"
           style={
             Array [
               Object {
-                "alignItems": "flex-start",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
+                "paddingBottom": 24,
+                "paddingLeft": 24,
+                "paddingRight": 24,
+                "paddingTop": 24,
               },
             ]
           }
-          verticalAlign="flex-start"
         >
           <View
+            RTLBehaviour={true}
+            horizontalAlign="flex-start"
             style={
               Array [
                 Object {
-                  "flexBasis": 0,
+                  "alignItems": "flex-start",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
                   "flexGrow": 1,
-                  "marginRight": 16,
+                  "justifyContent": "flex-start",
                 },
               ]
             }
+            verticalAlign="flex-start"
           >
-            <Text
-              isRTL={false}
-              selectable={true}
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#5E5E5E",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 0,
-                    "marginRight": 4,
-                    "textAlign": "left",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
+                    "marginRight": 16,
                   },
                 ]
               }
             >
-              Dernière mise à jour :
-            </Text>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#5E5E5E",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 0,
+                      "marginRight": 4,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                Dernière mise à jour :
+              </Text>
+            </View>
+            <View
               style={
                 Array [
                   Object {
-                    "color": "#008205",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "textAlign": "left",
+                    "flexBasis": 0,
+                    "flexGrow": 1,
                   },
                 ]
               }
             >
-              16 juil. 2021
-            </Text>
+              <Text
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#008205",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                16 juil. 2021
+              </Text>
+            </View>
           </View>
         </View>
       </View>

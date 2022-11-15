@@ -45,7 +45,7 @@ import {
   removeUserFavoriteActionCreator,
   saveUserHasNewFavoritesActionCreator,
 } from "../services/redux/User/user.actions";
-import { Content, Theme, ThemeColors } from "../types/interface";
+import { Content, Theme } from "../types/interface";
 import { ContentFromHtml } from "../components/Content/ContentFromHtml";
 import { AvailableLanguageI18nCode, MapGoogle } from "../types/interface";
 import { HeaderImage } from "../components/Content/HeaderImage";
@@ -80,7 +80,7 @@ import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../utils";
-import { Columns } from "../components";
+import { Columns, Content as DSContent } from "../components";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -142,7 +142,6 @@ const FixedContainerForHeader = styled.View`
 const LastUpdateDateContainer = styled(Columns)`
   margin-top: ${styles.margin * 4}px;
   margin-bottom: ${styles.margin * 2 * PixelRatio.getFontScale()}px;
-  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const LastUpdateDate = styled(TextSmallNormal)`
@@ -861,14 +860,16 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           )}
 
           {formattedLastModifDate && (
-            <LastUpdateDateContainer RTLBehaviour>
-              <LastUpdateText>
-                {t("content_screen.last_update", "Dernière mise à jour :")}
-              </LastUpdateText>
-              <LastUpdateDate>
-                {formattedLastModifDate.format("ll")}
-              </LastUpdateDate>
-            </LastUpdateDateContainer>
+            <DSContent>
+              <LastUpdateDateContainer RTLBehaviour layout="1">
+                <LastUpdateText>
+                  {t("content_screen.last_update", "Dernière mise à jour :")}
+                </LastUpdateText>
+                <LastUpdateDate>
+                  {formattedLastModifDate.format("ll")}
+                </LastUpdateDate>
+              </LastUpdateDateContainer>
+            </DSContent>
           )}
         </View>
       </ScrollView>
