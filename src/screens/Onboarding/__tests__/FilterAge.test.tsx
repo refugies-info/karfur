@@ -4,6 +4,7 @@ import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { act, fireEvent } from "react-native-testing-library";
 import { saveUserAgeActionCreator } from "../../../services/redux/User/user.actions";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
+import { useRoute } from "@react-navigation/native";
 
 jest.useFakeTimers();
 
@@ -23,10 +24,17 @@ jest.mock("../../../services/redux/User/user.actions", () => {
     saveUserAgeActionCreator: jest.fn(actions.saveUserAgeActionCreator),
   };
 });
+jest.mock("@react-navigation/core", () => ({
+  ...jest.requireActual("@react-navigation/core"),
+  useRoute: jest.fn(),
+}));
 
 describe("Filter age", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "FilterAge",
+    });
   });
 
   it("should render correctly when no age selected", () => {

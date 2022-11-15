@@ -353,7 +353,7 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -361,7 +361,7 @@ exports[`Filter french level should render correctly when french level selected 
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -484,7 +484,7 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -492,7 +492,7 @@ exports[`Filter french level should render correctly when french level selected 
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -688,7 +688,7 @@ exports[`Filter french level should render correctly when french level selected 
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -696,7 +696,7 @@ exports[`Filter french level should render correctly when french level selected 
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1481,7 +1481,7 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -1489,7 +1489,7 @@ exports[`Filter french level should render correctly when no french level select
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1620,7 +1620,7 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -1628,7 +1628,7 @@ exports[`Filter french level should render correctly when no french level select
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1759,7 +1759,7 @@ exports[`Filter french level should render correctly when no french level select
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -1767,7 +1767,7 @@ exports[`Filter french level should render correctly when no french level select
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -2544,7 +2544,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -2552,7 +2552,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -2675,7 +2675,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -2683,7 +2683,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -2879,7 +2879,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               style={
                 Array [
                   Object {
-                    "alignItems": "flex-start",
+                    "alignItems": "center",
                     "flexBasis": "auto",
                     "flexDirection": "row",
                     "flexGrow": 1,
@@ -2887,7 +2887,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   },
                 ]
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={

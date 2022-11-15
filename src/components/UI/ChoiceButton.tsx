@@ -63,7 +63,7 @@ export const ChoiceButton = (props: Props) => {
       style={props.style || {}}
       flatStyle={!!props.flatStyle}
     >
-      <Columns RTLBehaviour layout="1 auto">
+      <Columns RTLBehaviour layout="1 auto" verticalAlign="center">
         {props.children}
         {!props.hideRadio && (
           <RadioButton isSelected={props.isSelected}>
