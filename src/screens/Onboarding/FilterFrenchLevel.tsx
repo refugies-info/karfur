@@ -1,11 +1,9 @@
-import * as React from "react";
+import React from "react";
 import { ScrollView, View } from "react-native";
 import { OnboardingParamList, FrenchLevel } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
-import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
 import { BottomButtons } from "../../components/Onboarding/BottomButtons";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { frenchLevelFilters } from "../../data/filtersData";
@@ -19,6 +17,7 @@ import {
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
+import { Page } from "../../components";
 
 const ContentContainer = styled.View`
   padding-bottom: ${styles.margin * 3}px;
@@ -81,16 +80,12 @@ export const FilterFrenchLevel = ({
     return;
   };
   return (
-    <SafeAreaView
-      style={{
-        display: "flex",
-        flex: 1,
-      }}
+    <Page
+      disableAutomaticScroll
+      headerIconName={"person-outline"}
+      headerTitle={t("onboarding_screens.me", "Créer mon profil")}
+      hideLanguageSwitch
     >
-      <HeaderWithBack
-        iconName={"person-outline"}
-        text={t("onboarding_screens.me", "Créer mon profil")}
-      />
       <ContentContainer>
         <ScrollView
           contentContainerStyle={{ padding: styles.margin * 3 }}
@@ -130,6 +125,6 @@ export const FilterFrenchLevel = ({
           />
         </BottomContainer>
       </ContentContainer>
-    </SafeAreaView>
+    </Page>
   );
 };
