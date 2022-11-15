@@ -19,5 +19,6 @@ import { withProps } from "../../../utils";
 // })(InternalSafeAreaViewTopInset);
 
 const SafeAreaViewTopInset = withProps({ edges: ["top"] })(SafeAreaView);
+SafeAreaViewTopInset.displayName = "SafeAreaViewTopInset";
 
 export default SafeAreaViewTopInset;
