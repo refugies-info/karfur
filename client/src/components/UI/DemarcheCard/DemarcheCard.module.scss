@@ -31,10 +31,12 @@
 
 .update {
   position: absolute;
-  top: -4px;
+  top: -1px;
   left: 0;
   width: 100%;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   & > span {
     @include text("very-small");
@@ -42,5 +44,7 @@
     padding: u(1) u(2);
     border-radius: 0 0 u(2) u(2);
     color: $white;
+    display: block;
+    height: 100%
   }
 }

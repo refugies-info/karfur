@@ -8,9 +8,10 @@ import { useRouter } from "next/router";
 import { getPath } from "routes";
 import { SearchDispositif } from "types/interface";
 import { themesSelector } from "services/Themes/themes.selectors";
-import ThemeBadge from "components/UI/ThemeBadge";
 import { getTheme, getThemes } from "lib/getTheme";
 import { cls } from "lib/classname";
+import ThemeBadge from "components/UI/ThemeBadge";
+import FavoriteButton from "components/UI/FavoriteButton";
 import demarcheIcon from "assets/recherche/illu-demarche.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DemarcheCard.module.scss";
@@ -21,17 +22,17 @@ type DemarcheLinkProps = {
   background: string;
   border: string;
 };
-const DemarcheLink = styled.a`
+const DemarcheLink = styled.a<DemarcheLinkProps>`
   :hover {
-    background-color: ${(props: DemarcheLinkProps) => props.background} !important;
-    border-color: ${(props: DemarcheLinkProps) => props.border} !important;
-    color: ${(props: DemarcheLinkProps) => props.border} !important;
+    background-color: ${(props) => props.background} !important;
+    border-color: ${(props) => props.border} !important;
+    color: ${(props) => props.border} !important;
   }
 `;
 
 interface Props {
   demarche: SearchDispositif;
-  targetBlank?: boolean
+  targetBlank?: boolean;
 }
 
 const DemarcheCard = (props: Props) => {
@@ -42,12 +43,14 @@ const DemarcheCard = (props: Props) => {
   const colors = theme.colors;
   const demarcheThemes = [theme, ...getThemes(props.demarche.secondaryThemes || [], themes)];
 
-  const lastModificationDate = props.demarche.lastModificationDate ? new Date(props.demarche.lastModificationDate) :null;
+  const lastModificationDate = props.demarche.lastModificationDate
+    ? new Date(props.demarche.lastModificationDate)
+    : null;
   const publishedAt = props.demarche.publishedAt ? new Date(props.demarche.publishedAt) : null;
 
+  // more than 1 day between publication and edition
   const hasUpdate =
-    lastModificationDate && publishedAt &&
-    lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS; // more than 1 day between publication and edition
+    lastModificationDate && publishedAt && lastModificationDate.getTime() - publishedAt.getTime() > ONE_DAY_MS;
 
   return (
     <Link
@@ -64,6 +67,7 @@ const DemarcheCard = (props: Props) => {
         target={props.targetBlank ? "_blank" : undefined}
         rel={props.targetBlank ? "noopener noreferrer" : undefined}
       >
+        <FavoriteButton contentId={props.demarche._id} className={commonStyles.favorite} />
         {hasUpdate && (
           <div className={styles.update}>
             <span>{t("Recherche.updated", "mise à jour")}</span>

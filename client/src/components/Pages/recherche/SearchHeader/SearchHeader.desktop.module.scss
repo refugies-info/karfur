@@ -2,18 +2,35 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/rtl";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 .container {
-  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1B62D8 100%);
+  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1b62d8 100%);
   padding: 56px;
   width: 100%;
+  position: relative;
 
   @include isMobile() {
     padding: u(6) u(4);
 
     h1 {
       display: none;
+    }
+  }
+}
+:global(.scrolled) {
+  .container {
+    padding-top: u(4);
+    padding-bottom: u(4);
+
+    h1,
+    .subheader {
+      display: none;
+    }
+    .inputs {
+      margin-top: 0;
     }
   }
 }
@@ -90,6 +107,11 @@
   width: 100vw;
   height: 100vh;
   z-index: 10;
+
+  &.search {
+    position: absolute;
+    height: auto;
+  }
 }
 
 .reset {
@@ -98,8 +120,12 @@
   border-color: $white;
   border-width: 2px;
   border-radius: 8px;
+  @include text("normal");
+  @include withIcon();
 
-  &:hover, &:active, &:focus {
+  &:hover,
+  &:active,
+  &:focus {
     color: $dark;
     background-color: $white;
     border-color: $white;
@@ -120,4 +146,29 @@
   display: inline-flex;
   background: $gray30;
   border-radius: 8px;
+
+  :global(.dropdown) {
+    &:after {
+      content: "";
+      height: 80%;
+      width: 1px;
+      background-color: $gray60;
+      position: absolute;
+      right: u(-1);
+      top: 10%;
+    }
+
+    &:last-child:after {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+i.flag {
+  width: 19px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid $white;
+  margin-left: u(2);
 }

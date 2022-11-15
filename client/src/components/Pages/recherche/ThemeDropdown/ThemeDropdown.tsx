@@ -1,82 +1,114 @@
-import React, { useEffect, useMemo, useState, memo } from "react";
-import styled from "styled-components";
+import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
 import { Collapse } from "reactstrap";
 import { ObjectId } from "mongodb";
 import { useSelector } from "react-redux";
+import { debounce } from "lodash";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { languei18nSelector } from "services/Langue/langue.selectors";
+import { SearchDispositif } from "types/interface";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
+import { Event } from "lib/tracking";
+import { queryDispositifsWithoutThemes } from "lib/recherche/queryContents";
 import useLocale from "hooks/useLocale";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import TagName from "components/UI/TagName";
 import NeedsList from "./NeedsList";
+import { getInitialTheme } from "./functions";
 import styles from "./ThemeDropdown.module.scss";
+import ThemeButton from "./ThemeButton";
 
-type ButtonThemeProps = {
-  color100: string;
-  color30: string;
-  selected: boolean;
-};
-const ButtonTheme = styled.button`
-  background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color100 : "transparent")};
-  :hover {
-    background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color100 : props.color30)};
-    border-color: ${(props: ButtonThemeProps) => props.color100};
-    color: ${(props: ButtonThemeProps) => props.color100};
-  }
-
-  @media screen and (max-width: 767px) {
-    background-color: ${(props: ButtonThemeProps) => (props.selected ? props.color30 : "transparent")} !important;
-    color: ${(props: ButtonThemeProps) => props.color100} !important;
-    ${(props: ButtonThemeProps) => (props.selected ? "border-color: white !important;" : "")}
-
-    :hover {
-      background-color: transparent;
-    }
-  }
-`;
 interface Props {
-  needsSelected: ObjectId[];
-  setNeedsSelected: (value: React.SetStateAction<ObjectId[]>) => void;
-  themesSelected: ObjectId[];
-  setThemesSelected: (value: React.SetStateAction<ObjectId[]>) => void;
   search: string;
   mobile: boolean;
+  isOpen: boolean;
 }
+
+const debouncedQuery = debounce(
+  (
+    query: SearchQuery,
+    dispositifs: SearchDispositif[],
+    locale: string,
+    callback: (res: SearchDispositif[]) => void
+  ) => {
+    return queryDispositifsWithoutThemes(query, dispositifs, locale).then((res) => callback(res));
+  },
+  500
+);
 
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
+
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
-  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(sortedThemes[0]._id);
+  const query = useSelector(searchQuerySelector);
+  const allDispositifs = useSelector(activeDispositifsSelector);
+  const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
+  const languei18nCode = useSelector(languei18nSelector);
+
+  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
+  const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
+  const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
 
-  const {
-    needsSelected,
-    setNeedsSelected,
-    themesSelected,
-    setThemesSelected
-  } = props;
+  const onClickTheme = useCallback(
+    (themeId: ObjectId) => {
+      setThemeSelected((old) => {
+        if (old === themeId) return null;
+        return themeId;
+      });
+      Event("USE_SEARCH", "use theme filter", "click theme");
+    },
+    [setThemeSelected]
+  );
 
+  // count needs selected by theme
   useEffect(() => {
-    // count nb needs selected by theme
     const nbNeedsSelectedByTheme: Record<string, number> = {};
-    for (const needId of needsSelected) {
+    for (const needId of query.needs) {
       const needThemeId = needs.find((n) => n._id === needId)?.theme._id.toString();
       if (needThemeId) {
         nbNeedsSelectedByTheme[needThemeId] = (nbNeedsSelectedByTheme[needThemeId] || 0) + 1;
       }
     }
-    for (const themeId of themesSelected) {
+    for (const themeId of query.themes) {
       const theme = themes.find((t) => t._id === themeId);
       if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter(need => need.theme._id === themeId).length;
+        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
       }
     }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);
-  }, [needsSelected, themesSelected, themes, needs]);
+  }, [query.needs, query.themes, themes, needs]);
+
+  // count dispositifs by need and theme
+  useEffect(() => {
+    if (props.isOpen) {
+      debouncedQuery(query, allDispositifs, languei18nCode, (dispositifs) => {
+        const newNbDispositifsByNeed: Record<string, number> = {};
+        const newNbDispositifsByTheme: Record<string, number> = {};
+        for (const dispositif of dispositifs) {
+          for (const needId of dispositif.needs || []) {
+            newNbDispositifsByNeed[needId.toString()] = (newNbDispositifsByNeed[needId.toString()] || 0) + 1;
+          }
+
+          const themeId = dispositif.theme.toString();
+          newNbDispositifsByTheme[themeId] = (newNbDispositifsByTheme[themeId] || 0) + 1;
+          for (const theme of dispositif.secondaryThemes || []) {
+            newNbDispositifsByTheme[theme.toString()] = (newNbDispositifsByTheme[theme.toString()] || 0) + 1;
+          }
+        }
+
+        setNbDispositifsByTheme(newNbDispositifsByTheme);
+        setNbDispositifsByNeed(newNbDispositifsByNeed);
+
+        // reset selected theme
+        setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
+      });
+    }
+  }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
 
   const displayedNeeds = useMemo(() => {
     if (props.search) {
@@ -89,75 +121,46 @@ const ThemeDropdown = (props: Props) => {
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
   }, [themeSelected, needs, props.search, locale]);
 
+  const isThemeDisabled = (themeId: ObjectId) => {
+    const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
+    return !nbDispositifs || nbDispositifs === 0;
+  };
+
   return (
     <div className={styles.container}>
       <div className={cls(styles.themes, props.search && styles.hidden)}>
-        {sortedThemes.map((theme, i) => {
-          const selected = themeSelected === theme._id;
-          return (
-            <div key={i}>
-              <ButtonTheme
-                className={cls(styles.btn, styles.theme)}
-                color100={theme.colors.color100}
-                color30={theme.colors.color30}
-                selected={selected}
-                onClick={() =>
-                  setThemeSelected((old) => {
-                    if (old === theme._id) return null;
-                    return theme._id;
-                  })
-                }
-              >
-                <span className={styles.btn_content}>
-                  <TagName theme={theme} colored={props.mobile || themeSelected !== theme._id} size={20} />
-                  {nbNeedsSelectedByTheme[theme._id.toString()] &&
-                    nbNeedsSelectedByTheme[theme._id.toString()] > 0 && (
-                    <span
-                      style={{
-                        backgroundColor: themeSelected !== theme._id ? theme.colors.color100 : "white",
-                        color: themeSelected !== theme._id ? "white" : theme.colors.color100
-                      }}
-                      className={styles.theme_badge}
-                    >
-                        {nbNeedsSelectedByTheme[theme._id.toString()] || 0}
-                      </span>
-                    )}
-                </span>
-                {(props.mobile || themeSelected === theme._id) && (
-                  <EVAIcon
-                    name={!props.mobile ? "chevron-right-outline" : "chevron-down-outline"}
-                    fill={!props.mobile ? "white" : theme.colors.color100}
-                    className="ml-2"
-                  />
-                )}
-              </ButtonTheme>
+        {sortedThemes.map((theme, i) => (
+          <div key={i}>
+            <ThemeButton
+              theme={theme}
+              selected={themeSelected === theme._id}
+              disabled={isThemeDisabled(theme._id)}
+              mobile={props.mobile}
+              nbNeeds={nbNeedsSelectedByTheme[theme._id.toString()]}
+              onClick={() => onClickTheme(theme._id)}
+            />
 
-              {props.mobile && (
-                <Collapse isOpen={selected}>
-                  <NeedsList
-                    needsSelected={needsSelected}
-                    setNeedsSelected={setNeedsSelected}
-                    themesSelected={themesSelected}
-                    setThemesSelected={setThemesSelected}
-                    search={props.search}
-                    displayedNeeds={displayedNeeds}
-                    themeSelected={themeSelected}
-                  />
-                </Collapse>
-              )}
-            </div>
-          );
-        })}
+            {props.mobile && (
+              <Collapse isOpen={themeSelected === theme._id}>
+                <NeedsList
+                  search={props.search}
+                  displayedNeeds={displayedNeeds}
+                  themeSelected={themeSelected}
+                  nbDispositifsByNeed={nbDispositifsByNeed}
+                  nbDispositifsByTheme={nbDispositifsByTheme}
+                />
+              </Collapse>
+            )}
+          </div>
+        ))}
       </div>
       {(!props.mobile || props.search) && (
         <NeedsList
-          needsSelected={needsSelected}
-          setNeedsSelected={setNeedsSelected}
-          themesSelected={themesSelected}
-          setThemesSelected={setThemesSelected}
           search={props.search}
           displayedNeeds={displayedNeeds}
           themeSelected={themeSelected}
+          nbDispositifsByNeed={nbDispositifsByNeed}
+          nbDispositifsByTheme={nbDispositifsByTheme}
         />
       )}
     </div>

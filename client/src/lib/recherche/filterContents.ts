@@ -3,11 +3,11 @@ import { SearchDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "../getDispositifInfos";
 
-export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needsSelected: ObjectId[], withSecondaryTheme: boolean) => {
-  if (themesSelected.length === 0 && needsSelected.length === 0) return true;
+export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needs: ObjectId[], withSecondaryTheme: boolean) => {
+  if (themesSelected.length === 0 && needs.length === 0) return true;
   if (dispositif.needs) {
     for (const need of dispositif.needs) { // return true if dispositif has need
-      if (needsSelected.includes(need)) return true;
+      if (needs.includes(need)) return true;
     }
   }
   if (!withSecondaryTheme) { // or has theme as primary one
@@ -22,12 +22,12 @@ export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected
   return false;
 };
 
-export const filterByLocations = (dispositif: SearchDispositif, departmentsSelected: string[]) => {
-  if (departmentsSelected.length === 0) return true;
+export const filterByLocations = (dispositif: SearchDispositif, departments: string[]) => {
+  if (departments.length === 0) return true;
   const location = getDispositifInfos(dispositif, "location");
   if (!location?.departments) return false;
   for (const dep of location?.departments) {
-    if (departmentsSelected.includes(dep.split(" - ")[1]) || dep === "All") {
+    if (departments.includes(dep.split(" - ")[1]) || dep === "All") {
       return true;
     }
   }

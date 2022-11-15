@@ -63,7 +63,7 @@ describe("updateUserFavorites", () => {
     };
     await updateUserFavorites(req, res);
     expect(updateUserInDB).toHaveBeenCalledWith("userID", {
-      cookies: undefined,
+      cookies: { dispositifsPinned: [] },
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });

@@ -950,11 +950,40 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
-            className="c8 card dispositif content"
+            className="c8 card dispositif content card"
             href="/program/id1"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
+            <button
+              aria-label={null}
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="icon_outline"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
             <div
               className="location"
             >
@@ -981,7 +1010,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
             />
             <div
-              className="text abstract"
+              className="text max_lines abstract"
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "abstract1",
@@ -994,7 +1023,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
             />
             <div
-              className="infos text my-4"
+              className="infos text my-3"
               style={
                 Object {
                   "color": "#3D2884",
@@ -1016,7 +1045,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   className="icon"
                 >
                   <span
-                    className="icon"
+                    className="icon theme-icon"
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
@@ -1045,7 +1074,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="sponsor"
               style={
                 Object {
-                  "borderColor": "#705FA4",
+                  "borderColor": "#3D2884",
                 }
               }
             >
@@ -1053,7 +1082,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="picture"
               />
               <span
-                className="text ml-2"
+                className="text max_lines ml-2"
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "titreMarque1",
@@ -1072,11 +1101,40 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           className="c7"
         >
           <a
-            className="c9 card dispositif content"
+            className="c9 card dispositif content card"
             href="/program/id2"
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
+            <button
+              aria-label={null}
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="icon_outline"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
             <div
               className="location"
             >
@@ -1103,7 +1161,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
             />
             <div
-              className="text abstract"
+              className="text max_lines abstract"
               dangerouslySetInnerHTML={
                 Object {
                   "__html": "abstract2",
@@ -1116,7 +1174,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               }
             />
             <div
-              className="infos text my-4"
+              className="infos text my-3"
               style={
                 Object {
                   "color": "#443023",
@@ -1138,7 +1196,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   className="icon"
                 >
                   <span
-                    className="icon"
+                    className="icon theme-icon"
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",
@@ -1167,7 +1225,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               className="sponsor"
               style={
                 Object {
-                  "borderColor": "#715F56",
+                  "borderColor": "#443023",
                 }
               }
             >
@@ -1175,7 +1233,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 className="picture"
               />
               <span
-                className="text ml-2"
+                className="text max_lines ml-2"
                 dangerouslySetInnerHTML={
                   Object {
                     "__html": "titreMarque2",
@@ -1199,6 +1257,35 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
             onClick={[Function]}
             onMouseEnter={[Function]}
           >
+            <button
+              aria-label={null}
+              className="btn favorite btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              <span
+                className="icon_outline"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+              <span
+                className="icon_fill"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"dark\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
             <div />
             <div
               className="title"
@@ -1226,7 +1313,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   className="icon"
                 >
                   <span
-                    className="icon"
+                    className="icon theme-icon"
                     dangerouslySetInnerHTML={
                       Object {
                         "__html": "<svg width=\\"12\\" height=\\"12\\"></svg>",

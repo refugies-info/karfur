@@ -96,7 +96,6 @@
     margin-top: 8px;
   }
 
-
   .mobile_title_text {
     display: inline;
     padding: 4px 0;
@@ -115,6 +114,16 @@
     @media print {
       display: none;
     }
+  }
+}
+
+.main {
+  margin-right: 0;
+  margin-left: 0;
+
+  & > div {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 

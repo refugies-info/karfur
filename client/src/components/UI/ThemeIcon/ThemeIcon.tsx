@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Theme } from "types/interface";
 import useThemeIcon from "hooks/useThemeIcon";
+import { cls } from "lib/classname";
 import styles from "./ThemeIcon.module.scss";
 
 interface Props {
@@ -20,7 +21,7 @@ const ThemeIcon = (props: Props) => {
     /* to color icon, fetch svg text, and replace stroke color in code */
     return (
       <span
-        className={styles.icon}
+        className={cls(styles.icon, "theme-icon")}
         dangerouslySetInnerHTML={{
           __html: imgXml.replace(
             /stroke="((#[0-9a-f]{6})|(#[0-9a-f]{3})|([a-z]+))"/g,

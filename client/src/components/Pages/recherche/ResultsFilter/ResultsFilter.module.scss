@@ -1,23 +1,45 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
 .container {
-  display: flex;
-  justify-content: space-between;
   margin-top: 30px;
-  margin-bottom: 120px;
+  margin-bottom: 80px;
 
   @include isMobile() {
-    display: block;
     margin-bottom: u(10);
-    order: 2;
 
     &.no_result {
       display: none;
     }
+  }
+}
+
+:global(.scrolled) {
+  .container {
+    padding-top: u(2);
+    padding-bottom: u(2);
+    margin: 0;
+    background: $white;
+    box-shadow: 0 8px 16px 0 #0000001a, 0 16px 16px -16px #00000052;
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+  display: flex;
+  justify-content: space-between;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+    order: 2;
   }
 }
 
@@ -32,11 +54,18 @@
 }
 
 .btn {
-  background: $gray40b;
+  background: transparent;
   border-radius: u(2);
   border: none;
   padding: u(3);
   margin-right: u(4);
+  @include text("normal");
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $gray40b !important;
+  }
 
   @include rtl() {
     margin-right: 0;
@@ -50,9 +79,7 @@
   }
 
   @include isMobile() {
-    background: transparent;
-    border: 1px solid $bleuCharte;
-    color: $bleuCharte;
+    background: $gray40b;
     padding: u(2);
     white-space: nowrap;
   }
@@ -65,6 +92,7 @@
   border-radius: u(2);
   box-shadow: 0 u(1) 18px 0 #0000001a;
   height: 45px;
+  @include text("normal");
 
   .icon {
     margin-right: u(2);
@@ -84,6 +112,12 @@
     background: $gray40b;
     box-shadow: none;
     padding: u(2);
+    height: auto;
+
+    .icon {
+      position: relative;
+      top: -2px;
+    }
   }
 }
 .menu {
@@ -97,6 +131,7 @@
   border-radius: u(2) !important;
   margin-bottom: u(1);
   border: none;
+  @include text("normal");
 
   &:hover {
     background: $gray40b;
@@ -116,7 +151,6 @@
 
     @include rtl() {
       margin: 0 u(2) 0 0;
-
     }
   }
 
