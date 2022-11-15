@@ -1,76 +1,136 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
+import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
+import { Event } from "lib/tracking";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
-import SearchFilter from "../SearchFilter";
+import SecondaryFilter from "../SecondaryFilter";
 import DropdownMenuMobile from "../DropdownMenuMobile";
 import styles from "./SearchHeader.mobile.module.scss";
+import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 
 interface Props {
-  themeDisplayedValue: string
-  isPlacePredictionsLoading: boolean
-  placePredictions: any[]
-  onSelectPrediction: (place_id: string) => void
+  nbResults: number;
+  themeDisplayedValue: string;
 
-  // state from recherche
-  searchState: [string, Dispatch<SetStateAction<string>>];
-  needsSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  themesSelectedState: [ObjectId[], Dispatch<SetStateAction<ObjectId[]>>];
-  departmentsSelectedState: [string[], Dispatch<SetStateAction<string[]>>];
-  filterAgeState: [AgeOptions[], Dispatch<SetStateAction<AgeOptions[]>>];
-  filterFrenchLevelState: [FrenchOptions[], Dispatch<SetStateAction<FrenchOptions[]>>];
-  filterLanguageState: [string[], Dispatch<SetStateAction<string[]>>];
-
-  // state from SearchHeader
+  // focusedStateProps
   locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
   searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  locationSearchState: [string, Dispatch<SetStateAction<string>>];
-  themeSearchState: [string, Dispatch<SetStateAction<string>>];
   themesFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
+
+  // filterProps
+  isPlacePredictionsLoading: boolean;
+  placePredictions: any[];
+  onSelectPrediction: (placeId: string) => void;
+  locationSearch: string;
+  themeSearch: string;
+  resetDepartment: () => void;
+  resetTheme: () => void;
+  resetSearch: () => void;
+  onChangeDepartmentInput: (e: any) => void;
+  onChangeThemeInput: (e: any) => void;
+  onChangeSearchInput: (e: any) => void;
+  ageOptions: SecondaryFilterOptions;
+  frenchLevelOptions: SecondaryFilterOptions;
+  languagesOptions: SecondaryFilterOptions;
+  selectAgeOption: (selected: AgeOptions[]) => void;
+  selectFrenchLevelOption: (selected: FrenchOptions[]) => void;
+  selectLanguageOption: (selected: string[]) => void;
 }
 
 const SearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
   const {
     themeDisplayedValue,
     isPlacePredictionsLoading,
     placePredictions,
+    locationSearch,
+    themeSearch,
     onSelectPrediction,
+    resetDepartment,
+    onChangeDepartmentInput,
+    resetTheme,
+    onChangeThemeInput,
+    resetSearch,
+    onChangeSearchInput,
+    ageOptions,
+    selectAgeOption,
+    frenchLevelOptions,
+    selectFrenchLevelOption,
+    languagesOptions,
+    selectLanguageOption
   } = props;
 
-  // state from recherche
-  const [search, setSearch] = props.searchState;
-  const [needsSelected, setNeedsSelected] = props.needsSelectedState;
-  const [themesSelected, setThemesSelected] = props.themesSelectedState;
-  const [departmentsSelected, setDepartmentsSelected] = props.departmentsSelectedState;
-  const [filterAge, setFilterAge] = props.filterAgeState;
-  const [filterFrenchLevel, setFilterFrenchLevel] = props.filterFrenchLevelState;
-  const [filterLanguage, setFilterLanguage] = props.filterLanguageState;
+  const query = useSelector(searchQuerySelector);
 
   // state from SearchHeader
   const [locationFocused, setLocationFocused] = props.locationFocusedState;
   const [searchFocused, setSearchFocused] = props.searchFocusedState;
-  const [locationSearch, setLocationSearch] = props.locationSearchState;
-  const [themeSearch, setThemeSearch] = props.themeSearchState;
   const [themesFocused, setThemesFocused] = props.themesFocusedState;
 
+  const addToQuery = useCallback(
+    (query: Partial<SearchQuery>) => {
+      dispatch(addToQueryActionCreator(query));
+    },
+    [dispatch]
+  );
+
+  // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
+  const toggleLocation = useCallback(
+    () =>
+      setLocationOpen((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "location");
+        return !prevState;
+      }),
+    [setLocationOpen]
+  );
+
+  // THEME
   const [themesOpen, setThemesOpen] = useState(false);
-  const toggleLocation = () => setLocationOpen((prevState) => !prevState);
-  const toggleThemes = () => setThemesOpen((prevState) => !prevState);
+  const toggleThemes = useCallback(
+    () =>
+      setThemesOpen((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "theme");
+        return !prevState;
+      }),
+    [setThemesOpen]
+  );
 
   // FILTERS
   const [showFilters, setShowFilters] = useState(false);
-  const languages = useSelector(allLanguesSelector);
-  const nbFilters = filterAge.length + filterFrenchLevel.length + filterLanguage.length;
+  const nbFilters = query.age.length + query.frenchLevel.length + query.language.length;
+  const toggleFilters = useCallback(
+    () =>
+      setShowFilters((prevState) => {
+        if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
+        return !prevState;
+      }),
+    [setShowFilters]
+  );
+  const resetFilters = useCallback(() => {
+    addToQuery({ age: [], frenchLevel: [], language: [] });
+  }, [addToQuery]);
+
+  // hide axeptio button when popup opens
+  useEffect(() => {
+    if (showFilters || locationOpen || themesOpen) {
+      if (window.hideAxeptioButton) window.hideAxeptioButton();
+    } else {
+      if (window.showAxeptioButton) window.showAxeptioButton();
+    }
+  }, [locationOpen, themesOpen, showFilters]);
 
   return (
     <>
@@ -83,27 +143,32 @@ const SearchHeaderMobile = (props: Props) => {
                 icon="search-outline"
                 active={searchFocused}
                 setActive={setSearchFocused}
-                onChange={(evt) => setSearch(evt.target.value)}
-                inputValue={search}
-                value={search}
+                onChange={onChangeSearchInput}
+                inputValue={query.search}
+                value={query.search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
+                resetFilter={resetSearch}
               />
             </Button>
           </div>
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
+        <Dropdown
+          isOpen={locationOpen || locationFocused}
+          toggle={toggleLocation}
+          className={cls(styles.dropdown, styles.separator)}
+        >
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
               icon="pin-outline"
               active={locationOpen || locationFocused}
               setActive={setLocationFocused}
-              onChange={(evt) => setLocationSearch(evt.target.value)}
+              onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
               loading={isPlacePredictionsLoading}
-              value={departmentsSelected.join(", ")}
+              value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
             />
           </DropdownToggle>
@@ -112,7 +177,8 @@ const SearchHeaderMobile = (props: Props) => {
               title={t("Dispositif.Départements", "Départements")}
               icon="pin-outline"
               close={toggleLocation}
-              reset={() => setDepartmentsSelected([])}
+              reset={resetDepartment}
+              nbResults={props.nbResults}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -120,18 +186,13 @@ const SearchHeaderMobile = (props: Props) => {
                   <input
                     type="text"
                     placeholder={t("Dispositif.Département", "Département")}
-                    onChange={(evt) => setLocationSearch(evt.target.value)}
+                    onChange={onChangeDepartmentInput}
                     value={locationSearch}
                     autoFocus
                   />
                 </div>
               </div>
-              <LocationDropdown
-                departmentsSelected={departmentsSelected}
-                setDepartmentsSelected={setDepartmentsSelected}
-                predictions={placePredictions}
-                onSelectPrediction={onSelectPrediction}
-              />
+              <LocationDropdown predictions={placePredictions} onSelectPrediction={onSelectPrediction} mobile={true} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -143,21 +204,19 @@ const SearchHeaderMobile = (props: Props) => {
               icon="list-outline"
               active={themesFocused || themesOpen}
               setActive={setThemesFocused}
-              onChange={(evt) => setThemeSearch(evt.target.value)}
+              onChange={onChangeThemeInput}
               inputValue={themeSearch}
               value={themeDisplayedValue}
               placeholder={t("Recherche.themes", "Thèmes")}
             />
           </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
+          <DropdownMenu className={styles.menu} persist>
             <DropdownMenuMobile
               title={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
               close={toggleThemes}
-              reset={() => {
-                setNeedsSelected([]);
-                setThemesSelected([]);
-              }}
+              reset={resetTheme}
+              nbResults={props.nbResults}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -165,29 +224,18 @@ const SearchHeaderMobile = (props: Props) => {
                   <input
                     type="text"
                     placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
-                    onChange={(evt) => setThemeSearch(evt.target.value)}
+                    onChange={onChangeThemeInput}
                     value={themeSearch}
-                    autoFocus
                   />
                 </div>
               </div>
-              <ThemeDropdown
-                needsSelected={needsSelected}
-                setNeedsSelected={setNeedsSelected}
-                themesSelected={themesSelected}
-                setThemesSelected={setThemesSelected}
-                search={themeSearch}
-                mobile={true}
-              />
+              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen || themesFocused} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
+
         <div className={styles.right}>
-          <Dropdown
-            isOpen={showFilters}
-            toggle={() => setShowFilters(!showFilters)}
-            className={cls(styles.dropdown, styles.filters)}
-          >
+          <Dropdown isOpen={showFilters} toggle={toggleFilters} className={cls(styles.dropdown, styles.filters)}>
             <DropdownToggle>
               <EVAIcon name="options-2-outline" fill="white" />
               {nbFilters > 0 && <span className={styles.badge}>{nbFilters}</span>}
@@ -196,46 +244,36 @@ const SearchHeaderMobile = (props: Props) => {
               <DropdownMenuMobile
                 title={t("Recherche.filters", "Filtres de recherche")}
                 icon="options-2-outline"
-                close={() => setShowFilters(!showFilters)}
-                reset={() => {
-                  setFilterAge([]);
-                  setFilterFrenchLevel([]);
-                  setFilterLanguage([]);
-                }}
+                close={toggleFilters}
+                reset={resetFilters}
+                nbResults={props.nbResults}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterAge", "Tranche d'âge")}
-                    selected={filterAge}
-                    setSelected={setFilterAge}
-                    options={ageFilters.map(filter => ({...filter, value: t(filter.value)}))}
+                    selected={query.age}
+                    //@ts-ignore
+                    setSelected={selectAgeOption}
+                    options={ageOptions}
+                    gaType="age"
                   />
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-                    selected={filterFrenchLevel}
-                    setSelected={setFilterFrenchLevel}
-                    options={frenchLevelFilter.map(filter => ({...filter, value: t(filter.value)}))}
+                    selected={query.frenchLevel}
+                    //@ts-ignore
+                    setSelected={selectFrenchLevelOption}
+                    options={frenchLevelOptions}
+                    gaType="frenchLevel"
                   />
-                  <SearchFilter
+                  <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterLanguage", "Fiches traduites en")}
-                    selected={filterLanguage}
-                    setSelected={setFilterLanguage}
-                    options={languages.map((ln) => ({
-                      key: ln.i18nCode,
-                      value: (
-                        <>
-                          <i
-                            className={`flag-icon flag-icon-${ln.langueCode}`}
-                            title={ln.langueCode}
-                            id={ln.langueCode}
-                          />
-                          {ln.langueFr}
-                        </>
-                      )
-                    }))}
+                    selected={query.language}
+                    setSelected={selectLanguageOption}
+                    options={languagesOptions}
+                    gaType="language"
                   />
                 </div>
               </DropdownMenuMobile>

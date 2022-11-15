@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { SearchDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
-import DispositifCard from "components/Pages/recherche/DispositifCard";
-import DemarcheCard from "components/Pages/recherche/DemarcheCard";
+import DispositifCard from "components/UI/DispositifCard";
+import DemarcheCard from "components/UI/DemarcheCard";
 import styles from "./RightAnnuaireDetails.module.scss";
 
 // on firefox behaviour is strange with overflow, we have to add an empty container to have margin

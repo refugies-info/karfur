@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
-import styles from "./SearchInput.module.scss";
 import { checkIfEllipsis } from "lib/checkIfEllipsis";
+import styles from "./SearchInput.module.scss";
 
 interface Props {
   label: string;
@@ -11,6 +11,7 @@ interface Props {
   placeholder: string;
   value: string;
   inputValue: string;
+  inputPlaceholder?: string;
   active: boolean;
   setActive: (active: boolean) => void;
   onChange?: (e: any) => void;
@@ -21,7 +22,7 @@ interface Props {
 
 const SearchInput = (props: Props) => {
   const { t } = useTranslation();
-  const { active, setActive } = props;
+  const { active, setActive, resetFilter } = props;
   const ref = useRef<HTMLInputElement | null>(null);
   const valueRef = useRef<HTMLDivElement | null>(null);
 
@@ -50,8 +51,6 @@ const SearchInput = (props: Props) => {
     };
   }, [handleFocusOut, props.focusout]);
 
-  const hasBlueIcon = active || !!props.value;
-
   // ellipsis
   const [hasEllipsis, setHasEllipsis] = useState(false);
   useEffect(() => {
@@ -60,6 +59,15 @@ const SearchInput = (props: Props) => {
     }
   }, [props.value, active]);
 
+  const onClickCross = useCallback(
+    (e: any) => {
+      e.stopPropagation();
+      if (resetFilter) resetFilter();
+    },
+    [resetFilter]
+  );
+
+  const hasBlueIcon = active || !!props.value;
   const countValues = !props.value ? 0 : (props.value.match(/,/g) || []).length + 1;
 
   return (
@@ -72,16 +80,30 @@ const SearchInput = (props: Props) => {
           {props.label}
         </label>
         {active ? (
-          <input
-            ref={ref}
-            id={props.label}
-            type="text"
-            placeholder={t("Rechercher2", "Rechercher...")}
-            className={styles.input}
-            onChange={props.onChange}
-            value={props.inputValue}
-            autoFocus
-          />
+          <>
+            <input
+              ref={ref}
+              id={props.label}
+              type="text"
+              placeholder={props.inputPlaceholder || t("Rechercher2", "Rechercher...")}
+              className={styles.input}
+              onChange={props.onChange}
+              value={props.inputValue}
+              autoFocus
+            />
+            {props.inputValue && (
+              <EVAIcon
+                className={cls(styles.empty_btn, styles.mobile)}
+                name="close-outline"
+                fill="dark"
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  if (props.resetFilter) props.resetFilter();
+                }}
+                size={24}
+              />
+            )}
+          </>
         ) : (
           <>
             <div ref={valueRef} className={cls(styles.value, !props.value && styles.empty)}>
@@ -90,15 +112,7 @@ const SearchInput = (props: Props) => {
             </div>
             {props.value && (
               <div className={styles.empty_btn}>
-                <EVAIcon
-                  name="close-outline"
-                  fill="dark"
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    if (props.resetFilter) props.resetFilter();
-                  }}
-                  size={20}
-                />
+                <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
               </div>
             )}
           </>

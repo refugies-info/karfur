@@ -20,6 +20,7 @@ const DispositifCardTitle = (props: Props) => {
   const { t } = useTranslation();
   const isRTL = useRTL();
   const isSecondaryCard = props.themes && props.themes.length > 0;
+
   return (
     <div
       className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.title)}
@@ -32,10 +33,9 @@ const DispositifCardTitle = (props: Props) => {
           </div>
         )}
         <div className={cls(commonStyles.text, isSecondaryCard && styles.title_theme)}>
-          {!isSecondaryCard ?
-            t("Recherche.dispositifTitle", "Les fiches dispositifs") :
-            t("Recherche.otherDispositifTitle", "Autres fiches dispositifs avec le thème")
-          }
+          {!isSecondaryCard
+            ? t("Recherche.dispositifTitle", "Les fiches dispositifs")
+            : t("Recherche.otherDispositifTitle", "Autres fiches dispositifs avec le thème")}
         </div>
 
         {isSecondaryCard && (

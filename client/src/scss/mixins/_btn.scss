@@ -1,0 +1,9 @@
+/* Fix alignment for buttons with EvaIcons */
+@mixin withIcon() {
+  &,
+  & span,
+  & span > i {
+    display: inline-flex;
+    align-items: center;
+  }
+}

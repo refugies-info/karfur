@@ -4,13 +4,11 @@ import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
 
 // actions
-import {
-  fetchActiveDispositifsActionsCreator
-} from "services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
-  toggleLangueActionCreator,
+  toggleLangueActionCreator
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 
@@ -32,14 +30,17 @@ import useRTL from "hooks/useRTL";
 import { getPath, PathNames } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import { BookmarkedModal } from "components/Modals";
+import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
+import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 
 interface Props {
-  children: any
-  history: string[]
+  children: any;
+  history: string[];
 }
 
 const Layout = (props: Props) => {
-  const [showMobileModal, setShowMobileModal] = useState<boolean|null>(null);
+  const [showMobileModal, setShowMobileModal] = useState<boolean | null>(null);
   const [languageLoaded, setLanguageLoaded] = useState(false);
   const isRTL = useRTL();
   const dispatch = useDispatch();
@@ -52,12 +53,18 @@ const Layout = (props: Props) => {
     dispatch(toggleLangueActionCreator(lng));
 
     const { pathname, query } = router;
-    router.replace({
-      pathname: getPath(pathname as PathNames, lng),
-      query
-    }, undefined, { locale: lng }).then(() => {
-      setLanguageLoaded(true);
-    });
+    router
+      .replace(
+        {
+          pathname: getPath(pathname as PathNames, lng),
+          query
+        },
+        undefined,
+        { locale: lng }
+      )
+      .then(() => {
+        setLanguageLoaded(true);
+      });
 
     if (showLangModal) {
       dispatch(toggleLangueModalActionCreator());
@@ -66,7 +73,7 @@ const Layout = (props: Props) => {
 
   const toggleMobileAppModal = () => {
     setShowMobileModal(!showMobileModal);
-  }
+  };
 
   useEffect(() => {
     // Language popup
@@ -80,23 +87,24 @@ const Layout = (props: Props) => {
       if (locale !== "fr") dispatch(toggleLangueActionCreator(locale));
       setLanguageLoaded(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     // Mobile popup
-    if (languageLoaded
-      && isMobileOnly
-      && !localStorage.getItem("hideMobileAppModal")
-      && !showLangModal
-      && showMobileModal === null
+    if (
+      languageLoaded &&
+      isMobileOnly &&
+      !localStorage.getItem("hideMobileAppModal") &&
+      !showLangModal &&
+      showMobileModal === null
     ) {
       localStorage.setItem("hideMobileAppModal", "true");
       toggleMobileAppModal();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showLangModal, languageLoaded])
+  }, [showLangModal, languageLoaded]);
 
   // USER
   const user = useSelector(userDetailsSelector);
@@ -106,12 +114,7 @@ const Layout = (props: Props) => {
     if (!user && !isUserLoading && !hasUserError) {
       dispatch(fetchUserActionCreator());
     }
-  }, [
-    user,
-    isUserLoading,
-    hasUserError,
-    dispatch
-  ]);
+  }, [user, isUserLoading, hasUserError, dispatch]);
 
   // THEMES
   const themes = useSelector(themesSelector);
@@ -121,13 +124,7 @@ const Layout = (props: Props) => {
     if (languageLoaded && themes.length === 0 && !isThemesLoading && !hasThemesError) {
       dispatch(fetchThemesActionCreator());
     }
-  }, [
-    languageLoaded,
-    themes.length,
-    isThemesLoading,
-    hasThemesError,
-    dispatch
-  ]);
+  }, [languageLoaded, themes.length, isThemesLoading, hasThemesError, dispatch]);
 
   // DISPOSITIFS
   const dispositifs = useSelector(activeDispositifsSelector);
@@ -137,13 +134,7 @@ const Layout = (props: Props) => {
     if (languageLoaded && dispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
       dispatch(fetchActiveDispositifsActionsCreator());
     }
-  }, [
-    languageLoaded,
-    dispositifs.length,
-    isDispositifsLoading,
-    hasDispositifsError,
-    dispatch
-  ]);
+  }, [languageLoaded, dispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
 
   // LANGUAGES
   const langues = useSelector(allLanguesSelector);
@@ -153,12 +144,7 @@ const Layout = (props: Props) => {
     if (langues.length === 0 && !isLanguagesLoading && !hasLanguagesError) {
       dispatch(fetchLanguesActionCreator());
     }
-  }, [
-    langues.length,
-    isLanguagesLoading,
-    hasLanguagesError,
-    dispatch
-  ]);
+  }, [langues.length, isLanguagesLoading, hasLanguagesError, dispatch]);
 
   const computeFullSentence = (nodeList: any) => {
     let sentence = "";
@@ -177,34 +163,25 @@ const Layout = (props: Props) => {
     if (ttsActive) {
       const sentence = e?.target?.firstChild?.nodeValue
         ? computeFullSentence(e.target.childNodes)
-        : (e?.target?.textContent || null);
+        : e?.target?.textContent || null;
 
       if (sentence) {
-        readAudio(
-          sentence,
-          router.locale,
-          null,
-          false,
-          ttsActive,
-          (val: boolean) => dispatch(toggleSpinner(val))
-        );
+        readAudio(sentence, router.locale, null, false, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
       } else {
         stopAudio();
       }
     }
   };
 
+  const isFavoriteModalVisible = useSelector(isFavoriteModalVisibleSelector);
+
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
       <Navbar history={props.history} />
       <div className="app-body">
-        <main className="content">
-          {props.children}
-        </main>
+        <main className="content">{props.children}</main>
       </div>
-
       <Footer />
-
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
@@ -213,13 +190,16 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <MobileAppModal
-        show={!!showMobileModal}
-        toggle={toggleMobileAppModal}
+      <MobileAppModal show={!!showMobileModal} toggle={toggleMobileAppModal} />
+      <BookmarkedModal
+        success={!!user}
+        show={isFavoriteModalVisible}
+        toggle={() => {
+          dispatch(toggleUserFavoritesModalActionCreator(!isFavoriteModalVisible));
+        }}
       />
     </div>
   );
+};
 
-}
-
-export default Layout
+export default Layout;

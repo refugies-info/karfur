@@ -64,11 +64,8 @@
     outline: none;
     background: transparent;
     padding: 0;
-    @include text("small");
-
-    @include isMobile() {
-      width: 100%;
-    }
+    @include text("normal");
+    width: 100%;
   }
 
   .value {
@@ -79,7 +76,7 @@
     overflow: hidden;
     position: relative;
     padding-right: u(16);
-    @include text("small");
+    @include text("normal");
 
     @include isMobile() {
       padding-right: u(6);
@@ -124,6 +121,12 @@
     @include isMobile() {
       width: 32px;
       height: 32px;
+      margin-right: u(2);
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(2);
+      }
     }
   }
 }
@@ -152,6 +155,11 @@
 
   @include isMobile() {
     display: none;
+
+    &.mobile {
+      display: flex;
+      bottom: -2px;
+    }
   }
 }
 

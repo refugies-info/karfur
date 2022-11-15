@@ -11,6 +11,7 @@ interface Props {
   close: () => void;
   reset: () => void;
   children: any;
+  nbResults: number;
 }
 
 const DropdownMenuMobile = (props: Props) => {
@@ -22,11 +23,11 @@ const DropdownMenuMobile = (props: Props) => {
           <span className={styles.icon}>
             <EVAIcon name={props.icon} />
           </span>
-          <p className="h4">{props.title}</p>
+          <p className="h5">{props.title}</p>
         </div>
 
         <Button onClick={props.close} className={styles.close}>
-          <EVAIcon name="close-outline" fill="dark" />
+          <EVAIcon name="close-outline" fill="dark" size={24} />
         </Button>
       </div>
 
@@ -38,7 +39,7 @@ const DropdownMenuMobile = (props: Props) => {
           {t("Recherche.resetButton", "Réinitialiser")}
         </Button>
         <Button color="primary" className={styles.btn_search} onClick={props.close}>
-          {t("Recherche.seeButton", "Voir les fiches")}
+          {t("Recherche.seeButton", "Voir les fiches", { count: props.nbResults })}
         </Button>
       </div>
     </div>

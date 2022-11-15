@@ -2,6 +2,8 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
 @import "src/scss/variables";
 
 .container {
@@ -22,6 +24,8 @@
     box-shadow: none;
     overflow-y: scroll;
     margin: 0;
+    padding-left: u(4);
+    padding-right: u(4);
   }
 }
 
@@ -29,30 +33,49 @@
   display: inline-flex;
   width: 100%;
   align-items: center;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   color: $dark;
   border-radius: u(2);
   margin-bottom: 4px;
-  height: 41px;
+  height: 39px;
+  @include text("normal");
+  @include withIcon();
 
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    filter: grayscale(1);
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &.need {
+    height: auto;
+    border: none;
+  }
+
+  @include isMobile() {
+    height: auto;
+  }
 }
 
 .btn_content {
-  display:flex;
+  display: flex;
 }
 
 .themes {
   background: $gray30;
-  padding: 16px;
+  padding: u(4);
   width: 220px;
   flex-shrink: 0;
 
   @include isMobile() {
     width: 100%;
     background: $white;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   &.hidden {
@@ -65,16 +88,9 @@
     font-weight: bold;
 
     @include isMobile() {
-      padding: u(4) u(1);
+      padding: u(4) u(2);
       border: none;
-      border-radius: 0;
       margin: 0;
-    }
-
-    &.theme {
-      @include isMobile() {
-        border-bottom: 1px solid $gray60;
-      }
     }
   }
 }
@@ -84,12 +100,12 @@
   flex-grow: 1;
 
   @include isMobile() {
-    padding-left: u(2);
-    padding-right: u(2);
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .btn {
-    padding: u(2) 12px;
+    padding: 12px u(2);
     justify-content: flex-start;
     text-align: left;
 
@@ -98,10 +114,16 @@
     }
 
     @include isMobile() {
-      border-radius: 0;
       padding-left: u(2);
       padding-right: u(2);
       margin-bottom: u(1);
+      font-weight: normal;
+
+      &.selected {
+        .badge {
+          background: $white !important;
+        }
+      }
     }
 
     &:hover {
@@ -116,12 +138,17 @@
   font-weight: bold;
   padding: 12px u(2);
   border: 2px solid transparent;
+  @include text("normal");
 }
 
 .all {
   font-weight: bold;
-  display:flex;
+  display: flex;
   align-items: center;
+
+  @include isMobile() {
+    font-weight: normal;
+  }
 
   & > span {
     position: relative;
@@ -140,6 +167,7 @@
   margin-left: u(2);
   border-radius: 2px;
   font-weight: normal;
+  @include text("very-small");
 
   @include rtl() {
     margin-left: 0;

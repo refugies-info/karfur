@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import { Button } from "reactstrap";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
@@ -29,6 +30,9 @@ const NotDeployedBanner = (props: Props) => {
             {props.departments.join(", ")}
             {t("Recherche.notDeployedTitle")}
           </span>
+          <Button className={styles.mobile_btn} onClick={props.hideBanner}>
+            <EVAIcon name="close-outline" fill="dark" size={32} />
+          </Button>
         </p>
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
