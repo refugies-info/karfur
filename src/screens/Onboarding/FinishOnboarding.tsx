@@ -39,10 +39,9 @@ const StyledText = styled(StyledTextBigBold)`
     props.marginTop ? props.marginTop : styles.margin * 2}px;
   margin-bottom: ${styles.margin}px;
 `;
-const ElementsContainer = styled.View`
+const ElementsContainer = styled.ScrollView`
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding-horizontal: ${styles.margin * 3}px;
 `;
 const LottieContainer = styled.View`
@@ -89,7 +88,7 @@ export const FinishOnboarding = ({
     <MainView>
       <HeaderWithBack />
 
-      <ElementsContainer>
+      <ElementsContainer contentContainerStyle={{ alignItems: "center" }}>
         {hasUserEnteredInfos ? (
           <LottieContainer>
             <LottieView
