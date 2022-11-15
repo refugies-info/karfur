@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableWithoutFeedback } from "react-native";
+import { ScrollView, TouchableWithoutFeedback } from "react-native";
 import Modal from "react-native-modal";
 import React from "react";
 import styled from "styled-components/native";
@@ -19,7 +19,6 @@ interface Props {
 
 const ModalView = styled.View`
   background-color: ${styles.colors.lightGrey};
-  display: flex;
   padding-top: ${styles.margin}px;
   padding-bottom: ${styles.margin * 5}px;
 
@@ -53,7 +52,7 @@ export const ConfirmationModal = (props: Props) => {
   return (
     <Modal
       isVisible={props.isModalVisible}
-      style={{ justifyContent: "flex-end", margin: 0}}
+      style={{ justifyContent: "flex-end", margin: 0 }}
       customBackdrop={
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
@@ -65,25 +64,27 @@ export const ConfirmationModal = (props: Props) => {
       }
     >
       <ModalView>
-        <TitleText>{props.text}</TitleText>
-        <TopButtonContainer>
-          <CustomButton
-            i18nKey={props.i18nKeyValidateButton || "global.validate"}
-            defaultText={props.defaultTextValidateButton || "Valider"}
-            textColor={styles.colors.white}
-            onPress={onValidate}
-            backgroundColor={styles.colors.darkBlue}
-            iconName={props.iconValidateButton || "arrow-forward-outline"}
-          />
-        </TopButtonContainer>
+        <ScrollView>
+          <TitleText>{props.text}</TitleText>
+          <TopButtonContainer>
+            <CustomButton
+              i18nKey={props.i18nKeyValidateButton || "global.validate"}
+              defaultText={props.defaultTextValidateButton || "Valider"}
+              textColor={styles.colors.white}
+              onPress={onValidate}
+              backgroundColor={styles.colors.darkBlue}
+              iconName={props.iconValidateButton || "arrow-forward-outline"}
+            />
+          </TopButtonContainer>
 
-        <CustomButton
-          i18nKey="global.cancel"
-          defaultText="Annuler"
-          textColor={styles.colors.black}
-          onPress={props.toggleModal}
-          isTextNotBold={true}
-        />
+          <CustomButton
+            i18nKey="global.cancel"
+            defaultText="Annuler"
+            textColor={styles.colors.black}
+            onPress={props.toggleModal}
+            isTextNotBold={true}
+          />
+        </ScrollView>
       </ModalView>
     </Modal>
   );

@@ -7827,7 +7827,6 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               "backgroundColor": "#F6F6F6",
               "borderTopLeftRadius": 12,
               "borderTopRightRadius": 12,
-              "display": "flex",
               "paddingBottom": 40,
               "paddingHorizontal": 24,
               "paddingTop": 8,
@@ -7835,236 +7834,240 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
           ]
         }
       >
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "alignSelf": "center",
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 19,
-                "lineHeight": 24,
-                "marginBottom": 24,
-                "marginTop": 32,
-                "textAlign": "center",
-              },
-            ]
-          }
-        >
-          Es-tu sûr de vouloir supprimer les données de ton profil ?
-        </Text>
-        <View
-          style={
-            Array [
-              Object {
-                "marginBottom": 16,
-              },
-            ]
-          }
-        >
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#0421B1",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 2,
-                "flexDirection": "row",
-                "justifyContent": "center",
-                "opacity": 1,
-                "paddingBottom": 18,
-                "paddingLeft": 18,
-                "paddingRight": 18,
-                "paddingTop": 18,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.4,
-                "shadowRadius": 2,
-                "width": "100%",
-              }
-            }
-            testID="test-custom-button-Valider"
-          >
+        <RCTScrollView>
+          <View>
             <Text
-              hasIcon={true}
-              iconFirst={false}
               isRTL={false}
               selectable={true}
               style={
                 Array [
                   Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 16,
-                    "lineHeight": 20,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+                    "alignSelf": "center",
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 19,
+                    "lineHeight": 24,
+                    "marginBottom": 24,
+                    "marginTop": 32,
+                    "textAlign": "center",
                   },
-                  Object {},
                 ]
               }
-              textColor="#FFFFFF"
             >
-              Valider
+              Es-tu sûr de vouloir supprimer les données de ton profil ?
             </Text>
             <View
-              collapsable={false}
               style={
-                Object {
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                }
+                Array [
+                  Object {
+                    "marginBottom": 16,
+                  },
+                ]
               }
             >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
-                fill="#FFFFFF"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#0421B1",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "elevation": 2,
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingBottom": 18,
+                    "paddingLeft": 18,
+                    "paddingRight": 18,
+                    "paddingTop": 18,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.4,
+                    "shadowRadius": 2,
+                    "width": "100%",
+                  }
+                }
+                testID="test-custom-button-Valider"
+              >
+                <Text
+                  hasIcon={true}
+                  iconFirst={false}
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#FFFFFF",
+                        "flexShrink": 1,
+                        "fontFamily": "circularBold",
+                        "fontSize": 16,
+                        "lineHeight": 20,
+                        "marginLeft": 0,
+                        "marginRight": 8,
+                        "textAlign": "left",
+                      },
+                      Object {},
+                    ]
+                  }
+                  textColor="#FFFFFF"
+                >
+                  Valider
+                </Text>
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#FFFFFF"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {},
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
+                  >
+                    <RNSVGGroup
+                      fill={4294967295}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            matrix={
+                              Array [
+                                6.123233995736766e-17,
+                                -1,
+                                1,
+                                6.123233995736766e-17,
+                                0,
+                                24,
+                              ]
+                            }
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGSvgView>
+                </View>
+              </View>
+            </View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "display": "flex",
+                  "elevation": 6,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "paddingBottom": 18,
+                  "paddingLeft": 18,
+                  "paddingRight": 18,
+                  "paddingTop": 18,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": "100%",
+                }
+              }
+              testID="test-custom-button-Annuler"
+            >
+              <Text
+                hasIcon={false}
+                iconFirst={false}
+                isRTL={false}
+                selectable={true}
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                      "color": "#212121",
+                      "fontFamily": "circularBook",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "marginLeft": 0,
+                      "marginRight": 0,
+                      "textAlign": "left",
                     },
                     Object {},
-                    Object {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
                   ]
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
+                textColor="#212121"
               >
-                <RNSVGGroup
-                  fill={4294967295}
-                  propList={
-                    Array [
-                      "fill",
-                    ]
-                  }
-                >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
-                      <RNSVGRect
-                        height="24"
-                        matrix={
-                          Array [
-                            6.123233995736766e-17,
-                            -1,
-                            1,
-                            6.123233995736766e-17,
-                            0,
-                            24,
-                          ]
-                        }
-                        opacity={0}
-                        width="24"
-                        x={0}
-                        y={0}
-                      />
-                      <RNSVGPath
-                        d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"
-                      />
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
+                Annuler
+              </Text>
             </View>
           </View>
-        </View>
-        <View
-          accessibilityRole="button"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 12,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "opacity": 1,
-              "paddingBottom": 18,
-              "paddingLeft": 18,
-              "paddingRight": 18,
-              "paddingTop": 18,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-              "width": "100%",
-            }
-          }
-          testID="test-custom-button-Annuler"
-        >
-          <Text
-            hasIcon={false}
-            iconFirst={false}
-            isRTL={false}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 20,
-                  "marginLeft": 0,
-                  "marginRight": 0,
-                  "textAlign": "left",
-                },
-                Object {},
-              ]
-            }
-            textColor="#212121"
-          >
-            Annuler
-          </Text>
-        </View>
+        </RCTScrollView>
       </View>
     </View>
   </Modal>
