@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
 import { ContentType, SearchDispositif } from "types/interface";
@@ -37,7 +37,7 @@ const CardSlider = (props: Props) => {
   const margins =
     (slider.current?.clientWidth || 0) > RESPONSIVE_WIDTH_LIMIT ? NEGATIVE_MARGINS_LG : NEGATIVE_MARGINS_MD;
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       const newMaxPage = slider.current
         ? (slider.current.scrollWidth - margins) / (slider.current.clientWidth - margins)

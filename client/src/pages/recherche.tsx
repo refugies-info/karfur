@@ -21,22 +21,20 @@ import { addToQueryActionCreator, setSearchResultsActionCreator } from "services
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
-import {
-  getCountDispositifsForDepartment,
-  queryDispositifs,
-  queryDispositifsWithAlgolia
-} from "lib/recherche/queryContents";
+import { queryDispositifs, queryDispositifsWithAlgolia } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
-import { SearchDispositif, Need, Theme } from "types/interface";
+import { getDepartmentsNotDeployed, getThemesDisplayed } from "lib/recherche/functions";
+import { generateLightResults } from "lib/recherche/generateLightResults";
+import { SearchDispositif, Theme } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
-import styles from "scss/pages/recherche.module.scss";
 import { getPath } from "routes";
+import styles from "scss/pages/recherche.module.scss";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
@@ -69,8 +67,7 @@ const Recherche = () => {
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
 
-  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>([]);
-  const [showHome, setShowHome] = useState(true);
+  const [showHome, setShowHome] = useState(isHomeSearchVisible(query));
 
   useEffect(() => {
     // toggle home screen
@@ -102,34 +99,19 @@ const Recherche = () => {
   }, [query, dispositifs]);
 
   // set themes displayed based on needs
+  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>(
+    getThemesDisplayed(allThemes, allNeeds, query.themes, query.needs)
+  );
   useEffect(() => {
-    const needs = query.needs.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
-
-    // get all themes displayed
-    const newThemesDisplayed: Theme[] = [];
-    for (const theme of query.themes) {
-      const themeToAdd = allThemes.find((t) => t._id === theme);
-      if (themeToAdd) newThemesDisplayed.push(themeToAdd);
-    }
-    for (const need of needs) {
-      if (need.theme && !newThemesDisplayed.find((t) => t._id === need.theme._id)) {
-        newThemesDisplayed.push(need.theme);
-      }
-    }
-    setThemesDisplayed(newThemesDisplayed);
+    setThemesDisplayed(getThemesDisplayed(allThemes, allNeeds, query.themes, query.needs));
   }, [query.needs, query.themes, allNeeds, allThemes]);
 
   // check if department deployed
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>([]);
+  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
+    getDepartmentsNotDeployed(query.departments, dispositifs)
+  );
   useEffect(() => {
-    const newDepartmentsNotDeployed: string[] = [];
-    for (const dep of query.departments) {
-      const count = getCountDispositifsForDepartment(dep, dispositifs);
-      if (count < 10) {
-        newDepartmentsNotDeployed.push(dep);
-      }
-    }
-    setDepartmentsNotDeployed(newDepartmentsNotDeployed);
+    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
   }, [query.departments, dispositifs]);
 
   const resetFilters = useCallback(() => {
@@ -190,9 +172,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   await store.sagaTask?.toPromise();
 
   const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
-  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
-  store.dispatch(setSearchResultsActionCreator(results));
   store.dispatch(addToQueryActionCreator(initialQuery));
+
+  const homeVisible = isHomeSearchVisible(initialQuery);
+  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs);
+  store.dispatch(setSearchResultsActionCreator(generateLightResults(results, homeVisible)));
 
   return {
     props: {

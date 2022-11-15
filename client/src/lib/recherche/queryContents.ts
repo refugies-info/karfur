@@ -2,7 +2,6 @@ import algoliasearch from "algoliasearch";
 import { SearchDispositif } from "types/interface";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { Results } from "services/SearchResults/searchResults.reducer";
-import { getDispositifInfos } from "../getDispositifInfos";
 import {
   filterByThemeOrNeed,
   filterByLocations,
@@ -19,23 +18,6 @@ const indexName = (process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production") ?
   process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG;
 const index = searchClient.initIndex(indexName || "");
 
-/**
- * Return the number of dispositifs for a department
- * @param department - string
- * @param dispositifs - list of dispositifs
- * @returns number
- */
-export const getCountDispositifsForDepartment = (
-  department: string,
-  dispositifs: SearchDispositif[],
-): number => {
-  return [...dispositifs]
-    .filter(dispositif => {
-      const location = getDispositifInfos(dispositif, "location");
-      if (!location?.departments) return false;
-      return location.departments.map(dep => dep.split(" - ")[1]).includes(department)
-    }).length
-}
 
 /**
  * Filters a list of dispositifs from a query, for primary theme or secondary themes

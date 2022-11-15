@@ -16,8 +16,8 @@ import SeeMoreButton from "../SeeMoreButton";
 import noResultsImage from "assets/no_results_alt.svg";
 import styles from "./SearchResults.module.scss";
 
-const MAX_SHOWN_DEMARCHES = 14;
-const MAX_SHOWN_DISPOSITIFS = 15;
+export const MAX_SHOWN_DEMARCHES = 14;
+export const MAX_SHOWN_DISPOSITIFS = 15;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {

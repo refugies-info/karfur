@@ -19,6 +19,9 @@ import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
 
+export const HOME_MAX_SHOWN_DISPOSITIFS = 15;
+export const HOME_MAX_SHOWN_DEMARCHES = 15;
+
 const demarchesExamples = [
   "Recherche.demarcheExample1",
   "Recherche.demarcheExample2",
@@ -59,8 +62,8 @@ const HomeSearch = () => {
   const themes = useSelector(themesSelector);
   const filteredResult = useSelector(searchResultsSelector);
 
-  const demarches = useMemo(() => filteredResult.demarches.slice(0, 15), [filteredResult]);
-  const dispositifs = useMemo(() => filteredResult.dispositifs.slice(0, 15), [filteredResult]);
+  const demarches = useMemo(() => filteredResult.demarches.slice(0, HOME_MAX_SHOWN_DEMARCHES), [filteredResult]);
+  const dispositifs = useMemo(() => filteredResult.dispositifs.slice(0, HOME_MAX_SHOWN_DISPOSITIFS), [filteredResult]);
 
   const selectTheme = (themeId: ObjectId) => {
     dispatch(addToQueryActionCreator({ themes: [themeId] }));

@@ -105,7 +105,7 @@ const combinedReducer = combineReducers({
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {
-  if (action.type === HYDRATE) { // action sent the Next with the server side data
+  if (action.type === HYDRATE) { // action sent by Next with the server side data
     const nextState = { ...state };
 
     // add to store if not already in
