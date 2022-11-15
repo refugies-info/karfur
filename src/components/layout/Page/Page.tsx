@@ -10,6 +10,8 @@ import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
 import { useVoiceover } from "../../../hooks/useVoiceover";
 import Header, { HeaderProps } from "../Header";
 import ScrollableContent from "../ScrollableContent";
+import { logger } from "../../../logger";
+import { useIsFocused } from "@react-navigation/native";
 
 const PageContainer = styled.View`
   flex: 1;
@@ -29,17 +31,22 @@ const Page = ({
   ...headerProps
 }: PageProps) => {
   const theme = useTheme();
+  const isFocus = useIsFocused();
   const { handleScroll, showSimplifiedHeader } = useHeaderAnimation(); // Voiceover
   const scrollview = React.useRef<ScrollView>(null);
   const offset = 250;
   const { setScroll, saveList } = useVoiceover(scrollview, offset);
 
   React.useEffect(() => {
+    // Run saveList only if the screen is focused
+    if (!isFocus) return;
+
     // reset when finish loading
     if (!loading) {
+      logger.info("VoiceOver :: saveList");
       setTimeout(() => saveList());
     }
-  }, [loading]);
+  }, [loading, isFocus]);
 
   const onScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     setScroll(
