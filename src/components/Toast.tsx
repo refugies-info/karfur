@@ -1,6 +1,6 @@
 import React from "react";
 import { Icon } from "react-native-eva-icons";
-import { Animated, Easing } from "react-native";
+import { Animated, Easing, PixelRatio } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import { styles } from "../theme";
@@ -19,7 +19,7 @@ const ToastContainer = styled(Animated.View)`
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 140px;
+  bottom: ${140 * (PixelRatio.getFontScale() / 2)}px;
   z-index: 13;
 `;
 const ToastView = styled(RTLView)`
@@ -31,15 +31,14 @@ const ToastView = styled(RTLView)`
   ${styles.shadows.lg}
 `;
 const TextIcon = styled(Icon)`
-  marginRight: ${(props: { isRTL: boolean }) =>
+  marginright: ${(props: { isRTL: boolean }) =>
     props.isRTL ? 0 : styles.margin * 2}px;
-  marginLeft: ${(props: { isRTL: boolean }) =>
+  marginleft: ${(props: { isRTL: boolean }) =>
     props.isRTL ? styles.margin * 2 : 0}px;
 `;
 const StyledText = styled(StyledTextVerySmallBold)`
   color: ${styles.colors.white};
 `;
-
 
 export const Toast = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
@@ -55,9 +54,9 @@ export const Toast = (props: Props) => {
       toValue: 0,
       duration: 400,
       useNativeDriver: true,
-      easing: Easing.out(Easing.exp)
+      easing: Easing.out(Easing.exp),
     }).start(props.onClose);
-  }, [props.onClose])
+  }, [props.onClose]);
 
   /**
    * Show toast on mount
@@ -67,14 +66,16 @@ export const Toast = (props: Props) => {
       toValue: 100,
       duration: 400,
       useNativeDriver: true,
-      easing: Easing.out(Easing.exp)
+      easing: Easing.out(Easing.exp),
     }).start();
 
     const timer = setTimeout(() => {
-      hideToast()
+      hideToast();
     }, 12000);
 
-    return () => { clearTimeout(timer) }
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const bottom = animation.current.interpolate({
@@ -84,7 +85,7 @@ export const Toast = (props: Props) => {
   });
 
   return (
-    <ToastContainer style={{ transform: [{ translateY: bottom }]}} >
+    <ToastContainer style={{ transform: [{ translateY: bottom }] }}>
       <ToastView>
         <RTLView>
           <TextIcon
@@ -94,10 +95,11 @@ export const Toast = (props: Props) => {
             fill={styles.colors.white}
             isRTL={isRTL}
           />
-          {props.i18nKey ?
-            <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText> :
+          {props.i18nKey ? (
+            <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText>
+          ) : (
             props.children
-          }
+          )}
         </RTLView>
 
         <TouchableOpacity

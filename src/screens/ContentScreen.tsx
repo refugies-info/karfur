@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  PixelRatio,
 } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import * as Linking from "expo-linking";
@@ -79,6 +80,7 @@ import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../utils";
+import { Columns } from "../components";
 
 const getHeaderImageHeight = (nbLines: number) => {
   if (nbLines < 3) {
@@ -137,9 +139,9 @@ const FixedContainerForHeader = styled.View`
   width: 100%;
 `;
 
-const LastUpdateDateContainer = styled(RTLView)`
+const LastUpdateDateContainer = styled(Columns)`
   margin-top: ${styles.margin * 4}px;
-  margin-bottom: ${styles.margin * 2}px;
+  margin-bottom: ${styles.margin * 2 * PixelRatio.getFontScale()}px;
   margin-horizontal: ${styles.margin * 3}px;
 `;
 
@@ -149,8 +151,8 @@ const LastUpdateDate = styled(TextSmallNormal)`
 
 const LastUpdateText = styled(TextSmallNormal)`
   color: ${styles.colors.darkGrey};
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? 4 : 0)}px;
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? 0 : 4)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 4 : 0)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : 4)}px;
 `;
 
 const SimplifiedHeaderContainer = styled.View`
@@ -859,8 +861,8 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           )}
 
           {formattedLastModifDate && (
-            <LastUpdateDateContainer>
-              <LastUpdateText isRTL={isRTL}>
+            <LastUpdateDateContainer RTLBehaviour>
+              <LastUpdateText>
                 {t("content_screen.last_update", "Dernière mise à jour :")}
               </LastUpdateText>
               <LastUpdateDate>
