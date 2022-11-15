@@ -1,6 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`recherche renders home search 1`] = `
+.c14 {
+  background: linear-gradient(90deg,#443023 22%,#715F56 100%);
+}
+
+.c14:hover {
+  background: #EEE7E5;
+  box-shadow: 0 0 0 1px #443023,0 0 40px 0 #00000040;
+  color: #443023 !important;
+}
+
+.c15 {
+  background: linear-gradient(90deg,#3D2884 22%,#705FA4 100%);
+}
+
+.c15:hover {
+  background: #EFE8F4;
+  box-shadow: 0 0 0 1px #3D2884,0 0 40px 0 #00000040;
+  color: #3D2884 !important;
+}
+
+.c16 {
+  background: linear-gradient(90deg,#095411 22%,#26B759 100%);
+}
+
+.c16:hover {
+  background: #E8F4E8;
+  box-shadow: 0 0 0 1px #095411,0 0 40px 0 #00000040;
+  color: #095411 !important;
+}
+
+.c17 {
+  background: linear-gradient(90deg,#055E5A 22%,#27A8A5 100%);
+}
+
+.c17:hover {
+  background: #EDFDF9;
+  box-shadow: 0 0 0 1px #055E5A,0 0 40px 0 #00000040;
+  color: #055E5A !important;
+}
+
+.c18 {
+  background: linear-gradient(90deg,#06508C 22%,#1E9ED1 100%);
+}
+
+.c18:hover {
+  background: #DDF2F9;
+  box-shadow: 0 0 0 1px #06508C,0 0 40px 0 #00000040;
+  color: #06508C !important;
+}
+
+.c19 {
+  background: linear-gradient(90deg,#910940 22%,#D64B71 100%);
+}
+
+.c19:hover {
+  background: #FFEDED;
+  box-shadow: 0 0 0 1px #910940,0 0 40px 0 #00000040;
+  color: #910940 !important;
+}
+
+.c20 {
+  background: linear-gradient(90deg,#CD5605 22%,#F97319 100%);
+}
+
+.c20:hover {
+  background: #FEEBDE;
+  box-shadow: 0 0 0 1px #CD5605,0 0 40px 0 #00000040;
+  color: #CD5605 !important;
+}
+
+.c21 {
+  background: linear-gradient(90deg,#770649 22%,#D01F67 100%);
+}
+
+.c21:hover {
+  background: #FFEAF4;
+  box-shadow: 0 0 0 1px #770649,0 0 40px 0 #00000040;
+  color: #770649 !important;
+}
+
+.c22 {
+  background: linear-gradient(90deg,#204F01 22%,#47AA0A 100%);
+}
+
+.c22:hover {
+  background: #F2F9E5;
+  box-shadow: 0 0 0 1px #204F01,0 0 40px 0 #00000040;
+  color: #204F01 !important;
+}
+
+.c23 {
+  background: linear-gradient(90deg,#073099 22%,#1C66DD 100%);
+}
+
+.c23:hover {
+  background: #EEF8FF;
+  box-shadow: 0 0 0 1px #073099,0 0 40px 0 #00000040;
+  color: #073099 !important;
+}
+
+.c24 {
+  background: linear-gradient(90deg,#600566 22%,#9E2DAD 100%);
+}
+
+.c24:hover {
+  background: #F9F1FD;
+  box-shadow: 0 0 0 1px #600566,0 0 40px 0 #00000040;
+  color: #600566 !important;
+}
+
+.c25 {
+  background: linear-gradient(90deg,#9E180A 22%,#E05A3E 100%);
+}
+
+.c25:hover {
+  background: #F9E8E8;
+  box-shadow: 0 0 0 1px #9E180A,0 0 40px 0 #00000040;
+  color: #9E180A !important;
+}
+
+.c26 {
+  background: linear-gradient(90deg,#77057A 22%,#9E2DAD 100%);
+}
+
+.c26:hover {
+  background: #FDC4FC;
+  box-shadow: 0 0 0 1px #77057A,0 0 40px 0 #00000040;
+  color: #77057A !important;
+}
+
 .c13 {
   background-color: transparent;
   color: #443023;
@@ -138,136 +268,6 @@ exports[`recherche renders home search 1`] = `
   background-color: #FDC4FC;
   border-color: #77057A;
   color: #77057A;
-}
-
-.c14 {
-  background: linear-gradient(90deg,#443023 22%,#715F56 100%);
-}
-
-.c14:hover {
-  background: #EEE7E5;
-  box-shadow: 0 0 0 1px #443023,0 0 40px 0 #00000040;
-  color: #443023 !important;
-}
-
-.c15 {
-  background: linear-gradient(90deg,#3D2884 22%,#705FA4 100%);
-}
-
-.c15:hover {
-  background: #EFE8F4;
-  box-shadow: 0 0 0 1px #3D2884,0 0 40px 0 #00000040;
-  color: #3D2884 !important;
-}
-
-.c16 {
-  background: linear-gradient(90deg,#095411 22%,#26B759 100%);
-}
-
-.c16:hover {
-  background: #E8F4E8;
-  box-shadow: 0 0 0 1px #095411,0 0 40px 0 #00000040;
-  color: #095411 !important;
-}
-
-.c17 {
-  background: linear-gradient(90deg,#055E5A 22%,#27A8A5 100%);
-}
-
-.c17:hover {
-  background: #EDFDF9;
-  box-shadow: 0 0 0 1px #055E5A,0 0 40px 0 #00000040;
-  color: #055E5A !important;
-}
-
-.c18 {
-  background: linear-gradient(90deg,#06508C 22%,#1E9ED1 100%);
-}
-
-.c18:hover {
-  background: #DDF2F9;
-  box-shadow: 0 0 0 1px #06508C,0 0 40px 0 #00000040;
-  color: #06508C !important;
-}
-
-.c19 {
-  background: linear-gradient(90deg,#910940 22%,#D64B71 100%);
-}
-
-.c19:hover {
-  background: #FFEDED;
-  box-shadow: 0 0 0 1px #910940,0 0 40px 0 #00000040;
-  color: #910940 !important;
-}
-
-.c20 {
-  background: linear-gradient(90deg,#CD5605 22%,#F97319 100%);
-}
-
-.c20:hover {
-  background: #FEEBDE;
-  box-shadow: 0 0 0 1px #CD5605,0 0 40px 0 #00000040;
-  color: #CD5605 !important;
-}
-
-.c21 {
-  background: linear-gradient(90deg,#770649 22%,#D01F67 100%);
-}
-
-.c21:hover {
-  background: #FFEAF4;
-  box-shadow: 0 0 0 1px #770649,0 0 40px 0 #00000040;
-  color: #770649 !important;
-}
-
-.c22 {
-  background: linear-gradient(90deg,#204F01 22%,#47AA0A 100%);
-}
-
-.c22:hover {
-  background: #F2F9E5;
-  box-shadow: 0 0 0 1px #204F01,0 0 40px 0 #00000040;
-  color: #204F01 !important;
-}
-
-.c23 {
-  background: linear-gradient(90deg,#073099 22%,#1C66DD 100%);
-}
-
-.c23:hover {
-  background: #EEF8FF;
-  box-shadow: 0 0 0 1px #073099,0 0 40px 0 #00000040;
-  color: #073099 !important;
-}
-
-.c24 {
-  background: linear-gradient(90deg,#600566 22%,#9E2DAD 100%);
-}
-
-.c24:hover {
-  background: #F9F1FD;
-  box-shadow: 0 0 0 1px #600566,0 0 40px 0 #00000040;
-  color: #600566 !important;
-}
-
-.c25 {
-  background: linear-gradient(90deg,#9E180A 22%,#E05A3E 100%);
-}
-
-.c25:hover {
-  background: #F9E8E8;
-  box-shadow: 0 0 0 1px #9E180A,0 0 40px 0 #00000040;
-  color: #9E180A !important;
-}
-
-.c26 {
-  background: linear-gradient(90deg,#77057A 22%,#9E2DAD 100%);
-}
-
-.c26:hover {
-  background: #FDC4FC;
-  box-shadow: 0 0 0 1px #77057A,0 0 40px 0 #00000040;
-  color: #77057A !important;
 }
 
 @media screen and (max-width:767px) {
@@ -570,6 +570,15 @@ exports[`recherche renders home search 1`] = `
               aria-hidden={true}
               className="dropdown-menu"
               role="menu"
+              style={
+                Object {
+                  "left": 0,
+                  "opacity": 0,
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "top": 0,
+                }
+              }
               tabIndex="-1"
             >
               <div
@@ -1720,6 +1729,22 @@ exports[`recherche renders home search 1`] = `
         <div
           className="container"
         >
+          <button
+            aria-label={null}
+            className="btn next btn btn-secondary"
+            onClick={[Function]}
+            type="button"
+          >
+            <span>
+              <i
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"40px\\" height=\\"40px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"white\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                  }
+                }
+              />
+            </span>
+          </button>
           <div
             className="slider demarches"
           />
@@ -1744,6 +1769,22 @@ exports[`recherche renders home search 1`] = `
         <div
           className="container"
         >
+          <button
+            aria-label={null}
+            className="btn next btn btn-secondary"
+            onClick={[Function]}
+            type="button"
+          >
+            <span>
+              <i
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"40px\\" height=\\"40px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"white\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                  }
+                }
+              />
+            </span>
+          </button>
           <div
             className="slider dispositifs"
           />
@@ -2330,6 +2371,15 @@ exports[`recherche renders search results 1`] = `
               aria-hidden={true}
               className="dropdown-menu"
               role="menu"
+              style={
+                Object {
+                  "left": 0,
+                  "opacity": 0,
+                  "pointerEvents": "none",
+                  "position": "absolute",
+                  "top": 0,
+                }
+              }
               tabIndex="-1"
             >
               <div
