@@ -30,6 +30,7 @@ export const SearchContentSummary = (props: Props) => {
       // BESOIN
       <NeedsSummary
         id={props.item.objectID}
+        image={theme.appImage}
         needTextFr={props.item.title_fr}
         searchLanguageMatch={props.languageMatch}
         theme={theme}

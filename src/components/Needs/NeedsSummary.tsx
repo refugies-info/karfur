@@ -7,23 +7,26 @@ import {
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SvgUri } from "react-native-svg";
 
 import { RTLTouchableOpacity, RTLView } from "../../components/BasicComponents";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
-import { Theme } from "../../types/interface";
+import { Picture, Theme } from "../../types/interface";
 import { ReadableText } from "../ReadableText";
-import { getImageUri } from "../../libs/getImageUri";
 import { Columns, ColumnsSpacing, Rows } from "../layout";
 import { ExplorerParamList } from "../../../types";
+import { isEmpty } from "lodash";
+import { useSelector } from "react-redux";
+import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { UriImage } from "../iconography";
 
-const NeedContainer = styled(RTLTouchableOpacity)`
+const NeedContainer = styled(RTLTouchableOpacity)<{ needTheme: Theme }>`
   padding: ${({ theme }) => theme.margin * 2}px
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ needTheme }) => needTheme.colors.color30};
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  ${({ theme }) => theme.shadows.lg}
+  ${({ theme }) => theme.shadows.needSummary}
+  shadow-color: ${({ needTheme }) => needTheme.colors.color100};
 `;
 
 const IndicatorContainer = styled(RTLView)`
@@ -34,6 +37,7 @@ const IndicatorContainer = styled(RTLView)`
 interface Props {
   backScreen?: string;
   id: string;
+  image: Picture;
   needSubtitle?: string;
   needText?: string;
   needTextFr: string;
@@ -48,6 +52,7 @@ type NeedsScreenNavigationProp = StackNavigationProp<ExplorerParamList>;
 export const NeedsSummary = ({
   backScreen,
   id,
+  image,
   needSubtitle,
   needText,
   needTextFr,
@@ -57,13 +62,14 @@ export const NeedsSummary = ({
   theme,
 }: Props) => {
   const navigation = useNavigation<NeedsScreenNavigationProp>();
+  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const goToContent = useCallback(() => {
     logEventInFirebase(FirebaseEvent.CLIC_NEED, {
       need: needTextFr,
     });
 
     navigation.navigate("ContentsScreen", {
-      theme,
+      theme: theme,
       needId: id,
       backScreen: backScreen,
     });
@@ -73,6 +79,7 @@ export const NeedsSummary = ({
   return (
     <NeedContainer
       accessibilityRole="button"
+      needTheme={theme}
       onPress={goToContent}
       style={style}
     >
@@ -96,19 +103,15 @@ export const NeedsSummary = ({
             )}
           </TextSmallBold>
 
-          {needSubtitle && (
+          {!isEmpty(needSubtitle) ? (
             <TextVerySmallNormal color={theme.colors.color100}>
               {needSubtitle}
             </TextVerySmallNormal>
-          )}
+          ) : null}
         </Rows>
 
         <IndicatorContainer>
-          <SvgUri
-            width={"100%"}
-            height={"100%"}
-            uri={getImageUri(theme.appImage.secure_url)}
-          />
+          <UriImage uri={image.secure_url} />
         </IndicatorContainer>
       </Columns>
     </NeedContainer>

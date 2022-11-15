@@ -115,6 +115,12 @@ const shadows = {
       shadow-radius: 8px;
       elevation: 6;
     `,
+  needSummary: `
+      shadow-opacity: 0.24;
+      shadow-offset: 4px 4px;
+      shadow-radius: 8px;
+      elevation: 6;
+    `,
   blue: `
       shadow-color: ${colors.darkBlue};
       shadow-opacity: 0.16;

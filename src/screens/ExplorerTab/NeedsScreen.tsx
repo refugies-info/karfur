@@ -134,13 +134,14 @@ export const NeedsScreen = ({
 
         return (
           <NeedsSummary
-            key={need._id}
             id={need._id}
+            image={need.image || need.theme.appImage}
+            key={need._id}
+            needSubtitle={needSubtitle}
             needText={needText}
             needTextFr={need.fr.text}
-            needSubtitle={needSubtitle}
-            theme={theme}
             style={{ marginBottom: styles.margin * 3 }}
+            theme={theme}
           />
         );
       })}

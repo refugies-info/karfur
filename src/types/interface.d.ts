@@ -150,6 +150,7 @@ export interface Need {
   position?: number;
   created_at: Moment;
   updatedAt: Moment;
+  image: Picture;
 }
 
 export interface ReadingItem {
