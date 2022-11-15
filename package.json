@@ -13,7 +13,10 @@
     "preset": "jest-expo",
     "moduleNameMapper": {
       "\\.svg": "<rootDir>/src/jest/__mocks__/svgMock.js"
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/setup.jest.js"
+    ]
   },
   "dependencies": {
     "@03balogun/react-native-skeleton-content": "^1.0.25",
