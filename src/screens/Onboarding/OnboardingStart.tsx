@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet } from "react-native";
+import { Image, ScrollView } from "react-native";
 import { StackScreenProps } from "@react-navigation/stack";
 
 import { OnboardingParamList } from "../../../types";
@@ -12,6 +12,7 @@ import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Content, Rows } from "../../components";
 
 const MainView = styled(SafeAreaView)`
   background-color: ${styles.colors.darkBlue};
@@ -19,10 +20,6 @@ const MainView = styled(SafeAreaView)`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-const ElementsContainer = styled.ScrollView`
-  padding: ${styles.margin * 3}px;
 `;
 
 const StyledText = styled(StyledTextBigBold)`
@@ -51,19 +48,23 @@ export const OnboardingStart = ({
         }}
         resizeMode="cover"
       />
-      <ElementsContainer>
-        <StyledText marginBottom={`${styles.margin * 8}px`}>
-          {t("onboarding_screens.bonjour", "trad")}
-        </StyledText>
+      <Content>
+        <Rows verticalAlign="flex-end">
+          <ScrollView style={{ marginTop: 370 }}>
+            <StyledText marginBottom={`${styles.margin * 8}px`}>
+              {t("onboarding_screens.bonjour", "trad")}
+            </StyledText>
+          </ScrollView>
 
-        <CustomButton
-          i18nKey="onboarding_screens.startonboarding_screens.start"
-          defaultText="C'est parti"
-          textColor={styles.colors.darkBlue}
-          onPress={() => navigation.navigate("OnboardingSteps")}
-          iconName="arrow-forward-outline"
-        />
-      </ElementsContainer>
+          <CustomButton
+            i18nKey="onboarding_screens.startonboarding_screens.start"
+            defaultText="C'est parti"
+            textColor={styles.colors.darkBlue}
+            onPress={() => navigation.navigate("OnboardingSteps")}
+            iconName="arrow-forward-outline"
+          />
+        </Rows>
+      </Content>
     </MainView>
   );
 };
