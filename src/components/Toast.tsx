@@ -19,7 +19,7 @@ const ToastContainer = styled(Animated.View)`
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: ${140 * (PixelRatio.getFontScale() / 2)}px;
+  bottom: ${140 * Math.max(1, PixelRatio.getFontScale() / 2)}px;
   z-index: 13;
 `;
 const ToastView = styled(RTLView)`
