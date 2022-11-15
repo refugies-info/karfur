@@ -8,7 +8,7 @@ import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import { View } from "react-native";
+import { PixelRatio, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -35,7 +35,7 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const BottomTabBarContainer = styled(View)`
   flex-direction: row;
   background-color: white;
-  height: 48px;
+  min-height: 48px;
   align-items: center;
   box-shadow: 0px 0px 4px #2121210a;
 `;
@@ -110,7 +110,6 @@ function BottomTabBar({
   return (
     <BottomTabBarContainer
       style={{
-        height: 48 + insetBottom,
         paddingBottom: insetBottom,
       }}
     >

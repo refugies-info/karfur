@@ -4014,26 +4014,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 width={16}
               />
             </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 13,
-                    "lineHeight": 16,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#5E5E5E",
-                  },
-                ]
-              }
-            >
-              Écouter
-            </Text>
           </View>
           <View
             className="sc-hLBbgP keDkga"
@@ -8586,26 +8566,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 width={16}
               />
             </View>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 13,
-                    "lineHeight": 16,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#5E5E5E",
-                  },
-                ]
-              }
-            >
-              Écouter
-            </Text>
           </View>
           <View
             className="sc-hLBbgP keDkga"

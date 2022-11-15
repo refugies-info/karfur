@@ -2,15 +2,23 @@ import React, { useCallback, useEffect, useState } from "react";
 import * as Haptics from "expo-haptics";
 import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import * as Speech from "expo-speech";
-import { Image, Platform, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Platform,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
+import { setReadingItem } from "../../services/redux/VoiceOver/voiceOver.actions";
 import {
-  setReadingItem
-} from "../../services/redux/VoiceOver/voiceOver.actions";
-import { currentItemSelector, currentScrollSelector, readingListSelector } from "../../services/redux/VoiceOver/voiceOver.selectors";
+  currentItemSelector,
+  currentScrollSelector,
+  readingListSelector,
+} from "../../services/redux/VoiceOver/voiceOver.selectors";
 import { styles } from "../../theme";
 import Pause from "../../theme/images/voiceover/pause_icon.svg";
 import Play from "../../theme/images/voiceover/play_icon.svg";
@@ -22,7 +30,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 
 const Container = styled(View)`
   position: absolute;
-  bottom: ${((props: {bottomInset: number}) => props.bottomInset)}px;
+  bottom: ${(props: { bottomInset: number }) => props.bottomInset}px;
   left: 0;
   right: 0;
   align-items: center;
@@ -37,7 +45,7 @@ const PlayContainer = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   z-index: 2;
-  opacity: ${((props: {loading: boolean}) => props.loading ? 0.4 : 1)};
+  opacity: ${(props: { loading: boolean }) => (props.loading ? 0.4 : 1)};
 `;
 const PlayButton = styled(View)`
   width: 56px;
@@ -71,9 +79,9 @@ const Space = styled(View)`
   margin-left: 8px;
 `;
 interface ButtonProps {
-  mr?: boolean
-  ml?: boolean
-  background?: string
+  mr?: boolean;
+  ml?: boolean;
+  background?: string;
 }
 const Button = styled(TouchableOpacity)`
   width: 40px;
@@ -81,9 +89,9 @@ const Button = styled(TouchableOpacity)`
   border-radius: 12px;
   background: ${(props: ButtonProps) => props.background || "white"};
   justify-content: center;
-  align-items:center;
-  margin-right: ${(props: ButtonProps) => props.mr ? "8px" : "0"};
-  margin-left: ${(props: ButtonProps) => props.ml ? "8px" : "0"};
+  align-items: center;
+  margin-right: ${(props: ButtonProps) => (props.mr ? "8px" : "0")};
+  margin-left: ${(props: ButtonProps) => (props.ml ? "8px" : "0")};
   ${styles.shadows.blue}
 `;
 
@@ -94,35 +102,38 @@ const sortItems = (a: ReadingItem, b: ReadingItem) => {
   else if (a.posY > b.posY) return 1;
   else if (a.posX < b.posX) -1; // is same horizontal position, check vertical position
   return 1;
-}
+};
 
 const getReadingList = (
   list: ReadingItem[],
   startFromId: string | null,
   offset: number
 ) => {
-  const toRead = list.filter(item => item);;
+  const toRead = list.filter((item) => item);
   if (toRead.length === 0) return [];
   const firstItemToRead = startFromId || toRead[0].id;
-  const currentItemIndex = toRead.findIndex(i => i.id === firstItemToRead);
+  const currentItemIndex = toRead.findIndex((i) => i.id === firstItemToRead);
   return toRead.slice(currentItemIndex + offset);
-}
+};
 
 interface Props {
-  bottomInset: number
+  bottomInset: number;
 }
 
 export const ReadButton = (props: Props) => {
   const dispatch = useDispatch();
+  const { fontScale } = useWindowDimensions();
 
   const [isPaused, setIsPaused] = useState(false);
   const [rate, setRate] = useState(1);
-  const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>([]);
+  const [resolvedReadingList, setResolvedReadingList] = useState<ReadingItem[]>(
+    []
+  );
   const [isLoading, setIsLoading] = useState(false);
 
-  const animatedValue =  React.useRef(new Animated.Value(0)).current;
+  const animatedValue = React.useRef(new Animated.Value(0)).current;
   const animatedStyle = {
-    transform: [{ scale: animatedValue }]
+    transform: [{ scale: animatedValue }],
   };
 
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
@@ -133,21 +144,26 @@ export const ReadButton = (props: Props) => {
   const [isReading, setIsReading] = useState(false);
   useEffect(() => {
     setIsReading(!!currentItem);
-  }, [currentItem])
+  }, [currentItem]);
 
-  const readText = useCallback((item: ReadingItem, readingList: ReadingItem[]) => {
-    setIsPaused(false);
-    Speech.speak(item.text, {
-      rate: rate,
-      language: currentLanguageI18nCode || "fr",
-      onStart: () => { dispatch(setReadingItem(item)) },
-      onDone: () => {
-        if (readingList[readingList.length - 1].id === item.id) {
-          dispatch(setReadingItem(null))
-        }
-      }
-    });
-  }, [rate, currentLanguageI18nCode]);
+  const readText = useCallback(
+    (item: ReadingItem, readingList: ReadingItem[]) => {
+      setIsPaused(false);
+      Speech.speak(item.text, {
+        rate: rate,
+        language: currentLanguageI18nCode || "fr",
+        onStart: () => {
+          dispatch(setReadingItem(item));
+        },
+        onDone: () => {
+          if (readingList[readingList.length - 1].id === item.id) {
+            dispatch(setReadingItem(null));
+          }
+        },
+      });
+    },
+    [rate, currentLanguageI18nCode]
+  );
 
   const startToRead = useCallback(() => {
     if (Array.isArray(readingList)) {
@@ -161,8 +177,14 @@ export const ReadButton = (props: Props) => {
         });
         const sortedReadingList = res.sort(sortItems);
         setResolvedReadingList(sortedReadingList);
-        const firstItem = sortedReadingList.find(item => item.posY >= currentScroll);
-        const toRead = getReadingList(sortedReadingList, firstItem?.id || null, 0);
+        const firstItem = sortedReadingList.find(
+          (item) => item.posY >= currentScroll
+        );
+        const toRead = getReadingList(
+          sortedReadingList,
+          firstItem?.id || null,
+          0
+        );
         for (const itemToRead of toRead) readText(itemToRead, toRead);
         setIsLoading(false);
       });
@@ -176,7 +198,7 @@ export const ReadButton = (props: Props) => {
       const toRead = getReadingList(resolvedReadingList, currentItem.id, 1);
       for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
-  }
+  };
 
   const goToPrevious = () => {
     Speech.stop();
@@ -185,19 +207,20 @@ export const ReadButton = (props: Props) => {
       const toRead = getReadingList(resolvedReadingList, currentItem.id, -1);
       for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
-  }
+  };
 
   const resumeReading = () => {
     if (currentItem) {
       const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
       for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
-  }
+  };
 
   const stopVoiceOver = useCallback(() => {
     deactivateKeepAwake("voiceover");
     Speech.stop();
-    if (isReading) { // test to prevent haptic on any navigate
+    if (isReading) {
+      // test to prevent haptic on any navigate
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     }
     dispatch(setReadingItem(null));
@@ -205,8 +228,8 @@ export const ReadButton = (props: Props) => {
   }, [isReading]);
 
   const changeRate = () => {
-    setRate(rate => rate === 1 ? MAX_RATE : 1);
-  }
+    setRate((rate) => (rate === 1 ? MAX_RATE : 1));
+  };
 
   // Stop when reset
   useEffect(() => {
@@ -222,12 +245,12 @@ export const ReadButton = (props: Props) => {
       const toRead = getReadingList(resolvedReadingList, currentItem.id, 0);
       for (const itemToRead of toRead) readText(itemToRead, toRead);
     }
-  }, [rate])
+  }, [rate]);
 
   // change language
   useEffect(() => {
     stopVoiceOver();
-  }, [currentLanguageI18nCode])
+  }, [currentLanguageI18nCode]);
 
   // pause
   useEffect(() => {
@@ -253,15 +276,15 @@ export const ReadButton = (props: Props) => {
         toValue: 1,
         bounciness: 14,
         speed: 24,
-        useNativeDriver: false
+        useNativeDriver: false,
       }).start();
     } else {
       Animated.spring(animatedValue, {
         toValue: 0,
-        useNativeDriver: false
+        useNativeDriver: false,
       }).start();
     }
-  }, [isReading])
+  }, [isReading]);
 
   // start
   const toggleVoiceOver = () => {
@@ -280,28 +303,30 @@ export const ReadButton = (props: Props) => {
         activeOpacity={0.8}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={"Écouter"}>
+        accessibilityLabel={"Écouter"}
+      >
         <PlayButton>
-          {(isReading && !isPaused) ?
-            <Pause width={16} height={16} /> :
+          {isReading && !isPaused ? (
+            <Pause width={16} height={16} />
+          ) : (
             <Play width={16} height={16} />
-          }
+          )}
         </PlayButton>
-        <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
-          Écouter
-        </StyledTextVerySmall>
+        {fontScale < 1.7 && (
+          <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
+            Écouter
+          </StyledTextVerySmall>
+        )}
       </PlayContainer>
       <Buttons style={animatedStyle}>
         <BackgroundContainer>
           <Image
             source={require("../../theme/images/voiceover/bg_voiceover.png")}
-            style={{marginLeft: -8, marginTop: -8}}
+            style={{ marginLeft: -8, marginTop: -8 }}
           />
         </BackgroundContainer>
         <Button onPress={changeRate}>
-          <StyledTextSmallBold>
-            {rate === 1 ? "x1" : "x2"}
-          </StyledTextSmallBold>
+          <StyledTextSmallBold>{rate === 1 ? "x1" : "x2"}</StyledTextSmallBold>
         </Button>
         <Button onPress={goToPrevious} ml>
           <Icon

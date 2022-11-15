@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, useWindowDimensions } from "react-native";
 import { useSelector } from "react-redux";
 import { getTabBarIcon } from "../../libs/getTabBarIcon";
 import { hasUserNewFavoritesSelector } from "../../services/redux/User/user.selectors";
@@ -11,11 +11,12 @@ interface Props {
   isFocused: boolean;
   onPress: () => void;
   options: any;
-  route: {name: string};
-  label: string|undefined;
+  route: { name: string };
+  label: string | undefined;
 }
 
 export const TabBarItem = (props: Props) => {
+  const { fontScale } = useWindowDimensions();
   const hasUserNewFavorites = useSelector(hasUserNewFavoritesSelector);
 
   return (
@@ -28,16 +29,16 @@ export const TabBarItem = (props: Props) => {
       style={{ flex: 1, alignItems: "center" }}
     >
       <TabBarIcon
-        color={props.isFocused ? styles.colors.darkBlue : styles.colors.darkGrey}
+        color={
+          props.isFocused ? styles.colors.darkBlue : styles.colors.darkGrey
+        }
         focused={props.isFocused}
         iconName={getTabBarIcon(props.route.name)}
         badge={props.route.name === "Favoris" ? hasUserNewFavorites : false}
       />
-      <TabBarLabel
-        focused={props.isFocused}
-        label={props.label || ""}
-      />
+      {fontScale < 2 && (
+        <TabBarLabel focused={props.isFocused} label={props.label || ""} />
+      )}
     </TouchableOpacity>
   );
-}
-
+};
