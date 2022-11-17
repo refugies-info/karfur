@@ -71,6 +71,7 @@ const HomeSearch = () => {
   };
   const selectType = (type: TypeOptions) => {
     dispatch(addToQueryActionCreator({ type: type }));
+    window.scrollTo(0, 0);
     Event("USE_SEARCH", "use home search", "click type");
   };
   const selectDepartment = (department: string) => {
