@@ -1,7 +1,7 @@
-import { extractIndexFromUrl } from "lib/sitemap/extractIndexFromUrl";
-import { getAllUrls } from "lib/sitemap/getAllUrls";
 import { GetServerSideProps } from "next";
 import { getServerSideSitemap, getServerSideSitemapIndex } from "next-sitemap";
+import { extractIndexFromUrl } from "lib/sitemap/extractIndexFromUrl";
+import { getAllUrls } from "lib/sitemap/getAllUrls";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const TYPES = ["dispositifs", "demarches", "structures", "pages"];

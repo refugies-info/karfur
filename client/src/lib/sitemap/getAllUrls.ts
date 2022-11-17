@@ -5,6 +5,7 @@ import API from "utils/API";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const PATHS_CRAWL: PathNames[] = [
+  "/",
   "/recherche",
   "/annuaire",
   "/comment-contribuer",
@@ -15,7 +16,7 @@ const PATHS_CRAWL: PathNames[] = [
 ];
 
 const getUrl = (path: PathNames, locale: string, id?: ObjectId) => {
-  const url = getPath(path, locale);
+  const url = path === "/" ? "" : getPath(path, locale); // for / path, return empty to avoid trailing slash
   const translatedUrl = id ? url.replace("[id]", id.toString()) : url;
   return `${SITE_URL}/${locale}${translatedUrl}`;
 }
