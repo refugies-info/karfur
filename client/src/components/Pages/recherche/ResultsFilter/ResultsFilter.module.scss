@@ -94,6 +94,12 @@
   height: 45px;
   @include text("normal");
 
+  &:hover,
+  &:active,
+  &:focus {
+    background: $gray40b !important;
+  }
+
   .icon {
     margin-right: u(2);
 
