@@ -27,6 +27,7 @@ import { toggleSpinner } from "services/Tts/tts.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { userDetailsSelector } from "services/User/user.selectors";
 import useRTL from "hooks/useRTL";
+import locale from "utils/locale";
 import { getPath, PathNames } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
@@ -77,14 +78,16 @@ const Layout = (props: Props) => {
 
   useEffect(() => {
     // Language popup
-    const storedLanguei18nCode = localStorage.getItem("languei18nCode");
+    const storedLanguei18nCode = locale.getFromCache();
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
       dispatch(toggleLangueModalActionCreator());
     } else {
       const locale = router.locale || "fr";
-      if (locale !== "fr") dispatch(toggleLangueActionCreator(locale));
+      if (!["fr", "default"].includes(locale)) {
+        dispatch(toggleLangueActionCreator(locale));
+      }
       setLanguageLoaded(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

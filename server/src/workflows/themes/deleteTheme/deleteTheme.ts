@@ -2,23 +2,19 @@ import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { AppUser } from "src/schema/schemaAppUser";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
-    id: Joi.string(),
+    id: Joi.string()
   })
 });
 
 export interface Request {}
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[deleteTheme] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
@@ -26,9 +22,10 @@ const handler = async (
     checkIfUserIsAdmin(req.user.roles);
 
     await deleteThemeById(req.params.id);
+    await AppUser.updateMany({}, { $unset: { [`notificationsSettings.themes.${req.params.id}`]: 1 } });
 
     return res.status(200).json({
-      text: "Succès",
+      text: "Succès"
     });
   } catch (error) {
     logger.error("[deleteTheme] error", { error: error.message });
