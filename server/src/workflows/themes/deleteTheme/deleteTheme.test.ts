@@ -1,21 +1,23 @@
 // @ts-nocheck
 import deleteTheme from "./deleteTheme";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { AppUser } from "../../../schema/schemaAppUser";
 
 jest.mock("../../../modules/themes/themes.repository", () => ({
-  deleteThemeById: jest.fn(),
+  deleteThemeById: jest.fn()
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
-  checkIfUserIsAdmin: jest.fn().mockReturnValue(true),
+  checkIfUserIsAdmin: jest.fn().mockReturnValue(true)
 }));
 
 jest.mock("../../../schema/schemaTheme", () => ({
-  Theme: jest.fn().mockImplementation(w => w)
+  Theme: jest.fn().mockImplementation((w) => w)
+}));
+
+jest.mock("../../../schema/schemaAppUser", () => ({
+  AppUser: { updateMany: jest.fn() }
 }));
 
 type MockResponse = { json: any; status: any };
@@ -47,7 +49,7 @@ describe("deleteTheme", () => {
   it("should return 403 if not admin", async () => {
     checkIfUserIsAdmin.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
-    })
+    });
     const req = {
       user: { roles: [] },
       params: {}
@@ -58,11 +60,11 @@ describe("deleteTheme", () => {
   it("should return 200", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: {id: "themeId"}
+      params: { id: "themeId" }
     };
     await deleteTheme[1](req, res);
     expect(deleteThemeById).toHaveBeenCalledWith("themeId");
+    expect(AppUser.updateMany).toHaveBeenCalledWith({}, { $unset: { "notificationsSettings.themes.themeId": 1 } });
     expect(res.status).toHaveBeenCalledWith(200);
   });
-
 });
