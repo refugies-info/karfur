@@ -1,17 +1,19 @@
 import { GetServerSideProps } from "next";
 
+const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL || "https://refugies.info";
+
 const PROD_ROBOTS_TXT = [
-  "User-agent : *",
+  "User-agent: *",
   "Disallow: /*/login",
   "Disallow: /*/register",
   "Disallow: /*/reset",
   "Disallow: /*/backend",
   "Disallow: /*/directory-create",
   "Disallow: /*/annuaire-creation",
-  `Sitemap: ${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/sitemap-index.xml`
+  `Sitemap: ${SITE_URL}/sitemap-index.xml`
 ];
 
-const STG_ROBOTS_TXT = ["User-agent : *", "Disallow: /"];
+const STG_ROBOTS_TXT = ["User-agent: *", "Disallow: /"];
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const content = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" ? PROD_ROBOTS_TXT : STG_ROBOTS_TXT;
