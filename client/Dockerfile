@@ -9,11 +9,13 @@ ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 ARG APP_ENV=production
 ARG APP_SERVER_URL=http://localhost:8000
+ARG APP_SITE_URL=http://localhost:3000
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN echo "NEXT_PUBLIC_REACT_APP_ENV = ${APP_ENV}" >> .env
 RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL = ${APP_SERVER_URL}" >> .env
+RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL = ${APP_SITE_URL}" >> .env
 RUN npm run build
 
 EXPOSE 3000
