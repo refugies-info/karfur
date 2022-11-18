@@ -295,7 +295,12 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               }
               textColor="#FFFFFF"
             >
-              notifications.enableNotifications
+              <Text
+                style={Object {}}
+              >
+                notifications.enableNotifications
+              </Text>
+              <View />
             </Text>
             <View
               collapsable={false}
@@ -421,7 +426,12 @@ exports[`NotificationsModal snapshot test suite should render without bug 1`] = 
               }
               textColor="#212121"
             >
-              notifications.notNow
+              <Text
+                style={Object {}}
+              >
+                notifications.notNow
+              </Text>
+              <View />
             </Text>
           </View>
         </View>

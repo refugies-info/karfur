@@ -6,6 +6,7 @@ import { styles } from "../theme";
 import { StyledTextSmallBold, StyledTextSmall } from "./StyledText";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { Icon } from "react-native-eva-icons";
+import { ReadableText } from "./ReadableText";
 
 const ButtonContainer = styled(RTLTouchableOpacity)<{
   backgroundColor?: string;
@@ -131,7 +132,7 @@ export const CustomButton = (props: Props) => {
           hasIcon={!!props.iconName}
           style={props.textStyle || {}}
         >
-          {t(props.i18nKey, props.defaultText)}
+          <ReadableText>{t(props.i18nKey, props.defaultText)}</ReadableText>
         </ColoredTextNormal>
       ) : (
         <ColoredTextBold

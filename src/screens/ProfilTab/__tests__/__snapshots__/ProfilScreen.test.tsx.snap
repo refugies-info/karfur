@@ -1245,7 +1245,12 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
             textColor="#212121"
           >
-            Supprimer les données de mon profil
+            <Text
+              style={Object {}}
+            >
+              Supprimer les données de mon profil
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -2480,7 +2485,12 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             }
             textColor="#212121"
           >
-            Réinitialiser l'application
+            <Text
+              style={Object {}}
+            >
+              Réinitialiser l'application
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -3845,7 +3855,12 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
             textColor="#212121"
           >
-            Supprimer les données de mon profil
+            <Text
+              style={Object {}}
+            >
+              Supprimer les données de mon profil
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -5080,7 +5095,12 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             }
             textColor="#212121"
           >
-            Réinitialiser l'application
+            <Text
+              style={Object {}}
+            >
+              Réinitialiser l'application
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -6445,7 +6465,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
             textColor="#212121"
           >
-            Supprimer les données de mon profil
+            <Text
+              style={Object {}}
+            >
+              Supprimer les données de mon profil
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -7680,7 +7705,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             }
             textColor="#212121"
           >
-            Réinitialiser l'application
+            <Text
+              style={Object {}}
+            >
+              Réinitialiser l'application
+            </Text>
+            <View />
           </Text>
         </View>
       </View>
@@ -8063,7 +8093,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                 }
                 textColor="#212121"
               >
-                Annuler
+                <Text
+                  style={Object {}}
+                >
+                  Annuler
+                </Text>
+                <View />
               </Text>
             </View>
           </View>

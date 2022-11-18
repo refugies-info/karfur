@@ -3984,7 +3984,12 @@ exports[`ContentScreen should render correctly 1`] = `
           }
           textColor="#212121"
         >
-          Mes fiches
+          <Text
+            style={Object {}}
+          >
+            Mes fiches
+          </Text>
+          <View />
         </Text>
       </View>
       <View
@@ -4525,7 +4530,12 @@ exports[`ContentScreen should render correctly 1`] = `
           }
           textColor="#212121"
         >
-          Partager
+          <Text
+            style={Object {}}
+          >
+            Partager
+          </Text>
+          <View />
         </Text>
       </View>
     </View>
@@ -8549,7 +8559,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
           textColor="#212121"
         >
-          Mes fiches
+          <Text
+            style={Object {}}
+          >
+            Mes fiches
+          </Text>
+          <View />
         </Text>
       </View>
       <View
@@ -9090,7 +9105,12 @@ exports[`ContentScreen should toggle map modal 1`] = `
           }
           textColor="#212121"
         >
-          Partager
+          <Text
+            style={Object {}}
+          >
+            Partager
+          </Text>
+          <View />
         </Text>
       </View>
     </View>
