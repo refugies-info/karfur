@@ -47,6 +47,7 @@
   &.title {
     background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
     cursor: default;
+    box-shadow: none;
   }
   &.content {
     &:hover {

@@ -2,9 +2,8 @@ import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } fro
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";

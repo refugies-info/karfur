@@ -67,7 +67,6 @@ const SecondaryFilterDesktop = (props: Props) => {
           );
         })}
       </DropdownMenu>
-      {open && <div className={styles.backdrop} onClick={() => setOpen(false)} />}
     </Dropdown>
   );
 };
