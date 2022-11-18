@@ -122,15 +122,13 @@ export const NeedsScreen = ({
         const needText =
           currentLanguageI18nCode &&
           need[currentLanguageI18nCode as keyof Need]?.text
-            ? //@ts-ignore
-              need[currentLanguageI18nCode].text
+            ? need[currentLanguageI18nCode as keyof Need].text
             : need.fr.text;
         const needSubtitle =
           currentLanguageI18nCode &&
           need[currentLanguageI18nCode as keyof Need]?.subtitle
-            ? //@ts-ignore
-              need[currentLanguageI18nCode].subtitle
-            : need.fr.subtitle;
+            ? need[currentLanguageI18nCode as keyof Need].subtitle
+            : undefined;
 
         return (
           <NeedsSummary
