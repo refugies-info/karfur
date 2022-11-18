@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { throttle } from "lodash";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
+import { useScrollDirection } from "hooks/useScrollDirection";
 import useWindowSize from "hooks/useWindowSize";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { cls } from "lib/classname";
@@ -170,18 +170,10 @@ const SearchHeader = (props: Props) => {
 
   // SCROLL
   const [scrolled, setScrolled] = useState(true);
+  const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
-    const handleScroll = throttle(() => {
-      if (window.scrollY <= SCROLL_LIMIT) setScrolled(false);
-      else if (window.scrollY >= SCROLL_LIMIT) setScrolled(true);
-    }, 200);
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    setScrolled(() => !!(scrollDirection === "up" && overScrollLimit));
+  }, [scrollDirection, overScrollLimit]);
 
   const focusedStateProps = {
     locationFocusedState: [locationFocused, setLocationFocused] as [boolean, Dispatch<SetStateAction<boolean>>],
