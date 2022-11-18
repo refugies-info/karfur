@@ -162,7 +162,7 @@ const SearchHeaderMobile = (props: Props) => {
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
-              icon="pin-outline"
+              icon={query.departments.length > 0 ? "pin" : "pin-outline"}
               active={locationOpen || locationFocused}
               setActive={setLocationFocused}
               onChange={onChangeDepartmentInput}
@@ -170,6 +170,7 @@ const SearchHeaderMobile = (props: Props) => {
               loading={isPlacePredictionsLoading}
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
+              smallIcon={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
@@ -208,6 +209,7 @@ const SearchHeaderMobile = (props: Props) => {
               inputValue={themeSearch}
               value={themeDisplayedValue}
               placeholder={t("Recherche.themes", "Thèmes")}
+              smallIcon={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu} persist>
