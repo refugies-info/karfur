@@ -74,9 +74,7 @@ const SearchHeaderMobile = (props: Props) => {
   const query = useSelector(searchQuerySelector);
 
   // state from SearchHeader
-  const [locationFocused, setLocationFocused] = props.locationFocusedState;
   const [searchFocused, setSearchFocused] = props.searchFocusedState;
-  const [themesFocused, setThemesFocused] = props.themesFocusedState;
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -154,23 +152,20 @@ const SearchHeaderMobile = (props: Props) => {
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown
-          isOpen={locationOpen || locationFocused}
-          toggle={toggleLocation}
-          className={cls(styles.dropdown, styles.separator)}
-        >
+        <Dropdown isOpen={locationOpen} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
               icon={query.departments.length > 0 ? "pin" : "pin-outline"}
-              active={locationOpen || locationFocused}
-              setActive={setLocationFocused}
+              active={locationOpen}
+              setActive={() => {}}
               onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
               loading={isPlacePredictionsLoading}
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
               smallIcon={true}
+              noInput={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
@@ -198,18 +193,19 @@ const SearchHeaderMobile = (props: Props) => {
           </DropdownMenu>
         </Dropdown>
 
-        <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
+        <Dropdown isOpen={themesOpen} toggle={toggleThemes} className={styles.dropdown}>
           <DropdownToggle>
             <SearchInput
               label={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
-              active={themesFocused || themesOpen}
-              setActive={setThemesFocused}
+              active={themesOpen}
+              setActive={() => {}}
               onChange={onChangeThemeInput}
               inputValue={themeSearch}
               value={themeDisplayedValue}
               placeholder={t("Recherche.themes", "Thèmes")}
               smallIcon={true}
+              noInput={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu} persist>
@@ -231,7 +227,7 @@ const SearchHeaderMobile = (props: Props) => {
                   />
                 </div>
               </div>
-              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen || themesFocused} />
+              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>

@@ -21,6 +21,7 @@ interface Props {
   focusout?: boolean;
   resetFilter?: () => void;
   smallIcon?: boolean;
+  noInput?: boolean;
 }
 
 const SearchInput = (props: Props) => {
@@ -88,7 +89,7 @@ const SearchInput = (props: Props) => {
         <label className={styles.label} htmlFor={props.label}>
           {props.label}
         </label>
-        {active ? (
+        {active && !props.noInput ? (
           <>
             <input
               ref={ref}
