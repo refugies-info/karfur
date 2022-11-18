@@ -5,7 +5,8 @@
 @import "src/scss/variables";
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
   background: $white;
   box-shadow: 0 4px 18px 0 #0000001a;
