@@ -17,8 +17,6 @@ import { ReadableText } from "../ReadableText";
 import { Columns, ColumnsSpacing, Rows } from "../layout";
 import { ExplorerParamList } from "../../../types";
 import { isEmpty } from "lodash";
-import { useSelector } from "react-redux";
-import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { UriImage } from "../iconography";
 
 const NeedContainer = styled(RTLTouchableOpacity)<{ needTheme: Theme }>`
@@ -62,7 +60,6 @@ export const NeedsSummary = ({
   theme,
 }: Props) => {
   const navigation = useNavigation<NeedsScreenNavigationProp>();
-  const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
   const goToContent = useCallback(() => {
     logEventInFirebase(FirebaseEvent.CLIC_NEED, {
       need: needTextFr,
@@ -87,7 +84,7 @@ export const NeedsSummary = ({
         layout="1 auto"
         horizontalAlign="center"
         verticalAlign="center"
-        spacing={ColumnsSpacing.NoSpace}
+        spacing={ColumnsSpacing.Large}
       >
         <Rows verticalAlign="center">
           <TextSmallBold color={theme.colors.color100}>

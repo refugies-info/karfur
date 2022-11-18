@@ -146,6 +146,7 @@ const layout = {
   columns: {
     nospace: "0",
     default: "8px",
+    large: "16px",
   },
   content: {
     normal: `${margin * 3}px`,

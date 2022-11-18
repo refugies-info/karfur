@@ -19,6 +19,7 @@ const ColumnsWrapper = styled.View<{
 
 export enum ColumnsSpacing {
   Default = "default",
+  Large = "large",
   NoSpace = "nospace",
 }
 
