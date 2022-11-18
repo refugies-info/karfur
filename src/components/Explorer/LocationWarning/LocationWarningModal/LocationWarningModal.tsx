@@ -117,7 +117,13 @@ export const LocationWarningModal = (props: Props) => {
               height={104}
               style={{ marginBottom: styles.margin }}
             />
-            <TextNormalBold style={stylesheet.subtitle}>
+            <TextNormalBold
+              style={{
+                ...stylesheet.subtitle,
+                textDecorationLine:
+                  props.nbLocalizedContent > 0 ? "underline" : "none",
+              }}
+            >
               {t("explorer_screen.nb_content", {
                 nbContent: props.nbLocalizedContent,
               })}

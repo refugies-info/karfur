@@ -397,6 +397,7 @@ exports[`LocationWarningModal snapshot test suite should render without bug 1`] 
                 Object {
                   "color": "#0421B1",
                   "textAlign": "center",
+                  "textDecorationLine": "underline",
                 },
               ]
             }
