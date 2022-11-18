@@ -78,8 +78,9 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
     }, [hasNewFavorites])
   );
 
-  const { value: contentsToDisplay = [], loading } = useAsync(() =>
-    getContentsToDisplay(favorites, contents, currentLanguageI18nCode)
+  const { value: contentsToDisplay = [], loading } = useAsync(
+    () => getContentsToDisplay(favorites, contents, currentLanguageI18nCode),
+    [favorites, contents, currentLanguageI18nCode]
   );
 
   const [favoriteToDelete, setFavoriteToDelete] = React.useState<
