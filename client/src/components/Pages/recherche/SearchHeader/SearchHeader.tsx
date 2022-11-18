@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
@@ -34,6 +34,8 @@ const SearchHeader = (props: Props) => {
   const dispatch = useDispatch();
   const { isMobile } = useWindowSize();
   const query = useSelector(searchQuerySelector);
+
+  const headerRef = useRef<HTMLDivElement | null>(null);
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -170,9 +172,14 @@ const SearchHeader = (props: Props) => {
 
   // SCROLL
   const [scrolled, setScrolled] = useState(true);
+  const [placeholderHeight, setPlaceholderHeight] = useState(0);
   const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
-    setScrolled(() => !!(scrollDirection === "up" && overScrollLimit));
+    const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
+    setScrolled(newScrolled);
+    if (newScrolled) {
+      setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
+    }
   }, [scrollDirection, overScrollLimit]);
 
   const focusedStateProps = {
@@ -202,8 +209,8 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      {scrolled && <div className={styles.placeholder}></div>}
-      <div className={cls(scrolled && `${styles.scrolled} scrolled`)}>
+      {scrolled && <div className={styles.placeholder} style={{ height: placeholderHeight }}></div>}
+      <div ref={headerRef} className={cls(scrolled && `${styles.scrolled} scrolled`)}>
         {!isMobile ? (
           <SearchHeaderDesktop
             searchMinified={props.searchMinified}
