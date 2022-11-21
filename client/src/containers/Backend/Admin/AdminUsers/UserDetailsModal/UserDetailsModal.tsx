@@ -208,7 +208,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           type: "success",
           timer: 1500
         });
-        updateUserStore(userFromStore._id, { status: "Exclu" });
+        dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
         props.toggleModal();
       }
     } catch (error) {
@@ -245,14 +245,16 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       leftHead={
         <>
           <Image className={styles.user_img} src={secureUrl} alt="" width={50} height={50} objectFit="contain" />
-          <h2>{userFromStore?.username || ""}</h2>
+          <h2>{userFromStore ? userFromStore.username : "utilisateur supprimé"}</h2>
         </>
       }
       rightHead={
         <>
-          <FButton className="mr-8" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
-            Supprimer
-          </FButton>
+          {userFromStore && (
+            <FButton className="mr-8" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
+              Supprimer
+            </FButton>
+          )}
           <FButton className="mr-8" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
         </>
       }
@@ -385,7 +387,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           </div>
         </>
       ) : (
-        <p>Erreur</p>
+        <p className="my-4">L'utilisateur a été supprimé.</p>
       )}
     </DetailsModal>
   );
