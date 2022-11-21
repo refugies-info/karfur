@@ -4,6 +4,7 @@ import { getUserById } from "../users/users.repository";
 import { ObjectId } from "mongoose";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
+import { USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
 
 export const sendPublishedTradMailToTraductors = async (
@@ -33,7 +34,7 @@ export const sendPublishedTradMailToTraductors = async (
 
         // @ts-ignore
         const membreFromDB = await getUserById(tradId, userNeededFields);
-        if (membreFromDB.status !== "Exclu" && membreFromDB.email) {
+        if (membreFromDB.status !== USER_STATUS_DELETED && membreFromDB.email) {
           await sendPublishedTradMailToTraductorsService({
             dispositifId,
             userId: tradId,

@@ -1,4 +1,4 @@
-import { User } from "../../schema/schemaUser";
+import { User, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
 import { ObjectId } from "mongoose";
 
 type NeededFields =
@@ -11,7 +11,7 @@ export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
   await User.findOne({ _id: id }, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: Record<string, number>) =>
-  await User.find({ status: "Actif" }, neededFields).populate(
+  await User.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(
     "roles structures"
   );
 
