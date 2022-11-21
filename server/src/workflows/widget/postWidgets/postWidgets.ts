@@ -6,7 +6,7 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { Widget } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 
 export interface Request {
   name: string;
