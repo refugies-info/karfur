@@ -1,12 +1,14 @@
 import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { updateUserInDB } from "../../../modules/users/users.repository";
+import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import {
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
+import { generateRandomId } from "../../../libs/generateRandomId";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
@@ -26,7 +28,24 @@ const handler = async (
     //@ts-ignore
     checkIfUserIsAdmin(req.user.roles);
 
+    const user = await getUserById(req.params.id, { structures: 1 });
+    if (!user) throw new Error("INVALID_REQUEST");
+
+    for (const structure of user.structures) {
+      await removeMemberFromStructure(structure, req.params.id);
+    }
+
     await updateUserInDB(req.params.id, {
+      username: `utilisateur_${generateRandomId()}`,
+      password: "",
+      email: "",
+      phone: "",
+      picture: null,
+      roles: [],
+      authy_id: "",
+      cookies: null,
+      reset_password_token: "",
+      structures: [],
       status: USER_STATUS_DELETED
     });
 

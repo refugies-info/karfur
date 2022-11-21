@@ -8,6 +8,7 @@ import {
 } from "../../../modules/users/users.repository";
 import { computePasswordStrengthScore } from "../../../libs/computePasswordStrengthScore";
 import passwordHash from "password-hash";
+import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 
 interface Query {
   userId: ObjectId;
@@ -34,9 +35,9 @@ export const changePassword = async (
       throw new Error("INVALID_TOKEN");
     }
 
-    const user = await getUserById(userId, {});
+    const user = await getUserById(userId, {}); /* TODO: check status */
 
-    if (!user) {
+    if (!user || user.status === USER_STATUS_DELETED) {
       throw new Error("USER_NOT_EXISTS");
     }
 
