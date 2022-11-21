@@ -40,6 +40,45 @@ const filterDispositifs = (
     .sort((a, b) => sortDispositifs(a, b, query.sort, !!query.search));
 }
 
+let searchCache = "";
+let searchCacheResults: SearchDispositif[] = [];
+const queryOnAlgolia = async (
+  search: string,
+  dispositifs: SearchDispositif[],
+  locale: string
+) => {
+  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
+  if (search) {
+    if (search !== searchCache) { // new search
+      searchCache = search; // keep search in cache to prevent useless algolia searchs
+      let hits: Hit[] = [];
+      hits = await index
+        .search(search, {
+          restrictSearchableAttributes: getSearchableAttributes(locale),
+          hitsPerPage: 600
+        })
+        .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
+
+      filteredDispositifsByAlgolia = hits.map(hit => {
+        const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
+        // deep clone object to make sure cards components re-renders
+        const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
+        if (newDispositif) {
+          newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
+          newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
+          newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
+          // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
+        }
+        return newDispositif;
+      }).filter(d => !!d) as SearchDispositif[];
+      searchCacheResults = filteredDispositifsByAlgolia;
+    } else { // same search
+      filteredDispositifsByAlgolia = [...searchCacheResults];
+    }
+  }
+  return filteredDispositifsByAlgolia;
+}
+
 /**
  * Use the query to filter a list of dispositifs
  * @param query - search query
@@ -65,44 +104,6 @@ export const queryDispositifs = (
     demarches: results.filter(d => d.typeContenu === "demarche"),
     dispositifsSecondaryTheme: dispositifsSecondaryTheme,
   }
-}
-
-let searchCache = "";
-let searchCacheResults: SearchDispositif[] = [];
-const queryOnAlgolia = async (
-  search: string,
-  dispositifs: SearchDispositif[],
-  locale: string
-) => {
-  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
-  if (search) {
-    if (search !== searchCache) { // new search
-      searchCache = search; // keep search in cache to prevent useless algolia searchs
-      let hits: Hit[] = [];
-      hits = await index
-        .search(search, {
-          restrictSearchableAttributes: getSearchableAttributes(locale)
-        })
-        .then(({ hits }) => hits.map(h => ({ id: h.objectID, highlight: h._highlightResult })));
-
-      filteredDispositifsByAlgolia = hits.map(hit => {
-        const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
-        // deep clone object to make sure cards components re-renders
-        const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
-        if (newDispositif) {
-          newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
-          newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
-          newDispositif.titreMarque = hit.highlight[`titreMarque_${locale}`]?.value || newDispositif.titreMarque;
-          // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
-        }
-        return newDispositif;
-      }).filter(d => !!d) as SearchDispositif[];
-      searchCacheResults = filteredDispositifsByAlgolia;
-    } else { // same search
-      filteredDispositifsByAlgolia = [...searchCacheResults];
-    }
-  }
-  return filteredDispositifsByAlgolia;
 }
 
 /**
