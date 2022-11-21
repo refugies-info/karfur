@@ -35,7 +35,7 @@ export const computePossibleNeeds = async (
 
 
 import { celebrate, Joi, Segments } from "celebrate";
-import { Picture } from "src/types/interface";
+import { Picture } from "../../types/interface";
 
 /**
  * Request validator
@@ -43,23 +43,23 @@ import { Picture } from "src/types/interface";
 export const getValidator = (type: "post" | "patch") => {
   const baseValidator: any = {};
   if (type === "post") {
-    baseValidator[Segments.BODY]= Joi.object({
-        fr: Joi.object({
-          text: Joi.string(),
-          subtitle: Joi.string().allow("")
-        }),
-        theme: Joi.string(),
-        image: Joi.object({
-          secure_url: Joi.string(),
-          public_id: Joi.string(),
-          imgId: Joi.string(),
-        }).allow(null),
-        adminComments: Joi.string().allow("")
-      })
+    baseValidator[Segments.BODY] = Joi.object({
+      fr: Joi.object({
+        text: Joi.string(),
+        subtitle: Joi.string().allow("")
+      }),
+      theme: Joi.string(),
+      image: Joi.object({
+        secure_url: Joi.string(),
+        public_id: Joi.string(),
+        imgId: Joi.string(),
+      }).allow(null),
+      adminComments: Joi.string().allow("")
+    })
   }
 
   if (type === "patch") {
-    baseValidator[Segments.BODY]= Joi.object().keys({
+    baseValidator[Segments.BODY] = Joi.object().keys({
       fr: Joi.object({
         text: Joi.string(),
         subtitle: Joi.string().allow("")

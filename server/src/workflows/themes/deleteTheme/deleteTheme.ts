@@ -4,7 +4,7 @@ import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { AppUser } from "src/schema/schemaAppUser";
+import { AppUser } from "../../../schema/schemaAppUser";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
@@ -12,7 +12,7 @@ const validator = celebrate({
   })
 });
 
-export interface Request {}
+export interface Request { }
 
 const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
