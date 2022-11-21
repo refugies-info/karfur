@@ -9,6 +9,7 @@ import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
 import { generateRandomId } from "../../../libs/generateRandomId";
+import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
@@ -28,7 +29,8 @@ const handler = async (
     //@ts-ignore
     checkIfUserIsAdmin(req.user.roles);
 
-    const user = await getUserById(req.params.id, { structures: 1 });
+    const user = await getUserById(req.params.id, { email: 1, structures: 1 });
+    const email = user?.email;
     if (!user) throw new Error("INVALID_REQUEST");
 
     for (const structure of user.structures) {
@@ -48,6 +50,10 @@ const handler = async (
       structures: [],
       status: USER_STATUS_DELETED
     });
+
+    if (email) {
+      await sendAccountDeletedMailService(email);
+    }
 
     return res.status(200).json({
       text: "Succès",

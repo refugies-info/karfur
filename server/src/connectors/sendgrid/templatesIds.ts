@@ -15,6 +15,7 @@ declare type templateIds = {
   resetPassword: string;
   changePhoneNumber: string;
   newResponsable: string;
+  accountDeleted: string;
 };
 
 export const templatesIds: templateIds = {
@@ -34,4 +35,5 @@ export const templatesIds: templateIds = {
   newResponsable: "d-e31d1a56b06f44bb90d3dd000a4a962f",
   secondOneDraftReminder: "d-7fc299960fca4d9db6b78b494ce84689",
   secondMultipleDraftReminder: "d-d0cd2b645a194866980a3288ddfc4b27",
+  accountDeleted: "d-da5ffb09c5364c7c9018d66100734d55",
 };

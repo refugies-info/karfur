@@ -2,11 +2,11 @@
 import deleteUser from "./deleteUser";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
+import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
 import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
-import { generateRandomId } from "../../../libs/generateRandomId";
 
 jest.mock("../../../modules/users/users.repository", () => ({
   updateUserInDB: jest.fn(),
@@ -21,6 +21,9 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
 }));
 jest.mock("../../../libs/generateRandomId", () => ({
   generateRandomId: jest.fn().mockReturnValue(1),
+}));
+jest.mock("../../../modules/mail/mail.service", () => ({
+  sendAccountDeletedMailService: jest.fn().mockReturnValue(1),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -70,16 +73,18 @@ describe("deleteUser", () => {
       params: { id: "userId" }
     };
     await deleteUser[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1 });
+    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1, email: 1 });
     expect(updateUserInDB).not.toHaveBeenCalled();
     expect(removeMemberFromStructure).not.toHaveBeenCalled();
+    expect(sendAccountDeletedMailService).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
   });
 
   it("should return 200", async () => {
     getUserById.mockImplementationOnce(() => {
       return {
-        structures: ["structure1", "structure2"]
+        structures: ["structure1", "structure2"],
+        email: "test@test.com"
       }
     })
     const req = {
@@ -87,7 +92,7 @@ describe("deleteUser", () => {
       params: { id: "userId" }
     };
     await deleteUser[1](req, res);
-    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1 });
+    expect(getUserById).toHaveBeenCalledWith("userId", { structures: 1, email: 1 });
     expect(removeMemberFromStructure).toHaveBeenCalledWith("structure1", "userId");
     expect(removeMemberFromStructure).toHaveBeenCalledWith("structure2", "userId");
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
@@ -103,6 +108,7 @@ describe("deleteUser", () => {
       roles: [],
       status: "Exclu"
     });
+    expect(sendAccountDeletedMailService).toHaveBeenCalledWith("test@test.com");
     expect(res.status).toHaveBeenCalledWith(200);
   });
 });
