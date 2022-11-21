@@ -1300,7 +1300,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 }
               }
             />
-            <div>
+            <div
+              className="themes"
+            >
               <div
                 className="container badges theme-badge"
                 style={
