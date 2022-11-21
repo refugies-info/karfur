@@ -6,9 +6,9 @@ import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { Theme, ThemeDoc } from "../../../schema/schemaTheme";
 import { Request, getValidator, isThemeActive } from "../../../modules/themes/themes.service";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { getAllAppUsers, updateNotificationsSettings } from "src/modules/appusers/appusers.repository";
+import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 import { map } from "lodash/fp";
-import { AppUserType } from "src/schema/schemaAppUser";
+import { AppUserType } from "../../../schema/schemaAppUser";
 
 export const hasOneNotificationEnabled = (user: AppUserType) =>
   user.notificationsSettings.demarches ||
