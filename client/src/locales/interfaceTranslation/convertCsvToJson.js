@@ -5,10 +5,7 @@ const csvPath = "./csvAfterTrad/traductions";
 const convertCsvToJson = async (language) => {
   const jsonArray = await csv().fromFile(csvPath + language + ".csv");
   // eslint-disable-next-line no-console
-  console.log(
-    `Nombre de lignes pour la langue ${language} :`,
-    jsonArray.length
-  );
+  console.log(`Nombre de lignes pour la langue ${language} :`, jsonArray.length);
   const finalJson = {};
   jsonArray.forEach((trad) => {
     if (!trad[language]) return;
@@ -18,7 +15,7 @@ const convertCsvToJson = async (language) => {
     }
     finalJson[trad.title] = {
       ...finalJson[trad.title],
-      [trad.key]: trad[language],
+      [trad.key]: trad[language]
     };
   });
 
@@ -28,12 +25,12 @@ const convertCsvToJson = async (language) => {
 
 const main = async () => {
   // langues : en, ar, fa, ps, ru, ti, uk
-  await convertCsvToJson("ar");
+  // await convertCsvToJson("ar");
   await convertCsvToJson("ru");
   await convertCsvToJson("en");
-  await convertCsvToJson("ti");
+  // await convertCsvToJson("ti");
   await convertCsvToJson("ps");
-  await convertCsvToJson("fa");
+  // await convertCsvToJson("fa");
   await convertCsvToJson("uk");
 };
 
