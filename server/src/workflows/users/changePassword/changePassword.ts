@@ -35,7 +35,7 @@ export const changePassword = async (
       throw new Error("INVALID_TOKEN");
     }
 
-    const user = await getUserById(userId, {}); /* TODO: check status */
+    const user = await getUserById(userId, {});
 
     if (!user || user.status === USER_STATUS_DELETED) {
       throw new Error("USER_NOT_EXISTS");
