@@ -38,10 +38,17 @@
 }
 
 .link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline;
+
   &,
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
     color: $bleuCharte;
+    outline: none;
   }
 }
 

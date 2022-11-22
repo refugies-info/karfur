@@ -9,6 +9,11 @@ if (process.env.NODE_ENV === "dev") {
   config = require("../config/config");
 }
 
+export const USER_STATUS_ACTIVE = "Actif";
+export const USER_STATUS_DELETED = "Exclu";
+
+type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
+
 var userSchema = new mongoose.Schema(
   {
     username: {
@@ -177,7 +182,7 @@ export interface UserDoc extends mongoose.Document {
   contributions?: ObjectId[];
   noteTraduction?: number;
 
-  status?: string;
+  status?: UserStatus;
   cookies?: {
     parkourPinned: Object;
     dispositifsPinned: { _id: ObjectId; datePin: Date }[];

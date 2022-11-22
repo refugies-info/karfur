@@ -5,7 +5,9 @@
 @import "src/scss/variables";
 
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: relative;
   background: $white;
   box-shadow: 0 4px 18px 0 #0000001a;
@@ -47,6 +49,7 @@
   &.title {
     background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
     cursor: default;
+    box-shadow: none;
   }
   &.content {
     &:hover {

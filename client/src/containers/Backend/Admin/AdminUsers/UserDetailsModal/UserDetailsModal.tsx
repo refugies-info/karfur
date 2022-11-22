@@ -8,10 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
 import { allUsersSelector, userSelector } from "services/AllUsers/allUsers.selector";
 import FInput from "components/UI/FInput/FInput";
-import {
-  RoleCheckBox,
-  LangueDetail,
-} from "../ components/AdminUsersComponents";
+import { RoleCheckBox, LangueDetail } from "../ components/AdminUsersComponents";
 import FButton from "components/UI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import API from "utils/API";
@@ -37,22 +34,18 @@ interface Props {
   setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
 }
 
-export const UserDetailsModal: React.FunctionComponent<Props> = (
-  props: Props
-) => {
+export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) => {
   const [email, setEmail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [phoneError, setPhoneError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
   const [indicators, setIndicators] = useState<null | Indicators>(null);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId|null>(props.selectedUserId);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
   const userFromStore = useSelector(userSelector(selectedUserId));
-  const [adminComments, setAdminComments] = useState<string>(
-    userFromStore?.adminComments || ""
-  );
+  const [adminComments, setAdminComments] = useState<string>(userFromStore?.adminComments || "");
   const [infosSaved, setInfosSaved] = useState(false);
   const [currentId, setCurrentId] = useState<ObjectId | null>(null);
   const [logs, setLogs] = useState<Log[]>([]);
@@ -68,13 +61,13 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
 
   useEffect(() => {
     setSelectedUserId(props.selectedUserId);
-  }, [props.selectedUserId])
+  }, [props.selectedUserId]);
 
   useEffect(() => {
     const loadIndicators = async () => {
       if (userFromStore) {
         const data = await API.get_progression({
-          userId: userFromStore._id,
+          userId: userFromStore._id
         });
         setIndicators(data.data);
       }
@@ -85,9 +78,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       setPhone(userFromStore?.phone || "");
       setPhoneError("");
       const roles = userFromStore?.roles
-        ? userFromStore.roles.filter(
-            (role: string) => role === "Admin" || role === "ExpertTrad"
-          )
+        ? userFromStore.roles.filter((role: string) => role === "Admin" || role === "ExpertTrad")
         : [];
       setRoles(roles);
       setAdminComments(userFromStore.adminComments || "");
@@ -98,39 +89,45 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     }
   }, [userFromStore, currentId, selectedUserId, updateLogs]);
 
-  const updateUserStore = (
-    userId: ObjectId,
-    user: Partial<SimplifiedUser>
-  ) => {
+  const updateUserStore = (userId: ObjectId, user: Partial<SimplifiedUser>) => {
     const users = [...allUsers];
     let newUser = users.find((u) => u._id === userId);
-    if (newUser) newUser = {...newUser, ...user};
+    if (newUser) newUser = { ...newUser, ...user };
     dispatch(setAllUsersActionsCreator(users));
     updateLogs();
   };
 
-  const onChangeEmail = useCallback((e: Event) => {
-    if (infosSaved) setInfosSaved(false);
-    if (e.target.value && !isValidEmail(e.target.value)) {
-      setEmailError("Ceci n'est pas un email valide, vérifiez votre saisie");
-    } else {
-      setEmailError("");
-    }
-    setEmail(e.target.value);
-  }, [infosSaved]);
-  const onChangePhone = useCallback((e: Event) => {
-    if (infosSaved) setInfosSaved(false);
-    if (e.target.value && !isValidPhone(e.target.value)) {
-      setPhoneError("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie");
-    } else {
-      setPhoneError("");
-    }
-    setPhone(e.target.value);
-  }, [infosSaved]);
-  const onNotesChange = useCallback((e: any) => {
-    if (infosSaved) setInfosSaved(false);
-    setAdminComments(e.target.value);
-  }, [infosSaved]);
+  const onChangeEmail = useCallback(
+    (e: Event) => {
+      if (infosSaved) setInfosSaved(false);
+      if (e.target.value && !isValidEmail(e.target.value)) {
+        setEmailError("Ceci n'est pas un email valide, vérifiez votre saisie");
+      } else {
+        setEmailError("");
+      }
+      setEmail(e.target.value);
+    },
+    [infosSaved]
+  );
+  const onChangePhone = useCallback(
+    (e: Event) => {
+      if (infosSaved) setInfosSaved(false);
+      if (e.target.value && !isValidPhone(e.target.value)) {
+        setPhoneError("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie");
+      } else {
+        setPhoneError("");
+      }
+      setPhone(e.target.value);
+    },
+    [infosSaved]
+  );
+  const onNotesChange = useCallback(
+    (e: any) => {
+      if (infosSaved) setInfosSaved(false);
+      setAdminComments(e.target.value);
+    },
+    [infosSaved]
+  );
 
   const handleCheckBoxChange = (name: string) => {
     if (!roles) return;
@@ -139,9 +136,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     const hasAlreadyRole = roles.includes(mappedName);
 
     if (hasAlreadyRole) {
-      const newRolesFiltered = roles.filter(
-        (role: string) => role !== mappedName
-      );
+      const newRolesFiltered = roles.filter((role: string) => role !== mappedName);
       // remove role
       return setRoles(newRolesFiltered);
     }
@@ -151,16 +146,12 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     return setRoles(newRoles);
   };
 
-  const hasStructure =
-    userFromStore && (userFromStore.structures || []).length > 0;
+  const hasStructure = userFromStore && (userFromStore.structures || []).length > 0;
   const isResponsable =
     hasStructure &&
     userFromStore &&
-    (userFromStore.structures || []).find(
-      (s) => s.role && s.role.includes("Responsable")
-    );
-  const isAdmin =
-    userFromStore && (userFromStore.roles || []).find((r) => r === "Admin");
+    (userFromStore.structures || []).find((s) => s.role && s.role.includes("Responsable"));
+  const isAdmin = userFromStore && (userFromStore.roles || []).find((r) => r === "Admin");
 
   const onSaveClick = async () => {
     try {
@@ -173,8 +164,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         await API.updateUser({
           query: {
             user: { _id: userFromStore._id, roles, email, phone, adminComments },
-            action: "modify-with-roles",
-          },
+            action: "modify-with-roles"
+          }
         });
         setInfosSaved(true);
         updateUserStore(userFromStore._id, {
@@ -191,7 +182,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         title: "Oh non",
         text: "Erreur lors de la modification",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
     }
   };
@@ -207,22 +198,17 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, le supprimer",
-          cancelButtonText: "Annuler",
+          cancelButtonText: "Annuler"
         });
         if (!res.value) return;
-        await API.updateUser({
-          query: {
-            user: { _id: userFromStore._id, roles, email, phone },
-            action: "delete",
-          },
-        });
+        await API.deleteUser(userFromStore._id);
         Swal.fire({
           title: "Yay...",
           text: "Utilisateur supprimé",
           type: "success",
-          timer: 1500,
+          timer: 1500
         });
-        updateUserStore(userFromStore._id, { "status": "Exclu" });
+        dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
         props.toggleModal();
       }
     } catch (error) {
@@ -230,7 +216,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         title: "Oh non",
         text: "Erreur lors de la suppression",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
       props.toggleModal();
     }
@@ -242,15 +228,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
 
   const secureUrl = userFromStore?.picture?.secure_url || marioProfile;
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
 
-  const isEdited = email !== (userFromStore?.email || "") ||
+  const isEdited =
+    email !== (userFromStore?.email || "") ||
     phone !== (userFromStore?.phone || "") ||
     adminComments !== (userFromStore?.adminComments || "") ||
-    (roles.find(r => r === "ExpertTrad")) !== ((userFromStore?.roles || []).find(r => r === "ExpertTrad")) ||
-    (roles.find(r => r === "Admin")) !== ((userFromStore?.roles || []).find(r => r === "Admin"));
+    roles.find((r) => r === "ExpertTrad") !== (userFromStore?.roles || []).find((r) => r === "ExpertTrad") ||
+    roles.find((r) => r === "Admin") !== (userFromStore?.roles || []).find((r) => r === "Admin");
 
   return (
     <DetailsModal
@@ -259,34 +244,18 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       isLoading={isLoading}
       leftHead={
         <>
-          <Image
-            className={styles.user_img}
-            src={secureUrl}
-            alt=""
-            width={50}
-            height={50}
-            objectFit="contain"
-          />
-          <h2>{userFromStore?.username || ""}</h2>
+          <Image className={styles.user_img} src={secureUrl} alt="" width={50} height={50} objectFit="contain" />
+          <h2>{userFromStore ? userFromStore.username : "utilisateur supprimé"}</h2>
         </>
       }
       rightHead={
         <>
-          <FButton
-            className="mr-8"
-            type="error"
-            name="trash-2-outline"
-            target="_blank"
-            onClick={onDeleteClick}
-          >
-            Supprimer
-          </FButton>
-          <FButton
-            className="mr-8"
-            type="white"
-            onClick={props.toggleModal}
-            name="close-outline"
-          ></FButton>
+          {userFromStore && (
+            <FButton className="mr-8" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
+              Supprimer
+            </FButton>
+          )}
+          <FButton className="mr-8" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
         </>
       }
     >
@@ -306,9 +275,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                   prependName="email-outline"
                   error={!!emailError}
                 />
-                {!!emailError && (
-                  <p className={styles.error}>{emailError}</p>
-                )}
+                {!!emailError && <p className={styles.error}>{emailError}</p>}
               </div>
               <div className="mt-2">
                 <Label htmlFor="phone">Numéro de téléphone</Label>
@@ -323,9 +290,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                   inputClassName="phone-input"
                   error={!!phoneError}
                 />
-                {!!phoneError && (
-                  <p className={styles.error}>{phoneError}</p>
-                )}
+                {!!phoneError && <p className={styles.error}>{phoneError}</p>}
               </div>
               <div className="mt-2">
                 <Label>Notes sur l'utilisateur</Label>
@@ -333,7 +298,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                   adminComments={adminComments}
                   onNotesChange={onNotesChange}
                   saveAdminComments={() => {
-                    onSaveClick()
+                    onSaveClick();
                   }}
                   adminCommentsSaved={infosSaved}
                   edited={isEdited}
@@ -342,9 +307,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
             </div>
             <div className={styles.col_2}>
               <Label>Structure</Label>
-              {!hasStructure ?
+              {!hasStructure ? (
                 <p className={styles.no_structure}>Aucune structure</p>
-                :
+              ) : (
                 <div>
                   {(userFromStore.structures || []).map((structure) => (
                     <StructureButton
@@ -352,16 +317,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                       sponsor={structure}
                       onClick={() => {
                         if (!structure) return;
-                        props.setSelectedStructureIdAndToggleModal(
-                          structure?._id || null
-                        );
+                        props.setSelectedStructureIdAndToggleModal(structure?._id || null);
                         props.toggleModal();
                       }}
                       additionnalProp="role"
                     />
                   ))}
                 </div>
-              }
+              )}
 
               <div className="mt-4">
                 <Label>Rôles</Label>
@@ -375,7 +338,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                     name="Administrateur"
                     isSelected={roles.includes("Admin")}
                     handleCheckBoxChange={handleCheckBoxChange}
-                    />
+                  />
                 </div>
               </div>
 
@@ -393,71 +356,38 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
                   <Label>Minutes passées à traduire</Label>
                   {indicators ? (
                     <>
-                      <div>
-                        3 derniers mois :{" "}
-                        {getMinutes(
-                          indicators?.threeMonthsIndicator?.[0]?.timeSpent
-                        )}
-                      </div>
-                      <div>
-                        6 derniers mois :{" "}
-                        {getMinutes(
-                          indicators?.sixMonthsIndicator?.[0]?.timeSpent
-                        )}
-                      </div>
-                      <div>
-                        12 derniers mois :{" "}
-                        {getMinutes(
-                          indicators?.twelveMonthsIndicator?.[0]?.timeSpent
-                        )}
-                      </div>
-                      <div>
-                        Toujours :{" "}
-                        {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}
-                      </div>
+                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.[0]?.timeSpent)}</div>
+                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.[0]?.timeSpent)}</div>
+                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.[0]?.timeSpent)}</div>
+                      <div>Toujours : {getMinutes(indicators?.totalIndicator?.[0]?.timeSpent)}</div>
                     </>
-                    ) : <Spinner />
-                  }
-              </Col>
-              <Col className={styles.stats}>
-                <Label>Nombre de mots traduits</Label>
-                {indicators ? (
-                  <>
-                    <div>
-                      3 derniers mois :{" "}
-                      {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}
-                    </div>
-                    <div>
-                      6 derniers mois :{" "}
-                      {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}
-                    </div>
-                    <div>
-                      12 derniers mois :{" "}
-                      {indicators?.twelveMonthsIndicator?.[0]?.wordsCount ||
-                        0}
-                    </div>
-                    <div>
-                      Toujours :{" "}
-                      {indicators?.totalIndicator?.[0]?.wordsCount || 0}
-                    </div>
-                  </>
-                ) : (
-                  <Spinner />
-                )}
-              </Col>
-            </Row>
+                  ) : (
+                    <Spinner />
+                  )}
+                </Col>
+                <Col className={styles.stats}>
+                  <Label>Nombre de mots traduits</Label>
+                  {indicators ? (
+                    <>
+                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.[0]?.wordsCount || 0}</div>
+                      <div>6 derniers mois : {indicators?.sixMonthsIndicator?.[0]?.wordsCount || 0}</div>
+                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.[0]?.wordsCount || 0}</div>
+                      <div>Toujours : {indicators?.totalIndicator?.[0]?.wordsCount || 0}</div>
+                    </>
+                  ) : (
+                    <Spinner />
+                  )}
+                </Col>
+              </Row>
             </div>
             <div className={styles.col_3}>
               <Label>Journal d'activité</Label>
-              <LogList
-                logs={logs}
-                openUserModal={setSelectedUserId}
-              />
+              <LogList logs={logs} openUserModal={setSelectedUserId} />
             </div>
           </div>
         </>
       ) : (
-        <p>Erreur</p>
+        <p className="my-4">L'utilisateur a été supprimé.</p>
       )}
     </DetailsModal>
   );

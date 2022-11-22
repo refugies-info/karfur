@@ -1,11 +1,11 @@
-import { User } from "../../../schema/schemaUser";
+import { User, USER_STATUS_ACTIVE } from "../../../schema/schemaUser";
 import { Res } from "../../../types/interface";
 import logger from "../../../logger";
 
 export const getFiguresOnUsers = async (req: {}, res: Res) => {
   try {
     // TO DO IN REPO
-    const users = await User.find({ status: "Actif" }, { roles: 1 }).populate(
+    const users = await User.find({ status: USER_STATUS_ACTIVE }, { roles: 1 }).populate(
       "roles"
     );
     const nbContributors = users.filter((x: any) =>

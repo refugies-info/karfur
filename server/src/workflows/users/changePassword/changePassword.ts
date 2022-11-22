@@ -8,6 +8,7 @@ import {
 } from "../../../modules/users/users.repository";
 import { computePasswordStrengthScore } from "../../../libs/computePasswordStrengthScore";
 import passwordHash from "password-hash";
+import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 
 interface Query {
   userId: ObjectId;
@@ -36,7 +37,7 @@ export const changePassword = async (
 
     const user = await getUserById(userId, {});
 
-    if (!user) {
+    if (!user || user.status === USER_STATUS_DELETED) {
       throw new Error("USER_NOT_EXISTS");
     }
 

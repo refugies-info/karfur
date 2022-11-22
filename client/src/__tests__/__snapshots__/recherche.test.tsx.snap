@@ -418,10 +418,7 @@ exports[`recherche renders home search 1`] = `
   className="container"
 >
   <div
-    className="placeholder"
-  />
-  <div
-    className="scrolled scrolled"
+    className=""
   >
     <div
       className="container"
@@ -608,7 +605,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -669,7 +666,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -719,7 +716,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -769,7 +766,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -819,7 +816,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -869,7 +866,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -919,7 +916,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -969,7 +966,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1019,7 +1016,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1069,7 +1066,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1119,7 +1116,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1169,7 +1166,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1219,7 +1216,7 @@ exports[`recherche renders home search 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -1792,22 +1789,22 @@ exports[`recherche renders home search 1`] = `
       </div>
     </div>
     <div
-      className="section white location"
+      className="section white"
     >
       <div
         className="container_inner container"
       >
+        <h2
+          className="h3"
+        >
+          Recherche.titleNearLocation
+        </h2>
         <div
           className="row"
         >
           <div
-            className="col"
+            className="col-12 order-2 col-md-6 order-md-1"
           >
-            <h2
-              className="h3"
-            >
-              Recherche.titleNearLocation
-            </h2>
             <div
               className="departments"
             >
@@ -1904,7 +1901,7 @@ exports[`recherche renders home search 1`] = `
             </div>
           </div>
           <div
-            className="col"
+            className="col-12 order-1 col-md-6 order-md-2"
           >
             <div
               className="image"
@@ -2205,10 +2202,7 @@ exports[`recherche renders search results 1`] = `
   className="container"
 >
   <div
-    className="placeholder"
-  />
-  <div
-    className="scrolled scrolled"
+    className=""
   >
     <div
       className="container"
@@ -2428,7 +2422,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2459,7 +2453,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2521,7 +2515,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2571,7 +2565,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2621,7 +2615,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2671,7 +2665,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2721,7 +2715,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2771,7 +2765,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2821,7 +2815,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2871,7 +2865,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2921,7 +2915,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -2971,7 +2965,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >
@@ -3021,7 +3015,7 @@ exports[`recherche renders search results 1`] = `
                             className="name"
                             style={
                               Object {
-                                "height": 20,
+                                "minHeight": 20,
                               }
                             }
                           >

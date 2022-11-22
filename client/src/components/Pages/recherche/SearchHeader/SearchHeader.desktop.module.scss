@@ -22,8 +22,9 @@
 }
 :global(.scrolled) {
   .container {
-    padding-top: u(4);
-    padding-bottom: u(4);
+    padding-top: 0;
+    padding-bottom: 0;
+    background: $white;
 
     h1,
     .subheader {
@@ -31,6 +32,7 @@
     }
     .inputs {
       margin-top: 0;
+      box-shadow: none;
     }
   }
 }

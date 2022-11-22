@@ -18,15 +18,15 @@ $scrollLimit: 565px;
     z-index: 20;
     width: 100%;
     animation: 0.3s ease-in-out 1 both slidein;
+    box-shadow: 0 4px 18px 0 #0000001a;
   }
 }
 
 .placeholder {
   @include media-min("desktop-up") {
     /* prevent scroll jump when making header disappear */
-    height: $scrollLimit;
     width: 1px;
-    visibility: none;
+    visibility: hidden;
   }
 }
 

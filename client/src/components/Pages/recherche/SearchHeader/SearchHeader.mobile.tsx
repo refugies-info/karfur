@@ -2,9 +2,8 @@ import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } fro
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
+import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
@@ -75,9 +74,7 @@ const SearchHeaderMobile = (props: Props) => {
   const query = useSelector(searchQuerySelector);
 
   // state from SearchHeader
-  const [locationFocused, setLocationFocused] = props.locationFocusedState;
   const [searchFocused, setSearchFocused] = props.searchFocusedState;
-  const [themesFocused, setThemesFocused] = props.themesFocusedState;
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -148,28 +145,27 @@ const SearchHeaderMobile = (props: Props) => {
                 value={query.search}
                 placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
                 resetFilter={resetSearch}
+                focusout={true}
               />
             </Button>
           </div>
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown
-          isOpen={locationOpen || locationFocused}
-          toggle={toggleLocation}
-          className={cls(styles.dropdown, styles.separator)}
-        >
+        <Dropdown isOpen={locationOpen} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
-              icon="pin-outline"
-              active={locationOpen || locationFocused}
-              setActive={setLocationFocused}
+              icon={query.departments.length > 0 ? "pin" : "pin-outline"}
+              active={locationOpen}
+              setActive={() => {}}
               onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
               loading={isPlacePredictionsLoading}
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
+              smallIcon={true}
+              noInput={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
@@ -197,17 +193,19 @@ const SearchHeaderMobile = (props: Props) => {
           </DropdownMenu>
         </Dropdown>
 
-        <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
+        <Dropdown isOpen={themesOpen} toggle={toggleThemes} className={styles.dropdown}>
           <DropdownToggle>
             <SearchInput
               label={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
-              active={themesFocused || themesOpen}
-              setActive={setThemesFocused}
+              active={themesOpen}
+              setActive={() => {}}
               onChange={onChangeThemeInput}
               inputValue={themeSearch}
               value={themeDisplayedValue}
               placeholder={t("Recherche.themes", "Thèmes")}
+              smallIcon={true}
+              noInput={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu} persist>
@@ -229,7 +227,7 @@ const SearchHeaderMobile = (props: Props) => {
                   />
                 </div>
               </div>
-              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen || themesFocused} />
+              <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>

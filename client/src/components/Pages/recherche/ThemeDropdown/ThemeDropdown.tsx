@@ -103,12 +103,17 @@ const ThemeDropdown = (props: Props) => {
 
         setNbDispositifsByTheme(newNbDispositifsByTheme);
         setNbDispositifsByNeed(newNbDispositifsByNeed);
-
-        // reset selected theme
-        setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
       });
     }
   }, [query, allDispositifs, needs, sortedThemes, props.mobile, languei18nCode, props.isOpen]);
+
+  // reset selected theme when popup opens
+  useEffect(() => {
+    if (props.isOpen) {
+      setThemeSelected(getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isOpen]);
 
   const displayedNeeds = useMemo(() => {
     if (props.search) {
