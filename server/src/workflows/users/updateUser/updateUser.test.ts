@@ -140,7 +140,7 @@ describe("updateUser", () => {
 
   it("should return 200 if user himself and type modify-my-details with selectedLanguages and user not trad", async () => {
     getRoleByName.mockResolvedValueOnce({ _id: "tradId" });
-    getUserById.mockResolvedValueOnce({roles: ["adminId"]});
+    getUserById.mockResolvedValueOnce({ roles: ["adminId"] });
     await updateUser(
       {
         fromSite: true,
@@ -227,7 +227,7 @@ describe("updateUser", () => {
   });
   it("should return 200 if user himself and check code for phone verification", async () => {
     verifyCode.mockResolvedValueOnce(true);
-    getUserById.mockResolvedValueOnce({  });
+    getUserById.mockResolvedValueOnce({});
     await updateUser(
       {
         fromSite: true,
@@ -503,36 +503,6 @@ describe("updateUser", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
-  it("should return 200 when delete", async () => {
-    getRoleByName.mockResolvedValueOnce({ _id: "expertRoleId" });
-    getRoleByName.mockResolvedValueOnce({ _id: "adminRoleId" });
-    getUserById.mockResolvedValueOnce({
-      roles: ["autreRoleId", null],
-    });
-
-    await updateUser(
-      {
-        fromSite: true,
-        body: {
-          query: {
-            user: { _id: "id", email: "email", phone: "0607080910", roles: ["ExpertTrad", "Admin"] },
-            action: "delete",
-          },
-        },
-        user: { roles: [{ nom: "Admin" }] },
-      },
-      res
-    );
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(getRoleByName).not.toHaveBeenCalled();
-    expect(getUserById).toHaveBeenCalledWith("id", { phone: 1, roles: 1, username: 1, email: 1 });
-    expect(updateUserInDB).toHaveBeenCalledWith("id", {
-      status: "Exclu",
-    });
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
-  });
-
   it("should return 401 if not user himself and type modify-my-details", async () => {
     await updateUser(
       {
@@ -553,7 +523,7 @@ describe("updateUser", () => {
   });
 
   it("should return 200 if user himself and type modify-my-details", async () => {
-    getUserById.mockResolvedValueOnce({  });
+    getUserById.mockResolvedValueOnce({});
     await updateUser(
       {
         fromSite: true,
@@ -577,7 +547,7 @@ describe("updateUser", () => {
   });
 
   it("should return 200 but no role saved if user himself and type modify-my-details", async () => {
-    getUserById.mockResolvedValueOnce({  });
+    getUserById.mockResolvedValueOnce({});
     await updateUser(
       {
         fromSite: true,

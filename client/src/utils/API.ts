@@ -140,6 +140,10 @@ const API = {
       headers,
     })
   },
+  deleteUser: (query: ObjectId) => {
+    const headers = getHeaders();
+    return instance.delete(`/user/${query}`, { headers })
+  },
   getUserFavoritesInLocale: (locale: string) => {
     const headers = getHeaders();
     return instance.get(`/user/getUserFavoritesInLocale?locale=${locale}`, {

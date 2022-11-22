@@ -6,7 +6,7 @@ import {
 } from "./users.repository";
 import { ObjectId } from "mongoose";
 import { getRoleByName } from "../../controllers/role/role.repository";
-import { UserDoc } from "../../schema/schemaUser";
+import { UserDoc, USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { UserForMailing } from "../../types/interface";
 
@@ -81,7 +81,7 @@ export const getUsersFromStructureMembres = async (
 
       try {
         const membreFromDB = await getUserById(membre.userId, userNeededFields);
-        if (membreFromDB.status === "Exclu") return;
+        if (membreFromDB.status === USER_STATUS_DELETED) return;
         if (!membreFromDB.email) return;
         result.push({
           username: membreFromDB.username,

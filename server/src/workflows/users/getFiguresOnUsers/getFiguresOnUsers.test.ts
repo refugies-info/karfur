@@ -13,12 +13,6 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../../../logger");
 
-jest.mock("../../../schema/schemaUser", () => ({
-  User: {
-    find: jest.fn(),
-  }
-}));
-
 
 const tradRole = {
   _id: "5ce57c969aadae8734c7aeec",
