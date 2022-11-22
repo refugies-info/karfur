@@ -28,8 +28,9 @@ const ButtonContainerCommon = styled.View`
 
 const ButtonContainer = styled.TouchableOpacity`
   margin-right: ${(props: { isRTL: any }) =>
+    props.isRTL ? styles.margin : 0}px;
+  margin-left: ${(props: { isRTL: any }) =>
     props.isRTL ? 0 : styles.margin}px;
-  margin-left: ${(props: { isRTL: any }) => (props.isRTL ? styles.margin : 0)}px;
 
   background-color: ${styles.colors.grey60};
   border-radius: ${styles.radius * 2}px;
@@ -56,11 +57,14 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
 
 const LanguageContainer = styled(ButtonContainerCommon)`
   background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? styles.colors.white : styles.colors.grey60 };
+    props.isSelected ? styles.colors.white : styles.colors.grey60};
   width: 48px;
-  ${(props: { isSelected: boolean }) => props.isSelected ? `
+  ${(props: { isSelected: boolean }) =>
+    props.isSelected
+      ? `
   z-index: 3;
-  ` : "" }
+  `
+      : ""}
 `;
 
 const FlagBackground = styled.View`
@@ -138,16 +142,12 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
       accessibilityLabel={t("global.change_language_accessibility")}
       activeOpacity={0.8}
     >
-      <LanguageContainer
-        isSelected={isFrenchSelected}
-      >
+      <LanguageContainer isSelected={isFrenchSelected}>
         <FlagBackground>
           <Flag langueFr={"Français"} />
         </FlagBackground>
       </LanguageContainer>
-      <LanguageContainer
-        isSelected={!isFrenchSelected}
-      >
+      <LanguageContainer isSelected={!isFrenchSelected}>
         <FlagBackground>
           <Flag langueFr={selectedLanguage.langueFr} />
         </FlagBackground>

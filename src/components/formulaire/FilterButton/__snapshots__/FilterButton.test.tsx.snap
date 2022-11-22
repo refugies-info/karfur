@@ -1,0 +1,494 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterButton snapshot test suite should render not selected 1`] = `
+<View
+  accessibilityRole="radio"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderRadius": 12,
+      "borderWidth": 2,
+      "display": "flex",
+      "elevation": 6,
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "justifyContent": "space-between",
+      "marginBottom": 24,
+      "opacity": 1,
+      "paddingBottom": 14,
+      "paddingLeft": 14,
+      "paddingRight": 14,
+      "paddingTop": 14,
+      "shadowColor": "#212121",
+      "shadowOffset": Object {
+        "height": 1,
+        "width": 1,
+      },
+      "shadowOpacity": 0.16,
+      "shadowRadius": 8,
+    }
+  }
+  testID="test-filter-Test choice"
+>
+  <View
+    RTLBehaviour={true}
+    collapsable={false}
+    horizontalAlign="flex-start"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+    verticalAlign="center"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        isRTL={false}
+        isSelected={false}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "flexShrink": 1,
+              "fontFamily": "circularBold",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        filters.Test choice
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
+      }
+    >
+      <View
+        selected={false}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "transparent",
+              "borderColor": "#5E5E5E",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`FilterButton snapshot test suite should render with detail 1`] = `
+<View
+  accessibilityRole="radio"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#DAE0FB",
+      "borderColor": "#0421B1",
+      "borderRadius": 12,
+      "borderWidth": 2,
+      "display": "flex",
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "justifyContent": "space-between",
+      "marginBottom": 24,
+      "opacity": 1,
+      "paddingBottom": 14,
+      "paddingLeft": 14,
+      "paddingRight": 14,
+      "paddingTop": 14,
+    }
+  }
+  testID="test-filter-Test choice"
+>
+  <View
+    RTLBehaviour={true}
+    collapsable={false}
+    horizontalAlign="flex-start"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+    verticalAlign="center"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        isRTL={false}
+        isSelected={true}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "flexShrink": 1,
+              "fontFamily": "circularBold",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        filters.Test choice
+        <Text
+          isRTL={false}
+          isSelected={true}
+          selectable={true}
+          style={
+            Array [
+              Object {
+                "color": "#212121",
+                "flexShrink": 1,
+                "fontFamily": "circularBold",
+                "fontSize": 16,
+                "lineHeight": 20,
+                "textAlign": "left",
+              },
+            ]
+          }
+        >
+           
+          (
+          First detail/Second detail
+          )
+        </Text>
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
+      }
+    >
+      <View
+        selected={true}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0421B1",
+              "borderColor": "transparent",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
+        }
+      >
+        <View
+          collapsable={false}
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="#FFFFFF"
+            focusable={false}
+            height={16}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={16}
+          >
+            <RNSVGGroup
+              fill={4294967295}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`FilterButton snapshot test suite should render without bug 1`] = `
+<View
+  accessibilityRole="radio"
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#DAE0FB",
+      "borderColor": "#0421B1",
+      "borderRadius": 12,
+      "borderWidth": 2,
+      "display": "flex",
+      "flexDirection": "row",
+      "flexWrap": "wrap",
+      "justifyContent": "space-between",
+      "marginBottom": 24,
+      "opacity": 1,
+      "paddingBottom": 14,
+      "paddingLeft": 14,
+      "paddingRight": 14,
+      "paddingTop": 14,
+    }
+  }
+  testID="test-filter-Test choice"
+>
+  <View
+    RTLBehaviour={true}
+    collapsable={false}
+    horizontalAlign="flex-start"
+    style={
+      Object {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+    verticalAlign="center"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": 0,
+            "flexGrow": 1,
+            "marginRight": 16,
+          },
+        ]
+      }
+    >
+      <Text
+        isRTL={false}
+        isSelected={true}
+        selectable={true}
+        style={
+          Array [
+            Object {
+              "color": "#212121",
+              "flexShrink": 1,
+              "fontFamily": "circularBold",
+              "fontSize": 16,
+              "lineHeight": 20,
+              "textAlign": "left",
+            },
+          ]
+        }
+      >
+        filters.Test choice
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flexBasis": "auto",
+            "flexGrow": 0,
+          },
+        ]
+      }
+    >
+      <View
+        selected={true}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#0421B1",
+              "borderColor": "transparent",
+              "borderRadius": 12,
+              "borderWidth": 1,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            },
+          ]
+        }
+      >
+        <View
+          collapsable={false}
+          style={
+            Object {
+              "transform": Array [
+                Object {
+                  "scale": 1,
+                },
+              ],
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={16}
+            bbWidth={16}
+            fill="#FFFFFF"
+            focusable={false}
+            height={16}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 16,
+                  "width": 16,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={16}
+          >
+            <RNSVGGroup
+              fill={4294967295}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGGroup>
+                <RNSVGGroup>
+                  <RNSVGRect
+                    height="24"
+                    opacity={0}
+                    width="24"
+                    x={0}
+                    y={0}
+                  />
+                  <RNSVGPath
+                    d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                  />
+                </RNSVGGroup>
+              </RNSVGGroup>
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

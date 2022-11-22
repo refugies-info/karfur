@@ -12,281 +12,328 @@ exports[`Filter french level should render correctly when french level selected 
     ]
   }
 >
-  <View
-    style={
-      Object {
-        "bottom": 0,
-        "left": 0,
-        "right": 0,
-        "top": 0,
-      }
-    }
-  >
+  <View>
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
       }
     >
       <View
-        accessibilityLabel=""
-        accessibilityRole="button"
-        accessible={true}
+        RTLBehaviour={false}
         collapsable={false}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        horizontalAlign="space-between"
         style={
           Object {
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "elevation": 6,
-            "opacity": 1,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
-            "paddingTop": 12,
-            "shadowColor": "#212121",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
+        verticalAlign="center"
       >
         <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        6.123233995736766e-17,
-                        1,
-                        -1,
-                        6.123233995736766e-17,
-                        24,
-                        0,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexBasis": 0,
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "flexShrink": 1,
-              "justifyContent": "center",
-              "marginLeft": 0,
-              "marginRight": 56,
-            },
-          ]
-        }
-      >
-        <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                  />
-                  <RNSVGPath
-                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-        <Text
-          isRTL={false}
-          selectable={true}
           style={
             Array [
               Object {
-                "color": "#212121",
-                "flexShrink": 1,
-                "fontFamily": "circularBold",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginLeft": 8,
-                "marginRight": 0,
-                "textAlign": "left",
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 16,
               },
             ]
           }
         >
-          Créer mon profil
-        </Text>
+          <View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "opacity": 1,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              1,
+                              -1,
+                              6.123233995736766e-17,
+                              24,
+                              0,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View
+            RTLBehaviour={false}
+            collapsable={false}
+            horizontalAlign="center"
+            style={
+              Object {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "center",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                        />
+                        <RNSVGPath
+                          d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                ellipsizeMode="tail"
+                invertedColor={false}
+                isRTL={false}
+                numberOfLines={2}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={Object {}}
+                >
+                  Créer mon profil
+                </Text>
+                <View />
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-          ]
-        }
-      />
     </View>
+    <Modal
+      animationType="none"
+      deviceHeight={null}
+      deviceWidth={null}
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      onRequestClose={[Function]}
+      panResponderThreshold={4}
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    />
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      Array [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    visible={false}
-  />
   <View
     style={
       Array [
@@ -396,17 +443,16 @@ exports[`Filter french level should render correctly when french level selected 
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -474,7 +520,7 @@ exports[`Filter french level should render correctly when french level selected 
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -527,17 +573,16 @@ exports[`Filter french level should render correctly when french level selected 
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -559,7 +604,7 @@ exports[`Filter french level should render correctly when french level selected 
                   style={
                     Array [
                       Object {
-                        "color": "#0421B1",
+                        "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
@@ -577,7 +622,7 @@ exports[`Filter french level should render correctly when french level selected 
                     style={
                       Array [
                         Object {
-                          "color": "#0421B1",
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -605,7 +650,7 @@ exports[`Filter french level should render correctly when french level selected 
                 }
               >
                 <View
-                  isSelected={true}
+                  selected={true}
                   style={
                     Array [
                       Object {
@@ -731,17 +776,16 @@ exports[`Filter french level should render correctly when french level selected 
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -809,7 +853,7 @@ exports[`Filter french level should render correctly when french level selected 
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -959,17 +1003,16 @@ exports[`Filter french level should render correctly when french level selected 
       >
         <View
           RTLBehaviour={false}
+          collapsable={false}
           horizontalAlign="flex-start"
           style={
-            Array [
-              Object {
-                "alignItems": "flex-start",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              },
-            ]
+            Object {
+              "alignItems": "flex-start",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+            }
           }
           verticalAlign="flex-start"
         >
@@ -1187,281 +1230,328 @@ exports[`Filter french level should render correctly when no french level select
     ]
   }
 >
-  <View
-    style={
-      Object {
-        "bottom": 0,
-        "left": 0,
-        "right": 0,
-        "top": 0,
-      }
-    }
-  >
+  <View>
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
       }
     >
       <View
-        accessibilityLabel=""
-        accessibilityRole="button"
-        accessible={true}
+        RTLBehaviour={false}
         collapsable={false}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        horizontalAlign="space-between"
         style={
           Object {
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "elevation": 6,
-            "opacity": 1,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
-            "paddingTop": 12,
-            "shadowColor": "#212121",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
+        verticalAlign="center"
       >
         <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        6.123233995736766e-17,
-                        1,
-                        -1,
-                        6.123233995736766e-17,
-                        24,
-                        0,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexBasis": 0,
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "flexShrink": 1,
-              "justifyContent": "center",
-              "marginLeft": 0,
-              "marginRight": 56,
-            },
-          ]
-        }
-      >
-        <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                  />
-                  <RNSVGPath
-                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-        <Text
-          isRTL={false}
-          selectable={true}
           style={
             Array [
               Object {
-                "color": "#212121",
-                "flexShrink": 1,
-                "fontFamily": "circularBold",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginLeft": 8,
-                "marginRight": 0,
-                "textAlign": "left",
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 16,
               },
             ]
           }
         >
-          Créer mon profil
-        </Text>
+          <View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "opacity": 1,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              1,
+                              -1,
+                              6.123233995736766e-17,
+                              24,
+                              0,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View
+            RTLBehaviour={false}
+            collapsable={false}
+            horizontalAlign="center"
+            style={
+              Object {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "center",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                        />
+                        <RNSVGPath
+                          d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                ellipsizeMode="tail"
+                invertedColor={false}
+                isRTL={false}
+                numberOfLines={2}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={Object {}}
+                >
+                  Créer mon profil
+                </Text>
+                <View />
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-          ]
-        }
-      />
     </View>
+    <Modal
+      animationType="none"
+      deviceHeight={null}
+      deviceWidth={null}
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      onRequestClose={[Function]}
+      panResponderThreshold={4}
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    />
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      Array [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    visible={false}
-  />
   <View
     style={
       Array [
@@ -1571,17 +1661,16 @@ exports[`Filter french level should render correctly when no french level select
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -1649,7 +1738,7 @@ exports[`Filter french level should render correctly when no french level select
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -1710,17 +1799,16 @@ exports[`Filter french level should render correctly when no french level select
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -1788,7 +1876,7 @@ exports[`Filter french level should render correctly when no french level select
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -1849,17 +1937,16 @@ exports[`Filter french level should render correctly when no french level select
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -1927,7 +2014,7 @@ exports[`Filter french level should render correctly when no french level select
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -2077,17 +2164,16 @@ exports[`Filter french level should render correctly when no french level select
       >
         <View
           RTLBehaviour={false}
+          collapsable={false}
           horizontalAlign="flex-start"
           style={
-            Array [
-              Object {
-                "alignItems": "flex-start",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              },
-            ]
+            Object {
+              "alignItems": "flex-start",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+            }
           }
           verticalAlign="flex-start"
         >
@@ -2297,281 +2383,328 @@ exports[`Filter french level should select level when click on it 1`] = `
     ]
   }
 >
-  <View
-    style={
-      Object {
-        "bottom": 0,
-        "left": 0,
-        "right": 0,
-        "top": 0,
-      }
-    }
-  >
+  <View>
     <View
       style={
-        Array [
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-          },
-        ]
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
       }
     >
       <View
-        accessibilityLabel=""
-        accessibilityRole="button"
-        accessible={true}
+        RTLBehaviour={false}
         collapsable={false}
-        focusable={false}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        horizontalAlign="space-between"
         style={
           Object {
-            "backgroundColor": "#FFFFFF",
-            "borderRadius": 12,
-            "elevation": 6,
-            "opacity": 1,
-            "paddingBottom": 12,
-            "paddingLeft": 12,
-            "paddingRight": 12,
-            "paddingTop": 12,
-            "shadowColor": "#212121",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 0.16,
-            "shadowRadius": 8,
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
           }
         }
+        verticalAlign="center"
       >
         <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    matrix={
-                      Array [
-                        6.123233995736766e-17,
-                        1,
-                        -1,
-                        6.123233995736766e-17,
-                        24,
-                        0,
-                      ]
-                    }
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexBasis": 0,
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "flexShrink": 1,
-              "justifyContent": "center",
-              "marginLeft": 0,
-              "marginRight": 56,
-            },
-          ]
-        }
-      >
-        <View
-          collapsable={false}
-          style={
-            Object {
-              "transform": Array [
-                Object {
-                  "scale": 1,
-                },
-              ],
-            }
-          }
-        >
-          <RNSVGSvgView
-            align="xMidYMid"
-            bbHeight={24}
-            bbWidth={24}
-            fill="#212121"
-            focusable={false}
-            height={24}
-            meetOrSlice={0}
-            minX={0}
-            minY={0}
-            style={
-              Array [
-                Object {
-                  "backgroundColor": "transparent",
-                  "borderWidth": 0,
-                },
-                Object {
-                  "flex": 0,
-                  "height": 24,
-                  "width": 24,
-                },
-              ]
-            }
-            vbHeight={24}
-            vbWidth={24}
-            width={24}
-          >
-            <RNSVGGroup
-              fill={4280361249}
-              propList={
-                Array [
-                  "fill",
-                ]
-              }
-            >
-              <RNSVGGroup>
-                <RNSVGGroup>
-                  <RNSVGRect
-                    height="24"
-                    opacity={0}
-                    width="24"
-                    x={0}
-                    y={0}
-                  />
-                  <RNSVGPath
-                    d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
-                  />
-                  <RNSVGPath
-                    d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
-                  />
-                </RNSVGGroup>
-              </RNSVGGroup>
-            </RNSVGGroup>
-          </RNSVGSvgView>
-        </View>
-        <Text
-          isRTL={false}
-          selectable={true}
           style={
             Array [
               Object {
-                "color": "#212121",
-                "flexShrink": 1,
-                "fontFamily": "circularBold",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "marginLeft": 8,
-                "marginRight": 0,
-                "textAlign": "left",
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 16,
               },
             ]
           }
         >
-          Créer mon profil
-        </Text>
+          <View>
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={false}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "opacity": 1,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              1,
+                              -1,
+                              6.123233995736766e-17,
+                              24,
+                              0,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View
+            RTLBehaviour={false}
+            collapsable={false}
+            horizontalAlign="center"
+            style={
+              Object {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "center",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                    "marginRight": 16,
+                  },
+                ]
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"
+                        />
+                        <RNSVGPath
+                          d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <Text
+                ellipsizeMode="tail"
+                invertedColor={false}
+                isRTL={false}
+                numberOfLines={2}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#212121",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 16,
+                      "lineHeight": 20,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
+              >
+                <Text
+                  style={Object {}}
+                >
+                  Créer mon profil
+                </Text>
+                <View />
+              </Text>
+            </View>
+          </View>
+        </View>
       </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-            },
-          ]
-        }
-      />
     </View>
+    <Modal
+      animationType="none"
+      deviceHeight={null}
+      deviceWidth={null}
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      onRequestClose={[Function]}
+      panResponderThreshold={4}
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    />
   </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      Array [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    visible={false}
-  />
   <View
     style={
       Array [
@@ -2681,17 +2814,16 @@ exports[`Filter french level should select level when click on it 1`] = `
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -2759,7 +2891,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -2812,17 +2944,16 @@ exports[`Filter french level should select level when click on it 1`] = `
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -2844,7 +2975,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   style={
                     Array [
                       Object {
-                        "color": "#0421B1",
+                        "color": "#212121",
                         "flexShrink": 1,
                         "fontFamily": "circularBold",
                         "fontSize": 16,
@@ -2862,7 +2993,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                     style={
                       Array [
                         Object {
-                          "color": "#0421B1",
+                          "color": "#212121",
                           "flexShrink": 1,
                           "fontFamily": "circularBold",
                           "fontSize": 16,
@@ -2890,7 +3021,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 }
               >
                 <View
-                  isSelected={true}
+                  selected={true}
                   style={
                     Array [
                       Object {
@@ -3016,17 +3147,16 @@ exports[`Filter french level should select level when click on it 1`] = `
           >
             <View
               RTLBehaviour={true}
+              collapsable={false}
               horizontalAlign="flex-start"
               style={
-                Array [
-                  Object {
-                    "alignItems": "center",
-                    "flexBasis": "auto",
-                    "flexDirection": "row",
-                    "flexGrow": 1,
-                    "justifyContent": "flex-start",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-start",
+                }
               }
               verticalAlign="center"
             >
@@ -3094,7 +3224,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                 }
               >
                 <View
-                  isSelected={false}
+                  selected={false}
                   style={
                     Array [
                       Object {
@@ -3244,17 +3374,16 @@ exports[`Filter french level should select level when click on it 1`] = `
       >
         <View
           RTLBehaviour={false}
+          collapsable={false}
           horizontalAlign="flex-start"
           style={
-            Array [
-              Object {
-                "alignItems": "flex-start",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              },
-            ]
+            Object {
+              "alignItems": "flex-start",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+            }
           }
           verticalAlign="flex-start"
         >

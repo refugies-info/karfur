@@ -37,7 +37,7 @@ describe("LanguageChoiceScreen", () => {
     });
   });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const changeLanguage = jest.fn();
     (useTranslationWithRTL as jest.Mock).mockReturnValue({
       i18n: { changeLanguage },

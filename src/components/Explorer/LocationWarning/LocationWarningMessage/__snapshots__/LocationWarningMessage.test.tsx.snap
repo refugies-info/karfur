@@ -11,7 +11,6 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
         "display": "flex",
         "elevation": 2,
         "flexDirection": "row",
-        "marginHorizontal": 24,
         "marginTop": 16,
         "paddingBottom": 8,
         "paddingLeft": 8,
@@ -30,17 +29,16 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
 >
   <View
     RTLBehaviour={false}
+    collapsable={false}
     horizontalAlign="flex-start"
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexBasis": "auto",
-          "flexDirection": "row",
-          "flexGrow": 1,
-          "justifyContent": "flex-start",
-        },
-      ]
+      Object {
+        "alignItems": "center",
+        "flexBasis": "auto",
+        "flexDirection": "row",
+        "flexGrow": 1,
+        "justifyContent": "flex-start",
+      }
     }
     verticalAlign="center"
   >
@@ -71,17 +69,16 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
       >
         <View
           RTLBehaviour={false}
+          collapsable={false}
           horizontalAlign="flex-start"
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "flex-start",
+            }
           }
           verticalAlign="center"
         >

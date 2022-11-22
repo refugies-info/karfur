@@ -1,170 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentScreen should render correctly 1`] = `
-<View
-  style={
-    Object {
-      "paddingBottom": 60,
-    }
-  }
->
+Array [
   <View
     style={
       Array [
         Object {
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
         },
       ]
     }
   >
     <View
-      collapsable={false}
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0)",
-        }
-      }
+      accessibilityIgnoresInvertColors={true}
     >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": "/images/app-banner/francais.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": undefined,
+              "width": undefined,
+            },
+            undefined,
+          ]
+        }
+      />
       <View
         style={
           Object {
-            "paddingTop": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0,
           }
         }
       >
         <View
+          RTLBehaviour={false}
+          collapsable={false}
+          horizontalAlign="space-between"
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingHorizontal": 24,
-                "paddingTop": 8,
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "space-between",
+            }
           }
+          verticalAlign="center"
         >
           <View
-            accessibilityLabel=""
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={false}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 12,
-                "elevation": 6,
-                "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginRight": 16,
                 },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
-              }
+              ]
             }
           >
-            <View
-              collapsable={false}
-              style={
-                Object {
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                }
-              }
-            >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
-                fill="#212121"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "elevation": 6,
+                    "opacity": 1,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
                     },
-                    Object {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
-                  ]
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                    "width": 48,
+                  }
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
               >
-                <RNSVGGroup
-                  fill={4280361249}
-                  propList={
-                    Array [
-                      "fill",
-                    ]
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
-                      <RNSVGRect
-                        height="24"
-                        matrix={
-                          Array [
-                            6.123233995736766e-17,
-                            1,
-                            -1,
-                            6.123233995736766e-17,
-                            24,
-                            0,
-                          ]
-                        }
-                        opacity={0}
-                        width="24"
-                        x={0}
-                        y={0}
-                      />
-                      <RNSVGPath
-                        d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                      />
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#212121"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
+                  >
+                    <RNSVGGroup
+                      fill={4280361249}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            matrix={
+                              Array [
+                                6.123233995736766e-17,
+                                1,
+                                -1,
+                                6.123233995736766e-17,
+                                24,
+                                0,
+                              ]
+                            }
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
                     </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
+                  </RNSVGSvgView>
+                </View>
+              </View>
             </View>
           </View>
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
+                },
+              ]
+            }
+          >
+            <View />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
                 },
               ]
             }
@@ -172,257 +213,206 @@ exports[`ContentScreen should render correctly 1`] = `
             <View />
           </View>
         </View>
+        <View
+          style={
+            Object {
+              "marginTop": 20,
+              "position": "relative",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginBottom": 66,
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#FFFFFF",
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 40,
+                    "marginBottom": 16,
+                    "opacity": 0.9,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={Object {}}
+              >
+                Être aidé pour trouver un logement et un travail
+              </Text>
+              <View />
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#FFFFFF",
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 32,
+                    "opacity": 0.9,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={Object {}}
+              >
+                avec Insair 38 - ADOMA
+              </Text>
+              <View />
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": -50,
+                "position": "absolute",
+              }
+            }
+          >
+            <View
+              height={100}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "height": 100,
+                    "marginBottom": 8,
+                    "marginTop": -50,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "width": 100,
+                    "zIndex": 2,
+                  },
+                ]
+              }
+              width={100}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 84,
+                      "width": 84,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
-    </View>
-    <View
-      collapsable={false}
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0)",
-          "height": 0,
-          "overflow": "hidden",
+      <Modal
+        animationType="none"
+        deviceHeight={null}
+        deviceWidth={null}
+        hardwareAccelerated={false}
+        hideModalContentWhileAnimating={false}
+        onBackdropPress={[Function]}
+        onModalHide={[Function]}
+        onModalWillHide={[Function]}
+        onModalWillShow={[Function]}
+        onRequestClose={[Function]}
+        panResponderThreshold={4}
+        scrollHorizontal={false}
+        scrollOffset={0}
+        scrollOffsetMax={0}
+        scrollTo={null}
+        statusBarTranslucent={false}
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
         }
+        swipeThreshold={100}
+        transparent={true}
+        visible={false}
+      />
+    </View>
+    <RCTScrollView
+      alwaysBounceVertical={false}
+      contentContainerStyle={
+        Object {
+          "paddingBottom": 40,
+          "paddingHorizontal": 24,
+          "paddingTop": 24,
+        }
+      }
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollEndDrag={[Function]}
+      scrollEventThrottle={10}
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
+      style={
+        Array [
+          Object {
+            "paddingBottom": 24,
+          },
+        ]
       }
     >
-      <View
-        onLayout={[Function]}
-        style={
-          Array [
-            Object {
-              "elevation": 6,
-              "paddingHorizontal": 24,
-              "paddingVertical": 8,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            },
-            Object {
-              "bottom": 0,
-              "position": "absolute",
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#FFFFFF",
-              },
-            ]
-          }
-        >
-          Être aidé pour trouver un logement et un travail
-        </Text>
-      </View>
-    </View>
-  </View>
-  <RCTScrollView
-    collapsable={false}
-    contentContainerStyle={
-      Object {
-        "paddingBottom": 40,
-      }
-    }
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollEndDrag={[Function]}
-    scrollEventThrottle={16}
-    scrollIndicatorInsets={
-      Object {
-        "right": 1,
-      }
-    }
-  >
-    <View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "height": 330,
-          }
-        }
-      >
-        <Image
-          source={
-            Object {
-              "uri": "/images/app-banner/francais.png",
-            }
-          }
-          style={
-            Object {
-              "height": 330,
-              "width": "100%",
-            }
-          }
-        />
-      </View>
-      <View
-        height={330}
-        style={
-          Array [
-            Object {
-              "height": 330,
-              "position": "absolute",
-              "top": 0,
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 24,
-                "marginBottom": 66,
-                "position": "absolute",
-                "width": 702,
-              },
-            ]
-          }
-          width={702}
-        >
-          <Text
-            isRTL={false}
-            onLayout={[Function]}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 25,
-                  "lineHeight": 40,
-                  "marginBottom": 16,
-                  "opacity": 0.9,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            <Text
-              style={Object {}}
-            >
-              Être aidé pour trouver un logement et un travail
-            </Text>
-            <View />
-          </Text>
-          <Text
-            isRTL={false}
-            onLayout={[Function]}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 32,
-                  "opacity": 0.9,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            <Text
-              style={Object {}}
-            >
-              avec Insair 38 - ADOMA
-            </Text>
-            <View />
-          </Text>
-        </View>
-      </View>
-      <View
-        height={100}
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "#F6F6F6",
-              "borderRadius": 12,
-              "display": "flex",
-              "height": 100,
-              "marginBottom": 8,
-              "marginLeft": 24,
-              "marginRight": 0,
-              "marginTop": -50,
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "width": 100,
-              "zIndex": 2,
-            },
-          ]
-        }
-        width={100}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 8,
-                "display": "flex",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "justifyContent": "center",
-              },
-            ]
-          }
-        >
-          <Image
-            resizeMode="contain"
-            source={
-              Object {
-                "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
-              }
-            }
-            style={
-              Object {
-                "height": 84,
-                "width": 84,
-              }
-            }
-          />
-        </View>
-      </View>
       <View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -434,13 +424,11 @@ exports[`ContentScreen should render correctly 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -449,13 +437,7 @@ exports[`ContentScreen should render correctly 1`] = `
             </Text>
             <View />
           </Text>
-          <View
-            style={
-              Object {
-                "marginHorizontal": 24,
-              }
-            }
-          >
+          <View>
             <View
               style={
                 Object {
@@ -1006,7 +988,6 @@ exports[`ContentScreen should render correctly 1`] = `
                 "display": "flex",
                 "elevation": 6,
                 "flexDirection": "column",
-                "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
                 "shadowColor": "#212121",
@@ -1657,6 +1638,7 @@ exports[`ContentScreen should render correctly 1`] = `
         </View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -1668,13 +1650,11 @@ exports[`ContentScreen should render correctly 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -1688,7 +1668,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -1964,7 +1943,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -2240,7 +2218,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -2516,7 +2493,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -2790,6 +2766,7 @@ exports[`ContentScreen should render correctly 1`] = `
         </View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -2801,13 +2778,11 @@ exports[`ContentScreen should render correctly 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -2821,7 +2796,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -3158,7 +3132,6 @@ exports[`ContentScreen should render correctly 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -3431,6 +3404,7 @@ exports[`ContentScreen should render correctly 1`] = `
           </View>
         </View>
         <Text
+          color="#3D2884"
           isRTL={false}
           selectable={true}
           style={
@@ -3442,13 +3416,11 @@ exports[`ContentScreen should render correctly 1`] = `
                 "fontSize": 25,
                 "lineHeight": 32,
                 "marginBottom": 16,
-                "marginHorizontal": 24,
                 "marginTop": 16,
                 "textAlign": "left",
               },
             ]
           }
-          textColor="#3D2884"
         >
           <Text
             style={Object {}}
@@ -3462,7 +3434,6 @@ exports[`ContentScreen should render correctly 1`] = `
             Array [
               Object {
                 "elevation": 6,
-                "marginHorizontal": 24,
                 "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
@@ -3525,10 +3496,7 @@ exports[`ContentScreen should render correctly 1`] = `
                       "flexDirection": "row",
                       "height": 56,
                       "justifyContent": "center",
-                      "paddingBottom": 18,
-                      "paddingLeft": 18,
-                      "paddingRight": 18,
-                      "paddingTop": 18,
+                      "paddingVertical": 18,
                       "width": "auto",
                     },
                   ]
@@ -3717,31 +3685,19 @@ exports[`ContentScreen should render correctly 1`] = `
             </View>
           </View>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              },
-            ]
-          }
-        >
+        <View>
           <View
             RTLBehaviour={true}
+            collapsable={false}
             horizontalAlign="flex-start"
             style={
-              Array [
-                Object {
-                  "alignItems": "flex-start",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                },
-              ]
+              Object {
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
             verticalAlign="flex-start"
           >
@@ -3807,8 +3763,8 @@ exports[`ContentScreen should render correctly 1`] = `
           </View>
         </View>
       </View>
-    </View>
-  </RCTScrollView>
+    </RCTScrollView>
+  </View>,
   <View
     style={
       Array [
@@ -4539,207 +4495,221 @@ exports[`ContentScreen should render correctly 1`] = `
         </Text>
       </View>
     </View>
-  </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      Array [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    visible={false}
-  />
+  </View>,
   <Modal
     animationType="slide"
     hardwareAccelerated={false}
     visible={false}
-  />
-</View>
+  />,
+]
 `;
 
 exports[`ContentScreen should toggle map modal 1`] = `
-<View
-  style={
-    Object {
-      "paddingBottom": 60,
-    }
-  }
->
+Array [
   <View
     style={
       Array [
         Object {
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-          "width": "100%",
-          "zIndex": 2,
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
         },
       ]
     }
   >
     <View
-      collapsable={false}
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0)",
-        }
-      }
+      accessibilityIgnoresInvertColors={true}
     >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "uri": "/images/app-banner/francais.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": undefined,
+              "width": undefined,
+            },
+            undefined,
+          ]
+        }
+      />
       <View
         style={
           Object {
-            "paddingTop": 0,
+            "bottom": 0,
+            "left": 0,
+            "right": 0,
+            "top": 0,
           }
         }
       >
         <View
+          RTLBehaviour={false}
+          collapsable={false}
+          horizontalAlign="space-between"
           style={
-            Array [
-              Object {
-                "alignItems": "center",
-                "display": "flex",
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "paddingHorizontal": 24,
-                "paddingTop": 8,
-              },
-            ]
+            Object {
+              "alignItems": "center",
+              "flexBasis": "auto",
+              "flexDirection": "row",
+              "flexGrow": 1,
+              "justifyContent": "space-between",
+            }
           }
+          verticalAlign="center"
         >
           <View
-            accessibilityLabel=""
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={false}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 12,
-                "elevation": 6,
-                "opacity": 1,
-                "paddingBottom": 12,
-                "paddingLeft": 12,
-                "paddingRight": 12,
-                "paddingTop": 12,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
+                  "marginRight": 16,
                 },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
-              }
+              ]
             }
           >
-            <View
-              collapsable={false}
-              style={
-                Object {
-                  "transform": Array [
-                    Object {
-                      "scale": 1,
-                    },
-                  ],
-                }
-              }
-            >
-              <RNSVGSvgView
-                align="xMidYMid"
-                bbHeight={24}
-                bbWidth={24}
-                fill="#212121"
-                focusable={false}
-                height={24}
-                meetOrSlice={0}
-                minX={0}
-                minY={0}
+            <View>
+              <View
+                accessibilityRole="button"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "transparent",
-                      "borderWidth": 0,
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "elevation": 6,
+                    "opacity": 1,
+                    "paddingBottom": 12,
+                    "paddingLeft": 12,
+                    "paddingRight": 12,
+                    "paddingTop": 12,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
                     },
-                    Object {
-                      "flex": 0,
-                      "height": 24,
-                      "width": 24,
-                    },
-                  ]
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                    "width": 48,
+                  }
                 }
-                vbHeight={24}
-                vbWidth={24}
-                width={24}
               >
-                <RNSVGGroup
-                  fill={4280361249}
-                  propList={
-                    Array [
-                      "fill",
-                    ]
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "scale": 1,
+                        },
+                      ],
+                    }
                   }
                 >
-                  <RNSVGGroup>
-                    <RNSVGGroup>
-                      <RNSVGRect
-                        height="24"
-                        matrix={
-                          Array [
-                            6.123233995736766e-17,
-                            1,
-                            -1,
-                            6.123233995736766e-17,
-                            24,
-                            0,
-                          ]
-                        }
-                        opacity={0}
-                        width="24"
-                        x={0}
-                        y={0}
-                      />
-                      <RNSVGPath
-                        d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
-                      />
+                  <RNSVGSvgView
+                    align="xMidYMid"
+                    bbHeight={24}
+                    bbWidth={24}
+                    fill="#212121"
+                    focusable={false}
+                    height={24}
+                    meetOrSlice={0}
+                    minX={0}
+                    minY={0}
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "transparent",
+                          "borderWidth": 0,
+                        },
+                        Object {
+                          "flex": 0,
+                          "height": 24,
+                          "width": 24,
+                        },
+                      ]
+                    }
+                    vbHeight={24}
+                    vbWidth={24}
+                    width={24}
+                  >
+                    <RNSVGGroup
+                      fill={4280361249}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                    >
+                      <RNSVGGroup>
+                        <RNSVGGroup>
+                          <RNSVGRect
+                            height="24"
+                            matrix={
+                              Array [
+                                6.123233995736766e-17,
+                                1,
+                                -1,
+                                6.123233995736766e-17,
+                                24,
+                                0,
+                              ]
+                            }
+                            opacity={0}
+                            width="24"
+                            x={0}
+                            y={0}
+                          />
+                          <RNSVGPath
+                            d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                          />
+                        </RNSVGGroup>
+                      </RNSVGGroup>
                     </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGGroup>
-              </RNSVGSvgView>
+                  </RNSVGSvgView>
+                </View>
+              </View>
             </View>
           </View>
           <View
             style={
               Array [
                 Object {
-                  "alignItems": "center",
-                  "display": "flex",
-                  "flexDirection": "row",
+                  "flexBasis": 0,
+                  "flexGrow": 1,
+                  "marginRight": 16,
+                },
+              ]
+            }
+          >
+            <View />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "flexBasis": "auto",
+                  "flexGrow": 0,
                 },
               ]
             }
@@ -4747,257 +4717,206 @@ exports[`ContentScreen should toggle map modal 1`] = `
             <View />
           </View>
         </View>
+        <View
+          style={
+            Object {
+              "marginTop": 20,
+              "position": "relative",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "marginBottom": 66,
+                },
+              ]
+            }
+          >
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#FFFFFF",
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 40,
+                    "marginBottom": 16,
+                    "opacity": 0.9,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={Object {}}
+              >
+                Être aidé pour trouver un logement et un travail
+              </Text>
+              <View />
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#FFFFFF",
+                    "color": "#212121",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 32,
+                    "opacity": 0.9,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "textAlign": "left",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={Object {}}
+              >
+                avec Insair 38 - ADOMA
+              </Text>
+              <View />
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "bottom": -50,
+                "position": "absolute",
+              }
+            }
+          >
+            <View
+              height={100}
+              style={
+                Array [
+                  Object {
+                    "alignSelf": "flex-start",
+                    "backgroundColor": "#F6F6F6",
+                    "borderRadius": 12,
+                    "display": "flex",
+                    "height": 100,
+                    "marginBottom": 8,
+                    "marginTop": -50,
+                    "paddingBottom": 8,
+                    "paddingLeft": 8,
+                    "paddingRight": 8,
+                    "paddingTop": 8,
+                    "width": 100,
+                    "zIndex": 2,
+                  },
+                ]
+              }
+              width={100}
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#FFFFFF",
+                      "borderRadius": 8,
+                      "display": "flex",
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "justifyContent": "center",
+                    },
+                  ]
+                }
+              >
+                <Image
+                  resizeMode="contain"
+                  source={
+                    Object {
+                      "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
+                    }
+                  }
+                  style={
+                    Object {
+                      "height": 84,
+                      "width": 84,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
-    </View>
-    <View
-      collapsable={false}
-      style={
-        Object {
-          "backgroundColor": "rgba(0, 0, 0, 0)",
-          "height": 0,
-          "overflow": "hidden",
+      <Modal
+        animationType="none"
+        deviceHeight={null}
+        deviceWidth={null}
+        hardwareAccelerated={false}
+        hideModalContentWhileAnimating={false}
+        onBackdropPress={[Function]}
+        onModalHide={[Function]}
+        onModalWillHide={[Function]}
+        onModalWillShow={[Function]}
+        onRequestClose={[Function]}
+        panResponderThreshold={4}
+        scrollHorizontal={false}
+        scrollOffset={0}
+        scrollOffsetMax={0}
+        scrollTo={null}
+        statusBarTranslucent={false}
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
         }
+        swipeThreshold={100}
+        transparent={true}
+        visible={false}
+      />
+    </View>
+    <RCTScrollView
+      alwaysBounceVertical={false}
+      contentContainerStyle={
+        Object {
+          "paddingBottom": 40,
+          "paddingHorizontal": 24,
+          "paddingTop": 24,
+        }
+      }
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollEndDrag={[Function]}
+      scrollEventThrottle={10}
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
+      style={
+        Array [
+          Object {
+            "paddingBottom": 24,
+          },
+        ]
       }
     >
-      <View
-        onLayout={[Function]}
-        style={
-          Array [
-            Object {
-              "elevation": 6,
-              "paddingHorizontal": 24,
-              "paddingVertical": 8,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            },
-            Object {
-              "bottom": 0,
-              "position": "absolute",
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <Text
-          isRTL={false}
-          selectable={true}
-          style={
-            Array [
-              Object {
-                "color": "#212121",
-                "fontFamily": "circularBook",
-                "fontSize": 16,
-                "lineHeight": 20,
-                "textAlign": "left",
-              },
-              Object {
-                "color": "#FFFFFF",
-              },
-            ]
-          }
-        >
-          Être aidé pour trouver un logement et un travail
-        </Text>
-      </View>
-    </View>
-  </View>
-  <RCTScrollView
-    collapsable={false}
-    contentContainerStyle={
-      Object {
-        "paddingBottom": 40,
-      }
-    }
-    onGestureHandlerEvent={[Function]}
-    onGestureHandlerStateChange={[Function]}
-    onMomentumScrollEnd={[Function]}
-    onScroll={[Function]}
-    onScrollEndDrag={[Function]}
-    scrollEventThrottle={16}
-    scrollIndicatorInsets={
-      Object {
-        "right": 1,
-      }
-    }
-  >
-    <View>
-      <View
-        style={
-          Object {
-            "alignItems": "center",
-            "display": "flex",
-            "height": 330,
-          }
-        }
-      >
-        <Image
-          source={
-            Object {
-              "uri": "/images/app-banner/francais.png",
-            }
-          }
-          style={
-            Object {
-              "height": 330,
-              "width": "100%",
-            }
-          }
-        />
-      </View>
-      <View
-        height={330}
-        style={
-          Array [
-            Object {
-              "height": 330,
-              "position": "absolute",
-              "top": 0,
-              "width": "100%",
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "bottom": 0,
-                "left": 24,
-                "marginBottom": 66,
-                "position": "absolute",
-                "width": 702,
-              },
-            ]
-          }
-          width={702}
-        >
-          <Text
-            isRTL={false}
-            onLayout={[Function]}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
-                  "color": "#212121",
-                  "fontFamily": "circularBold",
-                  "fontSize": 25,
-                  "lineHeight": 40,
-                  "marginBottom": 16,
-                  "opacity": 0.9,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            <Text
-              style={Object {}}
-            >
-              Être aidé pour trouver un logement et un travail
-            </Text>
-            <View />
-          </Text>
-          <Text
-            isRTL={false}
-            onLayout={[Function]}
-            selectable={true}
-            style={
-              Array [
-                Object {
-                  "alignSelf": "flex-start",
-                  "backgroundColor": "#FFFFFF",
-                  "color": "#212121",
-                  "fontFamily": "circularBook",
-                  "fontSize": 16,
-                  "lineHeight": 32,
-                  "opacity": 0.9,
-                  "paddingBottom": 8,
-                  "paddingLeft": 8,
-                  "paddingRight": 8,
-                  "paddingTop": 8,
-                  "textAlign": "left",
-                },
-              ]
-            }
-          >
-            <Text
-              style={Object {}}
-            >
-              avec Insair 38 - ADOMA
-            </Text>
-            <View />
-          </Text>
-        </View>
-      </View>
-      <View
-        height={100}
-        style={
-          Array [
-            Object {
-              "alignSelf": "flex-start",
-              "backgroundColor": "#F6F6F6",
-              "borderRadius": 12,
-              "display": "flex",
-              "height": 100,
-              "marginBottom": 8,
-              "marginLeft": 24,
-              "marginRight": 0,
-              "marginTop": -50,
-              "paddingBottom": 8,
-              "paddingLeft": 8,
-              "paddingRight": 8,
-              "paddingTop": 8,
-              "width": 100,
-              "zIndex": 2,
-            },
-          ]
-        }
-        width={100}
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#FFFFFF",
-                "borderRadius": 8,
-                "display": "flex",
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "justifyContent": "center",
-              },
-            ]
-          }
-        >
-          <Image
-            resizeMode="contain"
-            source={
-              Object {
-                "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
-              }
-            }
-            style={
-              Object {
-                "height": 84,
-                "width": 84,
-              }
-            }
-          />
-        </View>
-      </View>
       <View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -5009,13 +4928,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -5024,13 +4941,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </Text>
             <View />
           </Text>
-          <View
-            style={
-              Object {
-                "marginHorizontal": 24,
-              }
-            }
-          >
+          <View>
             <View
               style={
                 Object {
@@ -5581,7 +5492,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "display": "flex",
                 "elevation": 6,
                 "flexDirection": "column",
-                "marginHorizontal": 24,
                 "marginTop": 8,
                 "paddingTop": 16,
                 "shadowColor": "#212121",
@@ -6232,6 +6142,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -6243,13 +6154,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -6263,7 +6172,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -6539,7 +6447,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -6815,7 +6722,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -7091,7 +6997,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -7365,6 +7270,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
         <View>
           <Text
+            color="#3D2884"
             isRTL={false}
             selectable={true}
             style={
@@ -7376,13 +7282,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   "fontSize": 25,
                   "lineHeight": 32,
                   "marginBottom": 16,
-                  "marginHorizontal": 24,
                   "marginTop": 16,
                   "textAlign": "left",
                 },
               ]
             }
-            textColor="#3D2884"
           >
             <Text
               style={Object {}}
@@ -7396,7 +7300,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -7733,7 +7636,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               Array [
                 Object {
                   "marginBottom": 8,
-                  "marginHorizontal": 24,
                   "marginTop": 8,
                 },
               ]
@@ -8006,6 +7908,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
         <Text
+          color="#3D2884"
           isRTL={false}
           selectable={true}
           style={
@@ -8017,13 +7920,11 @@ exports[`ContentScreen should toggle map modal 1`] = `
                 "fontSize": 25,
                 "lineHeight": 32,
                 "marginBottom": 16,
-                "marginHorizontal": 24,
                 "marginTop": 16,
                 "textAlign": "left",
               },
             ]
           }
-          textColor="#3D2884"
         >
           <Text
             style={Object {}}
@@ -8037,7 +7938,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
             Array [
               Object {
                 "elevation": 6,
-                "marginHorizontal": 24,
                 "shadowColor": "#212121",
                 "shadowOffset": Object {
                   "height": 1,
@@ -8100,10 +8000,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       "flexDirection": "row",
                       "height": 56,
                       "justifyContent": "center",
-                      "paddingBottom": 18,
-                      "paddingLeft": 18,
-                      "paddingRight": 18,
-                      "paddingTop": 18,
+                      "paddingVertical": 18,
                       "width": "auto",
                     },
                   ]
@@ -8292,31 +8189,19 @@ exports[`ContentScreen should toggle map modal 1`] = `
             </View>
           </View>
         </View>
-        <View
-          style={
-            Array [
-              Object {
-                "paddingBottom": 24,
-                "paddingLeft": 24,
-                "paddingRight": 24,
-                "paddingTop": 24,
-              },
-            ]
-          }
-        >
+        <View>
           <View
             RTLBehaviour={true}
+            collapsable={false}
             horizontalAlign="flex-start"
             style={
-              Array [
-                Object {
-                  "alignItems": "flex-start",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                },
-              ]
+              Object {
+                "alignItems": "flex-start",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-start",
+              }
             }
             verticalAlign="flex-start"
           >
@@ -8382,8 +8267,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
           </View>
         </View>
       </View>
-    </View>
-  </RCTScrollView>
+    </RCTScrollView>
+  </View>,
   <View
     style={
       Array [
@@ -9114,34 +8999,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </Text>
       </View>
     </View>
-  </View>
-  <Modal
-    animationType="none"
-    deviceHeight={null}
-    deviceWidth={null}
-    hardwareAccelerated={false}
-    hideModalContentWhileAnimating={false}
-    onBackdropPress={[Function]}
-    onModalHide={[Function]}
-    onModalWillHide={[Function]}
-    onModalWillShow={[Function]}
-    onRequestClose={[Function]}
-    panResponderThreshold={4}
-    scrollHorizontal={false}
-    scrollOffset={0}
-    scrollOffsetMax={0}
-    scrollTo={null}
-    statusBarTranslucent={false}
-    supportedOrientations={
-      Array [
-        "portrait",
-        "landscape",
-      ]
-    }
-    swipeThreshold={100}
-    transparent={true}
-    visible={false}
-  />
+  </View>,
   <Modal
     animationType="slide"
     hardwareAccelerated={false}
@@ -9491,6 +9349,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
         </View>
       </View>
     </View>
-  </Modal>
-</View>
+  </Modal>,
+]
 `;

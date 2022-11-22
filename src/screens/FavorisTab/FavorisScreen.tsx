@@ -36,6 +36,9 @@ import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Page } from "../../components";
 import getContentsToDisplay from "./getContentsToDisplay";
+import { withProps } from "../../utils";
+import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
+import { HeaderContentProps } from "../../components/layout/Header/HeaderContentProps";
 
 const EmptyContainer = styled.View`
   padding-horizontal: ${({ theme }) => theme.margin * 4}px;
@@ -129,7 +132,11 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
   return (
     <Page
       loading={loading}
-      title={t("favorites_screen.my_content", "Mes fiches")}
+      HeaderContent={
+        withProps({
+          title: t("favorites_screen.my_content", "Mes fiches"),
+        })(HeaderContentTitle) as React.ComponentType<HeaderContentProps>
+      }
     >
       {favorites.length > 0 ? (
         <>

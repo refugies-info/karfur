@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-native-testing-library";
+import { act, render } from "react-native-testing-library";
 import { NavigationContext } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -46,6 +46,9 @@ export function wrapWithProvidersAndRender({
       </NavigationContext.Provider>
     </SafeAreaProvider>
   );
+  // let component;
 
+  // await act(async () => (component = render(componentWithReduxAndI18n)));
+  // return component;
   return render(componentWithReduxAndI18n);
 }

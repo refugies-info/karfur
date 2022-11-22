@@ -1,6 +1,6 @@
 import React from "react";
 import SkeletonContent from "@03balogun/react-native-skeleton-content";
-import { useTheme } from "styled-components";
+import { useTheme } from "styled-components/native";
 
 const SkeletonListPage = () => {
   const theme = useTheme();

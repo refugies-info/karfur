@@ -17,7 +17,7 @@ describe("Search results screen", () => {
     jest.clearAllMocks();
   });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const component = wrapWithProvidersAndRender({
       Component: SearchResultsScreen,
       compProps: { navigation: { goBack: jest.fn() } },

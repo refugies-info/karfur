@@ -37,7 +37,7 @@ describe("Filter age", () => {
     });
   });
 
-  it("should render correctly when no age selected", () => {
+  it("should render correctly when no age selected", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterAge,
       compProps: { navigation: { goBack: jest.fn() } },
@@ -45,7 +45,7 @@ describe("Filter age", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should render correctly when age selected", () => {
+  it("should render correctly when age selected", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterAge,
       compProps: { navigation: { goBack: jest.fn() } },
@@ -57,7 +57,7 @@ describe("Filter age", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should validate when clicking on rightbutton", () => {
+  it("should validate when clicking on rightbutton", async () => {
     const navigate = jest.fn();
     const component = wrapWithProvidersAndRender({
       Component: FilterAge,
@@ -79,7 +79,7 @@ describe("Filter age", () => {
     expect(navigate).toHaveBeenCalledWith("FilterFrenchLevel");
   });
 
-  it("should select age when click on it", () => {
+  it("should select age when click on it", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterAge,
       compProps: { navigation: { goBack: jest.fn() } },

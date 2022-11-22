@@ -35,7 +35,6 @@ const TitleContainer = styled(RTLTouchableOpacity)<{
 const AccordionContainer = styled.View`
   margin-bottom: ${styles.margin}px;
   margin-top: ${styles.margin}px;
-  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const StepContainer = styled.View<{ darkColor: string }>`

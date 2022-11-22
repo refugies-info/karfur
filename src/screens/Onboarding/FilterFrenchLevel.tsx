@@ -7,7 +7,6 @@ import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { frenchLevelFilters } from "../../data/filtersData";
-import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
@@ -17,7 +16,7 @@ import {
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { Page } from "../../components";
+import { FilterButton, Page } from "../../components";
 
 const ContentContainer = styled.View`
   padding-bottom: ${styles.margin * 3}px;

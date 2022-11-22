@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 import { useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
 
@@ -9,7 +9,7 @@ import {
 import { SimplifiedContent } from "../../../types/interface";
 import { getContentsForApp } from "../../../utils/API";
 import { ContentSummary } from "../../../components/Contents/ContentSummary";
-import { Page, Rows, SkeletonListPage } from "../../../components";
+import { Page, Rows } from "../../../components";
 import { StackScreenProps } from "@react-navigation/stack";
 import { BottomTabParamList, ExplorerParamList } from "../../../../types";
 import { CompositeScreenProps } from "@react-navigation/native";
@@ -63,16 +63,11 @@ const NearMeCardsScreen = ({ navigation }: NearMeCardsScreenProps) => {
   const { city } = useSelector(userLocationSelector);
   const { loading, error, nearMeCards = [] } = useNearMeCards();
 
-  if (loading)
-    return (
-      <Page>
-        <SkeletonListPage />
-      </Page>
-    );
   if (error) return <ErrorScreen text={error.message} />;
 
   return (
     <Page
+      loading={loading}
       title={
         t("explorer_screen.nb_content", {
           nbContent: nbLocalizedContent,

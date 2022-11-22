@@ -5,8 +5,6 @@ import { ProfilScreen } from "../ProfilScreen";
 import { useRoute } from "@react-navigation/core";
 import { initialUserState } from "../../../services/redux/User/user.reducer";
 
-jest.mock("@react-navigation/core");
-
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
@@ -19,6 +17,8 @@ jest.mock("../../../utils/logEvent", () => ({
   logEventInFirebase: jest.fn(),
 }));
 
+jest.useFakeTimers();
+
 describe("Profil screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -27,7 +27,7 @@ describe("Profil screen", () => {
     });
   });
 
-  it("should render correctly when no data in store", () => {
+  it("should render correctly when no data in store", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,
@@ -47,7 +47,7 @@ describe("Profil screen", () => {
     expect(navigation.navigate).toHaveBeenCalledWith("LangueProfilScreen");
   });
 
-  it("should navigate to correct screen loc", () => {
+  it("should navigate to correct screen loc", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,
@@ -64,7 +64,7 @@ describe("Profil screen", () => {
     expect(navigation.navigate).toHaveBeenCalledWith("CityProfilScreen");
   });
 
-  it("should navigate to correct screen age", () => {
+  it("should navigate to correct screen age", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,
@@ -83,7 +83,7 @@ describe("Profil screen", () => {
     expect(navigation.navigate).toHaveBeenCalledWith("AgeProfilScreen");
   });
 
-  it("should navigate to correct screen french", () => {
+  it("should navigate to correct screen french", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,
@@ -102,7 +102,7 @@ describe("Profil screen", () => {
     expect(navigation.navigate).toHaveBeenCalledWith("FrenchLevelProfilScreen");
   });
 
-  it("should render correctly when data in store", () => {
+  it("should render correctly when data in store", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,
@@ -120,7 +120,7 @@ describe("Profil screen", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should toggle modale when delete daat", () => {
+  it("should toggle modale when delete daat", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: ProfilScreen,

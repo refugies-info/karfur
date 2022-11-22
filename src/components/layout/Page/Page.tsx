@@ -1,17 +1,16 @@
-import React, { ReactNode } from "react";
+import React, { ComponentType, ReactNode } from "react";
 import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   ScrollView,
 } from "react-native";
-import { useTheme } from "styled-components/native";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { useHeaderAnimation } from "../../../hooks/useHeaderAnimation";
 import { useVoiceover } from "../../../hooks/useVoiceover";
 import Header, { HeaderProps } from "../Header";
 import ScrollableContent from "../ScrollableContent";
-import { logger } from "../../../logger";
 import { useIsFocused } from "@react-navigation/native";
+import { SkeletonListPage } from "../../feedback";
 
 const PageContainer = styled.View`
   flex: 1;
@@ -21,13 +20,14 @@ export interface PageProps extends HeaderProps {
   children: ReactNode;
   disableAutomaticScroll?: boolean;
   loading?: boolean;
+  Skeleton?: ComponentType;
 }
 
 const Page = ({
   disableAutomaticScroll,
   children,
   loading,
-  title,
+  Skeleton = SkeletonListPage,
   ...headerProps
 }: PageProps) => {
   const theme = useTheme();
@@ -43,7 +43,6 @@ const Page = ({
 
     // reset when finish loading
     if (!loading) {
-      logger.info("VoiceOver :: saveList");
       setTimeout(() => saveList());
     }
   }, [loading, isFocus]);
@@ -57,17 +56,10 @@ const Page = ({
 
   return (
     <PageContainer>
-      <Header
-        {...headerProps}
-        title={title}
-        showSimplifiedHeader={showSimplifiedHeader}
-      />
-      {/* {title && (
-        <Content>
-          <Title>{title}</Title>
-        </Content>
-      )} */}
-      {disableAutomaticScroll ? (
+      <Header {...headerProps} showSimplifiedHeader={showSimplifiedHeader} />
+      {loading ? (
+        <Skeleton />
+      ) : disableAutomaticScroll ? (
         children
       ) : (
         <ScrollableContent

@@ -27,7 +27,7 @@ describe("LanguageChoiceModal", () => {
   //   jest.clearAllMocks();
   // });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const changeLanguage = jest.fn();
     (useTranslationWithRTL as jest.Mock).mockReturnValueOnce({
       i18n: { changeLanguage },

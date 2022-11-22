@@ -30,6 +30,7 @@ const NeedContainer = styled(RTLTouchableOpacity)<{ needTheme: Theme }>`
 const IndicatorContainer = styled(RTLView)`
   height: 50px;
   width: 50px;
+  margin-horizontal: ${({ theme }) => theme.margin}px;
 `;
 
 interface Props {

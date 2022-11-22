@@ -12,7 +12,6 @@ const InfoMessage = styled(RTLView)`
   border-radius: ${({ theme }) => theme.radius}px;
   ${({ theme }) => theme.shadows.sm}
   margin-top: ${({ theme }) => theme.margin * 2}px;
-  margin-horizontal: ${({ theme }) => theme.margin * 3}px;
   padding: ${({ theme }) => theme.margin}px;
 `;
 

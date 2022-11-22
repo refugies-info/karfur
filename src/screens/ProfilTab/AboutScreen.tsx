@@ -2,7 +2,6 @@ import * as React from "react";
 import { View, ScrollView, StyleSheet, Image } from "react-native";
 import * as Linking from "expo-linking";
 import {
-  TextBigBold,
   TextNormal,
   TextSmallNormal,
   TextNormalBold,
@@ -11,12 +10,9 @@ import {
 import { StackScreenProps } from "@react-navigation/stack";
 import { ProfileParamList } from "../../../types";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
-import { useHeaderAnimation } from "../../hooks/useHeaderAnimation";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { initHorizontalScroll } from "../../libs/rtlHorizontalScroll";
-import { HeaderWithBackAnimated } from "../../components/HeaderAnimated";
-import { LanguageChoiceModal } from "../Modals/LanguageChoiceModal";
 import { CustomButton } from "../../components/CustomButton";
 import Contributif1 from "../../theme/images/aboutUs/contributif-1.png";
 import Contributif2 from "../../theme/images/aboutUs/contributif-2.png";
@@ -29,15 +25,12 @@ import Problematique2 from "../../theme/images/aboutUs/problematique-2.png";
 import Problematique3 from "../../theme/images/aboutUs/problematique-3.png";
 import { RTLView } from "../../components/BasicComponents";
 import { partners, membres } from "../../data/aboutUs";
+import { Page, Rows, Title } from "../../components";
 
 const CARD_WIDTH = 280;
 const LOGO_WIDTH = 104;
 const LOGO_HEIGHT = 80;
 
-const ContentContainer = styled.ScrollView`
-  padding-bottom: ${styles.margin * 3}px;
-  padding-top: ${styles.margin * 2}px;
-`;
 const Card = styled.View`
   width: ${CARD_WIDTH}px;
   padding: ${styles.margin * 2}px;
@@ -54,11 +47,6 @@ const CardImage = styled.Image`
 const CardTitle = styled(TextNormalBold)`
   margin-bottom: ${styles.margin}px;
   margin-top: ${styles.margin * 2}px;
-`;
-const Title = styled(TextBigBold)`
-  margin-bottom: ${styles.margin}px;
-  margin-top: ${styles.margin * 7}px;
-  margin-horizontal: ${styles.margin * 3}px;
 `;
 const LogoContainer = styled.View`
   padding: ${styles.margin * 2}px;
@@ -111,7 +99,6 @@ const stylesheet = StyleSheet.create({
     marginBottom: styles.margin,
   },
   logoScrollview: {
-    paddingHorizontal: styles.margin * 3,
     paddingTop: styles.margin * 2,
     paddingBottom: styles.margin,
     marginBottom: styles.margin,
@@ -128,21 +115,13 @@ const sortPartners = () =>
 export const AboutScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "AboutScreen">) => {
-  const [isLanguageModalVisible, setLanguageModalVisible] =
-    React.useState(false);
-  const { handleScroll, showSimplifiedHeader } = useHeaderAnimation();
+  const { t, isRTL } = useTranslationWithRTL();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);
   const scrollviewProblematiques = React.useRef<ScrollView>(null);
   const scrollviewContributif = React.useRef<ScrollView>(null);
   const scrollviewPartners = React.useRef<ScrollView>(null);
-
   const sortedPartners = sortPartners();
-
-  const toggleLanguageModal = () =>
-    setLanguageModalVisible(!isLanguageModalVisible);
-
-  const { t, isRTL } = useTranslationWithRTL();
 
   React.useEffect(() => {
     initHorizontalScroll(
@@ -157,16 +136,9 @@ export const AboutScreen = ({
   }, [isRTL]);
 
   return (
-    <View style={{ flex: 1 }}>
-      <HeaderWithBackAnimated
-        title={t("about_screen.about_us")}
-        showSimplifiedHeader={showSimplifiedHeader}
-        onLongPressSwitchLanguage={toggleLanguageModal}
-        navigation={navigation}
-      />
-
-      <ContentContainer onScroll={handleScroll} scrollEventThrottle={5}>
-        <TextNormal style={{ marginHorizontal: styles.margin * 3 }}>
+    <Page title={t("about_screen.about_us")}>
+      <Rows>
+        <TextNormal>
           {t("about_screen.subheader1")} {t("about_screen.subheader2")}
         </TextNormal>
 
@@ -311,12 +283,8 @@ export const AboutScreen = ({
         </ScrollView>
 
         {/* PARTENAIRES */}
-        <Title style={{ marginBottom: styles.margin * 3 }}>
-          {t("about_screen.partners")}
-        </Title>
-        <TextSmallBold style={{ marginHorizontal: styles.margin * 3 }}>
-          {t("about_screen.call_1")}
-        </TextSmallBold>
+        <Title>{t("about_screen.partners")}</Title>
+        <TextSmallBold>{t("about_screen.call_1")}</TextSmallBold>
 
         <ScrollView
           ref={scrollviewPartners}
@@ -333,9 +301,7 @@ export const AboutScreen = ({
           ))}
         </ScrollView>
 
-        <TextSmallNormal style={{ marginHorizontal: styles.margin * 3 }}>
-          {t("about_screen.call_2")}
-        </TextSmallNormal>
+        <TextSmallNormal>{t("about_screen.call_2")}</TextSmallNormal>
         <RTLView>
           <CustomButton
             i18nKey="about_screen.download_call_button"
@@ -377,12 +343,7 @@ export const AboutScreen = ({
             </TeamItem>
           ))}
         </TeamContainer>
-      </ContentContainer>
-
-      <LanguageChoiceModal
-        isModalVisible={isLanguageModalVisible}
-        toggleModal={toggleLanguageModal}
-      />
-    </View>
+      </Rows>
+    </Page>
   );
 };

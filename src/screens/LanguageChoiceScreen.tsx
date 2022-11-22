@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { saveSelectedLanguageActionCreator } from "../services/redux/User/user.actions";
-import { LanguageDetailsButton } from "../components/Language/LanguageDetailsButton";
+import { LanguageDetailsButton } from "../components";
 import { activatedLanguages } from "../data/languagesData";
 import { useTranslationWithRTL } from "../hooks/useTranslationWithRTL";
 import { AvailableLanguageI18nCode } from "../types/interface";
@@ -35,11 +35,11 @@ export const LanguageChoiceScreen = ({
     >
       {activatedLanguages.map((language, index) => (
         <LanguageDetailsButton
-          langueFr={language.langueFr}
+          hideRadio
           key={index}
+          langueFr={language.langueFr}
           langueLoc={language.langueLoc}
           onPress={() => changeLanguage(language.i18nCode)}
-          hideRadio
         />
       ))}
     </Page>

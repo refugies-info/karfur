@@ -40,7 +40,7 @@ describe("Filter french level", () => {
     });
   });
 
-  it("should render correctly when no french level selected", () => {
+  it("should render correctly when no french level selected", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
       compProps: { navigation: { goBack: jest.fn() } },
@@ -48,7 +48,7 @@ describe("Filter french level", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should render correctly when french level selected", () => {
+  it("should render correctly when french level selected", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
       compProps: { navigation: { goBack: jest.fn() } },
@@ -60,7 +60,7 @@ describe("Filter french level", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should validate when clicking on rightbutton", () => {
+  it("should validate when clicking on rightbutton", async () => {
     const navigate = jest.fn();
     const component = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
@@ -82,7 +82,7 @@ describe("Filter french level", () => {
     expect(navigate).toHaveBeenCalledWith("FinishOnboarding");
   });
 
-  it("should select level when click on it", () => {
+  it("should select level when click on it", async () => {
     const component = wrapWithProvidersAndRender({
       Component: FilterFrenchLevel,
       compProps: { navigation: { goBack: jest.fn() } },

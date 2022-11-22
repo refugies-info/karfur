@@ -7,7 +7,6 @@ import { BottomButtons } from "../../components/Onboarding/BottomButtons";
 import { Title } from "../../components/Onboarding/SharedStyledComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { ageFilters } from "../../data/filtersData";
-import { FilterButton } from "../../components/Onboarding/FilterButton";
 import { Explaination } from "../../components/Onboarding/Explaination";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,7 +14,7 @@ import {
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import { Page } from "../../components";
+import { FilterButton, Page } from "../../components";
 import { useTheme } from "styled-components/native";
 
 export const FilterAge = ({

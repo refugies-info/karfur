@@ -1,18 +1,18 @@
 import React from "react";
 import { Image } from "react-native";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { styles } from "../../theme";
 import { TextSmallNormal } from "../StyledText";
 import { StreamlineIcon } from "../StreamlineIcon";
-import { RTLView } from "../BasicComponents";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
 import { ObjectId, Picture } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
+import { Columns } from "../layout";
 
 const CONTAINER_SIZE = 100;
 
-const getContainerDimensions = (imageName: string) => {
+export const getContainerDimensions = (imageName: string) => {
   if (
     [
       "carteBancaire",
@@ -32,7 +32,7 @@ const getContainerDimensions = (imageName: string) => {
   return { width: CONTAINER_SIZE, height: CONTAINER_SIZE };
 };
 const StructureImageContainer = styled.View`
-  background-color: ${styles.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   flex: 1;
   justify-content: center;
@@ -47,16 +47,12 @@ const StructureNameText = styled(TextSmallNormal)`
   text-align: center;
 `;
 
-const IconTextContainer = styled(RTLView)``;
-
-const SponsorImageContainer = styled.View<{ width: number; height: number }>`
-  width: ${({ width }) => width}px;
+const SponsorImageContainer = styled.View<{ width?: number; height: number }>`
+  width: ${({ width }) => (width ? `${width}px` : "auto")};
   height: ${({ height }) => height}px;
   background-color: ${({ theme }) => theme.colors.lightGrey};
   z-index: 2;
   margin-top: ${({ height }) => -height / 2}px;
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin * 3)}px;
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 3 : 0)}px;
 
   border-radius: ${({ theme }) => theme.radius * 2}px;
   padding: ${({ theme }) => theme.margin}px;
@@ -74,7 +70,8 @@ interface Props {
 }
 
 export const ContentImage = (props: Props) => {
-  const { isRTL, t } = useTranslationWithRTL();
+  const { t } = useTranslationWithRTL();
+  const theme = useTheme();
 
   const imageName = getImageNameFromContentId(props.contentId);
 
@@ -124,28 +121,19 @@ export const ContentImage = (props: Props) => {
 
   return (
     // no image
-    <SponsorImageContainer
-      width={115}
-      height={40}
-      style={{ justifyContent: "center" }}
-    >
-      <IconTextContainer>
+    <SponsorImageContainer height={40}>
+      <Columns layout="auto" RTLBehaviour verticalAlign="center">
         {props.icon && (
           <StreamlineIcon
             icon={props.icon}
             size={16}
-            stroke={styles.colors.black}
+            stroke={theme.colors.black}
           />
         )}
-        <TextSmallNormal
-          style={{
-            marginLeft: isRTL ? 0 : styles.margin,
-            marginRight: isRTL ? styles.margin : 0,
-          }}
-        >
+        <TextSmallNormal>
           {t("content_screen.procedure", "Démarche")}
         </TextSmallNormal>
-      </IconTextContainer>
+      </Columns>
     </SponsorImageContainer>
   );
 };

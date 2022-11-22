@@ -1,6 +1,13 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useEffect, useRef } from "react";
-import { Animated, ImageBackground, View } from "react-native";
+import React, { ComponentType, ReactNode, useEffect, useRef } from "react";
+import {
+  Animated,
+  ImageBackground,
+  LayoutAnimation,
+  Platform,
+  UIManager,
+  View,
+} from "react-native";
 import { Icon } from "react-native-eva-icons";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
@@ -8,20 +15,20 @@ import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { LanguageChoiceModal } from "../../../screens/Modals/LanguageChoiceModal";
 import { FirebaseEvent } from "../../../utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "../../../utils/logEvent";
-import { RowContainer, RTLView } from "../../BasicComponents";
 import { LanguageSwitch } from "../../Language/LanguageSwitch";
-import { SmallButton } from "../../SmallButton";
 import { StyledTextSmallBold } from "../../StyledText";
 import Logo from "../../../theme/images/logo.svg";
 import NotificationsIcon from "../../Notifications/NotificationsIcon";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
-import { firstLetterUpperCase } from "../../../libs";
 import { ReadableText } from "../../ReadableText";
-import { StreamlineIcon } from "../../StreamlineIcon";
 import { Picture } from "../../../types/interface";
 import { withProps } from "../../../utils";
 import { getImageUri } from "../../../libs/getImageUri";
 import Columns from "../Columns";
+import { IconButton } from "../../iconography";
+import { HeaderContentProps } from "./HeaderContentProps";
+import { isNull, upperFirst } from "lodash";
+import HeaderContentTitle from "./HeaderContentTitle";
 
 const MainContainer = Animated.createAnimatedComponent(styled(
   SafeAreaViewTopInset
@@ -30,57 +37,26 @@ const MainContainer = Animated.createAnimatedComponent(styled(
   showShadow: boolean;
   showSimplifiedHeader: boolean;
 }>`
-  padding-bottom: ${({ showSimplifiedHeader, theme }) =>
-    showSimplifiedHeader ? 0 : theme.margin * 1}px;
   z-index: 4;
   ${({ showShadow, theme }) => (showShadow ? theme.shadows.xs : "")}
   background-color: ${({ backgroundColor }) => backgroundColor};
   padding-horizontal: ${({ theme }) => theme.layout.content.normal};
+  min-height: ${({ theme }) => 65 + theme.insets.top}px;
+  max-width: 100%;
+  width: 100%;
+  position: relative;
 `);
 
-const HeaderContainer = styled(RowContainer)`
-  justify-content: space-between;
-`;
-
-const HeaderTitle = styled(StyledTextSmallBold)`
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
-`;
-
-const HeaderIconView = styled(RTLView)`
-  flex: 1;
-  margin-right: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin * 7 : 0)}px;
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 7 : 0)}px;
-  justify-content: center;
+const HeaderTitle = styled(StyledTextSmallBold)<{
+  invertedColor: boolean;
+}>`
+  color: ${({ invertedColor, theme }) =>
+    invertedColor ? theme.colors.white : theme.colors.black};
 `;
 
 const ICON_SIZE = 24;
 const LOGO_WIDTH = 58;
 const LOGO_HEIGHT = 40;
-
-const TitleContainer = styled(Animated.View)<{
-  showSimplifiedHeader: boolean;
-}>``;
-
-//   margin-bottom: ${({ showSimplifiedHeader, theme }) =>
-// showSimplifiedHeader ? 0 : theme.margin * 2}px;
-
-const Title = styled(Animated.Text)<{
-  hasBackgroundImage?: boolean;
-  invertedColor: boolean;
-}>`
-  font-family: ${({ theme }) => theme.fonts.families.circularBold};
-  text-align: ${({ theme }) => (theme.i18n.isRTL ? "right" : "left")};
-  color: ${({ invertedColor, theme }) =>
-    invertedColor ? theme.colors.white : theme.colors.black};
-  line-height: 40px;
-
-  ${({ hasBackgroundImage, theme }) =>
-    hasBackgroundImage &&
-    `opacity: 0.9;
-background-color: ${theme.colors.white};
-padding: ${theme.margin}px;`}
-`;
 
 export interface HeaderProps {
   backScreen?: string;
@@ -88,12 +64,23 @@ export interface HeaderProps {
   headerBackgroundImage?: Picture;
   headerIconName?: string;
   headerTitle?: string;
+  headerTooltip?: ReactNode;
   hideBack?: boolean; // TODO Maintain this ?
   hideLanguageSwitch?: boolean;
   showLogo?: boolean;
   showSimplifiedHeader?: boolean; // TODO Handle this directly in Page component ?
+
+  /** title props is a shortcut to use HeaderContentTitle with only one title  */
   title?: string;
-  titleIcon?: Picture;
+
+  HeaderContent?: ComponentType<HeaderContentProps> | null;
+}
+
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
 export const Header = ({
@@ -105,10 +92,18 @@ export const Header = ({
   hideBack,
   hideLanguageSwitch = false,
   showLogo = false,
-  showSimplifiedHeader = false,
+  showSimplifiedHeader = true,
   title,
-  titleIcon,
+  HeaderContent = null,
 }: HeaderProps) => {
+  if (title && isNull(HeaderContent)) {
+    HeaderContent = withProps({ title })(
+      HeaderContentTitle
+    ) as ComponentType<HeaderContentProps>;
+    headerTitle = title;
+  }
+
+  LayoutAnimation.easeInEaseOut();
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const { name: routeName } = useRoute();
@@ -141,29 +136,17 @@ export const Header = ({
     toggleSimplifiedHeader(showSimplifiedHeader);
   }, [showSimplifiedHeader]);
 
-  const headerFontSize = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [25, 16],
-  });
-
-  const headerTop = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [theme.margin * 4, theme.margin],
-  });
-
-  const headerHeight = animatedController.interpolate({
-    inputRange: [0, 1],
-    outputRange: [90, 40],
-  });
-
   const headerBottomRadius = animatedController.interpolate({
     inputRange: [0, 1],
     outputRange: [12, 0],
   });
 
-  const headerPaddingTop = animatedController.interpolate({
+  const backgroundColorInterpolation = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [32, 0],
+    outputRange: [
+      headerBackgroundImage ? "transparent" : headerBackgroundColor,
+      headerBackgroundColor,
+    ],
   });
 
   const Container =
@@ -172,7 +155,7 @@ export const Header = ({
           resizeMode: "cover",
           source: { uri: getImageUri(headerBackgroundImage.secure_url) },
         })(ImageBackground)
-      : React.Fragment;
+      : View;
 
   return (
     <Container>
@@ -180,16 +163,27 @@ export const Header = ({
         backgroundColor={
           headerBackgroundImage !== undefined && !showSimplifiedHeader
             ? "transparent"
-            : headerBackgroundColor
+            : backgroundColorInterpolation
         }
         showSimplifiedHeader={showSimplifiedHeader}
-        showShadow={showSimplifiedHeader && !!title}
+        showShadow={showSimplifiedHeader}
         style={{
-          borderBottomRightRadius: title ? headerBottomRadius : 0,
-          borderBottomLeftRadius: title ? headerBottomRadius : 0,
+          borderBottomRightRadius:
+            headerBackgroundImage || headerBackgroundColor
+              ? headerBottomRadius
+              : 0,
+          borderBottomLeftRadius:
+            headerBackgroundImage || headerBackgroundColor
+              ? headerBottomRadius
+              : 0,
+          //   paddingBottom: headerPaddingBottom,
         }}
       >
-        <HeaderContainer>
+        <Columns
+          layout="1 auto 1"
+          horizontalAlign="space-between"
+          verticalAlign="center"
+        >
           {showLogo && (
             <Logo
               width={LOGO_WIDTH}
@@ -200,76 +194,60 @@ export const Header = ({
           )}
 
           {showLogo || hideBack ? (
-            <View />
+            <></>
           ) : (
-            <SmallButton
-              iconName="arrow-back-outline"
-              onPress={onPress}
-              label={t("global.back_button_accessibility")}
-            />
+            <View>
+              <IconButton
+                accessibilityLabel={t("global.back_button_accessibility")}
+                iconName="arrow-back-outline"
+                onPress={onPress}
+              />
+            </View>
           )}
 
-          {headerIconName && headerTitle && (
-            <HeaderIconView>
-              <Icon
-                name={headerIconName}
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={theme.colors.black}
-              />
-              <HeaderTitle>{headerTitle}</HeaderTitle>
-            </HeaderIconView>
-          )}
-          <RowContainer>
-            {routeName === "ExplorerScreen" && <NotificationsIcon />}
-            {!hideLanguageSwitch && (
-              <LanguageSwitch
-                onLongPressSwitchLanguage={showSwitchLanguageModal}
-              />
-            )}
-          </RowContainer>
-        </HeaderContainer>
-        {title && (
-          <TitleContainer
-            showSimplifiedHeader={showSimplifiedHeader}
-            style={[
-              {
-                marginTop: headerPaddingTop,
-              },
-            ]}
-          >
+          {(headerIconName || headerTitle) &&
+          (showSimplifiedHeader || HeaderContent === null) ? (
             <Columns
-              RTLBehaviour
               layout="auto"
-              horizontalAlign="flex-start"
               verticalAlign="center"
+              horizontalAlign={
+                !!(!showLogo && !hideBack) ? "center" : "flex-start"
+              }
             >
-              <Title
-                invertedColor={
-                  (headerBackgroundColor !== "transparent" &&
-                    headerBackgroundImage === undefined) ||
-                  (headerBackgroundColor !== "transparent" &&
-                    showSimplifiedHeader)
-                }
-                hasBackgroundImage={
-                  !showSimplifiedHeader && headerBackgroundImage !== undefined
-                }
-                style={{
-                  fontSize: headerFontSize,
-                }}
-              >
-                <ReadableText overridePosY={5}>
-                  {firstLetterUpperCase(title)}
-                </ReadableText>
-              </Title>
-              {titleIcon && (
-                <StreamlineIcon
-                  icon={titleIcon}
-                  size={showSimplifiedHeader ? 16 : 24}
+              {headerIconName && (
+                <Icon
+                  name={headerIconName}
+                  width={ICON_SIZE}
+                  height={ICON_SIZE}
+                  fill={theme.colors.black}
                 />
               )}
+              {headerTitle && (
+                <HeaderTitle
+                  invertedColor={headerBackgroundColor !== "transparent"}
+                  ellipsizeMode="tail"
+                  numberOfLines={2}
+                >
+                  <ReadableText>{upperFirst(headerTitle)}</ReadableText>
+                </HeaderTitle>
+              )}
             </Columns>
-          </TitleContainer>
+          ) : (
+            <View />
+          )}
+
+          {routeName === "ExplorerScreen" && <NotificationsIcon />}
+          {!hideLanguageSwitch && (
+            <LanguageSwitch
+              onLongPressSwitchLanguage={showSwitchLanguageModal}
+            />
+          )}
+        </Columns>
+        {HeaderContent && (
+          <HeaderContent
+            animatedController={animatedController}
+            showSimplifiedHeader={showSimplifiedHeader}
+          />
         )}
       </MainContainer>
       <LanguageChoiceModal

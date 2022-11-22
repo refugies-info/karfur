@@ -30,7 +30,6 @@ const MainContainer = styled.View`
   padding-top: ${styles.margin * 2}px;
   ${styles.shadows.lg}
   margin-top: ${styles.margin}px;
-  margin-horizontal: ${styles.margin * 3}px;
 `;
 
 const TitleText = styled(TextNormalBold)`
@@ -86,7 +85,7 @@ export const InfocardsSection = (props: Props) => {
               <TitleText color={props.color}>
                 <ReadableText>
                   {t("content_screen." + data.title, data.title)}
-                  </ReadableText>
+                </ReadableText>
               </TitleText>
               {data.filteredData.map((infocard, key) => {
                 const displayedName =
@@ -109,17 +108,18 @@ export const InfocardsSection = (props: Props) => {
                         {!!displayedName && (
                           <SubtitleText>
                             <ReadableText>
-                              {t("content_screen." + displayedName, displayedName)}
+                              {t(
+                                "content_screen." + displayedName,
+                                displayedName
+                              )}
                             </ReadableText>
                           </SubtitleText>
                         )}
                         {!!description && (
                           <View>
                             <DescriptionText>
-                              <ReadableText>
-                                {description}
-                                </ReadableText>
-                              </DescriptionText>
+                              <ReadableText>{description}</ReadableText>
+                            </DescriptionText>
                           </View>
                         )}
                         {infocard.title === "Durée" &&

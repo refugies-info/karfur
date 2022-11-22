@@ -1,0 +1,506 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page snapshot test suite should render in loading state 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+    ]
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        RTLBehaviour={false}
+        collapsable={false}
+        horizontalAlign="space-between"
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
+          }
+        }
+        verticalAlign="center"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              accessibilityLabel="global.back_button_accessibility"
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "opacity": 1,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              1,
+                              -1,
+                              6.123233995736766e-17,
+                              24,
+                              0,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+      </View>
+    </View>
+    <Modal
+      animationType="none"
+      deviceHeight={null}
+      deviceWidth={null}
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      onRequestClose={[Function]}
+      panResponderThreshold={4}
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    />
+  </View>
+  <View
+    boneColor="#EDEBEB"
+    containerStyle={
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "marginHorizontal": 24,
+        "marginTop": 24,
+      }
+    }
+    highlightColor="#F6F6F6"
+    isLoading={true}
+    layout={
+      Array [
+        Object {
+          "height": 80,
+          "key": "Section1",
+          "marginBottom": 24,
+          "width": "100%",
+        },
+        Object {
+          "height": 80,
+          "key": "Section2",
+          "marginBottom": 24,
+          "width": "100%",
+        },
+        Object {
+          "height": 80,
+          "key": "Section3",
+          "marginBottom": 24,
+          "width": "100%",
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Page snapshot test suite should render without bug 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flexBasis": 0,
+        "flexGrow": 1,
+        "flexShrink": 1,
+      },
+    ]
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        RTLBehaviour={false}
+        collapsable={false}
+        horizontalAlign="space-between"
+        style={
+          Object {
+            "alignItems": "center",
+            "flexBasis": "auto",
+            "flexDirection": "row",
+            "flexGrow": 1,
+            "justifyContent": "space-between",
+          }
+        }
+        verticalAlign="center"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              accessibilityLabel="global.back_button_accessibility"
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "opacity": 1,
+                  "paddingBottom": 12,
+                  "paddingLeft": 12,
+                  "paddingRight": 12,
+                  "paddingTop": 12,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
+                  },
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                  "width": 48,
+                }
+              }
+            >
+              <View
+                collapsable={false}
+                style={
+                  Object {
+                    "transform": Array [
+                      Object {
+                        "scale": 1,
+                      },
+                    ],
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  align="xMidYMid"
+                  bbHeight={24}
+                  bbWidth={24}
+                  fill="#212121"
+                  focusable={false}
+                  height={24}
+                  meetOrSlice={0}
+                  minX={0}
+                  minY={0}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 24,
+                        "width": 24,
+                      },
+                    ]
+                  }
+                  vbHeight={24}
+                  vbWidth={24}
+                  width={24}
+                >
+                  <RNSVGGroup
+                    fill={4280361249}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  >
+                    <RNSVGGroup>
+                      <RNSVGGroup>
+                        <RNSVGRect
+                          height="24"
+                          matrix={
+                            Array [
+                              6.123233995736766e-17,
+                              1,
+                              -1,
+                              6.123233995736766e-17,
+                              24,
+                              0,
+                            ]
+                          }
+                          opacity={0}
+                          width="24"
+                          x={0}
+                          y={0}
+                        />
+                        <RNSVGPath
+                          d="M19 11H7.14l3.63-4.36a1 1 0 1 0-1.54-1.28l-5 6a1.19 1.19 0 0 0-.09.15c0 .05 0 .08-.07.13A1 1 0 0 0 4 12a1 1 0 0 0 .07.36c0 .05 0 .08.07.13a1.19 1.19 0 0 0 .09.15l5 6A1 1 0 0 0 10 19a1 1 0 0 0 .64-.23 1 1 0 0 0 .13-1.41L7.14 13H19a1 1 0 0 0 0-2z"
+                        />
+                      </RNSVGGroup>
+                    </RNSVGGroup>
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginRight": 16,
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
+          }
+        >
+          <View />
+        </View>
+      </View>
+    </View>
+    <Modal
+      animationType="none"
+      deviceHeight={null}
+      deviceWidth={null}
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onBackdropPress={[Function]}
+      onModalHide={[Function]}
+      onModalWillHide={[Function]}
+      onModalWillShow={[Function]}
+      onRequestClose={[Function]}
+      panResponderThreshold={4}
+      scrollHorizontal={false}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      statusBarTranslucent={false}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    />
+  </View>
+  <RCTScrollView
+    alwaysBounceVertical={false}
+    contentContainerStyle={
+      Object {
+        "paddingBottom": 40,
+        "paddingHorizontal": 24,
+        "paddingTop": 24,
+      }
+    }
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollEndDrag={[Function]}
+    scrollEventThrottle={10}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
+    style={
+      Array [
+        Object {
+          "paddingBottom": 24,
+        },
+      ]
+    }
+  >
+    <View>
+      <Text>
+        Test
+      </Text>
+    </View>
+  </RCTScrollView>
+</View>
+`;

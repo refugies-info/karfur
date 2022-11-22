@@ -14,12 +14,11 @@ interface PropsType {
 interface StateType {}
 
 const MainContainer = styled.View`
-  margin-horizontal: ${styles.margin * 3}px;
   ${styles.shadows.lg};
 `;
 const MapViewContainer = styled.View`
   border-radius: ${styles.radius * 2}px;
-  overflow:hidden;
+  overflow: hidden;
   ${styles.shadows.lg};
 `; // repeat shadow to work with ios and android
 const ContentContainer = styled.View`
@@ -59,18 +58,20 @@ export class MiniMap extends React.Component<PropsType, StateType> {
             }}
           >
             {markers.map((marker, key) => {
-              const lat = typeof marker.latitude === "string"
-                ? parseFloat(marker.latitude)
-                : marker.latitude;
-              const lng = typeof marker.longitude === "string"
-                ? parseFloat(marker.longitude)
-                : marker.longitude;
+              const lat =
+                typeof marker.latitude === "string"
+                  ? parseFloat(marker.latitude)
+                  : marker.latitude;
+              const lng =
+                typeof marker.longitude === "string"
+                  ? parseFloat(marker.longitude)
+                  : marker.longitude;
               return (
                 <Marker
                   key={key}
                   coordinate={{
                     latitude: lat,
-                    longitude: lng
+                    longitude: lng,
                   }}
                 >
                   <Icon

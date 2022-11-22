@@ -6,9 +6,11 @@ import { initialRootStateFactory } from "../../services/redux/reducers";
 import { selectedContent } from "../../jest/__fixtures__/selectedContent";
 import { initialUserState } from "../../services/redux/User/user.reducer";
 import { mockedThemesData } from "../../jest/__fixtures__/themes";
+import { useRoute } from "@react-navigation/native";
 
 const theme = mockedThemesData[0];
 
+jest.useFakeTimers();
 jest.mock("../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
@@ -25,9 +27,6 @@ jest.mock("../../utils/logEvent", () => ({
   logEventInFirebase: jest.fn(),
 }));
 
-jest.mock("@03balogun/react-native-skeleton-content", () => {
-  return null;
-});
 jest.mock("react-native-maps", () => {
   const { View } = require("react-native");
   const MockMapView = (props: any) => {
@@ -63,9 +62,10 @@ jest.mock("@gorhom/bottom-sheet", () => {
 describe("ContentScreen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({ routeName: "ContentScreen" });
   });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const navigation = { navigate: jest.fn() };
     const route = {
       params: {
@@ -98,7 +98,7 @@ describe("ContentScreen", () => {
     expect(component).toMatchSnapshot();
   });
 
-  it("should toggle map modal", () => {
+  it("should toggle map modal", async () => {
     const navigation = { navigate: jest.fn() };
     const route = {
       params: {

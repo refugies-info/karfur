@@ -1,7 +1,9 @@
+import { useRoute } from "@react-navigation/native";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { PrivacyPolicyScreen } from "../PrivacyPolicyScreen";
 
+jest.useFakeTimers();
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },
@@ -13,9 +15,12 @@ jest.mock("../../../hooks/useTranslationWithRTL", () => ({
 describe("PrivacyPolicy screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    (useRoute as jest.Mock).mockReturnValue({
+      name: "PrivacyPolicyScreen",
+    });
   });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const navigation = { navigate: jest.fn() };
     const component = wrapWithProvidersAndRender({
       Component: PrivacyPolicyScreen,

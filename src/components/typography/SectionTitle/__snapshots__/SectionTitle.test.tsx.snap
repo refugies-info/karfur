@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionTitle snapshot test suite should render without bug 1`] = `
+<Text
+  isRTL={false}
+  selectable={true}
+  style={
+    Array [
+      Object {
+        "color": "#212121",
+        "fontFamily": "circularBold",
+        "fontSize": 19,
+        "lineHeight": 24,
+        "marginBottom": 16,
+        "textAlign": "left",
+      },
+    ]
+  }
+>
+  Mon sous titre
+</Text>
+`;

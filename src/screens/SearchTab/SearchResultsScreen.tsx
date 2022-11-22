@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { InstantSearch, Configure } from "react-instantsearch-native";
-import { StackScreenProps } from "@react-navigation/stack"
+import { StackScreenProps } from "@react-navigation/stack";
 import algoliasearch from "algoliasearch/lite";
-import { SearchParamList } from "../../../types"
+import { SearchParamList } from "../../../types";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { mostViewedContentsSelector } from "../../services/redux/Contents/contents.selectors";
 import { needsSelector } from "../../services/redux/Needs/needs.selectors";
@@ -24,15 +24,20 @@ const SearchBoxContainer = styled.View`
   background-color: ${styles.colors.lightGrey};
 `;
 
-const searchClient = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY || "");
+const searchClient = algoliasearch(
+  "L9HYT1676M",
+  process.env.ALGOLIA_API_KEY || ""
+);
 
 export const SearchResultsScreen = ({
-  navigation
-}:StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
+  navigation,
+}: StackScreenProps<SearchParamList, "SearchResultsScreen">) => {
   const insets = useSafeAreaInsets();
   const [searchState, setSearchState] = React.useState({ query: "" });
   const currentI18nCode = useSelector(currentI18nCodeSelector);
-  const mostViewedContents = useSelector(mostViewedContentsSelector(currentI18nCode || "fr"));
+  const mostViewedContents = useSelector(
+    mostViewedContentsSelector(currentI18nCode || "fr")
+  );
   const groupedContents = useSelector(groupedContentsSelector);
   const allNeeds = useSelector(needsSelector);
 
@@ -40,20 +45,23 @@ export const SearchResultsScreen = ({
   const nbContents = React.useMemo(() => {
     const nbContents: any = {};
     for (const need of allNeeds) {
-      nbContents[need._id] = groupedContents[need._id]?.length || 0;
+      nbContents[need._id] = groupedContents[need._id]?.length || 0;
     }
     return nbContents;
-  }, [])
+  }, []);
 
   // Search parameters
-  const [searchableAttributes, setSearchableAttributes] = React.useState<string[]>([]);
+  const [searchableAttributes, setSearchableAttributes] = React.useState<
+    string[]
+  >([]);
   React.useEffect(() => {
     setSearchableAttributes(getSearchableAttributes(currentI18nCode));
-  }, [currentI18nCode])
+  }, [currentI18nCode]);
 
   const queryLanguages: string[] = ["fr"];
-  if (currentI18nCode && currentI18nCode !== "ti") { // ti no supported by Algolia
-    queryLanguages.push(currentI18nCode)
+  if (currentI18nCode && currentI18nCode !== "ti") {
+    // ti no supported by Algolia
+    queryLanguages.push(currentI18nCode);
   }
   const parentScrollview = React.useRef<ScrollView>(null);
 
@@ -69,10 +77,12 @@ export const SearchResultsScreen = ({
           restrictSearchableAttributes={searchableAttributes}
           queryLanguages={queryLanguages}
         />
-        <SearchBoxContainer style={{ paddingTop: (insets.top + styles.margin * 3) }}>
+        <SearchBoxContainer
+          style={{ paddingTop: insets.top + styles.margin * 3 }}
+        >
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
-        {searchState.query !== "" ?
+        {searchState.query !== "" ? (
           <View style={{ paddingBottom: insets.bottom + 100 }}>
             <InfiniteHits
               navigation={navigation}
@@ -80,14 +90,23 @@ export const SearchResultsScreen = ({
               query={searchState.query}
               nbContents={nbContents}
             />
-          </View> :
-          <SearchSuggestions
-            contents={mostViewedContents}
-            navigation={navigation}
-            parentScrollview={parentScrollview}
-            onScrollEnd={() => {}}
-          />
-        }
+          </View>
+        ) : (
+          <ScrollView
+            ref={parentScrollview}
+            style={{ flex: 1 }}
+            scrollEventThrottle={20}
+            contentContainerStyle={{
+              paddingBottom: styles.margin * 5 + (insets.bottom || 0),
+              paddingHorizontal: styles.margin * 3,
+            }}
+          >
+            <SearchSuggestions
+              contents={mostViewedContents}
+              navigation={navigation}
+            />
+          </ScrollView>
+        )}
       </InstantSearch>
     </View>
   );

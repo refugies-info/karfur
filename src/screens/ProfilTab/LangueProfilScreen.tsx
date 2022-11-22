@@ -1,8 +1,4 @@
 import * as React from "react";
-import styled from "styled-components/native";
-import { View } from "react-native";
-import { TextBigBold } from "../../components/StyledText";
-import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
@@ -11,23 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectedI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { AvailableLanguageI18nCode } from "../../types/interface";
 import { activatedLanguages } from "../../data/languagesData";
-import { LanguageDetailsButton } from "../../components/Language/LanguageDetailsButton";
-import { styles } from "../../theme";
-import { ScrollView } from "react-native-gesture-handler";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-
-const MainContainer = styled.View`
-  padding-horizontal: ${styles.margin * 3}px;
-  justify-content: center;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
-
-const HeaderText = styled(TextBigBold)`
-  margin-horizontal: ${styles.margin * 3}px;
-  margin-top: ${styles.margin * 3}px;
-`;
+import { LanguageDetailsButton } from "../../components";
+import { Page, Rows, RowsSpacing, Title } from "../../components";
 
 export const LangueProfilScreen = ({
   navigation,
@@ -35,7 +16,6 @@ export const LangueProfilScreen = ({
   const { t, i18n } = useTranslationWithRTL();
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
   const dispatch = useDispatch();
-  const insets = useSafeAreaInsets();
 
   const changeLanguage = (ln: AvailableLanguageI18nCode) => {
     i18n.changeLanguage(ln);
@@ -49,44 +29,28 @@ export const LangueProfilScreen = ({
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingTop: insets.top,
-      }}
+    <Page
+      headerTitle={t("profile_screens.my_language", "Langue choisie")}
+      headerIconName="globe-2-outline"
+      hideLanguageSwitch
     >
-      <HeaderWithBack
-        text={t("profile_screens.my_language", "Langue choisie")}
-        iconName="globe-2-outline"
-      />
-      <HeaderText>
+      <Title>
         {t(
           "profile_screens.language_choice",
           "Choisis la langue de l’application"
         )}
-      </HeaderText>
-      <ScrollView
-        contentContainerStyle={{
-          paddingTop: styles.margin * 2,
-          paddingBottom: styles.margin * 3,
-          justifyContent: "center",
-          flexGrow: 1,
-          flexDirection: "column",
-        }}
-        scrollIndicatorInsets={{ right: 1 }}
-      >
-        <MainContainer>
-          {activatedLanguages.map((language, index) => (
-            <LanguageDetailsButton
-              langueFr={language.langueFr}
-              key={index}
-              langueLoc={language.langueLoc}
-              onPress={() => changeLanguage(language.i18nCode)}
-              isSelected={language.i18nCode === selectedLanguageI18nCode}
-            />
-          ))}
-        </MainContainer>
-      </ScrollView>
-    </View>
+      </Title>
+      <Rows spacing={RowsSpacing.NoSpace}>
+        {activatedLanguages.map((language, index) => (
+          <LanguageDetailsButton
+            isSelected={language.i18nCode === selectedLanguageI18nCode}
+            key={index}
+            langueFr={language.langueFr}
+            langueLoc={language.langueLoc}
+            onPress={() => changeLanguage(language.i18nCode)}
+          />
+        ))}
+      </Rows>
+    </Page>
   );
 };

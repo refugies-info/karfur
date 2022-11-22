@@ -3,17 +3,16 @@
 exports[`Columns snapshot test suite should be able to control flex layout 1`] = `
 <View
   RTLBehaviour={false}
+  collapsable={false}
   horizontalAlign="space-between"
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "space-between",
-      },
-    ]
+    Object {
+      "alignItems": "center",
+      "flexBasis": "auto",
+      "flexDirection": "row",
+      "flexGrow": 1,
+      "justifyContent": "space-between",
+    }
   }
   verticalAlign="center"
 >
@@ -82,17 +81,16 @@ exports[`Columns snapshot test suite should be able to control flex layout 1`] =
 exports[`Columns snapshot test suite should render without bug 1`] = `
 <View
   RTLBehaviour={false}
+  collapsable={false}
   horizontalAlign="flex-start"
   style={
-    Array [
-      Object {
-        "alignItems": "flex-start",
-        "flexBasis": "auto",
-        "flexDirection": "row",
-        "flexGrow": 1,
-        "justifyContent": "flex-start",
-      },
-    ]
+    Object {
+      "alignItems": "flex-start",
+      "flexBasis": "auto",
+      "flexDirection": "row",
+      "flexGrow": 1,
+      "justifyContent": "flex-start",
+    }
   }
   verticalAlign="flex-start"
 >

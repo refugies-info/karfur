@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
 import * as Linking from "expo-linking";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useFocusEffect } from "@react-navigation/native";
@@ -10,7 +9,6 @@ import {
   setInitialUrlUsed,
   setRedirectDispositifActionCreator,
 } from "../../services/redux/User/user.actions";
-import { WrapperWithHeaderAndLanguageModal } from "../WrapperWithHeaderAndLanguageModal";
 import { RTLView } from "../../components/BasicComponents";
 import { ViewChoice } from "../../components/Explorer/ViewChoice";
 import { TagButton } from "../../components/Explorer/TagButton";
@@ -30,6 +28,7 @@ import { logger } from "../../logger";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import LocationWarning from "../../components/Explorer/LocationWarning";
 import { NotificationsModal } from "../../components/Notifications";
+import { Page } from "../../components";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${styles.margin * 4}px;
@@ -112,7 +111,7 @@ export const ExplorerScreen = ({
   useFocusEffect(redirect);
 
   return (
-    <WrapperWithHeaderAndLanguageModal>
+    <Page showLogo>
       <LocationWarning />
 
       <ViewChoiceContainer>
@@ -138,38 +137,29 @@ export const ExplorerScreen = ({
         />
       </ViewChoiceContainer>
       {tabSelected === "list" ? (
-        <ScrollView
-          contentContainerStyle={{
-            paddingHorizontal: styles.margin * 3,
-            paddingBottom: styles.margin * 3,
-            paddingTop: styles.margin,
-          }}
-          scrollIndicatorInsets={{ right: 1 }}
-        >
-          {themes.sort(sortByOrder).map((currentTheme, index) => (
-            <TagButton
-              key={index}
-              name={currentTheme.name[currentLanguageI18nCode || "fr"]}
-              backgroundColor={currentTheme.colors.color100}
-              icon={currentTheme.icon}
-              onPress={() => {
-                logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-                  theme: currentTheme.name.fr,
-                  view: "list",
-                });
+        themes.sort(sortByOrder).map((currentTheme, index) => (
+          <TagButton
+            key={index}
+            name={currentTheme.name[currentLanguageI18nCode || "fr"]}
+            backgroundColor={currentTheme.colors.color100}
+            icon={currentTheme.icon}
+            onPress={() => {
+              logEventInFirebase(FirebaseEvent.CLIC_THEME, {
+                theme: currentTheme.name.fr,
+                view: "list",
+              });
 
-                navigation.navigate("NeedsScreen", {
-                  theme: currentTheme,
-                });
-                return;
-              }}
-              style={{
-                marginBottom: styles.margin * 3,
-                marginTop: 0,
-              }}
-            />
-          ))}
-        </ScrollView>
+              navigation.navigate("NeedsScreen", {
+                theme: currentTheme,
+              });
+              return;
+            }}
+            style={{
+              marginBottom: styles.margin * 3,
+              marginTop: 0,
+            }}
+          />
+        ))
       ) : (
         <CenteredView>
           <CarousselContainer>
@@ -179,6 +169,6 @@ export const ExplorerScreen = ({
       )}
 
       <NotificationsModal />
-    </WrapperWithHeaderAndLanguageModal>
+    </Page>
   );
 };

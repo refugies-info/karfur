@@ -22,7 +22,7 @@ describe("Search Screen", () => {
     });
   });
 
-  it("should render correctly", () => {
+  it("should render correctly", async () => {
     const component = wrapWithProvidersAndRender({
       Component: SearchScreen,
       compProps: { navigation: { goBack: jest.fn() } },

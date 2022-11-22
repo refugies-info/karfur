@@ -1,30 +1,21 @@
 import * as React from "react";
-import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { HeaderWithBack } from "../../components/HeaderWithBack";
 import { ProfileParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { FilterCityComponent } from "../../components/Geoloc/FilterCityComponent";
+import { Page } from "../../components";
 
 export const CityProfilScreen = ({
   navigation,
 }: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
-  const insets = useSafeAreaInsets();
-
   return (
-    <View
-      style={{
-        flex: 1,
-        paddingTop: insets.top,
-      }}
+    <Page
+      disableAutomaticScroll
+      headerTitle={t("profile_screens.city", "Ville")}
+      headerIconName="pin-outline"
     >
-      <HeaderWithBack
-        text={t("profile_screens.city", "Ville")}
-        iconName="pin-outline"
-      />
       <FilterCityComponent navigation={navigation} isOnboardingScreen={false} />
-    </View>
+    </Page>
   );
 };

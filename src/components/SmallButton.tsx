@@ -21,6 +21,11 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   label?: string;
 }
+/**
+ * @deprecated Use IconButton instead
+ * @param props
+ * @returns
+ */
 export const SmallButton = (props: Props) => (
   <ButtonContainer
     onPress={props.onPress}
@@ -28,7 +33,7 @@ export const SmallButton = (props: Props) => (
     style={props.style || {}}
     accessibilityRole="button"
     accessible={true}
-    accessibilityLabel={props.label || ""}
+    accessibilityLabel={props.label || ""}
   >
     <Icon
       name={props.iconName}

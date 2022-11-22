@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentType } from "react";
 import { styles } from "../../theme";
 import { ExplorerParamList } from "../../../types";
 import { useSelector } from "react-redux";
@@ -15,6 +15,9 @@ import { ErrorScreen } from "../../components/ErrorScreen";
 import { NeedsSummary } from "../../components/Needs/NeedsSummary";
 import { registerBackButton } from "../../libs/backButton";
 import { Page, SkeletonListPage } from "../../components";
+import { withProps } from "../../utils";
+import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
+import { HeaderContentProps } from "../../components/layout/Header/HeaderContentProps";
 
 const computeNeedsToDisplay = (
   allNeeds: Need[],
@@ -80,10 +83,14 @@ export const NeedsScreen = ({
     return (
       <Page
         backScreen={backScreen}
-        headerBackgroundColor={theme.colors.color100}
         loading
-        title={theme.name[currentLanguageI18nCode || "fr"]}
-        titleIcon={theme.icon}
+        HeaderContent={
+          withProps({
+            headerBackgroundColor: theme.colors.color100,
+            title: theme.name[currentLanguageI18nCode || "fr"],
+            titleIcon: theme.icon,
+          })(HeaderContentTitle) as ComponentType<HeaderContentProps>
+        }
       >
         <SkeletonListPage />
       </Page>
@@ -94,9 +101,13 @@ export const NeedsScreen = ({
     return (
       <Page
         backScreen={backScreen}
-        headerBackgroundColor={theme.colors.color100}
-        title={theme.name[currentLanguageI18nCode || "fr"]}
-        titleIcon={theme.icon}
+        HeaderContent={
+          withProps({
+            headerBackgroundColor: theme.colors.color100,
+            title: theme.name[currentLanguageI18nCode || "fr"],
+            titleIcon: theme.icon,
+          })(HeaderContentTitle) as ComponentType<HeaderContentProps>
+        }
       >
         <ErrorScreen
           buttonText={t("tab_bar.explorer")}
@@ -115,8 +126,14 @@ export const NeedsScreen = ({
     <Page
       backScreen={backScreen}
       headerBackgroundColor={theme.colors.color100}
-      title={theme.name[currentLanguageI18nCode || "fr"]}
-      titleIcon={theme.icon}
+      headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
+      HeaderContent={
+        withProps({
+          headerBackgroundColor: theme.colors.color100,
+          title: theme.name[currentLanguageI18nCode || "fr"],
+          titleIcon: theme.icon,
+        })(HeaderContentTitle) as ComponentType<HeaderContentProps>
+      }
     >
       {needsToDisplay.map((need: Need) => {
         const needText =

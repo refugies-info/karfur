@@ -4,3 +4,4 @@ export { default as Header, HeaderProps } from "./Header";
 export { default as Page } from "./Page";
 export { default as Rows, RowsSpacing } from "./Rows";
 export { default as ScrollableContent } from "./ScrollableContent";
+export { default as Separator } from "./Separator";
