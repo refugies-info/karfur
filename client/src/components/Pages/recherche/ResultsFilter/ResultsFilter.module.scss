@@ -7,10 +7,10 @@
 
 .container {
   margin-top: 30px;
-  margin-bottom: 80px;
+  padding-bottom: 80px;
 
   @include isMobile() {
-    margin-bottom: u(10);
+    padding-bottom: u(10);
 
     &.no_result {
       display: none;
@@ -20,11 +20,7 @@
 
 :global(.scrolled) {
   .container {
-    padding-top: u(2);
-    padding-bottom: u(2);
-    margin: 0;
-    background: $white;
-    box-shadow: 0 8px 16px 0 #0000001a, 0 16px 16px -16px #00000052;
+    display: none;
   }
 }
 
@@ -93,6 +89,12 @@
   box-shadow: 0 u(1) 18px 0 #0000001a;
   height: 45px;
   @include text("normal");
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $gray40b !important;
+  }
 
   .icon {
     margin-right: u(2);

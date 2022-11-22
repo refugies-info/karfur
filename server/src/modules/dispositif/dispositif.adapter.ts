@@ -55,7 +55,7 @@ export const filterDispositifsForUpdateReminders = (
         moment(moment()).diff(
           dispositif.lastReminderMailSentToUpdateContentDate
         ) /
-          (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
       );
       if (nbDaysLastReminderFromNow < nbDaysBeforeReminder) {
         logger.info(
@@ -102,7 +102,7 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
 
     const isCreatorIdInArray = elementIndex !== -1;
 
-    if (!isCreatorIdInArray) {
+    if (!isCreatorIdInArray && dispositif.creatorId.email) {
       formattedArray.push({
         creatorId: dispositif.creatorId._id,
         username: dispositif.creatorId.username,
@@ -192,19 +192,19 @@ export const adaptDispositifMainSponsorAndCreatorId = (
       ...jsonDispositif,
       mainSponsor: jsonDispositif.mainSponsor
         ? {
-            _id: jsonDispositif.mainSponsor._id,
-            nom: jsonDispositif.mainSponsor.nom,
-            status: jsonDispositif.mainSponsor.status,
-            picture: jsonDispositif.mainSponsor.picture,
-          }
+          _id: jsonDispositif.mainSponsor._id,
+          nom: jsonDispositif.mainSponsor.nom,
+          status: jsonDispositif.mainSponsor.status,
+          picture: jsonDispositif.mainSponsor.picture,
+        }
         : "",
       creatorId: jsonDispositif.creatorId
         ? {
-            username: jsonDispositif.creatorId.username,
-            picture: jsonDispositif.creatorId.picture,
-            _id: jsonDispositif.creatorId._id,
-            email: jsonDispositif.creatorId.email,
-          }
+          username: jsonDispositif.creatorId.username,
+          picture: jsonDispositif.creatorId.picture,
+          _id: jsonDispositif.creatorId._id,
+          email: jsonDispositif.creatorId.email,
+        }
         : null,
     };
   });

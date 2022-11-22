@@ -3,6 +3,8 @@ import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { cls } from "lib/classname";
 import { checkIfEllipsis } from "lib/checkIfEllipsis";
+import useWindowSize from "hooks/useWindowSize";
+import { colors } from "colors";
 import styles from "./SearchInput.module.scss";
 
 interface Props {
@@ -18,6 +20,8 @@ interface Props {
   loading?: boolean;
   focusout?: boolean;
   resetFilter?: () => void;
+  smallIcon?: boolean;
+  noInput?: boolean;
 }
 
 const SearchInput = (props: Props) => {
@@ -25,6 +29,7 @@ const SearchInput = (props: Props) => {
   const { active, setActive, resetFilter } = props;
   const ref = useRef<HTMLInputElement | null>(null);
   const valueRef = useRef<HTMLDivElement | null>(null);
+  const { isMobile } = useWindowSize();
 
   const handleFocusOut = useCallback(() => {
     if (active) setActive(false);
@@ -67,19 +72,24 @@ const SearchInput = (props: Props) => {
     [resetFilter]
   );
 
-  const hasBlueIcon = active || !!props.value;
+  const isActive = active || !!props.value;
   const countValues = !props.value ? 0 : (props.value.match(/,/g) || []).length + 1;
+
+  const getIconColor = useCallback(() => {
+    if (isMobile && props.smallIcon) return isActive ? colors.bleuCharte : "black";
+    return isActive ? "white" : "black";
+  }, [isActive, isMobile, props.smallIcon]);
 
   return (
     <div className={cls(styles.filter, active && styles.active)}>
-      <span className={cls(styles.icon, hasBlueIcon && styles.active)}>
-        <EVAIcon name={props.icon} fill={hasBlueIcon ? "white" : "black"} size="large" />
+      <span className={cls(styles.icon, isActive && styles.active, props.smallIcon && styles.small)}>
+        <EVAIcon name={props.icon} fill={getIconColor()} size={!props.smallIcon ? "large" : 20} />
       </span>
       <span className={styles.search}>
         <label className={styles.label} htmlFor={props.label}>
           {props.label}
         </label>
-        {active ? (
+        {active && !props.noInput ? (
           <>
             <input
               ref={ref}

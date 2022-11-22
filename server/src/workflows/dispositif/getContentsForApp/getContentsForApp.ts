@@ -13,6 +13,30 @@ interface Query {
   strictLocation?: boolean | string;
 }
 
+const present = (locale: string) => (content: any) => {
+  const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, locale);
+  const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, locale);
+
+  const sponsorUrl =
+    content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
+      ? content.mainSponsor.picture.secure_url
+      : null;
+
+  return {
+    _id: content._id,
+    titreInformatif,
+    titreMarque,
+    theme: content.theme,
+    secondaryThemes: content.secondaryThemes,
+    needs: content.needs,
+    nbVues: content.nbVues,
+    nbVuesMobile: content.nbVuesMobile,
+    typeContenu: content.typeContenu,
+    sponsorUrl,
+    avancement: content.avancement
+  };
+};
+
 export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
@@ -56,28 +80,7 @@ export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res)
 
     const filteredContents = filterContentsOnGeoloc(contentsArray, department, strictLocation);
 
-    const contentsArrayFr = filteredContents.map((content) => {
-      const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, "fr");
-      const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, "fr");
-      const sponsorUrl =
-        content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
-          ? content.mainSponsor.picture.secure_url
-          : null;
-
-      return {
-        _id: content._id,
-        titreInformatif,
-        titreMarque,
-        theme: content.theme,
-        secondaryThemes: content.secondaryThemes,
-        needs: content.needs,
-        nbVues: content.nbVues,
-        nbVuesMobile: content.nbVuesMobile,
-        typeContenu: content.typeContenu,
-        sponsorUrl,
-        avancement: content.avancement
-      };
-    });
+    const contentsArrayFr = filteredContents.map(present("fr"));
 
     if (locale === "fr") {
       return res.status(200).json({
@@ -86,28 +89,7 @@ export const getContentsForApp = async (req: RequestFromClient<Query>, res: Res)
       });
     }
 
-    const contentsArrayLocale = filteredContents.map((content) => {
-      const titreInformatif = getTitreInfoOrMarqueInLocale(content.titreInformatif, locale);
-      const titreMarque = getTitreInfoOrMarqueInLocale(content.titreMarque, locale);
-
-      const sponsorUrl =
-        content.mainSponsor && content.mainSponsor.picture && content.mainSponsor.picture.secure_url
-          ? content.mainSponsor.picture.secure_url
-          : null;
-
-      return {
-        _id: content._id,
-        titreInformatif,
-        titreMarque,
-        theme: content.theme,
-        secondaryThemes: content.secondaryThemes,
-        needs: content.needs,
-        nbVues: content.nbVues,
-        typeContenu: content.typeContenu,
-        sponsorUrl,
-        avancement: content.avancement
-      };
-    });
+    const contentsArrayLocale = filteredContents.map(present(locale));
 
     res.status(200).json({
       text: "Succès",

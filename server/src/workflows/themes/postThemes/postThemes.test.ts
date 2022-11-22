@@ -3,7 +3,7 @@ import postThemes, { hasOneNotificationEnabled } from "./postThemes";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { updateNotificationsSettings } from "src/modules/appusers/appusers.repository";
+import { updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 
 jest.mock("../../../modules/appusers/appusers.repository", () => ({
   getAllAppUsers: jest.fn().mockResolvedValue([

@@ -12,6 +12,10 @@
   background: $white;
   border: none;
 
+  @include isMobile() {
+    display: none !important;
+  }
+
   &,
   & span,
   & span > i {

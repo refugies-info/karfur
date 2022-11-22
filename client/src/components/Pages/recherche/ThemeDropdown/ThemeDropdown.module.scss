@@ -37,7 +37,7 @@
   color: $dark;
   border-radius: u(2);
   margin-bottom: 4px;
-  height: 39px;
+  min-height: 39px;
   @include text("normal");
   @include withIcon();
 
@@ -63,12 +63,17 @@
 
 .btn_content {
   display: flex;
+
+  span {
+    white-space: normal;
+    text-align: left;
+  }
 }
 
 .themes {
   background: $gray30;
   padding: u(4);
-  width: 220px;
+  width: 240px;
   flex-shrink: 0;
 
   @include isMobile() {
@@ -98,10 +103,14 @@
 .needs {
   padding: 16px;
   flex-grow: 1;
+  max-height: 70vh;
+  overflow-y: scroll;
 
   @include isMobile() {
     padding-left: 0;
     padding-right: 0;
+    max-height: none;
+    overflow-y: auto;
   }
 
   .btn {
@@ -186,6 +195,7 @@
   width: 20px;
   height: 20px;
   margin-left: u(2);
+  flex-shrink: 0;
 
   @include rtl() {
     margin-left: 0;

@@ -128,8 +128,7 @@ $fadeWidth_md: 50px;
   transform: translateY(-50%);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     background-color: darken($bleuCharte, 10%) !important;
   }
 
@@ -144,4 +143,8 @@ $fadeWidth_md: 50px;
   @include media-max("lg-limit") {
     display: none;
   }
+}
+
+html body .btn:focus {
+  box-shadow: 0 0 30px 0 #0421b14d !important; /* override common styles */
 }

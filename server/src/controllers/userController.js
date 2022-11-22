@@ -11,31 +11,24 @@ import { changePassword } from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
+import deleteUser from "../workflows/users/deleteUser/deleteUser";
 
 router.post("/login", checkToken.getId, checkToken.getRoles, login);
 router.post("/checkUserExists", account.checkUserExists);
-router.post(
-  "/set_user_info",
-  checkToken.check,
-  checkToken.getRoles,
-  account.set_user_info
-);
+router.post("/set_user_info", checkToken.check, checkToken.getRoles, account.set_user_info);
 router.post("/get_users", checkToken.getId, account.get_users);
 router.post("/get_user_info", checkToken.check, account.get_user_info);
 router.post("/changePassword", checkToken.check, changePassword);
 router.post("/reset_password", checkToken.getRoles, account.reset_password);
 router.post("/set_new_password", checkToken.getRoles, setNewPassword);
-
 router.get("/getFiguresOnUsers", getFiguresOnUsers);
 router.get("/getAllUsers", checkToken.check, getAllUsers);
 router.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
-router.get(
-  "/getUserFavoritesInLocale",
-  checkToken.check,
-  getUserFavoritesInLocale
-);
+router.get("/getUserFavoritesInLocale", checkToken.check, getUserFavoritesInLocale);
 router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
+router.delete("/:id", checkToken.check, checkToken.getRoles, deleteUser);
+
 /* NOT USED
 router.get("/findBuggedUsers", findBuggedUsers);
 */

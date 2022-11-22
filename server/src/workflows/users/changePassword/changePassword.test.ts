@@ -95,6 +95,22 @@ describe("changePassword", () => {
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
   });
+  it("should get user and return 500 if user deleted", async () => {
+    getUserById.mockResolvedValueOnce({ status: "Exclu" });
+    const req = {
+      fromSite: true,
+      body: {
+        userId: "userId",
+        newPassword: "newPassword",
+        currentPassword: "currentPassword",
+      },
+      userId: "userId",
+    };
+    await changePassword(req, res);
+    expect(getUserById).toHaveBeenCalledWith("userId", {});
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
+  });
 
   it("should get user and return 401 if wrong password", async () => {
     getUserById.mockResolvedValueOnce({ authenticate: () => false });

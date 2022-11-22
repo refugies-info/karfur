@@ -1,5 +1,6 @@
 import logger from "../../logger";
 import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
+import { USER_STATUS_ACTIVE } from "../../schema/schemaUser";
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { ObjectId } from "mongoose";
@@ -24,7 +25,7 @@ export const register = async (
       username: user.username,
       password: hashedPassword,
       roles,
-      status: "Actif",
+      status: USER_STATUS_ACTIVE,
       last_connected: new Date(),
       email: user.email,
     };

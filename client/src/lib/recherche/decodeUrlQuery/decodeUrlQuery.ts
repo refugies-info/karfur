@@ -32,7 +32,7 @@ export const decodeQuery = (
     if (departments) query.departments = decodeURIComponent(departments as string).split(",");
     if (needs) query.needs = decodeURIComponent(needs as string).split(",") as unknown as ObjectId[];
     if (themes) query.themes = decodeURIComponent(themes as string).split(",") as unknown as ObjectId[];
-    if (age) query.age = decodeURIComponent(age as string).split(",") as AgeOptions[];
+    if (age && query.age.length === 0) query.age = decodeURIComponent(age as string).split(",") as AgeOptions[];
     if (frenchLevel) query.frenchLevel = decodeURIComponent(frenchLevel as string).split(",") as FrenchOptions[];
     if (language) query.language = decodeURIComponent(language as string).split(",");
     if (sort) query.sort = decodeURIComponent(sort as string) as SortOptions;

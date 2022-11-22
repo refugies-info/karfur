@@ -1,4 +1,5 @@
 import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
+import { USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { getUserById } from "../users/users.repository";
 import logger from "../../logger";
 import {
@@ -21,7 +22,7 @@ export const sendPublishedMailToCreator = async (
   };
 
   const creator = await getUserById(newDispo.creatorId, userNeededFields);
-  if (creator.status === "Exclu") return;
+  if (creator.status === USER_STATUS_DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");
 
