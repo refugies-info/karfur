@@ -71,17 +71,15 @@
   }
 }
 
-.location {
-  @include isMobile() {
-    display: none;
-  }
-}
-
 .departments {
   margin-top: u(20);
   display: flex;
   flex-wrap: wrap;
   gap: u(4);
+
+  @include isMobile() {
+    margin-top: u(8);
+  }
 
   .btn {
     @include text("large");
@@ -112,4 +110,9 @@
 
 .image {
   margin-top: u(20);
+
+  @include isMobile() {
+    margin-top: u(8);
+    text-align: center;
+  }
 }

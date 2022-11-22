@@ -71,6 +71,7 @@ const HomeSearch = () => {
   };
   const selectType = (type: TypeOptions) => {
     dispatch(addToQueryActionCreator({ type: type }));
+    window.scrollTo(0, 0);
     Event("USE_SEARCH", "use home search", "click type");
   };
   const selectDepartment = (department: string) => {
@@ -137,11 +138,11 @@ const HomeSearch = () => {
       </div>
 
       {/* location */}
-      <div className={cls(styles.section, styles.white, styles.location)}>
+      <div className={cls(styles.section, styles.white)}>
         <Container className={styles.container_inner}>
+          <h2 className="h3">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
           <Row>
-            <Col>
-              <h2 className="h3">{t("Recherche.titleNearLocation", "Trouvez les fiches près de chez vous")}</h2>
+            <Col md={{ size: 6, order: 1 }} xs={{ size: 12, order: 2 }}>
               <div className={styles.departments}>
                 {departmentExamples.map((dep, i) => (
                   <button key={i} className={styles.btn} onClick={() => selectDepartment(dep)}>
@@ -150,7 +151,7 @@ const HomeSearch = () => {
                 ))}
               </div>
             </Col>
-            <Col>
+            <Col md={{ size: 6, order: 2 }} xs={{ size: 12, order: 1 }}>
               <div className={styles.image}>
                 <Image src={illuLocation} width={440} height={332} alt="" />
               </div>

@@ -8,12 +8,12 @@ export const getInitialTheme = (
   themesSelected: ObjectId[],
   isMobile: boolean
 ) => {
+  if (isMobile) return null;
   const allThemeIds = [...themesSelected];
   for (const needId of needsSelected) {
     const themeId = allNeeds.find((n) => n._id === needId)?.theme._id;
     if (themeId) allThemeIds.push(themeId);
   }
   if (allThemeIds.length > 0) return allThemeIds[0];
-  if (!isMobile) return themes[0]._id;
-  return null;
+  return themes[0]._id;
 }

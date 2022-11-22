@@ -50,6 +50,66 @@
     "theme": "موضوع",
     "need": "زه اړتیا لرم"
   },
+  "Recherche": {
+    "pageTitle": "لټون",
+    "updated": "تازه شوي",
+    "demarcheTitle": "د طرزالعملونو فایلونه",
+    "dispositifTitle": "د برنامو فایلونه",
+    "demarcheCardTitle": "د طرزالعملونو فایلونه",
+    "dispositifCardTitle": "د برنامو فایلونه",
+    "otherDispositifTitle": "د دې موضوع سره تړلي نور فایلونه",
+    "resetButton": "له سره تازه کول",
+    "seeButton": "د فایلونو کتل",
+    "titleThemes": "د ادغام موضوعات",
+    "titleTypes": "دوه ډوله مالومات",
+    "titleNewDemarches": "د طرزالعملونو فایلونو ته نوي اضافه شوي فایلونه",
+    "titleNewDispositifs": "د برنامو فایلونوته نوي اضافه شوي فایلونه",
+    "titleNearLocation": "تاسو ته نږدې د مالوماتو فایلونه ومومئ",
+    "positionButton": "اوسنی موقعیت",
+    "notDeployedTitle": "دا څانګه په حال دې اضافه کولو کې ده !",
+    "notDeployedText": "Réfugiés.info یو ملاتړ کونکی پلټفارم دی، چې په مستقیم ډول د اتحادیو، رضاکارانو او ټولنیزو کارکونکو لخوا پکي مالوماتي فایلونه ځای په ځای کیږي. په بډایه کولو کې یې له مونږ مرسته وکړئ!",
+    "notDeployedWriteLink": "یو فایل ولیکئ",
+    "notDeployedOkLink": "زه پوه شوم",
+    "france": "ټوله فرانسه",
+    "keyword": "کلیدي کلمه",
+    "keywordPlaceholder": "ځای ماموریت، د استوګني اجازه ...",
+    "department": "یوښار یا یوه څانګه لتول",
+    "themes": "موضوعات",
+    "themesPlaceholder": "په موضوعاتو کې لټون کول",
+    "filters": "د لټون فلټرکول",
+    "filterAge": "د عمر حد ټاکل",
+    "filterFrenchLevel": "د فرانسوي ژبې کچه",
+    "filterLanguage": "ژباړل شوي فایلونه په",
+    "all": "ټول",
+    "resetFilters": "ټول فلټرونه پاک کول",
+    "titleHome": "د فایلونو په منځ کې مالومات ومومئ",
+    "titleResults": "ستاسو د لټون لپاره فایلونه",
+    "noResultTitle": "اوپس، هیڅ پایلي شتون نلري",
+    "noResultText": "لیږ فلټرونه وکاروئ یا د کلیدي کلمې املا له سره وګورئ",
+    "seeMore": "نور وګورئ",
+    "seeLess": "لیږ کتل",
+    "results": "نتیجه",
+    "seeAll": "ټول فایلونه کتل",
+    "demarcheExample1": "د یو سوسیال کورغوښتنه کول",
+    "demarcheExample2": "د یو بانکي حساب پرانستل",
+    "demarcheExample3": "د کارمندني مرکز پولي امپلوا سره ثبت نام کول",
+    "demarcheExample4": "د کاف سره ثبت نام کول",
+    "dispositifExample1": "فرانسوي ژبه زده کول",
+    "dispositifExample2": "د اشپز همکار او مرسته کونکي برخه کې روزنه ترسره کول",
+    "dispositifExample3": "د استوګني یو خای  موندل",
+    "dispositifExample4": "رواني ملاتړ او مرسته ترلاسه کول",
+    "seeAllDemarches": "ټول طرزالعملونه کتل",
+    "seeAllDispositifs": "ټولې برنامې کتل",
+    "fichesLanguageFilter": "فایلونه په",
+    "seeAllButton": "ټول کتل"
+  },
+  "Widget": {
+    "fiches": "فایلونه",
+    "withTheme": "له موضوع سره",
+    "available": "شتون لري",
+    "inLocation": "په",
+    "inLanguage": "په"
+  },
   "UserProfile": {
     "Pseudonyme": "مستعار(یوزر) نوم:",
     "E-mail": "بریښنالیک:",
@@ -188,7 +248,16 @@
   "Filters": {
     "age-18": "تر18 کلنولاندې",
     "age18-25": "د 18 او 25 کلونو ترمینځ",
-    "age+25": "25 کلن او پورته کسان"
+    "age+25": "25 کلن او پورته کسان",
+    "frenchLevelA": "پيل کونکي کچه  A1/A2",
+    "frenchLevelB": "متوسطه کچه B1/B2",
+    "frenchLevelC": "پرمختللي کچه C1/C2",
+    "sortTheme": "د موضوع له مخي",
+    "sortDate": "تر ټولو ورستي",
+    "sortView": "ترټولو ډیر لیدل شوي",
+    "typeAll": "ټول",
+    "typeDispositif": "د برنامو فایلونه",
+    "typeDemarche": "د طرزالعملونو فایلونه"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",
@@ -283,10 +352,7 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "موږ به تاسو ته د راجسټریشن لپاره د بلنې بریښنالیک واستوو",
     "Créez-vous un compte depuis votre ordinateur pour participer": "د ګډون لپاره د خپل کمپیوټرله لارې یو اکونټ جوړ کړئ"
   },
-  "UnauthorizedAccess": {
-    "Accès refusé": "لاسرسی رد شو",
-    "Revenir à l'accueil": "اصلي صفحی ته بیرته راستنیدل"
-  },
+  "UnauthorizedAccess": { "Accès refusé": "لاسرسی رد شو", "Revenir à l'accueil": "اصلي صفحی ته بیرته راستنیدل" },
   "Dispositif": {
     "cliquez": "په سوالیه نشان \"؟\" کلیک کړی د لازیاتو معلوماتو لپاره",
     "informations_utiles": "ایا تاسو ګټوراو مفید معلومات وموندل؟",
@@ -631,11 +697,5 @@
     "Gratuite et plus facile à utiliser": "وړیا او کارول یې اسانه دي :",
     "Rester sur le navigateur": "په براوزر کې پاتې شئ",
     "Télécharger l'application": "اپلیکیشن راښکته کړئ"
-  },
-  "Recherche": {
-    "seeMore": "نور وګورئ",
-    "france": "ټوله فرانسه",
-    "results": "نتیجه",
-    "seeAll": "ټول فایلونه کتل"
   }
 }

@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/btn";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
@@ -126,6 +127,19 @@
       @include rtl() {
         margin-right: 0;
         margin-left: u(2);
+      }
+
+      &.small {
+        width: 20px;
+        height: 20px;
+        margin-right: u(2);
+        background: transparent !important;
+        @include withIcon();
+
+        @include rtl() {
+          margin-right: 0;
+          margin-left: u(2);
+        }
       }
     }
   }

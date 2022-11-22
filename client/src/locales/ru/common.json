@@ -50,6 +50,65 @@
     "theme": "теме",
     "need": "Я хочу"
   },
+  "Recherche": {
+    "pageTitle": "Поиск",
+    "updated": "обновлено",
+    "demarcheTitle": "Страницы административных процедур",
+    "dispositifTitle": "Страницы программ",
+    "demarcheCardTitle": "Страницы <strong>административных процедур</strong>",
+    "dispositifCardTitle": "Страницы <strong>программ</strong>",
+    "otherDispositifTitle": "Другие страницы по этой теме",
+    "resetButton": "Сбросить",
+    "seeButton": "Показать {{count}} страниц",
+    "titleThemes": "Темы интеграции",
+    "titleTypes": "Два типа информации",
+    "titleNewDemarches": "Новое в административных процедурах",
+    "titleNewDispositifs": "Новое в программах",
+    "titleNearLocation": "Найти страницы с программами недалеко от вас",
+    "positionButton": "Текущее местоположение",
+    "notDeployedTitle": ": этот департамент находится в процессе подготовки",
+    "notDeployedText": "Réfugiés.info - это совместный проект, который напрямую поддерживается ассоциациями, волонтерами и социальными работниками. Помогите нам дополнить его!",
+    "notDeployedWriteLink": "Создать страницу",
+    "notDeployedOkLink": "Я понял",
+    "france": "Вся Франция",
+    "keyword": "Ключевое слово",
+    "keywordPlaceholder": "Локальная миссия, вид на жительство",
+    "department": "Найти город или департамент",
+    "themes": "Темы",
+    "themesPlaceholder": "Искать в темах",
+    "filters": "Фильтры поиска",
+    "filterAge": "Возрастная группа",
+    "filterFrenchLevel": "Уроверь французского",
+    "filterLanguage": "Страницы переведенные на",
+    "all": "Все",
+    "resetFilters": "Удалить все фильтры",
+    "titleHome": "Найдите информацию среди {{count}} страниц",
+    "titleResults": "Найдено {{count}} страниц(а)",
+    "noResultTitle": "Упс, ничего не найдено",
+    "noResultText": "Используйте меньше фильтров и проверьте написание ключевого слова",
+    "seeMore": "Посмотреть больше",
+    "seeLess": "Показать меньше",
+    "results": "результаты",
+    "seeAll": "Посмотреть все страницы",
+    "demarcheExample1": "Сделать запрос на социальное жилье",
+    "demarcheExample2": "Открыть банковский счет",
+    "demarcheExample3": "Записаться в службу занятости Pôle Emploi",
+    "demarcheExample4": "Записаться в Кассу семейных пособий (CAF)",
+    "dispositifExample1": "Учить французский",
+    "dispositifExample2": "Пройти курсы",
+    "dispositifExample3": "Найти жилье",
+    "dispositifExample4": "Получить психологическую помощь",
+    "seeAllDemarches": "Показать все административные процедуры",
+    "seeAllDispositifs": "Показать все программы",
+    "fichesLanguageFilter": "Страниц на"
+  },
+  "Widget": {
+    "fiches": "Страницы",
+    "withTheme": "с темой",
+    "available": "доступно",
+    "inLocation": "в",
+    "inLanguage": "в"
+  },
   "UserProfile": {
     "Pseudonyme": "Имя пользователя:",
     "E-mail": "Электронная почта:",
@@ -188,7 +247,16 @@
   "Filters": {
     "age-18": "до 18 лет",
     "age18-25": "от 18 до 25 лет",
-    "age+25": "25 лет и старше"
+    "age+25": "25 лет и старше",
+    "frenchLevelA": "Начальный уровень A1/A2",
+    "frenchLevelB": "Средний уровень B1/B2",
+    "frenchLevelC": "Продвинутый уровень C1/C2",
+    "sortTheme": "По теме",
+    "sortDate": "Недавно добавленные",
+    "sortView": "Самые популярные",
+    "typeAll": "Все",
+    "typeDispositif": "Страницы программ",
+    "typeDemarche": "Страницы административных процедур"
   },
   "Status": {
     "En attente": "На проверке",
@@ -283,10 +351,7 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "Мы пришлем вам подтверждение для регистрации по электронной почте",
     "Créez-vous un compte depuis votre ordinateur pour participer": "Для участия создайте учетную запись, зайдя с вашего компьютера"
   },
-  "UnauthorizedAccess": {
-    "Accès refusé": "Доступ запрещен",
-    "Revenir à l'accueil": "Вернуться на главную"
-  },
+  "UnauthorizedAccess": { "Accès refusé": "Доступ запрещен", "Revenir à l'accueil": "Вернуться на главную" },
   "Dispositif": {
     "cliquez": "Нажмите на «?» чтобы узнать больше",
     "informations_utiles": "Нашли необходимую информацию?",
@@ -631,11 +696,5 @@
     "Gratuite et plus facile à utiliser": "Бесплатно и просто использовать",
     "Rester sur le navigateur": "Продолжить в браузере",
     "Télécharger l'application": "Скачать мобильное приложение"
-  },
-  "Recherche": {
-    "seeMore": "Посмотреть больше",
-    "france": "Вся Франция",
-    "results": "результаты",
-    "seeAll": "Посмотреть все страницы"
   }
 }

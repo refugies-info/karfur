@@ -81,7 +81,7 @@ const DemarcheCard = (props: Props) => {
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}
         />
-        <div>
+        <div className={styles.themes}>
           {demarcheThemes.map((theme, i) => (
             <ThemeBadge key={i} theme={theme} className={styles.badges} />
           ))}
