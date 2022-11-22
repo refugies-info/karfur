@@ -3,17 +3,16 @@ import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { ObjectId } from "mongodb";
-import { Need, AvailableLanguageI18nCode } from "types/interface";
+import { Need } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { TagButton } from "../../Admin/Needs/TagButton";
-import { jsUcfirst } from "lib";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
+import { getStatusColorAndText } from "./functions";
 import styles from "./TranslationNeedsModal.module.scss";
 
 interface Props {
@@ -31,7 +30,7 @@ const Header = styled.div`
 `;
 
 const StatusContainer = styled.div`
-  background-color: ${(props: {backgroundColor: string}) => props.backgroundColor};
+  background-color: ${(props: { backgroundColor: string }) => props.backgroundColor};
   border-radius: 8px;
   padding: 10px;
   font-weight: bold;
@@ -42,26 +41,6 @@ const StatusContainer = styled.div`
   white-space: nowrap;
 `;
 
-const getStatusColorAndText = (
-  need: Need,
-  langueI18nCode: AvailableLanguageI18nCode
-) => {
-  if (!langueI18nCode)
-    return { statusColor: colors.darkGrey, statusText: "Erreur" };
-
-  // @ts-ignore
-  if (!need[langueI18nCode] || !need[langueI18nCode].text)
-    return { statusColor: colors.blue, statusText: "À traduire" };
-  if (
-    langueI18nCode &&
-    need[langueI18nCode] &&
-    // @ts-ignore
-    need.fr.updatedAt > need[langueI18nCode].updatedAt
-  )
-    return { statusColor: colors.rouge, statusText: "À revoir" };
-  return { statusColor: colors.green, statusText: "À jour" };
-};
-
 export const TranslationNeedsModal = (props: Props) => {
   const arrayLines = new Array(6).fill("a");
   const arrayContent = new Array(3).fill("a");
@@ -69,9 +48,7 @@ export const TranslationNeedsModal = (props: Props) => {
 
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_NEEDS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
   }, []);
@@ -131,13 +108,11 @@ export const TranslationNeedsModal = (props: Props) => {
         <Table responsive borderless>
           <thead>
             <tr>
-              {["Nom du besoin", "Thème", "Traduction", "Statut"].map(
-                (element, key) => (
-                  <th key={key}>
-                    <div>{element}</div>
-                  </th>
-                )
-              )}
+              {["Nom du besoin", "Thème", "Traduction", "Statut"].map((element, key) => (
+                <th key={key}>
+                  <div>{element}</div>
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -165,15 +140,10 @@ export const TranslationNeedsModal = (props: Props) => {
           style={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: "flex-end"
           }}
         >
-          <FButton
-            className="mr-8"
-            type="white"
-            name="arrow-back-outline"
-            onClick={props.toggle}
-          >
+          <FButton className="mr-8" type="white" name="arrow-back-outline" onClick={props.toggle}>
             Retour
           </FButton>
         </div>
@@ -193,13 +163,11 @@ export const TranslationNeedsModal = (props: Props) => {
       <Table responsive borderless>
         <thead>
           <tr>
-            {["Nom du besoin", "Thème", "Traduction", "Statut"].map(
-              (element, key) => (
-                <th key={key}>
-                  <div>{element}</div>
-                </th>
-              )
-            )}
+            {["Nom du besoin", "Thème", "Traduction", "Statut"].map((element, key) => (
+              <th key={key}>
+                <div>{element}</div>
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -218,17 +186,12 @@ export const TranslationNeedsModal = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ marginLeft: -4, width: 130 }}>
-                    <TagButton
-                      theme={need.theme}
-                      isSelected={true}
-                    />
+                    <TagButton theme={need.theme} isSelected={true} />
                   </div>
                 </td>
                 <td className="align-middle">{translatedNeed}</td>
                 <td className="align-middle" style={{ width: 120 }}>
-                  <StatusContainer backgroundColor={need.statusColor}>
-                    {need.statusText}
-                  </StatusContainer>
+                  <StatusContainer backgroundColor={need.statusColor}>{need.statusText}</StatusContainer>
                 </td>
               </tr>
             );
@@ -239,30 +202,17 @@ export const TranslationNeedsModal = (props: Props) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-between"
         }}
       >
-        <FButton
-          type="tuto"
-          name={"play-circle-outline"}
-          onClick={toggleTutorielModal}
-        >
+        <FButton type="tuto" name={"play-circle-outline"} onClick={toggleTutorielModal}>
           Tutoriel
         </FButton>
-        <FButton
-          className="mr-8"
-          type="white"
-          name="arrow-back-outline"
-          onClick={props.toggle}
-        >
+        <FButton className="mr-8" type="white" name="arrow-back-outline" onClick={props.toggle}>
           Retour
         </FButton>
       </div>
-      <FrameModal
-        show={showTutorielModal}
-        toggle={toggleTutorielModal}
-        section={"Traduction besoin"}
-      />
+      <FrameModal show={showTutorielModal} toggle={toggleTutorielModal} section={"Traduction besoin"} />
     </Modal>
   );
 };
