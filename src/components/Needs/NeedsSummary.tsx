@@ -28,8 +28,8 @@ const NeedContainer = styled(RTLTouchableOpacity)<{ needTheme: Theme }>`
 `;
 
 const IndicatorContainer = styled(RTLView)`
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   margin-horizontal: ${({ theme }) => theme.margin}px;
 `;
 
