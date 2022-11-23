@@ -12,6 +12,7 @@ interface Props {
   reset: () => void;
   children: any;
   nbResults: number;
+  showFooter: boolean;
 }
 
 const DropdownMenuMobile = (props: Props) => {
@@ -33,15 +34,17 @@ const DropdownMenuMobile = (props: Props) => {
 
       {props.children}
 
-      <div className={styles.footer}>
-        <Button color="white" className={styles.reset} onClick={props.reset}>
-          <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
-          {t("Recherche.resetButton", "Réinitialiser")}
-        </Button>
-        <Button color="primary" className={styles.btn_search} onClick={props.close}>
-          {t("Recherche.seeButton", "Voir les fiches", { count: props.nbResults })}
-        </Button>
-      </div>
+      {props.showFooter && (
+        <div className={styles.footer}>
+          <Button color="white" className={styles.reset} onClick={props.reset}>
+            <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
+            {t("Recherche.resetButton", "Réinitialiser")}
+          </Button>
+          <Button color="primary" className={styles.btn_search} onClick={props.close}>
+            {t("Recherche.seeButton", "Voir les fiches", { count: props.nbResults })}
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
