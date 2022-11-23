@@ -8,19 +8,34 @@ exports[`Accessibility screen should render correctly 1`] = `
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minWidth": "100%",
       },
     ]
   }
 >
-  <View>
+  <View
+    collapsable={false}
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "left": 0,
+        "paddingHorizontal": 24,
+        "paddingTop": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+        "zIndex": 2,
+      }
+    }
+  >
     <View
       style={
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "right": 0,
-          "top": 0,
-        }
+        Array [
+          Object {
+            "minHeight": 65,
+            "paddingBottom": 20,
+          },
+        ]
       }
     >
       <View
@@ -183,98 +198,32 @@ exports[`Accessibility screen should render correctly 1`] = `
             ]
           }
         >
-          <View />
-        </View>
-      </View>
-      <View
-        collapsable={false}
-        showSimplifiedHeader={false}
-        style={
-          Object {
-            "height": "auto",
-            "justifyContent": "center",
-            "marginTop": 32,
-            "minHeight": 48,
-            "overflow": "hidden",
-            "paddingBottom": 8,
-          }
-        }
-      >
-        <View
-          RTLBehaviour={true}
-          collapsable={false}
-          horizontalAlign="center"
-          style={
-            Object {
-              "alignItems": "center",
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "center",
-            }
-          }
-          verticalAlign="center"
-        >
           <View
+            RTLBehaviour={false}
+            collapsable={false}
+            horizontalAlign="flex-end"
             style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 16,
-                },
-              ]
+              Object {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
+              }
             }
+            verticalAlign="center"
           >
             <View
-              RTLBehaviour={true}
-              collapsable={false}
-              horizontalAlign="flex-start"
               style={
-                Object {
-                  "alignItems": "center",
-                  "flexBasis": "auto",
-                  "flexDirection": "row",
-                  "flexGrow": 1,
-                  "justifyContent": "flex-start",
-                }
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
               }
-              verticalAlign="center"
             >
-              <View
-                style={
-                  Array [
-                    Object {
-                      "flexBasis": "auto",
-                      "flexGrow": 0,
-                      "marginRight": 16,
-                    },
-                  ]
-                }
-              >
-                <Text
-                  collapsable={false}
-                  hasBackgroundImage={false}
-                  invertedColor={false}
-                  showSimplifiedHeader={false}
-                  style={
-                    Object {
-                      "color": "#212121",
-                      "fontFamily": "circularBold",
-                      "fontSize": 25,
-                      "lineHeight": 40,
-                      "textAlign": "left",
-                    }
-                  }
-                >
-                  <Text
-                    style={Object {}}
-                  >
-                    L’accessibilité, c’est quoi ?
-                  </Text>
-                  <View />
-                </Text>
-              </View>
+              <View />
             </View>
           </View>
         </View>
@@ -320,12 +269,7 @@ exports[`Accessibility screen should render correctly 1`] = `
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
-    scrollEventThrottle={10}
-    scrollIndicatorInsets={
-      Object {
-        "right": 1,
-      }
-    }
+    scrollEventThrottle={26}
     style={
       Array [
         Object {
@@ -335,6 +279,118 @@ exports[`Accessibility screen should render correctly 1`] = `
     }
   >
     <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "marginBottom": 16,
+            "marginLeft": -24,
+            "marginRight": -24,
+            "marginTop": -24,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "justifyContent": "center",
+                  "minHeight": 48,
+                  "paddingBottom": 8,
+                },
+              ]
+            }
+          >
+            <View
+              RTLBehaviour={true}
+              collapsable={false}
+              horizontalAlign="center"
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "center",
+                }
+              }
+              verticalAlign="center"
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "marginRight": 16,
+                    },
+                  ]
+                }
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      hasBackgroundImage={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "fontFamily": "circularBold",
+                            "fontSize": 25,
+                            "lineHeight": 40,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      <Text
+                        style={Object {}}
+                      >
+                        L’accessibilité, c’est quoi ?
+                      </Text>
+                      <View />
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
       <Text
         isRTL={false}
         selectable={true}

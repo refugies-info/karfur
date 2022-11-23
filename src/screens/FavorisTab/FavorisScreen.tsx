@@ -36,9 +36,7 @@ import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { Page } from "../../components";
 import getContentsToDisplay from "./getContentsToDisplay";
-import { withProps } from "../../utils";
-import HeaderContentTitle from "../../components/layout/Header/HeaderContentTitle";
-import { HeaderContentProps } from "../../components/layout/Header/HeaderContentProps";
+import { ReadableText } from "../../components/ReadableText";
 
 const EmptyContainer = styled.View`
   padding-horizontal: ${({ theme }) => theme.margin * 4}px;
@@ -132,11 +130,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
   return (
     <Page
       loading={loading}
-      HeaderContent={
-        withProps({
-          title: t("favorites_screen.my_content", "Mes fiches"),
-        })(HeaderContentTitle) as React.ComponentType<HeaderContentProps>
-      }
+      title={t("favorites_screen.my_content", "Mes fiches")}
     >
       {favorites.length > 0 ? (
         <>
@@ -216,7 +210,11 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
             source={EmptyIllu}
             style={{ width: 312, height: 250, marginTop: styles.margin * 4 }}
           />
-          <EmptyTitle>{t("favorites_screen.empty", "C'est vide")}</EmptyTitle>
+          <EmptyTitle>
+            <ReadableText>
+              {t("favorites_screen.empty", "C'est vide")}
+            </ReadableText>
+          </EmptyTitle>
           <EmptyText>
             {t(
               "favorites_screen.add_content",

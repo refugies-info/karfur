@@ -1,6 +1,6 @@
 import { isNull } from "lodash";
 import React from "react";
-import { View } from "react-native";
+import { Animated, View } from "react-native";
 import styled from "styled-components/native";
 import { Content, Sponsor, Theme } from "../../../types/interface";
 import {
@@ -12,9 +12,7 @@ import { ReadableText } from "../../ReadableText";
 import { TextBigBold, TextSmallNormal } from "../../StyledText";
 import { HeaderContentProps } from "./HeaderContentProps";
 
-const TitlesContainer = styled(View)`
-  margin-bottom: 66px;
-`;
+const TitlesContainer = styled(View)``;
 
 const TitreInfoText = styled(TextBigBold)`
   opacity: 0.9;
@@ -41,7 +39,6 @@ export interface HeaderContentContentScreenProps extends HeaderContentProps {
 
 const HeaderContentContentScreen = ({
   content,
-  showSimplifiedHeader,
   sponsor,
   theme,
 }: HeaderContentContentScreenProps) => {
@@ -53,10 +50,13 @@ const HeaderContentContentScreen = ({
       ? -25
       : -getContainerDimensions(imageName).height / 2;
 
-  return showSimplifiedHeader ? (
-    <></>
-  ) : (
-    <View style={{ position: "relative", marginTop: 20 }}>
+  return (
+    <Animated.View
+      style={{
+        position: "relative",
+        marginTop: 20,
+      }}
+    >
       <TitlesContainer>
         <TitreInfoText>
           <ReadableText>{content.titreInformatif || ""}</ReadableText>
@@ -68,7 +68,7 @@ const HeaderContentContentScreen = ({
           </TitreMarqueText>
         )}
       </TitlesContainer>
-      <View style={{ position: "absolute", bottom }}>
+      <View style={{ bottom }}>
         <ContentImage
           sponsorName={sponsor.nom}
           sponsorPictureUrl={sponsor.picture?.secure_url || null}
@@ -77,7 +77,7 @@ const HeaderContentContentScreen = ({
           contentId={content._id}
         />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

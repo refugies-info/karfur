@@ -3,7 +3,6 @@ import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRe
 import { initialRootStateFactory } from "../../../services/redux/reducers";
 import { AccessibilityScreen } from "../AccessibilityScreen";
 
-jest.useFakeTimers();
 jest.mock("../../../hooks/useTranslationWithRTL", () => ({
   useTranslationWithRTL: jest.fn().mockReturnValue({
     i18n: { changeLanguage: jest.fn() },

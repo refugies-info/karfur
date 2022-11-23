@@ -4,7 +4,7 @@ import { StyledTextSmallBold, StyledTextSmall } from "../../StyledText";
 import { Flag } from "../Flag";
 import { useTranslationWithRTL } from "../../../hooks/useTranslationWithRTL";
 import { ChoiceButton, ChoiceButtonProps } from "../../formulaire";
-import { Columns } from "../../layout";
+import Columns from "../../layout/Columns";
 
 const StyledTextBold = styled(StyledTextSmallBold)`
   text-align: left;

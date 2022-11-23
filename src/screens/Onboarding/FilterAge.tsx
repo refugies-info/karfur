@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { OnboardingProgressBar } from "../../components/Onboarding/OnboardingProgressBar";
@@ -14,13 +14,11 @@ import {
   removeUserAgeActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userAgeSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, Page } from "../../components";
-import { useTheme } from "styled-components/native";
+import { FilterButton, Page, Rows } from "../../components";
 
 export const FilterAge = ({
   navigation,
 }: StackScreenProps<OnboardingParamList, "FilterAge">) => {
-  const theme = useTheme();
   const [selectedAge, setSelectedAge] = React.useState<string | null>(null);
   const navigateToNextScreen = () => navigation.navigate("FilterFrenchLevel");
 
@@ -58,18 +56,11 @@ export const FilterAge = ({
   const { t } = useTranslationWithRTL();
   return (
     <Page
-      disableAutomaticScroll
       headerIconName={"person-outline"}
       headerTitle={t("onboarding_screens.me", "Créer mon profil")}
       hideLanguageSwitch
     >
-      <ScrollView
-        contentContainerStyle={{
-          justifyContent: "space-between",
-          padding: theme.margin * 3,
-          flexGrow: 1,
-        }}
-      >
+      <Rows>
         <View>
           <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
           <Explaination
@@ -95,7 +86,7 @@ export const FilterAge = ({
             onRightButtonClick={onValidate}
           />
         </View>
-      </ScrollView>
+      </Rows>
     </Page>
   );
 };

@@ -18,7 +18,11 @@ export const SearchScreen = ({
   );
 
   return (
-    <Page hideBack HeaderContent={HeaderContentSearch}>
+    <Page
+      hideBack
+      HeaderContent={HeaderContentSearch}
+      HeaderComponent={HeaderContentSearch}
+    >
       <SearchSuggestions
         contents={mostViewedContents}
         navigation={navigation}

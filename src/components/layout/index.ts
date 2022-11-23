@@ -5,3 +5,4 @@ export { default as Page } from "./Page";
 export { default as Rows, RowsSpacing } from "./Rows";
 export { default as ScrollableContent } from "./ScrollableContent";
 export { default as Separator } from "./Separator";
+export { default as Spacer, SpacerProps } from "./Spacer";

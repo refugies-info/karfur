@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
+jest.useFakeTimers();
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
+
 jest.mock("@react-navigation/core", () => ({
   ...jest.requireActual("@react-navigation/core"),
   useRoute: jest.fn(),

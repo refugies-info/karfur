@@ -8,19 +8,34 @@ exports[`About screen should render correctly 1`] = `
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minWidth": "100%",
       },
     ]
   }
 >
-  <View>
+  <View
+    collapsable={false}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "left": 0,
+        "paddingHorizontal": 24,
+        "paddingTop": 0,
+        "position": "absolute",
+        "top": 0,
+        "width": "100%",
+        "zIndex": 2,
+      }
+    }
+  >
     <View
       style={
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "right": 0,
-          "top": 0,
-        }
+        Array [
+          Object {
+            "minHeight": 65,
+            "paddingBottom": 20,
+          },
+        ]
       }
     >
       <View
@@ -183,7 +198,34 @@ exports[`About screen should render correctly 1`] = `
             ]
           }
         >
-          <View />
+          <View
+            RTLBehaviour={false}
+            collapsable={false}
+            horizontalAlign="flex-end"
+            style={
+              Object {
+                "alignItems": "center",
+                "flexBasis": "auto",
+                "flexDirection": "row",
+                "flexGrow": 1,
+                "justifyContent": "flex-end",
+              }
+            }
+            verticalAlign="center"
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View />
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -227,12 +269,7 @@ exports[`About screen should render correctly 1`] = `
     onMomentumScrollEnd={[Function]}
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
-    scrollEventThrottle={10}
-    scrollIndicatorInsets={
-      Object {
-        "right": 1,
-      }
-    }
+    scrollEventThrottle={26}
     style={
       Array [
         Object {
@@ -242,6 +279,28 @@ exports[`About screen should render correctly 1`] = `
     }
   >
     <View>
+      <View
+        onLayout={[Function]}
+        style={
+          Object {
+            "marginBottom": 16,
+            "marginLeft": -24,
+            "marginRight": -24,
+            "marginTop": -24,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+      </View>
       <View
         style={
           Array [

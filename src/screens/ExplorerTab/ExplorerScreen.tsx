@@ -28,7 +28,8 @@ import { logger } from "../../logger";
 import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import LocationWarning from "../../components/Explorer/LocationWarning";
 import { NotificationsModal } from "../../components/Notifications";
-import { Page } from "../../components";
+import { Page, Rows } from "../../components";
+import { View } from "react-native";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${styles.margin * 4}px;
@@ -50,7 +51,7 @@ const CenteredView = styled.View`
   display: flex;
   flex-direction: column;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 export const ExplorerScreen = ({
@@ -111,64 +112,70 @@ export const ExplorerScreen = ({
   useFocusEffect(redirect);
 
   return (
-    <Page showLogo>
-      <LocationWarning />
+    <>
+      <Page showLogo>
+        <View style={{ minHeight: "85%" }}>
+          <LocationWarning />
 
-      <ViewChoiceContainer>
-        <ViewChoice
-          text={"gallery"}
-          isSelected={tabSelected === "galery"}
-          iconName={"galery"}
-          onPress={() => {
-            logEventInFirebase(FirebaseEvent.CLIC_CAROUSEL, {});
+          <ViewChoiceContainer>
+            <ViewChoice
+              text={"gallery"}
+              isSelected={tabSelected === "galery"}
+              iconName={"galery"}
+              onPress={() => {
+                logEventInFirebase(FirebaseEvent.CLIC_CAROUSEL, {});
 
-            setTabSelected("galery");
-          }}
-        />
-        <ViewChoice
-          text={"list"}
-          isSelected={tabSelected === "list"}
-          iconName={"list"}
-          onPress={() => {
-            logEventInFirebase(FirebaseEvent.CLIC_LIST, {});
+                setTabSelected("galery");
+              }}
+            />
+            <ViewChoice
+              text={"list"}
+              isSelected={tabSelected === "list"}
+              iconName={"list"}
+              onPress={() => {
+                logEventInFirebase(FirebaseEvent.CLIC_LIST, {});
 
-            setTabSelected("list");
-          }}
-        />
-      </ViewChoiceContainer>
-      {tabSelected === "list" ? (
-        themes.sort(sortByOrder).map((currentTheme, index) => (
-          <TagButton
-            key={index}
-            name={currentTheme.name[currentLanguageI18nCode || "fr"]}
-            backgroundColor={currentTheme.colors.color100}
-            icon={currentTheme.icon}
-            onPress={() => {
-              logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-                theme: currentTheme.name.fr,
-                view: "list",
-              });
+                setTabSelected("list");
+              }}
+            />
+          </ViewChoiceContainer>
+          {tabSelected === "list" ? (
+            themes.sort(sortByOrder).map((currentTheme, index) => (
+              <TagButton
+                key={index}
+                name={currentTheme.name[currentLanguageI18nCode || "fr"]}
+                backgroundColor={currentTheme.colors.color100}
+                icon={currentTheme.icon}
+                onPress={() => {
+                  logEventInFirebase(FirebaseEvent.CLIC_THEME, {
+                    theme: currentTheme.name.fr,
+                    view: "list",
+                  });
 
-              navigation.navigate("NeedsScreen", {
-                theme: currentTheme,
-              });
-              return;
-            }}
-            style={{
-              marginBottom: styles.margin * 3,
-              marginTop: 0,
-            }}
-          />
-        ))
-      ) : (
-        <CenteredView>
-          <CarousselContainer>
-            <TagsCarousel navigation={navigation} />
-          </CarousselContainer>
-        </CenteredView>
-      )}
-
+                  navigation.navigate("NeedsScreen", {
+                    theme: currentTheme,
+                  });
+                  return;
+                }}
+                style={{
+                  marginBottom: styles.margin * 3,
+                  marginTop: 0,
+                }}
+              />
+            ))
+          ) : (
+            <Rows layout="1" verticalAlign="space-between">
+              <View />
+              <CenteredView>
+                <CarousselContainer>
+                  <TagsCarousel navigation={navigation} />
+                </CarousselContainer>
+              </CenteredView>
+            </Rows>
+          )}
+        </View>
+      </Page>
       <NotificationsModal />
-    </Page>
+    </>
   );
 };

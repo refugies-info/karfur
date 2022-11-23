@@ -5,9 +5,4 @@ const ScrollableContent = styled.ScrollView<{ noMargin?: boolean }>`
     noMargin ? "0" : theme.layout.content.normal};
 `;
 
-/*
-  padding-horizontal: ${({ noMargin, theme }) =>
-    noMargin ? "0" : theme.layout.content.normal};
-*/
-
 export default ScrollableContent;

@@ -9,45 +9,34 @@ Array [
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,
+          "minWidth": "100%",
         },
       ]
     }
   >
     <View
-      accessibilityIgnoresInvertColors={true}
-    >
-      <Image
-        resizeMode="cover"
-        source={
-          Object {
-            "uri": "/images/app-banner/francais.png",
-          }
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingTop": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
         }
+      }
+    >
+      <View
         style={
           Array [
             Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
+              "minHeight": 65,
+              "paddingBottom": 20,
             },
-            Object {
-              "height": undefined,
-              "width": undefined,
-            },
-            undefined,
           ]
-        }
-      />
-      <View
-        style={
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "right": 0,
-            "top": 0,
-          }
         }
       >
         <View
@@ -210,146 +199,32 @@ Array [
               ]
             }
           >
-            <View />
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-              "position": "relative",
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "marginBottom": 66,
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#FFFFFF",
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 40,
-                    "marginBottom": 16,
-                    "opacity": 0.9,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={Object {}}
-              >
-                Être aidé pour trouver un logement et un travail
-              </Text>
-              <View />
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#FFFFFF",
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 32,
-                    "opacity": 0.9,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={Object {}}
-              >
-                avec Insair 38 - ADOMA
-              </Text>
-              <View />
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "bottom": -50,
-                "position": "absolute",
-              }
-            }
-          >
             <View
-              height={100}
+              RTLBehaviour={false}
+              collapsable={false}
+              horizontalAlign="flex-end"
               style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#F6F6F6",
-                    "borderRadius": 12,
-                    "display": "flex",
-                    "height": 100,
-                    "marginBottom": 8,
-                    "marginTop": -50,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "width": 100,
-                    "zIndex": 2,
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-end",
+                }
               }
-              width={100}
+              verticalAlign="center"
             >
               <View
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "justifyContent": "center",
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
               >
-                <Image
-                  resizeMode="contain"
-                  source={
-                    Object {
-                      "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 84,
-                      "width": 84,
-                    }
-                  }
-                />
+                <View />
               </View>
             </View>
           </View>
@@ -395,12 +270,7 @@ Array [
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollEndDrag={[Function]}
-      scrollEventThrottle={10}
-      scrollIndicatorInsets={
-        Object {
-          "right": 1,
-        }
-      }
+      scrollEventThrottle={26}
       style={
         Array [
           Object {
@@ -410,6 +280,203 @@ Array [
       }
     >
       <View>
+        <View
+          accessibilityIgnoresInvertColors={true}
+          style={
+            Object {
+              "marginBottom": 16,
+              "marginLeft": -24,
+              "marginRight": -24,
+              "marginTop": -24,
+            }
+          }
+        >
+          <Image
+            onLayout={[Function]}
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": "/images/app-banner/francais.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "marginTop": 20,
+                  "position": "relative",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 25,
+                        "lineHeight": 40,
+                        "marginBottom": 16,
+                        "opacity": 0.9,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={Object {}}
+                  >
+                    Être aidé pour trouver un logement et un travail
+                  </Text>
+                  <View />
+                </Text>
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 32,
+                        "opacity": 0.9,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={Object {}}
+                  >
+                    avec Insair 38 - ADOMA
+                  </Text>
+                  <View />
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": -50,
+                  }
+                }
+              >
+                <View
+                  height={100}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#F6F6F6",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "height": 100,
+                        "marginBottom": 8,
+                        "marginTop": -50,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "width": 100,
+                        "zIndex": 2,
+                      },
+                    ]
+                  }
+                  width={100}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 8,
+                          "display": "flex",
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "flexShrink": 1,
+                          "justifyContent": "center",
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      resizeMode="contain"
+                      source={
+                        Object {
+                          "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 84,
+                          "width": 84,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          height={20}
+          style={
+            Array [
+              Object {
+                "minHeight": 20,
+              },
+            ]
+          }
+        />
         <View>
           <Text
             color="#3D2884"
@@ -3762,6 +3829,16 @@ Array [
             </View>
           </View>
         </View>
+        <View
+          height={60}
+          style={
+            Array [
+              Object {
+                "minHeight": 60,
+              },
+            ]
+          }
+        />
       </View>
     </RCTScrollView>
   </View>,
@@ -4513,45 +4590,34 @@ Array [
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,
+          "minWidth": "100%",
         },
       ]
     }
   >
     <View
-      accessibilityIgnoresInvertColors={true}
-    >
-      <Image
-        resizeMode="cover"
-        source={
-          Object {
-            "uri": "/images/app-banner/francais.png",
-          }
+      collapsable={false}
+      style={
+        Object {
+          "backgroundColor": "rgba(0, 0, 0, 0)",
+          "left": 0,
+          "paddingHorizontal": 24,
+          "paddingTop": 0,
+          "position": "absolute",
+          "top": 0,
+          "width": "100%",
+          "zIndex": 2,
         }
+      }
+    >
+      <View
         style={
           Array [
             Object {
-              "bottom": 0,
-              "left": 0,
-              "position": "absolute",
-              "right": 0,
-              "top": 0,
+              "minHeight": 65,
+              "paddingBottom": 20,
             },
-            Object {
-              "height": undefined,
-              "width": undefined,
-            },
-            undefined,
           ]
-        }
-      />
-      <View
-        style={
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "right": 0,
-            "top": 0,
-          }
         }
       >
         <View
@@ -4714,146 +4780,32 @@ Array [
               ]
             }
           >
-            <View />
-          </View>
-        </View>
-        <View
-          style={
-            Object {
-              "marginTop": 20,
-              "position": "relative",
-            }
-          }
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "marginBottom": 66,
-                },
-              ]
-            }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#FFFFFF",
-                    "color": "#212121",
-                    "fontFamily": "circularBold",
-                    "fontSize": 25,
-                    "lineHeight": 40,
-                    "marginBottom": 16,
-                    "opacity": 0.9,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={Object {}}
-              >
-                Être aidé pour trouver un logement et un travail
-              </Text>
-              <View />
-            </Text>
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#FFFFFF",
-                    "color": "#212121",
-                    "fontFamily": "circularBook",
-                    "fontSize": 16,
-                    "lineHeight": 32,
-                    "opacity": 0.9,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "textAlign": "left",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={Object {}}
-              >
-                avec Insair 38 - ADOMA
-              </Text>
-              <View />
-            </Text>
-          </View>
-          <View
-            style={
-              Object {
-                "bottom": -50,
-                "position": "absolute",
-              }
-            }
-          >
             <View
-              height={100}
+              RTLBehaviour={false}
+              collapsable={false}
+              horizontalAlign="flex-end"
               style={
-                Array [
-                  Object {
-                    "alignSelf": "flex-start",
-                    "backgroundColor": "#F6F6F6",
-                    "borderRadius": 12,
-                    "display": "flex",
-                    "height": 100,
-                    "marginBottom": 8,
-                    "marginTop": -50,
-                    "paddingBottom": 8,
-                    "paddingLeft": 8,
-                    "paddingRight": 8,
-                    "paddingTop": 8,
-                    "width": 100,
-                    "zIndex": 2,
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "flexBasis": "auto",
+                  "flexDirection": "row",
+                  "flexGrow": 1,
+                  "justifyContent": "flex-end",
+                }
               }
-              width={100}
+              verticalAlign="center"
             >
               <View
                 style={
                   Array [
                     Object {
-                      "backgroundColor": "#FFFFFF",
-                      "borderRadius": 8,
-                      "display": "flex",
-                      "flexBasis": 0,
-                      "flexGrow": 1,
-                      "flexShrink": 1,
-                      "justifyContent": "center",
+                      "flexBasis": "auto",
+                      "flexGrow": 0,
                     },
                   ]
                 }
               >
-                <Image
-                  resizeMode="contain"
-                  source={
-                    Object {
-                      "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
-                    }
-                  }
-                  style={
-                    Object {
-                      "height": 84,
-                      "width": 84,
-                    }
-                  }
-                />
+                <View />
               </View>
             </View>
           </View>
@@ -4899,12 +4851,7 @@ Array [
       onMomentumScrollEnd={[Function]}
       onScroll={[Function]}
       onScrollEndDrag={[Function]}
-      scrollEventThrottle={10}
-      scrollIndicatorInsets={
-        Object {
-          "right": 1,
-        }
-      }
+      scrollEventThrottle={26}
       style={
         Array [
           Object {
@@ -4914,6 +4861,203 @@ Array [
       }
     >
       <View>
+        <View
+          accessibilityIgnoresInvertColors={true}
+          style={
+            Object {
+              "marginBottom": 16,
+              "marginLeft": -24,
+              "marginRight": -24,
+              "marginTop": -24,
+            }
+          }
+        >
+          <Image
+            onLayout={[Function]}
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": "/images/app-banner/francais.png",
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                },
+                Object {
+                  "height": undefined,
+                  "width": undefined,
+                },
+                undefined,
+              ]
+            }
+          />
+          <View
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "right": 0,
+                "top": 0,
+              }
+            }
+          >
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "marginTop": 20,
+                  "position": "relative",
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#212121",
+                        "fontFamily": "circularBold",
+                        "fontSize": 25,
+                        "lineHeight": 40,
+                        "marginBottom": 16,
+                        "opacity": 0.9,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={Object {}}
+                  >
+                    Être aidé pour trouver un logement et un travail
+                  </Text>
+                  <View />
+                </Text>
+                <Text
+                  isRTL={false}
+                  selectable={true}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#FFFFFF",
+                        "color": "#212121",
+                        "fontFamily": "circularBook",
+                        "fontSize": 16,
+                        "lineHeight": 32,
+                        "opacity": 0.9,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "textAlign": "left",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={Object {}}
+                  >
+                    avec Insair 38 - ADOMA
+                  </Text>
+                  <View />
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": -50,
+                  }
+                }
+              >
+                <View
+                  height={100}
+                  style={
+                    Array [
+                      Object {
+                        "alignSelf": "flex-start",
+                        "backgroundColor": "#F6F6F6",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "height": 100,
+                        "marginBottom": 8,
+                        "marginTop": -50,
+                        "paddingBottom": 8,
+                        "paddingLeft": 8,
+                        "paddingRight": 8,
+                        "paddingTop": 8,
+                        "width": 100,
+                        "zIndex": 2,
+                      },
+                    ]
+                  }
+                  width={100}
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "backgroundColor": "#FFFFFF",
+                          "borderRadius": 8,
+                          "display": "flex",
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "flexShrink": 1,
+                          "justifyContent": "center",
+                        },
+                      ]
+                    }
+                  >
+                    <Image
+                      resizeMode="contain"
+                      source={
+                        Object {
+                          "uri": "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1614699260/pictures/ikly5syqhjdnpb4noxvr.jpg",
+                        }
+                      }
+                      style={
+                        Object {
+                          "height": 84,
+                          "width": 84,
+                        }
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          height={20}
+          style={
+            Array [
+              Object {
+                "minHeight": 20,
+              },
+            ]
+          }
+        />
         <View>
           <Text
             color="#3D2884"
@@ -8266,6 +8410,16 @@ Array [
             </View>
           </View>
         </View>
+        <View
+          height={60}
+          style={
+            Array [
+              Object {
+                "minHeight": 60,
+              },
+            ]
+          }
+        />
       </View>
     </RCTScrollView>
   </View>,

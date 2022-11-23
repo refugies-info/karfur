@@ -13,7 +13,6 @@ export const FilterCity = ({
 
   return (
     <Page
-      disableAutomaticScroll
       hideLanguageSwitch
       headerIconName={"person-outline"}
       headerTitle={t("onboarding_screens.me", "Créer mon profil")}

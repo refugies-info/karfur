@@ -8,7 +8,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCorrespondency";
 import { ObjectId, Picture } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
-import { Columns } from "../layout";
+import Columns from "../layout/Columns";
 
 const CONTAINER_SIZE = 100;
 

@@ -112,9 +112,10 @@ const sortPartners = () =>
     return -1;
   });
 
-export const AboutScreen = ({
-  navigation,
-}: StackScreenProps<ProfileParamList, "AboutScreen">) => {
+export const AboutScreen = ({}: StackScreenProps<
+  ProfileParamList,
+  "AboutScreen"
+>) => {
   const { t, isRTL } = useTranslationWithRTL();
 
   const scrollviewMissions = React.useRef<ScrollView>(null);

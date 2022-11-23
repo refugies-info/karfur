@@ -25,6 +25,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabParamList, ExplorerParamList } from "../../types";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { Page } from "../components";
+import { withProps } from "../utils";
+import { HeaderContentTitle } from "../components/layout/Header";
 
 const ICON_SIZE = 24;
 
@@ -98,21 +100,24 @@ export const NotificationsScreen = () => {
 
   return (
     <Page
-      title={t("notifications.notifications")}
-      headerTooltip={
-        <TouchableOpacity
-          style={stylesheet.settingsButton}
-          activeOpacity={0.8}
-          onPress={goToNotificationsSettingsScreen}
-        >
-          <Icon
-            name="settings-outline"
-            width={ICON_SIZE}
-            height={ICON_SIZE}
-            fill={styles.colors.black}
-          />
-        </TouchableOpacity>
-      }
+      headerTitle={t("notifications.notifications")}
+      HeaderContent={withProps({
+        title: t("notifications.notifications"),
+        headerTooltip: (
+          <TouchableOpacity
+            style={stylesheet.settingsButton}
+            activeOpacity={0.8}
+            onPress={goToNotificationsSettingsScreen}
+          >
+            <Icon
+              name="settings-outline"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              fill={styles.colors.black}
+            />
+          </TouchableOpacity>
+        ),
+      })(HeaderContentTitle)}
     >
       {!accessGranted && <EnableNotifications />}
       {!!accessGranted && (

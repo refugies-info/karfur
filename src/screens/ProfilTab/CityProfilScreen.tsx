@@ -11,7 +11,6 @@ export const CityProfilScreen = ({
   const { t } = useTranslationWithRTL();
   return (
     <Page
-      disableAutomaticScroll
       headerTitle={t("profile_screens.city", "Ville")}
       headerIconName="pin-outline"
     >

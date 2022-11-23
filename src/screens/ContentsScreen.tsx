@@ -144,18 +144,15 @@ export const ContentsScreen = ({
       headerTitle={needName}
       HeaderContent={
         withProps({
-          themeDarkColor: colors.color100,
           themeName: theme?.name[currentLanguageI18nCode || "fr"] || "",
           icon: theme?.icon,
           navigation,
           needName,
-          nbContents: contentsToDisplay.length,
-          isLoading,
         })(
           HeaderContentContentsScreen
         ) as React.ComponentType<HeaderContentProps>
       }
-      headerBackgroundColor={colors.color100}
+      headerBackgroundColor={colors.color30}
     >
       {sortedTranslatedContents.map((content) => {
         return (

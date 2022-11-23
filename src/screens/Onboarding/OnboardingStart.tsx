@@ -20,6 +20,8 @@ const MainView = styled(SafeAreaView)`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  max-height: 100%;
+  padding-bottom: ${({ theme }) => theme.insets.bottom}px;
 `;
 
 const StyledText = styled(StyledTextBigBold)`
@@ -50,7 +52,7 @@ export const OnboardingStart = ({
       />
       <Content>
         <Rows verticalAlign="flex-end">
-          <ScrollView style={{ marginTop: 370 }}>
+          <ScrollView contentContainerStyle={{ justifyContent: "flex-start" }}>
             <StyledText marginBottom={`${styles.margin * 8}px`}>
               {t("onboarding_screens.bonjour", "trad")}
             </StyledText>

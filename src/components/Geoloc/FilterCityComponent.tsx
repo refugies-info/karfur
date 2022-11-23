@@ -1,6 +1,5 @@
 import * as Location from "expo-location";
 import styled from "styled-components/native";
-import { ScrollView } from "react-native";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { styles } from "../../theme";
 import { TextSmallBold, StyledTextSmallBold } from "../StyledText";
@@ -32,6 +31,7 @@ import { ErrorComponent } from "../ErrorComponent";
 import { OnboardingProgressBar } from "../Onboarding/OnboardingProgressBar";
 import { BottomButtons } from "../Onboarding/BottomButtons";
 import { CustomButton } from "../CustomButton";
+import { Rows } from "../layout";
 
 const GeolocContainer = styled(RTLTouchableOpacity)`
   background-color: ${styles.colors.lightBlue};
@@ -261,13 +261,7 @@ export const FilterCityComponent = (props: Props) => {
   const isOnValidateDisabled =
     userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
-    <ScrollView
-      contentContainerStyle={{
-        justifyContent: "space-between",
-        padding: styles.margin * 3,
-        flexGrow: 1,
-      }}
-    >
+    <Rows>
       <View>
         <Title>
           {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
@@ -373,6 +367,6 @@ export const FilterCityComponent = (props: Props) => {
           </BottomButtonsContainer>
         )}
       </View>
-    </ScrollView>
+    </Rows>
   );
 };

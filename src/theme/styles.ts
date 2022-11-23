@@ -156,6 +156,10 @@ const layout = {
     nospace: "0",
     default: "16px",
   },
+  header: {
+    minHeight: 65,
+    paddingBottom: 20,
+  },
 };
 
 export default {

@@ -34,15 +34,6 @@ This will set for you a `HeaderContentTitle`.
 --
 
 If you want to create a fully custom `HeaderContent`, you have to inherit `HeaderContentProps` type for your component props.
-The `HeaderContent` can be animated using the `animatedController` prop.
-
-```js
-export type HeaderContentProps = {
-  animatedController: Animated.Value,
-  showSimplifiedHeader: boolean,
-  title?: string,
-};
-```
 
 Example : see `src/components/layout/Header/HeaderContentContentsScreen.tsx`
 

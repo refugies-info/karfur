@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-export function useHeaderAnimation() {
+export function useHeaderAnimation(offset = 10) {
   const [showSimplifiedHeader, setShowSimplifiedHeader] = useState(false);
 
   const handleScroll = (event: any) => {
-    if (event.nativeEvent.contentOffset.y > 10 && !showSimplifiedHeader) {
+    if (event.nativeEvent.contentOffset.y > offset && !showSimplifiedHeader) {
       setShowSimplifiedHeader(true);
       return;
     }
-    if (event.nativeEvent.contentOffset.y < 10 && showSimplifiedHeader) {
+    if (event.nativeEvent.contentOffset.y < offset && showSimplifiedHeader) {
       setShowSimplifiedHeader(false);
       return;
     }
