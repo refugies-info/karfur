@@ -22,6 +22,7 @@ interface Props {
   resetFilter?: () => void;
   smallIcon?: boolean;
   noInput?: boolean;
+  noEmptyBtn?: boolean;
 }
 
 const SearchInput = (props: Props) => {
@@ -102,16 +103,9 @@ const SearchInput = (props: Props) => {
               autoFocus
             />
             {props.inputValue && (
-              <EVAIcon
-                className={cls(styles.empty_btn, styles.mobile)}
-                name="close-outline"
-                fill="dark"
-                onClick={(e: any) => {
-                  e.stopPropagation();
-                  if (props.resetFilter) props.resetFilter();
-                }}
-                size={24}
-              />
+              <div className={styles.empty_btn}>
+                <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
+              </div>
             )}
           </>
         ) : (
@@ -120,7 +114,7 @@ const SearchInput = (props: Props) => {
               {props.value || props.placeholder}
               {hasEllipsis && props.value && <span className={styles.plus}>({countValues})</span>}
             </div>
-            {props.value && (
+            {props.value && !props.noEmptyBtn && (
               <div className={styles.empty_btn}>
                 <EVAIcon name="close-outline" fill="dark" onClick={onClickCross} size={20} />
               </div>

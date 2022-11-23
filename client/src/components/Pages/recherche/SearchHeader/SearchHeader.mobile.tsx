@@ -166,6 +166,7 @@ const SearchHeaderMobile = (props: Props) => {
               placeholder={t("Dispositif.Département", "Département")}
               smallIcon={true}
               noInput={true}
+              noEmptyBtn={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu}>
@@ -206,6 +207,7 @@ const SearchHeaderMobile = (props: Props) => {
               placeholder={t("Recherche.themes", "Thèmes")}
               smallIcon={true}
               noInput={true}
+              noEmptyBtn={true}
             />
           </DropdownToggle>
           <DropdownMenu className={styles.menu} persist>
