@@ -176,6 +176,7 @@ const SearchHeaderMobile = (props: Props) => {
               close={toggleLocation}
               reset={resetDepartment}
               nbResults={props.nbResults}
+              showFooter={query.departments.length > 0}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -217,6 +218,7 @@ const SearchHeaderMobile = (props: Props) => {
               close={toggleThemes}
               reset={resetTheme}
               nbResults={props.nbResults}
+              showFooter={query.themes.length > 0 || query.needs.length > 0}
             >
               <div className={styles.content}>
                 <div className={styles.input}>
@@ -247,6 +249,7 @@ const SearchHeaderMobile = (props: Props) => {
                 close={toggleFilters}
                 reset={resetFilters}
                 nbResults={props.nbResults}
+                showFooter={query.age.length > 0 || query.frenchLevel.length > 0 || query.language.length > 0}
               >
                 <div className={cls(styles.content, styles.more_filters)}>
                   <SecondaryFilter
