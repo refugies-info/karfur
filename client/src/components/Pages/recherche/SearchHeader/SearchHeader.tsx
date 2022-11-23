@@ -175,12 +175,14 @@ const SearchHeader = (props: Props) => {
   const [placeholderHeight, setPlaceholderHeight] = useState(0);
   const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
-    const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
-    setScrolled(newScrolled);
-    if (newScrolled) {
-      setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
+    if (!isMobile) {
+      const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
+      setScrolled(newScrolled);
+      if (newScrolled) {
+        setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
+      }
     }
-  }, [scrollDirection, overScrollLimit]);
+  }, [scrollDirection, overScrollLimit, isMobile]);
 
   const focusedStateProps = {
     locationFocusedState: [locationFocused, setLocationFocused] as [boolean, Dispatch<SetStateAction<boolean>>],

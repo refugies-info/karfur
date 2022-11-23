@@ -29,6 +29,7 @@
 
   @include isMobile() {
     height: auto;
+    flex-grow: 1;
   }
 }
 
@@ -82,7 +83,7 @@
 }
 
 .themes {
-  min-height: 57px;
+  min-height: 60px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
@@ -99,6 +100,11 @@
   padding-top: u(2);
   border-top: 1px solid $dark;
   width: 100%;
+  height: 56px;
+
+  .text {
+    line-height: 17px;
+  }
 
   .picture {
     width: 48px;
