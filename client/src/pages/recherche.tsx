@@ -28,11 +28,13 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { getDepartmentsNotDeployed, getThemesDisplayed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
+import isInBrowser from "lib/isInBrowser";
 import { SearchDispositif, Theme } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
 import HomeSearch from "components/Pages/recherche/HomeSearch";
+import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
 import { getPath } from "routes";
 import styles from "scss/pages/recherche.module.scss";
 
@@ -47,6 +49,8 @@ export type UrlSearchQuery = {
   type?: string | TypeOptions;
   search?: string;
 };
+
+const MODAL_STORAGE_KEY = "hideNewModal";
 
 const debouncedQuery = debounce(
   (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: (res: Results) => void) => {
@@ -68,6 +72,14 @@ const Recherche = () => {
   const filteredResult = useSelector(searchResultsSelector);
 
   const [showHome, setShowHome] = useState(isHomeSearchVisible(query));
+
+  // new search modal
+  const hasSeenModal = isInBrowser() ? localStorage.getItem(MODAL_STORAGE_KEY) : true;
+  const [showModal, setShowModal] = useState(!hasSeenModal);
+  const toggleModal = useCallback(() => {
+    setShowModal((s) => !s);
+    localStorage.setItem(MODAL_STORAGE_KEY, "true");
+  }, [setShowModal]);
 
   useEffect(() => {
     // toggle home screen
@@ -156,6 +168,8 @@ const Recherche = () => {
       ) : (
         <HomeSearch />
       )}
+
+      {!hasSeenModal && <NewSearchModal show={showModal} toggle={toggleModal} />}
     </div>
   );
 };
