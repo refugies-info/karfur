@@ -82,7 +82,14 @@ export const OneNeedTranslationModal = (props: Props) => {
           </div>
           <div>
             <Label htmlFor="subtitleLn">Sous-titre du besoin traduit</Label>
-            <FInput id="subtitleLn" value={subtitle} newSize={true} onChange={onSubtitleChange} autoFocus={false} />
+            <FInput
+              id="subtitleLn"
+              value={subtitle}
+              disabled={!need.fr.subtitle}
+              newSize={true}
+              onChange={onSubtitleChange}
+              autoFocus={false}
+            />
           </div>
         </>
       ) : (
