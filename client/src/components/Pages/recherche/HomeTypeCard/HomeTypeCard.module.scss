@@ -7,7 +7,7 @@
 
 .type_card {
   display: block;
-  box-shadow: 0 4px 18px 0 #0000001A;
+  box-shadow: 0 4px 18px 0 #0000001a;
   background: $white;
   border-radius: $radius;
   padding: u(8);
@@ -37,6 +37,7 @@
   .title {
     margin-top: u(8);
     font-weight: normal;
+    color: $dark !important; // prevent auto color on ios
 
     @include isMobile() {
       margin-top: u(4);
