@@ -11,6 +11,7 @@ jest.mock("next/image", () => {
   const Image = () => <></>;
   return Image;
 });
+jest.mock("components/Modals/NewSearchModal/NewSearchModal", () => jest.fn().mockReturnValue(<></>));
 
 describe("recherche", () => {
   beforeEach(() => {
