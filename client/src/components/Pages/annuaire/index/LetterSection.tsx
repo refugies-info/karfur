@@ -48,6 +48,8 @@ const StructureCard = (props: StructureCardProps) => {
           maxLine="4"
           trimRight
           basedOn="letters"
+          component="h3"
+          className={styles.title}
         />
       </a>
     </Link>
