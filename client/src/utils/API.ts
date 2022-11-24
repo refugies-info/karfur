@@ -1,4 +1,4 @@
-import axios, { AxiosRequestHeaders, AxiosResponse, Canceler } from "axios";
+import axios, { AxiosHeaders, AxiosRequestHeaders, AxiosResponse, Canceler } from "axios";
 
 import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
@@ -56,7 +56,7 @@ const CancelToken = axios.CancelToken;
 let cancel: Canceler;
 
 const getHeaders = () => {
-  const headers: AxiosRequestHeaders = {
+  const headers:any = {
     "Content-Type": "application/json",
     "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || "",
   };

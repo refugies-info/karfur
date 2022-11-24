@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from "react";
 import { Button } from "reactstrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import useWindowSize from "hooks/useWindowSize";
@@ -51,7 +51,7 @@ const NotDeployedBanner = (props: Props) => {
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
           {!isMobile ? (
-            <Link href="/comment-contribuer">
+            <Link legacyBehavior href="/comment-contribuer">
               <a className={styles.link}>{t("Recherche.notDeployedWriteLink", "Rédiger une fiche")}</a>
             </Link>
           ) : (

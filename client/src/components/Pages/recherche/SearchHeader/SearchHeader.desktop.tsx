@@ -114,6 +114,7 @@ const SearchHeaderDesktop = (props: Props) => {
     if (query.age.length) {
       let ageDisplayedValue = "";
       const value = ageFilters.find((a) => a.key === query.age[0])?.value;
+      // @ts-ignore
       if (value) ageDisplayedValue += t(value);
       if (query.age.length > 1) {
         ageDisplayedValue += `, +${query.age.length - 1}`;
@@ -129,6 +130,7 @@ const SearchHeaderDesktop = (props: Props) => {
     if (query.frenchLevel.length) {
       let frenchLevelDisplayedValue = "";
       const value = frenchLevelFilter.find((a) => a.key === query.frenchLevel[0])?.value;
+      // @ts-ignore
       if (value) frenchLevelDisplayedValue += t(value);
       if (query.frenchLevel.length > 1) {
         frenchLevelDisplayedValue += `, +${query.frenchLevel.length - 1}`;

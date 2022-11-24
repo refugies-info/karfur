@@ -77,6 +77,7 @@ const Footer = (props: Props) => {
         <p className={styles.footer_links}>
           {t("Login.Pas encore de compte ?", "Pas encore de compte ?")}{" "}
           <Link
+            legacyBehavior
             href={{
               pathname: getPath("/register", router.locale),
               query

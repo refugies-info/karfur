@@ -67,7 +67,7 @@ export function* orderNeeds(
     logger.info("[saveNeed] start saving need order");
     const data = yield call(API.orderNeeds, action.payload);
     if (data.data.data) {
-      const newNeeds: Need[] = [...yield select(needsSelector)];
+      const newNeeds: Need[] = [...(yield select(needsSelector))];
       for (const newNeed of data.data.data) {
         const editedNeedIndex = newNeeds.findIndex(n => n._id === newNeed._id);
         newNeeds[editedNeedIndex] = newNeed;
@@ -114,7 +114,7 @@ export function* deleteNeed(
     logger.info("[deleteNeed] start deleting need");
     yield call(API.deleteNeed, action.payload);
 
-    const needs: Need[] = [...yield select(needsSelector)];
+    const needs: Need[] = [...(yield select(needsSelector))];
     yield put(setNeedsActionCreator(needs.filter(n => n._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));

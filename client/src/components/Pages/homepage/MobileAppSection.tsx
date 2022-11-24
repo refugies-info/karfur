@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 
 import mobile_app_mockups from "assets/homepage/mobile-app-mockups.png";
