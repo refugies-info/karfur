@@ -110,6 +110,7 @@ function BottomTabBar({
   return (
     <BottomTabBarContainer
       style={{
+        paddingTop: 5,
         paddingBottom: insetBottom,
       }}
     >
