@@ -1,0 +1,39 @@
+name: Deploy staging
+on:
+  push:
+    branches:
+      - dev
+
+env:
+  ALGOLIA_API_KEY: ${{ secrets.REC_ALGOLIA_API_KEY }}
+  ALGOLIA_INDEX: ${{ secrets.REC_ALGOLIA_INDEX }}
+  API_URL: ${{ secrets.REC_API_URL }}
+  ENV_NAME: DEVELOPMENT
+  GOOGLE_API_KEY: ${{ secrets.REC_GOOGLE_API_KEY }}
+  SITE_SECRET: ${{ secrets.REC_SITE_SECRET }}
+  SITE_URL: ${{ secrets.REC_SITE_URL }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v2
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: yarn
+
+      - name: 🏗 Setup Expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: yarn install
+
+      - name: 🚀 Publish app
+        run: expo publish --non-interactive --release-channel staging
