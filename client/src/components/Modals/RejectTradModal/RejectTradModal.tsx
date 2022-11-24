@@ -13,7 +13,7 @@ import API from "utils/API";
 import marioProfile from "assets/mario-profile.jpg";
 import {colors} from "colors";
 import styles from "./RejectTradModal.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const reasons = [
   {

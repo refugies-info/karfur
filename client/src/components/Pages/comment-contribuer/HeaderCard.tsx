@@ -2,7 +2,7 @@ import React from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import icon_France from "assets/figma/icon_France.svg";
 import icon_translate from "assets/comment-contribuer/translate-icon.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "./HeaderCard.module.scss";
 
 interface Props {

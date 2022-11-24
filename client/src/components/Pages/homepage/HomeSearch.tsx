@@ -28,9 +28,9 @@ const HomeSearch = (props: Props) => {
   const flippy: any = useRef();
   const themes = useSelector(themesSelector);
 
-  const showFront = useRef<boolean | undefined>();
-  const flipFunc = useRef<number | undefined>();
-  const timeoutFunc = useRef<number | undefined>();
+  const showFront = useRef<boolean|undefined>();
+  const flipFunc = useRef<any|undefined>();
+  const timeoutFunc = useRef<any|undefined>();
   useEffect(() => {
     const nbThemes = themes.length;
     const isEven = nbThemes % 2 === 0;

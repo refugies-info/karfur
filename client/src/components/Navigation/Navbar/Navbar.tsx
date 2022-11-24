@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useSelector, useDispatch } from "react-redux";
 import API from "utils/API";
 import AudioBtn from "components/UI/AudioBtn/AudioBtn";
@@ -12,21 +12,15 @@ import FButton from "components/UI/FButton/FButton";
 import AdvancedSearchBar from "components/UI/AdvancedSearchBar/AdvancedSearchBar";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 // import { fetchUserActionCreator } from "services/User/user.actions";
-import {
-  toggleTTSActionCreator,
-  toggleSpinner,
-} from "services/Tts/tts.actions";
+import { toggleTTSActionCreator, toggleSpinner } from "services/Tts/tts.actions";
 import Streamline from "assets/streamline";
 import {
   userStructureHasResponsibleSeenNotification,
   userStructureDisposAssociesSelector,
-  userStructureSelector,
+  userStructureSelector
 } from "services/UserStructure/userStructure.selectors";
 import { userSelector } from "services/User/user.selectors";
-import {
-  ttsActiveSelector,
-  ttsLoadingSelector,
-} from "services/Tts/tts.selector";
+import { ttsActiveSelector, ttsLoadingSelector } from "services/Tts/tts.selector";
 import { colors } from "colors";
 import { logger } from "logger";
 import { getNbNewNotifications } from "containers/Backend/UserNotifications/lib";
@@ -43,7 +37,7 @@ import useRouterLocale from "hooks/useRouterLocale";
 import { getPath, isRoute } from "routes";
 
 interface Props {
-  history: string[]
+  history: string[];
 }
 
 const Navbar = (props: Props) => {
@@ -58,9 +52,7 @@ const Navbar = (props: Props) => {
 
   const user = useSelector(userSelector);
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
-  const hasResponsibleSeenNotification = useSelector(
-    userStructureHasResponsibleSeenNotification
-  );
+  const hasResponsibleSeenNotification = useSelector(userStructureHasResponsibleSeenNotification);
   const userStructure = useSelector(userStructureSelector);
   const ttsActive = useSelector(ttsActiveSelector);
   const ttsLoading = useSelector(ttsLoadingSelector);
@@ -113,28 +105,17 @@ const Navbar = (props: Props) => {
     const isOnBackend = router.pathname.includes("backend");
     if (!isOnBackend) router.push(pathName);
     else if (history) history.push(routerLocale + pathName);
-  }
+  };
 
   const path = router.pathname || "";
-  const userImg =
-    user.user && user.user.picture
-      ? user.user.picture.secure_url
-      : marioProfile;
+  const userImg = user.user && user.user.picture ? user.user.picture.secure_url : marioProfile;
   const isRTL = useRTL();
 
-
-  const nbNewNotifications = getNbNewNotifications(
-    dispositifsAssocies,
-    hasResponsibleSeenNotification
-  );
+  const nbNewNotifications = getNbNewNotifications(dispositifsAssocies, hasResponsibleSeenNotification);
   const isUserOnContentPage = path.includes("dispositif") || path.includes("demarche");
 
   return (
-    <header
-      className={`${styles.navbar} ${visible || !scroll ? "" : styles.hidden} ${
-        isRTL ? styles.rtl : ""
-      }`}
-    >
+    <header className={`${styles.navbar} ${visible || !scroll ? "" : styles.hidden} ${isRTL ? styles.rtl : ""}`}>
       {isUserOnContentPage && (
         <div className={mobile.visible} style={{ height: 50 }}>
           <FButton type="light-action" name="arrow-back" onClick={goBack}>
@@ -146,14 +127,8 @@ const Navbar = (props: Props) => {
       <div className={cls(styles.left_buttons, isUserOnContentPage && mobile.hidden_flex)}>
         <Logo />
         {path !== "/" && path !== "/homepage" && (
-          <Link href="/" passHref>
-            <FButton
-              type="login"
-              name="home-outline"
-              tag="a"
-              className={styles.home_btn}
-              tabIndex="1"
-            >
+          <Link legacyBehavior href="/" passHref>
+            <FButton type="login" name="home-outline" tag="a" className={styles.home_btn} tabIndex="1">
               {t("Toolbar.Accueil", "Accueil")}
             </FButton>
           </Link>
@@ -186,16 +161,9 @@ const Navbar = (props: Props) => {
         )}
 
         {!isMobile && (
-          <Link href={getPath("/recherche", router.locale)}>
-            <a
-              className={`${styles.advanced_search_btn} ${
-                isRTL ? styles.advanced_search_btn_rtl : ""
-              }`}
-            >
-              <div
-                className={styles.menu_btn}
-                style={!isRTL ? { marginRight: 10 } : { marginLeft: 10 }}
-              >
+          <Link legacyBehavior href={getPath("/recherche", router.locale)}>
+            <a className={`${styles.advanced_search_btn} ${isRTL ? styles.advanced_search_btn_rtl : ""}`}>
+              <div className={styles.menu_btn} style={!isRTL ? { marginRight: 10 } : { marginLeft: 10 }}>
                 <Streamline name={"menu"} stroke={"white"} />
               </div>
               {t("Toolbar.Tout voir", "Tout voir")}
@@ -203,48 +171,44 @@ const Navbar = (props: Props) => {
           </Link>
         )}
 
-        {!isMobile && (
-          isAuth ?
-          <div>
-            <button onClick={goToProfile} className={styles.user_picture_link}>
-              {(user.membreStruct && nbNewNotifications > 0 && userStructure) ? (
-                <div className={styles.overlay}>
-                  <div className={styles.user_picture_with_overlay}>
+        {!isMobile &&
+          (isAuth ? (
+            <div>
+              <button onClick={goToProfile} className={styles.user_picture_link}>
+                {user.membreStruct && nbNewNotifications > 0 && userStructure ? (
+                  <div className={styles.overlay}>
+                    <div className={styles.user_picture_with_overlay}>
+                      <Image src={userImg} alt="user" width={52} height={52} />
+                    </div>
+                    <div className={styles.middle}>{nbNewNotifications}</div>
+                  </div>
+                ) : (
+                  <div className={styles.user_picture}>
                     <Image src={userImg} alt="user" width={52} height={52} />
                   </div>
-                  <div className={styles.middle}>{nbNewNotifications}</div>
-                </div>
-              ) : (
-                <div className={styles.user_picture}>
-                  <Image src={userImg} alt="user" width={52} height={52} />
-                </div>
-              )}
-            </button>
-          </div> :
-          <div className="text-nowrap">
-            <Link href={getPath("/register", router.locale)} passHref>
-              <FButton
-                type="signup"
-                name="person-add-outline"
-                tag="a"
-                onClick={() => logger.info("Click on Inscription")}
-                className={styles.auth_btn+ " mr-10"}
-              >
-                <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
-              </FButton>
-            </Link>
-            <Link href={getPath("/login", router.locale)} passHref>
+                )}
+              </button>
+            </div>
+          ) : (
+            <div className="text-nowrap">
+              <Link legacyBehavior href={getPath("/register", router.locale)} passHref>
                 <FButton
-                  type="login"
-                  name="log-in-outline"
+                  type="signup"
+                  name="person-add-outline"
                   tag="a"
-                  className={styles.auth_btn}
+                  onClick={() => logger.info("Click on Inscription")}
+                  className={styles.auth_btn + " mr-10"}
                 >
-                <span className={styles.auth_btn_text}>{t("Toolbar.Connexion", "Connexion")}</span>
-              </FButton>
-            </Link>
-          </div>
-        )}
+                  <span className={styles.auth_btn_text}>{t("Toolbar.Inscription", "Inscription")}</span>
+                </FButton>
+              </Link>
+              <Link legacyBehavior href={getPath("/login", router.locale)} passHref>
+                <FButton type="login" name="log-in-outline" tag="a" className={styles.auth_btn}>
+                  <span className={styles.auth_btn_text}>{t("Toolbar.Connexion", "Connexion")}</span>
+                </FButton>
+              </Link>
+            </div>
+          ))}
       </div>
     </header>
   );

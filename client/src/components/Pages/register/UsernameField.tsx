@@ -64,7 +64,7 @@ const UsernameField = (props: Props) => {
         <div className={styles.error_message}>
           <b>
             {t(
-              "Register.Oups, ce pseudonyme existe déjà.",
+              "Register.Oups, ce pseudo existe déjà.",
               "Oups, ce pseudonyme existe déjà."
             )}
           </b>{" "}

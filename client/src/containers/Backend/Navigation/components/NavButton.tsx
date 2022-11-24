@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { SelectedPage } from "../Navigation";
@@ -47,6 +47,7 @@ export const NavButton = (props: NavButtonProps) => {
         return " (" + nbNewNotifications + ")";
       } else {
         return (
+          // @ts-ignore
           t("Toolbar." + props.title, props.title) +
           " (" +
           nbNewNotifications +
@@ -56,6 +57,7 @@ export const NavButton = (props: NavButtonProps) => {
     if (isReductedSize) {
       return null;
     }
+    // @ts-ignore
     return t("Toolbar." + props.title, props.title);
   };
 
@@ -96,12 +98,12 @@ export const NavButton = (props: NavButtonProps) => {
           </span>
         </span>
       )}
-      {getTitle(
+      <>{getTitle(
         props.type,
         props.title,
         props.nbNewNotifications,
         isReductedSize
-      )}
+      )}</>
     </button>
   );
 };

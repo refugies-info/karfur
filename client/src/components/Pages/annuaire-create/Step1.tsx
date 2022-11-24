@@ -6,7 +6,7 @@ import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Title = styled.div`
   font-weight: bold;

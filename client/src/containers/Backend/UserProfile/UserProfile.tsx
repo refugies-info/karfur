@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
@@ -548,7 +548,7 @@ export const UserProfile = (props: Props) => {
               </RowContainer>
               {notPhoneError && (
                 <ErrorMessageContainer>
-                  {t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                  {t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
                 </ErrorMessageContainer>
               )}
               <DescriptionText>

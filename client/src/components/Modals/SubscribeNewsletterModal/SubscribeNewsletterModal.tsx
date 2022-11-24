@@ -11,7 +11,7 @@ import { colors } from "colors";
 import { isMobile } from "react-device-detect";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "scss/components/modals.module.scss";
 
 declare const window: Window;

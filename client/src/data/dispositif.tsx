@@ -1,6 +1,6 @@
 import React from "react";
 import h2p from "html2plaintext";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { DispositifContent } from "types/interface";
 
 export type ShortContent = {

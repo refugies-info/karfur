@@ -1,5 +1,5 @@
 import { cls } from "lib/classname";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { Need } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";

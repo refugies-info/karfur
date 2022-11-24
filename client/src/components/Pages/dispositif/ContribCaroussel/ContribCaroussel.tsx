@@ -9,7 +9,7 @@ import {
   Badge,
 } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { reduceContributors } from "./function";

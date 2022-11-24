@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { assetsOnServer } from "assets/assetsOnServer";
 import styles from "./DispositifCard.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { getPath } from "routes";
 
 const TitleContainer = styled.div`

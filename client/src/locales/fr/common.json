@@ -326,6 +326,7 @@
     "code_sent_sms": "Un code vous a été envoyé par sms sur votre mobile au numéro {{phone}}.",
     "Entrez votre code": "Entrez votre code",
     "Renvoyer le code": "Renvoyer le code",
+    "Renvoyer le lien": "Renvoyer le lien",
     "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
     "Une erreur est survenue. Veuillez réessayer.": "Une erreur est survenue. Veuillez réessayer.",
     "Nouvel administrateur": "Nouvel administrateur",
