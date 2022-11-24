@@ -103,7 +103,7 @@ export const NeedsSummary = ({
 
           {!isEmpty(needSubtitle) ? (
             <TextVerySmallNormal color={theme.colors.color100}>
-              {needSubtitle}
+              <ReadableText>{needSubtitle}</ReadableText>
             </TextVerySmallNormal>
           ) : null}
         </Rows>
