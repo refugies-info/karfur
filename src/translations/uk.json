@@ -33,7 +33,8 @@
     "explorer": "Головна",
     "favorites": "Мої записи",
     "profile": "Мій профіль",
-    "search": "Пошук"
+    "search": "Пошук",
+    "listen": "Слухати"
   },
   "explorer_screen": {
     "list": "Список",

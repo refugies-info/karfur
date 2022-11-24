@@ -40,7 +40,8 @@
     "explorer": "Каталог",
     "favorites": "Избранное",
     "profile": "Обо мне",
-    "search": "Поиск"
+    "search": "Поиск",
+    "listen": "Послушать"
   },
   "profile_screens": {
     "app_informations": "Информация о приложении",

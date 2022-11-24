@@ -33,7 +33,8 @@
     "explorer": "Explorer",
     "favorites": "Mes fiches",
     "profile": "Moi",
-    "search": "Rechercher"
+    "search": "Rechercher",
+    "listen": "Écouter"
   },
   "explorer_screen": {
     "list": "Liste",

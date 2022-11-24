@@ -42,7 +42,8 @@
     "explorer": "Explore",
     "favorites": "My cards",
     "profile": "Me",
-    "search": "Search"
+    "search": "Search",
+    "listen": "Listen"
   },
   "profile_screens": {
     "app_informations": "Information on the application",

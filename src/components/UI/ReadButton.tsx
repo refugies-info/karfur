@@ -27,6 +27,7 @@ import { StyledTextSmallBold, StyledTextVerySmall } from "../StyledText";
 import { Animated } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
+import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 const Container = styled(View)`
   position: absolute;
@@ -122,6 +123,7 @@ interface Props {
 
 export const ReadButton = (props: Props) => {
   const dispatch = useDispatch();
+  const { t } = useTranslationWithRTL();
   const { fontScale } = useWindowDimensions();
 
   const [isPaused, setIsPaused] = useState(false);
@@ -303,7 +305,7 @@ export const ReadButton = (props: Props) => {
         activeOpacity={0.8}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={"Écouter"}
+        accessibilityLabel={t("tab_bar.listen", "Écouter")}
       >
         <PlayButton>
           {isReading && !isPaused ? (
@@ -314,7 +316,7 @@ export const ReadButton = (props: Props) => {
         </PlayButton>
         {fontScale < 1.3 && (
           <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
-            Écouter
+            {t("tab_bar.listen", "Écouter")}
           </StyledTextVerySmall>
         )}
       </PlayContainer>
