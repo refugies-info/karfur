@@ -17,6 +17,7 @@
 We are going to work with 2 environments, `staging` and `production`:
 
 - `staging`:
+
   - test app
   - linked to the prod backend (for user tests purposes)
   - accessible via Expo Go with a link
@@ -26,10 +27,10 @@ We are going to work with 2 environments, `staging` and `production`:
   - linked to the prod backend
   - accessible in the stores (and via internal distribution)
 
-
 ## Variables
 
 The environment variables are defined at 2 different places:
+
 - For **development**, in `.env` file.  
   If you change a variable here, rebuild the project after emptying the cache (`expo r -c`)
 - For **staging** and **production**:
@@ -38,24 +39,21 @@ The environment variables are defined at 2 different places:
     See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
   - in Expo Go for sensitive variables (API keys, secrets ...)
 
-
 # Workflow
 
 1. Develop all the features on a specific branch.
 2. Update tests or create new one. See section [Tests](#tests)
-3. When done, merge your changes to `dev` branch.
-4. When all your features are ready to be tested, merge your changes on the `staging` branch.
-5. Publish on `staging` for tests. See [how to deploy on staging](#staging)
-6. When the features are validated, merge your changes to `main` branch.  
-    Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
-7. [Deploy on production](#production). For this, you have 2 options:
-    - For bug fixes or minor updates, [publish](#publish-changes) changes to update apps automatically.  
-      On *iOS*, the update is downloaded before the app is launched.  
-      On *Android*, it's downloaded in the background and installed the second time the app is opened.
-    - For config changes or major updates, create a [build](#build-app) and submit on the stores.
-
+3. When done, merge your changes to `dev` branch. A Github Action will automatically publish the new app on `staging` environment for tests. If you want to deploy it manually, see [how to deploy on staging](#staging)
+4. When the features are validated, merge your changes to `main` branch.  
+   Don't forget to increment the version number. See the [Version numbers](#version-numbers) section.
+5. [Deploy on production](#production). For this, you have 2 options:
+   - For bug fixes or minor updates, [publish](#publish-changes) changes to update apps automatically.  
+     On _iOS_, the update is downloaded before the app is launched.  
+     On _Android_, it's downloaded in the background and installed the second time the app is opened.
+   - For config changes or major updates, create a [build](#build-app) and submit on the stores.
 
 # Deploy
+
 ## Staging
 
 Deploy on staging to test features via Expo Go.
@@ -89,29 +87,33 @@ Don't forget to increment the **displayed version number**. See the [Version num
 1. Increment the **build number**. See the [Version numbers](#version-numbers) section.
 
 2. Start a build which will be executed on expo servers. You can follow the process [here](https://expo.dev/accounts/refugies-info/projects/refugies-info-app/builds)
-  ```
-  $ eas build --platform all
-  ```
+
+```
+$ eas build --platform all
+```
 
 3. Submit the app on the Play Store
-  ```
-  $ eas submit -p android
-  ```
+
+```
+$ eas submit -p android
+```
 
 4. Submit the app on the App Store
-  ```
-  $ eas submit -p ios
-  ```
-  Note: On iOS, you need to fill a declaration before sending for validation. Choose **Yes** for the first question, and **No** for the following ones.
 
+```
+$ eas submit -p ios
+```
 
+Note: On iOS, you need to fill a declaration before sending for validation. Choose **Yes** for the first question, and **No** for the following ones.
 
 Notes:
+
 - updates takes usually 2-3 days to be validated by the stores
 
 ### Version numbers
 
 Multiple version numbers need to be incremented at each release, for different purposes:
+
 - **displayed version number**: displayed in the application to facilitate communication related to bugs,
 - **build number**: used by the stores to identify the versions of your app.
 
@@ -130,9 +132,9 @@ When to increment: each time you **build** a new version to submit to stores. Se
 Where: in `app.config.js`, increment the keys `version`, `ios.buildNumber` and `android.versionCode`
 
 How:
+
 - `version` and `ios.buildNumber` should follow the convention `[major]-[minor]-[incrementalId]`.
 - `android.versionCode` is just an incremental id.
-
 
 # Development
 
@@ -147,12 +149,12 @@ To translate the app, use the scripts in `src/translations`.
 For iOS, you must translate system strings, for example for authorizations.
 You can find more informations in the [Expo documentation](https://docs.expo.dev/distribution/app-stores/?redirected#localizing-your-ios-app).
 
-The `app.config.js` is configured to look for these strings in the regular translation files, in `src/translations/[ln].json`. 
+The `app.config.js` is configured to look for these strings in the regular translation files, in `src/translations/[ln].json`.
 Just define the translations in these files, and use the same keys than the one you would have defined in `app.config.js`.
 
 ## Tests
 
-To test the application, we compare snapshots of the app between the previous and the current version.  
+To test the application, we compare snapshots of the app between the previous and the current version.
 
 ```
 > yarn test             # start to compare snapshots
@@ -162,6 +164,7 @@ To test the application, we compare snapshots of the app between the previous an
 ## Theme
 
 The file `theme/index.ts` contains all the variables needed to design the app:
+
 - `colors`
 - `fonts` sizes and families
 - `shadows`: very useful to replicate shadows on android and ios
@@ -170,6 +173,7 @@ The file `theme/index.ts` contains all the variables needed to design the app:
 ## Redux store
 
 The store (in `services/redux`) contains the following modules:
+
 - `Contents`: content organized by language
 - `ContentsGroupedByNeeds`: contents grouped by needs. Easier to show up on NeedsScreen
 - `Languages`: all available languages
@@ -182,6 +186,7 @@ The store (in `services/redux`) contains the following modules:
 ## Navigation
 
 The app has the following navigation structure:
+
 - if user has not seen the onboarding
   - OnboardingStack
     - LanguageChoiceScreen
@@ -198,6 +203,7 @@ The app has the following navigation structure:
       - ContentScreen
       - ContentsScreen
       - NeedsScreen
+      - NearMeCardScreen
     - FavorisStack
       - FavorisScreen
     - SearchStack
