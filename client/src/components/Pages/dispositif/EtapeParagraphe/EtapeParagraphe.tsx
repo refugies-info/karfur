@@ -11,7 +11,7 @@ import {
   Form,
   Label,
   FormGroup,
-  Tooltip,
+  Tooltip
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { useTranslation } from "next-i18next";
@@ -26,7 +26,7 @@ import { colors } from "colors";
 import { EtapeModal } from "components/Modals";
 import styled from "styled-components";
 import styles from "./EtapeParagraphe.module.scss";
-import { DispositifContent, Theme} from "types/interface";
+import { DispositifContent, Theme } from "types/interface";
 import { demarcheSteps, ShortContent } from "data/dispositif";
 import { EditorState } from "draft-js";
 import { UiElement, UiElementNodes } from "services/SelectedDispositif/selectedDispositif.reducer";
@@ -35,26 +35,19 @@ import { cls } from "lib/classname";
 import mobile from "scss/components/mobile.module.scss";
 
 interface AccordeonProps {
-  newDisableEdit: boolean
-  subkey: number
-  isAccordeonOpen: boolean
-  darkColor: string
-  lightColor: string
+  newDisableEdit: boolean;
+  subkey: number;
+  isAccordeonOpen: boolean;
+  darkColor: string;
+  lightColor: string;
 }
 const StyledAccordeon = styled.div`
-  padding: ${(props: AccordeonProps) =>
-    props.newDisableEdit || props.subkey === 0
-      ? "16px"
-      : "16px 62px 16px 16px"};
+  padding: ${(props: AccordeonProps) => (props.newDisableEdit || props.subkey === 0 ? "16px" : "16px 62px 16px 16px")};
 
   border: ${(props: AccordeonProps) =>
-    props.newDisableEdit && props.isAccordeonOpen
-      ? `solid 2px ${props.darkColor}`
-      : "none"};
+    props.newDisableEdit && props.isAccordeonOpen ? `solid 2px ${props.darkColor}` : "none"};
   background: ${(props: AccordeonProps) =>
-    props.newDisableEdit && props.isAccordeonOpen
-      ? props.lightColor
-      : "#f2f2f2"};
+    props.newDisableEdit && props.isAccordeonOpen ? props.lightColor : "#f2f2f2"};
   border-radius: 12px;
   outline: none;
   boxshadow: none;
@@ -63,9 +56,7 @@ const StyledAccordeon = styled.div`
   position: relative;
   flex-direction: row;
   box-shadow: ${(props: AccordeonProps) =>
-    props.newDisableEdit && !props.isAccordeonOpen
-      ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
-      : "none"};
+    props.newDisableEdit && !props.isAccordeonOpen ? "0px 10px 15px rgba(0, 0, 0, 0.25)" : "none"};
 `;
 
 const StyledHeader = styled.div`
@@ -74,12 +65,12 @@ const StyledHeader = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: ${(props: {darkColor: string}) => props.darkColor};
+  color: ${(props: { darkColor: string }) => props.darkColor};
   align-items: center;
 `;
 interface StepProps {
-  isRTL: boolean
-  darkColor: string
+  isRTL: boolean;
+  darkColor: string;
 }
 const StyledStep = styled.div`
   background: ${(props: StepProps) => props.darkColor};
@@ -99,17 +90,12 @@ interface Props {
   subkey: number;
   item: DispositifContent;
   subitem: any; // DispositifContent; using old props
-  updateUIArray: (
-    key: number,
-    arg: number | null,
-    variante: UiElementNodes,
-    option?: boolean
-  ) => void;
+  updateUIArray: (key: number, arg: number | null, variante: UiElementNodes, option?: boolean) => void;
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
-  handleMenuChange: (ev: any, value?: any) => any
+  handleMenuChange: (ev: any, value?: any) => any;
   onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
   addItem: (key: any, type?: string, subkey?: string | number | null) => void;
-  toggleModal: (show: boolean, name: string) => void
+  toggleModal: (show: boolean, name: string) => void;
   removeItem: any;
   theme: Theme;
   typeContenu: "dispositif" | "demarche";
@@ -121,18 +107,10 @@ interface Props {
 }
 
 const EtapeParagraphe = (props: Props) => {
-  const [options, setOptions] = useState(
-    demarcheSteps.options.map((x) => ({ ...x, selected: false }))
-  );
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean[]>(
-    new Array(2).fill(false)
-  );
-  const [isPapiersDropdownOpen, setIsPapiersDropdownOpen] = useState<boolean[]>(
-    [false]
-  );
-  const [validatedRow, setValidatedRow] = useState<boolean[]>(
-    new Array(4).fill(false)
-  );
+  const [options, setOptions] = useState(demarcheSteps.options.map((x) => ({ ...x, selected: false })));
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean[]>(new Array(2).fill(false));
+  const [isPapiersDropdownOpen, setIsPapiersDropdownOpen] = useState<boolean[]>([false]);
+  const [validatedRow, setValidatedRow] = useState<boolean[]>(new Array(4).fill(false));
   const [checked, setChecked] = useState(false);
   const [value1, setValue1] = useState("");
   const [value2, setValue2] = useState("");
@@ -141,9 +119,7 @@ const EtapeParagraphe = (props: Props) => {
   const [isOptionSelected, setIsOptionSelected] = useState(false);
   const [selectedOption, setSelectedOption] = useState<any>({});
   const [configurationOpen, setConfigurationOpen] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = useState<boolean[]>(
-    new Array(4).fill(false)
-  );
+  const [tooltipOpen, setTooltipOpen] = useState<boolean[]>(new Array(4).fill(false));
   const [showModal, setShowModal] = useState(false);
 
   const { t } = useTranslation();
@@ -161,10 +137,7 @@ const EtapeParagraphe = (props: Props) => {
     ) {
       const { checked, value1, value2, value3, value4, texte } = props.subitem.option;
       const subItemPapiers = props.subitem?.papiers || [];
-      const isPapiersDropdownOpen =
-        subItemPapiers.length > 0
-          ? new Array(subItemPapiers.length).fill(false)
-          : [false];
+      const isPapiersDropdownOpen = subItemPapiers.length > 0 ? new Array(subItemPapiers.length).fill(false) : [false];
       setChecked(checked);
       setValue1(value1);
       setValue2(value2);
@@ -176,16 +149,10 @@ const EtapeParagraphe = (props: Props) => {
       setOptions(options.map((x) => ({ ...x, selected: x.texte === texte })));
     }
     if ((props.subitem?.papiers || []).length > 0) {
-      setIsPapiersDropdownOpen(
-        new Array((props.subitem.papiers || []).length + 1).fill(false)
-      );
+      setIsPapiersDropdownOpen(new Array((props.subitem.papiers || []).length + 1).fill(false));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    props.subitem.option?.value1,
-    props.subitem.option?.value2,
-    props.subitem.option?.checked,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.subitem.option?.value1, props.subitem.option?.value2, props.subitem.option?.checked]);
 
   const toggleModal = () => setShowModal(!showModal);
 
@@ -196,38 +163,32 @@ const EtapeParagraphe = (props: Props) => {
           id: props.keyValue.toString(),
           dataset: {
             subkey: props.subkey.toString(),
-            target: target,
-          },
-        },
+            target: target
+          }
+        }
       },
       value
     );
     setValidatedRow(
       validatedRow.map((x, i) =>
-        (target === "duree" && i === 1) ||
-        (target === "delai" && i === 2) ||
-        (target === "papiers" && i === 3)
+        (target === "duree" && i === 1) || (target === "delai" && i === 2) || (target === "papiers" && i === 3)
           ? i !== 3 || value.length > 0
           : x
       )
     );
   };
 
-  const toggleDropdown = (idx: number) =>
-    setIsDropdownOpen(isDropdownOpen.map((x, i) => (i === idx ? !x : x)));
+  const toggleDropdown = (idx: number) => setIsDropdownOpen(isDropdownOpen.map((x, i) => (i === idx ? !x : x)));
 
   const togglePapiersDropdown = (idx: number) =>
-    setIsPapiersDropdownOpen(
-      isPapiersDropdownOpen.map((x, i) => (i === idx ? !x : x))
-    );
+    setIsPapiersDropdownOpen(isPapiersDropdownOpen.map((x, i) => (i === idx ? !x : x)));
 
   const handleCheck = () => {
     if (!checked) setValue1("");
     setChecked(!checked);
   };
 
-  const toggleConfigurationOpen = () =>
-    setConfigurationOpen(!configurationOpen);
+  const toggleConfigurationOpen = () => setConfigurationOpen(!configurationOpen);
 
   const selectOption = (idx: number | null = null, option = {}) => {
     setIsOptionSelected(idx !== null);
@@ -240,8 +201,7 @@ const EtapeParagraphe = (props: Props) => {
     setChecked(false);
   };
 
-  const toggleTooltip = (idx: number) =>
-    setTooltipOpen(tooltipOpen.map((x, i) => (i === idx ? !x : x)));
+  const toggleTooltip = (idx: number) => setTooltipOpen(tooltipOpen.map((x, i) => (i === idx ? !x : x)));
 
   const validateOption = (e: any) => {
     e.preventDefault();
@@ -249,7 +209,7 @@ const EtapeParagraphe = (props: Props) => {
     setIsOptionSelected(false);
   };
 
-  const addDoc = (papier: any, idx: number|null = null, add = true) => {
+  const addDoc = (papier: any, idx: number | null = null, add = true) => {
     const newPapiers =
       idx === null
         ? [...(props.subitem.papiers || []), papier]
@@ -269,32 +229,25 @@ const EtapeParagraphe = (props: Props) => {
       value2,
       value3,
       value4,
-      ctaText: selectedOption.ctaField
-        ? selectedOption[selectedOption.ctaField]
-        : selectedOption.ctaText,
+      ctaText: selectedOption.ctaField ? selectedOption[selectedOption.ctaField] : selectedOption.ctaText
     };
     setPropsValue(newOption, "option");
   };
 
-  const {
-    keyValue,
-    subitem,
-    subkey,
-    uiArray,
-    updateUIArray,
-    disableEdit,
-  } = props;
+  const { keyValue, subitem, subkey, uiArray, updateUIArray, disableEdit } = props;
 
   const safeUiArray = (key: number, subkey: number, node: string) => {
     const children = props.uiArray[key].children;
     if (children === undefined) return false;
-    return props.uiArray[key] &&
-    children &&
-    children.length > subkey &&
-    children[subkey] &&
-    //@ts-ignore
-    children[subkey][node];
-  }
+    return (
+      props.uiArray[key] &&
+      children &&
+      children.length > subkey &&
+      children[subkey] &&
+      //@ts-ignore
+      children[subkey][node]
+    );
+  };
 
   const isAccordeonOpen = props.printing || openAccordions || !!safeUiArray(keyValue, subkey, "accordion");
   const darkColor = props.theme?.colors.color100 || colors.gray90;
@@ -304,11 +257,7 @@ const EtapeParagraphe = (props: Props) => {
   return (
     <div
       key={subkey}
-      className={
-        styles.etape +
-        " contenu " +
-        (safeUiArray(keyValue, subkey, "isHover") ? " isHovered" : "")
-      }
+      className={styles.etape + " contenu " + (safeUiArray(keyValue, subkey, "isHover") ? " isHovered" : "")}
       onMouseEnter={(e) => updateUIArray(keyValue, subkey, "isHover", true)}
     >
       <Row className="relative-position">
@@ -320,15 +269,7 @@ const EtapeParagraphe = (props: Props) => {
               lightColor={lightColor}
               darkColor={darkColor}
               subkey={subkey}
-              onMouseUp={() =>
-                disableEdit &&
-                updateUIArray(
-                  keyValue,
-                  subkey,
-                  "accordion",
-                  !isAccordeonOpen
-                )
-              }
+              onMouseUp={() => disableEdit && updateUIArray(keyValue, subkey, "accordion", !isAccordeonOpen)}
               aria-expanded={isAccordeonOpen}
               aria-controls={"collapse" + keyValue + "-" + subkey}
             >
@@ -367,11 +308,7 @@ const EtapeParagraphe = (props: Props) => {
               )}
             </StyledAccordeon>
             <div
-              className={
-                styles.etapes_data +
-                " ml-10 " +
-                (disableEdit ? "" : styles.editing)
-              }
+              className={styles.etapes_data + " ml-10 " + (disableEdit ? "" : styles.editing)}
               onClick={toggleConfigurationOpen}
             >
               {subitem.option && subitem.option.texte && (
@@ -383,8 +320,8 @@ const EtapeParagraphe = (props: Props) => {
                   />
                   <span>
                     {/* @ts-ignore */}
-                    {t("Dispositif." +
-                        ((subitem.option || {}).texte || "En ligne"),
+                    {t(
+                      "Dispositif." + ((subitem.option || {}).texte || "En ligne"),
                       (subitem.option || {}).texte || "En ligne"
                     )}
                   </span>
@@ -401,14 +338,9 @@ const EtapeParagraphe = (props: Props) => {
               )}
               {subitem.duree && subitem.duree !== "00" && (
                 <div className={styles.etape_data} id="etape-duree">
-                  <EVAIcon
-                    name="clock-outline"
-                    fill={colors.gray70}
-                    className="mr-8"
-                  />
+                  <EVAIcon name="clock-outline" fill={colors.gray70} className="mr-8" />
                   <span>
-                    {subitem.duree || 0}{" "}
-                    {t(subitem.timeStepDuree, subitem.timeStepDuree)}
+                    {subitem.duree || 0} {t(subitem.timeStepDuree, subitem.timeStepDuree)}
                   </span>
                   <Tooltip
                     placement="top"
@@ -417,27 +349,17 @@ const EtapeParagraphe = (props: Props) => {
                     target="etape-duree"
                     toggle={() => toggleTooltip(1)}
                   >
-                    {t(
-                      "Dispositif.Combien de temps",
-                      "Combien de temps ça va vous prendre ?"
-                    )}
+                    {t("Dispositif.Combien de temps", "Combien de temps ça va vous prendre ?")}
                   </Tooltip>
                 </div>
               )}
               {subitem.delai && subitem.delai !== "00" && (
                 <div className={styles.etape_data} id="etape-delai">
-                  <EVAIcon
-                    name="undo"
-                    fill={colors.gray70}
-                    className="mr-8"
-                  />
+                  <EVAIcon name="undo" fill={colors.gray70} className="mr-8" />
                   <span>
-                    {subitem.delai &&
-                    subitem.delai !== "00" &&
-                    subitem.timeStepDelai ? (
+                    {subitem.delai && subitem.delai !== "00" && subitem.timeStepDelai ? (
                       <span>
-                        {subitem.delai}{" "}
-                        {t(subitem.timeStepDelai, subitem.timeStepDelai)}
+                        {subitem.delai} {t(subitem.timeStepDelai, subitem.timeStepDelai)}
                       </span>
                     ) : (
                       t("Dispositif.Immédiate", "Immédiate")
@@ -450,20 +372,13 @@ const EtapeParagraphe = (props: Props) => {
                     target="etape-delai"
                     toggle={() => toggleTooltip(2)}
                   >
-                    {t(
-                      "Dispositif.Délais de réponse annoncés",
-                      "Délais de réponse annoncés"
-                    )}
+                    {t("Dispositif.Délais de réponse annoncés", "Délais de réponse annoncés")}
                   </Tooltip>
                 </div>
               )}
               {subitem.papiers && subitem.papiers.length > 0 && (
                 <div className={styles.etape_data} id="etape-papiers">
-                  <EVAIcon
-                    name="file-text-outline"
-                    fill={colors.gray70}
-                    className="mr-8"
-                  />
+                  <EVAIcon name="file-text-outline" fill={colors.gray70} className="mr-8" />
                   <span>{(subitem.papiers || []).length || 0}</span>
                   <Tooltip
                     placement="top"
@@ -472,10 +387,7 @@ const EtapeParagraphe = (props: Props) => {
                     target="etape-papiers"
                     toggle={() => toggleTooltip(3)}
                   >
-                    {t(
-                      "Dispositif.Documents nécessaires",
-                      "Documents nécessaires"
-                    )}
+                    {t("Dispositif.Documents nécessaires", "Documents nécessaires")}
                   </Tooltip>
                 </div>
               )}
@@ -487,7 +399,7 @@ const EtapeParagraphe = (props: Props) => {
             isOpen={!disableEdit && configurationOpen}
             data-parent=".etapes_data"
           >
-            <h5>Configurez votre étape</h5>
+            <div className="h5">Configurez votre étape</div>
 
             <div
               className={
@@ -501,19 +413,11 @@ const EtapeParagraphe = (props: Props) => {
               <div className={styles.options_wrapper}>
                 {options.map((option, key: number) => (
                   <div
-                    className={
-                      styles.col_config +
-                      " mr-10 " +
-                      (option.selected ? styles.active : "")
-                    }
+                    className={styles.col_config + " mr-10 " + (option.selected ? styles.active : "")}
                     key={key}
                     onClick={() => selectOption(key, option)}
                   >
-                    <EVAIcon
-                      name={option.logo + "-outline"}
-                      fill={colors.gray90}
-                      className="mr-10"
-                    />
+                    <EVAIcon name={option.logo + "-outline"} fill={colors.gray90} className="mr-10" />
                     <span>{option.texte}</span>
                   </div>
                 ))}
@@ -521,27 +425,10 @@ const EtapeParagraphe = (props: Props) => {
               {isOptionSelected && (
                 <Form onSubmit={validateOption} className="mt-10 full-width">
                   <FormGroup>
-                    <Label
-                      for="link"
-                      lg={
-                        selectedOption.label1
-                          ? selectedOption.texte === "Autre"
-                            ? "9"
-                            : "3"
-                          : "0"
-                      }
-                    >
+                    <Label for="link" lg={selectedOption.label1 ? (selectedOption.texte === "Autre" ? "9" : "3") : "0"}>
                       {selectedOption.label1}
                     </Label>
-                    <Col
-                      lg={
-                        selectedOption.label1
-                          ? selectedOption.texte === "Autre"
-                            ? "3"
-                            : "9"
-                          : "12"
-                      }
-                    >
+                    <Col lg={selectedOption.label1 ? (selectedOption.texte === "Autre" ? "3" : "9") : "12"}>
                       <FInput
                         prepend={!!selectedOption.icon1}
                         prependName={selectedOption.icon1 + "-outline"}
@@ -556,21 +443,10 @@ const EtapeParagraphe = (props: Props) => {
                   </FormGroup>
                   {selectedOption.placeholder2 && (
                     <FormGroup>
-                      <Label
-                        for="displayText"
-                        lg={selectedOption.label2 ? "3" : "0"}
-                      >
+                      <Label for="displayText" lg={selectedOption.label2 ? "3" : "0"}>
                         {selectedOption.label2}
                       </Label>
-                      <Col
-                        lg={
-                          selectedOption.label2
-                            ? "9"
-                            : selectedOption.placeholder3
-                            ? "3"
-                            : "12"
-                        }
-                      >
+                      <Col lg={selectedOption.label2 ? "9" : selectedOption.placeholder3 ? "3" : "12"}>
                         <FInput
                           prepend={!!selectedOption.icon2}
                           prependName={selectedOption.icon2 + "-outline"}
@@ -611,16 +487,9 @@ const EtapeParagraphe = (props: Props) => {
                   )}
                   <div className={styles.footer_form}>
                     {selectedOption.checkbox ? (
-                      <FormGroup
-                        check
-                        className={styles.no_info + (checked ? " checked" : "")}
-                      >
+                      <FormGroup check className={styles.no_info + (checked ? " checked" : "")}>
                         <Label check>
-                          <Input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={handleCheck}
-                          />{" "}
+                          <Input type="checkbox" checked={checked} onChange={handleCheck} />{" "}
                           <span>{selectedOption.checkbox}</span>
                         </Label>
                       </FormGroup>
@@ -640,10 +509,7 @@ const EtapeParagraphe = (props: Props) => {
                         type="validate"
                         name="checkmark-outline"
                         onClick={setOption}
-                        disabled={
-                          !checked &&
-                          (!value1 || (selectedOption.placeholder2 && !value2))
-                        }
+                        disabled={!checked && (!value1 || (selectedOption.placeholder2 && !value2))}
                       >
                         Valider
                       </FButton>
@@ -653,18 +519,8 @@ const EtapeParagraphe = (props: Props) => {
               )}
             </div>
 
-            <div
-              className={
-                styles.row_config +
-                " mb-10 " +
-                (validatedRow[1] ? styles.validated : "")
-              }
-            >
-              <EVAIcon
-                name="clock-outline"
-                fill={colors.gray90}
-                className="mr-10"
-              />
+            <div className={styles.row_config + " mb-10 " + (validatedRow[1] ? styles.validated : "")}>
+              <EVAIcon name="clock-outline" fill={colors.gray90} className="mr-10" />
               <b>Cette étape prend :</b>
 
               <Input
@@ -689,27 +545,17 @@ const EtapeParagraphe = (props: Props) => {
                     <DropdownItem
                       key={key}
                       id={key.toString()}
-                      onClick={() =>
-                        setPropsValue(timeStep.texte, "timeStepDuree")
-                      }
+                      onClick={() => setPropsValue(timeStep.texte, "timeStepDuree")}
                     >
                       {timeStep.texte}
                     </DropdownItem>
                   ))}
                 </DropdownMenu>
               </ButtonDropdown>
-              <span className="color-gray70">
-                Précisez le temps nécessaire pour faire cette étape.
-              </span>
+              <span className="color-gray70">Précisez le temps nécessaire pour faire cette étape.</span>
             </div>
 
-            <div
-              className={
-                styles.row_config +
-                " mb-10 " +
-                (validatedRow[2] ? styles.validated : "")
-              }
-            >
+            <div className={styles.row_config + " mb-10 " + (validatedRow[2] ? styles.validated : "")}>
               <EVAIcon name="undo" fill={colors.gray90} className="mr-10" />
               <b>Délai de réponse :</b>
 
@@ -735,9 +581,7 @@ const EtapeParagraphe = (props: Props) => {
                     <DropdownItem
                       key={key}
                       id={key.toString()}
-                      onClick={() =>
-                        setPropsValue(timeStep.texte, "timeStepDelai")
-                      }
+                      onClick={() => setPropsValue(timeStep.texte, "timeStepDelai")}
                     >
                       {timeStep.texte}
                     </DropdownItem>
@@ -745,31 +589,18 @@ const EtapeParagraphe = (props: Props) => {
                 </DropdownMenu>
               </ButtonDropdown>
 
-              <span className="color-gray70">
-                Précisez le délai de réponse légal ou constaté.
-              </span>
+              <span className="color-gray70">Précisez le délai de réponse légal ou constaté.</span>
             </div>
 
             <div
               className={
-                styles.row_config +
-                " " +
-                styles.negative_padding +
-                " " +
-                (validatedRow[3] ? styles.validated : "")
+                styles.row_config + " " + styles.negative_padding + " " + (validatedRow[3] ? styles.validated : "")
               }
             >
-              <EVAIcon
-                name="file-text"
-                fill={colors.gray90}
-                className="mr-10 mb-10"
-              />
+              <EVAIcon name="file-text" fill={colors.gray90} className="mr-10 mb-10" />
               <b className="mr-10 mb-10">
                 Documents justificatifs{" "}
-                {subitem.papiers &&
-                  subitem.papiers.length > 0 &&
-                  "(" + subitem.papiers.length + ") "}
-                :
+                {subitem.papiers && subitem.papiers.length > 0 && "(" + subitem.papiers.length + ") "}:
               </b>
 
               {(subitem.papiers || []).map((doc: any, idx: number) => (
@@ -797,11 +628,7 @@ const EtapeParagraphe = (props: Props) => {
                   </DropdownToggle>
                   <DropdownMenu>
                     {demarcheSteps.papiers.map((papier, key) => (
-                      <DropdownItem
-                        key={key}
-                        id={key.toString()}
-                        onClick={() => addDoc(papier, idx)}
-                      >
+                      <DropdownItem key={key} id={key.toString()} onClick={() => addDoc(papier, idx)}>
                         {key + 1 + " - " + papier.texte}
                       </DropdownItem>
                     ))}
@@ -810,25 +637,16 @@ const EtapeParagraphe = (props: Props) => {
               ))}
               <ButtonDropdown
                 isOpen={isPapiersDropdownOpen[isPapiersDropdownOpen.length - 1]}
-                toggle={() =>
-                  togglePapiersDropdown(isPapiersDropdownOpen.length - 1)
-                }
+                toggle={() => togglePapiersDropdown(isPapiersDropdownOpen.length - 1)}
                 className={styles.etape_dropdown + " mr-10"}
               >
                 <DropdownToggle caret className={styles.docs_dropdown}>
-                  <EVAIcon
-                    name="plus-circle"
-                    className={styles.plus_btn_docs}
-                  />
+                  <EVAIcon name="plus-circle" className={styles.plus_btn_docs} />
                   Ajouter un document
                 </DropdownToggle>
                 <DropdownMenu>
                   {demarcheSteps.papiers.map((papier, key) => (
-                    <DropdownItem
-                      key={key}
-                      id={key.toString()}
-                      onClick={() => addDoc(papier)}
-                    >
+                    <DropdownItem key={key} id={key.toString()} onClick={() => addDoc(papier)}>
                       {key + 1 + " - " + papier.texte}
                     </DropdownItem>
                   ))}
@@ -870,27 +688,14 @@ const EtapeParagraphe = (props: Props) => {
             {subitem.option && subitem.option.ctaField && (
               <div className={styles.realisation_wrapper}>
                 <div className={styles.real_btns}>
-                  <FButton
-                    type="dark"
-                    name="link-outline"
-                    className="mr-10"
-                    fill={colors.gray90}
-                    onClick={toggleModal}
-                  >
+                  <FButton type="dark" name="link-outline" className="mr-10" fill={colors.gray90} onClick={toggleModal}>
                     {subitem.option.ctaField
                       ? subitem.option[subitem.option.ctaField]
                       : subitem.option.ctaText &&
                         // @ts-ignore
-                        t("Dispositif." + subitem.option.ctaText,
-                          subitem.option.ctaText
-                        )}
+                        t("Dispositif." + subitem.option.ctaText, subitem.option.ctaText)}
                   </FButton>
-                  <FButton
-                    type="help"
-                    name="question-mark-circle-outline"
-                    fill={colors.error}
-                    onClick={props.upcoming}
-                  >
+                  <FButton type="help" name="question-mark-circle-outline" fill={colors.error} onClick={props.upcoming}>
                     {t("J'ai besoin d'aide")}
                   </FButton>
                 </div>

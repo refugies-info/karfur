@@ -13,16 +13,11 @@ import { cls } from "lib/classname";
 import { getContent } from "lib/dispositifPage";
 
 interface Props {
-  updateUIArray: (
-    key: number,
-    arg: number|null,
-    variante: UiElementNodes,
-    option?: boolean
-  ) => void;
+  updateUIArray: (key: number, arg: number | null, variante: UiElementNodes, option?: boolean) => void;
   handleContentClick: (key: number, editable: boolean, subkey?: number | undefined) => void;
-  handleMenuChange: (ev: any, value?: any) => any
+  handleMenuChange: (ev: any, value?: any) => any;
   onEditorStateChange: (editorState: EditorState, key: number, subkey?: number | null) => void;
-  addItem: (key: any, type?: string, subkey?: string|number|null) => void
+  addItem: (key: any, type?: string, subkey?: string | number | null) => void;
   admin: boolean;
   dispositif: IDispositif | null;
   showGeolocModal: boolean;
@@ -34,22 +29,22 @@ interface Props {
   addMapBtn: boolean;
   printing: boolean;
   mainTheme: Theme;
-  toggleModal: (show: boolean, name: string) => void
+  toggleModal: (show: boolean, name: string) => void;
   toggleTutorielModal: (arg: string) => void;
   toggleGeolocModal: (val: boolean) => void;
   toggleTooltip: () => void;
-  removeItem: (key: number, subkey: number | null) => void
+  removeItem: (key: number, subkey: number | null) => void;
   showMapButton: (val: boolean) => void;
-  changeTitle: (key: any, subkey: any, node: any, value: any) => void
-  changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any
-  changeDepartements: (departments: any, key: any, subkey: any) => any
-  changePrice: (e: any, key: any, subkey: any) => any
-  toggleFree: (key: any, subkey: any) => any
-  toggleNiveau: (selectedLevels: any, key: any, subkey: any) => void
-  deleteCard: (key: any, subkey: any, type: any) => void
-  setMarkers: (markers: any, key: any, subkey: any) => void
-  toggleShareContentOnMobileModal: () => any
-  upcoming: () => any
+  changeTitle: (key: any, subkey: any, node: any, value: any) => void;
+  changeAge: (e: any, key: any, subkey: any, isBottom?: boolean) => any;
+  changeDepartements: (departments: any, key: any, subkey: any) => any;
+  changePrice: (e: any, key: any, subkey: any) => any;
+  toggleFree: (key: any, subkey: any) => any;
+  toggleNiveau: (selectedLevels: any, key: any, subkey: any) => void;
+  deleteCard: (key: any, subkey: any, type: any) => void;
+  setMarkers: (markers: any, key: any, subkey: any) => void;
+  toggleShareContentOnMobileModal: () => any;
+  upcoming: () => any;
 }
 
 /**
@@ -68,8 +63,7 @@ const ContenuDispositif = (props: Props) => {
   }, [props.dispositif]);
 
   const getTitle = (title: string): string => {
-    if (title === "La démarche par étapes")
-      return t("Dispositif.Comment faire ?", "Comment faire ?");
+    if (title === "La démarche par étapes") return t("Dispositif.Comment faire ?", "Comment faire ?");
 
     // @ts-ignore https://www.i18next.com/translation-function/essentials#multiple-fallback-keys not supported by react-i18next
     return t(`Dispositif.${title}`, title);
@@ -90,32 +84,31 @@ const ContenuDispositif = (props: Props) => {
                 {dispositifContent.title}
               </button>
               <div style={{ display: "flex", flexDirection: "row" }}>
-                <h3
+                <h2
                   className={"contenu-title " + (key !== 0 ? " mt-20" : "")}
                   style={{ color: props.mainTheme.colors.color100 }}
                 >
                   {dispositifContent.title && getTitle(dispositifContent.title)}
-                </h3>
-                {!disableEdit &&
-                  props.typeContenu === "dispositif" &&
-                  props.displayTuto && (
-                    <div
-                      style={{
-                        marginTop: key !== 0 ? "20px" : "0px",
-                        marginLeft: "18px",
-                      }}
+                </h2>
+                {!disableEdit && props.typeContenu === "dispositif" && props.displayTuto && (
+                  <div
+                    style={{
+                      marginTop: key !== 0 ? "20px" : "0px",
+                      marginLeft: "18px"
+                    }}
+                  >
+                    <FButton
+                      type="tuto"
+                      name={"play-circle-outline"}
+                      onClick={() => props.toggleTutorielModal(dispositifContent.title || "")}
                     >
-                      <FButton
-                        type="tuto"
-                        name={"play-circle-outline"}
-                        onClick={() => props.toggleTutorielModal(dispositifContent.title || "")}
-                      >
-                        Tutoriel
-                      </FButton>
-                    </div>
-                  )}
+                      Tutoriel
+                    </FButton>
+                  </div>
+                )}
               </div>
-              { // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
+              {
+                // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
                 dispositifContent.content !== null && dispositifContent.content !== "null" && (
                   <EditableParagraph
                     keyValue={key}
@@ -193,7 +186,7 @@ const ContenuDispositif = (props: Props) => {
         </div>
       ))}
     </>
-  )
+  );
 };
 
 export default ContenuDispositif;

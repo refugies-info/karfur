@@ -229,10 +229,13 @@ $imgHeight: 350px;
     float: right;
   }
 
-  h3.contenu-title {
+  .contenu-title {
     line-height: normal;
     color: $gray90;
     margin-bottom: 40px;
+    font-weight: bold;
+    font-size: 40px;
+
     @include isMobile() {
       font-size: 28px;
       margin-bottom: 16px;
