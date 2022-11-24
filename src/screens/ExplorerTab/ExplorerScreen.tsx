@@ -164,8 +164,7 @@ export const ExplorerScreen = ({
               />
             ))
           ) : (
-            <Rows layout="1" verticalAlign="space-between">
-              <View />
+            <Rows layout="auto" verticalAlign="center">
               <CenteredView>
                 <CarousselContainer>
                   <TagsCarousel navigation={navigation} />
