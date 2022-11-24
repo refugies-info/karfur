@@ -18,7 +18,8 @@ const getAlternateLocales = (locales: string[] | undefined, currentLocale: strin
 };
 
 const getFullPath = (router: NextRouter, ln: string) => {
-  const path = getPath(router.pathname as PathNames, ln).replace("[id]", (router.query.id as string) || ""); // replace id params
+  let path = getPath(router.pathname as PathNames, ln).replace("[id]", (router.query.id as string) || ""); // replace id params
+  if (path.endsWith("/")) path = path.slice(0, -1);
   return getBaseUrl() + ln + path;
 };
 
@@ -31,6 +32,7 @@ const SEO = (props: Props) => {
       <meta name="viewport" content="width=device-width" />
       <title>{prefixTitle + defaultTitle}</title>
       {props.description && <meta name="description" content={props.description} />}
+      <link rel="canonical" href={getFullPath(router, router.locale || "fr")} />
 
       {/* OPENGRAPH */}
       <meta property="og:type" content="website" />
