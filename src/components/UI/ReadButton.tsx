@@ -312,7 +312,7 @@ export const ReadButton = (props: Props) => {
             <Play width={16} height={16} />
           )}
         </PlayButton>
-        {fontScale < 1.7 && (
+        {fontScale < 1.3 && (
           <StyledTextVerySmall style={{ color: styles.colors.darkGrey }}>
             Écouter
           </StyledTextVerySmall>

@@ -8,7 +8,7 @@ import {
   BottomTabBarProps,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import { PixelRatio, View } from "react-native";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

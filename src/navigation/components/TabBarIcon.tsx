@@ -21,7 +21,7 @@ export const TabBarIcon = (props: TabBarIconProps) => {
     : props.iconName + "-outline";
 
   // TODO Généraliser dans l'application ?
-  const scale = Math.max(fontScale / 2, 1);
+  const scale = Math.max(fontScale / 1.7, 1);
   return (
     <>
       <Icon

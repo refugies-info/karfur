@@ -36,7 +36,7 @@ export const TabBarItem = (props: Props) => {
         iconName={getTabBarIcon(props.route.name)}
         badge={props.route.name === "Favoris" ? hasUserNewFavorites : false}
       />
-      {fontScale < 2 && (
+      {fontScale < 1.6 && (
         <TabBarLabel focused={props.isFocused} label={props.label || ""} />
       )}
     </TouchableOpacity>
