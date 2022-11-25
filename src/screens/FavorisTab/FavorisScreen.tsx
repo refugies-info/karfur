@@ -129,8 +129,9 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
 
   return (
     <Page
-      noBottomMargin
+      hideBack
       loading={loading}
+      noBottomMargin
       title={t("favorites_screen.my_content", "Mes fiches")}
     >
       {favorites.length > 0 ? (
