@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { ObjectId, Theme } from "../../types/interface";
@@ -8,10 +8,8 @@ import {
   TextSmallNormal,
   TextVerySmallNormal,
 } from "../StyledText";
-import { RTLView } from "../BasicComponents";
 import { Image } from "react-native";
 import { Icon } from "react-native-eva-icons";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import NoLogo from "../../theme/images/contents/structure_no_logo.png";
 import { DemarcheImage } from "./DemarcheImage";
 import { logEventInFirebase } from "../../utils/logEvent";
@@ -19,6 +17,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { defaultColors } from "../../libs/getThemeTag";
+import { Columns } from "../layout";
 
 const IMAGE_SIZE = 58;
 
@@ -34,11 +33,6 @@ const ContentContainer = styled.TouchableOpacity<{
   border-width: ${({ isDispo }) => (!isDispo ? 2 : 0)}px;
   border-color: ${({ color }) => color || "transparent"};
   border-style: solid;
-`;
-
-const TitleContainer = styled(RTLView)`
-  align-items: center;
-  flex: 1;
 `;
 
 const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
@@ -58,7 +52,6 @@ const TitreInfoText = styled(TextSmallBold)`
   color: ${(props: { color: string }) => props.color};
   margin-bottom: ${(props: { isDispo: boolean }) =>
     props.isDispo ? styles.margin : 0}px;
-  flex-shrink: 1;
 `;
 
 const DescInfoText = styled(TextSmallNormal)`
@@ -68,21 +61,17 @@ const DescInfoText = styled(TextSmallNormal)`
 
 const TitreMarqueText = styled(TextVerySmallNormal)`
   color: ${(props: { color: string }) => props.color};
-  flex-shrink: 1;
 `;
 
 const TitlesContainer = styled.View`
   display: flex;
   flex: 1;
-  align-items: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? "flex-end" : "flex-start"};
+  align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
   padding: 16px;
 `;
 
 const ActionButton = styled.TouchableOpacity`
   padding-horizontal: ${styles.margin * 2}px;
-  height: 100%;
-  justify-content: center;
 `;
 
 interface Props {
@@ -105,9 +94,8 @@ interface Props {
   backScreen?: string;
   hasSponsorMatch?: boolean;
 }
-export const ContentSummary = (props: Props) => {
-  const { isRTL } = useTranslationWithRTL();
 
+export const ContentSummary = (props: Props) => {
   const logEventOnClick = (id: string) => {
     logEventInFirebase(FirebaseEvent.CLIC_CONTENT, {
       contentId: id,
@@ -153,7 +141,7 @@ export const ContentSummary = (props: Props) => {
           logEventOnClick(props.contentId);
         }}
       >
-        <TitleContainer>
+        <Columns RTLBehaviour layout="auto 1" verticalAlign="center">
           {props.sponsorUrl ? (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
               <Image
@@ -175,7 +163,7 @@ export const ContentSummary = (props: Props) => {
             </ImageContainer>
           )}
 
-          <TitlesContainer isRTL={isRTL}>
+          <TitlesContainer>
             <TitreInfoText color={colors.color100} isDispo={true}>
               {props.searchItem ? (
                 <Highlight
@@ -209,7 +197,7 @@ export const ContentSummary = (props: Props) => {
             )}
           </TitlesContainer>
           {actionButton}
-        </TitleContainer>
+        </Columns>
 
         {props.showAbstract && (
           <DescInfoText color={colors.color100}>
@@ -244,7 +232,7 @@ export const ContentSummary = (props: Props) => {
         logEventOnClick(props.contentId);
       }}
     >
-      <TitleContainer>
+      <Columns RTLBehaviour verticalAlign="center" layout="auto 1">
         <ImageContainer lightColor={colors.color30}>
           <DemarcheImage
             icon={props.theme?.icon}
@@ -254,7 +242,7 @@ export const ContentSummary = (props: Props) => {
           />
         </ImageContainer>
 
-        <TitlesContainer isRTL={isRTL}>
+        <TitlesContainer>
           <TitreInfoText color={colors.color100}>
             {props.searchItem ? (
               <Highlight
@@ -269,7 +257,7 @@ export const ContentSummary = (props: Props) => {
           </TitreInfoText>
         </TitlesContainer>
         {actionButton}
-      </TitleContainer>
+      </Columns>
 
       {props.showAbstract && (
         <DescInfoText color={colors.color100}>
