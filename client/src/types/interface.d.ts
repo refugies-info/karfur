@@ -292,7 +292,6 @@ export interface Structure {
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];
-  alt?: string;
 }
 
 export interface AudienceAge {

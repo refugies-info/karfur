@@ -537,7 +537,7 @@ class Sponsors extends Component<Props, State> {
                         <Image
                           className={styles.sponsor_img}
                           src={mainSponsor.picture.secure_url}
-                          alt={mainSponsor.acronyme}
+                          alt={mainSponsor.nom}
                           width={160}
                           height={110}
                           objectFit="contain"
@@ -611,7 +611,7 @@ class Sponsors extends Component<Props, State> {
                             <Image
                               className={styles.sponsor_img}
                               src={sponsor.picture.secure_url}
-                              alt={sponsor.alt}
+                              alt={sponsor.nom}
                               width={160}
                               height={110}
                               objectFit="contain"
@@ -623,7 +623,7 @@ class Sponsors extends Component<Props, State> {
                               <Image
                                 className={styles.sponsor_img}
                                 src={sponsor.picture.secure_url}
-                                alt={sponsor.alt}
+                                alt={sponsor.nom}
                                 width={160}
                                 height={110}
                                 objectFit="contain"
