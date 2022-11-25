@@ -596,6 +596,7 @@ const Dispositif = (props: Props) => {
           type: type
         };
       } else if (type === "etape") {
+        // TODO: not used?
         newChild = {
           type: "etape",
           title: "",
@@ -1115,13 +1116,6 @@ const Dispositif = (props: Props) => {
     }
   }, [routeAfterSave, router, isUserLoading, isUserStructureLoading, user]);
 
-  const upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500
-    });
   const createPossibleLanguagesObject = (avancement: Record<string, number> | undefined, langues: Language[]) => {
     if (!dispositif) return langues;
     let possibleLanguages: Language[] = [];
@@ -1576,7 +1570,6 @@ const Dispositif = (props: Props) => {
                 changePrice={changePrice}
                 toggleFree={toggleFree}
                 setMarkers={setMarkers}
-                upcoming={upcoming}
                 toggleTutorielModal={toggleTutorielModal}
                 displayTuto={displayTuto}
                 addMapBtn={addMapBtn}

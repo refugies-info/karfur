@@ -44,7 +44,6 @@ interface Props {
   deleteCard: (key: any, subkey: any, type: any) => void;
   setMarkers: (markers: any, key: any, subkey: any) => void;
   toggleShareContentOnMobileModal: () => any;
-  upcoming: () => any;
 }
 
 /**
@@ -180,7 +179,6 @@ const ContenuDispositif = (props: Props) => {
               showGeolocModal={props.showGeolocModal}
               setMarkers={props.setMarkers}
               toggleShareContentOnMobileModal={props.toggleShareContentOnMobileModal}
-              upcoming={props.upcoming}
             />
           }
         </div>
