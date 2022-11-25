@@ -145,8 +145,8 @@ const margin = 8;
 const layout = {
   columns: {
     nospace: "0",
-    default: "8px",
-    large: "16px",
+    default: `${margin}px`,
+    large: `${margin * 2}px`,
   },
   content: {
     normal: `${margin * 3}px`,
@@ -154,7 +154,7 @@ const layout = {
   },
   rows: {
     nospace: "0",
-    default: "16px",
+    default: `${margin * 2}px`,
   },
   header: {
     minHeight: 65,

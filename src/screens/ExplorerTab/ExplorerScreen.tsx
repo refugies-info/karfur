@@ -29,7 +29,6 @@ import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import LocationWarning from "../../components/Explorer/LocationWarning";
 import { NotificationsModal } from "../../components/Notifications";
 import { Page, Rows } from "../../components";
-import { View } from "react-native";
 
 const ViewChoiceContainer = styled(RTLView)`
   margin-top: ${styles.margin * 4}px;
@@ -47,13 +46,6 @@ const CarousselContainer = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-const CenteredView = styled.View`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-end;
-`;
-
 export const ExplorerScreen = ({
   navigation,
 }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
@@ -113,10 +105,10 @@ export const ExplorerScreen = ({
 
   return (
     <>
-      <Page showLogo>
-        <View style={{ minHeight: "85%" }}>
-          <LocationWarning />
+      <Page noBottomMargin showLogo>
+        <LocationWarning />
 
+        <Rows layout="auto 1" verticalAlign="space-between">
           <ViewChoiceContainer>
             <ViewChoice
               text={"gallery"}
@@ -164,15 +156,13 @@ export const ExplorerScreen = ({
               />
             ))
           ) : (
-            <Rows layout="auto" verticalAlign="center">
-              <CenteredView>
-                <CarousselContainer>
-                  <TagsCarousel navigation={navigation} />
-                </CarousselContainer>
-              </CenteredView>
+            <Rows verticalAlign="center">
+              <CarousselContainer>
+                <TagsCarousel navigation={navigation} />
+              </CarousselContainer>
             </Rows>
           )}
-        </View>
+        </Rows>
       </Page>
       <NotificationsModal />
     </>

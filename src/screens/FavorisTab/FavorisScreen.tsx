@@ -129,6 +129,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
 
   return (
     <Page
+      noBottomMargin
       loading={loading}
       title={t("favorites_screen.my_content", "Mes fiches")}
     >

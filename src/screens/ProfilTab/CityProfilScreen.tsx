@@ -13,6 +13,7 @@ export const CityProfilScreen = ({
     <Page
       headerTitle={t("profile_screens.city", "Ville")}
       headerIconName="pin-outline"
+      noBottomMargin
     >
       <FilterCityComponent navigation={navigation} isOnboardingScreen={false} />
     </Page>

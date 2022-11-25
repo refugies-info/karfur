@@ -13,9 +13,10 @@ export const FilterCity = ({
 
   return (
     <Page
-      hideLanguageSwitch
       headerIconName={"person-outline"}
       headerTitle={t("onboarding_screens.me", "Créer mon profil")}
+      hideLanguageSwitch
+      noBottomMargin
     >
       <FilterCityComponent navigation={navigation} isOnboardingScreen={true} />
     </Page>

@@ -2,12 +2,15 @@
 
 exports[`Filter city should render correctly when city selected 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -378,7 +381,8 @@ exports[`Filter city should render correctly when city selected 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -425,16 +429,18 @@ exports[`Filter city should render correctly when city selected 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
+              "justifyContent": "flex-end",
             },
           ]
         }
+        verticalAlign="flex-end"
       >
         <View
           style={
             Array [
               Object {
-                "flexBasis": "auto",
-                "flexGrow": 0,
+                "flexBasis": 0,
+                "flexGrow": 1,
                 "marginBottom": 8,
               },
             ]
@@ -983,12 +989,15 @@ exports[`Filter city should render correctly when city selected 1`] = `
 
 exports[`Filter city should render correctly when no city 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -1359,7 +1368,8 @@ exports[`Filter city should render correctly when no city 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -1406,16 +1416,18 @@ exports[`Filter city should render correctly when no city 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
+              "justifyContent": "flex-end",
             },
           ]
         }
+        verticalAlign="flex-end"
       >
         <View
           style={
             Array [
               Object {
-                "flexBasis": "auto",
-                "flexGrow": 0,
+                "flexBasis": 0,
+                "flexGrow": 1,
                 "marginBottom": 8,
               },
             ]

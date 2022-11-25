@@ -2,12 +2,15 @@
 
 exports[`Page snapshot test suite should render in loading state 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -308,12 +311,15 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
 
 exports[`Page snapshot test suite should render without bug 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -568,6 +574,7 @@ exports[`Page snapshot test suite should render without bug 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
+        "flexGrow": 1,
         "paddingBottom": 40,
         "paddingHorizontal": 24,
         "paddingTop": 24,

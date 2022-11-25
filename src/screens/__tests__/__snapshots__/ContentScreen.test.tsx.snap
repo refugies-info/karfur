@@ -3,12 +3,15 @@
 exports[`ContentScreen should render correctly 1`] = `
 Array [
   <View
+    backgroundColor="transparent"
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,
+          "minHeight": "100%",
           "minWidth": "100%",
         },
       ]
@@ -262,6 +265,7 @@ Array [
       alwaysBounceVertical={false}
       contentContainerStyle={
         Object {
+          "flexGrow": 1,
           "paddingBottom": 40,
           "paddingHorizontal": 24,
           "paddingTop": 24,
@@ -4584,12 +4588,15 @@ Array [
 exports[`ContentScreen should toggle map modal 1`] = `
 Array [
   <View
+    backgroundColor="transparent"
     style={
       Array [
         Object {
+          "backgroundColor": "transparent",
           "flexBasis": 0,
           "flexGrow": 1,
           "flexShrink": 1,
+          "minHeight": "100%",
           "minWidth": "100%",
         },
       ]
@@ -4843,6 +4850,7 @@ Array [
       alwaysBounceVertical={false}
       contentContainerStyle={
         Object {
+          "flexGrow": 1,
           "paddingBottom": 40,
           "paddingHorizontal": 24,
           "paddingTop": 24,

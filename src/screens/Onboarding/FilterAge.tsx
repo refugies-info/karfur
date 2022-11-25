@@ -59,8 +59,9 @@ export const FilterAge = ({
       headerIconName={"person-outline"}
       headerTitle={t("onboarding_screens.me", "Créer mon profil")}
       hideLanguageSwitch
+      noBottomMargin
     >
-      <Rows>
+      <Rows layout="1 auto" verticalAlign="space-between">
         <View>
           <Title>{t("onboarding_screens.age", "Quel âge as-tu ?")}</Title>
           <Explaination

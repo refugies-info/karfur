@@ -33,17 +33,21 @@ import { Picture } from "../../../types/interface";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
 
-const PageContainer = styled.View`
+const PageContainer = styled.View<{ backgroundColor: string }>`
+  background-color: ${({ backgroundColor }) => backgroundColor};
   flex: 1;
   min-width: 100%;
+  min-height: 100%;
 `;
 
 export interface PageProps extends Partial<HeaderProps> {
+  backgroundColor?: string;
   children: ReactNode;
   headerBackgroundColor?: string;
   headerBackgroundImage?: Picture;
   HeaderContent?: ComponentType<HeaderContentProps>;
   loading?: boolean;
+  noBottomMargin?: boolean;
   Skeleton?: ComponentType;
   title?: string;
 }
@@ -77,12 +81,14 @@ const MainContainer = styled(SafeAreaViewTopInset)<{
 `;
 
 const Page = ({
+  backgroundColor = "transparent",
   children,
   headerBackgroundColor = "white",
   headerBackgroundImage,
   HeaderContent = HeaderContentEmpty,
   headerTitle,
   loading,
+  noBottomMargin = false,
   Skeleton = SkeletonListPage,
   title,
   ...headerProps
@@ -177,18 +183,21 @@ const Page = ({
     () => ({
       paddingHorizontal: theme.margin * 3,
       paddingTop: theme.margin * 3,
-      paddingBottom: theme.margin * 5 + (theme.insets.bottom || 0),
+      paddingBottom: noBottomMargin
+        ? 0
+        : theme.margin * 5 + (theme.insets.bottom || 0),
+      flexGrow: 1,
     }),
     [theme.margin, theme.insets.bottom]
   );
 
   return (
-    <PageContainer>
+    <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
         style={{
           backgroundColor:
             HeaderContent === HeaderContentEmpty
-              ? "white"
+              ? headerBackgroundColor
               : backgroundColorInterpolation,
         }}
       >

@@ -71,12 +71,6 @@ const SelectedCityText = styled(StyledTextSmallBold)`
     props.isRTL ? styles.margin : 0}px;
 `;
 
-const BottomButtonsContainer = styled.View``;
-
-const ValidateButtonContainer = styled.View`
-  margin-bottom: ${styles.margin * 2}px;
-`;
-
 const ICON_SIZE = 24;
 
 interface Props {
@@ -261,7 +255,7 @@ export const FilterCityComponent = (props: Props) => {
   const isOnValidateDisabled =
     userLocation.city === selectedCity || (!userLocation.city && !selectedCity);
   return (
-    <Rows>
+    <Rows layout="1 auto" verticalAlign="flex-end">
       <View>
         <Title>
           {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
@@ -328,45 +322,41 @@ export const FilterCityComponent = (props: Props) => {
           </View>
         )}
       </View>
-      <View>
-        {props.isOnboardingScreen ? (
-          <>
-            <OnboardingProgressBar step={1} />
-            <BottomButtons
-              isRightButtonDisabled={!selectedCity || !selectedDepartment}
-              onLeftButtonClick={onValidate}
-              onRightButtonClick={onValidate}
-            />
-          </>
-        ) : (
-          <BottomButtonsContainer>
-            <ValidateButtonContainer>
-              <CustomButton
-                i18nKey="global.validate"
-                defaultText="Valider"
-                textColor={styles.colors.white}
-                onPress={() => {
-                  if (isOnValidateDisabled) return;
-                  onValidate();
-                }}
-                backgroundColor={styles.colors.darkBlue}
-                iconName="checkmark-outline"
-                isDisabled={isOnValidateDisabled}
-                iconFirst={true}
-              />
-            </ValidateButtonContainer>
+      {props.isOnboardingScreen ? (
+        <View>
+          <OnboardingProgressBar step={1} />
+          <BottomButtons
+            isRightButtonDisabled={!selectedCity || !selectedDepartment}
+            onLeftButtonClick={onValidate}
+            onRightButtonClick={onValidate}
+          />
+        </View>
+      ) : (
+        <Rows>
+          <CustomButton
+            i18nKey="global.validate"
+            defaultText="Valider"
+            textColor={styles.colors.white}
+            onPress={() => {
+              if (isOnValidateDisabled) return;
+              onValidate();
+            }}
+            backgroundColor={styles.colors.darkBlue}
+            iconName="checkmark-outline"
+            isDisabled={isOnValidateDisabled}
+            iconFirst={true}
+          />
 
-            <CustomButton
-              i18nKey="global.cancel"
-              defaultText="Annuler"
-              textColor={styles.colors.black}
-              onPress={props.navigation.goBack}
-              isTextNotBold={true}
-              isDisabled={isOnValidateDisabled}
-            />
-          </BottomButtonsContainer>
-        )}
-      </View>
+          <CustomButton
+            i18nKey="global.cancel"
+            defaultText="Annuler"
+            textColor={styles.colors.black}
+            onPress={props.navigation.goBack}
+            isTextNotBold={true}
+            isDisabled={isOnValidateDisabled}
+          />
+        </Rows>
+      )}
     </Rows>
   );
 };

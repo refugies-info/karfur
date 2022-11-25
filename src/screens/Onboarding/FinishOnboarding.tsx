@@ -3,15 +3,13 @@ import { OnboardingParamList } from "../../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { useDispatch, useSelector } from "react-redux";
 import { saveHasUserSeenOnboardingActionCreator } from "../../services/redux/User/user.actions";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { styles } from "../../theme";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { CustomButton } from "../../components/CustomButton";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { StyledTextBigBold } from "../../components/StyledText";
 import LottieView from "lottie-react-native";
 import { fetchContentsActionCreator } from "../../services/redux/Contents/contents.actions";
-import { HeaderWithBack } from "../../components/HeaderWithBack";
 import {
   userLocationSelector,
   userAgeSelector,
@@ -22,16 +20,8 @@ import { View, Dimensions } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { FakeTabBar } from "../../navigation/components/FakeTabBar";
+import { Page } from "../../components";
 
-const MainView = styled(SafeAreaView)`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: ${styles.colors.darkBlue};
-
-  padding-bottom: ${styles.margin * 3}px;
-`;
 const StyledText = styled(StyledTextBigBold)`
   color: ${styles.colors.white};
   text-align: center;
@@ -57,9 +47,11 @@ const ButtonContainer = styled.View`
   padding-horizontal: ${styles.margin * 3}px;
 `;
 
-export const FinishOnboarding = ({
-  navigation,
-}: StackScreenProps<OnboardingParamList, "FinishOnboarding">) => {
+export const FinishOnboarding = ({}: StackScreenProps<
+  OnboardingParamList,
+  "FinishOnboarding"
+>) => {
+  const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
 
@@ -85,10 +77,19 @@ export const FinishOnboarding = ({
     } catch (e) {}
   };
   return (
-    <MainView>
-      <HeaderWithBack />
-
-      <ElementsContainer contentContainerStyle={{ alignItems: "center" }}>
+    <Page
+      backgroundColor={theme.colors.darkBlue}
+      headerBackgroundColor="transparent"
+      hideLanguageSwitch
+      noBottomMargin
+    >
+      <ElementsContainer
+        contentContainerStyle={{
+          alignItems: "center",
+          flexGrow: 1,
+          justifyContent: "center",
+        }}
+      >
         {hasUserEnteredInfos ? (
           <LottieContainer>
             <LottieView
@@ -135,6 +136,6 @@ export const FinishOnboarding = ({
           iconName="arrow-forward-outline"
         />
       </ButtonContainer>
-    </MainView>
+    </Page>
   );
 };

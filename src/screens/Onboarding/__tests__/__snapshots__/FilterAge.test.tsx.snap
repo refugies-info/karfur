@@ -2,12 +2,15 @@
 
 exports[`Filter age should render correctly when age selected 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -378,7 +381,8 @@ exports[`Filter age should render correctly when age selected 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -425,16 +429,18 @@ exports[`Filter age should render correctly when age selected 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
+              "justifyContent": "space-between",
             },
           ]
         }
+        verticalAlign="space-between"
       >
         <View
           style={
             Array [
               Object {
-                "flexBasis": "auto",
-                "flexGrow": 0,
+                "flexBasis": 0,
+                "flexGrow": 1,
                 "marginBottom": 8,
               },
             ]
@@ -1237,12 +1243,15 @@ exports[`Filter age should render correctly when age selected 1`] = `
 
 exports[`Filter age should render correctly when no age selected 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -1613,7 +1622,8 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -1660,16 +1670,18 @@ exports[`Filter age should render correctly when no age selected 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
+              "justifyContent": "space-between",
             },
           ]
         }
+        verticalAlign="space-between"
       >
         <View
           style={
             Array [
               Object {
-                "flexBasis": "auto",
-                "flexGrow": 0,
+                "flexBasis": 0,
+                "flexGrow": 1,
                 "marginBottom": 8,
               },
             ]
@@ -2407,12 +2419,15 @@ exports[`Filter age should render correctly when no age selected 1`] = `
 
 exports[`Filter age should select age when click on it 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -2783,7 +2798,8 @@ exports[`Filter age should select age when click on it 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -2830,16 +2846,18 @@ exports[`Filter age should select age when click on it 1`] = `
               "flexBasis": "auto",
               "flexDirection": "column",
               "flexGrow": 1,
+              "justifyContent": "space-between",
             },
           ]
         }
+        verticalAlign="space-between"
       >
         <View
           style={
             Array [
               Object {
-                "flexBasis": "auto",
-                "flexGrow": 0,
+                "flexBasis": 0,
+                "flexGrow": 1,
                 "marginBottom": 8,
               },
             ]

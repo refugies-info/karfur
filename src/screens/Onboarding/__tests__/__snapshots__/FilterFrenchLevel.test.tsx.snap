@@ -2,12 +2,15 @@
 
 exports[`Filter french level should render correctly when french level selected 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -378,7 +381,8 @@ exports[`Filter french level should render correctly when french level selected 
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -418,306 +422,578 @@ exports[`Filter french level should render correctly when french level selected 
           }
         />
       </View>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        Quel est ton niveau en français ?
-      </Text>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#5E5E5E",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 48,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        C’est pour te montrer les formations faites pour ton niveau de français.
-      </Text>
       <View
-        accessibilityRole="radiogroup"
+        style={
+          Array [
+            Object {
+              "flexBasis": "auto",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+        verticalAlign="space-between"
       >
         <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_a"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
+            Array [
               Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
+                "flexBasis": 0,
                 "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <View>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_a
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  A1/A2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
+              Quel est ton niveau en français ?
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginBottom": 48,
+                    "textAlign": "left",
                   },
                 ]
               }
+            >
+              C’est pour te montrer les formations faites pour ton niveau de français.
+            </Text>
+            <View
+              accessibilityRole="radiogroup"
             >
               <View
-                selected={false}
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_a"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_a
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        A1/A2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#DAE0FB",
+                    "borderColor": "#0421B1",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                  }
                 }
-              />
+                testID="test-filter-french_level_b"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={true}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_b
+                      <Text
+                        isRTL={false}
+                        isSelected={true}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        B1/B2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={true}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#0421B1",
+                            "borderColor": "transparent",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        collapsable={false}
+                        style={
+                          Object {
+                            "transform": Array [
+                              Object {
+                                "scale": 1,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight={16}
+                          bbWidth={16}
+                          fill="#FFFFFF"
+                          focusable={false}
+                          height={16}
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                                "borderWidth": 0,
+                              },
+                              Object {
+                                "flex": 0,
+                                "height": 16,
+                                "width": 16,
+                              },
+                            ]
+                          }
+                          vbHeight={24}
+                          vbWidth={24}
+                          width={16}
+                        >
+                          <RNSVGGroup
+                            fill={4294967295}
+                            propList={
+                              Array [
+                                "fill",
+                              ]
+                            }
+                          >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
+                                <RNSVGRect
+                                  height="24"
+                                  opacity={0}
+                                  width="24"
+                                  x={0}
+                                  y={0}
+                                />
+                                <RNSVGPath
+                                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                                />
+                              </RNSVGGroup>
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGSvgView>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_c"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_c
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        C1/C2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
         </View>
         <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
-            Object {
-              "backgroundColor": "#DAE0FB",
-              "borderColor": "#0421B1",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-            }
-          }
-          testID="test-filter-french_level_b"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
+            Array [
               Object {
-                "alignItems": "center",
                 "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
+                "flexGrow": 0,
+              },
+            ]
+          }
+        >
+          <View>
             <View
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={true}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_b
-                <Text
-                  isRTL={false}
-                  isSelected={true}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  B1/B2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
+                    "flexDirection": "row",
+                    "marginHorizontal": -6,
                   },
                 ]
               }
             >
               <View
-                selected={true}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#0421B1",
-                      "borderColor": "transparent",
+                      "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
                     },
                   ]
                 }
@@ -726,533 +1002,302 @@ exports[`Filter french level should render correctly when french level selected 
                   collapsable={false}
                   style={
                     Object {
-                      "transform": Array [
-                        Object {
-                          "scale": 1,
-                        },
-                      ],
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
                     }
                   }
-                >
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={16}
-                    bbWidth={16}
-                    fill="#FFFFFF"
-                    focusable={false}
-                    height={16}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 16,
-                          "width": 16,
-                        },
-                      ]
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
                     }
-                    vbHeight={24}
-                    vbWidth={24}
-                    width={16}
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "0%",
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginTop": 24,
+                  },
+                ]
+              }
+            >
+              <View
+                RTLBehaviour={false}
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="flex-start"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "marginRight": 16,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "minHeight": 56,
+                        "opacity": 1,
+                        "paddingVertical": 18,
+                      }
+                    }
                   >
-                    <RNSVGGroup
-                      fill={4294967295}
-                      propList={
+                    <Text
+                      isRTL={false}
+                      selectable={true}
+                      style={
                         Array [
-                          "fill",
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                          Object {
+                            "color": "#0421B1",
+                          },
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
-                          <RNSVGRect
-                            height="24"
-                            opacity={0}
-                            width="24"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                          />
+                      Passer l'étape
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0421B1",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "elevation": 2,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 56,
+                        "opacity": 0.4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                      }
+                    }
+                    testID="test-validate-button"
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "transform": Array [
+                            Object {
+                              "scale": 1,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={24}
+                        bbWidth={24}
+                        fill="#FFFFFF"
+                        focusable={false}
+                        height={24}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
+                        }
+                        vbHeight={24}
+                        vbWidth={24}
+                        width={24}
+                      >
+                        <RNSVGGroup
+                          fill={4294967295}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
+                              <RNSVGRect
+                                height="24"
+                                opacity={0}
+                                width="24"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </RNSVGGroup>
+                          </RNSVGGroup>
                         </RNSVGGroup>
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
+                      </RNSVGSvgView>
+                    </View>
+                    <Text
+                      color="#FFFFFF"
+                      isRTL={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "color": "#FFFFFF",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginLeft": 8,
+                            "marginRight": 0,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      Valider
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          </View>
-        </View>
-        <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_c"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_c
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  C1/C2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
-              }
-            >
-              <View
-                selected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-              "marginHorizontal": -6,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "0%",
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-              "marginTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          RTLBehaviour={false}
-          collapsable={false}
-          horizontalAlign="flex-start"
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
-            }
-          }
-          verticalAlign="flex-start"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "minHeight": 56,
-                  "opacity": 1,
-                  "paddingVertical": 18,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#0421B1",
-                    },
-                  ]
-                }
-              >
-                Passer l'étape
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                Object {
-                  "disabled": false,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#0421B1",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "elevation": 2,
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "minHeight": 56,
-                  "opacity": 0.4,
-                  "shadowColor": "#212121",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                }
-              }
-              testID="test-validate-button"
-            >
-              <View
-                collapsable={false}
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#FFFFFF"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={4294967295}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-              <Text
-                color="#FFFFFF"
-                isRTL={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Valider
-              </Text>
             </View>
           </View>
         </View>
@@ -1264,12 +1309,15 @@ exports[`Filter french level should render correctly when french level selected 
 
 exports[`Filter french level should render correctly when no french level selected 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -1640,7 +1688,8 @@ exports[`Filter french level should render correctly when no french level select
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -1680,776 +1729,817 @@ exports[`Filter french level should render correctly when no french level select
           }
         />
       </View>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        Quel est ton niveau en français ?
-      </Text>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#5E5E5E",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 48,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        C’est pour te montrer les formations faites pour ton niveau de français.
-      </Text>
-      <View
-        accessibilityRole="radiogroup"
-      >
-        <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_a"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_a
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  A1/A2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
-              }
-            >
-              <View
-                selected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_b"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_b
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  B1/B2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
-              }
-            >
-              <View
-                selected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-        <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_c"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_c
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  C1/C2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
-              }
-            >
-              <View
-                selected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </View>
       <View
         style={
           Array [
             Object {
-              "flexDirection": "row",
-              "marginHorizontal": -6,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "0%",
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-              "marginTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          RTLBehaviour={false}
-          collapsable={false}
-          horizontalAlign="flex-start"
-          style={
-            Object {
-              "alignItems": "flex-start",
               "flexBasis": "auto",
-              "flexDirection": "row",
+              "flexDirection": "column",
               "flexGrow": 1,
-              "justifyContent": "flex-start",
-            }
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+        verticalAlign="space-between"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": 0,
+                "flexGrow": 1,
+                "marginBottom": 8,
+              },
+            ]
           }
-          verticalAlign="flex-start"
         >
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+          <View>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
-                Object {
-                  "alignItems": "center",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "minHeight": 56,
-                  "opacity": 1,
-                  "paddingVertical": 18,
-                }
+                Array [
+                  Object {
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                    "textAlign": "left",
+                  },
+                ]
               }
             >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#0421B1",
-                    },
-                  ]
-                }
-              >
-                Passer l'étape
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                Object {
-                  "disabled": true,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
+              Quel est ton niveau en français ?
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#0421B1",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "minHeight": 56,
-                  "opacity": 0.4,
-                }
+                Array [
+                  Object {
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginBottom": 48,
+                    "textAlign": "left",
+                  },
+                ]
               }
-              testID="test-validate-button"
+            >
+              C’est pour te montrer les formations faites pour ton niveau de français.
+            </Text>
+            <View
+              accessibilityRole="radiogroup"
             >
               <View
+                accessibilityRole="radio"
+                accessible={true}
                 collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
                   Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
                   }
                 }
+                testID="test-filter-french_level_a"
               >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#FFFFFF"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
                   style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
                   }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
+                  verticalAlign="center"
                 >
-                  <RNSVGGroup
-                    fill={4294967295}
-                    propList={
+                  <View
+                    style={
                       Array [
-                        "fill",
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
                       ]
                     }
                   >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_a
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        A1/A2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
               </View>
-              <Text
-                color="#FFFFFF"
-                isRTL={false}
-                selectable={true}
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_b"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_b
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        B1/B2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_c"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_c
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        C1/C2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "flexBasis": "auto",
+                "flexGrow": 0,
+              },
+            ]
+          }
+        >
+          <View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexDirection": "row",
+                    "marginHorizontal": -6,
+                  },
+                ]
+              }
+            >
+              <View
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "color": "#FFFFFF",
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
                       "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
                     },
                   ]
                 }
               >
-                Valider
-              </Text>
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
+                    }
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "0%",
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginTop": 24,
+                  },
+                ]
+              }
+            >
+              <View
+                RTLBehaviour={false}
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="flex-start"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "marginRight": 16,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "minHeight": 56,
+                        "opacity": 1,
+                        "paddingVertical": 18,
+                      }
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                          Object {
+                            "color": "#0421B1",
+                          },
+                        ]
+                      }
+                    >
+                      Passer l'étape
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": true,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0421B1",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 56,
+                        "opacity": 0.4,
+                      }
+                    }
+                    testID="test-validate-button"
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "transform": Array [
+                            Object {
+                              "scale": 1,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={24}
+                        bbWidth={24}
+                        fill="#FFFFFF"
+                        focusable={false}
+                        height={24}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
+                        }
+                        vbHeight={24}
+                        vbWidth={24}
+                        width={24}
+                      >
+                        <RNSVGGroup
+                          fill={4294967295}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
+                              <RNSVGRect
+                                height="24"
+                                opacity={0}
+                                width="24"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGGroup>
+                      </RNSVGSvgView>
+                    </View>
+                    <Text
+                      color="#FFFFFF"
+                      isRTL={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "color": "#FFFFFF",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginLeft": 8,
+                            "marginRight": 0,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      Valider
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
         </View>
@@ -2461,12 +2551,15 @@ exports[`Filter french level should render correctly when no french level select
 
 exports[`Filter french level should select level when click on it 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -2837,7 +2930,8 @@ exports[`Filter french level should select level when click on it 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
-        "paddingBottom": 40,
+        "flexGrow": 1,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -2877,306 +2971,578 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         />
       </View>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#212121",
-              "fontFamily": "circularBold",
-              "fontSize": 25,
-              "lineHeight": 32,
-              "marginBottom": 16,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        Quel est ton niveau en français ?
-      </Text>
-      <Text
-        isRTL={false}
-        selectable={true}
-        style={
-          Array [
-            Object {
-              "color": "#5E5E5E",
-              "fontFamily": "circularBook",
-              "fontSize": 16,
-              "lineHeight": 20,
-              "marginBottom": 48,
-              "textAlign": "left",
-            },
-          ]
-        }
-      >
-        C’est pour te montrer les formations faites pour ton niveau de français.
-      </Text>
       <View
-        accessibilityRole="radiogroup"
+        style={
+          Array [
+            Object {
+              "flexBasis": "auto",
+              "flexDirection": "column",
+              "flexGrow": 1,
+              "justifyContent": "space-between",
+            },
+          ]
+        }
+        verticalAlign="space-between"
       >
         <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_a"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
+            Array [
               Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
+                "flexBasis": 0,
                 "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
+                "marginBottom": 8,
+              },
+            ]
+          }
+        >
+          <View>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
+                    "color": "#212121",
+                    "fontFamily": "circularBold",
+                    "fontSize": 25,
+                    "lineHeight": 32,
+                    "marginBottom": 16,
+                    "textAlign": "left",
                   },
                 ]
               }
             >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_a
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  A1/A2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
+              Quel est ton niveau en français ?
+            </Text>
+            <Text
+              isRTL={false}
+              selectable={true}
               style={
                 Array [
                   Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
+                    "color": "#5E5E5E",
+                    "fontFamily": "circularBook",
+                    "fontSize": 16,
+                    "lineHeight": 20,
+                    "marginBottom": 48,
+                    "textAlign": "left",
                   },
                 ]
               }
+            >
+              C’est pour te montrer les formations faites pour ton niveau de français.
+            </Text>
+            <View
+              accessibilityRole="radiogroup"
             >
               <View
-                selected={false}
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
                 style={
-                  Array [
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_a"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
                     Object {
                       "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_a
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        A1/A2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#DAE0FB",
+                    "borderColor": "#0421B1",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                  }
                 }
-              />
+                testID="test-filter-french_level_b"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={true}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_b
+                      <Text
+                        isRTL={false}
+                        isSelected={true}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        B1/B2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={true}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#0421B1",
+                            "borderColor": "transparent",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        collapsable={false}
+                        style={
+                          Object {
+                            "transform": Array [
+                              Object {
+                                "scale": 1,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNSVGSvgView
+                          align="xMidYMid"
+                          bbHeight={16}
+                          bbWidth={16}
+                          fill="#FFFFFF"
+                          focusable={false}
+                          height={16}
+                          meetOrSlice={0}
+                          minX={0}
+                          minY={0}
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                                "borderWidth": 0,
+                              },
+                              Object {
+                                "flex": 0,
+                                "height": 16,
+                                "width": 16,
+                              },
+                            ]
+                          }
+                          vbHeight={24}
+                          vbWidth={24}
+                          width={16}
+                        >
+                          <RNSVGGroup
+                            fill={4294967295}
+                            propList={
+                              Array [
+                                "fill",
+                              ]
+                            }
+                          >
+                            <RNSVGGroup>
+                              <RNSVGGroup>
+                                <RNSVGRect
+                                  height="24"
+                                  opacity={0}
+                                  width="24"
+                                  x={0}
+                                  y={0}
+                                />
+                                <RNSVGPath
+                                  d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                                />
+                              </RNSVGGroup>
+                            </RNSVGGroup>
+                          </RNSVGGroup>
+                        </RNSVGSvgView>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View
+                accessibilityRole="radio"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#FFFFFF",
+                    "borderRadius": 12,
+                    "borderWidth": 2,
+                    "display": "flex",
+                    "elevation": 6,
+                    "flexDirection": "row",
+                    "flexWrap": "wrap",
+                    "justifyContent": "space-between",
+                    "marginBottom": 24,
+                    "opacity": 1,
+                    "paddingBottom": 14,
+                    "paddingLeft": 14,
+                    "paddingRight": 14,
+                    "paddingTop": 14,
+                    "shadowColor": "#212121",
+                    "shadowOffset": Object {
+                      "height": 1,
+                      "width": 1,
+                    },
+                    "shadowOpacity": 0.16,
+                    "shadowRadius": 8,
+                  }
+                }
+                testID="test-filter-french_level_c"
+              >
+                <View
+                  RTLBehaviour={true}
+                  collapsable={false}
+                  horizontalAlign="flex-start"
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "flexBasis": "auto",
+                      "flexDirection": "row",
+                      "flexGrow": 1,
+                      "justifyContent": "flex-start",
+                    }
+                  }
+                  verticalAlign="center"
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": 0,
+                          "flexGrow": 1,
+                          "marginRight": 16,
+                        },
+                      ]
+                    }
+                  >
+                    <Text
+                      isRTL={false}
+                      isSelected={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      french_level_c
+                      <Text
+                        isRTL={false}
+                        isSelected={false}
+                        selectable={true}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#212121",
+                              "flexShrink": 1,
+                              "fontFamily": "circularBold",
+                              "fontSize": 16,
+                              "lineHeight": 20,
+                              "textAlign": "left",
+                            },
+                          ]
+                        }
+                      >
+                         
+                        (
+                        C1/C2
+                        )
+                      </Text>
+                    </Text>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexBasis": "auto",
+                          "flexGrow": 0,
+                        },
+                      ]
+                    }
+                  >
+                    <View
+                      selected={false}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "borderColor": "#5E5E5E",
+                            "borderRadius": 12,
+                            "borderWidth": 1,
+                            "height": 24,
+                            "justifyContent": "center",
+                            "width": 24,
+                          },
+                        ]
+                      }
+                    />
+                  </View>
+                </View>
+              </View>
             </View>
           </View>
         </View>
         <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
           style={
-            Object {
-              "backgroundColor": "#DAE0FB",
-              "borderColor": "#0421B1",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-            }
-          }
-          testID="test-filter-french_level_b"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
+            Array [
               Object {
-                "alignItems": "center",
                 "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
+                "flexGrow": 0,
+              },
+            ]
+          }
+        >
+          <View>
             <View
               style={
                 Array [
                   Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={true}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_b
-                <Text
-                  isRTL={false}
-                  isSelected={true}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  B1/B2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
+                    "flexDirection": "row",
+                    "marginHorizontal": -6,
                   },
                 ]
               }
             >
               <View
-                selected={true}
                 style={
                   Array [
                     Object {
-                      "alignItems": "center",
-                      "backgroundColor": "#0421B1",
-                      "borderColor": "transparent",
+                      "backgroundColor": "#C6C6C6",
                       "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
                     },
                   ]
                 }
@@ -3185,533 +3551,302 @@ exports[`Filter french level should select level when click on it 1`] = `
                   collapsable={false}
                   style={
                     Object {
-                      "transform": Array [
-                        Object {
-                          "scale": 1,
-                        },
-                      ],
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
                     }
                   }
-                >
-                  <RNSVGSvgView
-                    align="xMidYMid"
-                    bbHeight={16}
-                    bbWidth={16}
-                    fill="#FFFFFF"
-                    focusable={false}
-                    height={16}
-                    meetOrSlice={0}
-                    minX={0}
-                    minY={0}
-                    style={
-                      Array [
-                        Object {
-                          "backgroundColor": "transparent",
-                          "borderWidth": 0,
-                        },
-                        Object {
-                          "flex": 0,
-                          "height": 16,
-                          "width": 16,
-                        },
-                      ]
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "100%",
                     }
-                    vbHeight={24}
-                    vbWidth={24}
-                    width={16}
+                  }
+                />
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "#C6C6C6",
+                      "borderRadius": 12,
+                      "flexBasis": 0,
+                      "flexGrow": 1,
+                      "flexShrink": 1,
+                      "height": 4,
+                      "marginHorizontal": 6,
+                      "overflow": "hidden",
+                      "width": "100%",
+                    },
+                  ]
+                }
+              >
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "backgroundColor": "#0421B1",
+                      "height": "100%",
+                      "left": 0,
+                      "position": "absolute",
+                      "top": 0,
+                      "width": "0%",
+                    }
+                  }
+                />
+              </View>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "marginTop": 24,
+                  },
+                ]
+              }
+            >
+              <View
+                RTLBehaviour={false}
+                collapsable={false}
+                horizontalAlign="flex-start"
+                style={
+                  Object {
+                    "alignItems": "flex-start",
+                    "flexBasis": "auto",
+                    "flexDirection": "row",
+                    "flexGrow": 1,
+                    "justifyContent": "flex-start",
+                  }
+                }
+                verticalAlign="flex-start"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                        "marginRight": 16,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "flexDirection": "row",
+                        "minHeight": 56,
+                        "opacity": 1,
+                        "paddingVertical": 18,
+                      }
+                    }
                   >
-                    <RNSVGGroup
-                      fill={4294967295}
-                      propList={
+                    <Text
+                      isRTL={false}
+                      selectable={true}
+                      style={
                         Array [
-                          "fill",
+                          Object {
+                            "color": "#212121",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "textAlign": "left",
+                          },
+                          Object {
+                            "color": "#0421B1",
+                          },
                         ]
                       }
                     >
-                      <RNSVGGroup>
-                        <RNSVGGroup>
-                          <RNSVGRect
-                            height="24"
-                            opacity={0}
-                            width="24"
-                            x={0}
-                            y={0}
-                          />
-                          <RNSVGPath
-                            d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                          />
+                      Passer l'étape
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flexBasis": 0,
+                        "flexGrow": 1,
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessibilityRole="button"
+                    accessibilityState={
+                      Object {
+                        "disabled": false,
+                      }
+                    }
+                    accessible={true}
+                    collapsable={false}
+                    focusable={true}
+                    onClick={[Function]}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "#0421B1",
+                        "borderRadius": 12,
+                        "display": "flex",
+                        "elevation": 2,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                        "minHeight": 56,
+                        "opacity": 0.4,
+                        "shadowColor": "#212121",
+                        "shadowOffset": Object {
+                          "height": 1,
+                          "width": 1,
+                        },
+                        "shadowOpacity": 0.4,
+                        "shadowRadius": 2,
+                      }
+                    }
+                    testID="test-validate-button"
+                  >
+                    <View
+                      collapsable={false}
+                      style={
+                        Object {
+                          "transform": Array [
+                            Object {
+                              "scale": 1,
+                            },
+                          ],
+                        }
+                      }
+                    >
+                      <RNSVGSvgView
+                        align="xMidYMid"
+                        bbHeight={24}
+                        bbWidth={24}
+                        fill="#FFFFFF"
+                        focusable={false}
+                        height={24}
+                        meetOrSlice={0}
+                        minX={0}
+                        minY={0}
+                        style={
+                          Array [
+                            Object {
+                              "backgroundColor": "transparent",
+                              "borderWidth": 0,
+                            },
+                            Object {
+                              "flex": 0,
+                              "height": 24,
+                              "width": 24,
+                            },
+                          ]
+                        }
+                        vbHeight={24}
+                        vbWidth={24}
+                        width={24}
+                      >
+                        <RNSVGGroup
+                          fill={4294967295}
+                          propList={
+                            Array [
+                              "fill",
+                            ]
+                          }
+                        >
+                          <RNSVGGroup>
+                            <RNSVGGroup>
+                              <RNSVGRect
+                                height="24"
+                                opacity={0}
+                                width="24"
+                                x={0}
+                                y={0}
+                              />
+                              <RNSVGPath
+                                d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
+                              />
+                            </RNSVGGroup>
+                          </RNSVGGroup>
                         </RNSVGGroup>
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGSvgView>
+                      </RNSVGSvgView>
+                    </View>
+                    <Text
+                      color="#FFFFFF"
+                      isRTL={false}
+                      selectable={true}
+                      style={
+                        Array [
+                          Object {
+                            "alignItems": "center",
+                            "color": "#FFFFFF",
+                            "flexShrink": 1,
+                            "fontFamily": "circularBold",
+                            "fontSize": 16,
+                            "lineHeight": 20,
+                            "marginLeft": 8,
+                            "marginRight": 0,
+                            "textAlign": "left",
+                          },
+                        ]
+                      }
+                    >
+                      Valider
+                    </Text>
+                  </View>
                 </View>
               </View>
-            </View>
-          </View>
-        </View>
-        <View
-          accessibilityRole="radio"
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          style={
-            Object {
-              "backgroundColor": "#FFFFFF",
-              "borderColor": "#FFFFFF",
-              "borderRadius": 12,
-              "borderWidth": 2,
-              "display": "flex",
-              "elevation": 6,
-              "flexDirection": "row",
-              "flexWrap": "wrap",
-              "justifyContent": "space-between",
-              "marginBottom": 24,
-              "opacity": 1,
-              "paddingBottom": 14,
-              "paddingLeft": 14,
-              "paddingRight": 14,
-              "paddingTop": 14,
-              "shadowColor": "#212121",
-              "shadowOffset": Object {
-                "height": 1,
-                "width": 1,
-              },
-              "shadowOpacity": 0.16,
-              "shadowRadius": 8,
-            }
-          }
-          testID="test-filter-french_level_c"
-        >
-          <View
-            RTLBehaviour={true}
-            collapsable={false}
-            horizontalAlign="flex-start"
-            style={
-              Object {
-                "alignItems": "center",
-                "flexBasis": "auto",
-                "flexDirection": "row",
-                "flexGrow": 1,
-                "justifyContent": "flex-start",
-              }
-            }
-            verticalAlign="center"
-          >
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": 0,
-                    "flexGrow": 1,
-                    "marginRight": 16,
-                  },
-                ]
-              }
-            >
-              <Text
-                isRTL={false}
-                isSelected={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                french_level_c
-                <Text
-                  isRTL={false}
-                  isSelected={false}
-                  selectable={true}
-                  style={
-                    Array [
-                      Object {
-                        "color": "#212121",
-                        "flexShrink": 1,
-                        "fontFamily": "circularBold",
-                        "fontSize": 16,
-                        "lineHeight": 20,
-                        "textAlign": "left",
-                      },
-                    ]
-                  }
-                >
-                   
-                  (
-                  C1/C2
-                  )
-                </Text>
-              </Text>
-            </View>
-            <View
-              style={
-                Array [
-                  Object {
-                    "flexBasis": "auto",
-                    "flexGrow": 0,
-                  },
-                ]
-              }
-            >
-              <View
-                selected={false}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "backgroundColor": "transparent",
-                      "borderColor": "#5E5E5E",
-                      "borderRadius": 12,
-                      "borderWidth": 1,
-                      "height": 24,
-                      "justifyContent": "center",
-                      "width": 24,
-                    },
-                  ]
-                }
-              />
-            </View>
-          </View>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "flexDirection": "row",
-              "marginHorizontal": -6,
-            },
-          ]
-        }
-      >
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "100%",
-              }
-            }
-          />
-        </View>
-        <View
-          style={
-            Array [
-              Object {
-                "backgroundColor": "#C6C6C6",
-                "borderRadius": 12,
-                "flexBasis": 0,
-                "flexGrow": 1,
-                "flexShrink": 1,
-                "height": 4,
-                "marginHorizontal": 6,
-                "overflow": "hidden",
-                "width": "100%",
-              },
-            ]
-          }
-        >
-          <View
-            collapsable={false}
-            style={
-              Object {
-                "backgroundColor": "#0421B1",
-                "height": "100%",
-                "left": 0,
-                "position": "absolute",
-                "top": 0,
-                "width": "0%",
-              }
-            }
-          />
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "display": "flex",
-              "flexDirection": "row",
-              "marginTop": 24,
-            },
-          ]
-        }
-      >
-        <View
-          RTLBehaviour={false}
-          collapsable={false}
-          horizontalAlign="flex-start"
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flexBasis": "auto",
-              "flexDirection": "row",
-              "flexGrow": 1,
-              "justifyContent": "flex-start",
-            }
-          }
-          verticalAlign="flex-start"
-        >
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                  "marginRight": 16,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "minHeight": 56,
-                  "opacity": 1,
-                  "paddingVertical": 18,
-                }
-              }
-            >
-              <Text
-                isRTL={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "color": "#212121",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "textAlign": "left",
-                    },
-                    Object {
-                      "color": "#0421B1",
-                    },
-                  ]
-                }
-              >
-                Passer l'étape
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              Array [
-                Object {
-                  "flexBasis": 0,
-                  "flexGrow": 1,
-                },
-              ]
-            }
-          >
-            <View
-              accessibilityRole="button"
-              accessibilityState={
-                Object {
-                  "disabled": false,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#0421B1",
-                  "borderRadius": 12,
-                  "display": "flex",
-                  "elevation": 2,
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "minHeight": 56,
-                  "opacity": 0.4,
-                  "shadowColor": "#212121",
-                  "shadowOffset": Object {
-                    "height": 1,
-                    "width": 1,
-                  },
-                  "shadowOpacity": 0.4,
-                  "shadowRadius": 2,
-                }
-              }
-              testID="test-validate-button"
-            >
-              <View
-                collapsable={false}
-                style={
-                  Object {
-                    "transform": Array [
-                      Object {
-                        "scale": 1,
-                      },
-                    ],
-                  }
-                }
-              >
-                <RNSVGSvgView
-                  align="xMidYMid"
-                  bbHeight={24}
-                  bbWidth={24}
-                  fill="#FFFFFF"
-                  focusable={false}
-                  height={24}
-                  meetOrSlice={0}
-                  minX={0}
-                  minY={0}
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "transparent",
-                        "borderWidth": 0,
-                      },
-                      Object {
-                        "flex": 0,
-                        "height": 24,
-                        "width": 24,
-                      },
-                    ]
-                  }
-                  vbHeight={24}
-                  vbWidth={24}
-                  width={24}
-                >
-                  <RNSVGGroup
-                    fill={4294967295}
-                    propList={
-                      Array [
-                        "fill",
-                      ]
-                    }
-                  >
-                    <RNSVGGroup>
-                      <RNSVGGroup>
-                        <RNSVGRect
-                          height="24"
-                          opacity={0}
-                          width="24"
-                          x={0}
-                          y={0}
-                        />
-                        <RNSVGPath
-                          d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"
-                        />
-                      </RNSVGGroup>
-                    </RNSVGGroup>
-                  </RNSVGGroup>
-                </RNSVGSvgView>
-              </View>
-              <Text
-                color="#FFFFFF"
-                isRTL={false}
-                selectable={true}
-                style={
-                  Array [
-                    Object {
-                      "alignItems": "center",
-                      "color": "#FFFFFF",
-                      "flexShrink": 1,
-                      "fontFamily": "circularBold",
-                      "fontSize": 16,
-                      "lineHeight": 20,
-                      "marginLeft": 8,
-                      "marginRight": 0,
-                      "textAlign": "left",
-                    },
-                  ]
-                }
-              >
-                Valider
-              </Text>
             </View>
           </View>
         </View>

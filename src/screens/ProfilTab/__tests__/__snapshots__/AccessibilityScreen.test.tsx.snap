@@ -2,12 +2,15 @@
 
 exports[`Accessibility screen should render correctly 1`] = `
 <View
+  backgroundColor="transparent"
   style={
     Array [
       Object {
+        "backgroundColor": "transparent",
         "flexBasis": 0,
         "flexGrow": 1,
         "flexShrink": 1,
+        "minHeight": "100%",
         "minWidth": "100%",
       },
     ]
@@ -261,6 +264,7 @@ exports[`Accessibility screen should render correctly 1`] = `
     alwaysBounceVertical={false}
     contentContainerStyle={
       Object {
+        "flexGrow": 1,
         "paddingBottom": 40,
         "paddingHorizontal": 24,
         "paddingTop": 24,

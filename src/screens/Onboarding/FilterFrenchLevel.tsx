@@ -13,7 +13,8 @@ import {
   removeUserFrenchLevelActionCreator,
 } from "../../services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "../../services/redux/User/user.selectors";
-import { FilterButton, Page, RadioGroup } from "../../components";
+import { FilterButton, Page, RadioGroup, Rows } from "../../components";
+import { View } from "react-native";
 
 export const FilterFrenchLevel = ({
   navigation,
@@ -67,37 +68,44 @@ export const FilterFrenchLevel = ({
       headerIconName={"person-outline"}
       headerTitle={t("onboarding_screens.me", "Créer mon profil")}
       hideLanguageSwitch
+      noBottomMargin
     >
-      <Title>
-        {t(
-          "onboarding_screens.french_level",
-          "Quel est ton niveau en français ?"
-        )}
-      </Title>
-      <Explaination
-        step={3}
-        defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
-      />
-      <RadioGroup>
-        {frenchLevelFilters.map((frenchLevel) => (
-          <FilterButton
-            key={frenchLevel.name}
-            text={frenchLevel.name}
-            isSelected={
-              !!selectedFrenchLevel &&
-              frenchLevel.key === selectedFrenchLevel.key
-            }
-            onPress={() => onSelectFrenchLevel(frenchLevel)}
-            details={frenchLevel.cecrCorrespondency}
+      <Rows layout="1 auto" verticalAlign="space-between">
+        <View>
+          <Title>
+            {t(
+              "onboarding_screens.french_level",
+              "Quel est ton niveau en français ?"
+            )}
+          </Title>
+          <Explaination
+            step={3}
+            defaultText="C’est pour te montrer les formations faites pour ton niveau de français."
           />
-        ))}
-      </RadioGroup>
-      <OnboardingProgressBar step={3} />
-      <BottomButtons
-        isRightButtonDisabled={!selectedFrenchLevel}
-        onLeftButtonClick={onValidate}
-        onRightButtonClick={onValidate}
-      />
+          <RadioGroup>
+            {frenchLevelFilters.map((frenchLevel) => (
+              <FilterButton
+                key={frenchLevel.name}
+                text={frenchLevel.name}
+                isSelected={
+                  !!selectedFrenchLevel &&
+                  frenchLevel.key === selectedFrenchLevel.key
+                }
+                onPress={() => onSelectFrenchLevel(frenchLevel)}
+                details={frenchLevel.cecrCorrespondency}
+              />
+            ))}
+          </RadioGroup>
+        </View>
+        <View>
+          <OnboardingProgressBar step={3} />
+          <BottomButtons
+            isRightButtonDisabled={!selectedFrenchLevel}
+            onLeftButtonClick={onValidate}
+            onRightButtonClick={onValidate}
+          />
+        </View>
+      </Rows>
     </Page>
   );
 };
