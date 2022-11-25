@@ -288,7 +288,7 @@ Array [
           accessibilityIgnoresInvertColors={true}
           style={
             Object {
-              "marginBottom": 16,
+              "marginBottom": 24,
               "marginLeft": -24,
               "marginRight": -24,
               "marginTop": -24,
@@ -4873,7 +4873,7 @@ Array [
           accessibilityIgnoresInvertColors={true}
           style={
             Object {
-              "marginBottom": 16,
+              "marginBottom": 24,
               "marginLeft": -24,
               "marginRight": -24,
               "marginTop": -24,

@@ -405,7 +405,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,
@@ -1647,7 +1647,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,
@@ -2824,7 +2824,7 @@ exports[`Filter age should select age when click on it 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,

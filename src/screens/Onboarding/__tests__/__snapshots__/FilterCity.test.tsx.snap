@@ -405,7 +405,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,
@@ -1393,7 +1393,7 @@ exports[`Filter city should render correctly when no city 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,

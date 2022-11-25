@@ -158,7 +158,7 @@ const Page = ({
               marginTop: -24,
               marginRight: -24,
               marginLeft: -24,
-              marginBottom: theme.margin * 2,
+              marginBottom: theme.margin * 3,
             },
           })(ImageBackground)
         : withProps({
@@ -166,7 +166,7 @@ const Page = ({
               marginTop: -24,
               marginRight: -24,
               marginLeft: -24,
-              marginBottom: theme.margin * 2,
+              marginBottom: theme.margin * 3,
             },
           })(View),
     [headerBackgroundImage]

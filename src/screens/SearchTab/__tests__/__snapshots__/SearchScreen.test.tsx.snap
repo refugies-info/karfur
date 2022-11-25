@@ -165,7 +165,7 @@ exports[`Search Screen should render correctly 1`] = `
         onLayout={[Function]}
         style={
           Object {
-            "marginBottom": 16,
+            "marginBottom": 24,
             "marginLeft": -24,
             "marginRight": -24,
             "marginTop": -24,
