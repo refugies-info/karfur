@@ -17,13 +17,14 @@ const TitleContainer = styled.View`
 export interface HeaderContentTitleProps extends HeaderContentProps {
   headerBackgroundImage?: Picture;
   headerTooltip?: ReactNode;
-  titleIcon?: Picture;
   title: string;
+  titleIcon?: Picture;
 }
 
 const HeaderContentTitle = ({
   headerBackgroundImage,
   headerTooltip,
+  darkBackground,
   title,
   titleIcon,
 }: HeaderContentTitleProps) => {
@@ -37,7 +38,10 @@ const HeaderContentTitle = ({
         horizontalAlign="center"
       >
         <Columns RTLBehaviour layout="auto" verticalAlign="center">
-          <HeaderTitle hasBackgroundImage={headerBackgroundImage !== undefined}>
+          <HeaderTitle
+            hasBackgroundImage={headerBackgroundImage !== undefined}
+            invertedColor={darkBackground}
+          >
             <ReadableText overridePosY={5}>
               {firstLetterUpperCase(title)}
             </ReadableText>
@@ -45,7 +49,7 @@ const HeaderContentTitle = ({
 
           {titleIcon && (
             <StreamlineIcon
-              stroke={theme.colors.black}
+              stroke={darkBackground ? theme.colors.white : theme.colors.black}
               icon={titleIcon}
               size={24}
             />

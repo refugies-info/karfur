@@ -369,6 +369,7 @@ exports[`Accessibility screen should render correctly 1`] = `
                   >
                     <Text
                       hasBackgroundImage={false}
+                      invertedColor={false}
                       style={
                         Array [
                           Object {

@@ -295,6 +295,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -1536,6 +1537,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -2712,6 +2714,7 @@ exports[`Filter age should select age when click on it 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}

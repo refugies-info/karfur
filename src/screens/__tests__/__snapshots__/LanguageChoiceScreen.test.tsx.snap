@@ -195,6 +195,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 numberOfLines={2}
                 selectable={true}
                 style={

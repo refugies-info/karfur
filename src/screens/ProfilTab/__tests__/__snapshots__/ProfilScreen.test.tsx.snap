@@ -173,6 +173,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -2934,6 +2935,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -5695,6 +5697,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}

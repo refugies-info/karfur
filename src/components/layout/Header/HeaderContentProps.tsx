@@ -1,1 +1,3 @@
-export type HeaderContentProps = {};
+export type HeaderContentProps = {
+  darkBackground: boolean;
+};

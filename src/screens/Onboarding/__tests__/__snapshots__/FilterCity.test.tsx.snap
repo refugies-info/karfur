@@ -295,6 +295,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -1282,6 +1283,7 @@ exports[`Filter city should render correctly when no city 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}

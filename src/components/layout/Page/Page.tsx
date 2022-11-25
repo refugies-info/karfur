@@ -32,6 +32,7 @@ import { getImageUri } from "../../../libs/getImageUri";
 import { Picture } from "../../../types/interface";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 import Spacer from "../Spacer";
+import { isDarkColor } from "../../utils";
 
 const PageContainer = styled.View<{ backgroundColor: string }>`
   background-color: ${({ backgroundColor }) => backgroundColor};
@@ -141,9 +142,9 @@ const Page = ({
   }, [showSimplifiedHeader]);
 
   if (title && HeaderContent === HeaderContentEmpty) {
-    HeaderContent = withProps({ title })(
-      HeaderContentTitle
-    ) as ComponentType<HeaderContentProps>;
+    HeaderContent = withProps({
+      title,
+    })(HeaderContentTitle) as ComponentType<HeaderContentProps>;
     headerTitle = title;
   }
 
@@ -191,6 +192,11 @@ const Page = ({
     [theme.margin, theme.insets.bottom]
   );
 
+  const isDarkBackground = useMemo(
+    () => isDarkColor(headerBackgroundColor),
+    [headerBackgroundColor]
+  );
+
   return (
     <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
@@ -203,6 +209,7 @@ const Page = ({
       >
         <Header
           {...headerProps}
+          darkBackground={isDarkBackground}
           showTitle={showHeaderTitle}
           headerTitle={headerTitle}
         />
@@ -231,7 +238,7 @@ const Page = ({
                 }
                 rounded={headerBackgroundImage || headerBackgroundColor}
               >
-                <HeaderContent />
+                <HeaderContent darkBackground={isDarkBackground} />
               </MainContainer>
             </Container>
             {children}

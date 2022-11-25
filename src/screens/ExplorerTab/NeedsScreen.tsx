@@ -83,11 +83,10 @@ export const NeedsScreen = ({
     return (
       <Page
         backScreen={backScreen}
-        loading
+        headerBackgroundColor={theme.colors.color100}
         headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
         HeaderContent={
           withProps({
-            headerBackgroundColor: theme.colors.color100,
             title: theme.name[currentLanguageI18nCode || "fr"],
             titleIcon: theme.icon,
           })(HeaderContentTitle) as ComponentType<HeaderContentProps>
@@ -102,10 +101,10 @@ export const NeedsScreen = ({
     return (
       <Page
         backScreen={backScreen}
+        headerBackgroundColor={theme.colors.color100}
         headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
         HeaderContent={
           withProps({
-            headerBackgroundColor: theme.colors.color100,
             title: theme.name[currentLanguageI18nCode || "fr"],
             titleIcon: theme.icon,
           })(HeaderContentTitle) as ComponentType<HeaderContentProps>
@@ -127,11 +126,10 @@ export const NeedsScreen = ({
   return (
     <Page
       backScreen={backScreen}
-      headerBackgroundColor={theme.colors.color30}
+      headerBackgroundColor={theme.colors.color100}
       headerTitle={theme.name[currentLanguageI18nCode || "fr"]}
       HeaderContent={
         withProps({
-          headerBackgroundColor: theme.colors.color30,
           title: theme.name[currentLanguageI18nCode || "fr"],
           titleIcon: theme.icon,
         })(HeaderContentTitle) as ComponentType<HeaderContentProps>

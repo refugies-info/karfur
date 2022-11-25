@@ -16,6 +16,7 @@ import { ReadableText } from "../../ReadableText";
 import Columns, { ColumnsSpacing } from "../Columns";
 import { IconButton } from "../../iconography";
 import { upperFirst } from "lodash";
+import { HeaderContentProps } from "./HeaderContentProps";
 
 const Container = styled.View`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
@@ -35,6 +36,7 @@ const LOGO_HEIGHT = 40;
 
 export interface HeaderProps {
   backScreen?: string;
+  darkBackground: boolean;
   headerIconName?: string;
   headerTitle?: string;
   hideBack?: boolean; // TODO Maintain this ?
@@ -42,11 +44,12 @@ export interface HeaderProps {
   showTitle?: boolean; // TODO Handle this directly in Page component ?
   showLogo?: boolean;
 
-  HeaderComponent?: ComponentType;
+  HeaderComponent?: ComponentType<HeaderContentProps>;
 }
 
 export const Header = ({
   backScreen,
+  darkBackground,
   headerIconName,
   headerTitle,
   hideBack,
@@ -102,7 +105,7 @@ export const Header = ({
 
           {HeaderComponent ? (
             showTitle ? (
-              <HeaderComponent />
+              <HeaderComponent darkBackground={darkBackground} />
             ) : (
               <View />
             )
@@ -121,11 +124,17 @@ export const Header = ({
                       name={headerIconName}
                       width={ICON_SIZE}
                       height={ICON_SIZE}
-                      fill={theme.colors.black}
+                      fill={
+                        darkBackground ? theme.colors.white : theme.colors.black
+                      }
                     />
                   )}
                   {headerTitle && (
-                    <HeaderTitle ellipsizeMode="tail" numberOfLines={2}>
+                    <HeaderTitle
+                      ellipsizeMode="tail"
+                      invertedColor={darkBackground}
+                      numberOfLines={2}
+                    >
                       <ReadableText>{upperFirst(headerTitle)}</ReadableText>
                     </HeaderTitle>
                   )}

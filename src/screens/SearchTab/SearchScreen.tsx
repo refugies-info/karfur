@@ -8,6 +8,7 @@ import { mostViewedContentsSelector } from "../../services/redux/Contents/conten
 import SearchSuggestions from "../../components/Search/SearchSuggestions";
 import { Page } from "../../components";
 import HeaderContentSearch from "../../components/layout/Header/HeaderContentSearch";
+import { HeaderContentProps } from "../../components/layout/Header";
 
 export const SearchScreen = ({
   navigation,

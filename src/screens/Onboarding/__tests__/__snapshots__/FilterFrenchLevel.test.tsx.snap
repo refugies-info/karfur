@@ -295,6 +295,7 @@ exports[`Filter french level should render correctly when french level selected 
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -1602,6 +1603,7 @@ exports[`Filter french level should render correctly when no french level select
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
@@ -2844,6 +2846,7 @@ exports[`Filter french level should select level when click on it 1`] = `
             >
               <Text
                 ellipsizeMode="tail"
+                invertedColor={false}
                 isRTL={false}
                 numberOfLines={2}
                 selectable={true}
