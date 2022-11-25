@@ -346,7 +346,29 @@ exports[`Filter french level should render correctly when french level selected 
               }
             }
             verticalAlign="center"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "minWidth": 48,
+                    },
+                  ]
+                }
+                width={48}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -1654,7 +1676,29 @@ exports[`Filter french level should render correctly when no french level select
               }
             }
             verticalAlign="center"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "minWidth": 48,
+                    },
+                  ]
+                }
+                width={48}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -2897,7 +2941,29 @@ exports[`Filter french level should select level when click on it 1`] = `
               }
             }
             verticalAlign="center"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "minWidth": 48,
+                    },
+                  ]
+                }
+                width={48}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </View>

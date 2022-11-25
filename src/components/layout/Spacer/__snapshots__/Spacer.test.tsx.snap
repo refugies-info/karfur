@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spacer snapshot test suite should render without bug / height & width 1`] = `
+<View
+  height={42}
+  style={
+    Array [
+      Object {
+        "minHeight": 42,
+        "minWidth": 42,
+      },
+    ]
+  }
+  width={42}
+/>
+`;
+
+exports[`Spacer snapshot test suite should render without bug / height 1`] = `
+<View
+  height={42}
+  style={
+    Array [
+      Object {
+        "minHeight": 42,
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Spacer snapshot test suite should render without bug / width 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "minWidth": 42,
+      },
+    ]
+  }
+  width={42}
+/>
+`;

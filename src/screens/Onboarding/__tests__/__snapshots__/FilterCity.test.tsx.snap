@@ -346,7 +346,29 @@ exports[`Filter city should render correctly when city selected 1`] = `
               }
             }
             verticalAlign="center"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "minWidth": 48,
+                    },
+                  ]
+                }
+                width={48}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </View>
@@ -1334,7 +1356,29 @@ exports[`Filter city should render correctly when no city 1`] = `
               }
             }
             verticalAlign="center"
-          />
+          >
+            <View
+              style={
+                Array [
+                  Object {
+                    "flexBasis": "auto",
+                    "flexGrow": 0,
+                  },
+                ]
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {
+                      "minWidth": 48,
+                    },
+                  ]
+                }
+                width={48}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </View>

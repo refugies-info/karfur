@@ -1,11 +1,13 @@
 import styled from "styled-components/native";
 
 export interface SpacerProps {
-  height: number;
+  height?: number;
+  width?: number;
 }
 
 const Spacer = styled.View<SpacerProps>`
-  min-height: ${({ height }) => height}px;
+  ${({ height }) => height && `min-height: ${height}px`};
+  ${({ width }) => width && `min-width: ${width}px`};
 `;
 
 export default Spacer;

@@ -17,6 +17,7 @@ import Columns, { ColumnsSpacing } from "../Columns";
 import { IconButton } from "../../iconography";
 import { upperFirst } from "lodash";
 import { HeaderContentProps } from "./HeaderContentProps";
+import Spacer from "../Spacer";
 
 const Container = styled.View`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
@@ -153,10 +154,12 @@ export const Header = ({
             spacing={ColumnsSpacing.NoSpace}
           >
             {routeName === "ExplorerScreen" && <NotificationsIcon />}
-            {!hideLanguageSwitch && (
+            {!hideLanguageSwitch ? (
               <LanguageSwitch
                 onLongPressSwitchLanguage={showSwitchLanguageModal}
               />
+            ) : (
+              <Spacer width={48} />
             )}
           </Columns>
         </Columns>
