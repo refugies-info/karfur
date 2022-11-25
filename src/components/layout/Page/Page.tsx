@@ -131,10 +131,7 @@ const Page = ({
   };
   const backgroundColorInterpolation = animatedController.interpolate({
     inputRange: [0, 1],
-    outputRange: [
-      headerBackgroundColor === "white" ? "white" : "transparent",
-      headerBackgroundColor,
-    ],
+    outputRange: ["rgba(255,255,255,0)", headerBackgroundColor],
   });
 
   useEffect(() => {
@@ -234,7 +231,9 @@ const Page = ({
             <Container onLayout={onHeaderLayout}>
               <MainContainer
                 backgroundColor={
-                  headerBackgroundImage ? "transparent" : headerBackgroundColor
+                  headerBackgroundImage
+                    ? "rgba(255,255,255,0)"
+                    : headerBackgroundColor
                 }
                 rounded={headerBackgroundImage || headerBackgroundColor}
               >

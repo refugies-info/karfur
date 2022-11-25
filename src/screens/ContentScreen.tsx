@@ -298,7 +298,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     return (
       <Page
         backScreen={backScreen}
-        headerBackgroundColor={colors.color100}
+        headerBackgroundColor={colors.color30}
         headerBackgroundImage={theme?.appBanner}
         headerTitle={selectedContent?.titreInformatif}
         title={selectedContent?.titreInformatif}
