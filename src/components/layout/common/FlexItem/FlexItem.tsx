@@ -14,9 +14,9 @@ const FlexItem = styled(({ style, children }) => (
   flex-basis: ${({ flex }) => (!isFloat(flex) ? flex : 0)};
   ${({ marginBottom, theme }) =>
     marginBottom && `margin-bottom: ${theme.layout.columns[marginBottom]}`};
-  ${({ marginHorizontal, theme }) =>
+  ${({ marginHorizontal, RTLBehaviour, theme }) =>
     marginHorizontal &&
-    (theme.i18n.isRTL
+    (theme.i18n.isRTL && RTLBehaviour
       ? `margin-left: ${theme.layout.rows[marginHorizontal]}`
       : `margin-right: ${theme.layout.rows[marginHorizontal]}`)};
 `;
