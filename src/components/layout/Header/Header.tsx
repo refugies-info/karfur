@@ -113,6 +113,7 @@ export const Header = ({
             <>
               {(headerIconName || headerTitle) && showTitle ? (
                 <Columns
+                  RTLBehaviour
                   layout="auto"
                   verticalAlign="center"
                   horizontalAlign={

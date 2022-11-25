@@ -190,7 +190,7 @@ exports[`Filter age should render correctly when age selected 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1432,7 +1432,7 @@ exports[`Filter age should render correctly when no age selected 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -2609,7 +2609,7 @@ exports[`Filter age should select age when click on it 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={

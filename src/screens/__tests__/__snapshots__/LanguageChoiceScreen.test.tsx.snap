@@ -86,7 +86,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="flex-start"
             style={

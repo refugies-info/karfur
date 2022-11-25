@@ -190,7 +190,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1178,7 +1178,7 @@ exports[`Filter city should render correctly when no city 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={

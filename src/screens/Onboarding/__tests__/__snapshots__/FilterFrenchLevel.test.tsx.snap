@@ -190,7 +190,7 @@ exports[`Filter french level should render correctly when french level selected 
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -1498,7 +1498,7 @@ exports[`Filter french level should render correctly when no french level select
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
@@ -2741,7 +2741,7 @@ exports[`Filter french level should select level when click on it 1`] = `
           }
         >
           <View
-            RTLBehaviour={false}
+            RTLBehaviour={true}
             collapsable={false}
             horizontalAlign="center"
             style={
