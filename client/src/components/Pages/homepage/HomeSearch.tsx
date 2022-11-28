@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import ThemeIcon from "components/UI/ThemeIcon";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { isEmpty } from "lodash";
 
 interface Props {
   togglePopup: () => void;
@@ -28,9 +29,9 @@ const HomeSearch = (props: Props) => {
   const flippy: any = useRef();
   const themes = useSelector(themesSelector);
 
-  const showFront = useRef<boolean|undefined>();
-  const flipFunc = useRef<any|undefined>();
-  const timeoutFunc = useRef<any|undefined>();
+  const showFront = useRef<boolean | undefined>();
+  const flipFunc = useRef<any | undefined>();
+  const timeoutFunc = useRef<any | undefined>();
   useEffect(() => {
     const nbThemes = themes.length;
     const isEven = nbThemes % 2 === 0;
@@ -77,6 +78,8 @@ const HomeSearch = (props: Props) => {
     props.togglePopup();
     props.toggleOverlay();
   };
+
+  if (isEmpty(themes)) return;
 
   return (
     <div onClick={open} className={styles.col}>
