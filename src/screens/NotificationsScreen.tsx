@@ -1,16 +1,9 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useMemo } from "react";
 import {
   CompositeNavigationProp,
   useNavigation,
 } from "@react-navigation/native";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
-  Text,
-} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import { Icon } from "react-native-eva-icons";
 
 import { styles } from "../theme";
@@ -24,12 +17,13 @@ import { EnableNotifications } from "../components/Notifications/EnableNotificat
 import { StackNavigationProp } from "@react-navigation/stack";
 import { BottomTabParamList, ExplorerParamList } from "../../types";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { Page } from "../components";
+import { Page, Rows } from "../components";
 import { withProps } from "../utils";
 import {
   HeaderContentProps,
   HeaderContentTitle,
 } from "../components/layout/Header";
+import { useTheme } from "styled-components/native";
 
 const ICON_SIZE = 24;
 
@@ -85,9 +79,10 @@ const renderCard = (notification: Notification) => {
 };
 
 export const NotificationsScreen = () => {
-  const { t, isRTL } = useTranslationWithRTL();
-  const navigation = useNavigation();
-  const { data: notifications, isLoading } = useNotifications();
+  const { t } = useTranslationWithRTL();
+  const theme = useTheme();
+  const navigation = useNavigation<NotificationsScreenNavigationProp>();
+  let { data: notifications, isLoading } = useNotifications();
 
   const [accessGranted] = useNotificationsStatus();
 
@@ -101,87 +96,63 @@ export const NotificationsScreen = () => {
       initial: false,
     });
 
+  const HeaderContent = useMemo(
+    () =>
+      withProps({
+        title: t("notifications.notifications"),
+        headerTooltip: (
+          <TouchableOpacity
+            style={stylesheet.settingsButton}
+            activeOpacity={0.8}
+            onPress={goToNotificationsSettingsScreen}
+          >
+            <Icon
+              name="settings-outline"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              fill={theme.colors.black}
+            />
+          </TouchableOpacity>
+        ),
+      })(HeaderContentTitle) as ComponentType<HeaderContentProps>,
+    [theme]
+  );
+
   return (
     <Page
       headerTitle={t("notifications.notifications")}
-      HeaderContent={
-        withProps({
-          title: t("notifications.notifications"),
-          headerTooltip: (
-            <TouchableOpacity
-              style={stylesheet.settingsButton}
-              activeOpacity={0.8}
-              onPress={goToNotificationsSettingsScreen}
-            >
-              <Icon
-                name="settings-outline"
-                width={ICON_SIZE}
-                height={ICON_SIZE}
-                fill={styles.colors.black}
-              />
-            </TouchableOpacity>
-          ),
-        })(HeaderContentTitle) as ComponentType<HeaderContentProps>
-      }
+      HeaderContent={HeaderContent}
+      loading={isLoading}
     >
-      {!accessGranted && <EnableNotifications />}
-      {!!accessGranted && (
-        <View
-          style={[
-            {
-              display: "flex",
-              marginTop: styles.margin,
-              marginHorizontal: styles.margin * 3,
-              marginBottom: styles.margin * 4,
-            },
-            !isLoading &&
-              !notifications?.notifications?.length && {
-                justifyContent: "center",
-                flex: 1,
-              },
-          ]}
-        >
-          {isLoading && (
-            <ActivityIndicator size="small" color={styles.colors.black} />
-          )}
-          {!isLoading && !notifications?.notifications.length && (
-            <View style={stylesheet.noNotifications}>
-              <Icon
-                name="bell-off-outline"
-                width={60}
-                height={60}
-                fill={styles.colors.darkGrey}
-              />
-              <Text style={stylesheet.noNotificationsTitle}>
-                {t("notifications.noneYet")}
-              </Text>
-              <Text style={stylesheet.noNotificationsSubtitle}>
-                {t("notifications.noneYetSubtitle1")}
-                <Text
-                  onPress={goToNotificationsSettingsScreen}
-                  style={{
-                    fontFamily: styles.fonts.families.circularBold,
-                    textDecorationLine: "underline",
-                  }}
-                >
-                  {t("notifications.settings")}
-                </Text>
-                {t("notifications.noneYetSubtitle2")}
-              </Text>
-            </View>
-          )}
-          {!isLoading && !!notifications?.notifications.length && (
-            <FlatList
-              contentContainerStyle={{
-                marginBottom: styles.margin * 2,
-                paddingBottom: styles.margin * 4,
+      {!accessGranted ? (
+        <EnableNotifications />
+      ) : !notifications?.notifications.length ? (
+        <View style={stylesheet.noNotifications}>
+          <Icon
+            name="bell-off-outline"
+            width={60}
+            height={60}
+            fill={styles.colors.darkGrey}
+          />
+          <Text style={stylesheet.noNotificationsTitle}>
+            {t("notifications.noneYet")}
+          </Text>
+          <Text style={stylesheet.noNotificationsSubtitle}>
+            {t("notifications.noneYetSubtitle1")}
+            <Text
+              onPress={goToNotificationsSettingsScreen}
+              style={{
+                fontFamily: styles.fonts.families.circularBold,
+                textDecorationLine: "underline",
               }}
-              data={notifications?.notifications || []}
-              renderItem={({ item }) => renderCard(item)}
-              showsVerticalScrollIndicator={false}
-            />
-          )}
+            >
+              {t("notifications.settings")}
+            </Text>
+            {t("notifications.noneYetSubtitle2")}
+          </Text>
         </View>
+      ) : (
+        <Rows>{(notifications?.notifications || []).map(renderCard)}</Rows>
       )}
     </Page>
   );

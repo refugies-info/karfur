@@ -1,11 +1,11 @@
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { View } from "react-native";
 import { useQueryClient } from "react-query";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import styled, { useTheme } from "styled-components/native";
 //@ts-expect-error
 import moment from "moment/min/moment-with-locales";
-
-import { styles } from "../../theme";
 
 import { Notification } from "../../hooks/useNotifications";
 import { markNotificationAsSeen } from "../../utils/API";
@@ -13,73 +13,50 @@ import { markNotificationAsSeen } from "../../utils/API";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 
 import { CustomButton } from "../CustomButton";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { ExplorerParamList } from "../../../types";
+import { StyledTextSmall, TextVerySmallNormal } from "../StyledText";
+import { Columns, Rows } from "../layout";
 
-const stylesheet = StyleSheet.create({
-  container: {
-    display: "flex",
-    flex: 1,
-    flexDirection: "row",
-    marginHorizontal: styles.margin * 2,
-    marginVertical: styles.margin * 2,
-    paddingVertical: styles.margin * 2,
-    paddingHorizontal: styles.margin * 3,
-    backgroundColor: styles.colors.white,
-    borderRadius: styles.radius * 2,
-    ...styles.shadowsStylesheet.lg,
-  },
-  leftContainer: {
-    display: "flex",
-    marginRight: styles.margin,
-    marginTop: styles.margin / 2,
-    alignItems: "flex-end",
-  },
-  rightContainer: {
-    display: "flex",
-    flex: 1,
-    alignItems: "flex-start",
-  },
-  title: {
-    fontSize: styles.fonts.sizes.small,
-    color: styles.colors.black,
-    marginBottom: 10,
-    fontWeight: "500",
-  },
-  subtitle: {
-    fontSize: styles.fonts.sizes.verySmall,
-    color: styles.colors.darkGrey,
-    marginBottom: 10,
-  },
-  cta: {
-    backgroundColor: styles.colors.darkBlue,
-    paddingHorizontal: styles.margin * 2,
-    paddingVertical: styles.margin,
-    marginTop: styles.margin,
-    borderRadius: styles.radius * 2,
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  dot: {
-    backgroundColor: "#e8140f",
-    width: 10,
-    height: 10,
-    borderRadius: 100,
-    position: "absolute",
-    left: theme.margin,
-    top: theme.margin * 3
-  },
-});
+const Container = styled.TouchableOpacity<{ seen: boolean }>`
+  padding-vertical: ${({ theme }) => theme.margin * 2}px;
+  padding-horizontal: ${({ theme }) => theme.margin * 3}px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
+  ${({ seen, theme }) =>
+    seen ? theme.shadows.lg : `background-color: ${theme.colors.lightBlue};`}
+  flex-direction: ${({ theme }) => (theme.i18n.isRTL ? "row-reverse" : "row")};
+`;
+
+const CardTitle = styled(StyledTextSmall)<{ seen: boolean }>`
+  font-weight: ${({ seen }) => (seen ? "bold" : "500")};
+  font-family: ${({ seen, theme }) =>
+    seen
+      ? theme.fonts.families.circularStandard
+      : theme.fonts.families.circularBold};
+`;
+
+const Dot = styled.View`
+  background-color: #e8140f;
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  position: absolute;
+  left: ${({ theme }) => theme.margin}px;
+  top: ${({ theme }) => theme.margin * 3}px;
+`;
 
 interface NotificationCardProps {
   notification: Notification;
 }
 
 export const NotificationCard = ({ notification }: NotificationCardProps) => {
-  const { data, _id, title, seen, createdAt } = notification;
   const { isRTL, i18n } = useTranslationWithRTL();
-  const navigation = useNavigation();
+  const theme = useTheme();
+  const { data, _id, title, seen, createdAt } = notification;
+  const navigation =
+    useNavigation<
+      StackNavigationProp<ExplorerParamList, "NotificationsScreen">
+    >();
   const queryClient = useQueryClient();
 
   const markAsSeen = async () => {
@@ -98,84 +75,21 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
   };
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={navigateToContent}
-      style={[
-        stylesheet.container,
-        !seen && {
-          backgroundColor: styles.colors.lightBlue,
-        },
-        isRTL && {
-          flexDirection: "row-reverse",
-        },
-      ]}
-    >
-      <View
-        style={[
-          stylesheet.leftContainer,
-          isRTL && {
-            marginLeft: styles.margin,
-            marginRight: 0,
-          },
-        ]}
-      >
-        <View
-          style={[
-            stylesheet.dot,
-            seen && {
-              backgroundColor: styles.colors.white,
-            },
-          ]}
-        />
-      </View>
-      <View
-        style={[
-          stylesheet.rightContainer,
-          isRTL && {
-            alignItems: "flex-end",
-          },
-        ]}
-      >
-        <View>
-          <Text
-            style={[
-              stylesheet.title,
-              !seen && {
-                fontWeight: "bold",
-              },
-              isRTL && {
-                textAlign: "right",
-              },
-            ]}
-          >
-            {title}
-          </Text>
-          <Text
-            style={[
-              stylesheet.subtitle &&
-                isRTL && {
-                  textAlign: "right",
-                },
-            ]}
-          >
-            {moment(createdAt).locale(i18n.language).fromNow()}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: isRTL ? "row-reverse" : "row",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
+    <Container activeOpacity={0.8} onPress={navigateToContent} seen={seen}>
+      {!seen && <Dot />}
+      <Rows>
+        <CardTitle seen={seen}>{title}</CardTitle>
+        <TextVerySmallNormal>
+          {moment(createdAt).locale(i18n.language).fromNow()}
+        </TextVerySmallNormal>
+        <Columns horizontalAlign="space-between" RTLBehaviour>
           <CustomButton
             i18nKey="notifications.viewFiche"
             backgroundColor={
-              seen ? styles.colors.lightBlue : styles.colors.darkBlue
+              seen ? theme.colors.lightBlue : theme.colors.darkBlue
             }
             defaultText="Voir la fiche"
-            textColor={seen ? styles.colors.darkBlue : styles.colors.white}
+            textColor={seen ? theme.colors.darkBlue : theme.colors.white}
             isTextNotBold={seen}
             notFullWidth={true}
             isSmall={true}
@@ -183,37 +97,39 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
             iconName={isRTL ? "arrow-back" : "arrow-forward"}
             onPress={navigateToContent}
             style={{
-              marginTop: styles.margin,
+              marginTop: theme.margin,
+              flexGrow: !seen ? 1 : 0,
             }}
             textStyle={{
-              fontSize: styles.fonts.sizes.verySmall,
+              fontSize: theme.fonts.sizes.verySmall,
             }}
             iconSize={16}
           />
-          {!seen && (
+          {seen ? (
+            <View />
+          ) : (
             <CustomButton
               i18nKey="notifications.markAsSeen"
               defaultText="Marquer comme vu"
-              textColor={styles.colors.darkBlue}
-              backgroundColor={styles.colors.lightBlue}
+              textColor={theme.colors.darkBlue}
+              backgroundColor={theme.colors.lightBlue}
               isTextNotBold={true}
               notFullWidth={true}
               isSmall={true}
               withShadows={false}
               onPress={markAsSeen}
               style={{
-                marginTop: styles.margin,
-                borderColor: styles.colors.darkBlue,
+                marginTop: theme.margin,
+                borderColor: theme.colors.darkBlue,
                 borderWidth: 1,
-                flexGrow: 1
               }}
               textStyle={{
-                fontSize: styles.fonts.sizes.verySmall,
+                fontSize: theme.fonts.sizes.verySmall,
               }}
             />
           )}
-        </View>
-      </View>
-    </TouchableOpacity>
+        </Columns>
+      </Rows>
+    </Container>
   );
 };
