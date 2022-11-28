@@ -9,6 +9,7 @@ import { getImageNameFromContentId } from "../Contents/contentsIdDemarcheImageCo
 import { ObjectId, Picture } from "../../types/interface";
 import { DemarcheImage } from "../Contents/DemarcheImage";
 import Columns from "../layout/Columns";
+import { ReadableText } from "../ReadableText";
 
 const CONTAINER_SIZE = 100;
 
@@ -98,7 +99,7 @@ export const ContentImage = (props: Props) => {
       <SponsorImageContainer width={160} height={CONTAINER_SIZE}>
         <StructureNameContainer>
           <StructureNameText numberOfLines={3}>
-            {props.sponsorName}
+            <ReadableText>{props.sponsorName}</ReadableText>
           </StructureNameText>
         </StructureNameContainer>
       </SponsorImageContainer>
@@ -131,7 +132,9 @@ export const ContentImage = (props: Props) => {
           />
         )}
         <TextSmallNormal>
-          {t("content_screen.procedure", "Démarche")}
+          <ReadableText>
+            {t("content_screen.procedure", "Démarche")}
+          </ReadableText>
         </TextSmallNormal>
       </Columns>
     </SponsorImageContainer>

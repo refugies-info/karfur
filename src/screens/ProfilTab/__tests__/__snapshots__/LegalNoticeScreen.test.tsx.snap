@@ -1796,7 +1796,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
               }
               textColor="#FFFFFF"
             >
-              contact@refugies.info
+              <Text
+                style={Object {}}
+              >
+                contact@refugies.info
+              </Text>
+              <View />
             </Text>
           </View>
         </View>
@@ -2325,7 +2330,12 @@ exports[`LegalNotice screen should render correctly 1`] = `
             }
             textColor="#FFFFFF"
           >
-            contact@refugies.info
+            <Text
+              style={Object {}}
+            >
+              contact@refugies.info
+            </Text>
+            <View />
           </Text>
         </View>
       </View>

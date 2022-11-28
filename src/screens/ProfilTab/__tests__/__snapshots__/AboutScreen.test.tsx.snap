@@ -2357,7 +2357,12 @@ exports[`About screen should render correctly 1`] = `
                 }
                 textColor="#FFFFFF"
               >
-                Télécharger l’appel [PDF]
+                <Text
+                  style={Object {}}
+                >
+                  Télécharger l’appel [PDF]
+                </Text>
+                <View />
               </Text>
             </View>
           </View>

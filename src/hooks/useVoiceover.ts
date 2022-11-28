@@ -2,15 +2,22 @@ import { useIsFocused } from "@react-navigation/native";
 import { MutableRefObject, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { newReadingList, setScrollReading } from "../services/redux/VoiceOver/voiceOver.actions";
-import { currentItemSelector, readingListSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
+import { logger } from "../logger";
+import {
+  newReadingList,
+  setScrollReading,
+} from "../services/redux/VoiceOver/voiceOver.actions";
+import {
+  currentItemSelector,
+  readingListSelector,
+} from "../services/redux/VoiceOver/voiceOver.selectors";
 
 export const useVoiceover = (
   scrollviewRef: MutableRefObject<ScrollView | null>,
   offset: number
 ): {
-  setScroll: (currentScroll: number, offset: number) => void,
-  saveList: () => void
+  setScroll: (currentScroll: number, offset: number) => void;
+  saveList: () => void;
 } => {
   const dispatch = useDispatch();
 
@@ -31,17 +38,15 @@ export const useVoiceover = (
     }
   }, [isFocused]);
 
-
   // Auto scrolls to current item
   const currentReadingItem = useSelector(currentItemSelector);
-
   useEffect(() => {
     if (scrollviewRef && currentReadingItem) {
       scrollviewRef.current?.scrollTo({
         // item.posY is position on page. So offset needs to be equal position of 1rst element on page
         y: currentReadingItem.posY - offset,
-        animated: true
-      })
+        animated: true,
+      });
     }
   }, [currentReadingItem]);
 
@@ -50,14 +55,19 @@ export const useVoiceover = (
     if (isFocused) {
       setOldPosY(currentScroll);
       // keep offset to be able to find which element is visible when click on play
-      dispatch(setScrollReading(currentScroll + offset))
+      dispatch(
+        setScrollReading(
+          currentScroll === offset ? currentScroll : currentScroll + offset
+        )
+      );
     }
-  }
+  };
 
   // Manually saves list
   const saveList = () => {
+    logger.info("Saving new reading list", oldPosY);
     dispatch(newReadingList(oldPosY));
-  }
+  };
 
   return { setScroll, saveList };
-}
+};

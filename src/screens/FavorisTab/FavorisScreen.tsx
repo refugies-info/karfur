@@ -34,7 +34,7 @@ import { ConfirmationModal } from "../../components/ConfirmationModal";
 import { styles } from "../../theme";
 import EmptyIllu from "../../theme/images/favoris/illu-empty-favorites.png";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { Page } from "../../components";
+import { Page, Rows } from "../../components";
 import getContentsToDisplay from "./getContentsToDisplay";
 import { ReadableText } from "../../components/ReadableText";
 
@@ -135,12 +135,11 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
       title={t("favorites_screen.my_content", "Mes fiches")}
     >
       {favorites.length > 0 ? (
-        <>
+        <Rows layout="1 auto">
           <View
             style={{
               marginHorizontal: -styles.margin * 3,
               marginTop: -styles.margin * 3,
-              flex: 1,
               justifyContent: "flex-start",
             }}
           >
@@ -198,7 +197,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
             iconFirst={true}
             isTextNotBold={true}
           />
-        </>
+        </Rows>
       ) : (
         <EmptyContainer
           style={{
@@ -218,10 +217,12 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
             </ReadableText>
           </EmptyTitle>
           <EmptyText>
-            {t(
-              "favorites_screen.add_content",
-              "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
-            )}
+            <ReadableText>
+              {t(
+                "favorites_screen.add_content",
+                "Pour ajouter une fiche dans tes favoris, clique sur l’étoile."
+              )}
+            </ReadableText>
           </EmptyText>
           <CustomButton
             textColor={styles.colors.white}

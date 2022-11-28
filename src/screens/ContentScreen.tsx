@@ -294,6 +294,18 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
     }
   };
 
+  const sponsor = selectedContent?.mainSponsor;
+
+  const HeaderContent = React.useMemo(
+    () =>
+      withProps({
+        content: selectedContent,
+        sponsor,
+        theme,
+      })(HeaderContentContentScreen) as React.ComponentType<HeaderContentProps>,
+    [selectedContent, sponsor, theme]
+  );
+
   if (isLoading)
     return (
       <Page
@@ -370,8 +382,6 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   const accordionMaxWidthWithStep = windowWidth - 2 * 24 - 4 * 16 - 24 - 32;
   const accordionMaxWidthWithoutStep = windowWidth - 2 * 24 - 3 * 16 - 24;
 
-  const sponsor = selectedContent.mainSponsor;
-
   const formattedLastModifDate = selectedContent.lastModificationDate
     ? moment(selectedContent.lastModificationDate).locale("fr")
     : null;
@@ -429,15 +439,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         headerTitle={selectedContent.titreInformatif}
         loading={isLoading}
         Skeleton={PageSkeleton}
-        HeaderContent={
-          withProps({
-            content: selectedContent,
-            sponsor,
-            theme,
-          })(
-            HeaderContentContentScreen
-          ) as React.ComponentType<HeaderContentProps>
-        }
+        HeaderContent={HeaderContent}
       >
         <Spacer height={20} />
         {headers.map((header, index) => {
@@ -615,23 +617,24 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           }}
         >
           <CustomButton
-            onPress={toggleFavorites}
-            iconName={isContentFavorite ? "star" : "star-outline"}
-            i18nKey="favorites_screen.my_content"
-            defaultText={"Mes fiches"}
-            textColor={styles.colors.black}
-            backgroundColor={styles.colors.white}
-            notFullWidth={true}
-            iconFirst={true}
-            isTextNotBold={true}
-            isSmall={true}
-            style={{ marginHorizontal: styles.margin, width: 120 }}
-            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
             accessibilityLabel={
               isContentFavorite
                 ? t("content_screen.remove_button_accessibility")
                 : t("content_screen.add_button_accessibility")
             }
+            backgroundColor={styles.colors.white}
+            defaultText={"Mes fiches"}
+            i18nKey="favorites_screen.my_content"
+            iconFirst={true}
+            iconName={isContentFavorite ? "star" : "star-outline"}
+            isSmall={true}
+            isTextNotBold={true}
+            notFullWidth={true}
+            onPress={toggleFavorites}
+            readableOverridePosY={100000}
+            style={{ marginHorizontal: styles.margin, width: 120 }}
+            textColor={styles.colors.black}
+            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
           />
           {!noReadButton && (
             <View
@@ -645,20 +648,21 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </View>
           )}
           <CustomButton
-            onPress={() => shareContent(selectedContent)}
-            iconName="undo-outline"
-            i18nKey="content_screen.share_button"
-            defaultText={"Partager"}
-            textColor={styles.colors.black}
-            backgroundColor={styles.colors.white}
-            notFullWidth={true}
-            iconStyle={{ transform: [{ scaleX: -1 }] }}
-            iconFirst={true}
-            isTextNotBold={true}
-            isSmall={true}
-            style={{ marginHorizontal: styles.margin, width: 120 }}
-            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
             accessibilityLabel={t("content_screen.share_button_accessibility")}
+            backgroundColor={styles.colors.white}
+            defaultText={"Partager"}
+            i18nKey="content_screen.share_button"
+            iconFirst={true}
+            iconName="undo-outline"
+            iconStyle={{ transform: [{ scaleX: -1 }] }}
+            isSmall={true}
+            isTextNotBold={true}
+            notFullWidth={true}
+            onPress={() => shareContent(selectedContent)}
+            readableOverridePosY={100001}
+            style={{ marginHorizontal: styles.margin, width: 120 }}
+            textColor={styles.colors.black}
+            textStyle={{ fontSize: styles.fonts.sizes.verySmall }}
           />
         </RTLView>
       </TabBarContainer>

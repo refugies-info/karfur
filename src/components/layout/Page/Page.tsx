@@ -101,10 +101,10 @@ const Page = ({
     initialHeaderSize && initialHeaderSize - theme.layout.header.minHeight - 10
   ); // Voiceover
   const scrollview = React.useRef<ScrollView>(null);
-  const offset = 250;
+  const offset = 200;
   const { setScroll, saveList } = useVoiceover(scrollview, offset);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Run saveList only if the screen is focused
     if (!isFocus) return;
 
@@ -138,10 +138,16 @@ const Page = ({
     toggleSimplifiedHeader(showSimplifiedHeader);
   }, [showSimplifiedHeader]);
 
+  const HeaderContentInternal = useMemo(() => {
+    if (title && HeaderContent === HeaderContentEmpty) {
+      return withProps({
+        title,
+      })(HeaderContentTitle) as ComponentType<HeaderContentProps>;
+    }
+    return HeaderContent;
+  }, [HeaderContent, title]);
+
   if (title && HeaderContent === HeaderContentEmpty) {
-    HeaderContent = withProps({
-      title,
-    })(HeaderContentTitle) as ComponentType<HeaderContentProps>;
     headerTitle = title;
   }
 
@@ -175,7 +181,7 @@ const Page = ({
   );
 
   const showHeaderTitle =
-    showSimplifiedHeader || HeaderContent === HeaderContentEmpty;
+    showSimplifiedHeader || HeaderContentInternal === HeaderContentEmpty;
 
   const scrollableContentContainer = useMemo(
     () => ({
@@ -237,7 +243,7 @@ const Page = ({
                 }
                 rounded={headerBackgroundImage || headerBackgroundColor}
               >
-                <HeaderContent darkBackground={isDarkBackground} />
+                <HeaderContentInternal darkBackground={isDarkBackground} />
               </MainContainer>
             </Container>
             {children}

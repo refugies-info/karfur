@@ -20,7 +20,7 @@ exports[`Accessibility screen should render correctly 1`] = `
     collapsable={false}
     style={
       Object {
-        "backgroundColor": "rgba(255, 255, 255, 0)",
+        "backgroundColor": "white",
         "left": 0,
         "paddingHorizontal": 24,
         "paddingTop": 0,
@@ -3189,7 +3189,12 @@ exports[`Accessibility screen should render correctly 1`] = `
             }
             textColor="#FFFFFF"
           >
-            contact@refugies.info
+            <Text
+              style={Object {}}
+            >
+              contact@refugies.info
+            </Text>
+            <View />
           </Text>
         </View>
       </View>

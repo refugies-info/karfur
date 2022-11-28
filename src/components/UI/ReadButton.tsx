@@ -28,6 +28,7 @@ import { Animated } from "react-native";
 import { logEventInFirebase } from "../../utils/logEvent";
 import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
+import { logger } from "../../logger";
 
 const Container = styled(View)`
   position: absolute;
@@ -151,6 +152,7 @@ export const ReadButton = (props: Props) => {
   const readText = useCallback(
     (item: ReadingItem, readingList: ReadingItem[]) => {
       setIsPaused(false);
+      logger.info("Reading: ", item.text);
       Speech.speak(item.text, {
         rate: rate,
         language: currentLanguageI18nCode || "fr",
@@ -173,23 +175,29 @@ export const ReadButton = (props: Props) => {
       activateKeepAwake("voiceover");
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
-      Promise.all(readingList).then((res) => {
-        logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
-          locale: currentLanguageI18nCode,
+      logger.info("startToRead, nb items :", readingList.length);
+      Promise.all(readingList)
+        .then((res) => {
+          logger.info("startToRead:: res", res);
+          logEventInFirebase(FirebaseEvent.START_VOICEOVER, {
+            locale: currentLanguageI18nCode,
+          });
+          const sortedReadingList = res.sort(sortItems);
+          setResolvedReadingList(sortedReadingList);
+          const firstItem = sortedReadingList.find(
+            (item) => item.posY >= currentScroll
+          );
+          const toRead = getReadingList(
+            sortedReadingList,
+            firstItem?.id || null,
+            0
+          );
+          for (const itemToRead of toRead) readText(itemToRead, toRead);
+          setIsLoading(false);
+        })
+        .catch((e) => {
+          logger.error(e);
         });
-        const sortedReadingList = res.sort(sortItems);
-        setResolvedReadingList(sortedReadingList);
-        const firstItem = sortedReadingList.find(
-          (item) => item.posY >= currentScroll
-        );
-        const toRead = getReadingList(
-          sortedReadingList,
-          firstItem?.id || null,
-          0
-        );
-        for (const itemToRead of toRead) readText(itemToRead, toRead);
-        setIsLoading(false);
-      });
     }
   }, [readingList, currentScroll]);
 

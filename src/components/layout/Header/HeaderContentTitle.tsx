@@ -42,9 +42,7 @@ const HeaderContentTitle = ({
             hasBackgroundImage={headerBackgroundImage !== undefined}
             invertedColor={darkBackground}
           >
-            <ReadableText overridePosY={5}>
-              {firstLetterUpperCase(title)}
-            </ReadableText>
+            <ReadableText>{firstLetterUpperCase(title)}</ReadableText>
           </HeaderTitle>
 
           {titleIcon && (

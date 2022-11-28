@@ -8436,7 +8436,12 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                       }
                       textColor="#FFFFFF"
                     >
-                      Valider
+                      <Text
+                        style={Object {}}
+                      >
+                        Valider
+                      </Text>
+                      <View />
                     </Text>
                     <View
                       collapsable={false}

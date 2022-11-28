@@ -1,6 +1,6 @@
 import { isNull } from "lodash";
 import React from "react";
-import { Animated, View } from "react-native";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import { Content, Sponsor, Theme } from "../../../types/interface";
 import {
@@ -11,6 +11,11 @@ import { getImageNameFromContentId } from "../../Contents/contentsIdDemarcheImag
 import { ReadableText } from "../../ReadableText";
 import { TextBigBold, TextSmallNormal } from "../../StyledText";
 import { HeaderContentProps } from "./HeaderContentProps";
+
+const Container = styled.View`
+  position: relative;
+  margin-top: 20px;
+`;
 
 const TitlesContainer = styled(View)``;
 
@@ -51,12 +56,7 @@ const HeaderContentContentScreen = ({
       : -getContainerDimensions(imageName).height / 2;
 
   return (
-    <Animated.View
-      style={{
-        position: "relative",
-        marginTop: 20,
-      }}
-    >
+    <Container>
       <TitlesContainer>
         <TitreInfoText>
           <ReadableText>{content.titreInformatif || ""}</ReadableText>
@@ -77,7 +77,7 @@ const HeaderContentContentScreen = ({
           contentId={content._id}
         />
       </View>
-    </Animated.View>
+    </Container>
   );
 };
 

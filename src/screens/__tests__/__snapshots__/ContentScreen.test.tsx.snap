@@ -331,12 +331,13 @@ Array [
             }
           >
             <View
-              collapsable={false}
               style={
-                Object {
-                  "marginTop": 20,
-                  "position": "relative",
-                }
+                Array [
+                  Object {
+                    "marginTop": 20,
+                    "position": "relative",
+                  },
+                ]
               }
             >
               <View
@@ -4916,12 +4917,13 @@ Array [
             }
           >
             <View
-              collapsable={false}
               style={
-                Object {
-                  "marginTop": 20,
-                  "position": "relative",
-                }
+                Array [
+                  Object {
+                    "marginTop": 20,
+                    "position": "relative",
+                  },
+                ]
               }
             >
               <View

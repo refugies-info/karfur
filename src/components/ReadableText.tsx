@@ -35,22 +35,20 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
   useEffect(() => {
     if (readingListLength === 0 && isFocused) {
       const item: Promise<ReadingItem> = new Promise((resolve) => {
-        setTimeout(() => {
-          refView.current?.measureInWindow((x, y, _width, height) => {
-            let posY = 0;
-            if (props.overridePosY !== undefined) {
-              posY = props.overridePosY;
-            } else {
-              posY = (!props.heightOffset ? y : y + height) + currentScroll;
-            }
+        refView.current?.measureInWindow((x, y, _width, height) => {
+          let posY = 0;
+          if (props.overridePosY !== undefined) {
+            posY = props.overridePosY;
+          } else {
+            posY = (!props.heightOffset ? y : y + height) + currentScroll;
+          }
 
-            resolve({
-              id: id,
-              text: props.text || (props.children as string) || "",
-              posX: x,
-              posY,
-            } as ReadingItem);
-          });
+          resolve({
+            id: id,
+            text: props.text || (props.children as string) || "",
+            posX: x,
+            posY,
+          } as ReadingItem);
         });
       });
       dispatch(addToReadingList(item));
@@ -66,13 +64,16 @@ export const ReadableText = React.forwardRef((props: Props, ref: any) => {
           ? { backgroundColor: styles.colors.lightBlue, maxWidth: "100%" }
           : { maxWidth: "100%" }
       }
-      collapsable={false}>
+      collapsable={false}
+    >
       {props.children}
     </View>
   ) : (
     // else, include content in a Text
     <>
-      <Text style={isActive ? { backgroundColor: styles.colors.lightBlue } : {}}>
+      <Text
+        style={isActive ? { backgroundColor: styles.colors.lightBlue } : {}}
+      >
         {props.children}
       </Text>
       <View ref={refView}></View>

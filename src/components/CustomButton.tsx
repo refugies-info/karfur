@@ -73,23 +73,23 @@ const ColoredTextNormal = styled(StyledTextSmall)`
 `;
 
 interface Props {
-  textColor: string;
-  i18nKey: string;
-  onPress: () => void;
-  iconName?: string;
-  defaultText: string;
-  isTextNotBold?: boolean;
+  accessibilityLabel?: string;
   backgroundColor?: string;
+  defaultText: string;
+  i18nKey: string;
+  iconFirst?: boolean;
+  iconName?: string;
+  iconSize?: number;
+  iconStyle?: StyleProp<ViewStyle>;
   isDisabled?: boolean;
   isSmall?: boolean;
-  iconFirst?: boolean;
+  isTextNotBold?: boolean;
   notFullWidth?: boolean;
+  onPress: () => void;
+  readableOverridePosY?: number;
   style?: StyleProp<ViewStyle>;
+  textColor: string;
   textStyle?: StyleProp<TextStyle>;
-  iconStyle?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-  iconSize?: number;
-  accessibilityLabel?: string;
   withShadows?: boolean;
 }
 
@@ -132,7 +132,9 @@ export const CustomButton = (props: Props) => {
           hasIcon={!!props.iconName}
           style={props.textStyle || {}}
         >
-          <ReadableText>{t(props.i18nKey, props.defaultText)}</ReadableText>
+          <ReadableText overridePosY={props.readableOverridePosY}>
+            {t(props.i18nKey, props.defaultText)}
+          </ReadableText>
         </ColoredTextNormal>
       ) : (
         <ColoredTextBold
@@ -142,7 +144,9 @@ export const CustomButton = (props: Props) => {
           hasIcon={!!props.iconName}
           style={props.textStyle || {}}
         >
-          {t(props.i18nKey, props.defaultText)}
+          <ReadableText overridePosY={props.readableOverridePosY}>
+            {t(props.i18nKey, props.defaultText)}
+          </ReadableText>
         </ColoredTextBold>
       )}
       {props.iconName && !props.iconFirst && icon}
