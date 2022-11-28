@@ -142,10 +142,24 @@ $fadeWidth_md: 50px;
 
   &.prev {
     left: -32px;
+
+    @include rtl() {
+      left: inherit;
+      right: -32px;
+      transform: rotate(180deg);
+      margin-top: -32px;
+    }
   }
 
   &.next {
     right: -32px;
+
+    @include rtl() {
+      right: inherit;
+      left: -32px;
+      transform: rotate(180deg);
+      margin-top: -32px;
+    }
   }
 
   @include media-max("lg-limit") {
