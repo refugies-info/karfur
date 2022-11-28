@@ -142,6 +142,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 20px) calc(100% + 25px), center;
     }
+    &.Public-visé-Activités-et-culture {
+      background-image: url(../../../../assets/figma/InfoCard/Public/infocard_Public_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 25px), center;
+    }
 
     &.Âge-requis-noImage {
       background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis.svg),
@@ -248,6 +255,13 @@
     }
 
     &.Âge-requis-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) calc(100% + 10px), center;
+    }
+    &.Âge-requis-Activités-et-culture {
       background-image: url(../../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
       background-size: 80%, cover;
@@ -366,6 +380,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 30px) calc(100% + 0px), center;
     }
+    &.Durée-Activités-et-culture {
+      background-image: url(../../../../assets/figma/InfoCard/Duree/infocard_Durée_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
 
     &.Titre-de-séjour-noImage {
       background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour.svg),
@@ -472,6 +493,13 @@
     }
 
     &.Titre-de-séjour-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 0px), center;
+    }
+    &.Titre-de-séjour-Activités-et-culture {
       background-image: url(../../../../assets/figma/InfoCard/Titre_sejour/infocard_titreSejour_culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
       background-size: 80%, cover;
@@ -590,6 +618,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 30px) calc(100% + 90px), center;
     }
+    &.Acte-de-naissance-OFPRA-Activités-et-culture {
+      background-image: url(../../../../assets/figma/InfoCard/Acte_naissance/infocard_acteNaissance_culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% + 90px), center;
+    }
 
     &.Niveau-de-français-noImage {
       background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français.svg),
@@ -696,6 +731,13 @@
     }
 
     &.Niveau-de-français-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) calc(100% - 30px), center;
+    }
+    &.Niveau-de-français-Activités-et-culture {
       background-image: url(../../../../assets/figma/InfoCard/Francais/infocard_Français_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
       background-size: 80%, cover;
@@ -814,6 +856,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 0px) calc(100% + 0px), center;
     }
+    &.Combien-ça-coûte-Activités-et-culture-false {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Prix_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
 
     &.Combien-ça-coûte-noImage-true {
       background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit.svg),
@@ -920,6 +969,13 @@
     }
 
     &.Combien-ça-coûte-Culture-true {
+      background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 70%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 0px) calc(100% + 0px), center;
+    }
+    &.Combien-ça-coûte-Activités-et-culture-true {
       background-image: url(../../../../assets/figma/InfoCard/Prix/infocard_Gratuit_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
       background-size: 70%, cover;
@@ -1038,6 +1094,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 60px) calc(100% + 0px), center;
     }
+    &.Justificatif-demandé-Activités-et-culture {
+      background-image: url(../../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 60px) calc(100% + 0px), center;
+    }
 
     &.Zone-d-action-Français {
       background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Français.svg),
@@ -1144,6 +1207,13 @@
     }
 
     &.Zone-d-action-Culture {
+      background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 20px) 150px, center;
+    }
+    &.Zone-d-action-Activités-et-culture {
       background-image: url(../../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Culture.svg),
         url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
       background-size: 80%, cover;
@@ -1262,6 +1332,13 @@
       background-repeat: no-repeat, no-repeat;
       background-position: calc(100% - 30px) 170px, center;
     }
+    &.Important-Activités-et-culture {
+      background-image: url(../../../../assets/figma/InfoCard/Important/infocard_Important_Culture.svg),
+        url(../../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+      background-size: 80%, cover;
+      background-repeat: no-repeat, no-repeat;
+      background-position: calc(100% - 30px) 170px, center;
+    }
   }
 
   .card_title {
@@ -1305,7 +1382,7 @@
 
     .content_title {
       :global(.dropdown-toggle.btn),
-      :global(.btn){
+      :global(.btn) {
         color: inherit;
         background-color: inherit;
         border-color: inherit;
@@ -1382,7 +1459,7 @@
   }
 }
 
-:global(.tooltip){
+:global(.tooltip) {
   .show {
     opacity: 1 !important;
     .tooltip-inner {
