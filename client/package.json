@@ -14,6 +14,7 @@
   "dependencies": {
     "@coreui/coreui": "^2.1.5",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
+    "@dataesr/react-dsfr": "^3.4.6",
     "@hedgedoc/html-to-react": "^1.4.5",
     "@react-google-maps/api": "^2.17.0",
     "algoliasearch": "^4.14.2",
