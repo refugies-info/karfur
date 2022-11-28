@@ -22,7 +22,7 @@ import {
   illustration_homeCard_dispositif,
   illustration_homeCard_annuaire,
   illustration_homeCard_demarche,
-  illustration_homeCard_lexique,
+  illustration_homeCard_lexique
 } from "assets/figma";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
 import { assetsOnServer } from "assets/assetsOnServer";
@@ -32,6 +32,7 @@ import useRTL from "hooks/useRTL";
 import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 import { getPath } from "routes";
+import { MobileTagsModal } from "components/Pages/homepage/MobileTagsModal/MobileTagsModal";
 
 const ButtonContainerRow = styled.div`
   display: flex;
@@ -39,8 +40,8 @@ const ButtonContainerRow = styled.div`
 `;
 
 const ButtonSeparator = styled.div`
-  margin-right: ${(props: {isRTL: boolean}) => (props.isRTL ? "0px" : "10px")};
-  margin-left: ${(props: {isRTL: boolean}) => (props.isRTL ? "10px" : "0px")};
+  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? "10px" : "0px")};
 `;
 
 interface Props {}
@@ -56,6 +57,12 @@ const Homepage = (props: Props) => {
 
   const { t } = useTranslation();
   const router = useRouter();
+  const selectOption = (themeId: string) => {
+    router.push({
+      pathname: getPath("/recherche", router.locale),
+      search: qs.stringify({ themes: themeId })
+    });
+  };
 
   const togglePopup = () => setPopup(!popup);
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
@@ -66,33 +73,21 @@ const Homepage = (props: Props) => {
 
   return (
     <div className="animated fadeIn homepage">
-      <SEO
-        title="Accueil"
-        description={t("Homepage.title")}
-      />
+      <SEO title="Accueil" description={t("Homepage.title")} />
       {overlay ? <div className="overlay" /> : null}
       <section className={styles.hero}>
         <div className="hero-container">
           {ukraine && <UkrainePopup />}
-          <h1 className={styles.title}>
-            {t("Dispositifs.Header", "Construire sa vie en France")}
-          </h1>
+          <h1 className={styles.title}>{t("Dispositifs.Header", "Construire sa vie en France")}</h1>
           <h5>{t("Homepage.title")}</h5>
 
           <div className="search-row">
-            <HomeSearch
-              togglePopup={togglePopup}
-              toggleOverlay={toggleOverlay}
-              toggleModal={toggleShowTagModal}
-            />
+            <HomeSearch togglePopup={togglePopup} toggleOverlay={toggleOverlay} toggleModal={toggleShowTagModal} />
           </div>
         </div>
         {popup ? <CatList themes={themes} /> : null}
         <div className="chevron-wrapper">
-          <a
-            href="#plan"
-            className="header-anchor d-inline-flex justify-content-center align-items-center"
-          >
+          <a href="#plan" className="header-anchor d-inline-flex justify-content-center align-items-center">
             <div className="slide-animation">
               <EVAIcon
                 className={isRTL ? "bottom-slider-rtl" : "bottom-slider"}
@@ -120,7 +115,7 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?type=dispositif",
+                search: isMobile ? null : "?type=dispositif"
               });
             }}
           />
@@ -137,21 +132,15 @@ const Homepage = (props: Props) => {
             onClick={() => {
               router.push({
                 pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?type=demarche",
+                search: isMobile ? null : "?type=demarche"
               });
             }}
           />
           <HomeCard
             text="Homepage.Consulter l'annuaire pour trouver une association"
             defaultText="Consulter l'annuaire pour trouver une association"
-            buttonTitle={
-              isMobile
-                ? "Homepage.Disponible sur ordinateur"
-                : "Homepage.Consulter l’annnuaire"
-            }
-            defaultBoutonTitle={
-              isMobile ? "Disponible sur ordinateur" : "Consulter l’annnuaire"
-            }
+            buttonTitle={isMobile ? "Homepage.Disponible sur ordinateur" : "Homepage.Consulter l’annnuaire"}
+            defaultBoutonTitle={isMobile ? "Disponible sur ordinateur" : "Consulter l’annnuaire"}
             iconName={isMobile ? "alert-circle-outline" : "search-outline"}
             backgroundColor={colors.purple}
             textColor={colors.white}
@@ -159,7 +148,7 @@ const Homepage = (props: Props) => {
             isDisabled={isMobile ? true : false}
             onClick={() => {
               router.push({
-                pathname: getPath("/annuaire", router.locale),
+                pathname: getPath("/annuaire", router.locale)
               });
             }}
           />
@@ -187,19 +176,11 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.contribution")}</h2>
-                <p>
-                  {t("Homepage.contribution subheader")}
-                </p>
+                <p>{t("Homepage.contribution subheader")}</p>
               </div>
               <footer className="footer-section">
                 <Link href={getPath("/comment-contribuer", router.locale)} passHref>
-                  <FButton
-                    name="file-add-outline"
-                    tag="a"
-                    tabIndex="1"
-                    type="dark"
-                    style={{ height: "60px" }}
-                  >
+                  <FButton name="file-add-outline" tag="a" tabIndex="1" type="dark" style={{ height: "60px" }}>
                     {t("Homepage.Je contribue", "Je contribue")}
                   </FButton>
                 </Link>
@@ -211,19 +192,11 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width left-side">
               <div className="section-body">
                 <h2>{t("Homepage.Faites connaitre")}</h2>
-                <p>
-                  {t("Homepage.Faites connaitre subheader")}
-                </p>
+                <p>{t("Homepage.Faites connaitre subheader")}</p>
               </div>
               <footer>
-                <Link href={getPath("/comment-contribuer", router.locale)+"#ecrire"} passHref>
-                  <FButton
-                    name="file-add-outline"
-                    type="dark"
-                    tag="a"
-                    tabIndex="2"
-                    style={{ height: "60px" }}
-                  >
+                <Link href={getPath("/comment-contribuer", router.locale) + "#ecrire"} passHref>
+                  <FButton name="file-add-outline" type="dark" tag="a" tabIndex="2" style={{ height: "60px" }}>
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
                 </Link>
@@ -235,20 +208,12 @@ const Homepage = (props: Props) => {
             <div className="section-container half-width right-side">
               <div className="section-body">
                 <h2>{t("Homepage.aidez-nous à taduire")}</h2>
-                <p>
-                  {t("Homepage.aidez-nous à taduire subheader")}
-                </p>
+                <p>{t("Homepage.aidez-nous à taduire subheader")}</p>
                 {/*<LanguageBtn />*/}
               </div>
               <footer className="footer-section">
-                <Link href={getPath("/comment-contribuer", router.locale)+"#traduire"} passHref>
-                  <FButton
-                    name="file-add-outline"
-                    type="dark"
-                    tag="a"
-                    tabIndex="3"
-                    style={{ height: "60px" }}
-                  >
+                <Link href={getPath("/comment-contribuer", router.locale) + "#traduire"} passHref>
+                  <FButton name="file-add-outline" type="dark" tag="a" tabIndex="3" style={{ height: "60px" }}>
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
                 </Link>
@@ -256,50 +221,26 @@ const Homepage = (props: Props) => {
             </div>
           </section>
           <section id="deployer" className={`${styles.section} ${styles.deployer}`}>
-            <div
-              className="section-container half-width left-side"
-              style={{ zIndex: 2, position: "relative" }}
-            >
+            <div className="section-container half-width left-side" style={{ zIndex: 2, position: "relative" }}>
               <div className="section-body">
                 <h2>{t("Homepage.Déployez")}</h2>
-                <p>
-                  {t("Homepage.Déployez subheader")}
-                </p>
+                <p>{t("Homepage.Déployez subheader")}</p>
               </div>
               <footer className="footer-section">
                 <ButtonContainerRow>
                   <ButtonSeparator isRTL={isRTL}>
-                    <Link href={getPath("/comment-contribuer", router.locale)+"#deployer-card"} passHref>
-                      <FButton
-                        type="dark"
-                        tag="a"
-                        tabIndex="4"
-                        style={{ height: "60px" }}
-                      >
+                    <Link href={getPath("/comment-contribuer", router.locale) + "#deployer-card"} passHref>
+                      <FButton type="dark" tag="a" tabIndex="4" style={{ height: "60px" }}>
                         <span className="mr-8">
-                          <Image
-                            src={icon_mobilisation}
-                            alt="icon mobilisation"
-                          />
+                          <Image src={icon_mobilisation} alt="icon mobilisation" />
                         </span>
-                        {t(
-                          "Homepage.Participe déploiement",
-                          "Je participe au déploiement"
-                        )}
+                        {t("Homepage.Participe déploiement", "Je participe au déploiement")}
                       </FButton>
                     </Link>
                   </ButtonSeparator>
-                  <Link href={getPath("/comment-contribuer", router.locale)+"#deployer-card"} passHref>
-                    <FButton
-                      type="outline-black"
-                      tag="a"
-                      tabIndex="5"
-                      style={{ height: "60px" }}
-                    >
-                      {t(
-                        "Homepage.Vous hésitez encore ?",
-                        "Vous hésitez encore ?"
-                      )}
+                  <Link href={getPath("/comment-contribuer", router.locale) + "#deployer-card"} passHref>
+                    <FButton type="outline-black" tag="a" tabIndex="5" style={{ height: "60px" }}>
+                      {t("Homepage.Vous hésitez encore ?", "Vous hésitez encore ?")}
                     </FButton>
                   </Link>
                 </ButtonContainerRow>
@@ -308,16 +249,14 @@ const Homepage = (props: Props) => {
             <div
               className={styles.deployer_map}
               style={{
-                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`,
+                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`
               }}
             ></div>
           </section>
         </>
       )}
-      <SubscribeNewsletterModal
-        toggle={toggleShowNewsletterModal}
-        show={showNewslettreModal}
-      />
+      <MobileTagsModal selectOption={selectOption} toggle={toggleShowTagModal} show={showTagModal} />
+      <SubscribeNewsletterModal toggle={toggleShowNewsletterModal} show={showNewslettreModal} />
     </div>
   );
 };
