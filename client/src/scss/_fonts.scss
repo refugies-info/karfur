@@ -1,20 +1,3 @@
-/* Different than previous render
-@font-face {
-  font-family: "CircularStd";
-  src: local("CircularStdMedium"),
-    url(/fonts/CircularStd/CircularStd-Medium.WOFF) format("woff");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "CircularStd";
-  src: local("CircularStdBlack"),
-    url(/fonts/CircularStd/CircularStd-Black.WOFF) format("woff");
-  font-weight: bolder;
-  font-style: normal;
-}
- */
 @font-face {
   font-family: "CircularStd";
   src: local("CircularStdBold"),
@@ -27,6 +10,22 @@
   font-family: "CircularStd";
   src: local("CircularStdBook"),
     url(https://storage.googleapis.com/refugies-info-assets/fonts/CircularStd/CircularStd-Book.WOFF) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Marianne";
+  src: local("CircularStdBold"),
+    url(https://storage.googleapis.com/refugies-info-assets/fonts/Marianne/Marianne-Bold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Marianne";
+  src: local("Marianne-Regular"),
+    url(https://storage.googleapis.com/refugies-info-assets/fonts/Marianne/Marianne-Regular.woff) format("woff");
   font-weight: normal;
   font-style: normal;
 }
