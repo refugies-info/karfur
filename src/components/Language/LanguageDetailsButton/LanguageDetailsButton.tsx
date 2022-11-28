@@ -58,7 +58,7 @@ const LanguageDetailsButton = ({
       onPress={onPress}
       testID={"test-language-button-" + langueFr}
     >
-      <Columns RTLBehaviour layout="auto">
+      <Columns RTLBehaviour layout="auto" verticalAlign="center">
         <FlagBackground>
           <Flag langueFr={langueFr} />
         </FlagBackground>

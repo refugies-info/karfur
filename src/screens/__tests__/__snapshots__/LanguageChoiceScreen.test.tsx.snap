@@ -416,14 +416,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -576,14 +576,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -763,14 +763,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -950,14 +950,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1137,14 +1137,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1324,14 +1324,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1511,14 +1511,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={
@@ -1698,14 +1698,14 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
               horizontalAlign="flex-start"
               style={
                 Object {
-                  "alignItems": "flex-start",
+                  "alignItems": "center",
                   "flexBasis": "auto",
                   "flexDirection": "row",
                   "flexGrow": 1,
                   "justifyContent": "flex-start",
                 }
               }
-              verticalAlign="flex-start"
+              verticalAlign="center"
             >
               <View
                 style={

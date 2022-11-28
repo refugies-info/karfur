@@ -73,14 +73,14 @@ exports[`LanguageDetailsButton snapshot test suite should render not selected 1`
         horizontalAlign="flex-start"
         style={
           Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -257,14 +257,14 @@ exports[`LanguageDetailsButton snapshot test suite should render with local lang
         horizontalAlign="flex-start"
         style={
           Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -534,14 +534,14 @@ exports[`LanguageDetailsButton snapshot test suite should render with radio hide
         horizontalAlign="flex-start"
         style={
           Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
@@ -718,14 +718,14 @@ exports[`LanguageDetailsButton snapshot test suite should render without bug 1`]
         horizontalAlign="flex-start"
         style={
           Object {
-            "alignItems": "flex-start",
+            "alignItems": "center",
             "flexBasis": "auto",
             "flexDirection": "row",
             "flexGrow": 1,
             "justifyContent": "flex-start",
           }
         }
-        verticalAlign="flex-start"
+        verticalAlign="center"
       >
         <View
           style={
