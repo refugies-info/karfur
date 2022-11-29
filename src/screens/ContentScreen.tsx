@@ -71,7 +71,7 @@ import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../utils";
-import { Columns, Page, Spacer } from "../components";
+import { Columns, Page, Rows, Spacer } from "../components";
 import HeaderContentContentScreen from "../components/layout/Header/HeaderContentContentScreen";
 import { HeaderContentProps } from "../components/layout/Header/HeaderContentProps";
 import PageSkeleton from "./SearchTab/ContentScreen/PageSkeleton";
@@ -593,7 +593,8 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
         )}
 
         {formattedLastModifDate && (
-          <View>
+          <>
+            <Spacer height={20} />
             <LastUpdateDateContainer RTLBehaviour layout="1">
               <LastUpdateText>
                 {t("content_screen.last_update", "Dernière mise à jour :")}
@@ -602,7 +603,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
                 {formattedLastModifDate.format("ll")}
               </LastUpdateDate>
             </LastUpdateDateContainer>
-          </View>
+          </>
         )}
         <Spacer height={60} />
       </Page>
