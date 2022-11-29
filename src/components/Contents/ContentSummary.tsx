@@ -68,6 +68,7 @@ const TitlesContainer = styled.View`
   flex: 1;
   align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
   padding: 16px;
+  justify-content: center;
 `;
 
 const ActionButton = styled.TouchableOpacity`
