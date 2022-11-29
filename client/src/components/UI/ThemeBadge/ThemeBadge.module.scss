@@ -1,0 +1,35 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.container {
+  display: inline-flex;
+  align-items: center;
+  @include text("small");
+  padding: u(1);
+  border-radius: u(1);
+
+  @include isMobile() {
+    @include text("normal");
+  }
+}
+
+.icon {
+  margin-right: u(1);
+  position: relative;
+  top: 1px;
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(1);
+  }
+  @include isMobile() {
+    :global(.theme-icon) {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+}

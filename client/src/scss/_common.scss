@@ -1,4 +1,5 @@
 @import 'mixins/responsive';
+@import 'mixins/rtl';
 @import 'colors';
 @import "src/scss/variables";
 
@@ -155,6 +156,7 @@ html body {
   .dropdown-menu.show {
     border-radius: $radius;
     border: none;
+    z-index: 2000000;
   }
   .profile-img-pin {
     height: 40px;
@@ -206,5 +208,18 @@ html body {
   }
   .flag-icon-sa {
     background-image: url(../assets/figma/sa_custom.svg);
+  }
+}
+
+// GMap Autocomplete
+.pac-container {
+  z-index: 2000 !important;
+}
+
+// Dropdown
+.dropdown-menu.show {
+  @include rtl() {
+    left: inherit !important;
+    right: 8px !important;
   }
 }

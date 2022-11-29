@@ -290,7 +290,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       </Dropdown>
       <div className={styles.results}>
         {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
-        {props.t("AdvancedSearch.résultats", "résultats")}
+        {props.t("Recherche.results", "résultats")}
       </div>
     </div>
   );

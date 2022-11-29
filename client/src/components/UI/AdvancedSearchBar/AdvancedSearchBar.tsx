@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
 import debounce from "lodash.debounce";
-import type { IDispositif } from "types/interface";
+import type { SearchDispositif } from "types/interface";
 import * as synonyms from "data/synonym";
 import Streamline from "assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
@@ -17,9 +17,10 @@ import useOutsideClick from "hooks/useOutsideClick";
 
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import useRTL from "hooks/useRTL";
-import { getPath } from "routes";
+import { getPath, isRoute } from "routes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { getThemeName } from "lib/getThemeName";
+import { getTheme } from "lib/getTheme";
 import ThemeIcon from "../ThemeIcon";
 
 const SearchModalContainer = styled.div`
@@ -161,7 +162,7 @@ interface Props {
 
 const AdvancedSearchBar = (props: Props) => {
   const [searchThemes, setSearchThemes] = useState<string[]>([]);
-  const [searchDispositifs, setSearchDispositifs] = useState<IDispositif[]>([]);
+  const [searchDispositifs, setSearchDispositifs] = useState<SearchDispositif[]>([]);
   const [searchText, setSearchText] = useState("");
   const [isSearchModalVisible, toggleSearchModal] = useState(false);
 
@@ -271,7 +272,7 @@ const AdvancedSearchBar = (props: Props) => {
                 />
                 <SeeAllSectionTitle rtl={isRTL} white>
                   {t(
-                    "AdvancedSearch.Voir les fiches",
+                    "Recherche.seeAll",
                     "Voir toutes les fiches"
                   )}
                 </SeeAllSectionTitle>
@@ -311,22 +312,13 @@ const AdvancedSearchBar = (props: Props) => {
                           key={"theme-" + index}
                           onClick={() => {
                             setSearchText("");
-                            if (
-                              router.pathname.includes(
-                                "/advanced-search"
-                              )
-                            ) {
-                              router.push({
-                                pathname: getPath("/recherche", router.locale),
-                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
-                              });
-                              window.location.reload();
-                            } else {
-                              router.push({
-                                pathname: getPath("/recherche", router.locale),
-                                search: selectedTheme ? "?tag=" + selectedTheme.name.fr : "",
-                              });
-                            }
+                            const needReload = isRoute(router.pathname, "/recherche");
+                            router.push({
+                              pathname: getPath("/recherche", router.locale),
+                              query: selectedTheme ? {themes: selectedTheme._id.toString()} : {}
+                            }).then(() => {
+                              if (needReload) window.location.reload();
+                            })
                           }}
                           color={selectedTheme ? selectedTheme.colors.color30 : ""}
                         >
@@ -366,10 +358,11 @@ const AdvancedSearchBar = (props: Props) => {
                   <>
                     <SectionTitle>Fiches</SectionTitle>
                     {searchDispositifs.map((dispositif, index) => {
+                      const theme = getTheme(dispositif.theme, themes);
                       return (
                         <ThemeContainer
                           key={"disp-" + index}
-                          color={dispositif.theme.colors.color30 || ""}
+                          color={theme.colors.color30 || ""}
                           onClick={() => {
                             setSearchText("");
                             const route = dispositif.typeContenu === "demarche"
@@ -380,20 +373,20 @@ const AdvancedSearchBar = (props: Props) => {
                             }}
                         >
                           <ThemeButton
-                            color={dispositif.theme.colors.color100 || ""}
+                            color={theme.colors.color100 || ""}
                             mr={isRTL ? false : true}
                             ml={isRTL ? true : false}
                           >
-                            <ThemeIcon theme={dispositif.theme} />
+                            <ThemeIcon theme={theme} />
                           </ThemeButton>
                           <ThemeDispositifText
-                            color={dispositif.theme.colors.color100 || ""}
+                            color={theme.colors.color100 || ""}
                           >
                             <Highlighter
                               //highlightClassName="highlighter"
                               highlightStyle={{
                                 fontWeight: "bold",
-                                color: dispositif.theme.colors.color100 || "black",
+                                color: theme.colors.color100 || "black",
                                 backgroundColor: "white",
                                 padding: "0px",
                               }}
@@ -417,7 +410,7 @@ const AdvancedSearchBar = (props: Props) => {
                                 //highlightClassName="highlighter"
                                 highlightStyle={{
                                   fontWeight: "bold",
-                                  color: dispositif.theme.colors.color100 || "black",
+                                  color: theme.colors.color100 || "black",
                                   backgroundColor: "white",
                                   padding: "0px",
                                 }}
@@ -475,7 +468,7 @@ const AdvancedSearchBar = (props: Props) => {
                 />
                 <SeeAllSectionTitle rtl={isRTL}>
                   {t(
-                    "AdvancedSearch.Voir les fiches",
+                    "Recherche.seeAll",
                     "Voir toutes les fiches"
                   )}
                 </SeeAllSectionTitle>

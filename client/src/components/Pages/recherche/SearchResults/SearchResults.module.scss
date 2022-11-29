@@ -1,0 +1,97 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.section {
+  order: 3;
+  position: relative;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.title {
+  display: none;
+
+  @include isMobile() {
+    display: flex;
+    align-items: center;
+    margin-bottom: u(8);
+
+    h2 {
+      @include text("h4");
+      margin-right: u(4);
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(4);
+      }
+    }
+    span {
+      padding: u(1) u(2);
+      background: $white;
+      @include text("h5");
+      font-weight: bold;
+      border-radius: u(1);
+    }
+  }
+}
+
+.results {
+  margin-bottom: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  &.dispositifs {
+    gap: u(8);
+  }
+
+  &.demarches {
+    gap: u(6);
+
+    @include isMobile() {
+      &.horizontal_scroll {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        margin-left: -15px;
+        margin-right: -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+
+  @include isDesktop() {
+    &.all_visible {
+      margin-bottom: 220px;
+    }
+  }
+}
+
+.no_results {
+  text-align: center;
+
+  @include isMobile() {
+    margin-top: u(10);
+
+    h5 {
+      @include text("h5");
+    }
+  }
+
+  p {
+    margin-top: u(4);
+    margin-bottom: u(8);
+  }
+}
+
+.image {
+  margin-top: u(8);
+  margin-bottom: u(8);
+}

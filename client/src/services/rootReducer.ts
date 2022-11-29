@@ -54,6 +54,7 @@ import {
 import { needsReducer, NeedsState } from "./Needs/needs.reducer";
 import { widgetsReducer, WidgetsState } from "./Widgets/widgets.reducer";
 import { themesReducer, ThemesState } from "./Themes/themes.reducer";
+import { searchResultsReducer, SearchResultsState } from "./SearchResults/searchResults.reducer";
 import { HYDRATE } from "next-redux-wrapper"
 import { Reducer } from "typesafe-actions";
 
@@ -77,6 +78,7 @@ export interface RootState {
   needs: NeedsState;
   themes: ThemesState;
   widgets: WidgetsState;
+  searchResults: SearchResultsState;
 }
 
 const combinedReducer = combineReducers({
@@ -99,10 +101,11 @@ const combinedReducer = combineReducers({
   needs: needsReducer,
   themes: themesReducer,
   widgets: widgetsReducer,
+  searchResults: searchResultsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {
-  if (action.type === HYDRATE) { // action sent the Next with the server side data
+  if (action.type === HYDRATE) { // action sent by Next with the server side data
     const nextState = { ...state };
 
     // add to store if not already in
@@ -121,8 +124,14 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     if (action.payload.langue.langues.length > 0 && nextState.langue.langues.length === 0) {
       nextState.langue = action.payload.langue;
     }
-    if (action.payload.themes.activeThemes.length > 0 && nextState.themes.activeThemes.length === 0) {
+    if (action.payload.themes.activeThemes.length > 0) { // keep new themes even if already in store
       nextState.themes = action.payload.themes;
+    }
+    if (action.payload.needs.length > 0 && nextState.needs.length === 0) {
+      nextState.needs = action.payload.needs;
+    }
+    if (action.payload.searchResults) {
+      nextState.searchResults = action.payload.searchResults;
     }
     return nextState;
   }

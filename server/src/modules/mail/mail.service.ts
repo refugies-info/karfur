@@ -564,3 +564,30 @@ export const sendNewReponsableMailService = async (
     });
   }
 };
+
+export const sendAccountDeletedMailService = async (email: string) => {
+  try {
+    logger.info("[sendAccountDeletedMailService] received");
+
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+    };
+    const templateName = "accountDeleted";
+    sendMail(templateName, dynamicData);
+    await addMailEvent({
+      templateName,
+      email: email,
+    });
+    return;
+  } catch (error) {
+    logger.error("[sendAccountDeletedMailService] error", {
+      error: error.message,
+    });
+  }
+};
+

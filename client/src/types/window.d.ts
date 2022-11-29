@@ -4,5 +4,7 @@ interface Window {
   axeptioSettings: {
     clientId: string | undefined
   }
+  hideAxeptioButton: () => void
+  showAxeptioButton: () => void
   google: any
 }

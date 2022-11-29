@@ -6,17 +6,14 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { Widget } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 
 export interface Request {
   name: string;
   themes: ThemeDoc[];
-  typeContenu: ("dispositifs" | "demarches")[];
+  typeContenu: ("dispositif" | "demarche")[];
   languages: string[];
-  location: {
-    city: string;
-    department: string;
-  }
+  department: string;
 }
 
 export const postWidgets = async (
@@ -45,9 +42,8 @@ export const postWidgets = async (
     if (req.body.languages?.length) {
       widget.languages = req.body.languages;
     }
-    if (req.body.location.city && req.body.location.department) {
-      widget.location.city = req.body.location.city;
-      widget.location.department = req.body.location.department;
+    if (req.body.department) {
+      widget.department = req.body.department;
     }
     const dbWidget = await createWidget(widget);
 

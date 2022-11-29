@@ -2,23 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserFavoritesActionCreator,
-  updateUserFavoritesActionCreator,
+  updateUserFavoritesActionCreator
 } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { userFavoritesSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import styled from "styled-components";
-import SearchResultCard from "components/Pages/advanced-search/SearchResultCard";
 import { NoFavorites } from "./components/NoFavorites.component";
-import {
-  CardContainer,
-  FavoritesContainer,
-  CardsContainer,
-} from "./components/SubComponents";
+import { CardContainer, FavoritesContainer, CardsContainer } from "./components/SubComponents";
 import { FrameModal } from "components/Modals";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
-import { IDispositif, IUserFavorite } from "types/interface";
 import FButton from "components/UI/FButton/FButton";
+import DemarcheCard from "components/UI/DemarcheCard";
+import DispositifCard from "components/UI/DispositifCard";
 import { FavoritesLoading } from "./components/FavoritesLoading";
 import Navigation from "../Navigation";
 import { useRouter } from "next/router";
@@ -43,7 +39,7 @@ const TitleContainer = styled.div`
 `;
 
 interface Props {
-  title: string
+  title: string;
 }
 
 const UserFavorites = (props: Props) => {
@@ -57,7 +53,7 @@ const UserFavorites = (props: Props) => {
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -65,12 +61,8 @@ const UserFavorites = (props: Props) => {
     window.scrollTo(0, 0);
   }, [locale, dispatch]);
 
-  const isLoadingFetch = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES)
-  );
-  const isLoadingUpdate = useSelector(
-    isLoadingSelector(LoadingStatusKey.UPDATE_USER_FAVORITES)
-  );
+  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
+  const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_FAVORITES));
   const isLoading = isLoadingFetch || isLoadingUpdate;
 
   const favorites = useSelector(userFavoritesSelector);
@@ -85,24 +77,11 @@ const UserFavorites = (props: Props) => {
       </div>
     );
 
-  const pinnedList = favorites.map((favorite) => favorite._id.toString());
-  const removePinnedDispositif = (e: any, dispositif: IDispositif | IUserFavorite) => {
-    e.stopPropagation();
-    e.preventDefault();
-    dispatch(
-      updateUserFavoritesActionCreator({
-        type: "remove",
-        dispositifId: dispositif._id,
-        locale,
-      })
-    );
-  };
-
   const removeAllFavorites = () => {
     dispatch(
       updateUserFavoritesActionCreator({
         type: "remove-all",
-        locale,
+        locale
       })
     );
   };
@@ -113,13 +92,7 @@ const UserFavorites = (props: Props) => {
         <Navigation selected="favoris" />
         <MainContainer>
           <NoFavorites t={t} toggleTutoModal={toggleTutoModal} />
-          {showTutoModal && (
-            <FrameModal
-              show={showTutoModal}
-              toggle={toggleTutoModal}
-              section={"Mes favoris"}
-            />
-          )}
+          {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes favoris"} />}
         </MainContainer>
       </div>
     );
@@ -131,14 +104,8 @@ const UserFavorites = (props: Props) => {
           <TitleContainer>
             <TitleWithNumber
               amount={favorites.length}
-              textSingular={t(
-                "UserFavorites.fiche sauvegardée",
-                "fiche sauvegardée"
-              )}
-              textPlural={t(
-                "UserFavorites.fiches sauvegardées",
-                "fiches sauvegardées"
-              )}
+              textSingular={t("UserFavorites.fiche sauvegardée", "fiche sauvegardée")}
+              textPlural={t("UserFavorites.fiches sauvegardées", "fiches sauvegardées")}
             />
             <div>
               <FButton
@@ -155,12 +122,7 @@ const UserFavorites = (props: Props) => {
           <CardsContainer>
             {favorites.map((fav, index) => (
               <CardContainer key={index}>
-                <SearchResultCard
-                  pin={removePinnedDispositif}
-                  pinnedList={pinnedList}
-                  dispositif={fav}
-                  showPinned={true}
-                />
+                {fav.typeContenu === "demarche" ? <DemarcheCard demarche={fav} /> : <DispositifCard dispositif={fav} />}
               </CardContainer>
             ))}
           </CardsContainer>

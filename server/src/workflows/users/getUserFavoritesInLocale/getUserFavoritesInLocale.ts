@@ -1,34 +1,14 @@
-import { RequestFromClient, Res } from "../../../types/interface";
+import { IDispositif, RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
-import { ObjectId } from "mongoose";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
 
 interface Query {
   locale: string;
 }
-
-interface Dispositif {
-  titreInformatif: string;
-  titreMarque: string;
-  _id: ObjectId;
-  theme: ThemeDoc;
-  secondaryThemes: ThemeDoc[];
-  abstract: string;
-  status: string;
-  typeContenu: string;
-  contenu: any;
-  toJSON: () => void;
-}
-const formatDispositif = (dispositif: Dispositif) => {
-  // @ts-ignore
-  const newDispo = { ...dispositif.toJSON() };
-  delete newDispo.contenu;
-  return newDispo;
-};
 
 export const getUserFavoritesInLocale = async (
   req: RequestFromClient<Query>,
@@ -64,21 +44,23 @@ export const getUserFavoritesInLocale = async (
       status: 1,
       typeContenu: 1,
       contenu: 1,
+      mainSponsor: 1,
+      needs: 1,
+      lastModificationDate: 1
     };
 
     const locale = req.query.locale;
 
-    const result: any = [];
+    const dispositifs: IDispositif[] = [];
 
     await asyncForEach(favorites, async (favorite) => {
-      const dispositif = await getDispositifById(favorite._id, neededFields, "theme secondaryThemes");
+      const dispositif = await getDispositifById(favorite._id, neededFields, "mainSponsor");
       if (dispositif.status !== "Actif") return;
-      const localizedDispositif = turnToLocalized(dispositif, locale);
-
-      // @ts-ignore
-      const formattedDispositif = formatDispositif(localizedDispositif);
-      result.push(formattedDispositif);
+      dispositifs.push({...dispositif.toJSON()});
     });
+
+    const result = removeUselessContent(dispositifs)
+      .map((res) => turnToLocalized(res, locale));
 
     return res.status(200).json({ data: result });
   } catch (error) {

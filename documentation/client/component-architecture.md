@@ -33,3 +33,15 @@ const BackButton = (props: Props) => {
   );
 };
 ```
+
+## Responsive
+
+If there is a specific component for the mobile version, it must have the following architecture:
+- `MyComponent/index.ts`: exports the component
+- `MyComponent/MyComponent.desktop.tsx`: the desktop TS file of the component
+- `MyComponent/MyComponent.desktop.module.scss`: the desktop CSS module of the component.
+- `MyComponent/MyComponent.mobile.tsx`: the mobile TS file of the component
+- `MyComponent/MyComponent.mobile.module.scss`: the mobile CSS module of the component.
+- `MyComponent/MyComponent.tsx`: the TS file of the component. It contains the logic to load the desktop or mobile version.
+
+You can check `src/components/Pages/recherche/SearchHeader` for an example.

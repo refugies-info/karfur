@@ -1,0 +1,121 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  background: $white;
+  box-shadow: 0 4px 18px 0 #0000001a;
+  padding: u(4);
+  border-radius: $radius;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  // typeContenu
+  &.demarche {
+    width: 208px;
+
+    @include isMobile() {
+      width: 100%;
+      min-width: 60vw;
+    }
+
+    &.content {
+      padding-top: u(8);
+    }
+  }
+  &.dispositif {
+    width: 260px;
+    max-width: 100%;
+
+    @include isMobile() {
+      width: 100%;
+      min-width: 300px;
+    }
+
+    &.title {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  // title / content
+  &.title {
+    background: radial-gradient(150% 150% at 50% 50%, #0421b1 0%, #1b62d8 100%);
+    cursor: default;
+    box-shadow: none;
+  }
+  &.content {
+    &:hover {
+      border-color: $dark;
+      background-color: $gray30;
+      box-shadow: none;
+      :global(.theme-badge) {
+        background-color: $white !important;
+      }
+    }
+  }
+
+  em {
+    background-color: $bgfocus;
+    font-style: normal;
+  }
+
+  &.title {
+    @include isMobile() {
+      display: none !important;
+    }
+  }
+}
+
+.icon {
+  width: u(12);
+  height: u(12);
+  background-color: $white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  @include text("h4");
+  margin-top: u(6);
+  margin-bottom: u(6);
+  color: $white;
+}
+
+.badge {
+  padding: u(1) u(2);
+  background: $white;
+  color: $bleuCharte;
+  @include text("h5");
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Favorite button */
+.card {
+  .favorite {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    display: none;
+    z-index: 5;
+
+    @include rtl() {
+      right: inherit;
+      left: 12px;
+    }
+  }
+  &:hover .favorite {
+    display: block;
+  }
+}

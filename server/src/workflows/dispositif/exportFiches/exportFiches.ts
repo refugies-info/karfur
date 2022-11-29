@@ -174,7 +174,7 @@ export const exportFiches = async (
         updatedAt: 1,
         needs: 1
       },
-      "needs secondaryThemes"
+      "needs theme secondaryThemes"
     );
 
     let result: { fields: Result }[] = [];

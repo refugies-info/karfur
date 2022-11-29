@@ -40,6 +40,8 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
     abstract: dispositif.abstract,
     status: dispositif.status,
     suggestions: dispositif.suggestions,
+    contenu: dispositif.contenu,
+    mainSponsor: dispositif.mainSponsor,
     typeContenu: dispositif.typeContenu,
     created_at: dispositif.created_at,
     nbVues: dispositif.nbVues || 0,

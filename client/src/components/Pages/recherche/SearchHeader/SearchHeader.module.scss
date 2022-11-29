@@ -1,0 +1,48 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$scrollLimit: 565px;
+
+:export {
+  scrollLimit: $scrollLimit;
+}
+
+.scrolled {
+  @include media-min("desktop-up") {
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    animation: 0.3s ease-in-out 1 both slidein;
+    box-shadow: 0 4px 18px 0 #0000001a;
+  }
+}
+
+.placeholder {
+  @include media-min("desktop-up") {
+    /* prevent scroll jump when making header disappear */
+    width: 1px;
+    visibility: hidden;
+  }
+}
+
+@keyframes slidein {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+i.flag {
+  width: 19px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid $white;
+  margin-left: u(2);
+}

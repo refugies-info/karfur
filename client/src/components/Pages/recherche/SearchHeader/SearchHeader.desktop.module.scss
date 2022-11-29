@@ -1,0 +1,176 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
+@import "src/scss/variables";
+
+.container {
+  background: radial-gradient(150% 150% at 50% 50%, $bleuCharte 0%, #1b62d8 100%);
+  padding: 56px;
+  width: 100%;
+  position: relative;
+
+  @include isMobile() {
+    padding: u(6) u(4);
+
+    h1 {
+      display: none;
+    }
+  }
+}
+:global(.scrolled) {
+  .container {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: $white;
+
+    h1,
+    .subheader {
+      display: none;
+    }
+    .inputs {
+      margin-top: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+  position: relative;
+
+  @include isMobile() {
+    max-width: none;
+  }
+}
+
+.inputs {
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin-top: 56px;
+
+  @include isMobile() {
+    margin-top: 0;
+  }
+}
+
+.dropdown {
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 33.3333%;
+  padding: u(2);
+  flex: 1 1 0px; /* px unit left for IE */
+  position: relative;
+
+  &::after {
+    content: "";
+    height: 80%;
+    width: 1px;
+    background-color: $gray60;
+    position: absolute;
+    right: 0;
+    top: 10%;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  & > button {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  &:global(.show) > button {
+    z-index: 2000001;
+  }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+
+  &.search {
+    position: absolute;
+    height: auto;
+  }
+}
+
+.reset {
+  background: transparent;
+  color: $white;
+  border-color: $white;
+  border-width: 2px;
+  border-radius: 8px;
+  @include text("normal");
+  @include withIcon();
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $dark;
+    background-color: $white;
+    border-color: $white;
+
+    svg {
+      fill: $dark;
+    }
+  }
+}
+
+.subheader {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.filters {
+  display: inline-flex;
+  background: $gray30;
+  border-radius: 8px;
+
+  :global(.dropdown) {
+    &:after {
+      content: "";
+      height: 80%;
+      width: 1px;
+      background-color: $gray60;
+      position: absolute;
+      right: u(-1);
+      top: 10%;
+    }
+
+    &:last-child:after {
+      content: none;
+      display: none;
+    }
+  }
+}
+
+i.flag {
+  width: 19px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid $white;
+  margin-left: u(2);
+}

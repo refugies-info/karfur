@@ -55,7 +55,7 @@ export const filterDispositifsForUpdateReminders = (
         moment(moment()).diff(
           dispositif.lastReminderMailSentToUpdateContentDate
         ) /
-          (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
       );
       if (nbDaysLastReminderFromNow < nbDaysBeforeReminder) {
         logger.info(
@@ -102,7 +102,7 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
 
     const isCreatorIdInArray = elementIndex !== -1;
 
-    if (!isCreatorIdInArray) {
+    if (!isCreatorIdInArray && dispositif.creatorId.email) {
       formattedArray.push({
         creatorId: dispositif.creatorId._id,
         username: dispositif.creatorId.username,
@@ -127,19 +127,46 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
   return formattedArray;
 };
 
+const keysToDelete: string[] = [
+  "isFakeContent",
+  "titleIcon",
+  "typeIcon",
+  "editable",
+  "type",
+  "footer",
+  "footerType",
+  "tooltipContent",
+  "tooltipHeader"
+]
+
 export const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
     const selectZoneAction = dispositif.contenu[1].children.map(
       (child: any) => {
-        if (child.title === "Zone d'action") {
-          return child;
+        if (
+          child.title === "Zone d'action" ||
+          child.title === "Durée" ||
+          child.title === "Combien ça coûte ?"
+        ) {
+          const newChild = { ...child };
+          for (const key of keysToDelete) {
+            delete newChild[key];
+          }
+          return newChild;
         }
         return {};
       }
     );
 
     const simplifiedContent = [{}, { children: selectZoneAction }];
-    return { ...dispositif, contenu: simplifiedContent };
+
+    const simplifiedMainSponsor = {
+      nom: dispositif.mainSponsor.nom,
+      picture: {
+        secure_url: dispositif.mainSponsor?.picture?.secure_url || null,
+      }
+    }
+    return { ...dispositif, contenu: simplifiedContent, mainSponsor: simplifiedMainSponsor };
   });
 
 export const countDispositifMercis = (
@@ -165,19 +192,19 @@ export const adaptDispositifMainSponsorAndCreatorId = (
       ...jsonDispositif,
       mainSponsor: jsonDispositif.mainSponsor
         ? {
-            _id: jsonDispositif.mainSponsor._id,
-            nom: jsonDispositif.mainSponsor.nom,
-            status: jsonDispositif.mainSponsor.status,
-            picture: jsonDispositif.mainSponsor.picture,
-          }
+          _id: jsonDispositif.mainSponsor._id,
+          nom: jsonDispositif.mainSponsor.nom,
+          status: jsonDispositif.mainSponsor.status,
+          picture: jsonDispositif.mainSponsor.picture,
+        }
         : "",
       creatorId: jsonDispositif.creatorId
         ? {
-            username: jsonDispositif.creatorId.username,
-            picture: jsonDispositif.creatorId.picture,
-            _id: jsonDispositif.creatorId._id,
-            email: jsonDispositif.creatorId.email,
-          }
+          username: jsonDispositif.creatorId.username,
+          picture: jsonDispositif.creatorId.picture,
+          _id: jsonDispositif.creatorId._id,
+          email: jsonDispositif.creatorId.email,
+        }
         : null,
     };
   });

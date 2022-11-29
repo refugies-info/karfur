@@ -1,8 +1,8 @@
-import { IDispositif } from "../../../types/interface";
+import { SearchDispositif } from "../../../types/interface";
 import { FormattedNotification } from "./types";
 
 export const formatNotifications = (
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ): FormattedNotification[] => {
   let result: FormattedNotification[] = [];
@@ -76,7 +76,7 @@ export const formatNotifications = (
 };
 
 export const getNbNewNotifications = (
-  dispositifs: IDispositif[],
+  dispositifs: SearchDispositif[],
   hasResponsibleSeenAnnuaireNotif: boolean
 ) => {
   const formattedNotifications = formatNotifications(

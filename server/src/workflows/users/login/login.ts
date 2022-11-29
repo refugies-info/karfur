@@ -8,6 +8,7 @@ import LoginError from "../../../modules/users/LoginError";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
 
@@ -34,7 +35,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
 
     const user = await getUserByUsernameFromDB(req.body.username);
 
-    if (user && user.status === "Exclu") {
+    if (user && user.status === USER_STATUS_DELETED) {
       throw new LoginError("USER_DELETED");
     }
 
