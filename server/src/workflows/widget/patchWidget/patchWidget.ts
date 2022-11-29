@@ -6,17 +6,14 @@ import {
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { WidgetDoc } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "src/schema/schemaTheme";
+import { ThemeDoc } from "../../../schema/schemaTheme";
 
 export interface Request {
   name: string;
   themes: ThemeDoc[];
-  typeContenu: ("dispositifs" | "demarches")[];
+  typeContenu: ("dispositif" | "demarche")[];
   languages: string[];
-  location: {
-    city: string;
-    department: string;
-  }
+  department: string;
 }
 
 export const patchWidget = async (
@@ -36,10 +33,7 @@ export const patchWidget = async (
       typeContenu: req.body.typeContenu,
       themes: req.body.themes.map(t => t._id),
       languages: req.body.languages,
-      location: {
-        city: req.body.location.city,
-        department: req.body.location.department
-      }
+      department: req.body.department
     };
 
     const dbWidget = await updateWidget(req.params.id, widget);

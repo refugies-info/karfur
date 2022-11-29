@@ -53,7 +53,7 @@ describe("postWidgets", () => {
   });
   it("should return 400 if no name", async () => {
     const req = {
-      body: { typeContenu: ["demarches"], themes: ["xyz"]},
+      body: { typeContenu: ["demarche"], themes: ["xyz"]},
       user: { roles: [], userId: "id" },
     };
     await postWidgets(req, res);
@@ -61,7 +61,7 @@ describe("postWidgets", () => {
   });
   it("should return 400 if no theme", async () => {
     const req = {
-      body: { name:"test", typeContenu: ["demarches"], themes: []},
+      body: { name:"test", typeContenu: ["demarche"], themes: []},
       user: { roles: [], userId: "id" },
     };
     await postWidgets(req, res);
@@ -81,11 +81,9 @@ describe("postWidgets", () => {
       fromSite: true,
       body: {
         name: "test",
-        typeContenu: ["demarches"],
+        typeContenu: ["demarche"],
         themes: [{_id: "xyz"}],
-        location: {
-          city: "Paris"
-        }
+        department: "Paris"
       },
       user: { roles: [] },
       userId: "id"
@@ -94,9 +92,10 @@ describe("postWidgets", () => {
     expect(createWidget).toHaveBeenCalledWith({
       name: "test",
       themes: ["xyz"],
-      typeContenu: ["demarches"],
+      typeContenu: ["demarche"],
       author: "id",
-      // no city because no department
+      department: "Paris"
+
     });
     expect(res.status).toHaveBeenCalledWith(200);
   });

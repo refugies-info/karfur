@@ -1,0 +1,96 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  background-color: $attention;
+  padding: u(4);
+  border-radius: $radius;
+  margin-bottom: 80px;
+  display: flex;
+  align-items: center;
+
+  @include isMobile {
+    order: 1;
+    margin-left: -15px;
+    margin-right: -15px;
+    border-radius: 0;
+  }
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: u(2);
+  display: flex;
+  align-items: center;
+
+  .map_icon {
+    @include isMobile() {
+      display: none;
+    }
+  }
+
+  @include isMobile() {
+    justify-content: space-between;
+  }
+}
+
+.link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline;
+
+  &,
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    color: $bleuCharte;
+    outline: none;
+  }
+}
+
+.image {
+  flex-shrink: 0;
+  margin-right: u(10);
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(10);
+  }
+
+  @include isMobile() {
+    display: none;
+  }
+}
+
+.actions {
+  padding-left: u(10);
+
+  @include rtl() {
+    padding-left: 0;
+    padding-right: u(10);
+  }
+
+  @include isMobile() {
+    display: none;
+  }
+
+  .btn {
+    padding: 12px;
+    border-radius: 8px;
+  }
+}
+
+.mobile_btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: u(1);
+
+  @include isDesktop() {
+    display: none;
+  }
+}

@@ -1,0 +1,118 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.section {
+  padding: u(30) 0;
+  overflow-x: hidden;
+
+  @include isMobile() {
+    padding: u(14) 0;
+  }
+
+  &.white {
+    background-color: $white;
+  }
+
+  @include isMobile() {
+    h2 {
+      @include text("h4");
+    }
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.title_line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    @include text("large");
+    background: $gray40b;
+    border: none;
+    padding: u(2);
+    white-space: nowrap;
+
+    &:hover {
+      background: $gray60;
+    }
+
+    @include isMobile() {
+      display: none;
+    }
+  }
+}
+
+.content {
+  margin-top: u(14);
+}
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: u(3);
+  margin-top: u(16);
+
+  @include isMobile() {
+    margin-top: u(6);
+  }
+}
+
+.departments {
+  margin-top: u(20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: u(4);
+
+  @include isMobile() {
+    margin-top: u(8);
+  }
+
+  .btn {
+    @include text("large");
+    font-weight: bold;
+    box-shadow: 0 4px 18px 0 #0000001a;
+    padding: u(2) u(4);
+    border-radius: u(2);
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-align: left;
+    background: $white;
+
+    @include rtl() {
+      text-align: right;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      border-color: $dark;
+      background-color: $gray40b;
+      box-shadow: none;
+    }
+  }
+}
+
+.image {
+  margin-top: u(20);
+
+  @include isMobile() {
+    margin-top: u(8);
+    text-align: center;
+  }
+}

@@ -1,0 +1,15 @@
+$texts: (
+  "very-small": (12px, 15px),
+  "small": (14px, 18px),
+  "normal": (16px, 20px),
+  "large": (18px, 23px),
+  "h5": (22px, 28px),
+  "h4": (28px, 35px),
+);
+
+@mixin text($_key) {
+  $sizes: map-get($texts, $_key);
+
+  font-size: nth($sizes, 1);
+  line-height: nth($sizes, 2);
+}

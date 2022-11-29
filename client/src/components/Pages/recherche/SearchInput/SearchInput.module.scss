@@ -1,0 +1,199 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/btn";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.filter {
+  padding: u(4);
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: $radius;
+
+  @include isMobile() {
+    padding: u(1);
+  }
+
+  &:hover {
+    background-color: $gray40b;
+  }
+  &.active {
+    box-shadow: 0 0 40px 0 #00000040;
+    background-color: $white;
+
+    @include isMobile() {
+      box-shadow: none;
+    }
+  }
+
+  .search {
+    text-align: left;
+    min-width: 0;
+    flex-grow: 1;
+    position: relative;
+
+    @include rtl() {
+      text-align: right;
+    }
+  }
+
+  .label {
+    @include text("very-small");
+    margin-bottom: u(2);
+    font-weight: bold;
+    color: $gray80;
+    text-transform: uppercase;
+    display: block;
+    text-align: left;
+
+    @include rtl() {
+      text-align: right;
+    }
+
+    @include isMobile() {
+      display: none;
+    }
+  }
+
+  .input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0;
+    @include text("normal");
+    width: 100%;
+  }
+
+  .value {
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    padding-right: u(16);
+    @include text("normal");
+
+    @include isMobile() {
+      padding-right: u(6);
+    }
+
+    @include rtl() {
+      text-align: right;
+      padding-right: 0;
+      padding-left: u(16);
+
+      @include isMobile() {
+        padding-right: 0;
+        padding-left: u(6);
+      }
+    }
+
+    &.empty {
+      font-weight: normal;
+    }
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: $gray30;
+    margin-right: u(4);
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+
+    @include rtl() {
+      margin-right: 0;
+      margin-left: u(4);
+    }
+
+    &.active {
+      background: $bleuCharte;
+    }
+
+    @include isMobile() {
+      width: 32px;
+      height: 32px;
+      margin-right: u(2);
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(2);
+      }
+
+      &.small {
+        width: 20px;
+        height: 20px;
+        margin-right: u(2);
+        background: transparent !important;
+        @include withIcon();
+
+        @include rtl() {
+          margin-right: 0;
+          margin-left: u(2);
+        }
+      }
+    }
+  }
+}
+
+.empty_btn {
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: u(6);
+  height: u(6);
+  border-radius: 50%;
+
+  @include rtl() {
+    right: inherit;
+    left: 0;
+  }
+
+  &:hover {
+    background: $gray30;
+  }
+
+  @include isMobile() {
+    display: none;
+
+    &.mobile {
+      display: flex;
+      bottom: -2px;
+    }
+  }
+}
+
+.plus {
+  position: absolute;
+  right: u(5);
+  width: u(10);
+
+  @include rtl() {
+    right: auto;
+    left: u(5);
+  }
+
+  @include isMobile() {
+    right: 0;
+    width: auto;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
+  }
+}

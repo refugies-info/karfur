@@ -10,6 +10,7 @@ import styles from "./CatList.module.scss";
 import useRTL from "hooks/useRTL";
 import { getPath } from "routes";
 import ThemeIcon from "components/UI/ThemeIcon";
+import useLocale from "hooks/useLocale";
 
 const InnerButton = styled.div`
   display: flex;
@@ -54,11 +55,12 @@ const CatList = (props: Props) => {
   const isRTL = useRTL();
   const { t } = useTranslation();
   const router = useRouter();
+  const locale = useLocale();
 
   const goToTheme = (theme: Theme) => {
     router.push({
       pathname: getPath("/recherche", router.locale),
-      search: "?tag=" + theme.name.fr,
+      search: "?themes=" + theme._id,
     });
   };
 
@@ -87,7 +89,7 @@ const CatList = (props: Props) => {
                     <ThemeIcon theme={theme} />
                   </IconContainer>
                 ) : null}
-                {theme.name.fr}
+                {theme.name[locale] || theme.name.fr}
               </InnerButton>
             </FSearchBtn>
           </motion.li>

@@ -1,5 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
 @import "src/scss/variables";
 
 .container {
@@ -9,6 +11,15 @@
 }
 
 .icon {
-  margin-right: 8px;
-  margin-top: -3px;
+  margin-right: u(2);
+  display: inline-flex;
+
+  @include rtl() {
+    margin-right: 0;
+    margin-left: u(2);
+  }
+}
+
+.name {
+  white-space: nowrap;
 }

@@ -1,0 +1,41 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+
+.container {
+  background: $gray20;
+  width: 100%;
+
+  &.embed {
+    padding: u(18) 0;
+    min-height: 100vh;
+  }
+}
+
+.container_inner {
+  padding-left: 2px;
+  padding-right: 2px;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.embed {
+  footer p {
+    padding: u(2) u(8);
+    display: inline-flex;
+    align-items: center;
+
+    .logo {
+      margin: 0 u(6);
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.type_card {
+  display: block;
+  box-shadow: 0 4px 18px 0 #0000001A;
+  background: $white;
+  border-radius: $radius;
+  padding: u(8);
+  border: 2px solid transparent;
+  width: 100%;
+  text-align: left;
+
+  @include rtl() {
+    text-align: right;
+  }
+  @include isMobile() {
+    margin-bottom: u(4);
+    padding: u(4);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .image {
+    @include isMobile() {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .title {
+    margin-top: u(8);
+    font-weight: normal;
+
+    @include isMobile() {
+      margin-top: u(4);
+      @include text("large");
+    }
+  }
+
+  p {
+    margin-top: u(4);
+    margin-bottom: 0;
+    @include text("large");
+    color: $gray80;
+
+    @include isMobile() {
+      margin-top: u(2);
+      @include text("normal");
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 40px 0 #00000040;
+  }
+
+  .btn {
+    padding: u(3) u(4);
+    margin-top: u(8);
+    background: $bleuCharte;
+    color: $white;
+    border-radius: u(2);
+    display: inline-block;
+    @include text("large");
+    font-weight: bold;
+
+    span {
+      margin-left: u(2);
+    }
+    @include isMobile() {
+      margin-top: u(4);
+      @include text("normal");
+    }
+  }
+}

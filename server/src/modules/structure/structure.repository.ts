@@ -13,12 +13,12 @@ export const getStructureFromDB = async (
       if (fields === "all") {
         return await Structure.findOne({ _id: id }).populate({
           path: "dispositifsAssocies",
-          populate: { path: "theme secondaryThemes" }
+          populate: { path: "theme secondaryThemes mainSponsor" }
         });
       }
       return await Structure.findOne({ _id: id }, fields).populate({
         path: "dispositifsAssocies",
-        populate: { path: "theme secondaryThemes" }
+        populate: { path: "theme secondaryThemes mainSponsor" }
       });
     }
     if (fields === "all") {
@@ -33,12 +33,12 @@ export const getStructureFromDB = async (
 type Query = { status: "Actif" } | {};
 type NeededFields =
   | {
-      nom: number;
-      acronyme: number;
-      picture: number;
-      structureTypes: number;
-      departments: number;
-    }
+    nom: number;
+    acronyme: number;
+    picture: number;
+    structureTypes: number;
+    departments: number;
+  }
   | {
     nom: number;
     acronyme: number;
@@ -51,7 +51,7 @@ type NeededFields =
     adminComments: number;
     adminProgressionStatus: number;
     adminPercentageProgressionStatus: number;
-    }
+  }
   | { membres: 1 };
 
 export const getStructuresFromDB = async (
@@ -148,3 +148,17 @@ export const updateStructureMember = async (
     structure,
     { upsert: true, new: true }
   );
+
+export const removeMemberFromStructure = async (
+  structureId: ObjectId,
+  userId: ObjectId
+) => {
+  return Structure.findOneAndUpdate(
+    { _id: structureId },
+    {
+      $pull: {
+        membres: { userId: userId.toString() }
+      }
+    }
+  );
+}

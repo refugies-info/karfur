@@ -6,7 +6,7 @@ import { Structure, Picture } from "types/interface";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
 import FButton from "components/UI/FButton/FButton";
-import placeholder from "assets/annuaire/placeholder_logo_annuaire.svg";
+import placeholder from "assets/no_results_alt.svg";
 import styles from "./LeftAnnuaireDetail.module.scss";
 import { getPath, isRoute } from "routes";
 

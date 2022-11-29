@@ -12,7 +12,6 @@ export const FavoritesContainer = styled.div`
 
 export const CardContainer = styled.div`
   width: 248px;
-  height: 248px;
   margin-top: 8px;
   margin-bottom: 8px;
   margin-right: 8px;

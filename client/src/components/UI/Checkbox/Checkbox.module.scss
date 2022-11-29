@@ -1,0 +1,50 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+@import "src/scss/variables";
+
+.checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+  }
+  label {
+    position: relative;
+    margin-bottom: 0;
+    vertical-align: top;
+    margin-left: u(3);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+
+    @include rtl() {
+      margin-left: 0;
+      margin-right: u(3);
+    }
+  }
+}
+.check {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  pointer-events: none;
+  position: relative;
+
+  @include rtl() {
+    left: inherit;
+    right: 0;
+  }
+
+  i {
+    display: inline-flex;
+    align-items: center;
+  }
+}

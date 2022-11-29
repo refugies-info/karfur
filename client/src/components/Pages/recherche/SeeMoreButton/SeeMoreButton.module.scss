@@ -1,0 +1,47 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/text";
+@import "src/scss/variables";
+
+.container {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  right: -20px;
+  height: 350px;
+  padding-bottom: 30px;
+  text-align: center;
+  background: linear-gradient(#f2f2f200 0%, #f2f2f2 60%, #f2f2f2 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  @include isMobile() {
+    display: none;
+  }
+
+  &.visible {
+    background: transparent;
+    bottom: -120px;
+    padding-bottom: 0;
+    height: auto;
+  }
+}
+
+.btn {
+  background: $bleuCharte;
+  border-radius: 50px;
+  padding: 18px 24px;
+  box-shadow: 0 0 30px 0 #0421b14d;
+  color: $white;
+  @include text("h5");
+  font-weight: bold;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken($bleuCharte, 5%);
+    color: $white;
+  }
+}

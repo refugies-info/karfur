@@ -18,11 +18,6 @@ jest.mock("../../../modules/users/users.repository", () => ({
   getUserById: jest.fn(),
   updateUserInDB: jest.fn().mockResolvedValue({ getToken: () => "token" }),
 }));
-jest.mock("../../../schema/schemaUser", () => ({
-  User: {
-    findOne: jest.fn(),
-  }
-}));
 jest.mock("../../../modules/users/login2FA", () => ({
   login2FA: jest.fn(),
 }));
@@ -105,7 +100,7 @@ describe("setNewPassword", () => {
         newPassword: "password",
         reset_password_token: "token"
       },
-      roles: [{nom: "Admin", _id: "Admin"}]
+      roles: [{ nom: "Admin", _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -122,7 +117,7 @@ describe("setNewPassword", () => {
         newPassword: "a",
         reset_password_token: "token"
       },
-      roles: [{nom: "Admin", _id: "Admin"}]
+      roles: [{ nom: "Admin", _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(401);
@@ -144,7 +139,7 @@ describe("setNewPassword", () => {
         newPassword: "password",
         reset_password_token: "token"
       },
-      roles: [{nom: "Admin", _id: "Admin"}]
+      roles: [{ nom: "Admin", _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(login2FA).toHaveBeenCalled();
@@ -165,7 +160,7 @@ describe("setNewPassword", () => {
         newPassword: "password",
         reset_password_token: "token"
       },
-      roles: [{nom: "Admin", _id: "Admin"}]
+      roles: [{ nom: "Admin", _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(login2FA).not.toHaveBeenCalled();
@@ -186,7 +181,7 @@ describe("setNewPassword", () => {
         newPassword: "password",
         reset_password_token: "token"
       },
-      roles: [{nom: "Admin", _id: "Admin"}]
+      roles: [{ nom: "Admin", _id: "Admin" }]
     };
     await setNewPassword(req, res);
     expect(res.status).toHaveBeenCalledWith(200);
