@@ -105,6 +105,7 @@ const FakeMapButton = styled(RTLView)`
   border-radius: ${styles.radius * 2}px;
   width: auto;
   height: 56px;
+  padding-horizontal: ${styles.radius * 3}px;
 `;
 const FakeMapButtonText = styled(TextSmallBold)`
   margin-left: ${(props: { isRTL: boolean }) =>
