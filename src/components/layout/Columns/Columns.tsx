@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
 import { Animated } from "react-native";
+import { isNull } from "lodash";
 
 const ColumnsWrapper = styled(Animated.View)<{
   horizontalAlign?: string;
@@ -40,26 +41,31 @@ const Columns = ({
   RTLBehaviour = false,
   spacing = ColumnsSpacing.Default,
   verticalAlign = "flex-start",
-}: ColumnsProps) => (
-  <ColumnsWrapper
-    horizontalAlign={horizontalAlign}
-    RTLBehaviour={RTLBehaviour}
-    verticalAlign={verticalAlign}
-  >
-    {React.Children.map(children, (child, index) =>
-      child !== null ? (
-        <FlexItem
-          flex={getFlexValue(layout, index)}
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          RTLBehaviour={RTLBehaviour}
-          marginHorizontal={!isLastChild(children, index) && spacing}
-        >
-          {child}
-        </FlexItem>
-      ) : null
-    )}
-  </ColumnsWrapper>
-);
+}: ColumnsProps) => {
+  // const _children = React.Children.toArray(children).filter(
+  //   (child) => !isNull(child)
+  // );
+  return (
+    <ColumnsWrapper
+      horizontalAlign={horizontalAlign}
+      RTLBehaviour={RTLBehaviour}
+      verticalAlign={verticalAlign}
+    >
+      {React.Children.map(children, (child, index) =>
+        child !== null ? (
+          <FlexItem
+            flex={getFlexValue(layout, index)}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            RTLBehaviour={RTLBehaviour}
+            marginHorizontal={!isLastChild(children, index) && spacing}
+          >
+            {child}
+          </FlexItem>
+        ) : null
+      )}
+    </ColumnsWrapper>
+  );
+};
 
 export default Columns;

@@ -3,6 +3,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components/native";
 import { FlexItem, getFlexValue } from "../common";
 import { isLastChild } from "../../utils";
+import { isNull } from "lodash";
 
 const RowsWrapper = styled.View<{
   horizontalAlign?: string;
@@ -36,24 +37,32 @@ const Rows = ({
   verticalAlign,
   layout = "auto",
   spacing = RowsSpacing.Default,
-}: RowsProps) => (
-  <RowsWrapper horizontalAlign={horizontalAlign} verticalAlign={verticalAlign}>
-    {React.Children.map(
-      children,
-      (child, index) =>
-        child && (
-          <FlexItem
-            flex={getFlexValue(layout, index)}
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            marginBottom={!isLastChild(children, index) && spacing}
-          >
-            {child}
-          </FlexItem>
-        )
-    )}
-  </RowsWrapper>
-);
+}: RowsProps) => {
+  const _children = React.Children.toArray(children).filter(
+    (child) => !isNull(child)
+  );
+  return (
+    <RowsWrapper
+      horizontalAlign={horizontalAlign}
+      verticalAlign={verticalAlign}
+    >
+      {React.Children.map(
+        _children,
+        (child, index) =>
+          child && (
+            <FlexItem
+              flex={getFlexValue(layout, index)}
+              // eslint-disable-next-line react/no-array-index-key
+              key={index}
+              marginBottom={!isLastChild(_children, index) && spacing}
+            >
+              {child}
+            </FlexItem>
+          )
+      )}
+    </RowsWrapper>
+  );
+};
 
 Rows.displayName = "Rows";
 
