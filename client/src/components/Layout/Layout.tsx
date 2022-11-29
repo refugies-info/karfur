@@ -18,7 +18,7 @@ import { showLangModalSelector, allLanguesSelector } from "services/Langue/langu
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
-import Navbar from "components/Navigation/Navbar/Navbar";
+import Navbar from "components/Navigation/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
@@ -180,7 +180,7 @@ const Layout = (props: Props) => {
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
-      <Navbar history={props.history} />
+      <Navbar />
       <div className="app-body">
         <main className="content">{props.children}</main>
       </div>

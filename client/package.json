@@ -65,6 +65,7 @@
     "react-scrollspy": "^3.4.0",
     "react-sortablejs": "^6.1.4",
     "react-to-print": "^2.12.1",
+    "react-use": "^17.4.0",
     "reactstrap": "^8.10.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.1.3",
