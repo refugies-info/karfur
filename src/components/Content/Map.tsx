@@ -43,12 +43,14 @@ export const Map = (props: PropsType) => {
       } else {
         bottomSheet.expand();
 
-        const lat = typeof markerOpen.latitude === "string"
-          ? parseFloat(markerOpen.latitude)
-          : markerOpen.latitude;
-        const lng = typeof markerOpen.longitude === "string"
-          ? parseFloat(markerOpen.longitude)
-          : markerOpen.longitude;
+        const lat =
+          typeof markerOpen.latitude === "string"
+            ? parseFloat(markerOpen.latitude)
+            : markerOpen.latitude;
+        const lng =
+          typeof markerOpen.longitude === "string"
+            ? parseFloat(markerOpen.longitude)
+            : markerOpen.longitude;
 
         if (map) {
           map.fitToCoordinates([
@@ -99,8 +101,8 @@ export const Map = (props: PropsType) => {
   } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
 
   const markers = props.map.markers;
-  const mapHeight = Dimensions.get("window").height;
-  const mapWidth = Dimensions.get("window").width;
+  const mapHeight = Dimensions.get("screen").height;
+  const mapWidth = Dimensions.get("screen").width;
 
   return (
     <GestureHandlerRootView>
@@ -122,12 +124,14 @@ export const Map = (props: PropsType) => {
         provider={PROVIDER_GOOGLE}
       >
         {markers.map((marker, key) => {
-          const lat = typeof marker.latitude === "string"
-            ? parseFloat(marker.latitude)
-            : marker.latitude;
-          const lng = typeof marker.longitude === "string"
-            ? parseFloat(marker.longitude)
-            : marker.longitude;
+          const lat =
+            typeof marker.latitude === "string"
+              ? parseFloat(marker.latitude)
+              : marker.latitude;
+          const lng =
+            typeof marker.longitude === "string"
+              ? parseFloat(marker.longitude)
+              : marker.longitude;
           return (
             <Marker
               key={key}
@@ -137,7 +141,9 @@ export const Map = (props: PropsType) => {
               }}
               onPress={(e: any) => onMarkerClick(marker, e)}
               accessibilityRole="button"
-              accessibilityLabel={t("content_screen.place_informations_accessibility")}
+              accessibilityLabel={t(
+                "content_screen.place_informations_accessibility"
+              )}
             >
               <Icon
                 name="pin"
