@@ -34,6 +34,7 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { BookmarkedModal } from "components/Modals";
 import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 
 interface Props {
   children: any;
@@ -82,7 +83,9 @@ const Layout = (props: Props) => {
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
-      dispatch(toggleLangueModalActionCreator());
+      if (!showLangModal) {
+        dispatch(toggleLangueModalActionCreator());
+      }
     } else {
       const locale = router.locale || "fr";
       if (!["fr", "default"].includes(locale)) {
@@ -201,6 +204,7 @@ const Layout = (props: Props) => {
           dispatch(toggleUserFavoritesModalActionCreator(!isFavoriteModalVisible));
         }}
       />
+      <SubscribeNewsletterModal />
     </div>
   );
 };

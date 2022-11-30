@@ -79,7 +79,7 @@ const HomeSearch = (props: Props) => {
     props.toggleOverlay();
   };
 
-  if (isEmpty(themes)) return;
+  if (isEmpty(themes)) return null;
 
   return (
     <div onClick={open} className={styles.col}>

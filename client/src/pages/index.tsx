@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import qs from "query-string";
 import { colors } from "colors";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
@@ -33,6 +33,8 @@ import isInBrowser from "lib/isInBrowser";
 import styles from "scss/pages/homepage.module.scss";
 import { getPath } from "routes";
 import { MobileTagsModal } from "components/Pages/homepage/MobileTagsModal/MobileTagsModal";
+import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
+import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
 
 const ButtonContainerRow = styled.div`
   display: flex;
@@ -47,12 +49,11 @@ const ButtonSeparator = styled.div`
 interface Props {}
 
 const Homepage = (props: Props) => {
+  const dispatch = useDispatch();
   const [popup, setPopup] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
-  const [showNewslettreModal, setShowNewslettreModal] = useState(
-    isInBrowser() ? new URLSearchParams(window.location.search).get("newsletter") === "" : false
-  );
+
   const [ukraine, setUkraine] = useState(true);
 
   const { t } = useTranslation();
@@ -66,10 +67,15 @@ const Homepage = (props: Props) => {
 
   const togglePopup = () => setPopup(!popup);
   const toggleShowTagModal = () => setShowTagModal(!showTagModal);
-  const toggleShowNewsletterModal = () => setShowNewslettreModal(!showNewslettreModal);
   const toggleOverlay = () => setOverlay(!overlay);
   const themes = useSelector(themesSelector);
   const isRTL = useRTL();
+
+  useEffect(() => {
+    if (isInBrowser() && new URLSearchParams(window.location.search).get("newsletter") === "") {
+      dispatch(toggleNewsletterModalAction(true));
+    }
+  }, []);
 
   return (
     <div className="animated fadeIn homepage">
@@ -260,7 +266,6 @@ const Homepage = (props: Props) => {
         </>
       )}
       <MobileTagsModal selectOption={selectOption} toggle={toggleShowTagModal} show={showTagModal} />
-      <SubscribeNewsletterModal toggle={toggleShowNewsletterModal} show={showNewslettreModal} />
     </div>
   );
 };

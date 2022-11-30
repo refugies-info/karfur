@@ -7,6 +7,7 @@ export let middleware: NextMiddleware = (request) => {
     !/\.(.*)$/.test(request.nextUrl.pathname) &&
     // Not an api route
     !request.nextUrl.pathname.includes("/api/") &&
+    !request.nextUrl.pathname.startsWith("/_next/image") &&
     // Uses the default locale
     request.nextUrl.locale === "default"
   ) {

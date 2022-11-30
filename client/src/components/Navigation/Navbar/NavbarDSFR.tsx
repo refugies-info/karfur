@@ -7,25 +7,29 @@ import {
   NavItem,
   NavSubItem,
   Tool,
-  ToolItem,
   ToolItemGroup
 } from "@dataesr/react-dsfr";
 import { logoRI } from "assets/figma";
+import { BackendNavigation } from "containers";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { getPath } from "routes";
-import LanguageToolItem from "./LanguageToolItem";
-import NewsletterSubscribeNavItem from "./NewsletterSubscribeNavItem";
-import SpeekToolItem from "./SpeekToolItem";
+import {
+  UserToolItem,
+  SpeekToolItem,
+  NewsletterSubscribeNavItem,
+  SubscribeToolItem,
+  TranslationToolItem
+} from "./NavbarItems";
 
 const Navbar = () => {
   const router = useRouter();
   const { t } = useTranslation();
 
   return (
-    <Header closeButtonLabel="Fermeture">
+    <Header closeButtonLabel={t`Fermeture`}>
       <HeaderBody>
         <Logo splitCharacter={10}>République Française</Logo>
         <HeaderOperator>
@@ -34,55 +38,51 @@ const Navbar = () => {
         <Tool>
           <ToolItemGroup>
             <SpeekToolItem />
-            <LanguageToolItem />
-            {/* <ToolTranslate currentLang="fr" descCurrentLang="Français">
-              {/* <ToolTranslateItem href="#" hrefLang="fr" active>
-                <span>
-                  <i className="flag-icon flag-icon-fr" title="fr" /> Français
-                </span>
-              </ToolTranslateItem> * /}
-              <ToolTranslateItem href="#" hrefLang="EN" active={false}>
-                Anglais - English
-              </ToolTranslateItem>
-              <ToolTranslateItem href="#" hrefLang="AR" active={false}>
-                Arabe - arabe
-              </ToolTranslateItem>
-            </ToolTranslate> */}
-            <ToolItem asLink={<Link href={getPath("/register", router.locale)} />} icon="ri-user-add-line">
-              {t("Toolbar.Inscription", "Inscription")}
-            </ToolItem>
-            <ToolItem asLink={<Link href={getPath("/login", router.locale)} />} icon="ri-user-line">
-              {t("Toolbar.Connexion", "Connexion")}
-            </ToolItem>
+            <SubscribeToolItem />
+            <UserToolItem />
+            <TranslationToolItem />
           </ToolItemGroup>
         </Tool>
       </HeaderBody>
       <HeaderNav>
-        <NavItem asLink={<Link href={getPath("/recherche", router.locale)} />} title="Trouver de l'information" />
+        <NavItem
+          asLink={<Link href={getPath("/recherche", router.locale)} />}
+          title={t("Toolbar.Trouver de l'information", "Trouver de l'information")}
+        />
         <NavItem
           asLink={<Link href={`${getPath("/comment-contribuer", router.locale)}#ecrire-card`} />}
-          title="Publier une fiche"
+          title={t("Toolbar.Publier une fiche", "Publier une fiche")}
         />
         <NavItem
           asLink={<Link href={`${getPath("/comment-contribuer", router.locale)}#traduire-card`} />}
-          title="Traduire"
+          title={t("Toolbar.Traduire", "Traduire")}
         />
-        <NavItem title="Parler de nous">
-          <NavSubItem asLink={<a href="https://kit.refugies.info/" target="_blank" />} title="Kit de communication" />
+        <NavItem title={t("Toolbar.Parler de nous", "Parler de nous")}>
+          <NavSubItem
+            asLink={<a href="https://kit.refugies.info/" target="_blank" />}
+            title={t("Toolbar.Kit de communication", "Kit de communication")}
+          />
           <NavSubItem
             asLink={<a href="https://kit.refugies.info/flyers/" target="_blank" />}
-            title="Affiches et dépliants"
+            title={t("Toolbar.Affiches et dépliants", "Affiches et dépliants")}
           />
-          <NavSubItem asLink={<a href="https://kit.refugies.info/presse/" target="_blank" />} title="Pour la presse" />
+          <NavSubItem
+            asLink={<a href="https://kit.refugies.info/presse/" target="_blank" />}
+            title={t("Toolbar.Pour la presse", "Pour la presse")}
+          />
           <NavSubItem
             asLink={<a href="https://kit.refugies.info/ambassadeurs/" target="_blank" />}
-            title="Pour les ambassadeurs"
+            title={t("Toolbar.Pour les ambassadeurs", "Pour les ambassadeurs")}
           />
         </NavItem>
-        <NavItem asLink={<a href="https://parrainage.refugies.info/" target="_blank" />} title="Pour l'Ukraine" />
-        <NavItem asLink={<a href="#application" />} title="Télécharger l'application" />
+        <NavItem
+          asLink={<a href="https://parrainage.refugies.info/" target="_blank" />}
+          title={t("Toolbar.Pour l'Ukraine", "Pour l'Ukraine")}
+        />
+        <NavItem asLink={<a href="#application" />} title={t("MobileAppModal.Télécharger l'application")} />
         <NewsletterSubscribeNavItem />
       </HeaderNav>
+      <BackendNavigation />
     </Header>
   );
 };

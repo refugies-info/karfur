@@ -27,7 +27,6 @@ import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import Navigation from "../Navigation";
 import { getPath } from "routes";
 
 const MainContainer = styled.div`
@@ -124,7 +123,6 @@ const UserContributions = (props: Props) => {
   if (isLoading) {
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="contributions" />
         <MainContainer>
           <ContribContainer>
             <TitleWithNumber
@@ -144,7 +142,6 @@ const UserContributions = (props: Props) => {
   if (contributions.length === 0)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="contributions" />
         <MainContainer>
           <NoContribution toggleTutoModal={toggleTutoModal} setTutoModalDisplayed={setTutoModalDisplayed} />
           {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />}
@@ -153,7 +150,6 @@ const UserContributions = (props: Props) => {
     );
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <Navigation selected="contributions" />
       <MainContainer>
         <ContribContainer>
           <TitleContainer>

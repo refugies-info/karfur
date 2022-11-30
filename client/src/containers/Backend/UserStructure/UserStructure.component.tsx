@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
+  updateUserStructureActionCreator
 } from "services/UserStructure/userStructure.actions";
-import {
-  userStructureSelector,
-  userStructureMembresSelector,
-} from "services/UserStructure/userStructure.selectors";
+import { userStructureSelector, userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { UserStructureLoading } from "./components/UserStructureLoading";
@@ -18,7 +15,6 @@ import { colors } from "colors";
 import { userSelector } from "services/User/user.selectors";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
-import Navigation from "../Navigation";
 
 const ErrorContainer = styled.div`
   margin-top: 60px;
@@ -37,7 +33,7 @@ const ErrorText = styled.div`
 `;
 
 interface Props {
-  title: string
+  title: string;
 }
 
 export const UserStructureComponent = (props: Props) => {
@@ -47,7 +43,7 @@ export const UserStructureComponent = (props: Props) => {
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -55,19 +51,15 @@ export const UserStructureComponent = (props: Props) => {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: true,
+          shouldRedirect: true
         })
       );
     }
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const isLoadingFetch = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
-  );
-  const isLoadingUpdate = useSelector(
-    isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE)
-  );
+  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
+  const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_USER_STRUCTURE));
 
   const isLoading = isLoadingFetch || isLoadingUpdate;
 
@@ -78,15 +70,12 @@ export const UserStructureComponent = (props: Props) => {
     dispatch(
       updateUserStructureActionCreator({
         modifyMembres: true,
-        data: { structureId: userStructure._id, userId, type: "create" },
+        data: { structureId: userStructure._id, userId, type: "create" }
       })
     );
   };
 
-  const modifyRole = (
-    userId: ObjectId,
-    role: "contributeur" | "administrateur"
-  ) => {
+  const modifyRole = (userId: ObjectId, role: "contributeur" | "administrateur") => {
     if (!userStructure) return;
 
     dispatch(
@@ -96,8 +85,8 @@ export const UserStructureComponent = (props: Props) => {
           structureId: userStructure._id,
           userId,
           newRole: role,
-          type: "modify",
-        },
+          type: "modify"
+        }
       })
     );
   };
@@ -113,7 +102,7 @@ export const UserStructureComponent = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     }).then((result) => {
       if (result.value) {
         dispatch(
@@ -122,8 +111,8 @@ export const UserStructureComponent = (props: Props) => {
             data: {
               structureId: userStructure._id,
               userId,
-              type: "delete",
-            },
+              type: "delete"
+            }
           })
         );
       }
@@ -133,7 +122,6 @@ export const UserStructureComponent = (props: Props) => {
   if (isLoading) {
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="structure" />
         <UserStructureLoading />
       </div>
     );
@@ -142,12 +130,10 @@ export const UserStructureComponent = (props: Props) => {
   if (!userStructure)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="structure" />
         <ErrorContainer>
           <ErrorText>
-            Une erreur est survenue. Veuillez recharger la page ou contacter
-            l'équipe de réfugiés.info via le live chat en bas à droite de votre
-            écran.
+            Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat
+            en bas à droite de votre écran.
           </ErrorText>
         </ErrorContainer>
       </div>
@@ -161,7 +147,6 @@ export const UserStructureComponent = (props: Props) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <Navigation selected="structure" />
       <UserStructureDetails
         picture={userStructure.picture}
         name={userStructure.nom}

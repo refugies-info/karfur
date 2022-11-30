@@ -4,7 +4,6 @@ import { colors } from "colors";
 import Image from "next/legacy/image";
 import FButton from "components/UI/FButton/FButton";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
-import styles from "containers/Backend/Navigation/components/NavButton.module.scss";
 
 const Title = styled.div`
   font-weight: bold;
@@ -59,31 +58,14 @@ export const StartTranslating = (props: Props) => {
     <MainContainer>
       <Title>Vous n'avez pas traduit de fiches pour le moment.</Title>
       <WhiteContainer>
-        <WhiteContainerTitle>
-          Vous parlez une autre langue ?
-        </WhiteContainerTitle>
-        <WhiteContainerSubTitle>
-          Aidez à traduire les contenus à votre rythme.
-        </WhiteContainerSubTitle>
+        <WhiteContainerTitle>Vous parlez une autre langue ?</WhiteContainerTitle>
+        <WhiteContainerSubTitle>Aidez à traduire les contenus à votre rythme.</WhiteContainerSubTitle>
         <RowContainer>
-          <FButton
-            type="dark"
-            className="mr-10"
-            onClick={props.toggleTraducteurModal}
-          >
-            <Image
-              src={traductionIconBlanc}
-              alt="a"
-              className={styles.icon_traduction}
-            />
+          <FButton type="dark" className="mr-10" onClick={props.toggleTraducteurModal}>
+            <Image src={traductionIconBlanc} alt="a" />
             Commencer à traduire
           </FButton>
-          <FButton
-            type="tuto"
-            className="ml-10"
-            name="video-outline"
-            onClick={props.toggleTutoModal}
-          >
+          <FButton type="tuto" className="ml-10" name="video-outline" onClick={props.toggleTutoModal}>
             Explications
           </FButton>
         </RowContainer>
