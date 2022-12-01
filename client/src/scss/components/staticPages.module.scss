@@ -9,6 +9,16 @@ $breakpoint: "lg-limit";
   width: 100%;
 }
 
+.container {
+  padding-left: 2px;
+  padding-right: 2px;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
 .section {
   padding-top: u(20);
   padding-bottom: u(20);

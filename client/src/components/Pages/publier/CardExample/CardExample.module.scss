@@ -13,10 +13,6 @@ $colorKo: $error;
   colorKo: $error;
 }
 
-.container {
-  margin-top: u(6);
-}
-
 .example {
   @include text("normal");
   display: flex;

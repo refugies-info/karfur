@@ -13,6 +13,9 @@ $breakpoint: "lg-limit";
   padding: u(6);
   border-radius: u(5);
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   @include media-max($breakpoint) {
     padding: u(4);
@@ -30,9 +33,11 @@ $breakpoint: "lg-limit";
 .text {
   @include text("large");
   margin-top: u(6);
+  margin-bottom: u(6);
 
   @include media-max($breakpoint) {
     @include text("normal");
     margin-top: u(4);
+    margin-bottom: u(4);
   }
 }
