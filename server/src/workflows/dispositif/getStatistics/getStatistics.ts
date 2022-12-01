@@ -1,22 +1,19 @@
 import logger from "../../../logger";
-import { getNbMercis, getNbVues } from "../../../modules/dispositif/dispositif.repository";
+import { getNbMercis, getNbVues, getNbFiches } from "../../../modules/dispositif/dispositif.repository";
 import { Res, RequestFromClient } from "../../../types/interface";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
-interface Query {}
+interface Query { }
 
-type Mercis = {mercis: number}
-type Vues = {nbVues: number, nbVuesMobile: number}
+type Mercis = { mercis: number }
+type Vues = { nbVues: number, nbVuesMobile: number }
 
 export const getStatistics = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     logger.info("[getStatistics]");
 
-    // @ts-ignore : populate roles
-    checkIfUserIsAdmin(req.user.roles)
-
     const resMercis: Mercis[] = await getNbMercis();
     const resVues: Vues[] = await getNbVues();
+    const resNbFiches: number = await getNbFiches();
 
     return res
       .status(200)
@@ -25,7 +22,8 @@ export const getStatistics = async (req: RequestFromClient<Query>, res: Res) => 
         data: {
           nbMercis: resMercis[0].mercis,
           nbVues: resVues[0].nbVues,
-          nbVuesMobile: resVues[0].nbVuesMobile
+          nbVuesMobile: resVues[0].nbVuesMobile,
+          nbFiches: resNbFiches
         }
       });
   } catch (error) {

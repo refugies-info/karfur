@@ -162,3 +162,7 @@ export const removeMemberFromStructure = async (
     }
   );
 }
+
+export const getNbStructures = async () => {
+  return Structure.count({ status: "Actif" });
+};

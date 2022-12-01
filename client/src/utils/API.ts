@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { AdminOption, IDispositif, NbDispositifsByRegion, Need, Statistics, Theme, User, Widget } from "types/interface";
+import { AdminOption, DispositifStatistics, IDispositif, NbDispositifsByRegion, Need, StructuresStatistics, Theme, User, Widget } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -250,9 +250,8 @@ const API = {
       headers,
     })
   },
-  getStatistics: (): Promise<Response<Statistics>> => {
-    const headers = getHeaders();
-    return instance.get("/dispositifs/statistics", { headers });
+  getDispositifsStatistics: (): Promise<Response<DispositifStatistics>> => {
+    return instance.get("/dispositifs/statistics");
   },
 
   // Mail
@@ -309,6 +308,9 @@ const API = {
     return instance.get("/structures/getActiveStructures")
   },
   getAllStructures: () => instance.get("/structures/getAllStructures"),
+  getStructuresStatistics: (): Promise<Response<StructuresStatistics>> => {
+    return instance.get("/structures/statistics");
+  },
 
   // Needs
   getNeeds: () => {

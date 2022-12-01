@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
+import CountUp from "react-countup";
 import { colors } from "colors";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
 import useWindowSize from "hooks/useWindowSize";
+import API from "utils/API";
 import SEO from "components/Seo";
 import SecondaryNavbar from "components/Pages/publier/SecondaryNavbar";
 import TestimonyAuthor from "components/Pages/publier/TestimonyAuthor";
@@ -40,7 +42,11 @@ import MockupsRIMobile from "assets/publier/mockups-ri-mobile.png";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "scss/pages/publier.module.scss";
 
-interface Props {}
+interface Props {
+  nbVues: number;
+  nbFiches: number;
+  nbStructures: number;
+}
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
@@ -281,15 +287,21 @@ const RecensezVotreAction = (props: Props) => {
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.figuresTitle")}</h2>
           <Row>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>12</p>
+              <p className={styles.figure}>
+                <CountUp end={props.nbFiches} separator=" " />
+              </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle1")}</p>
             </Col>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>12</p>
+              <p className={styles.figure}>
+                <CountUp end={props.nbStructures} separator=" " />
+              </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle2")}</p>
             </Col>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>12</p>
+              <p className={styles.figure}>
+                <CountUp end={props.nbVues} separator=" " />
+              </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle3")}</p>
             </Col>
           </Row>
@@ -324,9 +336,15 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
+  const dispStatistics = await API.getDispositifsStatistics().then((data) => data.data.data);
+  const structStatistics = await API.getStructuresStatistics().then((data) => data.data.data);
+
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      nbVues: dispStatistics.nbVues + dispStatistics.nbVuesMobile,
+      nbFiches: dispStatistics.nbFiches,
+      nbStructures: structStatistics.nbStructures
     },
     revalidate: 60
   };
