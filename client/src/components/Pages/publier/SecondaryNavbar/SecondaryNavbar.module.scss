@@ -9,23 +9,75 @@
   position: sticky;
   top: 0;
   background: $white;
-  z-index: 10;
+  z-index: 100;
 }
 
 .inner {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
   padding-top: u(8);
   padding-bottom: u(8);
+
+  & > div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  @include isTablet() {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .btn {
   display: inline-block;
+  white-space: nowrap;
   padding: u(3);
   border-radius: $radius;
   background: $white;
   border: 1px solid $gray70b;
+  color: $gray70b;
   @include text("normal");
   margin-right: u(2);
+
+  &:hover {
+    border-color: $dark;
+    color: $dark;
+  }
+
+  &.active,
+  &.blue {
+    color: white;
+    border-color: transparent;
+    font-weight: bold;
+    align-items: center;
+
+    & > span {
+      margin-right: u(2);
+
+      @include rtl() {
+        margin-right: inherit;
+        margin-left: u(2);
+      }
+    }
+
+    &.green {
+      background: #055e5a;
+    }
+    &.purple {
+      background: #3d2884;
+    }
+    &.orange {
+      background: #cd5605;
+    }
+    &.red {
+      background: #910940;
+    }
+    &.blue {
+      background: $bleuCharte;
+    }
+  }
 }

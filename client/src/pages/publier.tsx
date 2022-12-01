@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import CountUp from "react-countup";
+import { useInView, InView } from "react-intersection-observer";
 import { colors } from "colors";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
@@ -42,6 +43,8 @@ import MockupsRIMobile from "assets/publier/mockups-ri-mobile.png";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "scss/pages/publier.module.scss";
 
+export type View = "why" | "required" | "steps" | "faq" | "register";
+
 interface Props {
   nbVues: number;
   nbFiches: number;
@@ -51,6 +54,30 @@ interface Props {
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
   const { isTablet } = useWindowSize();
+
+  const [activeView, setActiveView] = useState<View | null>(null);
+  const [refWhy, inViewWhy] = useInView();
+  const [refRequired, inViewRequired] = useInView();
+  const [refSteps, inViewSteps] = useInView();
+  const [refFaq, inViewFaq] = useInView();
+  const [refRegister, inViewRegister] = useInView();
+
+  useEffect(() => {
+    const views: { inView: boolean; id: View }[] = [
+      { inView: inViewWhy, id: "why" },
+      { inView: inViewRequired, id: "required" },
+      { inView: inViewSteps, id: "steps" },
+      { inView: inViewFaq, id: "faq" },
+      { inView: inViewRegister, id: "register" }
+    ];
+    for (const view of views.reverse()) {
+      if (view.inView) {
+        setActiveView(view.id);
+        return;
+      }
+    }
+    setActiveView(null);
+  }, [inViewWhy, inViewRequired, inViewSteps, inViewFaq, inViewRegister]);
 
   return (
     <div className={commonStyles.main}>
@@ -85,9 +112,9 @@ const RecensezVotreAction = (props: Props) => {
         )}
       </div>
 
-      <SecondaryNavbar />
+      <SecondaryNavbar activeView={activeView} />
 
-      <div id="why" className={cls(commonStyles.section)}>
+      <div id="why" ref={refWhy} className={cls(commonStyles.section)}>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.whyYitle")}</h2>
 
@@ -132,7 +159,7 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="required" className={cls(commonStyles.section, commonStyles.bg_grey)}>
+      <div id="required" ref={refRequired} className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
@@ -189,7 +216,7 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="steps" className={cls(commonStyles.section)}>
+      <div id="steps" ref={refSteps} className={cls(commonStyles.section)}>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
           <div className={styles.warning}>
@@ -288,19 +315,31 @@ const RecensezVotreAction = (props: Props) => {
           <Row>
             <Col sm="12" lg="4">
               <p className={styles.figure}>
-                <CountUp end={props.nbFiches} separator=" " />
+                <InView>
+                  {({ inView, ref }) => (
+                    <div ref={ref}>{inView ? <CountUp end={props.nbFiches} separator=" " /> : 0}</div>
+                  )}
+                </InView>
               </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle1")}</p>
             </Col>
             <Col sm="12" lg="4">
               <p className={styles.figure}>
-                <CountUp end={props.nbStructures} separator=" " />
+                <InView>
+                  {({ inView, ref }) => (
+                    <div ref={ref}>{inView ? <CountUp end={props.nbStructures} separator=" " /> : 0}</div>
+                  )}
+                </InView>
               </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle2")}</p>
             </Col>
             <Col sm="12" lg="4">
               <p className={styles.figure}>
-                <CountUp end={props.nbVues} separator=" " />
+                <InView>
+                  {({ inView, ref }) => (
+                    <div ref={ref}>{inView ? <CountUp end={props.nbVues} separator=" " /> : 0}</div>
+                  )}
+                </InView>
               </p>
               <p className={styles.figure_label}>{t("Publish.figuresSubtitle3")}</p>
             </Col>
@@ -308,7 +347,7 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="faq" className={cls(commonStyles.section)}>
+      <div id="faq" ref={refFaq} className={cls(commonStyles.section)}>
         <Container className={cls(commonStyles.container, styles.faq)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.faqTitle")}</h2>
 
@@ -328,7 +367,7 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="register" className={cls(commonStyles.section, commonStyles.bg_grey)}>
+      <div id="register" ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <Register />
       </div>
     </div>
