@@ -51,7 +51,7 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title="Recensez votre action" />
 
       <div className={cls(commonStyles.section, commonStyles.bg_blue)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
               <h1>{t("Publish.title")}</h1>
@@ -82,7 +82,7 @@ const RecensezVotreAction = (props: Props) => {
       <SecondaryNavbar />
 
       <div id="why" className={cls(commonStyles.section)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.whyYitle")}</h2>
 
           <Accordion
@@ -100,7 +100,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div className={cls(commonStyles.section, commonStyles.bg_green)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <Row>
             <Col className={styles.testimony}>
               <p>{t("Publish.testimony1")}</p>
@@ -127,34 +127,49 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div id="required" className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={RequiredIcon1} title={t("Publish.requiredSubtitle1")}>
-                <p>{t("Publish.requiredText1")}</p>
-                <CardExample
-                  exampleKo={t("Publish.requiredTextExample1Ko")}
-                  exampleOk={t("Publish.requiredTextExample1Ok")}
-                />
+              <Card
+                image={RequiredIcon1}
+                title={t("Publish.requiredSubtitle1")}
+                footer={
+                  <CardExample
+                    exampleKo={t("Publish.requiredTextExample1Ko")}
+                    exampleOk={t("Publish.requiredTextExample1Ok")}
+                  />
+                }
+              >
+                <p className="mb-0">{t("Publish.requiredText1")}</p>
               </Card>
             </Col>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={RequiredIcon2} title={t("Publish.requiredSubtitle2")}>
-                <p>{t("Publish.requiredText2")}</p>
-                <CardExample
-                  exampleKo={t("Publish.requiredTextExample2Ko")}
-                  exampleOk={t("Publish.requiredTextExample2Ok")}
-                />
+              <Card
+                image={RequiredIcon2}
+                title={t("Publish.requiredSubtitle2")}
+                footer={
+                  <CardExample
+                    exampleKo={t("Publish.requiredTextExample2Ko")}
+                    exampleOk={t("Publish.requiredTextExample2Ok")}
+                  />
+                }
+              >
+                <p className="mb-0">{t("Publish.requiredText2")}</p>
               </Card>
             </Col>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={RequiredIcon3} title={t("Publish.requiredSubtitle3")}>
-                <p>{t("Publish.requiredText3")}</p>
-                <CardExample
-                  exampleKo={t("Publish.requiredTextExample3Ko")}
-                  exampleOk={t("Publish.requiredTextExample3Ok")}
-                />
+              <Card
+                image={RequiredIcon3}
+                title={t("Publish.requiredSubtitle3")}
+                footer={
+                  <CardExample
+                    exampleKo={t("Publish.requiredTextExample3Ko")}
+                    exampleOk={t("Publish.requiredTextExample3Ok")}
+                  />
+                }
+              >
+                <p className="mb-0">{t("Publish.requiredText3")}</p>
               </Card>
             </Col>
           </Row>
@@ -169,7 +184,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div id="steps" className={cls(commonStyles.section)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
           <StepContent
             step={1}
@@ -214,30 +229,43 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <Container>
+        <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("Publish.helpTitle")}</h2>
           <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Publish.helpSubtitle")}</p>
           <Row className={styles.help}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={HelpIcon1} title={t("Publish.helpTileTitle1")}>
+              <Card
+                image={HelpIcon1}
+                title={t("Publish.helpTileTitle1")}
+                footer={
+                  <InlineLink
+                    link="https://airtable.com/shrrkFuyeG0BpKKT7"
+                    text={t("Publish.helpTileCTA1")}
+                    color="red"
+                  />
+                }
+              >
                 <p>{t("Publish.helpTileText1")}</p>
-                <InlineLink
-                  link="https://airtable.com/shrrkFuyeG0BpKKT7"
-                  text={t("Publish.helpTileCTA1")}
-                  color="red"
-                />
               </Card>
             </Col>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={HelpIcon2} title={t("Publish.helpTileTitle2")}>
+              <Card
+                image={HelpIcon2}
+                title={t("Publish.helpTileTitle2")}
+                footer={
+                  <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.helpTileCTA1")} color="red" />
+                }
+              >
                 <p>{t("Publish.helpTileText2")}</p>
-                <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.helpTileCTA1")} color="red" />
               </Card>
             </Col>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={HelpIcon3} title={t("Publish.helpTileTitle3")}>
+              <Card
+                image={HelpIcon3}
+                title={t("Publish.helpTileTitle3")}
+                footer={<InlineLink link="#" text={t("Publish.helpTileCTA1")} color="red" />}
+              >
                 <p>{t("Publish.helpTileText3")}</p>
-                <InlineLink link="#" text={t("Publish.helpTileCTA1")} color="red" />
               </Card>
             </Col>
           </Row>
@@ -245,7 +273,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div className={cls(commonStyles.section, commonStyles.bg_red)}>
-        <Container className={styles.figures}>
+        <Container className={cls(commonStyles.container, styles.figures)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.figuresTitle")}</h2>
           <Row>
             <Col sm="12" lg="4">
@@ -265,7 +293,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       <div id="faq" className={cls(commonStyles.section)}>
-        <Container className={styles.faq}>
+        <Container className={cls(commonStyles.container, styles.faq)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.faqTitle")}</h2>
 
           <Accordion
