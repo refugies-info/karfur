@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { cls } from "lib/classname";
 import styles from "./Checkbox.module.scss";
 
 interface Props {
   children: any;
   checked: boolean;
   color?: string;
+  onChange?: () => void;
+  className?: string;
 }
 
 const Checkbox = (props: Props) => {
+  const [id, _] = useState(`check_${Math.round(Math.random() * 100000)}`);
 
   return (
-    <div className={styles.checkbox}>
-      <input type="checkbox" defaultChecked={props.checked} />
+    <div className={cls(styles.checkbox, props.className)}>
+      <input id={id} type="checkbox" defaultChecked={props.checked} onChange={props.onChange} />
       <span className={styles.check}>
-        <EVAIcon
-          name={props.checked ? "checkmark-square-2" : "square-outline"}
-          fill={props.color || "black"}
-        />
+        <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.color || "black"} />
       </span>
-      <label>{props.children}</label>
+      <label htmlFor={id}>{props.children}</label>
     </div>
   );
 };

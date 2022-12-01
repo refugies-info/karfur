@@ -1,0 +1,70 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.register {
+  max-width: 465px;
+
+  .conditions {
+    margin-top: u(20);
+    margin-bottom: u(10);
+  }
+
+  .input {
+    margin-bottom: u(6);
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+
+    &:disabled {
+      background: $gray70b !important;
+      color: $white !important;
+      border-color: transparent !important;
+      svg {
+        fill: $white !important;
+      }
+    }
+
+    @include isTablet() {
+      margin-top: u(10);
+    }
+  }
+
+  .login {
+    margin-top: u(6);
+    margin-bottom: 0;
+    text-align: center;
+    color: $gray80;
+  }
+
+  .link {
+    font-weight: bold;
+    color: $bleuCharte;
+    text-decoration: underline;
+    margin-left: u(1);
+  }
+  .checkbox {
+    align-items: flex-start;
+
+    & > span {
+      margin-top: 3px;
+    }
+  }
+
+  // logged in
+  &.logged_in {
+    text-align: center;
+  }
+  .write_btn {
+    margin-top: u(10);
+  }
+
+  .image {
+    margin-bottom: u(6);
+  }
+}

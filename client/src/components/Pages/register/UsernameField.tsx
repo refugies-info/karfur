@@ -7,8 +7,8 @@ import styles from "scss/components/login.module.scss";
 interface Props {
   value: string;
   pseudoAlreadyTaken: boolean;
-  step: number,
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  step: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const UsernameField = (props: Props) => {
@@ -21,7 +21,7 @@ const UsernameField = (props: Props) => {
         style={{
           flexDirection: "row",
           display: "flex",
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         <div style={{ marginTop: "10px" }}>
@@ -36,42 +36,29 @@ const UsernameField = (props: Props) => {
             errorIcon="person"
             newSize
             onChange={props.onChange}
+            value={props.value}
           />
         </div>
         <div style={{ marginLeft: "10px" }}>
-          <FButton
-            type="validate-light"
-            name="arrow-forward-outline"
-            disabled={!props.value}
-          >
+          <FButton type="validate-light" name="arrow-forward-outline" disabled={!props.value}>
             {t("Suivant", "Suivant")}
           </FButton>
         </div>
       </div>
       <div className={styles.precisions_message}>
         <div>
-          {t(
-            "Register.Pseudo usage",
-            "Ce pseudonyme apparaîtra sur les fiches auxquelles vous allez contribuer."
-          )}
+          {t("Register.Pseudo usage", "Ce pseudonyme apparaîtra sur les fiches auxquelles vous allez contribuer.")}
         </div>
-        <div>
-          {t("Register.Exemples", "Exemples : Guillaume Dupont, Nora78")}
-        </div>
+        <div>{t("Register.Exemples", "Exemples : Guillaume Dupont, Nora78")}</div>
       </div>
 
       {props.pseudoAlreadyTaken && (
         <div className={styles.error_message}>
-          <b>
-            {t(
-              "Register.Oups, ce pseudo existe déjà.",
-              "Oups, ce pseudonyme existe déjà."
-            )}
-          </b>{" "}
+          <b>{t("Register.Oups, ce pseudo existe déjà.", "Oups, ce pseudonyme existe déjà.")}</b>{" "}
         </div>
       )}
     </>
   );
 };
 
-export default UsernameField
+export default UsernameField;
