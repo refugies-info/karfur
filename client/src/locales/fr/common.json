@@ -762,6 +762,7 @@
     "requiredTextExample3Ok": "Une formation avec cours de français",
     "requiredCTA": "Lire la charte éditoriale complète",
     "stepsTitle": "Quelles sont les étapes pour publier une fiche ?",
+    "stepsWarningMobile": "Attention, la rédaction d’une fiche est possible uniquement sur ordinateur.",
     "stepsSubtitle1": "Créez <strong>votre compte</strong> Réfugiés.info",
     "stepsText1": "Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.",
     "stepsCTA1": "Créer mon compte",

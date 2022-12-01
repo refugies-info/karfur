@@ -24,6 +24,7 @@
 
   @include isTablet() {
     flex-direction: column-reverse;
+    padding-left: u(4);
   }
 }
 
@@ -36,7 +37,7 @@ $borderWidth: 4px;
   position: relative;
 
   @include isTablet() {
-    padding-left: u(4);
+    padding-left: u(8);
   }
 
   .dotted & {
@@ -55,7 +56,7 @@ $borderWidth: 4px;
 
   @include isTablet() {
     border-left: $borderWidth solid #cd5605;
-    padding-left: u(4);
+    padding-left: u(8);
 
     .dotted & {
       border-left-style: dashed;
