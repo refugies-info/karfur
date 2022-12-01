@@ -1,0 +1,35 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: u(8);
+}
+
+$image: 64px;
+.image {
+  width: $image;
+  height: $image;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: u(4);
+  flex-shrink: 0;
+
+  @include rtl() {
+    margin-right: inherit;
+    margin-left: u(4);
+  }
+}
+.infos {
+  @include text("normal");
+}
+.name {
+  font-weight: bold;
+  margin-bottom: u(2);
+}

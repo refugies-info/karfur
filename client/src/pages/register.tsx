@@ -59,6 +59,7 @@ const EmailPrecisions = styled.div`
 `;
 
 const Register = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -70,11 +71,16 @@ const Register = () => {
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
   const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+
+  useEffect(() => {
+    if (router.query.username) {
+      setUsername(router.query.username as string);
+    }
+  }, [router.query.username]);
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());

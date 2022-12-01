@@ -1,0 +1,113 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+@mixin fadeBorder() {
+  &:after {
+    content: "";
+    width: $borderWidth;
+    position: absolute;
+    height: 200px;
+    bottom: 0;
+    left: -$borderWidth;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+}
+
+// layout
+.row {
+  display: flex;
+  align-items: stretch;
+
+  @include isTablet() {
+    flex-direction: column-reverse;
+  }
+}
+
+$borderWidth: 4px;
+.content {
+  max-width: 390px;
+  order: 2;
+  padding-left: 60px;
+  border-left: $borderWidth solid #cd5605;
+  position: relative;
+
+  @include isTablet() {
+    padding-left: u(4);
+  }
+
+  .dotted & {
+    border-left-style: dashed;
+
+    @include media-min("lg-limit") {
+      @include fadeBorder();
+    }
+  }
+}
+
+.image {
+  position: relative;
+  order: 1;
+  flex-grow: 1;
+
+  @include isTablet() {
+    border-left: $borderWidth solid #cd5605;
+    padding-left: u(4);
+
+    .dotted & {
+      border-left-style: dashed;
+      @include fadeBorder();
+    }
+  }
+}
+
+// text
+.title {
+  @include text("h4");
+  font-weight: normal;
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    @include text("large");
+    margin-bottom: u(4);
+  }
+}
+
+.text {
+  @include text("large");
+  color: $gray80;
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    @include text("normal");
+    margin-bottom: u(4);
+  }
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  @include text("h5");
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: linear-gradient(90deg, #cd5605 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
+  border: 1.3px solid $white;
+  position: absolute;
+  top: 0;
+  left: -22px;
+
+  @include isTablet() {
+    width: 24px;
+    height: 24px;
+    @include text("large");
+    left: -14px;
+    top: -1px;
+  }
+}

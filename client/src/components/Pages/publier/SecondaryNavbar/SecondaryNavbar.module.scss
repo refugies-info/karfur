@@ -1,0 +1,31 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: sticky;
+  top: 0;
+  background: $white;
+  z-index: 10;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: u(8);
+  padding-bottom: u(8);
+}
+
+.btn {
+  display: inline-block;
+  padding: u(3);
+  border-radius: $radius;
+  background: $white;
+  border: 1px solid $gray70b;
+  @include text("normal");
+  margin-right: u(2);
+}
