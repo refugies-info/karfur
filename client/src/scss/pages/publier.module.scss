@@ -1,4 +1,5 @@
 @import "src/scss/colors";
+@import "src/scss/variables";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 @import "src/scss/mixins/responsive";
@@ -63,6 +64,26 @@ $breakpoint: "lg-limit";
 // testimony
 .testimony {
   padding: u(8) u(12);
+}
+
+// steps
+.warning {
+  display: none;
+  align-items: center;
+  @include text("large");
+  padding: u(4);
+  margin-bottom: u(10);
+  background: $attention;
+  border-radius: $radius;
+
+  & > p {
+    margin-bottom: 0;
+    margin-left: u(4);
+  }
+
+  @include isTablet() {
+    display: flex;
+  }
 }
 
 // required

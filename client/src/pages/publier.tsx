@@ -186,6 +186,10 @@ const RecensezVotreAction = (props: Props) => {
       <div id="steps" className={cls(commonStyles.section)}>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
+          <div className={styles.warning}>
+            <EVAIcon name="alert-circle-outline" size={24} fill="black" />
+            <p>{t("Publish.stepsWarningMobile")}</p>
+          </div>
           <StepContent
             step={1}
             title={t("Publish.stepsSubtitle1")}
