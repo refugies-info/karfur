@@ -6,10 +6,11 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   AdminOption,
+  DispositifStatistics,
   IDispositif,
   NbDispositifsByRegion,
   Need,
-  Statistics,
+  StructuresStatistics,
   Theme,
   User,
   Widget
@@ -240,9 +241,8 @@ const API = {
       headers
     });
   },
-  getStatistics: (): Promise<Response<Statistics>> => {
-    const headers = getHeaders();
-    return instance.get("/dispositifs/statistics", { headers });
+  getDispositifsStatistics: (): Promise<Response<DispositifStatistics>> => {
+    return instance.get("/dispositifs/statistics");
   },
 
   // Mail
@@ -299,6 +299,9 @@ const API = {
     return instance.get("/structures/getActiveStructures");
   },
   getAllStructures: () => instance.get("/structures/getAllStructures"),
+  getStructuresStatistics: (): Promise<Response<StructuresStatistics>> => {
+    return instance.get("/structures/statistics");
+  },
 
   // Needs
   getNeeds: () => {
