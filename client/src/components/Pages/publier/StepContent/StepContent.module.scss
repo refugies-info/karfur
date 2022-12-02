@@ -5,6 +5,8 @@
 @import "src/scss/mixins/rtl";
 @import "src/scss/variables";
 
+$orange: #cd5605;
+
 @mixin fadeBorder() {
   &:after {
     content: "";
@@ -21,6 +23,7 @@
 .row {
   display: flex;
   align-items: stretch;
+  min-height: 420px;
 
   @include isTablet() {
     flex-direction: column-reverse;
@@ -33,11 +36,18 @@ $borderWidth: 4px;
   max-width: 390px;
   order: 2;
   padding-left: 60px;
-  border-left: $borderWidth solid #cd5605;
+  padding-bottom: 100px;
+  border-left: $borderWidth solid $orange;
   position: relative;
 
+  &.has_btn_step {
+    padding-bottom: 250px;
+  }
+
   @include isTablet() {
+    max-width: none;
     padding-left: u(8);
+    padding-bottom: u(9);
   }
 
   .dotted & {
@@ -49,14 +59,18 @@ $borderWidth: 4px;
   }
 }
 
-.image {
+.media {
   position: relative;
   order: 1;
   flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
   @include isTablet() {
-    border-left: $borderWidth solid #cd5605;
+    border-left: $borderWidth solid $orange;
     padding-left: u(8);
+    padding-bottom: 60px;
 
     .dotted & {
       border-left-style: dashed;
@@ -98,7 +112,7 @@ $borderWidth: 4px;
   align-items: center;
   justify-content: center;
   color: white;
-  background: linear-gradient(90deg, #cd5605 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
+  background: linear-gradient(90deg, $orange 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
   border: 1.3px solid $white;
   position: absolute;
   top: 0;
@@ -111,4 +125,30 @@ $borderWidth: 4px;
     left: -14px;
     top: -1px;
   }
+}
+
+.btn_step {
+  background: $orange;
+  padding: u(4);
+  border-radius: $radius;
+  color: $white;
+  @include text("large");
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 120px;
+  transform: translateX(-50%);
+
+  @include isTablet() {
+    transform: none;
+    left: u(-4);
+    width: calc(100% + u(4));
+  }
+}
+
+.video {
+  border: 8px solid $white;
+  box-shadow: 0 4px 18px 0 #0000001a;
+  border-radius: u(4);
 }
