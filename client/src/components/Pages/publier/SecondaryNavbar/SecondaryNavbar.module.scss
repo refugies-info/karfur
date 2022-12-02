@@ -9,7 +9,16 @@
   position: sticky;
   top: 0;
   background: $white;
-  z-index: 100;
+  z-index: 1000;
+
+  &.shadow {
+    box-shadow: 0 4px 18px 0 #0000001a;
+
+    @include isTablet() {
+      // fix for sticky not working, because of overflow-x
+      position: fixed;
+    }
+  }
 }
 
 .inner {
@@ -33,9 +42,11 @@
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
   padding: u(3);
+  height: 46px;
   border-radius: $radius;
   background: $white;
   border: 1px solid $gray70b;
@@ -78,6 +89,16 @@
     }
     &.blue {
       background: $bleuCharte;
+
+      &:hover {
+        border-color: $bleuCharte;
+        color: $bleuCharte;
+        background: $white;
+
+        svg {
+          fill: $bleuCharte;
+        }
+      }
     }
   }
 }

@@ -55,12 +55,14 @@ const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
   const { isTablet } = useWindowSize();
 
+  // active links
   const [activeView, setActiveView] = useState<View | null>(null);
-  const [refWhy, inViewWhy] = useInView();
-  const [refRequired, inViewRequired] = useInView();
+  const [refHero, inViewHero] = useInView({ threshold: 0 });
+  const [refWhy, inViewWhy] = useInView({ threshold: 0.5 });
+  const [refRequired, inViewRequired] = useInView({ threshold: 0.5 });
   const [refSteps, inViewSteps] = useInView();
-  const [refFaq, inViewFaq] = useInView();
-  const [refRegister, inViewRegister] = useInView();
+  const [refFaq, inViewFaq] = useInView({ threshold: 0.5 });
+  const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
     const views: { inView: boolean; id: View }[] = [
@@ -83,7 +85,7 @@ const RecensezVotreAction = (props: Props) => {
     <div className={commonStyles.main}>
       <SEO title="Recensez votre action" />
 
-      <div className={cls(commonStyles.section, commonStyles.bg_blue)}>
+      <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
         <Container className={commonStyles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
@@ -112,9 +114,10 @@ const RecensezVotreAction = (props: Props) => {
         )}
       </div>
 
-      <SecondaryNavbar activeView={activeView} />
+      <SecondaryNavbar activeView={activeView} isSticky={!inViewHero} />
 
-      <div id="why" ref={refWhy} className={cls(commonStyles.section)}>
+      <div ref={refWhy} className={cls(commonStyles.section)}>
+        <span id="why" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.whyYitle")}</h2>
 
@@ -159,7 +162,8 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="required" ref={refRequired} className={cls(commonStyles.section, commonStyles.bg_grey)}>
+      <div ref={refRequired} className={cls(commonStyles.section, commonStyles.bg_grey)}>
+        <span id="required" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
@@ -216,7 +220,8 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="steps" ref={refSteps} className={cls(commonStyles.section)}>
+      <div ref={refSteps} className={cls(commonStyles.section)}>
+        <span id="steps" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
           <div className={styles.warning}>
@@ -260,7 +265,7 @@ const RecensezVotreAction = (props: Props) => {
           <StepContent
             step={6}
             title={t("Publish.stepsSubtitle6")}
-            texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b"), t("Publish.stepsText6c")]}
+            texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b")]}
             image={StepImage6}
             dottedLine
           />
@@ -349,7 +354,8 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="faq" ref={refFaq} className={cls(commonStyles.section)}>
+      <div ref={refFaq} className={cls(commonStyles.section)}>
+        <span id="faq" className={commonStyles.anchor}></span>
         <Container className={cls(commonStyles.container, styles.faq)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.faqTitle")}</h2>
 
@@ -369,7 +375,8 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div id="register" ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
+      <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
+        <span id="register" className={commonStyles.anchor}></span>
         <Register />
       </div>
     </div>

@@ -22,6 +22,7 @@ $breakpoint: "lg-limit";
 .section {
   padding-top: u(20);
   padding-bottom: u(20);
+  position: relative;
 
   @include isTablet() {
     padding-top: u(10);
@@ -80,4 +81,9 @@ $breakpoint: "lg-limit";
     margin-top: u(6);
     @include text("large");
   }
+}
+
+.anchor {
+  position: absolute;
+  top: -50px;
 }
