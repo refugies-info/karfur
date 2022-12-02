@@ -10,13 +10,11 @@ import styles from "./Footer.module.scss";
 import { getPath } from "routes";
 
 const Footer = () => {
-  const [showSubscribeNewsletterModal, setShowSubscribeNewsletterModal] =
-    useState(false);
+  const [showSubscribeNewsletterModal, setShowSubscribeNewsletterModal] = useState(false);
   const { t } = useTranslation();
   const router = useRouter();
 
-  const toggleSubscribeNewsletterModal = () =>
-    setShowSubscribeNewsletterModal(!showSubscribeNewsletterModal);
+  const toggleSubscribeNewsletterModal = () => setShowSubscribeNewsletterModal(!showSubscribeNewsletterModal);
 
   return (
     <div className={styles.footer + " animated fadeIn"}>
@@ -24,19 +22,14 @@ const Footer = () => {
         <div className={styles.column}>
           <div className={styles.text}>
             <h5 className={styles.header}>
-              {t(
-                "Footer.description",
-                "Réfugiés.info est un portail d’information collaboratif porté par la "
-              )}
+              {t("Footer.description", "Réfugiés.info est un portail d’information collaboratif porté par la ")}
               <a
                 style={{ textDecoration: "underline" }}
                 target="_blank"
                 href="https://accueil-integration-refugies.fr/"
                 rel="noopener noreferrer"
               >
-                {
-                  "Délégation interministérielle à l’accueil et l’intégration des réfugiés"
-                }
+                {"Délégation interministérielle à l’accueil et l’intégration des réfugiés"}
               </a>
               {t("Footer.description_suite", " et développé par la ")}
               <a
@@ -51,73 +44,47 @@ const Footer = () => {
           </div>
           <div className={styles.links}>
             {!isMobile && (
-              <Link href={getPath("/comment-contribuer", router.locale)}>
-                <a className={styles.link}>
-                  {t(
-                    "CommentContribuer.Participer / Contribuer",
-                    "Participer / Contribuer"
-                  )}
-                </a>
+              <Link href={getPath("/publier", router.locale)}>
+                <a className={styles.link}>{t("Publish.title", "Recensez votre action !")}</a>
               </Link>
             )}
             <Link href={getPath("/recherche", router.locale)}>
-              <a className={styles.link}>
-                {t("Dispositif d'accompagnement", "Chercher de l'information")}
-              </a>
+              <a className={styles.link}>{t("Dispositif d'accompagnement", "Chercher de l'information")}</a>
             </Link>
 
             {!isMobile && (
               <Link href={getPath("/annuaire", router.locale)}>
-                <a className={styles.link}>
-                  {t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}
-                </a>
+                <a className={styles.link}>{t("Homepage.Consulter l’annnuaire", "Consulter l'annuaire")}</a>
               </Link>
             )}
 
-            <a
-              href="https://avec.refugies.info/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.link}
-            >
-              {t(
-                "QuiSommesNous.réseau",
-                "Rejoindre le réseau des contributeurs"
-              )}
+            <a href="https://avec.refugies.info/" target="_blank" rel="noopener noreferrer" className={styles.link}>
+              {t("QuiSommesNous.réseau", "Rejoindre le réseau des contributeurs")}
             </a>
           </div>
           <div className={styles.links}>
             {!isMobile && (
               <Link href={getPath("/qui-sommes-nous", router.locale)}>
-                <a className={styles.link}>
-                  {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
-                </a>
+                <a className={styles.link}>{t("Qui sommes-nous ?", "Qui sommes-nous ?")}</a>
               </Link>
             )}
             <div className={styles.link}>
               <a
-                onClick={() => { window.$crisp.push(["do", "chat:open"]) }}
+                onClick={() => {
+                  window.$crisp.push(["do", "chat:open"]);
+                }}
               >
                 {t("Démarche administrative", "Contacter l'èquipe")}
               </a>
             </div>
             <Link href={getPath("/politique-de-confidentialite", router.locale)}>
-              <a className={styles.link}>
-                {t(
-                  "Politique de confidentialité",
-                  "Politique de confidentialité"
-                )}
-              </a>
+              <a className={styles.link}>{t("Politique de confidentialité", "Politique de confidentialité")}</a>
             </Link>
             <Link href={getPath("/mentions-legales", router.locale)}>
-              <a className={styles.link}>
-                {t("Mentions légales", "Mentions légales")}
-              </a>
+              <a className={styles.link}>{t("Mentions légales", "Mentions légales")}</a>
             </Link>
             <Link href={getPath("/declaration-accessibilite", router.locale)}>
-              <a className={styles.link}>
-                {t("Footer.accessibility_link", "Accessibilité : non conforme")}
-              </a>
+              <a className={styles.link}>{t("Footer.accessibility_link", "Accessibilité : non conforme")}</a>
             </Link>
           </div>
         </div>
@@ -132,15 +99,14 @@ const Footer = () => {
               name="email-outline"
               fill={colors.gray90}
             >
-              {t(
-                "Footer.Je m'abonne à la newsletter",
-                "S'inscrire à la newsletter"
-              )}
+              {t("Footer.Je m'abonne à la newsletter", "S'inscrire à la newsletter")}
             </FButton>
           </div>
           <div className={styles.space_btn}>
             <FButton
-              onClick={() => { window.$crisp.push(["do", "chat:open"]) }}
+              onClick={() => {
+                window.$crisp.push(["do", "chat:open"]);
+              }}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.btn}
@@ -148,10 +114,7 @@ const Footer = () => {
               name="plus-circle-outline"
               fill={colors.gray90}
             >
-              {t(
-                "Footer.Demander des fonctionnalités",
-                "Demander des fonctionnalités"
-              )}
+              {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
             </FButton>
           </div>
           <div className={styles.space_btn}>
@@ -170,10 +133,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <SubscribeNewsletterModal
-        show={showSubscribeNewsletterModal}
-        toggle={toggleSubscribeNewsletterModal}
-      />
+      <SubscribeNewsletterModal show={showSubscribeNewsletterModal} toggle={toggleSubscribeNewsletterModal} />
     </div>
   );
 };

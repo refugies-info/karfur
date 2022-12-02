@@ -8,7 +8,7 @@ export type PathNames =
   "/demarche/[id]" |
   "/dispositif" |
   "/dispositif/[id]" |
-  "/comment-contribuer" |
+  "/publier" |
   "/qui-sommes-nous" |
   "/mentions-legales" |
   "/declaration-accessibilite" |
@@ -33,7 +33,7 @@ const routes: Routes = {
   "/demarche/[id]": "/procedure/[id]",
   "/dispositif": "/program",
   "/dispositif/[id]": "/program/[id]",
-  "/comment-contribuer": "/how-to-contribute",
+  "/publier": "/publish",
   "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",

@@ -1240,7 +1240,6 @@ exports[`recherche renders home search 1`] = `
                     >
                       <input
                         defaultChecked={false}
-                        id="check_94845"
                         type="checkbox"
                       />
                       <span
@@ -1256,9 +1255,7 @@ exports[`recherche renders home search 1`] = `
                           />
                         </span>
                       </span>
-                      <label
-                        htmlFor="check_94845"
-                      >
+                      <label>
                         <span
                           className="all"
                         >
@@ -3042,7 +3039,6 @@ exports[`recherche renders search results 1`] = `
                     >
                       <input
                         defaultChecked={true}
-                        id="check_81994"
                         type="checkbox"
                       />
                       <span
@@ -3058,9 +3054,7 @@ exports[`recherche renders search results 1`] = `
                           />
                         </span>
                       </span>
-                      <label
-                        htmlFor="check_81994"
-                      >
+                      <label>
                         <span
                           className="all"
                         >
@@ -3191,7 +3185,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_53839"
                       type="checkbox"
                     />
                     <span
@@ -3207,9 +3200,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_53839"
-                    >
+                    <label>
                       Filters.age-18
                     </label>
                   </div>
@@ -3226,7 +3217,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_74811"
                       type="checkbox"
                     />
                     <span
@@ -3242,9 +3232,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_74811"
-                    >
+                    <label>
                       Filters.age18-25
                     </label>
                   </div>
@@ -3261,7 +3249,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_11800"
                       type="checkbox"
                     />
                     <span
@@ -3277,9 +3264,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_11800"
-                    >
+                    <label>
                       Filters.age+25
                     </label>
                   </div>
@@ -3333,7 +3318,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_52991"
                       type="checkbox"
                     />
                     <span
@@ -3349,9 +3333,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_52991"
-                    >
+                    <label>
                       Filters.frenchLevelA
                     </label>
                   </div>
@@ -3368,7 +3350,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_67453"
                       type="checkbox"
                     />
                     <span
@@ -3384,9 +3365,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_67453"
-                    >
+                    <label>
                       Filters.frenchLevelB
                     </label>
                   </div>
@@ -3403,7 +3382,6 @@ exports[`recherche renders search results 1`] = `
                   >
                     <input
                       defaultChecked={false}
-                      id="check_30613"
                       type="checkbox"
                     />
                     <span
@@ -3419,9 +3397,7 @@ exports[`recherche renders search results 1`] = `
                         />
                       </span>
                     </span>
-                    <label
-                      htmlFor="check_30613"
-                    >
+                    <label>
                       Filters.frenchLevelC
                     </label>
                   </div>

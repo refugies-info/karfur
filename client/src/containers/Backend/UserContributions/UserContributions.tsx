@@ -5,13 +5,13 @@ import Link from "next/link";
 import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
-  deleteDispositifActionCreator,
+  deleteDispositifActionCreator
 } from "services/UserContributions/userContributions.actions";
 import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureNameSelector,
-  userStructureSelector,
+  userStructureSelector
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -54,7 +54,7 @@ const WhiteContainer = styled.div`
 `;
 interface Props {
   history: any;
-  title: string
+  title: string;
 }
 const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
@@ -65,22 +65,16 @@ const UserContributions = (props: Props) => {
   const router = useRouter();
 
   const userContributions = useSelector(userContributionsSelector);
-  const userStructureContributions = useSelector(
-    userStructureDisposAssociesSelector
-  );
+  const userStructureContributions = useSelector(userStructureDisposAssociesSelector);
   const userStructureName = useSelector(userStructureNameSelector);
-  const isLoadingUserContrib = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS)
-  );
-  const isLoadingUserStructureContrib = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
-  );
+  const isLoadingUserContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
+  const isLoadingUserStructureContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -89,26 +83,18 @@ const UserContributions = (props: Props) => {
       dispatch(
         fetchUserStructureActionCreator({
           structureId: userStructure._id,
-          shouldRedirect: false,
+          shouldRedirect: false
         })
       );
     }
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const contributions = formatContributions(
-    userContributions,
-    userStructureContributions,
-    userStructureName
-  );
+  const contributions = formatContributions(userContributions, userStructureContributions, userStructureName);
 
   const onContributionRowClick = (burl: string) => router.push(burl);
 
-  const deleteDispositif = (
-    event: any,
-    dispositifId: ObjectId,
-    isAuthorizedToDelete: boolean
-  ) => {
+  const deleteDispositif = (event: any, dispositifId: ObjectId, isAuthorizedToDelete: boolean) => {
     event.stopPropagation();
     if (!isAuthorizedToDelete) {
       return;
@@ -121,7 +107,7 @@ const UserContributions = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     }).then((result) => {
       if (result.value) {
         dispatch(deleteDispositifActionCreator(dispositifId));
@@ -129,7 +115,7 @@ const UserContributions = (props: Props) => {
           title: "Yay...",
           text: "Le dispositif a été supprimé",
           type: "success",
-          timer: 1500,
+          timer: 1500
         });
       }
     });
@@ -160,17 +146,8 @@ const UserContributions = (props: Props) => {
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <Navigation selected="contributions" />
         <MainContainer>
-          <NoContribution
-            toggleTutoModal={toggleTutoModal}
-            setTutoModalDisplayed={setTutoModalDisplayed}
-          />
-          {showTutoModal && (
-            <FrameModal
-              show={showTutoModal}
-              toggle={toggleTutoModal}
-              section={"Mes fiches"}
-            />
-          )}
+          <NoContribution toggleTutoModal={toggleTutoModal} setTutoModalDisplayed={setTutoModalDisplayed} />
+          {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />}
         </MainContainer>
       </div>
     );
@@ -198,15 +175,8 @@ const UserContributions = (props: Props) => {
               >
                 Explications
               </FButton>
-              <Link
-                href={getPath("/comment-contribuer", router.locale) + "#ecrire"}
-                passHref
-              >
-                <FButton
-                  type="dark"
-                  name="file-add-outline"
-                  tag="a"
-                >
+              <Link href={getPath("/publier", router.locale)} passHref>
+                <FButton type="dark" name="file-add-outline" tag="a">
                   Créer une nouvelle fiche
                 </FButton>
               </Link>
@@ -222,13 +192,7 @@ const UserContributions = (props: Props) => {
             />
           </WhiteContainer>
         </ContribContainer>
-        {showTutoModal && (
-          <FrameModal
-            show={showTutoModal}
-            toggle={toggleTutoModal}
-            section={tutoModalDisplayed}
-          />
-        )}
+        {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={tutoModalDisplayed} />}
       </MainContainer>
     </div>
   );

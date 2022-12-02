@@ -1690,7 +1690,7 @@ const Dispositif = (props: Props) => {
               show={showDispositifCreateModal}
               toggle={() => setShowDispositifCreateModal(!showDispositifCreateModal)}
               typeContenu={dispositif?.typeContenu}
-              navigateToCommentContribuer={() => router.push(getPath("/comment-contribuer", router.locale))}
+              navigateToCommentContribuer={() => router.push(getPath("/publier", router.locale))}
             />
           )}
           <DispositifValidateModal
