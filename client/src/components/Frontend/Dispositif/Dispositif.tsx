@@ -1596,7 +1596,7 @@ const Dispositif = (props: Props) => {
                       pushReaction={pushReaction}
                       didThank={didThank}
                       color={mainTheme.colors.color100}
-                      nbThanks={dispositif?.merci ? (dispositif?.merci.length || 0) : 0}
+                      nbThanks={dispositif?.merci ? dispositif?.merci.length || 0 : 0}
                     />
                   )}
                   {!printing && (
@@ -1690,7 +1690,7 @@ const Dispositif = (props: Props) => {
               show={showDispositifCreateModal}
               toggle={() => setShowDispositifCreateModal(!showDispositifCreateModal)}
               typeContenu={dispositif?.typeContenu || ""}
-              navigateToCommentContribuer={() => router.push(getPath("/comment-contribuer", router.locale))}
+              navigateToCommentContribuer={() => router.push(getPath("/publier", router.locale))}
             />
           )}
           <DispositifValidateModal

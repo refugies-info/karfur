@@ -171,7 +171,7 @@ const UserContributions = (props: Props) => {
               >
                 Explications
               </FButton>
-              <Link legacyBehavior href={getPath("/comment-contribuer", router.locale) + "#ecrire"} passHref>
+              <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
                 <FButton type="dark" name="file-add-outline" tag="a">
                   Créer une nouvelle fiche
                 </FButton>

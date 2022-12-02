@@ -9,18 +9,17 @@ interface Props {
   color?: string;
   onChange?: () => void;
   className?: string;
+  id?: string;
 }
 
 const Checkbox = (props: Props) => {
-  const [id, _] = useState(`check_${Math.round(Math.random() * 100000)}`);
-
   return (
     <div className={cls(styles.checkbox, props.className)}>
-      <input id={id} type="checkbox" defaultChecked={props.checked} onChange={props.onChange} />
+      <input id={props.id} type="checkbox" defaultChecked={props.checked} onChange={props.onChange} />
       <span className={styles.check}>
         <EVAIcon name={props.checked ? "checkmark-square-2" : "square-outline"} fill={props.color || "black"} />
       </span>
-      <label htmlFor={id}>{props.children}</label>
+      <label htmlFor={props.id}>{props.children}</label>
     </div>
   );
 };

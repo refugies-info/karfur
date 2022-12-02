@@ -72,6 +72,7 @@ const Register = (props: Props) => {
             <>
               <div className={cls(styles.conditions)}>
                 <Checkbox
+                  id="register-conditions"
                   className={styles.checkbox}
                   checked={acceptConditions}
                   onChange={() => setAcceptConditions((a) => !a)}

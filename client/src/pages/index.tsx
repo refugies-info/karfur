@@ -185,7 +185,7 @@ const Homepage = (props: Props) => {
                 <p>{t("Homepage.contribution subheader")}</p>
               </div>
               <footer className="footer-section">
-                <Link legacyBehavior href={getPath("/comment-contribuer", router.locale)} passHref>
+                <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
                   <FButton name="file-add-outline" tag="a" tabIndex="1" type="dark" style={{ height: "60px" }}>
                     {t("Homepage.Je contribue", "Je contribue")}
                   </FButton>
@@ -201,7 +201,7 @@ const Homepage = (props: Props) => {
                 <p>{t("Homepage.Faites connaitre subheader")}</p>
               </div>
               <footer>
-                <Link legacyBehavior href={getPath("/comment-contribuer", router.locale) + "#ecrire"} passHref>
+                <Link legacyBehavior href={getPath("/publier", router.locale) + "#ecrire"} passHref>
                   <FButton name="file-add-outline" type="dark" tag="a" tabIndex="2" style={{ height: "60px" }}>
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>
@@ -218,7 +218,7 @@ const Homepage = (props: Props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <footer className="footer-section">
-                <Link legacyBehavior href={getPath("/comment-contribuer", router.locale) + "#traduire"} passHref>
+                <Link legacyBehavior href={getPath("/publier", router.locale) + "#traduire"} passHref>
                   <FButton name="file-add-outline" type="dark" tag="a" tabIndex="3" style={{ height: "60px" }}>
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>
@@ -235,11 +235,7 @@ const Homepage = (props: Props) => {
               <footer className="footer-section">
                 <ButtonContainerRow>
                   <ButtonSeparator isRTL={isRTL}>
-                    <Link
-                      legacyBehavior
-                      href={getPath("/comment-contribuer", router.locale) + "#deployer-card"}
-                      passHref
-                    >
+                    <Link legacyBehavior href={getPath("/publier", router.locale) + "#deployer-card"} passHref>
                       <FButton type="dark" tag="a" tabIndex="4" style={{ height: "60px" }}>
                         <span className="mr-8">
                           <Image src={icon_mobilisation} alt="icon mobilisation" />
@@ -248,7 +244,7 @@ const Homepage = (props: Props) => {
                       </FButton>
                     </Link>
                   </ButtonSeparator>
-                  <Link legacyBehavior href={getPath("/comment-contribuer", router.locale) + "#deployer-card"} passHref>
+                  <Link legacyBehavior href={getPath("/publier", router.locale) + "#deployer-card"} passHref>
                     <FButton type="outline-black" tag="a" tabIndex="5" style={{ height: "60px" }}>
                       {t("Homepage.Vous hésitez encore ?", "Vous hésitez encore ?")}
                     </FButton>
