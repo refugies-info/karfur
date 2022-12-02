@@ -228,32 +228,34 @@ const RecensezVotreAction = (props: Props) => {
             title={t("Publish.stepsSubtitle1")}
             texts={[t("Publish.stepsText1")]}
             cta={{ text: t("Publish.stepsCTA1"), link: "#register" }}
-            image={MockupsRI}
+            video="/video/video-1.mp4"
           />
           <StepContent
             step={2}
             title={t("Publish.stepsSubtitle2")}
             texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
             cta={{ text: t("Publish.stepsCTA2"), link: "#" }}
-            image={MockupsRI}
+            video="/video/video-2.mp4"
           />
           <StepContent
             step={3}
             title={t("Publish.stepsSubtitle3")}
             texts={[t("Publish.stepsText3")]}
-            image={MockupsRI}
+            video="/video/video-3.mp4"
           />
           <StepContent
             step={4}
             title={t("Publish.stepsSubtitle4")}
             texts={[t("Publish.stepsText4a"), t("Publish.stepsText4b")]}
             image={StepImage4}
+            buttonStep={t("Publish.stepsButton")}
           />
           <StepContent
             step={5}
             title={t("Publish.stepsSubtitle5")}
             texts={[t("Publish.stepsText5a"), t("Publish.stepsText5b")]}
             image={StepImage5}
+            height={415}
           />
           <StepContent
             step={6}
