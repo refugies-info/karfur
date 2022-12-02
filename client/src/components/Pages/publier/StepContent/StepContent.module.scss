@@ -151,4 +151,9 @@ $borderWidth: 4px;
   border: 8px solid $white;
   box-shadow: 0 4px 18px 0 #0000001a;
   border-radius: u(4);
+
+  @include isTablet() {
+    max-width: 100%;
+    height: auto;
+  }
 }

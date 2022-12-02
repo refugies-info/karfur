@@ -9,6 +9,7 @@ import styles from "./SecondaryNavbar.module.scss";
 
 interface Props {
   activeView: View | null;
+  isSticky: boolean;
 }
 
 const SecondaryNavbar = (props: Props) => {
@@ -17,7 +18,7 @@ const SecondaryNavbar = (props: Props) => {
   const isActive = (view: View) => props.activeView === view;
 
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, props.isSticky && styles.shadow)}>
       <Container className={styles.inner}>
         <div>
           <Link href="#why">
