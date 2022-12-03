@@ -334,7 +334,6 @@ Array [
               style={
                 Array [
                   Object {
-                    "marginTop": 20,
                     "position": "relative",
                   },
                 ]
@@ -389,6 +388,7 @@ Array [
                         "fontFamily": "circularBook",
                         "fontSize": 16,
                         "lineHeight": 32,
+                        "marginBottom": 16,
                         "opacity": 0.9,
                         "paddingBottom": 8,
                         "paddingLeft": 8,
@@ -4929,7 +4929,6 @@ Array [
               style={
                 Array [
                   Object {
-                    "marginTop": 20,
                     "position": "relative",
                   },
                 ]
@@ -4984,6 +4983,7 @@ Array [
                         "fontFamily": "circularBook",
                         "fontSize": 16,
                         "lineHeight": 32,
+                        "marginBottom": 16,
                         "opacity": 0.9,
                         "paddingBottom": 8,
                         "paddingLeft": 8,

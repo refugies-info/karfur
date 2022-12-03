@@ -14,7 +14,6 @@ import { HeaderContentProps } from "./HeaderContentProps";
 
 const Container = styled.View`
   position: relative;
-  margin-top: 20px;
 `;
 
 const TitlesContainer = styled(View)``;
@@ -34,6 +33,7 @@ const TitreMarqueText = styled(TextSmallNormal)`
   line-height: 32px;
   align-self: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
   padding: ${({ theme }) => theme.margin}px;
+  margin-bottom: ${({ theme }) => theme.margin * 2}px;
 `;
 
 export interface HeaderContentContentScreenProps extends HeaderContentProps {
