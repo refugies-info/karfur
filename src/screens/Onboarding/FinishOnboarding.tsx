@@ -32,7 +32,6 @@ const StyledText = styled(StyledTextBigBold)`
 const ElementsContainer = styled.ScrollView`
   display: flex;
   flex-direction: column;
-  padding-horizontal: ${styles.margin * 3}px;
 `;
 const LottieContainer = styled.View`
   height: 100px;
@@ -62,7 +61,7 @@ export const FinishOnboarding = ({}: StackScreenProps<
   const hasUserEnteredInfos =
     !!frenchLevel || !!age || !!location.city || !!location.department;
 
-  const fakeTabBarWidth = Dimensions.get("window").width * 0.9;
+  const fakeTabBarWidth = Dimensions.get("screen").width * 0.88;
 
   const finishOnboarding = () => {
     try {
@@ -81,7 +80,6 @@ export const FinishOnboarding = ({}: StackScreenProps<
       backgroundColor={theme.colors.darkBlue}
       headerBackgroundColor="transparent"
       hideLanguageSwitch
-      noBottomMargin
     >
       <ElementsContainer
         contentContainerStyle={{
