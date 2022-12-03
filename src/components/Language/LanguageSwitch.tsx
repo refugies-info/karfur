@@ -1,5 +1,4 @@
 import React from "react";
-import { styles } from "../../theme";
 import styled from "styled-components/native";
 import { Flag } from "./Flag";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +16,8 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import { newReadingList } from "../../services/redux/VoiceOver/voiceOver.actions";
 
 const ButtonContainerCommon = styled.View`
-  background-color: ${styles.colors.white};
-  border-radius: ${styles.radius * 2}px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
@@ -27,40 +26,42 @@ const ButtonContainerCommon = styled.View`
 `;
 
 const ButtonContainer = styled.TouchableOpacity`
-  margin-right: ${(props: { isRTL: any }) =>
-    props.isRTL ? styles.margin : 0}px;
-  margin-left: ${(props: { isRTL: any }) =>
-    props.isRTL ? 0 : styles.margin}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
 
-  background-color: ${styles.colors.grey60};
-  border-radius: ${styles.radius * 2}px;
+  background-color: ${({ theme }) => theme.colors.grey60};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${styles.shadows.lg}
+  ${({ theme }) => theme.shadows.lg}
 `;
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
+
   width: 48px;
-  margin-right: ${styles.margin}px;
-  background-color: ${styles.colors.white};
-  border-radius: ${styles.radius * 2}px;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radius * 2}px;
   height: 48px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${styles.shadows.lg}
+  ${({ theme }) => theme.shadows.lg}
 `;
 
-const LanguageContainer = styled(ButtonContainerCommon)`
-  background-color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? styles.colors.white : styles.colors.grey60};
+const LanguageContainer = styled(ButtonContainerCommon)<{
+  isSelected: boolean;
+}>`
+  background-color: ${({ isSelected, theme }) =>
+    isSelected ? theme.colors.white : theme.colors.grey60};
   width: 48px;
-  ${(props: { isSelected: boolean }) =>
-    props.isSelected
+  ${({ isSelected }) =>
+    isSelected
       ? `
   z-index: 3;
   `
@@ -69,7 +70,7 @@ const LanguageContainer = styled(ButtonContainerCommon)`
 
 const FlagBackground = styled.View`
   margin: 4px;
-  background-color: ${styles.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   width: 22px;
   height: 17px;
   display: flex;
@@ -136,7 +137,6 @@ export const LanguageSwitch = ({ onLongPressSwitchLanguage }: Props) => {
   return (
     <ButtonContainer
       onPress={onSwitchPress}
-      isRTL={false}
       onLongPress={onLongPressSwitchLanguage}
       accessibilityRole="button"
       accessibilityLabel={t("global.change_language_accessibility")}
