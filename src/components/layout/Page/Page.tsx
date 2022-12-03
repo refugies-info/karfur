@@ -220,7 +220,7 @@ const Page = ({
 
       {loading ? (
         <>
-          <Spacer height={theme.layout.header.minHeight} />
+          <Spacer height={theme.layout.header.minHeight + theme.margin * 2} />
           <Skeleton />
         </>
       ) : (

@@ -262,11 +262,11 @@ exports[`Page snapshot test suite should render in loading state 1`] = `
     />
   </View>
   <View
-    height={65}
+    height={81}
     style={
       Array [
         Object {
-          "minHeight": 65,
+          "minHeight": 81,
         },
       ]
     }
