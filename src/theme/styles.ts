@@ -155,6 +155,7 @@ const layout = {
   rows: {
     nospace: "0",
     default: `${margin * 2}px`,
+    text: `${margin}px`,
   },
   header: {
     minHeight: 65,

@@ -48,7 +48,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
           Object {
             "flexBasis": 0,
             "flexGrow": 1,
-            "marginRight": 16,
+            "marginRight": 8,
           },
         ]
       }
@@ -88,7 +88,7 @@ exports[`LocationWarningMessage snapshot test suite should render without bug 1`
                 Object {
                   "flexBasis": "auto",
                   "flexGrow": 0,
-                  "marginRight": 16,
+                  "marginRight": 8,
                 },
               ]
             }

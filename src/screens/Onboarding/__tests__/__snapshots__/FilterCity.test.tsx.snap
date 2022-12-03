@@ -62,7 +62,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -184,7 +184,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -210,7 +210,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -464,7 +464,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -811,7 +811,7 @@ exports[`Filter city should render correctly when city selected 1`] = `
                       Object {
                         "flexBasis": 0,
                         "flexGrow": 1,
-                        "marginRight": 16,
+                        "marginRight": 8,
                       },
                     ]
                   }
@@ -1072,7 +1072,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -1194,7 +1194,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -1220,7 +1220,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -1474,7 +1474,7 @@ exports[`Filter city should render correctly when no city 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1956,7 +1956,7 @@ exports[`Filter city should render correctly when no city 1`] = `
                       Object {
                         "flexBasis": 0,
                         "flexGrow": 1,
-                        "marginRight": 16,
+                        "marginRight": 8,
                       },
                     ]
                   }

@@ -62,7 +62,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -88,7 +88,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -2824,7 +2824,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -2850,7 +2850,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -5586,7 +5586,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -5612,7 +5612,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }

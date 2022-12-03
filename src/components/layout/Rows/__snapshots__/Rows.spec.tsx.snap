@@ -22,7 +22,7 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
         Object {
           "flexBasis": 0,
           "flexGrow": 1,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }
@@ -37,7 +37,7 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
         Object {
           "flexBasis": 0,
           "flexGrow": 2,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }
@@ -52,7 +52,7 @@ exports[`Rows snapshot test suite should be able to control flex layout 1`] = `
         Object {
           "flexBasis": 0,
           "flexGrow": 1,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }
@@ -96,7 +96,7 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
         Object {
           "flexBasis": "auto",
           "flexGrow": 0,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }
@@ -111,7 +111,7 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
         Object {
           "flexBasis": "auto",
           "flexGrow": 0,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }
@@ -126,7 +126,7 @@ exports[`Rows snapshot test suite should render without bug 1`] = `
         Object {
           "flexBasis": "auto",
           "flexGrow": 0,
-          "marginBottom": 8,
+          "marginBottom": 16,
         },
       ]
     }

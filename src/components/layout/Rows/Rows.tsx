@@ -21,6 +21,7 @@ const RowsWrapper = styled.View<{
 export enum RowsSpacing {
   Default = "default",
   NoSpace = "nospace",
+  Text = "text",
 }
 
 export interface RowsProps {
@@ -39,7 +40,7 @@ const Rows = ({
   spacing = RowsSpacing.Default,
 }: RowsProps) => {
   const _children = React.Children.toArray(children).filter(
-    (child) => !isNull(child)
+    (child: ReactNode) => !isNull(child)
   );
   return (
     <RowsWrapper
@@ -48,7 +49,7 @@ const Rows = ({
     >
       {React.Children.map(
         _children,
-        (child, index) =>
+        (child: ReactNode, index: number) =>
           child && (
             <FlexItem
               flex={getFlexValue(layout, index)}

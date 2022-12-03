@@ -51,7 +51,6 @@ const EmptyText = styled(StyledTextSmall)`
   margin-bottom: ${({ theme }) => theme.margin * 4}px;
 `;
 const CardItem = styled.View`
-  margin-bottom: ${({ theme }) => theme.margin * 1}px;
   flex: 1;
 `;
 

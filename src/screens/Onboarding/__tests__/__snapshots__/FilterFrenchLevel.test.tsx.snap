@@ -62,7 +62,7 @@ exports[`Filter french level should render correctly when french level selected 
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -184,7 +184,7 @@ exports[`Filter french level should render correctly when french level selected 
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -210,7 +210,7 @@ exports[`Filter french level should render correctly when french level selected 
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -464,7 +464,7 @@ exports[`Filter french level should render correctly when french level selected 
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -570,7 +570,7 @@ exports[`Filter french level should render correctly when french level selected 
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -700,7 +700,7 @@ exports[`Filter french level should render correctly when french level selected 
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -903,7 +903,7 @@ exports[`Filter french level should render correctly when french level selected 
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -1131,7 +1131,7 @@ exports[`Filter french level should render correctly when french level selected 
                       Object {
                         "flexBasis": 0,
                         "flexGrow": 1,
-                        "marginRight": 16,
+                        "marginRight": 8,
                       },
                     ]
                   }
@@ -1392,7 +1392,7 @@ exports[`Filter french level should render correctly when no french level select
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -1514,7 +1514,7 @@ exports[`Filter french level should render correctly when no french level select
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -1540,7 +1540,7 @@ exports[`Filter french level should render correctly when no french level select
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -1794,7 +1794,7 @@ exports[`Filter french level should render correctly when no french level select
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1900,7 +1900,7 @@ exports[`Filter french level should render correctly when no french level select
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -2038,7 +2038,7 @@ exports[`Filter french level should render correctly when no french level select
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -2176,7 +2176,7 @@ exports[`Filter french level should render correctly when no french level select
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -2404,7 +2404,7 @@ exports[`Filter french level should render correctly when no french level select
                       Object {
                         "flexBasis": 0,
                         "flexGrow": 1,
-                        "marginRight": 16,
+                        "marginRight": 8,
                       },
                     ]
                   }
@@ -2657,7 +2657,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -2779,7 +2779,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -2805,7 +2805,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                   Object {
                     "flexBasis": "auto",
                     "flexGrow": 0,
-                    "marginRight": 16,
+                    "marginRight": 8,
                   },
                 ]
               }
@@ -3059,7 +3059,7 @@ exports[`Filter french level should select level when click on it 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -3165,7 +3165,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -3295,7 +3295,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -3498,7 +3498,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                         Object {
                           "flexBasis": 0,
                           "flexGrow": 1,
-                          "marginRight": 16,
+                          "marginRight": 8,
                         },
                       ]
                     }
@@ -3726,7 +3726,7 @@ exports[`Filter french level should select level when click on it 1`] = `
                       Object {
                         "flexBasis": 0,
                         "flexGrow": 1,
-                        "marginRight": 16,
+                        "marginRight": 8,
                       },
                     ]
                   }

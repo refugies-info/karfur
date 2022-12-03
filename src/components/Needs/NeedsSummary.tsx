@@ -14,7 +14,7 @@ import { FirebaseEvent } from "../../utils/eventsUsedInFirebase";
 import Highlight from "../Search/Highlight";
 import { Picture, Theme } from "../../types/interface";
 import { ReadableText } from "../ReadableText";
-import { Columns, ColumnsSpacing, Rows } from "../layout";
+import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
 import { ExplorerParamList } from "../../../types";
 import { isEmpty } from "lodash";
 import { UriImage } from "../iconography";
@@ -87,7 +87,7 @@ export const NeedsSummary = ({
         verticalAlign="center"
         spacing={ColumnsSpacing.Large}
       >
-        <Rows verticalAlign="center">
+        <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextSmallBold color={theme.colors.color100}>
             {searchItem ? (
               <Highlight

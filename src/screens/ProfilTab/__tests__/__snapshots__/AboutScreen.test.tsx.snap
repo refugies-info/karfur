@@ -62,7 +62,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -184,7 +184,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }
@@ -322,7 +322,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -351,7 +351,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -379,7 +379,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -623,7 +623,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -651,7 +651,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -893,7 +893,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -921,7 +921,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1174,7 +1174,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1202,7 +1202,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -1230,7 +1230,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -2140,7 +2140,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -2167,7 +2167,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }
@@ -2373,7 +2373,7 @@ exports[`About screen should render correctly 1`] = `
               Object {
                 "flexBasis": "auto",
                 "flexGrow": 0,
-                "marginBottom": 8,
+                "marginBottom": 16,
               },
             ]
           }

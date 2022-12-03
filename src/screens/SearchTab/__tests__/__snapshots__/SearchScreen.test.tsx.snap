@@ -62,7 +62,7 @@ exports[`Search Screen should render correctly 1`] = `
               Object {
                 "flexBasis": 0,
                 "flexGrow": 1,
-                "marginRight": 16,
+                "marginRight": 8,
               },
             ]
           }

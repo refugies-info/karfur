@@ -39,18 +39,6 @@ const stylesheet = StyleSheet.create({
     justifyContent: "center",
     ...styles.shadowsStylesheet.lg,
   },
-  unseenCount: {
-    display: "flex",
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    marginHorizontal: styles.margin,
-    fontSize: styles.fonts.sizes.small,
-    backgroundColor: styles.colors.lighterRed,
-    borderRadius: 100,
-    height: 24,
-    width: 24,
-  },
   noNotifications: {
     display: "flex",
     alignItems: "center",
@@ -74,9 +62,9 @@ const stylesheet = StyleSheet.create({
   },
 });
 
-const renderCard = (notification: Notification) => {
-  return <NotificationCard notification={notification} />;
-};
+const renderCard = (notification: Notification) => (
+  <NotificationCard key={notification._id} notification={notification} />
+);
 
 export const NotificationsScreen = () => {
   const { t } = useTranslationWithRTL();
@@ -85,8 +73,6 @@ export const NotificationsScreen = () => {
   let { data: notifications, isLoading } = useNotifications();
 
   const [accessGranted] = useNotificationsStatus();
-
-  const count = notifications ? notifications?.unseenCount : null;
 
   const goToNotificationsSettingsScreen = () =>
     // FIXME : remove ts-ignore

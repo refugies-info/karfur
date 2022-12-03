@@ -15,7 +15,7 @@ import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import { CustomButton } from "../CustomButton";
 import { ExplorerParamList } from "../../../types";
 import { StyledTextSmall, TextVerySmallNormal } from "../StyledText";
-import { Columns, Rows } from "../layout";
+import { Columns, Rows, RowsSpacing } from "../layout";
 
 const Container = styled.TouchableOpacity<{ seen: boolean }>`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
@@ -77,7 +77,7 @@ export const NotificationCard = ({ notification }: NotificationCardProps) => {
   return (
     <Container activeOpacity={0.8} onPress={navigateToContent} seen={seen}>
       {!seen && <Dot />}
-      <Rows>
+      <Rows spacing={RowsSpacing.Text}>
         <CardTitle seen={seen}>{title}</CardTitle>
         <TextVerySmallNormal>
           {moment(createdAt).locale(i18n.language).fromNow()}
