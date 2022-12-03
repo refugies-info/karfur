@@ -57,9 +57,7 @@ const SearchSuggestions = (props: Props) => {
           flexDirection: !isRTL ? "row" : "row-reverse",
           flexWrap: "wrap",
           width: 1100,
-          paddingHorizontal: styles.margin * 3,
           paddingBottom: styles.margin,
-          marginBottom: styles.margin,
         }}
         horizontal={true}
       >

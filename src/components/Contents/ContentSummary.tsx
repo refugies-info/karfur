@@ -40,8 +40,8 @@ const ImageContainer = styled.View<{ hasMatch?: boolean; lightColor?: string }>`
   width: 64px;
   height: 64px;
   align-items: center;
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin * 2)}px;
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin * 2 : 0)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
   border-width: 6px;
   border-color: ${({ hasMatch, theme }) =>
     hasMatch ? theme.colors.lightBlue : "transparent"};
@@ -67,7 +67,7 @@ const TitlesContainer = styled.View`
   display: flex;
   flex: 1;
   align-items: ${({ theme }) => (theme.i18n.isRTL ? "flex-end" : "flex-start")};
-  padding: 16px;
+  padding-vertical: 16px;
   justify-content: center;
 `;
 
@@ -142,7 +142,7 @@ export const ContentSummary = (props: Props) => {
           logEventOnClick(props.contentId);
         }}
       >
-        <Columns RTLBehaviour layout="auto 1" verticalAlign="center">
+        <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
           {props.sponsorUrl ? (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
               <Image
@@ -233,7 +233,7 @@ export const ContentSummary = (props: Props) => {
         logEventOnClick(props.contentId);
       }}
     >
-      <Columns RTLBehaviour verticalAlign="center" layout="auto 1">
+      <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
           <DemarcheImage
             icon={props.theme?.icon}

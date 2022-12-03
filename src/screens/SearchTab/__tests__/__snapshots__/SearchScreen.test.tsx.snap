@@ -346,9 +346,7 @@ exports[`Search Screen should render correctly 1`] = `
           Object {
             "flexDirection": "row",
             "flexWrap": "wrap",
-            "marginBottom": 8,
             "paddingBottom": 8,
-            "paddingHorizontal": 24,
             "width": 1100,
           }
         }
