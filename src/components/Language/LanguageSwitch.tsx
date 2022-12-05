@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components/native";
 import { Flag } from "./Flag";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,9 +26,6 @@ const ButtonContainerCommon = styled.View`
 `;
 
 const ButtonContainer = styled.TouchableOpacity`
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
-
   background-color: ${({ theme }) => theme.colors.grey60};
   border-radius: ${({ theme }) => theme.radius * 2}px;
   height: 48px;
@@ -40,9 +37,6 @@ const ButtonContainer = styled.TouchableOpacity`
 `;
 
 const ButtonContainerFixedWidth = styled.TouchableOpacity`
-  margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
-  margin-left: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
-
   width: 48px;
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.radius * 2}px;
@@ -51,7 +45,6 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${({ theme }) => theme.shadows.lg}
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)<{
@@ -69,7 +62,6 @@ const LanguageContainer = styled(ButtonContainerCommon)<{
 `;
 
 const FlagBackground = styled.View`
-  margin: 4px;
   background-color: ${({ theme }) => theme.colors.white};
   width: 22px;
   height: 17px;
