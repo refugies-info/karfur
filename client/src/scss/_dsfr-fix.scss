@@ -1,0 +1,9 @@
+@media (min-width: 62em) {
+
+    [dir="ltr"] .fr-translate__menu {
+        right: 0;
+    }
+    [dir="rtl"] .fr-translate__menu {
+        left: 0;
+    }
+}
