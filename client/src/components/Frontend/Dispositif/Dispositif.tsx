@@ -261,7 +261,7 @@ const Dispositif = (props: Props) => {
           mainSponsor: null,
           merci: [],
           nbMots: 0,
-          niveauFrancais: [],
+          niveauFrancais: props.typeContenu === "demarche" ? undefined : [],
           participants: [],
           signalements: [],
           sponsors: [],
