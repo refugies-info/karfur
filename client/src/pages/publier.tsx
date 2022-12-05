@@ -319,7 +319,7 @@ const RecensezVotreAction = (props: Props) => {
                 image={HelpIcon2}
                 title={t("Publish.helpTileTitle2")}
                 footer={
-                  <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.helpTileCTA1")} color="red" />
+                  <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.helpTileCTA2")} color="red" />
                 }
               >
                 <p>{t("Publish.helpTileText2")}</p>
@@ -329,7 +329,14 @@ const RecensezVotreAction = (props: Props) => {
               <Card
                 image={HelpIcon3}
                 title={t("Publish.helpTileTitle3")}
-                footer={<InlineLink link="#" text={t("Publish.helpTileCTA1")} color="red" />}
+                footer={
+                  <InlineLink
+                    link="#"
+                    onClick={() => window.$crisp.push(["do", "chat:open"])}
+                    text={t("Publish.helpTileCTA3")}
+                    color="red"
+                  />
+                }
               >
                 <p>{t("Publish.helpTileText3")}</p>
               </Card>

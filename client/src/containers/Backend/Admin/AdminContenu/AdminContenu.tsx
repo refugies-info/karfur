@@ -365,7 +365,7 @@ export const AdminContenu = () => {
           placeholder="Rechercher un contenu..."
           withMargin={true}
         />
-        <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
+        <Link legacyBehavior href={getPath("/publier", router.locale) + "?write=show"} passHref>
           <FButton type="dark" name="plus-circle-outline" tag={"a"} target="_blank" rel="noopener noreferrer">
             Ajouter un contenu
           </FButton>
