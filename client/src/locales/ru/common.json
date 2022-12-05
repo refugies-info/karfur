@@ -651,5 +651,12 @@
     "Gratuite et plus facile à utiliser": "Бесплатно и просто использовать",
     "Rester sur le navigateur": "Продолжить в браузере",
     "Télécharger l'application": "Скачать мобильное приложение"
+  },
+  "Publish": {
+    "writeModalTitle": "Создать страницу",
+    "writeModalTypeDispositif": "Программа",
+    "writeModalDescDispositif": "Программа, ателье, курс, онлайн курс, часы консультаций и прочие возможности доступные беженцам.",
+    "writeModalTypeDemarche": "Процедура",
+    "writeModalDescDemarche": "Объясните административную процедуру поэтапно, чтобы облегчить доступ к процедуре и ее пониманию беженцами."
   }
 }

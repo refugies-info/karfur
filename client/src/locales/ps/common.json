@@ -652,5 +652,12 @@
     "Gratuite et plus facile à utiliser": "وړیا او کارول یې اسانه دي :",
     "Rester sur le navigateur": "په براوزر کې پاتې شئ",
     "Télécharger l'application": "اپلیکیشن راښکته کړئ"
+  },
+  "Publish": {
+    "writeModalTitle": "یو فایل ولیکئ",
+    "writeModalTypeDispositif": "برنامه",
+    "writeModalDescDispositif": "پروګرام، ورکشاپ، روزنه، انلآین کورس، د ښه راغلاست مرکز، او یا هره هغه برنامه کې چې په مستقیم ډول مهاجرو ته د لاس رسی وړ وي.",
+    "writeModalTypeDemarche": "اجراآت",
+    "writeModalDescDemarche": "د اداري چارو یو پرسیجر قدم په قدم  تشریح کړئ، ترڅو هغه ته لاس رسی د کډوالو لپاره اسانه او قابل فهم شي."
   }
 }

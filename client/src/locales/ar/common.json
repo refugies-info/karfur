@@ -652,5 +652,12 @@
     "Gratuite et plus facile à utiliser": "مجاني و سهل الاستعمال :",
     "Rester sur le navigateur": "المتابعة على متصفح الانترنيت",
     "Télécharger l'application": "تثبيت التطبيق"
+  },
+  "Publish": {
+    "writeModalTitle": "شارك بانشاء موضوع",
+    "writeModalTypeDispositif": "برنامج تأهيل و مرافقة",
+    "writeModalDescDispositif": "برنامج تأهيل و مرافقة, ورشات, دورات تأهيلية, دروس افتراضية, استقبال شخصي أو أي برنامج مخصص للاجئين",
+    "writeModalTypeDemarche": "معاملة ادارية",
+    "writeModalDescDemarche": "شرح كيفية تنفيذ معاملة اداريّة, خطوةً خطوة, ليَسهُل للاجئين فهم المعاملة و كيفية تنفيذها بيُسر"
   }
 }
