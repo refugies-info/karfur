@@ -62,7 +62,7 @@ export const NoContribution = (props: {
         <SubTitle>Chacun peut apporter sa contribution pour enrichir le site.</SubTitle>
         <SubTitle>Lancez-vous !</SubTitle>
         <RowContainer>
-          <Link href={getPath("/publier", router.locale)} passHref>
+          <Link href={getPath("/publier", router.locale) + "?write=show"} passHref>
             <FButton tag="a" type="dark" name="file-add-outline" className="mr-10">
               Créer une nouvelle fiche
             </FButton>

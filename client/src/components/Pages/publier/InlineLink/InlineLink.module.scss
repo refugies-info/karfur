@@ -21,6 +21,9 @@ $orange: #cd5605;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
+  background: transparent;
+  border: none;
+  outline: none;
 
   @include media-max($breakpoint) {
     @include text("normal");
