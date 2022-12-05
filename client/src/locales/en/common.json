@@ -652,5 +652,12 @@
     "Gratuite et plus facile à utiliser": "Free and easier to use:",
     "Rester sur le navigateur": "Stay on the browser",
     "Télécharger l'application": "Download the application"
+  },
+  "Publish": {
+    "writeModalTitle": "Write an entry",
+    "writeModalTypeDispositif": "Device",
+    "writeModalDescDispositif": "Programme, workshop, training course, online course, reception desk or any other device directly accessible by refugees.",
+    "writeModalTypeDemarche": "Devices",
+    "writeModalDescDemarche": "Explain a step-by-step administrative process to make it easier for refugees to access and understand."
   }
 }

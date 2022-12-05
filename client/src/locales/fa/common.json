@@ -592,5 +592,12 @@
     "Gratuite et plus facile à utiliser": "رایگان و ساده برای استفاده:",
     "Rester sur le navigateur": "در مرورگر بمانید",
     "Télécharger l'application": "برنامه را دانلود کنید"
+  },
+  "Publish": {
+    "writeModalTitle": "پرونده ای بنویسید",
+    "writeModalTypeDispositif": "طرح",
+    "writeModalDescDispositif": "برنامه ، کارگاه ، آموزش ، دوره (کورس) آنلاین ، مرکز پذیرش یا هر وسیله دیگری که مستقیماً برای پناهندگان قابل دسترسی است.",
+    "writeModalTypeDemarche": "مراحل (اقدامات)",
+    "writeModalDescDemarche": "یک امور اداری را گام به گام تشریح  نمایید تا برای پناهندگان و دسترسی و درک آن تسهیل شود."
   }
 }

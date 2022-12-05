@@ -592,5 +592,12 @@
     "seeMore": "ተወሳኺ ርእይቶ",
     "results": "ውጽኢት",
     "seeAll": "ንክሉ ፋይል ምርኣይ"
+  },
+  "Publish": {
+    "writeModalTitle": "ኣብ ፎርም ምጽሓፍ",
+    "writeModalTypeDispositif": "ንጥፈታት",
+    "writeModalDescDispositif": "መደባት፣ ንጥፈታት ፣ ሓቤራታት ፣ ትምህርቲ ብመስመር ኦን ላይን ፣ ቀጻሊ ኣብ መቀበሊ ኣጋይሽን ካልእን ...ወይ ንጥፈታት ብቐጥታ ካብ ስዴተኛታት ዝቀረቡ መደብ ፤፣",
+    "writeModalTypeDemarche": "ምስላጥ",
+    "writeModalDescDemarche": "በብደረጅኡ  ጌርካ\\ኪ ግለጽ\\ጺ መታን ስደተኛታት ብቅልል ዝበለ መንገዲ ክርድኡ\\ኣ ፤፣"
   }
 }

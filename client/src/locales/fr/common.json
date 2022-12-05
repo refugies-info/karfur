@@ -805,6 +805,11 @@
     "registerCTA": "Créer mon compte",
     "registerLoggedIn": "Vous savez tout, vous pouvez rédiger votre première fiche.",
     "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la rédaction de votre fiche.",
-    "registerMobileCTA": "Me le rappeler par email"
+    "registerMobileCTA": "Me le rappeler par email",
+    "writeModalTitle": "Rédiger une fiche",
+    "writeModalTypeDispositif": "Dispositif",
+    "writeModalDescDispositif": "Programme, atelier, formation, cours en ligne, permanence d’accueil ou tout autre dispositif directement accessible par les personnes réfugiées.",
+    "writeModalTypeDemarche": "Démarche",
+    "writeModalDescDemarche": "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées."
   }
 }

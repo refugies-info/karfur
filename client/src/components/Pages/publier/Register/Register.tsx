@@ -17,7 +17,9 @@ import styles from "./Register.module.scss";
 import useWindowSize from "hooks/useWindowSize";
 import MobileRegisterImg from "assets/publier/mobile-register.png";
 
-interface Props {}
+interface Props {
+  toggleWriteModal: () => void;
+}
 
 const Register = (props: Props) => {
   const { t } = useTranslation();
@@ -62,11 +64,14 @@ const Register = (props: Props) => {
           </p>
           {isLoggedIn ? (
             <>
-              <Link href="#" passHref>
-                <FButton type="login" name="plus-circle-outline" className={styles.write_btn} tag="a">
-                  {t("Publish.navbarItem5")}
-                </FButton>
-              </Link>
+              <FButton
+                type="login"
+                name="plus-circle-outline"
+                className={styles.write_btn}
+                onClick={props.toggleWriteModal}
+              >
+                {t("Publish.navbarItem5")}
+              </FButton>
             </>
           ) : (
             <>
