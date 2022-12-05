@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import CountUp from "react-countup";
@@ -12,6 +13,7 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
 import useWindowSize from "hooks/useWindowSize";
 import API from "utils/API";
+import { getPath } from "routes";
 import SEO from "components/Seo";
 import SecondaryNavbar from "components/Pages/publier/SecondaryNavbar";
 import TestimonyAuthor from "components/Pages/publier/TestimonyAuthor";
@@ -22,6 +24,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import CardExample from "components/Pages/publier/CardExample";
 import InlineLink from "components/Pages/publier/InlineLink";
 import Register from "components/Pages/publier/Register";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import WhyImage1 from "assets/publier/why-image-1.png";
 import WhyImage2 from "assets/publier/why-image-2.png";
 import WhyImage3 from "assets/publier/why-image-3.png";
@@ -53,7 +56,26 @@ interface Props {
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const { isTablet } = useWindowSize();
+
+  // write modal
+  const [showWriteModal, setShowWriteModal] = useState(false);
+
+  const toggleWriteModal = useCallback(() => {
+    setShowWriteModal((o) => !o);
+    if (router.query.write === "show") {
+      router.replace({ pathname: getPath("/publier", router.locale) }, undefined, { shallow: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setShowWriteModal, router.query.write]);
+
+  useEffect(() => {
+    if (router.query.write === "show" && !showWriteModal) {
+      setShowWriteModal(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.write]);
 
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
@@ -377,8 +399,10 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <span id="register" className={commonStyles.anchor}></span>
-        <Register />
+        <Register toggleWriteModal={toggleWriteModal} />
       </div>
+
+      <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
     </div>
   );
 };
