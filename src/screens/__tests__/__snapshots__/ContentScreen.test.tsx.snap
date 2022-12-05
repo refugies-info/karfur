@@ -266,7 +266,7 @@ Array [
       contentContainerStyle={
         Object {
           "flexGrow": 1,
-          "paddingBottom": 40,
+          "paddingBottom": 0,
           "paddingHorizontal": 24,
           "paddingTop": 24,
         }
@@ -3844,11 +3844,11 @@ Array [
           </View>
         </View>
         <View
-          height={60}
+          height={84}
           style={
             Array [
               Object {
-                "minHeight": 60,
+                "minHeight": 84,
               },
             ]
           }
@@ -4861,7 +4861,7 @@ Array [
       contentContainerStyle={
         Object {
           "flexGrow": 1,
-          "paddingBottom": 40,
+          "paddingBottom": 0,
           "paddingHorizontal": 24,
           "paddingTop": 24,
         }
@@ -8439,11 +8439,11 @@ Array [
           </View>
         </View>
         <View
-          height={60}
+          height={84}
           style={
             Array [
               Object {
-                "minHeight": 60,
+                "minHeight": 84,
               },
             ]
           }

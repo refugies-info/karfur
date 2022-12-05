@@ -304,7 +304,7 @@ exports[`LanguageChoiceScreen should render correctly 1`] = `
     contentContainerStyle={
       Object {
         "flexGrow": 1,
-        "paddingBottom": 40,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }

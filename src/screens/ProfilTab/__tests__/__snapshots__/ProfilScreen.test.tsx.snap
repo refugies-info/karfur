@@ -274,7 +274,7 @@ exports[`Profil screen should render correctly when data in store 1`] = `
     contentContainerStyle={
       Object {
         "flexGrow": 1,
-        "paddingBottom": 40,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -3036,7 +3036,7 @@ exports[`Profil screen should render correctly when no data in store 1`] = `
     contentContainerStyle={
       Object {
         "flexGrow": 1,
-        "paddingBottom": 40,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }
@@ -5798,7 +5798,7 @@ exports[`Profil screen should toggle modale when delete daat 1`] = `
     contentContainerStyle={
       Object {
         "flexGrow": 1,
-        "paddingBottom": 40,
+        "paddingBottom": 0,
         "paddingHorizontal": 24,
         "paddingTop": 24,
       }

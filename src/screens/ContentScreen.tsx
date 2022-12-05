@@ -71,7 +71,7 @@ import { useVoiceover } from "../hooks/useVoiceover";
 import { ReadButton } from "../components/UI/ReadButton";
 import { readingListLengthSelector } from "../services/redux/VoiceOver/voiceOver.selectors";
 import { withProps } from "../utils";
-import { Columns, Page, Rows, Spacer } from "../components";
+import { Columns, Page, Spacer } from "../components";
 import HeaderContentContentScreen from "../components/layout/Header/HeaderContentContentScreen";
 import { HeaderContentProps } from "../components/layout/Header/HeaderContentProps";
 import PageSkeleton from "./SearchTab/ContentScreen/PageSkeleton";
@@ -606,7 +606,7 @@ export const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             </LastUpdateDateContainer>
           </>
         )}
-        <Spacer height={60} />
+        <Spacer height={84} />
       </Page>
 
       <TabBarContainer>

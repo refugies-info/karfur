@@ -48,7 +48,6 @@ export interface PageProps extends Partial<HeaderProps> {
   headerBackgroundImage?: Picture;
   HeaderContent?: ComponentType<HeaderContentProps>;
   loading?: boolean;
-  noBottomMargin?: boolean;
   Skeleton?: ComponentType;
   title?: string;
 }
@@ -89,7 +88,6 @@ const Page = ({
   HeaderContent = HeaderContentEmpty,
   headerTitle,
   loading,
-  noBottomMargin = false,
   Skeleton = SkeletonListPage,
   title,
   ...headerProps
@@ -187,9 +185,7 @@ const Page = ({
     () => ({
       paddingHorizontal: theme.margin * 3,
       paddingTop: theme.margin * 3,
-      paddingBottom: noBottomMargin
-        ? 0
-        : theme.margin * 5 + (theme.insets.bottom || 0),
+      paddingBottom: theme.insets.bottom,
       flexGrow: 1,
     }),
     [theme.margin, theme.insets.bottom]

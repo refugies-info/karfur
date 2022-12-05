@@ -105,7 +105,7 @@ export const ExplorerScreen = ({
 
   return (
     <>
-      <Page noBottomMargin showLogo>
+      <Page showLogo>
         <LocationWarning />
 
         <Rows layout="auto 1" verticalAlign="space-between">
