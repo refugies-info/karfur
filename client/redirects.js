@@ -18,7 +18,9 @@ const urlTranslations = [
 const oldPathsRedirects = [
   ["/fr/advanced-search", "/fr/recherche"],
   ["/fr/annuaire-create", "/fr/annuaire-creation"],
-  [`/:lang${ln}?/annuaire-create`, "/:lang/directory-create"]
+  [`/:lang${ln}?/annuaire-create`, "/:lang/directory-create"],
+  ["/fr/comment-contribuer", "/fr/publier"],
+  [`/:lang${ln}?/how-to-contribute`, "/:lang/publish"]
 ];
 
 module.exports = {
