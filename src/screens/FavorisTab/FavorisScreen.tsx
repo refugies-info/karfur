@@ -52,9 +52,7 @@ const EmptyText = styled(StyledTextSmall)`
   text-align: center;
   margin-bottom: ${({ theme }) => theme.margin * 4}px;
 `;
-const CardItem = styled.View`
-  flex: 1;
-`;
+const CardItem = styled.View``;
 
 const ActionContainer = styled.View`
 background-color: ${({ theme }) => theme.colors.red};
@@ -151,6 +149,7 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
                           isRTL ? () => deleteFavorite(content._id) : undefined
                         }
                         overshootFriction={8}
+                        containerStyle={{ overflow: "visible" }}
                       >
                         <ContentSummary
                           navigation={navigation}
