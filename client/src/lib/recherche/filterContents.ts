@@ -64,7 +64,7 @@ const filterFrenchLevelValues = {
 export const filterByFrenchLevel = (dispositif: SearchDispositif, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
   const frenchLevels = dispositif.niveauFrancais;
-  if (!frenchLevels) return true;
+  if (!frenchLevels || frenchLevels.length === 0) return true;
 
   if (frenchLevelFilters.includes("c")) {
     return true;
