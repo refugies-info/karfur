@@ -212,7 +212,7 @@ const Homepage = (props: Props) => {
                 {/*<LanguageBtn />*/}
               </div>
               <footer className="footer-section">
-                <Link href={getPath("/publier", router.locale)} passHref>
+                <Link href={getPath("/traduire", router.locale)} passHref>
                   <FButton name="file-add-outline" type="dark" tag="a" tabIndex="3" style={{ height: "60px" }}>
                     {t("Homepage.J'aide à traduire", "J'aide à traduire")}
                   </FButton>

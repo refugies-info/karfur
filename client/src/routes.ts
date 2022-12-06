@@ -9,6 +9,7 @@ export type PathNames =
   "/dispositif" |
   "/dispositif/[id]" |
   "/publier" |
+  "/traduire" |
   "/qui-sommes-nous" |
   "/mentions-legales" |
   "/declaration-accessibilite" |
@@ -34,6 +35,7 @@ const routes: Routes = {
   "/dispositif": "/program",
   "/dispositif/[id]": "/program/[id]",
   "/publier": "/publish",
+  "/traduire": "/translate",
   "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",
