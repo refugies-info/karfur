@@ -193,6 +193,7 @@ const RecensezVotreAction = (props: Props) => {
             title={t("Translate.stepsSubtitle4")}
             texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
             image={StepImage5}
+            height={415}
             buttonStep={t("Translate.stepsButton")}
             buttonStepEnd
           />
