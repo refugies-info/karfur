@@ -47,12 +47,12 @@ const TestimonySlider = (props: Props) => {
     <div className={styles.container}>
       {page > 0 && (
         <Button className={cls(styles.btn, styles.prev)} onClick={() => slide("prev")}>
-          <EVAIcon name="arrow-back-outline" fill="dark" size={24} />
+          <EVAIcon name="arrow-back-outline" fill="#055e5a" size={24} />
         </Button>
       )}
       {page + 1 < Math.round(maxPage) && (
         <Button className={cls(styles.btn, styles.next)} onClick={() => slide("next")}>
-          <EVAIcon name="arrow-forward-outline" fill="dark" size={24} />
+          <EVAIcon name="arrow-forward-outline" fill="#055e5a" size={24} />
         </Button>
       )}
       <div ref={slider} className={styles.slider}>
