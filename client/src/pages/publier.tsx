@@ -16,7 +16,6 @@ import API from "utils/API";
 import { getPath } from "routes";
 import SEO from "components/Seo";
 import SecondaryNavbar from "components/Pages/publier/SecondaryNavbar";
-import TestimonyAuthor from "components/Pages/publier/TestimonyAuthor";
 import Card from "components/Pages/publier/Card";
 import StepContent from "components/Pages/publier/StepContent";
 import Accordion from "components/Pages/publier/Accordion";
@@ -25,16 +24,17 @@ import CardExample from "components/Pages/publier/CardExample";
 import InlineLink from "components/Pages/publier/InlineLink";
 import Register from "components/Pages/publier/Register";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
+import TestimonySlider from "components/Pages/publier/TestimonySlider";
 import WhyImage1 from "assets/publier/why-image-1.png";
 import WhyImage2 from "assets/publier/why-image-2.png";
 import WhyImage3 from "assets/publier/why-image-3.png";
 import WhyImage4 from "assets/publier/why-image-4.png";
-import TestimonyLogo1 from "assets/publier/testimony-icon-1.png";
-import TestimonyLogo2 from "assets/publier/testimony-icon-2.png";
-import TestimonyLogo3 from "assets/publier/testimony-icon-3.png";
 import HelpIcon1 from "assets/publier/help-icon-visio.svg";
 import HelpIcon2 from "assets/publier/help-icon-tutoriel.svg";
 import HelpIcon3 from "assets/publier/help-icon-crisp.svg";
+import TestimonyLogo1 from "assets/publier/testimony-icon-1.png";
+import TestimonyLogo2 from "assets/publier/testimony-icon-2.png";
+import TestimonyLogo3 from "assets/publier/testimony-icon-3.png";
 import RequiredIcon1 from "assets/publier/required-icon-1.png";
 import RequiredIcon2 from "assets/publier/required-icon-2.png";
 import RequiredIcon3 from "assets/publier/required-icon-3.png";
@@ -159,28 +159,28 @@ const RecensezVotreAction = (props: Props) => {
 
       <div className={cls(commonStyles.section, commonStyles.bg_green)}>
         <Container className={commonStyles.container}>
-          <Row>
-            <Col className={styles.testimony}>
-              <p>{t("Publish.testimony1")}</p>
-              <TestimonyAuthor
-                image={TestimonyLogo1}
-                name="Vincent Le Lann"
-                position="Compagnons du Tour de France à Nantes"
-              />
-            </Col>
-            <Col className={styles.testimony}>
-              <p>{t("Publish.testimony2")}</p>
-              <TestimonyAuthor
-                image={TestimonyLogo2}
-                name="Rémi Crouzel"
-                position="Mission Locale de Dijon & Conseiller IPeRACTIFS21"
-              />
-            </Col>
-            <Col className={styles.testimony}>
-              <p>{t("Publish.testimony3")}</p>
-              <TestimonyAuthor image={TestimonyLogo3} name="??" position="Responsable de la structure Uni’R" />
-            </Col>
-          </Row>
+          <TestimonySlider
+            testimonies={[
+              {
+                text: t("Publish.testimony1"),
+                image: TestimonyLogo1,
+                name: "Vincent Le Lann",
+                position: "Compagnons du Tour de France à Nantes"
+              },
+              {
+                text: t("Publish.testimony2"),
+                image: TestimonyLogo2,
+                name: "Rémi Crouzel",
+                position: "Mission Locale de Dijon & Conseiller IPeRACTIFS21"
+              },
+              {
+                text: t("Publish.testimony3"),
+                image: TestimonyLogo3,
+                name: "??",
+                position: "Responsable de la structure Uni’R"
+              }
+            ]}
+          />
         </Container>
       </div>
 
