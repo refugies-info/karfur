@@ -83,7 +83,19 @@ export default {
   },
   description: "",
   plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
-  extra: {
-    displayVersionNumber: "2022.11.2",
+  expo: {
+    slug: "refugies-info-app",
+    extra: {
+      eas: {
+        projectId: "985bc919-57f5-4851-9f2f-748af3408606",
+      },
+      displayVersionNumber: "2022.12.1",
+    },
+    updates: {
+      url: "https://u.expo.dev/985bc919-57f5-4851-9f2f-748af3408606",
+    },
+    runtimeVersion: {
+      policy: "sdkVersion",
+    },
   },
 };
