@@ -261,7 +261,10 @@ const RecensezVotreAction = (props: Props) => {
             step={2}
             title={t("Publish.stepsSubtitle2")}
             texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
-            cta={{ text: t("Publish.stepsCTA2"), link: "#" }}
+            cta={{
+              text: t("Publish.stepsCTA2"),
+              link: "https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
+            }}
             video="/video/video-2.mp4"
           />
           <StepContent

@@ -98,7 +98,7 @@ const LanguageModal = (props: Props) => {
                   <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
                 </Col>
                 <Col xs="4" className={styles.button_col}>
-                  <Link href={getPath("/publier", router.locale) + "#traduire"} passHref>
+                  <Link href={getPath("/publier", router.locale)} passHref>
                     <FButton tag="a" onClick={props.toggle} type="outline">
                       {t("Homepage.btn_translate", "Je traduis")}
                     </FButton>

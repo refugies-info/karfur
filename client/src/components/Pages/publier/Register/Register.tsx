@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useRouter } from "next/router";
@@ -12,6 +12,7 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton";
 import Checkbox from "components/UI/Checkbox";
+import { ReceiveInvitationMailModal } from "components/Pages/homepage/HomePageMobile/ReceiveInvitationMailModal";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./Register.module.scss";
 import useWindowSize from "hooks/useWindowSize";
@@ -25,6 +26,11 @@ const Register = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const { isTablet } = useWindowSize();
+
+  const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(false);
+  const toggleShowInvitationEmailModal = useCallback(() => {
+    setShowInvitationEmailModal((o) => !o);
+  }, []);
 
   const [username, setUsername] = useState("");
   const [acceptConditions, setAcceptConditions] = useState(false);
@@ -55,6 +61,12 @@ const Register = (props: Props) => {
           <FButton type="login" name="email-outline" className={styles.btn}>
             {t("Publish.registerMobileCTA")}
           </FButton>
+
+          <ReceiveInvitationMailModal
+            toggle={toggleShowInvitationEmailModal}
+            show={showInvitationEmailModal}
+            togglePreviousModal={() => {}}
+          />
         </>
       ) : (
         <>
