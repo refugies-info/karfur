@@ -1,3 +1,4 @@
+import { cls } from "lib/classname";
 import Image from "next/image";
 import React, { ReactElement } from "react";
 import styles from "./Card.module.scss";
@@ -5,17 +6,22 @@ import styles from "./Card.module.scss";
 interface Props {
   title: string;
   children: any;
-  image: any;
+  image?: any;
+  header?: ReactElement;
   footer?: ReactElement;
+  greyBackground?: boolean;
 }
 
 const Card = (props: Props) => {
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, props.greyBackground && styles.grey)}>
       <div>
-        <Image src={props.image} alt="" width={56} height={56} objectFit="contain" />
+        <div className={styles.header}>
+          {props.header}
+          {props.image && <Image src={props.image} alt="" width={56} height={56} objectFit="contain" />}
+        </div>
         <h3 className={styles.title}>{props.title}</h3>
-        <div className={styles.text}>{props.children}</div>
+        <div className={cls(styles.text, !props.footer && "mb-0")}>{props.children}</div>
       </div>
       <div>{props.footer}</div>
     </div>

@@ -7,7 +7,7 @@ import styles from "./InlineLink.module.scss";
 interface Props {
   link: string;
   text: string;
-  color: "purple" | "red" | "orange";
+  color: "purple" | "red" | "orange" | "blue";
   onClick?: () => void;
 }
 

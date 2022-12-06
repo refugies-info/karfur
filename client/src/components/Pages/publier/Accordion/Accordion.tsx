@@ -4,12 +4,17 @@ import { cls } from "lib/classname";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
+import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";
 
 type Item = {
   title: string;
   text: string;
   image?: any;
+  cta?: {
+    text: string;
+    link: string;
+  };
 };
 
 interface Props {
@@ -49,6 +54,7 @@ const Accordion = (props: Props) => {
                 <p className={styles.text}>{item.text}</p>
 
                 {isTablet && props.withImages && item?.image && <Image src={item?.image} alt="" />}
+                {item.cta && <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />}
               </Collapse>
             </div>
           );

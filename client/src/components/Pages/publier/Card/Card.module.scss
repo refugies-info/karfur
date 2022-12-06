@@ -20,6 +20,14 @@ $breakpoint: "lg-limit";
   @include media-max($breakpoint) {
     padding: u(4);
   }
+
+  &.grey {
+    background: $gray30;
+  }
+}
+
+.header {
+  height: 56px;
 }
 
 .title {

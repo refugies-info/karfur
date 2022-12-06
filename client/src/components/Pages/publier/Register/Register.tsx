@@ -16,10 +16,13 @@ import { ReceiveInvitationMailModal } from "components/Pages/homepage/HomePageMo
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./Register.module.scss";
 import useWindowSize from "hooks/useWindowSize";
-import MobileRegisterImg from "assets/publier/mobile-register.png";
+import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
 
 interface Props {
   toggleWriteModal: () => void;
+  subtitleForm: string;
+  subtitleLoggedIn: string;
+  subtitleMobile: string;
 }
 
 const Register = (props: Props) => {
@@ -44,7 +47,7 @@ const Register = (props: Props) => {
   };
 
   const title = useMemo(
-    () => <h2 className={cls(commonStyles.title2, "text-center", "mb-0")}>{t("Publish.registerTitle")}</h2>,
+    () => <h2 className={cls(commonStyles.title2, "text-center", "mb-0")}>{t("StaticPages.registerTitle")}</h2>,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -57,9 +60,9 @@ const Register = (props: Props) => {
             <Image src={MobileRegisterImg} alt="Mockup of refugies.info" width={200} height={200} />
           </div>
           {title}
-          <p className={cls(commonStyles.subtitle)}>{t("Publish.registerMobile")}</p>
+          <p className={cls(commonStyles.subtitle)}>{props.subtitleMobile}</p>
           <FButton type="login" name="email-outline" className={styles.btn}>
-            {t("Publish.registerMobileCTA")}
+            {t("StaticPages.registerMobileCTA")}
           </FButton>
 
           <ReceiveInvitationMailModal
@@ -71,9 +74,7 @@ const Register = (props: Props) => {
       ) : (
         <>
           {title}
-          <p className={cls(commonStyles.subtitle)}>
-            {isLoggedIn ? t("Publish.registerLoggedIn") : t("Publish.registerSubtitle")}
-          </p>
+          <p className={cls(commonStyles.subtitle)}>{isLoggedIn ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isLoggedIn ? (
             <>
               <FButton
@@ -94,7 +95,7 @@ const Register = (props: Props) => {
                   checked={acceptConditions}
                   onChange={() => setAcceptConditions((a) => !a)}
                 >
-                  {t("Publish.registerConditions")}
+                  {t("StaticPages.registerConditions")}
                 </Checkbox>
               </div>
 
@@ -116,7 +117,7 @@ const Register = (props: Props) => {
                 disabled={!acceptConditions || !username}
                 onClick={onSubmit}
               >
-                {t("Publish.registerCTA")}
+                {t("StaticPages.registerCTA")}
               </FButton>
 
               <p className={styles.login}>
