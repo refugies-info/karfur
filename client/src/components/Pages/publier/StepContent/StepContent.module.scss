@@ -6,6 +6,7 @@
 @import "src/scss/variables";
 
 $orange: #cd5605;
+$purple: #3d2884;
 
 @mixin fadeBorder() {
   &:after {
@@ -37,8 +38,15 @@ $borderWidth: 4px;
   order: 2;
   padding-left: 60px;
   padding-bottom: 100px;
-  border-left: $borderWidth solid $orange;
+  border-left: $borderWidth solid $dark;
   position: relative;
+
+  .orange & {
+    border-color: $orange;
+  }
+  .purple & {
+    border-color: $purple;
+  }
 
   &.has_btn_step {
     padding-bottom: 250px;
@@ -68,9 +76,16 @@ $borderWidth: 4px;
   justify-content: center;
 
   @include isTablet() {
-    border-left: $borderWidth solid $orange;
+    border-left: $borderWidth solid $dark;
     padding-left: u(8);
     padding-bottom: 60px;
+
+    .orange & {
+      border-color: $orange;
+    }
+    .purple & {
+      border-color: $purple;
+    }
 
     .dotted & {
       border-left-style: dashed;
@@ -112,11 +127,17 @@ $borderWidth: 4px;
   align-items: center;
   justify-content: center;
   color: white;
-  background: linear-gradient(90deg, $orange 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
   border: 1.3px solid $white;
   position: absolute;
   top: 0;
   left: -22px;
+
+  .orange & {
+    background: linear-gradient(90deg, $orange 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
+  }
+  .purple & {
+    background: linear-gradient(90deg, $purple 26.28%, #705fa4 100%), linear-gradient(0deg, #ffffff, #ffffff);
+  }
 
   @include isTablet() {
     width: 24px;
@@ -128,7 +149,6 @@ $borderWidth: 4px;
 }
 
 .btn_step {
-  background: $orange;
   padding: u(4);
   border-radius: $radius;
   color: $white;
@@ -140,20 +160,20 @@ $borderWidth: 4px;
   bottom: 120px;
   transform: translateX(-50%);
 
+  .orange & {
+    background: $orange;
+  }
+  .purple & {
+    background: $purple;
+  }
+
+  &.last {
+    bottom: 0;
+  }
+
   @include isTablet() {
     transform: none;
     left: u(-4);
     width: calc(100% + u(4));
-  }
-}
-
-.video {
-  border: 8px solid $white;
-  box-shadow: 0 4px 18px 0 #0000001a;
-  border-radius: u(4);
-
-  @include isTablet() {
-    max-width: 100%;
-    height: auto;
   }
 }

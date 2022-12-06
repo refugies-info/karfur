@@ -25,24 +25,24 @@ import InlineLink from "components/Pages/publier/InlineLink";
 import Register from "components/Pages/publier/Register";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import TestimonySlider from "components/Pages/publier/TestimonySlider";
-import WhyImage1 from "assets/publier/why-image-1.png";
-import WhyImage2 from "assets/publier/why-image-2.png";
-import WhyImage3 from "assets/publier/why-image-3.png";
-import WhyImage4 from "assets/publier/why-image-4.png";
-import HelpIcon1 from "assets/publier/help-icon-visio.svg";
-import HelpIcon2 from "assets/publier/help-icon-tutoriel.svg";
-import HelpIcon3 from "assets/publier/help-icon-crisp.svg";
-import TestimonyLogo1 from "assets/publier/testimony-icon-1.png";
-import TestimonyLogo2 from "assets/publier/testimony-icon-2.png";
-import TestimonyLogo3 from "assets/publier/testimony-icon-3.png";
-import RequiredIcon1 from "assets/publier/required-icon-1.png";
-import RequiredIcon2 from "assets/publier/required-icon-2.png";
-import RequiredIcon3 from "assets/publier/required-icon-3.png";
-import StepImage4 from "assets/publier/step-image-4.svg";
-import StepImage5 from "assets/publier/step-image-5.png";
-import StepImage6 from "assets/publier/step-image-6.svg";
-import MockupsRI from "assets/publier/mockups-ri.png";
-import MockupsRIMobile from "assets/publier/mockups-ri-mobile.png";
+import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
+import WhyImage2 from "assets/staticPages/publier/why-image-2.png";
+import WhyImage3 from "assets/staticPages/publier/why-image-3.png";
+import WhyImage4 from "assets/staticPages/publier/why-image-4.png";
+import HelpIcon1 from "assets/staticPages/publier/help-icon-visio.svg";
+import HelpIcon2 from "assets/staticPages/publier/help-icon-tutoriel.svg";
+import HelpIcon3 from "assets/staticPages/publier/help-icon-crisp.svg";
+import TestimonyLogo1 from "assets/staticPages/publier/testimony-icon-1.png";
+import TestimonyLogo2 from "assets/staticPages/publier/testimony-icon-2.png";
+import TestimonyLogo3 from "assets/staticPages/publier/testimony-icon-3.png";
+import RequiredIcon1 from "assets/staticPages/publier/required-icon-1.png";
+import RequiredIcon2 from "assets/staticPages/publier/required-icon-2.png";
+import RequiredIcon3 from "assets/staticPages/publier/required-icon-3.png";
+import StepImage4 from "assets/staticPages/publier/step-image-4.svg";
+import StepImage5 from "assets/staticPages/publier/step-image-5.png";
+import StepImage6 from "assets/staticPages/publier/step-image-6.svg";
+import MockupsRI from "assets/staticPages/publier/mockups-ri.png";
+import MockupsRIMobile from "assets/staticPages/publier/mockups-ri-mobile.png";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "scss/pages/publier.module.scss";
 
@@ -105,7 +105,7 @@ const RecensezVotreAction = (props: Props) => {
 
   return (
     <div className={commonStyles.main}>
-      <SEO title="Recensez votre action" />
+      <SEO title={t("Publish.title")} />
 
       <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
         <Container className={commonStyles.container}>
@@ -136,12 +136,26 @@ const RecensezVotreAction = (props: Props) => {
         )}
       </div>
 
-      <SecondaryNavbar activeView={activeView} isSticky={!inViewHero} />
+      <SecondaryNavbar
+        leftLinks={[
+          { id: "why", color: "green", text: t("Publish.navbarItem1") },
+          { id: "required", color: "purple", text: t("Publish.navbarItem2") },
+          { id: "steps", color: "orange", text: t("Publish.navbarItem3") },
+          { id: "faq", color: "red", text: t("Publish.navbarItem4") }
+        ]}
+        rightLink={{
+          id: "register",
+          color: "blue",
+          text: t("Publish.navbarItem5")
+        }}
+        activeView={activeView}
+        isSticky={!inViewHero}
+      />
 
       <div ref={refWhy} className={cls(commonStyles.section)}>
         <span id="why" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
-          <h2 className={commonStyles.title2}>{t("Publish.whyYitle")}</h2>
+          <h2 className={commonStyles.title2}>{t("Publish.whyTitle")}</h2>
 
           <Accordion
             items={[
@@ -252,29 +266,33 @@ const RecensezVotreAction = (props: Props) => {
           </div>
           <StepContent
             step={1}
+            color="orange"
             title={t("Publish.stepsSubtitle1")}
             texts={[t("Publish.stepsText1")]}
             cta={{ text: t("Publish.stepsCTA1"), link: "#register" }}
-            video="/video/video-1.mp4"
+            video="/video/publier-video-step1.mp4"
           />
           <StepContent
             step={2}
+            color="orange"
             title={t("Publish.stepsSubtitle2")}
             texts={[t("Publish.stepsText2a"), t("Publish.stepsText2b")]}
             cta={{
               text: t("Publish.stepsCTA2"),
               link: "https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
             }}
-            video="/video/video-2.mp4"
+            video="/video/publier-video-step2.mp4"
           />
           <StepContent
             step={3}
+            color="orange"
             title={t("Publish.stepsSubtitle3")}
             texts={[t("Publish.stepsText3")]}
-            video="/video/video-3.mp4"
+            video="/video/publier-video-step3.mp4"
           />
           <StepContent
             step={4}
+            color="orange"
             title={t("Publish.stepsSubtitle4")}
             texts={[t("Publish.stepsText4a"), t("Publish.stepsText4b")]}
             image={StepImage4}
@@ -282,6 +300,7 @@ const RecensezVotreAction = (props: Props) => {
           />
           <StepContent
             step={5}
+            color="orange"
             title={t("Publish.stepsSubtitle5")}
             texts={[t("Publish.stepsText5a"), t("Publish.stepsText5b")]}
             image={StepImage5}
@@ -289,6 +308,7 @@ const RecensezVotreAction = (props: Props) => {
           />
           <StepContent
             step={6}
+            color="orange"
             title={t("Publish.stepsSubtitle6")}
             texts={[t("Publish.stepsText6a"), t("Publish.stepsText6b")]}
             image={StepImage6}
@@ -299,7 +319,7 @@ const RecensezVotreAction = (props: Props) => {
 
       <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("Publish.helpTitle")}</h2>
+          <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
           <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Publish.helpSubtitle")}</p>
           <Row className={styles.help}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
@@ -331,17 +351,17 @@ const RecensezVotreAction = (props: Props) => {
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
                 image={HelpIcon3}
-                title={t("Publish.helpTileTitle3")}
+                title={t("StaticPages.helpTileTitle3")}
                 footer={
                   <InlineLink
                     link="#"
                     onClick={() => window.$crisp.push(["do", "chat:open"])}
-                    text={t("Publish.helpTileCTA3")}
+                    text={t("StaticPages.helpTileCTA3")}
                     color="red"
                   />
                 }
               >
-                <p>{t("Publish.helpTileText3")}</p>
+                <p>{t("StaticPages.helpTileText3")}</p>
               </Card>
             </Col>
           </Row>
@@ -389,7 +409,7 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refFaq} className={cls(commonStyles.section)}>
         <span id="faq" className={commonStyles.anchor}></span>
         <Container className={cls(commonStyles.container, styles.faq)}>
-          <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.faqTitle")}</h2>
+          <h2 className={cls(commonStyles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
 
           <Accordion
             items={[
@@ -409,7 +429,12 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <span id="register" className={commonStyles.anchor}></span>
-        <Register toggleWriteModal={toggleWriteModal} />
+        <Register
+          toggleWriteModal={toggleWriteModal}
+          subtitleForm={t("Publish.registerSubtitle")}
+          subtitleLoggedIn={t("Publish.registerLoggedIn")}
+          subtitleMobile={t("Publish.registerMobile")}
+        />
       </div>
 
       <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
