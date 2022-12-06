@@ -556,7 +556,8 @@
     "Centre d'aide": "Consulter le centre d'aide",
     "description": "Réfugiés.info est un portail d’information collaboratif porté par la ",
     "description_suite": " et développé par la ",
-    "accessibility_link": "Accessibilité : non conforme"
+    "accessibility_link": "Accessibilité : non conforme",
+    "newsletter_contact_already_exist": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !"
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
