@@ -15,5 +15,3 @@ src/translations/scripts/csvBeforeTrad
 .DS_Store
 yarn-error.log
 .eslintcache
-
-dist
