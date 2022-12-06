@@ -1,13 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
-import CountUp from "react-countup";
-import { useInView, InView } from "react-intersection-observer";
-import { colors } from "colors";
+import { useInView } from "react-intersection-observer";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
@@ -22,10 +19,10 @@ import {
   Card,
   StepContent,
   InlineLink,
-  Register
+  Register,
+  HeroArrow
 } from "components/Pages/staticPages/common";
-import TestimonySlider from "components/Pages/staticPages/publier/TestimonySlider";
-import CardExample from "components/Pages/staticPages/publier/CardExample";
+import { TestimonySlider, CardExample, CountUpFigure } from "components/Pages/staticPages/publier";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
 import WhyImage2 from "assets/staticPages/publier/why-image-2.png";
@@ -45,8 +42,7 @@ import StepImage5 from "assets/staticPages/publier/step-image-5.png";
 import StepImage6 from "assets/staticPages/publier/step-image-6.svg";
 import MockupsRI from "assets/staticPages/publier/mockups-ri.png";
 import MockupsRIMobile from "assets/staticPages/publier/mockups-ri-mobile.png";
-import commonStyles from "scss/components/staticPages.module.scss";
-import styles from "scss/pages/publier.module.scss";
+import styles from "scss/components/staticPages.module.scss";
 
 export type View = "why" | "required" | "steps" | "faq" | "register";
 
@@ -106,23 +102,17 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWhy, inViewRequired, inViewSteps, inViewFaq, inViewRegister]);
 
   return (
-    <div className={commonStyles.main}>
+    <div className={styles.main}>
       <SEO title={t("Publish.title")} />
 
-      <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
-        <Container className={commonStyles.container}>
-          <Row className={commonStyles.hero}>
-            <Col sm="12" lg="6" className={commonStyles.hero_title}>
+      {/* HERO */}
+      <div ref={refHero} className={cls(styles.section, styles.bg_blue)}>
+        <Container className={styles.container}>
+          <Row className={styles.hero}>
+            <Col sm="12" lg="6" className={styles.hero_title}>
               <h1>{t("Publish.title")}</h1>
-              <p className={commonStyles.subtitle}>{t("Publish.subtitle")}</p>
-
-              <div className={commonStyles.arrow}>
-                <Link href="#why">
-                  <a className={commonStyles.arrow_btn}>
-                    <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
-                  </a>
-                </Link>
-              </div>
+              <p className={styles.subtitle}>{t("Publish.subtitle")}</p>
+              <HeroArrow target="why" />
             </Col>
             {!isTablet && (
               <Col sm="12" lg="6">
@@ -154,11 +144,11 @@ const RecensezVotreAction = (props: Props) => {
         isSticky={!inViewHero}
       />
 
-      <div ref={refWhy} className={cls(commonStyles.section)}>
-        <span id="why" className={commonStyles.anchor}></span>
-        <Container className={commonStyles.container}>
-          <h2 className={commonStyles.title2}>{t("Publish.whyTitle")}</h2>
-
+      {/* WHY */}
+      <div ref={refWhy} className={cls(styles.section)}>
+        <span id="why" className={styles.anchor}></span>
+        <Container className={styles.container}>
+          <h2 className={styles.title2}>{t("Publish.whyTitle")}</h2>
           <Accordion
             items={[
               { title: t("Publish.whyAccordionTitle1"), text: t("Publish.whyAccordionText1"), image: WhyImage1 },
@@ -173,8 +163,9 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_green)}>
-        <Container className={commonStyles.container}>
+      {/* TESTIMONY */}
+      <div className={cls(styles.section, styles.bg_green)}>
+        <Container className={styles.container}>
           <TestimonySlider
             testimonies={[
               {
@@ -200,10 +191,11 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refRequired} className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <span id="required" className={commonStyles.anchor}></span>
-        <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Publish.requiredTitle")}</h2>
+      {/* REQUIRED */}
+      <div ref={refRequired} className={cls(styles.section, styles.bg_grey)}>
+        <span id="required" className={styles.anchor}></span>
+        <Container className={styles.container}>
+          <h2 className={cls(styles.title2, styles.center)}>{t("Publish.requiredTitle")}</h2>
           <Row>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
@@ -248,7 +240,7 @@ const RecensezVotreAction = (props: Props) => {
               </Card>
             </Col>
           </Row>
-          <div className={commonStyles.link}>
+          <div className={styles.link}>
             <InlineLink
               link="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
               text={t("Publish.requiredCTA")}
@@ -258,11 +250,12 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refSteps} className={cls(commonStyles.section)}>
-        <span id="steps" className={commonStyles.anchor}></span>
-        <Container className={commonStyles.container}>
-          <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
-          <div className={commonStyles.warning_mobile}>
+      {/* STEPS */}
+      <div ref={refSteps} className={cls(styles.section)}>
+        <span id="steps" className={styles.anchor}></span>
+        <Container className={styles.container}>
+          <h2 className={styles.title2}>{t("Publish.stepsTitle")}</h2>
+          <div className={styles.warning_mobile}>
             <EVAIcon name="alert-circle-outline" size={24} fill="black" />
             <p>{t("Publish.stepsWarningMobile")}</p>
           </div>
@@ -319,11 +312,12 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-          <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Publish.helpSubtitle")}</p>
-          <Row className={commonStyles.top_space}>
+      {/* HELP */}
+      <div className={cls(styles.section, styles.bg_grey)}>
+        <Container className={styles.container}>
+          <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
+          <p className={cls(styles.subtitle, styles.center)}>{t("Publish.helpSubtitle")}</p>
+          <Row className={styles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
                 image={HelpIcon1}
@@ -370,49 +364,29 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_red)}>
-        <Container className={cls(commonStyles.container, styles.figures)}>
-          <h2 className={cls(commonStyles.title2, "text-center")}>{t("Publish.figuresTitle")}</h2>
+      {/* FIGURES */}
+      <div className={cls(styles.section, styles.bg_red)}>
+        <Container className={cls(styles.container, "text-center")}>
+          <h2 className={cls(styles.title2, "text-center")}>{t("Publish.figuresTitle")}</h2>
           <Row>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>
-                <InView>
-                  {({ inView, ref }) => (
-                    <div ref={ref}>{inView ? <CountUp end={props.nbFiches} separator=" " /> : 0}</div>
-                  )}
-                </InView>
-              </p>
-              <p className={styles.figure_label}>{t("Publish.figuresSubtitle1")}</p>
+              <CountUpFigure number={props.nbFiches} text={t("Publish.figuresSubtitle1")} />
             </Col>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>
-                <InView>
-                  {({ inView, ref }) => (
-                    <div ref={ref}>{inView ? <CountUp end={props.nbStructures} separator=" " /> : 0}</div>
-                  )}
-                </InView>
-              </p>
-              <p className={styles.figure_label}>{t("Publish.figuresSubtitle2")}</p>
+              <CountUpFigure number={props.nbStructures} text={t("Publish.figuresSubtitle2")} />
             </Col>
             <Col sm="12" lg="4">
-              <p className={styles.figure}>
-                <InView>
-                  {({ inView, ref }) => (
-                    <div ref={ref}>{inView ? <CountUp end={props.nbVues} separator=" " /> : 0}</div>
-                  )}
-                </InView>
-              </p>
-              <p className={styles.figure_label}>{t("Publish.figuresSubtitle3")}</p>
+              <CountUpFigure number={props.nbVues} text={t("Publish.figuresSubtitle3")} />
             </Col>
           </Row>
         </Container>
       </div>
 
-      <div ref={refFaq} className={cls(commonStyles.section)}>
-        <span id="faq" className={commonStyles.anchor}></span>
-        <Container className={cls(commonStyles.container, commonStyles.faq)}>
-          <h2 className={cls(commonStyles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-
+      {/* FAQ */}
+      <div ref={refFaq} className={cls(styles.section)}>
+        <span id="faq" className={styles.anchor}></span>
+        <Container className={cls(styles.container, styles.faq)}>
+          <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
           <Accordion
             items={[
               { title: t("Publish.faqAccordionTitle1"), text: t("Publish.faqAccordionText1") },
@@ -423,14 +397,15 @@ const RecensezVotreAction = (props: Props) => {
             ]}
             multiOpen
           />
-          <div className={commonStyles.link}>
+          <div className={styles.link}>
             <InlineLink link="https://help.refugies.info/fr/" text={t("Publish.faqCTA")} color="red" />
           </div>
         </Container>
       </div>
 
-      <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <span id="register" className={commonStyles.anchor}></span>
+      {/* REGISTER */}
+      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
+        <span id="register" className={styles.anchor}></span>
         <Register
           toggleWriteModal={toggleWriteModal}
           subtitleForm={t("Publish.registerSubtitle")}

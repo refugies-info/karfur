@@ -1,14 +1,10 @@
 @import "src/scss/colors";
-@import "src/scss/variables";
+@import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
-@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
 
-$breakpoint: "lg-limit";
-
-.figures {
-  text-align: center;
-}
 .figure {
   @include text("h1");
   margin-bottom: u(6);
@@ -18,7 +14,7 @@ $breakpoint: "lg-limit";
     margin-bottom: u(4);
   }
 }
-.figure_label {
+.label {
   @include text("h5");
   margin-bottom: 0;
 
