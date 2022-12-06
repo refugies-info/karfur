@@ -1,27 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
-import { useInView, InView } from "react-intersection-observer";
+import { useInView } from "react-intersection-observer";
 import { colors } from "colors";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
-import useWindowSize from "hooks/useWindowSize";
-import API from "utils/API";
-import { getPath } from "routes";
 import SEO from "components/Seo";
-import SecondaryNavbar from "components/Pages/publier/SecondaryNavbar";
-import Card from "components/Pages/publier/Card";
-import StepContent from "components/Pages/publier/StepContent";
-import Accordion from "components/Pages/publier/Accordion";
+import {
+  Accordion,
+  SecondaryNavbar,
+  Card,
+  StepContent,
+  AutoplayVideo,
+  InlineLink,
+  Register
+} from "components/Pages/staticPages/common";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import InlineLink from "components/Pages/publier/InlineLink";
-import Register from "components/Pages/publier/Register";
-import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
+import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
 import WhoIcon3 from "assets/staticPages/traduire/who-icon-3.svg";
 import HelpIcon1 from "assets/staticPages/traduire/help-icon-tutoriel.svg";
 import HelpIcon2 from "assets/staticPages/publier/help-icon-crisp.svg";
@@ -29,9 +28,6 @@ import StepImage5 from "assets/staticPages/publier/step-image-5.png";
 import MockupsRIMobile from "assets/staticPages/traduire/mockupMobileRI.png";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "scss/pages/traduire.module.scss";
-import { size } from "lodash";
-import LanguageIcon from "components/Pages/traduire/LanguageIcon";
-import AutoplayVideo from "components/Pages/staticPages/AutoplayVideo";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 
@@ -39,26 +35,6 @@ interface Props {}
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
-  const { isTablet } = useWindowSize();
-
-  // write modal
-  const [showWriteModal, setShowWriteModal] = useState(false);
-
-  const toggleWriteModal = useCallback(() => {
-    setShowWriteModal((o) => !o);
-    if (router.query.write === "show") {
-      router.replace({ pathname: getPath("/publier", router.locale) }, undefined, { shallow: true });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setShowWriteModal, router.query.write]);
-
-  useEffect(() => {
-    if (router.query.write === "show" && !showWriteModal) {
-      setShowWriteModal(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.write]);
 
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
@@ -92,14 +68,14 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
         <Container className={commonStyles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
+          <Row className={commonStyles.hero}>
+            <Col sm="12" lg="6" className={commonStyles.hero_title}>
               <h1>{t("Translate.title")}</h1>
               <p className={commonStyles.subtitle}>{t("Translate.subtitle")}</p>
 
-              <div className={styles.arrow}>
+              <div className={commonStyles.arrow}>
                 <Link href="#who">
-                  <a className={styles.arrow_btn}>
+                  <a className={commonStyles.arrow_btn}>
                     <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
                   </a>
                 </Link>
@@ -129,12 +105,12 @@ const RecensezVotreAction = (props: Props) => {
       />
 
       <div ref={refWho} className={cls(commonStyles.section)}>
-        <span id="why" className={commonStyles.anchor}></span>
+        <span id="who" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
           <p className={commonStyles.subtitle}>{t("Translate.whoSubtitle")}</p>
 
-          <Row className={styles.who}>
+          <Row className={commonStyles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
                 header={
@@ -182,7 +158,7 @@ const RecensezVotreAction = (props: Props) => {
         <span id="steps" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Translate.stepsTitle")}</h2>
-          <div className={styles.warning_mobile}>
+          <div className={commonStyles.warning_mobile}>
             <EVAIcon name="alert-circle-outline" size={24} fill="black" />
             <p>{t("Translate.stepsWarningMobile")}</p>
           </div>
@@ -248,7 +224,7 @@ const RecensezVotreAction = (props: Props) => {
       <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-          <Row className={styles.help}>
+          <Row className={commonStyles.top_space}>
             <Col sm="12" lg={{ size: "4", offset: "2" }} className="mb-lg-0 mb-5">
               <Card
                 image={HelpIcon1}
@@ -282,7 +258,7 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refFaq} className={cls(commonStyles.section)}>
         <span id="faq" className={commonStyles.anchor}></span>
-        <Container className={cls(commonStyles.container, styles.faq)}>
+        <Container className={cls(commonStyles.container, commonStyles.faq)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
 
           <Accordion
@@ -304,14 +280,12 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <span id="register" className={commonStyles.anchor}></span>
         <Register
-          toggleWriteModal={toggleWriteModal}
+          toggleWriteModal={() => {}} /* TODO: what here? */
           subtitleForm={t("Translate.registerSubtitle")}
           subtitleLoggedIn={t("Translate.registerLoggedIn")}
           subtitleMobile={t("Translate.registerMobile")}
         />
       </div>
-
-      <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
     </div>
   );
 };
