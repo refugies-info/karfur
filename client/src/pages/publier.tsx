@@ -183,8 +183,8 @@ const RecensezVotreAction = (props: Props) => {
               {
                 text: t("Publish.testimony3"),
                 image: TestimonyLogo3,
-                name: "??",
-                position: "Responsable de la structure Uni’R"
+                name: "Paola Salazar",
+                position: "Directrice adjointe UniR"
               }
             ]}
           />
