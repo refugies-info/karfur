@@ -9,6 +9,7 @@ const urlTranslations = [
   ["/dispositif", "/program"],
   ["/dispositif/:id", "/program/:id"],
   ["/publier", "/publish"],
+  ["/traduire", "/translate"],
   ["/qui-sommes-nous", "/who-are-we"],
   ["/mentions-legales", "/legal-notices"],
   ["/declaration-accessibilite", "/accessibility-statement"],
