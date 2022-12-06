@@ -61,7 +61,7 @@ const Register = (props: Props) => {
           </div>
           {title}
           <p className={cls(commonStyles.subtitle)}>{props.subtitleMobile}</p>
-          <FButton type="login" name="email-outline" className={styles.btn}>
+          <FButton type="login" name="email-outline" className={styles.btn} onClick={toggleShowInvitationEmailModal}>
             {t("StaticPages.registerMobileCTA")}
           </FButton>
 

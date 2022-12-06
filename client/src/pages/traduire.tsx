@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
-import { colors } from "colors";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
@@ -17,7 +15,8 @@ import {
   StepContent,
   AutoplayVideo,
   InlineLink,
-  Register
+  Register,
+  HeroArrow
 } from "components/Pages/staticPages/common";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
@@ -26,8 +25,7 @@ import HelpIcon1 from "assets/staticPages/traduire/help-icon-tutoriel.svg";
 import HelpIcon2 from "assets/staticPages/publier/help-icon-crisp.svg";
 import StepImage5 from "assets/staticPages/publier/step-image-5.png";
 import MockupsRIMobile from "assets/staticPages/traduire/mockupMobileRI.png";
-import commonStyles from "scss/components/staticPages.module.scss";
-import styles from "scss/pages/traduire.module.scss";
+import styles from "scss/components/staticPages.module.scss";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
 
@@ -63,23 +61,17 @@ const RecensezVotreAction = (props: Props) => {
   }, [inViewWho, inViewNext, inViewSteps, inViewFaq, inViewRegister]);
 
   return (
-    <div className={commonStyles.main}>
+    <div className={styles.main}>
       <SEO title={t("Translate.title")} />
 
-      <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
-        <Container className={commonStyles.container}>
-          <Row className={commonStyles.hero}>
-            <Col sm="12" lg="6" className={commonStyles.hero_title}>
+      {/* HERO */}
+      <div ref={refHero} className={cls(styles.section, styles.bg_blue)}>
+        <Container className={styles.container}>
+          <Row className={styles.hero}>
+            <Col sm="12" lg="6" className={styles.hero_title}>
               <h1>{t("Translate.title")}</h1>
-              <p className={commonStyles.subtitle}>{t("Translate.subtitle")}</p>
-
-              <div className={commonStyles.arrow}>
-                <Link href="#who">
-                  <a className={commonStyles.arrow_btn}>
-                    <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
-                  </a>
-                </Link>
-              </div>
+              <p className={styles.subtitle}>{t("Translate.subtitle")}</p>
+              <HeroArrow target="who" />
             </Col>
             <Col sm="12" lg="6">
               <Image src={MockupsRIMobile} alt="" />
@@ -104,13 +96,13 @@ const RecensezVotreAction = (props: Props) => {
         isSticky={!inViewHero}
       />
 
-      <div ref={refWho} className={cls(commonStyles.section)}>
-        <span id="who" className={commonStyles.anchor}></span>
-        <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
-          <p className={commonStyles.subtitle}>{t("Translate.whoSubtitle")}</p>
-
-          <Row className={commonStyles.top_space}>
+      {/* WHO */}
+      <div ref={refWho} className={cls(styles.section)}>
+        <span id="who" className={styles.anchor}></span>
+        <Container className={styles.container}>
+          <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
+          <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
+          <Row className={styles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
                 header={
@@ -148,17 +140,19 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_green)}>
-        <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, "text-center")}>{t("Translate.needTitle")}</h2>
+      {/* NEED */}
+      <div className={cls(styles.section, styles.bg_green)}>
+        <Container className={styles.container}>
+          <h2 className={cls(styles.title2, "text-center")}>{t("Translate.needTitle")}</h2>
         </Container>
       </div>
 
-      <div ref={refSteps} className={cls(commonStyles.section)}>
-        <span id="steps" className={commonStyles.anchor}></span>
-        <Container className={commonStyles.container}>
-          <h2 className={commonStyles.title2}>{t("Translate.stepsTitle")}</h2>
-          <div className={commonStyles.warning_mobile}>
+      {/* STEPS */}
+      <div ref={refSteps} className={cls(styles.section)}>
+        <span id="steps" className={styles.anchor}></span>
+        <Container className={styles.container}>
+          <h2 className={styles.title2}>{t("Translate.stepsTitle")}</h2>
+          <div className={styles.warning_mobile}>
             <EVAIcon name="alert-circle-outline" size={24} fill="black" />
             <p>{t("Translate.stepsWarningMobile")}</p>
           </div>
@@ -205,14 +199,15 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refNext} className={cls(commonStyles.section, commonStyles.bg_orange)}>
-        <span id="next" className={commonStyles.anchor}></span>
-        <Container className={cls(commonStyles.container, styles.next)}>
+      {/* NEXT */}
+      <div ref={refNext} className={cls(styles.section, styles.bg_orange)}>
+        <span id="next" className={styles.anchor}></span>
+        <Container className={cls(styles.container)}>
           <Row>
             <Col lg="6" sm="12">
-              <h2 className={cls(commonStyles.title2)}>{t("Translate.nextTitle")}</h2>
-              <p>{t("Translate.nextText1")}</p>
-              <p>{t("Translate.nextText2")}</p>
+              <h2 className={cls(styles.title2, styles.bottom_space)}>{t("Translate.nextTitle")}</h2>
+              <p className={styles.p}>{t("Translate.nextText1")}</p>
+              <p className={styles.p}>{t("Translate.nextText2")}</p>
             </Col>
             <Col lg="6" sm="12" className="text-right">
               <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
@@ -221,10 +216,11 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-          <Row className={commonStyles.top_space}>
+      {/* HELP */}
+      <div className={cls(styles.section, styles.bg_grey)}>
+        <Container className={styles.container}>
+          <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
+          <Row className={styles.top_space}>
             <Col sm="12" lg={{ size: "4", offset: "2" }} className="mb-lg-0 mb-5">
               <Card
                 image={HelpIcon1}
@@ -256,11 +252,11 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refFaq} className={cls(commonStyles.section)}>
-        <span id="faq" className={commonStyles.anchor}></span>
-        <Container className={cls(commonStyles.container, commonStyles.faq)}>
-          <h2 className={cls(commonStyles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
-
+      {/* FAQ */}
+      <div ref={refFaq} className={cls(styles.section)}>
+        <span id="faq" className={styles.anchor}></span>
+        <Container className={cls(styles.container, styles.faq)}>
+          <h2 className={cls(styles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
           <Accordion
             items={[
               { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
@@ -277,8 +273,9 @@ const RecensezVotreAction = (props: Props) => {
         </Container>
       </div>
 
-      <div ref={refRegister} className={cls(commonStyles.section, commonStyles.bg_grey)}>
-        <span id="register" className={commonStyles.anchor}></span>
+      {/* REGISTER */}
+      <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
+        <span id="register" className={styles.anchor}></span>
         <Register
           toggleWriteModal={() => {}} /* TODO: what here? */
           subtitleForm={t("Translate.registerSubtitle")}
