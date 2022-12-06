@@ -6,93 +6,6 @@
 
 $breakpoint: "lg-limit";
 
-// Hero
-.hero {
-  @include isTablet() {
-    text-align: center;
-
-    h1 {
-      @include text("h3");
-    }
-  }
-}
-.hero_title {
-  @include media-min($breakpoint) {
-    padding-right: u(12);
-  }
-}
-.arrow {
-  margin-top: u(6);
-  margin-left: 80px;
-  display: flex;
-
-  @include isTablet() {
-    margin-left: inherit;
-    justify-content: center;
-  }
-
-  .arrow_btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background: $white;
-    border-radius: 50%;
-    animation: slide-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate both;
-  }
-}
-.hero_image {
-  @include isTablet() {
-    margin-top: u(13);
-    text-align: right;
-    padding-left: u(4);
-  }
-}
-
-@keyframes slide-bottom {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  100% {
-    -webkit-transform: translateY(30px);
-    transform: translateY(30px);
-  }
-}
-
-// steps
-.warning {
-  display: none;
-  align-items: center;
-  @include text("large");
-  padding: u(4);
-  margin-bottom: u(10);
-  background: $attention;
-  border-radius: $radius;
-
-  & > p {
-    margin-bottom: 0;
-    margin-left: u(4);
-  }
-
-  @include isTablet() {
-    display: flex;
-  }
-}
-
-// required
-
-// help
-.help {
-  margin-top: u(20);
-
-  @include isTablet() {
-    margin-top: u(10);
-  }
-}
-
-// figures
 .figures {
   text-align: center;
 }
@@ -113,9 +26,4 @@ $breakpoint: "lg-limit";
     @include text("large");
     margin-bottom: u(6);
   }
-}
-
-// faq
-.faq {
-  max-width: 720px;
 }

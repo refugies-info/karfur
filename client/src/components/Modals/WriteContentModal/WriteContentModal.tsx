@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 import { ModalBody, ModalFooter } from "reactstrap";
+import { getPath } from "routes";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import WriteContentCard from "components/Pages/staticPages/publier/WriteContentCard";
+import { assetsOnServer } from "assets/assetsOnServer";
 import Modal from "../Modal";
 import styles from "./WriteContentModal.module.scss";
-import WriteContentCard from "components/Pages/publier/WriteContentCard";
-import { assetsOnServer } from "assets/assetsOnServer";
-import { useRouter } from "next/router";
-import { getPath } from "routes";
 
 interface Props {
   show: boolean;

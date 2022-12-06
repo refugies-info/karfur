@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { ReactElement } from "react";
 import { cls } from "lib/classname";
-import AutoplayVideo from "components/Pages/staticPages/AutoplayVideo";
+import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./StepContent.module.scss";
 

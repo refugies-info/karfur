@@ -15,16 +15,18 @@ import useWindowSize from "hooks/useWindowSize";
 import API from "utils/API";
 import { getPath } from "routes";
 import SEO from "components/Seo";
-import SecondaryNavbar from "components/Pages/publier/SecondaryNavbar";
-import Card from "components/Pages/publier/Card";
-import StepContent from "components/Pages/publier/StepContent";
-import Accordion from "components/Pages/publier/Accordion";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import CardExample from "components/Pages/publier/CardExample";
-import InlineLink from "components/Pages/publier/InlineLink";
-import Register from "components/Pages/publier/Register";
+import {
+  Accordion,
+  SecondaryNavbar,
+  Card,
+  StepContent,
+  InlineLink,
+  Register
+} from "components/Pages/staticPages/common";
+import TestimonySlider from "components/Pages/staticPages/publier/TestimonySlider";
+import CardExample from "components/Pages/staticPages/publier/CardExample";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
-import TestimonySlider from "components/Pages/publier/TestimonySlider";
 import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
 import WhyImage2 from "assets/staticPages/publier/why-image-2.png";
 import WhyImage3 from "assets/staticPages/publier/why-image-3.png";
@@ -109,14 +111,14 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refHero} className={cls(commonStyles.section, commonStyles.bg_blue)}>
         <Container className={commonStyles.container}>
-          <Row className={styles.hero}>
-            <Col sm="12" lg="6" className={styles.hero_title}>
+          <Row className={commonStyles.hero}>
+            <Col sm="12" lg="6" className={commonStyles.hero_title}>
               <h1>{t("Publish.title")}</h1>
               <p className={commonStyles.subtitle}>{t("Publish.subtitle")}</p>
 
-              <div className={styles.arrow}>
+              <div className={commonStyles.arrow}>
                 <Link href="#why">
-                  <a className={styles.arrow_btn}>
+                  <a className={commonStyles.arrow_btn}>
                     <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
                   </a>
                 </Link>
@@ -260,7 +262,7 @@ const RecensezVotreAction = (props: Props) => {
         <span id="steps" className={commonStyles.anchor}></span>
         <Container className={commonStyles.container}>
           <h2 className={commonStyles.title2}>{t("Publish.stepsTitle")}</h2>
-          <div className={styles.warning}>
+          <div className={commonStyles.warning_mobile}>
             <EVAIcon name="alert-circle-outline" size={24} fill="black" />
             <p>{t("Publish.stepsWarningMobile")}</p>
           </div>
@@ -321,7 +323,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
           <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Publish.helpSubtitle")}</p>
-          <Row className={styles.help}>
+          <Row className={commonStyles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
               <Card
                 image={HelpIcon1}
@@ -408,7 +410,7 @@ const RecensezVotreAction = (props: Props) => {
 
       <div ref={refFaq} className={cls(commonStyles.section)}>
         <span id="faq" className={commonStyles.anchor}></span>
-        <Container className={cls(commonStyles.container, styles.faq)}>
+        <Container className={cls(commonStyles.container, commonStyles.faq)}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("StaticPages.faqTitle")}</h2>
 
           <Accordion
