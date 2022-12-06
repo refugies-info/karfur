@@ -27,6 +27,7 @@ $purple: #3d2884;
   min-height: 420px;
 
   @include isTablet() {
+    position: relative;
     flex-direction: column-reverse;
     padding-left: u(4);
   }
@@ -48,8 +49,12 @@ $borderWidth: 4px;
     border-color: $purple;
   }
 
-  &.has_btn_step {
+  .has_btn_step & {
     padding-bottom: 250px;
+
+    @include isTablet() {
+      padding-bottom: 0;
+    }
   }
 
   @include isTablet() {
@@ -90,6 +95,12 @@ $borderWidth: 4px;
     .dotted & {
       border-left-style: dashed;
       @include fadeBorder();
+    }
+  }
+
+  .has_btn_step & {
+    @include isTablet() {
+      padding-bottom: 150px;
     }
   }
 }
@@ -173,7 +184,8 @@ $borderWidth: 4px;
 
   @include isTablet() {
     transform: none;
-    left: u(-4);
-    width: calc(100% + u(4));
+    left: 0;
+    bottom: 60px;
+    width: 100%;
   }
 }

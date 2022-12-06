@@ -1,9 +1,10 @@
 import Image from "next/image";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useMemo } from "react";
 import { cls } from "lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./StepContent.module.scss";
+import useWindowSize from "hooks/useWindowSize";
 
 interface Props {
   step: number;
@@ -25,9 +26,23 @@ interface Props {
 }
 
 const StepContent = (props: Props) => {
+  const { isTablet } = useWindowSize();
+
+  const buttonStep = useMemo(
+    () => <div className={cls(styles.btn_step, props.buttonStepEnd && styles.last)}>{props.buttonStep}</div>,
+    [props.buttonStep, props.buttonStepEnd]
+  );
+
   return (
-    <div className={cls(styles.row, styles[props.color], props.dottedLine && styles.dotted)}>
-      <div className={cls(styles.content, !!props.buttonStep && styles.has_btn_step)}>
+    <div
+      className={cls(
+        styles.row,
+        styles[props.color],
+        props.dottedLine && styles.dotted,
+        !!props.buttonStep && styles.has_btn_step
+      )}
+    >
+      <div className={cls(styles.content)}>
         <div className={styles.step}>{props.step}</div>
         <h3
           className={styles.title}
@@ -42,9 +57,7 @@ const StepContent = (props: Props) => {
         ))}
         {props.cta && <InlineLink link={props.cta.link} text={props.cta.text} color={props.color} />}
         {props.footer}
-        {props.buttonStep && (
-          <div className={cls(styles.btn_step, props.buttonStepEnd && styles.last)}>{props.buttonStep}</div>
-        )}
+        {!isTablet && props.buttonStep && buttonStep}
       </div>
 
       <div className={styles.media}>
@@ -53,6 +66,7 @@ const StepContent = (props: Props) => {
         )}
         {props.video && <AutoplayVideo src={props.video} height={props.height || 320} />}
       </div>
+      {isTablet && props.buttonStep && buttonStep}
     </div>
   );
 };
