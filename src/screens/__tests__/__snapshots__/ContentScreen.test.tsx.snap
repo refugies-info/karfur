@@ -275,6 +275,11 @@ Array [
       onScroll={[Function]}
       onScrollEndDrag={[Function]}
       scrollEventThrottle={26}
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
       style={
         Array [
           Object {
@@ -4870,6 +4875,11 @@ Array [
       onScroll={[Function]}
       onScrollEndDrag={[Function]}
       scrollEventThrottle={26}
+      scrollIndicatorInsets={
+        Object {
+          "right": 1,
+        }
+      }
       style={
         Array [
           Object {

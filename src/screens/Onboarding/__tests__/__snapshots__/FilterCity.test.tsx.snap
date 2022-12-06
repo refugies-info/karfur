@@ -414,6 +414,11 @@ exports[`Filter city should render correctly when city selected 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {
@@ -1424,6 +1429,11 @@ exports[`Filter city should render correctly when no city 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {

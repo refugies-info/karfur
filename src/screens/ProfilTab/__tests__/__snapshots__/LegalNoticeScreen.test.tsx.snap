@@ -274,6 +274,11 @@ exports[`LegalNotice screen should render correctly 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {

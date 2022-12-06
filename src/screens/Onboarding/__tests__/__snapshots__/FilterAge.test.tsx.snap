@@ -414,6 +414,11 @@ exports[`Filter age should render correctly when age selected 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {
@@ -1678,6 +1683,11 @@ exports[`Filter age should render correctly when no age selected 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {
@@ -2877,6 +2887,11 @@ exports[`Filter age should select age when click on it 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {

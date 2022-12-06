@@ -414,6 +414,11 @@ exports[`Filter french level should render correctly when french level selected 
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {
@@ -1744,6 +1749,11 @@ exports[`Filter french level should render correctly when no french level select
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {
@@ -3009,6 +3019,11 @@ exports[`Filter french level should select level when click on it 1`] = `
     onScroll={[Function]}
     onScrollEndDrag={[Function]}
     scrollEventThrottle={26}
+    scrollIndicatorInsets={
+      Object {
+        "right": 1,
+      }
+    }
     style={
       Array [
         Object {

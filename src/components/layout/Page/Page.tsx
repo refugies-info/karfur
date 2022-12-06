@@ -80,6 +80,8 @@ const MainContainer = styled(SafeAreaViewTopInset)<{
   border-bottom-left-radius: ${({ rounded }) => (rounded ? 12 : 0)}px;
 `;
 
+const indicatorInsets = { right: 1 };
+
 const Page = ({
   backgroundColor = "transparent",
   children,
@@ -229,6 +231,7 @@ const Page = ({
             onScrollEndDrag={onScrollEnd}
             ref={scrollview}
             scrollEventThrottle={26}
+            scrollIndicatorInsets={indicatorInsets}
           >
             <Container onLayout={onHeaderLayout}>
               <MainContainer
