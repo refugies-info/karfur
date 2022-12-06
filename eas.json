@@ -1,16 +1,19 @@
 {
   "build": {
     "production": {
-      "releaseChannel": "production"
+      "channel": "production"
     },
     "preview": {
-      "releaseChannel": "staging",
+      "channel": "staging",
       "android": {
         "buildType": "apk"
       },
       "ios": {
         "simulator": true
       }
+    },
+    "dev": {
+      "channel": "dev"
     }
   },
   "cli": {
