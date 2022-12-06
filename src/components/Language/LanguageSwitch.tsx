@@ -45,6 +45,7 @@ const ButtonContainerFixedWidth = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  ${({ theme }) => theme.shadows.lg}
 `;
 
 const LanguageContainer = styled(ButtonContainerCommon)<{

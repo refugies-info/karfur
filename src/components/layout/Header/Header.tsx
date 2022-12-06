@@ -151,7 +151,6 @@ export const Header = ({
             layout="auto"
             horizontalAlign="flex-end"
             verticalAlign="center"
-            spacing={ColumnsSpacing.NoSpace}
           >
             {routeName === "ExplorerScreen" && <NotificationsIcon />}
             {!hideLanguageSwitch ? (
