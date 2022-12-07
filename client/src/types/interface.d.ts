@@ -311,7 +311,7 @@ export interface SearchDispositif {
   created_at: Moment;
   mainSponsor: SimplifiedMainSponsor;
   nbMots: number;
-  niveauFrancais: string[];
+  niveauFrancais?: string[];
   needs: ObjectId[];
   theme: ObjectId;
   status: string;
@@ -345,7 +345,7 @@ export interface IDispositif {
   mainSponsor: Structure;
   merci: { createdAt: Moment; keyValue: number; subkey: null | number }[];
   nbMots: number;
-  niveauFrancais: string[];
+  niveauFrancais?: string[];
   participants: User[];
   signalements: any[];
   sponsors: Structure[];
