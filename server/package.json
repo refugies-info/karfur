@@ -31,7 +31,7 @@
     "dotenv": "^7.0.0",
     "draftjs-to-html": "^0.8.4",
     "expo-server-sdk": "^3.6.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-form-data": "^2.0.18",
     "himalaya": "^1.1.0",
     "html2plaintext": "^2.1.2",
