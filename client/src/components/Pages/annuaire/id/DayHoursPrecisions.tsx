@@ -20,6 +20,7 @@ const Closed = (props: { day: string  }) => {
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="close-circle" fill="#F44336" className="mr-8" />
       </div>
+      {/* @ts-ignore */}
       {t("Annuaire." + props.day, props.day) +
         " : " + t("Annuaire.fermé", "fermé")}
     </div>
@@ -72,6 +73,7 @@ const Opened = (props: {
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="checkmark-circle-2" fill="#4CAF50" className="mr-8" />
       </div>
+      {/* @ts-ignore */}
       {t("Annuaire." + day, day) +
         getOpeningHours(
           details.from0,

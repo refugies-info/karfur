@@ -12,7 +12,7 @@ import {
   Content,
   StyledHeaderInner,
 } from "../sharedComponents/StyledAdmin";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import { userHeaders, correspondingStatus } from "./data";

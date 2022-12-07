@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
@@ -14,16 +14,12 @@ import API from "utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "utils/setAuthToken";
 import { Spinner, Input } from "reactstrap";
-import {
-  saveUserActionCreator,
-  fetchUserActionCreator,
-} from "services/User/user.actions";
+import { saveUserActionCreator, fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { UserProfileLoading } from "./components/UserProfileLoading";
 import { colors } from "colors";
-import Navigation from "../Navigation";
 import styles from "./UserProfile.module.scss";
 import { useTranslation } from "next-i18next";
 import { isValidPhone } from "lib/validateFields";
@@ -91,7 +87,7 @@ export const Title = styled.div`
   font-size: 18px;
   line-height: 23px;
   margin-bottom: 8px;
-  margin-top: ${(props: {marginTop?: number}) => props.marginTop || 0}px;
+  margin-top: ${(props: { marginTop?: number }) => props.marginTop || 0}px;
 `;
 
 const FInputContainer = styled.div`
@@ -103,13 +99,10 @@ const RowContainer = styled.div`
   flex-direction: row;
 `;
 
-const getUserImage = (user: User) =>
-  user.picture && user.picture.secure_url
-    ? user.picture.secure_url
-    : marioProfile;
+const getUserImage = (user: User) => (user.picture && user.picture.secure_url ? user.picture.secure_url : marioProfile);
 
 interface Props {
-  title: string
+  title: string;
 }
 
 export const UserProfile = (props: Props) => {
@@ -123,8 +116,7 @@ export const UserProfile = (props: Props) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
-  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] =
-    useState(false);
+  const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(false);
   const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
   const [newPasswordScore, setNewPasswordScore] = useState(0);
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
@@ -133,22 +125,14 @@ export const UserProfile = (props: Props) => {
   const [isPictureUploading, setIsPictureUploading] = useState(false);
   const [notEmailError, setNotEmailError] = useState(false);
   const [notPhoneError, setNotPhoneError] = useState(false);
-  const isLoadingSave = useSelector(
-    isLoadingSelector(LoadingStatusKey.SAVE_USER)
-  );
-  const errorSave = useSelector(
-    errorSelector(LoadingStatusKey.SAVE_USER)
-  );
-  const isLoadingFetch = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER)
-  );
+  const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_USER));
+  const errorSave = useSelector(errorSelector(LoadingStatusKey.SAVE_USER));
+  const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
 
   const openModifyPassword = () => setIsModifyPasswordOpen(true);
-  const toggleNewPasswordVisibility = () =>
-    setIsNewPasswordVisible(!isNewPasswordVisible);
+  const toggleNewPasswordVisibility = () => setIsNewPasswordVisible(!isNewPasswordVisible);
 
-  const toggleCurrentPasswordVisibility = () =>
-    setIsCurrentPasswordVisible(!isCurrentPasswordVisible);
+  const toggleCurrentPasswordVisibility = () => setIsCurrentPasswordVisible(!isCurrentPasswordVisible);
 
   const user = useSelector(userDetailsSelector);
   const userStructureMembres = useSelector(userStructureMembresSelector);
@@ -156,19 +140,18 @@ export const UserProfile = (props: Props) => {
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [showPhone, setShowPhone] = useState(false);
   useEffect(() => {
     if (user) {
-      const isAdmin = (user.roles || []).find(r => r.nom === "Admin");
+      const isAdmin = (user.roles || []).find((r) => r.nom === "Admin");
       //@ts-ignore
-      const userStructureMembre = userStructureMembres.find(membre => membre.userId === user._id);
+      const userStructureMembre = userStructureMembres.find((membre) => membre.userId === user._id);
       setShowPhone(!!isAdmin || !!userStructureMembre?.roles.includes("administrateur"));
     }
   }, [user, userStructureMembres]);
-
 
   const onChange = (e: Event) => {
     if (e.target.id === "username") {
@@ -193,9 +176,7 @@ export const UserProfile = (props: Props) => {
     }
 
     if (e.target.id === "new-password") {
-      const newPasswordScore = computePasswordStrengthScore(
-        e.target.value
-      ).score;
+      const newPasswordScore = computePasswordStrengthScore(e.target.value).score;
       setNewPasswordScore(newPasswordScore);
       setNewPassword(e.target.value);
       return;
@@ -210,13 +191,13 @@ export const UserProfile = (props: Props) => {
       const data = await API.changePassword({
         userId: user._id,
         currentPassword,
-        newPassword,
+        newPassword
       });
       Swal.fire({
         title: "Yay...",
         text: "Votre mot de passe a bien été modifié",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
       // @ts-ignore
       localStorage.setItem("token", data.data.token);
@@ -245,11 +226,11 @@ export const UserProfile = (props: Props) => {
             picture: {
               secure_url: imgData.secure_url,
               public_id: imgData.public_id,
-              imgId: imgData.imgId,
+              imgId: imgData.imgId
             },
-            _id: user._id,
+            _id: user._id
           },
-          type: "modify-my-details",
+          type: "modify-my-details"
         })
       );
       setIsPictureUploading(false);
@@ -264,7 +245,7 @@ export const UserProfile = (props: Props) => {
       dispatch(
         saveUserActionCreator({
           user: { email, _id: user._id },
-          type: "modify-my-details",
+          type: "modify-my-details"
         })
       );
 
@@ -272,7 +253,7 @@ export const UserProfile = (props: Props) => {
         title: "Yay...",
         text: "Votre email a bien été modifié",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
       setIsEmailModifyDisabled(true);
     } else {
@@ -289,10 +270,11 @@ export const UserProfile = (props: Props) => {
     }
     setNotPhoneError(false);
     if (!user) return;
-    API.updateUser({ // will return a 501 and send SMS code
+    API.updateUser({
+      // will return a 501 and send SMS code
       query: {
         user: { phone, _id: user._id },
-        action: "modify-my-details",
+        action: "modify-my-details"
       }
     }).catch(() => setCodePhoneModalVisible(true));
   };
@@ -303,10 +285,10 @@ export const UserProfile = (props: Props) => {
     dispatch(
       saveUserActionCreator({
         user: { phone, code, _id: user._id },
-        type: "modify-my-details",
+        type: "modify-my-details"
       })
     );
-  }
+  };
 
   useEffect(() => {
     const phoneCodeValid = !isLoadingSave && !errorSave && codePhoneModalVisible;
@@ -319,10 +301,10 @@ export const UserProfile = (props: Props) => {
         title: "Yay...",
         text: "Votre numéro de téléphone a bien été modifié",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
     }
-  }, [isLoadingSave])
+  }, [isLoadingSave]);
 
   const onPseudoModificationValidate = async () => {
     if (!user) return;
@@ -331,15 +313,15 @@ export const UserProfile = (props: Props) => {
       await API.updateUser({
         query: {
           user: { username, _id: user._id },
-          action: "modify-my-details",
-        },
+          action: "modify-my-details"
+        }
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Ce pseudo est déjà pris ",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
       return;
     }
@@ -350,7 +332,7 @@ export const UserProfile = (props: Props) => {
       title: "Yay...",
       text: "Votre pseudo a bien été modifié",
       type: "success",
-      timer: 1500,
+      timer: 1500
     });
     setIsPseudoModifyDisabled(true);
   };
@@ -364,7 +346,6 @@ export const UserProfile = (props: Props) => {
   if (isLoadingFetch)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="profil" />
         <UserProfileLoading t={t} />
       </div>
     );
@@ -372,13 +353,9 @@ export const UserProfile = (props: Props) => {
   if (!user) {
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="profil" />
         <MainContainer>
           <ErrorContainer>
-            {t(
-              "UserProfile.ErreurChargement",
-              "Une erreur est survenue, veuillez recharger la page !"
-            )}
+            {t("UserProfile.ErreurChargement", "Une erreur est survenue, veuillez recharger la page !")}
           </ErrorContainer>
         </MainContainer>
       </div>
@@ -387,7 +364,6 @@ export const UserProfile = (props: Props) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <Navigation selected="profil" />
       <MainContainer className={styles.container}>
         <ProfilePictureContainer>
           <Image
@@ -399,36 +375,18 @@ export const UserProfile = (props: Props) => {
             objectFit="contain"
           />
           <UserName>{user.username}</UserName>
-          <FButton
-            type="dark"
-            name="upload-outline"
-            className="position-relative mb-16"
-          >
-            <Input
-              type="file"
-              id="picture"
-              name="structure"
-              accept="image/*"
-              onChange={handleFileInputChange}
-            />
-            {isPictureUploading && (
-              <Spinner color="success" className="ml-10" />
-            )}
-            {!isPictureUploading &&
-              t("UserProfile.Modifier ma photo", "Modifier ma photo")}
+          <FButton type="dark" name="upload-outline" className="position-relative mb-16">
+            <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
+            {isPictureUploading && <Spinner color="success" className="ml-10" />}
+            {!isPictureUploading && t("UserProfile.Modifier ma photo", "Modifier ma photo")}
           </FButton>
           <DescriptionText>
-            {t(
-              "UserProfile.photoUsage",
-              "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer."
-            )}
+            {t("UserProfile.photoUsage", "Votre photo apparaîtra sur les fiches auxquelles vous allez contribuer.")}
           </DescriptionText>
         </ProfilePictureContainer>
         <ProfileContainer>
           <div>
-            <Title>
-              {t("UserProfile.votre pseudo", "Votre pseudonyme")}
-            </Title>
+            <Title>{t("UserProfile.votre pseudo", "Votre pseudonyme")}</Title>
             <RowContainer>
               <FInputContainer>
                 <FInput
@@ -462,9 +420,7 @@ export const UserProfile = (props: Props) => {
             </DescriptionText>
           </div>
           <div>
-            <Title marginTop={24}>
-              {t("Register.Votre email", "Votre email")}
-            </Title>
+            <Title marginTop={24}>{t("Register.Votre email", "Votre email")}</Title>
             <RowContainer>
               <FInputContainer>
                 <FInput
@@ -475,10 +431,7 @@ export const UserProfile = (props: Props) => {
                   autoFocus={false}
                   prepend
                   prependName="email-outline"
-                  placeholder={t(
-                    "Register.Renseignez votre adresse email",
-                    "Renseignez votre adresse email"
-                  )}
+                  placeholder={t("Register.Renseignez votre adresse email", "Renseignez votre adresse email")}
                 />
               </FInputContainer>
               <div>
@@ -506,11 +459,9 @@ export const UserProfile = (props: Props) => {
               )}
             </DescriptionText>
           </div>
-          {showPhone &&
+          {showPhone && (
             <div>
-              <Title marginTop={24}>
-                {t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}
-              </Title>
+              <Title marginTop={24}>{t("Register.Votre numéro de téléphone", "Votre numéro de téléphone")}</Title>
               <RowContainer>
                 <FInputContainer>
                   <FInput
@@ -523,13 +474,10 @@ export const UserProfile = (props: Props) => {
                     prepend
                     prependName="smartphone-outline"
                     error={!user.phone && !phone}
-                    placeholder={(!user.phone && !phone) ?
-                      t(
-                        "Register.Aucun numéro de téléphone",
-                        "Aucun numéro de téléphone")
-                      : t(
-                        "Register.Renseignez votre numéro de téléphone",
-                        "Renseignez votre numéro de téléphone")
+                    placeholder={
+                      !user.phone && !phone
+                        ? t("Register.Aucun numéro de téléphone", "Aucun numéro de téléphone")
+                        : t("Register.Renseignez votre numéro de téléphone", "Renseignez votre numéro de téléphone")
                     }
                   />
                 </FInputContainer>
@@ -548,7 +496,7 @@ export const UserProfile = (props: Props) => {
               </RowContainer>
               {notPhoneError && (
                 <ErrorMessageContainer>
-                  {t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                  {t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
                 </ErrorMessageContainer>
               )}
               <DescriptionText>
@@ -558,21 +506,11 @@ export const UserProfile = (props: Props) => {
                 )}
               </DescriptionText>
             </div>
-          }
-          <Title marginTop={24}>
-            {t("UserProfile.Votre mot de passe", "Votre mot de passe")}
-          </Title>
+          )}
+          <Title marginTop={24}>{t("UserProfile.Votre mot de passe", "Votre mot de passe")}</Title>
           {!isModifyPasswordOpen && (
-            <FButton
-              type="dark"
-              name="edit-outline"
-              onClick={openModifyPassword}
-              data-test-id="test-modify-password"
-            >
-              {t(
-                "UserProfile.modifyPassword",
-                "Modifier mon mot de passe"
-              )}
+            <FButton type="dark" name="edit-outline" onClick={openModifyPassword} data-test-id="test-modify-password">
+              {t("UserProfile.modifyPassword", "Modifier mon mot de passe")}
             </FButton>
           )}
           {isModifyPasswordOpen && (
@@ -588,11 +526,7 @@ export const UserProfile = (props: Props) => {
                   prependName="lock-outline"
                   placeholder="Votre mot de passe actuel"
                   append
-                  appendName={
-                    isCurrentPasswordVisible
-                      ? "eye-off-2-outline"
-                      : "eye-outline"
-                  }
+                  appendName={isCurrentPasswordVisible ? "eye-off-2-outline" : "eye-outline"}
                   inputClassName="password-input"
                   onAppendClick={toggleCurrentPasswordVisibility}
                   type={isCurrentPasswordVisible ? "text" : "password"}
@@ -614,7 +548,7 @@ export const UserProfile = (props: Props) => {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "flex-end",
-                  marginTop: "16px",
+                  marginTop: "16px"
                 }}
               >
                 {isChangePasswordLoading ? (

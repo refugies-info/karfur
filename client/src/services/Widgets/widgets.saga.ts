@@ -47,7 +47,7 @@ export function* saveWidget(
 
     const data = yield call(API.patchWidget, newWidget);
     if (data.data.data) {
-      const newWidgets: Widget[] = [...yield select(widgetsSelector)];
+      const newWidgets: Widget[] = [...(yield select(widgetsSelector))];
       const editedWidgetIndex = newWidgets.findIndex(w => w._id === action.payload._id);
       newWidgets[editedWidgetIndex] = data.data.data;
       yield put(setWidgetsActionCreator(newWidgets));
@@ -72,7 +72,7 @@ export function* createWidget(
     logger.info("[createWidget] start creating widget");
 
     const data = yield call(API.postWidgets, newWidget);
-    const widgets: Widget[] = [...yield select(widgetsSelector)];
+    const widgets: Widget[] = [...(yield select(widgetsSelector))];
     yield put(setWidgetsActionCreator([data.data.data, ...widgets]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_WIDGET));
@@ -93,7 +93,7 @@ export function* deleteWidget(
     logger.info("[deleteWidget] start deleting widget");
     yield call(API.deleteWidget, action.payload);
 
-    const widgets: Widget[] = [...yield select(widgetsSelector)];
+    const widgets: Widget[] = [...(yield select(widgetsSelector))];
     yield put(setWidgetsActionCreator(widgets.filter(w => w._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));

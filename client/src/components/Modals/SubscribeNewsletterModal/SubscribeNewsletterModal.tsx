@@ -11,14 +11,13 @@ import { colors } from "colors";
 import { isMobile } from "react-device-detect";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "scss/components/modals.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
+import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 
 declare const window: Window;
-interface Props {
-  toggle: () => void;
-  show: boolean;
-}
 
 interface EmailProps {
   email: string;
@@ -89,10 +88,14 @@ const EmailField = (props: EmailProps) => {
   );
 };
 
-export const SubscribeNewsletterModal = (props: Props) => {
+export const SubscribeNewsletterModal = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
   const { t } = useTranslation();
+
+  const show = useSelector(showNewsletterModalSelector);
+  const toggle = () => dispatch(toggleNewsletterModalAction(false));
 
   const handleChangeEmail = (event: any) => {
     setEmail(event.target.value);
@@ -112,7 +115,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      props.toggle();
+      toggle();
       API.set_mail({ mail: email })
         .then(() => {
           Swal.fire({
@@ -134,10 +137,10 @@ export const SubscribeNewsletterModal = (props: Props) => {
   };
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+    <Modal isOpen={show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <MainContainer>
         {isMobile && (
-          <CloseIconContainer onClick={props.toggle}>
+          <CloseIconContainer onClick={toggle}>
             <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIconContainer>
         )}
@@ -172,7 +175,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
           />
         ) : (
           <ButtonContainer>
-            <FButton type="light-action" name="close-outline" onClick={props.toggle}>
+            <FButton type="light-action" name="close-outline" onClick={toggle}>
               <div> {t("Retour", "Retour")}</div>
             </FButton>
             <FButton

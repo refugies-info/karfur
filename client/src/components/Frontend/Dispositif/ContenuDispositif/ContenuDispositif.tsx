@@ -67,11 +67,12 @@ const ContenuDispositif = (props: Props) => {
     setContent(getContent(props.dispositif));
   }, [props.dispositif]);
 
-  const getTitle = (title: string) => {
+  const getTitle = (title: string): string => {
     if (title === "La démarche par étapes")
       return t("Dispositif.Comment faire ?", "Comment faire ?");
 
-    return t("Dispositif." + title, title);
+    // @ts-ignore https://www.i18next.com/translation-function/essentials#multiple-fallback-keys not supported by react-i18next
+    return t(`Dispositif.${title}`, title);
   };
 
   // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)

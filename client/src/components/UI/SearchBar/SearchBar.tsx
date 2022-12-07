@@ -15,7 +15,7 @@ import {
 import { removeAccents } from "lib";
 
 import { colors } from "colors";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { SimplifiedStructure, SimplifiedUser } from "types/interface";
 
 type Suggestion = SimplifiedStructure | SimplifiedUser;
@@ -162,6 +162,7 @@ const SearchBar = (props: Props) => {
 
   const inputProps = {
     placeholder: t(
+      // @ts-ignore
       props.placeholder || "Chercher",
       props.placeholder || "Chercher"
     ),
@@ -178,6 +179,7 @@ const SearchBar = (props: Props) => {
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         getSuggestionValue={(s) => getSuggestionValue(s)}
         renderSuggestion={renderSuggestion}
+        // @ts-ignore FIXME
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
       />

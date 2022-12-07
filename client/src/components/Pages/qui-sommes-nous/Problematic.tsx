@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { assetsOnServer } from "assets/assetsOnServer";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const ProblematicContentContainer = styled.div`
   display: flex;

@@ -100,191 +100,13 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 
 <div
   style={
-    Object {
+    {
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="c0"
   >
@@ -322,14 +144,15 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-file-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="file-add"><rect width="24" height="24" opacity="0"/><path d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"/><path d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"/></g></g></svg>",
                   }
                 }
               />
@@ -345,8 +168,8 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -584,191 +407,13 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 
 <div
   style={
-    Object {
+    {
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="c0"
   >
@@ -807,8 +452,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -820,14 +465,15 @@ exports[`userContributions should render correctly when click on delete 1`] = `
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-file-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="file-add"><rect width="24" height="24" opacity="0"/><path d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"/><path d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"/></g></g></svg>",
                   }
                 }
               />
@@ -867,8 +513,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-question-mark-circle-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"menu-arrow-circle\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z\\"/><circle cx=\\"12\\" cy=\\"17\\" r=\\"1\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="#212121"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
                           }
                         }
                       />
@@ -920,7 +566,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -929,8 +575,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                             }
                           }
                         />
@@ -945,7 +591,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -985,7 +631,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -996,7 +642,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -1004,8 +650,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -1020,7 +666,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -1028,8 +674,8 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -1405,191 +1051,13 @@ exports[`userContributions should render correctly when contributions 1`] = `
 
 <div
   style={
-    Object {
+    {
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="c0"
   >
@@ -1628,8 +1096,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -1641,14 +1109,15 @@ exports[`userContributions should render correctly when contributions 1`] = `
             href="/how-to-contribute#ecrire"
             onClick={[Function]}
             onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-file-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="file-add"><rect width="24" height="24" opacity="0"/><path d="M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z"/><path d="M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z"/></g></g></svg>",
                   }
                 }
               />
@@ -1688,8 +1157,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-question-mark-circle-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"menu-arrow-circle\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z\\"/><circle cx=\\"12\\" cy=\\"17\\" r=\\"1\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="#212121"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
                           }
                         }
                       />
@@ -1741,7 +1210,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -1750,8 +1219,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                             }
                           }
                         />
@@ -1766,7 +1235,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -1806,7 +1275,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -1817,7 +1286,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -1825,8 +1294,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -1841,7 +1310,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -1849,8 +1318,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -1893,7 +1362,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -1902,8 +1371,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                             }
                           }
                         />
@@ -1918,7 +1387,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -1958,7 +1427,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -1969,7 +1438,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -1977,8 +1446,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -1993,7 +1462,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2001,8 +1470,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2045,7 +1514,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -2054,8 +1523,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-briefcase-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"briefcase\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
                             }
                           }
                         />
@@ -2070,7 +1539,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -2110,7 +1579,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -2121,7 +1590,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2129,8 +1598,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2144,7 +1613,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2152,8 +1621,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2196,7 +1665,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -2205,8 +1674,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-briefcase-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"briefcase\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
                             }
                           }
                         />
@@ -2221,7 +1690,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -2261,7 +1730,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -2272,7 +1741,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2280,8 +1749,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2295,7 +1764,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2303,8 +1772,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2347,7 +1816,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -2356,8 +1825,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                             }
                           }
                         />
@@ -2372,7 +1841,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -2412,7 +1881,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -2423,7 +1892,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2431,8 +1900,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2447,7 +1916,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2455,8 +1924,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2499,7 +1968,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -2508,8 +1977,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-briefcase-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"briefcase\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
                             }
                           }
                         />
@@ -2524,7 +1993,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -2570,7 +2039,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -2581,7 +2050,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2589,8 +2058,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2604,7 +2073,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2612,8 +2081,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2656,7 +2125,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "marginBottom": "4px",
                           "marginRight": "8px",
                         }
@@ -2665,8 +2134,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       <span>
                         <i
                           dangerouslySetInnerHTML={
-                            Object {
-                              "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-briefcase-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"briefcase\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z\\"/></g></g></svg>",
+                            {
+                              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-briefcase-outline" fill="#212121"><g data-name="Layer 2"><g data-name="briefcase"><rect width="24" height="24" opacity="0"/><path d="M19 7h-3V5.5A2.5 2.5 0 0 0 13.5 3h-3A2.5 2.5 0 0 0 8 5.5V7H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-8a3 3 0 0 0-3-3zm-4 2v10H9V9zm-5-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V7h-4zM4 18v-8a1 1 0 0 1 1-1h2v10H5a1 1 0 0 1-1-1zm16 0a1 1 0 0 1-1 1h-2V9h2a1 1 0 0 1 1 1z"/></g></g></svg>",
                             }
                           }
                         />
@@ -2681,7 +2150,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "width": "120px",
                       }
                     }
@@ -2727,7 +2196,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "display": "flex",
                         "flexDirection": "row",
                       }
@@ -2738,7 +2207,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2746,8 +2215,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-eye\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"eye\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><circle cx=\\"12\\" cy=\\"12\\" r=\\"1.5\\"/><path d=\\"M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-eye" fill="#ffffff"><g data-name="Layer 2"><g data-name="eye"><rect width="24" height="24" opacity="0"/><circle cx="12" cy="12" r="1.5"/><path d="M21.87 11.5c-.64-1.11-4.16-6.68-10.14-6.5-5.53.14-8.73 5-9.6 6.5a1 1 0 0 0 0 1c.63 1.09 4 6.5 9.89 6.5h.25c5.53-.14 8.74-5 9.6-6.5a1 1 0 0 0 0-1zm-9.87 4a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2762,7 +2231,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       <div
                         style={
-                          Object {
+                          {
                             "marginBottom": "4px",
                           }
                         }
@@ -2770,8 +2239,8 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         <span>
                           <i
                             dangerouslySetInnerHTML={
-                              Object {
-                                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash\\" fill=\\"#ffffff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z\\"/></g></g></svg>",
+                              {
+                                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
                               }
                             }
                           />
@@ -2867,191 +2336,13 @@ exports[`userContributions should render correctly when loading 1`] = `
 
 <div
   style={
-    Object {
+    {
       "display": "flex",
       "flex": 1,
       "flexDirection": "column",
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="c0"
   >
@@ -3084,7 +2375,7 @@ exports[`userContributions should render correctly when loading 1`] = `
         <span
           className="react-loading-skeleton"
           style={
-            Object {
+            {
               "height": 50,
             }
           }
@@ -3095,7 +2386,7 @@ exports[`userContributions should render correctly when loading 1`] = `
         <span
           className="react-loading-skeleton"
           style={
-            Object {
+            {
               "height": 50,
             }
           }
@@ -3106,7 +2397,7 @@ exports[`userContributions should render correctly when loading 1`] = `
         <span
           className="react-loading-skeleton"
           style={
-            Object {
+            {
               "height": 50,
             }
           }

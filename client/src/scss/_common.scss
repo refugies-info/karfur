@@ -134,6 +134,16 @@ html body {
       color: inherit;
     }
   }
+  
+  a[href] {
+    text-decoration: none;
+    background-image: none;
+  }
+
+  :not([class^="fr-link"])[target="_blank"]::after {
+    content: none !important;
+  }
+
   .reset-btn {
     border: none;
     background: none;

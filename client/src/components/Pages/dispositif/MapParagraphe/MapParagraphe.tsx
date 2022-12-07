@@ -226,7 +226,8 @@ const MapParagraphe = (props: Props) => {
                   return (
                     <React.Fragment key={key}>
                       <label>
-                        {t("Dispositif." + field.label, field.label)}
+                        {/* @ts-ignore */}
+                        <>{t("Dispositif." + field.label, field.label)}</>
                         {field.mandatory && <sup>*</sup>}
                       </label>
                       <ContentEditable
@@ -243,7 +244,8 @@ const MapParagraphe = (props: Props) => {
                 return (
                   <React.Fragment key={key}>
                     <label>
-                      {t("Dispositif." + field.label, field.label)}
+                      {/* @ts-ignore */}
+                      <>{t("Dispositif." + field.label, field.label)}</>
                       {field.mandatory && <sup>*</sup>}
                     </label>
                     <ContentEditable

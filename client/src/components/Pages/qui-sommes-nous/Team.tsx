@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import FButton from "components/UI/FButton/FButton";
 import { members } from "data/members";
 import type { Member } from "data/members";

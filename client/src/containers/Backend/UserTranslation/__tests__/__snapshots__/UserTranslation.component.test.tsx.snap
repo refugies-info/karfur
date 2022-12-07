@@ -71,7 +71,7 @@ exports[`user translation should redirect if user has language but not langue in
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -81,184 +81,6 @@ exports[`user translation should redirect if user has language but not langue in
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -290,6 +112,122 @@ exports[`user translation should redirect if user has language but not langue in
             className="btn dark mr-10"
             onClick={[Function]}
           >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "inline-block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "overflow": "hidden",
+                  "padding": 0,
+                  "position": "relative",
+                  "width": "initial",
+                }
+              }
+            >
+              <span
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              >
+                <img
+                  alt=""
+                  aria-hidden={true}
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "display": "block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "padding": 0,
+                      "width": "initial",
+                    }
+                  }
+                />
+              </span>
+              <img
+                alt="a"
+                data-nimg="intrinsic"
+                decoding="async"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": undefined,
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+              <noscript>
+                <img
+                  alt="a"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                  style={
+                    {
+                      "border": "none",
+                      "bottom": 0,
+                      "boxSizing": "border-box",
+                      "display": "block",
+                      "height": 0,
+                      "left": 0,
+                      "margin": "auto",
+                      "maxHeight": "100%",
+                      "maxWidth": "100%",
+                      "minHeight": "100%",
+                      "minWidth": "100%",
+                      "objectFit": undefined,
+                      "objectPosition": undefined,
+                      "padding": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 0,
+                    }
+                  }
+                />
+              </noscript>
+            </span>
             Commencer à traduire
           </button>
           <button
@@ -301,8 +239,8 @@ exports[`user translation should redirect if user has language but not langue in
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -387,7 +325,7 @@ exports[`user translation should redirect if user has no language but langue in 
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -397,184 +335,6 @@ exports[`user translation should redirect if user has no language but langue in 
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -606,6 +366,122 @@ exports[`user translation should redirect if user has no language but langue in 
             className="btn dark mr-10"
             onClick={[Function]}
           >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "inline-block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "overflow": "hidden",
+                  "padding": 0,
+                  "position": "relative",
+                  "width": "initial",
+                }
+              }
+            >
+              <span
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              >
+                <img
+                  alt=""
+                  aria-hidden={true}
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "display": "block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "padding": 0,
+                      "width": "initial",
+                    }
+                  }
+                />
+              </span>
+              <img
+                alt="a"
+                data-nimg="intrinsic"
+                decoding="async"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": undefined,
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+              <noscript>
+                <img
+                  alt="a"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                  style={
+                    {
+                      "border": "none",
+                      "bottom": 0,
+                      "boxSizing": "border-box",
+                      "display": "block",
+                      "height": 0,
+                      "left": 0,
+                      "margin": "auto",
+                      "maxHeight": "100%",
+                      "maxWidth": "100%",
+                      "minHeight": "100%",
+                      "minWidth": "100%",
+                      "objectFit": undefined,
+                      "objectPosition": undefined,
+                      "padding": 0,
+                      "position": "absolute",
+                      "right": 0,
+                      "top": 0,
+                      "width": 0,
+                    }
+                  }
+                />
+              </noscript>
+            </span>
             Commencer à traduire
           </button>
           <button
@@ -617,8 +493,8 @@ exports[`user translation should redirect if user has no language but langue in 
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -693,58 +569,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   width: fit-content;
 }
 
-.c8 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0A54BF;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c10 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c7 {
   font-weight: bold;
   font-size: 16px;
@@ -771,11 +595,63 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   align-items: center;
 }
 
+.c8 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0A54BF;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #EA6206;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
   padding: 17px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -963,7 +839,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -973,223 +849,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn blue "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-shield-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"shield\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 21.85a2 2 0 0 1-1-.25l-.3-.17A15.17 15.17 0 0 1 3 8.23v-.14a2 2 0 0 1 1-1.75l7-3.94a2 2 0 0 1 2 0l7 3.94a2 2 0 0 1 1 1.75v.14a15.17 15.17 0 0 1-7.72 13.2l-.3.17a2 2 0 0 1-.98.25zm0-17.7L5 8.09v.14a13.15 13.15 0 0 0 6.7 11.45l.3.17.3-.17A13.15 13.15 0 0 0 19 8.23v-.14z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-shield\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"shield\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 21.85a2 2 0 0 1-1-.25l-.3-.17A15.17 15.17 0 0 1 3 8.23v-.14a2 2 0 0 1 1-1.75l7-3.94a2 2 0 0 1 2 0l7 3.94a2 2 0 0 1 1 1.75v.14a15.17 15.17 0 0 1-7.72 13.2l-.3.17a2 2 0 0 1-.98.25z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -1235,8 +894,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -1258,8 +917,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-settings-2-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"settings-2\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z\\" data-name=\\"&lt;Group&gt;\\"/><path d=\\"M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
                   }
                 }
               />
@@ -1372,8 +1031,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                 }
               }
             />
@@ -1402,8 +1061,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1421,8 +1080,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1440,8 +1099,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1459,8 +1118,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1478,8 +1137,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1497,8 +1156,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1516,8 +1175,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1535,8 +1194,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1565,7 +1224,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "maxWidth": "350px",
                       }
                     }
@@ -1640,8 +1299,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     >
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-trash-2\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"trash-2\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash-2" fill="#fff"><g data-name="Layer 2"><g data-name="trash-2"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0zm0-11.67c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4zM16 16a1 1 0 0 1-2 0v-4a1 1 0 0 1 2 0z"/></g></g></svg>",
                           }
                         }
                       />
@@ -1719,58 +1378,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
   width: fit-content;
 }
 
-.c8 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #0A54BF;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c10 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #137F3A;
-  padding: 17px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-right: 10px;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c7 {
   font-weight: bold;
   font-size: 16px;
@@ -1797,11 +1404,63 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
   align-items: center;
 }
 
+.c8 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0A54BF;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .c9 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   color: #EA6206;
+  padding: 17px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 10px;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c10 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #137F3A;
   padding: 17px;
   background-color: #ffffff;
   border-radius: 12px;
@@ -1989,7 +1648,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -1999,184 +1658,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -2222,8 +1703,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -2245,8 +1726,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-settings-2-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"settings-2\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z\\" data-name=\\"&lt;Group&gt;\\"/><path d=\\"M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
                   }
                 }
               />
@@ -2359,8 +1840,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                 }
               }
             />
@@ -2389,8 +1870,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2408,8 +1889,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2427,8 +1908,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2446,8 +1927,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2465,8 +1946,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2484,8 +1965,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2503,8 +1984,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2522,8 +2003,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -2552,7 +2033,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "maxWidth": "350px",
                       }
                     }
@@ -2685,13 +2166,13 @@ exports[`user translation should render correctly with non expert, non admin 1`]
   width: fit-content;
 }
 
-.c8 {
+.c7 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #137F3A;
+  color: #ffffff;
   padding: 17px;
-  background-color: #ffffff;
+  background-color: #0A54BF;
   border-radius: 12px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -2711,13 +2192,13 @@ exports[`user translation should render correctly with non expert, non admin 1`]
   align-items: center;
 }
 
-.c7 {
+.c8 {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #ffffff;
+  color: #137F3A;
   padding: 17px;
-  background-color: #0A54BF;
+  background-color: #ffffff;
   border-radius: 12px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -2903,7 +2384,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -2913,184 +2394,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -3136,8 +2439,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -3153,8 +2456,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-settings-2-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"settings-2\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z\\" data-name=\\"&lt;Group&gt;\\"/><path d=\\"M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
                   }
                 }
               />
@@ -3253,8 +2556,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                 }
               }
             />
@@ -3283,8 +2586,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3302,8 +2605,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3321,8 +2624,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3340,8 +2643,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3359,8 +2662,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3378,8 +2681,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3397,8 +2700,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     <span>
                       <i
                         dangerouslySetInnerHTML={
-                          Object {
-                            "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-chevron-down\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"chevron-down\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z\\"/></g></g></svg>",
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down" fill="#212121"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
                           }
                         }
                       />
@@ -3427,7 +2730,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                 >
                   <div
                     style={
-                      Object {
+                      {
                         "maxWidth": "350px",
                       }
                     }
@@ -3452,14 +2755,14 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                   >
                     <div
                       style={
-                        Object {
+                        {
                           "width": "100%",
                         }
                       }
                     >
                       <div
                         className="progress"
-                        style={Object {}}
+                        style={{}}
                       >
                         <div
                           aria-valuemax={100}
@@ -3468,7 +2771,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                           className="progress-bar bg-danger"
                           role="progressbar"
                           style={
-                            Object {
+                            {
                               "width": "0%",
                             }
                           }
@@ -3686,7 +2989,7 @@ exports[`user translation should return loader langue in url = first selected la
 
 <div
   style={
-    Object {
+    {
       "backgroundColor": "#f2f2f2",
       "display": "flex",
       "flex": 1,
@@ -3696,184 +2999,6 @@ exports[`user translation should return loader langue in url = first selected la
     }
   }
 >
-  <div
-    className="container"
-  >
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18zM12 16.1a.92.92 0 0 1 .46.11l3.77 2-.72-4.21a1 1 0 0 1 .29-.89l3-2.93-4.2-.62a1 1 0 0 1-.71-.56L12 5.25 10.11 9a1 1 0 0 1-.75.54l-4.2.62 3 2.93a1 1 0 0 1 .29.89l-.72 4.16 3.77-2a.92.92 0 0 1 .5-.04z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-star\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"star\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M17.56 21a1 1 0 0 1-.46-.11L12 18.22l-5.1 2.67a1 1 0 0 1-1.45-1.06l1-5.63-4.12-4a1 1 0 0 1-.25-1 1 1 0 0 1 .81-.68l5.7-.83 2.51-5.13a1 1 0 0 1 1.8 0l2.54 5.12 5.7.83a1 1 0 0 1 .81.68 1 1 0 0 1-.25 1l-4.12 4 1 5.63a1 1 0 0 1-.4 1 1 1 0 0 1-.62.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 8.33l-5.44-6a1 1 0 0 0-.74-.33h-7A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V9a1 1 0 0 0-.26-.67zM14 5l2.74 3h-2a.79.79 0 0 1-.74-.85zm3.44 15H6.56a.53.53 0 0 1-.56-.5v-15a.53.53 0 0 1 .56-.5H12v3.15A2.79 2.79 0 0 0 14.71 10H18v9.5a.53.53 0 0 1-.56.5z\\"/><path d=\\"M14 13h-1v-1a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-file-add\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"file-add\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M19.74 7.33l-4.44-5a1 1 0 0 0-.74-.33h-8A2.53 2.53 0 0 0 4 4.5v15A2.53 2.53 0 0 0 6.56 22h10.88A2.53 2.53 0 0 0 20 19.5V8a1 1 0 0 0-.26-.67zM14 15h-1v1a1 1 0 0 1-2 0v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2zm.71-7a.79.79 0 0 1-.71-.85V4l3.74 4z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Mes fiches
-    </button>
-    <button
-      className="btn black active"
-      onClick={[Function]}
-    >
-      <span
-        className="icon icon_traduction"
-      >
-        <span
-          className="regular"
-        />
-        <span
-          className="hovered"
-        />
-      </span>
-      Toolbar.Mes traductions
-    </button>
-    <button
-      className="btn black "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className=""
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4z\\"/><path d=\\"M18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-    </button>
-    <button
-      className="btn red "
-      onClick={[Function]}
-    >
-      <span
-        className="icon"
-      >
-        <span
-          className="regular"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-        <span
-          className="hovered"
-        >
-          <span
-            className="mr-10"
-          >
-            <i
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-out\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-out\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(90 12 12)\\" opacity=\\"0\\"/><path d=\\"M7 6a1 1 0 0 0 0-2H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h2a1 1 0 0 0 0-2H6V6z\\"/><path d=\\"M20.82 11.42l-2.82-4a1 1 0 0 0-1.39-.24 1 1 0 0 0-.24 1.4L18.09 11H10a1 1 0 0 0 0 2h8l-1.8 2.4a1 1 0 0 0 .2 1.4 1 1 0 0 0 .6.2 1 1 0 0 0 .8-.4l3-4a1 1 0 0 0 .02-1.18z\\"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </span>
-      </span>
-      Toolbar.Déconnexion
-    </button>
-  </div>
   <div
     className="container"
   >
@@ -3893,7 +3018,7 @@ exports[`user translation should return loader langue in url = first selected la
             <span
               className="react-loading-skeleton"
               style={
-                Object {
+                {
                   "--base-color": "#ffffff",
                   "height": 50,
                   "width": 120,
@@ -3917,8 +3042,8 @@ exports[`user translation should return loader langue in url = first selected la
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-video-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"video\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-video-outline" fill="#fff"><g data-name="Layer 2"><g data-name="video"><rect width="24" height="24" opacity="0"/><path d="M21 7.15a1.7 1.7 0 0 0-1.85.3l-2.15 2V8a3 3 0 0 0-3-3H5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-1.45l2.16 2a1.74 1.74 0 0 0 1.16.45 1.68 1.68 0 0 0 .69-.15 1.6 1.6 0 0 0 1-1.48V8.63A1.6 1.6 0 0 0 21 7.15zM15 16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1zm5-1.4L17.19 12 20 9.4z"/></g></g></svg>",
                   }
                 }
               />
@@ -3933,8 +3058,8 @@ exports[`user translation should return loader langue in url = first selected la
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-settings-2-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"settings-2\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z\\" data-name=\\"&lt;Group&gt;\\"/><path d=\\"M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-settings-2-outline" fill="#fff"><g data-name="Layer 2"><g data-name="settings-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12.94 22h-1.89a1.68 1.68 0 0 1-1.68-1.68v-1.09a.34.34 0 0 0-.22-.29.38.38 0 0 0-.41 0l-.74.8a1.67 1.67 0 0 1-2.37 0L4.26 18.4a1.66 1.66 0 0 1-.5-1.19 1.72 1.72 0 0 1 .5-1.21l.74-.74a.34.34 0 0 0 0-.37c-.06-.15-.16-.26-.3-.26H3.68A1.69 1.69 0 0 1 2 12.94v-1.89a1.68 1.68 0 0 1 1.68-1.68h1.09a.34.34 0 0 0 .29-.22.38.38 0 0 0 0-.41L4.26 8a1.67 1.67 0 0 1 0-2.37L5.6 4.26a1.65 1.65 0 0 1 1.18-.5 1.72 1.72 0 0 1 1.22.5l.74.74a.34.34 0 0 0 .37 0c.15-.06.26-.16.26-.3V3.68A1.69 1.69 0 0 1 11.06 2H13a1.68 1.68 0 0 1 1.68 1.68v1.09a.34.34 0 0 0 .22.29.38.38 0 0 0 .41 0l.69-.8a1.67 1.67 0 0 1 2.37 0l1.37 1.34a1.67 1.67 0 0 1 .5 1.19 1.63 1.63 0 0 1-.5 1.21l-.74.74a.34.34 0 0 0 0 .37c.06.15.16.26.3.26h1.09A1.69 1.69 0 0 1 22 11.06V13a1.68 1.68 0 0 1-1.68 1.68h-1.09a.34.34 0 0 0-.29.22.34.34 0 0 0 0 .37l.77.77a1.67 1.67 0 0 1 0 2.37l-1.31 1.33a1.65 1.65 0 0 1-1.18.5 1.72 1.72 0 0 1-1.19-.5l-.77-.74a.34.34 0 0 0-.37 0c-.15.06-.26.16-.26.3v1.09A1.69 1.69 0 0 1 12.94 22zm-1.57-2h1.26v-.77a2.33 2.33 0 0 1 1.46-2.14 2.36 2.36 0 0 1 2.59.47l.54.54.88-.88-.54-.55a2.34 2.34 0 0 1-.48-2.56 2.33 2.33 0 0 1 2.14-1.45H20v-1.29h-.77a2.33 2.33 0 0 1-2.14-1.46 2.36 2.36 0 0 1 .47-2.59l.54-.54-.88-.88-.55.54a2.39 2.39 0 0 1-4-1.67V4h-1.3v.77a2.33 2.33 0 0 1-1.46 2.14 2.36 2.36 0 0 1-2.59-.47l-.54-.54-.88.88.54.55a2.39 2.39 0 0 1-1.67 4H4v1.26h.77a2.33 2.33 0 0 1 2.14 1.46 2.36 2.36 0 0 1-.47 2.59l-.54.54.88.88.55-.54a2.39 2.39 0 0 1 4 1.67z" data-name="&lt;Group&gt;"/><path d="M12 15.5a3.5 3.5 0 1 1 3.5-3.5 3.5 3.5 0 0 1-3.5 3.5zm0-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5z"/></g></g></svg>",
                   }
                 }
               />
@@ -4033,8 +3158,8 @@ exports[`user translation should return loader langue in url = first selected la
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-search-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"search\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                 }
               }
             />
@@ -4089,7 +3214,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4108,7 +3233,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4127,7 +3252,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4146,7 +3271,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4165,7 +3290,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4184,7 +3309,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4203,7 +3328,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4226,7 +3351,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4245,7 +3370,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4264,7 +3389,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4283,7 +3408,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4302,7 +3427,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4321,7 +3446,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4340,7 +3465,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4363,7 +3488,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4382,7 +3507,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4401,7 +3526,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4420,7 +3545,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4439,7 +3564,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4458,7 +3583,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4477,7 +3602,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4500,7 +3625,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4519,7 +3644,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4538,7 +3663,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4557,7 +3682,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4576,7 +3701,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4595,7 +3720,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4614,7 +3739,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4637,7 +3762,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4656,7 +3781,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4675,7 +3800,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4694,7 +3819,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4713,7 +3838,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4732,7 +3857,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4751,7 +3876,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4774,7 +3899,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4793,7 +3918,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4812,7 +3937,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4831,7 +3956,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4850,7 +3975,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4869,7 +3994,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4888,7 +4013,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4911,7 +4036,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -4930,7 +4055,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -4949,7 +4074,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4968,7 +4093,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -4987,7 +4112,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5006,7 +4131,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5025,7 +4150,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5048,7 +4173,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -5067,7 +4192,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -5086,7 +4211,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5105,7 +4230,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5124,7 +4249,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5143,7 +4268,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5162,7 +4287,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5185,7 +4310,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -5204,7 +4329,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -5223,7 +4348,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5242,7 +4367,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5261,7 +4386,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5280,7 +4405,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5299,7 +4424,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5322,7 +4447,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -5341,7 +4466,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -5360,7 +4485,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5379,7 +4504,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5398,7 +4523,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5417,7 +4542,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5436,7 +4561,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5459,7 +4584,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -5478,7 +4603,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -5497,7 +4622,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5516,7 +4641,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5535,7 +4660,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5554,7 +4679,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5573,7 +4698,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5596,7 +4721,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 50,
                         }
@@ -5615,7 +4740,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 270,
                         }
@@ -5634,7 +4759,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5653,7 +4778,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5672,7 +4797,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5691,7 +4816,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }
@@ -5710,7 +4835,7 @@ exports[`user translation should return loader langue in url = first selected la
                     <span
                       className="react-loading-skeleton"
                       style={
-                        Object {
+                        {
                           "--base-color": "#CDCDCD",
                           "width": 70,
                         }

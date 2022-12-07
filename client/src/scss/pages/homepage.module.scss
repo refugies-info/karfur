@@ -9,8 +9,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 180px;
-  margin-top: -75px;
   height: 828px;
 
   @include media-min("tablet-up") {

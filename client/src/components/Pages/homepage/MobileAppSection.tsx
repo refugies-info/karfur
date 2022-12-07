@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 
 import mobile_app_mockups from "assets/homepage/mobile-app-mockups.png";
@@ -27,21 +27,17 @@ const MobileAppSection = () => {
     navigator.clipboard.writeText(
       "https://refugies.info/download-app?utm_source=page-accueil&utm_medium=bouton-partage-app&utm_campaign=nouveau-page"
     );
-  }
+  };
 
   return (
-    <section className={styles.smartphone}>
+    <section id="application" className={styles.smartphone}>
       <div className={styles.container}>
         <div className={cls(styles.row, "row align-items-center")}>
           <div className={cls(styles.mockup, "col")}>
-            <h2 className={cls(styles.mobile_title, "text-white")}>{t("Homepage.mobile_app_title", "Application mobile disponible !")}</h2>
-            <Image
-              src={mobile_app_mockups}
-              alt="Mobile app mockups"
-              width={600}
-              height={450}
-              objectFit="contain"
-            />
+            <h2 className={cls(styles.mobile_title, "text-white")}>
+              {t("Homepage.mobile_app_title", "Application mobile disponible !")}
+            </h2>
+            <Image src={mobile_app_mockups} alt="Mobile app mockups" width={600} height={450} objectFit="contain" />
           </div>
           <div className={cls(styles.content, "col")}>
             <div className={cls(styles.title, "text-white")}>
@@ -55,19 +51,17 @@ const MobileAppSection = () => {
               <div className={styles.store}>
                 <div className={styles.store_badges}>
                   <a href={iosStoreLink} rel="noopener noreferrer" target="_blank">
-                    <Image src={appStoreBadge} alt="Get it on App Store" width={190} height={60}/>
+                    <Image src={appStoreBadge} alt="Get it on App Store" width={190} height={60} />
                   </a>
                   <a href={androidStoreLink} rel="noopener noreferrer" target="_blank">
                     <Image src={playStoreBadge} alt="Get it on Play Store" width={190} height={57} />
                   </a>
                 </div>
                 <div className={styles.store_qr}>
-                  <h5 className={styles.store_title}>
-                    {t("Homepage.mobile_app_qrcode")}
-                  </h5>
+                  <h5 className={styles.store_title}>{t("Homepage.mobile_app_qrcode")}</h5>
                   <div className={styles.store_qr}>
                     <div className={styles.store_qr_img}>
-                      <Image src={app_qr_code} alt="Scan the QR code" width={115} height={115}/>
+                      <Image src={app_qr_code} alt="Scan the QR code" width={115} height={115} />
                     </div>
                   </div>
                 </div>
@@ -85,13 +79,8 @@ const MobileAppSection = () => {
                     autoFocus={false}
                   />
                 </div>
-                <FButton
-                  type="login"
-                  className={cls("ml-2", styles.copy_btn)}
-                  name="copy-outline"
-                  onClick={copyLink}
-                >
-                   {t("Homepage.mobile_app_copy_link")}
+                <FButton type="login" className={cls("ml-2", styles.copy_btn)} name="copy-outline" onClick={copyLink}>
+                  {t("Homepage.mobile_app_copy_link")}
                 </FButton>
               </div>
             </div>

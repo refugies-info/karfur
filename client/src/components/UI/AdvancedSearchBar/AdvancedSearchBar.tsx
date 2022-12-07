@@ -186,7 +186,7 @@ const AdvancedSearchBar = (props: Props) => {
     }
   }, [searchText, props.visible, props.scroll]);
 
-  const normalize = useCallback((val) => (
+  const normalize = useCallback((val:string) => (
     val.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
   ), []);
 
@@ -233,155 +233,178 @@ const AdvancedSearchBar = (props: Props) => {
     delayedSearch(e.target.value);
   };
 
-  return (
-    <>
-      <CustomSearchBar
-        value={searchText}
-        placeholder={t("Rechercher2", "Rechercher...")}
-        onChange={onTextChange}
-        withMargin={true}
-      />
-      {isSearchModalVisible &&
-        (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
-          <NoSearchModalContainer rtl={isRTL} ref={wrapperRef}>
-            <NoResultPlaceholder />
-            <SeeAllButton
-              black
-              onClick={() => {
-                setSearchText("");
-                if (router.pathname === "/recherche") {
-                  router.replace(getPath("/recherche", router.locale));
-                  window.location.reload();
-                } else {
-                  router.push(getPath("/recherche", router.locale));
-                }
+  return <>
+    <CustomSearchBar
+      value={searchText}
+      placeholder={t("Rechercher2", "Rechercher...")}
+      onChange={onTextChange}
+      withMargin={true}
+    />
+    {isSearchModalVisible &&
+      (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
+        <NoSearchModalContainer rtl={isRTL} ref={wrapperRef}>
+          <NoResultPlaceholder />
+          <SeeAllButton
+            black
+            onClick={() => {
+              setSearchText("");
+              if (router.pathname === "/recherche") {
+                router.replace(getPath("/recherche", router.locale));
+                window.location.reload();
+              } else {
+                router.push(getPath("/recherche", router.locale));
+              }
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Streamline
-                  width={25}
-                  height={25}
-                  name={"menu"}
-                  stroke={"#ffffff"}
+              <Streamline
+                width={25}
+                height={25}
+                name={"menu"}
+                stroke={"#ffffff"}
+              />
+              <SeeAllSectionTitle rtl={isRTL} white>
+                {t(
+                  "Recherche.seeAll",
+                  "Voir toutes les fiches"
+                )}
+              </SeeAllSectionTitle>
+            </div>
+            <div style={{}}>
+              {isRTL ? (
+                <EVAIcon
+                  name="arrow-back-outline"
+                  fill={"#ffffff"}
+                  size={"large"}
                 />
-                <SeeAllSectionTitle rtl={isRTL} white>
-                  {t(
-                    "Recherche.seeAll",
-                    "Voir toutes les fiches"
-                  )}
-                </SeeAllSectionTitle>
-              </div>
-              <div style={{}}>
-                {isRTL ? (
-                  <EVAIcon
-                    name="arrow-back-outline"
-                    fill={"#ffffff"}
-                    size={"large"}
-                  />
-                ) : (
-                  <EVAIcon
-                    name="arrow-forward-outline"
-                    fill={"#ffffff"}
-                    size={"large"}
-                  />
-                )}
-              </div>
-            </SeeAllButton>
-          </NoSearchModalContainer>
-        ) : (
-          <SearchModalContainer rtl={isRTL} ref={wrapperRef}>
-            <div />
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <ResultSection
-                mr={isRTL ? false : true}
-                ml={isRTL ? true : false}
-              >
-                {searchThemes.length > 0 ? (
-                  <>
-                    <SectionTitle>Thèmes</SectionTitle>
-                    {searchThemes.map((elem, index) => {
-                      const selectedTheme = themes.find((theme) => theme.short.fr === elem);
-                      return (
-                        <ThemeContainer
-                          key={"theme-" + index}
-                          onClick={() => {
-                            setSearchText("");
-                            const needReload = isRoute(router.pathname, "/recherche");
-                            router.push({
-                              pathname: getPath("/recherche", router.locale),
-                              query: selectedTheme ? {themes: selectedTheme._id.toString()} : {}
-                            }).then(() => {
-                              if (needReload) window.location.reload();
-                            })
+              ) : (
+                <EVAIcon
+                  name="arrow-forward-outline"
+                  fill={"#ffffff"}
+                  size={"large"}
+                />
+              )}
+            </div>
+          </SeeAllButton>
+        </NoSearchModalContainer>
+      ) : (
+        <SearchModalContainer rtl={isRTL} ref={wrapperRef}>
+          <div />
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <ResultSection
+              mr={isRTL ? false : true}
+              ml={isRTL ? true : false}
+            >
+              {searchThemes.length > 0 ? (
+                <>
+                  <SectionTitle>Thèmes</SectionTitle>
+                  {searchThemes.map((elem, index) => {
+                    const selectedTheme = themes.find((theme) => theme.short.fr === elem);
+                    return (
+                      <ThemeContainer
+                        key={"theme-" + index}
+                        onClick={() => {
+                          setSearchText("");
+                          const needReload = isRoute(router.pathname, "/recherche");
+                          router.push({
+                            pathname: getPath("/recherche", router.locale),
+                            query: selectedTheme ? {themes: selectedTheme._id.toString()} : {}
+                          }).then(() => {
+                            if (needReload) window.location.reload();
+                          })
+                        }}
+                        color={selectedTheme ? selectedTheme.colors.color30 : ""}
+                      >
+                        <ThemeActionText
+                          color={selectedTheme ? selectedTheme.colors.color100 : ""}
+                        >
+                           {selectedTheme ?
+                              getThemeName(selectedTheme, router.locale)[0].toUpperCase() +
+                              getThemeName(selectedTheme, router.locale).slice(1) : ""
+                            }
+                        </ThemeActionText>
+                        <ThemeButton
+                          ml={isRTL ? false : true}
+                          mr={isRTL ? true : false}
+                          color={selectedTheme ? selectedTheme.colors.color100 : ""}
+                        >
+                          <ThemeIcon theme={selectedTheme} />
+                          <ThemeText rtl={isRTL}>
+                            {selectedTheme
+                              ? getThemeName(selectedTheme, router.locale, "short")
+                              : null}
+                          </ThemeText>
+                        </ThemeButton>
+                      </ThemeContainer>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <SectionTitle>Thèmes</SectionTitle>
+                  <NoResultPlaceholder />
+                </>
+              )}
+            </ResultSection>
+            <ResultSection>
+              {searchDispositifs.length > 0 ? (
+                <>
+                  <SectionTitle>Fiches</SectionTitle>
+                  {searchDispositifs.map((dispositif, index) => {
+                    const theme = getTheme(dispositif.theme, themes);
+                    return (
+                      <ThemeContainer
+                        key={"disp-" + index}
+                        color={theme.colors.color30 || ""}
+                        onClick={() => {
+                          setSearchText("");
+                          const route = dispositif.typeContenu === "demarche"
+                            ? "/demarche/[id]" : "/dispositif/[id]";
+                          router.push({
+                            pathname: getPath(route, router.locale),
+                            query: {id: dispositif._id.toString() || ""}});
                           }}
-                          color={selectedTheme ? selectedTheme.colors.color30 : ""}
+                      >
+                        <ThemeButton
+                          color={theme.colors.color100 || ""}
+                          mr={isRTL ? false : true}
+                          ml={isRTL ? true : false}
                         >
-                          <ThemeActionText
-                            color={selectedTheme ? selectedTheme.colors.color100 : ""}
-                          >
-                             {selectedTheme ?
-                                getThemeName(selectedTheme, router.locale)[0].toUpperCase() +
-                                getThemeName(selectedTheme, router.locale).slice(1) : ""
-                              }
-                          </ThemeActionText>
-                          <ThemeButton
-                            ml={isRTL ? false : true}
-                            mr={isRTL ? true : false}
-                            color={selectedTheme ? selectedTheme.colors.color100 : ""}
-                          >
-                            <ThemeIcon theme={selectedTheme} />
-                            <ThemeText rtl={isRTL}>
-                              {selectedTheme
-                                ? getThemeName(selectedTheme, router.locale, "short")
-                                : null}
-                            </ThemeText>
-                          </ThemeButton>
-                        </ThemeContainer>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <SectionTitle>Thèmes</SectionTitle>
-                    <NoResultPlaceholder />
-                  </>
-                )}
-              </ResultSection>
-              <ResultSection>
-                {searchDispositifs.length > 0 ? (
-                  <>
-                    <SectionTitle>Fiches</SectionTitle>
-                    {searchDispositifs.map((dispositif, index) => {
-                      const theme = getTheme(dispositif.theme, themes);
-                      return (
-                        <ThemeContainer
-                          key={"disp-" + index}
-                          color={theme.colors.color30 || ""}
-                          onClick={() => {
-                            setSearchText("");
-                            const route = dispositif.typeContenu === "demarche"
-                              ? "/demarche/[id]" : "/dispositif/[id]";
-                            router.push({
-                              pathname: getPath(route, router.locale),
-                              query: {id: dispositif._id.toString() || ""}});
+                          <ThemeIcon theme={theme} />
+                        </ThemeButton>
+                        <ThemeDispositifText
+                          color={theme.colors.color100 || ""}
+                        >
+                          <Highlighter
+                            //highlightClassName="highlighter"
+                            highlightStyle={{
+                              fontWeight: "bold",
+                              color: theme.colors.color100 || "black",
+                              backgroundColor: "white",
+                              padding: "0px",
                             }}
-                        >
-                          <ThemeButton
-                            color={theme.colors.color100 || ""}
-                            mr={isRTL ? false : true}
-                            ml={isRTL ? true : false}
-                          >
-                            <ThemeIcon theme={theme} />
-                          </ThemeButton>
-                          <ThemeDispositifText
-                            color={theme.colors.color100 || ""}
-                          >
+                            searchWords={[searchText]}
+                            autoEscape={true}
+                            sanitize={(text: string) =>
+                              text
+                                .normalize("NFD")
+                                .replace(/[\u0300-\u036f]/g, "")
+                                .trim()
+                                .toLowerCase()
+                            }
+                            textToHighlight={
+                              dispositif.titreInformatif.slice(0, 30) +
+                              (dispositif.titreInformatif.length > 30 ? "..." : "")
+                            }
+                          />
+                          {dispositif.titreMarque && " avec "}
+                          {dispositif.titreMarque ? (
                             <Highlighter
                               //highlightClassName="highlighter"
                               highlightStyle={{
@@ -400,99 +423,74 @@ const AdvancedSearchBar = (props: Props) => {
                                   .toLowerCase()
                               }
                               textToHighlight={
-                                dispositif.titreInformatif.slice(0, 30) +
-                                (dispositif.titreInformatif.length > 30 ? "..." : "")
+                                dispositif.titreMarque.slice(0, 25) +
+                                (dispositif.titreMarque.length > 25 ? "..." : "")
                               }
                             />
-                            {dispositif.titreMarque && " avec "}
-                            {dispositif.titreMarque ? (
-                              <Highlighter
-                                //highlightClassName="highlighter"
-                                highlightStyle={{
-                                  fontWeight: "bold",
-                                  color: theme.colors.color100 || "black",
-                                  backgroundColor: "white",
-                                  padding: "0px",
-                                }}
-                                searchWords={[searchText]}
-                                autoEscape={true}
-                                sanitize={(text: string) =>
-                                  text
-                                    .normalize("NFD")
-                                    .replace(/[\u0300-\u036f]/g, "")
-                                    .trim()
-                                    .toLowerCase()
-                                }
-                                textToHighlight={
-                                  dispositif.titreMarque.slice(0, 25) +
-                                  (dispositif.titreMarque.length > 25 ? "..." : "")
-                                }
-                              />
-                            ) : null}
-                          </ThemeDispositifText>
-                        </ThemeContainer>
-                      );
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <SectionTitle>Fiches</SectionTitle>
-                    <NoResultPlaceholder />
-                  </>
-                )}
-              </ResultSection>
-            </div>
-            <SeeAllButton
-              onClick={() => {
-                setSearchText("");
-                if (router.pathname === "/recherche") {
-                  router.replace(getPath("/recherche", router.locale));
-                  window.location.reload();
-                } else {
-                  router.push(getPath("/recherche", router.locale));
-                }
+                          ) : null}
+                        </ThemeDispositifText>
+                      </ThemeContainer>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <SectionTitle>Fiches</SectionTitle>
+                  <NoResultPlaceholder />
+                </>
+              )}
+            </ResultSection>
+          </div>
+          <SeeAllButton
+            onClick={() => {
+              setSearchText("");
+              if (router.pathname === "/recherche") {
+                router.replace(getPath("/recherche", router.locale));
+                window.location.reload();
+              } else {
+                router.push(getPath("/recherche", router.locale));
+              }
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Streamline
-                  width={25}
-                  height={25}
-                  name={"menu"}
-                  stroke={"#828282"}
-                />
-                <SeeAllSectionTitle rtl={isRTL}>
-                  {t(
-                    "Recherche.seeAll",
-                    "Voir toutes les fiches"
-                  )}
-                </SeeAllSectionTitle>
-              </div>
-              <div style={{}}>
-                {isRTL ? (
-                  <EVAIcon
-                    name="arrow-back-outline"
-                    fill={"#828282"}
-                    size={"large"}
-                  />
-                ) : (
-                  <EVAIcon
-                    name="arrow-forward-outline"
-                    fill={"#828282"}
-                    size={"large"}
-                  />
+              <Streamline
+                width={25}
+                height={25}
+                name={"menu"}
+                stroke={"#828282"}
+              />
+              <SeeAllSectionTitle rtl={isRTL}>
+                {t(
+                  "Recherche.seeAll",
+                  "Voir toutes les fiches"
                 )}
-              </div>
-            </SeeAllButton>
-          </SearchModalContainer>
-        ))}
-    </>
-  );
+              </SeeAllSectionTitle>
+            </div>
+            <div style={{}}>
+              {isRTL ? (
+                <EVAIcon
+                  name="arrow-back-outline"
+                  fill={"#828282"}
+                  size={"large"}
+                />
+              ) : (
+                <EVAIcon
+                  name="arrow-forward-outline"
+                  fill={"#828282"}
+                  size={"large"}
+                />
+              )}
+            </div>
+          </SeeAllButton>
+        </SearchModalContainer>
+      ))}
+  </>;
 };
 
 export default AdvancedSearchBar;

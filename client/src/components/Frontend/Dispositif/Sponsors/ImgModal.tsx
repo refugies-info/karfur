@@ -6,7 +6,7 @@ import {
   InputGroup,
   Spinner,
 } from "reactstrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";

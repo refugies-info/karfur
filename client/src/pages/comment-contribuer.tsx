@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useSelector } from "react-redux";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import API from "utils/API";
@@ -130,14 +130,14 @@ const CommentContribuer = (props: Props) => {
               {t("CommentContribuer.TraductionReseau", "Vous parlez une autre langue ? Rejoignez un réseau de :")}
             </h2>
             <div className={styles.row}>
-              <Link href={translationLink} passHref>
+              <Link legacyBehavior href={translationLink} passHref>
                 <NumberTraduction
                   amount={props.nbTraductors}
                   text={t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}
                   isRTL={isRTL}
                 />
               </Link>
-              <Link href={translationLink} passHref>
+              <Link legacyBehavior href={translationLink} passHref>
                 <NumberTraduction
                   amount={props.nbExperts}
                   text={t("CommentContribuer.experts en traduction", "experts en traduction")}

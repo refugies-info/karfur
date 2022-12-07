@@ -32,7 +32,8 @@ export const FButtonMobile = (props: Props) => {
         <EVAIcon name={props.name} fill={props.fill} size={"large"} />
       </span>
 
-      {t(props.title, props.defaultTitle)}
+      {/* @ts-ignore */}
+      <>{t(props.title, props.defaultTitle)}</>
     </button>
   );
 };
