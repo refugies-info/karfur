@@ -2,7 +2,7 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 FROM node:16-alpine AS builder
 ENV NEXT_TELEMETRY_DISABLED 1
