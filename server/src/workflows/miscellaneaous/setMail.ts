@@ -6,20 +6,17 @@ import logger from "../../logger";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object().keys({
-    mail: Joi.string(),
+    mail: Joi.string()
   })
 });
 interface Request {
   mail: string;
 }
 
-let apiInstance = new SibApiV3Sdk.ContactsApi()
+let apiInstance = new SibApiV3Sdk.ContactsApi();
 apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.SENDINBLUE_API_KEY);
 
-export const setMail = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const setMail = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -34,21 +31,31 @@ export const setMail = async (
     createContactRequest.email = req.body.mail;
     createContactRequest.listIds = [57]; // ID of RI contact list
 
-    await apiInstance.createContact(createContactRequest).then(function () {
-      logger.info("[setMail] API called successfully.");
-    }, function (error) {
-      logger.error("[setMail] Error while creating contact", error);
-      throw new Error("Error while creating contact");
-    });
+    await apiInstance.createContact(createContactRequest).then(
+      function () {
+        logger.info("[setMail] API called successfully.");
+      },
+      function (error) {
+        logger.error("[setMail] Error while creating contact", error);
+        if (error.response.statusCode === 400 && error.response.body?.message === "Contact already exist")
+          throw new Error("CONTACT_ALREADY_EXIST");
+        throw new Error("Error while creating contact");
+      }
+    );
 
     return res.status(200).json({
-      text: "Succès",
+      text: "Succès"
     });
   } catch (error) {
     logger.error("[setMail] error", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
+      case "CONTACT_ALREADY_EXIST":
+        return res.status(400).json({
+          code: "CONTACT_ALREADY_EXIST",
+          text: "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !"
+        });
       case "INVALID_REQUEST":
         return res.status(400).json({ text: "Requête invalide" });
       case "NOT_FROM_SITE":

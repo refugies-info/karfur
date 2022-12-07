@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import NoResultsBackgroundImage from "assets/search_no_results.svg";
 
 const NoResultsContainer = styled.div`

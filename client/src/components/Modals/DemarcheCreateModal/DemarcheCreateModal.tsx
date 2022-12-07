@@ -8,7 +8,7 @@ import Modal from "../Modal";
 
 import { colors } from "colors";
 import styles from "./DemarcheCreateModal.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   show: boolean;

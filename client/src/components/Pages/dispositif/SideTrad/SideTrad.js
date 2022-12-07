@@ -23,7 +23,7 @@ import produce from "immer";
 import styled from "styled-components";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./SideTrad.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { cls } from "lib/classname";
 
 const Editor = dynamic(

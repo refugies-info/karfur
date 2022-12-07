@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styled from "styled-components";
 import { UserStructureMembre } from "types/interface";
 import { ObjectId } from "mongodb";

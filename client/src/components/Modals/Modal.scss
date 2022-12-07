@@ -20,6 +20,10 @@
   }
   @include isMobile() {
     width: 100%;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
   }
 
   &.auto-height {
@@ -27,7 +31,7 @@
   }
 
   &.bg-grey {
-    background: #EDEBEB;
+    background: #edebeb;
   }
 
   .modal-content {

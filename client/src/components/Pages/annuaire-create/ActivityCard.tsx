@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
 import type { Theme } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";

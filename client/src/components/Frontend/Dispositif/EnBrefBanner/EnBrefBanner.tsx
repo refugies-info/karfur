@@ -94,18 +94,23 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
               "Public visé",
             ].includes(card.title)
           ) {
+            // @ts-ignore
             texte =
-              card.contentTitle &&
-              t("Dispositif." + card.contentTitle, card.contentTitle);
+            card.contentTitle &&
+            // @ts-ignore
+            t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (card.title === "Combien ça coûte ?") {
+            // @ts-ignore
             texte = card.free
-              ? t("Dispositif.Gratuit", "Gratuit")
-              : card.price +
-                " € " +
+            ? t("Dispositif.Gratuit", "Gratuit")
+            : card.price +
+            " € " +
+            // @ts-ignore
                 t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (
             card.title && ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
           ) {
+            // @ts-ignore
             texte = t("Dispositif." + card.title, card.title);
           }
           return (

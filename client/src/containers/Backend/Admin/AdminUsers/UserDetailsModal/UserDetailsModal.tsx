@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Event, Indicators, Log, SimplifiedUser } from "types/interface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
 import "moment/locale/fr";
@@ -222,7 +222,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     }
   };
 
-  const getMinutes = useCallback((value) => {
+  const getMinutes = useCallback((value: number|undefined) => {
     return value ? Math.floor(value / 1000 / 60) : 0;
   }, []);
 

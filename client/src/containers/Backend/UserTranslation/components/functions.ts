@@ -1,8 +1,11 @@
+import { colors } from "colors";
 import {
   TranslationStatus,
   IDispositifTranslation,
   ITypeContenu,
-} from "../../../../types/interface";
+  Need,
+  AvailableLanguageI18nCode
+} from "types/interface";
 
 const filterDataExpert = (
   data: IDispositifTranslation[],
@@ -165,4 +168,34 @@ export const sortData = (
     return compare(valueA, valueB, sortedHeader.sens);
   });
   return dispositifsToDisplay;
+};
+
+const isNotTranslated = (need: Need, ln: AvailableLanguageI18nCode) => {
+  return !need[ln]?.text || ( // no title translated
+    need.fr.subtitle && !need[ln]?.subtitle) // or no subtitle if defined in french
+}
+
+const isTranslationOutdated = (need: Need, ln: AvailableLanguageI18nCode) => {
+  const translationUpdatedAt = need[ln]?.updatedAt;
+  if (!need.fr.updatedAt || !translationUpdatedAt) return true;
+  return need.fr.updatedAt > translationUpdatedAt
+}
+
+export const getStatusColorAndText = (
+  need: Need,
+  langueI18nCode: AvailableLanguageI18nCode
+) => {
+  if (!langueI18nCode) {
+    return { statusColor: colors.darkGrey, statusText: "Erreur" };
+  }
+
+  if (isNotTranslated(need, langueI18nCode)) {
+    return { statusColor: colors.blue, statusText: "À traduire" };
+  }
+
+  if (isTranslationOutdated(need, langueI18nCode)) {
+    return { statusColor: colors.rouge, statusText: "À revoir" };
+  }
+
+  return { statusColor: colors.green, statusText: "À jour" };
 };

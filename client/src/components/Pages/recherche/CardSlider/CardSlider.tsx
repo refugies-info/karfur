@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { cls } from "lib/classname";
 import { Button } from "reactstrap";
 import { ContentType, SearchDispositif } from "types/interface";
+import useRTL from "hooks/useRTL";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -19,6 +20,7 @@ const NEGATIVE_MARGINS_MD = 50 * 2;
 const RESPONSIVE_WIDTH_LIMIT = 1400;
 
 const CardSlider = (props: Props) => {
+  const isRTL = useRTL();
   const slider = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(2);
@@ -50,11 +52,11 @@ const CardSlider = (props: Props) => {
     if (!slider.current) return;
     const pageWidth = slider.current.clientWidth - margins + gap;
     slider.current.scroll({
-      left: page * pageWidth,
+      left: page * pageWidth * (isRTL ? -1 : 1),
       top: 0,
       behavior: "smooth"
     });
-  }, [page, gap, margins]);
+  }, [page, gap, margins, isRTL]);
 
   return (
     <div className={styles.container}>

@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Theme } from "types/interface";
@@ -109,9 +109,11 @@ const SearchResults = (props: Props) => {
               count={filteredResult.demarches.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
             />
-            {demarches.map((d) => (
-              <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
-            ))}
+            {demarches.map((d) =>
+              typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
+                <DemarcheCard key={d._id.toString()} demarche={d} targetBlank />
+              )
+            )}
           </div>
           {!isMobile && query.type !== "dispositif" && filteredResult.demarches.length >= MAX_SHOWN_DEMARCHES && (
             <SeeMoreButton onClick={() => setHideDemarches((h) => !h)} visible={!hideDemarches} />
@@ -138,14 +140,16 @@ const SearchResults = (props: Props) => {
               count={filteredResult.dispositifs.length}
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
             />
-            {dispositifs.map((d) => (
-              <DispositifCard
-                key={d._id.toString()}
-                dispositif={d}
-                selectedDepartment={selectedDepartment}
-                targetBlank
-              />
-            ))}
+            {dispositifs.map((d) =>
+              typeof d === "string" ? null : (
+                <DispositifCard
+                  key={d._id.toString()}
+                  dispositif={d}
+                  selectedDepartment={selectedDepartment}
+                  targetBlank
+                />
+              )
+            )}
           </div>
           {!isMobile && query.type !== "demarche" && filteredResult.dispositifs.length >= MAX_SHOWN_DISPOSITIFS && (
             <SeeMoreButton onClick={() => setHideDispositifs((h) => !h)} visible={!hideDispositifs} />
@@ -173,9 +177,9 @@ const SearchResults = (props: Props) => {
               color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
               themes={props.themesSelected}
             />
-            {secondaryDispositifs.map((d) => (
-              <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
-            ))}
+            {secondaryDispositifs.map((d) =>
+              typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />
+            )}
           </div>
           {!isMobile &&
             query.type !== "demarche" &&

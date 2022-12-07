@@ -22,6 +22,6 @@ export const defaultStaticPropsWithThemes = wrapper.getStaticProps((store) => as
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
     },
-    revalidate: 60 * 60 // need to rebuild the page every 60 mins to update themes
+    revalidate: 60 * 10 // need to rebuild the page every 10 mins to update themes
   };
 });
