@@ -55,6 +55,7 @@ const QuickToolbar = (props: Props) => {
         "Et après ?",
       ].includes(title)
     ) {
+      // @ts-ignore
       return t(`Dispositif.${title}`);
     }
 

@@ -326,6 +326,7 @@
     "code_sent_sms": "Un code vous a été envoyé par sms sur votre mobile au numéro {{phone}}.",
     "Entrez votre code": "Entrez votre code",
     "Renvoyer le code": "Renvoyer le code",
+    "Renvoyer le lien": "Renvoyer le lien",
     "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
     "Une erreur est survenue. Veuillez réessayer.": "Une erreur est survenue. Veuillez réessayer.",
     "Nouvel administrateur": "Nouvel administrateur",
@@ -542,7 +543,17 @@
     "Inscription": "Inscription",
     "Mes notifications": "Mes notifications",
     "Mes favoris": "Mes favoris",
-    "Déconnexion": "Déconnexion"
+    "Déconnexion": "Déconnexion",
+    "Trouver de l'information": "Trouver de l'information",
+    "Publier une fiche": "Publier une fiche",
+    "Traduire": "Traduire",
+    "Parler de nous": "Parler de nous",
+    "Kit de communication": "Kit de communication",
+    "Affiches et dépliants": "Affiches et dépliants",
+    "Pour la presse": "Pour la presse",
+    "Pour les ambassadeurs": "Pour les ambassadeurs",
+    "Pour l'Ukraine": "Pour l'Ukraine",
+    "S'inscrire à la newsletter": "S'inscrire à la newsletter"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "S'inscrire à la newsletter",
@@ -556,7 +567,28 @@
     "Centre d'aide": "Consulter le centre d'aide",
     "description": "Réfugiés.info est un portail d’information collaboratif porté par la ",
     "description_suite": " et développé par la ",
-    "accessibility_link": "Accessibilité : non conforme"
+    "accessibility_link": "Accessibilité : non conforme",
+    "newsletter_contact_already_exist": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
+    "Les fiches actions": "Les fiches actions",
+    "Les fiches démarches": "Les fiches démarches",
+    "L’annuaire des acteurs": "L’annuaire des acteurs",
+    "Trois types d’information": "Trois types d’information",
+    "Participer": "Participer",
+    "Recenser mon action": "Recenser mon action",
+    "Aider à traduire": "Aider à traduire",
+    "Rejoindre le Réseau des contributeurs": "Rejoindre le Réseau des contributeurs",
+    "Déployer sur mon territoire": "Déployer sur mon territoire",
+    "S’inscrire à la newsletter": "S’inscrire à la newsletter",
+    "Chaîne Youtube": "Chaîne Youtube",
+    "La Délégation interministérielle à l’accueil et l’intégration des réfugiés": "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
+    "Le programme Entrepreneur d’Intérêt Général": "Le programme Entrepreneur d’Intérêt Général",
+    "A propos": "A propos",
+    "Ressources": "Ressources",
+    "Comment utiliser l'application": "Comment utiliser l'application",
+    "Plan du site": "Plan du site",
+    "Gestion des cookies": "Gestion des cookies",
+    "Sauf mention contraire, tous les contenus de ce site sont sous": "Sauf mention contraire, tous les contenus de ce site sont sous",
+    "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.": "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France."
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
@@ -726,5 +758,8 @@
     "Gratuite et plus facile à utiliser": "Gratuite et plus facile à utiliser :",
     "Rester sur le navigateur": "Rester sur le navigateur",
     "Télécharger l'application": "Télécharger l’application"
-  }
+  },
+  "Fermeture": "Fermeture",
+  "La Mednum": "La Mednum",
+  "Aide": "Aide"
 }

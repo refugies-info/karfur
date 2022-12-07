@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Theme } from "types/interface";

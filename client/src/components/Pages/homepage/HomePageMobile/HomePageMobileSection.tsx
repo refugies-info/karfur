@@ -4,7 +4,7 @@ import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 import icon_mobilisation from "assets/icon_mobilisation.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import useRTL from "hooks/useRTL";
 import { useTranslation } from "next-i18next";
 
@@ -91,9 +91,11 @@ export const HomePageMobileSection = (props: Props) => {
         />
       </div>
       <TitleContainer textColor={props.textColor}>
+        {/* @ts-ignore */}
         {t(props.title, props.defaultTitle)}
       </TitleContainer>
       <TextContainer textColor={props.textColor}>
+        {/* @ts-ignore */}
         {t(props.text, props.defaultText)}
       </TextContainer>
       <ButtonContainer
@@ -116,7 +118,8 @@ export const HomePageMobileSection = (props: Props) => {
           ) : null}
         </IconContainer>
 
-        {t(props.buttonTitle, props.defaultBoutonTitle)}
+        {/* @ts-ignore */}
+        <>{t(props.buttonTitle, props.defaultBoutonTitle)}</>
       </ButtonContainer>
     </SectionContainer>
   );

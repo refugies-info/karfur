@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { rendez_vous_ordinateur } from "assets/figma";
 import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "scss/components/modals.module.scss";
 import { useTranslation } from "next-i18next";
 

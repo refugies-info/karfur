@@ -130,7 +130,8 @@ const SearchHeader = (props: Props) => {
 
   // AGE
   const ageOptions = useMemo(() => {
-    return ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }));
+    // @ts-ignore
+    return ageFilters.map((filter) => ({ ...filter, value: t(filter.value) as string }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectAgeOption = useCallback(
@@ -140,7 +141,8 @@ const SearchHeader = (props: Props) => {
 
   // FRENCH LEVEL
   const frenchLevelOptions = useMemo(() => {
-    return frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }));
+    // @ts-ignore
+    return frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) as string }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectFrenchLevelOption = useCallback(

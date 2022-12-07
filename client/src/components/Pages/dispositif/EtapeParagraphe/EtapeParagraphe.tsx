@@ -382,8 +382,8 @@ const EtapeParagraphe = (props: Props) => {
                     className="mr-8"
                   />
                   <span>
-                    {t(
-                      "Dispositif." +
+                    {/* @ts-ignore */}
+                    {t("Dispositif." +
                         ((subitem.option || {}).texte || "En ligne"),
                       (subitem.option || {}).texte || "En ligne"
                     )}
@@ -880,8 +880,8 @@ const EtapeParagraphe = (props: Props) => {
                     {subitem.option.ctaField
                       ? subitem.option[subitem.option.ctaField]
                       : subitem.option.ctaText &&
-                        t(
-                          "Dispositif." + subitem.option.ctaText,
+                        // @ts-ignore
+                        t("Dispositif." + subitem.option.ctaText,
                           subitem.option.ctaText
                         )}
                   </FButton>

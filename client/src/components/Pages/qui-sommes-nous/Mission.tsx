@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import FButton from "components/UI/FButton/FButton";
 import { assetsOnServer } from "assets/assetsOnServer";
 import { getPath } from "routes";
@@ -50,17 +50,9 @@ const MissionDispositif = () => {
 
   return (
     <MissionDetailContainer>
-      <Image
-        src={assetsOnServer.quiSommesNous.recenserDispositif}
-        width={326}
-        height={160}
-        alt="recenser"
-      />
+      <Image src={assetsOnServer.quiSommesNous.recenserDispositif} width={326} height={160} alt="recenser" />
       <MissionDetailTitle>
-        {t(
-          "QuiSommesNous.recenser",
-          "Recenser les dispositifs d’accompagnement"
-        )}
+        {t("QuiSommesNous.recenser", "Recenser les dispositifs d’accompagnement")}
       </MissionDetailTitle>
       <MissionDetailDescription>
         {t(
@@ -68,14 +60,14 @@ const MissionDispositif = () => {
           "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives."
         )}
       </MissionDetailDescription>
-      <Link href={getPath("/recherche", router.locale, "?filter=dispositifs")} passHref>
+      <Link legacyBehavior href={getPath("/recherche", router.locale, "?filter=dispositifs")} passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher un dispositif", "Explorer un dispositif")}
         </FButton>
       </Link>
     </MissionDetailContainer>
-  )
-}
+  );
+};
 
 const MissionDemarche = () => {
   const { t } = useTranslation();
@@ -84,18 +76,10 @@ const MissionDemarche = () => {
   return (
     <MissionDetailContainer>
       <div>
-        <Image
-          src={assetsOnServer.quiSommesNous.vulgariserDemarche}
-          width={326}
-          height={160}
-          alt="vulgariser"
-        />
+        <Image src={assetsOnServer.quiSommesNous.vulgariserDemarche} width={326} height={160} alt="vulgariser" />
       </div>
       <MissionDetailTitle>
-        {t(
-          "QuiSommesNous.vulgariser",
-          "Vulgariser et traduire les démarches administratives"
-        )}
+        {t("QuiSommesNous.vulgariser", "Vulgariser et traduire les démarches administratives")}
       </MissionDetailTitle>
       <MissionDetailDescription>
         {t(
@@ -103,30 +87,22 @@ const MissionDemarche = () => {
           "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration."
         )}
       </MissionDetailDescription>
-      <Link href={getPath("/recherche", router.locale, "?filter=demarches")} passHref>
+      <Link legacyBehavior href={getPath("/recherche", router.locale, "?filter=demarches")} passHref>
         <FButton type="fill-dark" tag="a">
           {t("Chercher une démarche", "Explorer les démarches")}
         </FButton>
       </Link>
     </MissionDetailContainer>
-  )
-}
+  );
+};
 
 const MissionParcours = () => {
   const { t } = useTranslation();
   return (
     <MissionDetailContainer>
-      <Image
-        src={assetsOnServer.quiSommesNous.parcours}
-        width={326}
-        height={160}
-        alt="parcours"
-      />
+      <Image src={assetsOnServer.quiSommesNous.parcours} width={326} height={160} alt="parcours" />
       <MissionDetailTitle>
-        {t(
-          "QuiSommesNous.parcours",
-          "Créer des parcours personnalisés d’intégration"
-        )}
+        {t("QuiSommesNous.parcours", "Créer des parcours personnalisés d’intégration")}
       </MissionDetailTitle>
       <MissionDetailDescription>
         {t(
@@ -134,15 +110,10 @@ const MissionParcours = () => {
           "Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Réfugiés.info propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie."
         )}
       </MissionDetailDescription>
-      <FooterText>
-        {t(
-          "QuiSommesNous.disponible prochainement",
-          "Disponible prochainement"
-        )}
-      </FooterText>
+      <FooterText>{t("QuiSommesNous.disponible prochainement", "Disponible prochainement")}</FooterText>
     </MissionDetailContainer>
-  )
-}
+  );
+};
 
 export const Mission = () => (
   <MissionContentContainer>

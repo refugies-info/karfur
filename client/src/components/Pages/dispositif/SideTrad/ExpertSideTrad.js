@@ -24,7 +24,7 @@ import produce from "immer";
 import styled from "styled-components";
 import { updateTradActionCreator } from "services/Translation/translation.actions";
 import styles from "./SideTrad.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import isInBrowser from "lib/isInBrowser";
 import { cls } from "lib/classname";
 

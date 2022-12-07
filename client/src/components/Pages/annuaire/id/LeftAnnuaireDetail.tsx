@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Structure, Picture } from "types/interface";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";

@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { colors } from "colors";
-import {
-  illustration_connaitre_initiative,
-  illustration_aidez_traduire,
-} from "assets/figma";
+import { illustration_connaitre_initiative, illustration_aidez_traduire } from "assets/figma";
 import { HomePageMobileSection } from "./HomePageMobileSection";
 import { GoToDesktopModal } from "./GoToDesktopModal";
-import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { ReceiveInvitationMailModal } from "./ReceiveInvitationMailModal";
 import { HelpToTranslateMobileModal } from "./HelpToTranslateMobileModal";
 import MobileAppSection from "../MobileAppSection";
 
-interface Props {
-}
-
 export const HomePageMobile = () => {
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
-  const [showNewslettreModal, setShowNewsletterModal] = useState(false);
-  const [showHelpToTranslateModal, setshowHelpToTranslateModal] =
-    useState(false);
-  const [showInvitationEmailModal, setShowInvitationEmailModal] =
-    useState(false);
+  const [showHelpToTranslateModal, setshowHelpToTranslateModal] = useState(false);
+  const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(false);
 
   const toggleGoToDesktopModal = () => {
     setShowGoToDesktopModal(!showGoToDesktopModal);
@@ -28,9 +18,6 @@ export const HomePageMobile = () => {
 
   const toggleShowHelpToTranslateModal = () => {
     setshowHelpToTranslateModal(!showHelpToTranslateModal);
-  };
-  const toggleShowNewsletterModal = () => {
-    setShowNewsletterModal(!showNewslettreModal);
   };
   const toggleShowInvitationEmailModal = () => {
     setShowInvitationEmailModal(!showInvitationEmailModal);
@@ -78,19 +65,12 @@ export const HomePageMobile = () => {
         show={showGoToDesktopModal}
         toggleShowInvitationEmailModal={toggleShowInvitationEmailModal}
       />
-      <SubscribeNewsletterModal
-        toggle={toggleShowNewsletterModal}
-        show={showNewslettreModal}
-      />
       <ReceiveInvitationMailModal
         toggle={toggleShowInvitationEmailModal}
         show={showInvitationEmailModal}
         togglePreviousModal={toggleGoToDesktopModal}
       />
-      <HelpToTranslateMobileModal
-        toggle={toggleShowHelpToTranslateModal}
-        show={showHelpToTranslateModal}
-      />
+      <HelpToTranslateMobileModal toggle={toggleShowHelpToTranslateModal} show={showHelpToTranslateModal} />
     </div>
   );
 };

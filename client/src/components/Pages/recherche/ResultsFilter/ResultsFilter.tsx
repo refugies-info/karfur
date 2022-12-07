@@ -81,7 +81,8 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
               className={cls(styles.btn, query.type === option.key && styles.selected)}
               onClick={() => selectType(option.key)}
             >
-              {t(option.value)} {getCount(option.key)}
+              {/* @ts-ignore */}
+              <>{t(option.value)} {getCount(option.key)}</>
             </Button>
           ))}
         </div>
@@ -90,7 +91,8 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
           <Dropdown isOpen={open} toggle={toggleSort}>
             <DropdownToggle className={styles.dropdown}>
               <EVAIcon name="swap-outline" fill="black" size={20} className={styles.icon} />
-              {t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}
+              {/* @ts-ignore */}
+              <>{t(sortOptions.find((opt) => opt.key === query.sort)?.value || "")}</>
             </DropdownToggle>
             <DropdownMenu className={styles.menu}>
               {sortOptions
@@ -107,7 +109,8 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
                       onClick={() => selectSort(option.key)}
                       className={cls(styles.item, isSelected && styles.selected)}
                     >
-                      {t(option.value)}
+                      {/* @ts-ignore */}
+                      <>{t(option.value)}</>
                       {isSelected && <EVAIcon name="checkmark-outline" fill="white" size={20} />}
                     </DropdownItem>
                   );

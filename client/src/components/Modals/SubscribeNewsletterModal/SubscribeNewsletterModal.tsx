@@ -11,20 +11,19 @@ import { colors } from "colors";
 import { isMobile } from "react-device-detect";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "scss/components/modals.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
+import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 
 declare const window: Window;
-interface Props {
-  toggle: () => void;
-  show: boolean;
-}
 
 interface EmailProps {
   email: string;
   notEmailError: boolean;
   id: string;
-  onChange: ChangeEventHandler<HTMLInputElement>
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 const TitleContainer = styled.div`
   font-size: 28px;
@@ -86,13 +85,17 @@ const EmailField = (props: EmailProps) => {
         newSize
       />
     </>
-  )
-}
+  );
+};
 
-export const SubscribeNewsletterModal = (props: Props) => {
+export const SubscribeNewsletterModal = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
   const { t } = useTranslation();
+
+  const show = useSelector(showNewsletterModalSelector);
+  const toggle = () => dispatch(toggleNewsletterModalAction(false));
 
   const handleChangeEmail = (event: any) => {
     setEmail(event.target.value);
@@ -105,26 +108,28 @@ export const SubscribeNewsletterModal = (props: Props) => {
         title: "Oops...",
         text: "Aucun mail renseigné",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
       return;
     }
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      props.toggle();
+      toggle();
       API.set_mail({ mail: email })
         .then(() => {
           Swal.fire({
             title: "Yay...",
             text: "Mail correctement enregistré !",
             type: "success",
-            timer: 1500,
+            timer: 1500
           });
           setEmail("");
         })
-        .catch(() => {
-          Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+        .catch((e) => {
+          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST")
+            Swal.fire("Oh non...", t("Footer.newsletter_contact_already_exist"), "error");
+          else Swal.fire("Oh non...", "Une erreur s'est produite", "error");
         });
     } else {
       setNotEmailError(true);
@@ -132,15 +137,10 @@ export const SubscribeNewsletterModal = (props: Props) => {
   };
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <MainContainer>
         {isMobile && (
-          <CloseIconContainer onClick={props.toggle}>
+          <CloseIconContainer onClick={toggle}>
             <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIconContainer>
         )}
@@ -148,10 +148,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
-            : t(
-                "Footer.Inscription à la newsletter",
-                "Inscription à la newsletter"
-              )}
+            : t("Footer.Inscription à la newsletter", "Inscription à la newsletter")}
         </TitleContainer>
         <TextContainer>
           {t(
@@ -159,22 +156,11 @@ export const SubscribeNewsletterModal = (props: Props) => {
             "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info"
           )}
         </TextContainer>
-        <EmailField
-          id="email"
-          email={email}
-          onChange={handleChangeEmail}
-          notEmailError={notEmailError}
-        />
+        <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />
         {notEmailError && (
           <ErrorMessageContainer>
-            {t(
-              "Register.Ceci n'est pas un email,",
-              "Ceci n'est pas un email,"
-            )}{" "}
-            {t(
-              "Register.vérifiez l'orthographe",
-              "vérifiez l'orthographe."
-            )}
+            {t("Register.Ceci n'est pas un email,", "Ceci n'est pas un email,")}{" "}
+            {t("Register.vérifiez l'orthographe", "vérifiez l'orthographe.")}
           </ErrorMessageContainer>
         )}
         {isMobile ? (
@@ -189,11 +175,7 @@ export const SubscribeNewsletterModal = (props: Props) => {
           />
         ) : (
           <ButtonContainer>
-            <FButton
-              type="light-action"
-              name="close-outline"
-              onClick={props.toggle}
-            >
+            <FButton type="light-action" name="close-outline" onClick={toggle}>
               <div> {t("Retour", "Retour")}</div>
             </FButton>
             <FButton

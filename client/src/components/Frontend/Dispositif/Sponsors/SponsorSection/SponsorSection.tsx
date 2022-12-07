@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../Sponsors.module.scss";
 import { Structure } from "types/interface";
 
@@ -91,7 +91,7 @@ export const SponsorSection = (props: Props) => {
               >
                 <Image
                   className={styles.sponsor_img}
-                  src={(structure.picture || {}).secure_url}
+                  src={structure.picture?.secure_url|| ""}
                   alt={structure.acronyme}
                   width={160}
                   height={110}

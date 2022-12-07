@@ -90,8 +90,8 @@ export class PdfCreateModal extends Component<Props> {
               copyStyles
               fonts={[
                 {
-                  family: "CircularStdMedium",
-                  source: assetsOnServer + "CircularStd-Medium.WOFF",
+                  family: "Marianne-Medium",
+                  source: assetsOnServer + "Marianne-Medium.woff",
                 },
               ]}
               trigger={() => (

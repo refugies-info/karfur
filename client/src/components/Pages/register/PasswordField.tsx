@@ -91,8 +91,8 @@ const PasswordField = (props: Props) => {
               />
             </ProgressContainer>
             <StrenghText>
-              {t(
-                "Register." + getStrength(passwordScore / 4),
+              {/* @ts-ignore */}
+              {t("Register." + getStrength(passwordScore / 4),
                 getStrength(passwordScore / 4)
               )}
             </StrenghText>

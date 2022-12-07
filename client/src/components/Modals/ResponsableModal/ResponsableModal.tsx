@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../UI/FButton/FButton";
 import { responsableFiche } from "../../../assets/figma";
 import styles from "./ResponsableModal.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   show: boolean;

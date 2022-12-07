@@ -41,9 +41,7 @@ export const Header = (props: Props) => {
       <div className={styles.container}>
         <div className="d-flex">
           {" "}
-          <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>
-            {t("Annuaire.Annuaire", "Annuaire")}
-          </h1>
+          <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>{t("Annuaire.Annuaire", "Annuaire")}</h1>
           <SearchBarAnnuaire
             filteredStructures={props.filteredStructures}
             t={t}
@@ -69,21 +67,21 @@ export const Header = (props: Props) => {
           <>
             {props.letters.map((letter) => (
               <Link
+                legacyBehavior
                 href={getPath(
                   "/annuaire",
                   router.locale,
-                  props.lettersClickable.includes(letter.toLocaleUpperCase())
-                    ? "#" + letter.toUpperCase() : ""
+                  props.lettersClickable.includes(letter.toLocaleUpperCase()) ? "#" + letter.toUpperCase() : ""
                 )}
                 key={letter}
               >
-                  <a
-                    className={`${styles.letter} ${props.lettersClickable.includes(
-                      letter.toLocaleUpperCase()
-                    ) && styles.clickable}`}
-                  >
-                    {letter.toUpperCase()}
-                  </a>
+                <a
+                  className={`${styles.letter} ${
+                    props.lettersClickable.includes(letter.toLocaleUpperCase()) && styles.clickable
+                  }`}
+                >
+                  {letter.toUpperCase()}
+                </a>
               </Link>
             ))}
           </>

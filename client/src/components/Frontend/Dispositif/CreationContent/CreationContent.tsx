@@ -112,7 +112,7 @@ const CreationContent = (props: Props) => {
               />
                {props.phoneError && (
                   <p className={styles.error}>
-                    {t("Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
+                    {t("Register.Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie")}
                   </p>
                 )}
             </InputGroup>
