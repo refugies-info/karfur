@@ -507,6 +507,14 @@ export interface DispositifStatistics {
 export interface StructuresStatistics {
   nbStructures: number
 }
+export interface TranslationStatistics {
+  nbTranslators: number
+  nbWordsTranslated: number
+  nbActiveTranslators: {
+    languageId: string
+    count: number
+  }[]
+}
 
 export type AvailableLanguageI18nCode =
   | "fr"

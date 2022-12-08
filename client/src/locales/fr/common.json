@@ -781,7 +781,7 @@
   },
   "Translate": {
     "title": "Aidez-nous à traduire !",
-    "subtitle": "{xx} bénévoles nous ont déjà aidé à traduire {xx} mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.",
+    "subtitle": "{{nbBenevoles}} bénévoles nous ont déjà aidé à traduire {{nbMots}} mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.",
     "navbarItem1": "Qui peut traduire ?",
     "navbarItem2": "Comment faire ?",
     "navbarItem3": "Et après ?",
@@ -797,6 +797,9 @@
     "whoCardText3": "L’outil de traduction est disponible uniquement sur un ordinateur, vous ne pouvez pas y accéder avec votre téléphone.",
     "needTitle": "En ce moment, on cherche des traducteurs en :",
     "need": "Besoin",
+    "strong": "fort",
+    "medium": "moyen",
+    "weak": "faible",
     "stepsTitle": "Quelles sont les étapes pour traduire une fiche ?",
     "stepsWarningMobile": "Attention, la traduction d’une fiche est possible uniquement sur ordinateur.",
     "stepsSubtitle1": "Créez <strong>votre compte</strong> Réfugiés.info",

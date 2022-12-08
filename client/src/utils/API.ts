@@ -4,7 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import { AdminOption, DispositifStatistics, IDispositif, NbDispositifsByRegion, Need, StructuresStatistics, Theme, User, Widget } from "types/interface";
+import { AdminOption, DispositifStatistics, IDispositif, NbDispositifsByRegion, Need, StructuresStatistics, Theme, TranslationStatistics, User, Widget } from "types/interface";
 import { ObjectId } from "mongodb";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -447,6 +447,9 @@ const API = {
     return instance.post("/translate/get_translation", query, {
       headers,
     });
+  },
+  getTranslationStatistics: (): Promise<Response<TranslationStatistics>> => {
+    return instance.get("/traduction/statistics");
   },
 
   // Langues
