@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
@@ -38,6 +39,7 @@ interface Props {
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
@@ -75,6 +77,11 @@ const RecensezVotreAction = (props: Props) => {
     }),
     [props.translationStatistics.nbActiveTranslators]
   );
+
+  const navigateToTranslations = useCallback(() => {
+    router.push("/backend/user-translation");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -312,7 +319,7 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
         <span id="register" className={styles.anchor}></span>
         <Register
-          toggleWriteModal={() => {}} /* TODO: what here? */
+          onClickLoggedIn={navigateToTranslations}
           subtitleForm={t("Translate.registerSubtitle")}
           subtitleLoggedIn={t("Translate.registerLoggedIn")}
           subtitleMobile={t("Translate.registerMobile")}

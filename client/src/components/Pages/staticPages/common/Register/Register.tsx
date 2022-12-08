@@ -19,7 +19,7 @@ import useWindowSize from "hooks/useWindowSize";
 import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
 
 interface Props {
-  toggleWriteModal: () => void;
+  onClickLoggedIn: () => void;
   subtitleForm: string;
   subtitleLoggedIn: string;
   subtitleMobile: string;
@@ -81,7 +81,7 @@ const Register = (props: Props) => {
                 type="login"
                 name="plus-circle-outline"
                 className={styles.write_btn}
-                onClick={props.toggleWriteModal}
+                onClick={props.onClickLoggedIn}
               >
                 {t("Publish.navbarItem5")}
               </FButton>
