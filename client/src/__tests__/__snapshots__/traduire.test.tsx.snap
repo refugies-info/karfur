@@ -1,0 +1,1096 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`traduire renders traduire 1`] = `
+<div
+  className="main"
+>
+  <div
+    className="section bg_blue"
+  >
+    <div
+      className="container container"
+    >
+      <div
+        className="hero row"
+      >
+        <div
+          className="hero_title col-sm-12 col-lg-6"
+        >
+          <h1>
+            Translate.title
+          </h1>
+          <p
+            className="subtitle"
+          >
+            Translate.subtitle
+          </p>
+          <div
+            className="container"
+          >
+            <a
+              className="btn"
+              href="/#who"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+            >
+              <span>
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-downward-outline\\" fill=\\"#0421b1\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </a>
+          </div>
+        </div>
+        <div
+          className="col-sm-12 col-lg-6"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="container shadow"
+  >
+    <div
+      className="inner container"
+    >
+      <div>
+        <a
+          className="btn green"
+          href="/#who"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Translate.navbarItem1
+        </a>
+        <a
+          className="btn purple"
+          href="/#steps"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Translate.navbarItem2
+        </a>
+        <a
+          className="btn orange"
+          href="/#next"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Translate.navbarItem3
+        </a>
+        <a
+          className="btn red"
+          href="/#faq"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Translate.navbarItem4
+        </a>
+      </div>
+      <a
+        className="btn blue"
+        href="/#register"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <span>
+          <i
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-plus-circle-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"plus-circle\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+              }
+            }
+          />
+        </span>
+        Translate.navbarItem5
+      </a>
+    </div>
+  </div>
+  <div
+    className="section"
+  >
+    <span
+      className="anchor"
+      id="who"
+    />
+    <div
+      className="container container"
+    >
+      <h2
+        className="title2 mb-0"
+      >
+        Translate.whoTitle
+      </h2>
+      <p
+        className="subtitle"
+      >
+        Translate.whoSubtitle
+      </p>
+      <div
+        className="top_space row"
+      >
+        <div
+          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+        >
+          <div
+            className="container grey"
+          >
+            <div>
+              <div
+                className="header"
+              >
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-ua"
+                    title="ua"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-ir"
+                    title="ir"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-sa"
+                    title="sa"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-gb"
+                    title="gb"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-af"
+                    title="af"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-ru"
+                    title="ru"
+                  />
+                </div>
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 40,
+                      "width": 40,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-er"
+                    title="er"
+                  />
+                </div>
+              </div>
+              <h3
+                className="title"
+              >
+                Translate.whoCardTitle1
+              </h3>
+              <div
+                className="text mb-0"
+              >
+                <p
+                  className="mb-0"
+                >
+                  Translate.whoCardText1
+                </p>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+        >
+          <div
+            className="container grey"
+          >
+            <div>
+              <div
+                className="header"
+              >
+                <div
+                  className="container"
+                  style={
+                    Object {
+                      "height": 56,
+                      "width": 56,
+                    }
+                  }
+                >
+                  <i
+                    className="flag flag-icon flag-icon-fr"
+                    title="fr"
+                  />
+                </div>
+              </div>
+              <h3
+                className="title"
+              >
+                Translate.whoCardTitle2
+              </h3>
+              <div
+                className="text mb-0"
+              >
+                <p
+                  className="mb-0"
+                >
+                  Translate.whoCardText2
+                </p>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+        >
+          <div
+            className="container grey"
+          >
+            <div>
+              <div
+                className="header"
+              />
+              <h3
+                className="title"
+              >
+                Translate.whoCardTitle3
+              </h3>
+              <div
+                className="text mb-0"
+              >
+                <p
+                  className="mb-0"
+                >
+                  Translate.whoCardText3
+                </p>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="section bg_green"
+  >
+    <div
+      className="container needs container"
+    >
+      <h2
+        className="title2 text-center"
+      >
+        Translate.needTitle
+      </h2>
+      <div
+        className="row"
+      >
+        <div
+          className="col"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="title"
+            >
+              <i
+                className="flag flag-icon flag-icon-undefined"
+              />
+            </div>
+            <p
+              className="subtitle"
+            >
+              Translate.need
+               
+              <span
+                className="need strong"
+              >
+                Translate.strong
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="col"
+        >
+          <div
+            className="container"
+          >
+            <div
+              className="title"
+            >
+              <i
+                className="flag flag-icon flag-icon-undefined"
+              />
+            </div>
+            <p
+              className="subtitle"
+            >
+              Translate.need
+               
+              <span
+                className="need medium"
+              >
+                Translate.medium
+              </span>
+            </p>
+          </div>
+        </div>
+        <div
+          className="col"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="section"
+  >
+    <span
+      className="anchor"
+      id="steps"
+    />
+    <div
+      className="container container"
+    >
+      <h2
+        className="title2"
+      >
+        Translate.stepsTitle
+      </h2>
+      <div
+        className="warning_mobile"
+      >
+        <span>
+          <i
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-alert-circle-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"alert-circle\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><circle cx=\\"12\\" cy=\\"16\\" r=\\"1\\"/><path d=\\"M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z\\"/></g></g></svg>",
+              }
+            }
+          />
+        </span>
+        <p>
+          Translate.stepsWarningMobile
+        </p>
+      </div>
+      <div
+        className="row purple"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="step"
+          >
+            1
+          </div>
+          <h3
+            className="title"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "Translate.stepsSubtitle1",
+              }
+            }
+          />
+          <p
+            className="text"
+          >
+            Translate.stepsText1
+          </p>
+          <a
+            className="link color_purple"
+            href="/#register"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            rel="noopener noreferrer"
+          >
+            <span>
+              Translate.stepsCTA1
+            </span>
+            <span
+              className="icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"purple\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                  }
+                }
+              />
+            </span>
+          </a>
+        </div>
+        <div
+          className="media"
+        >
+          <video
+            className="video"
+            height={320}
+            loop={true}
+            muted={true}
+          >
+            <source
+              src="/video/publier-video-step1.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+      <div
+        className="row purple"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="step"
+          >
+            2
+          </div>
+          <h3
+            className="title"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "Translate.stepsSubtitle2",
+              }
+            }
+          />
+          <p
+            className="text"
+          >
+            Translate.stepsText2
+          </p>
+        </div>
+        <div
+          className="media"
+        >
+          <video
+            className="video"
+            height={320}
+            loop={true}
+            muted={true}
+          >
+            <source
+              src="/video/translate-video-step2.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+      <div
+        className="row purple"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="step"
+          >
+            3
+          </div>
+          <h3
+            className="title"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "Translate.stepsSubtitle3",
+              }
+            }
+          />
+          <p
+            className="text"
+          >
+            Translate.stepsText3
+          </p>
+          <div
+            className="warning"
+          >
+            <ul
+              className="mb-0"
+            >
+              <li
+                className="mb-2"
+              >
+                Translate.stepsList3Item1
+              </li>
+              <li
+                className="mb-2"
+              >
+                Translate.stepsList3Item2
+              </li>
+              <li>
+                Translate.stepsList3Item3
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          className="media"
+        >
+          <video
+            className="video"
+            height={320}
+            loop={true}
+            muted={true}
+          >
+            <source
+              src="/video/translate-video-step3.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+      <div
+        className="row purple has_btn_step"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="step"
+          >
+            4
+          </div>
+          <h3
+            className="title"
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "Translate.stepsSubtitle4",
+              }
+            }
+          />
+          <p
+            className="text"
+          >
+            Translate.stepsText4a
+          </p>
+          <p
+            className="text"
+          >
+            Translate.stepsText4b
+          </p>
+          <div
+            className="btn_step last"
+          >
+            Translate.stepsButton
+          </div>
+        </div>
+        <div
+          className="media"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="section bg_orange"
+  >
+    <span
+      className="anchor"
+      id="next"
+    />
+    <div
+      className="container container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-sm-12 col-lg-6"
+        >
+          <h2
+            className="title2 bottom_space"
+          >
+            Translate.nextTitle
+          </h2>
+          <p
+            className="p"
+          >
+            Translate.nextText1
+          </p>
+          <p
+            className="p"
+          >
+            Translate.nextText2
+          </p>
+        </div>
+        <div
+          className="text-right col-sm-12 col-lg-6"
+        >
+          <video
+            className="video"
+            height={320}
+            loop={true}
+            muted={true}
+          >
+            <source
+              src="/video/translate-video-next.mp4"
+              type="video/mp4"
+            />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="section bg_grey"
+  >
+    <div
+      className="container container"
+    >
+      <h2
+        className="title2 center mb-0"
+      >
+        StaticPages.helpTitle
+      </h2>
+      <div
+        className="top_space row"
+      >
+        <div
+          className="mb-lg-0 mb-5 col-sm-12 col-lg-4 offset-lg-2"
+        >
+          <div
+            className="container"
+          >
+            <div>
+              <div
+                className="header"
+              />
+              <h3
+                className="title"
+              >
+                Translate.helpTileTitle1
+              </h3>
+              <div
+                className="text"
+              >
+                <p>
+                  Translate.helpTileText1
+                </p>
+              </div>
+            </div>
+            <div>
+              <a
+                className="link color_red"
+                href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>
+                  Translate.helpTileCTA1
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+        >
+          <div
+            className="container"
+          >
+            <div>
+              <div
+                className="header"
+              />
+              <h3
+                className="title"
+              >
+                StaticPages.helpTileTitle3
+              </h3>
+              <div
+                className="text"
+              >
+                <p>
+                  StaticPages.helpTileText3
+                </p>
+              </div>
+            </div>
+            <div>
+              <button
+                className="link color_red"
+                onClick={[Function]}
+              >
+                <span>
+                  StaticPages.helpTileCTA3
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="section"
+  >
+    <span
+      className="anchor"
+      id="faq"
+    />
+    <div
+      className="container faq container"
+    >
+      <h2
+        className="title2 text-center"
+      >
+        StaticPages.faqTitle
+      </h2>
+      <div
+        className="row"
+      >
+        <div
+          className="infos col"
+        >
+          <div>
+            <button
+              aria-label={null}
+              className="btn btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              Translate.faqAccordionTitle1
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <div
+              className="collapse"
+              style={Object {}}
+            >
+              <p
+                className="text"
+              >
+                Translate.faqAccordionText1
+              </p>
+            </div>
+          </div>
+          <div>
+            <button
+              aria-label={null}
+              className="btn btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              Translate.faqAccordionTitle2
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <div
+              className="collapse"
+              style={Object {}}
+            >
+              <p
+                className="text"
+              >
+                Translate.faqAccordionText2
+              </p>
+            </div>
+          </div>
+          <div>
+            <button
+              aria-label={null}
+              className="btn btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              Translate.faqAccordionTitle3
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <div
+              className="collapse"
+              style={Object {}}
+            >
+              <p
+                className="text"
+              >
+                Translate.faqAccordionText3
+              </p>
+            </div>
+          </div>
+          <div>
+            <button
+              aria-label={null}
+              className="btn btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              Translate.faqAccordionTitle4
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <div
+              className="collapse"
+              style={Object {}}
+            >
+              <p
+                className="text"
+              >
+                Translate.faqAccordionText4
+              </p>
+              <a
+                className="link color_blue"
+                href="https://airtable.com/shrQxPHedgZ5PuXot"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span>
+                  Translate.faqAccordionCTA4
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"blue\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="section bg_grey"
+  >
+    <span
+      className="anchor"
+      id="register"
+    />
+    <div
+      className="register container"
+    >
+      <h2
+        className="title2 text-center mb-0"
+      >
+        StaticPages.registerTitle
+      </h2>
+      <p
+        className="subtitle"
+      >
+        Translate.registerSubtitle
+      </p>
+      <div
+        className="conditions"
+      >
+        <div
+          className="checkbox checkbox"
+        >
+          <input
+            defaultChecked={false}
+            id="register-conditions"
+            onChange={[Function]}
+            type="checkbox"
+          />
+          <span
+            className="check"
+          >
+            <span>
+              <i
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-square-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"square\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z\\"/></g></g></svg>",
+                  }
+                }
+              />
+            </span>
+          </span>
+          <label
+            htmlFor="register-conditions"
+          >
+            StaticPages.registerConditions
+          </label>
+        </div>
+      </div>
+      <div
+        className="input mb-10 input input-group"
+      >
+        <div
+          className="prepend input-group-prepend"
+        >
+          <span>
+            <i
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                }
+              }
+            />
+          </span>
+        </div>
+        <input
+          autoComplete="username"
+          autoFocus={true}
+          className="has_prepend new_size form-control"
+          id="username"
+          onChange={[Function]}
+          placeholder="Login.Pseudonyme"
+          readOnly={false}
+          style={Object {}}
+          type="text"
+        />
+      </div>
+      <button
+        className="btn login btn"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <span
+          className="mr-10"
+        >
+          <i
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-in-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-in\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M19 4h-2a1 1 0 0 0 0 2h1v12h-1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z\\"/><path d=\\"M11.8 7.4a1 1 0 0 0-1.6 1.2L12 11H4a1 1 0 0 0 0 2h8.09l-1.72 2.44a1 1 0 0 0 .24 1.4 1 1 0 0 0 .58.18 1 1 0 0 0 .81-.42l2.82-4a1 1 0 0 0 0-1.18z\\"/></g></g></svg>",
+              }
+            }
+          />
+        </span>
+        StaticPages.registerCTA
+      </button>
+      <p
+        className="login"
+      >
+        Register.Déjà un compte ?
+        <a
+          className="link"
+          href="/login"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Register.Se connecter
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+`;
