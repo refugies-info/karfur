@@ -3,16 +3,16 @@ import { addDispositif, getNewStatus } from "./addDispositif";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
-  createDispositifInDB,
+  createDispositifInDB
 } from "../../../modules/dispositif/dispositif.repository";
-import {
-  checkUserIsAuthorizedToModifyDispositif,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
-import { getStructureFromDB, updateAssociatedDispositifsInStructure } from "../../../modules/structure/structure.repository";
+import {
+  getStructureFromDB,
+  updateAssociatedDispositifsInStructure
+} from "../../../modules/structure/structure.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
@@ -22,66 +22,63 @@ import { log } from "./log";
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
   updateDispositifInDB: jest.fn(),
-  createDispositifInDB: jest.fn(),
+  createDispositifInDB: jest.fn()
 }));
 
-jest.mock(
-  "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente",
-  () => ({
-    sendMailToStructureMembersWhenDispositifEnAttente: jest.fn(),
-  })
-);
+jest.mock("../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente", () => ({
+  sendMailToStructureMembersWhenDispositifEnAttente: jest.fn()
+}));
 jest.mock("./log", () => ({
   log: jest.fn().mockResolvedValue(undefined)
 }));
 jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn().mockReturnValue(true),
-  checkUserIsAuthorizedToModifyDispositif: jest.fn(),
+  checkUserIsAuthorizedToModifyDispositif: jest.fn()
 }));
 
 jest.mock("../../../modules/traductions/updateTraductions", () => ({
-  updateTraductions: jest.fn(),
+  updateTraductions: jest.fn()
 }));
 
 jest.mock("../../../controllers/miscellaneous/airtable", () => ({
-  addOrUpdateDispositifInContenusAirtable: jest.fn(),
+  addOrUpdateDispositifInContenusAirtable: jest.fn()
 }));
 
 jest.mock("../../../modules/langues/langues.service", () => ({
-  updateLanguagesAvancement: jest.fn(),
+  updateLanguagesAvancement: jest.fn()
 }));
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
-  getStructureFromDB: jest.fn(),
+  getStructureFromDB: jest.fn()
 }));
 
 jest.mock("../../../controllers/role/role.repository", () => ({
-  getRoleByName: jest.fn(),
+  getRoleByName: jest.fn()
 }));
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  addRoleAndContribToUser: jest.fn(),
+  addRoleAndContribToUser: jest.fn()
 }));
 jest.mock("../../../schema/schemaError", () => ({
   Error: {
-    save: jest.fn(),
+    save: jest.fn()
   }
 }));
 jest.mock("../../../schema/schemaDispositif", () => ({
   Dispositif: {
     find: jest.fn(),
-    findOneAndUpdate: jest.fn(),
+    findOneAndUpdate: jest.fn()
   }
 }));
 jest.mock("../../../schema/schemaLangue", () => ({
   Langue: {
-    find: jest.fn(),
+    find: jest.fn()
   }
 }));
 jest.mock("../../../schema/schemaNeeds", () => ({
   Need: {
-    find: jest.fn(),
+    find: jest.fn()
   }
 }));
 type MockResponse = { json: any; status: any };
@@ -132,10 +129,10 @@ describe("addDispositif", () => {
       body: {
         dispositifId: "disp_1",
         titreInformatif: "TI",
-        status: "Actif",
+        status: "Actif"
       },
       userId: "userId",
-      user: { roles: [] },
+      user: { roles: [] }
     };
     await addDispositif(req, res);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -146,12 +143,12 @@ describe("addDispositif", () => {
     createDispositifInDB.mockResolvedValueOnce({ _id: "dispoId" });
     const dispositif = {
       titreInformatif: "TI",
-      status: "Brouillon",
+      status: "Brouillon"
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId",
+      userId: "userId"
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -161,20 +158,16 @@ describe("addDispositif", () => {
       lastModificationAuthor: "userId",
       theme: undefined,
       themesSelectedByAuthor: true,
-      secondaryThemes: []
+      secondaryThemes: [],
+      nbVues: 0,
+      nbVuesMobile: 0
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
-    expect(addRoleAndContribToUser).toHaveBeenCalledWith(
-      "userId",
-      "idContrib",
-      "dispoId"
-    );
+    expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
 
     expect(updateAssociatedDispositifsInStructure).not.toHaveBeenCalled();
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).not.toHaveBeenCalled();
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -182,16 +175,16 @@ describe("addDispositif", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
     createDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId",
+      mainSponsor: "mainSponsorId"
     });
     const dispositif = {
       titreInformatif: "TI",
-      status: "Brouillon",
+      status: "Brouillon"
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId",
+      userId: "userId"
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -201,21 +194,14 @@ describe("addDispositif", () => {
       lastModificationAuthor: "userId",
       theme: undefined,
       themesSelectedByAuthor: true,
-      secondaryThemes: []
+      secondaryThemes: [],
+      nbVues: 0,
+      nbVuesMobile: 0
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
-    expect(addRoleAndContribToUser).toHaveBeenCalledWith(
-      "userId",
-      "idContrib",
-      "dispoId"
-    );
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
-      "dispoId",
-      "mainSponsorId"
-    );
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).not.toHaveBeenCalled();
+    expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispoId", "mainSponsorId");
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).not.toHaveBeenCalled();
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -224,7 +210,7 @@ describe("addDispositif", () => {
     getRoleByName.mockResolvedValueOnce({ _id: "idContrib" });
     createDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId",
+      mainSponsor: "mainSponsorId"
     });
     getStructureFromDB.mockResolvedValueOnce({
       _id: "sponsorId",
@@ -235,12 +221,12 @@ describe("addDispositif", () => {
       status: "En attente",
       mainSponsor: "sponsorId",
       titreMarque: "TM",
-      typeContenu: "dispositif",
+      typeContenu: "dispositif"
     };
     const req = {
       fromSite: true,
       body: dispositif,
-      userId: "userId",
+      userId: "userId"
     };
     await addDispositif(req, res);
     expect(createDispositifInDB).toHaveBeenCalledWith({
@@ -253,21 +239,20 @@ describe("addDispositif", () => {
       lastModificationAuthor: "userId",
       theme: undefined,
       themesSelectedByAuthor: true,
-      secondaryThemes: []
+      secondaryThemes: [],
+      nbVues: 0,
+      nbVuesMobile: 0
     });
     expect(getRoleByName).toHaveBeenCalledWith("Contrib");
-    expect(addRoleAndContribToUser).toHaveBeenCalledWith(
-      "userId",
-      "idContrib",
-      "dispoId"
-    );
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+    expect(addRoleAndContribToUser).toHaveBeenCalledWith("userId", "idContrib", "dispoId");
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispoId", "mainSponsorId");
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).toHaveBeenCalledWith(
+      "sponsorId",
       "dispoId",
-      "mainSponsorId"
+      "TI",
+      "TM",
+      "dispositif"
     );
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).toHaveBeenCalledWith("sponsorId", "dispoId", "TI", "TM", "dispositif");
     expect(getDispositifByIdWithMainSponsor).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
@@ -281,7 +266,7 @@ describe("addDispositif", () => {
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId",
+      mainSponsor: "mainSponsorId"
     });
 
     const dispositif = {
@@ -290,36 +275,24 @@ describe("addDispositif", () => {
       dispositifId: "dispoId",
       contenu: "contenu",
       typeContenu: "Brouillon",
-      theme: { _id: "theme1", short: {fr: "theme"} },
+      theme: { _id: "theme1", short: { fr: "theme" } },
       secondaryThemes: []
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] },
+      user: { roles: [] }
     };
     await addDispositif(req, res);
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "dispoId",
-      "all"
-    );
-    expect(updateTraductions).toHaveBeenCalledWith(
-      originalDis,
-      dispositif,
-      "userId"
-    );
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
+    expect(updateTraductions).toHaveBeenCalledWith(originalDis, dispositif, "userId");
     expect(updateDispositifInDB).toHaveBeenCalledWith("dispoId", dispositif);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(createDispositifInDB).not.toHaveBeenCalled();
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
-      "dispoId",
-      "mainSponsorId"
-    );
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).not.toHaveBeenCalled();
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispoId", "mainSponsorId");
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -332,7 +305,7 @@ describe("addDispositif", () => {
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId",
+      mainSponsor: "mainSponsorId"
     });
 
     const dispositif = {
@@ -343,31 +316,29 @@ describe("addDispositif", () => {
       typeContenu: "dispositif",
       titreMarque: "TM",
       mainSponsor: "sponsorId",
-      theme: { _id: "themeId", short: {fr: "theme"} },
+      theme: { _id: "themeId", short: { fr: "theme" } },
       secondaryThemes: []
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] },
+      user: { roles: [] }
     };
     await addDispositif(req, res);
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "dispoId",
-      "all"
-    );
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
     expect(updateDispositifInDB).toHaveBeenCalledWith("dispoId", dispositif);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
     expect(createDispositifInDB).not.toHaveBeenCalled();
-    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith("dispoId", "mainSponsorId");
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).toHaveBeenCalledWith(
+      "sponsorId",
       "dispoId",
-      "mainSponsorId"
+      "TI",
+      "TM",
+      "dispositif"
     );
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).toHaveBeenCalledWith("sponsorId", "dispoId", "TI", "TM", "dispositif");
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -380,7 +351,7 @@ describe("addDispositif", () => {
     });
     updateDispositifInDB.mockResolvedValueOnce({
       _id: "dispoId",
-      mainSponsor: "mainSponsorId",
+      mainSponsor: "mainSponsorId"
     });
 
     const dispositif = {
@@ -391,20 +362,18 @@ describe("addDispositif", () => {
       typeContenu: "dispositif",
       titreMarque: "TM",
       mainSponsor: "sponsorId",
-      theme: { _id: "themeId", short: {fr: "theme"} },
+      theme: { _id: "themeId", short: { fr: "theme" } },
       secondaryThemes: []
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: { roles: [] },
+      user: { roles: [] }
     };
     await addDispositif(req, res);
 
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).not.toHaveBeenCalled();
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(200);
   });
 
@@ -416,133 +385,79 @@ describe("addDispositif", () => {
     const dispositif = {
       titreInformatif: "TI",
       status: "Brouillon",
-      dispositifId: "dispoId",
+      dispositifId: "dispoId"
     };
     const req = {
       fromSite: true,
       body: dispositif,
       userId: "userId",
-      user: {roles: []}
+      user: { roles: [] }
     };
     await addDispositif(req, res);
-    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith(
-      "dispoId",
-      "all"
-    );
-    expect(
-      sendMailToStructureMembersWhenDispositifEnAttente
-    ).not.toHaveBeenCalled();
+    expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
+    expect(sendMailToStructureMembersWhenDispositifEnAttente).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(403);
   });
 });
 
-
 const dispositif = {
-  _id: "dispositifId",
-}
+  _id: "dispositifId"
+};
 const structure = {
   _id: "structureId",
-  membres: [{
-    userId: "userOfStructureId",
-    roles: ["administrateur"]
-  }]
-}
+  membres: [
+    {
+      userId: "userOfStructureId",
+      roles: ["administrateur"]
+    }
+  ]
+};
 const user = {
   _id: "userId",
   roles: []
-}
+};
 const userOfStructure = {
   _id: "userOfStructureId",
   roles: []
-}
+};
 
 describe("getNewStatus", () => {
   it("should return Brouillon for auto save", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "Brouillon"},
-      null,
-      user,
-      "auto"
-    )
-    expect(status).toEqual("Brouillon")
+    const status = getNewStatus({ ...dispositif, status: "Brouillon" }, null, user, "auto");
+    expect(status).toEqual("Brouillon");
   });
   it("should return En attente for Validate and Rejeté structure", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "Rejeté structure"},
-      null,
-      user,
-      "validate"
-    )
-    expect(status).toEqual("En attente")
+    const status = getNewStatus({ ...dispositif, status: "Rejeté structure" }, null, user, "validate");
+    expect(status).toEqual("En attente");
   });
   it("should return same status", () => {
-    let status = getNewStatus(
-      {...dispositif, status: "En attente non prioritaire"},
-      null,
-      user,
-      "save"
-    )
+    let status = getNewStatus({ ...dispositif, status: "En attente non prioritaire" }, null, user, "save");
     expect(status).toEqual("En attente non prioritaire");
 
-    status = getNewStatus(
-      {...dispositif, status: "Brouillon"},
-      null,
-      user,
-      "save"
-    )
+    status = getNewStatus({ ...dispositif, status: "Brouillon" }, null, user, "save");
     expect(status).toEqual("Brouillon");
 
-    status = getNewStatus(
-      {...dispositif, status: "Accepté structure"},
-      structure,
-      user,
-      "save"
-    )
+    status = getNewStatus({ ...dispositif, status: "Accepté structure" }, structure, user, "save");
     expect(status).toEqual("Accepté structure");
 
-    status = getNewStatus(
-      {...dispositif, status: "En attente non prioritaire"},
-      null,
-      user,
-      "validate"
-    )
+    status = getNewStatus({ ...dispositif, status: "En attente non prioritaire" }, null, user, "validate");
     expect(status).toEqual("En attente non prioritaire");
   });
   it("should return En attente admin for Validate and member", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "Brouillon"},
-      structure,
-      userOfStructure,
-      "validate"
-    )
-    expect(status).toEqual("En attente admin")
+    const status = getNewStatus({ ...dispositif, status: "Brouillon" }, structure, userOfStructure, "validate");
+    expect(status).toEqual("En attente admin");
   });
   it("should return En attente for Validate and not member", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "Brouillon"},
-      structure,
-      user,
-      "validate"
-    )
+    const status = getNewStatus({ ...dispositif, status: "Brouillon" }, structure, user, "validate");
     expect(status).toEqual("En attente");
   });
   it("should return status for save and member", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "En attente"},
-      structure,
-      userOfStructure,
-      "save"
-    )
-    expect(status).toEqual("En attente")
+    const status = getNewStatus({ ...dispositif, status: "En attente" }, structure, userOfStructure, "save");
+    expect(status).toEqual("En attente");
   });
   it("should return En attente non prioritaire if no structure", () => {
-    const status = getNewStatus(
-      {...dispositif, status: "Brouillon"},
-      null,
-      user,
-      "validate"
-    )
-    expect(status).toEqual("En attente non prioritaire")
+    const status = getNewStatus({ ...dispositif, status: "Brouillon" }, null, user, "validate");
+    expect(status).toEqual("En attente non prioritaire");
   });
 });
