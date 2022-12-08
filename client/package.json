@@ -69,6 +69,7 @@
     "reactstrap": "^8.10.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.1.3",
+    "remixicon": "^2.5.0",
     "sharp": "^0.31.2",
     "simple-line-icons": "^2.4.1",
     "sortablejs": "^1.15.0",
