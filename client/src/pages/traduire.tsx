@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,6 +7,8 @@ import { useInView } from "react-intersection-observer";
 import { wrapper } from "services/configureStore";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
+import { TranslationStatistics } from "types/interface";
+import API from "utils/API";
 import SEO from "components/Seo";
 import {
   Accordion,
@@ -20,6 +22,7 @@ import {
 } from "components/Pages/staticPages/common";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
+import LanguageCard from "components/Pages/staticPages/traduire/LanguageCard";
 import WhoIcon3 from "assets/staticPages/traduire/who-icon-3.svg";
 import HelpIcon1 from "assets/staticPages/traduire/help-icon-tutoriel.svg";
 import HelpIcon2 from "assets/staticPages/publier/help-icon-crisp.svg";
@@ -28,8 +31,10 @@ import MockupsRIMobile from "assets/staticPages/traduire/mockupMobileRI.png";
 import styles from "scss/components/staticPages.module.scss";
 
 export type View = "who" | "steps" | "next" | "faq" | "register";
-
-interface Props {}
+export type NeedKey = "strong" | "medium" | "weak";
+interface Props {
+  translationStatistics: TranslationStatistics;
+}
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
@@ -60,6 +65,17 @@ const RecensezVotreAction = (props: Props) => {
     setActiveView(null);
   }, [inViewWho, inViewNext, inViewSteps, inViewFaq, inViewRegister]);
 
+  // stats
+  const needKeys: NeedKey[] = ["strong", "medium", "weak"];
+  const translationNeeds: Record<NeedKey, { languageId: string; count: number }[]> = useMemo(
+    () => ({
+      strong: props.translationStatistics.nbActiveTranslators.filter((item) => item.count <= 2),
+      medium: props.translationStatistics.nbActiveTranslators.filter((item) => item.count > 2 && item.count <= 5),
+      weak: props.translationStatistics.nbActiveTranslators.filter((item) => item.count > 5)
+    }),
+    [props.translationStatistics.nbActiveTranslators]
+  );
+
   return (
     <div className={styles.main}>
       <SEO title={t("Translate.title")} />
@@ -70,7 +86,12 @@ const RecensezVotreAction = (props: Props) => {
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
               <h1>{t("Translate.title")}</h1>
-              <p className={styles.subtitle}>{t("Translate.subtitle")}</p>
+              <p className={styles.subtitle}>
+                {t("Translate.subtitle", {
+                  nbBenevoles: props.translationStatistics.nbTranslators,
+                  nbMots: new Intl.NumberFormat().format(props.translationStatistics.nbWordsTranslated)
+                })}
+              </p>
               <HeroArrow target="who" />
             </Col>
             <Col sm="12" lg="6">
@@ -142,8 +163,17 @@ const RecensezVotreAction = (props: Props) => {
 
       {/* NEED */}
       <div className={cls(styles.section, styles.bg_green)}>
-        <Container className={styles.container}>
+        <Container className={cls(styles.container, styles.needs)}>
           <h2 className={cls(styles.title2, "text-center")}>{t("Translate.needTitle")}</h2>
+          <Row>
+            {needKeys.map((needKey, i) => (
+              <Col key={i}>
+                {translationNeeds[needKey].map((item, i) => (
+                  <LanguageCard key={i} languageId={item.languageId} need={needKey} />
+                ))}
+              </Col>
+            ))}
+          </Row>
         </Container>
       </div>
 
@@ -227,7 +257,11 @@ const RecensezVotreAction = (props: Props) => {
                 image={HelpIcon1}
                 title={t("Translate.helpTileTitle1")}
                 footer={
-                  <InlineLink link="https://help.refugies.info/fr/" text={t("Translate.helpTileCTA1")} color="red" />
+                  <InlineLink
+                    link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                    text={t("Translate.helpTileCTA1")}
+                    color="red"
+                  />
                 }
               >
                 <p>{t("Translate.helpTileText1")}</p>
@@ -289,9 +323,12 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
+  const translationStatistics = await API.getTranslationStatistics().then((data) => data.data.data);
+
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      translationStatistics
     },
     revalidate: 60
   };

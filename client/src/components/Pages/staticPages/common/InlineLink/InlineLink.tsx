@@ -12,6 +12,8 @@ interface Props {
 }
 
 const InlineLink = (props: Props) => {
+  const isExternalLink = props.link.startsWith("http");
+
   const content = useMemo(
     () => (
       <>
@@ -24,7 +26,11 @@ const InlineLink = (props: Props) => {
 
   return !props.onClick ? (
     <Link href={props.link}>
-      <a className={cls(styles.link, styles[`color_${props.color}`])} rel="noopener noreferrer">
+      <a
+        className={cls(styles.link, styles[`color_${props.color}`])}
+        rel="noopener noreferrer"
+        target={isExternalLink ? "_blank" : undefined}
+      >
         {content}
       </a>
     </Link>

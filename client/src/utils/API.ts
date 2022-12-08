@@ -12,6 +12,7 @@ import {
   Need,
   StructuresStatistics,
   Theme,
+  TranslationStatistics,
   User,
   Widget
 } from "types/interface";
@@ -431,6 +432,9 @@ const API = {
     return instance.post("/translate/get_translation", query, {
       headers
     });
+  },
+  getTranslationStatistics: (): Promise<Response<TranslationStatistics>> => {
+    return instance.get("/traduction/statistics");
   },
 
   // Langues
