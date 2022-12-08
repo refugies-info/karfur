@@ -407,7 +407,7 @@ const RecensezVotreAction = (props: Props) => {
       <div ref={refRegister} className={cls(styles.section, styles.bg_grey)}>
         <span id="register" className={styles.anchor}></span>
         <Register
-          toggleWriteModal={toggleWriteModal}
+          onClickLoggedIn={toggleWriteModal}
           subtitleForm={t("Publish.registerSubtitle")}
           subtitleLoggedIn={t("Publish.registerLoggedIn")}
           subtitleMobile={t("Publish.registerMobile")}
