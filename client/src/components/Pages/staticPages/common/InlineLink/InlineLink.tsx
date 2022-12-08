@@ -25,14 +25,13 @@ const InlineLink = (props: Props) => {
   );
 
   return !props.onClick ? (
-    <Link legacyBehavior href={props.link}>
-      <a
-        className={cls(styles.link, styles[`color_${props.color}`])}
-        rel="noopener noreferrer"
-        target={isExternalLink ? "_blank" : undefined}
-      >
-        {content}
-      </a>
+    <Link
+      href={props.link}
+      className={cls(styles.link, styles[`color_${props.color}`])}
+      rel="noopener noreferrer"
+      target={isExternalLink ? "_blank" : undefined}
+    >
+      {content}
     </Link>
   ) : (
     <button className={cls(styles.link, styles[`color_${props.color}`])} onClick={props.onClick}>

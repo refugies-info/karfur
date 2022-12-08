@@ -46,7 +46,7 @@ const RecensezVotreAction = (props: Props) => {
   const [refHero, inViewHero] = useInView({ threshold: 0 });
   const [refWho, inViewWho] = useInView({ threshold: 0.5 });
   const [refSteps, inViewSteps] = useInView();
-  const [refNext, inViewNext] = useInView({ threshold: 0.5 });
+  const [refNext, inViewNext] = useInView({ threshold: 0.1 });
   const [refFaq, inViewFaq] = useInView({ threshold: 0.5 });
   const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
 
@@ -71,11 +71,12 @@ const RecensezVotreAction = (props: Props) => {
   const needKeys: NeedKey[] = ["strong", "medium", "weak"];
   const translationNeeds: Record<NeedKey, { languageId: string; count: number }[]> = useMemo(
     () => ({
-      strong: props.translationStatistics.nbActiveTranslators.filter((item) => item.count <= 2),
-      medium: props.translationStatistics.nbActiveTranslators.filter((item) => item.count > 2 && item.count <= 5),
-      weak: props.translationStatistics.nbActiveTranslators.filter((item) => item.count > 5)
+      strong: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count <= 2) || [],
+      medium:
+        props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 2 && item.count <= 5) || [],
+      weak: props.translationStatistics?.nbActiveTranslators?.filter((item) => item.count > 5) || []
     }),
-    [props.translationStatistics.nbActiveTranslators]
+    [props]
   );
 
   const navigateToTranslations = useCallback(() => {
@@ -92,11 +93,11 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>
-              <h1>{t("Translate.title")}</h1>
+              <h1 className="text-white">{t("Translate.title")}</h1>
               <p className={styles.subtitle}>
                 {t("Translate.subtitle", {
-                  nbBenevoles: props.translationStatistics.nbTranslators,
-                  nbMots: new Intl.NumberFormat().format(props.translationStatistics.nbWordsTranslated)
+                  nbBenevoles: props.translationStatistics?.nbTranslators || 0,
+                  nbMots: new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0)
                 })}
               </p>
               <HeroArrow target="who" />
@@ -171,7 +172,7 @@ const RecensezVotreAction = (props: Props) => {
       {/* NEED */}
       <div className={cls(styles.section, styles.bg_green)}>
         <Container className={cls(styles.container, styles.needs)}>
-          <h2 className={cls(styles.title2, "text-center")}>{t("Translate.needTitle")}</h2>
+          <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
           <Row>
             {needKeys.map((needKey, i) => (
               <Col key={i}>
@@ -243,7 +244,7 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={cls(styles.container)}>
           <Row>
             <Col lg="6" sm="12">
-              <h2 className={cls(styles.title2, styles.bottom_space)}>{t("Translate.nextTitle")}</h2>
+              <h2 className={cls(styles.title2, styles.bottom_space, "text-white")}>{t("Translate.nextTitle")}</h2>
               <p className={styles.p}>{t("Translate.nextText1")}</p>
               <p className={styles.p}>{t("Translate.nextText2")}</p>
             </Col>

@@ -11,10 +11,8 @@ interface Props {
 const HeroArrow = (props: Props) => {
   return (
     <div className={styles.container}>
-      <Link legacyBehavior href={`#${props.target}`}>
-        <a className={styles.btn}>
-          <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
-        </a>
+      <Link href={`#${props.target}`} className={styles.btn}>
+        <EVAIcon name="arrow-downward-outline" size={24} fill={colors.bleuCharte} />
       </Link>
     </div>
   );
