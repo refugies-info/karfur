@@ -25,7 +25,7 @@ const InlineLink = (props: Props) => {
   );
 
   return !props.onClick ? (
-    <Link href={props.link}>
+    <Link legacyBehavior href={props.link}>
       <a
         className={cls(styles.link, styles[`color_${props.color}`])}
         rel="noopener noreferrer"

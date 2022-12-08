@@ -29,15 +29,16 @@ exports[`publier renders publier 1`] = `
           >
             <a
               className="btn"
-              href="/#why"
+              href="#why"
               onClick={[Function]}
               onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <span>
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-downward-outline\\" fill=\\"#0421b1\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
                     }
                   }
                 />
@@ -47,7 +48,124 @@ exports[`publier renders publier 1`] = `
         </div>
         <div
           className="col-sm-12 col-lg-6"
-        />
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": undefined,
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": undefined,
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -60,48 +178,53 @@ exports[`publier renders publier 1`] = `
       <div>
         <a
           className="btn green"
-          href="/#why"
+          href="#why"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem1
         </a>
         <a
           className="btn purple"
-          href="/#required"
+          href="#required"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem2
         </a>
         <a
           className="btn orange"
-          href="/#steps"
+          href="#steps"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem3
         </a>
         <a
           className="btn red"
-          href="/#faq"
+          href="#faq"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem4
         </a>
       </div>
       <a
         className="btn blue"
-        href="/#register"
+        href="#register"
         onClick={[Function]}
         onMouseEnter={[Function]}
+        onTouchStart={[Function]}
       >
         <span>
           <i
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-plus-circle-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"plus-circle\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><path d=\\"M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z\\"/></g></g></svg>",
+              {
+                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-plus-circle-outline" fill="#fff"><g data-name="Layer 2"><g data-name="plus-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"/></g></g></svg>",
               }
             }
           />
@@ -144,8 +267,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -153,7 +276,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse show"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -175,8 +298,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -184,7 +307,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -206,8 +329,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -215,7 +338,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -237,8 +360,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -246,7 +369,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -258,7 +381,124 @@ exports[`publier renders publier 1`] = `
         </div>
         <div
           className="col"
-        />
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": undefined,
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": undefined,
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -280,8 +520,8 @@ exports[`publier renders publier 1`] = `
           <span>
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"#055e5a\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="#055e5a"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                 }
               }
             />
@@ -301,7 +541,124 @@ exports[`publier renders publier 1`] = `
             >
               <div
                 className="image"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt="Vincent Le Lann"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": undefined,
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt="Vincent Le Lann"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": undefined,
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <div
                 className="infos"
               >
@@ -327,7 +684,124 @@ exports[`publier renders publier 1`] = `
             >
               <div
                 className="image"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt="Rémi Crouzel"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": undefined,
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt="Rémi Crouzel"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": undefined,
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <div
                 className="infos"
               >
@@ -353,7 +827,124 @@ exports[`publier renders publier 1`] = `
             >
               <div
                 className="image"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt="Paola Salazar"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": undefined,
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt="Paola Salazar"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": undefined,
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <div
                 className="infos"
               >
@@ -399,7 +990,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -425,8 +1133,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"colorKo\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
                         }
                       }
                     />
@@ -441,8 +1149,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"colorOk\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
                         }
                       }
                     />
@@ -462,7 +1170,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -488,8 +1313,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"colorKo\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
                         }
                       }
                     />
@@ -504,8 +1329,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"colorOk\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
                         }
                       }
                     />
@@ -525,7 +1350,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -551,8 +1493,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-close-outline\\" fill=\\"colorKo\\"><g data-name=\\"Layer 2\\"><g data-name=\\"close\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(180 12 12)\\" opacity=\\"0\\"/><path d=\\"M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="colorKo"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
                         }
                       }
                     />
@@ -567,8 +1509,8 @@ exports[`publier renders publier 1`] = `
                   >
                     <i
                       dangerouslySetInnerHTML={
-                        Object {
-                          "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-checkmark-outline\\" fill=\\"colorOk\\"><g data-name=\\"Layer 2\\"><g data-name=\\"checkmark\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z\\"/></g></g></svg>",
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="colorOk"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
                         }
                       }
                     />
@@ -588,6 +1530,7 @@ exports[`publier renders publier 1`] = `
           href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -599,8 +1542,8 @@ exports[`publier renders publier 1`] = `
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"purple\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                 }
               }
             />
@@ -630,8 +1573,8 @@ exports[`publier renders publier 1`] = `
         <span>
           <i
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-alert-circle-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"alert-circle\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z\\"/><circle cx=\\"12\\" cy=\\"16\\" r=\\"1\\"/><path d=\\"M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z\\"/></g></g></svg>",
+              {
+                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-alert-circle-outline" fill="black"><g data-name="Layer 2"><g data-name="alert-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="16" r="1"/><path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"/></g></g></svg>",
               }
             }
           />
@@ -654,7 +1597,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle1",
               }
             }
@@ -666,9 +1609,10 @@ exports[`publier renders publier 1`] = `
           </p>
           <a
             className="link color_orange"
-            href="/#register"
+            href="#register"
             onClick={[Function]}
             onMouseEnter={[Function]}
+            onTouchStart={[Function]}
             rel="noopener noreferrer"
           >
             <span>
@@ -679,8 +1623,8 @@ exports[`publier renders publier 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"orange\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                   }
                 }
               />
@@ -717,7 +1661,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle2",
               }
             }
@@ -737,6 +1681,7 @@ exports[`publier renders publier 1`] = `
             href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
             onClick={[Function]}
             onMouseEnter={[Function]}
+            onTouchStart={[Function]}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -748,8 +1693,8 @@ exports[`publier renders publier 1`] = `
             >
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"orange\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                   }
                 }
               />
@@ -786,7 +1731,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle3",
               }
             }
@@ -827,7 +1772,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle4",
               }
             }
@@ -850,7 +1795,124 @@ exports[`publier renders publier 1`] = `
         </div>
         <div
           className="media"
-        />
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%2740%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "contain",
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": "contain",
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
       <div
         className="row orange"
@@ -866,7 +1928,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle5",
               }
             }
@@ -884,7 +1946,124 @@ exports[`publier renders publier 1`] = `
         </div>
         <div
           className="media"
-        />
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%27415%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "contain",
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": "contain",
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
       <div
         className="row orange dotted"
@@ -900,7 +2079,7 @@ exports[`publier renders publier 1`] = `
           <h3
             className="title"
             dangerouslySetInnerHTML={
-              Object {
+              {
                 "__html": "Publish.stepsSubtitle6",
               }
             }
@@ -918,7 +2097,124 @@ exports[`publier renders publier 1`] = `
         </div>
         <div
           className="media"
-        />
+        >
+          <span
+            style={
+              {
+                "background": "none",
+                "border": 0,
+                "boxSizing": "border-box",
+                "display": "inline-block",
+                "height": "initial",
+                "margin": 0,
+                "maxWidth": "100%",
+                "opacity": 1,
+                "overflow": "hidden",
+                "padding": 0,
+                "position": "relative",
+                "width": "initial",
+              }
+            }
+          >
+            <span
+              style={
+                {
+                  "background": "none",
+                  "border": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": "initial",
+                  "margin": 0,
+                  "maxWidth": "100%",
+                  "opacity": 1,
+                  "padding": 0,
+                  "width": "initial",
+                }
+              }
+            >
+              <img
+                alt=""
+                aria-hidden={true}
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%2740%27/%3e"
+                style={
+                  {
+                    "background": "none",
+                    "border": 0,
+                    "display": "block",
+                    "height": "initial",
+                    "margin": 0,
+                    "maxWidth": "100%",
+                    "opacity": 1,
+                    "padding": 0,
+                    "width": "initial",
+                  }
+                }
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style={
+                {
+                  "border": "none",
+                  "bottom": 0,
+                  "boxSizing": "border-box",
+                  "display": "block",
+                  "height": 0,
+                  "left": 0,
+                  "margin": "auto",
+                  "maxHeight": "100%",
+                  "maxWidth": "100%",
+                  "minHeight": "100%",
+                  "minWidth": "100%",
+                  "objectFit": "contain",
+                  "objectPosition": undefined,
+                  "padding": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                  "width": 0,
+                }
+              }
+            />
+            <noscript>
+              <img
+                alt=""
+                data-nimg="intrinsic"
+                decoding="async"
+                loading="lazy"
+                src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
+                style={
+                  {
+                    "border": "none",
+                    "bottom": 0,
+                    "boxSizing": "border-box",
+                    "display": "block",
+                    "height": 0,
+                    "left": 0,
+                    "margin": "auto",
+                    "maxHeight": "100%",
+                    "maxWidth": "100%",
+                    "minHeight": "100%",
+                    "minWidth": "100%",
+                    "objectFit": "contain",
+                    "objectPosition": undefined,
+                    "padding": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                    "width": 0,
+                  }
+                }
+              />
+            </noscript>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -950,7 +2246,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -970,6 +2383,7 @@ exports[`publier renders publier 1`] = `
                 href="https://airtable.com/shrrkFuyeG0BpKKT7"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
+                onTouchStart={[Function]}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -981,8 +2395,8 @@ exports[`publier renders publier 1`] = `
                 >
                   <i
                     dangerouslySetInnerHTML={
-                      Object {
-                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                       }
                     }
                   />
@@ -1000,7 +2414,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -1020,6 +2551,7 @@ exports[`publier renders publier 1`] = `
                 href="https://help.refugies.info/fr/"
                 onClick={[Function]}
                 onMouseEnter={[Function]}
+                onTouchStart={[Function]}
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -1031,8 +2563,8 @@ exports[`publier renders publier 1`] = `
                 >
                   <i
                     dangerouslySetInnerHTML={
-                      Object {
-                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                       }
                     }
                   />
@@ -1050,7 +2582,124 @@ exports[`publier renders publier 1`] = `
             <div>
               <div
                 className="header"
-              />
+              >
+                <span
+                  style={
+                    {
+                      "background": "none",
+                      "border": 0,
+                      "boxSizing": "border-box",
+                      "display": "inline-block",
+                      "height": "initial",
+                      "margin": 0,
+                      "maxWidth": "100%",
+                      "opacity": 1,
+                      "overflow": "hidden",
+                      "padding": 0,
+                      "position": "relative",
+                      "width": "initial",
+                    }
+                  }
+                >
+                  <span
+                    style={
+                      {
+                        "background": "none",
+                        "border": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": "initial",
+                        "margin": 0,
+                        "maxWidth": "100%",
+                        "opacity": 1,
+                        "padding": 0,
+                        "width": "initial",
+                      }
+                    }
+                  >
+                    <img
+                      alt=""
+                      aria-hidden={true}
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                      style={
+                        {
+                          "background": "none",
+                          "border": 0,
+                          "display": "block",
+                          "height": "initial",
+                          "margin": 0,
+                          "maxWidth": "100%",
+                          "opacity": 1,
+                          "padding": 0,
+                          "width": "initial",
+                        }
+                      }
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style={
+                      {
+                        "border": "none",
+                        "bottom": 0,
+                        "boxSizing": "border-box",
+                        "display": "block",
+                        "height": 0,
+                        "left": 0,
+                        "margin": "auto",
+                        "maxHeight": "100%",
+                        "maxWidth": "100%",
+                        "minHeight": "100%",
+                        "minWidth": "100%",
+                        "objectFit": "contain",
+                        "objectPosition": undefined,
+                        "padding": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "width": 0,
+                      }
+                    }
+                  />
+                  <noscript>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      loading="lazy"
+                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      style={
+                        {
+                          "border": "none",
+                          "bottom": 0,
+                          "boxSizing": "border-box",
+                          "display": "block",
+                          "height": 0,
+                          "left": 0,
+                          "margin": "auto",
+                          "maxHeight": "100%",
+                          "maxWidth": "100%",
+                          "minHeight": "100%",
+                          "minWidth": "100%",
+                          "objectFit": "contain",
+                          "objectPosition": undefined,
+                          "padding": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                          "width": 0,
+                        }
+                      }
+                    />
+                  </noscript>
+                </span>
+              </div>
               <h3
                 className="title"
               >
@@ -1077,8 +2726,8 @@ exports[`publier renders publier 1`] = `
                 >
                   <i
                     dangerouslySetInnerHTML={
-                      Object {
-                        "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                       }
                     }
                   />
@@ -1189,8 +2838,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -1198,7 +2847,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -1220,8 +2869,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -1229,7 +2878,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -1251,8 +2900,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -1260,7 +2909,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -1282,8 +2931,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -1291,7 +2940,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -1313,8 +2962,8 @@ exports[`publier renders publier 1`] = `
               >
                 <i
                   dangerouslySetInnerHTML={
-                    Object {
-                      "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"32px\\" height=\\"32px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-ios-downward-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-ios-downward\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z\\"/></g></g></svg>",
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
                     }
                   }
                 />
@@ -1322,7 +2971,7 @@ exports[`publier renders publier 1`] = `
             </button>
             <div
               className="collapse"
-              style={Object {}}
+              style={{}}
             >
               <p
                 className="text"
@@ -1341,6 +2990,7 @@ exports[`publier renders publier 1`] = `
           href="https://help.refugies.info/fr/"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -1352,8 +3002,8 @@ exports[`publier renders publier 1`] = `
           >
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24px\\" height=\\"24px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-arrow-forward-outline\\" fill=\\"red\\"><g data-name=\\"Layer 2\\"><g data-name=\\"arrow-forward\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                 }
               }
             />
@@ -1400,8 +3050,8 @@ exports[`publier renders publier 1`] = `
             <span>
               <i
                 dangerouslySetInnerHTML={
-                  Object {
-                    "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-square-outline\\" fill=\\"black\\"><g data-name=\\"Layer 2\\"><g data-name=\\"square\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z\\"/></g></g></svg>",
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
                   }
                 }
               />
@@ -1423,8 +3073,8 @@ exports[`publier renders publier 1`] = `
           <span>
             <i
               dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-person-outline\\" fill=\\"#212121\\"><g data-name=\\"Layer 2\\"><g data-name=\\"person\\"><rect width=\\"24\\" height=\\"24\\" opacity=\\"0\\"/><path d=\\"M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z\\"/><path d=\\"M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z\\"/></g></g></svg>",
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                 }
               }
             />
@@ -1438,7 +3088,7 @@ exports[`publier renders publier 1`] = `
           onChange={[Function]}
           placeholder="Login.Pseudonyme"
           readOnly={false}
-          style={Object {}}
+          style={{}}
           type="text"
         />
       </div>
@@ -1452,8 +3102,8 @@ exports[`publier renders publier 1`] = `
         >
           <i
             dangerouslySetInnerHTML={
-              Object {
-                "__html": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"20px\\" height=\\"20px\\" viewBox=\\"0 0 24 24\\" class=\\"eva eva-log-in-outline\\" fill=\\"#fff\\"><g data-name=\\"Layer 2\\"><g data-name=\\"log-in\\"><rect width=\\"24\\" height=\\"24\\" transform=\\"rotate(-90 12 12)\\" opacity=\\"0\\"/><path d=\\"M19 4h-2a1 1 0 0 0 0 2h1v12h-1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z\\"/><path d=\\"M11.8 7.4a1 1 0 0 0-1.6 1.2L12 11H4a1 1 0 0 0 0 2h8.09l-1.72 2.44a1 1 0 0 0 .24 1.4 1 1 0 0 0 .58.18 1 1 0 0 0 .81-.42l2.82-4a1 1 0 0 0 0-1.18z\\"/></g></g></svg>",
+              {
+                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-log-in-outline" fill="#fff"><g data-name="Layer 2"><g data-name="log-in"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M19 4h-2a1 1 0 0 0 0 2h1v12h-1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M11.8 7.4a1 1 0 0 0-1.6 1.2L12 11H4a1 1 0 0 0 0 2h8.09l-1.72 2.44a1 1 0 0 0 .24 1.4 1 1 0 0 0 .58.18 1 1 0 0 0 .81-.42l2.82-4a1 1 0 0 0 0-1.18z"/></g></g></svg>",
               }
             }
           />
@@ -1469,6 +3119,7 @@ exports[`publier renders publier 1`] = `
           href="/login"
           onClick={[Function]}
           onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Register.Se connecter
         </a>

@@ -1,7 +1,7 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
 import InlineLink from "../InlineLink";

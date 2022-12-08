@@ -1,5 +1,5 @@
-import Image from "next/image";
 import React, { ReactElement, useMemo } from "react";
+import Image from "next/legacy/image";
 import { cls } from "lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";

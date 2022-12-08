@@ -50,11 +50,11 @@ const Navbar = () => {
           title={t("Toolbar.Trouver de l'information", "Trouver de l'information")}
         />
         <NavItem
-          asLink={<Link href={`${getPath("/comment-contribuer", router.locale)}#ecrire-card`} />}
+          asLink={<Link href={`${getPath("/publier", router.locale)}`} />}
           title={t("Toolbar.Publier une fiche", "Publier une fiche")}
         />
         <NavItem
-          asLink={<Link href={`${getPath("/comment-contribuer", router.locale)}#traduire-card`} />}
+          asLink={<Link href={`${getPath("/traduire", router.locale)}`} />}
           title={t("Toolbar.Traduire", "Traduire")}
         />
         <NavItem title={t("Toolbar.Parler de nous", "Parler de nous")}>

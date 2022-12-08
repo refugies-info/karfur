@@ -13,7 +13,7 @@ const AutoplayVideo = (props: Props) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const setRefs = useCallback(
-    (node) => {
+    (node: any) => {
       ref.current = node;
       refVideo(node);
     },

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import qs from "query-string";
 import { getPath } from "routes";
@@ -122,7 +122,7 @@ const Register = (props: Props) => {
 
               <p className={styles.login}>
                 {t("Register.Déjà un compte ?")}
-                <Link href={getPath("/login", router.locale)}>
+                <Link legacyBehavior href={getPath("/login", router.locale)}>
                   <a className={styles.link}>{t("Register.Se connecter")}</a>
                 </Link>
               </p>
