@@ -12,7 +12,6 @@ import { cls } from "lib/classname";
 interface Props {
   t: any;
   filteredStructures: SimplifiedStructure[] | null;
-  resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
   typeSelected: string[] | null;
@@ -91,7 +90,6 @@ export const SearchBarAnnuaire = (props: Props) => {
     props.setVille("");
     props.setDepNumber("");
     props.setDepName("");
-    props.resetSearch();
   };
 
   const removeType = (item: string) => {
@@ -242,7 +240,6 @@ export const SearchBarAnnuaire = (props: Props) => {
               onClick={(e: any) => {
                 e.stopPropagation();
                 props.setTypeSelected([]);
-                props.resetSearch();
               }}
               id="bookmarkBtn"
               className="ml-10"
