@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <Header closeButtonLabel={t`Fermeture`}>
       <HeaderBody>
-        <Logo splitCharacter={10}>République Française</Logo>
+        <Logo splitCharacter={10}>Gouvernement</Logo>
         <HeaderOperator>
           <Image key="logo" src={logoRI} alt="logo refugies-info" />
         </HeaderOperator>
