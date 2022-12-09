@@ -117,7 +117,7 @@ const Footer = () => {
           "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France."
         )}
       >
-        <Logo>République française</Logo>
+        <Logo>Gouvernement</Logo>
         <FooterBodyItem>
           <Link href="https://www.legifrance.gouv.fr">legifrance.gouv.fr</Link>
         </FooterBodyItem>
