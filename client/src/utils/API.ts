@@ -6,11 +6,13 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   AdminOption,
+  DispositifStatistics,
   IDispositif,
   NbDispositifsByRegion,
   Need,
-  Statistics,
+  StructuresStatistics,
   Theme,
+  TranslationStatistics,
   User,
   Widget
 } from "types/interface";
@@ -240,9 +242,8 @@ const API = {
       headers
     });
   },
-  getStatistics: (): Promise<Response<Statistics>> => {
-    const headers = getHeaders();
-    return instance.get("/dispositifs/statistics", { headers });
+  getDispositifsStatistics: (): Promise<Response<DispositifStatistics>> => {
+    return instance.get("/dispositifs/statistics");
   },
 
   // Mail
@@ -299,6 +300,9 @@ const API = {
     return instance.get("/structures/getActiveStructures");
   },
   getAllStructures: () => instance.get("/structures/getAllStructures"),
+  getStructuresStatistics: (): Promise<Response<StructuresStatistics>> => {
+    return instance.get("/structures/statistics");
+  },
 
   // Needs
   getNeeds: () => {
@@ -428,6 +432,9 @@ const API = {
     return instance.post("/translate/get_translation", query, {
       headers
     });
+  },
+  getTranslationStatistics: (): Promise<Response<TranslationStatistics>> => {
+    return instance.get("/traduction/statistics");
   },
 
   // Langues

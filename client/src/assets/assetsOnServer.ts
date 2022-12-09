@@ -1,6 +1,6 @@
 const bucketUrl = "https://storage.googleapis.com/refugies-info-assets/";
 const bucketUrlQSN = bucketUrl + "qui-sommes-nous/";
-const bucketUrlCC = bucketUrl + "comment-contribuer/";
+const bucketUrlPublier = bucketUrl + "comment-contribuer/";
 const bucketUrlAnnuaireActivites = bucketUrl + "annuaire/activit%C3%A9s/";
 const bucketUrlPartners = bucketUrl + "logosPartenaires/";
 const bucketUrlMiddleOffice = bucketUrl + "middle-office/";
@@ -23,12 +23,9 @@ export const assetsOnServer = {
   homepage: {
     CarteDeploiement: bucketUrl + "home/Carte_deploiement_septembre2022.svg"
   },
-  commentContribuer: {
-    traduction: bucketUrlCC + "CommentContribuer_imageTrad.svg",
-    lexique: bucketUrlCC + "lexique.svg",
-    demarche: bucketUrlCC + "demarche.svg",
-    structure: bucketUrlCC + "annuaire.svg",
-    dispositif: bucketUrlCC + "dispositif.svg"
+  publier: {
+    demarche: bucketUrlPublier + "demarche.svg",
+    dispositif: bucketUrlPublier + "dispositif.svg",
   },
   annuaire: {
     activites: {

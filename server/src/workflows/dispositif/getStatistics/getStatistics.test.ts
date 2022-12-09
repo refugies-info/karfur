@@ -1,7 +1,6 @@
 //@ts-nocheck
 import { getStatistics } from "./getStatistics";
-import { getNbMercis, getNbVues } from "../../../modules/dispositif/dispositif.repository";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { getNbMercis, getNbVues, getNbFiches } from "../../../modules/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -12,17 +11,12 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getNbMercis: jest.fn().mockResolvedValue([{_id:null,mercis:4072}]),
-  getNbVues: jest.fn().mockResolvedValue([{_id:null,nbVues:175201,nbVuesMobile:85741}]),
+  getNbMercis: jest.fn().mockResolvedValue([{ _id: null, mercis: 4072 }]),
+  getNbVues: jest.fn().mockResolvedValue([{ _id: null, nbVues: 175201, nbVuesMobile: 85741 }]),
+  getNbFiches: jest.fn().mockResolvedValue(12),
 }));
 
-jest.mock("../../../libs/checkAuthorizations", () => ({
-  checkIfUserIsAdmin: jest.fn().mockReturnValue(undefined),
-}));
-
-const req = {
-  user: { roles: [{ nom: "Admin" }] },
-};
+const req = {};
 
 describe("getStatistics", () => {
   beforeEach(() => {
@@ -34,6 +28,7 @@ describe("getStatistics", () => {
     await getStatistics(req, res);
     expect(getNbMercis).toHaveBeenCalled();
     expect(getNbVues).toHaveBeenCalled();
+    expect(getNbFiches).toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -41,7 +36,8 @@ describe("getStatistics", () => {
       data: {
         nbMercis: 4072,
         nbVues: 175201,
-        nbVuesMobile: 85741
+        nbVuesMobile: 85741,
+        nbFiches: 12
       }
     });
   });
@@ -66,19 +62,6 @@ describe("getStatistics", () => {
     const res = mockResponse();
     await getStatistics(req, res);
     expect(getNbVues).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
-  });
-
-  it("should return a 403 if not admin ", async () => {
-    checkIfUserIsAdmin.mockImplementation(() => {
-      throw new Error("NOT_AUTHORIZED");
-    });
-
-    const res = mockResponse();
-    await getStatistics(req, res);
-    expect(getNbVues).not.toHaveBeenCalled();
-    expect(getNbVues).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
   });

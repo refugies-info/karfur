@@ -65,3 +65,17 @@ export const getPublishedTradIds = async (languei18nCode: string) =>
     langueCible: languei18nCode,
     status: "Validée",
   });
+
+export const getNbWordsTranslated = async () => Traduction.aggregate([
+  {
+    $match: {
+      status: "Validée",
+    },
+  },
+  {
+    $group: {
+      _id: null,
+      wordsCount: { $sum: "$nbMots" }
+    }
+  },
+]);

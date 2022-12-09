@@ -1,0 +1,79 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: relative;
+}
+
+.slider {
+  display: flex;
+
+  @include isTablet() {
+    margin-left: -15px;
+    margin-right: -15px;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+  }
+}
+
+.testimony {
+  padding: u(8) u(12);
+
+  @include isTablet() {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: none;
+    flex-basis: auto;
+    padding: 0 u(18);
+  }
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  transform: translateY(-50%);
+
+  &:hover,
+  &:active {
+    background-color: $gray70b;
+  }
+
+  &.prev {
+    left: 0;
+
+    @include rtl() {
+      left: inherit;
+      right: 0;
+      transform: rotate(180deg);
+      margin-top: -20px;
+    }
+  }
+
+  &.next {
+    right: 0;
+
+    @include rtl() {
+      right: inherit;
+      left: 0;
+      transform: rotate(180deg);
+      margin-top: -20px;
+    }
+  }
+
+  @include media-min("lg-limit") {
+    display: none;
+  }
+}

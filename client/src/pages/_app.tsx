@@ -21,7 +21,7 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const App = ({ Component, pageProps }: AppPropsWithLayout) => {
+const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const [history, setHistory] = useState<string[]>([]);
   const { store, props } = wrapper.useWrappedStore(pageProps);
   const defaultLayout = (page: ReactElement) => <Layout history={history}>{page}</Layout>;

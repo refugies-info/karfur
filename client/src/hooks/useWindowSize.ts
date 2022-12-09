@@ -11,6 +11,7 @@ const useWindowSize = () => {
     height: undefined,
   });
   const isMobile = windowSize.width && windowSize.width <= 768;
+  const isTablet = windowSize.width && windowSize.width < 992;
 
   useEffect(() => {
     function handleResize() {
@@ -23,7 +24,7 @@ const useWindowSize = () => {
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  return { windowSize, isMobile };
+  return { windowSize, isMobile, isTablet };
 }
 
 export default useWindowSize;

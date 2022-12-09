@@ -11,6 +11,8 @@ import { ReceiveInvitationMailModal } from "components/Pages/homepage/HomePageMo
 import NotDeployed from "assets/recherche/not_deployed_image.png";
 import iconMap from "assets/recherche/icon-map.svg";
 import styles from "./NotDeployedBanner.module.scss";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 interface Props {
   departments: string[];
@@ -19,6 +21,7 @@ interface Props {
 
 const NotDeployedBanner = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const { isMobile } = useWindowSize();
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(false);
@@ -51,7 +54,7 @@ const NotDeployedBanner = (props: Props) => {
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
           {!isMobile ? (
-            <Link legacyBehavior href="/comment-contribuer">
+            <Link legacyBehavior href={getPath("/publier", router.locale)}>
               <a className={styles.link}>{t("Recherche.notDeployedWriteLink", "Rédiger une fiche")}</a>
             </Link>
           ) : (

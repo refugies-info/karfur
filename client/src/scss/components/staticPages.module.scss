@@ -1,0 +1,168 @@
+@import "src/scss/colors";
+@import "src/scss/variables";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/responsive";
+
+$breakpoint: "lg-limit";
+
+// Layout
+.main {
+  width: 100%;
+}
+
+.container {
+  padding-left: 2px;
+  padding-right: 2px;
+
+  @include isMobile() {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.section {
+  padding-top: u(20);
+  padding-bottom: u(20);
+  position: relative;
+
+  @include isTablet() {
+    padding-top: u(10);
+    padding-bottom: u(10);
+  }
+
+  .link {
+    margin-top: u(20);
+    text-align: center;
+
+    @include isTablet() {
+      margin-top: u(10);
+    }
+  }
+}
+
+.bg_blue {
+  background: radial-gradient(150.13% 150.13% at 50% 50%, #0421b1 0%, #1b62d8 100%);
+  color: $white;
+}
+.bg_green {
+  background: radial-gradient(162.89% 162.89% at 50% 50%, #055e5a 0%, #27a8a5 100%);
+  color: $white;
+}
+.bg_grey {
+  background: $gray30;
+}
+.bg_red {
+  background: radial-gradient(231.66% 330.79% at 50% 50%, #910940 0%, #d64b71 100%);
+  color: $white;
+}
+.bg_orange {
+  background: radial-gradient(219.91% 221.23% at 33.82% 57.21%, #cd5605 0%, #f97319 100%);
+  color: $white;
+}
+.bg_purple {
+  background: radial-gradient(122.96% 170.89% at 46.11% 43.92%, #3d2884 0%, #705fa4 100%);
+  color: $white;
+}
+
+.anchor {
+  position: absolute;
+  top: -50px;
+}
+.top_space {
+  margin-top: u(20);
+
+  @include isTablet() {
+    margin-top: u(10);
+  }
+}
+.bottom_space {
+  margin-top: u(8);
+}
+
+// Titles
+.title2 {
+  @include text("h3");
+  margin-bottom: u(20);
+
+  @include isTablet() {
+    @include text("h4");
+    margin-bottom: u(10);
+  }
+}
+.center {
+  text-align: center;
+
+  @include isTablet() {
+    text-align: left;
+  }
+}
+.subtitle {
+  @include text("h5");
+  margin-top: u(10);
+  margin-bottom: 0;
+
+  @include isTablet() {
+    margin-top: u(6);
+    @include text("large");
+  }
+}
+.p {
+  @include text("large");
+}
+
+// Hero
+.hero {
+  @include isTablet() {
+    text-align: center;
+
+    h1 {
+      @include text("h3");
+    }
+  }
+}
+.hero_title {
+  @include media-min($breakpoint) {
+    padding-right: u(12);
+  }
+  @include isTablet() {
+    margin-bottom: u(13);
+  }
+}
+.hero_image {
+  @include isTablet() {
+    text-align: right;
+    padding-left: u(4);
+  }
+}
+
+// Steps
+.warning {
+  @include text("large");
+  padding: u(4);
+  background: $attention;
+  border-radius: $radius;
+}
+.warning_mobile {
+  @extend .warning;
+  display: none;
+  align-items: center;
+  margin-bottom: u(10);
+
+  & > p {
+    margin-bottom: 0;
+    margin-left: u(4);
+  }
+
+  @include isTablet() {
+    display: flex;
+  }
+}
+
+// Faq
+.faq {
+  max-width: 720px;
+}
+.needs {
+  max-width: 720px;
+}
