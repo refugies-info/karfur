@@ -498,10 +498,22 @@ export interface NbDispositifsByRegion {
   regionFigures: RegionFigures[]
   dispositifsWithoutGeoloc: ObjectId[]
 }
-export interface Statistics {
+export interface DispositifStatistics {
   nbMercis: number
   nbVues: number
   nbVuesMobile: number
+  nbFiches: number
+}
+export interface StructuresStatistics {
+  nbStructures: number
+}
+export interface TranslationStatistics {
+  nbTranslators: number
+  nbWordsTranslated: number
+  nbActiveTranslators: {
+    languageId: string
+    count: number
+  }[]
 }
 
 export type AvailableLanguageI18nCode =

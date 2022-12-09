@@ -216,7 +216,8 @@ const Annuaire = () => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  store.dispatch(fetchActiveStructuresActionCreator());
+  const action = fetchActiveStructuresActionCreator();
+  store.dispatch(action);
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 

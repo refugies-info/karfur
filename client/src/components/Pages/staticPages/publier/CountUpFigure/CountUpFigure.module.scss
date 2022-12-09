@@ -1,0 +1,25 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.figure {
+  @include text("h1");
+  margin-bottom: u(6);
+  font-weight: bold;
+
+  @include isTablet() {
+    margin-bottom: u(4);
+  }
+}
+.label {
+  @include text("h5");
+  margin-bottom: 0;
+
+  @include isTablet() {
+    @include text("large");
+    margin-bottom: u(6);
+  }
+}

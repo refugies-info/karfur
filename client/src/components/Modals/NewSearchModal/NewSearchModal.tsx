@@ -22,7 +22,7 @@ const NewSearchModal = (props: Props) => {
       className={styles.modal}
       modalHeader={<p className={cls(styles.title, "h2")}>La recherche a évolué&nbsp;!</p>}
     >
-      <ModalBody className={styles.body}>
+      <ModalBody>
         <p className={styles.text}>On vous explique tout dans cette courte vidéo.</p>
 
         <div className={styles.video}>
