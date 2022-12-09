@@ -11,6 +11,8 @@ interface Props {
   isRTL: boolean;
 }
 
+const rowAlignCenter = {alignItems: "center"};
+
 const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
   const { t } = useTranslation();
@@ -60,7 +62,7 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   const childrenArray =
     rightSection && rightSection.children ? rightSection.children : [];
   return (
-    <Row>
+    <Row style={rowAlignCenter}>
       <b className="en-bref">{t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
         if (!card) return;
