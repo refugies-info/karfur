@@ -144,7 +144,7 @@ const Footer = () => {
         <FooterLink asLink={<NextLink href={getPath("/politique-de-confidentialite", router.locale)} />}>
           {t("Politique de confidentialité", "Politique de confidentialité")}
         </FooterLink>
-        <FooterLink href="/" onClick={() => window.showAxeptioButton && window.showAxeptioButton()}>
+        <FooterLink href="/" onClick={() => window.__axeptioSDK.openCookies && window.__axeptioSDK.openCookies()}>
           {t("Footer.Gestion des cookies", "Gestion des cookies")}
         </FooterLink>
         <FooterCopy>
