@@ -17,15 +17,4 @@
       display: none;
     }
   }
-
-  .nav-item-enable {
-    background-color: black;
-    border-radius: 10px;
-    :global(.refugies-backend-header-menu-title) {
-      color: $white;
-    }
-    &:hover {
-      background-color: black;
-    }
-  }
 }
