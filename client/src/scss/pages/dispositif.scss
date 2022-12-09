@@ -391,7 +391,6 @@ $imgHeight: 350px;
       .tag-item {
         font-weight: normal;
         font-size: $text-normal;
-        line-height: 20px;
         color: $white;
         .no-decoration {
           color: inherit;
@@ -400,6 +399,8 @@ $imgHeight: 350px;
 
           .text-span {
             margin-left: 8px;
+            display: flex;
+            align-items: flex-end;
           }
 
           .text-span-rtl {
