@@ -5,11 +5,14 @@ import {
   FooterBottom,
   FooterCopy,
   FooterLink,
+  FooterOperator,
   FooterTop,
   FooterTopCategory,
   Link,
   Logo
 } from "@dataesr/react-dsfr";
+import { logoDIAIR } from "assets";
+import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -118,6 +121,9 @@ const Footer = () => {
         )}
       >
         <Logo>Gouvernement</Logo>
+        <FooterOperator>
+          <Image key="logo" src={logoDIAIR} alt="logo DIAIR" />
+        </FooterOperator>
         <FooterBodyItem>
           <Link href="https://www.legifrance.gouv.fr">legifrance.gouv.fr</Link>
         </FooterBodyItem>
