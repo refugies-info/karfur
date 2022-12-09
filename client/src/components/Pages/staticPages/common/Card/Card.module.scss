@@ -1,0 +1,51 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$breakpoint: "lg-limit";
+
+.container {
+  position: relative;
+  background: $white;
+  padding: u(6);
+  border-radius: u(5);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include media-max($breakpoint) {
+    padding: u(4);
+  }
+
+  &.grey {
+    background: $gray30;
+  }
+}
+
+.header {
+  height: 56px;
+}
+
+.title {
+  @include text("h5");
+  margin-top: u(6);
+  @include media-max($breakpoint) {
+    margin-top: u(4);
+  }
+}
+
+.text {
+  @include text("large");
+  margin-top: u(6);
+  margin-bottom: u(6);
+
+  @include media-max($breakpoint) {
+    @include text("normal");
+    margin-top: u(4);
+    margin-bottom: u(4);
+  }
+}

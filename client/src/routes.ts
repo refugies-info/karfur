@@ -1,22 +1,24 @@
 export type PathNames =
-  | "/"
-  | "/recherche"
-  | "/annuaire"
-  | "/annuaire/[id]"
-  | "/annuaire-creation"
-  | "/demarche"
-  | "/demarche/[id]"
-  | "/dispositif"
-  | "/dispositif/[id]"
-  | "/comment-contribuer"
-  | "/qui-sommes-nous"
-  | "/mentions-legales"
-  | "/declaration-accessibilite"
-  | "/politique-de-confidentialite"
-  | "/login"
-  | "/register"
-  | "/reset"
-  | "/backend/[...backend]";
+  "/" |
+  "/recherche" |
+  "/annuaire" |
+  "/annuaire/[id]" |
+  "/annuaire-creation" |
+  "/demarche" |
+  "/demarche/[id]" |
+  "/dispositif" |
+  "/dispositif/[id]" |
+  "/publier" |
+  "/traduire" |
+  "/qui-sommes-nous" |
+  "/mentions-legales" |
+  "/declaration-accessibilite" |
+  "/politique-de-confidentialite" |
+  "/login" |
+  "/register" |
+  "/reset" |
+  "/backend/[...backend]"
+  ;
 
 type Routes = {
   [key in PathNames]: string;
@@ -32,7 +34,8 @@ const routes: Routes = {
   "/demarche/[id]": "/procedure/[id]",
   "/dispositif": "/program",
   "/dispositif/[id]": "/program/[id]",
-  "/comment-contribuer": "/how-to-contribute",
+  "/publier": "/publish",
+  "/traduire": "/translate",
   "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",

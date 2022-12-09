@@ -1,0 +1,73 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: relative;
+}
+
+.btn {
+  @include text("h5");
+  background: $white;
+  border-color: $white;
+  padding: u(4);
+  font-weight: bold;
+  box-shadow: 0 10px 30px 0 #00000026;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: $radius;
+  margin-bottom: u(4);
+  width: 100%;
+
+  @include isTablet() {
+    @include text("large");
+  }
+
+  &:hover,
+  &.open {
+    background: $gray40b;
+    border-color: $darkColor;
+  }
+
+  &.open {
+    box-shadow: none;
+  }
+}
+
+.infos {
+  &.with_images {
+    @include media-min("lg-limit") {
+      max-width: 500px;
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+  }
+}
+
+.text {
+  @include text("large");
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    @include text("normal");
+  }
+}
+
+.icon {
+  margin-left: u(4);
+  transition: transform 0.2s ease-in-out;
+
+  @include rtl() {
+    margin-right: u(4);
+    margin-left: inherit;
+  }
+
+  .open & {
+    transform: rotate(180deg);
+  }
+}

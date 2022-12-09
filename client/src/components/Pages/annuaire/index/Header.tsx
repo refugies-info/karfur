@@ -23,7 +23,6 @@ interface Props {
   setIsCityFocus: (a: boolean) => void;
   isCitySelected: boolean;
   setIsCitySelected: (a: boolean) => void;
-  resetSearch: () => void;
   keyword: string;
   setKeyword: (a: string) => void;
   lettersClickable: string[];
@@ -45,7 +44,6 @@ export const Header = (props: Props) => {
           <SearchBarAnnuaire
             filteredStructures={props.filteredStructures}
             t={t}
-            resetSearch={props.resetSearch}
             keyword={props.keyword}
             setKeyword={props.setKeyword}
             typeSelected={props.typeSelected}

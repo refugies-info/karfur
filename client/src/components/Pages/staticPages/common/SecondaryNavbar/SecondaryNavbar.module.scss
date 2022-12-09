@@ -1,0 +1,108 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: sticky;
+  top: 0;
+  background: $white;
+  z-index: 1000;
+
+  @include isTablet() {
+    max-width: 100%;
+    overflow-x: scroll;
+  }
+
+  &.shadow {
+    box-shadow: 0 4px 18px 0 #0000001a;
+
+    @include isTablet() {
+      // fix for sticky not working, because of overflow-x
+      position: fixed;
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  padding-top: u(8);
+  padding-bottom: u(8);
+
+  & > div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  @include isTablet() {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: u(3);
+  height: 46px;
+  border-radius: $radius;
+  background: $white;
+  border: 1px solid $gray70b;
+  color: $gray70b;
+  @include text("normal");
+  margin-right: u(2);
+
+  &:hover {
+    border-color: $dark;
+    color: $dark;
+  }
+
+  &.active,
+  &.blue {
+    color: white;
+    border-color: transparent;
+    font-weight: bold;
+    align-items: center;
+
+    & > span {
+      margin-right: u(2);
+
+      @include rtl() {
+        margin-right: inherit;
+        margin-left: u(2);
+      }
+    }
+
+    &.green {
+      background: #055e5a;
+    }
+    &.purple {
+      background: #3d2884;
+    }
+    &.orange {
+      background: #cd5605;
+    }
+    &.red {
+      background: #910940;
+    }
+    &.blue {
+      background: $bleuCharte;
+
+      &:hover {
+        border-color: $bleuCharte;
+        color: $bleuCharte;
+        background: $white;
+
+        svg {
+          fill: $bleuCharte;
+        }
+      }
+    }
+  }
+}

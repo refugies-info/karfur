@@ -15,7 +15,6 @@ import illustration_connaitre_initiative from "./illustration_connaitre_initiati
 import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
 import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 import home_mobile from "./home_mobile.svg";
-import icon_France from "./icon_France.svg";
 import structure_definie from "./structure_definie.svg";
 
 export {
@@ -36,6 +35,5 @@ export {
   illustration_aidez_traduire,
   rendez_vous_ordinateur,
   home_mobile,
-  icon_France,
   structure_definie,
 };

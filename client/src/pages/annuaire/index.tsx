@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -14,11 +14,7 @@ import { SimplifiedStructure } from "types/interface";
 import { getPath } from "routes";
 import { Event } from "lib/tracking";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import {
-  filterStructuresByType,
-  filterStructuresByKeword,
-  filterStructuresByLoc,
-} from "lib/filterStructures";
+import { filterStructuresByType, filterStructuresByKeword, filterStructuresByLoc } from "lib/filterStructures";
 
 import { NoResult } from "components/Pages/annuaire/index/NoResult";
 import { LetterSection } from "components/Pages/annuaire/index/LetterSection";
@@ -26,6 +22,7 @@ import { Header } from "components/Pages/annuaire/index/Header";
 import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
+import isInBrowser from "lib/isInBrowser";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -60,11 +57,11 @@ const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
 const Annuaire = () => {
   const router = useRouter();
 
-  const [keyword, setKeyword] = useState(router.query.keyword as string || "");
+  const [keyword, setKeyword] = useState((router.query.keyword as string) || "");
   const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);
-  const [ville, setVille] = useState(router.query.ville as string || "");
-  const [depName, setDepName] = useState(router.query.depName as string || "");
-  const [depNumber, setDepNumber] = useState(router.query.depNumber as string || "");
+  const [ville, setVille] = useState((router.query.ville as string) || "");
+  const [depName, setDepName] = useState((router.query.depName as string) || "");
+  const [depNumber, setDepNumber] = useState((router.query.depNumber as string) || "");
   const [isCityFocus, setIsCityFocus] = useState(false);
   const [isCitySelected, setIsCitySelected] = useState(!!router.query.depNumber || !!router.query.depName);
 
@@ -78,9 +75,7 @@ const Annuaire = () => {
     setKeyword("");
   }, []);
 
-  const defineLettersClickable = useCallback((
-    sortedStructureByAlpha: SimplifiedStructure[]
-  ) => {
+  const defineLettersClickable = useCallback((sortedStructureByAlpha: SimplifiedStructure[]) => {
     let lettersClickable: string[] = [];
     sortedStructureByAlpha.forEach((structure) => {
       let letter = structure.nom[0];
@@ -96,22 +91,24 @@ const Annuaire = () => {
   }, []);
 
   const structures = useSelector(activeStructuresSelector);
-  const initialFilteredStructures = (structures || []).filter(
-    (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
-  );
-  const [filteredStructures, setFilteredStructures] = useState(initialFilteredStructures);
 
-  useEffect(() => {
+  const filteredStructures = useMemo(() => {
     const computeUrlFromState = (query: {
       depName?: string | undefined;
       depNumber?: string | null;
       keyword?: string;
       ville?: string;
     }) => {
-      router.push({
-        pathname: getPath("/annuaire", router.locale),
-        search: qs.stringify(query)
-      }, undefined, { shallow: true });
+      // SSR patch https://nextjs.org/docs/messages/no-router-instance
+      if (isInBrowser())
+        router.push(
+          {
+            pathname: getPath("/annuaire", router.locale),
+            search: qs.stringify(query)
+          },
+          undefined,
+          { shallow: true }
+        );
     };
 
     // build url
@@ -164,28 +161,23 @@ const Annuaire = () => {
     computeUrlFromState(query);
 
     // filter structures
-    const filterByType = filterStructuresByType(structures, typeSelected);
+    const initialFilteredStructures = (structures || []).filter(
+      (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
+    );
+    const filterByType = filterStructuresByType(initialFilteredStructures, typeSelected);
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType, isCitySelected, depNumber, depName);
     const filterByTypeAndLocAndKeyword = filterStructuresByKeword(filterByTypeAndLoc, keyword);
     const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
       ? filterByTypeAndLocAndKeyword.sort((a, b) =>
-        a.nom[0].toLowerCase() < b.nom[0].toLowerCase()
-          ? -1
-          : a.nom[0].toLowerCase() > b.nom[0].toLowerCase()
-            ? 1
-            : 0
-      )
+          a.nom[0].toLowerCase() < b.nom[0].toLowerCase() ? -1 : a.nom[0].toLowerCase() > b.nom[0].toLowerCase() ? 1 : 0
+        )
       : [];
 
-    setFilteredStructures(sortedStructureByAlpha);
+    return sortedStructureByAlpha;
 
-  // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
-
-  const resetSearch = useCallback(() => {
-    setFilteredStructures(initialFilteredStructures);
-  }, [initialFilteredStructures]);
+    // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, structures, ville, router.locale]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const lettersClickable = defineLettersClickable(filteredStructures);
@@ -194,7 +186,6 @@ const Annuaire = () => {
     <div className={styles.container}>
       <SEO title="Annuaire" />
       <Header
-        resetSearch={resetSearch}
         letters={letters}
         filteredStructures={filteredStructures}
         keyword={keyword}
@@ -213,25 +204,26 @@ const Annuaire = () => {
         setIsCitySelected={setIsCitySelected}
         lettersClickable={lettersClickable}
       />
-        <div className={styles.content}>
-          {filteredStructures.length > 0 ? (
-            <LetterSection structures={filteredStructures} />
-          ) : (
-            <NoResult resetAllFilter={resetAllFilter} />
-          )}
-        </div>
+      <div className={styles.content}>
+        {filteredStructures.length > 0 ? (
+          <LetterSection structures={filteredStructures} />
+        ) : (
+          <NoResult resetAllFilter={resetAllFilter} />
+        )}
+      </div>
     </div>
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(store => async ({locale}) => {
-  store.dispatch(fetchActiveStructuresActionCreator());
+export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
+  const action = fetchActiveStructuresActionCreator();
+  store.dispatch(action);
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
     },
     revalidate: 30
   };
