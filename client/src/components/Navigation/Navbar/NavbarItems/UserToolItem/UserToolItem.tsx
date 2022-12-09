@@ -38,9 +38,7 @@ const UserToolItem = () => {
   if (isMobileOnly) return null;
 
   return isAuth ? (
-    <ToolItem onClick={goToProfile}>
-      <Image alt="votre image de profil" src={userImg} width="48" height="48" style={{ borderRadius: 100 }} />
-    </ToolItem>
+    <ToolItem onClick={goToProfile}>{t("Toolbar.Mon espace", "Mon espace")}</ToolItem>
   ) : (
     <ToolItem asLink={<Link href={getPath("/login", router.locale)} />} icon="ri-user-line">
       {t("Toolbar.Connexion", "Connexion")}
