@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -22,6 +22,7 @@ import { Header } from "components/Pages/annuaire/index/Header";
 import SEO from "components/Seo";
 
 import styles from "scss/pages/annuaire.module.scss";
+import isInBrowser from "lib/isInBrowser";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
   let typeSelectedFromUrl: string[] = [];
@@ -90,26 +91,24 @@ const Annuaire = () => {
   }, []);
 
   const structures = useSelector(activeStructuresSelector);
-  const initialFilteredStructures = (structures || []).filter(
-    (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
-  );
-  const [filteredStructures, setFilteredStructures] = useState(initialFilteredStructures);
 
-  useEffect(() => {
+  const filteredStructures = useMemo(() => {
     const computeUrlFromState = (query: {
       depName?: string | undefined;
       depNumber?: string | null;
       keyword?: string;
       ville?: string;
     }) => {
-      router.push(
-        {
-          pathname: getPath("/annuaire", router.locale),
-          search: qs.stringify(query)
-        },
-        undefined,
-        { shallow: true }
-      );
+      // SSR patch https://nextjs.org/docs/messages/no-router-instance
+      if (isInBrowser())
+        router.push(
+          {
+            pathname: getPath("/annuaire", router.locale),
+            search: qs.stringify(query)
+          },
+          undefined,
+          { shallow: true }
+        );
     };
 
     // build url
@@ -162,7 +161,10 @@ const Annuaire = () => {
     computeUrlFromState(query);
 
     // filter structures
-    const filterByType = filterStructuresByType(structures, typeSelected);
+    const initialFilteredStructures = (structures || []).filter(
+      (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f"
+    );
+    const filterByType = filterStructuresByType(initialFilteredStructures, typeSelected);
     const filterByTypeAndLoc = filterStructuresByLoc(filterByType, isCitySelected, depNumber, depName);
     const filterByTypeAndLocAndKeyword = filterStructuresByKeword(filterByTypeAndLoc, keyword);
     const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
@@ -171,15 +173,11 @@ const Annuaire = () => {
         )
       : [];
 
-    setFilteredStructures(sortedStructureByAlpha);
+    return sortedStructureByAlpha;
 
     // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeSelected, depName, depNumber, keyword, isCitySelected]);
-
-  const resetSearch = useCallback(() => {
-    setFilteredStructures(initialFilteredStructures);
-  }, [initialFilteredStructures]);
+  }, [typeSelected, depName, depNumber, keyword, isCitySelected, structures, ville, router.locale]);
 
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
   const lettersClickable = defineLettersClickable(filteredStructures);
@@ -188,7 +186,6 @@ const Annuaire = () => {
     <div className={styles.container}>
       <SEO title="Annuaire" />
       <Header
-        resetSearch={resetSearch}
         letters={letters}
         filteredStructures={filteredStructures}
         keyword={keyword}
