@@ -11,3 +11,15 @@
 .fr-footer__bottom-copy {
     font-size: .75rem;
 }
+
+[dir="rtl"], 
+[dir="rtl"] .fr-footer__top-cat,
+[dir="rtl"] .fr-nav__list>*>.fr-nav__btn,
+[dir="rtl"] .fr-nav__list>*>.fr-nav__link,
+[dir="rtl"] .fr-nav__list>.fr-nav__btn,
+[dir="rtl"] .fr-nav__list>.fr-nav__link,
+[dir="rtl"] .fr-nav__btn,
+[dir="rtl"] .fr-nav__link
+{
+    text-align: right;
+}
