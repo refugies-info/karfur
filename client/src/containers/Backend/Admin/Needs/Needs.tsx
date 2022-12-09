@@ -22,6 +22,7 @@ import { getDispositifsWithAllInformationRequired } from "../AdminStructures/Str
 import { ReactSortable } from "react-sortablejs";
 import { orderNeedsActionCreator } from "services/Needs/needs.actions";
 import isInBrowser from "lib/isInBrowser";
+import { SearchBarContainer } from "../sharedComponents/StyledAdmin";
 
 let NotificationContainer: any = null;
 let NotificationManager: any = null;
@@ -118,7 +119,7 @@ export const Needs = () => {
 
   return (
     <Container fluid>
-      <div className={styles.buttons}>
+      <SearchBarContainer>
         <FButton
           type="dark"
           name="plus-circle-outline"
@@ -134,7 +135,7 @@ export const Needs = () => {
         >
           Ajouter un besoin
         </FButton>
-      </div>
+      </SearchBarContainer>
       <Row className="mt-4 mb-5">
         <Col md="auto">
           <h3 className={styles.subtitle}>
