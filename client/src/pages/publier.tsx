@@ -80,8 +80,8 @@ const RecensezVotreAction = (props: Props) => {
   const [refHero, inViewHero] = useInView({ threshold: 0 });
   const [refWhy, inViewWhy] = useInView({ threshold: 0.5 });
   const [refRequired, inViewRequired] = useInView({ threshold: 0.5 });
-  const [refSteps, inViewSteps] = useInView();
-  const [refFaq, inViewFaq] = useInView({ threshold: 0.5 });
+  const [refSteps, inViewSteps] = useInView({ threshold: 0.05 });
+  const [refFaq, inViewFaq] = useInView({ threshold: 0.1 });
   const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
 
   useEffect(() => {

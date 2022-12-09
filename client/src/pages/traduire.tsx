@@ -45,16 +45,16 @@ const RecensezVotreAction = (props: Props) => {
   const [activeView, setActiveView] = useState<View | null>(null);
   const [refHero, inViewHero] = useInView({ threshold: 0 });
   const [refWho, inViewWho] = useInView({ threshold: 0.5 });
-  const [refSteps, inViewSteps] = useInView();
-  const [refNext, inViewNext] = useInView({ threshold: 0.1 });
+  const [refSteps, inViewSteps] = useInView({ threshold: 0.05 });
+  const [refNext, inViewNext] = useInView({ threshold: 0.5 });
   const [refFaq, inViewFaq] = useInView({ threshold: 0.5 });
   const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
     const views: { inView: boolean; id: View }[] = [
       { inView: inViewWho, id: "who" },
-      { inView: inViewNext, id: "next" },
       { inView: inViewSteps, id: "steps" },
+      { inView: inViewNext, id: "next" },
       { inView: inViewFaq, id: "faq" },
       { inView: inViewRegister, id: "register" }
     ];
@@ -112,8 +112,8 @@ const RecensezVotreAction = (props: Props) => {
       <SecondaryNavbar
         leftLinks={[
           { id: "who", color: "green", text: t("Translate.navbarItem1") },
-          { id: "steps", color: "purple", text: t("Translate.navbarItem2") },
-          { id: "next", color: "orange", text: t("Translate.navbarItem3") },
+          { id: "steps", color: "orange", text: t("Translate.navbarItem2") },
+          { id: "next", color: "purple", text: t("Translate.navbarItem3") },
           { id: "faq", color: "red", text: t("Translate.navbarItem4") }
         ]}
         rightLink={{
@@ -196,7 +196,7 @@ const RecensezVotreAction = (props: Props) => {
           </div>
           <StepContent
             step={1}
-            color="purple"
+            color="orange"
             title={t("Translate.stepsSubtitle1")}
             texts={[t("Translate.stepsText1")]}
             cta={{ text: t("Translate.stepsCTA1"), link: "#register" }}
@@ -204,14 +204,14 @@ const RecensezVotreAction = (props: Props) => {
           />
           <StepContent
             step={2}
-            color="purple"
+            color="orange"
             title={t("Translate.stepsSubtitle2")}
             texts={[t("Translate.stepsText2")]}
             video="/video/translate-video-step2.mp4"
           />
           <StepContent
             step={3}
-            color="purple"
+            color="orange"
             title={t("Translate.stepsSubtitle3")}
             texts={[t("Translate.stepsText3")]}
             video="/video/translate-video-step3.mp4"
@@ -227,7 +227,7 @@ const RecensezVotreAction = (props: Props) => {
           />
           <StepContent
             step={4}
-            color="purple"
+            color="orange"
             title={t("Translate.stepsSubtitle4")}
             texts={[t("Translate.stepsText4a"), t("Translate.stepsText4b")]}
             image={StepImage5}
@@ -239,7 +239,7 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* NEXT */}
-      <div ref={refNext} className={cls(styles.section, styles.bg_orange)}>
+      <div ref={refNext} className={cls(styles.section, styles.bg_purple)}>
         <span id="next" className={styles.anchor}></span>
         <Container className={cls(styles.container)}>
           <Row>
