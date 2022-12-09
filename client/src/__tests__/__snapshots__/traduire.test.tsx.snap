@@ -16,7 +16,9 @@ exports[`traduire renders traduire 1`] = `
         <div
           className="hero_title col-sm-12 col-lg-6"
         >
-          <h1>
+          <h1
+            className="text-white"
+          >
             Translate.title
           </h1>
           <p
@@ -186,7 +188,7 @@ exports[`traduire renders traduire 1`] = `
           Translate.navbarItem1
         </a>
         <a
-          className="btn purple"
+          className="btn orange"
           href="#steps"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -195,7 +197,7 @@ exports[`traduire renders traduire 1`] = `
           Translate.navbarItem2
         </a>
         <a
-          className="btn orange"
+          className="btn purple"
           href="#next"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -581,7 +583,7 @@ exports[`traduire renders traduire 1`] = `
       className="container needs container"
     >
       <h2
-        className="title2 text-center"
+        className="title2 text-center text-white"
       >
         Translate.needTitle
       </h2>
@@ -678,7 +680,7 @@ exports[`traduire renders traduire 1`] = `
         </p>
       </div>
       <div
-        className="row purple"
+        className="row orange"
       >
         <div
           className="content"
@@ -702,7 +704,7 @@ exports[`traduire renders traduire 1`] = `
             Translate.stepsText1
           </p>
           <a
-            className="link color_purple"
+            className="link color_orange"
             href="#register"
             onClick={[Function]}
             onMouseEnter={[Function]}
@@ -718,7 +720,7 @@ exports[`traduire renders traduire 1`] = `
               <i
                 dangerouslySetInnerHTML={
                   {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                   }
                 }
               />
@@ -742,7 +744,7 @@ exports[`traduire renders traduire 1`] = `
         </div>
       </div>
       <div
-        className="row purple"
+        className="row orange"
       >
         <div
           className="content"
@@ -783,7 +785,7 @@ exports[`traduire renders traduire 1`] = `
         </div>
       </div>
       <div
-        className="row purple"
+        className="row orange"
       >
         <div
           className="content"
@@ -845,7 +847,7 @@ exports[`traduire renders traduire 1`] = `
         </div>
       </div>
       <div
-        className="row purple has_btn_step"
+        className="row orange has_btn_step"
       >
         <div
           className="content"
@@ -1003,7 +1005,7 @@ exports[`traduire renders traduire 1`] = `
     </div>
   </div>
   <div
-    className="section bg_orange"
+    className="section bg_purple"
   >
     <span
       className="anchor"
@@ -1019,7 +1021,7 @@ exports[`traduire renders traduire 1`] = `
           className="col-sm-12 col-lg-6"
         >
           <h2
-            className="title2 bottom_space"
+            className="title2 bottom_space text-white"
           >
             Translate.nextTitle
           </h2>

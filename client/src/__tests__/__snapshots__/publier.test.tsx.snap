@@ -16,7 +16,9 @@ exports[`publier renders publier 1`] = `
         <div
           className="hero_title col-sm-12 col-lg-6"
         >
-          <h1>
+          <h1
+            className="text-white"
+          >
             Publish.title
           </h1>
           <p
@@ -2746,7 +2748,7 @@ exports[`publier renders publier 1`] = `
       className="container text-center container"
     >
       <h2
-        className="title2 text-center"
+        className="title2 text-center text-white"
       >
         Publish.figuresTitle
       </h2>
@@ -2756,13 +2758,13 @@ exports[`publier renders publier 1`] = `
         <div
           className="col-sm-12 col-lg-4"
         >
-          <p
+          <div
             className="figure"
           >
             <div>
               0
             </div>
-          </p>
+          </div>
           <p
             className="label"
           >
@@ -2772,13 +2774,13 @@ exports[`publier renders publier 1`] = `
         <div
           className="col-sm-12 col-lg-4"
         >
-          <p
+          <div
             className="figure"
           >
             <div>
               0
             </div>
-          </p>
+          </div>
           <p
             className="label"
           >
@@ -2788,13 +2790,13 @@ exports[`publier renders publier 1`] = `
         <div
           className="col-sm-12 col-lg-4"
         >
-          <p
+          <div
             className="figure"
           >
             <div>
               0
             </div>
-          </p>
+          </div>
           <p
             className="label"
           >
