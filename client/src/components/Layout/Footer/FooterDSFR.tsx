@@ -45,7 +45,7 @@ const Footer = () => {
         <FooterTopCategory title={t("Footer.Participer", "Participer")}>
           <FooterLink href="/">{t("Footer.Recenser mon action", "Recenser mon action")}</FooterLink>
           <FooterLink href="/">{t("Footer.Aider à traduire", "Aider à traduire")}</FooterLink>
-          <FooterLink href="/">
+          <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>
             {t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs")}
           </FooterLink>
           <FooterLink href="/">{t("Footer.Déployer sur mon territoire", "Déployer sur mon territoire")}</FooterLink>
@@ -132,7 +132,9 @@ const Footer = () => {
         </FooterBodyItem>
       </FooterBody>
       <FooterBottom>
-        <FooterLink href="/">{t("Footer.Plan du site", "Plan du site")}</FooterLink>
+        <FooterLink asLink={<NextLink href={getPath("/plan-du-site", router.locale)} />}>
+          {t("Footer.Plan du site", "Plan du site")}
+        </FooterLink>
         <FooterLink asLink={<NextLink href={getPath("/declaration-accessibilite", router.locale)} />}>
           {t("Footer.accessibility_link", "Accessibilité : non conforme")}
         </FooterLink>
