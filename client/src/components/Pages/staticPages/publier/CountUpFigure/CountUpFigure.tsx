@@ -11,11 +11,11 @@ interface Props {
 const CountUpFigure = (props: Props) => {
   return (
     <>
-      <p className={styles.figure}>
+      <div className={styles.figure}>
         <InView>
           {({ inView, ref }) => <div ref={ref}>{inView ? <CountUp end={props.number} separator=" " /> : 0}</div>}
         </InView>
-      </p>
+      </div>
       <p className={styles.label}>{props.text}</p>
     </>
   );
