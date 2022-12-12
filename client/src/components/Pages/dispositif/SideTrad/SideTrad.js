@@ -103,11 +103,13 @@ class SideTrad extends Component {
     startingTime: null,
     endingTime: null,
     validerInit: false,
+    stickToTop: false,
   };
   initialState = this.state;
 
   componentDidMount() {
     this.setState({ startingTime: moment() });
+    window.addEventListener("scroll", this.handleScroll);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -324,6 +326,18 @@ class SideTrad extends Component {
       });
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    const currentScrollPos = window.pageYOffset;
+    const stickToTop = currentScrollPos > 70;
+    if(this.state.stickToTop !== stickToTop){
+      this.setState( state => ({...state, stickToTop}));
+    }
+  };
 
   _initializeComponent = async () => {
     const { idx, subidx, subname } = this.state;
@@ -952,6 +966,7 @@ class SideTrad extends Component {
       modified,
       validated,
       modifiedNew,
+      stickToTop
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
     const options = {
@@ -960,7 +975,7 @@ class SideTrad extends Component {
     };
 
     return (
-      <div className={styles.side_trad}>
+      <div className={styles.side_trad + (stickToTop ? " stick-to-top" : "")}>
         <div className={styles.nav_btns}>
           <FButton
             type="light-action"
