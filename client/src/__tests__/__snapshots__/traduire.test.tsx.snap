@@ -5,7 +5,7 @@ exports[`traduire renders traduire 1`] = `
   className="main"
 >
   <div
-    className="section bg_blue"
+    className="section bg_blue mb-4"
   >
     <div
       className="container container"
@@ -739,6 +739,7 @@ exports[`traduire renders traduire 1`] = `
             height={320}
             loop={true}
             muted={true}
+            playsInline={true}
           >
             <source
               src="/video/publier-video-step1.mp4"
@@ -780,6 +781,7 @@ exports[`traduire renders traduire 1`] = `
             height={320}
             loop={true}
             muted={true}
+            playsInline={true}
           >
             <source
               src="/video/translate-video-step2.mp4"
@@ -842,6 +844,7 @@ exports[`traduire renders traduire 1`] = `
             height={320}
             loop={true}
             muted={true}
+            playsInline={true}
           >
             <source
               src="/video/translate-video-step3.mp4"
@@ -1051,6 +1054,7 @@ exports[`traduire renders traduire 1`] = `
               height={320}
               loop={true}
               muted={true}
+              playsInline={true}
             >
               <source
                 src="/video/translate-video-next.mp4"
