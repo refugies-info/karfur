@@ -106,7 +106,6 @@ const Register = (props: Props) => {
                 id="username"
                 type="text"
                 placeholder={t("Login.Pseudonyme", "Pseudonyme")}
-                autoComplete="username"
                 newSize
                 onChange={(e: any) => setUsername(e.target.value)}
                 className={styles.input}

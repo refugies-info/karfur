@@ -21,16 +21,17 @@
   align-items: center;
   justify-content: space-between;
   border-radius: $radius;
-  margin-bottom: u(4);
+  margin-bottom: u(8);
   width: 100%;
 
   @include isTablet() {
     @include text("large");
+    margin-bottom: u(6);
   }
 
   &:hover,
   &.open {
-    background: $gray40b;
+    background: $gray40b !important;
     border-color: $darkColor;
   }
 
