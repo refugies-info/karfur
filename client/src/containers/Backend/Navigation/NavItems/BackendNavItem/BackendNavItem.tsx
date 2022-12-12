@@ -9,8 +9,6 @@ import { getPath, PathNames } from "routes";
 import { userSelector } from "services/User/user.selectors";
 import history from "utils/backendHistory";
 
-import styles from "../../NavigationDSFR.module.scss";
-
 export interface BackendNavItem {
   access: string;
   iconName: string;
@@ -43,10 +41,11 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
   const _title = (titlekey ? t(titlekey) : title) as string;
   return (
     <NavItem
+      current={enable}
       onClick={_onClick}
       asLink={
-        <Link className={enable ? styles["nav-item-enable"] : ""} href={route}>
-          <EVAIcon fill={enable ? "white" : "black"} name={iconName} className="mr-10" />
+        <Link href={route}>
+          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="mr-10" />
           <span className="refugies-backend-header-menu-title">{_title}</span>
         </Link>
       }

@@ -16,6 +16,7 @@ body .btn {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  background-color: white;
 
   @include media-max("sm-limit") {
     font-size: $text-normal;

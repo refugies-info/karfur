@@ -275,6 +275,7 @@ $imgHeight: 350px;
       margin-bottom: 27px;
       line-height: 27px;
       font-size: $text-large;
+      padding-bottom: 0;
     }
 
     .relative-position {
@@ -391,7 +392,6 @@ $imgHeight: 350px;
       .tag-item {
         font-weight: normal;
         font-size: $text-normal;
-        line-height: 20px;
         color: $white;
         .no-decoration {
           color: inherit;
@@ -400,6 +400,8 @@ $imgHeight: 350px;
 
           .text-span {
             margin-left: 8px;
+            display: flex;
+            align-items: flex-end;
           }
 
           .text-span-rtl {
@@ -506,6 +508,10 @@ $imgHeight: 350px;
 
     .icon-left-side {
       padding: 0 20px 0 0;
+    }
+
+    h6 {
+      font-size: 1.125rem;
     }
   }
 
