@@ -1,72 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
-import Image from "next/legacy/image";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import { isMobile } from "react-device-detect";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import qs from "query-string";
-import { colors } from "colors";
-import { HomeCard } from "components/Pages/homepage/HomeCard";
-import UkrainePopup from "components/Pages/homepage/UkrainePopup";
-import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
-import MobileAppSection from "components/Pages/homepage/MobileAppSection";
-import HomeSearch from "components/Pages/homepage/HomeSearch";
-import CatList from "components/Pages/homepage/CatList";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import FButton from "components/UI/FButton";
-import { themesSelector } from "services/Themes/themes.selectors";
-import {
-  illustration_homeCard_dispositif,
-  illustration_homeCard_annuaire,
-  illustration_homeCard_demarche,
-  illustration_homeCard_lexique
-} from "assets/figma";
-import icon_mobilisation from "assets/icon_mobilisation.svg";
-import { assetsOnServer } from "assets/assetsOnServer";
-import SEO from "components/Seo";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { Button, Col, Container, Row } from "reactstrap";
+import { cls } from "lib/classname";
 import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
-import useRTL from "hooks/useRTL";
 import isInBrowser from "lib/isInBrowser";
-import styles from "scss/pages/homepage.module.scss";
-import { getPath } from "routes";
-import { MobileTagsModal } from "components/Pages/homepage/MobileTagsModal/MobileTagsModal";
+import { themesSelector } from "services/Themes/themes.selectors";
+import SEO from "components/Seo";
+import { useRTL, useWindowSize } from "hooks";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
-
-const ButtonContainerRow = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const ButtonSeparator = styled.div`
-  margin-right: ${(props: { isRTL: boolean }) => (props.isRTL ? "0px" : "10px")};
-  margin-left: ${(props: { isRTL: boolean }) => (props.isRTL ? "10px" : "0px")};
-`;
-
+import MobileAppSection from "components/Pages/homepage/MobileAppSection";
+import commonStyles from "scss/components/staticPages.module.scss";
+import styles from "scss/pages/homepage.module.scss";
+import ThemesGrid from "components/Content/ThemesGrid/ThemesGrid";
+import { ObjectId } from "mongodb";
+import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
+import CardSlider from "components/Pages/recherche/CardSlider";
+import { Accordion, Card } from "components/Pages/staticPages/common";
+import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
+import WhyImage2 from "assets/staticPages/publier/why-image-2.png";
+import WhyImage3 from "assets/staticPages/publier/why-image-3.png";
+import WhyImage4 from "assets/staticPages/publier/why-image-4.png";
+import RequiredIcon1 from "assets/staticPages/publier/required-icon-1.png";
+import RequiredIcon2 from "assets/staticPages/publier/required-icon-2.png";
+import RequiredIcon3 from "assets/staticPages/publier/required-icon-3.png";
+import { CountUpFigure } from "components/Pages/staticPages/publier";
 interface Props {}
 
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
-  const [popup, setPopup] = useState(false);
-  const [overlay, setOverlay] = useState(false);
-  const [showTagModal, setShowTagModal] = useState(false);
-
-  const [ukraine, setUkraine] = useState(false);
-
   const { t } = useTranslation();
   const router = useRouter();
-  const selectOption = (themeId: string) => {
-    router.push({
-      pathname: getPath("/recherche", router.locale),
-      search: qs.stringify({ themes: themeId })
-    });
-  };
-
-  const togglePopup = () => setPopup(!popup);
-  const toggleShowTagModal = () => setShowTagModal(!showTagModal);
-  const toggleOverlay = () => setOverlay(!overlay);
   const themes = useSelector(themesSelector);
+  const { isTablet } = useWindowSize();
+  const allDispositifs = useSelector(activeDispositifsSelector);
   const isRTL = useRTL();
 
   useEffect(() => {
@@ -75,191 +43,110 @@ const Homepage = (props: Props) => {
     }
   }, []);
 
+  const navigateTheme = (themeId: ObjectId) => {};
+  const navigateType = (type: string) => {};
+
+  const demarches = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
+  const dispositifs = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
+
   return (
-    <div className="animated fadeIn homepage">
+    <div className={commonStyles.main}>
       <SEO title="Accueil" description={t("Homepage.title")} />
-      {overlay ? <div className="overlay" /> : null}
-      <section className={styles.hero}>
-        <div className="hero-container">
-          {ukraine && <UkrainePopup />}
-          <h1 className={styles.title}>{t("Dispositifs.Header", "Construire sa vie en France")}</h1>
-          <h2 className={styles.subtitle}>{t("Homepage.title")}</h2>
 
-          <div className="search-row">
-            <HomeSearch togglePopup={togglePopup} toggleOverlay={toggleOverlay} toggleModal={toggleShowTagModal} />
+      <div className={styles.hero}>
+        <Container className={cls(commonStyles.container)}>
+          <h1>Titre</h1>
+        </Container>
+      </div>
+
+      <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
+        <ThemesGrid className={commonStyles.container} onClickTheme={(themeId) => navigateTheme(themeId)} />
+      </div>
+
+      <MobileAppSection />
+
+      <div className={cls(commonStyles.section)}>
+        <Container className={commonStyles.container}>
+          <div className={styles.title_line}>
+            <h2 className="h3">{t("Recherche.titleNewDemarches", "Nouveautés dans les fiches démarches")}</h2>
+            <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
-        </div>
-        {popup ? <CatList themes={themes} /> : null}
-        <div className="chevron-wrapper">
-          <a href="#plan" className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <div className="slide-animation">
-              <EVAIcon
-                className={isRTL ? "bottom-slider-rtl" : "bottom-slider"}
-                name="arrow-circle-down"
-                size="xhero"
-                fill={colors.white}
-              />
-            </div>
-          </a>
-        </div>
-      </section>
+          <CardSlider cards={demarches} type="demarche" />
+          <div className={styles.title_line}>
+            <h2 className="h3">{t("Recherche.titleNewDispositifs", "Nouveautés dans les fiches dispositifs")}</h2>
+            <Button onClick={() => navigateType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
+          </div>
+          <CardSlider cards={dispositifs} type="dispositif" />
+        </Container>
+      </div>
 
-      <section id="plan" className={`${styles.section} ${styles.triptique}`}>
-        <div className={styles.cards_container}>
-          <HomeCard
-            text="Homepage.Trouver une initiative"
-            defaultText="Trouver un programme ou une formation"
-            buttonTitle="Homepage.Je cherche"
-            defaultBoutonTitle="Je cherche"
-            iconName="search-outline"
-            backgroundColor={colors.blueGreen}
-            textColor={colors.white}
-            image={illustration_homeCard_dispositif}
-            isDisabled={false}
-            onClick={() => {
-              router.push({
-                pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?type=dispositif"
-              });
-            }}
+      <div className={cls(commonStyles.section)}>
+        <Container className={commonStyles.container}>
+          <h2 className={styles.title2}>Utilisation</h2>
+          <Accordion
+            items={[
+              { title: t("Publish.whyAccordionTitle1"), text: t("Publish.whyAccordionText1"), image: WhyImage1 },
+              { title: t("Publish.whyAccordionTitle2"), text: t("Publish.whyAccordionText2"), image: WhyImage2 },
+              { title: t("Publish.whyAccordionTitle3"), text: t("Publish.whyAccordionText3"), image: WhyImage3 },
+              { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 }
+            ]}
+            withImages
+            initOpen
+            multiOpen={!!isTablet}
           />
-          <HomeCard
-            text="Homepage.Comprendre les démarches administratives"
-            defaultText="Comprendre les démarches administratives"
-            buttonTitle="Homepage.Je cherche"
-            defaultBoutonTitle="Je cherche"
-            iconName="search-outline"
-            backgroundColor={colors.lightBlue2}
-            textColor={colors.white}
-            image={illustration_homeCard_demarche}
-            isDisabled={false}
-            onClick={() => {
-              router.push({
-                pathname: getPath("/recherche", router.locale),
-                search: isMobile ? null : "?type=demarche"
-              });
-            }}
-          />
-          <HomeCard
-            text="Homepage.Consulter l'annuaire pour trouver une association"
-            defaultText="Consulter l'annuaire pour trouver une association"
-            buttonTitle={isMobile ? "Homepage.Disponible sur ordinateur" : "Homepage.Consulter l’annnuaire"}
-            defaultBoutonTitle={isMobile ? "Disponible sur ordinateur" : "Consulter l’annnuaire"}
-            iconName={isMobile ? "alert-circle-outline" : "search-outline"}
-            backgroundColor={colors.purple}
-            textColor={colors.white}
-            image={illustration_homeCard_annuaire}
-            isDisabled={isMobile ? true : false}
-            onClick={() => {
-              router.push({
-                pathname: getPath("/annuaire", router.locale)
-              });
-            }}
-          />
-          <HomeCard
-            text="Homepage.Lire le lexique"
-            defaultText="Lire le lexique pour comprendre les mots difficiles"
-            buttonTitle="Homepage.Bientôt disponible"
-            defaultBoutonTitle="Bientôt disponible"
-            iconName="alert-circle-outline"
-            backgroundColor={colors.whiteBlue}
-            textColor={colors.bleuCharte}
-            image={illustration_homeCard_lexique}
-            isDisabled={true}
-            onClick={() => {}}
-          />
-        </div>
-      </section>
+        </Container>
+      </div>
 
-      {isMobile ? (
-        <HomePageMobile />
-      ) : (
-        <>
-          <MobileAppSection />
-          <section id="contribution" className={`${styles.section} ${styles.contribution}`}>
-            <div className="section-container half-width right-side">
-              <div className="section-body">
-                <h2>{t("Homepage.contribution")}</h2>
-                <p>{t("Homepage.contribution subheader")}</p>
-              </div>
-              <footer className="footer-section">
-                <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
-                  <FButton name="file-add-outline" tag="a" tabIndex="1" type="dark" style={{ height: "60px" }}>
-                    {t("Homepage.Je contribue", "Je contribue")}
-                  </FButton>
-                </Link>
-              </footer>
-            </div>
-          </section>
+      <div className={cls(commonStyles.section, commonStyles.bg_red)}>
+        <Container className={commonStyles.container}>
+          <Row>
+            <Col></Col>
+            <Col>
+              <h2 className={styles.title2}>Utilisation</h2>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
-          <section id="ecrire" className={`${styles.section} ${styles.ecrire}`}>
-            <div className="section-container half-width left-side">
-              <div className="section-body">
-                <h2>{t("Homepage.Faites connaitre")}</h2>
-                <p>{t("Homepage.Faites connaitre subheader")}</p>
-              </div>
-              <footer>
-                <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
-                  <FButton name="file-add-outline" type="dark" tag="a" tabIndex="2" style={{ height: "60px" }}>
-                    {t("Homepage.Je propose une fiche", "Je propose une fiche")}
-                  </FButton>
-                </Link>
-              </footer>
-            </div>
-          </section>
+      <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
+        <Container className={commonStyles.container}>
+          <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Publish.requiredTitle")}</h2>
+          <Row>
+            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Card image={RequiredIcon1} title={t("Publish.requiredSubtitle1")}>
+                <p className="mb-0">{t("Publish.requiredText1")}</p>
+              </Card>
+            </Col>
+            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Card image={RequiredIcon2} title={t("Publish.requiredSubtitle2")}>
+                <p className="mb-0">{t("Publish.requiredText2")}</p>
+              </Card>
+            </Col>
+            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Card image={RequiredIcon3} title={t("Publish.requiredSubtitle3")}>
+                <p className="mb-0">{t("Publish.requiredText3")}</p>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
-          <section id="multilangues" className={`${styles.section} ${styles.multilangues}`}>
-            <div className="section-container half-width right-side">
-              <div className="section-body">
-                <h2>{t("Homepage.aidez-nous à taduire")}</h2>
-                <p>{t("Homepage.aidez-nous à taduire subheader")}</p>
-                {/*<LanguageBtn />*/}
-              </div>
-              <footer className="footer-section">
-                <Link legacyBehavior href={getPath("/traduire", router.locale)} passHref>
-                  <FButton name="file-add-outline" type="dark" tag="a" tabIndex="3" style={{ height: "60px" }}>
-                    {t("Homepage.J'aide à traduire", "J'aide à traduire")}
-                  </FButton>
-                </Link>
-              </footer>
-            </div>
-          </section>
-          <section id="deployer" className={`${styles.section} ${styles.deployer}`}>
-            <div className="section-container half-width left-side" style={{ zIndex: 2, position: "relative" }}>
-              <div className="section-body">
-                <h2>{t("Homepage.Déployez")}</h2>
-                <p>{t("Homepage.Déployez subheader")}</p>
-              </div>
-              <footer className="footer-section">
-                <ButtonContainerRow>
-                  <ButtonSeparator isRTL={isRTL}>
-                    <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
-                      <FButton type="dark" tag="a" tabIndex="4" style={{ height: "60px" }}>
-                        <span className="mr-8">
-                          <Image src={icon_mobilisation} alt="icon mobilisation" />
-                        </span>
-                        {t("Homepage.Participe déploiement", "Je participe au déploiement")}
-                      </FButton>
-                    </Link>
-                  </ButtonSeparator>
-                  <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
-                    <FButton type="outline-black" tag="a" tabIndex="5" style={{ height: "60px" }}>
-                      {t("Homepage.Vous hésitez encore ?", "Vous hésitez encore ?")}
-                    </FButton>
-                  </Link>
-                </ButtonContainerRow>
-              </footer>
-            </div>
-            <div
-              className={styles.deployer_map}
-              style={{
-                backgroundImage: `url(${assetsOnServer.homepage.CarteDeploiement})`
-              }}
-            ></div>
-          </section>
-        </>
-      )}
-      <MobileTagsModal selectOption={selectOption} toggle={toggleShowTagModal} show={showTagModal} />
+      <div className={cls(commonStyles.section, commonStyles.bg_green)}>
+        <Container className={cls(commonStyles.container, "text-center")}>
+          <h2 className={cls(commonStyles.title2, "text-center text-white")}>{t("Publish.figuresTitle")}</h2>
+          <Row>
+            <Col sm="12" lg="4">
+              <CountUpFigure number={12} text={t("Publish.figuresSubtitle1")} />
+            </Col>
+            <Col sm="12" lg="4">
+              <CountUpFigure number={12} text={t("Publish.figuresSubtitle2")} />
+            </Col>
+            <Col sm="12" lg="4">
+              <CountUpFigure number={12} text={t("Publish.figuresSubtitle3")} />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
   );
 };
