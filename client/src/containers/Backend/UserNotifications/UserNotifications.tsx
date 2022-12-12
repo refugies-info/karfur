@@ -27,7 +27,7 @@ import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { colors } from "colors";
 
 const MainContainer = styled.div`
-  background: ${colors.lightGrey}
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
