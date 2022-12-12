@@ -244,8 +244,8 @@ const RecensezVotreAction = (props: Props) => {
         <Container className={cls(styles.container)}>
           <Row>
             <Col lg="6" sm="12">
-              <h2 className={cls(styles.title2, styles.bottom_space, "text-white")}>{t("Translate.nextTitle")}</h2>
-              <p className={styles.p}>{t("Translate.nextText1")}</p>
+              <h2 className={cls(styles.title2, styles.bottom_space, "mb-0 text-white")}>{t("Translate.nextTitle")}</h2>
+              <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
               <p className={styles.p}>{t("Translate.nextText2")}</p>
             </Col>
             <Col lg="6" sm="12" className="text-right">
