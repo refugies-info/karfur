@@ -5,7 +5,7 @@ exports[`publier renders publier 1`] = `
   className="main"
 >
   <div
-    className="section bg_blue"
+    className="section bg_blue mb-4"
   >
     <div
       className="container container"
@@ -1660,6 +1660,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
+              playsInline={true}
             >
               <source
                 src="/video/publier-video-step1.mp4"
@@ -1730,6 +1731,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
+              playsInline={true}
             >
               <source
                 src="/video/publier-video-step2.mp4"
@@ -1771,6 +1773,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
+              playsInline={true}
             >
               <source
                 src="/video/publier-video-step3.mp4"
