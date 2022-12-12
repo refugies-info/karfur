@@ -1,14 +1,31 @@
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
 @import "src/scss/colors";
 
 .container {
   width: 100%;
 }
 
+// Hero
 .hero {
   min-height: 750px;
   background-size: cover;
   background-repeat: no-repeat;
+  padding-top: u(20);
+
+  @include isTablet() {
+    padding-top: u(10);
+    min-height: 90vh;
+  }
+
+  h1 {
+    text-align: center;
+
+    @include isTablet() {
+      @include text("h4");
+    }
+  }
 
   @include media-min("tablet-up") {
     background-image: url(../../assets/figma/integration_illu.svg);
@@ -16,4 +33,34 @@
   @include isMobile() {
     background-image: url(../../assets/figma/home_mobile.svg);
   }
+}
+
+// Sliders
+.content_sliders {
+  :global(.content-card-slider) {
+    --gradient-start: #f6f6f600;
+    --gradient-end: #f6f6f6;
+  }
+
+  .title_line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include isTablet() {
+      & > button {
+        display: none;
+      }
+      h2 {
+        @include text("h5");
+      }
+    }
+  }
+}
+
+// Community
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

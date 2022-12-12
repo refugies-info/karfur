@@ -15,6 +15,7 @@ $orange: #cd5605;
   red: $red;
   orange: $orange;
   blue: $bleuCharte;
+  white: $white;
 }
 
 .link {
@@ -48,6 +49,10 @@ $orange: #cd5605;
 
   &.color_blue {
     color: $bleuCharte;
+  }
+
+  &.color_white {
+    color: $white;
   }
 }
 
