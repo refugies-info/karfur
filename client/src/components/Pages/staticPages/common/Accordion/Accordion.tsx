@@ -53,7 +53,12 @@ const Accordion = (props: Props) => {
                 <EVAIcon name="arrow-ios-downward-outline" fill="black" size={32} className={styles.icon} />
               </Button>
               <Collapse isOpen={isItemOpen}>
-                <p className={styles.text}>{item.text}</p>
+                <p
+                  className={styles.text}
+                  dangerouslySetInnerHTML={{
+                    __html: item.text
+                  }}
+                ></p>
 
                 {isTablet && props.withImages && item?.image && <Image src={item?.image} alt="" />}
                 {isTablet && props.withImages && item?.video && (

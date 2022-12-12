@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import ThemesFooterCategory from "./ThemesFooterCategory";
+import styles from "./FooterDSFR.module.scss";
 
 const Footer = () => {
   const router = useRouter();
@@ -31,7 +32,7 @@ const Footer = () => {
   };
 
   return (
-    <DSFRFooter>
+    <DSFRFooter className={styles.footer}>
       <FooterTop>
         <ThemesFooterCategory />
         <FooterTopCategory title={t("Footer.Trois types d’information", "Trois types d’information")}>
