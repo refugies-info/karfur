@@ -68,6 +68,10 @@ $breakpoint: "lg-limit";
 .anchor {
   position: absolute;
   top: -50px;
+
+  @include isTablet() {
+    top: -100px;
+  }
 }
 .top_space {
   margin-top: u(20);
