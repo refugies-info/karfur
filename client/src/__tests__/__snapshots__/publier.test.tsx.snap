@@ -285,9 +285,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.whyAccordionText1
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.whyAccordionText1",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -316,9 +319,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.whyAccordionText2
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.whyAccordionText2",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -347,9 +353,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.whyAccordionText3
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.whyAccordionText3",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -378,9 +387,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.whyAccordionText4
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.whyAccordionText4",
+                    }
+                  }
+                />
               </div>
             </div>
           </div>
@@ -2864,9 +2876,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.faqAccordionText1
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.faqAccordionText1",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -2895,9 +2910,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.faqAccordionText2
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.faqAccordionText2",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -2926,9 +2944,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.faqAccordionText3
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.faqAccordionText3",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -2957,9 +2978,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.faqAccordionText4
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.faqAccordionText4",
+                    }
+                  }
+                />
               </div>
             </div>
             <div>
@@ -2988,9 +3012,12 @@ exports[`publier renders publier 1`] = `
               >
                 <p
                   className="text"
-                >
-                  Publish.faqAccordionText5
-                </p>
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "Publish.faqAccordionText5",
+                    }
+                  }
+                />
               </div>
             </div>
           </div>

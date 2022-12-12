@@ -13,6 +13,7 @@
 
   @include isTablet() {
     max-width: 100%;
+    width: 100%;
     overflow-x: scroll;
   }
 
@@ -31,8 +32,9 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: nowrap;
-  padding-top: u(6);
-  padding-bottom: u(6);
+  margin-top: u(4);
+  margin-bottom: u(4);
+  padding: u(4) 0;
 
   & > div {
     display: flex;
@@ -40,8 +42,8 @@
   }
 
   @include isTablet() {
-    width: 100%;
-    max-width: 100%;
+    padding-left: u(4);
+    padding-right: u(4);
   }
 }
 

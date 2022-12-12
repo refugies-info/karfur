@@ -59,6 +59,19 @@
   @include isTablet() {
     @include text("normal");
   }
+
+  ul {
+    margin: u(2) 0;
+    padding-left: u(6);
+
+    @include rtl() {
+      padding-right: u(6);
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: u(2);
+    }
+  }
 }
 
 .video {

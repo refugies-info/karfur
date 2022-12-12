@@ -176,6 +176,7 @@ $borderWidth: 4px;
   position: absolute;
   top: 0;
   left: -22px;
+  box-shadow: 1.3px 1.3px 11px 0 #2121213d;
 
   @include rtl() {
     left: inherit;
@@ -183,16 +184,17 @@ $borderWidth: 4px;
   }
 
   .orange & {
-    background: linear-gradient(90deg, $orange 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
+    background: $orange;
   }
   .purple & {
-    background: linear-gradient(90deg, $purple 26.28%, #705fa4 100%), linear-gradient(0deg, #ffffff, #ffffff);
+    background: $purple;
   }
 
   @include isTablet() {
     width: 24px;
     height: 24px;
-    @include text("large");
+    @include text("normal");
+    line-height: 15px;
     left: -14px;
     top: -1px;
 
