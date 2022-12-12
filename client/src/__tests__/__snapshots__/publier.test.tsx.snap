@@ -1660,7 +1660,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
-              playsInline={true}
+              playsInline=""
             >
               <source
                 src="/video/publier-video-step1.mp4"
@@ -1731,7 +1731,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
-              playsInline={true}
+              playsInline=""
             >
               <source
                 src="/video/publier-video-step2.mp4"
@@ -1773,7 +1773,7 @@ exports[`publier renders publier 1`] = `
               height={320}
               loop={true}
               muted={true}
-              playsInline={true}
+              playsInline=""
             >
               <source
                 src="/video/publier-video-step3.mp4"
