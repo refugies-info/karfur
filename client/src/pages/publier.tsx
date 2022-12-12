@@ -89,7 +89,7 @@ const RecensezVotreAction = (props: Props) => {
       <SEO title={t("Publish.title")} />
 
       {/* HERO */}
-      <div ref={refHero} className={cls(styles.section, styles.bg_blue)}>
+      <div ref={refHero} className={cls(styles.section, styles.bg_blue, "mb-4")}>
         <Container className={styles.container}>
           <Row className={styles.hero}>
             <Col sm="12" lg="6" className={styles.hero_title}>

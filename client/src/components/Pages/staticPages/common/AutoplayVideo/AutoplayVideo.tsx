@@ -38,7 +38,7 @@ const AutoplayVideo = (props: Props) => {
 
   if (!props.src) return <></>;
   return (
-    <video ref={setRefs} height={props.height} loop muted className={styles.video}>
+    <video ref={setRefs} height={props.height} loop muted playsInline className={styles.video}>
       <source src={props.src} type="video/mp4" />
     </video>
   );
