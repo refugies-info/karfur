@@ -176,7 +176,7 @@ const RecensezVotreAction = (props: Props) => {
             <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
             <Row>
               {needKeys.map((needKey, i) => (
-                <Col key={i}>
+                <Col key={i} sm="12" lg="4">
                   {translationNeeds[needKey].map((item, i) => (
                     <LanguageCard key={i} languageId={item.languageId} need={needKey} />
                   ))}
@@ -311,10 +311,11 @@ const RecensezVotreAction = (props: Props) => {
               { title: t("Translate.faqAccordionTitle1"), text: t("Translate.faqAccordionText1") },
               { title: t("Translate.faqAccordionTitle2"), text: t("Translate.faqAccordionText2") },
               { title: t("Translate.faqAccordionTitle3"), text: t("Translate.faqAccordionText3") },
+              { title: t("Translate.faqAccordionTitle4"), text: t("Translate.faqAccordionText4") },
               {
-                title: t("Translate.faqAccordionTitle4"),
-                text: t("Translate.faqAccordionText4"),
-                cta: { text: t("Translate.faqAccordionCTA4"), link: "https://airtable.com/shrQxPHedgZ5PuXot" }
+                title: t("Translate.faqAccordionTitle5"),
+                text: t("Translate.faqAccordionText5"),
+                cta: { text: t("Translate.faqAccordionCTA5"), link: "https://airtable.com/shrQxPHedgZ5PuXot" }
               }
             ]}
             multiOpen

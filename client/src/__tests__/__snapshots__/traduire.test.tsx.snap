@@ -594,7 +594,7 @@ exports[`traduire renders traduire 1`] = `
           className="row"
         >
           <div
-            className="col"
+            className="col-sm-12 col-lg-4"
           >
             <div
               className="container"
@@ -620,7 +620,7 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            className="col"
+            className="col-sm-12 col-lg-4"
           >
             <div
               className="container"
@@ -646,7 +646,7 @@ exports[`traduire renders traduire 1`] = `
             </div>
           </div>
           <div
-            className="col"
+            className="col-sm-12 col-lg-4"
           />
         </div>
       </div>
@@ -1457,9 +1457,12 @@ exports[`traduire renders traduire 1`] = `
             >
               <p
                 className="text"
-              >
-                Translate.faqAccordionText1
-              </p>
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "Translate.faqAccordionText1",
+                  }
+                }
+              />
             </div>
           </div>
           <div>
@@ -1488,9 +1491,12 @@ exports[`traduire renders traduire 1`] = `
             >
               <p
                 className="text"
-              >
-                Translate.faqAccordionText2
-              </p>
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "Translate.faqAccordionText2",
+                  }
+                }
+              />
             </div>
           </div>
           <div>
@@ -1519,9 +1525,12 @@ exports[`traduire renders traduire 1`] = `
             >
               <p
                 className="text"
-              >
-                Translate.faqAccordionText3
-              </p>
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "Translate.faqAccordionText3",
+                  }
+                }
+              />
             </div>
           </div>
           <div>
@@ -1550,9 +1559,46 @@ exports[`traduire renders traduire 1`] = `
             >
               <p
                 className="text"
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "Translate.faqAccordionText4",
+                  }
+                }
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              aria-label={null}
+              className="btn btn btn-secondary"
+              onClick={[Function]}
+              type="button"
+            >
+              Translate.faqAccordionTitle5
+              <span
+                className="icon"
               >
-                Translate.faqAccordionText4
-              </p>
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                />
+              </span>
+            </button>
+            <div
+              className="collapse"
+              style={{}}
+            >
+              <p
+                className="text"
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "Translate.faqAccordionText5",
+                  }
+                }
+              />
               <a
                 className="link color_blue"
                 href="https://airtable.com/shrQxPHedgZ5PuXot"
@@ -1563,7 +1609,7 @@ exports[`traduire renders traduire 1`] = `
                 target="_blank"
               >
                 <span>
-                  Translate.faqAccordionCTA4
+                  Translate.faqAccordionCTA5
                 </span>
                 <span
                   className="icon"
