@@ -264,8 +264,8 @@ const RecensezVotreAction = (props: Props) => {
         <div className={cls(styles.section, styles.bg_grey)}>
           <Container className={styles.container}>
             <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-            <Row className={styles.top_space}>
-              <Col sm="12" lg={{ size: "4", offset: "2" }} className="mb-lg-0 mb-5">
+            <Row className={cls(styles.top_space, "justify-content-center")}>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
                 <Card
                   image={HelpIcon1}
                   title={t("Translate.helpTileTitle1")}
@@ -280,7 +280,7 @@ const RecensezVotreAction = (props: Props) => {
                   <p>{t("Translate.helpTileText1")}</p>
                 </Card>
               </Col>
-              <Col sm="12" lg={{ size: "4" }} className="mb-lg-0 mb-5">
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
                 <Card
                   image={HelpIcon2}
                   title={t("StaticPages.helpTileTitle3")}
