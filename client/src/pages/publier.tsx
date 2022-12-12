@@ -152,8 +152,16 @@ const RecensezVotreAction = (props: Props) => {
           <Accordion
             items={[
               { title: t("Publish.whyAccordionTitle1"), text: t("Publish.whyAccordionText1"), image: WhyImage1 },
-              { title: t("Publish.whyAccordionTitle2"), text: t("Publish.whyAccordionText2"), image: WhyImage2 },
-              { title: t("Publish.whyAccordionTitle3"), text: t("Publish.whyAccordionText3"), image: WhyImage3 },
+              {
+                title: t("Publish.whyAccordionTitle2"),
+                text: t("Publish.whyAccordionText2"),
+                video: "/video/publier-video-why2.mp4"
+              },
+              {
+                title: t("Publish.whyAccordionTitle3"),
+                text: t("Publish.whyAccordionText3"),
+                video: "/video/publier-video-why3.mp4"
+              },
               { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 }
             ]}
             withImages

@@ -61,6 +61,11 @@
   }
 }
 
+.video {
+  max-width: 250px;
+  margin: 0 auto u(6) auto;
+}
+
 .icon {
   margin-left: u(4);
   transition: transform 0.2s ease-in-out;
@@ -73,4 +78,10 @@
   .open & {
     transform: rotate(180deg);
   }
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
