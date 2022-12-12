@@ -323,6 +323,7 @@ const RecensezVotreAction = (props: Props) => {
           onClickLoggedIn={navigateToTranslations}
           subtitleForm={t("Translate.registerSubtitle")}
           subtitleLoggedIn={t("Translate.registerLoggedIn")}
+          btnLoggedIn={t("Translate.registerBtnLoggedIn")}
           subtitleMobile={t("Translate.registerMobile")}
         />
       </div>

@@ -410,6 +410,7 @@ const RecensezVotreAction = (props: Props) => {
           onClickLoggedIn={toggleWriteModal}
           subtitleForm={t("Publish.registerSubtitle")}
           subtitleLoggedIn={t("Publish.registerLoggedIn")}
+          btnLoggedIn={t("Publish.navbarItem5")}
           subtitleMobile={t("Publish.registerMobile")}
         />
       </div>
