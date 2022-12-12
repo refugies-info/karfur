@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/legacy/image";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
@@ -10,7 +9,6 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { cls } from "lib/classname";
 import useWindowSize from "hooks/useWindowSize";
 import API from "utils/API";
-import { getPath } from "routes";
 import SEO from "components/Seo";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
@@ -52,26 +50,13 @@ interface Props {
 
 const RecensezVotreAction = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
   const { isTablet } = useWindowSize();
 
   // write modal
   const [showWriteModal, setShowWriteModal] = useState(false);
-
   const toggleWriteModal = useCallback(() => {
     setShowWriteModal((o) => !o);
-    if (router.query.write === "show") {
-      router.replace({ pathname: getPath("/publier", router.locale) }, undefined, { shallow: true });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [setShowWriteModal, router.query.write]);
-
-  useEffect(() => {
-    if (router.query.write === "show" && !showWriteModal) {
-      setShowWriteModal(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.write]);
+  }, [setShowWriteModal]);
 
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);

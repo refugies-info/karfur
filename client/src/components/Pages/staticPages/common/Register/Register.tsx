@@ -109,6 +109,7 @@ const Register = (props: Props) => {
                 newSize
                 onChange={(e: any) => setUsername(e.target.value)}
                 className={styles.input}
+                autoFocus={false}
               />
               <FButton
                 type="login"
