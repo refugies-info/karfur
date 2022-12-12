@@ -19,9 +19,10 @@ import useWindowSize from "hooks/useWindowSize";
 import MobileRegisterImg from "assets/staticPages/publier/mobile-register.png";
 
 interface Props {
-  onClickLoggedIn: () => void;
   subtitleForm: string;
   subtitleLoggedIn: string;
+  btnLoggedIn: string;
+  onClickLoggedIn: () => void;
   subtitleMobile: string;
 }
 
@@ -83,7 +84,7 @@ const Register = (props: Props) => {
                 className={styles.write_btn}
                 onClick={props.onClickLoggedIn}
               >
-                {t("Publish.navbarItem5")}
+                {props.btnLoggedIn}
               </FButton>
             </>
           ) : (
@@ -105,10 +106,10 @@ const Register = (props: Props) => {
                 id="username"
                 type="text"
                 placeholder={t("Login.Pseudonyme", "Pseudonyme")}
-                autoComplete="username"
                 newSize
                 onChange={(e: any) => setUsername(e.target.value)}
                 className={styles.input}
+                autoFocus={false}
               />
               <FButton
                 type="login"

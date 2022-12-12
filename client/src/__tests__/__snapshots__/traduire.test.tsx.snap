@@ -236,225 +236,210 @@ exports[`traduire renders traduire 1`] = `
     </div>
   </div>
   <div
-    className="section"
+    className="scrollspy_section"
   >
-    <span
-      className="anchor"
-      id="who"
-    />
     <div
-      className="container container"
+      className="section"
     >
-      <h2
-        className="title2 mb-0"
-      >
-        Translate.whoTitle
-      </h2>
-      <p
-        className="subtitle"
-      >
-        Translate.whoSubtitle
-      </p>
+      <span
+        className="anchor"
+        id="who"
+      />
       <div
-        className="top_space row"
+        className="container container"
       >
+        <h2
+          className="title2 mb-0"
+        >
+          Translate.whoTitle
+        </h2>
+        <p
+          className="subtitle"
+        >
+          Translate.whoSubtitle
+        </p>
         <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
+          className="top_space row"
         >
           <div
-            className="container grey"
+            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
           >
-            <div>
-              <div
-                className="header"
-              >
+            <div
+              className="container grey"
+            >
+              <div>
                 <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                  className="header"
                 >
-                  <i
-                    className="flag flag-icon flag-icon-ua"
-                    title="ua"
-                  />
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-ua"
+                      title="ua"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-ir"
+                      title="ir"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-sa"
+                      title="sa"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-gb"
+                      title="gb"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-af"
+                      title="af"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-ru"
+                      title="ru"
+                    />
+                  </div>
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-er"
+                      title="er"
+                    />
+                  </div>
                 </div>
-                <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                <h3
+                  className="title"
                 >
-                  <i
-                    className="flag flag-icon flag-icon-ir"
-                    title="ir"
-                  />
-                </div>
+                  Translate.whoCardTitle1
+                </h3>
                 <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                  className="text mb-0"
                 >
-                  <i
-                    className="flag flag-icon flag-icon-sa"
-                    title="sa"
-                  />
-                </div>
-                <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <i
-                    className="flag flag-icon flag-icon-gb"
-                    title="gb"
-                  />
-                </div>
-                <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <i
-                    className="flag flag-icon flag-icon-af"
-                    title="af"
-                  />
-                </div>
-                <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <i
-                    className="flag flag-icon flag-icon-ru"
-                    title="ru"
-                  />
-                </div>
-                <div
-                  className="container"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <i
-                    className="flag flag-icon flag-icon-er"
-                    title="er"
-                  />
+                  <p
+                    className="mb-0"
+                  >
+                    Translate.whoCardText1
+                  </p>
                 </div>
               </div>
-              <h3
-                className="title"
-              >
-                Translate.whoCardTitle1
-              </h3>
-              <div
-                className="text mb-0"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Translate.whoCardText1
-                </p>
-              </div>
+              <div />
             </div>
-            <div />
           </div>
-        </div>
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
           <div
-            className="container grey"
+            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
           >
-            <div>
-              <div
-                className="header"
-              >
+            <div
+              className="container grey"
+            >
+              <div>
                 <div
-                  className="container"
-                  style={
-                    {
-                      "height": 56,
-                      "width": 56,
-                    }
-                  }
+                  className="header"
                 >
-                  <i
-                    className="flag flag-icon flag-icon-fr"
-                    title="fr"
-                  />
+                  <div
+                    className="container"
+                    style={
+                      {
+                        "height": 56,
+                        "width": 56,
+                      }
+                    }
+                  >
+                    <i
+                      className="flag flag-icon flag-icon-fr"
+                      title="fr"
+                    />
+                  </div>
+                </div>
+                <h3
+                  className="title"
+                >
+                  Translate.whoCardTitle2
+                </h3>
+                <div
+                  className="text mb-0"
+                >
+                  <p
+                    className="mb-0"
+                  >
+                    Translate.whoCardText2
+                  </p>
                 </div>
               </div>
-              <h3
-                className="title"
-              >
-                Translate.whoCardTitle2
-              </h3>
-              <div
-                className="text mb-0"
-              >
-                <p
-                  className="mb-0"
-                >
-                  Translate.whoCardText2
-                </p>
-              </div>
+              <div />
             </div>
-            <div />
           </div>
-        </div>
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
           <div
-            className="container grey"
+            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
           >
-            <div>
-              <div
-                className="header"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
-                  }
+            <div
+              className="container grey"
+            >
+              <div>
+                <div
+                  className="header"
                 >
                   <span
                     style={
@@ -462,24 +447,24 @@ exports[`traduire renders traduire 1`] = `
                         "background": "none",
                         "border": 0,
                         "boxSizing": "border-box",
-                        "display": "block",
+                        "display": "inline-block",
                         "height": "initial",
                         "margin": 0,
                         "maxWidth": "100%",
                         "opacity": 1,
+                        "overflow": "hidden",
                         "padding": 0,
+                        "position": "relative",
                         "width": "initial",
                       }
                     }
                   >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                    <span
                       style={
                         {
                           "background": "none",
                           "border": 0,
+                          "boxSizing": "border-box",
                           "display": "block",
                           "height": "initial",
                           "margin": 0,
@@ -489,46 +474,33 @@ exports[`traduire renders traduire 1`] = `
                           "width": "initial",
                         }
                       }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
+                    >
+                      <img
+                        alt=""
+                        aria-hidden={true}
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                        style={
+                          {
+                            "background": "none",
+                            "border": 0,
+                            "display": "block",
+                            "height": "initial",
+                            "margin": 0,
+                            "maxWidth": "100%",
+                            "opacity": 1,
+                            "padding": 0,
+                            "width": "initial",
+                          }
+                        }
+                      />
+                    </span>
                     <img
                       alt=""
                       data-nimg="intrinsic"
                       decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                       style={
                         {
                           "border": "none",
@@ -552,99 +524,131 @@ exports[`traduire renders traduire 1`] = `
                         }
                       }
                     />
-                  </noscript>
-                </span>
-              </div>
-              <h3
-                className="title"
-              >
-                Translate.whoCardTitle3
-              </h3>
-              <div
-                className="text mb-0"
-              >
-                <p
-                  className="mb-0"
+                    <noscript>
+                      <img
+                        alt=""
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        loading="lazy"
+                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                        style={
+                          {
+                            "border": "none",
+                            "bottom": 0,
+                            "boxSizing": "border-box",
+                            "display": "block",
+                            "height": 0,
+                            "left": 0,
+                            "margin": "auto",
+                            "maxHeight": "100%",
+                            "maxWidth": "100%",
+                            "minHeight": "100%",
+                            "minWidth": "100%",
+                            "objectFit": "contain",
+                            "objectPosition": undefined,
+                            "padding": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "width": 0,
+                          }
+                        }
+                      />
+                    </noscript>
+                  </span>
+                </div>
+                <h3
+                  className="title"
                 >
-                  Translate.whoCardText3
-                </p>
+                  Translate.whoCardTitle3
+                </h3>
+                <div
+                  className="text mb-0"
+                >
+                  <p
+                    className="mb-0"
+                  >
+                    Translate.whoCardText3
+                  </p>
+                </div>
               </div>
+              <div />
             </div>
-            <div />
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="section bg_green"
-  >
     <div
-      className="container needs container"
+      className="section bg_green"
     >
-      <h2
-        className="title2 text-center text-white"
-      >
-        Translate.needTitle
-      </h2>
       <div
-        className="row"
+        className="container needs container"
       >
+        <h2
+          className="title2 text-center text-white"
+        >
+          Translate.needTitle
+        </h2>
         <div
-          className="col"
+          className="row"
         >
           <div
-            className="container"
+            className="col"
           >
             <div
-              className="title"
+              className="container"
             >
-              <i
-                className="flag flag-icon flag-icon-undefined"
-              />
-            </div>
-            <p
-              className="subtitle"
-            >
-              Translate.need
-               
-              <span
-                className="need strong"
+              <div
+                className="title"
               >
-                Translate.strong
-              </span>
-            </p>
+                <i
+                  className="flag flag-icon flag-icon-undefined"
+                />
+              </div>
+              <p
+                className="subtitle"
+              >
+                Translate.need
+                 
+                <span
+                  className="need strong"
+                >
+                  Translate.strong
+                </span>
+              </p>
+            </div>
           </div>
-        </div>
-        <div
-          className="col"
-        >
           <div
-            className="container"
+            className="col"
           >
             <div
-              className="title"
+              className="container"
             >
-              <i
-                className="flag flag-icon flag-icon-undefined"
-              />
-            </div>
-            <p
-              className="subtitle"
-            >
-              Translate.need
-               
-              <span
-                className="need medium"
+              <div
+                className="title"
               >
-                Translate.medium
-              </span>
-            </p>
+                <i
+                  className="flag flag-icon flag-icon-undefined"
+                />
+              </div>
+              <p
+                className="subtitle"
+              >
+                Translate.need
+                 
+                <span
+                  className="need medium"
+                >
+                  Translate.medium
+                </span>
+              </p>
+            </div>
           </div>
+          <div
+            className="col"
+          />
         </div>
-        <div
-          className="col"
-        />
       </div>
     </div>
   </div>
@@ -1005,96 +1009,81 @@ exports[`traduire renders traduire 1`] = `
     </div>
   </div>
   <div
-    className="section bg_purple"
+    className="scrollspy_section"
   >
-    <span
-      className="anchor"
-      id="next"
-    />
     <div
-      className="container container"
+      className="section bg_purple"
     >
+      <span
+        className="anchor"
+        id="next"
+      />
       <div
-        className="row"
+        className="container container"
       >
         <div
-          className="col-sm-12 col-lg-6"
+          className="row"
         >
-          <h2
-            className="title2 bottom_space text-white"
+          <div
+            className="col-sm-12 col-lg-6"
           >
-            Translate.nextTitle
-          </h2>
-          <p
-            className="p"
+            <h2
+              className="title2 bottom_space mb-0 text-white"
+            >
+              Translate.nextTitle
+            </h2>
+            <p
+              className="p bottom_space"
+            >
+              Translate.nextText1
+            </p>
+            <p
+              className="p"
+            >
+              Translate.nextText2
+            </p>
+          </div>
+          <div
+            className="text-right col-sm-12 col-lg-6"
           >
-            Translate.nextText1
-          </p>
-          <p
-            className="p"
-          >
-            Translate.nextText2
-          </p>
-        </div>
-        <div
-          className="text-right col-sm-12 col-lg-6"
-        >
-          <video
-            className="video"
-            height={320}
-            loop={true}
-            muted={true}
-          >
-            <source
-              src="/video/translate-video-next.mp4"
-              type="video/mp4"
-            />
-          </video>
+            <video
+              className="video"
+              height={320}
+              loop={true}
+              muted={true}
+            >
+              <source
+                src="/video/translate-video-next.mp4"
+                type="video/mp4"
+              />
+            </video>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div
-    className="section bg_grey"
-  >
     <div
-      className="container container"
+      className="section bg_grey"
     >
-      <h2
-        className="title2 center mb-0"
-      >
-        StaticPages.helpTitle
-      </h2>
       <div
-        className="top_space row"
+        className="container container"
       >
+        <h2
+          className="title2 center mb-0"
+        >
+          StaticPages.helpTitle
+        </h2>
         <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4 offset-lg-2"
+          className="top_space justify-content-center row"
         >
           <div
-            className="container"
+            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
           >
-            <div>
-              <div
-                className="header"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
-                  }
+            <div
+              className="container"
+            >
+              <div>
+                <div
+                  className="header"
                 >
                   <span
                     style={
@@ -1102,24 +1091,24 @@ exports[`traduire renders traduire 1`] = `
                         "background": "none",
                         "border": 0,
                         "boxSizing": "border-box",
-                        "display": "block",
+                        "display": "inline-block",
                         "height": "initial",
                         "margin": 0,
                         "maxWidth": "100%",
                         "opacity": 1,
+                        "overflow": "hidden",
                         "padding": 0,
+                        "position": "relative",
                         "width": "initial",
                       }
                     }
                   >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                    <span
                       style={
                         {
                           "background": "none",
                           "border": 0,
+                          "boxSizing": "border-box",
                           "display": "block",
                           "height": "initial",
                           "margin": 0,
@@ -1129,46 +1118,33 @@ exports[`traduire renders traduire 1`] = `
                           "width": "initial",
                         }
                       }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
+                    >
+                      <img
+                        alt=""
+                        aria-hidden={true}
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                        style={
+                          {
+                            "background": "none",
+                            "border": 0,
+                            "display": "block",
+                            "height": "initial",
+                            "margin": 0,
+                            "maxWidth": "100%",
+                            "opacity": 1,
+                            "padding": 0,
+                            "width": "initial",
+                          }
+                        }
+                      />
+                    </span>
                     <img
                       alt=""
                       data-nimg="intrinsic"
                       decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                       style={
                         {
                           "border": "none",
@@ -1192,77 +1168,90 @@ exports[`traduire renders traduire 1`] = `
                         }
                       }
                     />
-                  </noscript>
-                </span>
-              </div>
-              <h3
-                className="title"
-              >
-                Translate.helpTileTitle1
-              </h3>
-              <div
-                className="text"
-              >
-                <p>
-                  Translate.helpTileText1
-                </p>
-              </div>
-            </div>
-            <div>
-              <a
-                className="link color_red"
-                href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onTouchStart={[Function]}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <span>
-                  Translate.helpTileCTA1
-                </span>
-                <span
-                  className="icon"
+                    <noscript>
+                      <img
+                        alt=""
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        loading="lazy"
+                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                        style={
+                          {
+                            "border": "none",
+                            "bottom": 0,
+                            "boxSizing": "border-box",
+                            "display": "block",
+                            "height": 0,
+                            "left": 0,
+                            "margin": "auto",
+                            "maxHeight": "100%",
+                            "maxWidth": "100%",
+                            "minHeight": "100%",
+                            "minWidth": "100%",
+                            "objectFit": "contain",
+                            "objectPosition": undefined,
+                            "padding": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "width": 0,
+                          }
+                        }
+                      />
+                    </noscript>
+                  </span>
+                </div>
+                <h3
+                  className="title"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  Translate.helpTileTitle1
+                </h3>
+                <div
+                  className="text"
+                >
+                  <p>
+                    Translate.helpTileText1
+                  </p>
+                </div>
+              </div>
+              <div>
+                <a
+                  className="link color_red"
+                  href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <span>
+                    Translate.helpTileCTA1
+                  </span>
+                  <span
+                    className="icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                  />
-                </span>
-              </a>
+                    />
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
-        >
           <div
-            className="container"
+            className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
           >
-            <div>
-              <div
-                className="header"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
-                  }
+            <div
+              className="container"
+            >
+              <div>
+                <div
+                  className="header"
                 >
                   <span
                     style={
@@ -1270,24 +1259,24 @@ exports[`traduire renders traduire 1`] = `
                         "background": "none",
                         "border": 0,
                         "boxSizing": "border-box",
-                        "display": "block",
+                        "display": "inline-block",
                         "height": "initial",
                         "margin": 0,
                         "maxWidth": "100%",
                         "opacity": 1,
+                        "overflow": "hidden",
                         "padding": 0,
+                        "position": "relative",
                         "width": "initial",
                       }
                     }
                   >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                    <span
                       style={
                         {
                           "background": "none",
                           "border": 0,
+                          "boxSizing": "border-box",
                           "display": "block",
                           "height": "initial",
                           "margin": 0,
@@ -1297,46 +1286,33 @@ exports[`traduire renders traduire 1`] = `
                           "width": "initial",
                         }
                       }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
+                    >
+                      <img
+                        alt=""
+                        aria-hidden={true}
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
+                        style={
+                          {
+                            "background": "none",
+                            "border": 0,
+                            "display": "block",
+                            "height": "initial",
+                            "margin": 0,
+                            "maxWidth": "100%",
+                            "opacity": 1,
+                            "padding": 0,
+                            "width": "initial",
+                          }
+                        }
+                      />
+                    </span>
                     <img
                       alt=""
                       data-nimg="intrinsic"
                       decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                       style={
                         {
                           "border": "none",
@@ -1360,42 +1336,74 @@ exports[`traduire renders traduire 1`] = `
                         }
                       }
                     />
-                  </noscript>
-                </span>
-              </div>
-              <h3
-                className="title"
-              >
-                StaticPages.helpTileTitle3
-              </h3>
-              <div
-                className="text"
-              >
-                <p>
-                  StaticPages.helpTileText3
-                </p>
-              </div>
-            </div>
-            <div>
-              <button
-                className="link color_red"
-                onClick={[Function]}
-              >
-                <span>
-                  StaticPages.helpTileCTA3
-                </span>
-                <span
-                  className="icon"
+                    <noscript>
+                      <img
+                        alt=""
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        loading="lazy"
+                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                        style={
+                          {
+                            "border": "none",
+                            "bottom": 0,
+                            "boxSizing": "border-box",
+                            "display": "block",
+                            "height": 0,
+                            "left": 0,
+                            "margin": "auto",
+                            "maxHeight": "100%",
+                            "maxWidth": "100%",
+                            "minHeight": "100%",
+                            "minWidth": "100%",
+                            "objectFit": "contain",
+                            "objectPosition": undefined,
+                            "padding": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "width": 0,
+                          }
+                        }
+                      />
+                    </noscript>
+                  </span>
+                </div>
+                <h3
+                  className="title"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  StaticPages.helpTileTitle3
+                </h3>
+                <div
+                  className="text"
+                >
+                  <p>
+                    StaticPages.helpTileText3
+                  </p>
+                </div>
+              </div>
+              <div>
+                <button
+                  className="link color_red"
+                  onClick={[Function]}
+                >
+                  <span>
+                    StaticPages.helpTileCTA3
+                  </span>
+                  <span
+                    className="icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                  />
-                </span>
-              </button>
+                    />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -1644,8 +1652,7 @@ exports[`traduire renders traduire 1`] = `
           </span>
         </div>
         <input
-          autoComplete="username"
-          autoFocus={true}
+          autoFocus={false}
           className="has_prepend new_size form-control"
           id="username"
           onChange={[Function]}

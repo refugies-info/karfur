@@ -1,4 +1,5 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import { useRTL } from "hooks";
 import { cls } from "lib/classname";
 import Link from "next/link";
 import React, { useMemo } from "react";
@@ -13,15 +14,21 @@ interface Props {
 
 const InlineLink = (props: Props) => {
   const isExternalLink = props.link.startsWith("http");
+  const isRTL = useRTL();
 
   const content = useMemo(
     () => (
       <>
         <span>{props.text}</span>
-        <EVAIcon name="arrow-forward-outline" size={24} fill={styles[props.color]} className={styles.icon} />
+        <EVAIcon
+          name={isRTL ? "arrow-back-outline" : "arrow-forward-outline"}
+          size={24}
+          fill={styles[props.color]}
+          className={styles.icon}
+        />
       </>
     ),
-    [props.text, props.color]
+    [props.text, props.color, isRTL]
   );
 
   return !props.onClick ? (
