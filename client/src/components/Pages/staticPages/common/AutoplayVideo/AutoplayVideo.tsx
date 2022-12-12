@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./AutoplayVideo.module.scss";
 import { useInView } from "react-intersection-observer";
+import { isIOS } from "react-device-detect";
+import styles from "./AutoplayVideo.module.scss";
 
 interface Props {
   src: string | undefined;
@@ -38,7 +39,7 @@ const AutoplayVideo = (props: Props) => {
 
   if (!props.src) return <></>;
   return (
-    <video ref={setRefs} height={props.height} loop muted playsInline className={styles.video}>
+    <video ref={setRefs} height={props.height} loop muted playsInline={isIOS} className={styles.video}>
       <source src={props.src} type="video/mp4" />
     </video>
   );
