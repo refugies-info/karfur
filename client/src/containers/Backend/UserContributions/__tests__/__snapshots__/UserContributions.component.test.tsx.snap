@@ -139,12 +139,9 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
         <div
           className="c6"
         >
-          <a
+          <button
             className="btn dark mr-10"
-            href="/publish?write=show"
             onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
@@ -158,7 +155,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
               />
             </span>
             Créer une nouvelle fiche
-          </a>
+          </button>
           <button
             className="btn tuto ml-10"
             onClick={[Function]}
@@ -460,12 +457,9 @@ exports[`userContributions should render correctly when click on delete 1`] = `
             </span>
             Explications
           </button>
-          <a
+          <button
             className="btn dark"
-            href="/publish?write=show"
             onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
@@ -479,7 +473,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
               />
             </span>
             Créer une nouvelle fiche
-          </a>
+          </button>
         </div>
       </div>
       <div
@@ -1104,12 +1098,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
             </span>
             Explications
           </button>
-          <a
+          <button
             className="btn dark"
-            href="/publish?write=show"
             onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
           >
             <span
               className="mr-10"
@@ -1123,7 +1114,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               />
             </span>
             Créer une nouvelle fiche
-          </a>
+          </button>
         </div>
       </div>
       <div

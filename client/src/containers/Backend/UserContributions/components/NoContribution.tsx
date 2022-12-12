@@ -50,6 +50,7 @@ const RowContainer = styled.div`
 
 export const NoContribution = (props: {
   toggleTutoModal: () => void;
+  toggleWriteModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
 }) => {
   const router = useRouter();
@@ -62,11 +63,9 @@ export const NoContribution = (props: {
         <SubTitle>Chacun peut apporter sa contribution pour enrichir le site.</SubTitle>
         <SubTitle>Lancez-vous !</SubTitle>
         <RowContainer>
-          <Link legacyBehavior href={getPath("/publier", router.locale) + "?write=show"} passHref>
-            <FButton tag="a" type="dark" name="file-add-outline" className="mr-10">
-              Créer une nouvelle fiche
-            </FButton>
-          </Link>
+          <FButton onClick={props.toggleWriteModal} type="dark" name="file-add-outline" className="mr-10">
+            Créer une nouvelle fiche
+          </FButton>
           <FButton
             type="tuto"
             name="video-outline"

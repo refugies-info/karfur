@@ -201,7 +201,7 @@ const Homepage = (props: Props) => {
                 <p>{t("Homepage.Faites connaitre subheader")}</p>
               </div>
               <footer>
-                <Link legacyBehavior href={getPath("/publier", router.locale) + "?write=show"} passHref>
+                <Link legacyBehavior href={getPath("/publier", router.locale)} passHref>
                   <FButton name="file-add-outline" type="dark" tag="a" tabIndex="2" style={{ height: "60px" }}>
                     {t("Homepage.Je propose une fiche", "Je propose une fiche")}
                   </FButton>

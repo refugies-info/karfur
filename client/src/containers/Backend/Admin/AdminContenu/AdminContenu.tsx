@@ -42,6 +42,7 @@ import {
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
@@ -51,14 +52,12 @@ import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModa
 
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
-import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
 import { ContentStatusType, SimplifiedDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
-import { getPath } from "routes";
 
 moment.locale("fr");
 
@@ -97,6 +96,7 @@ export const AdminContenu = () => {
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
+  const [showWriteModal, setShowWriteModal] = useState(false);
 
   const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
@@ -365,11 +365,15 @@ export const AdminContenu = () => {
           placeholder="Rechercher un contenu..."
           withMargin={true}
         />
-        <Link legacyBehavior href={getPath("/publier", router.locale) + "?write=show"} passHref>
-          <FButton type="dark" name="plus-circle-outline" tag={"a"} target="_blank" rel="noopener noreferrer">
-            Ajouter un contenu
-          </FButton>
-        </Link>
+        <FButton
+          onClick={() => setShowWriteModal(true)}
+          type="dark"
+          name="plus-circle-outline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ajouter un contenu
+        </FButton>
       </SearchBarContainer>
       <StyledHeader>
         <StyledHeaderInner>
@@ -537,6 +541,7 @@ export const AdminContenu = () => {
           dispositifId={selectedContentId}
         />
       )}
+      <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
     </div>
   );
 };

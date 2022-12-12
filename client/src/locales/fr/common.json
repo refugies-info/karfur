@@ -869,6 +869,7 @@
     "faqAccordionCTA4": "Remplir le formulaire",
     "registerSubtitle": "Créez votre compte pour pouvoir démarrer la traduction des fiches.",
     "registerLoggedIn": "Vous savez tout, vous pouvez traduire votre première fiche.",
+    "registerBtnLoggedIn": "Traduire une fiche",
     "registerMobile": "Rendez-vous sur votre ordinateur pour créer votre compte et démarrer la traduction des fiches."
   }
 }

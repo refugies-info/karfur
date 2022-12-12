@@ -7,7 +7,7 @@
 
 .container {
   position: sticky;
-  top: 0;
+  top: -1px;
   background: $white;
   z-index: 1000;
 
@@ -31,8 +31,8 @@
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: nowrap;
-  padding-top: u(8);
-  padding-bottom: u(8);
+  padding-top: u(6);
+  padding-bottom: u(6);
 
   & > div {
     display: flex;

@@ -3,14 +3,14 @@ import styles from "./AutoplayVideo.module.scss";
 import { useInView } from "react-intersection-observer";
 
 interface Props {
-  src: string;
+  src: string | undefined;
   height: number;
 }
 
 const AutoplayVideo = (props: Props) => {
   const ref = useRef<HTMLVideoElement | null>(null);
   const [refVideo, inViewVideo] = useInView({ threshold: 1 });
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<string | undefined>(undefined);
 
   const setRefs = useCallback(
     (node: any) => {
@@ -22,12 +22,21 @@ const AutoplayVideo = (props: Props) => {
   );
 
   useEffect(() => {
-    if (inViewVideo && !isPlaying) {
-      ref.current?.play();
-      setIsPlaying(true);
+    if (inViewVideo) {
+      if (!isPlaying) {
+        // first play
+        ref.current?.play();
+        setIsPlaying(props.src);
+      } else if (isPlaying !== props.src) {
+        // change src
+        ref.current?.load();
+        ref.current?.play();
+        setIsPlaying(props.src);
+      }
     }
-  }, [inViewVideo, isPlaying]);
+  }, [inViewVideo, isPlaying, props.src]);
 
+  if (!props.src) return <></>;
   return (
     <video ref={setRefs} height={props.height} loop muted className={styles.video}>
       <source src={props.src} type="video/mp4" />

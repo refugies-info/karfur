@@ -4,6 +4,7 @@ import { cls } from "lib/classname";
 import Image from "next/legacy/image";
 import React, { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
+import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
 import styles from "./Accordion.module.scss";
 
@@ -11,6 +12,7 @@ type Item = {
   title: string;
   text: string;
   image?: any;
+  video?: string;
   cta?: {
     text: string;
     link: string;
@@ -54,6 +56,11 @@ const Accordion = (props: Props) => {
                 <p className={styles.text}>{item.text}</p>
 
                 {isTablet && props.withImages && item?.image && <Image src={item?.image} alt="" />}
+                {isTablet && props.withImages && item?.video && (
+                  <div className={styles.video}>
+                    <AutoplayVideo src={item.video} height={420} />
+                  </div>
+                )}
                 {item.cta && <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />}
               </Collapse>
             </div>
@@ -61,7 +68,10 @@ const Accordion = (props: Props) => {
         })}
       </Col>
       {!isTablet && props.withImages && open.length > 0 && (
-        <Col>{props.items[open[0]]?.image && <Image src={props.items[open[0]].image} alt="" />}</Col>
+        <Col className={styles.media}>
+          {props.items[open[0]]?.image && <Image src={props.items[open[0]].image} alt="" />}
+          {props.items[open[0]]?.video && <AutoplayVideo src={props.items[open[0]].video} height={420} />}
+        </Col>
       )}
     </Row>
   );

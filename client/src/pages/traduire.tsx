@@ -44,10 +44,10 @@ const RecensezVotreAction = (props: Props) => {
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
   const [refHero, inViewHero] = useInView({ threshold: 0 });
-  const [refWho, inViewWho] = useInView({ threshold: 0.5 });
+  const [refWho, inViewWho] = useInView({ threshold: 0.1 });
   const [refSteps, inViewSteps] = useInView({ threshold: 0.05 });
-  const [refNext, inViewNext] = useInView({ threshold: 0.5 });
-  const [refFaq, inViewFaq] = useInView({ threshold: 0.5 });
+  const [refNext, inViewNext] = useInView({ threshold: 0.1 });
+  const [refFaq, inViewFaq] = useInView({ threshold: 0.1 });
   const [refRegister, inViewRegister] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
@@ -126,63 +126,65 @@ const RecensezVotreAction = (props: Props) => {
       />
 
       {/* WHO */}
-      <div ref={refWho} className={cls(styles.section)}>
-        <span id="who" className={styles.anchor}></span>
-        <Container className={styles.container}>
-          <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
-          <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
-          <Row className={styles.top_space}>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card
-                header={
-                  <>
-                    <LanguageIcon language="ua" size={40} />
-                    <LanguageIcon language="ir" size={40} />
-                    <LanguageIcon language="sa" size={40} />
-                    <LanguageIcon language="gb" size={40} />
-                    <LanguageIcon language="af" size={40} />
-                    <LanguageIcon language="ru" size={40} />
-                    <LanguageIcon language="er" size={40} />
-                  </>
-                }
-                title={t("Translate.whoCardTitle1")}
-                greyBackground
-              >
-                <p className="mb-0">{t("Translate.whoCardText1")}</p>
-              </Card>
-            </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card
-                header={<LanguageIcon language="fr" size={56} />}
-                title={t("Translate.whoCardTitle2")}
-                greyBackground
-              >
-                <p className="mb-0">{t("Translate.whoCardText2")}</p>
-              </Card>
-            </Col>
-            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
-                <p className="mb-0">{t("Translate.whoCardText3")}</p>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      {/* NEED */}
-      <div className={cls(styles.section, styles.bg_green)}>
-        <Container className={cls(styles.container, styles.needs)}>
-          <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
-          <Row>
-            {needKeys.map((needKey, i) => (
-              <Col key={i}>
-                {translationNeeds[needKey].map((item, i) => (
-                  <LanguageCard key={i} languageId={item.languageId} need={needKey} />
-                ))}
+      <div ref={refWho} className={styles.scrollspy_section}>
+        <div className={cls(styles.section)}>
+          <span id="who" className={styles.anchor}></span>
+          <Container className={styles.container}>
+            <h2 className={cls(styles.title2, "mb-0")}>{t("Translate.whoTitle")}</h2>
+            <p className={styles.subtitle}>{t("Translate.whoSubtitle")}</p>
+            <Row className={styles.top_space}>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+                <Card
+                  header={
+                    <>
+                      <LanguageIcon language="ua" size={40} />
+                      <LanguageIcon language="ir" size={40} />
+                      <LanguageIcon language="sa" size={40} />
+                      <LanguageIcon language="gb" size={40} />
+                      <LanguageIcon language="af" size={40} />
+                      <LanguageIcon language="ru" size={40} />
+                      <LanguageIcon language="er" size={40} />
+                    </>
+                  }
+                  title={t("Translate.whoCardTitle1")}
+                  greyBackground
+                >
+                  <p className="mb-0">{t("Translate.whoCardText1")}</p>
+                </Card>
               </Col>
-            ))}
-          </Row>
-        </Container>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+                <Card
+                  header={<LanguageIcon language="fr" size={56} />}
+                  title={t("Translate.whoCardTitle2")}
+                  greyBackground
+                >
+                  <p className="mb-0">{t("Translate.whoCardText2")}</p>
+                </Card>
+              </Col>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+                <Card image={WhoIcon3} title={t("Translate.whoCardTitle3")} greyBackground>
+                  <p className="mb-0">{t("Translate.whoCardText3")}</p>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+        {/* NEED */}
+        <div className={cls(styles.section, styles.bg_green)}>
+          <Container className={cls(styles.container, styles.needs)}>
+            <h2 className={cls(styles.title2, "text-center text-white")}>{t("Translate.needTitle")}</h2>
+            <Row>
+              {needKeys.map((needKey, i) => (
+                <Col key={i}>
+                  {translationNeeds[needKey].map((item, i) => (
+                    <LanguageCard key={i} languageId={item.languageId} need={needKey} />
+                  ))}
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </div>
       </div>
 
       {/* STEPS */}
@@ -239,60 +241,64 @@ const RecensezVotreAction = (props: Props) => {
       </div>
 
       {/* NEXT */}
-      <div ref={refNext} className={cls(styles.section, styles.bg_purple)}>
-        <span id="next" className={styles.anchor}></span>
-        <Container className={cls(styles.container)}>
-          <Row>
-            <Col lg="6" sm="12">
-              <h2 className={cls(styles.title2, styles.bottom_space, "text-white")}>{t("Translate.nextTitle")}</h2>
-              <p className={styles.p}>{t("Translate.nextText1")}</p>
-              <p className={styles.p}>{t("Translate.nextText2")}</p>
-            </Col>
-            <Col lg="6" sm="12" className="text-right">
-              <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <div ref={refNext} className={styles.scrollspy_section}>
+        <div className={cls(styles.section, styles.bg_purple)}>
+          <span id="next" className={styles.anchor}></span>
+          <Container className={cls(styles.container)}>
+            <Row>
+              <Col lg="6" sm="12">
+                <h2 className={cls(styles.title2, styles.bottom_space, "mb-0 text-white")}>
+                  {t("Translate.nextTitle")}
+                </h2>
+                <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
+                <p className={styles.p}>{t("Translate.nextText2")}</p>
+              </Col>
+              <Col lg="6" sm="12" className="text-right">
+                <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
+              </Col>
+            </Row>
+          </Container>
+        </div>
 
-      {/* HELP */}
-      <div className={cls(styles.section, styles.bg_grey)}>
-        <Container className={styles.container}>
-          <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
-          <Row className={styles.top_space}>
-            <Col sm="12" lg={{ size: "4", offset: "2" }} className="mb-lg-0 mb-5">
-              <Card
-                image={HelpIcon1}
-                title={t("Translate.helpTileTitle1")}
-                footer={
-                  <InlineLink
-                    link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                    text={t("Translate.helpTileCTA1")}
-                    color="red"
-                  />
-                }
-              >
-                <p>{t("Translate.helpTileText1")}</p>
-              </Card>
-            </Col>
-            <Col sm="12" lg={{ size: "4" }} className="mb-lg-0 mb-5">
-              <Card
-                image={HelpIcon2}
-                title={t("StaticPages.helpTileTitle3")}
-                footer={
-                  <InlineLink
-                    link="#"
-                    onClick={() => window.$crisp.push(["do", "chat:open"])}
-                    text={t("StaticPages.helpTileCTA3")}
-                    color="red"
-                  />
-                }
-              >
-                <p>{t("StaticPages.helpTileText3")}</p>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
+        {/* HELP */}
+        <div className={cls(styles.section, styles.bg_grey)}>
+          <Container className={styles.container}>
+            <h2 className={cls(styles.title2, styles.center, "mb-0")}>{t("StaticPages.helpTitle")}</h2>
+            <Row className={cls(styles.top_space, "justify-content-center")}>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+                <Card
+                  image={HelpIcon1}
+                  title={t("Translate.helpTileTitle1")}
+                  footer={
+                    <InlineLink
+                      link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                      text={t("Translate.helpTileCTA1")}
+                      color="red"
+                    />
+                  }
+                >
+                  <p>{t("Translate.helpTileText1")}</p>
+                </Card>
+              </Col>
+              <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+                <Card
+                  image={HelpIcon2}
+                  title={t("StaticPages.helpTileTitle3")}
+                  footer={
+                    <InlineLink
+                      link="#"
+                      onClick={() => window.$crisp.push(["do", "chat:open"])}
+                      text={t("StaticPages.helpTileCTA3")}
+                      color="red"
+                    />
+                  }
+                >
+                  <p>{t("StaticPages.helpTileText3")}</p>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
 
       {/* FAQ */}
@@ -323,6 +329,7 @@ const RecensezVotreAction = (props: Props) => {
           onClickLoggedIn={navigateToTranslations}
           subtitleForm={t("Translate.registerSubtitle")}
           subtitleLoggedIn={t("Translate.registerLoggedIn")}
+          btnLoggedIn={t("Translate.registerBtnLoggedIn")}
           subtitleMobile={t("Translate.registerMobile")}
         />
       </div>
