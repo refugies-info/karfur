@@ -52,6 +52,8 @@
 .text {
   @include text("large");
   margin-bottom: u(8);
+  padding-right: u(4);
+  padding-left: u(4);
 
   @include isTablet() {
     @include text("normal");
