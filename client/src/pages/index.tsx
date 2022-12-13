@@ -8,7 +8,6 @@ import { isMobile } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import qs from "query-string";
 import { colors } from "colors";
-import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import { HomeCard } from "components/Pages/homepage/HomeCard";
 import UkrainePopup from "components/Pages/homepage/UkrainePopup";
 import { HomePageMobile } from "components/Pages/homepage/HomePageMobile/HomePageMobile";
@@ -34,7 +33,6 @@ import styles from "scss/pages/homepage.module.scss";
 import { getPath } from "routes";
 import { MobileTagsModal } from "components/Pages/homepage/MobileTagsModal/MobileTagsModal";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
-import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
 
 const ButtonContainerRow = styled.div`
   display: flex;
@@ -85,7 +83,7 @@ const Homepage = (props: Props) => {
         <div className="hero-container">
           {ukraine && <UkrainePopup />}
           <h1 className={styles.title}>{t("Dispositifs.Header", "Construire sa vie en France")}</h1>
-          <h5>{t("Homepage.title")}</h5>
+          <h2 className={styles.subtitle}>{t("Homepage.title")}</h2>
 
           <div className="search-row">
             <HomeSearch togglePopup={togglePopup} toggleOverlay={toggleOverlay} toggleModal={toggleShowTagModal} />

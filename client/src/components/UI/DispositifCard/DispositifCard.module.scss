@@ -8,7 +8,6 @@
 .location {
   display: flex;
   align-items: center;
-  @include text("small");
 
   @include isMobile() {
     @include text("normal");
@@ -17,7 +16,7 @@
 
 .title {
   @include text("large");
-  height: 69px;
+  height: 70px;
   margin: u(2) 0;
   font-weight: bold;
 
@@ -48,7 +47,7 @@
 }
 
 .abstract {
-  height: 54px;
+  height: 69px;
 
   @include isMobile() {
     height: auto;
@@ -56,7 +55,7 @@
 }
 
 .text {
-  @include text("small");
+  line-height: 23px;
 
   @include isMobile() {
     @include text("normal");
@@ -103,7 +102,8 @@
   height: 56px;
 
   .text {
-    line-height: 17px;
+    font-size: .9rem;
+    line-height: 1.2rem;
   }
 
   .picture {
