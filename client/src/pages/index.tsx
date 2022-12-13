@@ -15,6 +15,7 @@ import MobileAppSection from "components/Pages/homepage/MobileAppSection";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "scss/pages/homepage.module.scss";
 import ThemesGrid from "components/Content/ThemesGrid/ThemesGrid";
+import Input from "components/UI/Input";
 import { ObjectId } from "mongodb";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import CardSlider from "components/Pages/recherche/CardSlider";
@@ -37,9 +38,11 @@ import FormationPhoto from "assets/homepage/photo-formation.jpg";
 import { CountUpFigure } from "components/Pages/staticPages/publier";
 import CommunityCard from "components/Pages/homepage/CommunityCard";
 import Link from "next/link";
-import Warning from "components/UI/Warning/Warning";
+import Warning from "components/UI/Warning";
 import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
 import { getPath } from "routes";
+import EVAIcon from "components/UI/EVAIcon/EVAIcon";
+import FButton from "components/UI/FButton";
 interface Props {}
 
 const Homepage = (props: Props) => {
@@ -167,67 +170,59 @@ const Homepage = (props: Props) => {
           <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Homepage.helpUsSubtitle")}</p>
           <Row className={commonStyles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card
-                image={HelpUsIcon1}
-                title={t("Homepage.helpUsCardTitle1")}
-                footer={
-                  <InlineLink
-                    link={getPath("/publier", router.locale)}
-                    text={t("Homepage.helpUsCardCTA1")}
-                    color="purple"
-                  />
-                }
-                withShadow
-              >
-                <Warning text={t("Homepage.helpUsCardHelp1")} color="purple" />
-                <p className={styles.help_text}>{t("Homepage.helpUsCardText1")}</p>
-              </Card>
+              <Link href={getPath("/publier", router.locale)}>
+                <Card
+                  image={HelpUsIcon1}
+                  title={t("Homepage.helpUsCardTitle1")}
+                  footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA1")} color="purple" type="span" />}
+                  withShadow
+                >
+                  <Warning text={t("Homepage.helpUsCardHelp1")} color="purple" />
+                  <p className={styles.help_text}>{t("Homepage.helpUsCardText1")}</p>
+                </Card>
+              </Link>
             </Col>
 
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card
-                title={t("Homepage.helpUsCardTitle2")}
-                header={
-                  <>
-                    <LanguageIcon language="ua" size={40} color="red" />
-                    <LanguageIcon language="ir" size={40} color="red" />
-                    <LanguageIcon language="sa" size={40} color="red" />
-                    <LanguageIcon language="gb" size={40} color="red" />
-                    <LanguageIcon language="af" size={40} color="red" />
-                    <LanguageIcon language="ru" size={40} color="red" />
-                    <LanguageIcon language="er" size={40} color="red" />
-                  </>
-                }
-                footer={
-                  <InlineLink
-                    link={getPath("/traduire", router.locale)}
-                    text={t("Homepage.helpUsCardCTA2")}
-                    color="red"
-                  />
-                }
-                withShadow
-              >
-                <Warning text={t("Homepage.helpUsCardHelp2")} color="red" />
-                <p className={styles.help_text}>{t("Homepage.helpUsCardText2")}</p>
-              </Card>
+              <Link href={getPath("/traduire", router.locale)}>
+                <Card
+                  title={t("Homepage.helpUsCardTitle2")}
+                  header={
+                    <>
+                      <LanguageIcon language="ua" size={40} color="red" />
+                      <LanguageIcon language="ir" size={40} color="red" />
+                      <LanguageIcon language="sa" size={40} color="red" />
+                      <LanguageIcon language="gb" size={40} color="red" />
+                      <LanguageIcon language="af" size={40} color="red" />
+                      <LanguageIcon language="ru" size={40} color="red" />
+                      <LanguageIcon language="er" size={40} color="red" />
+                    </>
+                  }
+                  footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA2")} color="red" type="span" />}
+                  withShadow
+                >
+                  <Warning text={t("Homepage.helpUsCardHelp2")} color="red" />
+                  <p className={styles.help_text}>{t("Homepage.helpUsCardText2")}</p>
+                </Card>
+              </Link>
             </Col>
 
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card
-                image={HelpUsIcon3}
-                title={t("Homepage.helpUsCardTitle3")}
-                footer={
-                  <InlineLink
-                    link="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
-                    text={t("Homepage.helpUsCardCTA3")}
-                    color="orange"
-                  />
-                }
-                withShadow
+              <Link
+                href="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Warning text={t("Homepage.helpUsCardHelp3")} color="orange" />
-                <p className={styles.help_text}>{t("Homepage.helpUsCardText3")}</p>
-              </Card>
+                <Card
+                  image={HelpUsIcon3}
+                  title={t("Homepage.helpUsCardTitle3")}
+                  footer={<InlineLink link="#" text={t("Homepage.helpUsCardCTA3")} color="orange" type="span" />}
+                  withShadow
+                >
+                  <Warning text={t("Homepage.helpUsCardHelp3")} color="orange" />
+                  <p className={styles.help_text}>{t("Homepage.helpUsCardText3")}</p>
+                </Card>
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -339,17 +334,29 @@ const Homepage = (props: Props) => {
           <Row>
             <Col className={commonStyles.bg_blue}>
               <div className={styles.infos_col}>
-                <Image src={NewsletterIllu} alt="" width={416} />
+                <Image src={NewsletterIllu} alt="" width={416} className={styles.img} />
                 <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center text-white")}>
                   {t("Homepage.newsletterTitle")}
                 </h2>
                 <p className={commonStyles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
-                <div className={styles.action}></div>
+                <div className={styles.action}>
+                  <div className={styles.newsletter}>
+                    <Input
+                      type="email"
+                      placeholder="Votre email"
+                      icon="email-outline"
+                      className={styles.newsletter_input}
+                    />
+                    <FButton type="validate" className={styles.newsletter_submit} name="checkmark-outline" disabled>
+                      Envoyer
+                    </FButton>
+                  </div>
+                </div>
               </div>
             </Col>
             <Col className={commonStyles.bg_grey}>
               <div className={styles.infos_col}>
-                <Image src={FormationPhoto} alt="" width={416} />
+                <Image src={FormationPhoto} alt="" width={416} className={styles.img} />
                 <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center")}>
                   {t("Homepage.trainingTitle")}
                 </h2>

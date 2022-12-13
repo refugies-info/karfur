@@ -107,4 +107,28 @@
       margin-top: u(6);
     }
   }
+  .img {
+    max-width: 100%;
+  }
+}
+
+.newsletter {
+  position: relative;
+}
+.newsletter_input {
+  input {
+    height: 64px;
+  }
+  & > span {
+    top: 20px !important;
+  }
+  :global(.input-error-icon) {
+    right: 150px !important;
+  }
+}
+.newsletter_submit {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  height: 48px;
 }

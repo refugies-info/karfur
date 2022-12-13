@@ -1,3 +1,3 @@
-import Card from "./Card";
+import Warning from "./Warning";
 
-export default Card;
+export default Warning;
