@@ -10,6 +10,8 @@ interface Props {
   icon?: string;
   className?: string;
   error?: string;
+  value?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const CustomInput = (props: Props) => {
@@ -21,7 +23,13 @@ const CustomInput = (props: Props) => {
         {props.icon && (
           <EVAIcon name={props.icon} fill={colors.gray80} size={24} className={cls(styles.icon, styles.prepend)} />
         )}
-        <input type={props.type || "text"} placeholder={props.placeholder} className={styles.input} />
+        <input
+          type={props.type || "text"}
+          placeholder={props.placeholder}
+          className={styles.input}
+          value={props.value}
+          onChange={props.onChange}
+        />
         {props.error && (
           <EVAIcon
             name="alert-triangle"

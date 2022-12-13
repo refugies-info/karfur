@@ -43,6 +43,8 @@ import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
 import { getPath } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton";
+import API from "utils/API";
+import Swal from "sweetalert2";
 interface Props {}
 
 const Homepage = (props: Props) => {
@@ -60,8 +62,52 @@ const Homepage = (props: Props) => {
     }
   }, []);
 
-  const navigateTheme = (themeId: ObjectId) => {};
-  const navigateType = (type: string) => {};
+  const navigateTheme = (themeId: ObjectId) => {
+    router.push({
+      pathname: getPath("/recherche", router.locale),
+      query: {
+        themes: themeId.toString()
+      }
+    });
+  };
+  const navigateType = (type: string) => {
+    router.push({
+      pathname: getPath("/recherche", router.locale),
+      query: {
+        type: type
+      }
+    });
+  };
+
+  // Newsletter
+  const [email, setEmail] = useState("");
+  const [newsletterError, setNewsletterError] = useState("");
+
+  const sendMail = (e: any) => {
+    setNewsletterError("");
+    e.preventDefault();
+    const regex = /^\S+@\S+\.\S+$/;
+    const isEmail = !!email.match(regex);
+    if (isEmail) {
+      API.set_mail({ mail: email })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Mail correctement enregistré !",
+            type: "success",
+            timer: 1500
+          });
+          setEmail("");
+        })
+        .catch((e) => {
+          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST")
+            setNewsletterError(t("Footer.newsletter_contact_already_exist"));
+          else setNewsletterError("Une erreur s'est produite");
+        });
+    } else {
+      setNewsletterError(t("Register.Ceci n'est pas un email,") + " " + t("Register.vérifiez l'orthographe"));
+    }
+  };
 
   const demarches = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
   const dispositifs = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
@@ -76,7 +122,7 @@ const Homepage = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
+      <div className={cls(commonStyles.section, commonStyles.bg_grey, styles.themes)}>
         <ThemesGrid className={commonStyles.container} onClickTheme={(themeId) => navigateTheme(themeId)} />
       </div>
 
@@ -343,11 +389,20 @@ const Homepage = (props: Props) => {
                   <div className={styles.newsletter}>
                     <Input
                       type="email"
-                      placeholder="Votre email"
+                      placeholder={t("Register.Votre email")}
                       icon="email-outline"
                       className={styles.newsletter_input}
+                      value={email}
+                      onChange={(e: any) => setEmail(e.target.value)}
+                      error={newsletterError}
                     />
-                    <FButton type="validate" className={styles.newsletter_submit} name="checkmark-outline" disabled>
+                    <FButton
+                      type="validate"
+                      className={styles.newsletter_submit}
+                      name="checkmark-outline"
+                      disabled={!email}
+                      onClick={sendMail}
+                    >
                       Envoyer
                     </FButton>
                   </div>

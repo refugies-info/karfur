@@ -35,6 +35,15 @@
   }
 }
 
+// themes
+.themes {
+  h2 {
+    @include isTablet() {
+      @include text("h4");
+    }
+  }
+}
+
 // Sliders
 .content_sliders {
   :global(.content-card-slider) {
