@@ -374,7 +374,7 @@ const Homepage = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, "pb-0")}>
+      <div className={cls(commonStyles.section, styles.infos, "pb-0")}>
         <Container fluid className={cls(commonStyles.container, "text-center")}>
           <Row>
             <Col className={commonStyles.bg_blue}>

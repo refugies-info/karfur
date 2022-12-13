@@ -1,0 +1,45 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: u(10);
+
+  @include isTablet() {
+    justify-content: center;
+  }
+}
+
+.front {
+  position: relative;
+  top: 80px;
+  z-index: 2;
+  flex: 0 0 auto;
+
+  @include isTablet() {
+    width: 140px;
+    top: 50px;
+  }
+}
+
+.back {
+  position: relative;
+  top: -35px;
+  left: -60px;
+  margin-right: -115px;
+  z-index: 1;
+  flex: 0 0 auto;
+
+  @include isTablet() {
+    width: 200px;
+    height: auto;
+    top: -25px;
+    left: -40px;
+  }
+}

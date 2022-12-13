@@ -185,6 +185,11 @@
   "Bientôt disponible !": "Bientôt disponible !",
   "Bientôt disponible": "Bientôt disponible",
   "Homepage": {
+    "mobile_app_title": "Application mobile disponible !",
+    "mobile_app_subtitle_1": "Filtrez les informations en fonction de votre profil.",
+    "mobile_app_subtitle_2": "Partagez facilement l’info à vos proches ou à vos bénéficiaires.",
+    "mobile_app_subtitle_3": "Des informations simples avec une navigation facile.",
+    "mobile_app_copy_link": "Copier le lien pour le partage",
     "explication lexique": "Consultez le lexique collaboratif pour comprendre les mots que vous rencontrez dans votre navigation.",
     "information vérifiée": "Réfugiés.info est transparent sur la qualité de l'information",
     "information vérifiée subheader": "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, vous pouvez facilement signaler une erreur.",

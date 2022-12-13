@@ -1,0 +1,72 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  background: radial-gradient(150.13% 150.13% at 50% 50%, #0421b1 0%, #1b62d8 100%);
+}
+
+.qrcode {
+  display: flex;
+  align-items: center;
+  margin-top: u(16);
+
+  .img {
+    border: 4px solid $white;
+    border-radius: u(2);
+  }
+  .text {
+    margin-left: u(6);
+    margin-bottom: 0;
+    @include text("large");
+
+    @include rtl() {
+      margin-left: 0;
+      margin-right: u(6);
+    }
+  }
+}
+
+.mockup {
+  @include media-max("lg-limit") {
+    text-align: center;
+  }
+}
+
+.store {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: u(8);
+
+  @include isTablet() {
+    justify-content: center;
+  }
+
+  a {
+    margin-right: u(4);
+
+    img {
+      max-width: 124px;
+      height: auto;
+
+      @include isTablet() {
+        max-width: none;
+      }
+    }
+  }
+}
+
+.reviews {
+  margin-left: u(4);
+
+  @include isTablet() {
+    position: absolute;
+    top: -80px;
+    transform: translateX(70%);
+  }
+}
