@@ -8,7 +8,8 @@ import styles from "./InlineLink.module.scss";
 interface Props {
   link: string;
   text: string;
-  color: "purple" | "red" | "orange" | "blue" | "white";
+  color: "purple" | "red" | "orange" | "blue" | "white" | "brown" | "green";
+  type?: "button" | "link" | "span";
   onClick?: () => void;
 }
 
@@ -31,7 +32,17 @@ const InlineLink = (props: Props) => {
     [props.text, props.color, isRTL]
   );
 
-  return !props.onClick ? (
+  if (props.type === "button") {
+    return (
+      <button className={cls(styles.link, styles[`color_${props.color}`])} onClick={props.onClick}>
+        {content}
+      </button>
+    );
+  }
+  if (props.type === "span") {
+    return <span className={cls(styles.link, styles[`color_${props.color}`])}>{content}</span>;
+  }
+  return (
     <Link
       href={props.link}
       className={cls(styles.link, styles[`color_${props.color}`])}
@@ -40,10 +51,6 @@ const InlineLink = (props: Props) => {
     >
       {content}
     </Link>
-  ) : (
-    <button className={cls(styles.link, styles[`color_${props.color}`])} onClick={props.onClick}>
-      {content}
-    </button>
   );
 };
 

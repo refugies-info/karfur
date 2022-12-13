@@ -24,6 +24,10 @@ $breakpoint: "lg-limit";
   &.grey {
     background: $gray30;
   }
+
+  &.shadow {
+    box-shadow: 0 4px 18px 0 #0000001a;
+  }
 }
 
 .header {

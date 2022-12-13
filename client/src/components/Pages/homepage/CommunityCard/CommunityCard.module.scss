@@ -9,7 +9,7 @@ $red: #9e180a;
 $green: #055e5a;
 $purple: #3d2884;
 $brown: #443023;
-$blue: #0421b1;
+$blue: $bleuCharte;
 
 :export {
   red: $red;
@@ -29,26 +29,27 @@ $blue: #0421b1;
   text-align: left;
   border: 1px solid transparent;
   margin: 0 auto u(10) auto;
+  flex-shrink: 0;
 
   &:hover {
     &.color_red {
-      border-color: #9e180a;
+      border-color: $red;
       background-color: #f9e8e8;
     }
     &.color_green {
-      border-color: #055e5a;
+      border-color: $green;
       background-color: #edfdf9;
     }
     &.color_purple {
-      border-color: #3d2884;
+      border-color: $purple;
       background-color: #efe8f4;
     }
     &.color_brown {
-      border-color: #443023;
+      border-color: $brown;
       background-color: #eee7e5;
     }
     &.color_blue {
-      border-color: #0421b1;
+      border-color: $blue;
       background-color: #dae0fb;
     }
 
@@ -59,13 +60,39 @@ $blue: #0421b1;
 
   @include isTablet() {
     padding: u(4);
+    margin: 0 u(2);
+    background: $white !important;
+    width: 230px;
+
+    &.color_red {
+      border-color: $red;
+    }
+    &.color_green {
+      border-color: $green;
+    }
+    &.color_purple {
+      border-color: $purple;
+    }
+    &.color_brown {
+      border-color: $brown;
+    }
+    &.color_blue {
+      border-color: $blue;
+    }
   }
 }
 
-.image {
+.image_container {
   position: relative;
   display: flex;
   align-items: center;
+
+  img {
+    @include isTablet() {
+      width: 124px;
+      height: 56px;
+    }
+  }
 }
 
 .count {
@@ -94,7 +121,14 @@ $blue: #0421b1;
     background-color: #5a483c;
   }
   .color_blue & {
-    background-color: #0421b1;
+    background-color: $blue;
+  }
+
+  @include isTablet() {
+    width: 32px;
+    height: 32px;
+    @include text("very-small");
+    border-width: 2px;
   }
 }
 
@@ -121,6 +155,10 @@ $blue: #0421b1;
 
 .footer {
   margin-top: u(8);
+
+  @include isTablet() {
+    margin-top: u(4);
+  }
 }
 
 .badge {
@@ -137,26 +175,30 @@ $blue: #0421b1;
       margin-right: inherit;
       margin-left: u(1);
     }
+
+    @include isTablet() {
+      display: none;
+    }
   }
 
   .color_red & {
-    color: #9e180a;
+    color: $red;
     background-color: #f9e8e8;
   }
   .color_green & {
-    color: #055e5a;
+    color: $green;
     background-color: #edfdf9;
   }
   .color_purple & {
-    color: #3d2884;
+    color: $purple;
     background-color: #efe8f4;
   }
   .color_brown & {
-    color: #443023;
+    color: $brown;
     background-color: #eee7e5;
   }
   .color_blue & {
-    color: #0421b1;
+    color: $blue;
     background-color: #dae0fb;
   }
 }

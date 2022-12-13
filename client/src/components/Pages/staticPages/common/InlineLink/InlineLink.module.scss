@@ -9,11 +9,15 @@ $breakpoint: "lg-limit";
 $purple: #3d2884;
 $red: #910940;
 $orange: #cd5605;
+$brown: #443023;
+$green: #055e5a;
 
 :export {
   purple: $purple;
   red: $red;
   orange: $orange;
+  brown: $brown;
+  green: $green;
   blue: $bleuCharte;
   white: $white;
 }
@@ -38,21 +42,23 @@ $orange: #cd5605;
   &.color_purple {
     color: $purple;
   }
-
   &.color_red {
     color: $red;
   }
-
   &.color_orange {
     color: $orange;
   }
-
   &.color_blue {
     color: $bleuCharte;
   }
-
   &.color_white {
     color: $white;
+  }
+  &.color_brown {
+    color: $brown;
+  }
+  &.color_green {
+    color: $green;
   }
 }
 

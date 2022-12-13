@@ -19,9 +19,9 @@ import { ObjectId } from "mongodb";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import CardSlider from "components/Pages/recherche/CardSlider";
 import { Accordion, Card, InlineLink } from "components/Pages/staticPages/common";
-import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
-import WhyImage4 from "assets/staticPages/publier/why-image-4.png";
-import RequiredIcon1 from "assets/staticPages/publier/required-icon-1.png";
+import UsagesMobilesIllu from "assets/homepage/usages-mobile.png";
+import HelpUsIcon1 from "assets/homepage/helpus-icon-1.png";
+import HelpUsIcon3 from "assets/homepage/helpus-icon-3.svg";
 import CommunityRedacteurs from "assets/homepage/community-redacteurs.png";
 import CommunityStructures from "assets/homepage/community-structures.png";
 import CommunityCda from "assets/homepage/community-cda.png";
@@ -32,8 +32,14 @@ import CommunityInfluenceurs from "assets/homepage/community-influenceurs.png";
 import CommunityTesteurs from "assets/homepage/community-testeurs.png";
 import CommunityEquipe from "assets/homepage/community-equipe.png";
 import FreeResources from "assets/homepage/free-resources.png";
+import NewsletterIllu from "assets/homepage/newsletter-illu.svg";
+import FormationPhoto from "assets/homepage/photo-formation.jpg";
 import { CountUpFigure } from "components/Pages/staticPages/publier";
 import CommunityCard from "components/Pages/homepage/CommunityCard";
+import Link from "next/link";
+import Warning from "components/UI/Warning/Warning";
+import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
+import { getPath } from "routes";
 interface Props {}
 
 const Homepage = (props: Props) => {
@@ -94,10 +100,34 @@ const Homepage = (props: Props) => {
           <h2 className={commonStyles.title2}>{t("Homepage.whyTitle")}</h2>
           <Accordion
             items={[
-              { title: t("Homepage.whyAccordionTitle1"), text: t("Homepage.whyAccordionText1"), image: WhyImage1 },
-              { title: t("Homepage.whyAccordionTitle2"), text: t("Homepage.whyAccordionText2"), image: WhyImage1 },
-              { title: t("Homepage.whyAccordionTitle3"), text: t("Homepage.whyAccordionText3"), image: WhyImage4 },
-              { title: t("Homepage.whyAccordionTitle4"), text: t("Homepage.whyAccordionText4"), image: WhyImage4 }
+              {
+                title: t("Homepage.whyAccordionTitle1"),
+                text: t("Homepage.whyAccordionText1"),
+                video: "/video/home-video-1.mp4",
+                mediaWidth: 450,
+                mediaHeight: 320
+              },
+              {
+                title: t("Homepage.whyAccordionTitle2"),
+                text: t("Homepage.whyAccordionText2"),
+                video: "/video/home-video-2.mp4",
+                mediaWidth: 450,
+                mediaHeight: 320
+              },
+              {
+                title: t("Homepage.whyAccordionTitle3"),
+                text: t("Homepage.whyAccordionText3"),
+                video: "/video/home-video-3.mp4",
+                mediaWidth: 450,
+                mediaHeight: 320
+              },
+              {
+                title: t("Homepage.whyAccordionTitle4"),
+                text: t("Homepage.whyAccordionText4"),
+                image: UsagesMobilesIllu,
+                mediaWidth: 450,
+                mediaHeight: 320
+              }
             ]}
             withImages
             initOpen
@@ -113,17 +143,19 @@ const Homepage = (props: Props) => {
               <h2 className={cls(commonStyles.title2, "text-white mb-0")}>{t("Homepage.resourcesTitle")}</h2>
               <p className={cls(commonStyles.subtitle, commonStyles.bottom_space)}>{t("Homepage.resourcesText")}</p>
               <div className={commonStyles.bottom_space}>
-                <InlineLink text={t("Homepage.resourcesCTA")} link="#" color="white" />
+                <InlineLink text={t("Homepage.resourcesCTA")} link="https://kit.refugies.info/" color="white" />
               </div>
             </Col>
             <Col sm="12" lg={{ size: "6", order: 0 }}>
-              <Image
-                src={FreeResources}
-                alt={t("Homepage.resourcesTitle")}
-                width={500}
-                height={272}
-                className={commonStyles.bottom_space}
-              />
+              <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src={FreeResources}
+                  alt={t("Homepage.resourcesTitle")}
+                  width={500}
+                  height={272}
+                  className={cls(styles.resources_image, commonStyles.bottom_space)}
+                />
+              </Link>
             </Col>
           </Row>
         </Container>
@@ -131,14 +163,70 @@ const Homepage = (props: Props) => {
 
       <div className={cls(commonStyles.section, commonStyles.bg_grey)}>
         <Container className={commonStyles.container}>
-          <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Homepage.helpUsTitle")}</h2>
-          <p>{t("Homepage.helpUsSubtitle")}</p>
-          <Row>
+          <h2 className={cls(commonStyles.title2, commonStyles.center, "mb-0")}>{t("Homepage.helpUsTitle")}</h2>
+          <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Homepage.helpUsSubtitle")}</p>
+          <Row className={commonStyles.top_space}>
             <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-              <Card image={RequiredIcon1} title={t("Homepage.helpUsCardTitle1")}>
-                <p className="mb-0">{t("Homepage.helpUsCardHelp1")}</p>
-                <p className="mb-0">{t("Homepage.helpUsCardText1")}</p>
-                <p className="mb-0">{t("Homepage.helpUsCardCTA1")}</p>
+              <Card
+                image={HelpUsIcon1}
+                title={t("Homepage.helpUsCardTitle1")}
+                footer={
+                  <InlineLink
+                    link={getPath("/publier", router.locale)}
+                    text={t("Homepage.helpUsCardCTA1")}
+                    color="purple"
+                  />
+                }
+                withShadow
+              >
+                <Warning text={t("Homepage.helpUsCardHelp1")} color="purple" />
+                <p className={styles.help_text}>{t("Homepage.helpUsCardText1")}</p>
+              </Card>
+            </Col>
+
+            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Card
+                title={t("Homepage.helpUsCardTitle2")}
+                header={
+                  <>
+                    <LanguageIcon language="ua" size={40} color="red" />
+                    <LanguageIcon language="ir" size={40} color="red" />
+                    <LanguageIcon language="sa" size={40} color="red" />
+                    <LanguageIcon language="gb" size={40} color="red" />
+                    <LanguageIcon language="af" size={40} color="red" />
+                    <LanguageIcon language="ru" size={40} color="red" />
+                    <LanguageIcon language="er" size={40} color="red" />
+                  </>
+                }
+                footer={
+                  <InlineLink
+                    link={getPath("/traduire", router.locale)}
+                    text={t("Homepage.helpUsCardCTA2")}
+                    color="red"
+                  />
+                }
+                withShadow
+              >
+                <Warning text={t("Homepage.helpUsCardHelp2")} color="red" />
+                <p className={styles.help_text}>{t("Homepage.helpUsCardText2")}</p>
+              </Card>
+            </Col>
+
+            <Col sm="12" lg="4" className="mb-lg-0 mb-5">
+              <Card
+                image={HelpUsIcon3}
+                title={t("Homepage.helpUsCardTitle3")}
+                footer={
+                  <InlineLink
+                    link="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
+                    text={t("Homepage.helpUsCardCTA3")}
+                    color="orange"
+                  />
+                }
+                withShadow
+              >
+                <Warning text={t("Homepage.helpUsCardHelp3")} color="orange" />
+                <p className={styles.help_text}>{t("Homepage.helpUsCardText3")}</p>
               </Card>
             </Col>
           </Row>
@@ -174,6 +262,7 @@ const Homepage = (props: Props) => {
               image={CommunityRedacteurs}
               color="red"
               countImage={7}
+              link={getPath("/publier", router.locale)}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle2")}
@@ -182,6 +271,7 @@ const Homepage = (props: Props) => {
               image={CommunityStructures}
               color="red"
               countImage={7}
+              link={getPath("/publier", router.locale)}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle3")}
@@ -198,6 +288,7 @@ const Homepage = (props: Props) => {
               image={CommunityTraducteurs}
               color="green"
               countImage={7}
+              link={getPath("/traduire", router.locale)}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle5")}
@@ -243,17 +334,30 @@ const Homepage = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section)}>
+      <div className={cls(commonStyles.section, "pb-0")}>
         <Container fluid className={cls(commonStyles.container, "text-center")}>
           <Row>
             <Col className={commonStyles.bg_blue}>
-              <h2 className={cls(commonStyles.title2, "text-center text-white")}>{t("Homepage.newsletterTitle")}</h2>
-              <p>{t("Homepage.newsletterSubtitle")}</p>
+              <div className={styles.infos_col}>
+                <Image src={NewsletterIllu} alt="" width={416} />
+                <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center text-white")}>
+                  {t("Homepage.newsletterTitle")}
+                </h2>
+                <p className={commonStyles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
+                <div className={styles.action}></div>
+              </div>
             </Col>
             <Col className={commonStyles.bg_grey}>
-              <h2 className={cls(commonStyles.title2, "text-center")}>{t("Homepage.trainingTitle")}</h2>
-              <p>{t("Homepage.trainingSubtitle")}</p>
-              <p>{t("Homepage.trainingCTA")}</p>
+              <div className={styles.infos_col}>
+                <Image src={FormationPhoto} alt="" width={416} />
+                <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center")}>
+                  {t("Homepage.trainingTitle")}
+                </h2>
+                <p className={commonStyles.subtitle}>{t("Homepage.trainingSubtitle")}</p>
+                <div className={styles.action}>
+                  <InlineLink text={t("Homepage.trainingCTA")} link="#" color="blue" />
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

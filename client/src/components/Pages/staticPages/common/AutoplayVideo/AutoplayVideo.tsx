@@ -6,6 +6,7 @@ import styles from "./AutoplayVideo.module.scss";
 interface Props {
   src: string | undefined;
   height: number;
+  width?: number;
 }
 
 const AutoplayVideo = (props: Props) => {
@@ -39,7 +40,15 @@ const AutoplayVideo = (props: Props) => {
 
   if (!props.src) return <></>;
   return (
-    <video ref={setRefs} height={props.height} loop muted playsInline={isIOS} className={styles.video}>
+    <video
+      ref={setRefs}
+      height={props.height}
+      width={props.width}
+      loop
+      muted
+      playsInline={isIOS}
+      className={styles.video}
+    >
       <source src={props.src} type="video/mp4" />
     </video>
   );

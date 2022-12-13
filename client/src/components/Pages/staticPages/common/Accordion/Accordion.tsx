@@ -13,6 +13,8 @@ type Item = {
   text: string;
   image?: any;
   video?: string;
+  mediaWidth?: number;
+  mediaHeight?: number;
   cta?: {
     text: string;
     link: string;
@@ -60,10 +62,12 @@ const Accordion = (props: Props) => {
                   }}
                 ></p>
 
-                {isTablet && props.withImages && item?.image && <Image src={item?.image} alt="" />}
+                {isTablet && props.withImages && item?.image && (
+                  <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} />
+                )}
                 {isTablet && props.withImages && item?.video && (
                   <div className={styles.video}>
-                    <AutoplayVideo src={item.video} height={420} />
+                    <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />
                   </div>
                 )}
                 {item.cta && <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />}
@@ -74,8 +78,21 @@ const Accordion = (props: Props) => {
       </Col>
       {!isTablet && props.withImages && open.length > 0 && (
         <Col className={styles.media}>
-          {props.items[open[0]]?.image && <Image src={props.items[open[0]].image} alt="" />}
-          {props.items[open[0]]?.video && <AutoplayVideo src={props.items[open[0]].video} height={420} />}
+          {props.items[open[0]]?.image && (
+            <Image
+              src={props.items[open[0]].image}
+              alt=""
+              height={props.items[open[0]].mediaHeight}
+              width={props.items[open[0]].mediaWidth}
+            />
+          )}
+          {props.items[open[0]]?.video && (
+            <AutoplayVideo
+              src={props.items[open[0]].video}
+              height={props.items[open[0]].mediaHeight || 420}
+              width={props.items[open[0]].mediaWidth}
+            />
+          )}
         </Col>
       )}
     </Row>

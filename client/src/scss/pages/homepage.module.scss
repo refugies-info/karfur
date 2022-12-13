@@ -58,9 +58,53 @@
   }
 }
 
+// Resources
+.resources_image {
+  max-width: 100%;
+  height: auto;
+}
+
+// Help
+.help_text {
+  margin-top: u(6);
+  margin-bottom: 0;
+
+  @include isTablet() {
+    margin-top: u(4);
+  }
+}
+
 // Community
 .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  @include isTablet() {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    margin-left: -15px;
+    margin-right: -15px;
+    padding-bottom: u(4);
+  }
+}
+
+// Infos
+.infos_col {
+  max-width: 430px;
+  margin: auto;
+  padding: u(20) 0;
+
+  @include isTablet() {
+    padding: u(10) 0;
+  }
+
+  .action {
+    margin-top: u(10);
+
+    @include isTablet() {
+      margin-top: u(6);
+    }
+  }
 }
