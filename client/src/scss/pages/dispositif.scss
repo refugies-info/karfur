@@ -244,8 +244,6 @@ $imgHeight: 350px;
 
   .contenu {
     padding: 0 40px 0 0;
-    font-size: $text-large;
-    line-height: 27px;
     @include isMobile() {
       padding: 0;
     }
@@ -430,8 +428,6 @@ $imgHeight: 350px;
       display: flex;
       align-items: flex-start;
       white-space: nowrap;
-      font-size: $text-normal;
-      line-height: 35px;
       color: $gray70;
       &.align-right {
         padding: 0;

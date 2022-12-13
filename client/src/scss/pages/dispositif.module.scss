@@ -3,7 +3,6 @@
 @import "src/scss/variables";
 
 .banniere {
-  margin-top: -75px;
   background-size: cover;
   background-repeat: no-repeat;
   background: $gray10;
@@ -15,7 +14,6 @@
   }
   @include media-min("phone-down", $screen: false) {
     min-height: 500px;
-    padding-top: 60px;
   }
 
   &.no_image {

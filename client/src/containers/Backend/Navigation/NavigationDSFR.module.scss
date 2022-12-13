@@ -5,9 +5,6 @@
   :global(.fr-nav__list) {
     justify-content: center;
   }
-  :global(.refugies-backend-header-menu-title) {
-    font-weight: bold;
-  }
 
   @media (max-width: $bp-xl) and (min-width: $bp-lg) {
     :global(.mr-10) {

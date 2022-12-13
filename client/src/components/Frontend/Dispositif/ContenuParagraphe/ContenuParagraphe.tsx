@@ -150,7 +150,7 @@ const ContenuParagraphe = (props: Props) => {
       }
     >
       {props.dispositifContent.type === "cards" && nbChildren > 1 && (
-        <div className={mobile.visible_flex}>
+        <div style={{display:"flex"}}>
           {(props.dispositifContent?.children || []).map(
             (subDispositifContent, i) => {
               return (
@@ -211,7 +211,7 @@ const ContenuParagraphe = (props: Props) => {
               key={index}
             >
               {subitem.type === "card" ? (
-                <div className={mobile.hidden_flex}>
+                <div style={{display: "flex"}}>
                   <CardParagraphe
                     subkey={index}
                     subitem={subitem}

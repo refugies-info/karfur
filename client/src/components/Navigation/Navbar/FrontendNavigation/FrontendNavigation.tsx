@@ -1,9 +1,22 @@
 import { HeaderNav, NavItem, NavSubItem } from "@dataesr/react-dsfr";
+import isInBrowser from "lib/isInBrowser";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { getPath } from "routes";
 import { NewsletterSubscribeNavItem } from "../NavbarItems";
+
+interface InternalNavItemProps {
+  href: string;
+  title: string;
+}
+
+const InternalNavItem = ({ href = "", title }: InternalNavItemProps) => {
+  const router = useRouter();
+  const current = isInBrowser() && (window?.location?.pathname || "") === "/" + router.locale + href;
+
+  return <NavItem current={current} asLink={<Link href={href} />} title={title} />;
+};
 
 const FrontendNavigation = () => {
   const router = useRouter();
@@ -13,15 +26,15 @@ const FrontendNavigation = () => {
 
   return (
     <HeaderNav>
-      <NavItem
-        asLink={<Link href={getPath("/recherche", router.locale)} />}
+      <InternalNavItem
+        href={getPath("/recherche", router.locale)}
         title={t("Toolbar.Trouver de l'information", "Trouver de l'information")}
       />
-      <NavItem
-        asLink={<Link href={getPath("/publier", router.locale)} />}
+      <InternalNavItem
+        href={getPath("/publier", router.locale)}
         title={t("Toolbar.Publier une fiche", "Publier une fiche")}
       />
-      <NavItem asLink={<Link href={getPath("/traduire", router.locale)} />} title={t("Toolbar.Traduire", "Traduire")} />
+      <InternalNavItem href={getPath("/traduire", router.locale)} title={t("Toolbar.Traduire", "Traduire")} />
       <NavItem title={t("Toolbar.Parler de nous", "Parler de nous")}>
         <NavSubItem
           asLink={<a href="https://kit.refugies.info/" target="_blank" />}
@@ -44,7 +57,10 @@ const FrontendNavigation = () => {
         asLink={<a href="https://parrainage.refugies.info/" target="_blank" />}
         title={t("Toolbar.Pour l'Ukraine", "Pour l'Ukraine")}
       />
-      <NavItem asLink={<a href="#application" />} title={t("MobileAppModal.Télécharger l'application")} />
+      <InternalNavItem
+        href={`${getPath("/", router.locale)}#application`}
+        title={t("MobileAppModal.Télécharger l'application", "Télécharger l'application")}
+      />
       <NewsletterSubscribeNavItem />
     </HeaderNav>
   );
