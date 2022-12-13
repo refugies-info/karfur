@@ -121,7 +121,7 @@ const Homepage = (props: Props) => {
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, commonStyles.bg_grey, styles.themes)}>
+      <div className={cls(commonStyles.section, styles.themes)}>
         <ThemesGrid className={commonStyles.container} onClickTheme={(themeId) => navigateTheme(themeId)} />
       </div>
 
