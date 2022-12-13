@@ -12,14 +12,10 @@
   }
 
   p {
-    font-size: $text-large;
-    line-height: 23px;
     margin-bottom: 24px;
 
     &.text_muted {
       color: #5E5E5E;
-      font-size: $text-normal;
-      line-height: 20px;
     }
 
     .icon {
@@ -31,24 +27,16 @@
   ul {
     padding-left: 24px;
 
-    li {
-      font-size: $text-large;
-
-      a {
+    li a {
         text-decoration: underline;
-      }
     }
   }
 
   .h4 {
-    font-size: 28px;
-    margin-bottom: 24px;
     margin-top: 56px;
-    font-weight: bold;
   }
 
   .h5 {
-    font-size: 22px;
     margin-bottom: 24px;
     margin-top: 24px;
     font-weight: bold;

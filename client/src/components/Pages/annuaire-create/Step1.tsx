@@ -36,25 +36,23 @@ const RightLogoContainer = styled.div`
   margin-top: 24px;
 `;
 
-const Text = styled.div`
-  font-size: 16px;
-  line-height: 20px;
+const Text = styled.p`
   margin-top: 16px;
 `;
 const FileInput = styled(Input)`
-z-index: 2;
-cursor: pointer;
-display: block;
-filter: alpha(opacity=0);
-height: 100%;
-width: 100%;
-opacity: 0;
-position: absolute;
-right: 0;
-text-align: right;
-top: 0;
-background-color: red;
-`
+  z-index: 2;
+  cursor: pointer;
+  display: block;
+  filter: alpha(opacity=0);
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+  background-color: red;
+`;
 
 interface Props {
   structure: Structure | null;
@@ -70,7 +68,7 @@ export const Step1 = (props: Props) => {
     if (!structure?.hasResponsibleSeenNotification) {
       setStructure({
         ...structure,
-        hasResponsibleSeenNotification: true,
+        hasResponsibleSeenNotification: true
       });
     }
   }, [structure, setStructure]);
@@ -79,7 +77,7 @@ export const Step1 = (props: Props) => {
     props.setHasModifications(true);
     return props.setStructure({
       ...props.structure,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.value
     });
   };
   const handleFileInputChange = (event: any) => {
@@ -95,17 +93,14 @@ export const Step1 = (props: Props) => {
         picture: {
           secure_url: imgData.secure_url,
           public_id: imgData.public_id,
-          imgId: imgData.imgId,
-        },
+          imgId: imgData.imgId
+        }
       });
       setUploading(false);
     });
     props.setHasModifications(true);
   };
-  const secureUrl =
-    props.structure &&
-    props.structure.picture &&
-    props.structure.picture.secure_url;
+  const secureUrl = props.structure && props.structure.picture && props.structure.picture.secure_url;
 
   return (
     <MainContainer className="step1">
@@ -113,7 +108,7 @@ export const Step1 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "440px",
+          width: "440px"
         }}
       >
         <FInput
@@ -147,33 +142,13 @@ export const Step1 = (props: Props) => {
               objectFit="contain"
             />
           ) : (
-              <Image
-                src={PlaceholderLogo}
-                alt="defautl logo"
-                width={200}
-                height={200}
-                objectFit="contain"
-              />
+            <Image src={PlaceholderLogo} alt="defautl logo" width={200} height={200} objectFit="contain" />
           )}
         </LogoWrapper>
         <RightLogoContainer>
-          <FButton
-            type="fill-dark"
-            name="upload-outline"
-            className="position-relative"
-          >
-            <FileInput
-              type="file"
-              id="picture"
-              name="structure"
-              accept="image/*"
-              onChange={handleFileInputChange}
-            />
-            {secureUrl ? (
-              <span>Choisir une autre image</span>
-            ) : (
-              <span>Choisir</span>
-            )}
+          <FButton type="fill-dark" name="upload-outline" className="position-relative">
+            <FileInput type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
+            {secureUrl ? <span>Choisir une autre image</span> : <span>Choisir</span>}
 
             {uploading && <Spinner color="success" className="ml-10" />}
           </FButton>
