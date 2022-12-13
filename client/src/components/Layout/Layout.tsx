@@ -18,7 +18,7 @@ import { showLangModalSelector, allLanguesSelector } from "services/Langue/langu
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
-import Navbar from "components/Navigation/Navbar/Navbar";
+import Navbar from "components/Navigation/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import MobileAppModal from "components/Modals/MobileAppModal/MobileAppModal";
 import Footer from "components/Layout/Footer";
@@ -34,6 +34,7 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { BookmarkedModal } from "components/Modals";
 import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 
 interface Props {
   children: any;
@@ -82,7 +83,9 @@ const Layout = (props: Props) => {
     if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
       changeLanguage(storedLanguei18nCode);
     } else if (!storedLanguei18nCode) {
-      dispatch(toggleLangueModalActionCreator());
+      if (!showLangModal) {
+        dispatch(toggleLangueModalActionCreator());
+      }
     } else {
       const locale = router.locale || "fr";
       if (!["fr", "default"].includes(locale)) {
@@ -179,8 +182,8 @@ const Layout = (props: Props) => {
   const isFavoriteModalVisible = useSelector(isFavoriteModalVisibleSelector);
 
   return (
-    <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
-      <Navbar history={props.history} />
+    <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
+      <Navbar />
       <div className="app-body">
         <main className="content">{props.children}</main>
       </div>
@@ -201,6 +204,7 @@ const Layout = (props: Props) => {
           dispatch(toggleUserFavoritesModalActionCreator(!isFavoriteModalVisible));
         }}
       />
+      <SubscribeNewsletterModal />
     </div>
   );
 };

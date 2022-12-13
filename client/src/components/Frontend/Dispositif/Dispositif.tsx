@@ -203,7 +203,7 @@ const Dispositif = (props: Props) => {
 
   // Initial data
   const [menu, setMenu] = useState<DispositifContent[]>(dispositif ? generateMenu(dispositif) : []);
-  const timer = useRef<number | undefined>();
+  const timer = useRef<any>();
 
   useEffect(() => {
     if ((API.isAuth() && !user) || isLoaded) return;
@@ -261,7 +261,7 @@ const Dispositif = (props: Props) => {
           mainSponsor: null,
           merci: [],
           nbMots: 0,
-          niveauFrancais: [],
+          niveauFrancais: props.typeContenu === "demarche" ? undefined : [],
           participants: [],
           signalements: [],
           sponsors: [],
@@ -1596,7 +1596,7 @@ const Dispositif = (props: Props) => {
                       pushReaction={pushReaction}
                       didThank={didThank}
                       color={mainTheme.colors.color100}
-                      nbThanks={dispositif?.merci ? dispositif?.merci.length : 0}
+                      nbThanks={dispositif?.merci ? dispositif?.merci.length || 0 : 0}
                     />
                   )}
                   {!printing && (
@@ -1689,8 +1689,8 @@ const Dispositif = (props: Props) => {
             <DispositifCreateModal
               show={showDispositifCreateModal}
               toggle={() => setShowDispositifCreateModal(!showDispositifCreateModal)}
-              typeContenu={dispositif?.typeContenu}
-              navigateToCommentContribuer={() => router.push(getPath("/comment-contribuer", router.locale))}
+              typeContenu={dispositif?.typeContenu || ""}
+              navigateToCommentContribuer={() => router.push(getPath("/publier", router.locale))}
             />
           )}
           <DispositifValidateModal

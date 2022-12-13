@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import { rejectionFiche } from "assets/figma";
 import styles from "./RejectionModal.module.scss";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   show: boolean

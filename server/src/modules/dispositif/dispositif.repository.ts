@@ -40,10 +40,10 @@ export const updateDispositifInDB = async (
     | { status: string; publishedAt: number }
     | { status: string }
     | {
-        adminComments: string;
-        adminProgressionStatus: string;
-        adminPercentageProgressionStatus: string;
-      }
+      adminComments: string;
+      adminProgressionStatus: string;
+      adminPercentageProgressionStatus: string;
+    }
     | { audienceAge: AudienceAge[] }
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
@@ -189,4 +189,8 @@ export const getNbVues = async () => {
       }
     }
   ]);
+};
+
+export const getNbFiches = async () => {
+  return Dispositif.count({ status: "Actif" });
 };

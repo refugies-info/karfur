@@ -1,6 +1,7 @@
 @import "src/scss/colors";
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 @import "src/scss/mixins/text";
 @import "src/scss/variables";
 
@@ -19,6 +20,7 @@
   // typeContenu
   &.demarche {
     width: 208px;
+    font-size: .95rem;
 
     @include isMobile() {
       width: 100%;
@@ -32,6 +34,7 @@
   &.dispositif {
     width: 260px;
     max-width: 100%;
+    font-size: .95rem;
 
     @include isMobile() {
       width: 100%;
@@ -108,6 +111,11 @@
     right: 12px;
     display: none;
     z-index: 5;
+
+    @include rtl() {
+      right: inherit;
+      left: 12px;
+    }
   }
   &:hover .favorite {
     display: block;

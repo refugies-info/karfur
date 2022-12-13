@@ -1,0 +1,68 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  padding: u(4);
+  color: $dark;
+  border-radius: $radius;
+  margin-bottom: u(4);
+}
+
+.title {
+  @include text("h5");
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.flag {
+  display: block;
+  width: 20px;
+  height: 15px;
+  background-size: cover;
+  border-radius: 2px;
+  margin-right: u(2);
+
+  @include rtl() {
+    margin-right: inherit;
+    margin-left: u(2);
+  }
+}
+
+.subtitle {
+  margin-top: u(2);
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.need {
+  padding: u(1);
+  display: inline-block;
+  font-weight: bold;
+  border-radius: u(1);
+  margin-left: u(2);
+
+  @include rtl() {
+    margin-left: inherit;
+    margin-right: u(2);
+  }
+
+  &.strong {
+    background: rgba(#e8140f, 0.1);
+    color: #e8140f;
+  }
+  &.medium {
+    background: rgba(#ff9800, 0.1);
+    color: #ff9800;
+  }
+  &.weak {
+    background: rgba(#008205, 0.1);
+    color: #008205;
+  }
+}

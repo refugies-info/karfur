@@ -130,7 +130,8 @@ const SearchHeader = (props: Props) => {
 
   // AGE
   const ageOptions = useMemo(() => {
-    return ageFilters.map((filter) => ({ ...filter, value: t(filter.value) }));
+    // @ts-ignore
+    return ageFilters.map((filter) => ({ ...filter, value: t(filter.value) as string }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectAgeOption = useCallback(
@@ -140,7 +141,8 @@ const SearchHeader = (props: Props) => {
 
   // FRENCH LEVEL
   const frenchLevelOptions = useMemo(() => {
-    return frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) }));
+    // @ts-ignore
+    return frenchLevelFilter.map((filter) => ({ ...filter, value: t(filter.value) as string }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const selectFrenchLevelOption = useCallback(
@@ -175,12 +177,14 @@ const SearchHeader = (props: Props) => {
   const [placeholderHeight, setPlaceholderHeight] = useState(0);
   const [scrollDirection, overScrollLimit] = useScrollDirection(SCROLL_LIMIT);
   useEffect(() => {
-    const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
-    setScrolled(newScrolled);
-    if (newScrolled) {
-      setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
+    if (!isMobile) {
+      const newScrolled = !!(scrollDirection === "up" && overScrollLimit);
+      setScrolled(newScrolled);
+      if (newScrolled) {
+        setPlaceholderHeight(headerRef.current?.offsetHeight || 0);
+      }
     }
-  }, [scrollDirection, overScrollLimit]);
+  }, [scrollDirection, overScrollLimit, isMobile]);
 
   const focusedStateProps = {
     locationFocusedState: [locationFocused, setLocationFocused] as [boolean, Dispatch<SetStateAction<boolean>>],

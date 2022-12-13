@@ -19,13 +19,13 @@
 
   @include isMobile() {
     width: 100%;
-    height: 100%;
     display: block;
     box-shadow: none;
     overflow-y: scroll;
     margin: 0;
     padding-left: u(4);
     padding-right: u(4);
+    padding-bottom: u(20);
   }
 }
 

@@ -68,8 +68,6 @@ const FilterBarContainer = styled.div`
 
 const IndicatorText = styled.div`
   font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   color: ${colors.darkGrey};
   margin-right: 8px;
 `;

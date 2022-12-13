@@ -73,18 +73,18 @@ const FrenchLevelModal = (props: Props) => {
                 </div>
                 <div className={styles.description}>
                   <p className={`${styles.subtitle} ${isSelected ? styles.selected : ""}`}>
-                    {t(
-                      "ModaleNiveauDeFrançais." + element.title + " title",
+                    {/* @ts-ignore */}
+                    {t("ModaleNiveauDeFrançais." + element.title + " title",
                       element.title
                     )}
                   </p>
                   <p className={styles.description_text}>
-                    {t(
-                      "ModaleNiveauDeFrançais." +
+                    {/* @ts-ignore */}
+                    <>{t("ModaleNiveauDeFrançais." +
                         element.title +
                         " description",
                       element.description
-                    )}{" "}
+                    )}{" "}</>
                     <a
                       style={{ textDecoration: "underline" }}
                       target="_blank"
@@ -104,8 +104,8 @@ const FrenchLevelModal = (props: Props) => {
                       target="_blank"
                     >
                       <span className={styles.test_btn_text}>
-                        {t(
-                          "ModaleNiveauDeFrançais.Faire le test",
+                        {/* @ts-ignore */}
+                        {t("ModaleNiveauDeFrançais.Faire le test",
                           "Faire le test"
                         )}
                       </span>

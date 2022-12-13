@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import ThemeIcon from "components/UI/ThemeIcon";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
+import { isEmpty } from "lodash";
 
 interface Props {
   togglePopup: () => void;
@@ -26,11 +27,14 @@ const HomeSearch = (props: Props) => {
   const router = useRouter();
   const { t } = useTranslation();
   const flippy: any = useRef();
+  const themes = useSelector(themesSelector);
 
-  const showFront = useRef<boolean|undefined>();
-  const flipFunc = useRef<number|undefined>();
-  const timeoutFunc = useRef<number|undefined>();
+  const showFront = useRef<boolean | undefined>();
+  const flipFunc = useRef<any | undefined>();
+  const timeoutFunc = useRef<any | undefined>();
   useEffect(() => {
+    const nbThemes = themes.length;
+    const isEven = nbThemes % 2 === 0;
     if (flip) {
       setIsLoaded(true);
       flipFunc.current = setInterval(() => {
@@ -38,10 +42,10 @@ const HomeSearch = (props: Props) => {
           flippy.current.toggle();
           timeoutFunc.current = setTimeout(() => {
             if (showFront.current) {
-              setIndexBack((i) => (i === 9 ? 1 : i + 2));
+              setIndexBack((i) => (i >= nbThemes - (isEven ? 1 : 2) ? 1 : i + 2));
               showFront.current = false;
             } else {
-              setIndexFront((i) => (i === 10 ? 0 : i + 2));
+              setIndexFront((i) => (i >= nbThemes - (isEven ? 2 : 1) ? 0 : i + 2));
               showFront.current = true;
             }
           }, 500);
@@ -49,11 +53,11 @@ const HomeSearch = (props: Props) => {
       }, 2000);
     }
 
-    return (() => {
-      clearTimeout(timeoutFunc.current)
-      clearInterval(flipFunc.current)
-    })
-  }, [flip]);
+    return () => {
+      clearTimeout(timeoutFunc.current);
+      clearInterval(flipFunc.current);
+    };
+  }, [flip, themes.length]);
 
   const open = (e: any) => {
     e.preventDefault();
@@ -61,8 +65,8 @@ const HomeSearch = (props: Props) => {
       props.toggleModal();
     } else {
       setFlip(!flip);
-      clearInterval(flipFunc.current)
-      clearTimeout(timeoutFunc.current)
+      clearInterval(flipFunc.current);
+      clearTimeout(timeoutFunc.current);
       props.togglePopup();
       props.toggleOverlay();
     }
@@ -75,25 +79,18 @@ const HomeSearch = (props: Props) => {
     props.toggleOverlay();
   };
 
-  const themes = useSelector(themesSelector)
+  if (isEmpty(themes)) return null;
 
   return (
     <div onClick={open} className={styles.col}>
-      <span className="mr-10 mb-15">
-        {t("Homepage.need", "J'ai besoin de")}
-      </span>
+      <span className="mr-10 mb-15">{t("Homepage.need", "J'ai besoin de")}</span>
       {flip ? (
-        <Flippy
-          flipOnClick={false}
-          flipDirection="vertical"
-          ref={flippy}
-          className={styles.flippy}
-        >
+        <Flippy flipOnClick={false} flipDirection="vertical" ref={flippy} className={styles.flippy}>
           <FrontSide className={styles.flippy_side}>
             <button
               onClick={open}
               className={styles.flippy_btn + " search-home "}
-              style={{backgroundColor: themes[indexFront].colors.color100}}
+              style={{ backgroundColor: themes[indexFront].colors.color100 }}
             >
               {themes[indexFront].icon ? (
                 <div className={styles.icon}>
@@ -103,15 +100,12 @@ const HomeSearch = (props: Props) => {
               {getThemeName(themes[indexFront], router.locale)}
             </button>
           </FrontSide>
-          {isLoaded &&
+          {isLoaded && (
             <BackSide className={styles.flippy_side}>
               <button
                 onClick={open}
-                className={
-                  styles.flippy_btn +
-                  " search-home "
-                }
-                style={{backgroundColor: themes[indexBack].colors.color100}}
+                className={styles.flippy_btn + " search-home "}
+                style={{ backgroundColor: themes[indexBack].colors.color100 }}
               >
                 {themes[indexBack].icon ? (
                   <div className={styles.icon}>
@@ -121,14 +115,11 @@ const HomeSearch = (props: Props) => {
                 {getThemeName(themes[indexBack], router.locale)}
               </button>
             </BackSide>
-          }
+          )}
         </Flippy>
       ) : (
         <Ripples>
-          <button
-            onClick={close}
-            className={cls("search-home", styles.flippy_btn_open)}
-          >
+          <button onClick={close} className={cls("search-home", styles.flippy_btn_open)}>
             <div className={styles.icon}>
               <Streamline name="search" width={20} height={20} />
             </div>

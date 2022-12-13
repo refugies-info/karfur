@@ -8,7 +8,7 @@
 .container {
   display: inline-flex;
   align-items: center;
-  @include text("small");
+  line-height: 19px;
   padding: u(1);
   border-radius: u(1);
 

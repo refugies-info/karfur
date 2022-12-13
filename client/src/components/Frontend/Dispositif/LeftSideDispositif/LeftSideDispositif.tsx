@@ -67,10 +67,11 @@ const LeftSideDispositif = (props: Props) => {
     setEmailBody((emailBody) => emailBody + window.location.href);
   }, []);
 
-  const getTitle = (title: string) => {
+  const getTitle = (title: string): string => {
     if (title === "La démarche par étapes")
       return t("Dispositif.Comment faire ?", "Comment faire ?");
 
+    // @ts-ignore
     return t("Dispositif." + title, title);
   };
   const mailSubject = props.content

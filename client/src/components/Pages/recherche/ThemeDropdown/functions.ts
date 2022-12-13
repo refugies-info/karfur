@@ -15,5 +15,5 @@ export const getInitialTheme = (
     if (themeId) allThemeIds.push(themeId);
   }
   if (allThemeIds.length > 0) return allThemeIds[0];
-  return themes[0]._id;
-}
+  return themes[0]?._id || null;
+};

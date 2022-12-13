@@ -6,7 +6,10 @@ import "moment/locale/fr";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
-import { fetchAllDispositifsActionsCreator, setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
+import {
+  fetchAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator
+} from "services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { table_contenu, correspondingStatus } from "./data";
@@ -18,7 +21,7 @@ import {
   Content,
   FigureContainer,
   SearchBarContainer,
-  StyledHeaderInner,
+  StyledHeaderInner
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
@@ -35,10 +38,11 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
-  ColoredRound,
+  ColoredRound
 } from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
@@ -48,32 +52,29 @@ import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModa
 
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 import { needsSelector } from "services/Needs/needs.selectors";
-import Link from "next/link";
 import styles from "./AdminContenu.module.scss";
 import { ContentStatusType, SimplifiedDispositif } from "types/interface";
 import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
-import { getPath } from "routes";
-
 
 moment.locale("fr");
 
 const normalize = (value: string) => {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-}
+};
 
 const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
   if (!id) return null;
-  return dispositifs.find(d => d._id && d._id.toString() === id.toString()) || null;
-}
+  return dispositifs.find((d) => d._id && d._id.toString() === id.toString()) || null;
+};
 
 export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none",
+    orderColumn: "none"
   };
   const dispositifs = useSelector(allDispositifsSelector);
 
@@ -81,7 +82,9 @@ export const AdminContenu = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "contenus");
-  const [filter, setFilter] = useState<ContentStatusType>(initialFilters.filter as ContentStatusType || "En attente admin");
+  const [filter, setFilter] = useState<ContentStatusType>(
+    (initialFilters.filter as ContentStatusType) || "En attente admin"
+  );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -93,30 +96,25 @@ export const AdminContenu = () => {
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
+  const [showWriteModal, setShowWriteModal] = useState(false);
 
   const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId|null>(initialFilters.selectedUserId);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
   const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
 
   const [isExportLoading, setIsExportLoading] = useState(false);
 
   const headers = table_contenu.headers;
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const toggleShowChangeStructureModal = () =>
-    setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleShowChangeStructureModal = () => setShowChangeStructureModal(!showChangeStructureModal);
 
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
-  const toggleNeedsChoiceModal = () =>
-    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+  const toggleNeedsChoiceModal = () => setShowNeedsChoiceModal(!showNeedsChoiceModal);
 
-  const toggleImprovementsMailModal = () =>
-    setShowImprovementsMailModal(!showImprovementsMailModal);
+  const toggleImprovementsMailModal = () => setShowImprovementsMailModal(!showImprovementsMailModal);
 
-  const toggleUserDetailsModal = () =>
-    setShowUserDetailsModal(!showUserDetailsModal);
+  const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
   const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
     setSelectedUserId(userId);
@@ -141,19 +139,17 @@ export const AdminContenu = () => {
         selectedStructureId
       );
 
-      router.replace({
-        pathname: locale + "/backend/admin",
-        search: params,
-      }, undefined, { shallow: true });
+      router.replace(
+        {
+          pathname: locale + "/backend/admin",
+          search: params
+        },
+        undefined,
+        { shallow: true }
+      );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    filter,
-    router.query.tab,
-    selectedUserId,
-    selectedContentId,
-    selectedStructureId
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, router.query.tab, selectedUserId, selectedContentId, selectedStructureId]);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -184,22 +180,20 @@ export const AdminContenu = () => {
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .includes(removeAccents(search.toLowerCase()))) ||
-                (dispo.mainSponsor?.nom &&
-                  dispo.mainSponsor.nom
-                    .normalize("NFD")
-                    .replace(/[\u0300-\u036f]/g, "")
-                    .toLowerCase()
-                    .includes(removeAccents(search.toLowerCase())))
+            (dispo.mainSponsor?.nom &&
+              dispo.mainSponsor.nom
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(removeAccents(search.toLowerCase())))
         )
       : dispositifs;
 
-    const filteredDispositifs = dispositifsFilteredBySearch.filter(
-      (dispo) => dispo.status === filter
-    );
+    const filteredDispositifs = dispositifsFilteredBySearch.filter((dispo) => dispo.status === filter);
     if (sortedHeader.name === "none")
       return {
         dispositifsToDisplay: filteredDispositifs,
-        dispositifsForCount: dispositifsFilteredBySearch,
+        dispositifsForCount: dispositifsFilteredBySearch
       };
 
     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
@@ -226,21 +220,19 @@ export const AdminContenu = () => {
         valueB = normalize((b[sortedHeader.orderColumn] || "").toLowerCase());
       }
 
-      if (valueA > valueB)
-        return sortedHeader.sens === "up" ? 1 : -1;
+      if (valueA > valueB) return sortedHeader.sens === "up" ? 1 : -1;
 
       return sortedHeader.sens === "up" ? -1 : 1;
     });
     return {
       dispositifsToDisplay,
-      dispositifsForCount: dispositifsFilteredBySearch,
+      dispositifsForCount: dispositifsFilteredBySearch
     };
   };
 
-  const { dispositifsToDisplay, dispositifsForCount } =
-    filterAndSortDispositifs(dispositifs);
+  const { dispositifsToDisplay, dispositifsForCount } = filterAndSortDispositifs(dispositifs);
 
-  const reorder = (element: {name: string, order: string | null}) => {
+  const reorder = (element: { name: string; order: string | null }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
       setSortedHeader({ name: element.name, sens, orderColumn: element.order || "" });
@@ -248,7 +240,7 @@ export const AdminContenu = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order || "",
+        orderColumn: element.order || ""
       });
     }
   };
@@ -263,14 +255,14 @@ export const AdminContenu = () => {
         title: "Yay...",
         text: "Export en cours",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
     }
   };
@@ -280,15 +272,11 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
-  const toggleStructureDetailsModal = () =>
-    setShowStructureDetailsModal(!showStructureDetailsModal);
+  const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedContentIdAndToggleModal = (
-    element: ObjectId | null,
-    _status: string | null = null
-  ) => {
+  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, _status: string | null = null) => {
     setSelectedDispositifAndToggleModal(element || null);
-  }
+  };
 
   const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
     setSelectedStructureId(structureId);
@@ -303,8 +291,7 @@ export const AdminContenu = () => {
     const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
     const text =
-      dispositif.status === "En attente" ||
-      dispositif.status === "Accepté structure"
+      dispositif.status === "En attente" || dispositif.status === "Accepté structure"
         ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
         : "Cette fiche sera visible par tous.";
 
@@ -317,7 +304,7 @@ export const AdminContenu = () => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le valider",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     });
 
     if (question.value) {
@@ -329,7 +316,7 @@ export const AdminContenu = () => {
           text: "Contenu publié",
           type: "success",
           timer: 5500,
-          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
+          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`
         });
         dispatch(fetchAllDispositifsActionsCreator());
         dispatch(fetchActiveDispositifsActionsCreator());
@@ -338,7 +325,7 @@ export const AdminContenu = () => {
           title: "Oh non!",
           text: "Something went wrong",
           type: "error",
-          timer: 1500,
+          timer: 1500
         });
       }
     }
@@ -348,12 +335,7 @@ export const AdminContenu = () => {
     if (allNeeds.length === 0) {
       return false;
     }
-    if (
-      !element.needs ||
-      element.needs.length === 0 ||
-      !element.theme
-    )
-      return false;
+    if (!element.needs || element.needs.length === 0 || !element.theme) return false;
 
     const formattedNeedsTheme = element.needs.map((needId) => {
       const needArray = allNeeds.filter((need) => need._id === needId);
@@ -362,15 +344,12 @@ export const AdminContenu = () => {
     });
 
     const uniqueNeedsTheme = [...new Set(formattedNeedsTheme)];
-    const uniqueThemes = [element.theme, ...element.secondaryThemes]
-      .map((theme) => theme.name.fr);
+    const uniqueThemes = [element.theme, ...element.secondaryThemes].map((theme) => theme.name.fr);
 
     return uniqueNeedsTheme.sort().join(",") === uniqueThemes.sort().join(",");
   };
   const nbNonDeletedDispositifs =
-    dispositifs.length > 0
-      ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
-      : 0;
+    dispositifs.length > 0 ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length : 0;
 
   return (
     <div>
@@ -386,20 +365,15 @@ export const AdminContenu = () => {
           placeholder="Rechercher un contenu..."
           withMargin={true}
         />
-        <Link
-          href={getPath("/comment-contribuer", router.locale)+"#ecrire"}
-          passHref
+        <FButton
+          onClick={() => setShowWriteModal(true)}
+          type="dark"
+          name="plus-circle-outline"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <FButton
-            type="dark"
-            name="plus-circle-outline"
-            tag={"a"}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ajouter un contenu
-          </FButton>
-        </Link>
+          Ajouter un contenu
+        </FButton>
       </SearchBarContainer>
       <StyledHeader>
         <StyledHeaderInner>
@@ -408,10 +382,7 @@ export const AdminContenu = () => {
         </StyledHeaderInner>
         <StyledSort marginTop="8px">
           {correspondingStatus.sort(statusCompare).map((status) => {
-            const nbContent = getNbDispositifsByStatus(
-              dispositifsForCount,
-              status.storedStatus
-            );
+            const nbContent = getNbDispositifsByStatus(dispositifsForCount, status.storedStatus);
             return (
               <FilterButton
                 key={status.storedStatus}
@@ -428,17 +399,13 @@ export const AdminContenu = () => {
         <Table responsive borderless>
           <thead>
             <tr>
-              {headers.map((element: { name: string, order: string | null }, key) => (
+              {headers.map((element: { name: string; order: string | null }, key) => (
                 <th key={key} onClick={() => reorder(element)}>
                   <TabHeader
                     name={element.name}
                     order={element.order}
                     isSortedHeader={sortedHeader.name === element.name}
-                    sens={
-                      sortedHeader.name === element.name
-                        ? sortedHeader.sens
-                        : "down"
-                    }
+                    sens={sortedHeader.name === element.name ? sortedHeader.sens : "down"}
                   />
                 </th>
               ))}
@@ -447,69 +414,38 @@ export const AdminContenu = () => {
           <tbody>
             {dispositifsToDisplay.map((element, key) => {
               const nbDays = element.lastModificationDate
-                ? -moment(element.lastModificationDate).diff(moment(), "days") +
-                  " jours"
+                ? -moment(element.lastModificationDate).diff(moment(), "days") + " jours"
                 : "ND";
-              const burl =
-                "/" + (element.typeContenu || "dispositif") + "/" + element._id;
+              const burl = "/" + (element.typeContenu || "dispositif") + "/" + element._id;
               const validationDisabled =
-                element.status === "Actif" ||
-                !element.mainSponsor ||
-                element.mainSponsor.status !== "Actif";
+                element.status === "Actif" || !element.mainSponsor || element.mainSponsor.status !== "Actif";
 
-              const areNeedsCompatibleWithTags =
-                checkIfNeedsAreCompatibleWithTags(element);
+              const areNeedsCompatibleWithTags = checkIfNeedsAreCompatibleWithTags(element);
 
               return (
                 <tr key={key}>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
-                  >
-                    <TypeContenu
-                      type={element.typeContenu || "dispositif"}
-                      isDetailedVue={false}
-                    />
+                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                    <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
                   </td>
                   <td className="align-middle">
                     <div className={styles.row}>
-                      <ColoredRound
-                        color={
-                          areNeedsCompatibleWithTags
-                            ? colors.validationHover
-                            : colors.error
-                        }
-                      />
+                      <ColoredRound color={areNeedsCompatibleWithTags ? colors.validationHover : colors.error} />
                       {element.needs ? element.needs.length : 0}
                     </div>
                   </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
-                  >
-                    <Title
-                      titreInformatif={element.titreInformatif}
-                      titreMarque={element.titreMarque || null}
-                    />
+                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                    <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
                   </td>
                   <td
                     className="align-middle cursor-pointer"
-                    onClick={() =>
-                      setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)
-                    }
+                    onClick={() => setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)}
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td
-                    className={"align-middle "}
-                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
-                  >
+                  <td className={"align-middle "} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     {nbDays}
                   </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
-                  >
+                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {element.adminProgressionStatus && (
                         <div style={{ marginRight: "8px" }}>
@@ -517,45 +453,25 @@ export const AdminContenu = () => {
                         </div>
                       )}
                       {element.adminPercentageProgressionStatus && (
-                        <StyledStatus
-                          text={element.adminPercentageProgressionStatus}
-                        />
+                        <StyledStatus text={element.adminPercentageProgressionStatus} />
                       )}
                     </div>
                   </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
-                  >
+                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     <StyledStatus text={element.status} />
                   </td>
-                  <td className="align-middle font-weight-bold">
-                    {element.nbMercis} 🙏
-                  </td>
-                  <td className="align-middle font-weight-bold">
-                    {element.nbVues || 0} 📈
-                  </td>
+                  <td className="align-middle font-weight-bold">{element.nbMercis} 🙏</td>
+                  <td className="align-middle font-weight-bold">{element.nbVues || 0} 📈</td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() =>
-                          publishDispositif(
-                            element,
-                            "Actif",
-                            validationDisabled
-                          )
-                        }
+                        onClick={() => publishDispositif(element, "Actif", validationDisabled)}
                         disabled={validationDisabled}
                       />
                       <DeleteButton
                         onClick={() =>
-                          prepareDeleteContrib(
-                            dispositifs,
-                            setAllDispositifsActionsCreator,
-                            dispatch,
-                            element._id
-                          )
+                          prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, element._id)
                         }
                         disabled={element.status === "Supprimé"}
                       />
@@ -570,17 +486,10 @@ export const AdminContenu = () => {
       <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-        setSelectedStructureIdAndToggleModal={
-          setSelectedStructureIdAndToggleModal
-        }
+        setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
         selectedDispositifId={selectedContentId}
         onDeleteClick={() =>
-          prepareDeleteContrib(
-            dispositifs,
-            setAllDispositifsActionsCreator,
-            dispatch,
-            selectedContentId
-          )
+          prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, selectedContentId)
         }
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setShowChangeStructureModal={setShowChangeStructureModal}
@@ -598,9 +507,7 @@ export const AdminContenu = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
-        setSelectedStructureIdAndToggleModal={
-          setSelectedStructureIdAndToggleModal
-        }
+        setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
       />
 
       <ChangeStructureModal
@@ -634,6 +541,7 @@ export const AdminContenu = () => {
           dispositifId={selectedContentId}
         />
       )}
+      <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
     </div>
   );
 };

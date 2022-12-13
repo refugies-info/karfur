@@ -9,8 +9,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 180px;
-  margin-top: -75px;
   height: 828px;
 
   @include media-min("tablet-up") {
@@ -33,6 +31,12 @@
     font-size: 28px;
     line-height: 42px;
   }
+}
+
+.subtitle {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 400;
 }
 
 .cards_container {

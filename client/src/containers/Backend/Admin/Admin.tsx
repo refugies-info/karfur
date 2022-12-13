@@ -5,28 +5,24 @@ import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import {
   fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator
 } from "services/AllDispositifs/allDispositifs.actions";
 import {
   fetchAllStructuresActionsCreator,
-  setAllStructuresActionCreator,
+  setAllStructuresActionCreator
 } from "services/AllStructures/allStructures.actions";
-import {
-  fetchAllUsersActionsCreator,
-  setAllUsersActionsCreator,
-} from "services/AllUsers/allUsers.actions";
+import { fetchAllUsersActionsCreator, setAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import CustomTabPane from "components/Backend/Admin/CustomTabPane";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styled from "styled-components";
-import Navigation from "../Navigation";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import styles from "./Admin.module.scss";
 import { getInitialTab, setSavedQuery, TabQuery } from "lib/getAdminUrlParams";
 
 const OngletText = styled.span`
-  color: ${(props: {isActive: boolean}) => (props.isActive ? colors.bleuCharte : colors.gray90)};
-  font-weight: ${(props: {isActive: boolean}) => (props.isActive ? "bold" : "normal")};
+  color: ${(props: { isActive: boolean }) => (props.isActive ? colors.bleuCharte : colors.gray90)};
+  font-weight: ${(props: { isActive: boolean }) => (props.isActive ? "bold" : "normal")};
 `;
 
 const OngletContainer = styled.div`
@@ -40,35 +36,28 @@ const OngletContainer = styled.div`
 `;
 
 interface TabProps {
-  isSelected: boolean
-  iconSelected: string
-  iconNotSelected: string
-  text: string
+  isSelected: boolean;
+  iconSelected: string;
+  iconNotSelected: string;
+  text: string;
 }
 const Onglet = (props: TabProps) => {
   return (
     <OngletContainer>
       <div style={{ width: 20, height: 20, marginRight: 8, marginBottom: 5 }}>
-        {props.isSelected ?
-          <EVAIcon
-            key={1}
-            name={props.iconSelected}
-            fill={colors.bleuCharte}
-          /> :
-          <EVAIcon
-            key={2}
-            name={props.iconNotSelected}
-            fill={colors.gray90}
-          />
-        }
+        {props.isSelected ? (
+          <EVAIcon key={1} name={props.iconSelected} fill={colors.bleuCharte} />
+        ) : (
+          <EVAIcon key={2} name={props.iconNotSelected} fill={colors.gray90} />
+        )}
       </div>
       <OngletText isActive={props.isSelected}>{props.text}</OngletText>
     </OngletContainer>
   );
-}
+};
 
 interface Props {
-  title: string
+  title: string;
 }
 
 export const Admin = (props: Props) => {
@@ -80,28 +69,33 @@ export const Admin = (props: Props) => {
   const [activeTab, setActiveTab] = useState<TabQuery>(initialTab);
 
   const redirectToTab = (tab: string) => {
-    router.replace({
-      pathname: locale + "/backend/admin",
-      search: new URLSearchParams({ tab: tab }).toString(),
-    }, undefined, { shallow: true });
-  }
+    router.replace(
+      {
+        pathname: locale + "/backend/admin",
+        search: new URLSearchParams({ tab: tab }).toString()
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => { // update url if needed on load
+  useEffect(() => {
+    // update url if needed on load
     if (initialTab && initialTab !== router.query.tab) {
       redirectToTab(initialTab as string);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // save query in localstorage
   useEffect(() => {
     setSavedQuery(window.location.search.replace("?", ""));
-  }, [router.query])
+  }, [router.query]);
 
   const dispatch = useDispatch();
 
@@ -121,19 +115,15 @@ export const Admin = (props: Props) => {
   }, [dispatch]);
 
   const toggleTab = (tab: TabQuery) => {
-    redirectToTab(tab as string)
+    redirectToTab(tab as string);
     setActiveTab(tab);
-  }
+  };
 
   return (
     <div className={styles.admin + " animated fadeIn"}>
-      <Navigation selected="admin" />
       <Nav>
         <NavItem>
-          <NavLink
-            active={activeTab === "contenus"}
-            onClick={() => toggleTab("contenus")}
-          >
+          <NavLink active={activeTab === "contenus"} onClick={() => toggleTab("contenus")}>
             <Onglet
               iconSelected="file-add"
               iconNotSelected="file-add-outline"
@@ -143,10 +133,7 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            active={activeTab === "structures"}
-            onClick={() => toggleTab("structures")}
-          >
+          <NavLink active={activeTab === "structures"} onClick={() => toggleTab("structures")}>
             <Onglet
               iconSelected="shopping-bag"
               iconNotSelected="shopping-bag-outline"
@@ -156,10 +143,7 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            active={activeTab === "utilisateurs"}
-            onClick={() => toggleTab("utilisateurs")}
-          >
+          <NavLink active={activeTab === "utilisateurs"} onClick={() => toggleTab("utilisateurs")}>
             <Onglet
               iconSelected="person"
               iconNotSelected="person-outline"
@@ -169,10 +153,7 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            active={activeTab === "categories"}
-            onClick={() => toggleTab("categories")}
-          >
+          <NavLink active={activeTab === "categories"} onClick={() => toggleTab("categories")}>
             <Onglet
               iconSelected="settings-2"
               iconNotSelected="settings-2-outline"
@@ -182,10 +163,7 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            active={activeTab === "divers"}
-            onClick={() => toggleTab("divers")}
-          >
+          <NavLink active={activeTab === "divers"} onClick={() => toggleTab("divers")}>
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
@@ -195,10 +173,7 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink
-            active={activeTab === "widgets"}
-            onClick={() => toggleTab("widgets")}
-          >
+          <NavLink active={activeTab === "widgets"} onClick={() => toggleTab("widgets")}>
             <Onglet
               iconSelected="code"
               iconNotSelected="code-outline"
@@ -208,13 +183,8 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
       </Nav>
-      <TabContent
-        activeTab={activeTab}
-        className={styles.tab_content}
-      >
-        <CustomTabPane
-          activeTab={activeTab}
-        />
+      <TabContent activeTab={activeTab} className={styles.tab_content}>
+        <CustomTabPane activeTab={activeTab} />
       </TabContent>
     </div>
   );

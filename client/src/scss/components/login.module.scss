@@ -16,8 +16,6 @@
 }
 .label {
   font-weight: bold;
-  font-size: $text-normal;
-  line-height: 20px;
   margin-top: 64px;
   margin-bottom: 16px;
 }
@@ -39,16 +37,12 @@
 // Footer
 .footer_links {
   color: $gray70;
-  font-size: $text-normal;
-  line-height: 20px;
   margin-top: 64px;
 
   .link {
     color: $gray70;
     background: transparent;
     font-weight: bold;
-    font-size: 1rem;
-    line-height: 1.25rem;
     border: none;
     text-decoration: underline;
     outline: none;
@@ -58,27 +52,19 @@
 // Messages
 .error_message {
   color: #e8140f;
-  font-size: $text-normal;
-  line-height: 20px;
   margin-top: 16px;
 }
 
 .reset_message {
   color: $gray70;
-  font-size: $text-normal;
-  line-height: 20px;
   margin-bottom: 16px;
 }
 .precisions_message {
-  font-size: $text-normal;
-  line-height: 20px;
   color: $gray70;
   margin-top: 16px;
 }
 .email_message {
   font-weight: bold;
-  font-size: $text-normal;
-  line-height: 20px;
   margin-top: 64px;
   margin-bottom: 16px;
 

@@ -34,17 +34,13 @@ import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath, PathNames } from "routes";
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.h4`
   font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
   color: #0421b1;
   margin-top: 64px;
 `;
-const StyledEnterValue = styled.div`
+const StyledEnterValue = styled.p`
   font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
   margin-top: 64px;
   margin-bottom: 16px;
 `;
@@ -52,13 +48,12 @@ const StyledEnterValue = styled.div`
 const ContentContainer = styled.div`
   padding-top: 100px;
 `;
-const EmailPrecisions = styled.div`
-  font-size: 16px;
-  line-height: 20px;
+const EmailPrecisions = styled.p`
   margin-top: 16px;
 `;
 
 const Register = () => {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -70,11 +65,16 @@ const Register = () => {
 
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
   const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+
+  useEffect(() => {
+    if (router.query.username) {
+      setUsername(router.query.username as string);
+    }
+  }, [router.query.username]);
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());

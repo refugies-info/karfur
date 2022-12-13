@@ -32,12 +32,11 @@ const SubTitle = styled.div`
 `;
 
 const LangueItemContainer = styled.div`
-  background: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.validation : colors.gray20};
+  background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.validation : colors.gray20)};
   border-radius: 12px;
   display: flex;
   flex-direction: row;
-  width: 185px;
+  width: 48%;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -56,12 +55,9 @@ const LanguesContainer = styled.div`
 `;
 
 const CheckBoxContainer = styled.div`
-  background: ${(props: {isSelected: boolean}) =>
-    props.isSelected ? colors.validationDefault : colors.white};
-  border: ${(props: {isSelected: boolean}) =>
-    props.isSelected
-      ? `1px solid ${colors.validationDefault}`
-      : `1px solid ${colors.gray50}`};
+  background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.validationDefault : colors.white)};
+  border: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? `1px solid ${colors.validationDefault}` : `1px solid ${colors.gray50}`};
 
   box-sizing: border-box;
   border-radius: 3px;
@@ -82,31 +78,18 @@ interface Props extends RouteComponentProps {
   toggle: () => void;
 }
 
-const LangueItem = (props: {
-  langue: Language;
-  isSelected: boolean;
-  onClick: () => void;
-}) => (
+const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () => void }) => (
   <LangueItemContainer isSelected={props.isSelected} onClick={props.onClick}>
     <div
       style={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "row"
       }}
     >
-      <div
-        style={{
-          marginRight: "10px",
-        }}
-      >
-        <i
-          title={props.langue.langueCode}
-          className={" flag-icon flag-icon-" + props.langue.langueCode}
-        />
+      <div className="mr-10">
+        <i title={props.langue.langueCode} className={" flag-icon flag-icon-" + props.langue.langueCode} />
       </div>
-      {props.langue.langueFr === "Persan"
-        ? "Persan/Dari"
-        : props.langue.langueFr}
+      {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
     </div>
     <CheckBoxContainer isSelected={props.isSelected}>
       <div style={{ position: "absolute", bottom: "-2px" }}>
@@ -121,12 +104,8 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
   const langues = useSelector(allLanguesSelector);
   const user = useSelector(userSelector);
-  const isLoadingLangues = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_LANGUES)
-  );
-  const isLoadingUser = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER)
-  );
+  const isLoadingLangues = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
+  const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
 
   const isLoading = isLoadingLangues || isLoadingUser;
   const dispatch = useDispatch();
@@ -141,12 +120,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
   if (isLoading)
     return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggle}
-        className={styles.modal}
-        contentClassName={styles.modal_content}
-      >
+      <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
         <Header>Choix de vos langues</Header>
         <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
         <div style={{ marginRight: "50px", marginLeft: "50px" }}>
@@ -158,20 +132,10 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
             Réinitialiser
           </FButton>
           <div>
-            <FButton
-              type="outline-black"
-              name="close-outline"
-              onClick={props.toggle}
-            >
+            <FButton type="outline-black" name="close-outline" onClick={props.toggle}>
               Annuler
             </FButton>
-            <FButton
-              type="validate"
-              name="checkmark-outline"
-              onClick={() => {}}
-              className="ml-10"
-              disabled={true}
-            >
+            <FButton type="validate" name="checkmark-outline" onClick={() => {}} className="ml-10" disabled={true}>
               Valider
             </FButton>
           </div>
@@ -180,16 +144,10 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     );
 
   const handleCheck = (langue: Language) => {
-    const isLangueSelected = !!selectedLangues.find(
-      (selectedLangue) => selectedLangue._id === langue._id
-    );
+    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue._id === langue._id);
 
     if (isLangueSelected) {
-      return setSelectedLangues(
-        selectedLangues.filter(
-          (selectedLangue) => selectedLangue._id !== langue._id
-        )
-      );
+      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue._id !== langue._id));
     }
 
     if (!isLangueSelected) {
@@ -199,7 +157,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode,
         langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc,
+        langueLoc: langue.langueLoc
       };
       setSelectedLangues([...selectedLangues, newSelectedLangue]);
     }
@@ -207,23 +165,20 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
 
   const onReinitClick = () => setSelectedLangues([]);
 
-
   const onValidate = () => {
     if (!user || !user.user) return;
     dispatch(
       saveUserActionCreator({
         user: {
           selectedLanguages: selectedLangues,
-          _id: user.user._id,
+          _id: user.user._id
         },
-        type: "modify-my-details",
+        type: "modify-my-details"
       })
     );
 
     props.toggle();
-    return props.history.push(
-      routerLocale + "/backend/user-translation/" + selectedLangues[0].i18nCode
-    );
+    return props.history.push(routerLocale + "/backend/user-translation/" + selectedLangues[0].i18nCode);
   };
   return (
     <Modal
@@ -240,9 +195,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
           .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
             const isLangueSelected =
-              selectedLangues.filter(
-                (selectedLangue) => selectedLangue._id === langue._id
-              ).length > 0;
+              selectedLangues.filter((selectedLangue) => selectedLangue._id === langue._id).length > 0;
             return (
               <LangueItem
                 langue={langue}
@@ -257,29 +210,15 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         <FButton type="outline-black" name="refresh" onClick={onReinitClick}>
           Réinitialiser
         </FButton>
-        <div>
-          <FButton
-            type="outline-black"
-            name="close-outline"
-            onClick={props.toggle}
-          >
-            Annuler
-          </FButton>
-          <FButton
-            type="validate"
-            name="checkmark-outline"
-            disabled={selectedLangues.length === 0}
-            onClick={onValidate}
-            className="ml-10"
-          >
-            Valider
-          </FButton>
-        </div>
+        <FButton type="outline-black" name="close-outline" onClick={props.toggle}>
+          Annuler
+        </FButton>
+        <FButton type="validate" name="checkmark-outline" disabled={selectedLangues.length === 0} onClick={onValidate}>
+          Valider
+        </FButton>
       </ButtonsContainer>
     </Modal>
   );
 };
 
-export const TranslationLanguagesChoiceModal = withRouter(
-  TranslationLanguagesChoiceModalComponent
-);
+export const TranslationLanguagesChoiceModal = withRouter(TranslationLanguagesChoiceModalComponent);

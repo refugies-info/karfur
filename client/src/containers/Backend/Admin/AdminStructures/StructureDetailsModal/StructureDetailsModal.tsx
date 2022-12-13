@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import {
   Log,
 } from "types/interface";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";

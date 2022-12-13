@@ -10,6 +10,7 @@ export const StructureType = (props: Props) => {
 
   return (
     <div className={styles.container}>
+      {/* @ts-ignore */}
       {t("Annuaire." + props.type, props.type)}
     </div>
   )

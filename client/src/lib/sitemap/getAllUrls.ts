@@ -8,7 +8,7 @@ const PATHS_CRAWL: PathNames[] = [
   "/",
   "/recherche",
   "/annuaire",
-  "/comment-contribuer",
+  "/publier",
   "/qui-sommes-nous",
   "/mentions-legales",
   "/declaration-accessibilite",

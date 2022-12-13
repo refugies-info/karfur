@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
@@ -104,6 +104,7 @@ const HomeSearch = () => {
                 image={illuDemarche}
                 title={t("Recherche.demarcheCardTitle")}
                 buttonTitle={t("Recherche.seeAllDemarches", "Voir toutes les démarches")}
+                // @ts-ignore
                 examples={demarchesExamples.map((d) => t(d))}
                 onClick={() => selectType("demarche")}
               />
@@ -113,6 +114,7 @@ const HomeSearch = () => {
                 image={illuDispositif}
                 title={t("Recherche.dispositifCardTitle")}
                 buttonTitle={t("Recherche.seeAllDispositifs", "Voir tous les dispositifs")}
+                // @ts-ignore
                 examples={dispositifsExamples.map((d) => t(d))}
                 onClick={() => selectType("dispositif")}
               />

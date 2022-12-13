@@ -11,6 +11,8 @@ interface Props {
   isRTL: boolean;
 }
 
+const rowAlignCenter = {alignItems: "center"};
+
 const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
   const { t } = useTranslation();
@@ -60,7 +62,7 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   const childrenArray =
     rightSection && rightSection.children ? rightSection.children : [];
   return (
-    <Row>
+    <Row style={rowAlignCenter}>
       <b className="en-bref">{t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
         if (!card) return;
@@ -94,18 +96,23 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
               "Public visé",
             ].includes(card.title)
           ) {
+            // @ts-ignore
             texte =
-              card.contentTitle &&
-              t("Dispositif." + card.contentTitle, card.contentTitle);
+            card.contentTitle &&
+            // @ts-ignore
+            t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (card.title === "Combien ça coûte ?") {
+            // @ts-ignore
             texte = card.free
-              ? t("Dispositif.Gratuit", "Gratuit")
-              : card.price +
-                " € " +
+            ? t("Dispositif.Gratuit", "Gratuit")
+            : card.price +
+            " € " +
+            // @ts-ignore
                 t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (
             card.title && ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
           ) {
+            // @ts-ignore
             texte = t("Dispositif." + card.title, card.title);
           }
           return (

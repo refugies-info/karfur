@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { colors } from "colors";
 import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 
@@ -65,6 +65,7 @@ export const HomeCard = (props: Props) => {
     <MainContainer backgroundColor={props.backgroundColor}>
     <Image alt="img-homecard" src={props.image} />
     <TextContainer text={props.text} textColor={props.textColor}>
+      {/* @ts-ignore */}
       {t(props.text, props.defaultText)}
     </TextContainer>
     <ButtonContainer>

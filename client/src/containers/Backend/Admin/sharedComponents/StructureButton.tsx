@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { SimplifiedMainSponsor, SimplifiedStructure } from "types/interface";
 import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";

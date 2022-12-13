@@ -30,7 +30,7 @@ const MapComponent = (props: Props) => {
     libraries
   });
 
-  const onLoad = useCallback(function callback(map) {
+  const onLoad = useCallback(function callback(map:any) {
     if (props.markers.length === 0) return;
     const bounds = new window.google.maps.LatLngBounds();
     props.markers.forEach((child: any) => {

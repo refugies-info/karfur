@@ -1,0 +1,100 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  position: relative;
+}
+
+.btn {
+  @include text("h5");
+  background: $white;
+  border-color: $white;
+  padding: u(4);
+  font-weight: bold;
+  box-shadow: 0 10px 30px 0 #00000026;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: $radius;
+  margin-bottom: u(8);
+  width: 100%;
+
+  @include isTablet() {
+    @include text("large");
+    margin-bottom: u(6);
+  }
+
+  &:hover,
+  &.open {
+    background: $gray40b !important;
+    border-color: $darkColor;
+  }
+
+  &.open {
+    box-shadow: none;
+  }
+}
+
+.infos {
+  &.with_images {
+    @include media-min("lg-limit") {
+      max-width: 500px;
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+  }
+}
+
+.text {
+  @include text("large");
+  margin-bottom: u(8);
+  padding-right: u(4);
+  padding-left: u(4);
+
+  @include isTablet() {
+    @include text("normal");
+  }
+
+  ul {
+    margin: u(2) 0;
+    padding-left: u(6);
+
+    @include rtl() {
+      padding-right: u(6);
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: u(2);
+    }
+  }
+}
+
+.video {
+  max-width: 250px;
+  margin: 0 auto u(6) auto;
+}
+
+.icon {
+  margin-left: u(4);
+  transition: transform 0.2s ease-in-out;
+
+  @include rtl() {
+    margin-right: u(4);
+    margin-left: inherit;
+  }
+
+  .open & {
+    transform: rotate(180deg);
+  }
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

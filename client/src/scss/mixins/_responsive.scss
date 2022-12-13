@@ -19,11 +19,15 @@ $drawerLimit: 768px;
 
   @if ($screen) {
     @media screen and (min-width: $break) {
-      &{ @content; }
+      & {
+        @content;
+      }
     }
   } @else {
     @media (min-width: $break) {
-      &{ @content; }
+      & {
+        @content;
+      }
     }
   }
 }
@@ -34,17 +38,26 @@ $drawerLimit: 768px;
 
   @if ($screen) {
     @media screen and (max-width: ($break - 1)) {
-      &{ @content; }
+      & {
+        @content;
+      }
     }
   } @else {
     @media (max-width: ($break - 1)) {
-      &{ @content; }
+      & {
+        @content;
+      }
     }
   }
 }
 
 @mixin isMobile() {
   @include media-max("tablet-up") {
+    @content;
+  }
+}
+@mixin isTablet() {
+  @include media-max("lg-limit") {
     @content;
   }
 }

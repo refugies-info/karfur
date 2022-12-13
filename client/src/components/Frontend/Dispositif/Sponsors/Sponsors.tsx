@@ -7,7 +7,7 @@ import {
   Spinner,
 } from "reactstrap";
 import { connect } from "react-redux";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
