@@ -47,12 +47,15 @@ const Footer = () => {
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title={t("Footer.Participer", "Participer")}>
-          <FooterLink href="/">{t("Footer.Recenser mon action", "Recenser mon action")}</FooterLink>
-          <FooterLink href="/">{t("Footer.Aider à traduire", "Aider à traduire")}</FooterLink>
+          <FooterLink href={getPath("/publier", router.locale)}>
+            {t("Footer.Recenser mon action", "Recenser mon action")}
+          </FooterLink>
+          <FooterLink href={getPath("/traduire", router.locale)}>
+            {t("Footer.Aider à traduire", "Aider à traduire")}
+          </FooterLink>
           <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>
             {t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs")}
           </FooterLink>
-          <FooterLink href="/">{t("Footer.Déployer sur mon territoire", "Déployer sur mon territoire")}</FooterLink>
           <FooterLink href="#" onClick={() => dispatch(toggleNewsletterModalAction())}>
             {t("Footer.S’inscrire à la newsletter", "S’inscrire à la newsletter")}
           </FooterLink>
