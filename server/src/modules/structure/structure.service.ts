@@ -2,6 +2,7 @@ import { ObjectId } from "mongoose";
 import logger from "../../logger";
 import { getStructureFromDB } from "./structure.repository";
 import { Membre } from "../../types/interface";
+import { StructureDoc } from "src/schema/schemaStructure";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
   if (!membres) return false;
@@ -94,4 +95,18 @@ export const userRespoStructureId = async (structures: ObjectId[], userId: Objec
   }
 
   return null;
+};
+
+export const findAllRespo = (structures: StructureDoc[]) => {
+  const userIds: ObjectId[] = [];
+
+  for (const structure of structures) {
+    if (!structure.membres) continue;
+    const admins = structure.membres
+      .filter((m: any) => m.roles.includes("administrateur"))
+      .map(m => m.userId);
+    userIds.push(...admins);
+  }
+
+  return [...new Set(userIds)];
 };

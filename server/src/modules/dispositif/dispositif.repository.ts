@@ -192,5 +192,18 @@ export const getNbVues = async () => {
 };
 
 export const getNbFiches = async () => {
-  return Dispositif.count({ status: "Actif" });
+  const nbDispositifs = await Dispositif.count({ status: "Actif", typeContenu: "dispositif" });
+  const nbDemarches = await Dispositif.count({ status: "Actif", typeContenu: "demarche" });
+
+  return {
+    nbDispositifs,
+    nbDemarches
+  }
+};
+
+export const getNbUpdatedRecently = async (date: Date) => {
+  return Dispositif.count({
+    status: "Actif",
+    lastModificationDate: { $gte: date, $exists: true }
+  });
 };

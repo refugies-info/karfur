@@ -44,7 +44,18 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
-interface Props {}
+import { wrapper } from "services/configureStore";
+import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import { END } from "redux-saga";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
+import { DispositifStatistics, StructuresStatistics, TranslationStatistics } from "types/interface";
+
+interface Props {
+  contentStatistics: DispositifStatistics;
+  structuresStatistics: StructuresStatistics;
+  translationStatistics: TranslationStatistics;
+}
 
 const Homepage = (props: Props) => {
   const dispatch = useDispatch();
@@ -131,12 +142,17 @@ const Homepage = (props: Props) => {
         <Container className={commonStyles.container}>
           <h2 className={cls(commonStyles.title2, "text-center")}>{t("Homepage.infoTypeTitle")}</h2>
           <div className={styles.title_line}>
-            <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: 12 })}</h2>
+            <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: props.contentStatistics.nbDemarches })}</h2>
             <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
           <CardSlider cards={demarches} type="demarche" />
           <div className={styles.title_line}>
-            <h2 className="h4">{t("Homepage.infoTypeDispositif", { countDispositifs: 12, countStructures: 12 })}</h2>
+            <h2 className="h4">
+              {t("Homepage.infoTypeDispositif", {
+                countDispositifs: props.contentStatistics.nbDispositifs,
+                countStructures: props.structuresStatistics.nbStructures
+              })}
+            </h2>
             <Button onClick={() => navigateType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
           </div>
           <CardSlider cards={dispositifs} type="dispositif" />
@@ -150,7 +166,7 @@ const Homepage = (props: Props) => {
             items={[
               {
                 title: t("Homepage.whyAccordionTitle1"),
-                text: t("Homepage.whyAccordionText1"),
+                text: t("Homepage.whyAccordionText1", { count: props.contentStatistics.nbDemarches }),
                 video: "/video/home-video-1.mp4",
                 mediaWidth: 450,
                 mediaHeight: 320
@@ -278,13 +294,16 @@ const Homepage = (props: Props) => {
           <h2 className={cls(commonStyles.title2, "text-center text-white")}>{t("Homepage.figuresTitle")}</h2>
           <Row>
             <Col sm="12" lg="4">
-              <CountUpFigure number={12} text={t("Homepage.figuresSubtitle1")} />
+              <CountUpFigure
+                number={props.contentStatistics.nbVues + props.contentStatistics.nbVuesMobile}
+                text={t("Homepage.figuresSubtitle1")}
+              />
             </Col>
             <Col sm="12" lg="4">
-              <CountUpFigure number={12} text={t("Homepage.figuresSubtitle2")} />
+              <CountUpFigure number={props.contentStatistics.nbMercis} text={t("Homepage.figuresSubtitle2")} />
             </Col>
             <Col sm="12" lg="4">
-              <CountUpFigure number={12} text={t("Homepage.figuresSubtitle3")} />
+              <CountUpFigure number={props.contentStatistics.nbUpdatedRecently} text={t("Homepage.figuresSubtitle3")} />
             </Col>
           </Row>
         </Container>
@@ -301,7 +320,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge1")}
               image={CommunityRedacteurs}
               color="red"
-              countImage={7}
+              countImage={props.translationStatistics.nbRedactors - 3}
               link={getPath("/publier", router.locale)}
             />
             <CommunityCard
@@ -310,7 +329,7 @@ const Homepage = (props: Props) => {
               cta={t("Homepage.communityCardCTA2")}
               image={CommunityStructures}
               color="red"
-              countImage={7}
+              countImage={props.structuresStatistics.nbStructureAdmins - 3}
               link={getPath("/publier", router.locale)}
             />
             <CommunityCard
@@ -319,7 +338,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge3")}
               image={CommunityCda}
               color="red"
-              countImage={7}
+              countImage={props.structuresStatistics.nbCDA - 3}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle4")}
@@ -327,7 +346,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge4")}
               image={CommunityTraducteurs}
               color="green"
-              countImage={7}
+              countImage={props.translationStatistics.nbTranslators - 3}
               link={getPath("/traduire", router.locale)}
             />
             <CommunityCard
@@ -336,7 +355,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge5")}
               image={CommunityExperts}
               color="green"
-              countImage={7}
+              countImage={4}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle6")}
@@ -344,7 +363,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge6")}
               image={CommunityAmbassadeurs}
               color="purple"
-              countImage={7}
+              countImage={20}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle7")}
@@ -352,7 +371,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge7")}
               image={CommunityInfluenceurs}
               color="purple"
-              countImage={7}
+              countImage={1}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle8")}
@@ -360,7 +379,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge8")}
               image={CommunityTesteurs}
               color="brown"
-              countImage={7}
+              countImage={80}
             />
             <CommunityCard
               title={t("Homepage.communityCardTitle9")}
@@ -368,7 +387,7 @@ const Homepage = (props: Props) => {
               badge={t("Homepage.communityCardBadge9")}
               image={CommunityEquipe}
               color="blue"
-              countImage={7}
+              countImage={9}
             />
           </div>
         </Container>
@@ -427,6 +446,25 @@ const Homepage = (props: Props) => {
   );
 };
 
-export const getStaticProps = defaultStaticPropsWithThemes;
+export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
+  const action = fetchThemesActionCreator();
+  store.dispatch(action);
+  store.dispatch(END);
+  await store.sagaTask?.toPromise();
+
+  const contentStatistics = (await API.getDispositifsStatistics()).data.data;
+  const structuresStatistics = (await API.getStructuresStatistics()).data.data;
+  const translationStatistics = (await API.getTranslationStatistics()).data.data;
+
+  return {
+    props: {
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      contentStatistics,
+      structuresStatistics,
+      translationStatistics
+    },
+    revalidate: 60 * 10
+  };
+});
 
 export default Homepage;
