@@ -42,3 +42,35 @@
 [dir="rtl"] .fr-nav__link {
   text-align: right;
 }
+
+[dir="rtl"] [class^=ri-].icon-left {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="ltr"] .fr-translate .fr-translate__btn:before {
+  margin-left: 0;
+}
+
+[dir="rtl"] .fr-translate .fr-translate__btn:before {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .fr-translate .fr-translate__btn:after {
+  margin-right: auto;
+} 
+
+.fr-header .fr-header__menu-links .fr-translate__btn {
+  padding: 0 1rem !important;
+}
+
+.fr-header .fr-header__menu-links .fr-links-group .fr-link {
+  width: auto !important;
+}
+
+@media (min-width: 62em) {
+  .fr-translate .fr-translate__btn:after {
+      margin-left: 0;
+  }
+}

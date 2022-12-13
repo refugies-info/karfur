@@ -1,4 +1,5 @@
 export { default as Admin } from "./Admin";
+export { default as FindInformation } from "./FindInformation";
 export { default as Logout } from "./Logout";
 export { default as MyContributions } from "./MyContributions";
 export { default as MyFavorites } from "./MyFavorites";
