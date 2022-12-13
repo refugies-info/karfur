@@ -20,7 +20,6 @@ import { ObjectId } from "mongodb";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import CardSlider from "components/Pages/recherche/CardSlider";
 import { Accordion, Card, InlineLink } from "components/Pages/staticPages/common";
-import UsagesMobilesIllu from "assets/homepage/usages-mobile.png";
 import HelpUsIcon1 from "assets/homepage/helpus-icon-1.png";
 import HelpUsIcon3 from "assets/homepage/helpus-icon-3.svg";
 import CommunityRedacteurs from "assets/homepage/community-redacteurs.png";
@@ -173,7 +172,7 @@ const Homepage = (props: Props) => {
               {
                 title: t("Homepage.whyAccordionTitle4"),
                 text: t("Homepage.whyAccordionText4"),
-                image: UsagesMobilesIllu,
+                youtube: "https://www.youtube-nocookie.com/embed/QMRR2csgan0",
                 mediaWidth: 450,
                 mediaHeight: 320
               }

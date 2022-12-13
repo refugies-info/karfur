@@ -98,3 +98,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.youtube {
+  border: 8px solid $white;
+  border-radius: u(2);
+  box-shadow: 0 4px 18px 0 #0000001a;
+}

@@ -13,6 +13,7 @@ type Item = {
   text: string;
   image?: any;
   video?: string;
+  youtube?: string;
   mediaWidth?: number;
   mediaHeight?: number;
   cta?: {
@@ -43,6 +44,28 @@ const Accordion = (props: Props) => {
     return open.includes(index);
   };
 
+  const getMedia = (type: "image" | "video" | "youtube", item: Item) => {
+    switch (type) {
+      case "image":
+        return <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} />;
+      case "video":
+        return <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />;
+      case "youtube":
+        return (
+          <iframe
+            width={item.mediaWidth || "560"}
+            height={item.mediaHeight || "315"}
+            src={item.youtube}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className={styles.youtube}
+          ></iframe>
+        );
+    }
+  };
+
   return (
     <Row>
       <Col className={cls(styles.infos, props.withImages && styles.with_images)}>
@@ -62,13 +85,12 @@ const Accordion = (props: Props) => {
                   }}
                 ></p>
 
-                {isTablet && props.withImages && item?.image && (
-                  <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} />
-                )}
-                {isTablet && props.withImages && item?.video && (
-                  <div className={styles.video}>
-                    <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />
-                  </div>
+                {isTablet && props.withImages && (
+                  <>
+                    {item?.image && getMedia("image", item)}
+                    {item?.video && <div className={styles.video}>{getMedia("video", item)}</div>}
+                    {item?.youtube && getMedia("youtube", item)}
+                  </>
                 )}
                 {item.cta && <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />}
               </Collapse>
@@ -78,21 +100,9 @@ const Accordion = (props: Props) => {
       </Col>
       {!isTablet && props.withImages && open.length > 0 && (
         <Col className={styles.media}>
-          {props.items[open[0]]?.image && (
-            <Image
-              src={props.items[open[0]].image}
-              alt=""
-              height={props.items[open[0]].mediaHeight}
-              width={props.items[open[0]].mediaWidth}
-            />
-          )}
-          {props.items[open[0]]?.video && (
-            <AutoplayVideo
-              src={props.items[open[0]].video}
-              height={props.items[open[0]].mediaHeight || 420}
-              width={props.items[open[0]].mediaWidth}
-            />
-          )}
+          {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}
+          {props.items[open[0]]?.video && getMedia("video", props.items[open[0]])}
+          {props.items[open[0]]?.youtube && getMedia("youtube", props.items[open[0]])}
         </Col>
       )}
     </Row>
