@@ -21,16 +21,17 @@
   align-items: center;
   justify-content: space-between;
   border-radius: $radius;
-  margin-bottom: u(4);
+  margin-bottom: u(8);
   width: 100%;
 
   @include isTablet() {
     @include text("large");
+    margin-bottom: u(6);
   }
 
   &:hover,
   &.open {
-    background: $gray40b;
+    background: $gray40b !important;
     border-color: $darkColor;
   }
 
@@ -52,10 +53,30 @@
 .text {
   @include text("large");
   margin-bottom: u(8);
+  padding-right: u(4);
+  padding-left: u(4);
 
   @include isTablet() {
     @include text("normal");
   }
+
+  ul {
+    margin: u(2) 0;
+    padding-left: u(6);
+
+    @include rtl() {
+      padding-right: u(6);
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: u(2);
+    }
+  }
+}
+
+.video {
+  max-width: 250px;
+  margin: 0 auto u(6) auto;
 }
 
 .icon {
@@ -70,4 +91,10 @@
   .open & {
     transform: rotate(180deg);
   }
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }

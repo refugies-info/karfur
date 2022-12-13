@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
@@ -18,6 +17,7 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { formatContributions } from "./functions";
 import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "components/Modals";
+import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import { ContribContainer } from "./components/SubComponents";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import FButton from "components/UI/FButton/FButton";
@@ -27,7 +27,6 @@ import { colors } from "colors";
 import Swal from "sweetalert2";
 import Skeleton from "react-loading-skeleton";
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
-import { getPath } from "routes";
 
 const MainContainer = styled.div`
   display: flex;
@@ -57,6 +56,7 @@ interface Props {
 }
 const UserContributions = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
+  const [showWriteModal, setShowWriteModal] = useState(false);
   const [tutoModalDisplayed, setTutoModalDisplayed] = useState("");
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
@@ -143,9 +143,14 @@ const UserContributions = (props: Props) => {
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <MainContainer>
-          <NoContribution toggleTutoModal={toggleTutoModal} setTutoModalDisplayed={setTutoModalDisplayed} />
+          <NoContribution
+            toggleTutoModal={toggleTutoModal}
+            toggleWriteModal={() => setShowWriteModal(true)}
+            setTutoModalDisplayed={setTutoModalDisplayed}
+          />
           {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />}
         </MainContainer>
+        <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
       </div>
     );
   return (
@@ -171,11 +176,9 @@ const UserContributions = (props: Props) => {
               >
                 Explications
               </FButton>
-              <Link legacyBehavior href={getPath("/publier", router.locale) + "?write=show"} passHref>
-                <FButton type="dark" name="file-add-outline" tag="a">
-                  Créer une nouvelle fiche
-                </FButton>
-              </Link>
+              <FButton onClick={() => setShowWriteModal(true)} type="dark" name="file-add-outline">
+                Créer une nouvelle fiche
+              </FButton>
             </div>
           </TitleContainer>
           <WhiteContainer>
@@ -190,6 +193,7 @@ const UserContributions = (props: Props) => {
         </ContribContainer>
         {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={tutoModalDisplayed} />}
       </MainContainer>
+      <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
     </div>
   );
 };

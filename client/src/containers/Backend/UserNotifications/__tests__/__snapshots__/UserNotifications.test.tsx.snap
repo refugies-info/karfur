@@ -2,7 +2,8 @@
 
 exports[`UserNotifications should render correctly when 0 notif 1`] = `
 .c0 {
-  background: #edebeb border-radius:12px;
+  background: #edebeb;
+  border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
   margin-right: 120px;
@@ -220,7 +221,8 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 }
 
 .c0 {
-  background: #edebeb border-radius:12px;
+  background: #edebeb;
+  border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
   margin-right: 120px;
@@ -456,7 +458,8 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c0 {
-  background: #edebeb border-radius:12px;
+  background: #edebeb;
+  border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
   margin-right: 120px;

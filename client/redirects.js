@@ -13,7 +13,8 @@ const urlTranslations = [
   ["/qui-sommes-nous", "/who-are-we"],
   ["/mentions-legales", "/legal-notices"],
   ["/declaration-accessibilite", "/accessibility-statement"],
-  ["/politique-de-confidentialite", "/privacy-policy"]
+  ["/politique-de-confidentialite", "/privacy-policy"],
+  ["/plan-du-site", "/sitemap"]
 ];
 
 const oldPathsRedirects = [

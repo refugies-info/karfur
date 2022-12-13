@@ -17,6 +17,11 @@ $purple: #3d2884;
     bottom: 0;
     left: -$borderWidth;
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+    @include rtl() {
+      left: inherit;
+      right: -$borderWidth;
+    }
   }
 }
 
@@ -42,6 +47,13 @@ $borderWidth: 4px;
   border-left: $borderWidth solid $dark;
   position: relative;
 
+  @include rtl() {
+    border-left: none;
+    border-right: $borderWidth solid $dark;
+    padding-left: 0;
+    padding-right: 60px;
+  }
+
   .orange & {
     border-color: $orange;
   }
@@ -61,10 +73,20 @@ $borderWidth: 4px;
     max-width: none;
     padding-left: u(8);
     padding-bottom: u(9);
+
+    @include rtl() {
+      padding-left: 0;
+      padding-right: u(8);
+    }
   }
 
   .dotted & {
     border-left-style: dashed;
+
+    @include rtl() {
+      border-left-style: none;
+      border-right-style: dashed;
+    }
 
     @include media-min("lg-limit") {
       @include fadeBorder();
@@ -85,6 +107,13 @@ $borderWidth: 4px;
     padding-left: u(8);
     padding-bottom: 60px;
 
+    @include rtl() {
+      border-left: none;
+      padding-left: 0;
+      border-right: $borderWidth solid $dark;
+      padding-right: u(8);
+    }
+
     .orange & {
       border-color: $orange;
     }
@@ -95,6 +124,11 @@ $borderWidth: 4px;
     .dotted & {
       border-left-style: dashed;
       @include fadeBorder();
+
+      @include rtl() {
+        border-left-style: none;
+        border-right-style: dashed;
+      }
     }
   }
 
@@ -142,20 +176,32 @@ $borderWidth: 4px;
   position: absolute;
   top: 0;
   left: -22px;
+  box-shadow: 1.3px 1.3px 11px 0 #2121213d;
+
+  @include rtl() {
+    left: inherit;
+    right: -22px;
+  }
 
   .orange & {
-    background: linear-gradient(90deg, $orange 26.28%, #f97319 100%), linear-gradient(0deg, #ffffff, #ffffff);
+    background: $orange;
   }
   .purple & {
-    background: linear-gradient(90deg, $purple 26.28%, #705fa4 100%), linear-gradient(0deg, #ffffff, #ffffff);
+    background: $purple;
   }
 
   @include isTablet() {
     width: 24px;
     height: 24px;
-    @include text("large");
+    @include text("normal");
+    line-height: 15px;
     left: -14px;
     top: -1px;
+
+    @include rtl() {
+      left: inherit;
+      right: -14px;
+    }
   }
 }
 
@@ -170,6 +216,12 @@ $borderWidth: 4px;
   left: 0;
   bottom: 120px;
   transform: translateX(-50%);
+
+  @include rtl() {
+    left: inherit;
+    right: 0;
+    transform: translateX(50%);
+  }
 
   .orange & {
     background: $orange;
@@ -187,5 +239,10 @@ $borderWidth: 4px;
     left: 0;
     bottom: 60px;
     width: 100%;
+
+    @include rtl() {
+      left: inherit;
+      right: 0;
+    }
   }
 }

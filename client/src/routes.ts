@@ -1,24 +1,24 @@
 export type PathNames =
-  "/" |
-  "/recherche" |
-  "/annuaire" |
-  "/annuaire/[id]" |
-  "/annuaire-creation" |
-  "/demarche" |
-  "/demarche/[id]" |
-  "/dispositif" |
-  "/dispositif/[id]" |
-  "/publier" |
-  "/traduire" |
-  "/qui-sommes-nous" |
-  "/mentions-legales" |
-  "/declaration-accessibilite" |
-  "/politique-de-confidentialite" |
-  "/login" |
-  "/register" |
-  "/reset" |
-  "/backend/[...backend]"
-  ;
+  | "/"
+  | "/recherche"
+  | "/annuaire"
+  | "/annuaire/[id]"
+  | "/annuaire-creation"
+  | "/demarche"
+  | "/demarche/[id]"
+  | "/dispositif"
+  | "/dispositif/[id]"
+  | "/publier"
+  | "/traduire"
+  | "/qui-sommes-nous"
+  | "/mentions-legales"
+  | "/declaration-accessibilite"
+  | "/politique-de-confidentialite"
+  | "/plan-du-site"
+  | "/login"
+  | "/register"
+  | "/reset"
+  | "/backend/[...backend]";
 
 type Routes = {
   [key in PathNames]: string;
@@ -39,6 +39,7 @@ const routes: Routes = {
   "/qui-sommes-nous": "/who-are-we",
   "/mentions-legales": "/legal-notices",
   "/declaration-accessibilite": "/accessibility-statement",
+  "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
   "/login": "/login",
   "/register": "/register",

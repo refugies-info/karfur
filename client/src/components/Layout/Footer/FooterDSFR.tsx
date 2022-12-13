@@ -5,11 +5,14 @@ import {
   FooterBottom,
   FooterCopy,
   FooterLink,
+  FooterOperator,
   FooterTop,
   FooterTopCategory,
   Link,
   Logo
 } from "@dataesr/react-dsfr";
+import { logoDIAIR } from "assets";
+import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -17,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import ThemesFooterCategory from "./ThemesFooterCategory";
+import styles from "./FooterDSFR.module.scss";
 
 const Footer = () => {
   const router = useRouter();
@@ -28,7 +32,7 @@ const Footer = () => {
   };
 
   return (
-    <DSFRFooter>
+    <DSFRFooter className={styles.footer}>
       <FooterTop>
         <ThemesFooterCategory />
         <FooterTopCategory title={t("Footer.Trois types d’information", "Trois types d’information")}>
@@ -43,12 +47,15 @@ const Footer = () => {
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title={t("Footer.Participer", "Participer")}>
-          <FooterLink href="/">{t("Footer.Recenser mon action", "Recenser mon action")}</FooterLink>
-          <FooterLink href="/">{t("Footer.Aider à traduire", "Aider à traduire")}</FooterLink>
-          <FooterLink href="/">
+          <FooterLink href={getPath("/publier", router.locale)}>
+            {t("Footer.Recenser mon action", "Recenser mon action")}
+          </FooterLink>
+          <FooterLink href={getPath("/traduire", router.locale)}>
+            {t("Footer.Aider à traduire", "Aider à traduire")}
+          </FooterLink>
+          <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>
             {t("Footer.Rejoindre le Réseau des contributeurs", "Rejoindre le Réseau des contributeurs")}
           </FooterLink>
-          <FooterLink href="/">{t("Footer.Déployer sur mon territoire", "Déployer sur mon territoire")}</FooterLink>
           <FooterLink href="#" onClick={() => dispatch(toggleNewsletterModalAction())}>
             {t("Footer.S’inscrire à la newsletter", "S’inscrire à la newsletter")}
           </FooterLink>
@@ -117,7 +124,10 @@ const Footer = () => {
           "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France."
         )}
       >
-        <Logo>République française</Logo>
+        <Logo>Gouvernement</Logo>
+        <FooterOperator>
+          <Image key="logo" src={logoDIAIR} alt="logo DIAIR" />
+        </FooterOperator>
         <FooterBodyItem>
           <Link href="https://www.legifrance.gouv.fr">legifrance.gouv.fr</Link>
         </FooterBodyItem>
@@ -132,7 +142,9 @@ const Footer = () => {
         </FooterBodyItem>
       </FooterBody>
       <FooterBottom>
-        <FooterLink href="/">{t("Footer.Plan du site", "Plan du site")}</FooterLink>
+        <FooterLink asLink={<NextLink href={getPath("/plan-du-site", router.locale)} />}>
+          {t("Footer.Plan du site", "Plan du site")}
+        </FooterLink>
         <FooterLink asLink={<NextLink href={getPath("/declaration-accessibilite", router.locale)} />}>
           {t("Footer.accessibility_link", "Accessibilité : non conforme")}
         </FooterLink>
@@ -142,7 +154,7 @@ const Footer = () => {
         <FooterLink asLink={<NextLink href={getPath("/politique-de-confidentialite", router.locale)} />}>
           {t("Politique de confidentialité", "Politique de confidentialité")}
         </FooterLink>
-        <FooterLink href="/" onClick={() => window.showAxeptioButton && window.showAxeptioButton()}>
+        <FooterLink href="/" onClick={() => window.__axeptioSDK.openCookies && window.__axeptioSDK.openCookies()}>
           {t("Footer.Gestion des cookies", "Gestion des cookies")}
         </FooterLink>
         <FooterCopy>

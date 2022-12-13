@@ -3,6 +3,7 @@ import { HeaderNav } from "@dataesr/react-dsfr";
 
 import {
   Admin,
+  FindInformation,
   Logout,
   MyContributions,
   MyFavorites,
@@ -23,6 +24,7 @@ const Navigation = () => {
 
   return (
     <HeaderNav className={styles["refugies-backend-header-menu"]}>
+      <FindInformation />
       <MyNotificationsNavItem />
       <MyFavorites />
       <MyContributions />

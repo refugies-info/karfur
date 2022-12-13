@@ -21,6 +21,10 @@ $breakpoint: "lg-limit";
   }
 }
 
+.scrollspy_section {
+  position: relative;
+}
+
 .section {
   padding-top: u(20);
   padding-bottom: u(20);
@@ -68,6 +72,10 @@ $breakpoint: "lg-limit";
 .anchor {
   position: absolute;
   top: -50px;
+
+  @include isTablet() {
+    top: -100px;
+  }
 }
 .top_space {
   margin-top: u(20);
@@ -142,6 +150,10 @@ $breakpoint: "lg-limit";
   padding: u(4);
   background: $attention;
   border-radius: $radius;
+
+  @include isTablet() {
+    @include text("normal");
+  }
 }
 .warning_mobile {
   @extend .warning;

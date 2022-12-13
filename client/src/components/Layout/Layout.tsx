@@ -182,7 +182,7 @@ const Layout = (props: Props) => {
   const isFavoriteModalVisible = useSelector(isFavoriteModalVisibleSelector);
 
   return (
-    <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover}>
+    <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
       <div className="app-body">
         <main className="content">{props.children}</main>
