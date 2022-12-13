@@ -26,15 +26,8 @@ const HeaderContainer = styled.div`
   height: 720px;
 `;
 
-const HeaderText = styled.div`
-  font-weight: bold;
-  font-size: 52px;
-  line-height: 66px;
-`;
-const SubHeaderText = styled.div`
+const SubHeaderText = styled.h4`
   font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
 `;
 const HeaderTextContainer = styled.div`
   background: #ffffff;
@@ -46,20 +39,17 @@ const NavBarContainer = styled.div`
   position: sticky;
   position: -webkit-sticky;
   top: 75px;
-  height: 64px;
+  height: 68px;
   background: #f2f2f2;
   display: flex;
   flex-direction: center;
   justify-content: center;
   align-items: center;
   z-index: 1;
-  top: ${(props: {isToolbarVisible: boolean}) =>
-    !props.isToolbarVisible ? "0px !important" : "0px !important"};
+  top: ${(props: { isToolbarVisible: boolean }) => (!props.isToolbarVisible ? "0px !important" : "0px !important")};
 `;
 
 const NavBarText = styled.div`
-  font-size: 16px;
-  line-height: 20px;
   padding: 22px;
   height: 100%;
   &:hover {
@@ -67,15 +57,12 @@ const NavBarText = styled.div`
     color: #f2f2f2;
   }
 
-  background: ${(props: {isVisibleSection: boolean}) => (props.isVisibleSection ? "#212121" : "#f2f2f2")};
-  color: ${(props: {isVisibleSection: boolean}) => (props.isVisibleSection ? "#f2f2f2" : "#212121")};
+  background: ${(props: { isVisibleSection: boolean }) => (props.isVisibleSection ? "#212121" : "#f2f2f2")};
+  color: ${(props: { isVisibleSection: boolean }) => (props.isVisibleSection ? "#f2f2f2" : "#212121")};
 `;
 
-const SectionHeader = styled.div`
+const SectionHeader = styled.h2`
   text-align: center;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 40px;
   margin-bottom: 48px;
 `;
 const MissionContainer = styled.div`
@@ -145,25 +132,15 @@ const QuiSommesNous: NextPage = () => {
       <HeaderContainer>
         <div style={{ marginTop: 240, marginBottom: 28 }}>
           <HeaderTextContainer>
-            <HeaderText>
-              {t("QuiSommesNous.Qui sommes-nous", "Qui sommes nous ?")}
-            </HeaderText>
+            <h1>{t("QuiSommesNous.Qui sommes-nous", "Qui sommes nous ?")}</h1>
           </HeaderTextContainer>
         </div>
         <HeaderTextContainer>
-          <SubHeaderText>
-            {t(
-              "QuiSommesNous.subheader1",
-              "Réfugiés.info est un projet collaboratif"
-            )}
-          </SubHeaderText>
+          <SubHeaderText>{t("QuiSommesNous.subheader1", "Réfugiés.info est un projet collaboratif")}</SubHeaderText>
         </HeaderTextContainer>
         <HeaderTextContainer>
           <SubHeaderText>
-            {t(
-              "QuiSommesNous.subheader2",
-              "porté par la Diair et développé par la Mednum"
-            )}
+            {t("QuiSommesNous.subheader2", "porté par la Diair et développé par la Mednum")}
           </SubHeaderText>
         </HeaderTextContainer>
       </HeaderContainer>
@@ -174,9 +151,7 @@ const QuiSommesNous: NextPage = () => {
           </NavBarText>
         </a>
         <a href="#equipe">
-          <NavBarText isVisibleSection={visibleSection === "Equipe"}>
-            {t("QuiSommesNous.Équipe", "Équipe")}
-          </NavBarText>
+          <NavBarText isVisibleSection={visibleSection === "Equipe"}>{t("QuiSommesNous.Équipe", "Équipe")}</NavBarText>
         </a>
         <a href="#problematic">
           <NavBarText isVisibleSection={visibleSection === "Problematiques"}>
@@ -201,30 +176,22 @@ const QuiSommesNous: NextPage = () => {
       </MissionContainer>
       <TeamContainer className={styles.container}>
         <span id="equipe" className={styles.anchor}></span>
-        <SectionHeader>
-          {t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}
-        </SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.L'équipe", "L'équipe Réfugiés.info")}</SectionHeader>
         <Team />
       </TeamContainer>
       <ProblematicContainer className={styles.container}>
         <span id="problematic" className={styles.anchor}></span>
-        <SectionHeader>
-          {t("QuiSommesNous.Problématiques", "Problématiques")}
-        </SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.Problématiques", "Problématiques")}</SectionHeader>
         <Problematic />
       </ProblematicContainer>
       <ContributionContainer className={styles.container}>
         <span id="contribution" className={styles.anchor}></span>
-        <SectionHeader>
-          {t("QuiSommesNous.Approche contributive", "Approche contributive")}
-        </SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.Approche contributive", "Approche contributive")}</SectionHeader>
         <Contribution />
       </ContributionContainer>
       <PartnersContainer className={styles.container}>
         <span id="partners" className={styles.anchor}></span>
-        <SectionHeader>
-          {t("QuiSommesNous.Partenaires", "Partenaires")}
-        </SectionHeader>
+        <SectionHeader>{t("QuiSommesNous.Partenaires", "Partenaires")}</SectionHeader>
         <Partners />
       </PartnersContainer>
     </MainContainer>

@@ -1,11 +1,13 @@
+@import "src/scss/variables";
+
 $texts: (
   "very-small": (
     12px,
     15px
   ),
   "small": (
-    14px,
-    18px
+    $text-normal,
+    19px
   ),
   "normal": (
     16px,
@@ -24,6 +26,10 @@ $texts: (
     35px
   ),
   "h3": (
+    40px,
+    51px
+  ),
+  "h2": (
     40px,
     51px
   ),
