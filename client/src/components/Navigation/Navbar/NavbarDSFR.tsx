@@ -3,8 +3,13 @@ import { logoRI } from "assets/figma";
 import { BackendNavigation } from "containers";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 import FrontendNavigation from "./FrontendNavigation";
 import { UserToolItem, SpeekToolItem, SubscribeToolItem, TranslationToolItem } from "./NavbarItems";
+
+const LogoImage = styled(Image)`
+  max-width: 90%;
+`;
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -14,7 +19,7 @@ const Navbar = () => {
       <HeaderBody>
         <Logo splitCharacter={10}>Gouvernement</Logo>
         <HeaderOperator>
-          <Image key="logo" src={logoRI} alt="logo refugies-info" />
+          <LogoImage key="logo" src={logoRI} alt="logo refugies-info" />
         </HeaderOperator>
         <Tool>
           <ToolItemGroup>
