@@ -2,29 +2,25 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   inputFocusedSelector,
   searchQuerySelector,
   themesDisplayedValueSelector
 } from "services/SearchResults/searchResults.selector";
-import { addToQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
-import { SearchQuery } from "services/SearchResults/searchResults.reducer";
+import { setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import { cls } from "lib/classname";
-import { Event } from "lib/tracking";
-import SearchInput from "../SearchInput";
-import ThemeDropdown from "../ThemeDropdown";
-import LocationDropdown from "../LocationDropdown";
-import SecondaryFilter from "../SecondaryFilter";
-import DropdownMenuMobile from "../DropdownMenuMobile";
-import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
-import styles from "./SearchHeader.mobile.module.scss";
+import SearchInput from "components/Pages/recherche/SearchInput";
+import DropdownMenuMobile from "components/Pages/recherche/DropdownMenuMobile";
+import LocationDropdown from "components/Pages/recherche/LocationDropdown";
+import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
+import qs from "query-string";
+import styles from "./HomeSearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
-  nbResults: number;
-
   // filterProps
   locationSearch: string;
   resetLocationSearch: () => void;
@@ -35,17 +31,12 @@ interface Props {
   onChangeDepartmentInput: (e: any) => void;
   onChangeThemeInput: (e: any) => void;
   onChangeSearchInput: (e: any) => void;
-  ageOptions: SecondaryFilterOptions;
-  frenchLevelOptions: SecondaryFilterOptions;
-  languagesOptions: SecondaryFilterOptions;
-  selectAgeOption: (selected: AgeOptions[]) => void;
-  selectFrenchLevelOption: (selected: FrenchOptions[]) => void;
-  selectLanguageOption: (selected: string[]) => void;
 }
 
-const SearchHeaderMobile = (props: Props) => {
+const HomeSearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const {
     locationSearch,
@@ -56,24 +47,11 @@ const SearchHeaderMobile = (props: Props) => {
     resetTheme,
     onChangeThemeInput,
     resetSearch,
-    onChangeSearchInput,
-    ageOptions,
-    selectAgeOption,
-    frenchLevelOptions,
-    selectFrenchLevelOption,
-    languagesOptions,
-    selectLanguageOption
+    onChangeSearchInput
   } = props;
 
   const query = useSelector(searchQuerySelector);
   const inputFocused = useSelector(inputFocusedSelector);
-
-  const addToQuery = useCallback(
-    (query: Partial<SearchQuery>) => {
-      dispatch(addToQueryActionCreator(query));
-    },
-    [dispatch]
-  );
 
   // SEARCH
   const setSearchActive = useCallback(
@@ -83,74 +61,25 @@ const SearchHeaderMobile = (props: Props) => {
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
-  const toggleLocation = useCallback(
-    () =>
-      setLocationOpen((prevState) => {
-        if (!prevState) Event("USE_SEARCH", "open filter", "location");
-        return !prevState;
-      }),
-    [setLocationOpen]
-  );
+  const toggleLocation = useCallback(() => setLocationOpen((o) => !o), []);
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
-  const toggleThemes = useCallback(
-    () =>
-      setThemesOpen((prevState) => {
-        if (!prevState) Event("USE_SEARCH", "open filter", "theme");
-        return !prevState;
-      }),
-    [setThemesOpen]
-  );
-
-  // FILTERS
-  const [showFilters, setShowFilters] = useState(false);
-  const nbFilters = query.age.length + query.frenchLevel.length + query.language.length;
-  const toggleFilters = useCallback(
-    () =>
-      setShowFilters((prevState) => {
-        if (!prevState) Event("USE_SEARCH", "open filter", "mobile filters");
-        return !prevState;
-      }),
-    [setShowFilters]
-  );
-  const resetFilters = useCallback(() => {
-    addToQuery({ age: [], frenchLevel: [], language: [] });
-  }, [addToQuery]);
+  const toggleThemes = useCallback(() => setThemesOpen((o) => !o), []);
 
   // hide axeptio button when popup opens
   useEffect(() => {
-    if (showFilters || locationOpen || themesOpen) {
+    if (locationOpen || themesOpen) {
       if (window.hideAxeptioButton) window.hideAxeptioButton();
     } else {
       if (window.showAxeptioButton) window.showAxeptioButton();
     }
-  }, [locationOpen, themesOpen, showFilters]);
+  }, [locationOpen, themesOpen]);
 
   return (
     <>
       <div className={styles.container}>
-        <Container>
-          <div className={styles.inputs}>
-            <Button onClick={() => setSearchActive(true)}>
-              <SearchInput
-                label={t("Recherche.keyword", "Mot-clé")}
-                icon="search-outline"
-                active={inputFocused.search}
-                setActive={setSearchActive}
-                onChange={onChangeSearchInput}
-                inputValue={query.search}
-                value={query.search}
-                placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
-                resetFilter={resetSearch}
-                focusout={true}
-              />
-            </Button>
-          </div>
-        </Container>
-      </div>
-      <div className={styles.secondary_container}>
         <Dropdown
           isOpen={locationOpen}
           toggle={toggleLocation}
@@ -164,11 +93,13 @@ const SearchHeaderMobile = (props: Props) => {
               setActive={() => {}}
               onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
+              loading={false}
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
               smallIcon={true}
               noInput={true}
               noEmptyBtn={true}
+              onHomepage={true}
             />
           </DropdownToggle>
           <DropdownMenu className={commonStyles.menu}>
@@ -177,7 +108,6 @@ const SearchHeaderMobile = (props: Props) => {
               icon="pin-outline"
               close={toggleLocation}
               reset={resetDepartment}
-              nbResults={props.nbResults}
               showFooter={query.departments.length > 0}
             >
               <div className={commonStyles.content}>
@@ -215,6 +145,7 @@ const SearchHeaderMobile = (props: Props) => {
               smallIcon={true}
               noInput={true}
               noEmptyBtn={true}
+              onHomepage={true}
             />
           </DropdownToggle>
           <DropdownMenu className={commonStyles.menu} persist>
@@ -223,7 +154,6 @@ const SearchHeaderMobile = (props: Props) => {
               icon="list-outline"
               close={toggleThemes}
               reset={resetTheme}
-              nbResults={props.nbResults}
               showFooter={query.themes.length > 0 || query.needs.length > 0}
             >
               <div className={commonStyles.content}>
@@ -241,57 +171,43 @@ const SearchHeaderMobile = (props: Props) => {
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
-
-        <div className={styles.right}>
-          <Dropdown isOpen={showFilters} toggle={toggleFilters} className={cls(styles.dropdown, styles.filters)}>
-            <DropdownToggle>
-              <EVAIcon name="options-2-outline" fill="white" />
-              {nbFilters > 0 && <span className={styles.badge}>{nbFilters}</span>}
-            </DropdownToggle>
-            <DropdownMenu className={commonStyles.menu}>
-              <DropdownMenuMobile
-                title={t("Recherche.filters", "Filtres de recherche")}
-                icon="options-2-outline"
-                close={toggleFilters}
-                reset={resetFilters}
-                nbResults={props.nbResults}
-                showFooter={query.age.length > 0 || query.frenchLevel.length > 0 || query.language.length > 0}
-              >
-                <div className={cls(commonStyles.content, styles.more_filters)}>
-                  <SecondaryFilter
-                    mobile={true}
-                    label={t("Recherche.filterAge", "Tranche d'âge")}
-                    selected={query.age}
-                    //@ts-ignore
-                    setSelected={selectAgeOption}
-                    options={ageOptions}
-                    gaType="age"
-                  />
-                  <SecondaryFilter
-                    mobile={true}
-                    label={t("Recherche.filterFrenchLevel", "Niveau de français")}
-                    selected={query.frenchLevel}
-                    //@ts-ignore
-                    setSelected={selectFrenchLevelOption}
-                    options={frenchLevelOptions}
-                    gaType="frenchLevel"
-                  />
-                  <SecondaryFilter
-                    mobile={true}
-                    label={t("Recherche.filterLanguage", "Fiches traduites en")}
-                    selected={query.language}
-                    setSelected={selectLanguageOption}
-                    options={languagesOptions}
-                    gaType="language"
-                  />
-                </div>
-              </DropdownMenuMobile>
-            </DropdownMenu>
-          </Dropdown>
-        </div>
       </div>
+
+      <div className={styles.container}>
+        <Button onClick={() => setSearchActive(true)} className={styles.btn}>
+          <SearchInput
+            label={t("Recherche.keyword", "Mot-clé")}
+            icon="search-outline"
+            active={inputFocused.search}
+            setActive={setSearchActive}
+            onChange={onChangeSearchInput}
+            inputValue={query.search}
+            value={query.search}
+            placeholder={t("Recherche.keywordPlaceholder", "Mission locale, titre de séjour...")}
+            resetFilter={resetSearch}
+            focusout={true}
+            onHomepage={true}
+          />
+        </Button>
+      </div>
+
+      <Button
+        onClick={() => {
+          router.push({
+            pathname: getPath("/recherche", router.locale),
+            query: qs.stringify({ ...query }, { arrayFormat: "comma" })
+          });
+        }}
+        className={commonStyles.submit}
+        disabled={
+          !query.search && query.departments.length === 0 && query.themes.length === 0 && query.needs.length === 0
+        }
+      >
+        <EVAIcon name="search-outline" fill="white" size={24} className={commonStyles.icon} />
+        {t("Rechercher")}
+      </Button>
     </>
   );
 };
 
-export default SearchHeaderMobile;
+export default HomeSearchHeaderMobile;

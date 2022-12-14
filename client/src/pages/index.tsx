@@ -5,11 +5,9 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { Button, Col, Container, Row } from "reactstrap";
 import { cls } from "lib/classname";
-import { defaultStaticPropsWithThemes } from "lib/getDefaultStaticProps";
 import isInBrowser from "lib/isInBrowser";
-import { themesSelector } from "services/Themes/themes.selectors";
 import SEO from "components/Seo";
-import { useRTL, useWindowSize } from "hooks";
+import { useWindowSize } from "hooks";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 import MobileAppSection from "components/Pages/homepage/MobileAppSection";
 import commonStyles from "scss/components/staticPages.module.scss";
@@ -40,7 +38,6 @@ import Link from "next/link";
 import Warning from "components/UI/Warning";
 import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
 import { getPath } from "routes";
-import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton";
 import API from "utils/API";
 import Swal from "sweetalert2";
@@ -50,6 +47,8 @@ import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { DispositifStatistics, StructuresStatistics, TranslationStatistics } from "types/interface";
+import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
+import HomeSearchHeader from "components/Pages/homepage/HomeSearchHeader";
 
 interface Props {
   contentStatistics: DispositifStatistics;
@@ -61,16 +60,18 @@ const Homepage = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const router = useRouter();
-  const themes = useSelector(themesSelector);
   const { isTablet } = useWindowSize();
   const allDispositifs = useSelector(activeDispositifsSelector);
-  const isRTL = useRTL();
+
+  useEffect(() => {
+    dispatch(fetchNeedsActionCreator());
+  }, [dispatch]);
 
   useEffect(() => {
     if (isInBrowser() && new URLSearchParams(window.location.search).get("newsletter") === "") {
       dispatch(toggleNewsletterModalAction(true));
     }
-  }, []);
+  }, [dispatch]);
 
   const navigateTheme = (themeId: ObjectId) => {
     router.push({
@@ -129,6 +130,7 @@ const Homepage = (props: Props) => {
       <div className={styles.hero}>
         <Container className={cls(commonStyles.container)}>
           <h1>{t("Homepage.title")}</h1>
+          <HomeSearchHeader />
         </Container>
       </div>
 
