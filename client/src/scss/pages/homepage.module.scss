@@ -10,6 +10,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 828px;
+  padding-top: 80px;
 
   @include media-min("tablet-up") {
     background-image: url(../../assets/figma/integration_illu.svg);

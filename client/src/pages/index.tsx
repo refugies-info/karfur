@@ -52,7 +52,7 @@ const Homepage = (props: Props) => {
   const [overlay, setOverlay] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
 
-  const [ukraine, setUkraine] = useState(true);
+  const [ukraine, setUkraine] = useState(false);
 
   const { t } = useTranslation();
   const router = useRouter();
