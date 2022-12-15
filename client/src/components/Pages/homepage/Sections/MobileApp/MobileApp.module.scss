@@ -24,14 +24,9 @@
     border-radius: u(2);
   }
   .text {
-    margin-left: u(6);
+    @include ml-ltr(u(6));
     margin-bottom: 0;
     @include text("large");
-
-    @include rtl() {
-      margin-left: 0;
-      margin-right: u(6);
-    }
   }
 }
 
@@ -53,7 +48,7 @@
   }
 
   a {
-    margin-right: u(4);
+    @include mr-ltr(u(4));
 
     img {
       max-width: 124px;
@@ -67,11 +62,15 @@
 }
 
 .reviews {
-  margin-left: u(4);
+  @include ml-ltr(u(4));
 
   @include isTablet() {
     position: absolute;
     top: -80px;
     transform: translateX(70%);
+
+    @include rtl() {
+      transform: translateX(-70%);
+    }
   }
 }

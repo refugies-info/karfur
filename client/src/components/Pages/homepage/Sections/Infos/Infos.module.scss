@@ -1,5 +1,6 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
 
 .infos {
   overflow-x: hidden;
@@ -36,12 +37,13 @@
     top: 20px !important;
   }
   :global(.input-error-icon) {
-    right: 150px !important;
+    @include r-ltr(150px);
   }
 }
 .newsletter_submit {
   position: absolute;
   right: 8px;
+  @include r-ltr(8px);
   top: 8px;
   height: 48px;
 }

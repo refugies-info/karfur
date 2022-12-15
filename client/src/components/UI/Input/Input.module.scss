@@ -19,11 +19,11 @@ $error: #b01917;
   height: 24px;
 
   &.prepend {
-    left: u(4);
+    @include l-ltr(u(4));
     top: u(4);
   }
   &.append {
-    right: u(4);
+    @include r-ltr(u(4));
     top: u(4);
   }
 }
@@ -41,7 +41,7 @@ $error: #b01917;
   height: 100%;
 
   .with_icon & {
-    padding-left: 44px;
+    @include pl-ltr(44px);
   }
 
   .error & {

@@ -31,6 +31,10 @@ $blue: $bleuCharte;
   margin: 0 auto u(10) auto;
   flex-shrink: 0;
 
+  @include rtl() {
+    text-align: right;
+  }
+
   &:hover {
     &.color_red {
       border-color: $red;
@@ -108,6 +112,10 @@ $blue: $bleuCharte;
   justify-content: center;
   transform: translateX(-60%);
 
+  @include rtl() {
+    transform: translateX(60%);
+  }
+
   .color_red & {
     background-color: #c54126;
   }
@@ -169,13 +177,7 @@ $blue: $bleuCharte;
   align-items: center;
 
   .icon {
-    margin-right: u(1);
-
-    @include rtl() {
-      margin-right: inherit;
-      margin-left: u(1);
-    }
-
+    @include mr-ltr(u(1));
     @include isTablet() {
       display: none;
     }

@@ -9,7 +9,7 @@
   position: relative;
   display: flex;
   justify-content: flex-end;
-  padding-right: u(10);
+  @include pr-ltr(u(10));
 
   @include isTablet() {
     justify-content: center;
@@ -36,10 +36,22 @@
   z-index: 1;
   flex: 0 0 auto;
 
+  @include rtl() {
+    left: inherit;
+    margin-right: inherit;
+    right: -80px;
+    margin-left: -115px;
+  }
+
   @include isTablet() {
     width: 200px;
     height: auto;
     top: -25px;
     left: -40px;
+
+    @include rtl() {
+      left: inherit;
+      right: -60px;
+    }
   }
 }
