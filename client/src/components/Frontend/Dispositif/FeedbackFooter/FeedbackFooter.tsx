@@ -17,19 +17,13 @@ const FeedbackFooter = (props: Props) => {
   const { nbThanks, pushReaction, didThank } = props;
 
   return (
-    <div style={{color: props.color}} className={styles.container}>
+    <div style={{ color: props.color }} className={styles.container}>
       <div className={styles.text_container}>
-        <h5>
-          {t(
-            "Dispositif.informations_utiles",
-            "Vous avez trouvé des informations utiles ?"
-          )}
+        <h5 className="h5" style={{ color: props.color }}>
+          {t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}
         </h5>
 
-        {t(
-          "Dispositif.remerciez",
-          "Remerciez les contributeurs qui les ont rédigées pour vous"
-        )}
+        {t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigées pour vous")}
       </div>
       <div className={styles.btn_container}>
         <div className={cls(styles.thank_button, didThank && styles.active)}>
@@ -45,8 +39,8 @@ const FeedbackFooter = (props: Props) => {
             className={styles.btn + " validate mr-8 mb-8"}
             type="validate"
             onClick={() => {
-              Event("Reaction", "Merci", "from dispositif")
-              pushReaction(null, "merci")
+              Event("Reaction", "Merci", "from dispositif");
+              pushReaction(null, "merci");
             }}
           >
             <span role="img" aria-label="thanks">
@@ -60,11 +54,7 @@ const FeedbackFooter = (props: Props) => {
           type="error"
           onClick={() => {
             if (!isInBrowser()) return;
-            window.$crisp.push([
-              "set",
-              "session:event",
-              ["no-thanks-btn"],
-            ]);
+            window.$crisp.push(["set", "session:event", ["no-thanks-btn"]]);
             window.$crisp.push(["do", "chat:open"]);
           }}
         >

@@ -47,10 +47,10 @@ const Footer = () => {
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title={t("Footer.Participer", "Participer")}>
-          <FooterLink href={getPath("/publier", router.locale)}>
+          <FooterLink asLink={<NextLink href={getPath("/publier", router.locale)} />}>
             {t("Footer.Recenser mon action", "Recenser mon action")}
           </FooterLink>
-          <FooterLink href={getPath("/traduire", router.locale)}>
+          <FooterLink asLink={<NextLink href={getPath("/traduire", router.locale)} />}>
             {t("Footer.Aider à traduire", "Aider à traduire")}
           </FooterLink>
           <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>

@@ -8,7 +8,7 @@ import FrontendNavigation from "./FrontendNavigation";
 import { UserToolItem, SpeekToolItem, SubscribeToolItem, TranslationToolItem } from "./NavbarItems";
 
 const LogoImage = styled(Image)`
-  max-width: 90%;
+  max-width: 80%;
 `;
 
 const Navbar = () => {

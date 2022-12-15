@@ -1,8 +1,9 @@
 @import "src/scss/mixins/responsive";
+@import "src/scss/mixins/text";
 @import "src/scss/colors";
 @import "src/scss/variables";
 
-$shadow: 0 10px 15px 0 #0421B138;
+$shadow: 0 10px 15px 0 #0421b138;
 
 .smartphone {
   background: radial-gradient($bleuCharte, rgba($bleuCharte, 0.6496));
@@ -113,6 +114,7 @@ $shadow: 0 10px 15px 0 #0421B138;
   color: $gray80;
   flex-shrink: 1;
   padding: 0 24px;
+  @include text("h5");
 }
 .store_qr {
   display: flex;
@@ -138,7 +140,6 @@ $shadow: 0 10px 15px 0 #0421B138;
     margin-left: 24px;
   }
 }
-
 
 // Copy
 .form_link {

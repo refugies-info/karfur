@@ -225,7 +225,7 @@
     "sortView": "Les plus vues",
     "typeAll": "Tout",
     "typeDispositif": "Fiches dispositifs",
-    "typeDemarche": "Fiches demarches"
+    "typeDemarche": "Fiches démarches"
   },
   "Status": {
     "En attente": "En attente",
@@ -342,7 +342,6 @@
     "informations_utiles": "Vous avez trouvé des informations utiles ?",
     "remerciez": "Remerciez les contributeurs qui les ont rédigées pour vous",
     "fiabilite": "Fiabilité de l’information",
-    "Avis": "Avis et discussions",
     "Contributeurs": "Contributeurs mobilisés",
     "Structures": "Structures partenaires",
     "C'est quoi ?": "C'est quoi ?",
@@ -548,7 +547,6 @@
   },
   "Retour à la recherche": "Retour à la recherche",
   "ou": "ou",
-  "Bientôt disponible !": "Bientôt disponible !",
   "En savoir plus": "En savoir plus",
   "Aucun résultat": "Aucun résultat",
   "Elargir recherche": "Essayez d’élargir votre recherche en désactivant certains tags",
@@ -558,7 +556,6 @@
   "Annuler": "Annuler",
   "Sauvegarder": "Sauvegarder",
   "Modifier mon profil": "Modifier mon profil",
-  "Bientôt disponible": "Bientôt disponible",
   "Chercher un dispositif": "Explorer les dispositifs",
   "Chercher une démarche": "Explorer les démarches",
   "Rejoindre le réseau": "Rejoindre le réseau",

@@ -122,6 +122,7 @@ class SideTrad extends Component {
     startingTime: null,
     endingTime: null,
     validerInit: false,
+    stickToTop: false,
   };
   initialState = this.state;
 

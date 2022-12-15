@@ -21,7 +21,7 @@ interface Props {
 
 export const RightAnnuaireDetails = (props: Props) => {
   // @ts-ignore
-  const activeDispositifsAssocies = props.dispositifsAssocies.filter(
+  const activeDispositifsAssocies = (props.dispositifsAssocies || []).filter(
     (dispositif: SearchDispositif) => dispositif.status === "Actif"
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
