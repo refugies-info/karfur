@@ -17,7 +17,7 @@ import Input from "components/UI/Input";
 import { ObjectId } from "mongodb";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import CardSlider from "components/Pages/recherche/CardSlider";
-import { Accordion, Card, InlineLink } from "components/Pages/staticPages/common";
+import { Accordion, Card, HeroArrow, InlineLink } from "components/Pages/staticPages/common";
 import HelpUsIcon1 from "assets/homepage/helpus-icon-1.png";
 import HelpUsIcon3 from "assets/homepage/helpus-icon-3.svg";
 import CommunityRedacteurs from "assets/homepage/community-redacteurs.png";
@@ -131,10 +131,11 @@ const Homepage = (props: Props) => {
         <Container className={cls(commonStyles.container)}>
           <h1>{t("Homepage.title")}</h1>
           <HomeSearchHeader />
+          <HeroArrow center target="themes" />
         </Container>
       </div>
 
-      <div className={cls(commonStyles.section, styles.themes)}>
+      <div id="themes" className={cls(commonStyles.section, styles.themes)}>
         <ThemesGrid className={commonStyles.container} onClickTheme={(themeId) => navigateTheme(themeId)} />
       </div>
 
