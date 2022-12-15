@@ -41,7 +41,7 @@ const MobileAppSection = () => {
           </div>
           <div className={cls(styles.content, "col")}>
             <div className={cls(styles.title, "text-white")}>
-              <h2>{t("Homepage.mobile_app_title", "Application mobile disponible !")}</h2>
+              <h2 className="text-white">{t("Homepage.mobile_app_title", "Application mobile disponible !")}</h2>
               <p className={cls("h5", styles.subtitle)}>{t("Homepage.mobile_app_subtitle_1")}</p>
               <p className={cls("h5", styles.subtitle)}>{t("Homepage.mobile_app_subtitle_2")}</p>
               <p className={cls("h5", styles.subtitle)}>{t("Homepage.mobile_app_subtitle_3")}</p>
