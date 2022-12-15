@@ -19,7 +19,7 @@ const FeedbackFooter = (props: Props) => {
   return (
     <div style={{ color: props.color }} className={styles.container}>
       <div className={styles.text_container}>
-        <h5 className="h5" style={{ color: props.color }}>
+        <h5 style={{ color: props.color }}>
           {t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}
         </h5>
 

@@ -71,7 +71,7 @@ const SearchResults = (props: Props) => {
   if (noResults) {
     return (
       <div className={styles.no_results}>
-        <h5>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h5>
+        <h2>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h2>
         <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
 
         <FButton type="login" name="refresh-outline" onClick={props.resetFilters}>

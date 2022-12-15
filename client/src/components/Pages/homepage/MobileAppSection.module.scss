@@ -114,7 +114,6 @@ $shadow: 0 10px 15px 0 #0421b138;
   color: $gray80;
   flex-shrink: 1;
   padding: 0 24px;
-  @include text("h5");
 }
 .store_qr {
   display: flex;

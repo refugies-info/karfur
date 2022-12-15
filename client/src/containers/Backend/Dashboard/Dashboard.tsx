@@ -156,7 +156,7 @@ const Dashboard = (props: Props) => {
   return (
     <div className={styles.container + " animated fadeIn"}>
       <div>
-        <h5 className="mb-4">Application</h5>
+        <h2 className="mb-4">Application</h2>
         {notificationsActive === null ? (
           <Spinner size="sm" />
         ) : (
@@ -167,7 +167,7 @@ const Dashboard = (props: Props) => {
       </div>
 
       <div className="unformatted-data mb-10 mt-6">
-        <h5 className="mb-4">Statistiques</h5>
+        <h2 className="mb-4">Statistiques</h2>
         <NavLink to="backend/admin">Admin</NavLink>
         <ul>
           <b>Contenus par thème (nombre de dispositifs/démarches avec thème principal xxx (vs objectif)):</b>
