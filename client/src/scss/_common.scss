@@ -76,8 +76,6 @@ html body {
     }
   }
   h5 {
-    font-weight: bold;
-    @include text("h2");
     @include media-max("sm-limit") {
       font-size: 15px;
     }

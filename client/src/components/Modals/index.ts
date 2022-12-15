@@ -1,5 +1,4 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
-import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
@@ -17,7 +16,6 @@ import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareCont
 
 export {
   BookmarkedModal,
-  DemarcheCreateModal,
   DispositifCreateModal,
   DispositifValidateModal,
   LanguageModal,
@@ -31,5 +29,5 @@ export {
   FrameModal,
   Modal,
   DraftModal,
-  ShareContentOnMobileModal,
-}
+  ShareContentOnMobileModal
+};
