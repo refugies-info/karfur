@@ -9,6 +9,7 @@ import { ToolItem } from "@dataesr/react-dsfr";
 import { useTranslation } from "react-i18next";
 
 import styles from "./SpeekToolItem.module.scss";
+import { isMobile } from "react-device-detect";
 
 const SpeekToolItem = () => {
   const router = useRouter();
@@ -16,7 +17,7 @@ const SpeekToolItem = () => {
   const dispatch = useDispatch();
   const ttsActive = useSelector(ttsActiveSelector);
   const ttsLoading = useSelector(ttsLoadingSelector);
-  const enabled = hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode);
+  const enabled = !isMobile && hasTTSAvailable.includes((router.locale || "fr") as AvailableLanguageI18nCode);
   const toggleAudio = () => dispatch(toggleTTSActionCreator());
 
   if (!enabled) return null;
