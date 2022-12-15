@@ -1,0 +1,47 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+
+.infos {
+  overflow-x: hidden;
+}
+.infos_col {
+  max-width: 430px;
+  margin: auto;
+  padding: u(20) 0;
+
+  @include isTablet() {
+    padding: u(10) 0;
+  }
+
+  .action {
+    margin-top: u(10);
+
+    @include isTablet() {
+      margin-top: u(6);
+    }
+  }
+  .img {
+    max-width: 100%;
+  }
+}
+
+.newsletter {
+  position: relative;
+}
+.newsletter_input {
+  input {
+    height: 64px;
+  }
+  & > span {
+    top: 20px !important;
+  }
+  :global(.input-error-icon) {
+    right: 150px !important;
+  }
+}
+.newsletter_submit {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  height: 48px;
+}

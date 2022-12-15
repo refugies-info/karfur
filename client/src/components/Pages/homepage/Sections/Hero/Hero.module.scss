@@ -1,0 +1,30 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.hero {
+  min-height: 750px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: u(20);
+
+  @include isTablet() {
+    padding-top: u(10);
+    min-height: 90vh;
+  }
+
+  h1 {
+    text-align: center;
+
+    @include isTablet() {
+      @include text("h4");
+    }
+  }
+
+  @include media-min("tablet-up") {
+    background-image: url(../../../../../assets/figma/integration_illu.svg);
+  }
+  @include isMobile() {
+    background-image: url(../../../../../assets/figma/home_mobile.svg);
+  }
+}

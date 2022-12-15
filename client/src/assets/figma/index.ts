@@ -9,6 +9,7 @@ import logo_mobile from "./logo_mobile.svg";
 import newsletter from "./newsletter.svg";
 import home_mobile from "./home_mobile.svg";
 import structure_definie from "./structure_definie.svg";
+import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 
 export {
   interieur_2,
@@ -22,4 +23,5 @@ export {
   newsletter,
   home_mobile,
   structure_definie,
+  rendez_vous_ordinateur,
 };

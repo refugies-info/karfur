@@ -12,9 +12,9 @@ import app_qr_code from "assets/homepage/app-qr-code.png";
 import { assetsOnServer } from "assets/assetsOnServer";
 import MobileAppIllu from "./MobileAppIllu";
 import commonStyles from "scss/components/staticPages.module.scss";
-import styles from "./MobileAppSection.module.scss";
+import styles from "./MobileApp.module.scss";
 
-const MobileAppSection = () => {
+const MobileApp = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const { isTablet } = useWindowSize();
@@ -83,4 +83,4 @@ const MobileAppSection = () => {
   );
 };
 
-export default MobileAppSection;
+export default MobileApp;

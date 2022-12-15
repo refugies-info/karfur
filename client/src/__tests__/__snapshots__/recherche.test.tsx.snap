@@ -447,7 +447,7 @@ exports[`recherche renders home search 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon"
@@ -529,7 +529,7 @@ exports[`recherche renders home search 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon"
@@ -1413,7 +1413,7 @@ exports[`recherche renders home search 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon"
@@ -3593,7 +3593,7 @@ exports[`recherche renders home search 1`] = `
           </button>
         </div>
         <div
-          className="container"
+          className="container content-card-slider"
         >
           <button
             aria-label={null}
@@ -3633,7 +3633,7 @@ exports[`recherche renders home search 1`] = `
           </button>
         </div>
         <div
-          className="container"
+          className="container content-card-slider"
         >
           <button
             aria-label={null}
@@ -4217,7 +4217,7 @@ exports[`recherche renders search results 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon"
@@ -4299,7 +4299,7 @@ exports[`recherche renders search results 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon active"
@@ -5199,7 +5199,7 @@ exports[`recherche renders search results 1`] = `
               type="button"
             >
               <div
-                className="filter"
+                className="filter searchpage"
               >
                 <span
                   className="icon"
