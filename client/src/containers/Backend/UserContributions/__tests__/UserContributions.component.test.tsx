@@ -9,6 +9,8 @@ import { fetchUserContributionsActionCreator } from "services/UserContributions/
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import "jest-styled-components";
 import Router from "next/router";
+jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
+
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
