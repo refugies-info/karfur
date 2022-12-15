@@ -79,10 +79,6 @@
 
   @include isMobile() {
     margin-top: u(10);
-
-    h5 {
-      @include text("h5");
-    }
   }
 
   p {

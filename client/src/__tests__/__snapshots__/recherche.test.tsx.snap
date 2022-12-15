@@ -5673,9 +5673,9 @@ exports[`recherche renders search results 1`] = `
     <div
       className="no_results"
     >
-      <h5>
+      <h2>
         Recherche.noResultTitle
-      </h5>
+      </h2>
       <p>
         Recherche.noResultText
       </p>
