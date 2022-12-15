@@ -331,7 +331,7 @@ class SideTrad extends Component {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const stickToTop = currentScrollPos > 70;
     if(this.state.stickToTop !== stickToTop){
