@@ -525,16 +525,6 @@ $imgHeight: 350px;
     //border-radius: 6px;
   }
 
-  .discussion-footer {
-    background: $gray90;
-    color: $white;
-    padding: 35px 40px;
-    font-size: $text-large;
-    @include media-max("lg-limit") {
-      width: 116%;
-    }
-  }
-
   /*   .print-rtl {
     direction: rtl;
   } */
