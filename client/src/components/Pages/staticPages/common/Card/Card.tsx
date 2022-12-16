@@ -10,11 +10,12 @@ interface Props {
   header?: ReactElement;
   footer?: ReactElement;
   greyBackground?: boolean;
+  withShadow?: boolean;
 }
 
 const Card = (props: Props) => {
   return (
-    <div className={cls(styles.container, props.greyBackground && styles.grey)}>
+    <div className={cls(styles.container, props.greyBackground && styles.grey, props.withShadow && styles.shadow)}>
       <div>
         <div className={styles.header}>
           {props.header}

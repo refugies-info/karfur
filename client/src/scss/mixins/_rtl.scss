@@ -1,5 +1,61 @@
 @mixin rtl() {
   [dir="rtl"] & {
-    @content
+    @content;
+  }
+}
+
+/* Position */
+@mixin r-ltr($size) {
+  right: $size;
+
+  @include rtl() {
+    right: inherit;
+    left: $size;
+  }
+}
+
+@mixin l-ltr($size) {
+  left: $size;
+
+  @include rtl() {
+    left: inherit;
+    right: $size;
+  }
+}
+
+/* Margins */
+@mixin mr-ltr($size) {
+  margin-right: $size;
+
+  @include rtl() {
+    margin-right: inherit;
+    margin-left: $size;
+  }
+}
+
+@mixin ml-ltr($size) {
+  margin-left: $size;
+
+  @include rtl() {
+    margin-left: inherit;
+    margin-right: $size;
+  }
+}
+
+/* Paddings */
+@mixin pr-ltr($size) {
+  padding-right: $size;
+
+  @include rtl() {
+    padding-right: inherit;
+    padding-left: $size;
+  }
+}
+@mixin pl-ltr($size) {
+  padding-left: $size;
+
+  @include rtl() {
+    padding-left: inherit;
+    padding-right: $size;
   }
 }

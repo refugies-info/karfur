@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { getStatistics } from "./getStatistics";
-import { getNbMercis, getNbVues, getNbFiches } from "../../../modules/dispositif/dispositif.repository";
+import { getNbMercis, getNbVues, getNbFiches, getNbUpdatedRecently } from "../../../modules/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -13,7 +13,8 @@ const mockResponse = (): MockResponse => {
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getNbMercis: jest.fn().mockResolvedValue([{ _id: null, mercis: 4072 }]),
   getNbVues: jest.fn().mockResolvedValue([{ _id: null, nbVues: 175201, nbVuesMobile: 85741 }]),
-  getNbFiches: jest.fn().mockResolvedValue(12),
+  getNbFiches: jest.fn().mockResolvedValue({ nbDispositifs: 13, nbDemarches: 14 }),
+  getNbUpdatedRecently: jest.fn().mockResolvedValue(12)
 }));
 
 const req = {};
@@ -29,6 +30,7 @@ describe("getStatistics", () => {
     expect(getNbMercis).toHaveBeenCalled();
     expect(getNbVues).toHaveBeenCalled();
     expect(getNbFiches).toHaveBeenCalled();
+    expect(getNbUpdatedRecently).toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -37,7 +39,9 @@ describe("getStatistics", () => {
         nbMercis: 4072,
         nbVues: 175201,
         nbVuesMobile: 85741,
-        nbFiches: 12
+        nbDispositifs: 13,
+        nbDemarches: 14,
+        nbUpdatedRecently: 12
       }
     });
   });

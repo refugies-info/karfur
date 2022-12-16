@@ -1,0 +1,61 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$error: #b01917;
+
+.container {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  &.prepend {
+    @include l-ltr(u(4));
+    top: u(4);
+  }
+  &.append {
+    @include r-ltr(u(4));
+    top: u(4);
+  }
+}
+.error svg {
+  fill: $error;
+}
+
+.input {
+  border: 1px solid $gray80;
+  outline: none !important;
+  background: $white;
+  border-radius: $radius;
+  padding: u(4);
+  width: 100%;
+  height: 100%;
+
+  .with_icon & {
+    @include pl-ltr(44px);
+  }
+
+  .error & {
+    border-color: $error;
+  }
+}
+
+.error_msg {
+  @include text("small");
+  display: inline-block;
+  margin-top: u(4);
+  font-weight: bold;
+  color: $error;
+  background-color: $erreur;
+  padding: u(2);
+  border-radius: u(2);
+}

@@ -20,6 +20,11 @@ export const getStatistics = async (req: RequestFromClient<Query>, res: Res) => 
       (x.roles || []).some((role: any) => role.nom === "Trad")
     );
 
+    // nbRedactors
+    const redactors = users.filter((x: any) =>
+      (x.roles || []).some((role: any) => role.nom === "Contrib")
+    );
+
     // nbWordsTranslated
     const nbWordsTranslated = await getNbWordsTranslated();
 
@@ -41,6 +46,7 @@ export const getStatistics = async (req: RequestFromClient<Query>, res: Res) => 
         text: "OK",
         data: {
           nbTranslators: translators.length,
+          nbRedactors: redactors.length,
           nbWordsTranslated: nbWordsTranslated?.[0]?.wordsCount || 0,
           nbActiveTranslators: nbActiveTranslators
         }

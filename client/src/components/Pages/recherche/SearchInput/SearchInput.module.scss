@@ -19,6 +19,12 @@
     padding: u(1);
   }
 
+  &.homepage {
+    @include isTablet() {
+      padding: 0;
+    }
+  }
+
   &:hover {
     background-color: $gray40b;
   }
@@ -83,6 +89,7 @@
     position: relative;
     padding-right: u(16);
     @include text("normal");
+    line-height: 18px;
     height: 20px;
 
     @include isMobile() {
@@ -134,18 +141,20 @@
         margin-right: 0;
         margin-left: u(2);
       }
+    }
+  }
 
-      &.small {
-        width: 20px;
-        height: 20px;
-        margin-right: u(2);
-        background: transparent !important;
-        @include withIcon();
+  &.searchpage {
+    .icon.small {
+      width: 20px;
+      height: 20px;
+      margin-right: u(2);
+      background: transparent !important;
+      @include withIcon();
 
-        @include rtl() {
-          margin-right: 0;
-          margin-left: u(2);
-        }
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(2);
       }
     }
   }

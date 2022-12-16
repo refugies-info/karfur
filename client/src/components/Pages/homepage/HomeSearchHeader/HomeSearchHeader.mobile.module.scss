@@ -1,0 +1,44 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  background: $white;
+  border-radius: $radius;
+  width: 100%;
+  display: flex;
+  margin-bottom: u(4);
+}
+
+// Button
+.dropdown > button,
+.btn {
+  background: transparent !important;
+  border: none;
+  width: 100%;
+  padding: u(4);
+  min-height: 56px;
+}
+
+// Dropdown menu
+.dropdown {
+  flex-shrink: 1;
+  flex-grow: 1;
+  min-width: 0;
+
+  &.filters {
+    width: u(14);
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    & > button {
+      background: $bleuCharte !important;
+      height: 100%;
+      width: 100%;
+      border-radius: 0;
+    }
+  }
+}
