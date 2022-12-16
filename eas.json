@@ -4,12 +4,11 @@
       "releaseChannel": "production"
     },
     "preview": {
-      "releaseChannel": "staging",
-      "android": {
-        "buildType": "apk"
-      },
-      "ios": {
-        "simulator": true
+      "channel": "staging",
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_APP_NAME": "Staging Réfugiés.info"
       }
     }
   },
