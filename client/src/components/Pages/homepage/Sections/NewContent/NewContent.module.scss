@@ -3,6 +3,8 @@
 @import "src/scss/mixins/text";
 
 .sliders {
+  overflow: hidden;
+
   :global(.content-card-slider) {
     --gradient-start: #f6f6f600;
     --gradient-end: #f6f6f6;
