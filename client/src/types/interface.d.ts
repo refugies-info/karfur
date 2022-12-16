@@ -502,13 +502,18 @@ export interface DispositifStatistics {
   nbMercis: number
   nbVues: number
   nbVuesMobile: number
-  nbFiches: number
+  nbDispositifs: number
+  nbDemarches: number
+  nbUpdatedRecently: number
 }
 export interface StructuresStatistics {
   nbStructures: number
+  nbCDA: number
+  nbStructureAdmins: number
 }
 export interface TranslationStatistics {
   nbTranslators: number
+  nbRedactors: number
   nbWordsTranslated: number
   nbActiveTranslators: {
     languageId: string

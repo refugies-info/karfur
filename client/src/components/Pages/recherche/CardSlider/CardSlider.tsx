@@ -59,7 +59,7 @@ const CardSlider = (props: Props) => {
   }, [page, gap, margins, isRTL]);
 
   return (
-    <div className={styles.container}>
+    <div className={cls(styles.container, "content-card-slider")}>
       {page > 0 && (
         <Button className={cls(styles.btn, styles.prev)} onClick={() => slide("prev")}>
           <EVAIcon name="arrow-back-outline" fill="white" size={40} />

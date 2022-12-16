@@ -18,6 +18,7 @@ jest.mock("../../../modules/users/users.repository", () => ({
     { _id: 2, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "en" }, { _id: "ru" }], last_connected: "2022-12-01" },
     { _id: 3, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-11-15" },
     { _id: 4, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "ru" }], last_connected: "2022-12-01" },
+    { _id: 4, roles: [{ nom: "User" }, { nom: "Contrib" }], selectedLanguages: [{ _id: "ru" }], last_connected: "2022-12-01" },
     { _id: 5, roles: [{ nom: "User" }, { nom: "ExpertTrad" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-12-01" },
     { _id: 6, roles: [{ nom: "User" }, { nom: "Admin" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-12-01" },
   ]),
@@ -59,6 +60,7 @@ describe("getStatistics", () => {
       text: "OK",
       data: {
         nbTranslators: 3,
+        nbRedactors: 1,
         nbWordsTranslated: 52,
         nbActiveTranslators: [
           { languageId: "en", count: 1 },

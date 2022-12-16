@@ -1,11 +1,15 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
+import {
+  inputFocusedSelector,
+  searchQuerySelector,
+  themesDisplayedValueSelector
+} from "services/SearchResults/searchResults.selector";
+import { addToQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
@@ -14,23 +18,16 @@ import ThemeDropdown from "../ThemeDropdown";
 import LocationDropdown from "../LocationDropdown";
 import SecondaryFilter from "../SecondaryFilter";
 import DropdownMenuMobile from "../DropdownMenuMobile";
-import styles from "./SearchHeader.mobile.module.scss";
 import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
+import styles from "./SearchHeader.mobile.module.scss";
+import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
   nbResults: number;
-  themeDisplayedValue: string;
-
-  // focusedStateProps
-  locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  themesFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
 
   // filterProps
-  isPlacePredictionsLoading: boolean;
-  placePredictions: any[];
-  onSelectPrediction: (placeId: string) => void;
   locationSearch: string;
+  resetLocationSearch: () => void;
   themeSearch: string;
   resetDepartment: () => void;
   resetTheme: () => void;
@@ -51,12 +48,9 @@ const SearchHeaderMobile = (props: Props) => {
   const dispatch = useDispatch();
 
   const {
-    themeDisplayedValue,
-    isPlacePredictionsLoading,
-    placePredictions,
     locationSearch,
+    resetLocationSearch,
     themeSearch,
-    onSelectPrediction,
     resetDepartment,
     onChangeDepartmentInput,
     resetTheme,
@@ -72,14 +66,18 @@ const SearchHeaderMobile = (props: Props) => {
   } = props;
 
   const query = useSelector(searchQuerySelector);
-
-  // state from SearchHeader
-  const [searchFocused, setSearchFocused] = props.searchFocusedState;
+  const inputFocused = useSelector(inputFocusedSelector);
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
       dispatch(addToQueryActionCreator(query));
     },
+    [dispatch]
+  );
+
+  // SEARCH
+  const setSearchActive = useCallback(
+    (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
     [dispatch]
   );
 
@@ -96,6 +94,7 @@ const SearchHeaderMobile = (props: Props) => {
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
+  const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const toggleThemes = useCallback(
     () =>
       setThemesOpen((prevState) => {
@@ -134,12 +133,12 @@ const SearchHeaderMobile = (props: Props) => {
       <div className={styles.container}>
         <Container>
           <div className={styles.inputs}>
-            <Button onClick={() => setSearchFocused(true)}>
+            <Button onClick={() => setSearchActive(true)}>
               <SearchInput
                 label={t("Recherche.keyword", "Mot-clé")}
                 icon="search-outline"
-                active={searchFocused}
-                setActive={setSearchFocused}
+                active={inputFocused.search}
+                setActive={setSearchActive}
                 onChange={onChangeSearchInput}
                 inputValue={query.search}
                 value={query.search}
@@ -152,7 +151,11 @@ const SearchHeaderMobile = (props: Props) => {
         </Container>
       </div>
       <div className={styles.secondary_container}>
-        <Dropdown isOpen={locationOpen} toggle={toggleLocation} className={cls(styles.dropdown, styles.separator)}>
+        <Dropdown
+          isOpen={locationOpen}
+          toggle={toggleLocation}
+          className={cls(styles.dropdown, commonStyles.separator)}
+        >
           <DropdownToggle>
             <SearchInput
               label={t("Dispositif.Département", "Département")}
@@ -161,7 +164,6 @@ const SearchHeaderMobile = (props: Props) => {
               setActive={() => {}}
               onChange={onChangeDepartmentInput}
               inputValue={locationSearch}
-              loading={isPlacePredictionsLoading}
               value={query.departments.join(", ")}
               placeholder={t("Dispositif.Département", "Département")}
               smallIcon={true}
@@ -169,7 +171,7 @@ const SearchHeaderMobile = (props: Props) => {
               noEmptyBtn={true}
             />
           </DropdownToggle>
-          <DropdownMenu className={styles.menu}>
+          <DropdownMenu className={commonStyles.menu}>
             <DropdownMenuMobile
               title={t("Dispositif.Départements", "Départements")}
               icon="pin-outline"
@@ -178,8 +180,8 @@ const SearchHeaderMobile = (props: Props) => {
               nbResults={props.nbResults}
               showFooter={query.departments.length > 0}
             >
-              <div className={styles.content}>
-                <div className={styles.input}>
+              <div className={commonStyles.content}>
+                <div className={commonStyles.input}>
                   <EVAIcon name="search-outline" fill="dark" size={20} />
                   <input
                     type="text"
@@ -190,7 +192,11 @@ const SearchHeaderMobile = (props: Props) => {
                   />
                 </div>
               </div>
-              <LocationDropdown predictions={placePredictions} onSelectPrediction={onSelectPrediction} mobile={true} />
+              <LocationDropdown
+                locationSearch={locationSearch}
+                resetLocationSearch={resetLocationSearch}
+                mobile={true}
+              />
             </DropdownMenuMobile>
           </DropdownMenu>
         </Dropdown>
@@ -211,7 +217,7 @@ const SearchHeaderMobile = (props: Props) => {
               noEmptyBtn={true}
             />
           </DropdownToggle>
-          <DropdownMenu className={styles.menu} persist>
+          <DropdownMenu className={commonStyles.menu} persist>
             <DropdownMenuMobile
               title={t("Recherche.themes", "Thèmes")}
               icon="list-outline"
@@ -220,8 +226,8 @@ const SearchHeaderMobile = (props: Props) => {
               nbResults={props.nbResults}
               showFooter={query.themes.length > 0 || query.needs.length > 0}
             >
-              <div className={styles.content}>
-                <div className={styles.input}>
+              <div className={commonStyles.content}>
+                <div className={commonStyles.input}>
                   <EVAIcon name="search-outline" fill="dark" size={20} />
                   <input
                     type="text"
@@ -242,7 +248,7 @@ const SearchHeaderMobile = (props: Props) => {
               <EVAIcon name="options-2-outline" fill="white" />
               {nbFilters > 0 && <span className={styles.badge}>{nbFilters}</span>}
             </DropdownToggle>
-            <DropdownMenu className={styles.menu}>
+            <DropdownMenu className={commonStyles.menu}>
               <DropdownMenuMobile
                 title={t("Recherche.filters", "Filtres de recherche")}
                 icon="options-2-outline"
@@ -251,7 +257,7 @@ const SearchHeaderMobile = (props: Props) => {
                 nbResults={props.nbResults}
                 showFooter={query.age.length > 0 || query.frenchLevel.length > 0 || query.language.length > 0}
               >
-                <div className={cls(styles.content, styles.more_filters)}>
+                <div className={cls(commonStyles.content, styles.more_filters)}>
                   <SecondaryFilter
                     mobile={true}
                     label={t("Recherche.filterAge", "Tranche d'âge")}

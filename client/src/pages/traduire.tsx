@@ -287,6 +287,7 @@ const RecensezVotreAction = (props: Props) => {
                   footer={
                     <InlineLink
                       link="#"
+                      type="button"
                       onClick={() => window.$crisp.push(["do", "chat:open"])}
                       text={t("StaticPages.helpTileCTA3")}
                       color="red"

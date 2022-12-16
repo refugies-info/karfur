@@ -23,6 +23,7 @@ interface Props {
   smallIcon?: boolean;
   noInput?: boolean;
   noEmptyBtn?: boolean;
+  onHomepage?: boolean;
 }
 
 const SearchInput = (props: Props) => {
@@ -77,14 +78,16 @@ const SearchInput = (props: Props) => {
   const countValues = !props.value ? 0 : (props.value.match(/,/g) || []).length + 1;
 
   const getIconColor = useCallback(() => {
-    if (isMobile && props.smallIcon) return isActive ? colors.bleuCharte : "black";
+    if (isMobile && props.smallIcon && !props.onHomepage) return isActive ? colors.bleuCharte : "black";
     return isActive ? "white" : "black";
-  }, [isActive, isMobile, props.smallIcon]);
+  }, [isActive, isMobile, props.smallIcon, props.onHomepage]);
 
   return (
-    <div className={cls(styles.filter, active && styles.active)}>
+    <div
+      className={cls(styles.filter, active && styles.active, props.onHomepage ? styles.homepage : styles.searchpage)}
+    >
       <span className={cls(styles.icon, isActive && styles.active, props.smallIcon && styles.small)}>
-        <EVAIcon name={props.icon} fill={getIconColor()} size={!props.smallIcon ? "large" : 20} />
+        <EVAIcon name={props.icon} fill={getIconColor()} size={props.smallIcon || props.onHomepage ? 20 : 24} />
       </span>
       <span className={styles.search}>
         <label className={styles.label} htmlFor={props.label}>
