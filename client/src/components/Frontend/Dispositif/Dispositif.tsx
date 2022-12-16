@@ -1599,15 +1599,6 @@ const Dispositif = (props: Props) => {
                       nbThanks={dispositif?.merci ? dispositif?.merci.length || 0 : 0}
                     />
                   )}
-                  {!printing && (
-                    <div
-                      className={cls(mobile.hidden, "discussion-footer bg-darkColor")}
-                      style={{ backgroundColor: mainTheme.colors.color100 }}
-                    >
-                      <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
-                      <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-                    </div>
-                  )}
                   {[...(dispositif?.participants || []), dispositif?.creatorId || []].length > 0 && !printing && (
                     <div className={cls(mobile.hidden, "bottom-wrapper")}>
                       <ContribCaroussel

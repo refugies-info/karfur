@@ -347,6 +347,7 @@ const RecensezVotreAction = (props: Props) => {
                   footer={
                     <InlineLink
                       link="#"
+                      type="button"
                       onClick={() => window.$crisp.push(["do", "chat:open"])}
                       text={t("StaticPages.helpTileCTA3")}
                       color="red"
@@ -412,7 +413,7 @@ const RecensezVotreAction = (props: Props) => {
         />
       </div>
 
-      <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
+      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>
   );
 };
@@ -425,7 +426,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       nbVues: dispStatistics.nbVues + dispStatistics.nbVuesMobile,
-      nbFiches: dispStatistics.nbFiches,
+      nbFiches: dispStatistics.nbDispositifs + dispStatistics.nbDemarches,
       nbStructures: structStatistics.nbStructures
     },
     revalidate: 60

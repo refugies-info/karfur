@@ -22,20 +22,18 @@ import styles from "scss/pages/annuaire-id.module.scss";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface Props {
-  history: string[]
+  history: string[];
 }
 
 const AnnuaireDetail = (props: Props) => {
   const structure = useSelector(selectedStructureSelector);
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
-  ) && !structure;
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)) && !structure;
   const user = useSelector(userSelector);
 
   const [isMember, setIsMember] = useState(false);
 
   const dispatch = useDispatch();
-  const router = useRouter()
+  const router = useRouter();
   const structureId = router.query.id as string;
 
   const locale = router.locale || "fr";
@@ -55,50 +53,38 @@ const AnnuaireDetail = (props: Props) => {
   }, [dispatch, locale, currentLoadedLocale, structureId, structure]);
 
   useEffect(() => {
-    setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId))
-  }, [structure, user.userId])
+    setIsMember(!!structure && !!structure.membres && !!structure.membres.find((el: any) => el._id === user.userId));
+  }, [structure, user.userId]);
 
   return (
     <div className={styles.container}>
       <SEO />
       <div className={styles.content}>
-        <LeftAnnuaireDetail
-          structure={structure}
-          isLoading={isLoading}
-          history={props.history}
-        />
+        <LeftAnnuaireDetail structure={structure} isLoading={isLoading} history={props.history} />
 
-        <MiddleAnnuaireDetail
-          structure={structure}
-          isLoading={isLoading}
-          isMember={isMember}
-        />
-        {!isLoading && structure &&
-          <RightAnnuaireDetails
-            dispositifsAssocies={structure && structure.dispositifsAssocies}
-          />
-        }
+        <MiddleAnnuaireDetail structure={structure} isLoading={isLoading} isMember={isMember} />
+        {!isLoading && structure && <RightAnnuaireDetails dispositifsAssocies={structure.dispositifsAssocies} />}
       </div>
     </div>
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({query, locale}) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
   if (query.id) {
-    store.dispatch(fetchThemesActionCreator());
     const action = fetchSelectedStructureActionCreator({
       id: query.id as string,
       locale: !locale || locale === "default" ? "fr" : locale
     });
     store.dispatch(action);
+    store.dispatch(fetchThemesActionCreator());
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-    },
-  }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+    }
+  };
 });
 
 export default AnnuaireDetail;

@@ -28,8 +28,17 @@
   padding: 0;
   button {
     max-height: 2.4rem;
-    max-width: 2.4rem;
+    max-width: 3.4rem;
+    &::before {
+      font-size: 2.2rem;
+    }
   }
+}
+[dir="ltr"] .fr-header .fr-header__navbar {
+  padding-right: 1rem;
+}
+[dir="rtl"] .fr-header .fr-header__navbar {
+  padding-left: 1rem;
 }
 
 [dir="rtl"],
@@ -59,6 +68,7 @@
 
 [dir="rtl"] .fr-translate .fr-translate__btn:after {
   margin-right: auto;
+  margin-left: 0;
 } 
 
 .fr-header .fr-header__menu-links .fr-translate__btn {

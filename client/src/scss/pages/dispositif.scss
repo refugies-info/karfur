@@ -270,9 +270,7 @@ $imgHeight: 350px;
     position: relative;
 
     li {
-      margin-bottom: 27px;
-      line-height: 27px;
-      font-size: $text-large;
+      margin-bottom: 15px;
       padding-bottom: 0;
     }
 
@@ -523,16 +521,6 @@ $imgHeight: 350px;
   .arevoir {
     background-color: $orange !important;
     //border-radius: 6px;
-  }
-
-  .discussion-footer {
-    background: $gray90;
-    color: $white;
-    padding: 35px 40px;
-    font-size: $text-large;
-    @include media-max("lg-limit") {
-      width: 116%;
-    }
   }
 
   /*   .print-rtl {

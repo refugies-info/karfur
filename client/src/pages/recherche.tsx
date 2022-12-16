@@ -14,9 +14,7 @@ import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
-import { needsSelector } from "services/Needs/needs.selectors";
 import { languei18nSelector } from "services/Langue/langue.selectors";
-import { themesSelector } from "services/Themes/themes.selectors";
 import { addToQueryActionCreator, setSearchResultsActionCreator } from "services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
 import { Results, SearchQuery } from "services/SearchResults/searchResults.reducer";
@@ -26,10 +24,10 @@ import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
-import { getDepartmentsNotDeployed, getThemesDisplayed } from "lib/recherche/functions";
+import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
 import isInBrowser from "lib/isInBrowser";
-import { SearchDispositif, Theme } from "types/interface";
+import { SearchDispositif } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
@@ -66,8 +64,6 @@ const Recherche = () => {
 
   const dispositifs = useSelector(activeDispositifsSelector);
   const languei18nCode = useSelector(languei18nSelector);
-  const allNeeds = useSelector(needsSelector);
-  const allThemes = useSelector(themesSelector);
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
 
@@ -110,14 +106,6 @@ const Recherche = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, dispositifs]);
 
-  // set themes displayed based on needs
-  const [themesDisplayed, setThemesDisplayed] = useState<Theme[]>(
-    getThemesDisplayed(allThemes, allNeeds, query.themes, query.needs)
-  );
-  useEffect(() => {
-    setThemesDisplayed(getThemesDisplayed(allThemes, allNeeds, query.themes, query.needs));
-  }, [query.needs, query.themes, allNeeds, allThemes]);
-
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
     getDepartmentsNotDeployed(query.departments, dispositifs)
@@ -125,22 +113,6 @@ const Recherche = () => {
   useEffect(() => {
     setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
   }, [query.departments, dispositifs]);
-
-  const resetFilters = useCallback(() => {
-    dispatch(
-      addToQueryActionCreator({
-        search: "",
-        departments: [],
-        themes: [],
-        needs: [],
-        age: [],
-        frenchLevel: [],
-        language: [],
-        sort: "date",
-        type: "all"
-      })
-    );
-  }, [dispatch]);
 
   const nbResults =
     filteredResult.dispositifs.length +
@@ -150,20 +122,11 @@ const Recherche = () => {
   return (
     <div className={cls(styles.container)}>
       <SEO title={t("Recherche.pageTitle", "Recherche")} />
-      <SearchHeader
-        searchMinified={showHome}
-        nbResults={nbResults}
-        themesDisplayed={themesDisplayed}
-        resetFilters={resetFilters}
-      />
+      <SearchHeader searchMinified={showHome} nbResults={nbResults} />
 
       {!showHome ? (
         <Container className={styles.container_inner}>
-          <SearchResults
-            themesSelected={themesDisplayed}
-            departmentsNotDeployed={departmentsNotDeployed}
-            resetFilters={resetFilters}
-          />
+          <SearchResults departmentsNotDeployed={departmentsNotDeployed} />
         </Container>
       ) : (
         <HomeSearch />

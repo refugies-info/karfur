@@ -40,7 +40,6 @@ html {
 html body {
   height: 100%;
   min-height: 100vh;
-  font-size: $text-normal;
 
   [contenteditable] {
     -webkit-user-select: text;
@@ -76,8 +75,6 @@ html body {
     }
   }
   h5 {
-    font-weight: bold;
-    @include text("h2");
     @include media-max("sm-limit") {
       font-size: 15px;
     }

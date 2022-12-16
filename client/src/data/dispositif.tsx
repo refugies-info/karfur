@@ -4,18 +4,18 @@ import Image from "next/legacy/image";
 import { DispositifContent } from "types/interface";
 
 export type ShortContent = {
-  titreInformatif: string
-  titreMarque: string
-  abstract: string
-  contact: string
-  externalLink: string
-}
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  contact: string;
+  externalLink: string;
+};
 const contenu: ShortContent = {
   titreInformatif: "Titre informatif",
   titreMarque: "Le nom du dispositif",
   abstract: "",
   contact: "contact@lab-r.fr",
-  externalLink: "",
+  externalLink: ""
 };
 
 const showModals = {
@@ -27,13 +27,13 @@ const showModals = {
   map: false,
   responsable: false,
   rejection: false,
-  variante: false,
+  variante: false
 };
 
 const menu: DispositifContent[] = [
   {
     title: "C'est quoi ?",
-    content: "",
+    content: ""
   },
   {
     title: "C'est pour qui ?",
@@ -48,7 +48,7 @@ const menu: DispositifContent[] = [
         contentTitle: "réfugiés",
         contentBody: "ou bénéficiaire de la protection subsidiaire",
         footer: "En savoir plus",
-        footerIcon: "info-outline",
+        footerIcon: "info-outline"
       },
       {
         type: "card",
@@ -58,7 +58,7 @@ const menu: DispositifContent[] = [
         typeIcon: "eva",
         contentTitle: "Plus de ** ans",
         bottomValue: 18,
-        topValue: 60,
+        topValue: 60
       },
       {
         type: "card",
@@ -66,7 +66,7 @@ const menu: DispositifContent[] = [
         title: "Durée",
         titleIcon: "clock-outline",
         typeIcon: "eva",
-        contentTitle: "6 à 12 mois",
+        contentTitle: "6 à 12 mois"
       },
       {
         type: "card",
@@ -77,7 +77,7 @@ const menu: DispositifContent[] = [
         niveaux: [],
         footer: "Évaluer mon niveau",
         footerIcon: "bar-chart-outline",
-        tooltipFooter: "En savoir plus",
+        tooltipFooter: "En savoir plus"
       },
       {
         type: "card",
@@ -87,7 +87,7 @@ const menu: DispositifContent[] = [
         typeIcon: "eva",
         free: true,
         price: 0,
-        contentTitle: "une seule fois",
+        contentTitle: "une seule fois"
       },
       {
         type: "card",
@@ -97,9 +97,9 @@ const menu: DispositifContent[] = [
         typeIcon: "eva",
         departments: [],
         free: true,
-        contentTitle: "Sélectionner",
-      },
-    ],
+        contentTitle: "Sélectionner"
+      }
+    ]
   },
   {
     title: "Pourquoi c'est intéressant ?",
@@ -108,9 +108,9 @@ const menu: DispositifContent[] = [
       {
         isFakeContent: true,
         type: "accordion",
-        content: "",
-      },
-    ],
+        content: ""
+      }
+    ]
   },
   {
     title: "Comment je m'engage ?",
@@ -119,11 +119,11 @@ const menu: DispositifContent[] = [
       {
         type: "accordion",
         isFakeContent: true,
-        content: "",
+        content: ""
       },
-      { type: "map", isFakeContent: true, isMapLoaded: true, markers: [] },
-    ],
-  },
+      { type: "map", isFakeContent: true, isMapLoaded: true, markers: [] }
+    ]
+  }
 ];
 
 const infocardFranceEntiere = {
@@ -155,21 +155,21 @@ const menuDemarche: DispositifContent[] = [
         typeIcon: "eva",
         contentTitle: "Plus de ** ans",
         bottomValue: 18,
-        topValue: 60,
+        topValue: 60
       },
       {
         type: "card",
         title: "Titre de séjour",
         typeIcon: "eva",
-        titleIcon: "alert-triangle-outline",
+        titleIcon: "alert-triangle-outline"
       },
       {
         type: "card",
         title: "Acte de naissance OFPRA",
         typeIcon: "eva",
-        titleIcon: "alert-triangle-outline",
-      },
-    ],
+        titleIcon: "alert-triangle-outline"
+      }
+    ]
   },
   {
     title: "Comment faire ?",
@@ -187,7 +187,7 @@ const menuDemarche: DispositifContent[] = [
         timeStepDuree: "minutes",
         delai: "00",
         timeStepDelai: "minutes",
-        option: {},
+        option: {}
       },
       {
         isFakeContent: true,
@@ -199,9 +199,9 @@ const menuDemarche: DispositifContent[] = [
         timeStepDuree: "minutes",
         delai: "00",
         timeStepDelai: "minutes",
-        option: {},
-      },
-    ],
+        option: {}
+      }
+    ]
   },
   {
     title: "Et après ?",
@@ -212,10 +212,10 @@ const menuDemarche: DispositifContent[] = [
       {
         type: "accordion",
         isFakeContent: true,
-        content: "",
-      },
-    ],
-  },
+        content: ""
+      }
+    ]
+  }
 ];
 
 //@ts-ignore
@@ -235,19 +235,14 @@ const importantCard = {
   footerType: "text",
   tooltipHeader: "Critère spécifique",
   tooltipContent:
-    "Vous avez la possibilité d’ajouter jusqu’à 3 critères supplémentaires pour prévenir les utilisateurs. Choisissez un titre court puis ajoutez une brève description.",
+    "Vous avez la possibilité d’ajouter jusqu’à 3 critères supplémentaires pour prévenir les utilisateurs. Choisissez un titre court puis ajoutez une brève description."
 };
 
 const filtres = {
   audience: ["réfugié", "tout public"],
   audienceAge: ["De ** à ** ans", "Moins de ** ans", "Plus de ** ans"],
   niveauFrancais: ["Débutant", "Intermédiaire", "Avancé", "Tous les niveaux"],
-  justificatifs: [
-    "Titre de séjour",
-    "Justificatif de domicile",
-    "Diplôme",
-    "Permis de conduire",
-  ],
+  justificatifs: ["Titre de séjour", "Justificatif de domicile", "Diplôme", "Permis de conduire"],
   departmentsData: [
     "1 - Ain",
     "2 - Aisne",
@@ -349,8 +344,8 @@ const filtres = {
     "972 - Martinique",
     "973 - Guyane",
     "974 - La Réunion",
-    "976 - Mayotte",
-  ],
+    "976 - Mayotte"
+  ]
 };
 
 const cardTitlesDispositif = [
@@ -358,13 +353,13 @@ const cardTitlesDispositif = [
   {
     title: "Âge requis",
     titleIcon: "calendar-outline",
-    options: filtres.audienceAge,
+    options: filtres.audienceAge
   },
   { title: "Durée", titleIcon: "clock-outline" },
   {
     title: "Niveau de français",
     titleIcon: "frBubble",
-    options: filtres.niveauFrancais,
+    options: filtres.niveauFrancais
   },
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
@@ -372,91 +367,55 @@ const cardTitlesDispositif = [
   {
     title: "Zone d'action",
     titleIcon: "pin-outline",
-    options: filtres.departmentsData,
-  },
+    options: filtres.departmentsData
+  }
 ];
 
 const cardTitlesDemarche = [
   {
     title: "Âge requis",
     titleIcon: "calendar-outline",
-    options: filtres.audienceAge,
+    options: filtres.audienceAge
   },
   {
     title: "Zone d'action",
     titleIcon: "pin-outline",
-    options: filtres.departmentsData,
+    options: filtres.departmentsData
   },
   {
     title: "Titre de séjour",
-    titleIcon: "alert-triangle-outline",
+    titleIcon: "alert-triangle-outline"
   },
   {
     title: "Acte de naissance OFPRA",
-    titleIcon: "alert-triangle-outline",
-  },
+    titleIcon: "alert-triangle-outline"
+  }
 ];
-
-const onBoardSteps = [
-  {
-    title: "C’est parti !",
-    firstStep: true,
-  },
-  {
-    title: "Modifiez directement le texte",
-    content: (
-      <h5>
-        Cliquez sur les éléments surlignés{" "}
-        <span className="texte-jaune">en jaune</span> pour saisir votre texte.
-      </h5>
-    ),
-  },
-  {
-    title: "Suivez le guide",
-    content: (
-      <h5>
-        Des consignes sont proposées pour chaque{" "}
-        <span className="texte-jaune">élément modifiable</span>.
-      </h5>
-    ),
-  },
-  {
-    title: "Tout à portée de main",
-    content: (
-      <h5>
-        Ce menu vous suit dans votre rédaction. Vous pouvez désactiver les
-        consignes, sauvegarder votre brouillon et accéder à{" "}
-        <span className="texte-rouge">plus d’aide</span>.
-      </h5>
-    ),
-  },
-];
-
 
 export type Option = {
-  texte: string
-  logo: string
-  label1: string|null
-  label2: string|null
-  placeholder1: string
-  placeholder2: string|null
-  placeholder3?: string
-  placeholder4?: string
-  checkbox?: string
-  icon1?: string
-  icon2?: string
-  icon3?: string
-  icon4?: string
-  ctaText: string
-  ctaField?: string
-  modalHeader: string
-}
+  texte: string;
+  logo: string;
+  label1: string | null;
+  label2: string | null;
+  placeholder1: string;
+  placeholder2: string | null;
+  placeholder3?: string;
+  placeholder4?: string;
+  checkbox?: string;
+  icon1?: string;
+  icon2?: string;
+  icon3?: string;
+  icon4?: string;
+  ctaText: string;
+  ctaField?: string;
+  modalHeader: string;
+};
 
 export type DemarcheSteps = {
   options: Option[];
   timeSteps: { texte: string }[];
   papiers: { texte: string }[];
-}
+};
 
 const demarcheSteps: DemarcheSteps = {
   options: [
@@ -472,34 +431,32 @@ const demarcheSteps: DemarcheSteps = {
       icon2: "external-link",
       ctaText: "Évaluer mes droits en ligne",
       ctaField: "value2",
-      modalHeader: "Clique sur ce lien",
+      modalHeader: "Clique sur ce lien"
     },
     {
       texte: "En physique",
       logo: "pin",
       label1: "Adresse :",
       label2: null,
-      placeholder1:
-        "Indiquez ici l’adresse à laquelle les usagers doivent se rendre",
+      placeholder1: "Indiquez ici l’adresse à laquelle les usagers doivent se rendre",
       placeholder2: null,
       checkbox: "Je ne connais pas l’adresse exacte à ajouter",
       icon1: "pin",
       ctaText: "Voir l’adresse",
       ctaField: "value1",
-      modalHeader: "Ton lieu de rendez-vous est",
+      modalHeader: "Ton lieu de rendez-vous est"
     },
     {
       texte: "Par téléphone",
       logo: "phone-call",
       label1: "Numéro :",
       label2: null,
-      placeholder1:
-        "Insérez ici le numéro de téléphone à faire composer aux usagers",
+      placeholder1: "Insérez ici le numéro de téléphone à faire composer aux usagers",
       placeholder2: null,
       checkbox: "Je ne connais pas le numéro exact à ajouter",
       icon1: "phone-call",
       ctaText: "Voir le numéro de téléphone",
-      modalHeader: "Numéro à appeler",
+      modalHeader: "Numéro à appeler"
     },
     {
       texte: "Par courrier",
@@ -516,20 +473,18 @@ const demarcheSteps: DemarcheSteps = {
       icon3: "pin",
       icon4: "hash",
       ctaText: "Voir l’adresse postale",
-      modalHeader: "Ton courrier doit être adressé à",
+      modalHeader: "Ton courrier doit être adressé à"
     },
     {
       texte: "Autre",
       logo: "alert-triangle",
-      label1:
-        "Indiquez en deux mots le type de démarche que vous demandez à l’usager :",
+      label1: "Indiquez en deux mots le type de démarche que vous demandez à l’usager :",
       label2: null,
       placeholder1: "Type de démarche",
-      placeholder2:
-        "Expliquez maintenant les détails de l’action à réaliser pour réaliser l’étape",
+      placeholder2: "Expliquez maintenant les détails de l’action à réaliser pour réaliser l’étape",
       ctaText: "Bouton personnalisé",
-      modalHeader: "Ce que tu dois faire",
-    },
+      modalHeader: "Ce que tu dois faire"
+    }
   ],
   timeSteps: [
     { texte: "secondes" },
@@ -537,7 +492,7 @@ const demarcheSteps: DemarcheSteps = {
     { texte: "heures" },
     { texte: "jours" },
     { texte: "mois" },
-    { texte: "ans" },
+    { texte: "ans" }
   ],
   papiers: [
     { texte: "Acte de naissance" },
@@ -558,17 +513,18 @@ const demarcheSteps: DemarcheSteps = {
     { texte: "Récépissé de la demande d’asile" },
     { texte: "Récépissé de demande de titre de séjour " },
     { texte: "Relevé d’identité bancaire (RIB)" },
-    { texte: "Titre de séjour" },
-  ],
+    { texte: "Titre de séjour" }
+  ]
 };
 
 const customConvertOption = {
   blockToHTML: (block: any) => {
-    if (block.type === "header-six") { // "Bon à savoir" block
+    if (block.type === "header-six") {
+      // "Bon à savoir" block
       return {
         start:
           "<div class='bloc-rouge'> <div class='icon-left-side'> <span>i</span> </div> <div class='right-side'> <div><b>Bon à savoir :</b></div>",
-        end: "</div> </div>",
+        end: "</div> </div>"
       };
     }
     return null;
@@ -576,12 +532,7 @@ const customConvertOption = {
   entityToHTML: (entity: any, originalText: string) => {
     if (entity.type === "link" || entity.type === "LINK") {
       return (
-        <a
-          href={entity.data.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="edited-btn"
-        >
+        <a href={entity.data.url} target="_blank" rel="noopener noreferrer" className="edited-btn">
           {h2p(originalText)}
         </a>
       );
@@ -593,7 +544,7 @@ const customConvertOption = {
       );
     }
     return originalText;
-  },
+  }
 };
 
 const google_localities = [
@@ -609,56 +560,33 @@ const google_localities = [
   "sublocality_level_3",
   "sublocality_level_4",
   "sublocality_level_5",
-  "neighborhood",
+  "neighborhood"
 ];
-
-// to use when streamline icon is installed
-// const streamlineIconCorrespondency = [
-//   { titleIcon: "alert-triangle-outline", streamlineIcon: Alerts.AlertTriangle },
-//   {
-//     titleIcon: "papiers",
-//     streamlineIcon:
-//       GeometricFullBodySingleUserActionsNeutral.SingleNeutralActionsCheck2,
-//     evaIcon: "person-outline",
-//   },
-//   { titleIcon: "calendar-outline", streamlineIcon: Family.FamilyChild },
-//   { titleIcon: "clock-outline", streamlineIcon: Time.TimeClockCircle1 },
-//   {
-//     titleIcon: "frBubble",
-//     streamlineIcon: Conversation.ConversationChat1,
-//     evaIcon: "message-circle-outline",
-//   },
-//   {
-//     titleIcon: "pricetags-outline",
-//     streamlineIcon: Currencies.CurrencyEuroCircle,
-//   },
-// ];
 
 const streamlineIconCorrespondency = [
   { titleIcon: "alert-triangle-outline" },
   {
     titleIcon: "papiers",
-    evaIcon: "person-outline",
+    evaIcon: "person-outline"
   },
   { titleIcon: "calendar-outline" },
   { titleIcon: "clock-outline" },
   {
     titleIcon: "frBubble",
-    evaIcon: "message-circle-outline",
+    evaIcon: "message-circle-outline"
   },
   {
-    titleIcon: "pricetags-outline",
+    titleIcon: "pricetags-outline"
   },
   {
-    titleIcon: "pin-outline",
-  },
+    titleIcon: "pin-outline"
+  }
 ];
 
 export {
   contenu,
   menu,
   filtres,
-  onBoardSteps,
   importantCard,
   showModals,
   menuDemarche,
@@ -669,5 +597,5 @@ export {
   streamlineIconCorrespondency,
   cardTitlesDemarche,
   infocardsDemarcheTitles,
-  infocardFranceEntiere,
+  infocardFranceEntiere
 };

@@ -24,6 +24,14 @@ $breakpoint: "lg-limit";
   &.grey {
     background: $gray30;
   }
+
+  &.shadow {
+    box-shadow: 0 4px 18px 0 #0000001a;
+
+    &:hover {
+      box-shadow: 0 0 40px 0 #00000040;
+    }
+  }
 }
 
 .header {

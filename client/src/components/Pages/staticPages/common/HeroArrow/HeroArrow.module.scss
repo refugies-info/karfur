@@ -10,6 +10,11 @@
   margin-left: 80px;
   display: flex;
 
+  &.center {
+    margin-left: 0;
+    justify-content: center;
+  }
+
   @include isTablet() {
     margin-left: inherit;
     justify-content: center;

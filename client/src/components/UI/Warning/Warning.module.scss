@@ -1,0 +1,34 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$breakpoint: "lg-limit";
+
+.container {
+  padding: u(2);
+  border-radius: u(2);
+  display: flex;
+
+  &.red {
+    background: #f9e8e8;
+  }
+  &.purple {
+    background: #efe8f4;
+  }
+  &.orange {
+    background: #feebde;
+  }
+}
+
+.text {
+  margin-bottom: 0;
+  margin-left: u(2);
+
+  @include rtl() {
+    margin-left: 0;
+    margin-right: u(2);
+  }
+}

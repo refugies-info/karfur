@@ -25,6 +25,8 @@ import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { colors } from "colors";
+import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
+import { useLocale } from "hooks";
 
 const MainContainer = styled.div`
   background: ${colors.lightGrey};
@@ -62,9 +64,22 @@ const UserNotifications = (props: Props) => {
   const toggleReactionModal = () => setShowReactionModal(!showReactionModal);
 
   const dispatch = useDispatch();
+  const locale = useLocale();
   const structureId = useSelector(userStructureIdSelector);
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const userStructure = useSelector(userStructureSelector);
+
+  useEffect(() => {
+    // fetch structure to navigate to structure form
+    if (userStructure) {
+      dispatch(
+        fetchSelectedStructureActionCreator({
+          id: userStructure._id.toString(),
+          locale: locale
+        })
+      );
+    }
+  }, [userStructure, dispatch, locale]);
 
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
   const hasResponsibleSeenAnnuaireNotif = useSelector(userStructureHasResponsibleSeenNotification);
