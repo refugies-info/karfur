@@ -541,7 +541,7 @@ export const AdminContenu = () => {
           dispositifId={selectedContentId}
         />
       )}
-      <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
+      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>
   );
 };

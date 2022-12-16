@@ -15,10 +15,10 @@ import styles from "./WriteContentModal.module.scss";
 
 interface Props {
   show: boolean;
-  toggle: () => void;
+  close: () => void;
 }
 
-const WriteContentModal = ({ show, toggle }: Props) => {
+const WriteContentModal = ({ show, close }: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const user = useSelector(userSelector);
@@ -39,10 +39,11 @@ const WriteContentModal = ({ show, toggle }: Props) => {
   }, [show, user.user]);
 
   useEffect(() => {
-    if (!showWriteModal && !showCompleteProfilModal) {
-      toggle();
+    if (show && !showWriteModal && !showCompleteProfilModal) {
+      close();
     }
-  }, [showWriteModal, showCompleteProfilModal, toggle]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showWriteModal, showCompleteProfilModal, close]);
 
   const navigate = () => {
     const path = selected === "dispositif" ? "/dispositif" : "/demarche";
