@@ -20,8 +20,14 @@ const NewContent = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const allDispositifs = useSelector(activeDispositifsSelector);
-  const demarches = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
-  const dispositifs = useMemo(() => allDispositifs.slice(0, 15), [allDispositifs]);
+  const demarches = useMemo(
+    () => allDispositifs.filter((d) => d.typeContenu === "demarche").slice(0, 15),
+    [allDispositifs]
+  );
+  const dispositifs = useMemo(
+    () => allDispositifs.filter((d) => d.typeContenu === "dispositif").slice(0, 15),
+    [allDispositifs]
+  );
 
   const navigateType = (type: string) => {
     router.push({
