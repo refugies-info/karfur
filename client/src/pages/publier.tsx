@@ -412,7 +412,7 @@ const RecensezVotreAction = (props: Props) => {
         />
       </div>
 
-      <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
+      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>
   );
 };
