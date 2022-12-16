@@ -49,7 +49,7 @@ const Infos = () => {
     <div className={cls(commonStyles.section, styles.infos, "pb-0")}>
       <Container fluid className={cls(commonStyles.container, "text-center")}>
         <Row>
-          <Col className={commonStyles.bg_blue}>
+          <Col sm="12" lg="6" className={commonStyles.bg_blue}>
             <div className={styles.infos_col}>
               <Image src={NewsletterIllu} alt="" width={416} className={styles.img} />
               <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center text-white")}>
@@ -80,7 +80,7 @@ const Infos = () => {
               </div>
             </div>
           </Col>
-          <Col className={commonStyles.bg_grey}>
+          <Col sm="12" lg="6" className={commonStyles.bg_grey}>
             <div className={styles.infos_col}>
               <Image src={FormationPhoto} alt="" width={416} className={styles.img} />
               <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center")}>
@@ -88,7 +88,7 @@ const Infos = () => {
               </h2>
               <p className={commonStyles.subtitle}>{t("Homepage.trainingSubtitle")}</p>
               <div className={styles.action}>
-                <InlineLink text={t("Homepage.trainingCTA")} link="#" color="blue" />
+                <InlineLink text={t("Homepage.trainingCTA")} link="https://kit.refugies.info/formation/" color="blue" />
               </div>
             </div>
           </Col>
