@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 import logger from "../../logger";
 import { getStructureFromDB } from "./structure.repository";
 import { Membre } from "../../types/interface";
-import { StructureDoc } from "src/schema/schemaStructure";
+import { StructureDoc } from "../../schema/schemaStructure";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
   if (!membres) return false;
