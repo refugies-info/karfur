@@ -1513,7 +1513,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                 </noscript>
               </span>
             </div>
-            <div
+            <h3
               className="title"
               dangerouslySetInnerHTML={
                 {
