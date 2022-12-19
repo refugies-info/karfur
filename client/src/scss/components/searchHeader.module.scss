@@ -62,15 +62,14 @@
 
   @include media-max("xl-limit") {
     min-width: 0;
+    justify-content: center;
+
     .label {
       display: none;
     }
-    .icon {
-      margin: 0 u(4) !important;
-    }
   }
 
-  @include isTablet() {
+  @include isMobile() {
     width: 100%;
     justify-content: center;
     margin: 0;
@@ -98,7 +97,7 @@
       margin-left: u(4);
     }
 
-    @include media-min("lg-limit") {
+    @include media-min("md-limit") {
       margin-left: u(4);
       margin-right: u(4);
     }
