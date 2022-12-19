@@ -1,20 +1,22 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 @import "src/scss/variables";
 
 .contributors {
-  background: #F2F2F2;
+  background: #f2f2f2;
 
-  .header{
-    padding:40px 10px 40px 40px;
-
+  .header {
+    padding: 40px 10px 40px 40px;
   }
-  .subheader{
+  .subheader {
     display: inline;
 
-    h5{
+    .title {
       display: inline;
       margin-right: 6px;
+      font-size: 24px;
+      line-height: 27px;
       color: $gray90;
+      font-weight: bold;
     }
     .badge {
       margin-right: 33px;
@@ -23,12 +25,12 @@
     }
   }
 
-  .navigate_btn{
-    flex-grow:1;
+  .navigate_btn {
+    flex-grow: 1;
     display: flex;
     justify-content: flex-end;
 
-    a{
+    a {
       cursor: pointer;
     }
   }
@@ -38,11 +40,11 @@
   padding: 0 30px 16px 30px;
 
   &.nojs {
-    :global(.carousel-inner){
+    :global(.carousel-inner) {
       display: flex;
       flex-wrap: wrap;
     }
-    :global(.carousel-item){
+    :global(.carousel-item) {
       display: block;
       float: none;
       width: auto;
@@ -54,7 +56,7 @@
     display: flex;
   }
 
-  .card_wrapper{
+  .card_wrapper {
     padding: 0 10px;
   }
 }
@@ -62,15 +64,15 @@
 .card {
   background: $white;
   border-radius: $radius;
-  width:140px;
+  width: 140px;
   text-align: center;
   display: flex;
   justify-content: center;
-  border:none;
+  border: none;
   font-weight: bold;
   font-size: $text-normal;
 
-  .card_body{
+  .card_body {
     padding: 20px;
   }
 
@@ -81,7 +83,7 @@
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid #F6B93B;
+    border: 2px solid #f6b93b;
     display: block;
     overflow: hidden;
   }

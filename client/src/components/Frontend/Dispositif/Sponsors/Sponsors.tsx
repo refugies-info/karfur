@@ -493,7 +493,7 @@ class Sponsors extends Component<Props, State> {
         style={{ backgroundColor: this.props.mainTheme.colors.color100 }}
       >
         <div className={styles.wrapper}>
-          <h2 className="text-white">{"Proposé par"}</h2>
+          <div className={styles.title}>{"Proposé par"}</div>
           {!disableEdit && this.props.displayTuto && this.props.typeContenu === "dispositif" && (
             <FButton type="tuto" name="play-circle-outline" onClick={() => this.props.toggleTutorielModal("Sponsors")}>
               Tutoriel
