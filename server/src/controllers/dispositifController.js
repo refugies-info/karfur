@@ -4,7 +4,7 @@ const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import { getDispositifs } from "../workflows/dispositif/getDispositifs";
+import getDispositifs from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";

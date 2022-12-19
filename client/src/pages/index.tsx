@@ -22,7 +22,7 @@ import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
-import { DispositifStatistics, StructuresStatistics, TranslationStatistics } from "types/interface";
+import { DispositifStatistics, SearchDispositif, StructuresStatistics, TranslationStatistics } from "types/interface";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import commonStyles from "scss/components/staticPages.module.scss";
 
@@ -30,6 +30,8 @@ interface Props {
   contentStatistics: DispositifStatistics;
   structuresStatistics: StructuresStatistics;
   translationStatistics: TranslationStatistics;
+  demarches: SearchDispositif[];
+  dispositifs: SearchDispositif[];
 }
 
 const Homepage = (props: Props) => {
@@ -60,6 +62,8 @@ const Homepage = (props: Props) => {
         nbDemarches={props.contentStatistics.nbDemarches}
         nbDispositifs={props.contentStatistics.nbDispositifs}
         nbStructures={props.structuresStatistics.nbStructures}
+        demarches={props.demarches}
+        dispositifs={props.dispositifs}
       />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches} />
@@ -96,12 +100,31 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   const structuresStatistics = (await API.getStructuresStatistics()).data.data;
   const translationStatistics = (await API.getTranslationStatistics()).data.data;
 
+  const demarches = (
+    await API.getDispositifs({
+      query: { status: "Actif", typeContenu: "demarche" },
+      limit: 15,
+      sort: "publishedAt",
+      locale: locale
+    })
+  ).data.data;
+  const dispositifs = (
+    await API.getDispositifs({
+      query: { status: "Actif", typeContenu: "dispositif" },
+      limit: 15,
+      sort: "publishedAt",
+      locale: locale
+    })
+  ).data.data;
+
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       contentStatistics,
       structuresStatistics,
-      translationStatistics
+      translationStatistics,
+      demarches,
+      dispositifs
     },
     revalidate: 60 * 10
   };
