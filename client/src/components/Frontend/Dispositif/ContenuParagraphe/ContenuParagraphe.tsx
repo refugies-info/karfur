@@ -91,7 +91,6 @@ interface Props {
   deleteCard: (key: any, subkey: any, type: any) => void;
   setMarkers: (markers: any, key: any, subkey: any) => void;
   toggleShareContentOnMobileModal: () => any;
-  upcoming: () => void;
 }
 const ContenuParagraphe = (props: Props) => {
   const { t } = useTranslation();
@@ -233,7 +232,6 @@ const ContenuParagraphe = (props: Props) => {
                 theme={props.mainTheme}
                 typeContenu={props.typeContenu}
                 uiArray={props.uiArray}
-                upcoming={props.upcoming}
                 content={props.content}
                 keyValue={props.keyValue}
                 updateUIArray={props.updateUIArray}

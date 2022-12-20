@@ -6,12 +6,15 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   AdminOption,
+  DispositifFacets,
   DispositifStatistics,
   IDispositif,
   NbDispositifsByRegion,
   Need,
+  StructureFacets,
   StructuresStatistics,
   Theme,
+  TranslationFacets,
   TranslationStatistics,
   User,
   Widget
@@ -242,8 +245,8 @@ const API = {
       headers
     });
   },
-  getDispositifsStatistics: (): Promise<Response<DispositifStatistics>> => {
-    return instance.get("/dispositifs/statistics");
+  getDispositifsStatistics: (facets?: DispositifFacets[]): Promise<Response<DispositifStatistics>> => {
+    return instance.get("/dispositifs/statistics", { params: { facets } });
   },
 
   // Mail
@@ -300,8 +303,8 @@ const API = {
     return instance.get("/structures/getActiveStructures");
   },
   getAllStructures: () => instance.get("/structures/getAllStructures"),
-  getStructuresStatistics: (): Promise<Response<StructuresStatistics>> => {
-    return instance.get("/structures/statistics");
+  getStructuresStatistics: (facets?: StructureFacets[]): Promise<Response<StructuresStatistics>> => {
+    return instance.get("/structures/statistics", { params: { facets } });
   },
 
   // Needs
@@ -433,8 +436,8 @@ const API = {
       headers
     });
   },
-  getTranslationStatistics: (): Promise<Response<TranslationStatistics>> => {
-    return instance.get("/traduction/statistics");
+  getTranslationStatistics: (facets?: TranslationFacets[]): Promise<Response<TranslationStatistics>> => {
+    return instance.get("/traduction/statistics", { params: { facets } });
   },
 
   // Langues

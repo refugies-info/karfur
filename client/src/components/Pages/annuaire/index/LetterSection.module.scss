@@ -20,9 +20,6 @@
 }
 
 .structure_container {
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
   background: $white;
   border-radius: $radius;
   width: 198px;
@@ -46,9 +43,14 @@
 }
 
 .list_item {
-  position: relative
+  position: relative;
 }
 .anchor {
   position: absolute;
   top: -250px;
+}
+.title {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
 }

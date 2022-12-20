@@ -77,8 +77,12 @@ describe("getDispositifArray", () => {
   };
   it("should call Dispositif when query has no audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList),
+      sort: jest.fn().mockReturnValueOnce({
+        limit: jest.fn().mockReturnValueOnce({
+          lean: jest.fn().mockReturnValueOnce({
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          })
+        })
       })
     });
     const query = { status: "Actif" };
@@ -90,14 +94,18 @@ describe("getDispositifArray", () => {
   });
   it("should call Dispositif with extra fields", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList),
+      sort: jest.fn().mockReturnValueOnce({
+        limit: jest.fn().mockReturnValueOnce({
+          lean: jest.fn().mockReturnValueOnce({
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          })
+        })
       })
     });
 
     const query = { status: "Actif" };
 
-    const res = await getDispositifArray(query, {updatedAt: 1});
+    const res = await getDispositifArray(query, { updatedAt: 1 });
 
     expect(Dispositif.find).toHaveBeenCalledWith(query, {
       ...neededFields,
@@ -108,8 +116,12 @@ describe("getDispositifArray", () => {
 
   it("should call Dispositif when query has bottom audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList),
+      sort: jest.fn().mockReturnValueOnce({
+        limit: jest.fn().mockReturnValueOnce({
+          lean: jest.fn().mockReturnValueOnce({
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          })
+        })
       })
     });
 
@@ -123,8 +135,12 @@ describe("getDispositifArray", () => {
 
   it("should call Dispositif when query has bottom audience age", async () => {
     Dispositif.find.mockReturnValueOnce({
-      lean: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList),
+      sort: jest.fn().mockReturnValueOnce({
+        limit: jest.fn().mockReturnValueOnce({
+          lean: jest.fn().mockReturnValueOnce({
+            populate: jest.fn().mockResolvedValue(dispositifsList),
+          })
+        })
       })
     });
 

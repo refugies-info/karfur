@@ -180,7 +180,7 @@ const menuDemarche: DispositifContent[] = [
       {
         isFakeContent: true,
         type: "etape",
-
+        // TODO: not used?
         content: "",
         papiers: [],
         duree: "00",
@@ -392,130 +392,37 @@ const cardTitlesDemarche = [
   }
 ];
 
-export type Option = {
-  texte: string;
-  logo: string;
-  label1: string | null;
-  label2: string | null;
-  placeholder1: string;
-  placeholder2: string | null;
-  placeholder3?: string;
-  placeholder4?: string;
-  checkbox?: string;
-  icon1?: string;
-  icon2?: string;
-  icon3?: string;
-  icon4?: string;
-  ctaText: string;
-  ctaField?: string;
-  modalHeader: string;
-};
-
-export type DemarcheSteps = {
-  options: Option[];
-  timeSteps: { texte: string }[];
-  papiers: { texte: string }[];
-};
-
-const demarcheSteps: DemarcheSteps = {
-  options: [
-    {
-      texte: "En ligne",
-      logo: "at",
-      label1: "Lien vers la démarche :",
-      label2: "Texte sur le bouton :",
-      placeholder1: "Copiez-collez ici l’URL de votre lien",
-      placeholder2: "Ex : “Évaluer mes droits en ligne”",
-      checkbox: "Je ne connais pas le lien exact à ajouter",
-      icon1: "link-2",
-      icon2: "external-link",
-      ctaText: "Évaluer mes droits en ligne",
-      ctaField: "value2",
-      modalHeader: "Clique sur ce lien"
-    },
-    {
-      texte: "En physique",
-      logo: "pin",
-      label1: "Adresse :",
-      label2: null,
-      placeholder1: "Indiquez ici l’adresse à laquelle les usagers doivent se rendre",
-      placeholder2: null,
-      checkbox: "Je ne connais pas l’adresse exacte à ajouter",
-      icon1: "pin",
-      ctaText: "Voir l’adresse",
-      ctaField: "value1",
-      modalHeader: "Ton lieu de rendez-vous est"
-    },
-    {
-      texte: "Par téléphone",
-      logo: "phone-call",
-      label1: "Numéro :",
-      label2: null,
-      placeholder1: "Insérez ici le numéro de téléphone à faire composer aux usagers",
-      placeholder2: null,
-      checkbox: "Je ne connais pas le numéro exact à ajouter",
-      icon1: "phone-call",
-      ctaText: "Voir le numéro de téléphone",
-      modalHeader: "Numéro à appeler"
-    },
-    {
-      texte: "Par courrier",
-      logo: "email",
-      label1: null,
-      label2: null,
-      placeholder1: "Numéro et libéllé de la voie",
-      placeholder2: "Code postal",
-      placeholder3: "Ville",
-      placeholder4: "Cedex",
-      checkbox: "Je ne connais pas l’adresse postale exacte à ajouter",
-      icon1: "home",
-      icon2: "hash",
-      icon3: "pin",
-      icon4: "hash",
-      ctaText: "Voir l’adresse postale",
-      modalHeader: "Ton courrier doit être adressé à"
-    },
-    {
-      texte: "Autre",
-      logo: "alert-triangle",
-      label1: "Indiquez en deux mots le type de démarche que vous demandez à l’usager :",
-      label2: null,
-      placeholder1: "Type de démarche",
-      placeholder2: "Expliquez maintenant les détails de l’action à réaliser pour réaliser l’étape",
-      ctaText: "Bouton personnalisé",
-      modalHeader: "Ce que tu dois faire"
-    }
-  ],
-  timeSteps: [
-    { texte: "secondes" },
-    { texte: "minutes" },
-    { texte: "heures" },
-    { texte: "jours" },
-    { texte: "mois" },
-    { texte: "ans" }
-  ],
-  papiers: [
-    { texte: "Acte de naissance" },
-    { texte: "Attestation CAF" },
-    { texte: "Attestation CMU-C" },
-    { texte: "Attestation de diplôme ou d’équivalence" },
-    { texte: "Avis de taxe foncière" },
-    { texte: "Avis d’imposition" },
-    { texte: "Carte de bénéficiaire de l’AME" },
-    { texte: "Carte de mutuelle" },
-    { texte: "Carte de résident" },
-    { texte: "Carte Vitale" },
-    { texte: "Curriculum Vitae (CV)" },
-    { texte: "Justificatif d’abonnement transport" },
-    { texte: "Justificatif de domicile" },
-    { texte: "Passeport" },
-    { texte: "Permis de conduire" },
-    { texte: "Récépissé de la demande d’asile" },
-    { texte: "Récépissé de demande de titre de séjour " },
-    { texte: "Relevé d’identité bancaire (RIB)" },
-    { texte: "Titre de séjour" }
-  ]
-};
+const onBoardSteps = [
+  {
+    title: "C’est parti !",
+    firstStep: true
+  },
+  {
+    title: "Modifiez directement le texte",
+    content: (
+      <h5>
+        Cliquez sur les éléments surlignés <span className="texte-jaune">en jaune</span> pour saisir votre texte.
+      </h5>
+    )
+  },
+  {
+    title: "Suivez le guide",
+    content: (
+      <h5>
+        Des consignes sont proposées pour chaque <span className="texte-jaune">élément modifiable</span>.
+      </h5>
+    )
+  },
+  {
+    title: "Tout à portée de main",
+    content: (
+      <h5>
+        Ce menu vous suit dans votre rédaction. Vous pouvez désactiver les consignes, sauvegarder votre brouillon et
+        accéder à <span className="texte-rouge">plus d’aide</span>.
+      </h5>
+    )
+  }
+];
 
 const customConvertOption = {
   blockToHTML: (block: any) => {
@@ -590,7 +497,6 @@ export {
   importantCard,
   showModals,
   menuDemarche,
-  demarcheSteps,
   customConvertOption,
   google_localities,
   cardTitlesDispositif,

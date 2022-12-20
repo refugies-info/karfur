@@ -10,7 +10,13 @@ export const getDispositifsFromDB = async (needFields: Object): Promise<IDisposi
     .populate("lastModificationAuthor publishedAtAuthor", "username");
 
 
-export const getDispositifArray = async (query: any, extraFields: any = {}, populate: string = "") => {
+export const getDispositifArray = async (
+  query: any,
+  extraFields: any = {},
+  populate: string = "",
+  limit: number = 0,
+  sort: any = {}
+) => {
   const neededFields = {
     titreInformatif: 1,
     titreMarque: 1,
@@ -30,7 +36,7 @@ export const getDispositifArray = async (query: any, extraFields: any = {}, popu
     ...extraFields
   };
 
-  return await Dispositif.find(query, neededFields).lean().populate(populate);
+  return await Dispositif.find(query, neededFields).sort(sort).limit(limit).lean().populate(populate);
 };
 
 export const updateDispositifInDB = async (

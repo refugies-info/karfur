@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { Row, Input, FormGroup, Label, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import Image from "next/legacy/image";
+import Link from "next/link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { isMobile } from "react-device-detect";
 import isEmpty from "lodash/isEmpty";
 import uniqBy from "lodash/uniqBy";
 import API from "utils/API";
+import { getPath } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import SearchBar from "components/UI/SearchBar/SearchBar";
@@ -493,7 +495,7 @@ class Sponsors extends Component<Props, State> {
         style={{ backgroundColor: this.props.mainTheme.colors.color100 }}
       >
         <div className={styles.wrapper}>
-          <h2 className="text-white">{"Proposé par"}</h2>
+          <div className={styles.title}>{"Proposé par"}</div>
           {!disableEdit && this.props.displayTuto && this.props.typeContenu === "dispositif" && (
             <FButton type="tuto" name="play-circle-outline" onClick={() => this.props.toggleTutorielModal("Sponsors")}>
               Tutoriel
@@ -522,18 +524,27 @@ class Sponsors extends Component<Props, State> {
               {deduplicatedSponsors.length !== 0 || !disableEdit ? <SectionTitle>Responsable</SectionTitle> : null}
               {mainSponsor && mainSponsor._id ? (
                 <div className={cls(styles.sponsor_card, disableEdit && styles.no_edit)}>
-                  <ImageLink href={`${burl}annuaire/${mainSponsor._id}`} target="_blank" rel="noopener noreferrer">
-                    {mainSponsor?.picture?.secure_url && (
-                      <Image
-                        className={styles.sponsor_img}
-                        src={mainSponsor.picture.secure_url}
-                        alt={mainSponsor.acronyme}
-                        width={160}
-                        height={110}
-                        objectFit="contain"
-                      />
-                    )}
-                  </ImageLink>
+                  <Link
+                    legacyBehavior
+                    href={{
+                      pathname: getPath("/annuaire/[id]", this.props.locale),
+                      query: { id: mainSponsor._id.toString() }
+                    }}
+                    passHref
+                  >
+                    <ImageLink target="_blank" rel="noopener noreferrer">
+                      {mainSponsor?.picture?.secure_url && (
+                        <Image
+                          className={styles.sponsor_img}
+                          src={mainSponsor.picture.secure_url}
+                          alt={mainSponsor.nom}
+                          width={160}
+                          height={110}
+                          objectFit="contain"
+                        />
+                      )}
+                    </ImageLink>
+                  </Link>
                   <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
                   {!disableEdit ? (
                     <DeleteButtonFull onClick={() => deleteMainSponsor()}>
@@ -600,7 +611,7 @@ class Sponsors extends Component<Props, State> {
                             <Image
                               className={styles.sponsor_img}
                               src={sponsor.picture.secure_url}
-                              alt={sponsor.alt}
+                              alt={sponsor.nom}
                               width={160}
                               height={110}
                               objectFit="contain"
@@ -612,7 +623,7 @@ class Sponsors extends Component<Props, State> {
                               <Image
                                 className={styles.sponsor_img}
                                 src={sponsor.picture.secure_url}
-                                alt={sponsor.alt}
+                                alt={sponsor.nom}
                                 width={160}
                                 height={110}
                                 objectFit="contain"

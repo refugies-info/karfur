@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Carousel,
-  CarouselItem,
-  Badge,
-} from "reactstrap";
+import { Row, Col, Card, CardBody, Carousel, CarouselItem, Badge } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/legacy/image";
 import { colors } from "colors";
@@ -58,33 +50,20 @@ const ContribCarousel = (props: Props) => {
     <div className={styles.contributors}>
       <Row className={styles.header}>
         <Col lg="auto" className={styles.subheader}>
-          <h5>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</h5>
+          <div className={styles.title}>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</div>
           <sup>
             <Badge color="light" className={styles.badge}>
               {reducedContributors.length}
             </Badge>
           </sup>
-          <span>
-            {t(
-              "Dispositif.Tiennent la page",
-              "Tiennent la page à jour et répondent à vos questions"
-            )}
-          </span>
+          <span>{t("Dispositif.Tiennent la page", "Tiennent la page à jour et répondent à vos questions")}</span>
         </Col>
         <Col lg="auto" className={styles.navigate_btn}>
           <button className="reset-btn" onClick={() => previous(reducedContributors.length)}>
-            <EVAIcon
-              name="arrow-ios-back-outline"
-              size="large"
-              fill={colors.gray90}
-            />
+            <EVAIcon name="arrow-ios-back-outline" size="large" fill={colors.gray90} />
           </button>
           <button className="reset-btn" onClick={() => next(reducedContributors.length)}>
-            <EVAIcon
-              name="arrow-ios-forward-outline"
-              size="large"
-              fill={colors.gray90}
-            />
+            <EVAIcon name="arrow-ios-forward-outline" size="large" fill={colors.gray90} />
           </button>
         </Col>
       </Row>
@@ -97,28 +76,16 @@ const ContribCarousel = (props: Props) => {
         {reducedContributors.map((item, key) => {
           if (Array.isArray(item)) {
             return (
-              <CarouselItem
-                onExiting={onExiting}
-                onExited={onExited}
-                key={key}
-              >
+              <CarouselItem onExiting={onExiting} onExited={onExited} key={key}>
                 <div className={styles.item}>
                   {(item || []).map((contrib, subkey) => {
-                    const contribImg =
-                      (contrib.picture || {}).secure_url || marioProfile;
+                    const contribImg = (contrib.picture || {}).secure_url || marioProfile;
                     return (
                       <div className={styles.card_wrapper} key={subkey}>
                         <Card className={styles.card}>
                           <CardBody className={styles.card_body}>
-                            <span
-                              className={styles.img}
-                            >
-                              <Image
-                                src={contribImg}
-                                alt="juliette"
-                                width={80}
-                                height={80}
-                              />
+                            <span className={styles.img}>
+                              <Image src={contribImg} alt="juliette" width={80} height={80} />
                             </span>
                             {contrib.username}
                           </CardBody>

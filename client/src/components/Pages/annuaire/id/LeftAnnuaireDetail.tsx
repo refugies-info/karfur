@@ -13,7 +13,7 @@ import { getPath, isRoute } from "routes";
 interface Props {
   structure: Structure | null;
   isLoading: boolean;
-  history: string[]
+  history: string[];
 }
 
 export const LeftAnnuaireDetail = (props: Props) => {
@@ -37,11 +37,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
     return (
       <div className={styles.container}>
         <div style={{ marginBottom: "33px" }}>
-          <FButton
-            type="login"
-            name="arrow-back-outline"
-            onClick={onClickGoBack}
-          >
+          <FButton type="login" name="arrow-back-outline" onClick={onClickGoBack}>
             {t("Annuaire.Retour à l'annuaire", "Retour à l'annuaire")}
           </FButton>
         </div>
@@ -49,7 +45,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
           <div className={styles.logo}>
             <Image
               src={getSecureUrl(props.structure.picture)}
-              alt={props.structure.acronyme}
+              alt={props.structure.nom}
               className={styles.img}
               width={232}
               height={150}
@@ -58,10 +54,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
           </div>
           {props.structure.structureTypes &&
             props.structure.structureTypes.map((structureType) => (
-              <StructureType
-                type={structureType}
-                key={structureType}
-              />
+              <StructureType type={structureType} key={structureType} />
             ))}
         </div>
         <SocialsLink

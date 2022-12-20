@@ -71,7 +71,7 @@ const Dashboard = (props: Props) => {
           setFiguresByRegion(data.data.data.regionFigures);
           setDispositifsWithoutGeoloc(data.data.data.dispositifsWithoutGeoloc);
         }),
-        API.getDispositifsStatistics().then((data) => {
+        API.getDispositifsStatistics(["nbMercis", "nbVues", "nbVuesMobile"]).then((data) => {
           setStatistics(data.data.data);
         }),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {

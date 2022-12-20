@@ -128,9 +128,9 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           <div className={styles.title_container}>
             {!structure.acronyme && <div className={styles.title}>{structure.nom}</div>}
             {structure.acronyme && (
-              <div className={styles.title}>
+              <h1 className={styles.title}>
                 {structure.nom} <span style={{ color: "#828282" }}>{"- " + structure.acronyme}</span>{" "}
-              </div>
+              </h1>
             )}
           </div>
           {hasUpdatePermission && (
@@ -211,7 +211,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </div>
         </div>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <div className={styles.title}>{t("Annuaire.Activités et services", "Activités et services")}</div>
+          <h2 className={styles.title}>{t("Annuaire.Activités et services", "Activités et services")}</h2>
         </div>
         <div className={styles.activity_container}>
           {activitiesSortedByTheme &&

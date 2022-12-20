@@ -6,7 +6,6 @@ import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
-import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
@@ -24,7 +23,6 @@ export {
   ResponsableModal,
   RejectionModal,
   RejectTradModal,
-  EtapeModal,
   TagsModal,
   FrameModal,
   Modal,

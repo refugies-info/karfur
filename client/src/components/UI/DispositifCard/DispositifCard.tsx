@@ -85,7 +85,7 @@ const DispositifCard = (props: Props) => {
           </span>
         </div>
 
-        <div
+        <h3
           className={styles.title}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif }}
