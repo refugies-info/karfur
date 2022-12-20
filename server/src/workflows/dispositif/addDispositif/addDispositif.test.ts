@@ -276,7 +276,9 @@ describe("addDispositif", () => {
       contenu: "contenu",
       typeContenu: "Brouillon",
       theme: { _id: "theme1", short: { fr: "theme" } },
-      secondaryThemes: []
+      secondaryThemes: [],
+
+      bypassReview: false
     };
     const req = {
       fromSite: true,
@@ -286,7 +288,7 @@ describe("addDispositif", () => {
     };
     await addDispositif(req, res);
     expect(getDispositifByIdWithMainSponsor).toHaveBeenCalledWith("dispoId", "all");
-    expect(updateTraductions).toHaveBeenCalledWith(originalDis, dispositif, "userId");
+    expect(updateTraductions).toHaveBeenCalledWith(originalDis, dispositif, "userId", false);
     expect(updateDispositifInDB).toHaveBeenCalledWith("dispoId", dispositif);
     expect(addOrUpdateDispositifInContenusAirtable).not.toHaveBeenCalled();
     expect(updateLanguagesAvancement).toHaveBeenCalledWith();
