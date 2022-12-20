@@ -6,3 +6,5 @@ export { default as InlineLink } from "./InlineLink";
 export { default as Register } from "./Register";
 export { default as SecondaryNavbar } from "./SecondaryNavbar";
 export { default as StepContent } from "./StepContent";
+export { default as CountUpFigure } from "./CountUpFigure";
+export { default as LanguageIcon } from "./LanguageIcon";

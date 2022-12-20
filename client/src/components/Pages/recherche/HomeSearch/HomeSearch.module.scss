@@ -47,7 +47,7 @@
     white-space: nowrap;
 
     &:hover {
-      background: $gray60;
+      background: $gray60 !important;
     }
 
     @include isMobile() {

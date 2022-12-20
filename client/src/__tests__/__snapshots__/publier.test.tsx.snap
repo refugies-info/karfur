@@ -397,7 +397,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            className="media col"
+            className="media center col"
           >
             <span
               style={

@@ -27,6 +27,7 @@ interface Props {
   withImages?: boolean; // not compatible with multi open
   multiOpen?: boolean;
   initOpen?: boolean;
+  mediaAlign?: "right" | "center";
 }
 
 const Accordion = (props: Props) => {
@@ -99,7 +100,7 @@ const Accordion = (props: Props) => {
         })}
       </Col>
       {!isTablet && props.withImages && open.length > 0 && (
-        <Col className={styles.media}>
+        <Col className={cls(styles.media, props.mediaAlign === "center" ? styles.center : styles.right)}>
           {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}
           {props.items[open[0]]?.video && getMedia("video", props.items[open[0]])}
           {props.items[open[0]]?.youtube && getMedia("youtube", props.items[open[0]])}
