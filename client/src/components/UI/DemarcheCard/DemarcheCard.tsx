@@ -77,7 +77,7 @@ const DemarcheCard = (props: Props) => {
         <div>
           <Image src={demarcheIcon} width={48} height={48} alt="" />
         </div>
-        <div
+        <h3
           className={styles.title}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}

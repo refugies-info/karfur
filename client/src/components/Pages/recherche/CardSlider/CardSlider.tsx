@@ -46,7 +46,7 @@ const CardSlider = (props: Props) => {
         : 0;
       setMaxPage(newMaxPage);
     }, 200); // fix because scrollWidth seems not accurate for demarches
-  }, [margins]);
+  }, [margins, props.cards]);
 
   useEffect(() => {
     if (!slider.current) return;

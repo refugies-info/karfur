@@ -15,8 +15,12 @@ $tailleBig: 80px;
     padding-right: 0;
     padding-left: 0;
   }
-  h4 {
+  .title {
     margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 27px;
+
     @include isMobile() {
       font-size: 28px;
     }
@@ -36,7 +40,6 @@ $tailleBig: 80px;
     @include rtl() {
       margin-left: 0;
       margin-right: 32px;
-
     }
   }
 }
@@ -256,14 +259,14 @@ $tailleBig: 80px;
     cursor: pointer;
   }
   &.add {
-    background: #F9EF99;
+    background: #f9ef99;
     cursor: pointer;
 
     &:hover {
       border: 2px solid #212121;
     }
   }
-  &.nolink{
+  &.nolink {
     cursor: auto !important;
   }
 

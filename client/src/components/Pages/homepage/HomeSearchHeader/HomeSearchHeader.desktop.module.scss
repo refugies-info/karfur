@@ -16,7 +16,7 @@
   align-items: stretch;
   margin-top: 56px;
 
-  @include isTablet() {
+  @include isMobile() {
     margin-top: 0;
   }
 }
@@ -24,4 +24,5 @@
 .inputs {
   display: flex;
   flex-grow: 1;
+  min-width: 0;
 }
