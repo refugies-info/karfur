@@ -18,9 +18,10 @@ import {
   StepContent,
   InlineLink,
   Register,
-  HeroArrow
+  HeroArrow,
+  CountUpFigure
 } from "components/Pages/staticPages/common";
-import { TestimonySlider, CardExample, CountUpFigure } from "components/Pages/staticPages/publier";
+import { TestimonySlider, CardExample } from "components/Pages/staticPages/publier";
 import WriteContentModal from "components/Modals/WriteContentModal/WriteContentModal";
 import WhyImage1 from "assets/staticPages/publier/why-image-1.png";
 import WhyImage4 from "assets/staticPages/publier/why-image-4.png";
