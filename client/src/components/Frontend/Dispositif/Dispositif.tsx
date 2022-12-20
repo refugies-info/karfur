@@ -154,7 +154,6 @@ const Dispositif = (props: Props) => {
   const newRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = createRef<any>();
 
-  const [accordion, setAccordion] = useState(new Array(1).fill(false));
   const [disableEdit, setDisableEdit] = useState(true);
   const [isModified, setIsModified] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -204,6 +203,10 @@ const Dispositif = (props: Props) => {
   // Initial data
   const [menu, setMenu] = useState<DispositifContent[]>(dispositif ? generateMenu(dispositif) : []);
   const timer = useRef<any>();
+
+  useEffect(() => {
+    setMenu(dispositif ? generateMenu(dispositif) : []);
+  }, [dispositif, router.locale]);
 
   useEffect(() => {
     if ((API.isAuth() && !user) || isLoaded) return;

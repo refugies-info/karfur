@@ -24,7 +24,7 @@ export function* fetchSelectedDispositif(
     const { selectedDispositifId, locale } = action.payload;
     logger.info(
       "[fetchSelectedDispositif] start fetching selected dispositif",
-      { id: selectedDispositifId }
+      { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
       const data = yield call(API.get_dispositif, {
