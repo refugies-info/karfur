@@ -16664,7 +16664,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          className="media col"
+          className="media right col"
         >
           <video
             className="video"

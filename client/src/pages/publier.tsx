@@ -140,18 +140,21 @@ const RecensezVotreAction = (props: Props) => {
                 {
                   title: t("Publish.whyAccordionTitle2"),
                   text: t("Publish.whyAccordionText2"),
-                  video: "/video/publier-video-why2.mp4"
+                  video: "/video/publier-video-why2.mp4",
+                  mediaWidth: 203
                 },
                 {
                   title: t("Publish.whyAccordionTitle3"),
                   text: t("Publish.whyAccordionText3"),
-                  video: "/video/publier-video-why3.mp4"
+                  video: "/video/publier-video-why3.mp4",
+                  mediaWidth: 350
                 },
                 { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 }
               ]}
               withImages
               initOpen
               multiOpen={!!isTablet}
+              mediaAlign="center"
             />
           </Container>
         </div>

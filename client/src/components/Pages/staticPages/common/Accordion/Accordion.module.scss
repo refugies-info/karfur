@@ -43,7 +43,7 @@
 .infos {
   &.with_images {
     @include media-min("lg-limit") {
-      max-width: 500px;
+      width: 50%;
       flex-grow: 0;
       flex-basis: auto;
     }
@@ -94,9 +94,16 @@
 }
 
 .media {
+  width: 50%;
   align-items: center;
   display: flex;
-  justify-content: flex-end;
+
+  &.center {
+    justify-content: center;
+  }
+  &.right {
+    justify-content: flex-end;
+  }
 }
 
 .youtube {
