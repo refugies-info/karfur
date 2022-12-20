@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
-import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
+import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import {
   inputFocusedSelector,
