@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { getStatistics } from "./getStatistics";
+import getStatistics from "./getStatistics";
 import { getNbStructures, getStructuresFromDB } from "../../../modules/structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
@@ -15,14 +15,71 @@ jest.mock("../../../modules/structure/structure.repository", () => ({
   getStructuresFromDB: jest.fn()
 }));
 
-const req = {};
+const req = { query: {} };
 
 describe("getStatistics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should return correct result", async () => {
+  it("should return nbStructures facet", async () => {
+    const res = mockResponse();
+
+    await getStatistics[1]({ query: { facets: ["nbStructures"] } }, res);
+    expect(getNbStructures).toHaveBeenCalled();
+    expect(getStructuresFromDB).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "OK",
+      data: {
+        nbStructures: 12,
+      }
+    });
+  });
+
+  it("should return nbStructures and nbCDA facets", async () => {
+    const res = mockResponse();
+
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        membres: [
+          { userId: 1, roles: ["administrateur"] },
+          { userId: 2, roles: ["administrateur", "contributeur"] },
+          { userId: 3, roles: ["contributeur"] },
+        ]
+      },
+      {
+        // ok if no members
+      },
+      {
+        membres: [
+          { userId: 1, roles: ["contributeur"] },
+        ]
+      },
+      {
+        membres: [
+          { userId: 1, roles: ["administrateur"] }, // same id, don't count
+          { userId: 4, roles: ["administrateur"] },
+        ]
+      },
+    ]);
+
+    await getStatistics[1]({ query: { facets: ["nbStructures", "nbCDA"] } }, res);
+    expect(getNbStructures).toHaveBeenCalled();
+    expect(getStructuresFromDB).toHaveBeenCalledTimes(1);
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "OK",
+      data: {
+        nbStructures: 12,
+        nbCDA: 3,
+      }
+    });
+  });
+
+  it("should return all facets", async () => {
     const res = mockResponse();
     getStructuresFromDB.mockResolvedValueOnce([{
       membres: [
@@ -56,7 +113,7 @@ describe("getStatistics", () => {
       },
     ]);
 
-    await getStatistics(req, res);
+    await getStatistics[1](req, res);
     expect(getNbStructures).toHaveBeenCalled();
     expect(getStructuresFromDB).toHaveBeenCalledTimes(2);
 
@@ -77,7 +134,7 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics(req, res);
+    await getStatistics[1](req, res);
     expect(getNbStructures).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });

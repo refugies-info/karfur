@@ -1,12 +1,11 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Button, Container } from "reactstrap";
-import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { cls } from "lib/classname";
+import { SearchDispositif } from "types/interface";
 import { getPath } from "routes";
 import CardSlider from "components/Pages/recherche/CardSlider";
-import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./NewContent.module.scss";
 
@@ -14,20 +13,13 @@ interface Props {
   nbDemarches: number;
   nbDispositifs: number;
   nbStructures: number;
+  demarches: SearchDispositif[];
+  dispositifs: SearchDispositif[];
 }
 
 const NewContent = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const allDispositifs = useSelector(activeDispositifsSelector);
-  const demarches = useMemo(
-    () => allDispositifs.filter((d) => d.typeContenu === "demarche").slice(0, 15),
-    [allDispositifs]
-  );
-  const dispositifs = useMemo(
-    () => allDispositifs.filter((d) => d.typeContenu === "dispositif").slice(0, 15),
-    [allDispositifs]
-  );
 
   const navigateType = (type: string) => {
     router.push({
@@ -46,7 +38,7 @@ const NewContent = (props: Props) => {
           <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: props.nbDemarches })}</h2>
           <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
         </div>
-        <CardSlider cards={demarches} type="demarche" />
+        <CardSlider cards={props.demarches} type="demarche" />
         <div className={styles.title}>
           <h2 className="h4">
             {t("Homepage.infoTypeDispositif", {
@@ -56,7 +48,7 @@ const NewContent = (props: Props) => {
           </h2>
           <Button onClick={() => navigateType("dispositif")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>
         </div>
-        <CardSlider cards={dispositifs} type="dispositif" />
+        <CardSlider cards={props.dispositifs} type="dispositif" />
       </Container>
     </div>
   );

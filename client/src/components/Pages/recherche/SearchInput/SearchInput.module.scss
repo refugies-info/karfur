@@ -109,6 +109,11 @@
 
     &.empty {
       font-weight: normal;
+
+      @include isMobile() {
+        padding-right: 0;
+        padding-left: 0;
+      }
     }
   }
 

@@ -10,7 +10,7 @@ interface Props {}
 
 const HomeSearchHeader = (props: Props) => {
   const dispatch = useDispatch();
-  const { isTablet } = useWindowSize();
+  const { isMobile } = useWindowSize();
 
   const addToQuery = useCallback(
     (query: Partial<SearchQuery>) => {
@@ -56,7 +56,7 @@ const HomeSearchHeader = (props: Props) => {
     onChangeSearchInput
   };
 
-  return !isTablet ? <HomeSearchHeaderDesktop {...filterProps} /> : <HomeSearchHeaderMobile {...filterProps} />;
+  return !isMobile ? <HomeSearchHeaderDesktop {...filterProps} /> : <HomeSearchHeaderMobile {...filterProps} />;
 };
 
 export default HomeSearchHeader;

@@ -419,14 +419,16 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = await API.getDispositifsStatistics().then((data) => data.data.data);
-  const structStatistics = await API.getStructuresStatistics().then((data) => data.data.data);
+  const dispStatistics = (
+    await API.getDispositifsStatistics(["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"])
+  ).data.data;
+  const structStatistics = (await API.getStructuresStatistics(["nbStructures"])).data.data;
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-      nbVues: dispStatistics.nbVues + dispStatistics.nbVuesMobile,
-      nbFiches: dispStatistics.nbDispositifs + dispStatistics.nbDemarches,
+      nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
+      nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
       nbStructures: structStatistics.nbStructures
     },
     revalidate: 60

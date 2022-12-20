@@ -3,7 +3,7 @@ const router = express.Router();
 const traduction = require("./traduction/lib.js");
 const checkToken = require("./account/checkToken");
 import { validateTranslations } from "../workflows/translation/validateTranslations";
-import { getStatistics } from "../workflows/translation/getStatistics";
+import getStatistics from "../workflows/translation/getStatistics";
 
 router.post("/add_tradForReview", checkToken.getId, checkToken.getRoles, traduction.add_tradForReview);
 router.post("/get_tradForReview", checkToken.check, traduction.get_tradForReview);
