@@ -497,24 +497,30 @@ export interface NbDispositifsByRegion {
   regionFigures: RegionFigures[]
   dispositifsWithoutGeoloc: ObjectId[]
 }
+
+export type DispositifFacets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
 export interface DispositifStatistics {
-  nbMercis: number
-  nbVues: number
-  nbVuesMobile: number
-  nbDispositifs: number
-  nbDemarches: number
-  nbUpdatedRecently: number
+  nbMercis?: number
+  nbVues?: number
+  nbVuesMobile?: number
+  nbDispositifs?: number
+  nbDemarches?: number
+  nbUpdatedRecently?: number
 }
+
+export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface StructuresStatistics {
-  nbStructures: number
-  nbCDA: number
-  nbStructureAdmins: number
+  nbStructures?: number
+  nbCDA?: number
+  nbStructureAdmins?: number
 }
+
+export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatistics {
-  nbTranslators: number
-  nbRedactors: number
-  nbWordsTranslated: number
-  nbActiveTranslators: {
+  nbTranslators?: number
+  nbRedactors?: number
+  nbWordsTranslated?: number
+  nbActiveTranslators?: {
     languageId: string
     count: number
   }[]

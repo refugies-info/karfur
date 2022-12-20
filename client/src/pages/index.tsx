@@ -59,30 +59,30 @@ const Homepage = (props: Props) => {
       <MobileApp />
 
       <NewContent
-        nbDemarches={props.contentStatistics.nbDemarches}
-        nbDispositifs={props.contentStatistics.nbDispositifs}
-        nbStructures={props.structuresStatistics.nbStructures}
+        nbDemarches={props.contentStatistics.nbDemarches || 0}
+        nbDispositifs={props.contentStatistics.nbDispositifs || 0}
+        nbStructures={props.structuresStatistics.nbStructures || 0}
         demarches={props.demarches}
         dispositifs={props.dispositifs}
       />
 
-      <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches} />
+      <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
       <FreeResources />
 
       <HelpUs />
 
       <MainFigures
-        nbVues={props.contentStatistics.nbVues + props.contentStatistics.nbVuesMobile}
-        nbMercis={props.contentStatistics.nbMercis}
-        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently}
+        nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
+        nbMercis={props.contentStatistics.nbMercis || 0}
+        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
       />
 
       <Community
-        nbRedactors={props.translationStatistics.nbRedactors}
-        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins}
-        nbCDA={props.structuresStatistics.nbCDA}
-        nbTranslators={props.translationStatistics.nbTranslators}
+        nbRedactors={props.translationStatistics.nbRedactors || 0}
+        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
+        nbCDA={props.structuresStatistics.nbCDA || 0}
+        nbTranslators={props.translationStatistics.nbTranslators || 0}
       />
 
       <Infos />
@@ -96,9 +96,19 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
-  const contentStatistics = (await API.getDispositifsStatistics()).data.data;
-  const structuresStatistics = (await API.getStructuresStatistics()).data.data;
-  const translationStatistics = (await API.getTranslationStatistics()).data.data;
+  const contentStatistics = (
+    await API.getDispositifsStatistics([
+      "nbMercis",
+      "nbVues",
+      "nbVuesMobile",
+      "nbDispositifs",
+      "nbDemarches",
+      "nbUpdatedRecently"
+    ])
+  ).data.data;
+  const structuresStatistics = (await API.getStructuresStatistics(["nbStructures", "nbCDA", "nbStructureAdmins"])).data
+    .data;
+  const translationStatistics = (await API.getTranslationStatistics(["nbTranslators", "nbRedactors"])).data.data;
 
   const demarches = (
     await API.getDispositifs({

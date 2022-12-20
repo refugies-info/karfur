@@ -20,7 +20,7 @@ import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
 import { getNbContents } from "../workflows/dispositif/getNbContents";
-import { getStatistics } from "../workflows/dispositif/getStatistics";
+import getStatistics from "../workflows/dispositif/getStatistics";
 
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);

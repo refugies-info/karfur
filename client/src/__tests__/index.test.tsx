@@ -2,6 +2,7 @@
 import { wrapWithProvidersAndRender } from "../../jest/lib/wrapWithProvidersAndRender";
 import index from "../pages/index";
 import { initialMockStore } from "__fixtures__/reduxStore";
+import { lastDemarches, lastDispositifs } from "__fixtures__/getDispositifs";
 import { act } from "react-test-renderer";
 import "jest-styled-components";
 import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
@@ -49,7 +50,9 @@ describe("homepage", () => {
               { languageId: "en", count: 4 },
               { languageId: "ru", count: 2 }
             ]
-          }
+          },
+          demarches: lastDemarches,
+          dispositifs: lastDispositifs
         }
       });
     });
