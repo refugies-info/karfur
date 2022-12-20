@@ -205,7 +205,7 @@ const Dispositif = (props: Props) => {
   const timer = useRef<any>();
 
   useEffect(() => {
-    setMenu(dispositif ? generateMenu(dispositif) : []);
+      setMenu(dispositif ? generateMenu(dispositif) : []);
   }, [dispositif, router.locale]);
 
   useEffect(() => {
