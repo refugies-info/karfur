@@ -988,7 +988,8 @@ const Dispositif = (props: Props) => {
   const saveDispositif = (
     continueEditing = true,
     saveType: "auto" | "validate" | "save" = "save",
-    routeAfterSave = ""
+    routeAfterSave = "",
+    bypassTraductionReview = false
   ) => {
     if (!dispositif) return;
     const auto = saveType === "auto";
@@ -1057,7 +1058,7 @@ const Dispositif = (props: Props) => {
     }
 
     logger.info("[saveDispositif] dispositif before call", { newDispositif });
-    API.addDispositif(newDispositif).then((data) => {
+    API.addDispositif(newDispositif, bypassTraductionReview).then((data) => {
       const newDispo = data.data.data;
       delete newDispo.mainSponsor; // fix different return data between addDispositif and get_dispositif
       if (!continueEditing) {
@@ -1692,10 +1693,10 @@ const Dispositif = (props: Props) => {
             titreMarque={dispositif?.titreMarque || ""}
             saveDispositif={saveDispositif}
             status={dispositif?.status}
-            toggleTutorielModal={toggleTutorielModal}
             theme={dispositif?.theme}
             mainSponsor={dispositif?.mainSponsor}
             menu={menu}
+            toggleTutorielModal={toggleTutorielModal}
             toggleThemesModal={() => setShowTagsModal(!showTagsModal)}
             toggleSponsorModal={() =>
               //@ts-ignore

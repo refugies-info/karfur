@@ -39,6 +39,11 @@ export interface Request {
   secondaryThemes?: ThemeDoc[];
   needs?: ObjectId[];
   saveType: "auto" | "validate" | "save";
+
+  /**
+   * bypassReview must be true if not to invalidate translations
+   */
+  bypassReview?: boolean;
 }
 
 export const getNewStatus = (
@@ -103,6 +108,11 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
     }
 
     let dispositif = req.body;
+
+    const bypassReview = dispositif.bypassReview || false;
+    delete dispositif.bypassReview;
+
+    // let dispositif = rest;
     let structure: StructureDoc | null = null;
     if (dispositif.mainSponsor) {
       structure = await getStructureFromDB(
@@ -161,8 +171,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       if (dispositif.contenu) {
-        // @ts-ignore
-        await updateTraductions(originalDispositif, dispositif, req.userId);
+        await updateTraductions(originalDispositif, dispositif, req.userId, bypassReview);
 
         // @ts-ignore
         dispositif.avancement =
