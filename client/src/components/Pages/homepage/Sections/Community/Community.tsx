@@ -41,15 +41,17 @@ const Community = (props: Props) => {
             image={CommunityRedacteurs}
             color="red"
             countImage={props.nbRedactors - 3}
+            cta={t("Homepage.communityCardCTA2")}
             link={getPath("/publier", router.locale)}
           />
           <CommunityCard
             title={t("Homepage.communityCardTitle2")}
             subtitle={t("Homepage.communityCardSubtitle2")}
-            cta={t("Homepage.communityCardCTA2")}
+            badge={t("Homepage.communityCardBadge1")}
             image={CommunityStructures}
             color="red"
             countImage={props.nbStructureAdmins - 3}
+            cta={t("Homepage.communityCardCTA2")}
             link={getPath("/publier", router.locale)}
           />
           <CommunityCard
@@ -67,6 +69,7 @@ const Community = (props: Props) => {
             image={CommunityTraducteurs}
             color="green"
             countImage={props.nbTranslators - 3}
+            cta={t("Toolbar.Traduire")}
             link={getPath("/traduire", router.locale)}
           />
           <CommunityCard
@@ -108,6 +111,8 @@ const Community = (props: Props) => {
             image={CommunityEquipe}
             color="blue"
             countImage={9}
+            cta={t("Qui sommes-nous ?")}
+            link={getPath("/qui-sommes-nous", router.locale)}
           />
         </div>
       </Container>
