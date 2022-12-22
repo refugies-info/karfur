@@ -4,10 +4,7 @@ import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getDispositifsWithCreatorId } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 
-export const getUserContributions = async (
-  req: RequestFromClient<{}>,
-  res: Res
-) => {
+export const getUserContributions = async (req: RequestFromClient<{}>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     logger.info("getUserContributions received");
@@ -20,7 +17,7 @@ export const getUserContributions = async (
       mainSponsor: 1,
       nbVues: 1,
       status: 1,
-      merci: 1,
+      merci: 1
     };
     const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
     const adaptedDispositifs = dispositifs.map((dispo) => {
@@ -30,9 +27,10 @@ export const getUserContributions = async (
         ...jsonDispo,
         // @ts-ignore populate mainSponsor
         mainSponsor: jsonDispo.mainSponsor ? jsonDispo.mainSponsor.nom : null,
-        nbMercis: jsonDispo.merci ? jsonDispo.merci.length : 0,
+        nbMercis: jsonDispo.merci ? jsonDispo.merci.length : 0
       };
 
+      // @ts-ignore
       delete formattedDispo.merci;
       return formattedDispo;
     });

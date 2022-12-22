@@ -66,7 +66,7 @@ export const getStructuresFromDB = async (
   }
   logger.info("[getStructuresFromDB] with dispositifs associes");
   return await Structure.find(query, neededFields)
-    .populate("dispositifsAssocies")
+    .populate("dispositifsAssocies", "_id status")
     .populate("createur", "username email picture");
 };
 
