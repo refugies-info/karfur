@@ -1,0 +1,17 @@
+@import "../../../scss/variables";
+@import "../../../scss/colors";
+
+.refugies-backend-header-menu {
+  :global(.fr-nav__list) {
+    justify-content: center;
+  }
+
+  @media (max-width: $bp-xl) and (min-width: $bp-lg) {
+    :global(.mr-10) {
+      margin-right: 0;
+    }
+    :global(.refugies-backend-header-menu-title) {
+      display: none;
+    }
+  }
+}

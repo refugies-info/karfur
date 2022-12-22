@@ -1,11 +1,15 @@
 import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
-import { useSelector } from "react-redux";
-import { Theme } from "types/interface";
+import { useDispatch, useSelector } from "react-redux";
 import { cls } from "lib/classname";
 import useWindowSize from "hooks/useWindowSize";
-import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedSelector
+} from "services/SearchResults/searchResults.selector";
+import { resetQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import FButton from "components/UI/FButton";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
@@ -21,16 +25,16 @@ export const MAX_SHOWN_DISPOSITIFS = 15;
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
-  themesSelected: Theme[];
   departmentsNotDeployed: string[];
   targetBlank?: boolean;
-  resetFilters: () => void;
 }
 
 const SearchResults = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const filteredResult = useSelector(searchResultsSelector);
+  const themesSelected = useSelector(themesDisplayedSelector);
 
   const [hideDemarches, setHideDemarches] = useState(true);
   const [hideDispositifs, setHideDispositifs] = useState(true);
@@ -71,10 +75,10 @@ const SearchResults = (props: Props) => {
   if (noResults) {
     return (
       <div className={styles.no_results}>
-        <h5>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h5>
+        <h2>{t("Recherche.noResultTitle", "Oups, aucun résultat")}</h2>
         <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
 
-        <FButton type="login" name="refresh-outline" onClick={props.resetFilters}>
+        <FButton type="login" name="refresh-outline" onClick={() => dispatch(resetQueryActionCreator())}>
           {t("Recherche.resetFilters", "Effacer tous les filtres")}
         </FButton>
 
@@ -107,7 +111,7 @@ const SearchResults = (props: Props) => {
           >
             <DemarcheCardTitle
               count={filteredResult.demarches.length}
-              color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
+              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
             />
             {demarches.map((d) =>
               typeof d === "string" ? null : ( // d can be a string if it comes from generateLightResults
@@ -138,7 +142,7 @@ const SearchResults = (props: Props) => {
           >
             <DispositifCardTitle
               count={filteredResult.dispositifs.length}
-              color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
+              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
             />
             {dispositifs.map((d) =>
               typeof d === "string" ? null : (
@@ -174,8 +178,8 @@ const SearchResults = (props: Props) => {
           >
             <DispositifCardTitle
               count={filteredResult.dispositifsSecondaryTheme.length}
-              color={props.themesSelected.length === 1 ? props.themesSelected[0].colors.color100 : undefined}
-              themes={props.themesSelected}
+              color={themesSelected.length === 1 ? themesSelected[0].colors.color100 : undefined}
+              themes={themesSelected}
             />
             {secondaryDispositifs.map((d) =>
               typeof d === "string" ? null : <DispositifCard key={d._id.toString()} dispositif={d} targetBlank />

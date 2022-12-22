@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-  updateUserStructureActionCreator,
+  updateUserStructureActionCreator
 } from "services/UserStructure/userStructure.actions";
 import { userStructureIdSelector } from "services/User/user.selectors";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
-  userStructureSelector,
+  userStructureSelector
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -25,10 +25,11 @@ import Skeleton from "react-loading-skeleton";
 import { assetsOnServer } from "assets/assetsOnServer";
 import { TitleWithNumber } from "../middleOfficeSharedComponents";
 import { colors } from "colors";
-import Navigation from "../Navigation";
+import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/selectedStructure.actions";
+import { useLocale } from "hooks";
 
 const MainContainer = styled.div`
-  background: ${colors.lightGrey}
+  background: ${colors.lightGrey};
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -54,52 +55,53 @@ const CenterContainer = styled.div`
 
 interface Props {
   history: any;
-  title: string
+  title: string;
 }
 const UserNotifications = (props: Props) => {
-  const [selectedReaction, setSelectedReaction] =
-    useState<FormattedNotification | null>(null);
+  const [selectedReaction, setSelectedReaction] = useState<FormattedNotification | null>(null);
   const [showReactionModal, setShowReactionModal] = useState(false);
 
   const toggleReactionModal = () => setShowReactionModal(!showReactionModal);
 
   const dispatch = useDispatch();
+  const locale = useLocale();
   const structureId = useSelector(userStructureIdSelector);
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const userStructure = useSelector(userStructureSelector);
 
+  useEffect(() => {
+    // fetch structure to navigate to structure form
+    if (userStructure) {
+      dispatch(
+        fetchSelectedStructureActionCreator({
+          id: userStructure._id.toString(),
+          locale: locale
+        })
+      );
+    }
+  }, [userStructure, dispatch, locale]);
+
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
-  const hasResponsibleSeenAnnuaireNotif = useSelector(
-    userStructureHasResponsibleSeenNotification
-  );
+  const hasResponsibleSeenAnnuaireNotif = useSelector(userStructureHasResponsibleSeenNotification);
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const loadUserStructure = async () => {
       if (structureId) {
-        dispatch(
-          fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
-        );
+        dispatch(fetchUserStructureActionCreator({ structureId, shouldRedirect: true }));
       }
     };
     loadUserStructure();
     window.scrollTo(0, 0);
   }, [dispatch, structureId]);
 
-  const notifications = formatNotifications(
-    dispositifsAssocies,
-    hasResponsibleSeenAnnuaireNotif
-  );
+  const notifications = formatNotifications(dispositifsAssocies, hasResponsibleSeenAnnuaireNotif);
 
-  const nbNewNotifications = notifications.filter(
-    (notif) => !notif.read
-  ).length;
+  const nbNewNotifications = notifications.filter((notif) => !notif.read).length;
 
   const onNotificationClick = (notif: FormattedNotification) => {
     if (notif.type === "reaction") {
@@ -110,9 +112,7 @@ const UserNotifications = (props: Props) => {
     return;
   };
 
-  const deleteNotificationAndUpdate = async (
-    notif: FormattedNotification | null
-  ) => {
+  const deleteNotificationAndUpdate = async (notif: FormattedNotification | null) => {
     if (!notif) return;
     try {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
@@ -122,32 +122,30 @@ const UserNotifications = (props: Props) => {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
             fieldName: "suggestions",
-            type: "remove",
+            type: "remove"
           },
-          structureId,
+          structureId
         })
       );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a bien été supprimée",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de la suppression",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
     }
 
     setShowReactionModal(false);
   };
 
-  const readNotificationAndUpdate = async (
-    notif: FormattedNotification | null
-  ) => {
+  const readNotificationAndUpdate = async (notif: FormattedNotification | null) => {
     if (!notif) return;
     try {
       if (!notif.dispositifId || !notif.suggestionId || !structureId) return;
@@ -157,23 +155,23 @@ const UserNotifications = (props: Props) => {
             dispositifId: notif.dispositifId,
             suggestionId: notif.suggestionId,
             fieldName: "suggestions.$.read",
-            type: "read",
+            type: "read"
           },
-          structureId,
+          structureId
         })
       );
       Swal.fire({
         title: "Yay...",
         text: "La réaction a été marquée comme lue",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de l'enregistrement",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
     }
 
@@ -185,7 +183,7 @@ const UserNotifications = (props: Props) => {
       // @ts-ignore
       setUserStructureActionCreator({
         ...userStructure,
-        hasResponsibleSeenNotification: true,
+        hasResponsibleSeenNotification: true
       })
     );
     dispatch(updateUserStructureActionCreator({ modifyMembres: false }));
@@ -193,14 +191,13 @@ const UserNotifications = (props: Props) => {
       title: "Yay...",
       text: "La notification a été supprimée",
       type: "success",
-      timer: 1500,
+      timer: 1500
     });
   };
 
   if (isLoading)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="notifications" />
         <MainContainer>
           <TitleWithNumber
             amount={nbNewNotifications}
@@ -216,17 +213,11 @@ const UserNotifications = (props: Props) => {
   if (notifications.length === 0)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="notifications" />
         <MainContainer>
           <CenterContainer>
             <Title>Aucune notification ! </Title>
             <div style={{ marginTop: "32px", marginBottom: "20px" }}>
-              <Image
-                src={assetsOnServer.middleOffice.noNotification}
-                alt="no-notification"
-                width={400}
-                height={289}
-              />
+              <Image src={assetsOnServer.middleOffice.noNotification} alt="no-notification" width={400} height={289} />
             </div>
           </CenterContainer>
         </MainContainer>
@@ -235,7 +226,6 @@ const UserNotifications = (props: Props) => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <Navigation selected="notifications" />
       <MainContainer>
         <TitleWithNumber
           amount={nbNewNotifications}

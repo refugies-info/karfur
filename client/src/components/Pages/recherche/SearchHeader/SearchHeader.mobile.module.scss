@@ -29,13 +29,6 @@
   }
 }
 
-.menu {
-  position: fixed !important;
-  transform: none !important;
-  width: 100%;
-  height: 100vh;
-}
-
 .inputs {
   background: $white;
   border-radius: $radius;
@@ -52,70 +45,14 @@
   }
 }
 
-.input {
-  background: $gray30;
-  width: 100%;
-  padding: u(3) u(4);
-  border-radius: $radius;
-  display: flex;
-  align-items: center;
-  position: relative;
-  @include text("normal");
-
-  & > span {
-    position: absolute;
-    width: u(6);
-    height: u(6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 10px;
-    left: 10px;
-
-    @include rtl() {
-      left: inherit;
-      right: 10px;
-    }
-  }
-
-  & > input {
-    width: 100%;
-    border: none;
-    line-height: u(4);
-    outline: none;
-    background: transparent;
-    padding-left: u(6);
-
-    &::placeholder {
-      color: $gray80;
-    }
-
-    @include rtl() {
-      padding-left: 0;
-      padding-right: u(6);
-    }
-  }
+.more_filters {
+  padding-bottom: u(20);
 }
 
 .dropdown {
   flex-shrink: 1;
   flex-grow: 1;
   min-width: 0;
-
-  &.separator::after {
-    content: "";
-    height: 100%;
-    width: 1px;
-    background-color: $gray60;
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    @include rtl() {
-      right: auto;
-      left: 0;
-    }
-  }
 
   & > button {
     background: transparent !important;
@@ -135,15 +72,6 @@
       width: 100%;
       border-radius: 0;
     }
-  }
-}
-
-.content {
-  margin-top: u(8);
-  padding: 0 u(4);
-
-  &.more_filters {
-    padding-bottom: u(20);
   }
 }
 

@@ -1,0 +1,18 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.video {
+  border: 8px solid $white;
+  box-shadow: 0 4px 18px 0 #0000001a;
+  border-radius: u(4);
+  background: $white;
+
+  @include isTablet() {
+    max-width: 100%;
+    height: auto;
+  }
+}

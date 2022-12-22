@@ -26,15 +26,7 @@ interface Props {
   isMember: boolean;
 }
 
-const weekDays = [
-  "Lundi",
-  "Mardi",
-  "Mercredi",
-  "Jeudi",
-  "Vendredi",
-  "Samedi",
-  "Dimanche",
-];
+const weekDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
 
 const PhoneNumber = (props: { phone: string }) => (
   <div className={styles.white_container}>
@@ -70,32 +62,25 @@ const Departement = (props: { departement: string }) => {
   return (
     <div className={styles.white_container}>
       <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
-      {props.departement === "All"
-        ? t("Dispositif.France entière", "France entière")
-        : props.departement}
+      {props.departement === "All" ? t("Dispositif.France entière", "France entière") : props.departement}
     </div>
-  )
-}
+  );
+};
 
-const Placeholder = (props: {
-  iconName: string;
-  text: string;
-  i18nKey: string;
-}) => {
+const Placeholder = (props: { iconName: string; text: string; i18nKey: string }) => {
   const { t } = useTranslation();
 
   return (
     <div className={styles.red_container}>
       <EVAIcon name={props.iconName} fill="#212121" className="mr-8" />
-      {t("Annuaire." + props.i18nKey, props.text)}
+      {/* @ts-ignore */}
+      <>{t("Annuaire." + props.i18nKey, props.text)}</>
     </div>
   );
-}
+};
 
 const getActivityDetails = (activity: string, themes: Theme[]) => {
-  const correspondingActivity = activities.filter(
-    (activityData) => activityData.activity === activity
-  );
+  const correspondingActivity = activities.filter((activityData) => activityData.activity === activity);
 
   if (!correspondingActivity) return { theme: null };
   const themeShort = correspondingActivity[0].theme;
@@ -143,68 +128,41 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           <div className={styles.title_container}>
             {!structure.acronyme && <div className={styles.title}>{structure.nom}</div>}
             {structure.acronyme && (
-              <div className={styles.title}>
-                {structure.nom}{" "}
-                <span style={{ color: "#828282" }}>
-                  {"- " + structure.acronyme}
-                </span>{" "}
-              </div>
+              <h1 className={styles.title}>
+                {structure.nom} <span style={{ color: "#828282" }}>{"- " + structure.acronyme}</span>{" "}
+              </h1>
             )}
           </div>
           {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
-              <Link href={getPath("/annuaire-creation", router.locale)} passHref>
-                <FButton
-                  tag="a"
-                  type="dark"
-                  name="edit-outline"
-                >
+              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref>
+                <FButton tag="a" type="dark" name="edit-outline">
                   Modifier la fiche
                 </FButton>
               </Link>
             </div>
           )}
         </div>
-        {structure.description && (
-          <div className={styles.description}>{structure.description}</div>
-        )}
+        {structure.description && <div className={styles.description}>{structure.description}</div>}
         {!structure.description && (
           <div className={styles.no_description}>
-            {t(
-              "Annuaire.noDescription",
-              "Aucune description de la structure disponible."
-            )}
+            {t("Annuaire.noDescription", "Aucune description de la structure disponible.")}
           </div>
         )}
         <div className={styles.info_container}>
           <div className={styles.info_column_container}>
-            <div className={styles.subtitle}>
-              {t("Annuaire.Adresse email", "Adresse email")}
-            </div>
+            <div className={styles.subtitle}>{t("Annuaire.Adresse email", "Adresse email")}</div>
             <div className={styles.line_container}>
-              {structure.mailsPublic &&
-                structure.mailsPublic.map((mail) => (
-                  <Mail mail={mail} key={mail} />
-                ))}
-              {(!structure.mailsPublic ||
-                structure.mailsPublic.length === 0) && (
-                <Placeholder
-                  iconName="email-outline"
-                  text="Aucune adresse email renseignée"
-                  i18nKey="noemail"
-                />
+              {structure.mailsPublic && structure.mailsPublic.map((mail) => <Mail mail={mail} key={mail} />)}
+              {(!structure.mailsPublic || structure.mailsPublic.length === 0) && (
+                <Placeholder iconName="email-outline" text="Aucune adresse email renseignée" i18nKey="noemail" />
               )}
             </div>
-            <div className={styles.subtitle}>
-              {t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
-            </div>
+            <div className={styles.subtitle}>{t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}</div>
             <div className={styles.line_container}>
               {structure.phonesPublic &&
-                structure.phonesPublic.map((phone) => (
-                  <PhoneNumber phone={phone} key={phone} />
-                ))}
-              {(!structure.phonesPublic ||
-                structure.phonesPublic.length === 0) && (
+                structure.phonesPublic.map((phone) => <PhoneNumber phone={phone} key={phone} />)}
+              {(!structure.phonesPublic || structure.phonesPublic.length === 0) && (
                 <Placeholder
                   iconName="phone-call-outline"
                   text="Aucun numéro de téléphone renseigné"
@@ -212,53 +170,24 @@ export const MiddleAnnuaireDetail = (props: Props) => {
                 />
               )}
             </div>
-            <div className={styles.subtitle}>
-              {t("Annuaire.Adresse postale", "Adresse postale")}
-            </div>
-            {structure.adressPublic && (
-              <Adress adress={structure.adressPublic} />
-            )}
+            <div className={styles.subtitle}>{t("Annuaire.Adresse postale", "Adresse postale")}</div>
+            {structure.adressPublic && <Adress adress={structure.adressPublic} />}
             {!structure.adressPublic && (
-              <Placeholder
-                iconName="pin-outline"
-                text="Aucune adresse postale renseignée"
-                i18nKey="noAdress"
-              />
+              <Placeholder iconName="pin-outline" text="Aucune adresse postale renseignée" i18nKey="noAdress" />
             )}
-            <div className={styles.subtitle}>
-              {t(
-                "Annuaire.Départements d'action",
-                "Départements d'action"
-              )}
-            </div>
+            <div className={styles.subtitle}>{t("Annuaire.Départements d'action", "Départements d'action")}</div>
             <div className={styles.line_container}>
               {structure.departments &&
-                structure.departments.map((departement) => (
-                  <Departement
-                    key={departement}
-                    departement={departement}
-                  />
-                ))}
-              {(!structure.departments ||
-                structure.departments.length === 0) && (
-                <Placeholder
-                  iconName="hash"
-                  text="Aucun département renseigné"
-                  i18nKey="noDepartement"
-                />
+                structure.departments.map((departement) => <Departement key={departement} departement={departement} />)}
+              {(!structure.departments || structure.departments.length === 0) && (
+                <Placeholder iconName="hash" text="Aucun département renseigné" i18nKey="noDepartement" />
               )}
             </div>
           </div>
           <div className={styles.info_column_container}>
-            <div className={styles.subtitle}>
-              {t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
-            </div>
+            <div className={styles.subtitle}>{t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}</div>
             {!structure.openingHours && (
-              <Placeholder
-                iconName="alert-circle-outline"
-                text="Horaires non-renseignées"
-                i18nKey="noOpeningHours"
-              />
+              <Placeholder iconName="alert-circle-outline" text="Horaires non-renseignées" i18nKey="noOpeningHours" />
             )}
             {structure.openingHours && structure.openingHours.precisions && (
               <div style={{ marginBottom: "8px" }}>
@@ -274,28 +203,15 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               />
             )}
             {structure.onlyWithRdv && (
-              <HoursPrecisions
-                text={t(
-                  "Annuaire.Uniquement sur rendez-vous",
-                  "Uniquement sur rendez-vous."
-                )}
-              />
+              <HoursPrecisions text={t("Annuaire.Uniquement sur rendez-vous", "Uniquement sur rendez-vous.")} />
             )}
             {structure.openingHours &&
               !structure.openingHours.noPublic &&
-              weekDays.map((day) => (
-                <DayHoursPrecisions
-                  day={day}
-                  openingHours={structure.openingHours}
-                  key={day}
-                />
-              ))}
+              weekDays.map((day) => <DayHoursPrecisions day={day} openingHours={structure.openingHours} key={day} />)}
           </div>
         </div>
         <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-          <div className={styles.title}>
-            {t("Annuaire.Activités et services", "Activités et services")}
-          </div>
+          <h2 className={styles.title}>{t("Annuaire.Activités et services", "Activités et services")}</h2>
         </div>
         <div className={styles.activity_container}>
           {activitiesSortedByTheme &&
@@ -304,6 +220,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
               if (!theme) return;
               return (
                 <ActivityCard
+                  // @ts-ignore
                   activity={t("Annuaire." + activity, activity)}
                   key={activity}
                   darkColor={theme.colors.color100}

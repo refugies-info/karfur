@@ -1,5 +1,6 @@
 @import 'mixins/responsive';
 @import 'mixins/rtl';
+@import 'mixins/text';
 @import 'colors';
 @import "src/scss/variables";
 
@@ -39,7 +40,6 @@ html {
 html body {
   height: 100%;
   min-height: 100vh;
-  font-size: $text-normal;
 
   [contenteditable] {
     -webkit-user-select: text;
@@ -48,40 +48,33 @@ html body {
 
   h1 {
     font-weight: bold;
-    font-size: 52px;
-    line-height: 66px;
+    @include text("h1");
     @include media-max("sm-limit") {
       font-size: 35px;
     }
   }
   h2 {
     font-weight: 600;
-    font-size: 40px;
-    line-height: 51px;
+    @include text("h2");
     @include media-max("sm-limit") {
       font-size: 27px;
     }
   }
   h3 {
     font-weight: bold;
-    font-size: 40px;
-    line-height: 51px;
+    @include text("h2");
     @include media-max("sm-limit") {
       font-size: 27px;
     }
   }
   h4 {
     font-weight: normal;
-    font-size: 32px;
-    line-height: 40px;
+    @include text("h4");
     @include media-max("sm-limit") {
       font-size: 21px;
     }
   }
   h5 {
-    font-weight: bold;
-    font-size: 22px;
-    line-height: 27px;
     @include media-max("sm-limit") {
       font-size: 15px;
     }
@@ -89,15 +82,13 @@ html body {
 
   .texte-small {
     font-weight: normal;
-    font-size: $text-normal;
-    line-height: 19px;
+    @include text("normal");
     @include media-max("sm-limit") {
       font-size: 11px;
     }
   }
   .texte-very-small {
-    font-size: 12px;
-    line-height: 15px;
+    @include text("very-small");
   }
 
   .color-vert {
@@ -134,6 +125,16 @@ html body {
       color: inherit;
     }
   }
+  
+  a[href] {
+    text-decoration: none;
+    background-image: none;
+  }
+
+  :not([class^="fr-link"])[target="_blank"]::after {
+    content: none !important;
+  }
+
   .reset-btn {
     border: none;
     background: none;

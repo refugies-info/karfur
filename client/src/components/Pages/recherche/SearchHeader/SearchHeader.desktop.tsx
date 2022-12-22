@@ -1,13 +1,17 @@
-import React, { Dispatch, ReactElement, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
+import React, { ReactElement, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import { Button, Container, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
-import { Theme } from "types/interface";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { ageFilters, AgeOptions, frenchLevelFilter, FrenchOptions } from "data/searchFilters";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
-import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
+import {
+  inputFocusedSelector,
+  searchQuerySelector,
+  themesDisplayedValueSelector
+} from "services/SearchResults/searchResults.selector";
+import { resetQueryActionCreator, setInputFocusedActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import SearchInput from "../SearchInput";
 import ThemeDropdown from "../ThemeDropdown";
@@ -15,28 +19,19 @@ import LocationDropdown from "../LocationDropdown";
 import SecondaryFilter from "../SecondaryFilter";
 import { SecondaryFilterOptions } from "../SecondaryFilter/SecondaryFilter";
 import styles from "./SearchHeader.desktop.module.scss";
+import commonStyles from "scss/components/searchHeader.module.scss";
 
 interface Props {
   nbResults: number;
   searchMinified: boolean;
-  themeDisplayedValue: string;
-  themesDisplayed: Theme[];
-
-  // focusedStateProps
-  locationFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  searchFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
-  themesFocusedState: [boolean, Dispatch<SetStateAction<boolean>>];
 
   // filterProps
-  isPlacePredictionsLoading: boolean;
-  placePredictions: any[];
-  onSelectPrediction: (placeId: string) => void;
   locationSearch: string;
   themeSearch: string;
-  resetFilters: () => void;
   resetDepartment: () => void;
   resetTheme: () => void;
   resetSearch: () => void;
+  resetLocationSearch: () => void;
   onChangeDepartmentInput: (e: any) => void;
   onChangeThemeInput: (e: any) => void;
   onChangeSearchInput: (e: any) => void;
@@ -50,15 +45,12 @@ interface Props {
 
 const SearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const {
     locationSearch,
     themeSearch,
-    resetFilters,
-    themeDisplayedValue,
-    isPlacePredictionsLoading,
-    placePredictions,
-    onSelectPrediction,
+    resetLocationSearch,
     resetDepartment,
     onChangeDepartmentInput,
     resetTheme,
@@ -74,11 +66,7 @@ const SearchHeaderDesktop = (props: Props) => {
   } = props;
 
   const query = useSelector(searchQuerySelector);
-
-  // state from SearchHeader
-  const [locationFocused, setLocationFocused] = props.locationFocusedState;
-  const [searchFocused, setSearchFocused] = props.searchFocusedState;
-  const [themesFocused, setThemesFocused] = props.themesFocusedState;
+  const inputFocused = useSelector(inputFocusedSelector);
 
   // LOCATION
   const [locationOpen, setLocationOpen] = useState(false);
@@ -88,15 +76,24 @@ const SearchHeaderDesktop = (props: Props) => {
       return !prevState;
     });
   }, []);
+  const setLocationActive = useCallback(
+    (active: boolean) => dispatch(setInputFocusedActionCreator("location", active)),
+    [dispatch]
+  );
 
   // THEME
   const [themesOpen, setThemesOpen] = useState(false);
+  const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
   const toggleThemes = useCallback(() => {
     setThemesOpen((prevState) => {
       if (!prevState) Event("USE_SEARCH", "open filter", "theme");
       return !prevState;
     });
   }, []);
+  const setThemeActive = useCallback(
+    (active: boolean) => dispatch(setInputFocusedActionCreator("theme", active)),
+    [dispatch]
+  );
 
   // SEARCH
   const handleSpaceKey = useCallback((e: any) => {
@@ -104,9 +101,13 @@ const SearchHeaderDesktop = (props: Props) => {
       e.preventDefault();
     }
   }, []);
+  const setSearchActive = useCallback(
+    (active: boolean) => dispatch(setInputFocusedActionCreator("search", active)),
+    [dispatch]
+  );
 
-  const openSearch = useCallback(() => setSearchFocused(true), [setSearchFocused]);
-  const closeSearch = useCallback(() => setSearchFocused(false), [setSearchFocused]);
+  const openSearch = useCallback(() => dispatch(setInputFocusedActionCreator("search", true)), [dispatch]);
+  const closeSearch = useCallback(() => dispatch(setInputFocusedActionCreator("search", false)), [dispatch]);
 
   // AGE
   const [ageDisplayedValue, setAgeDisplayedValue] = useState("");
@@ -114,6 +115,7 @@ const SearchHeaderDesktop = (props: Props) => {
     if (query.age.length) {
       let ageDisplayedValue = "";
       const value = ageFilters.find((a) => a.key === query.age[0])?.value;
+      // @ts-ignore
       if (value) ageDisplayedValue += t(value);
       if (query.age.length > 1) {
         ageDisplayedValue += `, +${query.age.length - 1}`;
@@ -129,6 +131,7 @@ const SearchHeaderDesktop = (props: Props) => {
     if (query.frenchLevel.length) {
       let frenchLevelDisplayedValue = "";
       const value = frenchLevelFilter.find((a) => a.key === query.frenchLevel[0])?.value;
+      // @ts-ignore
       if (value) frenchLevelDisplayedValue += t(value);
       if (query.frenchLevel.length > 1) {
         frenchLevelDisplayedValue += `, +${query.frenchLevel.length - 1}`;
@@ -178,35 +181,39 @@ const SearchHeaderDesktop = (props: Props) => {
           <h1 className="h1 text-white">{t("Recherche.titleResults", { count: props.nbResults })}</h1>
         )}
         <div className={styles.inputs}>
-          <Dropdown isOpen={locationOpen || locationFocused} toggle={toggleLocation} className={styles.dropdown}>
+          <Dropdown
+            isOpen={locationOpen || inputFocused.location}
+            toggle={toggleLocation}
+            className={commonStyles.dropdown}
+          >
             <DropdownToggle>
               <SearchInput
                 label={t("Dispositif.Département", "Département")}
                 icon="pin-outline"
-                active={locationOpen || locationFocused}
-                setActive={setLocationFocused}
+                active={locationOpen || inputFocused.location}
+                setActive={setLocationActive}
                 onChange={onChangeDepartmentInput}
                 inputValue={locationSearch}
                 inputPlaceholder={t("Recherche.department")}
-                loading={isPlacePredictionsLoading}
+                loading={false}
                 value={query.departments.join(", ")}
                 placeholder={t("Recherche.all", "Tous")}
                 resetFilter={resetDepartment}
               />
             </DropdownToggle>
             <DropdownMenu>
-              <LocationDropdown predictions={placePredictions} onSelectPrediction={onSelectPrediction} />
+              <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
             </DropdownMenu>
-            {(locationOpen || locationFocused) && <div className={styles.backdrop} onClick={toggleLocation} />}
+            {(locationOpen || inputFocused.location) && <div className={styles.backdrop} onClick={toggleLocation} />}
           </Dropdown>
 
-          <Dropdown isOpen={themesOpen || themesFocused} toggle={toggleThemes} className={styles.dropdown}>
+          <Dropdown isOpen={themesOpen || inputFocused.theme} toggle={toggleThemes} className={commonStyles.dropdown}>
             <DropdownToggle>
               <SearchInput
                 label={t("Recherche.themes", "Thèmes")}
                 icon="list-outline"
-                active={themesFocused || themesOpen}
-                setActive={setThemesFocused}
+                active={inputFocused.theme || themesOpen}
+                setActive={setThemeActive}
                 onChange={onChangeThemeInput}
                 inputValue={themeSearch}
                 value={themeDisplayedValue}
@@ -215,18 +222,18 @@ const SearchHeaderDesktop = (props: Props) => {
               />
             </DropdownToggle>
             <DropdownMenu persist>
-              <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || themesFocused} />
+              <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
             </DropdownMenu>
-            {(themesOpen || themesFocused) && <div className={styles.backdrop} onClick={toggleThemes} />}
+            {(themesOpen || inputFocused.theme) && <div className={styles.backdrop} onClick={toggleThemes} />}
           </Dropdown>
 
-          <div className={cls(styles.dropdown, searchFocused && "show")}>
+          <div className={cls(commonStyles.dropdown, inputFocused.search && "show")}>
             <Button onClick={openSearch}>
               <SearchInput
                 label={t("Recherche.keyword", "Mot-clé")}
                 icon="search-outline"
-                active={searchFocused}
-                setActive={setSearchFocused}
+                active={inputFocused.search}
+                setActive={setSearchActive}
                 onChange={onChangeSearchInput}
                 inputValue={query.search}
                 value={query.search}
@@ -276,7 +283,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 gaType="language"
               />
             </div>
-            <Button className={styles.reset} onClick={resetFilters}>
+            <Button className={styles.reset} onClick={() => dispatch(resetQueryActionCreator())}>
               <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
               {t("Recherche.resetFilters", "Effacer tous les filtres")}
             </Button>
@@ -284,7 +291,7 @@ const SearchHeaderDesktop = (props: Props) => {
         )}
       </Container>
 
-      {searchFocused /* search backdrop placed here to cover only header */ && (
+      {inputFocused.search /* search backdrop placed here to cover only header */ && (
         <div className={cls(styles.backdrop, styles.search)} onClick={closeSearch} />
       )}
     </div>

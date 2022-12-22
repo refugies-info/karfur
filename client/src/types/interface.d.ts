@@ -292,7 +292,6 @@ export interface Structure {
   description?: string;
   hasResponsibleSeenNotification?: boolean;
   mailsPublic?: string[];
-  alt?: string;
 }
 
 export interface AudienceAge {
@@ -498,10 +497,33 @@ export interface NbDispositifsByRegion {
   regionFigures: RegionFigures[]
   dispositifsWithoutGeoloc: ObjectId[]
 }
-export interface Statistics {
-  nbMercis: number
-  nbVues: number
-  nbVuesMobile: number
+
+export type DispositifFacets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
+export interface DispositifStatistics {
+  nbMercis?: number
+  nbVues?: number
+  nbVuesMobile?: number
+  nbDispositifs?: number
+  nbDemarches?: number
+  nbUpdatedRecently?: number
+}
+
+export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
+export interface StructuresStatistics {
+  nbStructures?: number
+  nbCDA?: number
+  nbStructureAdmins?: number
+}
+
+export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
+export interface TranslationStatistics {
+  nbTranslators?: number
+  nbRedactors?: number
+  nbWordsTranslated?: number
+  nbActiveTranslators?: {
+    languageId: string
+    count: number
+  }[]
 }
 
 export type AvailableLanguageI18nCode =

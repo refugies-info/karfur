@@ -47,7 +47,7 @@
     white-space: nowrap;
 
     &:hover {
-      background: $gray60;
+      background: $gray60 !important;
     }
 
     @include isMobile() {
@@ -58,17 +58,6 @@
 
 .content {
   margin-top: u(14);
-}
-
-.themes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: u(3);
-  margin-top: u(16);
-
-  @include isMobile() {
-    margin-top: u(6);
-  }
 }
 
 .departments {

@@ -1,4 +1,6 @@
 import { createBrowserHistory } from "history";
 import isInBrowser from "lib/isInBrowser";
 
-export default isInBrowser() ? createBrowserHistory() : undefined;
+const history = isInBrowser() ? createBrowserHistory() : undefined;
+
+export default history;

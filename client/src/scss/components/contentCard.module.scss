@@ -20,6 +20,7 @@
   // typeContenu
   &.demarche {
     width: 208px;
+    font-size: .95rem;
 
     @include isMobile() {
       width: 100%;
@@ -33,6 +34,7 @@
   &.dispositif {
     width: 260px;
     max-width: 100%;
+    font-size: .95rem;
 
     @include isMobile() {
       width: 100%;

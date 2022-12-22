@@ -1,0 +1,11 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+
+.help_text {
+  margin-top: u(6);
+  margin-bottom: 0;
+
+  @include isTablet() {
+    margin-top: u(4);
+  }
+}

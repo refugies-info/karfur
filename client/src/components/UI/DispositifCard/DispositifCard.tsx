@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SearchDispositif } from "types/interface";
@@ -63,6 +63,7 @@ const DispositifCard = (props: Props) => {
 
   return (
     <Link
+      legacyBehavior
       href={{
         pathname: getPath("/dispositif/[id]", router.locale),
         query: { id: props.dispositif._id.toString() }
@@ -84,7 +85,7 @@ const DispositifCard = (props: Props) => {
           </span>
         </div>
 
-        <div
+        <h3
           className={styles.title}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif }}

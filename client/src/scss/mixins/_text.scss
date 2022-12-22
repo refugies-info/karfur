@@ -1,10 +1,42 @@
+@import "src/scss/variables";
+
 $texts: (
-  "very-small": (12px, 15px),
-  "small": (14px, 18px),
-  "normal": (16px, 20px),
-  "large": (18px, 23px),
-  "h5": (22px, 28px),
-  "h4": (28px, 35px),
+  "very-small": (
+    12px,
+    15px
+  ),
+  "small": (
+    $text-normal,
+    19px
+  ),
+  "normal": (
+    16px,
+    22px
+  ),
+  "large": (
+    18px,
+    23px
+  ),
+  "h5": (
+    22px,
+    28px
+  ),
+  "h4": (
+    28px,
+    35px
+  ),
+  "h3": (
+    40px,
+    51px
+  ),
+  "h2": (
+    40px,
+    51px
+  ),
+  "h1": (
+    52px,
+    66px
+  )
 );
 
 @mixin text($_key) {

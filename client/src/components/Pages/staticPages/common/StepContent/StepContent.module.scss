@@ -1,0 +1,248 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$orange: #cd5605;
+$purple: #3d2884;
+
+@mixin fadeBorder() {
+  &:after {
+    content: "";
+    width: $borderWidth;
+    position: absolute;
+    height: 200px;
+    bottom: 0;
+    left: -$borderWidth;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+    @include rtl() {
+      left: inherit;
+      right: -$borderWidth;
+    }
+  }
+}
+
+// layout
+.row {
+  display: flex;
+  align-items: stretch;
+  min-height: 420px;
+
+  @include isTablet() {
+    position: relative;
+    flex-direction: column-reverse;
+    padding-left: u(4);
+  }
+}
+
+$borderWidth: 4px;
+.content {
+  max-width: 390px;
+  order: 2;
+  padding-left: 60px;
+  padding-bottom: 100px;
+  border-left: $borderWidth solid $dark;
+  position: relative;
+
+  @include rtl() {
+    border-left: none;
+    border-right: $borderWidth solid $dark;
+    padding-left: 0;
+    padding-right: 60px;
+  }
+
+  .orange & {
+    border-color: $orange;
+  }
+  .purple & {
+    border-color: $purple;
+  }
+
+  .has_btn_step & {
+    padding-bottom: 250px;
+
+    @include isTablet() {
+      padding-bottom: 0;
+    }
+  }
+
+  @include isTablet() {
+    max-width: none;
+    padding-left: u(8);
+    padding-bottom: u(9);
+
+    @include rtl() {
+      padding-left: 0;
+      padding-right: u(8);
+    }
+  }
+
+  .dotted & {
+    border-left-style: dashed;
+
+    @include rtl() {
+      border-left-style: none;
+      border-right-style: dashed;
+    }
+
+    @include media-min("lg-limit") {
+      @include fadeBorder();
+    }
+  }
+}
+
+.media {
+  position: relative;
+  order: 1;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  @include isTablet() {
+    border-left: $borderWidth solid $dark;
+    padding-left: u(8);
+    padding-bottom: 60px;
+
+    @include rtl() {
+      border-left: none;
+      padding-left: 0;
+      border-right: $borderWidth solid $dark;
+      padding-right: u(8);
+    }
+
+    .orange & {
+      border-color: $orange;
+    }
+    .purple & {
+      border-color: $purple;
+    }
+
+    .dotted & {
+      border-left-style: dashed;
+      @include fadeBorder();
+
+      @include rtl() {
+        border-left-style: none;
+        border-right-style: dashed;
+      }
+    }
+  }
+
+  .has_btn_step & {
+    @include isTablet() {
+      padding-bottom: 150px;
+    }
+  }
+}
+
+// text
+.title {
+  @include text("h4");
+  font-weight: normal;
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    @include text("large");
+    margin-bottom: u(4);
+  }
+}
+
+.text {
+  @include text("large");
+  color: $gray80;
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    @include text("normal");
+    margin-bottom: u(4);
+  }
+}
+
+.step {
+  width: 40px;
+  height: 40px;
+  @include text("h5");
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 1.3px solid $white;
+  position: absolute;
+  top: 0;
+  left: -22px;
+  box-shadow: 1.3px 1.3px 11px 0 #2121213d;
+
+  @include rtl() {
+    left: inherit;
+    right: -22px;
+  }
+
+  .orange & {
+    background: $orange;
+  }
+  .purple & {
+    background: $purple;
+  }
+
+  @include isTablet() {
+    width: 24px;
+    height: 24px;
+    @include text("normal");
+    line-height: 15px;
+    left: -14px;
+    top: -1px;
+
+    @include rtl() {
+      left: inherit;
+      right: -14px;
+    }
+  }
+}
+
+.btn_step {
+  padding: u(4);
+  border-radius: $radius;
+  color: $white;
+  @include text("large");
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 120px;
+  transform: translateX(-50%);
+
+  @include rtl() {
+    left: inherit;
+    right: 0;
+    transform: translateX(50%);
+  }
+
+  .orange & {
+    background: $orange;
+  }
+  .purple & {
+    background: $purple;
+  }
+
+  &.last {
+    bottom: 0;
+  }
+
+  @include isTablet() {
+    transform: none;
+    left: 0;
+    bottom: 60px;
+    width: 100%;
+
+    @include rtl() {
+      left: inherit;
+      right: 0;
+    }
+  }
+}

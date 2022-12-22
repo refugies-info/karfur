@@ -1,1 +1,2 @@
-export { getDispositifs } from "./getDispositifs";
+import getDispositifs from "./getDispositifs";
+export default getDispositifs;

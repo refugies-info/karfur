@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { cls } from "lib/classname";
-import { sortThemes } from "lib/sortThemes";
 import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { searchResultsSelector } from "services/SearchResults/searchResults.selector";
-import SearchThemeButton from "components/UI/SearchThemeButton";
+import ThemesGrid from "components/Content/ThemesGrid/ThemesGrid";
 import illuDemarche from "assets/recherche/illu-demarche.svg";
 import illuDispositif from "assets/recherche/illu-dispositif.svg";
 import illuLocation from "assets/recherche/illu-location.png";
@@ -84,14 +83,7 @@ const HomeSearch = () => {
     <div>
       {/* themes */}
       <div className={styles.section}>
-        <Container className={styles.container_inner}>
-          <h2 className="h3">{t("Recherche.titleThemes", "Les thématiques de l'intégration")}</h2>
-          <div className={styles.themes}>
-            {themes.sort(sortThemes).map((theme, i) => {
-              return <SearchThemeButton key={i} theme={theme} onClick={() => selectTheme(theme._id)} />;
-            })}
-          </div>
-        </Container>
+        <ThemesGrid className={styles.container_inner} onClickTheme={(themeId) => selectTheme(themeId)} />
       </div>
 
       {/* types */}
@@ -104,6 +96,7 @@ const HomeSearch = () => {
                 image={illuDemarche}
                 title={t("Recherche.demarcheCardTitle")}
                 buttonTitle={t("Recherche.seeAllDemarches", "Voir toutes les démarches")}
+                // @ts-ignore
                 examples={demarchesExamples.map((d) => t(d))}
                 onClick={() => selectType("demarche")}
               />
@@ -113,6 +106,7 @@ const HomeSearch = () => {
                 image={illuDispositif}
                 title={t("Recherche.dispositifCardTitle")}
                 buttonTitle={t("Recherche.seeAllDispositifs", "Voir tous les dispositifs")}
+                // @ts-ignore
                 examples={dispositifsExamples.map((d) => t(d))}
                 onClick={() => selectType("dispositif")}
               />

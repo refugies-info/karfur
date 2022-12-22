@@ -1,0 +1,50 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.container {
+  margin-top: u(6);
+  margin-left: 80px;
+  display: flex;
+  position: relative;
+  z-index: 2;
+
+  &.center {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  @include isTablet() {
+    margin-left: inherit;
+    justify-content: center;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: $white;
+    border-radius: 50%;
+    animation: slide-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate both;
+
+    &:hover {
+      background: $gray40b;
+    }
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+}

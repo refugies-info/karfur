@@ -1,5 +1,4 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
-import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
@@ -7,7 +6,8 @@ import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
-import EtapeModal from "./EtapeModal/EtapeModal";
+import GoToDesktopModal from "./GoToDesktopModal";
+import ReceiveInvitationMailModal from "./ReceiveInvitationMailModal";
 import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
@@ -17,7 +17,6 @@ import { ShareContentOnMobileModal } from "./ShareContentOnMobileModal/ShareCont
 
 export {
   BookmarkedModal,
-  DemarcheCreateModal,
   DispositifCreateModal,
   DispositifValidateModal,
   LanguageModal,
@@ -26,10 +25,11 @@ export {
   ResponsableModal,
   RejectionModal,
   RejectTradModal,
-  EtapeModal,
   TagsModal,
   FrameModal,
   Modal,
   DraftModal,
   ShareContentOnMobileModal,
-}
+  GoToDesktopModal,
+  ReceiveInvitationMailModal
+};

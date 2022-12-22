@@ -1,0 +1,18 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+.themes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: u(3);
+  margin-top: u(16);
+
+  @include isMobile() {
+    margin-top: u(6);
+  }
+}

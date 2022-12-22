@@ -7,7 +7,7 @@ export const StyledSort = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 8px;
-  margin-top: ${(props: {marginTop?: string}) => (props.marginTop ? props.marginTop : "0px")};
+  margin-top: ${(props: { marginTop?: string }) => (props.marginTop ? props.marginTop : "0px")};
 `;
 
 export const StyledTitle = styled.div`
@@ -66,7 +66,7 @@ export const StyledInput = styled.input`
 
 export const SearchBarContainer = styled.div`
   position: absolute;
-  top: 150px;
+  top: 175px;
   right: 40px;
   display: flex;
   flexdirection: row;

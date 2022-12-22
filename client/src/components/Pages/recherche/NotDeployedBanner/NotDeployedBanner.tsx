@@ -1,16 +1,17 @@
 import React, { memo, useCallback, useState } from "react";
 import { Button } from "reactstrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import useWindowSize from "hooks/useWindowSize";
 import FButton from "components/UI/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import { GoToDesktopModal } from "components/Pages/homepage/HomePageMobile/GoToDesktopModal";
-import { ReceiveInvitationMailModal } from "components/Pages/homepage/HomePageMobile/ReceiveInvitationMailModal";
+import { GoToDesktopModal, ReceiveInvitationMailModal } from "components/Modals";
 import NotDeployed from "assets/recherche/not_deployed_image.png";
 import iconMap from "assets/recherche/icon-map.svg";
 import styles from "./NotDeployedBanner.module.scss";
+import { getPath } from "routes";
+import { useRouter } from "next/router";
 
 interface Props {
   departments: string[];
@@ -19,6 +20,7 @@ interface Props {
 
 const NotDeployedBanner = (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const { isMobile } = useWindowSize();
   const [showGoToDesktopModal, setShowGoToDesktopModal] = useState(false);
   const [showInvitationEmailModal, setShowInvitationEmailModal] = useState(false);
@@ -51,7 +53,7 @@ const NotDeployedBanner = (props: Props) => {
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
           {!isMobile ? (
-            <Link href="/comment-contribuer">
+            <Link legacyBehavior href={getPath("/publier", router.locale)}>
               <a className={styles.link}>{t("Recherche.notDeployedWriteLink", "Rédiger une fiche")}</a>
             </Link>
           ) : (

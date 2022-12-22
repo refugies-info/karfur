@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import FInput from "components/UI/FInput/FInput";
 import moment from "moment";
 import "moment/locale/fr";

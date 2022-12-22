@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -54,6 +54,7 @@ const DemarcheCard = (props: Props) => {
 
   return (
     <Link
+      legacyBehavior
       href={{
         pathname: getPath("/demarche/[id]", router.locale),
         query: { id: props.demarche._id.toString() }
@@ -76,7 +77,7 @@ const DemarcheCard = (props: Props) => {
         <div>
           <Image src={demarcheIcon} width={48} height={48} alt="" />
         </div>
-        <div
+        <h3
           className={styles.title}
           style={{ color: colors.color100 }}
           dangerouslySetInnerHTML={{ __html: props.demarche.titreInformatif }}

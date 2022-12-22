@@ -10,6 +10,8 @@ $fadeWidth_md: 50px;
 
 .container {
   position: relative;
+  --gradient-start: #f2f2f200;
+  --gradient-end: #f2f2f2;
 }
 
 .slider {
@@ -73,11 +75,11 @@ $fadeWidth_md: 50px;
   }
   &:after {
     right: -$fadeWidth_lg;
-    background: linear-gradient(to right, #f2f2f200 0%, #f2f2f2 60%, #f2f2f2 100%);
+    background: linear-gradient(to right, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
   &:before {
     left: -$fadeWidth_lg;
-    background: linear-gradient(to left, #f2f2f200 0%, #f2f2f2 60%, #f2f2f2 100%);
+    background: linear-gradient(to left, var(--gradient-start) 0%, var(--gradient-end) 60%, var(--gradient-end) 100%);
   }
 
   @include media-max("xl-limit") {

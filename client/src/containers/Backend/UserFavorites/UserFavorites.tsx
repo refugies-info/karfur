@@ -16,7 +16,6 @@ import FButton from "components/UI/FButton/FButton";
 import DemarcheCard from "components/UI/DemarcheCard";
 import DispositifCard from "components/UI/DispositifCard";
 import { FavoritesLoading } from "./components/FavoritesLoading";
-import Navigation from "../Navigation";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
@@ -70,7 +69,6 @@ const UserFavorites = (props: Props) => {
   if (isLoading)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="favoris" />
         <MainContainer>
           <FavoritesLoading t={t} />
         </MainContainer>
@@ -89,7 +87,6 @@ const UserFavorites = (props: Props) => {
   if (favorites.length === 0)
     return (
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <Navigation selected="favoris" />
         <MainContainer>
           <NoFavorites t={t} toggleTutoModal={toggleTutoModal} />
           {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes favoris"} />}
@@ -98,7 +95,6 @@ const UserFavorites = (props: Props) => {
     );
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-      <Navigation selected="favoris" />
       <MainContainer>
         <FavoritesContainer>
           <TitleContainer>

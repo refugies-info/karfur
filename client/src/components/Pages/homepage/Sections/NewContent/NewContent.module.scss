@@ -1,0 +1,39 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+
+.sliders {
+  overflow: hidden;
+
+  :global(.content-card-slider) {
+    --gradient-start: #f6f6f600;
+    --gradient-end: #f6f6f6;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      @include text("large");
+      background: $gray40b;
+      border: none;
+      padding: u(2);
+      white-space: nowrap;
+
+      &:hover {
+        background: $gray60;
+      }
+    }
+
+    @include isTablet() {
+      & > button {
+        display: none;
+      }
+      h2 {
+        @include text("h5");
+      }
+    }
+  }
+}

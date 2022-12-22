@@ -1,6 +1,6 @@
 import React from "react";
 import LinesEllipsis from "react-lines-ellipsis";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { ObjectId } from "mongodb";
@@ -19,19 +19,18 @@ const StructureCard = (props: StructureCardProps) => {
 
   return (
     <Link
+      legacyBehavior
       href={{
         pathname: getPath("/annuaire/[id]", router.locale),
-        query: {id: props.id.toString()}
+        query: { id: props.id.toString() }
       }}
     >
-      <a
-        className={styles.structure_container}
-      >
+      <a className={styles.structure_container}>
         <div className={styles.inner}>
           <Image
             className={styles.img}
             src={props.picture?.secure_url || placeholder}
-            alt={props.acronyme}
+            alt={props.nom}
             width={150}
             height={100}
           />
@@ -42,16 +41,15 @@ const StructureCard = (props: StructureCardProps) => {
           text={
             props.acronyme
               ? props.nom.length + props.acronyme.length > 43
-                ? props.nom.substr(0, 36 - props.acronyme.length) +
-                  "... (" +
-                  props.acronyme +
-                  ")"
+                ? props.nom.substr(0, 36 - props.acronyme.length) + "... (" + props.acronyme + ")"
                 : props.nom + " (" + props.acronyme + ")"
               : props.nom
           }
           maxLine="4"
           trimRight
           basedOn="letters"
+          component="h3"
+          className={styles.title}
         />
       </a>
     </Link>
@@ -66,21 +64,17 @@ export const LetterSection = (props: Props) => {
     <div className={styles.letter_container}>
       {(props.structures || []).map((structure, key) => (
         <div key={key} className={styles.list_item}>
-          {key === 0 && (
-            <div id="A" key={"anchor_" + key} className={styles.anchor} />
-          )}
+          {key === 0 && <div id="A" key={"anchor_" + key} className={styles.anchor} />}
 
-          {key > 1 &&
-            props.structures[key - 1].nom[0].toLowerCase() !==
-              props.structures[key].nom[0].toLowerCase() && (
-              <>
-                <div
-                  key={"anchor_" + props.structures[key].nom[0].toUpperCase()}
-                  className={styles.anchor}
-                  id={props.structures[key].nom[0].toUpperCase()}
-                />
-              </>
-            )}
+          {key > 1 && props.structures[key - 1].nom[0].toLowerCase() !== props.structures[key].nom[0].toLowerCase() && (
+            <>
+              <div
+                key={"anchor_" + props.structures[key].nom[0].toUpperCase()}
+                className={styles.anchor}
+                id={props.structures[key].nom[0].toUpperCase()}
+              />
+            </>
+          )}
           <StructureCard
             key={"structure_" + key}
             nom={structure.nom}

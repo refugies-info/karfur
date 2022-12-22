@@ -2,7 +2,7 @@
 
 // Bootstrap
 // All variables here: https://github.com/twbs/bootstrap/blob/v4.6.1/scss/_variables.scss
-$font-family-sans-serif: "CircularStd", "Roboto", "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI";
+$font-family-sans-serif: "Marianne", "Arial", "sans-serif";
 $body-color: $gray90;
 $body-bg: white;
 
@@ -28,7 +28,7 @@ $headings-line-height: 1.25;
 
 // Font sizes
 $text-small: 14px;
-$text-normal: 16px;
+$text-normal: 1rem;
 $text-large: 18px;
 
 // Spacers
@@ -45,3 +45,9 @@ $spacers: (
 
 // Custom
 $radius: 12px;
+
+// Breakpoints
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1248px;

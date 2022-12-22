@@ -9,35 +9,26 @@ import { fetchUserContributionsActionCreator } from "services/UserContributions/
 import { fetchUserStructureActionCreator } from "services/UserStructure/userStructure.actions";
 import "jest-styled-components";
 import Router from "next/router";
+jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
+
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
-  return Image
+  return Image;
 });
 
-jest.mock(
-  "services/UserContributions/userContributions.actions",
-  () => {
-    const actions = jest.requireActual(
-      "services/UserContributions/userContributions.actions"
-    );
+jest.mock("services/UserContributions/userContributions.actions", () => {
+  const actions = jest.requireActual("services/UserContributions/userContributions.actions");
 
-    return {
-      fetchUserContributionsActionCreator: jest.fn(
-        actions.fetchUserContributionsActionCreator
-      ),
-    };
-  }
-);
+  return {
+    fetchUserContributionsActionCreator: jest.fn(actions.fetchUserContributionsActionCreator)
+  };
+});
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
-  const actions = jest.requireActual(
-    "services/UserStructure/userStructure.actions"
-  );
+  const actions = jest.requireActual("services/UserStructure/userStructure.actions");
   return {
-    fetchUserStructureActionCreator: jest.fn(
-      actions.fetchUserStructureActionCreator
-    ),
+    fetchUserStructureActionCreator: jest.fn(actions.fetchUserStructureActionCreator)
   };
 });
 
@@ -51,8 +42,8 @@ describe("userContributions", () => {
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
-          loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } },
-        },
+          loadingStatus: { FETCH_USER_CONTRIBUTIONS: { isLoading: true } }
+        }
       });
     });
 
@@ -65,7 +56,7 @@ describe("userContributions", () => {
     let component;
     act(() => {
       component = wrapWithProvidersAndRender({
-        Component: UserContributions,
+        Component: UserContributions
       });
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
@@ -79,14 +70,14 @@ describe("userContributions", () => {
       titreMarque: "titreMarque1",
       status: "Brouillon",
       typeContenu: "dispositif",
-      nbMercis: 0,
+      nbMercis: 0
     },
     {
       _id: "id2",
       titreInformatif: "titre info2",
       status: "En attente",
       typeContenu: "demarche",
-      nbMercis: 0,
+      nbMercis: 0
     },
     {
       _id: "id3",
@@ -94,7 +85,7 @@ describe("userContributions", () => {
       status: "En attente admin",
       typeContenu: "demarche",
       nbMercis: 0,
-      mainSponsor: "sponsor",
+      mainSponsor: "sponsor"
     },
     {
       _id: "id4",
@@ -102,7 +93,7 @@ describe("userContributions", () => {
       status: "Accepté structure",
       typeContenu: "demarche",
       nbMercis: 0,
-      mainSponsor: "sponsor",
+      mainSponsor: "sponsor"
     },
     {
       _id: "id5",
@@ -111,7 +102,7 @@ describe("userContributions", () => {
       typeContenu: "demarche",
       nbMercis: 0,
       nbVues: 10,
-      mainSponsor: "sponsor",
+      mainSponsor: "sponsor"
     },
     {
       _id: "id6",
@@ -120,8 +111,8 @@ describe("userContributions", () => {
       typeContenu: "demarche",
       nbMercis: 0,
       nbVues: 10,
-      mainSponsor: "sponsor",
-    },
+      mainSponsor: "sponsor"
+    }
   ];
 
   const userStructure = {
@@ -135,9 +126,9 @@ describe("userContributions", () => {
         typeContenu: "demarche",
         nbMercis: 0,
         nbVues: 10,
-        mainSponsor: "sponsor",
-      },
-    ],
+        mainSponsor: "sponsor"
+      }
+    ]
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
@@ -148,19 +139,19 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure,
-        },
+          userStructure
+        }
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
-      shouldRedirect: false,
+      shouldRedirect: false
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it("should render correctly when clicks", () => {
+  it("should render correctly when clicks", async () => {
     window.scrollTo = jest.fn();
     let component;
     act(() => {
@@ -169,18 +160,18 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure,
-        },
+          userStructure
+        }
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
-      shouldRedirect: false,
+      shouldRedirect: false
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    component.root.findByProps({ "data-test-id": "test_id1" }).props.onClick();
+    await act(() => component.root.findByProps({ "data-test-id": "test_id1" }).props.onClick());
     expect(Router).toMatchObject({ asPath: "/dispositif/id1" });
-    component.root.findByProps({ "data-test-id": "test_id2" }).props.onClick();
+    await act(() => component.root.findByProps({ "data-test-id": "test_id2" }).props.onClick());
     expect(Router).toMatchObject({ asPath: "/demarche/id2" });
   });
 
@@ -192,18 +183,18 @@ describe("userContributions", () => {
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
-          userContributions: [userContributions[0]],
-        },
+          userContributions: [userContributions[0]]
+        }
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "userStructureId",
-      shouldRedirect: false,
+      shouldRedirect: false
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    component.root
-      .findByProps({ "data-test-id": "test_delete_id1" })
-      .props.onClick({ stopPropagation: () => {} });
+    act(() =>
+      component.root.findByProps({ "data-test-id": "test_delete_id1" }).props.onClick({ stopPropagation: () => {} })
+    );
     expect(component.toJSON()).toMatchSnapshot();
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
@@ -213,7 +204,7 @@ describe("userContributions", () => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     });
   });
 });
