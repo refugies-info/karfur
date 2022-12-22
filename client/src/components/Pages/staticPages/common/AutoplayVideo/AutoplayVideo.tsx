@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { isIOS } from "react-device-detect";
+import { cls } from "lib/classname";
 import styles from "./AutoplayVideo.module.scss";
 
 interface Props {
   src: string | undefined;
   height: number;
   width?: number;
+  noShadow?: boolean;
 }
 
 const AutoplayVideo = (props: Props) => {
@@ -47,7 +49,7 @@ const AutoplayVideo = (props: Props) => {
       loop
       muted
       playsInline={isIOS}
-      className={styles.video}
+      className={cls(styles.video, props.noShadow && styles.no_shadow)}
     >
       <source src={props.src} type="video/mp4" />
     </video>

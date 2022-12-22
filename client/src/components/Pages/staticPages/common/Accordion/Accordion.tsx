@@ -16,6 +16,7 @@ type Item = {
   youtube?: string;
   mediaWidth?: number;
   mediaHeight?: number;
+  noShadow?: boolean;
   cta?: {
     text: string;
     link: string;
@@ -50,7 +51,14 @@ const Accordion = (props: Props) => {
       case "image":
         return <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} />;
       case "video":
-        return <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />;
+        return (
+          <AutoplayVideo
+            src={item.video}
+            height={item.mediaHeight || 420}
+            width={item.mediaWidth}
+            noShadow={item.noShadow}
+          />
+        );
       case "youtube":
         return (
           <iframe
@@ -73,7 +81,7 @@ const Accordion = (props: Props) => {
         {props.items.map((item, i) => {
           const isItemOpen = isOpen(i);
           return (
-            <div key={i}>
+            <div key={i} className={styles.container}>
               <Button className={cls(styles.btn, isItemOpen && styles.open)} onClick={() => toggle(i)}>
                 {item.title}
                 <EVAIcon name="arrow-ios-downward-outline" fill="black" size={32} className={styles.icon} />
@@ -93,7 +101,11 @@ const Accordion = (props: Props) => {
                     {item?.youtube && getMedia("youtube", item)}
                   </>
                 )}
-                {item.cta && <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />}
+                {item.cta && (
+                  <div className={styles.cta}>
+                    <InlineLink link={item.cta.link} text={item.cta.text} color="blue" />
+                  </div>
+                )}
               </Collapse>
             </div>
           );

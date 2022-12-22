@@ -177,4 +177,14 @@ $breakpoint: "lg-limit";
 }
 .needs {
   max-width: 720px;
+
+  :global(.row) {
+    margin-right: -20px;
+    margin-left: -20px;
+
+    & > div {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
 }
