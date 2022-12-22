@@ -1,20 +1,20 @@
 // @ts-nocheck
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { getUserById } from "../../../modules/users/users.repository";
+import { getUsersById } from "../../../modules/users/users.repository";
 import { getAllStructures } from "./getAllStructures";
 
 jest.mock("../../../modules/structure/structure.repository", () => ({
-  getStructuresFromDB: jest
-    .fn()
-    .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
+  getStructuresFromDB: jest.fn().mockResolvedValue([{ id: "id1" }, { id: "id2" }])
 }));
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  getUserById: jest.fn().mockResolvedValue({
-    _id: "id1",
-    username: "respo",
-    picture: { secure_url: "test" },
-  }),
+  getUsersById: jest.fn().mockResolvedValue([
+    {
+      _id: "id1",
+      username: "respo",
+      picture: { secure_url: "test" }
+    }
+  ])
 }));
 
 type MockResponse = { json: any; status: any };
@@ -34,7 +34,7 @@ const dispositif1 = {
   theme: { _id: "theme1" },
   secondaryThemes: [],
   titreInformatif: "titre",
-  titreMarque: "titreMarque",
+  titreMarque: "titreMarque"
 };
 
 const dispositif2 = {
@@ -46,7 +46,7 @@ const dispositif2 = {
   theme: { _id: "theme1" },
   secondaryThemes: [],
   titreInformatif: "titre",
-  titreMarque: "titreMarque",
+  titreMarque: "titreMarque"
 };
 const dispositif3 = {
   _id: "dispo3",
@@ -57,7 +57,7 @@ const dispositif3 = {
   theme: { _id: "theme1" },
   secondaryThemes: [],
   titreInformatif: "titre",
-  titreMarque: "titreMarque",
+  titreMarque: "titreMarque"
 };
 
 const dispositif4 = {
@@ -69,7 +69,7 @@ const dispositif4 = {
   theme: { _id: "theme1" },
   secondaryThemes: [],
   titreInformatif: "titre",
-  titreMarque: "titreMarque",
+  titreMarque: "titreMarque"
 };
 
 const structure2 = {
@@ -77,7 +77,7 @@ const structure2 = {
   dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
   membres: [
     { userId: "id1", roles: ["administrateur"] },
-    { userId: "id2", roles: ["redacteur"] },
+    { userId: "id2", roles: ["redacteur"] }
   ],
   nom: "nom",
   status: "En attente",
@@ -85,7 +85,7 @@ const structure2 = {
   contact: "contact",
   phone_contact: "phone_contact",
   mail_contact: "mail_contact",
-  created_at: 1500,
+  created_at: 1500
 };
 
 const structure3 = {
@@ -93,7 +93,7 @@ const structure3 = {
   dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
   membres: [
     { userId: "id1", roles: ["traducteur"] },
-    { userId: "id2", roles: ["redacteur"] },
+    { userId: "id2", roles: ["redacteur"] }
   ],
   nom: "nom",
   status: "En attente",
@@ -101,23 +101,20 @@ const structure3 = {
   contact: "contact",
   phone_contact: "phone_contact",
   mail_contact: "mail_contact",
-  created_at: 1500,
+  created_at: 1500
 };
 
 const structure4 = {
   id: "id",
   dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
-  membres: [
-    { roles: ["administrateur"] },
-    { userId: "id2", roles: ["redacteur"] },
-  ],
+  membres: [{ roles: ["administrateur"] }, { userId: "id2", roles: ["redacteur"] }],
   nom: "nom",
   status: "En attente",
   picture: { secure_url: "secure_url" },
   contact: "contact",
   phone_contact: "phone_contact",
   mail_contact: "mail_contact",
-  created_at: 1500,
+  created_at: 1500
 };
 
 describe("getAllStructures", () => {
@@ -135,21 +132,21 @@ describe("getAllStructures", () => {
     membres: 1,
     adminComments: 1,
     adminProgressionStatus: 1,
-    adminPercentageProgressionStatus: 1,
+    adminPercentageProgressionStatus: 1
   };
-  const neededFieldsUser = { picture: 1, username: 1, email: 1 };
+  const neededFieldsUser = { _id: 1, picture: 1, username: 1, email: 1 };
   it("should call getStructuresFromDB and getUserById and return a 200 (structure with respo)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
-        toJSON: () => structure2,
-      },
+        toJSON: () => structure2
+      }
     ]);
     const res = mockResponse();
     await getAllStructures({}, res);
 
     expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
 
-    expect(getUserById).toHaveBeenCalledWith("id1", neededFieldsUser);
+    expect(getUsersById).toHaveBeenCalledWith(["id1"], neededFieldsUser);
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
@@ -168,30 +165,30 @@ describe("getAllStructures", () => {
         responsable: {
           _id: "id1",
           username: "respo",
-          picture: { secure_url: "test" },
+          picture: { secure_url: "test" }
         },
         nbFiches: 2,
         membres: [
           { userId: "id1", roles: ["administrateur"] },
-          { userId: "id2", roles: ["redacteur"] },
-        ],
-      },
+          { userId: "id2", roles: ["redacteur"] }
+        ]
+      }
     ];
     expect(res.json).toHaveBeenCalledWith({
-      data: result,
+      data: result
     });
   });
 
   it("should call getStructuresFromDB and getUserById and return a 200 (structure without respo)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
-        toJSON: () => structure3,
-      },
+        toJSON: () => structure3
+      }
     ]);
     const res = mockResponse();
     await getAllStructures({}, res);
 
-    expect(getUserById).not.toHaveBeenCalled();
+    expect(getUsersById).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
@@ -210,25 +207,25 @@ describe("getAllStructures", () => {
         nbFiches: 2,
         membres: [
           { userId: "id1", roles: ["traducteur"] },
-          { userId: "id2", roles: ["redacteur"] },
-        ],
-      },
+          { userId: "id2", roles: ["redacteur"] }
+        ]
+      }
     ];
     expect(res.json).toHaveBeenCalledWith({
-      data: result,
+      data: result
     });
   });
 
   it("should call getStructuresFromDB and getUserById and return a 200 (admin without userId)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
-        toJSON: () => structure4,
-      },
+        toJSON: () => structure4
+      }
     ]);
     const res = mockResponse();
     await getAllStructures({}, res);
 
-    expect(getUserById).not.toHaveBeenCalled();
+    expect(getUsersById).not.toHaveBeenCalled();
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
@@ -245,14 +242,11 @@ describe("getAllStructures", () => {
         dispositifsIds: ["dispo1", "dispo2", "dispo3", "dispo4"],
         responsable: null,
         nbFiches: 2,
-        membres: [
-          { roles: ["administrateur"] },
-          { userId: "id2", roles: ["redacteur"] },
-        ],
-      },
+        membres: [{ roles: ["administrateur"] }, { userId: "id2", roles: ["redacteur"] }]
+      }
     ];
     expect(res.json).toHaveBeenCalledWith({
-      data: result,
+      data: result
     });
   });
 
@@ -263,7 +257,7 @@ describe("getAllStructures", () => {
     expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
+      text: "Erreur interne"
     });
   });
 });
