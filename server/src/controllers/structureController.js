@@ -7,7 +7,7 @@ import { getActiveStructures } from "../workflows/structure/getActiveStructures"
 import { createStructure } from "../workflows/structure/createStructure";
 import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
-import { getStatistics } from "../workflows/structure/getStatistics";
+import getStatistics from "../workflows/structure/getStatistics";
 
 router.get("/getStructureById", checkToken.getId, checkToken.getRoles, getStructureById);
 router.get("/getActiveStructures", getActiveStructures);

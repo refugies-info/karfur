@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { getStatistics } from "./getStatistics";
+import getStatistics from "./getStatistics";
 import { getAllUsersFromDB } from "../../../modules/users/users.repository";
 import { getNbWordsTranslated } from "../../../modules/traductions/traductions.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
@@ -18,6 +18,7 @@ jest.mock("../../../modules/users/users.repository", () => ({
     { _id: 2, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "en" }, { _id: "ru" }], last_connected: "2022-12-01" },
     { _id: 3, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-11-15" },
     { _id: 4, roles: [{ nom: "User" }, { nom: "Trad" }], selectedLanguages: [{ _id: "ru" }], last_connected: "2022-12-01" },
+    { _id: 4, roles: [{ nom: "User" }, { nom: "Contrib" }], selectedLanguages: [{ _id: "ru" }], last_connected: "2022-12-01" },
     { _id: 5, roles: [{ nom: "User" }, { nom: "ExpertTrad" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-12-01" },
     { _id: 6, roles: [{ nom: "User" }, { nom: "Admin" }], selectedLanguages: [{ _id: "en" }], last_connected: "2022-12-01" },
   ]),
@@ -39,17 +40,34 @@ jest.mock("../../../modules/langues/langues.repository", () => ({
   }]),
 }));
 
-const req = {};
+const req = { query: {} };
 
 describe("getStatistics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("should return correct result", async () => {
+  it("should return nbTranslators facet", async () => {
     const res = mockResponse();
     global.Date.now = jest.fn(() => new Date('2022-12-28T10:20:30Z').getTime())
-    await getStatistics(req, res);
+    await getStatistics[1]({ query: { facets: ["nbTranslators"] } }, res);
+    expect(getActiveLanguagesFromDB).toHaveBeenCalled();
+    expect(getAllUsersFromDB).toHaveBeenCalled();
+    expect(getNbWordsTranslated).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "OK",
+      data: {
+        nbTranslators: 3,
+      }
+    });
+  });
+
+  it("should return nbTranslators and nbWordsTranslated facets", async () => {
+    const res = mockResponse();
+    global.Date.now = jest.fn(() => new Date('2022-12-28T10:20:30Z').getTime())
+    await getStatistics[1]({ query: { facets: ["nbTranslators", "nbWordsTranslated"] } }, res);
     expect(getActiveLanguagesFromDB).toHaveBeenCalled();
     expect(getAllUsersFromDB).toHaveBeenCalled();
     expect(getNbWordsTranslated).toHaveBeenCalled();
@@ -59,6 +77,25 @@ describe("getStatistics", () => {
       text: "OK",
       data: {
         nbTranslators: 3,
+        nbWordsTranslated: 52,
+      }
+    });
+  });
+
+  it("should return all facets", async () => {
+    const res = mockResponse();
+    global.Date.now = jest.fn(() => new Date('2022-12-28T10:20:30Z').getTime())
+    await getStatistics[1](req, res);
+    expect(getActiveLanguagesFromDB).toHaveBeenCalled();
+    expect(getAllUsersFromDB).toHaveBeenCalled();
+    expect(getNbWordsTranslated).toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "OK",
+      data: {
+        nbTranslators: 3,
+        nbRedactors: 1,
         nbWordsTranslated: 52,
         nbActiveTranslators: [
           { languageId: "en", count: 1 },
@@ -75,7 +112,7 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics(req, res);
+    await getStatistics[1](req, res);
     expect(getActiveLanguagesFromDB).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
@@ -86,7 +123,7 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics(req, res);
+    await getStatistics[1](req, res);
     expect(getAllUsersFromDB).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
@@ -97,7 +134,7 @@ describe("getStatistics", () => {
     );
 
     const res = mockResponse();
-    await getStatistics(req, res);
+    await getStatistics[1](req, res);
     expect(getNbWordsTranslated).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });

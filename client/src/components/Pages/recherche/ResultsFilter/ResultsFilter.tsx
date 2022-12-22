@@ -5,20 +5,23 @@ import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
-import { searchQuerySelector, searchResultsSelector } from "services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedSelector
+} from "services/SearchResults/searchResults.selector";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ResultsFilter.module.scss";
 
-interface Props {
-  nbThemesSelected: number;
-}
+interface Props {}
 
-const ResultsFilter = ({ nbThemesSelected }: Props) => {
+const ResultsFilter = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const query = useSelector(searchQuerySelector);
+  const themesDisplayed = useSelector(themesDisplayedSelector);
   const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
 
@@ -42,11 +45,11 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
 
   useEffect(() => {
     // if we select 1 theme, and sort option was "theme", change it
-    if (nbThemesSelected === 1 && query.sort === "theme") {
+    if (themesDisplayed.length === 1 && query.sort === "theme") {
       dispatch(addToQueryActionCreator({ sort: "date" }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nbThemesSelected]);
+  }, [themesDisplayed.length]);
 
   const selectType = useCallback(
     (key: TypeOptions) => {
@@ -81,8 +84,10 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
               className={cls(styles.btn, query.type === option.key && styles.selected)}
               onClick={() => selectType(option.key)}
             >
-              {/* @ts-ignore */}
-              <>{t(option.value)} {getCount(option.key)}</>
+              <>
+                {/* @ts-ignore */}
+                {t(option.value)} {getCount(option.key)}
+              </>
             </Button>
           ))}
         </div>
@@ -98,7 +103,7 @@ const ResultsFilter = ({ nbThemesSelected }: Props) => {
               {sortOptions
                 .filter((option) => {
                   // do not show theme option if 1 theme only is selected
-                  if (nbThemesSelected === 1) return option.key !== "theme";
+                  if (themesDisplayed.length === 1) return option.key !== "theme";
                   return true;
                 })
                 .map((option, i) => {

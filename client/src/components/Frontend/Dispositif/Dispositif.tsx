@@ -154,7 +154,6 @@ const Dispositif = (props: Props) => {
   const newRef = useRef<HTMLDivElement>(null);
   const sponsorsRef = createRef<any>();
 
-  const [accordion, setAccordion] = useState(new Array(1).fill(false));
   const [disableEdit, setDisableEdit] = useState(true);
   const [isModified, setIsModified] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -204,6 +203,10 @@ const Dispositif = (props: Props) => {
   // Initial data
   const [menu, setMenu] = useState<DispositifContent[]>(dispositif ? generateMenu(dispositif) : []);
   const timer = useRef<any>();
+
+  useEffect(() => {
+    setMenu(dispositif ? generateMenu(dispositif) : []);
+  }, [dispositif, router.locale]);
 
   useEffect(() => {
     if ((API.isAuth() && !user) || isLoaded) return;
@@ -596,6 +599,7 @@ const Dispositif = (props: Props) => {
           type: type
         };
       } else if (type === "etape") {
+        // TODO: not used?
         newChild = {
           type: "etape",
           title: "",
@@ -1115,13 +1119,6 @@ const Dispositif = (props: Props) => {
     }
   }, [routeAfterSave, router, isUserLoading, isUserStructureLoading, user]);
 
-  const upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500
-    });
   const createPossibleLanguagesObject = (avancement: Record<string, number> | undefined, langues: Language[]) => {
     if (!dispositif) return langues;
     let possibleLanguages: Language[] = [];
@@ -1576,7 +1573,6 @@ const Dispositif = (props: Props) => {
                 changePrice={changePrice}
                 toggleFree={toggleFree}
                 setMarkers={setMarkers}
-                upcoming={upcoming}
                 toggleTutorielModal={toggleTutorielModal}
                 displayTuto={displayTuto}
                 addMapBtn={addMapBtn}
@@ -1598,15 +1594,6 @@ const Dispositif = (props: Props) => {
                       color={mainTheme.colors.color100}
                       nbThanks={dispositif?.merci ? dispositif?.merci.length || 0 : 0}
                     />
-                  )}
-                  {!printing && (
-                    <div
-                      className={cls(mobile.hidden, "discussion-footer bg-darkColor")}
-                      style={{ backgroundColor: mainTheme.colors.color100 }}
-                    >
-                      <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
-                      <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-                    </div>
                   )}
                   {[...(dispositif?.participants || []), dispositif?.creatorId || []].length > 0 && !printing && (
                     <div className={cls(mobile.hidden, "bottom-wrapper")}>

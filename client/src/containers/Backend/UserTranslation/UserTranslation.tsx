@@ -23,6 +23,7 @@ import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./UserTranslation.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
+import { useRouter } from "next/router";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
 const getLangueName = (langueId: ObjectId | null, userTradLanguages: UserLanguage[]) => {
@@ -56,7 +57,7 @@ const UserTranslation = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
-  const [elementToTranslate, setElementToTranslate] = useState(null);
+  const [elementToTranslate, setElementToTranslate] = useState<any>(null);
 
   const [indicators, setIndicators] = useState<null | Indicators>(null);
 
@@ -145,6 +146,21 @@ const UserTranslation = (props: Props) => {
       }
       return false;
     }).length > 0;
+
+  const router = useRouter();
+  const completeProfileModalCallback = () => {
+    const langueId = getLangueId()?.toString();
+    if (!langueId || !elementToTranslate) return;
+    if (!user.expertTrad && elementToTranslate.tradStatus === "Validée") return;
+    return router.push({
+      pathname:
+        "/backend" +
+        (user.expertTrad ? "/validation" : "/traduction") +
+        "/" +
+        (elementToTranslate.typeContenu || "dispositif"),
+      search: `?language=${langueId}&dispositif=${elementToTranslate._id}`
+    });
+  };
 
   if (isLoading)
     return (
@@ -237,10 +253,7 @@ const UserTranslation = (props: Props) => {
             show={showCompleteProfilModal}
             toggle={toggleCompleteProfilModal}
             user={user.user}
-            type={"traduction"}
-            element={elementToTranslate}
-            isExpert={user.expertTrad}
-            langueId={getLangueId()?.toString()}
+            onComplete={completeProfileModalCallback}
           />
         )}
         {showOneNeedTranslationModal && (

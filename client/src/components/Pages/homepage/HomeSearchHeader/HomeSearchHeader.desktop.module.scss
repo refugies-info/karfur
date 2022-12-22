@@ -1,0 +1,28 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
+@import "src/scss/variables";
+
+.container {
+  width: 100%;
+  position: relative;
+  background: $white;
+  border-radius: $radius;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: stretch;
+  margin-top: 56px;
+
+  @include isMobile() {
+    margin-top: 0;
+  }
+}
+
+.inputs {
+  display: flex;
+  flex-grow: 1;
+  min-width: 0;
+}

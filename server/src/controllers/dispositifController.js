@@ -4,7 +4,7 @@ const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import { getDispositifs } from "../workflows/dispositif/getDispositifs";
+import getDispositifs from "../workflows/dispositif/getDispositifs";
 import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
@@ -20,7 +20,7 @@ import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
 import { getNbContents } from "../workflows/dispositif/getNbContents";
-import { getStatistics } from "../workflows/dispositif/getStatistics";
+import getStatistics from "../workflows/dispositif/getStatistics";
 
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);

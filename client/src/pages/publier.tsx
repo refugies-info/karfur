@@ -347,6 +347,7 @@ const RecensezVotreAction = (props: Props) => {
                   footer={
                     <InlineLink
                       link="#"
+                      type="button"
                       onClick={() => window.$crisp.push(["do", "chat:open"])}
                       text={t("StaticPages.helpTileCTA3")}
                       color="red"
@@ -412,20 +413,22 @@ const RecensezVotreAction = (props: Props) => {
         />
       </div>
 
-      <WriteContentModal show={showWriteModal} toggle={toggleWriteModal} />
+      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>
   );
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = await API.getDispositifsStatistics().then((data) => data.data.data);
-  const structStatistics = await API.getStructuresStatistics().then((data) => data.data.data);
+  const dispStatistics = (
+    await API.getDispositifsStatistics(["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"])
+  ).data.data;
+  const structStatistics = (await API.getStructuresStatistics(["nbStructures"])).data.data;
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-      nbVues: dispStatistics.nbVues + dispStatistics.nbVuesMobile,
-      nbFiches: dispStatistics.nbFiches,
+      nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
+      nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
       nbStructures: structStatistics.nbStructures
     },
     revalidate: 60

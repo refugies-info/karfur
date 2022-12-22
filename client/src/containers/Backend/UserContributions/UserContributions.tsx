@@ -150,7 +150,7 @@ const UserContributions = (props: Props) => {
           />
           {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />}
         </MainContainer>
-        <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
+        <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
       </div>
     );
   return (
@@ -193,7 +193,7 @@ const UserContributions = (props: Props) => {
         </ContribContainer>
         {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={tutoModalDisplayed} />}
       </MainContainer>
-      <WriteContentModal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} />
+      <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>
   );
 };

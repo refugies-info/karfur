@@ -2,22 +2,28 @@ import { Header, HeaderBody, HeaderOperator, Logo, Tool, ToolItemGroup } from "@
 import { logoRI } from "assets/figma";
 import { BackendNavigation } from "containers";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { getPath } from "routes";
 import styled from "styled-components";
 import FrontendNavigation from "./FrontendNavigation";
 import { UserToolItem, SpeekToolItem, SubscribeToolItem, TranslationToolItem } from "./NavbarItems";
 
 const LogoImage = styled(Image)`
-  max-width: 90%;
+  max-width: 80%;
 `;
 
 const Navbar = () => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <Header closeButtonLabel={t`Fermeture`}>
       <HeaderBody>
-        <Logo splitCharacter={10}>Gouvernement</Logo>
+        <Logo asLink={<Link href={getPath("/", router.locale)} />} splitCharacter={10}>
+          Gouvernement
+        </Logo>
         <HeaderOperator>
           <LogoImage key="logo" src={logoRI} alt="logo refugies-info" />
         </HeaderOperator>

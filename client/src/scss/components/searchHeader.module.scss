@@ -1,0 +1,200 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/btn";
+@import "src/scss/variables";
+
+// DESKTOP
+.dropdown {
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: 33.3333%;
+  padding: u(2);
+  flex: 1 1 0;
+  position: relative;
+
+  &::after {
+    content: "";
+    height: 80%;
+    width: 1px;
+    background-color: $gray60;
+    position: absolute;
+    right: 0;
+    top: 10%;
+
+    @include rtl() {
+      right: auto;
+      left: 0;
+    }
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  & > button {
+    background: transparent !important;
+    border: none;
+    padding: 0;
+    width: 100%;
+    position: relative;
+  }
+
+  &:global(.show) > button {
+    z-index: 2000001;
+  }
+}
+
+.submit {
+  margin: u(2);
+  font-weight: bold;
+  @include text("large");
+  border-radius: $radius;
+  min-width: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: $bleuCharte;
+  color: $white;
+  border: 1px solid transparent;
+
+  @include media-max("xl-limit") {
+    min-width: 0;
+    justify-content: center;
+
+    .label {
+      display: none;
+    }
+  }
+
+  @include isMobile() {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    padding: u(4);
+  }
+
+  &:hover {
+    background: $white !important;
+    color: $bleuCharte;
+    border-color: $bleuCharte;
+
+    svg {
+      fill: $bleuCharte;
+    }
+  }
+
+  .icon {
+    margin-right: u(4);
+    margin-left: 0;
+    display: inline-flex;
+    align-items: center;
+
+    @include rtl() {
+      margin-right: 0;
+      margin-left: u(4);
+    }
+
+    @include media-min("md-limit") {
+      margin-left: u(4);
+      margin-right: u(4);
+    }
+
+    @include media-min("xl-limit") {
+      margin-right: u(4);
+      margin-left: 0;
+
+      @include rtl() {
+        margin-right: 0;
+        margin-left: u(4);
+      }
+    }
+  }
+
+  &:disabled {
+    background: $grey50b !important;
+    color: $gray80;
+    opacity: 1;
+    border-color: transparent;
+    cursor: not-allowed;
+
+    svg {
+      fill: $gray80;
+    }
+  }
+}
+
+// MOBILE
+.menu {
+  position: fixed !important;
+  transform: none !important;
+  width: 100%;
+  height: 100vh;
+}
+
+.content {
+  margin-top: u(8);
+  padding: 0 u(4);
+}
+
+.input {
+  background: $gray30;
+  width: 100%;
+  padding: u(3) u(4);
+  border-radius: $radius;
+  display: flex;
+  align-items: center;
+  position: relative;
+  @include text("normal");
+
+  & > span {
+    position: absolute;
+    width: u(6);
+    height: u(6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10px;
+    left: 10px;
+
+    @include rtl() {
+      left: inherit;
+      right: 10px;
+    }
+  }
+
+  & > input {
+    width: 100%;
+    border: none;
+    line-height: u(4);
+    outline: none;
+    background: transparent;
+    padding-left: u(6);
+
+    &::placeholder {
+      color: $gray80;
+    }
+
+    @include rtl() {
+      padding-left: 0;
+      padding-right: u(6);
+    }
+  }
+}
+
+.separator::after {
+  content: "";
+  height: 100%;
+  width: 1px;
+  background-color: $gray60;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  @include rtl() {
+    right: auto;
+    left: 0;
+  }
+}

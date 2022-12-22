@@ -7,15 +7,9 @@ import rejectionFiche from "./rejectionFiche.svg";
 import logoRI from "./logoRI.svg";
 import logo_mobile from "./logo_mobile.svg";
 import newsletter from "./newsletter.svg";
-import illustration_homeCard_dispositif from "./illustration_homeCard_dispositif.svg";
-import illustration_homeCard_annuaire from "./illustration_homeCard_annuaire.svg";
-import illustration_homeCard_demarche from "./illustration_homeCard_demarche.svg";
-import illustration_homeCard_lexique from "./illustration_homeCard_lexique.svg";
-import illustration_connaitre_initiative from "./illustration_connaitre_initiative.svg";
-import illustration_aidez_traduire from "./illustration_aidez_traduire.svg";
-import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 import home_mobile from "./home_mobile.svg";
 import structure_definie from "./structure_definie.svg";
+import rendez_vous_ordinateur from "./rendez_vous_ordinateur.svg";
 
 export {
   interieur_2,
@@ -27,13 +21,7 @@ export {
   logoRI,
   logo_mobile,
   newsletter,
-  illustration_homeCard_dispositif,
-  illustration_homeCard_annuaire,
-  illustration_homeCard_demarche,
-  illustration_homeCard_lexique,
-  illustration_connaitre_initiative,
-  illustration_aidez_traduire,
-  rendez_vous_ordinateur,
   home_mobile,
   structure_definie,
+  rendez_vous_ordinateur,
 };

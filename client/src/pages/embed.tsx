@@ -24,28 +24,22 @@ import styles from "scss/pages/recherche.module.scss";
 const Embed = () => {
   const themes = useSelector(themesSelector);
   const query = useSelector(searchQuerySelector);
-  const themesSelected = themes.filter((t) => query.themes.includes(t._id));
 
   return (
     <div className={cls(styles.container, styles.embed)}>
       <Container className={styles.container_inner}>
         <EmbedHeader themes={themes} languages={query.language} departments={query.departments} />
-        <SearchResults
-          themesSelected={themesSelected}
-          departmentsNotDeployed={[]}
-          targetBlank={true}
-          resetFilters={() => {}}
-        />
+        <SearchResults departmentsNotDeployed={[]} targetBlank={true} />
 
         <footer>
           <p>
             Contenu proposé par
-            <div className={styles.logo}>
+            <span className={styles.logo}>
               <Image src={LogoDiair} width={88} height={90} alt="Logo DIAIR" />
-            </div>
-            <div className={styles.logo}>
+            </span>
+            <span className={styles.logo}>
               <Image src={LogoRI} width={186} height={32} alt="Logo Réfugiés.info" />
-            </div>
+            </span>
           </p>
         </footer>
       </Container>

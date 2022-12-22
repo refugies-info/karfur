@@ -30,7 +30,7 @@ const StructureCard = (props: StructureCardProps) => {
           <Image
             className={styles.img}
             src={props.picture?.secure_url || placeholder}
-            alt={props.acronyme}
+            alt={props.nom}
             width={150}
             height={100}
           />
@@ -48,6 +48,8 @@ const StructureCard = (props: StructureCardProps) => {
           maxLine="4"
           trimRight
           basedOn="letters"
+          component="h3"
+          className={styles.title}
         />
       </a>
     </Link>

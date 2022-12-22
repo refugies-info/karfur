@@ -1,0 +1,206 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/text";
+@import "src/scss/mixins/rtl";
+@import "src/scss/variables";
+
+$red: #9e180a;
+$green: #055e5a;
+$purple: #3d2884;
+$brown: #443023;
+$blue: $bleuCharte;
+
+:export {
+  red: $red;
+  green: $green;
+  purple: $purple;
+  brown: $brown;
+  blue: $blue;
+}
+
+.container {
+  width: 265px;
+  border-radius: 20px;
+  padding: u(6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  border: 1px solid transparent;
+  margin: 0 auto u(10) auto;
+  flex-shrink: 0;
+
+  @include rtl() {
+    text-align: right;
+  }
+
+  &:hover {
+    &.color_red {
+      border-color: $red;
+      background-color: #f9e8e8;
+    }
+    &.color_green {
+      border-color: $green;
+      background-color: #edfdf9;
+    }
+    &.color_purple {
+      border-color: $purple;
+      background-color: #efe8f4;
+    }
+    &.color_brown {
+      border-color: $brown;
+      background-color: #eee7e5;
+    }
+    &.color_blue {
+      border-color: $blue;
+      background-color: #dae0fb;
+    }
+
+    .badge {
+      background: $white !important;
+    }
+  }
+
+  @include isTablet() {
+    padding: u(4);
+    margin: 0 u(2);
+    background: $white !important;
+    width: 230px;
+
+    &.color_red {
+      border-color: $red;
+    }
+    &.color_green {
+      border-color: $green;
+    }
+    &.color_purple {
+      border-color: $purple;
+    }
+    &.color_brown {
+      border-color: $brown;
+    }
+    &.color_blue {
+      border-color: $blue;
+    }
+  }
+}
+
+.image_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  img {
+    @include isTablet() {
+      width: 124px;
+      height: 56px;
+    }
+  }
+}
+
+.count {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 3px solid $white;
+  font-weight: bold;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-60%);
+
+  @include rtl() {
+    transform: translateX(60%);
+  }
+
+  .color_red & {
+    background-color: #c54126;
+  }
+  .color_green & {
+    background-color: #187f73;
+  }
+  .color_purple & {
+    background-color: #564394;
+  }
+  .color_brown & {
+    background-color: #5a483c;
+  }
+  .color_blue & {
+    background-color: $blue;
+  }
+
+  @include isTablet() {
+    width: 32px;
+    height: 32px;
+    @include text("very-small");
+    border-width: 2px;
+  }
+}
+
+.title {
+  @include text("h5");
+  font-weight: bold;
+  margin-top: u(6);
+  margin-bottom: u(4);
+
+  @include isTablet() {
+    @include text("normal");
+    margin-top: u(4);
+  }
+}
+
+.subtitle {
+  @include text("large");
+  margin-bottom: 0;
+
+  @include isTablet() {
+    @include text("normal");
+  }
+}
+
+.footer {
+  margin-top: u(8);
+
+  @include isTablet() {
+    margin-top: u(4);
+  }
+}
+
+.badge {
+  padding: u(1) u(2);
+  border-radius: 30px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+
+  .icon {
+    @include mr-ltr(u(1));
+    @include isTablet() {
+      display: none;
+    }
+  }
+
+  .color_red & {
+    color: $red;
+    background-color: #f9e8e8;
+  }
+  .color_green & {
+    color: $green;
+    background-color: #edfdf9;
+  }
+  .color_purple & {
+    color: $purple;
+    background-color: #efe8f4;
+  }
+  .color_brown & {
+    color: $brown;
+    background-color: #eee7e5;
+  }
+  .color_blue & {
+    color: $blue;
+    background-color: #dae0fb;
+  }
+}

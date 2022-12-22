@@ -287,6 +287,7 @@ const RecensezVotreAction = (props: Props) => {
                   footer={
                     <InlineLink
                       link="#"
+                      type="button"
                       onClick={() => window.$crisp.push(["do", "chat:open"])}
                       text={t("StaticPages.helpTileCTA3")}
                       color="red"
@@ -339,7 +340,9 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const translationStatistics = await API.getTranslationStatistics().then((data) => data.data.data);
+  const translationStatistics = (
+    await API.getTranslationStatistics(["nbTranslators", "nbWordsTranslated", "nbActiveTranslators"])
+  ).data.data;
 
   return {
     props: {
