@@ -31,7 +31,7 @@ const Community = (props: Props) => {
   return (
     <div className={cls(commonStyles.section)}>
       <Container className={cls(commonStyles.container, "text-center")}>
-        <h2 className={cls(commonStyles.title2, "text-center")}>{t("Homepage.communityTitle")}</h2>
+        <h2 className={cls(commonStyles.title2, styles.title, commonStyles.center)}>{t("Homepage.communityTitle")}</h2>
 
         <div className={styles.row}>
           <CommunityCard
