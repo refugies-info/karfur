@@ -29,20 +29,21 @@ $purple: #3d2884;
 .row {
   display: flex;
   align-items: stretch;
+  justify-content: space-between;
   min-height: 420px;
 
   @include isTablet() {
     position: relative;
     flex-direction: column-reverse;
-    padding-left: u(4);
+    @include pl-ltr(u(4));
   }
 }
 
 $borderWidth: 4px;
 .content {
-  max-width: 390px;
+  max-width: 480px;
   order: 2;
-  padding-left: 60px;
+  @include pl-ltr(60px);
   padding-bottom: 100px;
   border-left: $borderWidth solid $dark;
   position: relative;
@@ -50,8 +51,6 @@ $borderWidth: 4px;
   @include rtl() {
     border-left: none;
     border-right: $borderWidth solid $dark;
-    padding-left: 0;
-    padding-right: 60px;
   }
 
   .orange & {
@@ -97,15 +96,22 @@ $borderWidth: 4px;
 .media {
   position: relative;
   order: 1;
-  flex-grow: 1;
+  flex-grow: 0;
+  width: 480px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+
+  :global(.autoplay-video) {
+    max-width: 100%;
+    height: auto;
+  }
 
   @include isTablet() {
     border-left: $borderWidth solid $dark;
     padding-left: u(8);
     padding-bottom: 60px;
+    width: auto;
 
     @include rtl() {
       border-left: none;
@@ -178,6 +184,17 @@ $borderWidth: 4px;
   left: -22px;
   box-shadow: 1.3px 1.3px 11px 0 #2121213d;
 
+  // fix vertical align
+  span {
+    height: 22px;
+    line-height: 20px;
+
+    @include isTablet() {
+      height: 16px;
+      line-height: 15px;
+    }
+  }
+
   @include rtl() {
     left: inherit;
     right: -22px;
@@ -194,7 +211,6 @@ $borderWidth: 4px;
     width: 24px;
     height: 24px;
     @include text("normal");
-    line-height: 15px;
     left: -14px;
     top: -1px;
 
@@ -241,6 +257,7 @@ $borderWidth: 4px;
     width: 100%;
 
     @include rtl() {
+      transform: none;
       left: inherit;
       right: 0;
     }
