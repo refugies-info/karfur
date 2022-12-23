@@ -21,26 +21,14 @@ import {
   FigureContainer,
   StyledSort,
   SearchBarContainer,
-  StyledHeaderInner,
+  StyledHeaderInner
 } from "../sharedComponents/StyledAdmin";
-import {
-  TabHeader,
-  StyledStatus,
-  FilterButton,
-} from "../sharedComponents/SubComponents";
+import { TabHeader, StyledStatus, FilterButton } from "../sharedComponents/SubComponents";
 import moment from "moment";
 import "moment/locale/fr";
 import { headers, correspondingStatus } from "./data";
-import {
-  RowContainer,
-  StructureName,
-  ResponsableComponent,
-} from "./components/AdminStructureComponents";
-import {
-  SimplifiedStructureForAdmin,
-  Responsable,
-  StructureStatusType,
-} from "types/interface";
+import { RowContainer, StructureName, ResponsableComponent } from "./components/AdminStructureComponents";
+import { SimplifiedStructureForAdmin, Responsable, StructureStatusType } from "types/interface";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
@@ -61,14 +49,16 @@ export const AdminStructures = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
-    orderColumn: "none",
+    orderColumn: "none"
   };
 
   // filters
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "structures");
-  const [filter, setFilter] = useState<StructureStatusType>(initialFilters.filter as StructureStatusType || "En attente");
+  const [filter, setFilter] = useState<StructureStatusType>(
+    (initialFilters.filter as StructureStatusType) || "En attente"
+  );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
@@ -98,50 +88,39 @@ export const AdminStructures = () => {
         selectedUserId,
         selectedContentId,
         selectedStructureId
-      )
+      );
 
-      router.replace({
-        pathname: locale + "/backend/admin",
-        search: params,
-      }, undefined, { shallow: true });
+      router.replace(
+        {
+          pathname: locale + "/backend/admin",
+          search: params
+        },
+        undefined,
+        { shallow: true }
+      );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    filter,
-    router.query.tab,
-    selectedUserId,
-    selectedContentId,
-    selectedStructureId
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, router.query.tab, selectedUserId, selectedContentId, selectedStructureId]);
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  const toggleImprovementsMailModal = () =>
-    setShowImprovementsMailModal(!showImprovementsMailModal);
+  const toggleImprovementsMailModal = () => setShowImprovementsMailModal(!showImprovementsMailModal);
 
-  const toggleShowNewStructureModal = () =>
-    setShowNewStructureModal(!showNewStructureModal);
+  const toggleShowNewStructureModal = () => setShowNewStructureModal(!showNewStructureModal);
 
-  const toggleStructureDetailsModal = () =>
-    setShowStructureDetailsModal(!showStructureDetailsModal);
+  const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const toggleNeedsChoiceModal = () =>
-    setShowNeedsChoiceModal(!showNeedsChoiceModal);
+  const toggleNeedsChoiceModal = () => setShowNeedsChoiceModal(!showNeedsChoiceModal);
 
-  const toggleShowChangeStructureModal = () =>
-    setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleShowChangeStructureModal = () => setShowChangeStructureModal(!showChangeStructureModal);
 
   const addNewStructure = () => {
     toggleShowNewStructureModal();
   };
 
-  const setSelectedStructureIdAndToggleModal = (
-    structureId: ObjectId | null
-  ) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
@@ -165,33 +144,26 @@ export const AdminStructures = () => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        orderColumn: element.order,
+        orderColumn: element.order
       });
     }
   };
 
-  const toggleUserDetailsModal = () =>
-    setShowUserDetailsModal(!showUserDetailsModal);
+  const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
-  const toggleContentDetailsModal = () =>
-    setShowContentDetailsModal(!showContentDetailsModal);
+  const toggleContentDetailsModal = () => setShowContentDetailsModal(!showContentDetailsModal);
 
   const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
-  const setSelectedContentIdAndToggleModal = (
-    element: ObjectId | null,
-    status: string | null = null
-  ) => {
+  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, status: string | null = null) => {
     setSelectedContentId(element ? element : null);
     if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
   };
 
-  const filterAndSortStructures = (
-    structures: SimplifiedStructureForAdmin[]
-  ) => {
+  const filterAndSortStructures = (structures: SimplifiedStructureForAdmin[]) => {
     const structuresFilteredBySearch = !!search
       ? structures.filter(
           (structure) =>
@@ -204,29 +176,23 @@ export const AdminStructures = () => {
         )
       : structures;
 
-    const filteredStructures = structuresFilteredBySearch.filter(
-      (structure) => structure.status === filter
-    ).sort((a, b) => moment(b.created_at).isBefore(moment(a.created_at)) ? -1 : 1);
+    const filteredStructures = structuresFilteredBySearch
+      .filter((structure) => structure.status === filter)
+      .sort((a, b) => (moment(b.created_at).isBefore(moment(a.created_at)) ? -1 : 1));
     if (sortedHeader.name === "none")
       return {
         structuresToDisplay: filteredStructures,
-        structuresForCount: structuresFilteredBySearch,
+        structuresForCount: structuresFilteredBySearch
       };
 
     const structuresToDisplay = filteredStructures.sort(
       (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
         // @ts-ignore
-        const orderColumn:
-          | "nom"
-          | "status"
-          | "nbMembres"
-          | "responsable"
-          | "nbFiches"
-          | "created_at" = sortedHeader.orderColumn;
+        const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
+          sortedHeader.orderColumn;
 
         if (orderColumn === "nbMembres") {
-          if (a[orderColumn] > b[orderColumn])
-            return sortedHeader.sens === "up" ? 1 : -1;
+          if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
         }
 
@@ -239,90 +205,64 @@ export const AdminStructures = () => {
         }
 
         if (orderColumn === "responsable") {
-          const respoA =
-            a.responsable && a.responsable.username
-              ? a.responsable.username.toLowerCase()
-              : "";
-          const respoB =
-            b.responsable && b.responsable.username
-              ? b.responsable.username.toLowerCase()
-              : "";
+          const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
+          const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
 
           if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
         }
 
         if (orderColumn === "created_at") {
-          if (moment(a.created_at).diff(moment(b.created_at)) > 0)
-            return sortedHeader.sens === "up" ? 1 : -1;
+          if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
         }
 
         const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
-        const valueAWithoutAccent = valueA
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "");
+        const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
-        const valueBWithoutAccent = valueB
-          .normalize("NFD")
-          .replace(/[\u0300-\u036f]/g, "");
-        if (valueAWithoutAccent > valueBWithoutAccent)
-          return sortedHeader.sens === "up" ? 1 : -1;
+        const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
 
         return sortedHeader.sens === "up" ? -1 : 1;
       }
     );
     return {
       structuresToDisplay,
-      structuresForCount: structuresFilteredBySearch,
+      structuresForCount: structuresFilteredBySearch
     };
   };
 
-  const getNbStructuresByStatus = (
-    structures: SimplifiedStructureForAdmin[],
-    status: string
-  ) =>
-    structures && structures.length > 0
-      ? structures.filter((structure) => structure.status === status).length
-      : 0;
+  const getNbStructuresByStatus = (structures: SimplifiedStructureForAdmin[], status: string) =>
+    structures && structures.length > 0 ? structures.filter((structure) => structure.status === status).length : 0;
 
-  const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
-    structures
-  );
+  const { structuresToDisplay, structuresForCount } = filterAndSortStructures(structures);
 
-  const nbNonDeletedStructures = structures.filter(
-    (structure) => structure.status !== "Supprimé"
-  ).length;
+  const nbNonDeletedStructures = structures.filter((structure) => structure.status !== "Supprimé").length;
   return (
     <div className={styles.container}>
-      <SearchBarContainer>
-        <CustomSearchBar
-          value={search}
-          // @ts-ignore
-          onChange={handleChange}
-          placeholder="Rechercher une structure..."
-          withMargin={true}
-        />
-        <FButton
-          type="dark"
-          name="plus-circle-outline"
-          onClick={addNewStructure}
-        >
-          Ajouter une structure
-        </FButton>
-      </SearchBarContainer>
       <StyledHeader>
         <StyledHeaderInner>
           <StyledTitle>Structures</StyledTitle>
           <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
         </StyledHeaderInner>
-        <StyledSort marginTop="8px">
+        <StyledSort>
+          <CustomSearchBar
+            value={search}
+            // @ts-ignore
+            onChange={handleChange}
+            placeholder="Rechercher une structure..."
+            withMargin={true}
+          />
+          <FButton type="dark" name="plus-circle-outline" onClick={addNewStructure}>
+            Ajouter une structure
+          </FButton>
+        </StyledSort>
+      </StyledHeader>
+      <StyledHeader>
+        <StyledSort>
           {correspondingStatus.sort(statusCompare).map((element) => {
             const status = element.storedStatus;
-            const nbStructures = getNbStructuresByStatus(
-              structuresForCount,
-              status
-            );
+            const nbStructures = getNbStructuresByStatus(structuresForCount, status);
             return (
               <FilterButton
                 key={status}
@@ -349,11 +289,7 @@ export const AdminStructures = () => {
                     name={element.name}
                     order={element.order}
                     isSortedHeader={sortedHeader.name === element.name}
-                    sens={
-                      sortedHeader.name === element.name
-                        ? sortedHeader.sens
-                        : "down"
-                    }
+                    sens={sortedHeader.name === element.name ? sortedHeader.sens : "down"}
                   />
                 </th>
               ))}
@@ -362,10 +298,7 @@ export const AdminStructures = () => {
           <tbody>
             {structuresToDisplay.map((element, key) => (
               <tr key={key}>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
-                >
+                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <Image
@@ -380,14 +313,8 @@ export const AdminStructures = () => {
                     <StructureName>{element.nom}</StructureName>
                   </RowContainer>
                 </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
-                >
-                  <StyledStatus
-                    text={element.status}
-                    textToDisplay={element.status}
-                  />
+                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                  <StyledStatus text={element.status} textToDisplay={element.status} />
                 </td>
                 <td
                   className="align-middle cursor-pointer"
@@ -398,28 +325,15 @@ export const AdminStructures = () => {
 
                 <td
                   className={"align-middle "}
-                  onClick={() =>
-                    setSelectedUserIdAndToggleModal(element.responsable?._id || null)
-                  }
+                  onClick={() => setSelectedUserIdAndToggleModal(element.responsable?._id || null)}
                 >
-                  <ResponsableComponent
-                    responsable={element.responsable}
-                    canClickOnRespo={false}
-                  />
+                  <ResponsableComponent responsable={element.responsable} canClickOnRespo={false} />
                 </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
-                >
+                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
                   {element.nbFiches}
                 </td>
-                <td
-                  className="align-middle"
-                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
-                >
-                  {element.created_at
-                    ? moment(element.created_at).format("LLL")
-                    : "Non connue"}
+                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                  {element.created_at ? moment(element.created_at).format("LLL") : "Non connue"}
                 </td>
               </tr>
             ))}
@@ -435,10 +349,7 @@ export const AdminStructures = () => {
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
       />
-      <NewStructureModal
-        show={showNewStructureModal}
-        toggleModal={toggleShowNewStructureModal}
-      />
+      <NewStructureModal show={showNewStructureModal} toggleModal={toggleShowNewStructureModal} />
 
       <SelectFirstResponsableModal
         show={showSelectFirstRespoModal}
@@ -450,28 +361,19 @@ export const AdminStructures = () => {
           show={showUserDetailsModal}
           toggleModal={() => setSelectedUserIdAndToggleModal(null)}
           selectedUserId={selectedUserId}
-          setSelectedStructureIdAndToggleModal={
-            setSelectedStructureIdAndToggleModal
-          }
+          setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
         />
       )}
 
       {selectedContentId && (
         <ContentDetailsModal
           show={showContentDetailsModal}
-          setSelectedStructureIdAndToggleModal={
-            setSelectedStructureIdAndToggleModal
-          }
+          setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
-            prepareDeleteContrib(
-              dispositifs,
-              setAllDispositifsActionsCreator,
-              dispatch,
-              selectedContentId
-            )
+            prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, selectedContentId)
           }
           toggleNeedsChoiceModal={toggleNeedsChoiceModal}
           toggleImprovementsMailModal={toggleImprovementsMailModal}
