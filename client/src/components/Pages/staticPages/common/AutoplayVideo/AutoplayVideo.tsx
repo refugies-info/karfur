@@ -49,7 +49,7 @@ const AutoplayVideo = (props: Props) => {
       loop
       muted
       playsInline={isIOS}
-      className={cls(styles.video, props.noShadow && styles.no_shadow)}
+      className={cls(styles.video, props.noShadow && styles.no_shadow, "autoplay-video")}
     >
       <source src={props.src} type="video/mp4" />
     </video>

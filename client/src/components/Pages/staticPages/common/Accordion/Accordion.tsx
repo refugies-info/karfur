@@ -21,6 +21,7 @@ type Item = {
     text: string;
     link: string;
   };
+  className?: string;
 };
 
 interface Props {
@@ -81,7 +82,7 @@ const Accordion = (props: Props) => {
         {props.items.map((item, i) => {
           const isItemOpen = isOpen(i);
           return (
-            <div key={i} className={styles.container}>
+            <div key={i} className={cls(styles.container, item.className)}>
               <Button className={cls(styles.btn, isItemOpen && styles.open)} onClick={() => toggle(i)}>
                 {item.title}
                 <EVAIcon name="arrow-ios-downward-outline" fill="black" size={32} className={styles.icon} />
@@ -112,7 +113,13 @@ const Accordion = (props: Props) => {
         })}
       </Col>
       {!isTablet && props.withImages && open.length > 0 && (
-        <Col className={cls(styles.media, props.mediaAlign === "center" ? styles.center : styles.right)}>
+        <Col
+          className={cls(
+            styles.media,
+            props.mediaAlign === "center" ? styles.center : styles.right,
+            props.items[open[0]]?.className
+          )}
+        >
           {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}
           {props.items[open[0]]?.video && getMedia("video", props.items[open[0]])}
           {props.items[open[0]]?.youtube && getMedia("youtube", props.items[open[0]])}

@@ -86,6 +86,11 @@
 .video {
   max-width: 250px;
   margin: 0 auto u(6) auto;
+  text-align: center;
+
+  @include isTablet {
+    margin-top: u(6);
+  }
 }
 
 .icon {

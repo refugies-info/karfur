@@ -141,7 +141,8 @@ const RecensezVotreAction = (props: Props) => {
                   title: t("Publish.whyAccordionTitle2"),
                   text: t("Publish.whyAccordionText2"),
                   video: "/video/publier-video-why2.mp4",
-                  mediaWidth: 203
+                  mediaWidth: 203,
+                  className: styles.video2
                 },
                 {
                   title: t("Publish.whyAccordionTitle3"),
