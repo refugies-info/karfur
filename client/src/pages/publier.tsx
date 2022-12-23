@@ -284,6 +284,8 @@ const RecensezVotreAction = (props: Props) => {
               title={t("Publish.stepsSubtitle3")}
               texts={[t("Publish.stepsText3")]}
               video="/video/publier-video-step3.mp4"
+              width={340}
+              height={320}
             />
             <StepContent
               step={4}
