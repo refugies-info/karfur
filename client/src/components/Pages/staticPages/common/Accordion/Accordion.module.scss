@@ -7,6 +7,11 @@
 
 .container {
   position: relative;
+  margin-bottom: u(8);
+
+  @include isTablet() {
+    margin-bottom: u(6);
+  }
 }
 
 .btn {
@@ -21,12 +26,10 @@
   align-items: center;
   justify-content: space-between;
   border-radius: $radius;
-  margin-bottom: u(8);
   width: 100%;
 
   @include isTablet() {
     @include text("large");
-    margin-bottom: u(6);
   }
 
   &:hover,
@@ -43,7 +46,7 @@
 .infos {
   &.with_images {
     @include media-min("lg-limit") {
-      max-width: 500px;
+      width: 50%;
       flex-grow: 0;
       flex-basis: auto;
     }
@@ -52,9 +55,10 @@
 
 .text {
   @include text("large");
-  margin-bottom: u(8);
   padding-right: u(4);
   padding-left: u(4);
+  margin-bottom: 0;
+  margin-top: u(4);
 
   @include isTablet() {
     @include text("normal");
@@ -74,9 +78,19 @@
   }
 }
 
+.cta {
+  padding-right: u(4);
+  padding-left: u(4);
+}
+
 .video {
   max-width: 250px;
   margin: 0 auto u(6) auto;
+  text-align: center;
+
+  @include isTablet {
+    margin-top: u(6);
+  }
 }
 
 .icon {
@@ -94,9 +108,16 @@
 }
 
 .media {
+  width: 50%;
   align-items: center;
   display: flex;
-  justify-content: flex-end;
+
+  &.center {
+    justify-content: center;
+  }
+  &.right {
+    justify-content: flex-end;
+  }
 }
 
 .youtube {

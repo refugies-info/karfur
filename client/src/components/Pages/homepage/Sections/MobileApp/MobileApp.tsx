@@ -8,9 +8,9 @@ import { useWindowSize } from "hooks";
 import { AvailableLanguageI18nCode } from "types/interface";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import app_qr_code from "assets/homepage/app-qr-code.png";
 import { assetsOnServer } from "assets/assetsOnServer";
 import MobileAppIllu from "./MobileAppIllu";
+import MobileAppSmsForm from "./MobileAppSmsForm";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./MobileApp.module.scss";
 
@@ -70,10 +70,7 @@ const MobileApp = () => {
             <h2 className={cls(commonStyles.title2, "text-white mb-0")}>{t("Homepage.mobileAppTitle")}</h2>
             <p className={cls(commonStyles.subtitle)}>{t("Homepage.mobileAppSubtitle")}</p>
 
-            <div className={styles.qrcode}>
-              <Image src={app_qr_code} alt="Scan the QR code" width={104} height={104} className={styles.img} />
-              <p className={styles.text}>{t("Homepage.mobileAppQrcode")}</p>
-            </div>
+            <MobileAppSmsForm />
 
             <div className={styles.store}>{isTablet && storeLinks}</div>
           </Col>

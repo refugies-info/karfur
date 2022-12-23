@@ -24,28 +24,28 @@ const WhyAccordions = (props: Props) => {
               title: t("Homepage.whyAccordionTitle1"),
               text: t("Homepage.whyAccordionText1", { count: props.nbDemarches }),
               video: "/video/home-video-1.mp4",
-              mediaWidth: 450,
+              mediaWidth: 442,
               mediaHeight: 320
             },
             {
               title: t("Homepage.whyAccordionTitle2"),
               text: t("Homepage.whyAccordionText2"),
               video: "/video/home-video-2.mp4",
-              mediaWidth: 450,
+              mediaWidth: 442,
               mediaHeight: 320
             },
             {
               title: t("Homepage.whyAccordionTitle3"),
               text: t("Homepage.whyAccordionText3"),
               video: "/video/home-video-3.mp4",
-              mediaWidth: 450,
+              mediaWidth: 442,
               mediaHeight: 320
             },
             {
               title: t("Homepage.whyAccordionTitle4"),
               text: t("Homepage.whyAccordionText4"),
               youtube: "https://www.youtube-nocookie.com/embed/QMRR2csgan0",
-              mediaWidth: 450,
+              mediaWidth: 442,
               mediaHeight: 320
             }
           ]}

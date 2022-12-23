@@ -1482,28 +1482,31 @@ exports[`homepage renders homepage 1`] = `
           </span>
         </button>
       </div>
-      <div
-        className="container center"
-      >
-        <a
-          className="btn"
-          href="#themes"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
-        >
-          <span>
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
-                }
-              }
-            />
-          </span>
-        </a>
-      </div>
     </div>
+    <div
+      className="container center"
+    >
+      <a
+        className="btn"
+        href="#themes"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
+      >
+        <span>
+          <i
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+              }
+            }
+          />
+        </span>
+      </a>
+    </div>
+    <div
+      className="bottom_img"
+    />
   </div>
   <div
     className="section themes"
@@ -3285,7 +3288,7 @@ exports[`homepage renders homepage 1`] = `
               className="front"
             >
               <video
-                className="video"
+                className="video autoplay-video"
                 height={418}
                 loop={true}
                 muted={true}
@@ -3383,12 +3386,92 @@ exports[`homepage renders homepage 1`] = `
             Homepage.mobileAppSubtitle
           </p>
           <div
-            className="qrcode"
+            className="container"
           >
-            <p
-              className="text"
+            <div
+              className="sms_form"
             >
-              Homepage.mobileAppQrcode
+              <div>
+                <div
+                  className="container input"
+                >
+                  <input
+                    className="input"
+                    onChange={[Function]}
+                    placeholder="Homepage.mobileAppFormLabel"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="options"
+              >
+                <div
+                  className="dropdown dropdown"
+                  onKeyDown={[Function]}
+                >
+                  <button
+                    aria-expanded={false}
+                    aria-haspopup={true}
+                    aria-label={null}
+                    className="btn btn-secondary"
+                    onClick={[Function]}
+                    type="button"
+                  >
+                    <span
+                      className="value"
+                    >
+                      Homepage.mobileAppInLanguage français
+                      <i
+                        className="flag flag-icon flag-icon-fr"
+                        id="fr"
+                        title="fr"
+                      />
+                    </span>
+                    <span
+                      className="icon"
+                    >
+                      <i
+                        dangerouslySetInnerHTML={
+                          {
+                            "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-chevron-down-outline" fill="dark"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                          }
+                        }
+                      />
+                    </span>
+                  </button>
+                  <div
+                    aria-hidden={true}
+                    className="menu dropdown-menu"
+                    role="menu"
+                    tabIndex="-1"
+                  />
+                </div>
+                <button
+                  className="btn validate submit"
+                  disabled={true}
+                  onClick={[Function]}
+                >
+                  <span
+                    className="mr-10"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="#fff"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
+                        }
+                      }
+                    />
+                  </span>
+                  OK
+                </button>
+              </div>
+            </div>
+            <p
+              className="instructions"
+            >
+              Homepage.mobileAppFormInstructions
             </p>
           </div>
           <div
@@ -3405,7 +3488,7 @@ exports[`homepage renders homepage 1`] = `
       className="container container"
     >
       <h2
-        className="title2 text-center"
+        className="title2 center"
       >
         Homepage.infoTypeTitle
       </h2>
@@ -16526,7 +16609,9 @@ exports[`homepage renders homepage 1`] = `
         <div
           className="infos with_images col"
         >
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn open btn btn-secondary"
@@ -16560,7 +16645,9 @@ exports[`homepage renders homepage 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -16594,7 +16681,9 @@ exports[`homepage renders homepage 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -16628,7 +16717,9 @@ exports[`homepage renders homepage 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -16664,15 +16755,15 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <div
-          className="media col"
+          className="media right col"
         >
           <video
-            className="video"
+            className="video autoplay-video"
             height={320}
             loop={true}
             muted={true}
             playsInline=""
-            width={450}
+            width={442}
           >
             <source
               src="/video/home-video-1.mp4"
@@ -17394,7 +17485,7 @@ exports[`homepage renders homepage 1`] = `
       className="container text-center container"
     >
       <h2
-        className="title2 text-center"
+        className="title2 title center"
       >
         Homepage.communityTitle
       </h2>
@@ -17402,7 +17493,7 @@ exports[`homepage renders homepage 1`] = `
         className="row"
       >
         <a
-          className="container color_red"
+          className="container link color_red"
           href="/publish"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -17434,6 +17525,28 @@ exports[`homepage renders homepage 1`] = `
             className="footer"
           >
             <span
+              className="cta"
+            >
+              <span
+                className="link color_red"
+              >
+                <span>
+                  Homepage.communityCardCTA2
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </span>
+            </span>
+            <span
               className="badge"
             >
               <span
@@ -17452,7 +17565,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </a>
         <a
-          className="container color_red"
+          className="container link color_red"
           href="/publish"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -17484,22 +17597,42 @@ exports[`homepage renders homepage 1`] = `
             className="footer"
           >
             <span
-              className="link color_red"
+              className="cta"
             >
-              <span>
-                Homepage.communityCardCTA2
+              <span
+                className="link color_red"
+              >
+                <span>
+                  Homepage.communityCardCTA2
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
               </span>
+            </span>
+            <span
+              className="badge"
+            >
               <span
                 className="icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit-outline" fill="red"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
                     }
                   }
                 />
               </span>
+              Homepage.communityCardBadge1
             </span>
           </div>
         </a>
@@ -17550,7 +17683,7 @@ exports[`homepage renders homepage 1`] = `
           </div>
         </div>
         <a
-          className="container color_green"
+          className="container link color_green"
           href="/translate"
           onClick={[Function]}
           onMouseEnter={[Function]}
@@ -17581,6 +17714,28 @@ exports[`homepage renders homepage 1`] = `
           <div
             className="footer"
           >
+            <span
+              className="cta"
+            >
+              <span
+                className="link color_green"
+              >
+                <span>
+                  Toolbar.Traduire
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="green"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </span>
+            </span>
             <span
               className="badge"
             >
@@ -17783,8 +17938,12 @@ exports[`homepage renders homepage 1`] = `
             </span>
           </div>
         </div>
-        <div
-          className="container color_blue"
+        <a
+          className="container link color_blue"
+          href="/who-are-we"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           <div>
             <div
@@ -17812,6 +17971,28 @@ exports[`homepage renders homepage 1`] = `
             className="footer"
           >
             <span
+              className="cta"
+            >
+              <span
+                className="link color_blue"
+              >
+                <span>
+                  Qui sommes-nous ?
+                </span>
+                <span
+                  className="icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                  />
+                </span>
+              </span>
+            </span>
+            <span
               className="badge"
             >
               <span
@@ -17828,7 +18009,7 @@ exports[`homepage renders homepage 1`] = `
               Homepage.communityCardBadge9
             </span>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

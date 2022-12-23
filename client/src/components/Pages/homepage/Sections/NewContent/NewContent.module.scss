@@ -15,6 +15,18 @@
     align-items: center;
     justify-content: space-between;
 
+    button {
+      @include text("large");
+      background: $gray40b;
+      border: none;
+      padding: u(2);
+      white-space: nowrap;
+
+      &:hover {
+        background: $gray60;
+      }
+    }
+
     @include isTablet() {
       & > button {
         display: none;

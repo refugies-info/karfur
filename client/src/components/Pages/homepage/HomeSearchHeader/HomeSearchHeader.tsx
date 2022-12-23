@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { addToQueryActionCreator } from "services/SearchResults/searchResults.actions";

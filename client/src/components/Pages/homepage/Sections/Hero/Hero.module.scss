@@ -2,11 +2,21 @@
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/text";
 
+$navbarHeight: 160px;
+$paddingTop: u(18);
+$heightTitle: 130px;
+$searchMarginTop: 56px;
+$searchHeight: 96px;
+
 .hero {
-  min-height: 750px;
+  position: relative;
+  min-height: 470px;
+  height: calc(100vh - $navbarHeight);
+  background-image: url(../../../../../assets/homepage/hero/background-image.svg);
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: u(20);
+  background-position: top;
+  padding-top: $paddingTop;
 
   @include isTablet() {
     padding-top: u(10);
@@ -20,11 +30,34 @@
       @include text("h4");
     }
   }
+}
+.bottom_img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-image: url(../../../../../assets/homepage/hero/bottom-back.svg);
+  width: 100%;
+  height: calc(100vh - $navbarHeight - $paddingTop - $heightTitle - $searchMarginTop - $searchHeight);
+  padding-left: 20%;
+  padding-top: u(10);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
 
-  @include media-min("tablet-up") {
-    background-image: url(../../../../../assets/figma/integration_illu.svg);
+  img {
+    height: 100%;
+    max-height: 50vh;
+    width: auto;
   }
-  @include isMobile() {
-    background-image: url(../../../../../assets/figma/home_mobile.svg);
+
+  @include media-max("lg-limit") {
+    padding-left: 10%;
+
+    img {
+      max-height: 30vh;
+    }
   }
 }
