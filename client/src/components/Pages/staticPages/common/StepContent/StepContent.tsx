@@ -43,7 +43,9 @@ const StepContent = (props: Props) => {
       )}
     >
       <div className={cls(styles.content)}>
-        <div className={styles.step}>{props.step}</div>
+        <div className={styles.step}>
+          <span>{props.step}</span>
+        </div>
         <h3
           className={styles.title}
           dangerouslySetInnerHTML={{
@@ -64,7 +66,7 @@ const StepContent = (props: Props) => {
         {props.image && (
           <Image src={props.image} alt="" width={props.width || 550} height={props.height} objectFit="contain" />
         )}
-        {props.video && <AutoplayVideo src={props.video} height={props.height || 320} />}
+        {props.video && <AutoplayVideo src={props.video} width={props.width} height={props.height || 320} />}
       </div>
       {isTablet && props.buttonStep && buttonStep}
     </div>

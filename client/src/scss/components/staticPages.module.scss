@@ -175,6 +175,29 @@ $breakpoint: "lg-limit";
 .faq {
   max-width: 720px;
 }
+
+// Publier
+.video2 {
+  :global(.autoplay-video) {
+    border-radius: $radius;
+
+    @include isTablet() {
+      width: 112px;
+    }
+  }
+}
+
+// Traduire
 .needs {
   max-width: 720px;
+
+  :global(.row) {
+    margin-right: -20px;
+    margin-left: -20px;
+
+    & > div {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
 }

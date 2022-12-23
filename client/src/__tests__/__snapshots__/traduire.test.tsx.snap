@@ -692,7 +692,9 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="step"
           >
-            1
+            <span>
+              1
+            </span>
           </div>
           <h3
             className="title"
@@ -735,7 +737,7 @@ exports[`traduire renders traduire 1`] = `
           className="media"
         >
           <video
-            className="video"
+            className="video autoplay-video"
             height={320}
             loop={true}
             muted={true}
@@ -757,7 +759,9 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="step"
           >
-            2
+            <span>
+              2
+            </span>
           </div>
           <h3
             className="title"
@@ -777,7 +781,7 @@ exports[`traduire renders traduire 1`] = `
           className="media"
         >
           <video
-            className="video"
+            className="video autoplay-video"
             height={320}
             loop={true}
             muted={true}
@@ -799,7 +803,9 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="step"
           >
-            3
+            <span>
+              3
+            </span>
           </div>
           <h3
             className="title"
@@ -840,7 +846,7 @@ exports[`traduire renders traduire 1`] = `
           className="media"
         >
           <video
-            className="video"
+            className="video autoplay-video"
             height={320}
             loop={true}
             muted={true}
@@ -862,7 +868,9 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="step"
           >
-            4
+            <span>
+              4
+            </span>
           </div>
           <h3
             className="title"
@@ -1050,7 +1058,7 @@ exports[`traduire renders traduire 1`] = `
             className="text-right col-sm-12 col-lg-6"
           >
             <video
-              className="video"
+              className="video autoplay-video"
               height={320}
               loop={true}
               muted={true}
@@ -1435,7 +1443,9 @@ exports[`traduire renders traduire 1`] = `
         <div
           className="infos col"
         >
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -1469,7 +1479,9 @@ exports[`traduire renders traduire 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -1503,7 +1515,9 @@ exports[`traduire renders traduire 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -1537,7 +1551,9 @@ exports[`traduire renders traduire 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -1571,7 +1587,9 @@ exports[`traduire renders traduire 1`] = `
               />
             </div>
           </div>
-          <div>
+          <div
+            className="container"
+          >
             <button
               aria-label={null}
               className="btn btn btn-secondary"
@@ -1603,30 +1621,34 @@ exports[`traduire renders traduire 1`] = `
                   }
                 }
               />
-              <a
-                className="link color_blue"
-                href="https://airtable.com/shrQxPHedgZ5PuXot"
-                onClick={[Function]}
-                onMouseEnter={[Function]}
-                onTouchStart={[Function]}
-                rel="noopener noreferrer"
-                target="_blank"
+              <div
+                className="cta"
               >
-                <span>
-                  Translate.faqAccordionCTA5
-                </span>
-                <span
-                  className="icon"
+                <a
+                  className="link color_blue"
+                  href="https://airtable.com/shrQxPHedgZ5PuXot"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  <span>
+                    Translate.faqAccordionCTA5
+                  </span>
+                  <span
+                    className="icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                  />
-                </span>
-              </a>
+                    />
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
