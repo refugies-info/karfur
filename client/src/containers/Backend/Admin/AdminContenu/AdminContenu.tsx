@@ -398,7 +398,7 @@ export const AdminContenu = () => {
       </StyledHeader>
 
       <Content>
-        <Table responsive borderless>
+        <Table borderless>
           <thead>
             <tr>
               {headers.map((element: { name: string; order: string | null }, key) => (
