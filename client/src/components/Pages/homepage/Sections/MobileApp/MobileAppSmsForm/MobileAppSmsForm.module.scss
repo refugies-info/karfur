@@ -1,0 +1,50 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.container {
+  margin-top: u(8);
+
+  @include isTablet() {
+    display: none;
+  }
+}
+
+.sms_form {
+  position: relative;
+}
+
+.input {
+  input {
+    height: 64px;
+    padding-right: 50%;
+
+    @include rtl() {
+      padding-left: 50%;
+      padding-right: u(4);
+    }
+  }
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  @include r-ltr(8px);
+  top: 8px;
+}
+
+.submit {
+  height: 48px;
+  @include ml-ltr(u(2));
+}
+
+.instructions {
+  margin-top: u(4);
+  max-width: 400px;
+  color: $white;
+  @include text("small");
+}

@@ -13,10 +13,11 @@ export const getActiveStructures = async (req: {}, res: Res) => {
         acronyme: 1,
         picture: 1,
         structureTypes: 1,
-        departments: 1,
+        departments: 1
       },
       true
     );
+    logger.info("[getActiveStructures] structures fetched");
 
     let newStructures: StructureSimplifiedWithLoc[] = [];
     structures.map((item) => {
@@ -28,30 +29,17 @@ export const getActiveStructures = async (req: {}, res: Res) => {
         structureTypes: item.structureTypes,
         departments: item.departments,
         //@ts-ignore
-        disposAssociesLocalisation: [],
+        disposAssociesLocalisation: []
       };
       if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
         //@ts-ignore
         item.dispositifsAssocies.map((el: any) => {
-          if (
-            el.contenu &&
-            el.contenu[1] &&
-            el.contenu[1].children &&
-            el.contenu[1].children.length
-          ) {
-            const geolocInfocard = el.contenu[1].children.find(
-              (infocard: any) => infocard.title === "Zone d'action"
-            );
+          if (el.contenu && el.contenu[1] && el.contenu[1].children && el.contenu[1].children.length) {
+            const geolocInfocard = el.contenu[1].children.find((infocard: any) => infocard.title === "Zone d'action");
             if (geolocInfocard && geolocInfocard.departments) {
               for (var i = 0; i < geolocInfocard.departments.length; i++) {
-                if (
-                  !newStructure.disposAssociesLocalisation.includes(
-                    geolocInfocard.departments[i]
-                  )
-                ) {
-                  newStructure.disposAssociesLocalisation.push(
-                    geolocInfocard.departments[i]
-                  );
+                if (!newStructure.disposAssociesLocalisation.includes(geolocInfocard.departments[i])) {
+                  newStructure.disposAssociesLocalisation.push(geolocInfocard.departments[i]);
                 }
               }
             }
@@ -65,11 +53,11 @@ export const getActiveStructures = async (req: {}, res: Res) => {
     return res.status(200).json({ data: newStructures });
   } catch (error) {
     logger.error("[getActiveStructures] error while getting structures", {
-      error,
+      error
     });
 
     return res.status(500).json({
-      text: "Erreur interne",
+      text: "Erreur interne"
     });
   }
 };

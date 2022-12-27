@@ -19,10 +19,10 @@ import {
   AutoplayVideo,
   InlineLink,
   Register,
-  HeroArrow
+  HeroArrow,
+  LanguageIcon
 } from "components/Pages/staticPages/common";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import LanguageIcon from "components/Pages/staticPages/traduire/LanguageIcon";
 import LanguageCard from "components/Pages/staticPages/traduire/LanguageCard";
 import WhoIcon3 from "assets/staticPages/traduire/who-icon-3.svg";
 import HelpIcon1 from "assets/staticPages/traduire/help-icon-tutoriel.svg";

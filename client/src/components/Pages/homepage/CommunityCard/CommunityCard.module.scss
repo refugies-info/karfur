@@ -6,10 +6,15 @@
 @import "src/scss/variables";
 
 $red: #9e180a;
+$light_red: #f9e8e8;
 $green: #055e5a;
+$light_green: #edfdf9;
 $purple: #3d2884;
+$light_purple: #efe8f4;
 $brown: #443023;
+$light_brown: #eee7e5;
 $blue: $bleuCharte;
+$light_blue: #dae0fb;
 
 :export {
   red: $red;
@@ -38,23 +43,32 @@ $blue: $bleuCharte;
   &:hover {
     &.color_red {
       border-color: $red;
-      background-color: #f9e8e8;
+      background-color: $light_red;
     }
     &.color_green {
       border-color: $green;
-      background-color: #edfdf9;
+      background-color: $light_green;
     }
     &.color_purple {
       border-color: $purple;
-      background-color: #efe8f4;
+      background-color: $light_purple;
     }
     &.color_brown {
       border-color: $brown;
-      background-color: #eee7e5;
+      background-color: $light_brown;
     }
     &.color_blue {
       border-color: $blue;
-      background-color: #dae0fb;
+      background-color: $light_blue;
+    }
+
+    &.link {
+      .badge {
+        display: none;
+      }
+      .cta {
+        display: block;
+      }
     }
 
     .badge {
@@ -169,6 +183,10 @@ $blue: $bleuCharte;
   }
 }
 
+.cta {
+  display: none;
+}
+
 .badge {
   padding: u(1) u(2);
   border-radius: 30px;
@@ -178,29 +196,26 @@ $blue: $bleuCharte;
 
   .icon {
     @include mr-ltr(u(1));
-    @include isTablet() {
-      display: none;
-    }
   }
 
   .color_red & {
     color: $red;
-    background-color: #f9e8e8;
+    background-color: $light_red;
   }
   .color_green & {
     color: $green;
-    background-color: #edfdf9;
+    background-color: $light_green;
   }
   .color_purple & {
     color: $purple;
-    background-color: #efe8f4;
+    background-color: $light_purple;
   }
   .color_brown & {
     color: $brown;
-    background-color: #eee7e5;
+    background-color: $light_brown;
   }
   .color_blue & {
     color: $blue;
-    background-color: #dae0fb;
+    background-color: $light_blue;
   }
 }

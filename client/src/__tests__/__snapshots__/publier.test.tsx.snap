@@ -259,7 +259,9 @@ exports[`publier renders publier 1`] = `
           <div
             className="infos with_images col"
           >
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn open btn btn-secondary"
@@ -293,7 +295,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container video2"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -327,7 +331,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -361,7 +367,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -397,7 +405,7 @@ exports[`publier renders publier 1`] = `
             </div>
           </div>
           <div
-            className="media col"
+            className="media center col"
           >
             <span
               style={
@@ -1613,7 +1621,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              1
+              <span>
+                1
+              </span>
             </div>
             <h3
               className="title"
@@ -1656,7 +1666,7 @@ exports[`publier renders publier 1`] = `
             className="media"
           >
             <video
-              className="video"
+              className="video autoplay-video"
               height={320}
               loop={true}
               muted={true}
@@ -1678,7 +1688,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              2
+              <span>
+                2
+              </span>
             </div>
             <h3
               className="title"
@@ -1727,7 +1739,7 @@ exports[`publier renders publier 1`] = `
             className="media"
           >
             <video
-              className="video"
+              className="video autoplay-video"
               height={320}
               loop={true}
               muted={true}
@@ -1749,7 +1761,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              3
+              <span>
+                3
+              </span>
             </div>
             <h3
               className="title"
@@ -1769,11 +1783,12 @@ exports[`publier renders publier 1`] = `
             className="media"
           >
             <video
-              className="video"
+              className="video autoplay-video"
               height={320}
               loop={true}
               muted={true}
               playsInline=""
+              width={340}
             >
               <source
                 src="/video/publier-video-step3.mp4"
@@ -1791,7 +1806,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              4
+              <span>
+                4
+              </span>
             </div>
             <h3
               className="title"
@@ -1947,7 +1964,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              5
+              <span>
+                5
+              </span>
             </div>
             <h3
               className="title"
@@ -2098,7 +2117,9 @@ exports[`publier renders publier 1`] = `
             <div
               className="step"
             >
-              6
+              <span>
+                6
+              </span>
             </div>
             <h3
               className="title"
@@ -2853,7 +2874,9 @@ exports[`publier renders publier 1`] = `
           <div
             className="infos col"
           >
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -2887,7 +2910,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -2921,7 +2946,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -2955,7 +2982,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"
@@ -2989,7 +3018,9 @@ exports[`publier renders publier 1`] = `
                 />
               </div>
             </div>
-            <div>
+            <div
+              className="container"
+            >
               <button
                 aria-label={null}
                 className="btn btn btn-secondary"

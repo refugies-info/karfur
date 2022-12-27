@@ -493,7 +493,10 @@ const API = {
       })
     });
   },
-  cancel_tts_subscription: () => cancel && cancel()
+  cancel_tts_subscription: () => cancel && cancel(),
+
+  // sms
+  smsDownloadApp: (phone: string, locale: string) => instance.post("/sms/download-app", { phone, locale }),
 };
 
 export default API;

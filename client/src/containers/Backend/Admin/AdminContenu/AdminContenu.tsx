@@ -353,34 +353,36 @@ export const AdminContenu = () => {
 
   return (
     <div>
-      <SearchBarContainer>
-        {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
-          <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
-            {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
-          </FButton>
-        )}
-        <CustomSearchBar
-          value={search}
-          onChange={handleChange}
-          placeholder="Rechercher un contenu..."
-          withMargin={true}
-        />
-        <FButton
-          onClick={() => setShowWriteModal(true)}
-          type="dark"
-          name="plus-circle-outline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ajouter un contenu
-        </FButton>
-      </SearchBarContainer>
       <StyledHeader>
         <StyledHeaderInner>
           <StyledTitle>Contenus</StyledTitle>
           <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
         </StyledHeaderInner>
-        <StyledSort marginTop="8px">
+        <StyledSort>
+          {process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production" && (
+            <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+              {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
+            </FButton>
+          )}
+          <CustomSearchBar
+            value={search}
+            onChange={handleChange}
+            placeholder="Rechercher un contenu..."
+            withMargin={true}
+          />
+          <FButton
+            onClick={() => setShowWriteModal(true)}
+            type="dark"
+            name="plus-circle-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ajouter un contenu
+          </FButton>
+        </StyledSort>
+      </StyledHeader>
+      <StyledHeader>
+        <StyledSort>
           {correspondingStatus.sort(statusCompare).map((status) => {
             const nbContent = getNbDispositifsByStatus(dispositifsForCount, status.storedStatus);
             return (
@@ -396,7 +398,7 @@ export const AdminContenu = () => {
       </StyledHeader>
 
       <Content>
-        <Table responsive borderless>
+        <Table borderless>
           <thead>
             <tr>
               {headers.map((element: { name: string; order: string | null }, key) => (

@@ -6,6 +6,8 @@ import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ResponsableModal from "./ResponsableModal/ResponsableModal";
 import RejectionModal from "./RejectionModal/RejectionModal";
 import RejectTradModal from "./RejectTradModal/RejectTradModal";
+import GoToDesktopModal from "./GoToDesktopModal";
+import ReceiveInvitationMailModal from "./ReceiveInvitationMailModal";
 import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
@@ -27,5 +29,7 @@ export {
   FrameModal,
   Modal,
   DraftModal,
-  ShareContentOnMobileModal
+  ShareContentOnMobileModal,
+  GoToDesktopModal,
+  ReceiveInvitationMailModal
 };

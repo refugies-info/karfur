@@ -1,0 +1,90 @@
+@import "src/scss/mixins/responsive";
+@import "src/scss/mixins/unit";
+@import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
+@import "src/scss/colors";
+@import "src/scss/variables";
+
+.dropdown {
+  & > button {
+    background: $white;
+    color: $gray90;
+    box-shadow: 0 0 40px 0 #00000040;
+    border: none;
+    padding: u(3) u(9) u(3) u(3);
+    border-radius: 10px;
+    height: 48px;
+    position: relative;
+
+    @include rtl() {
+      padding: u(3) u(3) u(3) u(9);
+    }
+
+    .icon {
+      position: absolute;
+      right: u(3);
+      @include r-ltr(u(3));
+      top: u(3);
+    }
+  }
+}
+.value {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  @include text("normal");
+  margin: 0;
+}
+
+.flag {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  border: 1px solid $white;
+  background-size: cover;
+  @include mr-ltr(u(2));
+  @include ml-ltr(u(2));
+}
+
+.menu {
+  box-shadow: 0 0 40px 0 #00000040;
+  padding: u(4);
+  border-radius: u(2);
+  margin-top: u(2);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: u(3) u(2);
+  border-radius: u(2) !important;
+  margin-bottom: u(1);
+  border: none;
+  @include text("normal");
+
+  &:hover {
+    background: $gray40b;
+    color: $dark;
+  }
+  &:focus {
+    outline: none;
+  }
+  i {
+    margin: 0 u(2) 0 0;
+    @include rtl() {
+      margin: 0 0 0 u(2);
+    }
+  }
+
+  &.selected {
+    background: $bleuCharte !important;
+    color: $white !important;
+  }
+}
+.item_locale {
+  font-weight: bold;
+  @include mr-ltr(u(1));
+}

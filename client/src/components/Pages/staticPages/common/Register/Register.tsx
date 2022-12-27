@@ -12,7 +12,7 @@ import { userDetailsSelector } from "services/User/user.selectors";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton";
 import Checkbox from "components/UI/Checkbox";
-import { ReceiveInvitationMailModal } from "components/Pages/homepage/HomePageMobile/ReceiveInvitationMailModal";
+import { ReceiveInvitationMailModal } from "components/Modals";
 import commonStyles from "scss/components/staticPages.module.scss";
 import styles from "./Register.module.scss";
 import useWindowSize from "hooks/useWindowSize";

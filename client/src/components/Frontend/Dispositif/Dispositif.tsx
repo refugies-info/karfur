@@ -205,7 +205,9 @@ const Dispositif = (props: Props) => {
   const timer = useRef<any>();
 
   useEffect(() => {
-    setMenu(dispositif ? generateMenu(dispositif) : []);
+    if (props.type !== "create" && disableEdit === true) {
+      setMenu(dispositif ? generateMenu(dispositif) : []);
+    }
   }, [dispositif, router.locale]);
 
   useEffect(() => {
