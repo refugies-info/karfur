@@ -22,7 +22,13 @@ import { getDispositifsWithAllInformationRequired } from "../AdminStructures/Str
 import { ReactSortable } from "react-sortablejs";
 import { orderNeedsActionCreator } from "services/Needs/needs.actions";
 import isInBrowser from "lib/isInBrowser";
-import { SearchBarContainer } from "../sharedComponents/StyledAdmin";
+import {
+  SearchBarContainer,
+  StyledHeader,
+  StyledHeaderInner,
+  StyledSort,
+  StyledTitle
+} from "../sharedComponents/StyledAdmin";
 
 let NotificationContainer: any = null;
 let NotificationManager: any = null;
@@ -42,7 +48,7 @@ export const Needs = () => {
   const [selectedTheme, setSelectedTheme] = useState<null | Theme>(null);
   const [showThemeFormModal, setShowThemeFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(allThemesSelector).sort((a, b) => a.position < b.position ? -1 : 1);
+  const themes = useSelector(allThemesSelector).sort((a, b) => (a.position < b.position ? -1 : 1));
   const dispositifs = useSelector(allDispositifsSelector);
 
   const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
@@ -78,15 +84,17 @@ export const Needs = () => {
   const isLoading = isLoadingFetchThemes || isLoadingFetchNeeds;
 
   useEffect(() => {
-    const newNeeds = [...allNeeds
-      .filter((need) => currentTheme && need.theme._id === currentTheme)
-      .map(need => ({ id: need._id.toString(), ...need }))
-      .sort((a, b) => {
-        if (a.position !== undefined && b.position !== undefined) {
-          return a.position < b.position ? -1 : 1
-        }
-        return 0
-      })];
+    const newNeeds = [
+      ...allNeeds
+        .filter((need) => currentTheme && need.theme._id === currentTheme)
+        .map((need) => ({ id: need._id.toString(), ...need }))
+        .sort((a, b) => {
+          if (a.position !== undefined && b.position !== undefined) {
+            return a.position < b.position ? -1 : 1;
+          }
+          return 0;
+        })
+    ];
     setDisplayedNeeds(newNeeds);
   }, [currentTheme, allNeeds]);
 
@@ -94,16 +102,12 @@ export const Needs = () => {
 
   useEffect(() => {
     if (positionsToSave) {
-      dispatch(orderNeedsActionCreator(displayedNeeds.map(n => n._id)));
+      dispatch(orderNeedsActionCreator(displayedNeeds.map((n) => n._id)));
       setPositionsToSave(false);
-      NotificationManager.success(
-        "L'ordre des besoins a été enregistré",
-        "Enregistré !",
-        5000
-      );
+      NotificationManager.success("L'ordre des besoins a été enregistré", "Enregistré !", 5000);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayedNeeds])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayedNeeds]);
 
   if (isLoading) {
     return <LoadingNeeds />;
@@ -111,31 +115,24 @@ export const Needs = () => {
 
   const dispositifsIds = dispositifs
     .filter((disp) => currentNeed && disp.needs?.includes(currentNeed))
-    .map(d => d._id);
-  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(
-      dispositifsIds || [],
-      dispositifs
-    );
+    .map((d) => d._id);
+  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(dispositifsIds || [], dispositifs);
 
   return (
     <Container fluid>
-      <SearchBarContainer>
-        <FButton
-          type="dark"
-          name="plus-circle-outline"
-          onClick={addTheme}
-          className="mr-2"
-        >
-          Ajouter un thème
-        </FButton>
-        <FButton
-          type="dark"
-          name="plus-circle-outline"
-          onClick={addNeed}
-        >
-          Ajouter un besoin
-        </FButton>
-      </SearchBarContainer>
+      <StyledHeader>
+        <StyledHeaderInner>
+          <StyledTitle>Catégories</StyledTitle>
+        </StyledHeaderInner>
+        <StyledSort>
+          <FButton type="dark" name="plus-circle-outline" onClick={addTheme} className="mr-2">
+            Ajouter un thème
+          </FButton>
+          <FButton type="dark" name="plus-circle-outline" onClick={addNeed}>
+            Ajouter un besoin
+          </FButton>
+        </StyledSort>
+      </StyledHeader>
       <Row className="mt-4 mb-5">
         <Col md="auto">
           <h3 className={styles.subtitle}>
@@ -169,11 +166,7 @@ export const Needs = () => {
           <div className={cls(styles.column, styles.scroll_column)}>
             {displayedNeeds.length > 0 ? (
               <>
-                <ReactSortable
-                  list={displayedNeeds}
-                  setList={setDisplayedNeeds}
-                  onUpdate={updatePositions}
-                >
+                <ReactSortable list={displayedNeeds} setList={setDisplayedNeeds} onUpdate={updatePositions}>
                   {displayedNeeds.map((need, i) => (
                     <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
                       <AdminNeedButton
@@ -247,9 +240,7 @@ export const Needs = () => {
         dispositifId={selectedDispositifModal}
       />
 
-      {isInBrowser() && NotificationContainer !== null &&
-        <NotificationContainer />
-      }
+      {isInBrowser() && NotificationContainer !== null && <NotificationContainer />}
     </Container>
   );
 };

@@ -15,7 +15,7 @@ interface Props {
   link?: string;
   countImage: number;
   cta?: string;
-  badge?: string;
+  badge: string;
   color: Color;
 }
 
@@ -48,13 +48,15 @@ const CommunityCard = (props: Props) => {
         </div>
 
         <div className={styles.footer}>
-          {props.cta && <InlineLink link="#" type="span" text={props.cta} color={props.color} />}
-          {props.badge && (
-            <span className={styles.badge}>
-              <EVAIcon name={getIcon(props.color)} size={20} fill={styles[props.color]} className={styles.icon} />
-              {props.badge}
+          {props.cta && (
+            <span className={styles.cta}>
+              <InlineLink link="#" type="span" text={props.cta} color={props.color} />
             </span>
           )}
+          <span className={styles.badge}>
+            <EVAIcon name={getIcon(props.color)} size={20} fill={styles[props.color]} className={styles.icon} />
+            {props.badge}
+          </span>
         </div>
       </>
     ),
@@ -63,7 +65,7 @@ const CommunityCard = (props: Props) => {
   return !props.link ? (
     <div className={cls(styles.container, styles[`color_${props.color}`])}>{content}</div>
   ) : (
-    <Link href={props.link} className={cls(styles.container, styles[`color_${props.color}`])}>
+    <Link href={props.link} className={cls(styles.container, styles.link, styles[`color_${props.color}`])}>
       {content}
     </Link>
   );

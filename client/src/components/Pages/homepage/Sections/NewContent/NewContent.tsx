@@ -33,7 +33,7 @@ const NewContent = (props: Props) => {
   return (
     <div className={cls(commonStyles.section, commonStyles.bg_grey, styles.sliders)}>
       <Container className={commonStyles.container}>
-        <h2 className={cls(commonStyles.title2, "text-center")}>{t("Homepage.infoTypeTitle")}</h2>
+        <h2 className={cls(commonStyles.title2, commonStyles.center)}>{t("Homepage.infoTypeTitle")}</h2>
         <div className={styles.title}>
           <h2 className="h4">{t("Homepage.infoTypeDemarche", { count: props.nbDemarches })}</h2>
           <Button onClick={() => navigateType("demarche")}>{t("Recherche.seeAllButton", "Voir tout")}</Button>

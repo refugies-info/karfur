@@ -141,13 +141,15 @@ const RecensezVotreAction = (props: Props) => {
                   title: t("Publish.whyAccordionTitle2"),
                   text: t("Publish.whyAccordionText2"),
                   video: "/video/publier-video-why2.mp4",
-                  mediaWidth: 203
+                  mediaWidth: 203,
+                  className: styles.video2
                 },
                 {
                   title: t("Publish.whyAccordionTitle3"),
                   text: t("Publish.whyAccordionText3"),
                   video: "/video/publier-video-why3.mp4",
-                  mediaWidth: 350
+                  mediaWidth: 350,
+                  noShadow: true
                 },
                 { title: t("Publish.whyAccordionTitle4"), text: t("Publish.whyAccordionText4"), image: WhyImage4 }
               ]}
@@ -282,6 +284,8 @@ const RecensezVotreAction = (props: Props) => {
               title={t("Publish.stepsSubtitle3")}
               texts={[t("Publish.stepsText3")]}
               video="/video/publier-video-step3.mp4"
+              width={340}
+              height={320}
             />
             <StepContent
               step={4}

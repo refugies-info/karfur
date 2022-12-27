@@ -6,8 +6,6 @@ export const StyledSort = styled.div`
   width: 100%;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-right: 8px;
-  margin-top: ${(props: { marginTop?: string }) => (props.marginTop ? props.marginTop : "0px")};
 `;
 
 export const StyledTitle = styled.div`
@@ -23,12 +21,11 @@ export const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-bottom: 8px;
-  margin-left: 24px;
+  padding: 8px 16px;
+  justify-content: space-between;
 `;
 
 export const StyledHeaderInner = styled.div`
-  margin-top: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
