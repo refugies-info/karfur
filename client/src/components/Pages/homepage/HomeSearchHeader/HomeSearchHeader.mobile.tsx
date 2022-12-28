@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import qs from "query-string";
 import styles from "./HomeSearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
+import { useLoadingContext } from "pages";
 
 interface Props {
   // filterProps
@@ -37,6 +38,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
+  const [, setGlobalLoading] = useLoadingContext();
 
   const {
     locationSearch,
@@ -193,6 +195,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
 
       <Button
         onClick={() => {
+          setGlobalLoading(true);
           router.push({
             pathname: getPath("/recherche", router.locale),
             query: qs.stringify({ ...query }, { arrayFormat: "comma" })
