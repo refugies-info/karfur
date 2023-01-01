@@ -69,7 +69,7 @@
     "jest": "^26.0.0",
     "nodemon": "^2.0.2",
     "ts-jest": "26.3.0",
-    "tsconfig-paths": "^3.9.0"
+    "tsconfig-paths": "^3.10.1"
   },
   "engines": {
     "node": "16.14.0",
