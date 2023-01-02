@@ -48,6 +48,18 @@ interface Props {
   toggleModal?: (name: any) => void;
 }
 
+/**
+ * Ce composant fourni un champ de recherche avec suggestion
+ * de résultats. Une fois sélectionné, la méthode selectItem est
+ * appelée avec le résulat.
+ *
+ * Ce composant peut être utilisé pour les structures et les utilisateurs.
+ *
+ * @deprecated use SearchStructures
+ *
+ * @param props Props
+ * @returns SearchBar component
+ */
 const SearchBar = (props: Props) => {
   const [value, setValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -115,15 +127,16 @@ const SearchBar = (props: Props) => {
       );
     }
     //@ts-ignore
-    const firstPart = props.structures ? suggestion.acronyme : suggestion.username;
+    const firstPart = (props.structures ? suggestion.acronyme : suggestion.username) || "";
     //@ts-ignore
-    const secondPart = props.structures ? suggestion.nom : suggestion.email;
-    const suggestionText = (firstPart || "") + (firstPart && secondPart ? " - " : "") + (secondPart || "");
-    const matches = AutosuggestHighlightMatch(suggestionText, query + " " + query);
-    const parts = AutosuggestHighlightParse(suggestionText, matches);
+    const secondPart = (props.structures ? suggestion.nom : suggestion.email) || "";
+    const matches_first = AutosuggestHighlightMatch(firstPart, query + " " + query);
+    const parts_first = AutosuggestHighlightParse(firstPart, matches_first);
+    const matches_second = AutosuggestHighlightMatch(secondPart, query + " " + query);
+    const parts_second = AutosuggestHighlightParse(secondPart, matches_second);
     return (
       <span className="suggestion-content">
-        {suggestion.picture && suggestion.picture.secure_url && (
+        {suggestion.picture && suggestion.picture.secure_url ? (
           <Image
             src={suggestion.picture.secure_url}
             className="selection-logo me-2"
@@ -132,9 +145,23 @@ const SearchBar = (props: Props) => {
             height={40}
             style={{ objectFit: "contain" }}
           />
+        ) : (
+          <span style={{ width: "40px" }}></span>
         )}
-        <span className="name">
-          {parts.map((part, index) => {
+        {firstPart !== "" ? (
+          <span className="name">
+            {parts_first.map((part, index) => {
+              const className = part.highlight ? "highlight" : null;
+              return (
+                <span className={className || ""} key={index}>
+                  {part.text}
+                </span>
+              );
+            })}
+          </span>
+        ) : null}
+        <span className="name-2">
+          {parts_second.map((part, index) => {
             const className = part.highlight ? "highlight" : null;
             return (
               <span className={className || ""} key={index}>
@@ -169,6 +196,7 @@ const SearchBar = (props: Props) => {
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
         onSuggestionsClearRequested={() => setSuggestions([])}
+        focusInputOnSuggestionClick
       />
       {isNoResult && props.structures && !isLoadingResults && (
         <NoResultContainer>

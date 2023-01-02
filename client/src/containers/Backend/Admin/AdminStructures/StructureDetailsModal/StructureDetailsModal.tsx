@@ -103,6 +103,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
+    // @ts-ignore
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();
