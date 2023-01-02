@@ -349,7 +349,11 @@ export const AdminStructures = () => {
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
       />
-      <NewStructureModal show={showNewStructureModal} toggleModal={toggleShowNewStructureModal} />
+      <NewStructureModal
+        defaults={{ status: "En attente" }}
+        show={showNewStructureModal}
+        toggleModal={toggleShowNewStructureModal}
+      />
 
       <SelectFirstResponsableModal
         show={showSelectFirstRespoModal}

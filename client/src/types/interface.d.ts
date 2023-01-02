@@ -21,12 +21,7 @@ export interface Picture {
   secure_url: string;
 }
 
-type iconName = "house" |
-  "search" |
-  "message" |
-  "menu" |
-  "tag" |
-  "";
+type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
 export interface Theme {
   _id: ObjectId;
   name: {
@@ -43,7 +38,7 @@ export interface Theme {
     color60: string;
     color40: string;
     color30: string;
-  }
+  };
   position: number;
   icon: Picture;
   banner: Picture;
@@ -73,7 +68,7 @@ export interface UiObject {
   cardDropdown: boolean;
   isHover: boolean;
   varianteSelected: boolean;
-  children: any
+  children: any;
 }
 
 export interface SimplifiedUser {
@@ -100,7 +95,7 @@ export interface SimplifiedCreator {
   picture: Picture | undefined;
   _id: ObjectId;
   email: string | undefined;
-  roles?: string[]
+  roles?: string[];
 }
 
 export interface SimplifiedMainSponsor {
@@ -118,9 +113,9 @@ export interface SimplifiedDispositif {
   created_at: Moment;
   publishedAt?: Moment;
   publishedAtAuthor?: {
-    _id: ObjectId
-    username: string
-  }
+    _id: ObjectId;
+    username: string;
+  };
   _id: ObjectId;
   mainSponsor: null | SimplifiedMainSponsor;
   creatorId: SimplifiedCreator | null;
@@ -133,15 +128,15 @@ export interface SimplifiedDispositif {
   draftSecondReminderMailSentDate?: Moment;
   lastModificationDate?: Moment;
   lastModificationAuthor?: {
-    _id: ObjectId
-    username: string
-  }
+    _id: ObjectId;
+    username: string;
+  };
   needs?: ObjectId[];
   theme: Theme;
   secondaryThemes: Theme[];
   nbMercis: number;
   nbVues: number;
-  themesSelectedByAuthor?: boolean
+  themesSelectedByAuthor?: boolean;
 }
 
 export interface Role {
@@ -169,8 +164,8 @@ export interface UserLanguage {
 }
 
 export interface DispositifPinned {
-  _id: string
-  datePin: Moment
+  _id: string;
+  datePin: Moment;
 }
 
 export interface User {
@@ -193,7 +188,7 @@ export interface User {
   noteTraduction?: number;
   status?: string;
   cookies?: {
-    dispositifsPinned?: DispositifPinned[]
+    dispositifsPinned?: DispositifPinned[];
   };
   structures?: ObjectId[];
   last_connected?: Moment;
@@ -406,11 +401,19 @@ export interface Responsable {
   picture: Picture;
   email: string;
 }
+
+// export enum StructureStatus {
+//   ACTIF = "Actif",
+//   SUPPRIME = "Supprimé",
+//   EN_ATTENTE = "En attente"
+// }
+export type StructureStatusType = "Actif" | "En attente" | "Supprimé";
+
 export interface SimplifiedStructureForAdmin {
   _id: ObjectId;
   nom: string;
   acronyme: string;
-  status: string;
+  status: StructureStatusType;
   picture: Picture;
   nbMembres: number;
   created_at: Moment;
@@ -436,11 +439,7 @@ export interface IUserContribution {
   status: string;
 }
 
-export type TranslationStatus =
-  | "À traduire"
-  | "En attente"
-  | "Validée"
-  | "À revoir";
+export type TranslationStatus = "À traduire" | "En attente" | "Validée" | "À revoir";
 export interface IDispositifTranslation {
   _id: ObjectId;
   titreInformatif: string;
@@ -494,47 +493,45 @@ export interface RegionFigures {
   nbDepartmentsWithDispo: number;
 }
 export interface NbDispositifsByRegion {
-  regionFigures: RegionFigures[]
-  dispositifsWithoutGeoloc: ObjectId[]
+  regionFigures: RegionFigures[];
+  dispositifsWithoutGeoloc: ObjectId[];
 }
 
-export type DispositifFacets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
+export type DispositifFacets =
+  | "nbMercis"
+  | "nbVues"
+  | "nbVuesMobile"
+  | "nbDispositifs"
+  | "nbDemarches"
+  | "nbUpdatedRecently";
 export interface DispositifStatistics {
-  nbMercis?: number
-  nbVues?: number
-  nbVuesMobile?: number
-  nbDispositifs?: number
-  nbDemarches?: number
-  nbUpdatedRecently?: number
+  nbMercis?: number;
+  nbVues?: number;
+  nbVuesMobile?: number;
+  nbDispositifs?: number;
+  nbDemarches?: number;
+  nbUpdatedRecently?: number;
 }
 
 export type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface StructuresStatistics {
-  nbStructures?: number
-  nbCDA?: number
-  nbStructureAdmins?: number
+  nbStructures?: number;
+  nbCDA?: number;
+  nbStructureAdmins?: number;
 }
 
 export type TranslationFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
 export interface TranslationStatistics {
-  nbTranslators?: number
-  nbRedactors?: number
-  nbWordsTranslated?: number
+  nbTranslators?: number;
+  nbRedactors?: number;
+  nbWordsTranslated?: number;
   nbActiveTranslators?: {
-    languageId: string
-    count: number
-  }[]
+    languageId: string;
+    count: number;
+  }[];
 }
 
-export type AvailableLanguageI18nCode =
-  | "fr"
-  | "en"
-  | "ps"
-  | "ar"
-  | "ti"
-  | "ru"
-  | "uk"
-  | "fa";
+export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
 export interface Log {
   _id: ObjectId;
@@ -544,20 +541,27 @@ export interface Log {
   author?: {
     _id: ObjectId;
     username: string;
-  }
+  };
   dynamicId?: {
     _id: ObjectId;
     nom?: string;
     titreInformatif?: string;
     username?: string;
     langueFr?: string;
-  }
+  };
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
     id: ObjectId;
     model_link: "User" | "Dispositif" | "Structure";
-    next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
-  }
+    next:
+      | "ModalContenu"
+      | "ModalStructure"
+      | "ModalUser"
+      | "ModalReaction"
+      | "ModalImprovements"
+      | "ModalNeeds"
+      | "PageAnnuaire";
+  };
   created_at: Moment;
 }
 
@@ -574,7 +578,7 @@ export interface Widget {
   author: {
     _id: ObjectId;
     username: string;
-  }
+  };
   created_at: Moment;
 }
 
@@ -585,36 +589,42 @@ export interface AdminOption {
   created_at: Moment;
 }
 
-
 export type Status = {
-  displayedStatus: string
-  color: string
-  textColor?: string
-}
+  displayedStatus: string;
+  color: string;
+  textColor?: string;
+};
 
-export type ContentStatusType = "Actif" | "En attente" | "Brouillon" | "En attente non prioritaire" | "Rejeté structure" | "En attente admin" | "Accepté structure" | "Supprimé";
+export type ContentStatusType =
+  | "Actif"
+  | "En attente"
+  | "Brouillon"
+  | "En attente non prioritaire"
+  | "Rejeté structure"
+  | "En attente admin"
+  | "Accepté structure"
+  | "Supprimé";
 export type ContentStatus = {
-  storedStatus: ContentStatusType
-  order: number
+  storedStatus: ContentStatusType;
+  order: number;
 } & Status;
 
-export type StructureStatusType = "Actif" | "En attente" | "Supprimé";
 export type StructureStatus = {
-  storedStatus: StructureStatusType
-  order: number
+  storedStatus: StructureStatusType;
+  order: number;
 } & Status;
 
 export type UserStatusType = "Respo" | "Admin" | "Experts" | "Traducteurs" | "Rédacteurs" | "Multi-structure" | "Tous";
 export type UserStatus = {
-  storedStatus: UserStatusType
-  order: number
+  storedStatus: UserStatusType;
+  order: number;
 } & Status;
 
 export type ProgressionStatus = {
-  storedStatus: string
+  storedStatus: string;
 } & Status;
 
 export type PageOptions = {
-  cookiesModule: boolean
-  supportModule: boolean
-}
+  cookiesModule: boolean;
+  supportModule: boolean;
+};
