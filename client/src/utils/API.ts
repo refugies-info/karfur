@@ -174,15 +174,11 @@ const API = {
   },
 
   // Dispositif
-  addDispositif: (query: Partial<IDispositif>, bypassTraductionReview: boolean) => {
+  addDispositif: (query: Partial<IDispositif>) => {
     const headers = getHeaders();
-    return instance.post(
-      "/dispositifs/addDispositif",
-      { ...query, bypassReview: bypassTraductionReview },
-      {
-        headers
-      }
-    );
+    return instance.post("/dispositifs/addDispositif", query, {
+      headers
+    });
   },
   add_dispositif_infocards: (query: any) => {
     const headers = getHeaders();
