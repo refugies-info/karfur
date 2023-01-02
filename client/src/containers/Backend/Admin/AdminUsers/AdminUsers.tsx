@@ -158,13 +158,13 @@ export const AdminUsers = () => {
     const usersFilteredBySearch = !!search
       ? users.filter(
           (user) =>
-            user.username &&
-            user.username &&
-            removeAccents(user.username)
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .includes(removeAccents(search.toLowerCase()))
+            (user.username &&
+              removeAccents(user.username)
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(removeAccents(search.toLowerCase()))) ||
+            user.email.includes(search)
         )
       : users;
 
