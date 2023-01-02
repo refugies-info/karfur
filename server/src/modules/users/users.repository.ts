@@ -19,12 +19,23 @@ export const updateUserInDB = async (id: ObjectId, modifiedUser: any) =>
     new: true
   });
 
-export const removeRoleAndStructureInDB = async (roleId: ObjectId, userId: ObjectId, structureId: ObjectId) =>
-  await User.findByIdAndUpdate(
+export const removeRoleAndStructureInDB = (roleId: ObjectId, userId: ObjectId, structureId: ObjectId) =>
+  User.findByIdAndUpdate(
     { _id: userId },
     {
       $pull: {
         roles: roleId,
+        structures: structureId
+      }
+    },
+    { upsert: true }
+  );
+
+export const removeStructureInDB = (userId: ObjectId, structureId: ObjectId) =>
+  User.findByIdAndUpdate(
+    { _id: userId },
+    {
+      $pull: {
         structures: structureId
       }
     },
