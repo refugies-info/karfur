@@ -1,9 +1,5 @@
 import logger from "../../logger";
-import {
-  getUserById,
-  updateUserInDB,
-  removeRoleAndStructureInDB,
-} from "./users.repository";
+import { getUserById, updateUserInDB, removeRoleAndStructureInDB, removeStructureInDB } from "./users.repository";
 import { ObjectId } from "mongoose";
 import { getRoleByName } from "../../controllers/role/role.repository";
 import { UserDoc, USER_STATUS_DELETED } from "../../schema/schemaUser";
@@ -16,47 +12,34 @@ const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
   return roles.filter((role) => role !== newRole).concat([newRole]);
 };
 
-export const updateRoleAndStructureOfResponsable = async (
-  userId: ObjectId,
-  structureId: ObjectId
-) => {
+export const updateRoleAndStructureOfResponsable = async (userId: ObjectId, structureId: ObjectId) => {
   try {
     const user = await getUserById(userId, { roles: 1, structures: 1 });
     const hasStructureRole = await getRoleByName("hasStructure");
     const hasStructureRoleId = hasStructureRole._id;
 
     const newRole = getUserRoles(user.roles, hasStructureRoleId);
-    const newStructures = user.structures
-      ? user.structures.concat([structureId])
-      : [structureId];
+    const newStructures = user.structures ? user.structures.concat([structureId]) : [structureId];
     return await updateUserInDB(userId, {
       roles: newRole,
-      structures: newStructures,
+      structures: newStructures
     });
   } catch (error) {
-    logger.error(
-      "[updateRoleAndStructureOfResponsable] error while updating role",
-      {
-        error,
-      }
-    );
+    logger.error("[updateRoleAndStructureOfResponsable] error while updating role", {
+      error
+    });
     throw error;
   }
 };
 
-export const removeRoleAndStructureOfUser = async (
-  userId: ObjectId,
-  structureId: ObjectId
-) => {
-  logger.info(
-    "[removeRoleAndStructureOfUser] delete role hasStructure and structure of membre",
-    { membreId: userId }
-  );
-  const hasStructureRole = await getRoleByName("hasStructure");
-  return await removeRoleAndStructureInDB(
-    hasStructureRole._id,
-    userId,
-    structureId
+export const removeRoleAndStructureOfUser = async (userId: ObjectId, structureId: ObjectId) => {
+  logger.info("[removeRoleAndStructureOfUser] delete role hasStructure and structure of membre", { membreId: userId });
+  return Promise.all([getUserById(userId, {}), getRoleByName("hasStructure")]).then(([user, hasStructureRole]) =>
+    // If the user has more than 1 structure, the role must stay
+    // FIXME ne garanti pas l'atomicité de la transaction
+    user.structures?.length >= 2
+      ? removeStructureInDB(userId, structureId)
+      : removeRoleAndStructureInDB(hasStructureRole._id, userId, structureId)
   );
 };
 
@@ -65,16 +48,14 @@ export const proceedWithLogin = async (user: UserDoc) => {
   return await updateUserInDB(user._id, userToSave);
 };
 
-export const getUsersFromStructureMembres = async (
-  structureMembres: { userId: ObjectId }[]
-) => {
+export const getUsersFromStructureMembres = async (structureMembres: { userId: ObjectId }[]) => {
   logger.info("[getUsersFromStructureMembres] received");
   let result: UserForMailing[] = [];
   try {
     const userNeededFields = {
       username: 1,
       email: 1,
-      status: 1,
+      status: 1
     };
     await asyncForEach(structureMembres, async (membre) => {
       if (!membre.userId) return;
@@ -86,7 +67,7 @@ export const getUsersFromStructureMembres = async (
         result.push({
           username: membreFromDB.username,
           _id: membreFromDB._id,
-          email: membreFromDB.email,
+          email: membreFromDB.email
         });
       } catch (e) {
         logger.error("[getUsersFromStructureMembres] error while getting user", e);
