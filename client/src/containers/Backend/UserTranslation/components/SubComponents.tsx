@@ -35,14 +35,14 @@ const Title = styled.div`
 export const LanguageTitle = (props: Props) => (
   <MainContainer className={styles.language_title} hasMultipleLanguages={props.hasMultipleLanguages}>
     {props.isSelected ? (
-      <i
-        className={styles.selected + " flag-icon flag-icon-" + props.language.langueCode}
+      <span
+        className={styles.selected + " fi fi-" + props.language.langueCode}
         title={props.language.langueCode}
         id={props.language.langueCode}
       />
     ) : (
-      <i
-        className={"flag-icon flag-icon-" + props.language.langueCode}
+      <span
+        className={"fi fi-" + props.language.langueCode}
         title={props.language.langueCode}
         id={props.language.langueCode}
       />

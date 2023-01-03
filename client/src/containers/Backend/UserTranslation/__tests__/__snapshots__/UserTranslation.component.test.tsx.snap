@@ -878,8 +878,8 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             <div
               className="c3 language_title"
             >
-              <i
-                className="selected flag-icon flag-icon-undefined"
+              <span
+                className="selected fi fi-undefined"
               />
               <div
                 className="c4"
@@ -1770,8 +1770,8 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             <div
               className="c3 language_title"
             >
-              <i
-                className="selected flag-icon flag-icon-undefined"
+              <span
+                className="selected fi fi-undefined"
               />
               <div
                 className="c4"
@@ -2583,8 +2583,8 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             <div
               className="c3 language_title"
             >
-              <i
-                className="selected flag-icon flag-icon-undefined"
+              <span
+                className="selected fi fi-undefined"
               />
               <div
                 className="c4"

@@ -1507,8 +1507,8 @@ const Dispositif = (props: Props) => {
                           className={cls(mobile.visible_inline_flex, "ms-2 mb-2")}
                           onClick={() => setShowLanguageToReadModal(!showLanguageToReadModal)}
                         >
-                          <i
-                            className={"flag-icon flag-icon-" + possibleLanguages[0].langueCode}
+                          <span
+                            className={"fi fi-" + possibleLanguages[0].langueCode}
                             title={possibleLanguages[0].langueCode}
                             id={possibleLanguages[0].langueCode}
                           />
@@ -1534,8 +1534,8 @@ const Dispositif = (props: Props) => {
                                   changeLanguage(langue.i18nCode);
                                 }}
                               >
-                                <i
-                                  className={"flag-icon flag-icon-" + langue.langueCode}
+                                <span
+                                  className={"fi fi-" + langue.langueCode}
                                   title={langue.langueCode}
                                   id={langue.langueCode}
                                 />

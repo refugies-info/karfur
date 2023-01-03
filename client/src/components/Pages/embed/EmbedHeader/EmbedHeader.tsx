@@ -51,8 +51,8 @@ const EmbedHeader = (props: Props) => {
           {" "}
           {t("Widget.inLanguage", "en")}{" "}
           <span className={styles.btn}>
-            <i
-              className={"flag-icon flag-icon-" + selectedLanguage.langueCode}
+            <span
+              className={"fi fi-" + selectedLanguage.langueCode}
               title={selectedLanguage.langueCode}
               id={selectedLanguage.langueCode}
             />

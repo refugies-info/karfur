@@ -18,7 +18,7 @@ const LanguageIcon = (props: Props) => {
         height: props.size || 40
       }}
     >
-      <i className={cls(styles.flag, "flag-icon flag-icon-" + props.language)} title={props.language} />
+      <span className={cls(styles.flag, "fi fi-" + props.language)} title={props.language} />
     </div>
   );
 };

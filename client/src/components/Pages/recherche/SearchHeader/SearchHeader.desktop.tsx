@@ -153,7 +153,7 @@ const SearchHeaderDesktop = (props: Props) => {
         <>
           {t("Recherche.fichesLanguageFilter")}
           {langueCodes.map((code, i) => (
-            <i key={code} className={cls(styles.flag, `flag-icon flag-icon-${code}`)} title={code} id={code} />
+            <span key={code} className={cls(styles.flag, `fi fi-${code}`)} title={code} id={code} />
           ))}
         </>
       );

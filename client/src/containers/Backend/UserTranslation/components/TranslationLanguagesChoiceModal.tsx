@@ -87,7 +87,7 @@ const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () 
       }}
     >
       <div className="me-2">
-        <i title={props.langue.langueCode} className={" flag-icon flag-icon-" + props.langue.langueCode} />
+        <span title={props.langue.langueCode} className={" fi fi-" + props.langue.langueCode} />
       </div>
       {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
     </div>

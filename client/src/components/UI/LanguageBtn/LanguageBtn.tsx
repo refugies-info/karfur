@@ -23,7 +23,7 @@ const LanguageBtn = (props: Props) => {
       type="white"
       onClick={() => dispatch(toggleLangueModalActionCreator())}
     >
-      <i className={`flag-icon flag-icon-${langueCode}`} title={langueCode} id={langueCode} />
+      <span className={`fi fi-${langueCode}`} title={langueCode} id={langueCode} />
       <span className={`${props.hideTextOnMobile ? styles.mobile_hidden : ""} ms-2`}>
         {current ? current.langueLoc : "Langue"}
       </span>

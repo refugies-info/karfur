@@ -40,11 +40,7 @@ export const LanguageToReadModal = (props: Props) => {
                   props.toggle();
                 }}
               >
-                <i
-                  className={"flag-icon flag-icon-" + langue.langueCode}
-                  title={langue.langueCode}
-                  id={langue.langueCode}
-                />
+                <span className={"fi fi-" + langue.langueCode} title={langue.langueCode} id={langue.langueCode} />
                 <span className="ms-2 language-name">{langue.langueLoc || "Langue"}</span>
               </FButton>
             );

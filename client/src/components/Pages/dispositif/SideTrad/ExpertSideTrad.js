@@ -1059,7 +1059,7 @@ class SideTrad extends Component {
         </div>
         <div className={styles.langue_data}>
           <h5>
-            Texte français initial<i className={"flag-icon flag-icon-fr " + styles.flag_margin} title="fr" id="fr"></i>
+            Texte français initial<span className={"fi fi-fr " + styles.flag_margin} title="fr" id="fr"></span>
           </h5>
         </div>
         <div
@@ -1112,11 +1112,11 @@ class SideTrad extends Component {
         <div className={styles.langue_data}>
           <h5>
             Traduction en {(langue.langueFr || "").toLowerCase()}{" "}
-            <i
-              className={styles.flag_margin + " flag-icon flag-icon-" + langue.langueCode}
+            <span
+              className={styles.flag_margin + " fi fi-" + langue.langueCode}
               title={langue.langueCode}
               id={langue.langueCode}
-            ></i>
+            ></span>
           </h5>
         </div>
         <div dir={isRTL ? "rtl" : "ltr"}>

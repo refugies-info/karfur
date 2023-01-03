@@ -60,7 +60,7 @@ const LanguageModal = (props: Props) => {
               >
                 <Row>
                   <Col xs="1">
-                    <i className={`flag-icon flag-icon-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode}></i>
+                    <span className={`fi fi-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode}></span>
                   </Col>
                   <Col xs="5" className={styles.ln_col}>
                     <span>

@@ -103,7 +103,7 @@ html body .dropdown.show > button {
     top: -1px;
   }
 
-  i {
+  :global(.fi) {
     margin: 0 u(2) 0 0;
 
     @include rtl() {

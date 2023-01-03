@@ -278,8 +278,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ua"
+                    <span
+                      className="flag fi fi-ua"
                       title="ua"
                     />
                   </div>
@@ -292,8 +292,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ir"
+                    <span
+                      className="flag fi fi-ir"
                       title="ir"
                     />
                   </div>
@@ -306,8 +306,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-sa"
+                    <span
+                      className="flag fi fi-sa"
                       title="sa"
                     />
                   </div>
@@ -320,8 +320,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-gb"
+                    <span
+                      className="flag fi fi-gb"
                       title="gb"
                     />
                   </div>
@@ -334,8 +334,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-af"
+                    <span
+                      className="flag fi fi-af"
                       title="af"
                     />
                   </div>
@@ -348,8 +348,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ru"
+                    <span
+                      className="flag fi fi-ru"
                       title="ru"
                     />
                   </div>
@@ -362,8 +362,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-er"
+                    <span
+                      className="flag fi fi-er"
                       title="er"
                     />
                   </div>
@@ -405,8 +405,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-fr"
+                    <span
+                      className="flag fi fi-fr"
                       title="fr"
                     />
                   </div>
@@ -600,8 +600,8 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="title"
               >
-                <i
-                  className="flag flag-icon flag-icon-undefined"
+                <span
+                  className="flag fi fi-undefined"
                 />
               </div>
               <p
@@ -626,8 +626,8 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="title"
               >
-                <i
-                  className="flag flag-icon flag-icon-undefined"
+                <span
+                  className="flag fi fi-undefined"
                 />
               </div>
               <p
