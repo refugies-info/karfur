@@ -4,7 +4,6 @@ import { isMobileOnly } from "react-device-detect";
 import { useRouter } from "next/router";
 
 // actions
-import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
@@ -16,7 +15,6 @@ import { fetchUserActionCreator } from "services/User/user.actions";
 import { ttsActiveSelector } from "services/Tts/tts.selector";
 import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 
 import Navbar from "components/Navigation/Navbar";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
@@ -133,16 +131,6 @@ const Layout = (props: Props) => {
       dispatch(fetchThemesActionCreator());
     }
   }, [languageLoaded, themes.length, isThemesLoading, hasThemesError, dispatch]);
-
-  // DISPOSITIFS
-  const dispositifs = useSelector(activeDispositifsSelector);
-  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
-  const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
-  useEffect(() => {
-    if (languageLoaded && dispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
-      dispatch(fetchActiveDispositifsActionsCreator());
-    }
-  }, [languageLoaded, dispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
 
   // LANGUAGES
   const langues = useSelector(allLanguesSelector);
