@@ -921,7 +921,6 @@ class SideTrad extends Component {
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"me-2 mb-1"} />
-            {/* TODO: offset */}
             <Tooltip
               placement="top"
               offset="0px, 8px"

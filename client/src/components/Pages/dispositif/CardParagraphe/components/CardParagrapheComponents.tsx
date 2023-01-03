@@ -23,8 +23,7 @@ export const GeolocTooltipItem = (props: any) => {
       >
         {item.split(" ")[0].length > 1 ? item.split(" ")[0] : "0" + item.split(" ")[0]}
       </button>
-      {/* TODO: offset */}
-      <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen} target={"Tooltip-" + id} toggle={toggle}>
+      <Tooltip placement="top" isOpen={tooltipOpen} target={"Tooltip-" + id} toggle={toggle}>
         {item}
       </Tooltip>
     </>
