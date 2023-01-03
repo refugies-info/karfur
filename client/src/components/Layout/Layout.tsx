@@ -33,8 +33,7 @@ import { BookmarkedModal } from "components/Modals";
 import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
-import { createStateContext } from "react-use";
-import AppLoader from "./AppLoader";
+import styles from "./Layout.module.scss";
 
 interface Props {
   children: any;
@@ -174,8 +173,8 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
-      <div className="app-body">
-        <main className="content">{props.children}</main>
+      <div className={styles.main}>
+        <main className={styles.content}>{props.children}</main>
       </div>
       <Footer />
       <LanguageModal

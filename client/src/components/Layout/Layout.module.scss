@@ -1,0 +1,15 @@
+@import "src/scss/mixins/responsive";
+
+.main {
+  overflow-x: hidden;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  min-height: 90vh;
+  min-width: 0;
+  height: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
