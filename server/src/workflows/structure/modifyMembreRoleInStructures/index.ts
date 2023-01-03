@@ -1,1 +1,0 @@
-// export { modifyMembreRoleInStructures } from "./modifyMembreRoleInStructures";
