@@ -36,7 +36,7 @@ const FeedbackFooter = (props: Props) => {
         {!didThank && (
           <FButton
             disabled={didThank}
-            className={styles.btn + " validate mr-8 mb-8"}
+            className={styles.btn + " validate me-2 mb-8"}
             type="validate"
             onClick={() => {
               Event("Reaction", "Merci", "from dispositif");
@@ -50,7 +50,7 @@ const FeedbackFooter = (props: Props) => {
           </FButton>
         )}
         <FButton
-          className={styles.btn + " mr-8 mb-8"}
+          className={styles.btn + " me-2 mb-8"}
           type="error"
           onClick={() => {
             if (!isInBrowser()) return;

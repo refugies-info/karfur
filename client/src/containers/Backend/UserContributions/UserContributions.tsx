@@ -101,7 +101,7 @@ const UserContributions = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
@@ -113,7 +113,7 @@ const UserContributions = (props: Props) => {
         Swal.fire({
           title: "Yay...",
           text: "Le dispositif a été supprimé",
-          type: "success",
+          icon: "success",
           timer: 1500
         });
       }
@@ -168,7 +168,7 @@ const UserContributions = (props: Props) => {
               <FButton
                 type="tuto"
                 name="video-outline"
-                className="mr-8"
+                className="me-2"
                 onClick={() => {
                   setTutoModalDisplayed("Mes fiches");
                   toggleTutoModal();

@@ -30,7 +30,7 @@ export const NeedFormModal = (props: Props) => {
   const [subtitle, setSubtitle] = useState("");
   const [notes, setNotes] = useState("");
   const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
-  const [image, setImage] = useState<Picture|undefined>(undefined);
+  const [image, setImage] = useState<Picture | undefined>(undefined);
 
   const themes = useSelector(themesSelector);
   const dispositifs = useSelector(allDispositifsSelector);
@@ -38,9 +38,10 @@ export const NeedFormModal = (props: Props) => {
 
   const hasDispositifs = useMemo(() => {
     if (!props.selectedNeed) return false;
-    return dispositifs.filter(disp =>
-      props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false
-    ).length > 0
+    return (
+      dispositifs.filter((disp) => (props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false))
+        .length > 0
+    );
   }, [props.selectedNeed, dispositifs]);
 
   useEffect(() => {
@@ -68,8 +69,9 @@ export const NeedFormModal = (props: Props) => {
       //@ts-ignore
       theme: themeSelected || undefined,
       image: image || undefined
-    }
-    if (props.selectedNeed) { // edition
+    };
+    if (props.selectedNeed) {
+      // edition
       dispatch(
         saveNeedActionCreator({
           _id: props.selectedNeed._id,
@@ -77,11 +79,14 @@ export const NeedFormModal = (props: Props) => {
           adminComments: notes
         })
       );
-    } else { // creation
-      dispatch(createNeedActionCreator({
-        ...need,
-        adminComments: notes
-      }));
+    } else {
+      // creation
+      dispatch(
+        createNeedActionCreator({
+          ...need,
+          adminComments: notes
+        })
+      );
     }
     props.toggleModal();
   };
@@ -91,21 +96,20 @@ export const NeedFormModal = (props: Props) => {
       Swal.fire({
         title: "Êtes-vous sûr ?",
         text: "Voulez-vous supprimer ce besoin ?",
-        type: "question",
+        icon: "question",
         showCancelButton: true,
         confirmButtonColor: colors.rouge,
         cancelButtonColor: colors.vert,
         confirmButtonText: "Oui, le supprimer",
-        cancelButtonText: "Annuler",
-      }).then(res => {
+        cancelButtonText: "Annuler"
+      }).then((res) => {
         if (res.value && props.selectedNeed) {
           dispatch(deleteNeedActionCreator(props.selectedNeed._id));
         }
-      })
+      });
     }
     props.toggleModal();
   };
-
 
   const totalChar = name.length + subtitle.length;
   return (
@@ -120,18 +124,12 @@ export const NeedFormModal = (props: Props) => {
       }
       rightHead={
         <>
-          {props.selectedNeed &&
-            <FButton
-              className="mr-2"
-              type="error"
-              name="trash-2-outline"
-              onClick={onDelete}
-              disabled={hasDispositifs}
-            >
+          {props.selectedNeed && (
+            <FButton className="me-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasDispositifs}>
               Supprimer
             </FButton>
-          }
-          <FButton className="mr-2" type="white" name="close-outline" onClick={props.toggleModal}>
+          )}
+          <FButton className="me-2" type="white" name="close-outline" onClick={props.toggleModal}>
             Annuler
           </FButton>
           <FButton
@@ -146,12 +144,14 @@ export const NeedFormModal = (props: Props) => {
       }
     >
       <Row className="mt-4">
-        <Col>
+        <Col className="position-relative">
           <div>
-              <Label htmlFor="name">
-                Intitulé du besoin
-                <span className={styles.label_details}>{totalChar}/{TITLE_MAX_CHAR} caractères restants</span>
-              </Label>
+            <Label htmlFor="name">
+              Intitulé du besoin
+              <span className={styles.label_details}>
+                {totalChar}/{TITLE_MAX_CHAR} caractères restants
+              </span>
+            </Label>
             <FInput
               id="name"
               value={name}
@@ -164,7 +164,9 @@ export const NeedFormModal = (props: Props) => {
           <div>
             <Label htmlFor="subtitle">
               Sous-titre du besoin (facultatif)
-              <span className={styles.label_details}>{totalChar}/{TITLE_MAX_CHAR} caractères restants</span>
+              <span className={styles.label_details}>
+                {totalChar}/{TITLE_MAX_CHAR} caractères restants
+              </span>
             </Label>
             <FInput
               id="subtitle"
@@ -187,7 +189,7 @@ export const NeedFormModal = (props: Props) => {
                     if (theme._id === themeSelected) setThemeSelected(null);
                     else setThemeSelected(theme._id);
                   }}
-                  className="mr-2 mb-2"
+                  className="me-2 mb-2"
                 >
                   <TagName theme={theme} />
                 </FilterButton>
@@ -207,24 +209,24 @@ export const NeedFormModal = (props: Props) => {
               minHeight={220}
             />
           </div>
-            <div className="mb-2">
-              <Label htmlFor="notes">Notes internes</Label>
-              <FInput
-                id="notes"
-                type="textarea"
-                value={notes}
-                onChange={(e: any) => setNotes(e.target.value)}
-                newSize={true}
-                autoFocus={false}
-                placeholder="Notes..."
-              />
+          <div className="mb-2">
+            <Label htmlFor="notes">Notes internes</Label>
+            <FInput
+              id="notes"
+              type="textarea"
+              value={notes}
+              onChange={(e: any) => setNotes(e.target.value)}
+              newSize={true}
+              autoFocus={false}
+              placeholder="Notes..."
+            />
+          </div>
+          {props.selectedNeed && (
+            <div>
+              <Label>Nombre de clics</Label>
+              <p>Total : {props.selectedNeed.nbVues || 0}</p>
             </div>
-            {props.selectedNeed && (
-              <div>
-                <Label>Nombre de clics</Label>
-                <p>Total : {props.selectedNeed.nbVues || 0}</p>
-              </div>
-            )}
+          )}
         </Col>
       </Row>
     </DetailsModal>

@@ -18,7 +18,7 @@ const LanguageCard = (props: Props) => {
   return (
     <div className={cls(styles.container)}>
       <div className={styles.title}>
-        <i className={cls(styles.flag, "flag-icon flag-icon-" + language?.langueCode)} title={language?.langueCode} />
+        <span className={cls(styles.flag, "fi fi-" + language?.langueCode)} title={language?.langueCode} />
         {language?.langueFr}
       </div>
       <p className={styles.subtitle}>

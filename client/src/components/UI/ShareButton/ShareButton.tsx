@@ -24,30 +24,15 @@ export const ShareButton = (props: Props) => {
     <>
       {props.type === "button" && props.onClick && (
         <button onClick={props.onClick} className={styles.btn}>
-          {props.name &&
-            <EVAIcon
-              name={props.name}
-              fill={"#000000"}
-              size={"large"}
-            />
-          }
-          {props.text && <span className="ml-10">{props.text}</span>}
+          {props.name && <EVAIcon name={props.name} fill={"#000000"} size={"large"} />}
+          {props.text && <span className="ms-2">{props.text}</span>}
         </button>
       )}
       {props.type === "a" && emailBody && (
-        <a
-          style={{ display: "flex", flexDirection: "row" }}
-          href={`mailto:?subject=${mailSubject}&body=${emailBody}`}
-        >
+        <a style={{ display: "flex", flexDirection: "row" }} href={`mailto:?subject=${mailSubject}&body=${emailBody}`}>
           <div className={styles.btn}>
-            {props.name && (
-              <EVAIcon
-                name={props.name}
-                fill={"#000000"}
-                size={"large"}
-              />
-            )}
-            {props.text && <span className="ml-10">{props.text}</span>}
+            {props.name && <EVAIcon name={props.name} fill={"#000000"} size={"large"} />}
+            {props.text && <span className="ms-2">{props.text}</span>}
           </div>
         </a>
       )}

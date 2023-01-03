@@ -3,13 +3,12 @@
 @import "./variables";
 
 // Vendors
-@import "~@coreui/coreui/scss/coreui.scss";
-@import "~flag-icon-css/css/flag-icon.min.css";
+@import "~bootstrap/scss/bootstrap";
+@import "~flag-icons/css/flag-icons.min.css";
 @import "~font-awesome/css/font-awesome.min.css";
 @import "~react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 @import "~rc-time-picker/assets/index.css";
 @import "~react-notifications/src/notifications.scss";
-@import "~@coreui/coreui/scss/_dropdown-menu-right.scss"; // Temp fix for reactstrap
 @import "~react-loading-skeleton/dist/skeleton.css";
 @import "~remixicon/fonts/remixicon.css";
 
@@ -26,5 +25,3 @@
 @import "../components/UI/SearchBar/SearchBar.scss";
 @import "../components/UI/AdvancedSearchBar/AdvancedSearchBar.scss";
 @import "../components/Modals/Modal.scss";
-
-@import "./ie-fix";

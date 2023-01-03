@@ -253,7 +253,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
                 <p className={styles.p}>{t("Translate.nextText2")}</p>
               </Col>
-              <Col lg="6" sm="12" className="text-right">
+              <Col lg="6" sm="12" className="text-end">
                 <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
               </Col>
             </Row>

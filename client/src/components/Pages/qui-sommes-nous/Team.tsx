@@ -31,7 +31,7 @@ const MemberCard = (props: MemberProps) => {
                 target="_blank"
                 href={props.member.portfolio}
                 type="white"
-                className="mb-10 mt-10"
+                className="mb-2 mt-2"
                 name="external-link-outline"
               >
                 {t("QuiSommesNous.Portfolio", "Portfolio ")}
@@ -42,7 +42,7 @@ const MemberCard = (props: MemberProps) => {
                 target="_blank"
                 href={props.member.linkedin}
                 type="white"
-                className="mb-10  mt-10"
+                className="mb-2  mt-2"
                 name="linkedin-outline"
               >
                 Linkedin
@@ -53,7 +53,7 @@ const MemberCard = (props: MemberProps) => {
                 target="_blank"
                 href={props.member.twitter}
                 type="white"
-                className="mb-10 mt-10"
+                className="mb-2 mt-2"
                 name="twitter-outline"
               >
                 Twitter
@@ -64,7 +64,7 @@ const MemberCard = (props: MemberProps) => {
                 target="_blank"
                 href={props.member.autre}
                 type="white"
-                className="mb-10  mt-10"
+                className="mb-2  mt-2"
                 name="external-link-outline"
               >
                 {t("QuiSommesNous.Autre", "Autre ")}
@@ -74,26 +74,16 @@ const MemberCard = (props: MemberProps) => {
         ) : (
           <>
             <div>
-              <Image
-                src={props.member.image}
-                alt={props.member.name}
-                width={120}
-                height={120}
-              />
+              <Image src={props.member.image} alt={props.member.name} width={120} height={120} />
             </div>
-              <div className={styles.name}>
-                {props.member.name}
-              </div>
-              <div className={styles.role}>
-              {props.member.roleShort || props.member.roleName}
-            </div>
+            <div className={styles.name}>{props.member.name}</div>
+            <div className={styles.role}>{props.member.roleShort || props.member.roleName}</div>
           </>
         )}
       </div>
     </div>
   );
 };
-
 
 export const Team = () => (
   <div className={styles.container}>

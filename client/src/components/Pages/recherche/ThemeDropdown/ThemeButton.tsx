@@ -66,7 +66,7 @@ const ThemeButton = ({ theme, selected, disabled, nbNeeds, mobile, onClick }: Pr
         <EVAIcon
           name={!mobile ? "chevron-right-outline" : selected ? "chevron-up-outline" : "chevron-down-outline"}
           fill={selected ? "white" : theme.colors.color100}
-          className="ml-2"
+          className="ms-2"
         />
       )}
     </ButtonTheme>

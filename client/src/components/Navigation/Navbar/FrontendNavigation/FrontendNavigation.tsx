@@ -2,7 +2,7 @@ import { HeaderNav, NavItem, NavSubItem } from "@dataesr/react-dsfr";
 import isInBrowser from "lib/isInBrowser";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
 import { NewsletterSubscribeNavItem } from "../NavbarItems";
 

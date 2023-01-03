@@ -35,7 +35,7 @@ instance.interceptors.request.use(
   (request) => request,
   (error) => {
     Swal.fire({
-      type: "error",
+      icon: "error",
       title: "Oops...",
       text: (error.response.data || {}).text || "",
       footer: "<i>" + error.message + "</i>",
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
     if (error.response && error.response.status < 500) {
       if (error.response.data.data !== "no-alert") {
         Swal.fire({
-          type: "error",
+          icon: "error",
           title: "Oops...",
           text: (error.response.data || {}).text || "",
           footer: "<i>" + error.message + "</i>",

@@ -20,7 +20,7 @@ const SeeMoreButton = (props: Props) => {
           name={!props.visible ? "arrow-downward-outline" : "arrow-upward-outline"}
           fill="white"
           size={24}
-          className="ml-2"
+          className="ms-2"
         />
       </Button>
     </div>

@@ -41,7 +41,7 @@ export const send_sms = (
       Swal.fire({
         title: "Yay...",
         text: "Votre message a bien été envoyé, merci",
-        type: "success",
+        icon: "success",
         timer: 1500,
       });
     }

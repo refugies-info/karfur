@@ -152,7 +152,7 @@ const EtapeParagraphe = (props: Props) => {
                     name={`chevron-${isAccordeonOpen ? "up" : "down"}-outline`}
                     size="large"
                     fill={darkColor}
-                    className="ml-8"
+                    className="ms-2"
                   />
                 )}
               </StyledHeader>
@@ -196,7 +196,7 @@ const EtapeParagraphe = (props: Props) => {
             <FButton
               type="dark"
               name="plus-circle-outline"
-              className="mt-10"
+              className="mt-2"
               onClick={() => props.addItem(keyValue, "etape", subkey)}
             >
               Ajouter une étape

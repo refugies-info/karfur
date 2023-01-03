@@ -9,10 +9,7 @@ import produce from "immer";
 import API from "../../utils/API";
 import Dispositif from "components/Frontend/Dispositif/Dispositif";
 import { menu } from "data/dispositif";
-import {
-  fetchTranslationsActionCreator,
-  addTradActionCreator,
-} from "../../services/Translation/translation.actions";
+import { fetchTranslationsActionCreator, addTradActionCreator } from "../../services/Translation/translation.actions";
 import { withRouter } from "react-router-dom";
 import {
   fetchSelectedDispositifActionCreator,
@@ -38,7 +35,7 @@ export class TranslationHOC extends Component {
     // value: "",
     francais: {
       title: "",
-      body: "",
+      body: ""
     },
     texte_traduit: "",
     texte_a_traduire: "",
@@ -56,7 +53,7 @@ export class TranslationHOC extends Component {
 
     translated: {
       body: "",
-      title: "",
+      title: ""
     },
     itemId: "",
     isExpert: false,
@@ -64,10 +61,10 @@ export class TranslationHOC extends Component {
     langue: {},
     traduction: {
       initialText: { contenu: new Array(menu.length).fill(false) },
-      translatedText: { contenu: new Array(menu.length).fill(false) },
+      translatedText: { contenu: new Array(menu.length).fill(false) }
     },
     traductionsFaites: [],
-    autosuggest: false,
+    autosuggest: false
   };
 
   componentDidMount() {
@@ -82,9 +79,7 @@ export class TranslationHOC extends Component {
       const { isExpert, userId } = this.props;
       const traductions = this.props.translations;
 
-      const traduction = traductions.find(
-        (trad) => trad.userId._id === trad.validatorId
-      );
+      const traduction = traductions.find((trad) => trad.userId._id === trad.validatorId);
       this.setState({
         traductionsFaites: traductions,
         traduction: {
@@ -97,16 +92,13 @@ export class TranslationHOC extends Component {
                 )
               : traduction
               ? traduction.translatedText
-              : get(traductions, "0.translatedText", {}),
+              : get(traductions, "0.translatedText", {})
         },
-        autosuggest: false,
+        autosuggest: false
       });
     }
 
-    if (
-      prevProps.translation !== this.props.translation &&
-      this.props.translation._id
-    ) {
+    if (prevProps.translation !== this.props.translation && this.props.translation._id) {
       this.setState(
         produce((draft) => {
           draft.traduction._id = this.props.translation._id;
@@ -132,22 +124,20 @@ export class TranslationHOC extends Component {
       this.setState({
         nbMotsRestants: Math.max(
           0,
-          h2p(nextState.francais.body).split(/\s+/).length -
-            h2p(nextState.translated.body).split(/\s+/).length
-        ),
+          h2p(nextState.francais.body).split(/\s+/).length - h2p(nextState.translated.body).split(/\s+/).length
+        )
       });
     }
   }
 
   _initializeComponent = async (props) => {
-    const searchParams = (new URL(document.location)).searchParams;
+    const searchParams = new URL(document.location).searchParams;
     const languageId = searchParams.get("language");
     const itemId = searchParams.get("dispositif");
     const { locale, langueBackupId } = await this._setLangue(languageId);
     const isExpert = this.props.isExpert;
     const type =
-      (props.location.pathname || "").includes("dispositif") ||
-      (props.location.pathname || "").includes("demarche")
+      (props.location.pathname || "").includes("dispositif") || (props.location.pathname || "").includes("demarche")
         ? "dispositif"
         : "string";
     this.props.fetchSelectedDispositif({
@@ -164,14 +154,12 @@ export class TranslationHOC extends Component {
   _setLangue = async (languageId) => {
     let langue = null;
     try {
-      langue = (
-        await API.get_langues({ _id: languageId }, {}, "langueBackupId")
-      ).data.data[0];
+      langue = (await API.get_langues({ _id: languageId }, {}, "langueBackupId")).data.data[0];
     } catch (err) {}
     this._isMounted && this.setState({ langue });
     return {
       locale: langue.i18nCode,
-      langueBackupId: get(langue, "langueBackupId.i18nCode"),
+      langueBackupId: get(langue, "langueBackupId.i18nCode")
     };
   };
 
@@ -181,7 +169,7 @@ export class TranslationHOC extends Component {
   translate = (text, target, item, toEditor = false) => {
     this.setState({
       translated: { ...this.state.translated, [item]: "" },
-      autosuggest: true,
+      autosuggest: true
     });
     API.get_translation({ q: text, target: target })
       .then((data) => {
@@ -192,19 +180,15 @@ export class TranslationHOC extends Component {
               // eslint-disable-next-line
               .replace(/ id="initial_/g, ' id="target_') || "";
           value = toEditor
-            ? EditorState.createWithContent(
-                ContentState.createFromBlockArray(
-                  htmlToDraft(value).contentBlocks
-                )
-              )
+            ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks))
             : value;
           this._isMounted &&
             item &&
             this.setState({
               translated: {
                 ...this.state.translated,
-                [item]: value,
-              },
+                [item]: value
+              }
             });
         }
       })
@@ -215,18 +199,14 @@ export class TranslationHOC extends Component {
         ) {
           let value = this.state.francais[item] || "";
           value = toEditor
-            ? EditorState.createWithContent(
-                ContentState.createFromBlockArray(
-                  htmlToDraft(value).contentBlocks
-                )
-              )
+            ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks))
             : value;
           this._isMounted &&
             this.setState({
               translated: {
                 ...this.state.translated,
-                [item]: value,
-              },
+                [item]: value
+              }
             });
         }
       });
@@ -239,9 +219,9 @@ export class TranslationHOC extends Component {
     this.setState({
       translated: {
         ...this.state.translated,
-        [target]: value,
+        [target]: value
       },
-      autosuggest: false,
+      autosuggest: false
     });
   };
 
@@ -249,35 +229,27 @@ export class TranslationHOC extends Component {
     this.setState({
       translated: {
         ...this.state.translated,
-        [target]: editorState,
+        [target]: editorState
       },
-      autosuggest: false,
+      autosuggest: false
     });
   };
 
   handleClickText = (e, initial, target) => {
     try {
       if (last_target) {
-        document
-          .getElementById(last_target)
-          .classList.remove("temporarily_highlight");
+        document.getElementById(last_target).classList.remove("temporarily_highlight");
       }
       let cible = e.target;
       last_target = cible.id.replace(initial + "_", target + "_");
       if (last_target) {
-        document
-          .getElementById(last_target)
-          .classList.add("temporarily_highlight");
+        document.getElementById(last_target).classList.add("temporarily_highlight");
       }
     } catch (e) {}
   };
 
   handleChangeEnCours = (event) => {
-    if (
-      letter_pressed &&
-      letter_pressed === " " &&
-      this.state.texte_a_traduire.slice(0, 1) !== " "
-    ) {
+    if (letter_pressed && letter_pressed === " " && this.state.texte_a_traduire.slice(0, 1) !== " ") {
       let i = 0,
         le_text = this.state.texte_a_traduire;
       do {
@@ -285,30 +257,27 @@ export class TranslationHOC extends Component {
         i++;
       } while (le_text.slice(0, 1) !== " " && le_text !== "" && le_text);
       this.setState((prevState) => ({
-        texte_a_traduire: prevState.texte_a_traduire.substring(i + 1),
+        texte_a_traduire: prevState.texte_a_traduire.substring(i + 1)
       }));
     } else if (
       letter_pressed &&
-      ((letter_pressed !== " " &&
-        this.state.texte_a_traduire.slice(0, 1) !== " ") ||
-        (letter_pressed === " " &&
-          this.state.texte_a_traduire.slice(0, 1) === " "))
+      ((letter_pressed !== " " && this.state.texte_a_traduire.slice(0, 1) !== " ") ||
+        (letter_pressed === " " && this.state.texte_a_traduire.slice(0, 1) === " "))
     ) {
       this.setState((prevState) => ({
-        texte_a_traduire: prevState.texte_a_traduire.substring(1),
+        texte_a_traduire: prevState.texte_a_traduire.substring(1)
       }));
     }
     this.setState({
-      texte_traduit:
-        h2p(event.target.value) + (letter_pressed === " " ? " " : ""),
+      texte_traduit: h2p(event.target.value) + (letter_pressed === " " ? " " : ""),
       translated: {
         ...this.state.trandslated,
         body:
           h2p(event.target.value) +
           (this.state.translated.body.length > event.target.value.length
             ? this.state.translated.body.substring(event.target.value.length)
-            : ""),
-      },
+            : "")
+      }
     });
     letter_pressed = null;
   };
@@ -330,12 +299,12 @@ export class TranslationHOC extends Component {
       avancement: this.state.avancement,
       type: this.state.type,
       ...(this.state.path.length > 0 && { path: this.state.path }),
-      ...(this.state.id && { id: this.state.id }),
+      ...(this.state.id && { id: this.state.id })
     };
     if (this.state.isExpert) {
       traduction = {
         ...traduction,
-        isExpert: true,
+        isExpert: true
       };
     }
     traduction = { ...traduction, ...tradData };
@@ -350,8 +319,8 @@ export class TranslationHOC extends Component {
       Swal.fire({
         title: "Yay...",
         text: "La traduction a bien été enregistrée",
-        type: "success",
-        timer: 1000,
+        icon: "success",
+        timer: 1000
       });
       this._isMounted && this.setState({ disableBtn: false });
       this._isMounted && this.onSkip();
@@ -368,14 +337,14 @@ export class TranslationHOC extends Component {
     event.stopPropagation();
     this.setState({
       isComplete: event.target.checked,
-      avancement: event.target.checked ? 1 : 0.495,
+      avancement: event.target.checked ? 1 : 0.495
     });
   };
 
   handleCheckboxClicked = () => {
     this.setState((prevState) => ({
       isComplete: !prevState.isComplete,
-      avancement: !prevState.isComplete ? 1 : 0.495,
+      avancement: !prevState.isComplete ? 1 : 0.495
     }));
   };
 
@@ -390,8 +359,8 @@ export class TranslationHOC extends Component {
     Swal.fire({
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
-      type: "error",
-      timer: 1500,
+      icon: "error",
+      timer: 1500
     });
 
   render() {
@@ -407,7 +376,6 @@ export class TranslationHOC extends Component {
           onSkip={this.onSkip}
           getTrads={this.get_trads}
           history={[]}
-
           typeContenu={this.props.selectedDispositif?.typeContenu || "dispositif"}
           translated={this.state.translated}
           isExpert={this.state.isExpert}
@@ -417,7 +385,6 @@ export class TranslationHOC extends Component {
           francais={this.state.francais}
           traductionsFaites={this.state.traductionsFaites}
           autosuggest={this.state.autosuggest}
-
           translations={this.props.translations}
           translation={this.props.translation}
         />
@@ -433,7 +400,7 @@ const mapStateToProps = (state) => {
     isExpert: state.user.expertTrad,
     translations: state.translation.translations,
     translation: state.translation.translation,
-    selectedDispositif: state.selectedDispositif,
+    selectedDispositif: state.selectedDispositif
   };
 };
 
@@ -441,7 +408,7 @@ const mapDispatchToProps = {
   fetchTranslations: fetchTranslationsActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   setSelectedDispositif: setSelectedDispositifActionCreator,
-  addTranslation: addTradActionCreator,
+  addTranslation: addTradActionCreator
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TranslationHOC));

@@ -133,7 +133,7 @@ const Register = () => {
         Swal.fire({
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
-          type: "success",
+          icon: "success",
           timer: 1500
         }).then(() => {
           const { query } = router;
@@ -171,7 +171,7 @@ const Register = () => {
         Swal.fire({
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
         return;
@@ -197,7 +197,7 @@ const Register = () => {
         Swal.fire({
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
         return;
@@ -256,7 +256,7 @@ const Register = () => {
   }, [step, username, t]);
 
   return (
-    <div className="app">
+    <main className={styles.main}>
       <SEO title="Créer un nouveau compte" />
       <div className={styles.container}>
         <ContentContainer>
@@ -339,7 +339,7 @@ const Register = () => {
           isLanguagesLoading={isLanguagesLoading}
         />
       </div>
-    </div>
+    </main>
   );
 };
 

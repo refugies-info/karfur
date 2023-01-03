@@ -80,7 +80,7 @@ const DispositifCard = (props: Props) => {
         <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />
-          <span style={{ color: colors.color100 }} className="ml-1">
+          <span style={{ color: colors.color100 }} className="ms-1">
             {getDepartement()}
           </span>
         </div>
@@ -102,9 +102,9 @@ const DispositifCard = (props: Props) => {
             <div className="d-flex">
               <Image src={iconEuro} width={16} height={16} alt="" />
               {price?.price === 0 ? (
-                <div className="ml-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
+                <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
-                <div className="ml-2">
+                <div className="ms-2">
                   {price?.price}€ {price?.contentTitle}
                 </div>
               )}
@@ -115,7 +115,7 @@ const DispositifCard = (props: Props) => {
             <div className="d-flex mt-1">
               <Image src={iconTime} width={16} height={16} alt="" />
               <div
-                className={cls(styles.ellipsis, "ml-2")}
+                className={cls(styles.ellipsis, "ms-2")}
                 dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}
               ></div>
             </div>
@@ -139,7 +139,7 @@ const DispositifCard = (props: Props) => {
             />
           </span>
           <span
-            className={cls(styles.text, styles.max_lines, "ml-2")}
+            className={cls(styles.text, styles.max_lines, "ms-2")}
             style={{ color: colors.color100 }}
             dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque }}
           />

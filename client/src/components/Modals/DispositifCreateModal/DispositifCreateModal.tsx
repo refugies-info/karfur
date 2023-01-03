@@ -56,43 +56,29 @@ export class DispositifCreateModal extends Component<Props, StateType> {
           <div onClick={this.props.toggle} className={styles.close_icon}>
             <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
           </div>
-          <div
-            className={styles.header_container}
-            style={{ marginBottom: step === 2 ? 33 : 41 }}
-          >
+          <div className={styles.header_container} style={{ marginBottom: step === 2 ? 33 : 41 }}>
             <h2 className={styles.header}>Nouvelle fiche</h2>
             <div>
-              <div className={styles.type_contenu}>
-                {this.props.typeContenu}
-              </div>
+              <div className={styles.type_contenu}>{this.props.typeContenu}</div>
             </div>
           </div>
-          {step === 1 && (
-            <p className={styles.subtitle}>Bienvenue dans l&apos;éditeur de fiche dispositif !</p>
-          )}
+          {step === 1 && <p className={styles.subtitle}>Bienvenue dans l&apos;éditeur de fiche dispositif !</p>}
 
-          {step === 3 && (
-            <p className={styles.subtitle}>Sauvegardez à tout moment pour finir plus tard</p>
-          )}
+          {step === 3 && <p className={styles.subtitle}>Sauvegardez à tout moment pour finir plus tard</p>}
           {step === 2 && (
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                alignItems: "center"
               }}
             >
               <p className={styles.subtitle}>
-                Cliquez sur les zones surlignées en{" "}
-                <span className={styles.yellow}>jaune</span>{" "}
-                pour écrire.
+                Cliquez sur les zones surlignées en <span className={styles.yellow}>jaune</span> pour écrire.
               </p>
             </div>
           )}
-          <div
-            className={styles.video}
-            style={{ marginTop: step === 2 ? 32 : 40 }}
-          >
+          <div className={styles.video} style={{ marginTop: step === 2 ? 32 : 40 }}>
             <iframe
               src={getIFrameSrc(this.state.step)}
               frameBorder="0"
@@ -101,7 +87,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                 left: " 0",
                 width: "100%",
                 height: "100%",
-                borderRadius: "12px",
+                borderRadius: "12px"
               }}
             ></iframe>
           </div>
@@ -122,7 +108,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
                   type="outline-black"
                   name="arrow-back"
                   onClick={() => this.changeStep(false)}
-                  className="mr-10"
+                  className="me-2"
                 />
               )}
               <FButton

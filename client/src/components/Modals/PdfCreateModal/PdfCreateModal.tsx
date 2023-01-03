@@ -34,12 +34,7 @@ export class PdfCreateModal extends Component<Props> {
             <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
           </div>
           <div className={styles.header}>
-            <h2>
-              {this.props.t(
-                "Dispositif.Télécharger la fiche en PDF",
-                "Télécharger la fiche en PDF"
-              )}
-            </h2>
+            <h2>{this.props.t("Dispositif.Télécharger la fiche en PDF", "Télécharger la fiche en PDF")}</h2>
           </div>
 
           <p className={styles.subtitle}>
@@ -59,14 +54,14 @@ export class PdfCreateModal extends Component<Props> {
                 left: " 0",
                 width: "100%",
                 height: "100%",
-                borderRadius: "12px",
+                borderRadius: "12px"
               }}
             ></iframe>
           </div>
           <div className={styles.btn_container}>
             <FButton
               type="white"
-              className="mr-10"
+              className="me-2"
               name="close-outline"
               onClick={() => {
                 this.props.toggle();
@@ -81,7 +76,9 @@ export class PdfCreateModal extends Component<Props> {
                 this.props.toggle();
                 // give enough time for the accordions to open before printing
                 return new Promise((resolve: any) => {
-                  setTimeout(() => { resolve() }, 500);
+                  setTimeout(() => {
+                    resolve();
+                  }, 500);
                 });
               }}
               onAfterPrint={() => {
@@ -91,8 +88,8 @@ export class PdfCreateModal extends Component<Props> {
               fonts={[
                 {
                   family: "Marianne-Medium",
-                  source: assetsOnServer + "Marianne-Medium.woff",
-                },
+                  source: assetsOnServer + "Marianne-Medium.woff"
+                }
               ]}
               trigger={() => (
                 <FButton

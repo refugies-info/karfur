@@ -18,7 +18,7 @@ if (isInBrowser()) {
 
 interface Props {
   widget: Widget;
-  onClick: (id: ObjectId) => void
+  onClick: (id: ObjectId) => void;
 }
 
 export const WidgetLine = (props: Props) => {
@@ -32,9 +32,9 @@ export const WidgetLine = (props: Props) => {
     NotificationManager.success(
       "Le code d'intégration du widget a été copié dans ton presse-papiers.",
       "Copié dans le presse-papiers",
-      5000,
+      5000
     );
-  }
+  };
 
   const deleteWidget = (e: any) => {
     e.stopPropagation();
@@ -42,18 +42,18 @@ export const WidgetLine = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "Voulez-vous supprimer ce widget ?",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
-      cancelButtonText: "Annuler",
-    }).then(res => {
+      cancelButtonText: "Annuler"
+    }).then((res) => {
       if (res.value) {
         dispatch(deleteWidgetActionCreator(widget._id));
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className={styles.container} onClick={() => props.onClick(widget._id)}>
@@ -65,19 +65,8 @@ export const WidgetLine = (props: Props) => {
         </p>
       </div>
       <div>
-        <FButton
-          name="copy"
-          type="small-figma"
-          className="mr-1"
-          theme={colors.gray80}
-          onClick={copyCode}
-        ></FButton>
-        <FButton
-          name="trash-2-outline"
-          type="small-figma"
-          theme={colors.gray80}
-          onClick={deleteWidget}
-        ></FButton>
+        <FButton name="copy" type="small-figma" className="me-1" theme={colors.gray80} onClick={copyCode}></FButton>
+        <FButton name="trash-2-outline" type="small-figma" theme={colors.gray80} onClick={deleteWidget}></FButton>
       </div>
     </div>
   );

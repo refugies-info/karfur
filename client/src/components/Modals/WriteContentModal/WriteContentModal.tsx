@@ -65,7 +65,7 @@ const WriteContentModal = ({ show, close }: Props) => {
       <Modal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} className={styles.modal}>
         <ModalBody>
           <button className={styles.close} onClick={() => setShowWriteModal(false)}>
-            <EVAIcon name="close-outline" fill="dark" size={24} className="mr-10" />
+            <EVAIcon name="close-outline" fill="dark" size={24} className="me-2" />
           </button>
           <div className={styles.cards}>
             <WriteContentCard
@@ -91,7 +91,7 @@ const WriteContentModal = ({ show, close }: Props) => {
         <ModalFooter>
           <FButton type="validate" disabled={selected === null} onClick={navigate}>
             Confirmer
-            <EVAIcon name="arrow-forward-outline" fill="white" size={20} className="ml-10" />
+            <EVAIcon name="arrow-forward-outline" fill="white" size={20} className="ms-2" />
           </FButton>
         </ModalFooter>
       </Modal>

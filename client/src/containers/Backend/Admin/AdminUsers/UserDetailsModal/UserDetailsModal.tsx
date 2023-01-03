@@ -181,7 +181,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la modification",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -193,7 +193,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         const res = await Swal.fire({
           title: "Êtes-vous sûr ?",
           text: "Souhaitez-vous supprimer cet utilisateur",
-          type: "question",
+          icon: "question",
           showCancelButton: true,
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
@@ -205,7 +205,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         Swal.fire({
           title: "Yay...",
           text: "Utilisateur supprimé",
-          type: "success",
+          icon: "success",
           timer: 1500
         });
         dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
@@ -215,14 +215,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la suppression",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       props.toggleModal();
     }
   };
 
-  const getMinutes = useCallback((value: number|undefined) => {
+  const getMinutes = useCallback((value: number | undefined) => {
     return value ? Math.floor(value / 1000 / 60) : 0;
   }, []);
 
@@ -251,11 +251,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       rightHead={
         <>
           {userFromStore && (
-            <FButton className="mr-8" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
+            <FButton className="me-2" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
               Supprimer
             </FButton>
           )}
-          <FButton className="mr-8" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
+          <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
         </>
       }
     >
