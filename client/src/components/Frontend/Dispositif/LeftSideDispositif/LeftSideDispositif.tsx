@@ -171,11 +171,7 @@ const LeftSideDispositif = (props: Props) => {
               type="light-action"
               onClick={() => {
                 Event("Share", "SMS", "from dispositif sidebar");
-                send_sms(
-                  "Veuillez renseigner votre numéro de téléphone",
-                  props.typeContenu,
-                  props.content.titreInformatif
-                );
+                send_sms("Veuillez renseigner votre numéro de téléphone", props.content.titreInformatif);
               }}
               name="smartphone-outline"
               wrap

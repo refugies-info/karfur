@@ -1085,13 +1085,7 @@ class SideTrad extends Component {
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"me-2 mb-1"} />
             {/* TODO: offset */}
-            <Tooltip
-              placement="top"
-              offset="0px, 8px"
-              isOpen={this.state.tooltipOpen}
-              target="alert-info"
-              toggle={this.toggleTooltip}
-            >
+            <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="alert-info" toggle={this.toggleTooltip}>
               Ce résumé est visible dans les résultats de recherche.
             </Tooltip>
             <AlertText type={modified ? "modified" : "abstract"}>

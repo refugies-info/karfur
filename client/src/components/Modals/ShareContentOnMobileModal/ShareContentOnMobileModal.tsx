@@ -2,10 +2,7 @@ import React from "react";
 import { Modal } from "reactstrap";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { ShareButton } from "components/UI/ShareButton/ShareButton";
-import {
-  send_sms,
-  sharingOptions,
-} from "components/Pages/dispositif/function";
+import { send_sms, sharingOptions } from "components/Pages/dispositif/function";
 import { Event } from "lib/tracking";
 import styles from "./ShareContentOnMobileModal.module.scss";
 
@@ -26,22 +23,12 @@ interface Props {
 
 export const ShareContentOnMobileModal = (props: Props) => {
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <div className={styles.container}>
-        <div
-          onClick={props.toggle}
-          className={styles.close}
-        >
+        <div onClick={props.toggle} className={styles.close}>
           <EVAIcon name="close-outline" fill="#FFFFFF" size="large" />
         </div>
-        <h2 className={styles.header}>
-          {props.t("Dispositif.Partager Fiche", "Partager la fiche")}
-        </h2>
+        <h2 className={styles.header}>{props.t("Dispositif.Partager Fiche", "Partager la fiche")}</h2>
         <div className={styles.btn_container}>
           <ShareButton
             name={"email-outline"}
@@ -54,11 +41,7 @@ export const ShareContentOnMobileModal = (props: Props) => {
             name={"smartphone-outline"}
             onClick={() => {
               Event("Share", "SMS", "from dispositif mobile modal");
-              send_sms(
-                "Veuillez renseigner un numéro de téléphone",
-                props.typeContenu,
-                props.content.titreInformatif
-              )
+              send_sms("Veuillez renseigner un numéro de téléphone", props.content.titreInformatif);
             }}
             text={props.t("Dispositif.Via sms", "Via sms")}
             type="button"
@@ -67,11 +50,7 @@ export const ShareContentOnMobileModal = (props: Props) => {
           <ShareButton
             name={"more-horizontal-outline"}
             onClick={() => {
-              sharingOptions(
-                props.typeContenu,
-                props.content.titreInformatif,
-                props.content.titreMarque
-              );
+              sharingOptions(props.typeContenu, props.content.titreInformatif, props.content.titreMarque);
             }}
             text={props.t("Dispositif.Plus options", "Plus d'options")}
             type="button"
