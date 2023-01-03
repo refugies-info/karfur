@@ -403,18 +403,30 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <a
         className="btn dark"
-        href="/directory/[id]?id=structureId"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        href={
+          {
+            "pathname": "/directory/[id]",
+            "query": {
+              "id": "structureId",
+            },
+          }
+        }
+        legacyBehavior={true}
+        passHref={true}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-book-outline" fill="#fff"><g data-name="Layer 2"><g data-name="book"><rect width="24" height="24" opacity="0"/><path d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -452,12 +464,18 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             onClick={[Function]}
           >
             <span
-              className="mr-10"
+              className="me-2 icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="person-add"><rect width="24" height="24" opacity="0"/><path d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"/><path d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -553,7 +571,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -585,7 +603,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -672,11 +690,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -696,11 +722,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -774,7 +808,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -806,7 +840,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -893,11 +927,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -917,11 +959,19 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -951,7 +1001,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <div>
         <div
-          className="input mb-10 input-group"
+          className="input mb-2 input-group"
         >
           <input
             autoFocus={true}
@@ -963,35 +1013,49 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             type="text"
             value=""
           />
-          <div
-            className="append input-group-append"
+          <span
+            className="append input-group-text"
           >
-            <span>
+            <span
+              className="icon"
+            >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="#212121"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
                   }
                 }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
+                  }
+                }
               />
             </span>
-          </div>
+          </span>
         </div>
       </div>
       <div
         className="c19"
       >
         <button
-          className="btn outline-black mr-8"
+          className="btn outline-black me-2"
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="#fff"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -1004,12 +1068,18 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="#fff"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -1487,18 +1557,30 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <a
         className="btn dark"
-        href="/directory/[id]?id=structureId"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        href={
+          {
+            "pathname": "/directory/[id]",
+            "query": {
+              "id": "structureId",
+            },
+          }
+        }
+        legacyBehavior={true}
+        passHref={true}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-book-outline" fill="#fff"><g data-name="Layer 2"><g data-name="book"><rect width="24" height="24" opacity="0"/><path d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -1536,12 +1618,18 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             onClick={[Function]}
           >
             <span
-              className="mr-10"
+              className="me-2 icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="person-add"><rect width="24" height="24" opacity="0"/><path d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"/><path d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -1637,7 +1725,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -1669,7 +1757,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -1756,11 +1844,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -1780,11 +1876,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -1858,7 +1962,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -1890,7 +1994,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -1977,11 +2081,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -2001,11 +2113,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -2084,7 +2204,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </span>
           <img
             alt=""
-            className="user_img mr-8"
+            className="user_img me-2"
             data-nimg="intrinsic"
             decoding="async"
             onError={[Function]}
@@ -2116,7 +2236,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           <noscript>
             <img
               alt=""
-              className="user_img mr-8"
+              className="user_img me-2"
               data-nimg="intrinsic"
               decoding="async"
               loading="lazy"
@@ -2166,11 +2286,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           >
             Nommer « rédacteur » 
           </div>
-          <span>
+          <span
+            className="icon"
+          >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-radio-button-on" fill="#212121"><g data-name="Layer 2"><g data-name="radio-button-on"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -2198,11 +2326,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           >
             Nommer « responsable »
           </div>
-          <span>
+          <span
+            className="icon"
+          >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-radio-button-off" fill="#212121"><g data-name="Layer 2"><g data-name="radio-button-off"><rect width="24" height="24" opacity="0"/><path d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -2229,16 +2365,22 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="c24"
       >
         <button
-          className="btn outline-black mr-8"
+          className="btn outline-black me-2"
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="#fff"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -2252,12 +2394,18 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="#fff"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -2734,18 +2882,30 @@ exports[`UserStructure should render correctly when edit member modal is open, s
       </div>
       <a
         className="btn dark"
-        href="/directory/[id]?id=structureId"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        href={
+          {
+            "pathname": "/directory/[id]",
+            "query": {
+              "id": "structureId",
+            },
+          }
+        }
+        legacyBehavior={true}
+        passHref={true}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-book-outline" fill="#fff"><g data-name="Layer 2"><g data-name="book"><rect width="24" height="24" opacity="0"/><path d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -2783,12 +2943,18 @@ exports[`UserStructure should render correctly when edit member modal is open, s
             onClick={[Function]}
           >
             <span
-              className="mr-10"
+              className="me-2 icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="person-add"><rect width="24" height="24" opacity="0"/><path d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"/><path d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -2884,7 +3050,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -2916,7 +3082,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -3003,11 +3169,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -3027,11 +3201,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -3105,7 +3287,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -3137,7 +3319,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -3224,11 +3406,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -3248,11 +3438,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -3331,7 +3529,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           </span>
           <img
             alt=""
-            className="user_img mr-8"
+            className="user_img me-2"
             data-nimg="intrinsic"
             decoding="async"
             onError={[Function]}
@@ -3363,7 +3561,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           <noscript>
             <img
               alt=""
-              className="user_img mr-8"
+              className="user_img me-2"
               data-nimg="intrinsic"
               decoding="async"
               loading="lazy"
@@ -3413,11 +3611,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           >
             Nommer « rédacteur » 
           </div>
-          <span>
+          <span
+            className="icon"
+          >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-radio-button-off" fill="#212121"><g data-name="Layer 2"><g data-name="radio-button-off"><rect width="24" height="24" opacity="0"/><path d="M12 22a10 10 0 1 1 10-10 10 10 0 0 1-10 10zm0-18a8 8 0 1 0 8 8 8 8 0 0 0-8-8z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -3445,11 +3651,19 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           >
             Nommer « responsable »
           </div>
-          <span>
+          <span
+            className="icon"
+          >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-radio-button-on" fill="#ffffff"><g data-name="Layer 2"><g data-name="radio-button-on"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 7a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -3476,16 +3690,22 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         className="c24"
       >
         <button
-          className="btn outline-black mr-8"
+          className="btn outline-black me-2"
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="#fff"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -3499,12 +3719,18 @@ exports[`UserStructure should render correctly when edit member modal is open, s
           onClick={[Function]}
         >
           <span
-            className="mr-10"
+            className="me-2 icon"
           >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="#fff"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
+                }
+              }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
                 }
               }
             />
@@ -4091,18 +4317,30 @@ exports[`UserStructure should render correctly when structure with membres when 
       </div>
       <a
         className="btn dark"
-        href="/directory/[id]?id=structureId"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        href={
+          {
+            "pathname": "/directory/[id]",
+            "query": {
+              "id": "structureId",
+            },
+          }
+        }
+        legacyBehavior={true}
+        passHref={true}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-book-outline" fill="#fff"><g data-name="Layer 2"><g data-name="book"><rect width="24" height="24" opacity="0"/><path d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -4221,7 +4459,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -4253,7 +4491,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -4383,7 +4621,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -4415,7 +4653,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -4859,18 +5097,30 @@ exports[`UserStructure should render correctly when structure with membres when 
       </div>
       <a
         className="btn dark"
-        href="/directory/[id]?id=structureId"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        href={
+          {
+            "pathname": "/directory/[id]",
+            "query": {
+              "id": "structureId",
+            },
+          }
+        }
+        legacyBehavior={true}
+        passHref={true}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-book-outline" fill="#fff"><g data-name="Layer 2"><g data-name="book"><rect width="24" height="24" opacity="0"/><path d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -4908,12 +5158,18 @@ exports[`UserStructure should render correctly when structure with membres when 
             onClick={[Function]}
           >
             <span
-              className="mr-10"
+              className="me-2 icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-add-outline" fill="#fff"><g data-name="Layer 2"><g data-name="person-add"><rect width="24" height="24" opacity="0"/><path d="M21 6h-1V5a1 1 0 0 0-2 0v1h-1a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0V8h1a1 1 0 0 0 0-2z"/><path d="M10 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M10 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -5009,7 +5265,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -5041,7 +5297,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -5128,11 +5384,19 @@ exports[`UserStructure should render correctly when structure with membres when 
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5152,11 +5416,19 @@ exports[`UserStructure should render correctly when structure with membres when 
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5230,7 +5502,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     </span>
                     <img
                       alt=""
-                      className="user-img mr-8"
+                      className="user-img me-2"
                       data-nimg="intrinsic"
                       decoding="async"
                       onError={[Function]}
@@ -5262,7 +5534,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                     <noscript>
                       <img
                         alt=""
-                        className="user-img mr-8"
+                        className="user-img me-2"
                         data-nimg="intrinsic"
                         decoding="async"
                         loading="lazy"
@@ -5349,11 +5621,19 @@ exports[`UserStructure should render correctly when structure with membres when 
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit" fill="#ffffff"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5373,11 +5653,19 @@ exports[`UserStructure should render correctly when structure with membres when 
                         }
                       }
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-trash" fill="#ffffff"><g data-name="Layer 2"><g data-name="trash"><rect width="24" height="24" opacity="0"/><path d="M21 6h-5V4.33A2.42 2.42 0 0 0 13.5 2h-3A2.42 2.42 0 0 0 8 4.33V6H3a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2zM10 4.33c0-.16.21-.33.5-.33h3c.29 0 .5.17.5.33V6h-4z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />

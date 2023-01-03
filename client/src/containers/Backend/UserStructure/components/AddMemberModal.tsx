@@ -46,7 +46,7 @@ interface Props {
   addUserInStructure: (arg: ObjectId) => void;
 }
 
-export const AddMemberModal = (props: Props) => {
+const AddMemberModal = (props: Props) => {
   const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
 
   const onSelectItem = (data: SimplifiedUser | null) => setSelectedUser(data);
@@ -102,3 +102,5 @@ export const AddMemberModal = (props: Props) => {
     </Modal>
   );
 };
+
+export default AddMemberModal;

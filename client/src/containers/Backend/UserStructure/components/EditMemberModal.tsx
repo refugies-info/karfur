@@ -43,7 +43,7 @@ interface Props {
   selectedUser: UserStructureMembre | null;
 }
 
-export const EditMemberModal = (props: Props) => {
+const EditMemberModal = (props: Props) => {
   const [selectedRole, setSelectedRole] = useState("");
 
   const modifyRole = () => {
@@ -110,3 +110,5 @@ export const EditMemberModal = (props: Props) => {
     </Modal>
   );
 };
+
+export default EditMemberModal;
