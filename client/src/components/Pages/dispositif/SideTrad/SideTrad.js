@@ -671,7 +671,7 @@ class SideTrad extends Component {
       Swal.fire({
         title: "Oh non",
         text: "Aucune traduction n'a été rentrée, veuillez rééssayer",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;

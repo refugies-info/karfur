@@ -3,7 +3,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRouterLocale from "hooks/useRouterLocale";
 import Link from "next/link";
 import { MouseEvent } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
 import { userSelector } from "services/User/user.selectors";

@@ -861,7 +861,7 @@ const Dispositif = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Vous ne pouvez plus supprimer de structures partenaires",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -879,7 +879,7 @@ const Dispositif = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Vous ne pouvez plus supprimer de structures partenaires",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -893,7 +893,7 @@ const Dispositif = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre suggestion a bien été enregistrée, merci",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     }
@@ -955,7 +955,7 @@ const Dispositif = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre réaction a bien été enregistrée, merci",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       if (fieldName === "merci") {
@@ -1069,7 +1069,7 @@ const Dispositif = (props: Props) => {
         Swal.fire({
           title: "Fiche enregistrée",
           text: text,
-          type: "success"
+          icon: "success"
         });
       }
       dispatch(fetchUserActionCreator()); // fetch user to get new contributions

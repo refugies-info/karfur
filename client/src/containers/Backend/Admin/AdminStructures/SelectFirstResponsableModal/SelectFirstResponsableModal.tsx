@@ -80,7 +80,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Responsable modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       props.toggleModal();
@@ -90,7 +90,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la modification",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       props.toggleModal();

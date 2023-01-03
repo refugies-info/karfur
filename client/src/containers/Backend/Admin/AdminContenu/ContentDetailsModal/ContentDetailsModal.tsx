@@ -138,7 +138,7 @@ export const ContentDetailsModal = (props: Props) => {
       title: "Êtes-vous sûr ?",
       text: "Vous allez envoyer une notification push à tous les utilisateurs de l'application mobile abonnés à ce thème.",
 
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,

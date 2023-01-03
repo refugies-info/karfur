@@ -5,7 +5,7 @@ import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const PlanDuSite = () => {
   const router = useRouter();

@@ -15,7 +15,7 @@ import { logoDIAIR } from "assets";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";

@@ -134,7 +134,7 @@ export const ThemeFormModal = (props: Props) => {
       Swal.fire({
         title: "Êtes-vous sûr ?",
         text: "Voulez-vous supprimer ce thème ?",
-        type: "question",
+        icon: "question",
         showCancelButton: true,
         confirmButtonColor: themeColors.rouge,
         cancelButtonColor: themeColors.vert,

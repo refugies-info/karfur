@@ -140,7 +140,7 @@ const DispositifValidateModal = (props: Props) => {
     Swal.fire({
       title: "Attention!",
       text: "Les nouveaux thèmes sont enregistrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
-      type: "warning",
+      icon: "warning",
       preConfirm: () => {
         router.push("/backend/admin");
       }

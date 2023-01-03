@@ -46,7 +46,7 @@ const RejectTradModal = (props: Props) => {
       Swal.fire({
         title: "Oh non",
         text: "Aucune option n'a été sélectionnée, veuillez rééssayer",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;

@@ -40,7 +40,7 @@ export const CompleteProfilModal = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre email a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       props.onComplete();

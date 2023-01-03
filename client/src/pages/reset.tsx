@@ -124,7 +124,7 @@ const Reset = () => {
       Swal.fire({
         title: "Oops...",
         text: "Aucun mot de passe n'est renseigné !",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -134,7 +134,7 @@ const Reset = () => {
       Swal.fire({
         title: "Oops...",
         text: "Le mot de passe est trop faible",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -151,7 +151,7 @@ const Reset = () => {
         Swal.fire({
           title: "Yay...",
           text: "Modification du mot de passe réussie !",
-          type: "success",
+          icon: "success",
           timer: 1500
         }).then(() => {
           localStorage.setItem("token", data.data.token);

@@ -141,7 +141,7 @@ export const ImprovementsMailModal = (props: Props) => {
         Swal.fire({
           title: "Yay...",
           text: "Mail(s) envoyé(s)",
-          type: "success",
+          icon: "success",
           timer: 1500
         });
         props.toggleModal();
@@ -150,7 +150,7 @@ export const ImprovementsMailModal = (props: Props) => {
         Swal.fire({
           title: "Oh non",
           text: "Erreur lors de l'envoi",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
         props.toggleModal();

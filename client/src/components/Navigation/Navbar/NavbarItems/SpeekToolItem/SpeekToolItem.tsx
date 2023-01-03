@@ -6,7 +6,7 @@ import { ttsActiveSelector, ttsLoadingSelector } from "services/Tts/tts.selector
 import { toggleTTSActionCreator } from "services/Tts/tts.actions";
 import { AvailableLanguageI18nCode } from "types/interface";
 import { ToolItem } from "@dataesr/react-dsfr";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 import styles from "./SpeekToolItem.module.scss";
 import { isMobile } from "react-device-detect";

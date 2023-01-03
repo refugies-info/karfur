@@ -83,7 +83,7 @@ const MapParagraphe = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Vous devez renseigner un titre de lieu pour ce marqueur",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;

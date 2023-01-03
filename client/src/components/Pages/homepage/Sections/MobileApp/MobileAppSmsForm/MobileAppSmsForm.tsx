@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import { isValidPhone } from "lib/validateFields";
@@ -37,7 +37,7 @@ const MobileAppSmsForm = () => {
           Swal.fire({
             title: "Yay...",
             text: "SMS envoyé !",
-            type: "success",
+            icon: "success",
             timer: 1500
           });
           setPhone("");

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
 import { Language } from "types/interface";

@@ -196,7 +196,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre mot de passe a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       // @ts-ignore
@@ -252,7 +252,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre email a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       setIsEmailModifyDisabled(true);
@@ -300,7 +300,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre numéro de téléphone a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     }
@@ -320,7 +320,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Ce pseudo est déjà pris ",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -331,7 +331,7 @@ export const UserProfile = (props: Props) => {
     Swal.fire({
       title: "Yay...",
       text: "Votre pseudo a bien été modifié",
-      type: "success",
+      icon: "success",
       timer: 1500
     });
     setIsPseudoModifyDisabled(true);

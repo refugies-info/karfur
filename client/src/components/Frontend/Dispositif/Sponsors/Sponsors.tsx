@@ -374,7 +374,7 @@ class Sponsors extends Component<Props, State> {
       Swal.fire({
         title: "Oh non!",
         text: "Certaines informations sont manquantes",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -474,7 +474,7 @@ class Sponsors extends Component<Props, State> {
     Swal.fire({
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
+      icon: "error",
       timer: 1500
     });
 

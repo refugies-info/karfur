@@ -97,7 +97,7 @@ export const UserStructureComponent = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "Vous êtes sur le point d'enlever un membre de votre structure.",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,

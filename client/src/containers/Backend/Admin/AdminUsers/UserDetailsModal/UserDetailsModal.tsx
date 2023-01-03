@@ -181,7 +181,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la modification",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -193,7 +193,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         const res = await Swal.fire({
           title: "Êtes-vous sûr ?",
           text: "Souhaitez-vous supprimer cet utilisateur",
-          type: "question",
+          icon: "question",
           showCancelButton: true,
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
@@ -205,7 +205,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
         Swal.fire({
           title: "Yay...",
           text: "Utilisateur supprimé",
-          type: "success",
+          icon: "success",
           timer: 1500
         });
         dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
@@ -215,7 +215,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la suppression",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       props.toggleModal();

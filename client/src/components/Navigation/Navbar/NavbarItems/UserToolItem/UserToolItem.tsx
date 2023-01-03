@@ -5,7 +5,7 @@ import { userSelector } from "services/User/user.selectors";
 
 import marioProfile from "assets/mario-profile.jpg";
 import API from "utils/API";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
 import Link from "next/link";

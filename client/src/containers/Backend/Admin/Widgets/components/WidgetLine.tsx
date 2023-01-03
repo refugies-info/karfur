@@ -42,7 +42,7 @@ export const WidgetLine = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "Voulez-vous supprimer ce widget ?",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,

@@ -172,7 +172,7 @@ class SideTrad extends Component {
         Swal.fire({
           title: "Yay...",
           text: "La traduction a bien été enregistrée",
-          type: "success",
+          icon: "success",
           timer: 1000
         }).then(() => {
           this.props.onSkip();
@@ -790,7 +790,7 @@ class SideTrad extends Component {
       Swal.fire({
         title: "Oh non",
         text: "Aucune traduction n'a été rentrée, veuillez rééssayer",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -976,7 +976,7 @@ class SideTrad extends Component {
         Swal.fire({
           title: "Yay...",
           text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
-          type: "success",
+          icon: "success",
           footer: "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>"
         }).then(() => {
           this.props.onSkip();
@@ -987,7 +987,7 @@ class SideTrad extends Component {
           // Temp fix to prevent mail errors to block validation. To remove
           title: "Yay...",
           text: "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
-          type: "success",
+          icon: "success",
           footer: "<a target='_blank' href='https://airtable.com/shr2i7HLU1eJSsznj'>Répondre au questionnaire</a>"
         }).then(() => {
           this.props.onSkip();

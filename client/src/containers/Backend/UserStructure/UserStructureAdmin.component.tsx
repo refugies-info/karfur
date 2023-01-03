@@ -13,7 +13,7 @@ declare const window: Window;
 
 export interface Props {
   location: any;
-  title: string
+  title: string;
 }
 
 export const UserStructureAdminComponent = (props: Props) => {
@@ -26,11 +26,11 @@ export const UserStructureAdminComponent = (props: Props) => {
 
   useEffect(() => {
     document.title = props.title;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const searchParams = (new URL(document.location.href)).searchParams;
+    const searchParams = new URL(document.location.href).searchParams;
     const structureId = searchParams.get("id");
 
     const loadStructure = async () => {
@@ -54,7 +54,7 @@ export const UserStructureAdminComponent = (props: Props) => {
       membreId: userId,
       structureId: structure._id,
       action: "create",
-      role: "contributeur",
+      role: "contributeur"
     };
     setIsLoading(true);
     await API.modifyUserRoleInStructure({ query });
@@ -62,16 +62,13 @@ export const UserStructureAdminComponent = (props: Props) => {
     toggleReload();
   };
 
-  const modifyRole = async (
-    userId: ObjectId,
-    role: "contributeur" | "administrateur"
-  ) => {
+  const modifyRole = async (userId: ObjectId, role: "contributeur" | "administrateur") => {
     if (!structure) return;
     const query = {
       membreId: userId,
       structureId: structure._id,
       action: "modify",
-      role,
+      role
     };
     setIsLoading(true);
     await API.modifyUserRoleInStructure({ query });
@@ -85,18 +82,18 @@ export const UserStructureAdminComponent = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "Vous êtes sur le point d'enlever un membre de votre structure.",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     }).then(async (result) => {
       if (result.value) {
         const query = {
           membreId: userId,
           structureId: structure._id,
-          action: "delete",
+          action: "delete"
         };
         setIsLoading(true);
         await API.modifyUserRoleInStructure({ query });

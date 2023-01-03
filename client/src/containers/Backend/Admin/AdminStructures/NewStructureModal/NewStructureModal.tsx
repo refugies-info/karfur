@@ -141,7 +141,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
       Swal.fire({
         title: "Yay...",
         text: "Structure créée",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       updateData();
@@ -150,7 +150,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la modification",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       updateData();

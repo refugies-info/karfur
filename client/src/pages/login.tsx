@@ -150,7 +150,7 @@ const Login = () => {
         Swal.fire({
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
-          type: "success",
+          icon: "success",
           timer: 1500
         }).then(() => {
           const { query } = router;
@@ -203,7 +203,7 @@ const Login = () => {
         Swal.fire({
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
         return;
@@ -224,7 +224,7 @@ const Login = () => {
         Swal.fire({
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
         return;

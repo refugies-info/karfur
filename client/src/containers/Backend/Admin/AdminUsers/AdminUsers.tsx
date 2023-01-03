@@ -233,14 +233,14 @@ export const AdminUsers = () => {
       Swal.fire({
         title: "Yay...",
         text: `Export en cours de ${users ? users.length : 0} users`,
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }

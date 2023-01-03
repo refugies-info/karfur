@@ -254,14 +254,14 @@ export const AdminContenu = () => {
       Swal.fire({
         title: "Yay...",
         text: "Export en cours",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -299,7 +299,7 @@ export const AdminContenu = () => {
       title: "Êtes-vous sûr ?",
       text,
 
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
@@ -314,7 +314,7 @@ export const AdminContenu = () => {
         Swal.fire({
           title: "Yay...",
           text: "Contenu publié",
-          type: "success",
+          icon: "success",
           timer: 5500,
           footer: `<a target='_blank' href=${link}>Voir le contenu</a>`
         });
@@ -324,7 +324,7 @@ export const AdminContenu = () => {
         Swal.fire({
           title: "Oh non!",
           text: "Something went wrong",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
       }

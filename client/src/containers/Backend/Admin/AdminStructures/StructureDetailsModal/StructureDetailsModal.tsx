@@ -98,7 +98,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
         const res = await Swal.fire({
           title: "Êtes-vous sûr ?",
           text: "Souhaitez-vous supprimer cette structure",
-          type: "question",
+          icon: "question",
           showCancelButton: true,
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,

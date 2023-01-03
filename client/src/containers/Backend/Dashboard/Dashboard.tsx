@@ -117,14 +117,14 @@ const Dashboard = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Export en cours",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -138,7 +138,7 @@ const Dashboard = (props: Props) => {
       text: notificationsActive
         ? "Vous allez désactiver les notifications push sur l'application pour une durée indéterminée"
         : "Vous allez réactiver l'envoi de notifications automatiques sur l'application pour une durée indéterminée",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { isMobileOnly } from "react-device-detect";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
 
 const SubscribeToolItem = () => {
