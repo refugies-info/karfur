@@ -37,19 +37,14 @@ const Tags = (props: Props) => {
           return (
             <div key={key}>
               <FSearchBtn
-                className="mr-10 color"
+                className="me-2 color"
                 color={theme.colors.color100}
                 noHover
                 onMouseEnter={() => props.updateUIArray(-6)}
               >
                 <div className={styles.btn_container}>
-                  <div
-                    className={cls(
-                      styles.icon_container,
-                      props.isRTL && styles.rtl,
-                    )}
-                  >
-                    <ThemeIcon theme={theme} size={20}/>
+                  <div className={cls(styles.icon_container, props.isRTL && styles.rtl)}>
+                    <ThemeIcon theme={theme} size={20} />
                   </div>
                   {getThemeName(theme, router.locale, "short")}
                 </div>
@@ -63,7 +58,7 @@ const Tags = (props: Props) => {
       {/* Edition mode */}
       {!props.disableEdit && allThemes.length > 0 ? (
         <Button
-          className={cls(styles.plus_btn, styles.icon, "ml-10")}
+          className={cls(styles.plus_btn, styles.icon, "ms-2")}
           onClick={props.openTag}
           onMouseEnter={() => props.updateUIArray(-6)}
         >
@@ -71,7 +66,7 @@ const Tags = (props: Props) => {
         </Button>
       ) : !props.disableEdit && allThemes.length < 1 ? (
         <Button
-          className={styles.plus_btn + " ml-10"}
+          className={styles.plus_btn + " ms-2"}
           onClick={props.openTag}
           onMouseEnter={() => props.updateUIArray(-6)}
         >
@@ -79,20 +74,11 @@ const Tags = (props: Props) => {
           {"Choisir les thèmes"}
         </Button>
       ) : null}
-      {!props.disableEdit &&
-        props.displayTuto &&
-        props.typeContenu === "dispositif" && (
-          <div
-            style={{ marginLeft: 8 }}
-            onMouseEnter={() => props.updateUIArray(-6)}
-          >
-            <FButton
-              type="tuto"
-              name={"play-circle-outline"}
-              onClick={() => props.toggleTutorielModal("Tags")}
-            />
-          </div>
-        )}
+      {!props.disableEdit && props.displayTuto && props.typeContenu === "dispositif" && (
+        <div style={{ marginLeft: 8 }} onMouseEnter={() => props.updateUIArray(-6)}>
+          <FButton type="tuto" name={"play-circle-outline"} onClick={() => props.toggleTutorielModal("Tags")} />
+        </div>
+      )}
     </div>
   );
 };

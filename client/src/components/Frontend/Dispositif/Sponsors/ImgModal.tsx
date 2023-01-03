@@ -1,11 +1,5 @@
-
 import React from "react";
-import {
-  Input,
-  Modal,
-  InputGroup,
-  Spinner,
-} from "reactstrap";
+import { Input, Modal, InputGroup, Spinner } from "reactstrap";
 import Image from "next/legacy/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
@@ -15,22 +9,22 @@ import styles from "./Sponsors.module.scss";
 import { Picture } from "types/interface";
 
 interface Props {
-  modal: any
-  keyValue: number
-  showModals: any
-  imgData: Picture | null
-  link: any
-  nom: string
-  sponsorLoading: boolean
-  toggleModal: any
-  toggleTooltip: any
-  handleFileInputChange: any
-  handleChange: any
-  addSponsor: any
-  tooltipOpen: boolean
-  edit: boolean
-  editSponsor: any
-  sponsorKey: string
+  modal: any;
+  keyValue: number;
+  showModals: any;
+  imgData: Picture | null;
+  link: any;
+  nom: string;
+  sponsorLoading: boolean;
+  toggleModal: any;
+  toggleTooltip: any;
+  handleFileInputChange: any;
+  handleChange: any;
+  addSponsor: any;
+  tooltipOpen: boolean;
+  edit: boolean;
+  editSponsor: any;
+  sponsorKey: string;
 }
 
 const ImgModal = (props: Props) => {
@@ -53,11 +47,7 @@ const ImgModal = (props: Props) => {
               height={110}
               objectFit="contain"
             />
-            <FButton
-              className="position-relative"
-              type="fill-dark"
-              name="upload-outline"
-              >
+            <FButton className="position-relative" type="fill-dark" name="upload-outline">
               <Input
                 className={styles.file_input}
                 type="file"
@@ -67,17 +57,11 @@ const ImgModal = (props: Props) => {
                 onChange={props.handleFileInputChange}
               />
               <span>Choisir</span>
-              {props.sponsorLoading && (
-                <Spinner size="sm" color="green" className="ml-10" />
-              )}
+              {props.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
             </FButton>
           </div>
         ) : (
-          <FButton
-            className="position-relative"
-            type="fill-dark"
-            name="upload-outline"
-            >
+          <FButton className="position-relative" type="fill-dark" name="upload-outline">
             <Input
               className={styles.file_input}
               type="file"
@@ -87,27 +71,15 @@ const ImgModal = (props: Props) => {
               onChange={props.handleFileInputChange}
             />
             <span>Choisir</span>
-            {props.sponsorLoading && (
-              <Spinner size="sm" color="green" className="ml-10" />
-            )}
+            {props.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
           </FButton>
         )}
       </div>
       <div className={styles.input}>
         <span>Entrez le nom de la structure partenaire</span>
         <InputGroup className={styles.input_group}>
-          <EVAIcon
-            className={styles.input_icon}
-            name="briefcase-outline"
-            fill={colors.gray90}
-          />
-          <FInput
-            id="nom"
-            placeholder="Réfugiés.info"
-            value={props.nom}
-            onChange={props.handleChange}
-            newSize={true}
-          />
+          <EVAIcon className={styles.input_icon} name="briefcase-outline" fill={colors.gray90} />
+          <FInput id="nom" placeholder="Réfugiés.info" value={props.nom} onChange={props.handleChange} newSize={true} />
         </InputGroup>
       </div>
       <div className={styles.input}>
@@ -115,17 +87,13 @@ const ImgModal = (props: Props) => {
           style={{
             display: "flex",
             justifyContent: "row",
-            alignItems: "center",
+            alignItems: "center"
           }}
         >
           <span>Collez un lien vers le site de la structure</span>
         </div>
         <InputGroup className={styles.input_group}>
-          <EVAIcon
-            className={styles.input_icon}
-            name="link-outline"
-            fill={colors.gray90}
-          />
+          <EVAIcon className={styles.input_icon} name="link-outline" fill={colors.gray90} />
           <FInput
             id="link"
             placeholder="https://www.réfugiés.info"
@@ -136,15 +104,11 @@ const ImgModal = (props: Props) => {
         </InputGroup>
       </div>
       <div className={styles.btn_footer}>
-        <FButton onClick={props.toggleModal} type="default" className="mr-8">
+        <FButton onClick={props.toggleModal} type="default" className="me-2">
           Annuler
         </FButton>
         <FButton
-          onClick={() =>
-            props.edit
-              ? props.editSponsor(props.sponsorKey)
-              : props.addSponsor()
-          }
+          onClick={() => (props.edit ? props.editSponsor(props.sponsorKey) : props.addSponsor())}
           type="validate"
           name="checkmark-outline"
         >

@@ -42,7 +42,7 @@ const NotDeployedBanner = (props: Props) => {
           <span className={styles.map_icon}>
             <Image src={iconMap} width={16} height={16} alt="" />
           </span>
-          <span className="ml-1">
+          <span className="ms-1">
             {props.departments.join(", ")}
             {t("Recherche.notDeployedTitle")}
           </span>
@@ -66,7 +66,7 @@ const NotDeployedBanner = (props: Props) => {
       <div className={styles.actions}>
         <FButton type="white" className={styles.btn} onClick={props.hideBanner}>
           {t("Recherche.notDeployedOkLink", "J'ai compris")}
-          <EVAIcon name="close-outline" fill="dark" className="ml-2" />
+          <EVAIcon name="close-outline" fill="dark" className="ms-2" />
         </FButton>
       </div>
 

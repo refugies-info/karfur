@@ -7,30 +7,24 @@ import styles from "./LanguageBtn.module.scss";
 import { useRouter } from "next/router";
 
 interface Props {
-  hideTextOnMobile?: boolean
+  hideTextOnMobile?: boolean;
 }
 
 const LanguageBtn = (props: Props) => {
   const allLanguages = useSelector(allLanguesSelector);
   const router = useRouter();
-  const current =
-    (allLanguages || []).find((x) => x.i18nCode === router.locale) || null;
-  const langueCode =
-    allLanguages.length > 0 && current ? current.langueCode : "fr";
+  const current = (allLanguages || []).find((x) => x.i18nCode === router.locale) || null;
+  const langueCode = allLanguages.length > 0 && current ? current.langueCode : "fr";
   const dispatch = useDispatch();
 
   return (
     <FButton
-      className={styles.language_btn + " mr-10"}
+      className={styles.language_btn + " me-2"}
       type="white"
       onClick={() => dispatch(toggleLangueModalActionCreator())}
     >
-      <i
-        className={`flag-icon flag-icon-${langueCode}`}
-        title={langueCode}
-        id={langueCode}
-      />
-      <span className={`${props.hideTextOnMobile ? styles.mobile_hidden : ""} ml-10`}>
+      <i className={`flag-icon flag-icon-${langueCode}`} title={langueCode} id={langueCode} />
+      <span className={`${props.hideTextOnMobile ? styles.mobile_hidden : ""} ms-2`}>
         {current ? current.langueLoc : "Langue"}
       </span>
     </FButton>

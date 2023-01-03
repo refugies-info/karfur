@@ -166,7 +166,7 @@ const Dashboard = (props: Props) => {
         )}
       </div>
 
-      <div className="unformatted-data mb-10 mt-6">
+      <div className="unformatted-data mb-2 mt-6">
         <h2 className="mb-4">Statistiques</h2>
         <NavLink to="backend/admin">Admin</NavLink>
         <ul>
@@ -194,7 +194,7 @@ const Dashboard = (props: Props) => {
             Géolocalisation des dispositifs par région (nombre de dispositifs - nombre de départements avec au moins 1
             dispositif/nombre de départements) :
           </b>
-          <FButton type="dark" className="ml-8" onClick={exportToAirtable}>
+          <FButton type="dark" className="ms-2" onClick={exportToAirtable}>
             Export départements airtable
           </FButton>
           {noGeolocFigures.length > 0 && (

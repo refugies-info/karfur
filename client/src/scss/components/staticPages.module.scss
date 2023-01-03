@@ -16,8 +16,8 @@ $breakpoint: "lg-limit";
   padding-right: 2px;
 
   @include isMobile() {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 

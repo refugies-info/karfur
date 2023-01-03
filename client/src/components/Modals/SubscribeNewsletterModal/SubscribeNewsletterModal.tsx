@@ -183,7 +183,7 @@ export const SubscribeNewsletterModal = () => {
               name="checkmark-outline"
               disabled={!email}
               onClick={sendMail}
-              className="ml-8"
+              className="ms-2"
             >
               <div> {t("Envoyer", "Envoyer")}</div>
             </FButton>

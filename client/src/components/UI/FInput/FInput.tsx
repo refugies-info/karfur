@@ -1,9 +1,9 @@
 import React from "react";
-import { Input, InputGroup, InputGroupAddon } from "reactstrap";
+import { Input, InputGroup, InputGroupText } from "reactstrap";
+import { InputType } from "reactstrap/types/lib/Input";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import styles from "./FInput.module.scss";
-import { InputType } from "reactstrap/lib/Input";
 import { cls } from "lib/classname";
 
 interface Props {
@@ -31,31 +31,22 @@ interface Props {
   error?: boolean;
   errorIcon?: string;
   errorType?: string;
-  name?: string
-  maxlength?: number
+  name?: string;
+  maxlength?: number;
 }
 
 const FInput = (props: Props) => {
   const autoFocus = props.autoFocus === false ? false : true;
   return (
-    <InputGroup className={cls(styles.input, "mb-10", props.className || "")}>
+    <InputGroup className={cls(styles.input, "mb-2", props.className || "")}>
       {props.prepend && (
-        <InputGroupAddon
-          addonType="prepend"
-          className={styles.prepend}
-        >
+        <InputGroupText className={styles.prepend}>
           {!props.error ? (
-            <EVAIcon
-              name={props.prependName}
-              fill={props.prependFill || colors.gray90}
-            />
+            <EVAIcon name={props.prependName} fill={props.prependFill || colors.gray90} />
           ) : (
-            <EVAIcon
-              name={props.errorIcon || props.prependName}
-              fill="#F44336"
-            />
+            <EVAIcon name={props.errorIcon || props.prependName} fill="#F44336" />
           )}
-        </InputGroupAddon>
+        </InputGroupText>
       )}
       <Input
         autoFocus={autoFocus}
@@ -74,7 +65,7 @@ const FInput = (props: Props) => {
           props.inputClassName || "",
           !!props.prepend && styles.has_prepend,
           !!props.newSize && styles.new_size,
-          !!props.error && styles.error,
+          !!props.error && styles.error
         )}
         style={
           props.inputClassName === "password-input" && props.value
@@ -85,20 +76,13 @@ const FInput = (props: Props) => {
         }
       />
       {(props.append || props.error) && (
-        <InputGroupAddon
-          addonType="append"
-          className={styles.append}
-          onClick={props.onAppendClick}
-        >
+        <InputGroupText className={styles.append} onClick={props.onAppendClick}>
           {props.error && props.errorType !== "wrongPassword" ? (
             <EVAIcon name="alert-triangle" fill="#F44336" />
           ) : (
-            <EVAIcon
-              name={props.appendName}
-              fill={props.appendFill || colors.gray90}
-            />
+            <EVAIcon name={props.appendName} fill={props.appendFill || colors.gray90} />
           )}
-        </InputGroupAddon>
+        </InputGroupText>
       )}
     </InputGroup>
   );

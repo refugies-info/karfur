@@ -1,20 +1,22 @@
 @import "src/scss/mixins/responsive";
 
 @keyframes pulse {
-	0% {
-		transform: scale(1.05);
-	}
+  0% {
+    transform: scale(1.05);
+  }
 
-	70% {
-		transform: scale(1);
-	}
+  70% {
+    transform: scale(1);
+  }
 
-	100% {
-		transform: scale(1.05);
-	}
+  100% {
+    transform: scale(1.05);
+  }
 }
 
 div.app-body {
+  overflow-x: hidden;
+
   .app-loader {
     background-color: blue;
     min-width: 100%;
@@ -33,10 +35,9 @@ div.app-body {
         animation: pulse 2s infinite;
       }
       p {
-
-      color: white;
-      font-size: large;
-      font-weight: bold;
+        color: white;
+        font-size: large;
+        font-weight: bold;
       }
     }
   }

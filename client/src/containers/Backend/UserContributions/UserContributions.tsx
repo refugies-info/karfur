@@ -168,7 +168,7 @@ const UserContributions = (props: Props) => {
               <FButton
                 type="tuto"
                 name="video-outline"
-                className="mr-8"
+                className="me-2"
                 onClick={() => {
                   setTutoModalDisplayed("Mes fiches");
                   toggleTutoModal();

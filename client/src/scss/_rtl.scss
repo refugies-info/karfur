@@ -1,4 +1,6 @@
 @import "src/scss/mixins/responsive";
+@import "src/scss/variables";
+@import "src/scss/mixins/rtl";
 
 html body div[dir="rtl"] {
   text-align: right;
@@ -30,18 +32,6 @@ html body div[dir="rtl"] {
       right: inherit;
     }
   }
-  .structure-card {
-    .main-card {
-      .middle-side {
-        margin-right: 0;
-        margin-left: 21px;
-      }
-      .right-padding {
-        padding-right: 0;
-        padding-left: 21px;
-      }
-    }
-  }
 }
 html body {
   .dispositif.vue div[dir="rtl"] .toolbar-editeur {
@@ -54,6 +44,29 @@ html body {
       border-radius: 0 12px 12px 0;
       padding-left: 0;
       padding-right: 10px;
+    }
+  }
+
+  @include rtl() {
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacers {
+        .#{$abbrev}e-#{$size} {
+          #{$prop}-right: 0 !important;
+          #{$prop}-left: $length !important;
+        }
+        .#{$abbrev}s-#{$size} {
+          #{$prop}-right: $length !important;
+          #{$prop}-left: 0 !important;
+        }
+      }
+    }
+
+    // Some special margin utils
+    .me-auto {
+      margin-left: auto !important;
+    }
+    .ms-auto {
+      margin-right: auto !important;
     }
   }
 }

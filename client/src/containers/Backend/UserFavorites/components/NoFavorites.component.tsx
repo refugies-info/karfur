@@ -37,7 +37,7 @@ const EmptyCardContainer = styled.div`
 const GrayLine = styled.div`
   background: ${colors.gray60};
   border-radius: 8px;
-  width: ${(props: {width: string}) => props.width};
+  width: ${(props: { width: string }) => props.width};
   height: 28px;
   margin-bottom: 8px;
 `;
@@ -45,7 +45,7 @@ const GrayLine = styled.div`
 const SmallGrayLine = styled.div`
   background: ${colors.gray60};
   border-radius: 3px;
-  width: ${(props: {width: string}) => props.width};
+  width: ${(props: { width: string }) => props.width};
   height: 14px;
   margin-bottom: 5px;
   margin-left: 13px;
@@ -90,28 +90,14 @@ export const NoFavorites = (props: { t: any; toggleTutoModal: () => void }) => (
     <div style={{ marginRight: "40px", marginLeft: "40px" }}>
       <TitleWithNumber
         amount={0}
-        textSingular={props.t(
-          "UserFavorites.fiches sauvegardée",
-          "fiche sauvegardée"
-        )}
-        textPlural={props.t(
-          "UserFavorites.fiches sauvegardées",
-          "fiches sauvegardées"
-        )}
+        textSingular={props.t("UserFavorites.fiches sauvegardée", "fiche sauvegardée")}
+        textPlural={props.t("UserFavorites.fiches sauvegardées", "fiches sauvegardées")}
       />
     </div>
     <CardsContainer>
       <HelpCard>
-        {props.t(
-          "UserFavorites.Comment ajouter",
-          "Comment ajouter des fiches en favoris ?"
-        )}
-        <FButton
-          type="tuto"
-          name={"video"}
-          className="mr-10"
-          onClick={props.toggleTutoModal}
-        >
+        {props.t("UserFavorites.Comment ajouter", "Comment ajouter des fiches en favoris ?")}
+        <FButton type="tuto" name={"video"} className="me-2" onClick={props.toggleTutoModal}>
           {props.t("UserFavorites.Voir la vidéo", "Voir la vidéo")}
         </FButton>
       </HelpCard>

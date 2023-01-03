@@ -280,7 +280,7 @@ export const AdminUsers = () => {
         </StyledHeaderInner>
         <StyledSort>
           {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
-            <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+            <FButton type="dark" className="me-2" onClick={exportToAirtable}>
               {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
             </FButton>
           )}
@@ -340,14 +340,14 @@ export const AdminUsers = () => {
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
                         <Image
-                          className={styles.user_img + " mr-8"}
+                          className={styles.user_img + " me-2"}
                           src={secureUrl}
                           alt=""
                           width={40}
                           height={40}
                           objectFit="contain"
                         />
-                        <StructureName className="ml-4">{element.username}</StructureName>
+                        <StructureName className="ms-4">{element.username}</StructureName>
                       </RowContainer>
                     </div>
                   </td>

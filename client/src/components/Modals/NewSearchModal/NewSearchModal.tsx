@@ -40,7 +40,7 @@ const NewSearchModal = (props: Props) => {
         </FButton>
         <FButton type="validate" onClick={props.toggle}>
           {t("Recherche.notDeployedOkLink", "J’ai compris")}
-          <EVAIcon name="arrow-forward-outline" fill="white" size={20} className="ml-10" />
+          <EVAIcon name="arrow-forward-outline" fill="white" size={20} className="ms-2" />
         </FButton>
       </ModalFooter>
     </Modal>

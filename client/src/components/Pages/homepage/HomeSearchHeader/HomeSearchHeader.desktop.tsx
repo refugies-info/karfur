@@ -118,7 +118,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               onHomepage={true}
             />
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu className={styles.menu}>
             <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
           </DropdownMenu>
         </Dropdown>
@@ -138,7 +138,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               onHomepage={true}
             />
           </DropdownToggle>
-          <DropdownMenu persist>
+          <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
             <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
           </DropdownMenu>
         </Dropdown>

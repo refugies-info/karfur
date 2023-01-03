@@ -7,11 +7,7 @@ import styles from "./DraftModal.module.scss";
 interface Props {
   toggle: () => void;
   show: boolean;
-  saveDispositif: (
-    saveAndEdit: boolean,
-    saveType: "auto" | "save" | "validate",
-    routeAfterSave?: string
-  ) => void;
+  saveDispositif: (saveAndEdit: boolean, saveType: "auto" | "save" | "validate", routeAfterSave?: string) => void;
   status: string;
   toggleIsModified: (arg: boolean) => void;
   toggleIsSaved: (arg: boolean) => void;
@@ -32,12 +28,7 @@ const InfoLeft = (props: InfoProps) => (
     </h3>
     <p className={styles.subtitle}>{props.subTitle}</p>
     <div className={styles.infos_footer}>
-      <EVAIcon
-        size={10}
-        name={props.footerIcon}
-        fill={props.color}
-        className="mr-8"
-      />
+      <EVAIcon size={10} name={props.footerIcon} fill={props.color} className="me-2" />
       <div style={{ color: props.color }}>{props.footer}</div>
     </div>
   </div>
@@ -50,24 +41,14 @@ const InfoRight = (props: InfoProps) => (
     </h3>
     <p className={styles.subtitle}>{props.subTitle}</p>
     <div className={styles.infos_footer}>
-      <EVAIcon
-        size={10}
-        name={props.footerIcon}
-        fill={props.color}
-        className="mr-8"
-      />
+      <EVAIcon size={10} name={props.footerIcon} fill={props.color} className="me-2" />
       <div style={{ color: props.color }}>{props.footer}</div>
     </div>
   </div>
 );
 
 export const DraftModal = (props: Props) => (
-  <Modal
-    isOpen={props.show}
-    toggle={props.toggle}
-    className={styles.modal}
-    contentClassName={styles.modal_content}
-  >
+  <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
     <div className={styles.container}>
       <div className={styles.close} onClick={props.toggle}>
         <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
@@ -95,13 +76,9 @@ export const DraftModal = (props: Props) => (
         <FButton
           type="outline-black"
           name="log-out-outline"
-          className="mr-8"
+          className="me-2"
           onClick={() => {
-            props.saveDispositif(
-              false,
-              "save",
-              "/backend/user-dash-contrib"
-            );
+            props.saveDispositif(false, "save", "/backend/user-dash-contrib");
             props.toggle();
             props.toggleIsModified(false);
             props.toggleIsSaved(true);
@@ -113,10 +90,7 @@ export const DraftModal = (props: Props) => (
           type="validate"
           name="save-outline"
           onClick={() => {
-            props.saveDispositif(
-              true,
-              "save"
-            );
+            props.saveDispositif(true, "save");
             props.toggleIsModified(false);
             props.toggleIsSaved(true);
             props.toggle();

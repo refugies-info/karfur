@@ -45,7 +45,7 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
       onClick={_onClick}
       asLink={
         <Link href={route}>
-          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="mr-10" />
+          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="me-2" />
           <span className="refugies-backend-header-menu-title">{_title}</span>
         </Link>
       }

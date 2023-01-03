@@ -34,6 +34,7 @@ import mobile from "scss/components/mobile.module.scss";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
+  width: auto !important;
   border-left: ${(props: { left?: boolean }) => (props.left ? "2px solid #FFFFFF" : null)};
 `;
 const SponsorListContainer = styled.div`
@@ -708,7 +709,7 @@ class Sponsors extends Component<Props, State> {
           }
           lowerRightBtn={
             <div>
-              <FButton type="white" fill={colors.gray90} onClick={this.toggleModal} className="ml-auto mr-8">
+              <FButton type="white" fill={colors.gray90} onClick={this.toggleModal} className="ms-auto me-2">
                 Quitter
               </FButton>
               <FButton
@@ -721,7 +722,7 @@ class Sponsors extends Component<Props, State> {
                   this.toggleIsMyStructureSelected();
                   this.toggleModal("envoye");
                 }}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -729,7 +730,7 @@ class Sponsors extends Component<Props, State> {
           }
         >
           {this.state.banner ? (
-            <div className={styles.warning + " bg-focus mt-16 mb-16"}>
+            <div className={styles.warning + " bg-focus mt-4 mb-4"}>
               <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div onClick={() => this.setState({ banner: false })} className={styles.close_icon}>
                 <EVAIcon name="close-outline" fill={colors.gray10} />
@@ -745,7 +746,7 @@ class Sponsors extends Component<Props, State> {
           <SearchBar
             structures
             loupe
-            className="search-bar inner-addon right-addon mb-16 mt-8"
+            className="search-bar inner-addon right-addon mb-4 mt-2"
             placeholder="Rechercher une structure..."
             //@ts-ignore
             array={structuresArray}
@@ -816,7 +817,7 @@ class Sponsors extends Component<Props, State> {
                   this.handleChangeValueEntered("");
                   this.resetImg();
                 }}
-                className="ml-auto mr-8"
+                className="ms-auto me-2"
                 name="arrow-back-outline"
               >
                 Retour
@@ -830,7 +831,7 @@ class Sponsors extends Component<Props, State> {
                   this.toggleModal("envoye");
                   this.setState({ imgData: null });
                 }}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -844,7 +845,7 @@ class Sponsors extends Component<Props, State> {
               </ConfirmationStructureTitleContainer>
             </p>
 
-            <div className={styles.selection_wrapper + " bg-white mb-10"}>
+            <div className={styles.selection_wrapper + " bg-white mb-2"}>
               {selected && selected?.picture?.secure_url && (
                 <Image
                   src={selected.picture.secure_url}
@@ -862,7 +863,7 @@ class Sponsors extends Component<Props, State> {
               )}
             </div>
           </ConfirmationStructureContainer>
-          <FormGroup check className={styles.author + " mb-10"}>
+          <FormGroup check className={styles.author + " mb-2"}>
             <Label check style={{ cursor: "pointer" }}>
               <Input type="checkbox" checked={this.state.authorBelongs} onChange={this.handleBelongsSChange} />{" "}
               <b>Oui et je veux devenir rédacteur de cette structure</b>
@@ -875,7 +876,7 @@ class Sponsors extends Component<Props, State> {
             </Label>
           </FormGroup>
           {this.state.banner ? (
-            <div className={styles.warning + " bg-focus mt-16 mb-16"}>
+            <div className={styles.warning + " bg-focus mt-4 mb-4"}>
               <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div onClick={() => this.setState({ banner: false })} className={styles.close_icon}>
                 <EVAIcon name="close-outline" fill={colors.gray10} />
@@ -916,7 +917,7 @@ class Sponsors extends Component<Props, State> {
                   this.handleChangeValueEntered("");
                   this.resetImg();
                 }}
-                className="ml-auto mr-8"
+                className="ms-auto me-2"
               >
                 Retour
               </FButton>
@@ -932,7 +933,7 @@ class Sponsors extends Component<Props, State> {
                   this.state.phoneError
                 }
                 onClick={this.createStructure}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -970,7 +971,7 @@ class Sponsors extends Component<Props, State> {
                     onChange={this.handleFileInputChange}
                   />
                   <span>Choisir</span>
-                  {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
+                  {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
                 </FButton>
               </div>
             ) : (
@@ -984,7 +985,7 @@ class Sponsors extends Component<Props, State> {
                   onChange={this.handleFileInputChange}
                 />
                 <span>Choisir</span>
-                {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
+                {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
               </FButton>
             )}
           </div>
@@ -1007,7 +1008,7 @@ class Sponsors extends Component<Props, State> {
                 }
                 this.props.toggleDispositifValidateModal();
               }}
-              className="ml-auto"
+              className="ms-auto"
             >
               Je termine ma fiche
             </FButton>
@@ -1032,7 +1033,7 @@ class Sponsors extends Component<Props, State> {
 
             {isMyStructureSelected ? (
               <>
-                <h5 className="mb-10 green">Votre fiche va être transférée à la structure :</h5>
+                <h5 className="mb-2 green">Votre fiche va être transférée à la structure :</h5>
                 <MyStructureContainer>
                   {" "}
                   {mainSponsor?.picture?.secure_url && (
@@ -1049,7 +1050,7 @@ class Sponsors extends Component<Props, State> {
                     {mainSponsor?.acronyme || ""} - {mainSponsor?.nom || ""}
                   </span>
                 </MyStructureContainer>
-                <div className="mb-10">
+                <div className="mb-2">
                   <b>
                     Les responsables de la structure vont prendre le relais. N’hésitez pas à les joindre directement si
                     vous les connaissez.
@@ -1059,8 +1060,8 @@ class Sponsors extends Component<Props, State> {
             ) : selected?.nom ? (
               authorBelongs ? (
                 <>
-                  <h5 className="mb-10">Votre demande est soumise aux reponsables de :</h5>
-                  <div className={styles.selection_wrapper + " mb-10"}>
+                  <h5 className="mb-2">Votre demande est soumise aux reponsables de :</h5>
+                  <div className={styles.selection_wrapper + " mb-2"}>
                     {selected?.picture?.secure_url && (
                       <Image
                         src={selected.picture.secure_url}
@@ -1085,7 +1086,7 @@ class Sponsors extends Component<Props, State> {
                 </>
               ) : (
                 <>
-                  <h5 className="mb-10 green">Votre fiche va être transférée à la structure :</h5>
+                  <h5 className="mb-2 green">Votre fiche va être transférée à la structure :</h5>
                   <MyStructureContainer>
                     {" "}
                     {mainSponsor?.picture?.secure_url && (
@@ -1112,8 +1113,8 @@ class Sponsors extends Component<Props, State> {
               )
             ) : (
               <>
-                <h5 className="mb-10">La structure est en cours de création</h5>
-                <div className="mb-10">
+                <h5 className="mb-2">La structure est en cours de création</h5>
+                <div className="mb-2">
                   <b>
                     Nous allons faire le nécessaire pour activer votre structure à partir des informations que vous avez
                     renseignées.

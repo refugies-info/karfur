@@ -10,10 +10,7 @@ import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
 import { Log } from "types/interface";
 import { colors } from "colors";
-import {
-  allDispositifsSelector,
-  dispositifSelector,
-} from "services/AllDispositifs/allDispositifs.selector";
+import { allDispositifsSelector, dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
 import useRouterLocale from "hooks/useRouterLocale";
 import { setAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
@@ -25,11 +22,7 @@ import { UserButton } from "../../sharedComponents/UserButton";
 import { findUser } from "./functions";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
-import {
-  TypeContenu,
-  Date,
-  Label,
-} from "../../sharedComponents/SubComponents";
+import { TypeContenu, Date, Label } from "../../sharedComponents/SubComponents";
 import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
@@ -44,9 +37,7 @@ interface Props {
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
   setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
-  setSelectedStructureIdAndToggleModal: (
-    structureId: ObjectId | null
-  ) => void;
+  setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
 }
 moment.locale("fr");
 
@@ -57,16 +48,12 @@ export const ContentDetailsModal = (props: Props) => {
   const history = useHistory();
 
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
-  const [adminComments, setAdminComments] = useState<string>(
-    dispositif?.adminComments || ""
-  );
+  const [adminComments, setAdminComments] = useState<string>(dispositif?.adminComments || "");
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
   const [currentId, setCurrentId] = useState<ObjectId | null>(null);
   const [logs, setLogs] = useState<Log[]>([]);
 
-  const structure = useSelector(
-    structureSelector(dispositif?.mainSponsor?._id || null)
-  );
+  const structure = useSelector(structureSelector(dispositif?.mainSponsor?._id || null));
   const allDispositifs = useSelector(allDispositifsSelector);
   const allUsers = useSelector(allUsersSelector);
 
@@ -89,11 +76,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const updateDispositifsStore = (
     dispositifId: ObjectId,
-    property:
-      | "adminComments"
-      | "status"
-      | "adminProgressionStatus"
-      | "adminPercentageProgressionStatus",
+    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
     value: string
   ) => {
     const dispositifs = [...allDispositifs];
@@ -110,10 +93,7 @@ export const ContentDetailsModal = (props: Props) => {
 
   const modifyStatus = async (
     newStatus: string,
-    property:
-      | "status"
-      | "adminProgressionStatus"
-      | "adminPercentageProgressionStatus"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus"
   ) => {
     if (dispositif && newStatus !== dispositif[property]) {
       if (property === "status" && newStatus === "Supprimé") {
@@ -125,8 +105,8 @@ export const ContentDetailsModal = (props: Props) => {
       const queryDispositif = {
         query: {
           dispositifId: dispositif._id,
-          [property]: newStatus,
-        },
+          [property]: newStatus
+        }
       };
 
       if (property === "status") {
@@ -142,22 +122,16 @@ export const ContentDetailsModal = (props: Props) => {
     await API.updateDispositifAdminComments({
       query: {
         dispositifId: dispositif._id,
-        adminComments,
-      },
+        adminComments
+      }
     });
     setAdminCommentsSaved(true);
     updateDispositifsStore(dispositif._id, "adminComments", adminComments);
   };
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const hiddenStatus = [
-    "En attente non prioritaire",
-    "Rejeté structure",
-    "Accepté structure",
-  ];
+  const hiddenStatus = ["En attente non prioritaire", "Rejeté structure", "Accepté structure"];
 
   const sendPushNotification = async () => {
     const res = await Swal.fire({
@@ -169,14 +143,13 @@ export const ContentDetailsModal = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, envoyer",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     });
 
     if (!res.value || !dispositif) return;
     await API.sendNotification(dispositif._id);
     updateLogs();
-  }
-
+  };
 
   const members = (structure?.membres || [])
     .filter((m) => m.roles.includes("administrateur"))
@@ -185,8 +158,7 @@ export const ContentDetailsModal = (props: Props) => {
   const moreMembers = members.length > 3;
 
   if (dispositif) {
-    const burl =
-      "/" + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id;
+    const burl = "/" + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id;
     return (
       <DetailsModal
         show={props.show}
@@ -204,40 +176,22 @@ export const ContentDetailsModal = (props: Props) => {
         }
         rightHead={
           <>
-            {dispositif.status === "Actif" &&
-              dispositif.typeContenu === "demarche" && (
-                <FButton
-                  className="mr-2"
-                  type="dark"
-                  name="alert-triangle-outline"
-                  onClick={sendPushNotification}
-                >
-                  Push
-                </FButton>
-              )}
-            {["En attente admin", "En attente", "Accepté structure"].includes(
-              dispositif.status
-            ) &&
+            {dispositif.status === "Actif" && dispositif.typeContenu === "demarche" && (
+              <FButton className="me-2" type="dark" name="alert-triangle-outline" onClick={sendPushNotification}>
+                Push
+              </FButton>
+            )}
+            {["En attente admin", "En attente", "Accepté structure"].includes(dispositif.status) &&
               dispositif.typeContenu === "dispositif" && (
-                <FButton
-                  className="mr-2"
-                  type="dark"
-                  name="email-outline"
-                  onClick={props.toggleImprovementsMailModal}
-                >
+                <FButton className="me-2" type="dark" name="email-outline" onClick={props.toggleImprovementsMailModal}>
                   Demande
                 </FButton>
               )}
-            <FButton
-              className="mr-2"
-              type="dark"
-              name="options-2-outline"
-              onClick={props.toggleNeedsChoiceModal}
-            >
+            <FButton className="me-2" type="dark" name="options-2-outline" onClick={props.toggleNeedsChoiceModal}>
               Catégories
             </FButton>
             <FButton
-              className="mr-2"
+              className="me-2"
               type="dark"
               tag={"a"}
               href={burl}
@@ -247,12 +201,7 @@ export const ContentDetailsModal = (props: Props) => {
             >
               Voir
             </FButton>
-            <FButton
-              className="mr-8"
-              type="white"
-              onClick={props.toggleModal}
-              name="close-outline"
-            ></FButton>
+            <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
           </>
         }
       >
@@ -271,19 +220,12 @@ export const ContentDetailsModal = (props: Props) => {
               <Row className="mb-5">
                 <Col>
                   <Label>Dernière mise à jour</Label>
-                  <Date
-                    date={dispositif.lastModificationDate}
-                    author={dispositif.lastModificationAuthor}
-                  />
+                  <Date date={dispositif.lastModificationDate} author={dispositif.lastModificationAuthor} />
                 </Col>
                 <Col>
                   <Label>Date de publication</Label>
                   <Date
-                    date={
-                      dispositif.status !== "Actif"
-                        ? undefined
-                        : dispositif.publishedAt
-                    }
+                    date={dispositif.status !== "Actif" ? undefined : dispositif.publishedAt}
                     author={dispositif.publishedAtAuthor}
                   />
                 </Col>
@@ -310,15 +252,13 @@ export const ContentDetailsModal = (props: Props) => {
                     sponsor={dispositif.mainSponsor}
                     onClick={() => {
                       if (!dispositif.mainSponsor) return;
-                      props.setSelectedStructureIdAndToggleModal(
-                        dispositif.mainSponsor?._id || null
-                      );
+                      props.setSelectedStructureIdAndToggleModal(dispositif.mainSponsor?._id || null);
                       props.toggleModal();
                     }}
                     additionnalProp="status"
                   />
                   <FButton
-                    className="ml-1 mb-2"
+                    className="ms-1 mb-2"
                     name="edit-outline"
                     type="dark"
                     onClick={(e: any) => {
@@ -337,48 +277,44 @@ export const ContentDetailsModal = (props: Props) => {
                       user={structure.responsable}
                       onClick={() => {
                         props.toggleModal();
-                        props.setSelectedUserIdAndToggleModal(
-                          structure.responsable?._id || null
-                        );
+                        props.setSelectedUserIdAndToggleModal(structure.responsable?._id || null);
                       }}
                     />
                   </div>
 
-                  {members.length > 0 &&
+                  {members.length > 0 && (
                     <div>
                       <Label>Autres responsables</Label>
                       <Row noGutters>
-                        {members
-                          .slice(0, moreMembers ? 2 : 3)
-                          .map((user, index) => (
-                            <Col key={index} className="mr-1">
-                              <UserButton
-                                user={findUser(user.userId, allUsers)}
-                                onClick={() => {
-                                  props.toggleModal();
-                                  props.setSelectedUserIdAndToggleModal(user.userId);
-                                }}
-                                condensed={true}
-                              />
-                            </Col>
-                          ))}
+                        {members.slice(0, moreMembers ? 2 : 3).map((user, index) => (
+                          <Col key={index} className="me-1">
+                            <UserButton
+                              user={findUser(user.userId, allUsers)}
+                              onClick={() => {
+                                props.toggleModal();
+                                props.setSelectedUserIdAndToggleModal(user.userId);
+                              }}
+                              condensed={true}
+                            />
+                          </Col>
+                        ))}
                         {moreMembers && (
                           <Col>
                             <UserButton
-                              text={`+ ${
-                                members.length - 2
-                              } responsables`}
+                              text={`+ ${members.length - 2} responsables`}
                               condensed={true}
                               noImage={true}
                               onClick={() => {
-                                history.push(`${routerLocale}/backend/user-dash-structure-selected?id=${structure._id}`);
+                                history.push(
+                                  `${routerLocale}/backend/user-dash-structure-selected?id=${structure._id}`
+                                );
                               }}
                             />
                           </Col>
                         )}
                       </Row>
                     </div>
-                  }
+                  )}
                 </>
               )}
             </div>

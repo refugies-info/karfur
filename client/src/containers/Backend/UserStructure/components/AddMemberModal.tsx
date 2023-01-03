@@ -56,9 +56,7 @@ export const AddMemberModal = (props: Props) => {
     dispatch(fetchAllUsersActionsCreator());
   }, []);
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
 
   const activeUsers = useSelector(activeUsersSelector);
 
@@ -68,16 +66,11 @@ export const AddMemberModal = (props: Props) => {
   };
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <Title>Ajouter un membre</Title>
       <InformationContainer>
-        <b>Attention :</b> assurez-vous que la personne que vous souhaitez
-        ajouter a déjà créé un compte sur réfugiés.info.
+        <b>Attention :</b> assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur
+        réfugiés.info.
       </InformationContainer>
       {isLoading && (
         <SkeletonTheme baseColor={colors.white}>
@@ -94,12 +87,7 @@ export const AddMemberModal = (props: Props) => {
       )}
 
       <RowContainer>
-        <FButton
-          type="outline-black"
-          name="close-outline"
-          onClick={props.toggle}
-          className="mr-8"
-        >
+        <FButton type="outline-black" name="close-outline" onClick={props.toggle} className="me-2">
           Annuler
         </FButton>
         <FButton

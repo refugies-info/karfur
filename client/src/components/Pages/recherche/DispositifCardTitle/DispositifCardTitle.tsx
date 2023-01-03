@@ -41,7 +41,7 @@ const DispositifCardTitle = (props: Props) => {
         {isSecondaryCard && (
           <div className={styles.theme}>
             {props.themes?.map((theme, i) => (
-              <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="mr-2 mb-2" />
+              <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="me-2 mb-2" />
             ))}
           </div>
         )}

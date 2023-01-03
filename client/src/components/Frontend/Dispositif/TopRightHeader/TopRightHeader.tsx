@@ -33,20 +33,20 @@ interface Props {
 }
 
 /**
-   * props explanations :
-   * disableEdit = true --> lecture, disableEdit = false --> edit or creation
-   * withHelp =true --> activate help, false --> desactivate
-   * showSpinnerBookmark : boolean : deal with spinner when add a favorite
-   * bookmarkDispositif : called when adding a new favorite
-   * pinned : boolean, bookmark empty or not
-   * toggleHelp : add or remove help
-   * toggleModal : toggle modal to accept or not content (for a sponsor and status 'En attente')
-   * toggleDispositifValidateModal : toggle modal to attach dispositif to structure
-   * editDispositif  : when click on pen button to modify dispositif
-   * toggleDispositifCreateModal : toggle modal to explain how to write when clicking on 'Besoin d'aide'
-   * translating
-   * status: status of the content
-   */
+ * props explanations :
+ * disableEdit = true --> lecture, disableEdit = false --> edit or creation
+ * withHelp =true --> activate help, false --> desactivate
+ * showSpinnerBookmark : boolean : deal with spinner when add a favorite
+ * bookmarkDispositif : called when adding a new favorite
+ * pinned : boolean, bookmark empty or not
+ * toggleHelp : add or remove help
+ * toggleModal : toggle modal to accept or not content (for a sponsor and status 'En attente')
+ * toggleDispositifValidateModal : toggle modal to attach dispositif to structure
+ * editDispositif  : when click on pen button to modify dispositif
+ * toggleDispositifCreateModal : toggle modal to explain how to write when clicking on 'Besoin d'aide'
+ * translating
+ * status: status of the content
+ */
 const TopRightHeader = (props: Props) => {
   const { t } = useTranslation();
   const user = useSelector(userDetailsSelector);
@@ -55,9 +55,7 @@ const TopRightHeader = (props: Props) => {
 
   const isAuthor = isUserAuthor(user, selectedDispositif);
   const userIsSponsor = isUserSponsor(user, selectedDispositif);
-  const isUserAllowedToModifyDispositif = isUserAllowedToModify(
-    admin, user, selectedDispositif
-  );
+  const isUserAllowedToModifyDispositif = isUserAllowedToModify(admin, user, selectedDispositif);
 
   // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
   if (props.status === "En attente" && (userIsSponsor || admin)) {
@@ -67,11 +65,7 @@ const TopRightHeader = (props: Props) => {
         <Card className={styles.card}>
           {admin && (
             <div style={{ marginBottom: "8px" }}>
-              <FButton
-                type="dark"
-                name="edit-outline"
-                onClick={props.editDispositif}
-              >
+              <FButton type="dark" name="edit-outline" onClick={props.editDispositif}>
                 Modifier la fiche
               </FButton>
             </div>
@@ -80,19 +74,17 @@ const TopRightHeader = (props: Props) => {
             className={styles.card_body + " bg-lightColor"}
             style={{ backgroundColor: props.mainTheme?.colors.color30 || "light" }}
           >
-            <span className="text-center">
-              Souhaitez-vous récupérer ce contenu ?
-            </span>
+            <span className="text-center">Souhaitez-vous récupérer ce contenu ?</span>
             <FButton
               type="validate"
-              className={styles.full_width + " mt-10"}
+              className={styles.full_width + " mt-2"}
               onClick={() => props.toggleModal(true, "responsable")}
             >
               Oui
             </FButton>
             <FButton
               type="error"
-              className={styles.full_width + " mt-10"}
+              className={styles.full_width + " mt-2"}
               onClick={() => props.toggleModal(true, "rejection")}
             >
               Non
@@ -101,13 +93,9 @@ const TopRightHeader = (props: Props) => {
           <CardFooter
             className={styles.card_footer}
             onClick={props.toggleDispositifCreateModal}
-            style={{ color: props.mainTheme?.colors.color100 || "dark"  }}
+            style={{ color: props.mainTheme?.colors.color100 || "dark" }}
           >
-            <EVAIcon
-              className="mr-8"
-              name="question-mark-circle"
-              size="medium"
-            />
+            <EVAIcon className="me-2" name="question-mark-circle" size="medium" />
             Besoin d&apos;aide ?
           </CardFooter>
         </Card>
@@ -119,63 +107,38 @@ const TopRightHeader = (props: Props) => {
     // 160920 : or autor but not when dispo if pubié, en attente admin or accepté structure
     // when site is not in french, cannot modify the text
     return (
-      <Col
-        xl="6"
-        lg="6"
-        md="6"
-        sm="6"
-        xs="12"
-        className={cls(mobile.hidden_flex, styles.top_right_edition)}
-      >
-        {!props.translating &&
-          props.langue === "fr" &&
-          (admin || isAuthor || userIsSponsor) && (
-            <div
-              onClick={(event: any) => {
-                event.stopPropagation();
-                props.toggleTutoModal("Statut des fiches");
-              }}
-              className={cls(mobile.hidden, styles.icon)}
-            >
-              <ContribStyledStatus size="large" text={props.status} />
-            </div>
-          )}
-        {!props.translating &&
-          props.langue === "fr" &&
-          isUserAllowedToModifyDispositif && (
-            <div className={styles.icon}>
-              <FButton
-                type="dark"
-                name="edit-outline"
-                onClick={props.editDispositif}
-              >
-                Modifier la fiche
+      <Col xl="6" lg="6" md="6" sm="6" xs="12" className={cls(mobile.hidden_flex, styles.top_right_edition)}>
+        {!props.translating && props.langue === "fr" && (admin || isAuthor || userIsSponsor) && (
+          <div
+            onClick={(event: any) => {
+              event.stopPropagation();
+              props.toggleTutoModal("Statut des fiches");
+            }}
+            className={cls(mobile.hidden, styles.icon)}
+          >
+            <ContribStyledStatus size="large" text={props.status} />
+          </div>
+        )}
+        {!props.translating && props.langue === "fr" && isUserAllowedToModifyDispositif && (
+          <div className={styles.icon}>
+            <FButton type="dark" name="edit-outline" onClick={props.editDispositif}>
+              Modifier la fiche
+            </FButton>
+          </div>
+        )}
+        {selectedDispositif && selectedDispositif.status === "Actif" && (
+          <div className={styles.icon} onClick={props.bookmarkDispositif}>
+            {props.showSpinnerBookmark ? (
+              <Spinner color="success" />
+            ) : (
+              <FButton className="default" name={"star" + (props.pinned ? "" : "-outline")}>
+                {props.pinned
+                  ? t("Dispositif.Enlever des favoris", "Enlever des favoris")
+                  : t("Dispositif.Ajouter aux favoris", "Ajouter aux favoris")}
               </FButton>
-            </div>
-          )}
-        {selectedDispositif &&
-          selectedDispositif.status === "Actif" && (
-            <div className={styles.icon} onClick={props.bookmarkDispositif}>
-              {props.showSpinnerBookmark ? (
-                <Spinner color="success" />
-              ) : (
-                <FButton
-                  className="default"
-                  name={"star" + (props.pinned ? "" : "-outline")}
-                >
-                  {props.pinned
-                    ? t(
-                        "Dispositif.Enlever des favoris",
-                        "Enlever des favoris"
-                      )
-                    : t(
-                        "Dispositif.Ajouter aux favoris",
-                        "Ajouter aux favoris"
-                      )}
-                </FButton>
-              )}
-            </div>
-          )}
+            )}
+          </div>
+        )}
       </Col>
     );
   }

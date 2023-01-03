@@ -201,7 +201,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 resetFilter={resetDepartment}
               />
             </DropdownToggle>
-            <DropdownMenu>
+            <DropdownMenu className={styles.menu}>
               <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
             </DropdownMenu>
             {(locationOpen || inputFocused.location) && <div className={styles.backdrop} onClick={toggleLocation} />}
@@ -221,7 +221,7 @@ const SearchHeaderDesktop = (props: Props) => {
                 resetFilter={resetTheme}
               />
             </DropdownToggle>
-            <DropdownMenu persist>
+            <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
               <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
             </DropdownMenu>
             {(themesOpen || inputFocused.theme) && <div className={styles.backdrop} onClick={toggleThemes} />}
@@ -284,7 +284,7 @@ const SearchHeaderDesktop = (props: Props) => {
               />
             </div>
             <Button className={styles.reset} onClick={() => dispatch(resetQueryActionCreator())}>
-              <EVAIcon name="refresh-outline" fill="white" className="mr-2" />
+              <EVAIcon name="refresh-outline" fill="white" className="me-2" />
               {t("Recherche.resetFilters", "Effacer tous les filtres")}
             </Button>
           </div>

@@ -1083,7 +1083,8 @@ class SideTrad extends Component {
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
-            <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"mr-10 mb-1"} />
+            <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"me-2 mb-1"} />
+            {/* TODO: offset */}
             <Tooltip
               placement="top"
               offset="0px, 8px"
@@ -1099,12 +1100,12 @@ class SideTrad extends Component {
           </AlertModified>
         ) : modified ? (
           <AlertModified type={"modified"}>
-            <EVAIcon name="alert-triangle" fill={colors.orange} id="alert-triangle-outline" className={"mr-10 mb-1"} />
+            <EVAIcon name="alert-triangle" fill={colors.orange} id="alert-triangle-outline" className={"me-2 mb-1"} />
             <AlertText type={"modified"}>Paragraphe modifié</AlertText>
           </AlertModified>
         ) : validated ? (
           <AlertModified type={"validated"}>
-            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"mr-10 mb-1"} />
+            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"me-2 mb-1"} />
             <AlertText type={"validated"}>Déjà validé</AlertText>
           </AlertModified>
         ) : null}
@@ -1191,7 +1192,7 @@ class SideTrad extends Component {
         </div>
         {validated && !modifiedNew && !modified ? (
           <AlertExpert type={"validated"}>
-            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"mr-10 mb-1"} />
+            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"me-2 mb-1"} />
             <AlertText type={"validated"}>Proposition retenue</AlertText>
           </AlertExpert>
         ) : null}
@@ -1199,7 +1200,7 @@ class SideTrad extends Component {
           {userId && userId.username && !modifiedNew && this.state.availableListTrad.length > 0 ? (
             <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>
               <div className={styles.trad_info}>
-                <div className="mr-10 d-flex align-items-center">
+                <div className="me-2 d-flex align-items-center">
                   <Image
                     src={(userId.picture || {}).secure_url || marioProfile}
                     className="profile-img-pin"
@@ -1245,13 +1246,13 @@ class SideTrad extends Component {
                             : this.state.propositionIndex - 1
                         )
                       }
-                      className="mt-10 small-figma"
+                      className="mt-2 small-figma"
                       style={{ marginRight: 10 }}
                     >
                       {""}
                     </FButton>
                     <FButton
-                      className="mt-10 small-figma"
+                      className="mt-2 small-figma"
                       type="light-action"
                       onClick={() =>
                         this.nextProposition(
@@ -1265,7 +1266,7 @@ class SideTrad extends Component {
                       <EVAIcon
                         name="arrow-ios-forward-outline"
                         fill={"white"}
-                        //className="ml-10"
+                        //className="ms-2"
                       />
                     </FButton>
                   </div>
@@ -1275,7 +1276,7 @@ class SideTrad extends Component {
           ) : modifiedNew ? (
             <>
               <div className={styles.trad_info}>
-                <div className="mr-10 d-flex align-items-center">
+                <div className="me-2 d-flex align-items-center">
                   <Image
                     src={(userId.picture || {}).secure_url || marioProfile}
                     className="profile-img-pin"
@@ -1298,14 +1299,14 @@ class SideTrad extends Component {
                 name="arrow-back-outline"
                 fill={colors.gray90}
                 onClick={() => this.goChange(false)}
-                className="mt-10"
+                className="mt-2"
                 style={{ marginRight: 5 }}
               >
                 {""}
               </FButton>
             )}
             <FButton
-              className="mt-10"
+              className="mt-2"
               type="outline-black"
               onClick={() => {
                 this.goChange();
@@ -1315,7 +1316,7 @@ class SideTrad extends Component {
               <EVAIcon
                 name="arrow-forward-outline"
                 fill={colors.gray90}
-                //className="ml-10"
+                //className="ms-2"
               />
             </FButton>
             <FButton
@@ -1323,7 +1324,7 @@ class SideTrad extends Component {
               name="refresh-outline"
               fill={colors.gray90}
               onClick={this.reset}
-              className="mt-10 ml-10"
+              className="mt-2 ms-2"
             />
           </div>
           <div className={styles.right_footer}>
@@ -1332,7 +1333,7 @@ class SideTrad extends Component {
                 type="outline-black"
                 name={"edit-outline"}
                 fill={colors.gray90}
-                className="mr-10 mt-10"
+                className="me-2 mt-2"
                 onClick={this.modifyNew}
               >
                 {"Modifier"}
@@ -1342,7 +1343,7 @@ class SideTrad extends Component {
                 type="outline-black"
                 name={"close-circle-outline"}
                 fill={colors.gray90}
-                className="mr-10 mt-10"
+                className="me-2 mt-2"
                 onClick={this.modifyNew}
               >
                 {"Annuler"}
@@ -1353,7 +1354,7 @@ class SideTrad extends Component {
                 name="slash-outline"
                 fill={colors.gray90}
                 onClick={this.resetToEmpty}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 Effacer
               </FButton>
@@ -1366,7 +1367,7 @@ class SideTrad extends Component {
                   this.goChange();
                 }}
                 disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 {" "}
                 {/* || disableBtn */}
@@ -1378,7 +1379,7 @@ class SideTrad extends Component {
                 name="checkmark-circle-outline"
                 onClick={this.onValidate}
                 disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 {" "}
                 {/* || disableBtn */}

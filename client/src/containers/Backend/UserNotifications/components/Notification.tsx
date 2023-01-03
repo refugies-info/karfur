@@ -8,7 +8,7 @@ import { colors } from "colors";
 import { getPath } from "routes";
 
 const Container = styled.div`
-  background: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
+  background: ${(props: { read: boolean }) => (props.read ? colors.white : colors.focus)};
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -19,7 +19,7 @@ const Container = styled.div`
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: ${(props: {read: boolean}) => (props.read ? colors.white : colors.focus)};
+  border-color: ${(props: { read: boolean }) => (props.read ? colors.white : colors.focus)};
 
   &:hover {
     border-color: ${colors.gray90};
@@ -35,7 +35,7 @@ const TextContainer = styled.div`
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: ${(props: {read: boolean}) => (props.read ? colors.gray90 : colors.white)};
+  color: ${(props: { read: boolean }) => (props.read ? colors.gray90 : colors.white)};
   margin-left: 20px;
 `;
 
@@ -53,7 +53,7 @@ const DateContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {read: boolean}) => (props.read ? colors.error : colors.white)};
+  color: ${(props: { read: boolean }) => (props.read ? colors.error : colors.white)};
   margin-right: 8px;
   margin-left: 8px;
 `;
@@ -72,8 +72,7 @@ interface Props {
 const getText = (type: "reaction" | "annuaire" | "new content") => {
   if (type === "reaction") return "Nouvelle réaction sur la fiche :";
 
-  if (type === "annuaire")
-    return "Recensez votre structure dans l'annuaire de l'intégration";
+  if (type === "annuaire") return "Recensez votre structure dans l'annuaire de l'intégration";
 
   return "Une nouvelle fiche a été attribuée à votre structure";
 };
@@ -121,31 +120,22 @@ export const Notification = (props: Props) => {
       data-test-id={"test-notif-" + props.type}
     >
       <RowContainer>
-        <EVAIcon
-          name={props.read ? "bell-outline" : "bell"}
-          fill={props.read ? colors.gray90 : colors.white}
-        />
+        <EVAIcon name={props.read ? "bell-outline" : "bell"} fill={props.read ? colors.gray90 : colors.white} />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
-        {props.type === "reaction" && props.title && (
-          <DispositifTitle>{props.title}</DispositifTitle>
-        )}
+        {props.type === "reaction" && props.title && <DispositifTitle>{props.title}</DispositifTitle>}
       </RowContainer>
       <RowContainer>
-        {props.createdAt && (
-          <DateContainer read={props.read}>
-            {getFormattedDate(props.createdAt)}
-          </DateContainer>
-        )}
+        {props.createdAt && <DateContainer read={props.read}>{getFormattedDate(props.createdAt)}</DateContainer>}
         {props.type === "annuaire" && (
           <>
-            <FButton type="dark" className="mr-8" name="folder-add-outline">
+            <FButton type="dark" className="me-2" name="folder-add-outline">
               Compléter la fiche annuaire
             </FButton>
             <FButton
               type="error"
               name="trash-2"
               onClick={onAnnuaireNotifDeleteClick}
-              className="ml-8"
+              className="ms-2"
               data-test-id="test-delete-annuaire"
             />
           </>
@@ -164,7 +154,7 @@ export const Notification = (props: Props) => {
               type="error"
               name="trash-2"
               onClick={onReactionDeleteClick}
-              className="ml-8"
+              className="ms-2"
               data-test-id="test-delete-reaction"
             />
           </>

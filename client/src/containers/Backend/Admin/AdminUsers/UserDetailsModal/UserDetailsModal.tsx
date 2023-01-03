@@ -222,7 +222,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     }
   };
 
-  const getMinutes = useCallback((value: number|undefined) => {
+  const getMinutes = useCallback((value: number | undefined) => {
     return value ? Math.floor(value / 1000 / 60) : 0;
   }, []);
 
@@ -251,11 +251,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       rightHead={
         <>
           {userFromStore && (
-            <FButton className="mr-8" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
+            <FButton className="me-2" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
               Supprimer
             </FButton>
           )}
-          <FButton className="mr-8" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
+          <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
         </>
       }
     >

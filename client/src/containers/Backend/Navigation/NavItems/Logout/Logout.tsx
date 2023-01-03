@@ -25,7 +25,7 @@ const Logout = () => {
       onClick={disconnect}
       asLink={
         <Link href="#">
-          <EVAIcon fill="#e55039" className="mr-10" name="log-out-outline" />
+          <EVAIcon fill="#e55039" className="me-2" name="log-out-outline" />
           <span className={styles.logout_label + " refugies-backend-header-menu-title"}></span>
         </Link>
       }

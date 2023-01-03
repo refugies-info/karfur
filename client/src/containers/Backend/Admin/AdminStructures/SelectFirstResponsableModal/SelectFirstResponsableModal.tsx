@@ -58,13 +58,9 @@ export const SelectFirstResponsableModal = (props: Props) => {
   const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
 
   const dispatch = useDispatch();
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
 
-  const structureFromStore = useSelector(
-    structureSelector(props.selectedStructureId)
-  );
+  const structureFromStore = useSelector(structureSelector(props.selectedStructureId));
 
   const activeUsers = useSelector(activeUsersSelector);
 
@@ -76,7 +72,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         membreId: selectedUser._id,
         structureId: props.selectedStructureId,
         action: "create",
-        role: "administrateur",
+        role: "administrateur"
       };
 
       await API.modifyUserRoleInStructure({ query: structure });
@@ -85,7 +81,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         title: "Yay...",
         text: "Responsable modifié",
         type: "success",
-        timer: 1500,
+        timer: 1500
       });
       props.toggleModal();
       dispatch(fetchAllStructuresActionsCreator());
@@ -95,7 +91,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         title: "Oh non",
         text: "Erreur lors de la modification",
         type: "error",
-        timer: 1500,
+        timer: 1500
       });
       props.toggleModal();
     }
@@ -146,25 +142,12 @@ export const SelectFirstResponsableModal = (props: Props) => {
         )}
       </div>
       <div>
-        <Warning>
-          Au clic sur Valider, la structure sera modifiée avec le responsable
-          choisi.
-        </Warning>
+        <Warning>Au clic sur Valider, la structure sera modifiée avec le responsable choisi.</Warning>
         <RowContainer>
-          <FButton
-            type="white"
-            name="close-outline"
-            className="mr-8"
-            onClick={props.toggleModal}
-          >
+          <FButton type="white" name="close-outline" className="me-2" onClick={props.toggleModal}>
             Annuler
           </FButton>
-          <FButton
-            type="validate"
-            name="checkmark-outline"
-            onClick={onValidate}
-            disabled={!selectedUser}
-          >
+          <FButton type="validate" name="checkmark-outline" onClick={onValidate} disabled={!selectedUser}>
             Valider
           </FButton>
         </RowContainer>

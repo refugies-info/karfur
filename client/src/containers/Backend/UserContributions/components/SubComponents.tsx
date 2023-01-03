@@ -21,9 +21,8 @@ const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props: {isDarkBackground: boolean}) =>
-    props.isDarkBackground ? colors.white : colors.gray90};
-  background-color: ${(props: {isDarkBackground: boolean}) =>
+  color: ${(props: { isDarkBackground: boolean }) => (props.isDarkBackground ? colors.white : colors.gray90)};
+  background-color: ${(props: { isDarkBackground: boolean }) =>
     props.isDarkBackground ? colors.gray90 : colors.white};
   padding: 8px;
   border-radius: 6px;
@@ -32,15 +31,10 @@ const Container = styled.div`
   border: 1px solid ${colors.gray90};
 `;
 
-export const TypeContenu = (props: {
-  type: string;
-  isDetailedVue: boolean;
-}) => {
+export const TypeContenu = (props: { type: string; isDetailedVue: boolean }) => {
   const correctedType = props.type === "dispositif" ? "Dispositif" : "Démarche";
   const isDarkBackground = props.type === "dispositif" || props.isDetailedVue;
-  return (
-    <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>
-  );
+  return <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>;
 };
 const RowContainer = styled.div`
   display: flex;
@@ -58,9 +52,7 @@ export const Responsabilite = (props: { responsable: string | null }) => {
     <RowContainer>
       <div style={{ marginBottom: "4px", marginRight: "8px" }}>
         <EVAIcon
-          name={
-            props.responsable === "Moi" ? "person-outline" : "briefcase-outline"
-          }
+          name={props.responsable === "Moi" ? "person-outline" : "briefcase-outline"}
           size={20}
           fill={colors.gray90}
         />
@@ -71,9 +63,9 @@ export const Responsabilite = (props: { responsable: string | null }) => {
 };
 
 interface ContribStyledStatusContainerProps {
-  size?: string
-  textColor?: string
-  color: string
+  size?: string;
+  textColor?: string;
+  color: string;
 }
 const ContribStyledStatusContainer = styled.div`
   display: flex;
@@ -105,14 +97,7 @@ export const ContribStyledStatus = (props: { text: string; size?: string }) => {
         size={props.size}
       >
         {status}
-        {onMouseHover && (
-          <EVAIcon
-            name={"question-mark-circle"}
-            size={20}
-            fill={textColor}
-            className="ml-8"
-          />
-        )}
+        {onMouseHover && <EVAIcon name={"question-mark-circle"} size={20} fill={textColor} className="ms-2" />}
       </ContribStyledStatusContainer>
     </div>
   );
@@ -122,12 +107,7 @@ export const StatutHeader = (props: { onClick: () => void }) => {
   return (
     <RowContainer onClick={props.onClick}>
       Statut
-      <EVAIcon
-        name={"question-mark-circle-outline"}
-        size={20}
-        fill={colors.gray90}
-        className="ml-8"
-      />
+      <EVAIcon name={"question-mark-circle-outline"} size={20} fill={colors.gray90} className="ms-2" />
     </RowContainer>
   );
 };

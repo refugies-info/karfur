@@ -48,15 +48,12 @@ export const EditMemberModal = (props: Props) => {
 
   const modifyRole = () => {
     if (!props.selectedUser || !selectedRole) return;
-    const formattedRole =
-      selectedRole === "Responsable" ? "administrateur" : "contributeur";
+    const formattedRole = selectedRole === "Responsable" ? "administrateur" : "contributeur";
     props.modifyRole(props.selectedUser._id, formattedRole);
   };
 
   const secureUrl =
-    props.selectedUser &&
-    props.selectedUser.picture &&
-    props.selectedUser.picture.secure_url
+    props.selectedUser && props.selectedUser.picture && props.selectedUser.picture.secure_url
       ? props.selectedUser.picture.secure_url
       : marioProfile;
 
@@ -65,10 +62,8 @@ export const EditMemberModal = (props: Props) => {
 
     const currentRole = props.selectedUser.mainRole;
     if (selectedRole) {
-      if (selectedRole === role && selectedRole !== currentRole)
-        return "selected";
-      if (selectedRole === role && selectedRole === currentRole)
-        return "current";
+      if (selectedRole === role && selectedRole !== currentRole) return "selected";
+      if (selectedRole === role && selectedRole === currentRole) return "current";
       return "none";
     }
     if (props.selectedUser.mainRole === role) return "current";
@@ -77,27 +72,17 @@ export const EditMemberModal = (props: Props) => {
 
   if (!props.selectedUser)
     return (
-      <Modal
-       isOpen={props.show}
-       toggle={props.toggle}
-       className={styles.modal}
-       contentClassName={styles.modal_content}
-      >
+      <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
         <div>Erreur</div>;
       </Modal>
     );
 
   return (
-    <Modal
-     isOpen={props.show}
-     toggle={props.toggle}
-     className={styles.modal}
-     contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <RowContainer>
         <Title>Modifier le rôle de</Title>
         <Image
-          className={styles.user_img + " mr-8"}
+          className={styles.user_img + " me-2"}
           src={secureUrl}
           alt=""
           width={70}
@@ -106,32 +91,17 @@ export const EditMemberModal = (props: Props) => {
         />
         <UserName>{props.selectedUser.username}</UserName>
       </RowContainer>
-      <Role
-        role={"Rédacteur"}
-        onRoleSelect={setSelectedRole}
-        state={getState("Rédacteur")}
-      />
-      <Role
-        role={"Responsable"}
-        onRoleSelect={setSelectedRole}
-        state={getState("Responsable")}
-      />
+      <Role role={"Rédacteur"} onRoleSelect={setSelectedRole} state={getState("Rédacteur")} />
+      <Role role={"Responsable"} onRoleSelect={setSelectedRole} state={getState("Responsable")} />
       <ButtonContainer>
-        <FButton
-          type="outline-black"
-          name="close-outline"
-          onClick={props.toggle}
-          className="mr-8"
-        >
+        <FButton type="outline-black" name="close-outline" onClick={props.toggle} className="me-2">
           Annuler
         </FButton>
         <FButton
           type="validate"
           name="checkmark-outline"
           onClick={modifyRole}
-          disabled={
-            !selectedRole || selectedRole === props.selectedUser.mainRole
-          }
+          disabled={!selectedRole || selectedRole === props.selectedUser.mainRole}
           data-test-id="test-validate-edit"
         >
           Valider

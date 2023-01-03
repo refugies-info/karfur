@@ -7,14 +7,11 @@ import { useRouter } from "next/router";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
-  toggleLangueModalActionCreator,
+  toggleLangueModalActionCreator
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import {
-  showLangModalSelector,
-  allLanguesSelector,
-} from "services/Langue/langue.selectors";
+import { showLangModalSelector, allLanguesSelector } from "services/Langue/langue.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import API from "utils/API";
 import setAuthToken from "utils/setAuthToken";
@@ -51,17 +48,12 @@ const Login = () => {
   const [step, setStep] = useState(0);
   const [noUserError, setNoUserError] = useState(false);
   const [wrongPasswordError, setWrongPasswordError] = useState(false);
-  const [resetPasswordNotPossible, setResetPasswordNotPossible] =
-    useState(false);
+  const [resetPasswordNotPossible, setResetPasswordNotPossible] = useState(false);
   const [resetPasswordPossible, setResetPasswordPossible] = useState(false);
   const [wrongAdminCodeError, setWrongAdminCodeError] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
-  const [newAdminWithoutPhoneOrEmail, setNewAdminWithoutPhoneOrEmail] =
-    useState(false);
-  const [
-    newHasStructureWithoutPhoneOrEmail,
-    setNewHasStructureWithoutPhoneOrEmail,
-  ] = useState(false);
+  const [newAdminWithoutPhoneOrEmail, setNewAdminWithoutPhoneOrEmail] = useState(false);
+  const [newHasStructureWithoutPhoneOrEmail, setNewHasStructureWithoutPhoneOrEmail] = useState(false);
   const [userDeletedError, setUserDeletedError] = useState(false);
 
   const { t } = useTranslation();
@@ -70,9 +62,7 @@ const Login = () => {
 
   const showLangModal = useSelector(showLangModalSelector);
   const langues = useSelector(allLanguesSelector);
-  const isLanguagesLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_LANGUES)
-  );
+  const isLanguagesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
 
   useEffect(() => {
     dispatch(fetchLanguesActionCreator());
@@ -122,7 +112,7 @@ const Login = () => {
     router.push(
       {
         pathname: getPath(pathname as PathNames, lng),
-        query,
+        query
       },
       undefined,
       { locale: lng }
@@ -151,7 +141,7 @@ const Login = () => {
       password,
       code,
       email,
-      phone,
+      phone
     };
     API.login(user)
       .then((data) => {
@@ -161,7 +151,7 @@ const Login = () => {
           title: "Yay...",
           text: t("Authentification réussie !", "Authentification réussie !"),
           type: "success",
-          timer: 1500,
+          timer: 1500
         }).then(() => {
           const { query } = router;
           if (query.redirect) {
@@ -214,7 +204,7 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
           type: "error",
-          timer: 1500,
+          timer: 1500
         });
         return;
       }
@@ -235,7 +225,7 @@ const Login = () => {
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
           type: "error",
-          timer: 1500,
+          timer: 1500
         });
         return;
       }
@@ -251,22 +241,13 @@ const Login = () => {
       return t("Login.Nouvel administrateur", "Nouvel administrateur");
     }
     if (newHasStructureWithoutPhoneOrEmail) {
-      return t(
-        "Login.new_has_structure",
-        "Nouveau responsable de structure ! 🎉"
-      );
+      return t("Login.new_has_structure", "Nouveau responsable de structure ! 🎉");
     }
     if (resetPasswordNotPossible) {
-      return t(
-        "Login.Impossible de réinitialiser",
-        "Impossible de réinitialiser"
-      );
+      return t("Login.Impossible de réinitialiser", "Impossible de réinitialiser");
     }
     if (resetPasswordPossible) {
-      return t(
-        "Login.Réinitialisation du mot de passe",
-        "Un lien de réinitialisation a été envoyé"
-      );
+      return t("Login.Réinitialisation du mot de passe", "Un lien de réinitialisation a été envoyé");
     }
     if (step === 1) {
       return t("Login.Bonjour", "Bonjour ") + username + " !";
@@ -282,8 +263,7 @@ const Login = () => {
     if (splittedEmailArray.length === 2) {
       const prefixEmail = splittedEmailArray[0];
       const suffixEmail = splittedEmailArray[1];
-      const hashLength =
-        prefixEmail.length - 2 > 0 ? prefixEmail.length - 2 : 0;
+      const hashLength = prefixEmail.length - 2 > 0 ? prefixEmail.length - 2 : 0;
       const hashedPrefix = prefixEmail.substring(0, 2) + "*".repeat(hashLength);
       return hashedPrefix + "@" + suffixEmail;
     }
@@ -296,10 +276,7 @@ const Login = () => {
     }
 
     if (newAdminWithoutPhoneOrEmail) {
-      return t(
-        "Login.Entrez votre numéro et votre email",
-        "Entrez votre numéro et votre email"
-      );
+      return t("Login.Entrez votre numéro et votre email", "Entrez votre numéro et votre email");
     }
     if (newHasStructureWithoutPhoneOrEmail) {
       return null;
@@ -320,9 +297,7 @@ const Login = () => {
       return (
         <UsernameField
           value={username}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setUsername(e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
           noUserError={noUserError}
         />
       );
@@ -333,12 +308,8 @@ const Login = () => {
           <PhoneAndEmailFields
             phone={phone}
             email={email}
-            onChangePhone={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPhone(e.target.value)
-            }
-            onChangeEmail={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
+            onChangePhone={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
+            onChangeEmail={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             isAdmin={true}
             structure={null}
           />
@@ -347,12 +318,8 @@ const Login = () => {
       if (newHasStructureWithoutPhoneOrEmail && !wrongPasswordError) {
         return (
           <PhoneAndEmailFields
-            onChangePhone={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setPhone(e.target.value)
-            }
-            onChangeEmail={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setEmail(e.target.value)
-            }
+            onChangePhone={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
+            onChangeEmail={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             phone={phone}
             email={email}
             structure={structure}
@@ -364,9 +331,7 @@ const Login = () => {
         <PasswordField
           id="password"
           value={password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
           passwordVisible={passwordVisible}
           onClick={togglePasswordVisibility}
           wrongPasswordError={wrongPasswordError}
@@ -378,21 +343,18 @@ const Login = () => {
       // STEP 2: 2FA code
       <CodeField
         value={code}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setCode(e.target.value)
-        }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCode(e.target.value)}
         wrongAdminCodeError={wrongAdminCodeError}
       />
     );
   };
   return (
-    <div className="app">
+    <main className={styles.main}>
       <SEO title="Se connecter" />
       <div className={styles.container}>
         <div
           style={{
-            paddingTop:
-              step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100,
+            paddingTop: step === 1 && newHasStructureWithoutPhoneOrEmail ? 40 : 100
           }}
         >
           <div className={styles.header}>
@@ -417,10 +379,7 @@ const Login = () => {
           <h2 className={styles.h2}>{getHeaderText()}</h2>
           {resetPasswordNotPossible && (
             <div className={`${styles.email_message} ${styles.no_email}`}>
-              {t(
-                "Login.Pas email",
-                "Il n'y a pas d'email associé à ce pseudonyme."
-              )}
+              {t("Login.Pas email", "Il n'y a pas d'email associé à ce pseudonyme.")}
             </div>
           )}
           {resetPasswordPossible && (
@@ -439,21 +398,16 @@ const Login = () => {
                   fontWeight: "bold",
                   fontSize: "16px",
                   lineHeight: "20px",
-                  marginBottom: "64px",
+                  marginBottom: "64px"
                 }}
               >
-                {t(
-                  "Login.Réinitialisation texte",
-                  "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
-                )}
+                {t("Login.Réinitialisation texte", "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?")}
               </div>
             </>
           )}
           {!resetPasswordNotPossible && !resetPasswordPossible && (
             <>
-              {!!getSubtitle() && (
-                <div className={styles.label}>{getSubtitle()}</div>
-              )}
+              {!!getSubtitle() && <div className={styles.label}>{getSubtitle()}</div>}
               <Form onSubmit={submitForm}>{getFormTemplate()}</Form>
             </>
           )}
@@ -465,9 +419,7 @@ const Login = () => {
             login={login}
             unexpectedError={unexpectedError}
             newAdminWithoutPhoneOrEmail={newAdminWithoutPhoneOrEmail}
-            newHasStructureWithoutPhoneOrEmail={
-              newHasStructureWithoutPhoneOrEmail
-            }
+            newHasStructureWithoutPhoneOrEmail={newHasStructureWithoutPhoneOrEmail}
             userDeletedError={userDeletedError}
           />
         </div>
@@ -480,7 +432,7 @@ const Login = () => {
           isLanguagesLoading={isLanguagesLoading}
         />
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -256,7 +256,7 @@ const Register = () => {
   }, [step, username, t]);
 
   return (
-    <div className="app">
+    <main className={styles.main}>
       <SEO title="Créer un nouveau compte" />
       <div className={styles.container}>
         <ContentContainer>
@@ -339,7 +339,7 @@ const Register = () => {
           isLanguagesLoading={isLanguagesLoading}
         />
       </div>
-    </div>
+    </main>
   );
 };
 

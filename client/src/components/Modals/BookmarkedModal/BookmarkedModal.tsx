@@ -62,7 +62,7 @@ const BookmarkedModal = (props: Props) => {
               </FButton>
             </Link>
             <Link legacyBehavior href={getPath("/register", router.locale)} passHref>
-              <FButton type="signup" name="person-add-outline" className="mr-10" tag="a">
+              <FButton type="signup" name="person-add-outline" className="me-2" tag="a">
                 {t("Toolbar.Inscription", "Inscription")}
               </FButton>
             </Link>

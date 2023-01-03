@@ -81,7 +81,7 @@ export const CompleteProfilModal = (props: Props) => {
         </p>
       )}
       <div className={styles.btn_container}>
-        <FButton onClick={props.toggle} type="outline-black" className="mr-8" name="arrow-back-outline">
+        <FButton onClick={props.toggle} type="outline-black" className="me-2" name="arrow-back-outline">
           {"Retour"}
         </FButton>{" "}
         <FButton

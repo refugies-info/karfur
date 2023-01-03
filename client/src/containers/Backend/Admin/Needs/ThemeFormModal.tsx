@@ -23,7 +23,6 @@ import { toArray } from "lodash";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
 
-
 interface Props {
   show: boolean;
   toggleModal: () => void;
@@ -120,10 +119,12 @@ export const ThemeFormModal = (props: Props) => {
       );
     } else {
       // creation
-      dispatch(createThemeActionCreator({
-        ...theme,
-        position: themes.length + 1
-      }));
+      dispatch(
+        createThemeActionCreator({
+          ...theme,
+          position: themes.length + 1
+        })
+      );
     }
     props.toggleModal();
   };
@@ -148,10 +149,11 @@ export const ThemeFormModal = (props: Props) => {
     props.toggleModal();
   };
 
-  const isInvalid = toArray(emoji).length !== 1 ||
-    !short || /* isThemeTitleOk(short, languages) || */
-    !name /* || isThemeTitleOk(name, languages) || */
-    /* !banner || !banner.secure_url
+  const isInvalid =
+    toArray(emoji).length !== 1 ||
+    !short /* isThemeTitleOk(short, languages) || */ ||
+    !name; /* || isThemeTitleOk(name, languages) || */
+  /* !banner || !banner.secure_url
     !appImage || !appImage.secure_url
     !shareImage || !shareImage.secure_url
     !icon || !icon.secure_url; */
@@ -169,11 +171,11 @@ export const ThemeFormModal = (props: Props) => {
       rightHead={
         <>
           {props.selectedTheme && (
-            <FButton className="mr-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasNeeds}>
+            <FButton className="me-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasNeeds}>
               Supprimer
             </FButton>
           )}
-          <FButton className="mr-2" type="white" name="close-outline" onClick={props.toggleModal}>
+          <FButton className="me-2" type="white" name="close-outline" onClick={props.toggleModal}>
             Annuler
           </FButton>
           <FButton type="validate" name="save-outline" onClick={onSave} disabled={isInvalid}>
@@ -211,16 +213,18 @@ export const ThemeFormModal = (props: Props) => {
           <div>
             <Label htmlFor="theme">Traduire les intitulés</Label>
             <div>
-              {languages.filter(ln => ln.i18nCode !== "fr").map((langue) => (
-                <LangueButton
-                  key={langue.langueCode}
-                  onClick={() => {
-                    setSelectedLanguageModal(langue);
-                  }}
-                  langue={langue}
-                  valid={!!short?.[langue.i18nCode] && !!name?.[langue.i18nCode]}
-                />
-              ))}
+              {languages
+                .filter((ln) => ln.i18nCode !== "fr")
+                .map((langue) => (
+                  <LangueButton
+                    key={langue.langueCode}
+                    onClick={() => {
+                      setSelectedLanguageModal(langue);
+                    }}
+                    langue={langue}
+                    valid={!!short?.[langue.i18nCode] && !!name?.[langue.i18nCode]}
+                  />
+                ))}
             </div>
           </div>
           <div>
@@ -348,7 +352,7 @@ export const ThemeFormModal = (props: Props) => {
         leftHead={<h2>Traduction du thème en : {selectedLanguageModal?.langueFr || ""}</h2>}
         rightHead={
           <>
-            <FButton className="mr-2" type="white" name="close-outline" onClick={() => setSelectedLanguageModal(null)}>
+            <FButton className="me-2" type="white" name="close-outline" onClick={() => setSelectedLanguageModal(null)}>
               Annuler
             </FButton>
             <FButton type="validate" name="save-outline" onClick={() => setSelectedLanguageModal(null)}>

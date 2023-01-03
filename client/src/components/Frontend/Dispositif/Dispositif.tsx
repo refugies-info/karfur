@@ -1264,7 +1264,7 @@ const Dispositif = (props: Props) => {
               />
             )}
             <Row className={styles.row}>
-              <div className={styles.back_button}>
+              <div className={cls(styles.back_button, "col")}>
                 <BackButton goBack={goBack} />
               </div>
 
@@ -1361,7 +1361,7 @@ const Dispositif = (props: Props) => {
                       <FButton
                         type="tuto"
                         name={"play-circle-outline"}
-                        className="ml-10"
+                        className="ms-2"
                         onClick={() => toggleTutorielModal("Titre")}
                       >
                         Tutoriel
@@ -1464,7 +1464,7 @@ const Dispositif = (props: Props) => {
               {!isTranslated && showAlertBoxLanguage && (
                 <div className={styles.infobox}>
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <EVAIcon name={"alert-triangle"} fill={colors.gray10} className="mr-10"></EVAIcon>
+                    <EVAIcon name={"alert-triangle"} fill={colors.gray10} className="me-2"></EVAIcon>
                     <div>
                       {t("Dispositifs.Cette fiche n'est pas dispo", "Cette fiche n'est pas encore disponible en :")}
                       {langueSelected ? " " + langueSelected.langueLoc + "." : ""}
@@ -1483,7 +1483,7 @@ const Dispositif = (props: Props) => {
                     onClick={() => setShowAlertBoxLanguage(!showAlertBoxLanguage)}
                     name={"close"}
                     fill={colors.gray10}
-                    className="ml-10"
+                    className="ms-2"
                   ></EVAIcon>
                 </div>
               )}
@@ -1504,7 +1504,7 @@ const Dispositif = (props: Props) => {
                       <>
                         <FButton
                           type="white"
-                          className={cls(mobile.visible_inline_flex, "ml-10 mb-2")}
+                          className={cls(mobile.visible_inline_flex, "ms-2 mb-2")}
                           onClick={() => setShowLanguageToReadModal(!showLanguageToReadModal)}
                         >
                           <i
@@ -1513,11 +1513,11 @@ const Dispositif = (props: Props) => {
                             id={possibleLanguages[0].langueCode}
                           />
 
-                          <span className="ml-10 language-name">{possibleLanguages[0].langueLoc || "Langue"}</span>
+                          <span className="ms-2 language-name">{possibleLanguages[0].langueLoc || "Langue"}</span>
                           <EVAIcon
                             name={"chevron-down-outline"}
                             fill={colors.gray90}
-                            className="ml-10"
+                            className="ms-2"
                             size="xlarge"
                           ></EVAIcon>
                         </FButton>
@@ -1528,7 +1528,7 @@ const Dispositif = (props: Props) => {
                               <FButton
                                 key={index}
                                 type="white"
-                                className="ml-10 mb-2"
+                                className="ms-2 mb-2"
                                 onClick={() => {
                                   Event("CHANGE_LANGUAGE", langue.i18nCode, "label");
                                   changeLanguage(langue.i18nCode);
@@ -1540,7 +1540,7 @@ const Dispositif = (props: Props) => {
                                   id={langue.langueCode}
                                 />
 
-                                <span className="ml-10 language-name">{langue.langueLoc || "Langue"}</span>
+                                <span className="ms-2 language-name">{langue.langueLoc || "Langue"}</span>
                               </FButton>
                             );
                           })}

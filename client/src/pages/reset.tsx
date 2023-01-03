@@ -279,7 +279,7 @@ const Reset = () => {
   };
 
   return (
-    <div className="app">
+    <main className={styles.main}>
       <SEO />
       <div className={styles.container}>
         <ContentContainer>
@@ -327,7 +327,7 @@ const Reset = () => {
           isLanguagesLoading={isLanguagesLoading}
         />
       </div>
-    </div>
+    </main>
   );
 };
 
