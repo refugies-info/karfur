@@ -456,10 +456,6 @@ const API = {
     const headers = getHeaders();
     return instance.post("/miscellaneous/set_mail", query, { headers });
   },
-  send_sms: (query: { number: number; typeContenu: string; url: string; title: string }) => {
-    const headers = getHeaders();
-    return instance.post("/miscellaneous/send_sms", query, { headers });
-  },
 
   // Logs
   logs: (objectId: ObjectId) => {
@@ -497,6 +493,10 @@ const API = {
 
   // sms
   smsDownloadApp: (phone: string, locale: string) => instance.post("/sms/download-app", { phone, locale }),
+  smsContentLink: (query: { phone: string, title: string, url: string }) => {
+    const headers = getHeaders();
+    return instance.post("/sms/content-link", query, { headers });
+  },
 };
 
 export default API;
