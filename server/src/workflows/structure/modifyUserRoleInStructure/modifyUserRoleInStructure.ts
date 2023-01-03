@@ -7,7 +7,7 @@ import { getUserById } from "../../../modules/users/users.repository";
 import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import {
   removeRoleAndStructureOfUser,
-  updateRoleAndStructureOfResponsable,
+  updateRoleAndStructureOfResponsable
 } from "../../../modules/users/users.service";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
@@ -19,10 +19,7 @@ interface Query {
   action: "delete" | "modify" | "create";
   role?: string;
 }
-export const modifyUserRoleInStructure = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
+export const modifyUserRoleInStructure = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.body || !req.body.query) {
@@ -35,7 +32,7 @@ export const modifyUserRoleInStructure = async (
       structureId,
       action,
       role,
-      membreId,
+      membreId
     });
 
     await checkIfUserIsAuthorizedToModifyStructure(
@@ -46,19 +43,19 @@ export const modifyUserRoleInStructure = async (
     );
 
     logger.info("[modifyUserRoleInStructure] updating stucture", {
-      structureId,
+      structureId
     });
     let structure;
 
     if (action === "modify" && role) {
       structure = {
         _id: structureId,
-        $set: { "membres.$.roles": [role] },
+        $set: { "membres.$.roles": [role] }
       };
     } else if (action === "delete") {
       structure = {
         _id: structureId,
-        $pull: { membres: { userId: membreId } },
+        $pull: { membres: { userId: membreId } }
       };
     } else if (action === "create" && role) {
       structure = {
@@ -67,9 +64,9 @@ export const modifyUserRoleInStructure = async (
           membres: {
             userId: membreId,
             roles: [role],
-            added_at: new Date(),
-          },
-        },
+            added_at: new Date()
+          }
+        }
       };
     } else {
       throw new Error("ERREUR");
@@ -79,11 +76,11 @@ export const modifyUserRoleInStructure = async (
 
     await log(action, role, membreId, structureId, req.userId);
 
+    const structureData = await getStructureFromDB(structure._id, false, { nom: 1, status: 1 });
     if ((action === "create" || action === "modify") && role === "administrateur") {
       const user = await getUserById(membreId, { email: 1, username: 1, roles: 1 });
       const adminRole = await getRoleByName("Admin");
       const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRole._id.toString());
-      const structureData = await getStructureFromDB(structure._id, false, { nom: 1 });
       if (!user || !structureData) {
         logger.error("[modifyUserRoleInStructure] mail not sent");
       } else if (userIsAdmin) {
@@ -93,7 +90,7 @@ export const modifyUserRoleInStructure = async (
           userId: user._id,
           email: user.email,
           pseudonyme: user.username,
-          nomstructure: structureData.nom,
+          nomstructure: structureData.nom
         });
       }
     }
@@ -102,14 +99,16 @@ export const modifyUserRoleInStructure = async (
     // if modify no need to update the user since he was already in the structure
     if (action === "delete") {
       await removeRoleAndStructureOfUser(membreId, structure._id);
-    } else if (action === "create") {
+    } else if (action === "create" && structureData.status !== "Supprimé") {
+      // Ne pas ajouter la structure à l'utilisateur si celle-ci
+      // est supprimée.
       await updateRoleAndStructureOfResponsable(membreId, structureId);
     }
 
     return res.status(200).json({ text: "Succès" });
   } catch (error) {
     logger.error("[modifyUserRoleInStructure] error", {
-      error,
+      error
     });
     switch (error.message) {
       case "NO_STRUCTURE_WITH_THIS_ID":

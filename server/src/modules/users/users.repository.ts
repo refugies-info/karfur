@@ -1,5 +1,5 @@
-import { User, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
-import { ObjectId } from "mongoose";
+import { User, UserDoc, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
+import { FilterQuery, ObjectId } from "mongoose";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
@@ -8,6 +8,9 @@ export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
 
 export const getUsersById = async (ids: ObjectId[], neededFields: NeededFields) =>
   await User.find({ _id: { $in: ids } }, neededFields);
+
+export const findUsers = (filter: FilterQuery<UserDoc>, neededFields: Record<string, number> = {}) =>
+  User.find(filter, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: Record<string, number>, populate: string = "roles structures") =>
   await User.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(populate);
