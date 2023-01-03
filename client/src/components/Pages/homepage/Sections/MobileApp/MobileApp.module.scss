@@ -35,7 +35,8 @@
       height: auto;
 
       @include isTablet() {
-        max-width: none;
+        max-width: inherit;
+        height: auto;
       }
     }
   }
