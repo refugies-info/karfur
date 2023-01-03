@@ -29,8 +29,32 @@ import Swal from "sweetalert2";
 import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
+import { useToggle } from "react-use";
 
 moment.locale("fr");
+
+interface EditableH2Props {
+  onValidate: (value: string) => Promise<any>;
+  title: string;
+}
+
+const EditableH2 = ({ title, onValidate }: EditableH2Props) => {
+  const [edition, toggleEdition] = useToggle(false);
+  const [value, setValue] = useState(title);
+  const _onValidate = (value: string) => onValidate(value).then(() => toggleEdition(false));
+  return edition ? (
+    <>
+      <input onChange={(e) => setValue(e.target.value)} className="form-control" type="text" value={value} />
+      <FButton disabled={value === ""} name="save-outline" onClick={() => _onValidate(value)} type="fill-dark" />
+    </>
+  ) : (
+    <>
+      <h2>{title}</h2>
+      <FButton name="edit-outline" onClick={toggleEdition} type="fill-dark" />
+    </>
+  );
+};
+
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
@@ -74,7 +98,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
 
   const updateStructuresStore = (
     structureId: ObjectId,
-    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
+    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
     value: string
   ) => {
     const structures = [...allStructures];
@@ -83,6 +107,16 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();
   };
+
+  const changeNom = (nom: string) =>
+    structure
+      ? API.updateStructure({
+          query: {
+            _id: structure._id,
+            nom
+          }
+        }).then(() => updateStructuresStore(structure._id, "nom", nom))
+      : Promise.reject("No structure");
 
   const onNotesChange = (e: any) => {
     if (adminCommentsSaved) setAdminCommentsSaved(false);
@@ -146,7 +180,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
         leftHead={
           <>
             <Image src={secureUrl || noStructure} alt="" width={140} height={60} objectFit="contain" />
-            <h2>{`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}</h2>
+            <EditableH2
+              onValidate={changeNom}
+              title={`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}
+            />
           </>
         }
         rightHead={
