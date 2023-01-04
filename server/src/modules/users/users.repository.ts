@@ -22,27 +22,34 @@ export const updateUserInDB = async (id: ObjectId, modifiedUser: any) =>
     new: true
   });
 
-export const removeRoleAndStructureInDB = (roleId: ObjectId, userId: ObjectId, structureId: ObjectId) =>
-  User.findByIdAndUpdate(
-    { _id: userId },
+export const addStructureForUsersInDB = (userIds: ObjectId[], structureId: ObjectId) =>
+  User.updateMany(
+    { _id: { $in: userIds } },
     {
-      $pull: {
-        roles: roleId,
+      $addToSet: {
         structures: structureId
       }
-    },
-    { upsert: true }
+    }
   );
 
-export const removeStructureInDB = (userId: ObjectId, structureId: ObjectId) =>
-  User.findByIdAndUpdate(
+export const removeStructureOfAllUsersInDB = (structureId: ObjectId) =>
+  User.updateMany(
+    { structures: structureId },
+    {
+      $pull: {
+        structures: structureId
+      }
+    }
+  );
+
+export const removeStructureOfUserInDB = (userId: ObjectId, structureId: ObjectId) =>
+  User.updateOne(
     { _id: userId },
     {
       $pull: {
         structures: structureId
       }
-    },
-    { upsert: true }
+    }
   );
 
 export const getUserByUsernameFromDB = async (username: string) => await User.findOne({ username });

@@ -5,10 +5,7 @@ import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/struc
 import { sendNewReponsableMailService } from "../../../modules/mail/mail.service";
 import { getUserById } from "../../../modules/users/users.repository";
 import { updateStructureMember, getStructureFromDB } from "../../../modules/structure/structure.repository";
-import {
-  removeRoleAndStructureOfUser,
-  updateRoleAndStructureOfResponsable
-} from "../../../modules/users/users.service";
+import { addStructureForUsers, removeStructureOfUser } from "../../../modules/users/users.service";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
@@ -98,11 +95,11 @@ export const modifyUserRoleInStructure = async (req: RequestFromClient<Query>, r
     // if delete, remove role and structure in corresponding user
     // if modify no need to update the user since he was already in the structure
     if (action === "delete") {
-      await removeRoleAndStructureOfUser(membreId, structure._id);
+      await removeStructureOfUser(membreId, structure._id);
     } else if (action === "create" && structureData.status !== "Supprimé") {
       // Ne pas ajouter la structure à l'utilisateur si celle-ci
       // est supprimée.
-      await updateRoleAndStructureOfResponsable(membreId, structureId);
+      await addStructureForUsers([membreId], structureId);
     }
 
     return res.status(200).json({ text: "Succès" });

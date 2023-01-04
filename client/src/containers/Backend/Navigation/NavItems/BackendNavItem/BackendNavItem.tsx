@@ -23,11 +23,11 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
   const user = useSelector(userSelector);
   const { t } = useTranslation();
 
-  const isAdmin = user && !user.admin;
-  const hasStructure = user && !user.membreStruct;
+  const isAdmin = user && user.admin;
+  const hasStructure = user && user.hasStructure;
 
-  if (access === "admin" && isAdmin) return null;
-  if (access === "hasStructure" && hasStructure) return null;
+  if (access === "admin" && !isAdmin) return null;
+  if (access === "hasStructure" && !hasStructure) return null;
 
   const enable = window.location.pathname.endsWith(getPath(route, routerLocale));
 
