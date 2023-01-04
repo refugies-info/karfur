@@ -11,14 +11,12 @@ describe("[Reducer] user", () => {
     traducteur: false,
     expertTrad: false,
     contributeur: false,
-    membreStruct: false,
+    hasStructure: false,
     userFetched: true,
-    rolesInStructure: [],
+    rolesInStructure: []
   };
   it("should set user in store when action SET_USER is received with payload user without role", () => {
-    expect(
-      userReducer(initialUserState, setUserActionCreator(testUser))
-    ).toEqual(expectedResult);
+    expect(userReducer(initialUserState, setUserActionCreator(testUser))).toEqual(expectedResult);
   });
 
   it("should set user in store when action SET_USER is received with payload null user", () => {
@@ -29,58 +27,52 @@ describe("[Reducer] user", () => {
       traducteur: false,
       expertTrad: false,
       contributeur: false,
-      membreStruct: false,
+      hasStructure: false,
       userFetched: true,
-      rolesInStructure: [],
+      rolesInStructure: []
     });
   });
 
   it("should set user in store when action SET_USER is received with payload user with all roles", () => {
-    expect(
-      userReducer(initialUserState, setUserActionCreator(testUserWithRoles))
-    ).toEqual({
+    expect(userReducer(initialUserState, setUserActionCreator(testUserWithRoles))).toEqual({
       user: testUserWithRoles,
       userId: testUserWithRoles._id,
       admin: true,
       traducteur: true,
       expertTrad: true,
       contributeur: true,
-      membreStruct: true,
+      hasStructure: true,
       userFetched: true,
-      rolesInStructure: [],
+      rolesInStructure: []
     });
   });
 
   it("should set user in store when action UPDATE_USER is received with payload new user ", () => {
     const newUser = {
       ...testUser,
-      _id: new ObjectId("55153a8014829a865bbf700d"),
+      _id: new ObjectId("55153a8014829a865bbf700d")
     };
-    expect(
-      userReducer(expectedResult, updateUserActionCreator(newUser))
-    ).toEqual({
+    expect(userReducer(expectedResult, updateUserActionCreator(newUser))).toEqual({
       ...expectedResult,
-      user: newUser,
+      user: newUser
     });
   });
 
   it("should set user in store when action SET_USER is received with payload new user ", () => {
     const newUser = {
       ...testUserWithRoles,
-      _id: new ObjectId("55153a8014829a865bbf700d"),
+      _id: new ObjectId("55153a8014829a865bbf700d")
     };
-    expect(
-      userReducer(initialUserState, setUserActionCreator(newUser))
-    ).toEqual({
+    expect(userReducer(initialUserState, setUserActionCreator(newUser))).toEqual({
       userId: newUser._id,
       admin: true,
       traducteur: true,
       expertTrad: true,
       contributeur: true,
-      membreStruct: true,
+      hasStructure: true,
       userFetched: true,
       rolesInStructure: [],
-      user: newUser,
+      user: newUser
     });
   });
 
@@ -92,22 +84,20 @@ describe("[Reducer] user", () => {
         {
           nom: "hasStructure",
           _id: new ObjectId("testObjectId"),
-          nomPublique: "hasStructure",
-        },
-      ],
+          nomPublique: "hasStructure"
+        }
+      ]
     };
-    expect(
-      userReducer(initialUserState, setUserActionCreator(newUser))
-    ).toEqual({
+    expect(userReducer(initialUserState, setUserActionCreator(newUser))).toEqual({
       userId: newUser._id,
       admin: false,
       traducteur: false,
       expertTrad: false,
       contributeur: false,
-      membreStruct: true,
+      hasStructure: false,
       userFetched: true,
       rolesInStructure: [],
-      user: newUser,
+      user: newUser
     });
   });
 
@@ -116,7 +106,7 @@ describe("[Reducer] user", () => {
       ...testUser,
       _id: new ObjectId("55153a8014829a865bbf700d"),
       roles: [],
-      structures: ["id1"],
+      structures: ["id1"]
     };
     expect(
       // @ts-ignore
@@ -127,10 +117,10 @@ describe("[Reducer] user", () => {
       traducteur: false,
       expertTrad: false,
       contributeur: false,
-      membreStruct: true,
+      hasStructure: true,
       userFetched: true,
       rolesInStructure: [],
-      user: newUser,
+      user: newUser
     });
   });
 });

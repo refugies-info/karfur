@@ -1,11 +1,6 @@
 import logger from "../../../logger";
-import {
-  Res,
-  RequestFromClient,
-  Picture,
-  Membre,
-} from "../../../types/interface";
-import { updateRoleAndStructureOfResponsable } from "../../../modules/users/users.service";
+import { Res, RequestFromClient, Picture, Membre } from "../../../types/interface";
+import { addStructureForUsers } from "../../../modules/users/users.service";
 import { createStructureInDB } from "../../../modules/structure/structure.repository";
 import { log } from "./log";
 
@@ -19,10 +14,7 @@ interface ReceivedStructure {
   nom: string;
 }
 
-export const createStructure = async (
-  req: RequestFromClient<ReceivedStructure>,
-  res: Res
-) => {
+export const createStructure = async (req: RequestFromClient<ReceivedStructure>, res: Res) => {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.query) {
@@ -34,7 +26,7 @@ export const createStructure = async (
       const structureToSave = {
         ...structure,
         createur: req.userId,
-        status: structure.status || "En attente",
+        status: structure.status || "En attente"
       };
 
       // @ts-ignore
@@ -44,25 +36,19 @@ export const createStructure = async (
       const structureId = newStructure._id;
       if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre
-        const responsableId =
-          newStructure.membres[0] && newStructure.membres[0].userId
-            ? newStructure.membres[0] && newStructure.membres[0].userId
-            : "";
-        if (responsableId) {
-          await updateRoleAndStructureOfResponsable(responsableId, structureId);
-        }
+        await addStructureForUsers([newStructure.membres[0].userId], structureId);
       }
       logger.info("[createStructure] successfully created structure with id", {
-        structureId,
+        structureId
       });
 
       return res.status(200).json({
         text: "Succès",
-        data: newStructure,
+        data: newStructure
       });
     } catch (err) {
       logger.error("[createStructure] error while creating structure", {
-        error: err,
+        error: err
       });
       res.status(500).json({ text: "Erreur interne" });
     }

@@ -8,18 +8,14 @@ import _ from "lodash";
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
-    ? roles
-        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
-        .map((role) => role.nom)
+    ? roles.filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad").map((role) => role.nom)
     : [];
 
 const getRole = (membres: any[], userId: ObjectId) => {
   const isAdmin =
     membres.filter(
       (membre) =>
-        membre.userId &&
-        membre.userId.toString() === userId.toString() &&
-        membre.roles.includes("administrateur")
+        membre.userId && membre.userId.toString() === userId.toString() && membre.roles.includes("administrateur")
     ).length > 0;
 
   if (isAdmin) return ["Responsable"];
@@ -27,9 +23,7 @@ const getRole = (membres: any[], userId: ObjectId) => {
   const isContrib =
     membres.filter(
       (membre) =>
-        membre.userId &&
-        membre.userId.toString() === userId.toString() &&
-        membre.roles.includes("contributeur")
+        membre.userId && membre.userId.toString() === userId.toString() && membre.roles.includes("contributeur")
     ).length > 0;
 
   if (isContrib) return ["Rédacteur"];
@@ -51,20 +45,13 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
 
   const languesFiltered = langues
     .filter((langue) =>
-      [
-        "Anglais",
-        "Russe",
-        "Persan",
-        "Pachto",
-        "Arabe",
-        "Tigrinya",
-        "Persan/Dari",
-        "Ukrainien"
-      ].includes(langue.langueFr)
+      ["Anglais", "Russe", "Persan", "Pachto", "Arabe", "Tigrinya", "Persan/Dari", "Ukrainien"].includes(
+        langue.langueFr
+      )
     )
     .map((langue) => ({
       langueCode: langue.langueCode,
-      langueFr: langue.langueFr,
+      langueFr: langue.langueFr
     }));
 
   return _.uniq(languesFiltered);
@@ -96,7 +83,7 @@ export const adaptUsers = (users: UserDoc[], role: "admin" | "hasStructure") =>
               nom: structure.nom,
               // @ts-ignore : structures populate
               picture: structure.picture,
-              role,
+              role
             };
           })
         : [];
@@ -119,7 +106,7 @@ export const adaptUsers = (users: UserDoc[], role: "admin" | "hasStructure") =>
       langues,
       structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
-      nbContributions: user.contributions ? user.contributions.length : 0,
+      nbContributions: user.contributions ? user.contributions.length : 0
     };
   });
 
@@ -142,15 +129,15 @@ export const getAllUsers = async (req: any, res: Res) => {
     const users = await getAllUsersFromDB(neededFields);
 
     // Check authorizations
-    const currentUser = users.find(u => u._id.toString() === req.user._id.toString());
-    const isAdmin = currentUser && !!currentUser.roles.some((r: any) => r.nom === "Admin")
-    const hasStructure = currentUser && !!currentUser.roles.some((r: any) => r.nom === "hasStructure")
+    const currentUser = users.find((u) => u._id.toString() === req.user._id.toString());
+    const isAdmin = currentUser && !!currentUser.roles.some((r: any) => r.nom === "Admin");
+    const hasStructure = currentUser && currentUser.structures && currentUser.structures?.length > 0;
     if (!isAdmin && !hasStructure) throw new Error("NOT_AUTHORIZED");
 
     const adaptedUsers = adaptUsers(users, isAdmin ? "admin" : "hasStructure");
 
     return res.status(200).json({
-      data: adaptedUsers,
+      data: adaptedUsers
     });
   } catch (error) {
     logger.error("[getAllUsers] error", { error: error.message });

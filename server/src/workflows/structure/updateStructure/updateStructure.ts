@@ -4,8 +4,7 @@ import { updateStructureInDB, getStructureFromDB } from "../../../modules/struct
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
-import { removeRoleAndStructureOfUser, updateRoleAndStructureOfResponsable } from "src/modules/users/users.service";
-import { findUsers } from "src/modules/users/users.repository";
+import { addStructureForUsers, removeStructureOfAllUsers } from "src/modules/users/users.service";
 
 // route called when modify structure but not its members (use another route for this)
 export const updateStructure = async (req: RequestFromClient<Partial<StructureDoc>>, res: Res) => {
@@ -43,12 +42,9 @@ export const updateStructure = async (req: RequestFromClient<Partial<StructureDo
         /**
          * Lors de la "suppression" de la structure, il faut supprimer
          * la structure dans la propriété structures de tous les utilisateurs
-         * + supprimer le rôle hasStructure si besoin
          * @see removeRoleAndStructureOfUser
          */
-        await findUsers({ structures: structure._id }).then((users) =>
-          users.map((user) => removeRoleAndStructureOfUser(user._id, structure._id))
-        );
+        await removeStructureOfAllUsers(structure._id);
       } else if (
         oldStructure.status === "Supprimé" &&
         (structure?.status === "Actif" || structure?.status === "En attente")
@@ -56,11 +52,11 @@ export const updateStructure = async (req: RequestFromClient<Partial<StructureDo
         /**
          * Lors de l'activation de la structure depuis le status supprimé, il faut
          * réenregistrer la structure dans la propriété structures de tous les utilisateurs
-         * + ajouter le rôle hasStructure si besoin
          * @see updateRoleAndStructureOfResponsable
          */
-        await updatedStructure.membres.map((membre) =>
-          updateRoleAndStructureOfResponsable(membre.userId, structure._id)
+        await addStructureForUsers(
+          updatedStructure.membres.map((membre) => membre.userId),
+          structure._id
         );
       }
 
