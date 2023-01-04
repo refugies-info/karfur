@@ -116,7 +116,7 @@ const Reset = () => {
   }, [dispatch, router.query.id]);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const togglePasswordVisibility = () => setPasswordVisible(!setPasswordVisible);
+  const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
 
   const send = (e: any) => {
     e.preventDefault();
