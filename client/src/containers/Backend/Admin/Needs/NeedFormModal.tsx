@@ -36,13 +36,20 @@ export const NeedFormModal = (props: Props) => {
   const dispositifs = useSelector(allDispositifsSelector);
   const dispatch = useDispatch();
 
-  const hasDispositifs = useMemo(() => {
-    if (!props.selectedNeed) return false;
-    return (
-      dispositifs.filter((disp) => (props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false))
-        .length > 0
+  const associatedDispositifs = useMemo(() => {
+    if (!props.selectedNeed) return [];
+    return dispositifs.filter((disp) =>
+      props.selectedNeed ? (disp.needs || []).includes(props.selectedNeed._id) : false
     );
   }, [props.selectedNeed, dispositifs]);
+
+  const hasDispositifs = useMemo(() => {
+    return associatedDispositifs.length > 0;
+  }, [associatedDispositifs]);
+
+  const hasActiveDispositifs = useMemo(() => {
+    return associatedDispositifs.filter((disp) => disp.status !== "Supprimé").length > 0;
+  }, [associatedDispositifs]);
 
   useEffect(() => {
     if (props.selectedNeed) {
@@ -93,9 +100,10 @@ export const NeedFormModal = (props: Props) => {
 
   const onDelete = () => {
     if (props.selectedNeed) {
+      const text = `Voulez-vous supprimer ce besoin ? ${hasDispositifs ? "Il possède des dispositifs associés." : ""}`;
       Swal.fire({
         title: "Êtes-vous sûr ?",
-        text: "Voulez-vous supprimer ce besoin ?",
+        text: text,
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: colors.rouge,
@@ -125,7 +133,13 @@ export const NeedFormModal = (props: Props) => {
       rightHead={
         <>
           {props.selectedNeed && (
-            <FButton className="me-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasDispositifs}>
+            <FButton
+              className="me-2"
+              type="error"
+              name="trash-2-outline"
+              onClick={onDelete}
+              disabled={hasActiveDispositifs}
+            >
               Supprimer
             </FButton>
           )}

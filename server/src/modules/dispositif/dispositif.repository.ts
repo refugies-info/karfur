@@ -48,10 +48,10 @@ export const updateDispositifInDB = async (
     | { status: string; publishedAt: number }
     | { status: string }
     | {
-        adminComments: string;
-        adminProgressionStatus: string;
-        adminPercentageProgressionStatus: string;
-      }
+      adminComments: string;
+      adminProgressionStatus: string;
+      adminPercentageProgressionStatus: string;
+    }
     | { audienceAge: AudienceAge[] }
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
@@ -203,3 +203,12 @@ export const getNbUpdatedRecently = async (date: Date) => {
     lastModificationDate: { $gte: date, $exists: true }
   });
 };
+
+export const getCountDispositifs = async (query: any) => Dispositif.count(query);
+
+export const deleteNeedFromDispositifs = async (needId: string) => {
+  return Dispositif.updateMany(
+    { needs: needId },
+    { $pull: { needs: needId } }
+  )
+}

@@ -6,7 +6,7 @@ import {
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
+import { getCountDispositifs, deleteNeedFromDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
@@ -14,7 +14,7 @@ const validator = celebrate({
   })
 });
 
-export interface Request {}
+export interface Request { }
 
 const handler = async (
   req: RequestFromClientWithBody<Request>,
@@ -26,12 +26,17 @@ const handler = async (
     //@ts-ignore
     checkIfUserIsAdmin(req.user.roles);
 
-
-    const dispositifs = await getActiveContents({ needs: 1 });
-    if (dispositifs.filter(disp => disp.needs.includes(req.params.id)).length > 0) {
-      // prevent from deleting if dispositifs associated
+    // prevent from deleting if active dispositifs associated
+    const activeDispositifs = await getCountDispositifs({
+      status: { $ne: "Supprimé" },
+      needs: req.params.id
+    });
+    if (activeDispositifs > 0) {
       throw new Error("INVALID_REQUEST");
     }
+
+    // delete need from dispositifs if necessary
+    await deleteNeedFromDispositifs(req.params.id);
 
     await deleteNeedById(req.params.id);
 
