@@ -43,7 +43,7 @@ const formattedUserContrib2 = {
   nbVues: 0,
   status: "Actif",
   responsabilite: "sponsor2",
-  isAuthorizedToDelete: false,
+  isAuthorizedToDelete: true,
 };
 
 const userContrib3 = {
@@ -198,11 +198,12 @@ const userStructureContrib = [
   userStructureContrib5,
 ];
 describe("formatContributions", () => {
-  it("should format correctly contribus", () => {
+  it("should format correctly contrib if user is member", () => {
     const result = formatContributions(
       userContribs,
       userStructureContrib,
-      "structure"
+      { nom: "structure", membres: [{ _id: "userId", roles: ["contributeur"] }] },
+      "userId"
     );
     expect(result).toEqual([
       formattedUserContrib1,
@@ -210,7 +211,24 @@ describe("formatContributions", () => {
       formattedUserContrib3,
       formattedUserContrib4,
       formattedUserContrib5,
-      formattedUserStructureContrib4,
+      { ...formattedUserStructureContrib4, isAuthorizedToDelete: false },
+    ]);
+  });
+
+  it("should format correctly contrib if user is administrateur", () => {
+    const result = formatContributions(
+      userContribs,
+      userStructureContrib,
+      { nom: "structure", membres: [{ _id: "userId", roles: ["contributeur", "administrateur"] }] },
+      "userId"
+    );
+    expect(result).toEqual([
+      formattedUserContrib1,
+      formattedUserContrib2,
+      formattedUserContrib3,
+      formattedUserContrib4,
+      formattedUserContrib5,
+      { ...formattedUserStructureContrib4, isAuthorizedToDelete: true },
     ]);
   });
 });

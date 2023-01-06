@@ -4,7 +4,7 @@ import { updateStructureInDB, getStructureFromDB } from "../../../modules/struct
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
 import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
-import { addStructureForUsers, removeStructureOfAllUsers } from "src/modules/users/users.service";
+import { addStructureForUsers, removeStructureOfAllUsers } from "../../../modules/users/users.service";
 
 // route called when modify structure but not its members (use another route for this)
 export const updateStructure = async (req: RequestFromClient<Partial<StructureDoc>>, res: Res) => {

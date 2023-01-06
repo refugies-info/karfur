@@ -128,7 +128,13 @@ describe("userContributions", () => {
         nbVues: 10,
         mainSponsor: "sponsor"
       }
-    ]
+    ],
+    membres: [{ _id: "userId", roles: ["contributeur"] }]
+  };
+  const userState = {
+    user: {
+      _id: "userId"
+    }
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
@@ -139,7 +145,8 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure
+          userStructure,
+          user: userState
         }
       });
     });
@@ -160,7 +167,8 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure
+          userStructure,
+          user: userState
         }
       });
     });
@@ -183,7 +191,8 @@ describe("userContributions", () => {
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
-          userContributions: [userContributions[0]]
+          userContributions: [userContributions[0]],
+          user: userState
         }
       });
     });

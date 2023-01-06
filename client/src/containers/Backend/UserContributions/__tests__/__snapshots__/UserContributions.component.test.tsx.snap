@@ -813,7 +813,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   background-color: #f44336;
 }
 
-.c16 {
+.c18 {
   width: 40px;
   height: 40px;
   background-color: #828282;
@@ -835,7 +835,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   cursor: not-allowed;
 }
 
-.c16:hover {
+.c18:hover {
   background-color: #828282;
 }
 
@@ -975,7 +975,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   color: #ffffff;
 }
 
-.c17 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -998,7 +998,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   color: #ffffff;
 }
 
-.c18 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1734,9 +1734,10 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c16"
+                      className="c12"
                       data-test-id="delete-button"
-                      disabled={true}
+                      disabled={false}
+                      onClick={[Function]}
                     >
                       <div
                         style={
@@ -1909,9 +1910,10 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c16"
+                      className="c12"
                       data-test-id="delete-button"
-                      disabled={true}
+                      disabled={false}
+                      onClick={[Function]}
                     >
                       <div
                         style={
@@ -2014,7 +2016,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     }
                   >
                     <div
-                      className="c17"
+                      className="c16"
                       color="#F44336"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
@@ -2190,7 +2192,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     }
                   >
                     <div
-                      className="c18"
+                      className="c17"
                       color="#4CAF50"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
@@ -2266,9 +2268,10 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c16"
+                      className="c12"
                       data-test-id="delete-button"
-                      disabled={true}
+                      disabled={false}
+                      onClick={[Function]}
                     >
                       <div
                         style={
@@ -2371,7 +2374,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     }
                   >
                     <div
-                      className="c18"
+                      className="c17"
                       color="#4CAF50"
                       onMouseEnter={[Function]}
                       onMouseLeave={[Function]}
@@ -2447,10 +2450,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       </div>
                     </div>
                     <div
-                      className="c12"
+                      className="c18"
                       data-test-id="delete-button"
-                      disabled={false}
-                      onClick={[Function]}
+                      disabled={true}
                     >
                       <div
                         style={
