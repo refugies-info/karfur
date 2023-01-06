@@ -43,6 +43,7 @@ export const checkCronAuthorization = (cronToken: string) => {
   return;
 };
 
+// Dispositif edition
 const isUserAuthorizedToModifyDispositif = (
   dispositif: DispositifDoc,
   userId: ObjectId,
@@ -107,6 +108,54 @@ export const checkUserIsAuthorizedToModifyDispositif = (
 ) => {
   if (
     !isUserAuthorizedToModifyDispositif(dispositif, userId, requestUserRoles)
+  ) {
+    throw new Error("NOT_AUTHORIZED");
+  }
+  return true;
+};
+
+// Dispositif deletion
+const isUserAuthorizedToDeleteDispositif = (
+  dispositif: DispositifDoc,
+  userId: ObjectId,
+  requestUserRoles: { nom: string }[]
+) => {
+  logger.info("[isUserAuthorizedToDeleteDispositif] received");
+  // user is admin
+  const isAdmin = (requestUserRoles || []).some((x) => x.nom === "Admin");
+  if (isAdmin) {
+    logger.info("[isUserAuthorizedToDeleteDispositif] user is admin");
+    return true;
+  }
+
+  // @ts-ignore
+  const sponsor: StructureDoc = dispositif.mainSponsor;
+  const userInStructure = sponsor && sponsor.membres.find(
+    (membre) => membre.userId?.toString() === userId.toString()
+  );
+  if (!userInStructure) return false; // user not in structure
+
+  // user is responsable of structure
+  if (userInStructure.roles.includes("administrateur")) {
+    return true;
+  }
+
+  // user is redacteur of structure and author
+  const isAuthor = dispositif.creatorId.toString() === userId.toString();
+  if (userInStructure.roles.includes("contributeur") && isAuthor) {
+    return true;
+  }
+
+  return false;
+};
+
+export const checkUserIsAuthorizedToDeleteDispositif = (
+  dispositif: DispositifDoc,
+  userId: ObjectId,
+  requestUserRoles: { nom: string }[]
+) => {
+  if (
+    !isUserAuthorizedToDeleteDispositif(dispositif, userId, requestUserRoles)
   ) {
     throw new Error("NOT_AUTHORIZED");
   }

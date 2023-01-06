@@ -9,11 +9,11 @@ import {
 import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
-  userStructureNameSelector,
   userStructureSelector
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { userDetailsSelector } from "services/User/user.selectors";
 import { formatContributions } from "./functions";
 import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "components/Modals";
@@ -65,7 +65,6 @@ const UserContributions = (props: Props) => {
 
   const userContributions = useSelector(userContributionsSelector);
   const userStructureContributions = useSelector(userStructureDisposAssociesSelector);
-  const userStructureName = useSelector(userStructureNameSelector);
   const isLoadingUserContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   const isLoadingUserStructureContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
@@ -89,7 +88,8 @@ const UserContributions = (props: Props) => {
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const contributions = formatContributions(userContributions, userStructureContributions, userStructureName);
+  const user = useSelector(userDetailsSelector);
+  const contributions = formatContributions(userContributions, userStructureContributions, userStructure, user?._id);
 
   const onContributionRowClick = (burl: string) => router.push(burl);
 
