@@ -419,6 +419,10 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          toggleRespoModal={(structureId: ObjectId) => {
+            setSelectedStructureId(structureId);
+            setSelectFirstRespoModal(true);
+          }}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>

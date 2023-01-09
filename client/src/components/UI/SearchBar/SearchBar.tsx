@@ -166,9 +166,9 @@ const SearchBar = (props: Props) => {
         onSuggestionsFetchRequested={onSuggestionsFetchRequested}
         getSuggestionValue={(s) => getSuggestionValue(s)}
         renderSuggestion={renderSuggestion}
-        // @ts-ignore FIXME
         inputProps={inputProps}
         onSuggestionSelected={onSuggestionSelected}
+        onSuggestionsClearRequested={() => setSuggestions([])}
       />
       {isNoResult && props.structures && !isLoadingResults && (
         <NoResultContainer>
