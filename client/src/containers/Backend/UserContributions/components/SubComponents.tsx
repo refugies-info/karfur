@@ -27,7 +27,7 @@ const Container = styled.div`
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid ${colors.gray90};
 `;
 
@@ -43,7 +43,7 @@ const RowContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  cursor: pointer;
+  cursor: default;
 `;
 
 export const Responsabilite = (props: { responsable: string | null }) => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
@@ -61,7 +60,6 @@ const UserContributions = (props: Props) => {
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const userContributions = useSelector(userContributionsSelector);
   const userStructureContributions = useSelector(userStructureDisposAssociesSelector);
@@ -90,8 +88,6 @@ const UserContributions = (props: Props) => {
 
   const user = useSelector(userDetailsSelector);
   const contributions = formatContributions(userContributions, userStructureContributions, userStructure, user?._id);
-
-  const onContributionRowClick = (burl: string) => router.push(burl);
 
   const deleteDispositif = (event: any, dispositifId: ObjectId, isAuthorizedToDelete: boolean) => {
     event.stopPropagation();
@@ -186,7 +182,6 @@ const UserContributions = (props: Props) => {
               contributions={contributions}
               toggleTutoModal={toggleTutoModal}
               setTutoModalDisplayed={setTutoModalDisplayed}
-              onContributionRowClick={onContributionRowClick}
               deleteDispositif={deleteDispositif}
             />
           </WhiteContainer>

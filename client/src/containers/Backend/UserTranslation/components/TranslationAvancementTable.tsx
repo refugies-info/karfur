@@ -3,6 +3,7 @@ import { IDispositifTranslation } from "types/interface";
 import styled from "styled-components";
 import { colors } from "colors";
 import { Table } from "reactstrap";
+import { Link } from "react-router-dom";
 import { TypeContenu } from "../../UserContributions/components/SubComponents";
 import { Title, TabHeader } from "../../Admin/sharedComponents/SubComponents";
 import { ProgressWithValue, TradStatus } from "./SubComponents";
@@ -68,22 +69,15 @@ export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const routerLocale = useRouterLocale();
 
-  const goToTraduction = (element: IDispositifTranslation) => {
+  const goToTraduction = (event: any, element: IDispositifTranslation) => {
     if (props.user && props.user.email === "") {
       props.toggleCompleteProfilModal();
       props.setElementToTranslate(element);
+      event.preventDefault();
     } else {
-      if (!props.langueId) return;
-      if (!props.isExpert && element.tradStatus === "Validée") return;
-      return props.history.push({
-        pathname:
-          routerLocale +
-          "/backend" +
-          (props.isExpert ? "/validation" : "/traduction") +
-          "/" +
-          (element.typeContenu || "dispositif"),
-        search: `?language=${props.langueId}&dispositif=${element._id}`
-      });
+      if (!props.langueId || (!props.isExpert && element.tradStatus === "Validée")) {
+        event.preventDefault();
+      }
     }
   };
   const reorder = (element: { name: string; order: string }) => {
@@ -175,18 +169,27 @@ export const TranslationAvancementTable = (props: Props) => {
           {sortedData.map((element, key) => {
             const nbDays = element.created_at ? -moment(element.created_at).diff(moment(), "days") + " jours" : "ND";
             return (
-              <tr
-                key={key}
-                onClick={() => goToTraduction(element)}
-                className={styles.line}
-                data-test-id={`test-line-${element._id}`}
-              >
+              <tr key={key} className={styles.line}>
                 <td className={styles.first + " align-middle"}>
                   <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
-                    <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+                    <Link
+                      data-test-id={`test-line-${element._id}`}
+                      onClick={(e) => goToTraduction(e, element)}
+                      to={{
+                        pathname:
+                          routerLocale +
+                          "/backend" +
+                          (props.isExpert ? "/validation" : "/traduction") +
+                          "/" +
+                          (element.typeContenu || "dispositif"),
+                        search: `?language=${props.langueId}&dispositif=${element._id}`
+                      }}
+                    >
+                      <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+                    </Link>
                   </div>
                 </td>
 

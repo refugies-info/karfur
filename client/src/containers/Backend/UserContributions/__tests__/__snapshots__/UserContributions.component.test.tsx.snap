@@ -293,7 +293,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -312,7 +312,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .c10 {
@@ -557,7 +557,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id1"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -869,7 +868,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -884,7 +883,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -903,7 +902,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  cursor: pointer;
+  cursor: default;
 }
 
 .c10 {
@@ -1240,7 +1239,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id1"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -1419,7 +1417,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id2"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -1595,7 +1592,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id3"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -1771,7 +1767,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id4"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -1947,7 +1942,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id5"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -2123,7 +2117,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id6"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -2305,7 +2298,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
               <tr
                 className="line"
                 data-test-id="test_id7"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"

@@ -10,6 +10,7 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import { User } from "types/interface";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
+import { Link } from "react-router-dom";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -76,11 +77,10 @@ export const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(initialStatusFilter);
   const [typeContenuFilter, setTypeContenuFilter] = useState<ITypeContenu | "all">("dispositif");
 
-  const navigateToLanguage = (langue: string) => {
-    if (props.actualLanguage !== langue) {
-      return props.history.push(routerLocale + "/backend/user-translation/" + langue);
+  const navigateToLanguage = (e: any, langue: string) => {
+    if (props.actualLanguage === langue) {
+      e.preventDefault();
     }
-    return;
   };
 
   const onFilterClick = (status: TranslationStatus | "all") => {
@@ -107,16 +107,18 @@ export const TranslationsAvancement = (props: Props) => {
       <RowContainer>
         <Row>
           {props.userTradLanguages.map((langue) => (
-            <div
-              key={langue.i18nCode}
-              onClick={() => navigateToLanguage(langue.i18nCode)}
-              data-test-id={`test-langue-${langue._id}`}
-            >
-              <LanguageTitle
-                language={langue}
-                isSelected={langue.i18nCode === props.actualLanguage}
-                hasMultipleLanguages={props.userTradLanguages.length > 1}
-              />
+            <div key={langue.i18nCode}>
+              <Link
+                data-test-id={`test-langue-${langue._id}`}
+                onClick={(e) => navigateToLanguage(e, langue.i18nCode)}
+                to={routerLocale + "/backend/user-translation/" + langue.i18nCode}
+              >
+                <LanguageTitle
+                  language={langue}
+                  isSelected={langue.i18nCode === props.actualLanguage}
+                  hasMultipleLanguages={props.userTradLanguages.length > 1}
+                />
+              </Link>
             </div>
           ))}
         </Row>

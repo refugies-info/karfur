@@ -311,11 +311,7 @@ export const ContentDetailsModal = (props: Props) => {
                               text={`+ ${members.length - 2} responsables`}
                               condensed={true}
                               noImage={true}
-                              onClick={() => {
-                                history.push(
-                                  `${routerLocale}/backend/user-dash-structure-selected?id=${structure._id}`
-                                );
-                              }}
+                              link={`${routerLocale}/backend/user-dash-structure-selected?id=${structure._id}`}
                             />
                           </Col>
                         )}
