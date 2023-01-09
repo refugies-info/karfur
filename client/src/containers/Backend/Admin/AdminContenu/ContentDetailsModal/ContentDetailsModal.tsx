@@ -31,6 +31,7 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 interface Props {
   show: boolean;
   toggleModal: () => void;
+  toggleRespoModal: (structureId: ObjectId) => void;
   selectedDispositifId: ObjectId | null;
   onDeleteClick: () => Promise<void>;
   setShowChangeStructureModal: (arg: boolean) => void;
@@ -275,9 +276,15 @@ export const ContentDetailsModal = (props: Props) => {
                     <Label>Premier responsable</Label>
                     <UserButton
                       user={structure.responsable}
+                      text={!structure.responsable ? "Choisir un responsable" : undefined}
+                      noImage={!structure.responsable}
                       onClick={() => {
-                        props.toggleModal();
-                        props.setSelectedUserIdAndToggleModal(structure.responsable?._id || null);
+                        if (structure.responsable) {
+                          props.toggleModal();
+                          props.setSelectedUserIdAndToggleModal(structure.responsable?._id || null);
+                        } else {
+                          props.toggleRespoModal(structure._id);
+                        }
                       }}
                     />
                   </div>
@@ -285,7 +292,7 @@ export const ContentDetailsModal = (props: Props) => {
                   {members.length > 0 && (
                     <div>
                       <Label>Autres responsables</Label>
-                      <Row noGutters>
+                      <Row className="g-0">
                         {members.slice(0, moreMembers ? 2 : 3).map((user, index) => (
                           <Col key={index} className="me-1">
                             <UserButton
