@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Log } from "types/interface";
 import Image from "next/legacy/image";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
@@ -192,11 +192,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
               className="me-2"
               type="dark"
               name="person-outline"
-              onClick={() => {
-                props.history.push({
-                  pathname: routerLocale + "/backend/user-dash-structure-selected",
-                  search: `?id=${structure._id}`
-                });
+              tag={Link}
+              to={{
+                pathname: routerLocale + "/backend/user-dash-structure-selected",
+                search: `?id=${structure._id}`
               }}
             >
               Membres

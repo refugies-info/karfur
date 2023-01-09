@@ -772,7 +772,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -871,20 +871,23 @@ exports[`user translation should render correctly with expert, admin 1`] = `
         <div
           className="c2"
         >
-          <div
-            data-test-id="test-langue-undefined"
-            onClick={[Function]}
-          >
-            <div
-              className="c3 language_title"
+          <div>
+            <a
+              data-test-id="test-langue-undefined"
+              href="/fr/backend/user-translation/en"
+              onClick={[Function]}
             >
-              <span
-                className="selected fi fi-undefined"
-              />
               <div
-                className="c4"
-              />
-            </div>
+                className="c3 language_title"
+              >
+                <span
+                  className="selected fi fi-undefined"
+                />
+                <div
+                  className="c4"
+                />
+              </div>
+            </a>
           </div>
         </div>
         <div
@@ -1296,8 +1299,6 @@ exports[`user translation should render correctly with expert, admin 1`] = `
             <tbody>
               <tr
                 className="line"
-                data-test-id="test-line-id6"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -1318,16 +1319,22 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                       }
                     }
                   >
-                    <div
-                      className="c16"
+                    <a
+                      data-test-id="test-line-id6"
+                      href="/fr/backend/validation/dispositif?language=undefined&dispositif=id6"
+                      onClick={[Function]}
                     >
-                      <b>
-                        TI6
-                      </b>
-                      <span>
-                        avec TM6
-                      </span>
-                    </div>
+                      <div
+                        className="c16"
+                      >
+                        <b>
+                          TI6
+                        </b>
+                        <span>
+                          avec TM6
+                        </span>
+                      </div>
+                    </a>
                   </div>
                 </td>
                 <td
@@ -1664,7 +1671,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -1763,20 +1770,23 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
         <div
           className="c2"
         >
-          <div
-            data-test-id="test-langue-idEn"
-            onClick={[Function]}
-          >
-            <div
-              className="c3 language_title"
+          <div>
+            <a
+              data-test-id="test-langue-idEn"
+              href="/fr/backend/user-translation/en"
+              onClick={[Function]}
             >
-              <span
-                className="selected fi fi-undefined"
-              />
               <div
-                className="c4"
-              />
-            </div>
+                className="c3 language_title"
+              >
+                <span
+                  className="selected fi fi-undefined"
+                />
+                <div
+                  className="c4"
+                />
+              </div>
+            </a>
           </div>
         </div>
         <div
@@ -2188,8 +2198,6 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
             <tbody>
               <tr
                 className="line"
-                data-test-id="test-line-id6"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -2210,16 +2218,22 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                       }
                     }
                   >
-                    <div
-                      className="c16"
+                    <a
+                      data-test-id="test-line-id6"
+                      href="/fr/backend/validation/dispositif?language=idEn&dispositif=id6"
+                      onClick={[Function]}
                     >
-                      <b>
-                        TI6
-                      </b>
-                      <span>
-                        avec TM6
-                      </span>
-                    </div>
+                      <div
+                        className="c16"
+                      >
+                        <b>
+                          TI6
+                        </b>
+                        <span>
+                          avec TM6
+                        </span>
+                      </div>
+                    </a>
                   </div>
                 </td>
                 <td
@@ -2477,7 +2491,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  cursor: pointer;
+  cursor: default;
   border: 1px solid #212121;
 }
 
@@ -2576,20 +2590,23 @@ exports[`user translation should render correctly with non expert, non admin 1`]
         <div
           className="c2"
         >
-          <div
-            data-test-id="test-langue-idEn"
-            onClick={[Function]}
-          >
-            <div
-              className="c3 language_title"
+          <div>
+            <a
+              data-test-id="test-langue-idEn"
+              href="/fr/backend/user-translation/en"
+              onClick={[Function]}
             >
-              <span
-                className="selected fi fi-undefined"
-              />
               <div
-                className="c4"
-              />
-            </div>
+                className="c3 language_title"
+              >
+                <span
+                  className="selected fi fi-undefined"
+                />
+                <div
+                  className="c4"
+                />
+              </div>
+            </a>
           </div>
         </div>
         <div
@@ -2954,8 +2971,6 @@ exports[`user translation should render correctly with non expert, non admin 1`]
             <tbody>
               <tr
                 className="line"
-                data-test-id="test-line-id3"
-                onClick={[Function]}
               >
                 <td
                   className="first align-middle"
@@ -2976,16 +2991,22 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                       }
                     }
                   >
-                    <div
-                      className="c14"
+                    <a
+                      data-test-id="test-line-id3"
+                      href="/fr/backend/traduction/dispositif?language=idEn&dispositif=id3"
+                      onClick={[Function]}
                     >
-                      <b>
-                        T3
-                      </b>
-                      <span>
-                        avec TM3
-                      </span>
-                    </div>
+                      <div
+                        className="c14"
+                      >
+                        <b>
+                          T3
+                        </b>
+                        <span>
+                          avec TM3
+                        </span>
+                      </div>
+                    </a>
                   </div>
                 </td>
                 <td

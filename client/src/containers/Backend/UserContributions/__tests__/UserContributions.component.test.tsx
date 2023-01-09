@@ -177,10 +177,6 @@ describe("userContributions", () => {
       shouldRedirect: false
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    await act(() => component.root.findByProps({ "data-test-id": "test_id1" }).props.onClick());
-    expect(Router).toMatchObject({ asPath: "/dispositif/id1" });
-    await act(() => component.root.findByProps({ "data-test-id": "test_id2" }).props.onClick());
-    expect(Router).toMatchObject({ asPath: "/demarche/id2" });
   });
 
   it("should render correctly when click on delete", () => {

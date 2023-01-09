@@ -11,7 +11,7 @@ import "jest-styled-components";
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
-  return Image
+  return Image;
 });
 
 // Mock history
@@ -19,22 +19,19 @@ const push = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useParams: jest.fn(),
-  useHistory: () => ({ push }),
+  useHistory: () => ({ push })
 }));
 
-jest.mock(
-  "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
-  () => {
-    const actions = jest.requireActual(
-      "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions"
-    );
-    return {
-      fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
-        actions.fetchDispositifsWithTranslationsStatusActionCreator
-      ),
-    };
-  }
-);
+jest.mock("services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions", () => {
+  const actions = jest.requireActual(
+    "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions"
+  );
+  return {
+    fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
+      actions.fetchDispositifsWithTranslationsStatusActionCreator
+    )
+  };
+});
 jest.mock("utils/API");
 
 describe("user translation", () => {
@@ -52,17 +49,15 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           loadingStatus: {
-            FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: true },
+            FETCH_DISPOSITIFS_TRANSLATIONS_STATUS: { isLoading: true }
           },
           user: {
-            user: { selectedLanguages: [{ i18nCode: "en" }], _id: "userId" },
-          },
-        },
+            user: { selectedLanguages: [{ i18nCode: "en" }], _id: "userId" }
+          }
+        }
       });
     });
-    expect(
-      fetchDispositifsWithTranslationsStatusActionCreator
-    ).toHaveBeenCalledWith("en");
+    expect(fetchDispositifsWithTranslationsStatusActionCreator).toHaveBeenCalledWith("en");
     expect(API.get_progression).toHaveBeenCalledWith({ userId: "userId" });
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -77,8 +72,8 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [{ i18nCode: "en" }] } },
-          dispositifsWithTranslations: [],
-        },
+          dispositifsWithTranslations: []
+        }
       });
     });
     expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/en");
@@ -95,13 +90,11 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: [],
-        },
+          dispositifsWithTranslations: []
+        }
       });
     });
-    expect(
-      fetchDispositifsWithTranslationsStatusActionCreator
-    ).not.toHaveBeenCalled();
+    expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
     expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
   });
@@ -116,13 +109,11 @@ describe("user translation", () => {
         reduxState: {
           ...initialMockStore,
           user: { user: { selectedLanguages: [] } },
-          dispositifsWithTranslations: [{ _id: "id" }],
-        },
+          dispositifsWithTranslations: [{ _id: "id" }]
+        }
       });
     });
-    expect(
-      fetchDispositifsWithTranslationsStatusActionCreator
-    ).not.toHaveBeenCalled();
+    expect(fetchDispositifsWithTranslationsStatusActionCreator).not.toHaveBeenCalled();
     expect(API.get_progression).not.toHaveBeenCalled();
     expect(push).toHaveBeenCalledWith("/fr/backend/user-translation");
     expect(component.toJSON()).toMatchSnapshot();
@@ -139,21 +130,13 @@ describe("user translation", () => {
           ...initialMockStore,
           user: {
             user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: false,
+            expertTrad: false
           },
-          dispositifsWithTranslations,
-        },
+          dispositifsWithTranslations
+        }
       });
     });
-
     expect(component.toJSON()).toMatchSnapshot();
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-line-id3" }).props.onClick();
-    });
-    expect(push).toHaveBeenCalledWith({
-      pathname: "/fr/backend/traduction/dispositif",
-      search: "?language=idEn&dispositif=id3",
-    });
   });
 
   it("should render correctly with expert, non admin", () => {
@@ -167,18 +150,11 @@ describe("user translation", () => {
           ...initialMockStore,
           user: {
             user: { selectedLanguages: [{ i18nCode: "en", _id: "idEn" }] },
-            expertTrad: true,
+            expertTrad: true
           },
-          dispositifsWithTranslations,
-        },
+          dispositifsWithTranslations
+        }
       });
-    });
-    act(() => {
-      component.root.findByProps({ "data-test-id": "test-line-id6" }).props.onClick();
-    });
-    expect(push).toHaveBeenCalledWith({
-      pathname: "/fr/backend/validation/dispositif",
-      search: "?language=idEn&dispositif=id6",
     });
     expect(component.toJSON()).toMatchSnapshot();
   });
@@ -195,39 +171,14 @@ describe("user translation", () => {
           user: {
             user: { selectedLanguages: [{ i18nCode: "en" }] },
             expertTrad: true,
-            admin: true,
+            admin: true
           },
-          dispositifsWithTranslations,
+          dispositifsWithTranslations
         },
-        compProps: { },
+        compProps: {}
       });
     });
 
     expect(component.toJSON()).toMatchSnapshot();
-  });
-
-  it("should change language", () => {
-    useParams.mockReturnValueOnce({ id: "en" });
-    window.scrollTo = jest.fn();
-    let component;
-    act(() => {
-      component = wrapWithProvidersAndRender({
-        Component: UserTranslation,
-        reduxState: {
-          ...initialMockStore,
-          user: {
-            user: {
-              selectedLanguages: [
-                { i18nCode: "en", _id: "idEn" },
-                { i18nCode: "ps", _id: "idPs" },
-              ],
-            },
-          },
-          dispositifsWithTranslations,
-        },
-      });
-    });
-    component.root.findByProps({ "data-test-id": "test-langue-idPs" }).props.onClick();
-    expect(push).toHaveBeenCalledWith("/fr/backend/user-translation/ps");
   });
 });

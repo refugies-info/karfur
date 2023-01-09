@@ -1,17 +1,9 @@
 import React from "react";
 import { Table } from "reactstrap";
+import Link from "next/link";
 import { FormattedUserContribution } from "../types";
-import {
-  TypeContenu,
-  Responsabilite,
-  ContribStyledStatus,
-  StatutHeader,
-} from "./SubComponents";
-import {
-  Title,
-  DeleteButton,
-  SeeButtonWithoutNavigation,
-} from "../../Admin/sharedComponents/SubComponents";
+import { TypeContenu, Responsabilite, ContribStyledStatus, StatutHeader } from "./SubComponents";
+import { Title, DeleteButton, SeeButtonWithoutNavigation } from "../../Admin/sharedComponents/SubComponents";
 import { ObjectId } from "mongodb";
 import styles from "scss/components/adminTable.module.scss";
 
@@ -20,7 +12,6 @@ interface Props {
   contributions: FormattedUserContribution[];
   toggleTutoModal: () => void;
   setTutoModalDisplayed: (arg: string) => void;
-  onContributionRowClick: (arg: string) => void;
   deleteDispositif: (arg1: any, arg: ObjectId, arg2: boolean) => void;
 }
 
@@ -48,27 +39,17 @@ export const UserContribTable = (props: Props) => (
     </thead>
     <tbody>
       {props.contributions.map((element, key) => {
-        const burl =
-          "/" + (element.typeContenu || "dispositif") + "/" + element._id;
+        const burl = "/" + (element.typeContenu || "dispositif") + "/" + element._id;
 
         return (
-          <tr
-            key={key}
-            onClick={() => props.onContributionRowClick(burl)}
-            className={styles.line}
-            data-test-id={`test_${element._id}`}
-          >
+          <tr key={key} className={styles.line} data-test-id={`test_${element._id}`}>
             <td className={styles.first + " align-middle"}>
-              <TypeContenu
-                type={element.typeContenu || "dispositif"}
-                isDetailedVue={false}
-              />
+              <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
             </td>
             <td className="align-middle">
-              <Title
-                titreInformatif={element.titreInformatif}
-                titreMarque={element.titreMarque || null}
-              />
+              <Link href={burl}>
+                <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+              </Link>
             </td>
 
             <td className="align-middle">
@@ -120,13 +101,7 @@ export const UserContribTable = (props: Props) => (
                 <SeeButtonWithoutNavigation />
                 <DeleteButton
                   data-test-id={"test_delete_" + element._id}
-                  onClick={(event: any) =>
-                    props.deleteDispositif(
-                      event,
-                      element._id,
-                      element.isAuthorizedToDelete
-                    )
-                  }
+                  onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}
                   disabled={!element.isAuthorizedToDelete}
                 />
               </div>
