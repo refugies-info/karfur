@@ -57,7 +57,7 @@ const FSearchBtn = (props: Props) => {
         !!noHover && styles.no_hover,
         !!smallFont && styles.small_font,
         !!color && styles.color,
-        className || "",
+        className || ""
       )}
       {...bProps}
       style={{ backgroundColor: color || "" }}
@@ -65,7 +65,7 @@ const FSearchBtn = (props: Props) => {
       {children}
       {active && !noIcon && (
         <EVAIcon
-          className="ml-10"
+          className="ms-2"
           name="close-outline"
           fill={filter ? "black" : ""}
           onClick={props.iconCallback || null}

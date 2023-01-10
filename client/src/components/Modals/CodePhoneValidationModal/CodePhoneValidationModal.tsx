@@ -30,26 +30,22 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
 `;
 interface Props {
-  visible: boolean
-  code: string
-  phone: string
-  isLoading: boolean
-  error: string|undefined|null
-  onChange: any
-  onValidate: any
-  toggle: any
-  t: any
+  visible: boolean;
+  code: string;
+  phone: string;
+  isLoading: boolean;
+  error: string | undefined | null;
+  onChange: any;
+  onValidate: any;
+  toggle: any;
+  t: any;
 }
 
 export const CodePhoneValidationModal = (props: Props) => {
   return (
-    <Modal
-      show={props.visible}
-      toggle={props.toggle}
-      className="auto-height bg-grey"
-    >
+    <Modal show={props.visible} toggle={props.toggle} className="auto-height bg-grey">
       <ModalBody>
-        <Title>{ props.t("UserProfile.edit_phone_number") }</Title>
+        <Title>{props.t("UserProfile.edit_phone_number")}</Title>
         <Text> {props.t("UserProfile.edit_phone_number_subtitle", { phone: props.phone })}</Text>
         <FInput
           value={props.code}
@@ -64,18 +60,11 @@ export const CodePhoneValidationModal = (props: Props) => {
           disabled={props.isLoading}
         ></FInput>
         <ErrorText>
-          {(props.error && props.error === "WRONG_CODE") &&
-          props.t("UserProfile.edit_phone_number_wrong_code")}
+          {props.error && props.error === "WRONG_CODE" && props.t("UserProfile.edit_phone_number_wrong_code")}
         </ErrorText>
 
         <ButtonsContainer>
-          <FButton
-            type="white"
-            name="close-outline"
-            className="mr-8"
-            onClick={props.toggle}
-            disabled={props.isLoading}
-          >
+          <FButton type="white" name="close-outline" className="me-2" onClick={props.toggle} disabled={props.isLoading}>
             {props.t("Annuler")}
           </FButton>
           <FButton
@@ -90,4 +79,4 @@ export const CodePhoneValidationModal = (props: Props) => {
       </ModalBody>
     </Modal>
   );
-}
+};

@@ -254,14 +254,14 @@ export const AdminContenu = () => {
       Swal.fire({
         title: "Yay...",
         text: "Export en cours",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -299,7 +299,7 @@ export const AdminContenu = () => {
       title: "Êtes-vous sûr ?",
       text,
 
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
@@ -314,7 +314,7 @@ export const AdminContenu = () => {
         Swal.fire({
           title: "Yay...",
           text: "Contenu publié",
-          type: "success",
+          icon: "success",
           timer: 5500,
           footer: `<a target='_blank' href=${link}>Voir le contenu</a>`
         });
@@ -324,7 +324,7 @@ export const AdminContenu = () => {
         Swal.fire({
           title: "Oh non!",
           text: "Something went wrong",
-          type: "error",
+          icon: "error",
           timer: 1500
         });
       }
@@ -360,7 +360,7 @@ export const AdminContenu = () => {
         </StyledHeaderInner>
         <StyledSort>
           {process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production" && (
-            <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+            <FButton type="dark" className="me-2" onClick={exportToAirtable}>
               {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
             </FButton>
           )}
@@ -462,8 +462,8 @@ export const AdminContenu = () => {
                   <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
                     <StyledStatus text={element.status} />
                   </td>
-                  <td className="align-middle font-weight-bold">{element.nbMercis} 🙏</td>
-                  <td className="align-middle font-weight-bold">{element.nbVues || 0} 📈</td>
+                  <td className="align-middle fw-bold">{element.nbMercis} 🙏</td>
+                  <td className="align-middle fw-bold">{element.nbVues || 0} 📈</td>
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
@@ -488,6 +488,10 @@ export const AdminContenu = () => {
       <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+        toggleRespoModal={(structureId: ObjectId) => {
+          setSelectedStructureId(structureId);
+          setSelectFirstRespoModal(true);
+        }}
         setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
         selectedDispositifId={selectedContentId}
         onDeleteClick={() =>

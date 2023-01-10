@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as eva from "eva-icons";
+import styles from "./EVAIcon.module.scss";
+import { cls } from "lib/classname";
 
 const SIZE = {
   small: "12px",
@@ -7,17 +9,12 @@ const SIZE = {
   large: "24px",
   xlarge: "30px",
   hero: "60px",
-  xhero: "80px",
+  xhero: "80px"
 };
 
 interface Props {
-  fill: string
-  size: "small"
-  | "medium"
-  | "large"
-  | "xlarge"
-  | "hero"
-  | "xhero" | number;
+  fill: string;
+  size: "small" | "medium" | "large" | "xlarge" | "hero" | "xhero" | number;
   name: string;
   className?: string;
   id?: string;
@@ -40,20 +37,22 @@ const EVAIcon = (props: Props) => {
   }, [name, fill, size]);
 
   return (
-    <span
-      id={props.id}
-      className={props.className}
-      onClick={props.onClick}
-    >
-      <i dangerouslySetInnerHTML={{ __html: svg }}></i>
+    <span id={props.id} className={cls(props.className, styles.icon)} onClick={props.onClick}>
+      <i
+        dangerouslySetInnerHTML={{ __html: svg }}
+        style={{
+          height: size,
+          lineHeight: size
+        }}
+      ></i>
     </span>
   );
-}
+};
 
 EVAIcon.defaultProps = {
   fill: "#fff",
   name: "",
-  size: "medium",
+  size: "medium"
 };
 
 export default EVAIcon;

@@ -1,35 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
-import {
-  Log,
-} from "types/interface";
+import { Log } from "types/interface";
 import Image from "next/legacy/image";
-import { withRouter, RouteComponentProps } from "react-router-dom";
+import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";
-import {
-  correspondingStatus,
-  publicationStatus,
-  progressionStatus,
-} from "../data";
+import { correspondingStatus, publicationStatus, progressionStatus } from "../data";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
-import {
-  Date,
-  Label,
-} from "../../sharedComponents/SubComponents";
+import { Date, Label } from "../../sharedComponents/SubComponents";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  allStructuresSelector,
-  structureSelector,
-} from "services/AllStructures/allStructures.selector";
+import { allStructuresSelector, structureSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import {
-  setAllStructuresActionCreator,
-} from "services/AllStructures/allStructures.actions";
+import { setAllStructuresActionCreator } from "services/AllStructures/allStructures.actions";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import useRouterLocale from "hooks/useRouterLocale";
 import { UserButton } from "../../sharedComponents/UserButton";
@@ -43,32 +29,49 @@ import Swal from "sweetalert2";
 import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
+import { useToggle } from "react-use";
 
 moment.locale("fr");
+
+interface EditableH2Props {
+  onValidate: (value: string) => Promise<any>;
+  title: string;
+}
+
+const EditableH2 = ({ title, onValidate }: EditableH2Props) => {
+  const [edition, toggleEdition] = useToggle(false);
+  const [value, setValue] = useState(title);
+  const _onValidate = (value: string) => onValidate(value).then(() => toggleEdition(false));
+  return edition ? (
+    <>
+      <input onChange={(e) => setValue(e.target.value)} className="form-control" type="text" value={value} />
+      <FButton disabled={value === ""} name="save-outline" onClick={() => _onValidate(value)} type="fill-dark" />
+    </>
+  ) : (
+    <>
+      <h2>{title}</h2>
+      <FButton name="edit-outline" onClick={toggleEdition} type="fill-dark" />
+    </>
+  );
+};
+
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
   setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
-  setSelectedContentIdAndToggleModal: (
-    element: ObjectId | null,
-    status: string | null
-  ) => void;
+  setSelectedContentIdAndToggleModal: (element: ObjectId | null, status: string | null) => void;
 }
 
-const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
-  props: Props
-) => {
+const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: Props) => {
   const routerLocale = useRouterLocale();
   const router = useRouter();
   const selectedStructureId = props.selectedStructureId;
   const dispatch = useDispatch();
 
   const structure = useSelector(structureSelector(props.selectedStructureId));
-  const [adminComments, setAdminComments] = useState<string>(
-    structure?.adminComments || ""
-  );
+  const [adminComments, setAdminComments] = useState<string>(structure?.adminComments || "");
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
   const [currentId, setCurrentId] = useState<ObjectId | null>(null);
   const [logs, setLogs] = useState<Log[]>([]);
@@ -95,11 +98,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
   const updateStructuresStore = (
     structureId: ObjectId,
-    property:
-      | "adminComments"
-      | "status"
-      | "adminProgressionStatus"
-      | "adminPercentageProgressionStatus",
+    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
     value: string
   ) => {
     const structures = [...allStructures];
@@ -109,31 +108,36 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     updateLogs();
   };
 
+  const changeNom = (nom: string) =>
+    structure
+      ? API.updateStructure({
+          query: {
+            _id: structure._id,
+            nom
+          }
+        }).then(() => updateStructuresStore(structure._id, "nom", nom))
+      : Promise.reject("No structure");
+
   const onNotesChange = (e: any) => {
     if (adminCommentsSaved) setAdminCommentsSaved(false);
     setAdminComments(e.target.value);
   };
 
-
   const modifyStatus = async (
     newStatus: string,
-    property:
-      | "status"
-      | "adminProgressionStatus"
-      | "adminPercentageProgressionStatus"
-      | "adminComments"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments"
   ) => {
     if (structure && newStatus !== structure[property]) {
       if (property === "status" && newStatus === "Supprimé") {
         const res = await Swal.fire({
           title: "Êtes-vous sûr ?",
           text: "Souhaitez-vous supprimer cette structure",
-          type: "question",
+          icon: "question",
           showCancelButton: true,
           confirmButtonColor: colors.rouge,
           cancelButtonColor: colors.vert,
           confirmButtonText: "Oui, la supprimer",
-          cancelButtonText: "Annuler",
+          cancelButtonText: "Annuler"
         });
         if (!res.value) return;
       }
@@ -141,14 +145,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       const queryStructure = {
         query: {
           _id: structure._id,
-          [property]: newStatus,
-        },
+          [property]: newStatus
+        }
       };
 
       await API.updateStructure(queryStructure);
       updateStructuresStore(structure._id, property, newStatus);
 
-      if (property === "status") { // if we publish a structure, fetch active structures
+      if (property === "status") {
+        // if we publish a structure, fetch active structures
         dispatch(fetchActiveStructuresActionCreator());
       }
 
@@ -156,12 +161,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     }
   };
 
-  const isLoadingStructures = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
-  const isLoadingDispositifs = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
-  );
+  const isLoadingStructures = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
+  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
   const isLoading = isLoadingDispositifs || isLoadingStructures;
   const secureUrl = structure?.picture?.secure_url;
@@ -178,35 +179,30 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         isLoading={isLoading}
         leftHead={
           <>
-            <Image
-              src={secureUrl || noStructure}
-              alt=""
-              width={140}
-              height={60}
-              objectFit="contain"
+            <Image src={secureUrl || noStructure} alt="" width={140} height={60} objectFit="contain" />
+            <EditableH2
+              onValidate={changeNom}
+              title={`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}
             />
-            <h2>{`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}</h2>
           </>
         }
         rightHead={
           <>
             <FButton
-              className="mr-8"
+              className="me-2"
               type="dark"
               name="person-outline"
-              onClick={() => {
-                props.history.push({
-                  pathname:
-                    routerLocale + "/backend/user-dash-structure-selected",
-                  search: `?id=${structure._id}`,
-                });
+              tag={Link}
+              to={{
+                pathname: routerLocale + "/backend/user-dash-structure-selected",
+                search: `?id=${structure._id}`
               }}
             >
               Membres
             </FButton>
             {structure && structure.status === "Actif" && (
               <FButton
-                className="mr-8"
+                className="me-2"
                 type="dark"
                 name="eye-outline"
                 tag={"a"}
@@ -216,12 +212,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
                 Annuaire
               </FButton>
             )}
-            <FButton
-              className="mr-8"
-              type="white"
-              onClick={props.toggleModal}
-              name="close-outline"
-            ></FButton>
+            <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
           </>
         }
       >
@@ -269,37 +260,31 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             <NotesInput
               adminComments={adminComments}
               onNotesChange={onNotesChange}
-              saveAdminComments={() =>
-                modifyStatus(adminComments, "adminComments")
-              }
+              saveAdminComments={() => modifyStatus(adminComments, "adminComments")}
               adminCommentsSaved={adminCommentsSaved}
               edited={(structure?.adminComments || "") !== adminComments}
             />
           </div>
 
-
           <div className={styles.col_2}>
             <Label>Fiche(s) de la structure</Label>
             <div className={styles.scrollable}>
               {dispositifsWithAllInformation?.length ? (
-              dispositifsWithAllInformation.map((dispositif, index) => {
-                return (
-                  <SmallDispositif
-                    key={index}
-                    dispositif={dispositif}
-                    onClick={() => {
-                      props.toggleModal();
-                      props.setSelectedContentIdAndToggleModal(
-                        dispositif._id,
-                        dispositif.status
-                      );
-                    }}
-                  />
-                );
-              })
-            ) : (
-              <p>Aucune fiche n'est connectée à cette structure</p>
-            )}
+                dispositifsWithAllInformation.map((dispositif, index) => {
+                  return (
+                    <SmallDispositif
+                      key={index}
+                      dispositif={dispositif}
+                      onClick={() => {
+                        props.toggleModal();
+                        props.setSelectedContentIdAndToggleModal(dispositif._id, dispositif.status);
+                      }}
+                    />
+                  );
+                })
+              ) : (
+                <p>Aucune fiche n'est connectée à cette structure</p>
+              )}
             </div>
           </div>
 

@@ -27,7 +27,7 @@ export const LocationInput = (props: Props) => {
 
   return (
     <div className={cls(parentStyles.form_block, "d-flex align-items-center")}>
-      <label className={cls(parentStyles.label, "mr-4")}>Département</label>
+      <label className={cls(parentStyles.label, "me-4")}>Département</label>
 
       {/* maps autocomplete field */}
       {geoSearch && (
@@ -55,7 +55,7 @@ export const LocationInput = (props: Props) => {
             props.setSelectedDepartment("");
           }}
           active={!!props.selectedDepartment}
-          className="mr-2"
+          className="me-2"
         >
           {props.selectedDepartment}
         </FilterButton>
@@ -65,7 +65,7 @@ export const LocationInput = (props: Props) => {
       {!props.selectedDepartment && !geoSearch && (
         <button onClick={() => setGeoSearch(true)} className={parentStyles.fake_field}>
           Choisis un département
-          <EVAIcon name="pin" fill="#212121" size="medium" className="ml-2" />
+          <EVAIcon name="pin" fill="#212121" size="medium" className="ms-2" />
         </button>
       )}
     </div>

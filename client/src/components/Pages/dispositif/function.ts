@@ -4,7 +4,6 @@ import API from "utils/API";
 declare const window: Window;
 export const send_sms = (
   title: string,
-  typeContenu: string,
   titreInformatif: string
 ) =>
   Swal.fire({
@@ -18,10 +17,9 @@ export const send_sms = (
     confirmButtonText: "Envoyer",
     cancelButtonText: "Annuler",
     showLoaderOnConfirm: true,
-    preConfirm: (number: number) => {
-      return API.send_sms({
-        number,
-        typeContenu,
+    preConfirm: (number: string) => {
+      return API.smsContentLink({
+        phone: number,
         url: window.location.href,
         title: titreInformatif,
       })
@@ -41,7 +39,7 @@ export const send_sms = (
       Swal.fire({
         title: "Yay...",
         text: "Votre message a bien été envoyé, merci",
-        type: "success",
+        icon: "success",
         timer: 1500,
       });
     }

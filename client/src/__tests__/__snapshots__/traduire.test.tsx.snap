@@ -29,23 +29,23 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="container"
           >
-            <a
-              className="btn"
-              href="#who"
-              onClick={[Function]}
-              onMouseEnter={[Function]}
-              onTouchStart={[Function]}
+            <span
+              className="btn icon"
             >
-              <span>
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
-                    }
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
                   }
-                />
-              </span>
-            </a>
+                }
+                style={
+                  {
+                    "height": "24px",
+                    "lineHeight": "24px",
+                  }
+                }
+              />
+            </span>
           </div>
         </div>
         <div
@@ -181,36 +181,28 @@ exports[`traduire renders traduire 1`] = `
         <a
           className="btn green"
           href="#who"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
+          legacyBehavior={true}
         >
           Translate.navbarItem1
         </a>
         <a
           className="btn orange"
           href="#steps"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
+          legacyBehavior={true}
         >
           Translate.navbarItem2
         </a>
         <a
           className="btn purple"
           href="#next"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
+          legacyBehavior={true}
         >
           Translate.navbarItem3
         </a>
         <a
           className="btn red"
           href="#faq"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
+          legacyBehavior={true}
         >
           Translate.navbarItem4
         </a>
@@ -218,15 +210,21 @@ exports[`traduire renders traduire 1`] = `
       <a
         className="btn blue"
         href="#register"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onTouchStart={[Function]}
+        legacyBehavior={true}
       >
-        <span>
+        <span
+          className="icon"
+        >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-plus-circle-outline" fill="#fff"><g data-name="Layer 2"><g data-name="plus-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15 11h-2V9a1 1 0 0 0-2 0v2H9a1 1 0 0 0 0 2h2v2a1 1 0 0 0 2 0v-2h2a1 1 0 0 0 0-2z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -280,8 +278,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ua"
+                    <span
+                      className="flag fi fi-ua"
                       title="ua"
                     />
                   </div>
@@ -294,8 +292,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ir"
+                    <span
+                      className="flag fi fi-ir"
                       title="ir"
                     />
                   </div>
@@ -308,8 +306,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-sa"
+                    <span
+                      className="flag fi fi-sa"
                       title="sa"
                     />
                   </div>
@@ -322,8 +320,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-gb"
+                    <span
+                      className="flag fi fi-gb"
                       title="gb"
                     />
                   </div>
@@ -336,8 +334,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-af"
+                    <span
+                      className="flag fi fi-af"
                       title="af"
                     />
                   </div>
@@ -350,8 +348,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-ru"
+                    <span
+                      className="flag fi fi-ru"
                       title="ru"
                     />
                   </div>
@@ -364,8 +362,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-er"
+                    <span
+                      className="flag fi fi-er"
                       title="er"
                     />
                   </div>
@@ -407,8 +405,8 @@ exports[`traduire renders traduire 1`] = `
                       }
                     }
                   >
-                    <i
-                      className="flag flag-icon flag-icon-fr"
+                    <span
+                      className="flag fi fi-fr"
                       title="fr"
                     />
                   </div>
@@ -602,8 +600,8 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="title"
               >
-                <i
-                  className="flag flag-icon flag-icon-undefined"
+                <span
+                  className="flag fi fi-undefined"
                 />
               </div>
               <p
@@ -628,8 +626,8 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="title"
               >
-                <i
-                  className="flag flag-icon flag-icon-undefined"
+                <span
+                  className="flag fi fi-undefined"
                 />
               </div>
               <p
@@ -670,11 +668,19 @@ exports[`traduire renders traduire 1`] = `
       <div
         className="warning_mobile"
       >
-        <span>
+        <span
+          className="icon"
+        >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-alert-circle-outline" fill="black"><g data-name="Layer 2"><g data-name="alert-circle"><rect width="24" height="24" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><circle cx="12" cy="16" r="1"/><path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "24px",
+                "lineHeight": "24px",
               }
             }
           />
@@ -709,29 +715,26 @@ exports[`traduire renders traduire 1`] = `
           >
             Translate.stepsText1
           </p>
-          <a
-            className="link color_orange"
-            href="#register"
-            onClick={[Function]}
-            onMouseEnter={[Function]}
-            onTouchStart={[Function]}
-            rel="noopener noreferrer"
+          <span>
+            Translate.stepsCTA1
+          </span>
+          <span
+            className="icon icon"
           >
-            <span>
-              Translate.stepsCTA1
-            </span>
-            <span
-              className="icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                  }
+            <i
+              dangerouslySetInnerHTML={
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                 }
-              />
-            </span>
-          </a>
+              }
+              style={
+                {
+                  "height": "24px",
+                  "lineHeight": "24px",
+                }
+              }
+            />
+          </span>
         </div>
         <div
           className="media"
@@ -1055,7 +1058,7 @@ exports[`traduire renders traduire 1`] = `
             </p>
           </div>
           <div
-            className="text-right col-sm-12 col-lg-6"
+            className="text-end col-sm-12 col-lg-6"
           >
             <video
               className="video autoplay-video"
@@ -1228,30 +1231,26 @@ exports[`traduire renders traduire 1`] = `
                 </div>
               </div>
               <div>
-                <a
-                  className="link color_red"
-                  href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
-                  onClick={[Function]}
-                  onMouseEnter={[Function]}
-                  onTouchStart={[Function]}
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <span>
+                  Translate.helpTileCTA1
+                </span>
+                <span
+                  className="icon icon"
                 >
-                  <span>
-                    Translate.helpTileCTA1
-                  </span>
-                  <span
-                    className="icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                        }
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                       }
-                    />
-                  </span>
-                </a>
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -1404,12 +1403,18 @@ exports[`traduire renders traduire 1`] = `
                     StaticPages.helpTileCTA3
                   </span>
                   <span
-                    className="icon"
+                    className="icon icon"
                   >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -1447,19 +1452,24 @@ exports[`traduire renders traduire 1`] = `
             className="container"
           >
             <button
-              aria-label={null}
               className="btn btn btn-secondary"
               onClick={[Function]}
               type="button"
             >
               Translate.faqAccordionTitle1
               <span
-                className="icon"
+                className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "32px",
+                      "lineHeight": "32px",
                     }
                   }
                 />
@@ -1483,19 +1493,24 @@ exports[`traduire renders traduire 1`] = `
             className="container"
           >
             <button
-              aria-label={null}
               className="btn btn btn-secondary"
               onClick={[Function]}
               type="button"
             >
               Translate.faqAccordionTitle2
               <span
-                className="icon"
+                className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "32px",
+                      "lineHeight": "32px",
                     }
                   }
                 />
@@ -1519,19 +1534,24 @@ exports[`traduire renders traduire 1`] = `
             className="container"
           >
             <button
-              aria-label={null}
               className="btn btn btn-secondary"
               onClick={[Function]}
               type="button"
             >
               Translate.faqAccordionTitle3
               <span
-                className="icon"
+                className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "32px",
+                      "lineHeight": "32px",
                     }
                   }
                 />
@@ -1555,19 +1575,24 @@ exports[`traduire renders traduire 1`] = `
             className="container"
           >
             <button
-              aria-label={null}
               className="btn btn btn-secondary"
               onClick={[Function]}
               type="button"
             >
               Translate.faqAccordionTitle4
               <span
-                className="icon"
+                className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "32px",
+                      "lineHeight": "32px",
                     }
                   }
                 />
@@ -1591,19 +1616,24 @@ exports[`traduire renders traduire 1`] = `
             className="container"
           >
             <button
-              aria-label={null}
               className="btn btn btn-secondary"
               onClick={[Function]}
               type="button"
             >
               Translate.faqAccordionTitle5
               <span
-                className="icon"
+                className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" viewBox="0 0 24 24" class="eva eva-arrow-ios-downward-outline" fill="black"><g data-name="Layer 2"><g data-name="arrow-ios-downward"><rect width="24" height="24" opacity="0"/><path d="M12 16a1 1 0 0 1-.64-.23l-6-5a1 1 0 1 1 1.28-1.54L12 13.71l5.36-4.32a1 1 0 0 1 1.41.15 1 1 0 0 1-.14 1.46l-6 4.83A1 1 0 0 1 12 16z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "32px",
+                      "lineHeight": "32px",
                     }
                   }
                 />
@@ -1624,30 +1654,26 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="cta"
               >
-                <a
-                  className="link color_blue"
-                  href="https://airtable.com/shrQxPHedgZ5PuXot"
-                  onClick={[Function]}
-                  onMouseEnter={[Function]}
-                  onTouchStart={[Function]}
-                  rel="noopener noreferrer"
-                  target="_blank"
+                <span>
+                  Translate.faqAccordionCTA5
+                </span>
+                <span
+                  className="icon icon"
                 >
-                  <span>
-                    Translate.faqAccordionCTA5
-                  </span>
-                  <span
-                    className="icon"
-                  >
-                    <i
-                      dangerouslySetInnerHTML={
-                        {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                        }
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                       }
-                    />
-                  </span>
-                </a>
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -1690,11 +1716,19 @@ exports[`traduire renders traduire 1`] = `
           <span
             className="check"
           >
-            <span>
+            <span
+              className="icon"
+            >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -1708,21 +1742,29 @@ exports[`traduire renders traduire 1`] = `
         </div>
       </div>
       <div
-        className="input mb-10 input input-group"
+        className="input mb-2 input input-group"
       >
-        <div
-          className="prepend input-group-prepend"
+        <span
+          className="prepend input-group-text"
         >
-          <span>
+          <span
+            className="icon"
+          >
             <i
               dangerouslySetInnerHTML={
                 {
                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="#212121"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                 }
               }
+              style={
+                {
+                  "height": "20px",
+                  "lineHeight": "20px",
+                }
+              }
             />
           </span>
-        </div>
+        </span>
         <input
           autoFocus={false}
           className="has_prepend new_size form-control"
@@ -1740,12 +1782,18 @@ exports[`traduire renders traduire 1`] = `
         onClick={[Function]}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-log-in-outline" fill="#fff"><g data-name="Layer 2"><g data-name="log-in"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M19 4h-2a1 1 0 0 0 0 2h1v12h-1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z"/><path d="M11.8 7.4a1 1 0 0 0-1.6 1.2L12 11H4a1 1 0 0 0 0 2h8.09l-1.72 2.44a1 1 0 0 0 .24 1.4 1 1 0 0 0 .58.18 1 1 0 0 0 .81-.42l2.82-4a1 1 0 0 0 0-1.18z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -1759,9 +1807,7 @@ exports[`traduire renders traduire 1`] = `
         <a
           className="link"
           href="/login"
-          onClick={[Function]}
-          onMouseEnter={[Function]}
-          onTouchStart={[Function]}
+          legacyBehavior={true}
         >
           Register.Se connecter
         </a>

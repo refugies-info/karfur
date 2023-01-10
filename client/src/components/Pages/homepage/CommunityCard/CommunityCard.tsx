@@ -65,7 +65,11 @@ const CommunityCard = (props: Props) => {
   return !props.link ? (
     <div className={cls(styles.container, styles[`color_${props.color}`])}>{content}</div>
   ) : (
-    <Link href={props.link} className={cls(styles.container, styles.link, styles[`color_${props.color}`])}>
+    <Link
+      href={props.link}
+      className={cls(styles.container, styles.link, styles[`color_${props.color}`])}
+      prefetch={false}
+    >
       {content}
     </Link>
   );

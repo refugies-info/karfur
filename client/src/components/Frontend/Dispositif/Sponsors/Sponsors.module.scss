@@ -142,7 +142,7 @@ $tailleBig: 80px;
 }
 
 .selection_logo {
-  @apply .mr-10;
+  @apply .me-2;
   max-width: 40px;
   max-height: 40px;
 }
@@ -180,7 +180,7 @@ $tailleBig: 80px;
 }
 
 .structure {
-  @apply .mb-10;
+  @apply .mb-2;
   display: flex;
   padding: 10px 10px 10px 30px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);

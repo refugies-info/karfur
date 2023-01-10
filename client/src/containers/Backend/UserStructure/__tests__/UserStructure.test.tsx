@@ -6,37 +6,29 @@ import { act } from "react-test-renderer";
 import { initialMockStore } from "__fixtures__/reduxStore";
 import {
   fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
+  updateUserStructureActionCreator
 } from "services/UserStructure/userStructure.actions";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("next/image", () => {
   const Image = () => <></>;
-  return Image
+  return Image;
 });
 
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {
-  const { Table, Input, InputGroup, InputGroupAddon } = jest.requireActual(
-    "reactstrap"
-  );
+  const { Table, Input, InputGroup, InputGroupText } = jest.requireActual("reactstrap");
   const { MockReactModal } = require("../../../../../jest/__mocks__/MockModal");
 
-  return { Modal: MockReactModal, Table, Input, InputGroup, InputGroupAddon };
+  return { Modal: MockReactModal, Table, Input, InputGroup, InputGroupText };
 });
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
-  const actions = jest.requireActual(
-    "services/UserStructure/userStructure.actions"
-  );
+  const actions = jest.requireActual("services/UserStructure/userStructure.actions");
   return {
-    fetchUserStructureActionCreator: jest.fn(
-      actions.fetchUserStructureActionCreator
-    ),
-    updateUserStructureActionCreator: jest.fn(
-      actions.updateUserStructureActionCreator
-    ),
+    fetchUserStructureActionCreator: jest.fn(actions.fetchUserStructureActionCreator),
+    updateUserStructureActionCreator: jest.fn(actions.updateUserStructureActionCreator)
   };
 });
 
@@ -54,13 +46,13 @@ describe("UserStructure", () => {
         reduxState: {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: true } },
-          userStructure: { _id: "structureId", dispositifsAssocies: [] },
-        },
+          userStructure: { _id: "structureId", dispositifsAssocies: [] }
+        }
       });
     });
     expect(fetchUserStructureActionCreator).toHaveBeenCalledWith({
       structureId: "structureId",
-      shouldRedirect: true,
+      shouldRedirect: true
     });
 
     expect(component.toJSON()).toMatchSnapshot();
@@ -74,8 +66,8 @@ describe("UserStructure", () => {
         Component: UserStructureComponent,
         reduxState: {
           ...initialMockStore,
-          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
-        },
+          loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } }
+        }
       });
     });
     expect(fetchUserStructureActionCreator).not.toHaveBeenCalled();
@@ -89,9 +81,9 @@ describe("UserStructure", () => {
     acronyme: "ACRO",
     membres: [
       { _id: "id1", roles: ["contributeur"], username: "membre1" },
-      { _id: "id2", roles: ["administrateur"], username: "membre2" },
+      { _id: "id2", roles: ["administrateur"], username: "membre2" }
     ],
-    dispositifsAssocies: [],
+    dispositifsAssocies: []
   };
   it("should render correctly when structure with membres when user is respo", () => {
     window.scrollTo = jest.fn();
@@ -104,8 +96,8 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" },
-        },
+          user: { userId: "id2" }
+        }
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -122,8 +114,8 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id1" },
-        },
+          user: { userId: "id1" }
+        }
       });
     });
     expect(component.toJSON()).toMatchSnapshot();
@@ -140,8 +132,8 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" },
-        },
+          user: { userId: "id2" }
+        }
       });
     });
     act(() => {
@@ -161,8 +153,8 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" },
-        },
+          user: { userId: "id2" }
+        }
       });
     });
     act(() => {
@@ -170,16 +162,12 @@ describe("UserStructure", () => {
     });
     expect(component.toJSON()).toMatchSnapshot();
     act(() => {
-      component.root
-        .findByProps({ "data-test-id": "test-role-Responsable" })
-        .props.onClick();
+      component.root.findByProps({ "data-test-id": "test-role-Responsable" }).props.onClick();
     });
     expect(component.toJSON()).toMatchSnapshot();
 
     act(() => {
-      component.root
-        .findByProps({ "data-test-id": "test-validate-edit" })
-        .props.onClick();
+      component.root.findByProps({ "data-test-id": "test-validate-edit" }).props.onClick();
     });
     expect(updateUserStructureActionCreator).toHaveBeenCalledWith({
       modifyMembres: true,
@@ -187,8 +175,8 @@ describe("UserStructure", () => {
         structureId: "structureId",
         userId: "id1",
         newRole: "administrateur",
-        type: "modify",
-      },
+        type: "modify"
+      }
     });
   });
 
@@ -207,8 +195,8 @@ describe("UserStructure", () => {
           ...initialMockStore,
           loadingStatus: { FETCH_USER_STRUCTURE: { isLoading: false } },
           userStructure: structure,
-          user: { userId: "id2" },
-        },
+          user: { userId: "id2" }
+        }
       });
     });
     act(() => {
@@ -217,12 +205,12 @@ describe("UserStructure", () => {
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "Vous êtes sur le point d'enlever un membre de votre structure.",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, l'enlever",
-      cancelButtonText: "Annuler",
+      cancelButtonText: "Annuler"
     });
     await act(() => promise);
   });

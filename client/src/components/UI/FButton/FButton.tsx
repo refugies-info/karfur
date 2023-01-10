@@ -30,32 +30,22 @@ interface Props {
     | "edit"
     | "precision"
     | "fill-dark"
-    | "theme"
-  className?: string
-  fill?: string
-  name?: string
-  size?: number
-  filter?: boolean
-  tag?: any
-  children?: any
+    | "theme";
+  className?: string;
+  fill?: string;
+  name?: string;
+  size?: number;
+  filter?: boolean;
+  tag?: any;
+  children?: any;
   theme?: string;
   wrap?: boolean;
-  [x: string]: any
+  loading?: boolean;
+  [x: string]: any;
 }
 
 const FButton = React.forwardRef((props: Props, ref) => {
-  let {
-    type,
-    className,
-    fill,
-    name,
-    size,
-    filter,
-    tag: Tag,
-    children,
-    wrap,
-    ...bProps
-  } = props;
+  let { type, className, fill, name, size, filter, tag: Tag, children, wrap, loading = false, ...bProps } = props;
 
   if (props.href && Tag === "button") Tag = "a";
   const themeType = type === "theme" ? " bg-darkColor" : "";
@@ -70,17 +60,13 @@ const FButton = React.forwardRef((props: Props, ref) => {
   );
 
   return (
-    <Tag
-      className={classNames}
-      {...bProps}
-      style={ props.theme && { backgroundColor: props.theme }}
-    >
-      {name && (
+    <Tag className={classNames} {...bProps} style={props.theme && { backgroundColor: props.theme }}>
+      {(name || loading) && (
         <EVAIcon
-          name={name}
+          name={loading ? "loader-outline" : name}
           fill={fill}
           size={size}
-          className={props.children ? "mr-10" : ""}
+          className={props.children ? "me-2" : ""}
         />
       )}
       {props.children}
@@ -92,7 +78,7 @@ FButton.displayName = "FButton";
 
 FButton.defaultProps = {
   type: "default",
-  tag: "button",
+  tag: "button"
 };
 
 export default FButton;

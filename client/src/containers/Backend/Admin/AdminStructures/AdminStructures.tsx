@@ -302,7 +302,7 @@ export const AdminStructures = () => {
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <Image
-                        className={styles.sponsor_img + " mr-8"}
+                        className={styles.sponsor_img + " me-2"}
                         src={(element.picture || {}).secure_url}
                         alt=""
                         width={90}
@@ -370,6 +370,10 @@ export const AdminStructures = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          toggleRespoModal={(structureId: ObjectId) => {
+            setSelectedStructureId(structureId);
+            setSelectFirstRespoModal(true);
+          }}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>

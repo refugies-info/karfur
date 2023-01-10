@@ -15,7 +15,7 @@ export const ThemesInput = (props: Props) => {
   const themes = useSelector(themesSelector);
 
   const onTagsChange = (theme: Theme) => {
-    if (props.selectedThemes.find(t => t._id === theme._id)) {
+    if (props.selectedThemes.find((t) => t._id === theme._id)) {
       // remove
       props.setSelectedThemes((themes: Theme[]) => themes.filter((t) => t._id !== theme._id));
     } else {
@@ -30,13 +30,13 @@ export const ThemesInput = (props: Props) => {
       {themes.map((theme) => (
         <FilterButton
           key={theme.short.fr}
-          active={props.selectedThemes.find(t => t._id === theme._id)}
+          active={props.selectedThemes.find((t) => t._id === theme._id)}
           color={theme.colors.color100}
           onClick={(e: any) => {
             e.preventDefault();
             onTagsChange(theme);
           }}
-          className="mr-2 mb-2"
+          className="me-2 mb-2"
         >
           <TagName theme={theme} />
         </FilterButton>
@@ -51,7 +51,7 @@ export const ThemesInput = (props: Props) => {
             props.setSelectedThemes(() => themes);
           }
         }}
-        className="mr-2 mb-2"
+        className="me-2 mb-2"
       >
         Tous les thèmes
       </FilterButton>

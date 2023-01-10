@@ -150,7 +150,7 @@ export const Step1 = (props: Props) => {
             <FileInput type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Choisir</span>}
 
-            {uploading && <Spinner color="success" className="ml-10" />}
+            {uploading && <Spinner color="success" className="ms-2" />}
           </FButton>
           <Text>Formats acceptés : .png / .jpg</Text>
         </RightLogoContainer>

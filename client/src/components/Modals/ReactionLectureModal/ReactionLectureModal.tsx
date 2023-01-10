@@ -5,41 +5,28 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./ReactionLectureModal.module.scss";
 
 interface Props {
-  show: boolean
-  toggle: any
-  suggestion: any
-  delete: any
-  read: any
+  show: boolean;
+  toggle: any;
+  suggestion: any;
+  delete: any;
+  read: any;
 }
 
 const ReactionLectureModal = (props: Props) => {
   let suggestion = props.suggestion || {};
-  const getUserName = () =>
-    suggestion.username ? suggestion.username : "Utilisateur non connecté";
+  const getUserName = () => (suggestion.username ? suggestion.username : "Utilisateur non connecté");
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
-      <div
-        className={styles.close}
-        onClick={props.toggle}
-      >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+      <div className={styles.close} onClick={props.toggle}>
         <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
       </div>
-      <div
-        className={styles.modal_header}
-      >
+      <div className={styles.modal_header}>
         Réaction{" "}
         <div className={styles.send_by}>
           Envoyée par
           <span className={styles.username}>
-            {getUserName().length > 20
-              ? getUserName().substr(0, 20) + "..."
-              : getUserName()}
+            {getUserName().length > 20 ? getUserName().substr(0, 20) + "..." : getUserName()}
           </span>
         </div>
       </div>
@@ -67,7 +54,7 @@ const ReactionLectureModal = (props: Props) => {
           onClick={() => {
             props.delete(suggestion);
           }}
-          className="mr-16"
+          className="me-4"
         >
           Supprimer
         </FButton>
@@ -77,16 +64,12 @@ const ReactionLectureModal = (props: Props) => {
           type="dark"
           name="external-link-outline"
           target="_blank"
-          className="mr-16"
+          className="me-4"
         >
           Voir la fiche
         </FButton>
 
-        <FButton
-          type="validate"
-          name="checkmark"
-          onClick={() => props.read(suggestion)}
-        >
+        <FButton type="validate" name="checkmark" onClick={() => props.read(suggestion)}>
           J&apos;ai lu
         </FButton>
       </div>

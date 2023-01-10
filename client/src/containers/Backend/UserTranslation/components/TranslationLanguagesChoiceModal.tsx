@@ -86,8 +86,8 @@ const LangueItem = (props: { langue: Language; isSelected: boolean; onClick: () 
         flexDirection: "row"
       }}
     >
-      <div className="mr-10">
-        <i title={props.langue.langueCode} className={" flag-icon flag-icon-" + props.langue.langueCode} />
+      <div className="me-2">
+        <span title={props.langue.langueCode} className={" fi fi-" + props.langue.langueCode} />
       </div>
       {props.langue.langueFr === "Persan" ? "Persan/Dari" : props.langue.langueFr}
     </div>
@@ -135,7 +135,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
             <FButton type="outline-black" name="close-outline" onClick={props.toggle}>
               Annuler
             </FButton>
-            <FButton type="validate" name="checkmark-outline" onClick={() => {}} className="ml-10" disabled={true}>
+            <FButton type="validate" name="checkmark-outline" onClick={() => {}} className="ms-2" disabled={true}>
               Valider
             </FButton>
           </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState, memo, useCallback } from "react";
 import { Collapse } from "reactstrap";
 import { ObjectId } from "mongodb";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { debounce } from "lodash";
 import { themesSelector } from "services/Themes/themes.selectors";
 import { needsSelector } from "services/Needs/needs.selectors";
@@ -9,6 +9,9 @@ import { searchQuerySelector } from "services/SearchResults/searchResults.select
 import { activeDispositifsSelector } from "services/ActiveDispositifs/activeDispositifs.selector";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { languei18nSelector } from "services/Langue/langue.selectors";
+import { hasErroredSelector, isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { fetchActiveDispositifsActionsCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import { SearchDispositif } from "types/interface";
 import { cls } from "lib/classname";
 import { sortThemes } from "lib/sortThemes";
@@ -40,6 +43,7 @@ const debouncedQuery = debounce(
 
 const ThemeDropdown = (props: Props) => {
   const locale = useLocale();
+  const dispatch = useDispatch();
 
   const themes = useSelector(themesSelector);
   const sortedThemes = themes.sort(sortThemes);
@@ -64,6 +68,15 @@ const ThemeDropdown = (props: Props) => {
     },
     [setThemeSelected]
   );
+
+  // fetch dispositifs if not done already
+  const isDispositifsLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
+  const hasDispositifsError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
+  useEffect(() => {
+    if (allDispositifs.length === 0 && !isDispositifsLoading && !hasDispositifsError) {
+      dispatch(fetchActiveDispositifsActionsCreator());
+    }
+  }, [allDispositifs.length, isDispositifsLoading, hasDispositifsError, dispatch]);
 
   // count needs selected by theme
   useEffect(() => {

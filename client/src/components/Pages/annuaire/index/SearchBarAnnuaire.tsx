@@ -48,33 +48,20 @@ export const SearchBarAnnuaire = (props: Props) => {
   const handleChange = (e: any) => props.setVille(e.target.value);
 
   const onPlaceSelected: any = (place: any) => {
-    if (
-      place.address_components.find((item: any) =>
-        item.types.includes("postal_code")
-      )
-    ) {
+    if (place.address_components.find((item: any) => item.types.includes("postal_code"))) {
       props.setDepNumber(
-        place.address_components
-          .find((item: any) => item.types.includes("postal_code"))
-          .long_name.substr(0, 2)
+        place.address_components.find((item: any) => item.types.includes("postal_code")).long_name.substr(0, 2)
       );
     }
-    if (
-      place.address_components.find((item: any) =>
-        item.types.includes("administrative_area_level_2")
-      )
-    ) {
+    if (place.address_components.find((item: any) => item.types.includes("administrative_area_level_2"))) {
       if (
-        place.address_components.find((item: any) =>
-          item.types.includes("administrative_area_level_2")
-        ).long_name === "Département de Paris"
+        place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name ===
+        "Département de Paris"
       ) {
         props.setDepName("Paris");
       } else {
         props.setDepName(
-          place.address_components.find((item: any) =>
-            item.types.includes("administrative_area_level_2")
-          ).long_name
+          place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name
         );
       }
     }
@@ -93,9 +80,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   const removeType = (item: string) => {
-    let array = props.typeSelected
-      ? props.typeSelected.filter((el) => el !== item)
-      : [];
+    let array = props.typeSelected ? props.typeSelected.filter((el) => el !== item) : [];
     props.setTypeSelected(array);
     toggle();
   };
@@ -104,8 +89,7 @@ export const SearchBarAnnuaire = (props: Props) => {
     if (props.isCityFocus) {
       autocompleteRef.current?.focus();
     }
-  }, [autocompleteRef, props.isCityFocus])
-
+  }, [autocompleteRef, props.isCityFocus]);
 
   return (
     <div className={styles.container}>
@@ -115,28 +99,19 @@ export const SearchBarAnnuaire = (props: Props) => {
           type="text"
           plaintext={true}
           className={styles.input}
-          placeholder={props.t(
-            "Annuaire.Rechercher par",
-            "Rechercher par nom ..."
-          )}
+          placeholder={props.t("Annuaire.Rechercher par", "Rechercher par nom ...")}
           value={props.keyword}
         />
         {}
 
         {props.keyword === "" ? (
-          <EVAIcon
-            name="search-outline"
-            fill={colors.gray90}
-            id="bookmarkBtn"
-            className="ml-10"
-            size={"large"}
-          />
+          <EVAIcon name="search-outline" fill={colors.gray90} id="bookmarkBtn" className="ms-2" size={"large"} />
         ) : (
           <EVAIcon
             name="close-circle"
             fill={colors.gray90}
             id="bookmarkBtn"
-            className="ml-10"
+            className="ms-2"
             size={"large"}
             onClick={() => props.setKeyword("")}
           />
@@ -144,13 +119,7 @@ export const SearchBarAnnuaire = (props: Props) => {
       </div>
       {props.ville === "" && !props.isCityFocus ? (
         <div className={styles.btn}>
-          <EVAIcon
-            name="pin-outline"
-            fill={colors.gray90}
-            className="mr-10"
-            id="bookmarkBtn"
-            size={"large"}
-          />
+          <EVAIcon name="pin-outline" fill={colors.gray90} className="me-2" id="bookmarkBtn" size={"large"} />
           <div
             onClick={() => {
               props.setIsCityFocus(true);
@@ -161,13 +130,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         </div>
       ) : props.isCitySelected ? (
         <div className={`${styles.btn} ${styles.dark}`}>
-          <EVAIcon
-            name="pin-outline"
-            fill={colors.white}
-            className="mr-10"
-            id="bookmarkBtn"
-            size={"large"}
-          />
+          <EVAIcon name="pin-outline" fill={colors.white} className="me-2" id="bookmarkBtn" size={"large"} />
           <div
             onClick={() => {
               props.setIsCitySelected(false);
@@ -178,7 +141,7 @@ export const SearchBarAnnuaire = (props: Props) => {
           <EVAIcon
             name="close-circle"
             fill={colors.white}
-            className="ml-10"
+            className="ms-2"
             size={"large"}
             onClick={() => {
               resetCity();
@@ -187,18 +150,14 @@ export const SearchBarAnnuaire = (props: Props) => {
         </div>
       ) : (
         <div className={styles.btn}>
-          <EVAIcon
-            name="pin-outline"
-            fill={colors.gray90}
-            className="mr-10"
-            id="bookmarkBtn"
-            size={"large"}
-          />
+          <EVAIcon name="pin-outline" fill={colors.gray90} className="me-2" id="bookmarkBtn" size={"large"} />
           <div className={styles.city_input}>
             <Autocomplete
               apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
               className={styles.autocomplete}
-              onBlur={() => { props.setIsCityFocus(false) }}
+              onBlur={() => {
+                props.setIsCityFocus(false);
+              }}
               placeholder=""
               id="villeAuto"
               value={props.ville}
@@ -209,24 +168,14 @@ export const SearchBarAnnuaire = (props: Props) => {
                 componentRestrictions: { country: "fr" }
               }}
             />
-            <EVAIcon
-              name="close-circle"
-              size="large"
-              className="ml-10"
-              onClick={() => { }}
-            />
+            <EVAIcon name="close-circle" size="large" className="ms-2" onClick={() => {}} />
           </div>
         </div>
       )}{" "}
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
-          className={cls(
-            styles.type_btn,
-            (props.typeSelected && props.typeSelected.length === 0
-              ? "" : styles.selected)
-            )
-          }
+          className={cls(styles.type_btn, props.typeSelected && props.typeSelected.length === 0 ? "" : styles.selected)}
         >
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]
@@ -242,7 +191,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                 props.setTypeSelected([]);
               }}
               id="bookmarkBtn"
-              className="ml-10"
+              className="ms-2"
               size={"large"}
             />
           )}
@@ -256,11 +205,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                     selectType(item);
                   }}
                   type="white"
-                  style={
-                    props.typeSelected && props.typeSelected.includes(item)
-                      ? { border: "2px black solid" }
-                      : {}
-                  }
+                  style={props.typeSelected && props.typeSelected.includes(item) ? { border: "2px black solid" } : {}}
                   className="mb-8"
                   key={key}
                 >
@@ -275,7 +220,7 @@ export const SearchBarAnnuaire = (props: Props) => {
                         removeType(item);
                       }}
                       id="bookmarkBtn"
-                      className="ml-10"
+                      className="ms-2"
                       size={"large"}
                     />
                   )}
@@ -286,8 +231,7 @@ export const SearchBarAnnuaire = (props: Props) => {
         </DropdownMenu>
       </Dropdown>
       <div className={styles.results}>
-        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
-        {props.t("Recherche.results", "résultats")}
+        {props.filteredStructures ? props.filteredStructures.length : 0} {props.t("Recherche.results", "résultats")}
       </div>
     </div>
   );

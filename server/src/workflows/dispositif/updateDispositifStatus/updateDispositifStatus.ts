@@ -10,7 +10,7 @@ import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/mi
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
-  checkUserIsAuthorizedToModifyDispositif,
+  checkUserIsAuthorizedToDeleteDispositif,
 } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
@@ -57,7 +57,7 @@ export const updateDispositifStatus = async (
         dispositifId,
         neededFields
       );
-      checkUserIsAuthorizedToModifyDispositif(
+      checkUserIsAuthorizedToDeleteDispositif(
         dispositif,
         req.userId,
         // @ts-ignore : populate roles

@@ -107,7 +107,7 @@ export const SubscribeNewsletterModal = () => {
       Swal.fire({
         title: "Oops...",
         text: "Aucun mail renseigné",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -121,7 +121,7 @@ export const SubscribeNewsletterModal = () => {
           Swal.fire({
             title: "Yay...",
             text: "Mail correctement enregistré !",
-            type: "success",
+            icon: "success",
             timer: 1500
           });
           setEmail("");
@@ -183,7 +183,7 @@ export const SubscribeNewsletterModal = () => {
               name="checkmark-outline"
               disabled={!email}
               onClick={sendMail}
-              className="ml-8"
+              className="ms-2"
             >
               <div> {t("Envoyer", "Envoyer")}</div>
             </FButton>

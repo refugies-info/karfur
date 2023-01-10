@@ -61,11 +61,11 @@ export const StartTranslating = (props: Props) => {
         <WhiteContainerTitle>Vous parlez une autre langue ?</WhiteContainerTitle>
         <WhiteContainerSubTitle>Aidez à traduire les contenus à votre rythme.</WhiteContainerSubTitle>
         <RowContainer>
-          <FButton type="dark" className="mr-10" onClick={props.toggleTraducteurModal}>
+          <FButton type="dark" className="me-2" onClick={props.toggleTraducteurModal}>
             <Image src={traductionIconBlanc} alt="a" />
             Commencer à traduire
           </FButton>
-          <FButton type="tuto" className="ml-10" name="video-outline" onClick={props.toggleTutoModal}>
+          <FButton type="tuto" className="ms-2" name="video-outline" onClick={props.toggleTutoModal}>
             Explications
           </FButton>
         </RowContainer>

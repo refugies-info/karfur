@@ -18,6 +18,7 @@ import ThemeDropdown from "components/Pages/recherche/ThemeDropdown";
 import { getPath } from "routes";
 import styles from "./HomeSearchHeader.desktop.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
+import { useLoadingContext } from "pages";
 
 interface Props {
   // filterProps
@@ -36,6 +37,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
   const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useDispatch();
+  const [, setGlobalLoading] = useLoadingContext();
 
   const {
     locationSearch,
@@ -116,7 +118,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               onHomepage={true}
             />
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu className={styles.menu}>
             <LocationDropdown locationSearch={locationSearch} resetLocationSearch={resetLocationSearch} />
           </DropdownMenu>
         </Dropdown>
@@ -136,7 +138,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
               onHomepage={true}
             />
           </DropdownToggle>
-          <DropdownMenu persist>
+          <DropdownMenu className={styles.menu} persist={themesOpen || inputFocused.theme}>
             <ThemeDropdown search={themeSearch} mobile={false} isOpen={themesOpen || inputFocused.theme} />
           </DropdownMenu>
         </Dropdown>
@@ -161,6 +163,7 @@ const HomeSearchHeaderDesktop = (props: Props) => {
       </div>
       <Button
         onClick={() => {
+          setGlobalLoading(true);
           router.push({
             pathname: getPath("/recherche", router.locale),
             query: qs.stringify({ ...query }, { arrayFormat: "comma" })

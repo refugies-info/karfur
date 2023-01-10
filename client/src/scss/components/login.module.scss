@@ -2,6 +2,11 @@
 @import "src/scss/colors";
 @import "src/scss/variables";
 
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 .container {
   display: flex;
   align-items: center;

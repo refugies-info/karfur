@@ -13,7 +13,7 @@ const GoBackButton = (props: Props) => {
   if (props.step === 0) {
     return (
       <Link legacyBehavior href="/" passHref>
-        <FButton type="light-action" name="arrow-back-outline" className="mr-10" tag="a">
+        <FButton type="light-action" name="arrow-back-outline" className="me-2" tag="a">
           {t("Retour", "Retour")}
         </FButton>
       </Link>
@@ -21,7 +21,7 @@ const GoBackButton = (props: Props) => {
   }
 
   return (
-    <FButton type="light-action" name="arrow-back-outline" className="mr-10" onClick={props.goBack}>
+    <FButton type="light-action" name="arrow-back-outline" className="me-2" onClick={props.goBack}>
       {t("Retour", "Retour")}
     </FButton>
   );

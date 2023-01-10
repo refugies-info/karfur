@@ -2,10 +2,7 @@ import { Table } from "reactstrap";
 import React from "react";
 import Image from "next/legacy/image";
 import { UserStructureMembre } from "../../../../types/interface";
-import {
-  EditButtonWithoutNavigation,
-  DeleteButton,
-} from "../../Admin/sharedComponents/SubComponents";
+import { EditButtonWithoutNavigation, DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
 import styled from "styled-components";
 import { colors } from "../../../../colors";
@@ -25,7 +22,7 @@ const UserName = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
+  color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
 `;
 
 const RoleContainer = styled.div`
@@ -35,12 +32,12 @@ const RoleContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
+  color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   width: fit-content;
 `;
 
 const DateContainer = styled.div`
-  color: ${(props: {isUser: boolean}) => (props.isUser ? colors.bleuCharte : colors.gray90)};
+  color: ${(props: { isUser: boolean }) => (props.isUser ? colors.bleuCharte : colors.gray90)};
   max-width: 190px;
 `;
 interface Props {
@@ -66,23 +63,14 @@ export const MembresTable = (props: Props) => (
     <tbody>
       {props.membres.map((element, key) => {
         const secureUrl =
-          element && element.picture && element.picture.secure_url
-            ? element.picture.secure_url
-            : marioProfile;
+          element && element.picture && element.picture.secure_url ? element.picture.secure_url : marioProfile;
 
         const isUser = props.userId.toString() === element._id.toString();
         return (
           <tr key={key} className="membres-table">
             <td className="align-middle">
               <RowContainer>
-                <Image
-                  className="user-img mr-8"
-                  src={secureUrl}
-                  alt=""
-                  width={70}
-                  height={40}
-                  objectFit="contain"
-                />
+                <Image className="user-img me-2" src={secureUrl} alt="" width={70} height={40} objectFit="contain" />
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>
@@ -93,18 +81,14 @@ export const MembresTable = (props: Props) => (
             <td className="align-middle">
               <DateContainer isUser={isUser}>
                 {element.last_connected
-                  ? moment(element.last_connected).calendar() +
-                    " " +
-                    moment(element.last_connected).fromNow()
+                  ? moment(element.last_connected).calendar() + " " + moment(element.last_connected).fromNow()
                   : "Non disponible"}
               </DateContainer>
             </td>
 
             <td className="align-middle">
               <DateContainer isUser={isUser}>
-                {element.added_at
-                  ? moment(element.added_at).calendar()
-                  : "Non disponible"}
+                {element.added_at ? moment(element.added_at).calendar() : "Non disponible"}
               </DateContainer>
             </td>
 

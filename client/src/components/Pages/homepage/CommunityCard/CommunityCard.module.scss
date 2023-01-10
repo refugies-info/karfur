@@ -108,7 +108,7 @@ $light_blue: #dae0fb;
   img {
     @include isTablet() {
       width: 124px;
-      height: 56px;
+      height: auto;
     }
   }
 }

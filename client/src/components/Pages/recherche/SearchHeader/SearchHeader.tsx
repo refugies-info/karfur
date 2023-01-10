@@ -102,8 +102,8 @@ const SearchHeader = (props: Props) => {
       key: ln.i18nCode,
       value: (
         <>
-          <i
-            className={cls(!isMobile && styles.flag, `flag-icon flag-icon-${ln.langueCode}`)}
+          <span
+            className={cls(!isMobile && styles.flag, `fi fi-${ln.langueCode}`)}
             title={ln.langueCode}
             id={ln.langueCode}
           />
