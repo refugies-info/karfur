@@ -1,5 +1,4 @@
-import React from "react";
-import LinesEllipsis from "react-lines-ellipsis";
+import React, { useMemo } from "react";
 import Image from "next/legacy/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -16,6 +15,14 @@ interface StructureCardProps {
 }
 const StructureCard = (props: StructureCardProps) => {
   const router = useRouter();
+
+  const title = useMemo(() => {
+    return props.acronyme
+      ? props.nom.length + props.acronyme.length > 43
+        ? props.nom.substring(0, 36 - props.acronyme.length) + "... (" + props.acronyme + ")"
+        : props.nom + " (" + props.acronyme + ")"
+      : props.nom;
+  }, [props.acronyme, props.nom]);
 
   return (
     <Link
@@ -38,20 +45,7 @@ const StructureCard = (props: StructureCardProps) => {
         </div>
         {!props.picture?.secure_url && <div></div>}
 
-        <LinesEllipsis
-          text={
-            props.acronyme
-              ? props.nom.length + props.acronyme.length > 43
-                ? props.nom.substr(0, 36 - props.acronyme.length) + "... (" + props.acronyme + ")"
-                : props.nom + " (" + props.acronyme + ")"
-              : props.nom
-          }
-          maxLine="4"
-          trimRight
-          basedOn="letters"
-          component="h3"
-          className={styles.title}
-        />
+        <h3 className={styles.title}>{title}</h3>
       </a>
     </Link>
   );
