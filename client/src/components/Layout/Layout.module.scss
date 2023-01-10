@@ -2,6 +2,10 @@
 
 .main {
   overflow-x: hidden;
+
+  @include media-min("lg-limit") {
+    overflow-x: inherit;
+  }
 }
 
 .content {

@@ -50,7 +50,20 @@
   top: -250px;
 }
 .title {
+  $lines: 4;
+
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
+  margin-bottom: 0;
+  max-width: 100%;
+  max-height: 28px * $lines;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $lines;
+  display: -webkit-inline-box;
+  -webkit-box-orient: vertical;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
