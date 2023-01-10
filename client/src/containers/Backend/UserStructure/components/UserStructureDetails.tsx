@@ -99,6 +99,7 @@ export const UserStructureDetails = (props: Props) => {
               query: { id: props.structureId.toString() }
             }}
             passHref
+            prefetch={false}
           >
             <FButton type="dark" name="book-outline" tag="a">
               Voir dans l'annuaire

@@ -16,7 +16,7 @@ const PolitiqueConfidentialite = () => {
       <h2>Qui sommes-nous ?</h2>
       <p>
         Ce site est édité par <strong>Refugies.info</strong>. Visitez la page{" "}
-        <Link legacyBehavior href={getPath("/mentions-legales", router.locale)}>
+        <Link legacyBehavior href={getPath("/mentions-legales", router.locale)} prefetch={false}>
           <a>Mentions légales</a>
         </Link>{" "}
         pour plus d&apos;informations.

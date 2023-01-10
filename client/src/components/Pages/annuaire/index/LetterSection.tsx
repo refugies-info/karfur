@@ -24,6 +24,7 @@ const StructureCard = (props: StructureCardProps) => {
         pathname: getPath("/annuaire/[id]", router.locale),
         query: { id: props.id.toString() }
       }}
+      prefetch={false}
     >
       <a className={styles.structure_container}>
         <div className={styles.inner}>

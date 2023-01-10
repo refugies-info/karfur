@@ -413,6 +413,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         }
         legacyBehavior={true}
         passHref={true}
+        prefetch={false}
       >
         <span
           className="me-2 icon"
@@ -1567,6 +1568,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         }
         legacyBehavior={true}
         passHref={true}
+        prefetch={false}
       >
         <span
           className="me-2 icon"
@@ -2892,6 +2894,7 @@ exports[`UserStructure should render correctly when edit member modal is open, s
         }
         legacyBehavior={true}
         passHref={true}
+        prefetch={false}
       >
         <span
           className="me-2 icon"
@@ -4327,6 +4330,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         }
         legacyBehavior={true}
         passHref={true}
+        prefetch={false}
       >
         <span
           className="me-2 icon"
@@ -5107,6 +5111,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         }
         legacyBehavior={true}
         passHref={true}
+        prefetch={false}
       >
         <span
           className="me-2 icon"

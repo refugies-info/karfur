@@ -23,7 +23,7 @@ const HelpUs = () => {
         <p className={cls(commonStyles.subtitle, commonStyles.center)}>{t("Homepage.helpUsSubtitle")}</p>
         <Row className={commonStyles.top_space}>
           <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-            <Link href={getPath("/publier", router.locale)}>
+            <Link href={getPath("/publier", router.locale)} prefetch={false}>
               <Card
                 image={HelpUsIcon1}
                 title={t("Homepage.helpUsCardTitle1")}
@@ -37,7 +37,7 @@ const HelpUs = () => {
           </Col>
 
           <Col sm="12" lg="4" className="mb-lg-0 mb-5">
-            <Link href={getPath("/traduire", router.locale)}>
+            <Link href={getPath("/traduire", router.locale)} prefetch={false}>
               <Card
                 title={t("Homepage.helpUsCardTitle2")}
                 header={

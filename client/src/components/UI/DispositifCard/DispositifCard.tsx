@@ -69,6 +69,7 @@ const DispositifCard = (props: Props) => {
         query: { id: props.dispositif._id.toString() }
       }}
       passHref
+      prefetch={false}
     >
       <DispositifLink
         className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content, styles.card)}
