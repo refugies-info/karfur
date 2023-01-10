@@ -317,7 +317,8 @@
     "enter_phone_label": "Entrez votre numéro de téléphone mobile pour recevoir le code d’identification",
     "no_code_received": "Vous n'avez pas reçu le code à ce numéro ?",
     "phone_number_outdated": "Le numéro n’est plus valable ?",
-    "contact_admin_edit_number": "Contactez un administrateur pour le modifier."
+    "contact_admin_edit_number": "Contactez un administrateur pour le modifier.",
+    "same_password_error": "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Entrez votre nouveau mot de passe",

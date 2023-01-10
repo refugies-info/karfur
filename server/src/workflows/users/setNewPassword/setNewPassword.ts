@@ -41,6 +41,8 @@ export const setNewPassword = async (
       throw new Error("USER_NOT_EXISTS");
     } else if (!user.email) {
       throw new Error("NO_EMAIL");
+    } else if (passwordHash.verify(newPassword, user.password)) {
+      throw new Error("USED_PASSWORD");
     }
 
     const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
