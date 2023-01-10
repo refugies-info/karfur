@@ -53,7 +53,7 @@ const NotDeployedBanner = (props: Props) => {
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
           {!isMobile ? (
-            <Link legacyBehavior href={getPath("/publier", router.locale)}>
+            <Link legacyBehavior href={getPath("/publier", router.locale)} prefetch={false}>
               <a className={styles.link}>{t("Recherche.notDeployedWriteLink", "Rédiger une fiche")}</a>
             </Link>
           ) : (

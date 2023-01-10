@@ -9,13 +9,14 @@ import { NewsletterSubscribeNavItem } from "../NavbarItems";
 interface InternalNavItemProps {
   href: string;
   title: string;
+  prefetch?: boolean;
 }
 
-const InternalNavItem = ({ href = "", title }: InternalNavItemProps) => {
+const InternalNavItem = ({ href = "", title, prefetch }: InternalNavItemProps) => {
   const router = useRouter();
   const current = isInBrowser() && (window?.location?.pathname || "") === "/" + router.locale + href;
 
-  return <NavItem current={current} asLink={<Link href={href} />} title={title} />;
+  return <NavItem current={current} asLink={<Link href={href} prefetch={prefetch} />} title={title} />;
 };
 
 const FrontendNavigation = () => {
@@ -33,8 +34,13 @@ const FrontendNavigation = () => {
       <InternalNavItem
         href={getPath("/publier", router.locale)}
         title={t("Toolbar.Publier une fiche", "Publier une fiche")}
+        prefetch={false}
       />
-      <InternalNavItem href={getPath("/traduire", router.locale)} title={t("Toolbar.Traduire", "Traduire")} />
+      <InternalNavItem
+        href={getPath("/traduire", router.locale)}
+        title={t("Toolbar.Traduire", "Traduire")}
+        prefetch={false}
+      />
       <NavItem title={t("Toolbar.Parler de nous", "Parler de nous")}>
         <NavSubItem
           asLink={<a href="https://kit.refugies.info/" target="_blank" />}

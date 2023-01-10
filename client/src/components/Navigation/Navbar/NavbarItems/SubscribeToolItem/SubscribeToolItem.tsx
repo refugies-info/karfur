@@ -14,7 +14,7 @@ const SubscribeToolItem = () => {
 
   if (isMobileOnly || isAuth) return null;
   return (
-    <ToolItem asLink={<Link href={getPath("/register", router.locale)} />} icon="ri-user-add-line">
+    <ToolItem asLink={<Link href={getPath("/register", router.locale)} prefetch={false} />} icon="ri-user-add-line">
       {t("Toolbar.Inscription", "Inscription")}
     </ToolItem>
   );

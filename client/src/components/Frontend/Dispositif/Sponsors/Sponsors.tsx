@@ -532,6 +532,7 @@ class Sponsors extends Component<Props, State> {
                       query: { id: mainSponsor._id.toString() }
                     }}
                     passHref
+                    prefetch={false}
                   >
                     <ImageLink target="_blank" rel="noopener noreferrer">
                       {mainSponsor?.picture?.secure_url && (

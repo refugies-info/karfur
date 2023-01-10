@@ -135,7 +135,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </div>
           {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
-              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref>
+              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref prefetch={false}>
                 <FButton tag="a" type="dark" name="edit-outline">
                   Modifier la fiche
                 </FButton>

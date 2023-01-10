@@ -35,7 +35,7 @@ const UserToolItem = () => {
   return isAuth ? (
     <ToolItem onClick={goToProfile}>{t("Toolbar.Mon espace", "Mon espace")}</ToolItem>
   ) : (
-    <ToolItem asLink={<Link href={getPath("/login", router.locale)} />} icon="ri-user-line">
+    <ToolItem asLink={<Link href={getPath("/login", router.locale)} prefetch={false} />} icon="ri-user-line">
       {t("Toolbar.Connexion", "Connexion")}
     </ToolItem>
   );
