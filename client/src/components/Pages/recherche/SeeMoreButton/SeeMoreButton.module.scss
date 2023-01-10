@@ -41,7 +41,7 @@
   &:hover,
   &:active,
   &:focus {
-    background-color: darken($bleuCharte, 5%);
+    background-color: darken($bleuCharte, 5%) !important;
     color: $white;
   }
 }

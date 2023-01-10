@@ -8,8 +8,8 @@ import styled from "styled-components";
 import FButton from "components/UI/FButton/FButton";
 import { MembresTable } from "./MembresTable";
 import { ObjectId } from "mongodb";
-import { AddMemberModal } from "./AddMemberModal";
-import { EditMemberModal } from "./EditMemberModal";
+import AddMemberModal from "./AddMemberModal";
+import EditMemberModal from "./EditMemberModal";
 import styles from "./UserStructureDetails.module.scss";
 import Link from "next/link";
 import { getPath } from "routes";
@@ -99,6 +99,7 @@ export const UserStructureDetails = (props: Props) => {
               query: { id: props.structureId.toString() }
             }}
             passHref
+            prefetch={false}
           >
             <FButton type="dark" name="book-outline" tag="a">
               Voir dans l'annuaire

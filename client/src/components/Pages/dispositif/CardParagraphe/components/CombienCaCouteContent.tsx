@@ -1,13 +1,7 @@
 import React from "react";
 import FSwitch from "components/UI/FSwitch/FSwitch";
 import { DispositifContent, Theme } from "types/interface";
-import {
-  Input,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import parentStyles from "../CardParagraphe.module.scss";
 import styles from "./CombienCaCouteContent.module.scss";
 import { cls } from "lib/classname";
@@ -25,23 +19,14 @@ interface Props {
   theme: Theme;
 }
 
-const frequencesPay = [
-  "une seule fois ",
-  "à chaque fois",
-  "par heure",
-  "par semaine",
-  "par mois",
-  "par an",
-];
+const frequencesPay = ["une seule fois ", "à chaque fois", "par heure", "par semaine", "par mois", "par an"];
 
 export const CombienCaCouteContent = (props: Props) => {
   return (
     <>
       {props.disableEdit ? (
         <div className={parentStyles.card_title}>
-          {props.subitem.free
-            ? props.t("Dispositif.Gratuit", "Gratuit")
-            : props.t("Dispositif.Payant", "Payant")}
+          {props.subitem.free ? props.t("Dispositif.Gratuit", "Gratuit") : props.t("Dispositif.Payant", "Payant")}
         </div>
       ) : (
         <FSwitch
@@ -53,30 +38,21 @@ export const CombienCaCouteContent = (props: Props) => {
         />
       )}
       {!props.subitem.free && (
-        <span
-          className={styles.price_details}
-          style={{color: props.theme.colors.color100}}
-        >
+        <span className={styles.price_details} style={{ color: props.theme.colors.color100 }}>
           {props.disableEdit ? (
             <span>{props.subitem.price}</span>
           ) : (
             <Input
               type="number"
               className={parentStyles.age_input}
-              style={{color: props.theme.colors.color100}}
+              style={{ color: props.theme.colors.color100 }}
               disabled={props.disableEdit}
               value={props.subitem.price}
               onMouseUp={() =>
                 (props.subitem || {}).isFakeContent &&
-                props.changePrice(
-                  { target: { value: "" } },
-                  props.keyValue,
-                  props.subkey
-                )
+                props.changePrice({ target: { value: "" } }, props.keyValue, props.subkey)
               }
-              onChange={(e) =>
-                props.changePrice(e, props.keyValue, props.subkey)
-              }
+              onChange={(e) => props.changePrice(e, props.keyValue, props.subkey)}
             />
           )}
           <span>€ </span>
@@ -88,10 +64,7 @@ export const CombienCaCouteContent = (props: Props) => {
             <DropdownToggle caret={!props.disableEdit}>
               <span>
                 {props.subitem.contentTitle &&
-                  props.t(
-                    "Dispositif." + props.subitem.contentTitle,
-                    props.subitem.contentTitle
-                  )}
+                  props.t("Dispositif." + props.subitem.contentTitle, props.subitem.contentTitle)}
               </span>
             </DropdownToggle>
             <DropdownMenu>

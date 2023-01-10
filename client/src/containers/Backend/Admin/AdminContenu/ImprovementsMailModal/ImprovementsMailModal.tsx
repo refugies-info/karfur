@@ -26,7 +26,6 @@ interface Props {
   selectedDispositifId: ObjectId | null;
 }
 
-
 export const ImprovementsMailModal = (props: Props) => {
   const { selectedDispositifId } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -42,9 +41,10 @@ export const ImprovementsMailModal = (props: Props) => {
   const updateLogs = useCallback(() => {
     if (selectedDispositifId) {
       API.logs(selectedDispositifId).then((res) => {
-        setLogs(res.data.data
-          // keep only improvement logs
-          .filter((log: Log) => log?.link?.next === "ModalImprovements")
+        setLogs(
+          res.data.data
+            // keep only improvement logs
+            .filter((log: Log) => log?.link?.next === "ModalImprovements")
         );
       });
     }
@@ -57,27 +57,14 @@ export const ImprovementsMailModal = (props: Props) => {
   const users = useSelector(activeUsersSelector);
   const structures = useSelector(allStructuresSelector);
 
-  const isLoadingDispositifs = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
-  );
-  const isLoadingUsers = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
-  );
-  const isLoadingStructures = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
-  const isLoading =
-    isLoadingDispositifs || isLoadingUsers || isLoadingStructures;
+  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
+  const isLoadingUsers = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
+  const isLoadingStructures = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
+  const isLoading = isLoadingDispositifs || isLoadingUsers || isLoadingStructures;
 
   if (isLoading) {
     return (
-      <DetailsModal
-        show={props.show}
-        toggleModal={props.toggleModal}
-        isLoading={true}
-        leftHead={null}
-        rightHead={null}
-      >
+      <DetailsModal show={props.show} toggleModal={props.toggleModal} isLoading={true} leftHead={null} rightHead={null}>
         <div></div>
       </DetailsModal>
     );
@@ -107,35 +94,25 @@ export const ImprovementsMailModal = (props: Props) => {
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
-  const formattedStatusStructure =
-    dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
+  const formattedStatusStructure = dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
 
-  const title = getTitle(
-    dispositif.titreInformatif,
-    dispositif.typeContenu,
-    dispositif.titreMarque
-  );
+  const title = getTitle(dispositif.titreInformatif, dispositif.typeContenu, dispositif.titreMarque);
 
   const mainSponsorName =
-    dispositif && dispositif.mainSponsor && dispositif.mainSponsor.nom
-      ? dispositif.mainSponsor.nom
-      : "";
+    dispositif && dispositif.mainSponsor && dispositif.mainSponsor.nom ? dispositif.mainSponsor.nom : "";
 
   const dispositifCategories = [
     "C'est quoi ?",
     "C'est pour qui ?",
     "Pourquoi c'est intéressant ?",
     "Comment je m'engage ?",
-    "Carte interactive",
+    "Carte interactive"
   ];
 
   const onClickCategory = (categorie: string) => {
-    const isCategorieSelected =
-      selectedCategories.filter((cat) => cat === categorie).length > 0;
+    const isCategorieSelected = selectedCategories.filter((cat) => cat === categorie).length > 0;
     if (isCategorieSelected) {
-      setSelectedCategories(
-        selectedCategories.filter((cat) => cat !== categorie)
-      );
+      setSelectedCategories(selectedCategories.filter((cat) => cat !== categorie));
       return;
     }
     const newCategories = selectedCategories.concat([categorie]);
@@ -151,12 +128,12 @@ export const ImprovementsMailModal = (props: Props) => {
         .map((user) => ({
           username: user.username,
           _id: user._id,
-          email: user.email,
+          email: user.email
         })),
       titreInformatif: dispositif.titreInformatif,
       titreMarque: dispositif.titreMarque,
       sections: selectedCategories,
-      message,
+      message
     };
 
     API.sendAdminImprovementsMail(data)
@@ -164,8 +141,8 @@ export const ImprovementsMailModal = (props: Props) => {
         Swal.fire({
           title: "Yay...",
           text: "Mail(s) envoyé(s)",
-          type: "success",
-          timer: 1500,
+          icon: "success",
+          timer: 1500
         });
         props.toggleModal();
       })
@@ -173,8 +150,8 @@ export const ImprovementsMailModal = (props: Props) => {
         Swal.fire({
           title: "Oh non",
           text: "Erreur lors de l'envoi",
-          type: "error",
-          timer: 1500,
+          icon: "error",
+          timer: 1500
         });
         props.toggleModal();
       });
@@ -183,20 +160,14 @@ export const ImprovementsMailModal = (props: Props) => {
   const nbUsersWithEmail = usersToDisplay.filter((user) => user.email).length;
 
   return (
-    <DetailsModal
-      show={props.show}
-      toggleModal={props.toggleModal}
-      isLoading={false}
-      leftHead={null}
-      rightHead={null}
-    >
+    <DetailsModal show={props.show} toggleModal={props.toggleModal} isLoading={false} leftHead={null} rightHead={null}>
       <Row>
         <Col lg="8">
           <div className={cls(modalStyles.title, "mb-4")}>
-            <h2 className="ml-0">Demande d'informations complémentaires</h2>
+            <h2 className="ms-0">Demande d'informations complémentaires</h2>
           </div>
           <p className={cls(styles.infoline, styles.text)}>
-            <span className="mr-3">
+            <span className="me-3">
               Fiche : <strong>{title}</strong>
             </span>
             <StyledStatus
@@ -209,7 +180,7 @@ export const ImprovementsMailModal = (props: Props) => {
           </p>
 
           <p className={cls(styles.infoline, styles.text)}>
-            <span className="mr-3">
+            <span className="me-3">
               Structure : <strong>{mainSponsorName}</strong>
             </span>
             {formattedStatusStructure && (
@@ -223,32 +194,21 @@ export const ImprovementsMailModal = (props: Props) => {
             )}
           </p>
 
-          <p className={cls(styles.text, "mb-3")}>
-            La demande sera envoyée à :
-          </p>
+          <p className={cls(styles.text, "mb-3")}>La demande sera envoyée à :</p>
 
           {usersToDisplay.map((user, index) => (
-            <UserButton
-              key={index}
-              user={user}
-              tags={user.roles}
-              wrap={true}
-            />
+            <UserButton key={index} user={user} tags={user.roles} wrap={true} />
           ))}
 
           <Row className="mt-6">
             <Col lg="4">
-              <p className={cls(styles.text, "mb-3")}>
-                {"Sections à revoir (" + selectedCategories.length + ")"}{" "}
-              </p>
+              <p className={cls(styles.text, "mb-3")}>{"Sections à revoir (" + selectedCategories.length + ")"} </p>
               <div className={styles.categories}>
                 {dispositifCategories.map((category, index) => (
                   <FButton
                     className={styles.category}
                     key={index}
-                    type={
-                      selectedCategories.includes(category) ? "dark" : "white"
-                    }
+                    type={selectedCategories.includes(category) ? "dark" : "white"}
                     onClick={() => onClickCategory(category)}
                   >
                     {category}
@@ -261,13 +221,11 @@ export const ImprovementsMailModal = (props: Props) => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: "center"
                 }}
               >
                 <p className={cls(styles.text, "mb-3")}>Ajouter un message</p>
-                <p className={cls(styles.text, "mb-3 text-muted")}>
-                  {message.length.toString()} sur 3000 caractères
-                </p>
+                <p className={cls(styles.text, "mb-3 text-muted")}>{message.length.toString()} sur 3000 caractères</p>
               </div>
               <Input
                 type="textarea"
@@ -283,33 +241,25 @@ export const ImprovementsMailModal = (props: Props) => {
           </Row>
 
           <div className={styles.recap}>
-            Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b>{" "}
-            utilisateur(s) avec <b>{selectedCategories.length}</b> section(s) à
-            revoir.
+            Vous allez envoyer un mail à <b>{nbUsersWithEmail}</b> utilisateur(s) avec{" "}
+            <b>{selectedCategories.length}</b> section(s) à revoir.
           </div>
 
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "end",
+              justifyContent: "end"
             }}
           >
-            <FButton
-              className="mr-8"
-              type="white"
-              onClick={props.toggleModal}
-              name="close-outline"
-            >
+            <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline">
               Annuler
             </FButton>
             <FButton
               type="validate"
               name="checkmark-outline"
               onClick={sendMail}
-              disabled={
-                nbUsersWithEmail === 0 || selectedCategories.length === 0
-              }
+              disabled={nbUsersWithEmail === 0 || selectedCategories.length === 0}
             >
               Envoyer
             </FButton>

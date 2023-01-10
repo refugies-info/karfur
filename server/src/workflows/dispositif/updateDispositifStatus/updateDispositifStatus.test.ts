@@ -9,6 +9,7 @@ import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
   checkUserIsAuthorizedToModifyDispositif,
+  checkUserIsAuthorizedToDeleteDispositif
 } from "../../../libs/checkAuthorizations";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
@@ -40,6 +41,7 @@ jest.mock("../../../libs/checkAuthorizations", () => ({
   checkRequestIsFromSite: jest.fn(),
   checkIfUserIsAdmin: jest.fn(),
   checkUserIsAuthorizedToModifyDispositif: jest.fn(),
+  checkUserIsAuthorizedToDeleteDispositif: jest.fn()
 }));
 
 jest.mock("../../../controllers/miscellaneous/airtable", () => ({
@@ -168,7 +170,7 @@ describe("updateDispositifStatus", () => {
       "id",
       neededFields
     );
-    expect(checkUserIsAuthorizedToModifyDispositif).toHaveBeenCalledWith(
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
       { _id: "id" },
       "userId",
       []
@@ -183,7 +185,7 @@ describe("updateDispositifStatus", () => {
   });
 
   it("should return a 404 when new status is supprimé and user not authorized", async () => {
-    checkUserIsAuthorizedToModifyDispositif.mockImplementationOnce(() => {
+    checkUserIsAuthorizedToDeleteDispositif.mockImplementationOnce(() => {
       throw new Error("NOT_AUTHORIZED");
     });
     updateDispositifInDB.mockResolvedValueOnce({ typeContenu: "demarche" });
@@ -202,7 +204,7 @@ describe("updateDispositifStatus", () => {
       "id",
       neededFields
     );
-    expect(checkUserIsAuthorizedToModifyDispositif).toHaveBeenCalledWith(
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
       { _id: "id" },
       "userId",
       []
@@ -221,7 +223,7 @@ describe("updateDispositifStatus", () => {
       titreInformatif: "TI",
       titreMarque: "TM",
       _id: "id",
-      theme: {_id: "theme"},
+      theme: { _id: "theme" },
     };
     updateDispositifInDB.mockResolvedValueOnce(dispo);
 
@@ -242,7 +244,7 @@ describe("updateDispositifStatus", () => {
       "id",
       neededFields
     );
-    expect(checkUserIsAuthorizedToModifyDispositif).toHaveBeenCalledWith(
+    expect(checkUserIsAuthorizedToDeleteDispositif).toHaveBeenCalledWith(
       dispo,
       "userId",
       []

@@ -19,13 +19,12 @@ const FrameModal = (props: Props) => {
   const { t } = useTranslation();
 
   const getTutoUrl = () => {
-    const defaultUrl =
-      "https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7";
+    const defaultUrl = "https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7";
     if (!props.section) {
       return defaultUrl;
     }
     const sectionUrlCorrespondency = find(sectionUrlCorrespondencies, {
-      section: props.section,
+      section: props.section
     });
 
     if (!sectionUrlCorrespondency || !sectionUrlCorrespondency.tutoUrl) {
@@ -47,25 +46,16 @@ const FrameModal = (props: Props) => {
           type="dark"
           name="external-link"
           fill={colors.gray90}
-          className="mr-10"
+          className="me-2"
           target="_blank"
         >
           Voir dans le centre d&apos;aide
         </FButton>
-        <FButton
-          type="tuto"
-          name="checkmark"
-          className="ml-10"
-          onClick={() => props.toggle("")}
-        >
+        <FButton type="tuto" name="checkmark" className="ms-2" onClick={() => props.toggle("")}>
           Compris !
         </FButton>
       </div>
-      <iframe
-        className={styles.iframe}
-        allowFullScreen
-        src={getTutoUrl() + "/reader/"}
-      />
+      <iframe className={styles.iframe} allowFullScreen src={getTutoUrl() + "/reader/"} />
     </Modal>
   );
 };

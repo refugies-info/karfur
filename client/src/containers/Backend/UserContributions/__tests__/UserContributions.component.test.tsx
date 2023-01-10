@@ -128,7 +128,13 @@ describe("userContributions", () => {
         nbVues: 10,
         mainSponsor: "sponsor"
       }
-    ]
+    ],
+    membres: [{ _id: "userId", roles: ["contributeur"] }]
+  };
+  const userState = {
+    user: {
+      _id: "userId"
+    }
   };
   it("should render correctly when contributions", () => {
     window.scrollTo = jest.fn();
@@ -139,7 +145,8 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure
+          userStructure,
+          user: userState
         }
       });
     });
@@ -160,7 +167,8 @@ describe("userContributions", () => {
         reduxState: {
           ...initialMockStore,
           userContributions,
-          userStructure
+          userStructure,
+          user: userState
         }
       });
     });
@@ -169,10 +177,6 @@ describe("userContributions", () => {
       shouldRedirect: false
     });
     expect(fetchUserContributionsActionCreator).toHaveBeenCalledWith();
-    await act(() => component.root.findByProps({ "data-test-id": "test_id1" }).props.onClick());
-    expect(Router).toMatchObject({ asPath: "/dispositif/id1" });
-    await act(() => component.root.findByProps({ "data-test-id": "test_id2" }).props.onClick());
-    expect(Router).toMatchObject({ asPath: "/demarche/id2" });
   });
 
   it("should render correctly when click on delete", () => {
@@ -183,7 +187,8 @@ describe("userContributions", () => {
         Component: UserContributions,
         reduxState: {
           ...initialMockStore,
-          userContributions: [userContributions[0]]
+          userContributions: [userContributions[0]],
+          user: userState
         }
       });
     });
@@ -199,7 +204,7 @@ describe("userContributions", () => {
     expect(Swal.fire).toHaveBeenCalledWith({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,

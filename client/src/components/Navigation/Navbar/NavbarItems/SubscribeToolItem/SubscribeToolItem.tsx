@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { isMobileOnly } from "react-device-detect";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
 
 const SubscribeToolItem = () => {
@@ -14,7 +14,7 @@ const SubscribeToolItem = () => {
 
   if (isMobileOnly || isAuth) return null;
   return (
-    <ToolItem asLink={<Link href={getPath("/register", router.locale)} />} icon="ri-user-add-line">
+    <ToolItem asLink={<Link href={getPath("/register", router.locale)} prefetch={false} />} icon="ri-user-add-line">
       {t("Toolbar.Inscription", "Inscription")}
     </ToolItem>
   );

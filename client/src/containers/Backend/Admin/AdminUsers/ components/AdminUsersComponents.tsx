@@ -8,9 +8,7 @@ interface RoleProps {
   role: string;
 }
 
-export const Role = (props: RoleProps) => (
-  <div className={styles.role}>{props.role}</div>
-);
+export const Role = (props: RoleProps) => <div className={styles.role}>{props.role}</div>;
 
 interface LangueFlagProps {
   langue: string;
@@ -18,12 +16,7 @@ interface LangueFlagProps {
 
 export const LangueFlag = (props: LangueFlagProps) => (
   <div className={styles.langue}>
-    <i
-      className={"flag-icon flag-icon-" + props.langue}
-      title={props.langue}
-      id={props.langue}
-      key={props.langue}
-    />
+    <span className={"fi fi-" + props.langue} title={props.langue} id={props.langue} key={props.langue} />
   </div>
 );
 
@@ -35,12 +28,8 @@ interface RoleCheckBoxProps {
 
 export const RoleCheckBox = (props: RoleCheckBoxProps) => (
   <div className={cls(styles.role_checkbox, props.isSelected && styles.selected)}>
-    <label className={cls(checkStyles.checkbox,checkStyles.v2, checkStyles.reverse)}>
-      <input
-        onChange={() => props.handleCheckBoxChange(props.name)}
-        type="checkbox"
-        checked={props.isSelected}
-      />
+    <label className={cls(checkStyles.checkbox, checkStyles.v2, checkStyles.reverse)}>
+      <input onChange={() => props.handleCheckBoxChange(props.name)} type="checkbox" checked={props.isSelected} />
       <span className={checkStyles.checkmark}></span>
     </label>
     <span className={styles.role_name}>{props.name}</span>
@@ -53,8 +42,8 @@ interface LangueDetailProps {
 export const LangueDetail = (props: LangueDetailProps) => (
   <div className={styles.langue}>
     <div style={{ marginRight: "8px" }}>
-      <i
-        className={"flag-icon flag-icon-" + props.langue.langueCode}
+      <span
+        className={"fi fi-" + props.langue.langueCode}
         title={props.langue.langueCode}
         id={props.langue.langueCode}
         key={props.langue.langueCode}
@@ -70,13 +59,10 @@ interface LangueButtonProps {
   valid?: boolean;
 }
 export const LangueButton = (props: LangueButtonProps) => (
-  <Button
-    className={cls(styles.langue, styles.btn, props.valid && styles.valid)}
-    onClick={props.onClick}
-  >
+  <Button className={cls(styles.langue, styles.btn, props.valid && styles.valid)} onClick={props.onClick}>
     <span style={{ marginRight: "8px" }}>
-      <i
-        className={"flag-icon flag-icon-" + props.langue.langueCode}
+      <span
+        className={"fi fi-" + props.langue.langueCode}
         title={props.langue.langueCode}
         id={props.langue.langueCode}
         key={props.langue.langueCode}

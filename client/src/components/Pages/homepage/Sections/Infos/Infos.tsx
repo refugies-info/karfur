@@ -30,7 +30,7 @@ const Infos = () => {
           Swal.fire({
             title: "Yay...",
             text: "Mail correctement enregistré !",
-            type: "success",
+            icon: "success",
             timer: 1500
           });
           setEmail("");

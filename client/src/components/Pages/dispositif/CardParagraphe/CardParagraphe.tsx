@@ -5,18 +5,14 @@ import { useTranslation } from "next-i18next";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import { DispositifContent, Theme } from "types/interface";
-import {
-  cardTitlesDispositif,
-  cardTitlesDemarche,
-  ShortContent,
-} from "data/dispositif";
+import { cardTitlesDispositif, cardTitlesDemarche, ShortContent } from "data/dispositif";
 import FrenchLevelModal from "../FrenchLevelModal";
 import GeolocModal from "components/Modals/GeolocModal/GeolocModal";
 import API from "utils/API";
 import {
   FrenchCECRLevel,
   DepartmentsSelected,
-  AdminGeolocPublicationButton,
+  AdminGeolocPublicationButton
 } from "./components/CardParagrapheComponents";
 
 import { CardBodyContent } from "./components/CardBodyContent";
@@ -34,12 +30,7 @@ interface Props {
   subkey: number;
   keyValue: number;
   dispositifId?: string;
-  updateUIArray: (
-    key: number,
-    arg: number | null,
-    variante: UiElementNodes,
-    option?: boolean
-  ) => void;
+  updateUIArray: (key: number, arg: number | null, variante: UiElementNodes, option?: boolean) => void;
   handleMenuChange: (ev: any, value?: any) => any;
   subitem: DispositifContent;
   content: ShortContent;
@@ -75,23 +66,23 @@ const CardParagraphe = (props: Props) => {
   const onValidateGeoloc = (dispositifId: string, subitem: any) => {
     let dispositif = {
       dispositifId,
-      geolocInfocard: subitem,
+      geolocInfocard: subitem
     };
     API.add_dispositif_infocards(dispositif)
       .then(() => {
         Swal.fire({
           title: "Yay...",
           text: "Enregistrement reussi",
-          type: "success",
-          timer: 1500,
+          icon: "success",
+          timer: 1500
         });
       })
       .catch(() => {
         Swal.fire({
           title: "Oh non!",
           text: "Something went wrong",
-          type: "error",
-          timer: 1500,
+          icon: "error",
+          timer: 1500
         });
       });
   };
@@ -102,12 +93,7 @@ const CardParagraphe = (props: Props) => {
 
   const toggleDropdown = (e: Element) => {
     if (isDropdownOpen && e.currentTarget.id) {
-      props.changeTitle(
-        props.keyValue,
-        props.subkey,
-        "title",
-        e.target.innerText
-      );
+      props.changeTitle(props.keyValue, props.subkey, "title", e.target.innerText);
     }
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -116,21 +102,15 @@ const CardParagraphe = (props: Props) => {
     if (!props.disableEdit && (props.subitem || {}).isFakeContent) {
       props.handleMenuChange({
         currentTarget: e.currentTarget,
-        target: { value: "" },
+        target: { value: "" }
       });
     }
   };
-  const toggleFrenchLevelModal = (show: boolean) =>
-    setShowFrenchLevelModal(show);
+  const toggleFrenchLevelModal = (show: boolean) => setShowFrenchLevelModal(show);
 
   const toggleOptions = (e: Element) => {
     if (isOptionsOpen && e.currentTarget.id) {
-      props.changeTitle(
-        props.keyValue,
-        props.subkey,
-        "contentTitle",
-        e.target.innerText
-      );
+      props.changeTitle(props.keyValue, props.subkey, "contentTitle", e.target.innerText);
     }
     setIsOptionsOpen(!isOptionsOpen);
   };
@@ -143,8 +123,8 @@ const CardParagraphe = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Cette fonctionnalité n'est pas encore activée",
-        type: "error",
-        timer: 1500,
+        icon: "error",
+        timer: 1500
       });
     }
   };
@@ -159,11 +139,7 @@ const CardParagraphe = (props: Props) => {
     const safeMainTheme = !props.theme ? "noImage" : props.theme.short.fr.replace(/ /g, "-");
 
     const className =
-      (props.subitem.title || "")
-        .replace(/ /g, "-")
-        .replace("-?", "")
-        .replace("-!", "")
-        .replace("'", "-") +
+      (props.subitem.title || "").replace(/ /g, "-").replace("-?", "").replace("-!", "").replace("'", "-") +
       "-" +
       safeMainTheme;
 
@@ -179,9 +155,7 @@ const CardParagraphe = (props: Props) => {
     <>
       <Col
         className={styles.card_col}
-        onMouseEnter={() =>
-          props.updateUIArray(props.keyValue, props.subkey, "isHover")
-        }
+        onMouseEnter={() => props.updateUIArray(props.keyValue, props.subkey, "isHover")}
       >
         <Card
           className={cls(styles.card, computeCardClassName())}
@@ -202,10 +176,7 @@ const CardParagraphe = (props: Props) => {
             />
           </CardHeader>
           <CardBody className={styles.card_body}>
-            <span
-              className={styles.card_title}
-              style={{ color: props.theme.colors.color100 }}
-            >
+            <span className={styles.card_title} style={{ color: props.theme.colors.color100 }}>
               <CardBodyContent
                 subitem={props.subitem}
                 isOptionsOpen={isOptionsOpen}
@@ -226,21 +197,12 @@ const CardParagraphe = (props: Props) => {
               />
             </span>
 
-            {props.subitem.title === "Niveau de français" &&
-              (props.subitem.niveaux || []).length > 0 && (
-                <FrenchCECRLevel
-                  subitem={props.subitem}
-                  theme={props.theme}
-                />
-              )}
-            {props.subitem.title === "Zone d'action" &&
-              (props.subitem.departments || []).length > 0 && (
-                <DepartmentsSelected
-                  subitem={props.subitem}
-                  disableEdit={props.disableEdit}
-                  theme={props.theme}
-                />
-              )}
+            {props.subitem.title === "Niveau de français" && (props.subitem.niveaux || []).length > 0 && (
+              <FrenchCECRLevel subitem={props.subitem} theme={props.theme} />
+            )}
+            {props.subitem.title === "Zone d'action" && (props.subitem.departments || []).length > 0 && (
+              <DepartmentsSelected subitem={props.subitem} disableEdit={props.disableEdit} theme={props.theme} />
+            )}
             <AdminGeolocPublicationButton
               admin={props.admin}
               subitem={props.subitem}
@@ -263,25 +225,13 @@ const CardParagraphe = (props: Props) => {
           }
           {
             // deletion of an infocard in edit mode except for zone d'action in demarche
-            !props.disableEdit &&
-              !(
-                props.typeContenu === "demarche" &&
-                props.subitem.title === "Zone d'action"
-              ) && (
-                <div className={styles.card_icons}>
-                  <div
-                    onClick={() =>
-                      props.deleteCard(props.keyValue, props.subkey)
-                    }
-                  >
-                    <EVAIcon
-                      size="xlarge"
-                      name="close-circle"
-                      fill={colors.gray50}
-                    />
-                  </div>
+            !props.disableEdit && !(props.typeContenu === "demarche" && props.subitem.title === "Zone d'action") && (
+              <div className={styles.card_icons}>
+                <div onClick={() => props.deleteCard(props.keyValue, props.subkey)}>
+                  <EVAIcon size="xlarge" name="close-circle" fill={colors.gray50} />
                 </div>
-              )
+              </div>
+            )
           }
         </Card>
       </Col>

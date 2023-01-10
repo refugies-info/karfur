@@ -30,28 +30,28 @@ const weekDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "
 
 const PhoneNumber = (props: { phone: string }) => (
   <div className={styles.white_container}>
-    <EVAIcon name="phone-call-outline" fill="#212121" className="mr-8" />
+    <EVAIcon name="phone-call-outline" fill="#212121" className="me-2" />
     {props.phone}
   </div>
 );
 
 const Mail = (props: { mail: string }) => (
   <div className={styles.white_container}>
-    <EVAIcon name="email-outline" fill="#212121" className="mr-8" />
+    <EVAIcon name="email-outline" fill="#212121" className="me-2" />
     {props.mail}
   </div>
 );
 
 const Adress = (props: { adress: string | undefined }) => (
   <div className={styles.white_container}>
-    <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
+    <EVAIcon name="pin-outline" fill="#212121" className="me-2" />
     {props.adress}
   </div>
 );
 
 const HoursPrecisions = (props: { text: string }) => (
   <div className={styles.blue_container}>
-    <EVAIcon name="info" fill="#2D9CDB" className="mr-8" />
+    <EVAIcon name="info" fill="#2D9CDB" className="me-2" />
     {props.text}
   </div>
 );
@@ -61,7 +61,7 @@ const Departement = (props: { departement: string }) => {
 
   return (
     <div className={styles.white_container}>
-      <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
+      <EVAIcon name="pin-outline" fill="#212121" className="me-2" />
       {props.departement === "All" ? t("Dispositif.France entière", "France entière") : props.departement}
     </div>
   );
@@ -72,7 +72,7 @@ const Placeholder = (props: { iconName: string; text: string; i18nKey: string })
 
   return (
     <div className={styles.red_container}>
-      <EVAIcon name={props.iconName} fill="#212121" className="mr-8" />
+      <EVAIcon name={props.iconName} fill="#212121" className="me-2" />
       {/* @ts-ignore */}
       <>{t("Annuaire." + props.i18nKey, props.text)}</>
     </div>
@@ -135,7 +135,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </div>
           {hasUpdatePermission && (
             <div style={{ height: "5Opx" }}>
-              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref>
+              <Link legacyBehavior href={getPath("/annuaire-creation", router.locale)} passHref prefetch={false}>
                 <FButton tag="a" type="dark" name="edit-outline">
                   Modifier la fiche
                 </FButton>

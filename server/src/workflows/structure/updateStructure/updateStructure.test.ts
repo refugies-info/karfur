@@ -1,8 +1,7 @@
 // @ts-nocheck
 import { updateStructure } from "./updateStructure";
-import { updateStructureInDB, getStructureFromDB } from "../../../modules/structure/structure.repository";
+import { updateStructureInDB } from "../../../modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { log } from "./log";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -16,16 +15,21 @@ jest.mock("../../../modules/structure/structure.repository", () => ({
   updateStructureInDB: jest.fn().mockResolvedValue({
     nom: "structure",
     acronyme: "acronyme",
-    _id: "id",
+    _id: "id"
   }),
-  getStructureFromDB: jest.fn().mockResolvedValue({})
+  getStructureFromDB: jest.fn().mockResolvedValue({}),
+  findUsers: jest.fn().mockResolvedValue({})
 }));
 
 jest.mock("../../../modules/structure/structure.service", () => ({
-  checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
+  checkIfUserIsAuthorizedToModifyStructure: jest.fn()
 }));
 jest.mock("./log", () => ({
   log: jest.fn().mockResolvedValue(undefined)
+}));
+
+jest.mock("../../../modules/users/users.service", () => ({
+  findUsers: jest.fn().mockRejectedValueOnce([])
 }));
 
 describe("updateStructure", () => {
@@ -57,41 +61,29 @@ describe("updateStructure", () => {
   const structure = {
     nom: "structure",
     acronyme: "acronyme",
-    _id: "id",
+    _id: "id"
   };
   const req = {
     user: { roles: ["test"] },
     userId: "userId",
     fromSite: true,
     body: {
-      query: structure,
-    },
+      query: structure
+    }
   };
 
   it("should return 402 if checkIfUserIsAuthorizedToModifyStructure throws NO_STRUCTURE_WITH_THIS_ID", async () => {
-    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
-      new Error("NO_STRUCTURE_WITH_THIS_ID")
-    );
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(new Error("NO_STRUCTURE_WITH_THIS_ID"));
     await updateStructure(req, res);
-    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith(
-      "id",
-      "userId",
-      ["test"]
-    );
+    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith("id", "userId", ["test"]);
     expect(res.status).toHaveBeenCalledWith(402);
     expect(res.json).toHaveBeenCalledWith({ text: "Id non valide" });
   });
 
   it("should return 401 if user not authorized", async () => {
-    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
-      new Error("USER_NOT_AUTHORIZED")
-    );
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(new Error("USER_NOT_AUTHORIZED"));
     await updateStructure(req, res);
-    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith(
-      "id",
-      "userId",
-      ["test"]
-    );
+    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith("id", "userId", ["test"]);
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
   });
@@ -102,26 +94,24 @@ describe("updateStructure", () => {
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",
-      _id: "id",
+      _id: "id"
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       text: "Succès",
-      data: structure,
+      data: structure
     });
   });
 
   it("should return 500 if checkIfUserIsAuthorizedToModifyStructure throws", async () => {
-    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
-      new Error("ERREUR")
-    );
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(new Error("ERREUR"));
 
     await updateStructure(req, res);
 
     expect(updateStructureInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
+      text: "Erreur interne"
     });
   });
 
@@ -133,11 +123,11 @@ describe("updateStructure", () => {
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",
-      _id: "id",
+      _id: "id"
     });
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
+      text: "Erreur interne"
     });
   });
 });

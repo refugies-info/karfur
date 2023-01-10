@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from "reactstrap";
 import { cls } from "lib/classname";
 import { Language } from "types/interface";
@@ -29,8 +29,8 @@ const LanguageDropdown = (props: Props) => {
       <DropdownToggle>
         <span className={styles.value}>
           {`${t("Homepage.mobileAppInLanguage")} ${languageSelected?.langueLoc.toLowerCase() || "français"}`}
-          <i
-            className={cls(styles.flag, `flag-icon flag-icon-${languageSelected?.langueCode || "fr"}`)}
+          <span
+            className={cls(styles.flag, `fi fi-${languageSelected?.langueCode || "fr"}`)}
             title={languageSelected?.langueCode || "fr"}
             id={languageSelected?.langueCode || "fr"}
           />
@@ -45,11 +45,7 @@ const LanguageDropdown = (props: Props) => {
             className={cls(styles.item, ln.i18nCode === (languageSelected?.i18nCode || "fr") && styles.selected)}
             toggle={false}
           >
-            <i
-              className={cls(styles.flag, `flag-icon flag-icon-${ln.langueCode}`)}
-              title={ln.langueCode}
-              id={ln.langueCode}
-            />
+            <span className={cls(styles.flag, `fi fi-${ln.langueCode}`)} title={ln.langueCode} id={ln.langueCode} />
             <span className={styles.item_locale}>{ln.langueFr} -</span>
             <span>{ln.langueLoc}</span>
           </DropdownItem>

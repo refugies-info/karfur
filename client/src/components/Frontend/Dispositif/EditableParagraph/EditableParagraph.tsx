@@ -14,13 +14,10 @@ import { colors } from "colors";
 import isInBrowser from "lib/isInBrowser";
 import styles from "./EditableParagraph.module.scss";
 
-const Editor = dynamic<EditorProps>(
-  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
-  { ssr: false }
-);
+const Editor = dynamic<EditorProps>(() => import("react-draft-wysiwyg").then((mod) => mod.Editor), { ssr: false });
 
 interface AddBtnProps {
-  type: string|undefined;
+  type: string | undefined;
   keyValue: number;
   subkey?: number;
   addItem: any;
@@ -30,12 +27,10 @@ const AddModuleBtn = (props: AddBtnProps) => {
     return (
       <div className={styles.plus_wrapper} style={{ marginBottom: 24 }}>
         <FButton
-          onClick={() =>
-            props.addItem(props.keyValue, "accordion", props.subkey)
-          }
+          onClick={() => props.addItem(props.keyValue, "accordion", props.subkey)}
           type="dark"
           name="plus-circle-outline"
-          className="mt-10 mb-10"
+          className="mt-2 mb-2"
         >
           Ajouter un accordéon
         </FButton>
@@ -80,27 +75,27 @@ const myBlockRenderer = (contentBlock: ContentBlock) => {
   const type = contentBlock.getType();
   if (type === "header-six") {
     return {
-      component: MyCustomBlock,
+      component: MyCustomBlock
     };
   }
   return null;
-}
+};
 
 // EditableParagraph deals with content (and not children of items) in lecture and edition mode
 interface Props {
-  editable: boolean
-  disableEdit: boolean
-  keyValue: number
-  subkey?: number
-  placeholder: string | undefined
-  editorState: EditorState
-  onEditorStateChange: any
-  type: string|undefined
-  addItem: (key: any, type?: string, subkey?: string | null) => void
-  content: any
-  handleMenuChange: (ev: any, value?: any) => any
-  handleContentClick: any
-  target: any
+  editable: boolean;
+  disableEdit: boolean;
+  keyValue: number;
+  subkey?: number;
+  placeholder: string | undefined;
+  editorState: EditorState;
+  onEditorStateChange: any;
+  type: string | undefined;
+  addItem: (key: any, type?: string, subkey?: string | null) => void;
+  content: any;
+  handleMenuChange: (ev: any, value?: any) => any;
+  handleContentClick: any;
+  target: any;
 }
 const EditableParagraph = (props: Props) => {
   const { t } = useTranslation();
@@ -113,11 +108,7 @@ const EditableParagraph = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.editable
-      && !props.disableEdit
-      && !focused
-      && editorReference.current
-    ) {
+    if (props.editable && !props.disableEdit && !focused && editorReference.current) {
       editorReference.current.focus();
       setFocused(true);
     }
@@ -134,23 +125,17 @@ const EditableParagraph = (props: Props) => {
           <Editor
             spellCheck
             editorRef={setEditorReference}
-            toolbarClassName={
-              "toolbar-editeur" + (props.keyValue === 0 ? " no-top" : "")
-            }
+            toolbarClassName={"toolbar-editeur" + (props.keyValue === 0 ? " no-top" : "")}
             editorClassName="editor-editeur"
             wrapperClassName="wrapper-editeur"
             placeholder={props.placeholder}
             onEditorStateChange={(editorState: EditorState) => {
-              props.onEditorStateChange(
-                editorState,
-                props.keyValue,
-                props.subkey
-              );
+              props.onEditorStateChange(editorState, props.keyValue, props.subkey);
             }}
             editorState={props.editorState}
             toolbarCustomButtons={[
               //@ts-ignore
-              <CustomOption key={1} />,
+              <CustomOption key={1} />
             ]}
             // blockRendererFn={myBlockRenderer}
             customBlockRenderFunc={myBlockRenderer}
@@ -168,14 +153,14 @@ const EditableParagraph = (props: Props) => {
                 italic: { icon: "/icons/toolbar/italicBtn.svg", className: "inline-btn btn-italic" },
                 underline: {
                   icon: "/icons/toolbar/underBtn.svg",
-                  className: "inline-btn btn-underline",
-                },
+                  className: "inline-btn btn-underline"
+                }
               },
               list: {
                 inDropdown: false,
                 options: ["unordered"],
                 className: "bloc-gauche-list blc-gh",
-                unordered: { icon: "/icons/toolbar/listBtn.svg", className: "list-btn" },
+                unordered: { icon: "/icons/toolbar/listBtn.svg", className: "list-btn" }
               },
               image: {
                 className: "bloc-droite-image",
@@ -185,25 +170,20 @@ const EditableParagraph = (props: Props) => {
                 uploadCallback: uploadImageCallBack,
                 alignmentEnabled: true,
                 alt: { present: true, mandatory: false },
-                previewImage: true,
+                previewImage: true
               },
               link: {
                 inDropdown: false,
                 options: ["link"],
                 className: "bloc-gauche-inline blc-gh",
                 link: { icon: "/icons/toolbar/linkBtn.svg", className: "btn-link" },
-                showOpenOptionOnHover: true,
-              },
+                showOpenOptionOnHover: true
+              }
             }}
           />
         )}
         {props.keyValue !== 0 ? (
-          <AddModuleBtn
-            type={props.type}
-            addItem={props.addItem}
-            keyValue={props.keyValue}
-            subkey={props.subkey}
-          />
+          <AddModuleBtn type={props.type} addItem={props.addItem} keyValue={props.keyValue} subkey={props.subkey} />
         ) : null}
       </>
     );
@@ -211,37 +191,21 @@ const EditableParagraph = (props: Props) => {
     return (
       <>
         <ContentEditable
-          id={props.keyValue+""}
+          id={props.keyValue + ""}
           data-subkey={props.subkey}
           data-target={props.target}
           className="animated fadeIn"
           html={
             props.content ||
-            "<p>" +
-              t(
-                "Dispositif.Rien à afficher",
-                "Cet élément est vide, il n'y a rien à afficher"
-              ) +
-              "</p>"
+            "<p>" + t("Dispositif.Rien à afficher", "Cet élément est vide, il n'y a rien à afficher") + "</p>"
           } // innerHTML of the editable div
           placeholder={"test"}
           disabled={props.disableEdit} // use true to disable editing
           onChange={props.handleMenuChange} // handle innerHTML change
-          onClick={() =>
-            props.handleContentClick(
-              props.keyValue,
-              !props.disableEdit,
-              props.subkey
-            )
-          }
+          onClick={() => props.handleContentClick(props.keyValue, !props.disableEdit, props.subkey)}
         />
         {!props.disableEdit && props.keyValue !== 0 && (
-          <AddModuleBtn
-            type={props.type}
-            addItem={props.addItem}
-            keyValue={props.keyValue}
-            subkey={props.subkey}
-          />
+          <AddModuleBtn type={props.type} addItem={props.addItem} keyValue={props.keyValue} subkey={props.subkey} />
         )}
       </>
     );

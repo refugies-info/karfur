@@ -9,21 +9,17 @@ import Modal from "../Modal";
 import styles from "./GeolocModal.module.scss";
 
 interface Props {
-  show: boolean
-  toggleTutorielModal: any
-  validateDepartments: any
-  departments: string[] | undefined
-  hideModal: any
+  show: boolean;
+  toggleTutorielModal: any;
+  validateDepartments: any;
+  departments: string[] | undefined;
+  hideModal: any;
 }
 
 const GeolocModal = (props: Props) => {
   const [departments, setDepartments] = useState<string[]>([]);
-  const [isFranceSelected, setFranceSelected] = useState(
-    props.departments && props.departments.includes("All")
-  );
-  const [selectedDepartments, setSelectedDepartments] = useState(
-    props.departments || []
-  );
+  const [isFranceSelected, setFranceSelected] = useState(props.departments && props.departments.includes("All"));
+  const [selectedDepartments, setSelectedDepartments] = useState(props.departments || []);
   const [departmentInput, setDepartmentInput] = useState("");
 
   useEffect(() => {
@@ -31,7 +27,7 @@ const GeolocModal = (props: Props) => {
     return () => {
       setSelectedDepartments([]);
       setDepartments([]);
-    }
+    };
   }, [props.departments]);
 
   const onDepartmentChange = (e: any) => {
@@ -39,9 +35,8 @@ const GeolocModal = (props: Props) => {
     if (e.target.value === "") {
       return setDepartments([]);
     }
-    const departmentsDataFiltered = filtres.departmentsData.filter(
-      (department) =>
-        selectedDepartments ? !selectedDepartments.includes(department) : false
+    const departmentsDataFiltered = filtres.departmentsData.filter((department) =>
+      selectedDepartments ? !selectedDepartments.includes(department) : false
     );
 
     const filteredDepartments = departmentsDataFiltered.filter((department) =>
@@ -52,9 +47,7 @@ const GeolocModal = (props: Props) => {
   };
 
   const removeDropdowElement = (element: any) => {
-    const departments = selectedDepartments
-      ? selectedDepartments.filter((department) => department !== element)
-      : [];
+    const departments = selectedDepartments ? selectedDepartments.filter((department) => department !== element) : [];
     setSelectedDepartments(departments);
   };
 
@@ -70,9 +63,11 @@ const GeolocModal = (props: Props) => {
 
   const onDropdownElementClick = (element: string) => {
     var departments: string[] = [];
-    if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") { // All selected
+    if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") {
+      // All selected
       departments = [element];
-    } else { // element selected
+    } else {
+      // element selected
       departments = (selectedDepartments || []).concat(element);
     }
     setSelectedDepartments(departments);
@@ -87,18 +82,13 @@ const GeolocModal = (props: Props) => {
   };
 
   return (
-    <Modal
-      show={props.show}
-      className={styles.modal}
-    >
+    <Modal show={props.show} className={styles.modal}>
       <div onClick={props.hideModal} className={styles.close}>
         <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
       </div>
       <div id="svgContainer" />
       <h1>Zone d&apos;action</h1>
-      <p>
-        Sélectionnez les départements sur lesquels votre dispositif est actif :
-      </p>
+      <p>Sélectionnez les départements sur lesquels votre dispositif est actif :</p>
       {!isFranceSelected && (
         <div className={styles.department}>
           {selectedDepartments &&
@@ -110,7 +100,7 @@ const GeolocModal = (props: Props) => {
                   <EVAIcon
                     name="close"
                     fill={"#ffffff"}
-                    className="ml-10"
+                    className="ms-2"
                     onClick={() => removeDropdowElement(department)}
                   />
                 </div>
@@ -131,52 +121,34 @@ const GeolocModal = (props: Props) => {
             prependName="hash"
             autoFocus={false}
           />
-          <CustomDropDown
-            elementList={departments}
-            onDropdownElementClick={onDropdownElementClick}
-          />
+          <CustomDropDown elementList={departments} onDropdownElementClick={onDropdownElementClick} />
         </div>
       )}
       {selectedDepartments && selectedDepartments.length === 13 && (
         <div className={styles.help}>
           <p className={styles.description}>
-            Nombre maximum de départements renseignés. Préférez l’option{" "}
-            <b>France entière</b> si votre dispositif est présent sur de
-            nombreux territoires.
+            Nombre maximum de départements renseignés. Préférez l’option <b>France entière</b> si votre dispositif est
+            présent sur de nombreux territoires.
           </p>
         </div>
       )}
       <div className={styles.title}>OU</div>
-      <p>
-        Votre dispositif est accessible sur tout le territoire, cochez l’option
-        ci-dessous :{" "}
-      </p>
+      <p>Votre dispositif est accessible sur tout le territoire, cochez l’option ci-dessous : </p>
       <div
         className={styles.checkbox}
         onClick={handleCheckboxChange}
         style={{ backgroundColor: isFranceSelected ? "#DEF7C2" : "#f2f2f2" }}
       >
         <CustomCheckBox checked={!!isFranceSelected} />
-        <p className={isFranceSelected ? styles.text_checked : styles.text}>
-          France entière
-        </p>
+        <p className={isFranceSelected ? styles.text_checked : styles.text}>France entière</p>
       </div>
 
       <div className={styles.btn_group}>
-        <FButton
-          type="tuto"
-          name={"play-circle-outline"}
-          onClick={() => props.toggleTutorielModal("C'est pour qui ?")}
-        >
+        <FButton type="tuto" name={"play-circle-outline"} onClick={() => props.toggleTutorielModal("C'est pour qui ?")}>
           Tutoriel
         </FButton>
         <div className={styles.right}>
-          <FButton
-            type="validate"
-            name="checkmark"
-            onClick={onValidate}
-            disabled={selectedDepartments.length === 0}
-          >
+          <FButton type="validate" name="checkmark" onClick={onValidate} disabled={selectedDepartments.length === 0}>
             <span className={styles.btn_text}>Valider</span>
           </FButton>
         </div>

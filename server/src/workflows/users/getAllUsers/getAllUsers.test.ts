@@ -11,7 +11,7 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../../../modules/users/users.repository", () => ({
-  getAllUsersFromDB: jest.fn(),
+  getAllUsersFromDB: jest.fn()
 }));
 
 const neededFields = {
@@ -33,66 +33,48 @@ const user1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: [
-    { nom: "Admin" },
-    { nom: "ExpertTrad" },
-    { nom: "Trad" },
-    { nom: "User" },
-    { nom: "Contrib" },
-    { nom: "hasStructure" },
-  ],
+  roles: [{ nom: "Admin" }, { nom: "ExpertTrad" }, { nom: "Trad" }, { nom: "User" }, { nom: "Contrib" }],
   structures: [
     {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id1", roles: ["administrateur"] }],
+      membres: [{ userId: "id1", roles: ["administrateur"] }]
     },
     {
       _id: "id_structure",
       nom: "struct2",
       picture: { secure_url: "sec_struct2" },
-      membres: [{ userId: "id1", roles: ["contributeur"] }],
-    },
+      membres: [{ userId: "id1", roles: ["contributeur"] }]
+    }
   ],
   email: "email1",
   phone: "",
   selectedLanguages: [
     { langueCode: "fr", langueFr: "Français" },
     { langueCode: "gb", langueFr: "Anglais" },
-    { langueCode: "sa", langueFr: "Pachto" },
+    { langueCode: "sa", langueFr: "Pachto" }
   ],
-  last_connected: "",
+  last_connected: ""
 };
 
 const user2 = {
   username: "username2",
   _id: "id2",
   picture: { secure_url: "secure_url2" },
-  roles: [
-    { nom: "User" },
-  ],
+  roles: [{ nom: "User" }],
   status: "Actif",
   created_at: "created_at",
   email: "email2",
   phone: "",
-  last_connected: "",
+  last_connected: ""
 };
 
 const user3 = {
   ...user1,
   _id: "id3",
-  roles: [
-    { nom: "ExpertTrad" },
-  ],
-  structures: [
-    {
-      _id: "id_structure",
-      nom: "struct1",
-      picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id3", roles: ["contributeur"] }],
-    },
-  ],
+  roles: [{ nom: "ExpertTrad" }],
+  structures: []
 };
 
 const user4 = {
@@ -103,25 +85,22 @@ const user4 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id1", roles: ["membre"] }],
-    },
-  ],
+      membres: [{ userId: "id1", roles: ["membre"] }]
+    }
+  ]
 };
 const user5 = {
   ...user1,
   _id: "id5",
-  roles: [
-    { nom: "ExpertTrad" },
-    { nom: "hasStructure" },
-  ],
+  roles: [{ nom: "ExpertTrad" }],
   structures: [
     {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      membres: [{ userId: "id5", roles: ["administrateur"] }],
-    },
-  ],
+      membres: [{ userId: "id5", roles: ["administrateur"] }]
+    }
+  ]
 };
 
 const simplifiedUserAdmin1 = {
@@ -136,24 +115,25 @@ const simplifiedUserAdmin1 = {
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
       _id: "id_structure",
-      role: ["Responsable"],
+      role: ["Responsable"]
     },
     {
       _id: "id_structure",
       nom: "struct2",
       picture: { secure_url: "sec_struct2" },
-      role: ["Rédacteur"],
-    },
+      role: ["Rédacteur"]
+    }
   ],
   email: "email1",
   phone: "",
   langues: [
     { langueCode: "gb", langueFr: "Anglais" },
-    { langueCode: "sa", langueFr: "Pachto" },
+    { langueCode: "sa", langueFr: "Pachto" }
   ],
   nbStructures: 2,
   nbContributions: 0,
   last_connected: "",
+  adminComments: undefined
 };
 
 const simplifiedUserAdmin2 = {
@@ -169,23 +149,16 @@ const simplifiedUserAdmin2 = {
   roles: [],
   structures: [],
   nbContributions: 0,
-  last_connected: "",
+  last_connected: ""
 };
 
 const simplifiedUserAdmin3 = {
   ...simplifiedUserAdmin1,
   _id: "id3",
-  roles: ["ExpertTrad", "Rédacteur"],
-  nbStructures: 1,
-  structures: [
-    {
-      _id: "id_structure",
-      nom: "struct1",
-      picture: { secure_url: "sec_struct1" },
-      role: ["Rédacteur"],
-    },
-  ],
-  nbContributions: 0,
+  roles: ["ExpertTrad"],
+  nbStructures: 0,
+  structures: [],
+  nbContributions: 0
 };
 
 const simplifiedUserAdmin4 = {
@@ -198,9 +171,9 @@ const simplifiedUserAdmin4 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      role: [],
-    },
-  ],
+      role: []
+    }
+  ]
 };
 
 const simplifiedUserAdmin5 = {
@@ -213,18 +186,17 @@ const simplifiedUserAdmin5 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
-      role: ["Responsable"],
-    },
-  ],
+      role: ["Responsable"]
+    }
+  ]
 };
-
 
 const simplifiedUser1 = {
   username: "username1",
   _id: "id1",
   picture: { secure_url: "secure_url1" },
   status: "Actif",
-  email: "email1",
+  email: "email1"
 };
 
 const simplifiedUser2 = {
@@ -232,24 +204,23 @@ const simplifiedUser2 = {
   _id: "id2",
   picture: { secure_url: "secure_url2" },
   status: "Actif",
-  email: "email2",
+  email: "email2"
 };
 
 const simplifiedUser3 = {
   ...simplifiedUser1,
-  _id: "id3",
+  _id: "id3"
 };
 
 const simplifiedUser4 = {
   ...simplifiedUser1,
-  _id: "id4",
+  _id: "id4"
 };
 
 const simplifiedUser5 = {
   ...simplifiedUser1,
-  _id: "id5",
+  _id: "id5"
 };
-
 
 const users = [user1, user2, user3, user4, user5];
 describe("getAllUsers", () => {
@@ -257,7 +228,7 @@ describe("getAllUsers", () => {
   it("should call getAllUsersFromDB and return 200 with user admin", async () => {
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
-    const req = {user: { _id: "id1", roles: [] }};
+    const req = { user: { _id: "id1", roles: [] } };
     await getAllUsers(req, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
@@ -267,31 +238,25 @@ describe("getAllUsers", () => {
         simplifiedUserAdmin2,
         simplifiedUserAdmin3,
         simplifiedUserAdmin4,
-        simplifiedUserAdmin5,
-      ],
+        simplifiedUserAdmin5
+      ]
     });
   });
   it("should call getAllUsersFromDB and return 200 when user has structure", async () => {
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
-    const req = {user: { _id: "id5", roles: [] }};
+    const req = { user: { _id: "id5", roles: [], structures: ["dummy"] } };
     await getAllUsers(req, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [
-        simplifiedUser1,
-        simplifiedUser2,
-        simplifiedUser3,
-        simplifiedUser4,
-        simplifiedUser5,
-      ],
+      data: [simplifiedUser1, simplifiedUser2, simplifiedUser3, simplifiedUser4, simplifiedUser5]
     });
   });
   it("should return 403 unauthorized when no role in structure", async () => {
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
-    const req = {user: { _id: "id3", roles: [] }};
+    const req = { user: { _id: "id3", roles: [] } };
     await getAllUsers(req, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -302,7 +267,7 @@ describe("getAllUsers", () => {
   it("should return 403 unauthorized when no role", async () => {
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
-    const req = {user: { _id: "id2", roles: [] }};
+    const req = { user: { _id: "id2", roles: [] } };
     await getAllUsers(req, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(403);
@@ -318,7 +283,7 @@ describe("getAllUsers", () => {
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
+      text: "Erreur interne"
     });
   });
 });

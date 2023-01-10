@@ -4,7 +4,7 @@ import {
   ProgressionStatus,
   SimplifiedDispositif,
   SimplifiedStructureForAdmin,
-  StructureStatus,
+  StructureStatus
 } from "types/interface";
 import { Label, StyledStatus } from "./SubComponents";
 import styles from "./StatusRow.module.scss";
@@ -16,10 +16,7 @@ interface Props {
   progressionStatus: ProgressionStatus[];
   modifyStatus: (
     newStatus: string,
-    property:
-      | "status"
-      | "adminProgressionStatus"
-      | "adminPercentageProgressionStatus"
+    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus"
   ) => void;
   hiddenStatus?: string[];
 }
@@ -40,11 +37,9 @@ export const StatusRow = (props: Props) => {
 
             return (
               <div
-                className="mr-2"
+                className="me-2"
                 key={status.storedStatus}
-                onClick={() =>
-                  props.modifyStatus(status.storedStatus, "status")
-                }
+                onClick={() => props.modifyStatus(status.storedStatus, "status")}
               >
                 <StyledStatus
                   text={status.storedStatus}
@@ -65,11 +60,10 @@ export const StatusRow = (props: Props) => {
           {props.publicationStatus.map((status) => (
             <div
               key={status.storedStatus}
-              className="mr-2"
+              className="me-2"
               onClick={() =>
                 props.modifyStatus(
-                  status.storedStatus !== props.element.adminProgressionStatus ?
-                    status.storedStatus : "",
+                  status.storedStatus !== props.element.adminProgressionStatus ? status.storedStatus : "",
                   "adminProgressionStatus"
                 )
               }
@@ -79,9 +73,7 @@ export const StatusRow = (props: Props) => {
                 textToDisplay={status.displayedStatus}
                 color={status.color}
                 textColor={status.textColor}
-                overrideColor={
-                  status.storedStatus !== props.element.adminProgressionStatus
-                }
+                overrideColor={status.storedStatus !== props.element.adminProgressionStatus}
               />
             </div>
           ))}
@@ -93,11 +85,10 @@ export const StatusRow = (props: Props) => {
           {props.progressionStatus.map((status) => (
             <div
               key={status.storedStatus}
-              className="mr-2"
+              className="me-2"
               onClick={() =>
                 props.modifyStatus(
-                  status.storedStatus !== props.element.adminPercentageProgressionStatus ?
-                    status.storedStatus : "",
+                  status.storedStatus !== props.element.adminPercentageProgressionStatus ? status.storedStatus : "",
                   "adminPercentageProgressionStatus"
                 )
               }
@@ -107,10 +98,7 @@ export const StatusRow = (props: Props) => {
                 textToDisplay={status.displayedStatus}
                 color={status.color}
                 textColor={status.textColor}
-                overrideColor={
-                  status.storedStatus !==
-                  props.element.adminPercentageProgressionStatus
-                }
+                overrideColor={status.storedStatus !== props.element.adminPercentageProgressionStatus}
               />
             </div>
           ))}

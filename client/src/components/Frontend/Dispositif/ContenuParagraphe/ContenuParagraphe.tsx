@@ -51,7 +51,7 @@ interface BtnProps {
 }
 const AddModuleBtnTag = (props: BtnProps) => {
   return (
-    <div className={"ml-15 mt-10 mb-10"}>
+    <div className={"ms-4 mt-2 mb-2"}>
       <FButton type="edit" name="pin-outline" fill={colors.gray10} onClick={props.onClick}>
         {"Ajouter une carte interactive"}
       </FButton>
@@ -161,13 +161,13 @@ const ContenuParagraphe = (props: Props) => {
         return (
           <div
             className={
-              "sous-contenu-wrapper" +
+              "sous-contenu-wrapper col mb-6" +
               (subitem.type === "map"
                 ? " sous-contenu-map"
                 : (props.dispositifContent.title === "Comment je m'engage ?" ||
                     props.dispositifContent.title === "Et après ?") &&
                   nbChildren === index + 1
-                ? " mb-15 last-props.item"
+                ? " mb-4 last-props.item"
                 : "") +
               (props.dispositifContent.type === "cards" ? " sous-contenu-cards" : "")
             }
@@ -276,7 +276,7 @@ const ContenuParagraphe = (props: Props) => {
                               name={`chevron-${isAccordeonOpen ? "up" : "down"}-outline`}
                               size="large"
                               fill={darkColor}
-                              className="ml-12"
+                              className="ms-12"
                             />
                           )}
                         </div>
@@ -361,7 +361,7 @@ const ContenuParagraphe = (props: Props) => {
                           {!props.disableEdit && (
                             <EVAIcon
                               onClick={() => props.removeItem(props.keyValue, index)}
-                              className="delete-icon ml-10 cursor-pointer"
+                              className="delete-icon ms-2 cursor-pointer"
                               name="minus-circle-outline"
                               fill={colors.gray90}
                             />

@@ -5,14 +5,11 @@ import { FETCH_USER, SAVE_USER } from "../user.actionTypes";
 import API from "../../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../../LoadingStatus/loadingStatus.actions";
+import { startLoading, LoadingStatusKey, finishLoading } from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import mockRouter from "next-router-mock";
-jest.mock("next/router",  () => require("next-router-mock"));
+import { ObjectId } from "mongodb";
+jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -50,13 +47,13 @@ describe("[Saga] User", () => {
         .call(API.isAuth)
         .next(true)
         .call(API.get_user_info)
-        .next({ data: { data: { ...testUser, structures: ["id"] } } })
-        .put(setUserActionCreator({ ...testUser, structures: ["id"] }))
+        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
+        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
         .next()
         .put(
           fetchUserStructureActionCreator({
-            structureId: "id",
-            shouldRedirect: false,
+            structureId: new ObjectId("746573744f626a6563744964"),
+            shouldRedirect: false
           })
         )
         .next()
@@ -68,7 +65,7 @@ describe("[Saga] User", () => {
     it("should call api.isAuth and dispatch set user action with user in payload if authentified and redirect if action received with redirect payload", () => {
       testSaga(fetchUser, {
         type: FETCH_USER,
-        payload: { shouldRedirect: true, user: testUser },
+        payload: { shouldRedirect: true, user: testUser }
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER))
@@ -78,6 +75,34 @@ describe("[Saga] User", () => {
         .call(API.get_user_info)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER))
+        .next()
+        .call(mockRouter.push, "/backend/user-translation")
+        .next()
+        .isDone();
+    });
+
+    it("should call api.isAuth and dispatch set user action with user (with structures) in payload if authentified and redirect if action received with redirect payload", () => {
+      testSaga(fetchUser, {
+        type: FETCH_USER,
+        payload: { shouldRedirect: true, user: { ...testUser, structures: [{ _id: "dummy" }] } }
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
+        .next()
+        .call(API.isAuth)
+        .next(true)
+        .call(API.get_user_info)
+        .next({ data: { data: { ...testUser, structures: [new ObjectId("testObjectId")] } } })
+        .put(setUserActionCreator({ ...testUser, structures: [new ObjectId("testObjectId")] }))
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: new ObjectId("746573744f626a6563744964"),
+            shouldRedirect: false
+          })
+        )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
@@ -117,13 +142,13 @@ describe("[Saga] User", () => {
     it("should call update user and fetch user", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { user: { _id: "id" }, type: "type" },
+        payload: { user: { _id: "id" }, type: "type" }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
         .call(API.updateUser, {
-          query: { user: { _id: "id" }, action: "type" },
+          query: { user: { _id: "id" }, action: "type" }
         })
         .next()
         .put(fetchUserActionCreator())
@@ -136,13 +161,13 @@ describe("[Saga] User", () => {
     it("should call update user and set user null if update user throws", () => {
       testSaga(saveUser, {
         type: SAVE_USER,
-        payload: { user: { _id: "id" }, type: "type" },
+        payload: { user: { _id: "id" }, type: "type" }
       })
         .next()
         .put(startLoading(LoadingStatusKey.SAVE_USER))
         .next()
         .call(API.updateUser, {
-          query: { user: { _id: "id" }, action: "type" },
+          query: { user: { _id: "id" }, action: "type" }
         })
         .throw(new Error("test"))
         .put(setUserActionCreator(null))

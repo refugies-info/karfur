@@ -60,6 +60,7 @@ const DemarcheCard = (props: Props) => {
         query: { id: props.demarche._id.toString() }
       }}
       passHref
+      prefetch={false}
     >
       <DemarcheLink
         className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}

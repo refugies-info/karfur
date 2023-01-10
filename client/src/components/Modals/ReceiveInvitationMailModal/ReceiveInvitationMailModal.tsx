@@ -42,7 +42,7 @@ const EmailField = (props: EmailProps) => {
       />
     </>
   );
-}
+};
 
 const TitleContainer = styled.div`
   font-size: 28px;
@@ -97,8 +97,8 @@ export const ReceiveInvitationMailModal = (props: Props) => {
       Swal.fire({
         title: "Oops...",
         text: "Aucun mail renseigné",
-        type: "error",
-        timer: 1500,
+        icon: "error",
+        timer: 1500
       });
       return;
     }
@@ -110,8 +110,8 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           Swal.fire({
             title: "Yay...",
             text: "Mail envoyé",
-            type: "success",
-            timer: 1500,
+            icon: "success",
+            timer: 1500
           });
           props.toggle();
           props.togglePreviousModal();
@@ -120,8 +120,8 @@ export const ReceiveInvitationMailModal = (props: Props) => {
           Swal.fire({
             title: "Oh non",
             text: "Erreur lors de l'envoi",
-            type: "error",
-            timer: 1500,
+            icon: "error",
+            timer: 1500
           });
           props.toggle();
           props.togglePreviousModal();
@@ -132,44 +132,23 @@ export const ReceiveInvitationMailModal = (props: Props) => {
   };
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <MainContainer>
         <CloseIconContainer onClick={props.toggle}>
           <EVAIcon name="close" fill={colors.white} size={"large"} />
         </CloseIconContainer>
-        <TitleContainer>
-          {t(
-            "Register.Recevoir une invitation",
-            "Recevoir une invitation"
-          )}
-        </TitleContainer>
+        <TitleContainer>{t("Register.Recevoir une invitation", "Recevoir une invitation")}</TitleContainer>
         <TextContainer>
           {t(
             "Register.Nous vous enverrons un email d'invitation pour vous inscrire",
             "Nous vous enverrons un email d'invitation pour vous inscrire."
           )}
         </TextContainer>
-        <EmailField
-          id="email"
-          email={email}
-          onChange={handleChangeEmail}
-          notEmailError={notEmailError}
-        />
+        <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />
         {notEmailError && (
           <ErrorMessageContainer>
-            {t(
-              "Register.Ceci n'est pas un email,",
-              "Ceci n'est pas un email,"
-            )}{" "}
-            {t(
-              "Register.vérifiez l'orthographe",
-              "vérifiez l'orthographe."
-            )}
+            {t("Register.Ceci n'est pas un email,", "Ceci n'est pas un email,")}{" "}
+            {t("Register.vérifiez l'orthographe", "vérifiez l'orthographe.")}
           </ErrorMessageContainer>
         )}
         <FButtonMobile

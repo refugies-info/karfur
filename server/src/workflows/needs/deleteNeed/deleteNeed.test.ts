@@ -5,7 +5,7 @@ import {
   checkIfUserIsAdmin,
   checkRequestIsFromSite,
 } from "../../../libs/checkAuthorizations";
-import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
+import { getCountDispositifs, deleteNeedFromDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
 jest.mock("../../../modules/needs/needs.repository", () => ({
   deleteNeedById: jest.fn(),
@@ -19,7 +19,8 @@ jest.mock("../../../schema/schemaNeeds", () => ({
   Need: jest.fn().mockImplementation(w => w)
 }));
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getActiveContents: jest.fn(),
+  getCountDispositifs: jest.fn(),
+  deleteNeedFromDispositifs: jest.fn()
 }));
 
 type MockResponse = { json: any; status: any };
@@ -59,34 +60,25 @@ describe("deleteNeed", () => {
     await deleteNeed[1](req, res);
     expect(res.status).toHaveBeenCalledWith(403);
   });
-  it("should return 400 if dispositifs associated", async () => {
+  it("should return 400 if active dispositifs associated", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: {id: "needId2"}
+      params: { id: "needId2" }
     };
-    getActiveContents.mockImplementationOnce(() => {
-      return [
-        {_id: "1", needs: ["needId1"]},
-        {_id: "2", needs: ["needId1", "needId2"]}
-      ]
-    });
+    getCountDispositifs.mockImplementationOnce(() => 1);
     await deleteNeed[1](req, res);
-    expect(getActiveContents).toHaveBeenCalled();
+    expect(getCountDispositifs).toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(400);
   });
-  it("should return 200", async () => {
+  it("should return 200 and delete needs from dispositifs", async () => {
     const req = {
       user: { roles: [], userId: "id" },
-      params: {id: "needId"}
+      params: { id: "needId" }
     };
-    getActiveContents.mockImplementationOnce(() => {
-      return [
-        { _id: "1", needs: ["needId1", "needId2"] },
-        {_id: "2", needs: ["needId1"]}
-      ]
-    });
+    getCountDispositifs.mockImplementationOnce(() => 0);
     await deleteNeed[1](req, res);
-    expect(getActiveContents).toHaveBeenCalled();
+    expect(getCountDispositifs).toHaveBeenCalled();
+    expect(deleteNeedFromDispositifs).toHaveBeenCalledWith("needId");
     expect(deleteNeedById).toHaveBeenCalledWith("needId");
     expect(res.status).toHaveBeenCalledWith(200);
   });

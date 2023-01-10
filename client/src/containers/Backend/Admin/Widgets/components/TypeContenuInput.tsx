@@ -12,27 +12,22 @@ export const TypeContenuInput = (props: Props) => {
   const onTypeContenuChange = (typeContenu: ContentType) => {
     if (props.selectedTypeContenu.includes(typeContenu)) {
       // remove
-      props.setSelectedTypeContenu((types: string[]) =>
-        types.filter((t) => t !== typeContenu)
-      );
+      props.setSelectedTypeContenu((types: string[]) => types.filter((t) => t !== typeContenu));
     } else {
       // add
-      props.setSelectedTypeContenu((types: string[]) => [
-        ...types,
-        typeContenu,
-      ]);
+      props.setSelectedTypeContenu((types: string[]) => [...types, typeContenu]);
     }
   };
   return (
     <div className={cls(parentStyles.form_block, "d-flex align-items-center")}>
-      <label className={cls(parentStyles.label, "mr-4")}>Type(s)</label>
+      <label className={cls(parentStyles.label, "me-4")}>Type(s)</label>
       <FilterButton
         onClick={(e: any) => {
           e.preventDefault();
           onTypeContenuChange("dispositif");
         }}
         active={props.selectedTypeContenu.includes("dispositif")}
-        className="mr-2"
+        className="me-2"
       >
         Dispositif
       </FilterButton>

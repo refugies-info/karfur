@@ -28,9 +28,7 @@ interface Props {
 
 export const ResponsableComponent = (props: Props) => {
   const responsableSecureUrl =
-    props.responsable &&
-    props.responsable.picture &&
-    props.responsable.picture.secure_url
+    props.responsable && props.responsable.picture && props.responsable.picture.secure_url
       ? props.responsable.picture.secure_url
       : marioProfile;
 
@@ -39,7 +37,7 @@ export const ResponsableComponent = (props: Props) => {
       <RowContainer style={{ marginBottom: "8px" }}>
         {props.responsable && (
           <Image
-            className={styles.respo_img + " mr-8"}
+            className={styles.respo_img + " me-2"}
             src={responsableSecureUrl}
             alt=""
             width={40}
@@ -86,7 +84,7 @@ export const ResponsableComponent = (props: Props) => {
     <RowContainer>
       {props.responsable && (
         <Image
-          className={styles.respo_img + " mr-8"}
+          className={styles.respo_img + " me-2"}
           src={responsableSecureUrl}
           alt=""
           width={40}
@@ -94,7 +92,7 @@ export const ResponsableComponent = (props: Props) => {
           objectFit="contain"
         />
       )}
-      <span className="ml-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
+      <span className="ms-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
     </RowContainer>
   );
 };

@@ -671,7 +671,7 @@ class SideTrad extends Component {
       Swal.fire({
         title: "Oh non",
         text: "Aucune traduction n'a été rentrée, veuillez rééssayer",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -860,7 +860,7 @@ class SideTrad extends Component {
             type="light-action"
             name={"close" + "-outline"}
             fill={colors.gray90}
-            className="mr-10 mb-10"
+            className="me-2 mb-2"
             onClick={() => this._endingFeedback()}
           >
             {"Fin de la session"}
@@ -896,7 +896,7 @@ class SideTrad extends Component {
         </div>
         <div className={styles.langue_data}>
           <h5>
-            Texte français initial <i className={"flag-icon flag-icon-fr " + styles.flag_margin} title="fr" id="fr"></i>
+            Texte français initial <span className={"fi fi-fr " + styles.flag_margin} title="fr" id="fr"></span>
           </h5>
         </div>
         <div
@@ -920,7 +920,7 @@ class SideTrad extends Component {
         </div>
         {this.state.currIdx === "abstract" ? (
           <AlertModified type={modified ? "modified" : "abstract"}>
-            <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"mr-10 mb-1"} />
+            <EVAIcon name="info" fill={colors.gray90} id="alert-info" className={"me-2 mb-1"} />
             <Tooltip
               placement="top"
               offset="0px, 8px"
@@ -936,23 +936,23 @@ class SideTrad extends Component {
           </AlertModified>
         ) : modified ? (
           <AlertModified type={"modified"}>
-            <EVAIcon name="alert-triangle" fill={colors.orange} id="alert-triangle-outline" className={"mr-10 mb-1"} />
+            <EVAIcon name="alert-triangle" fill={colors.orange} id="alert-triangle-outline" className={"me-2 mb-1"} />
             <AlertText type={"modified"}>Paragraphe modifié</AlertText>
           </AlertModified>
         ) : validated ? (
           <AlertModified type={"validated"}>
-            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"mr-10 mb-1"} />
+            <EVAIcon name="checkmark-circle-2" fill={"#4caf50"} id="alert-triangle-outline" className={"me-2 mb-1"} />
             <AlertText type={"validated"}>Déjà traduit</AlertText>
           </AlertModified>
         ) : null}
         <div className={styles.langue_data}>
           <h5>
             Traduction en {(langue.langueFr || "").toLowerCase()}{" "}
-            <i
-              className={styles.flag_margin + " flag-icon flag-icon-" + langue.langueCode}
+            <span
+              className={styles.flag_margin + " fi fi-" + langue.langueCode}
               title={langue.langueCode}
               id={langue.langueCode}
-            ></i>
+            ></span>
           </h5>
         </div>
         <div dir={isRTL ? "rtl" : "ltr"}>
@@ -1035,7 +1035,7 @@ class SideTrad extends Component {
           {userId && userId.username && !modified && !modifiedNew && this.state.availableListTrad.length > 0 ? (
             <>
               <div className={styles.trad_info}>
-                <div className="mr-10 d-flex align-items-center">
+                <div className="me-2 d-flex align-items-center">
                   <Image
                     src={(userId.picture || {}).secure_url || marioProfile}
                     className="profile-img-pin"
@@ -1074,13 +1074,13 @@ class SideTrad extends Component {
                             : this.state.propositionIndex - 1
                         )
                       }
-                      className="mt-10 small-figma"
+                      className="mt-2 small-figma"
                       style={{ marginRight: 5 }}
                     >
                       {""}
                     </FButton>
                     <FButton
-                      className="mt-10 small-figma"
+                      className="mt-2 small-figma"
                       type="light-action"
                       onClick={() =>
                         this.nextProposition(
@@ -1094,7 +1094,7 @@ class SideTrad extends Component {
                       <EVAIcon
                         name="arrow-ios-forward-outline"
                         fill={colors.gray10}
-                        //className="ml-10"
+                        //className="ms-2"
                       />
                     </FButton>
                   </div>
@@ -1104,7 +1104,7 @@ class SideTrad extends Component {
           ) : modifiedNew ? (
             <>
               <div className={styles.trad_info}>
-                <div className="mr-10 d-flex align-items-center">
+                <div className="me-2 d-flex align-items-center">
                   <Image
                     src={(userId.picture || {}).secure_url || marioProfile}
                     className="profile-img-pin"
@@ -1127,18 +1127,18 @@ class SideTrad extends Component {
                 name="arrow-back-outline"
                 fill={colors.gray90}
                 onClick={() => this.goChange(false)}
-                className="mt-10"
+                className="mt-2"
                 style={{ marginRight: 5 }}
               >
                 {""}
               </FButton>
             )}
-            <FButton className="mt-10" type="outline-black" onClick={this.goChange}>
+            <FButton className="mt-2" type="outline-black" onClick={this.goChange}>
               {""}
               <EVAIcon
                 name="arrow-forward-outline"
                 fill={colors.gray90}
-                //className="ml-10"
+                //className="ms-2"
               />
             </FButton>
           </div>
@@ -1148,7 +1148,7 @@ class SideTrad extends Component {
                 type="outline-black"
                 name={"edit-outline"}
                 fill={colors.gray90}
-                className="mr-10 mt-10"
+                className="me-2 mt-2"
                 onClick={this.modifyNew}
               >
                 {"Modifier"}
@@ -1158,7 +1158,7 @@ class SideTrad extends Component {
                 type="outline-black"
                 name={"close-circle-outline"}
                 fill={colors.gray90}
-                className="mr-10 mt-10"
+                className="me-2 mt-2"
                 onClick={this.modifyNew}
               >
                 {"Annuler"}
@@ -1169,7 +1169,7 @@ class SideTrad extends Component {
                 name="refresh-outline"
                 fill={colors.gray90}
                 onClick={this.reset}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 Réinitialiser
               </FButton>
@@ -1180,7 +1180,7 @@ class SideTrad extends Component {
                 name="arrow-forward-outline"
                 onClick={this.goChange}
                 disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 {" "}
                 {/* || disableBtn */}
@@ -1192,7 +1192,7 @@ class SideTrad extends Component {
                 name="checkmark-circle-outline"
                 onClick={this.onValidate}
                 disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
+                className="mt-2 me-2"
               >
                 {" "}
                 {/* || disableBtn */}

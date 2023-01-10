@@ -158,13 +158,13 @@ export const AdminUsers = () => {
     const usersFilteredBySearch = !!search
       ? users.filter(
           (user) =>
-            user.username &&
-            user.username &&
-            removeAccents(user.username)
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .includes(removeAccents(search.toLowerCase()))
+            (user.username &&
+              removeAccents(user.username)
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(removeAccents(search.toLowerCase()))) ||
+            user.email.includes(search)
         )
       : users;
 
@@ -233,14 +233,14 @@ export const AdminUsers = () => {
       Swal.fire({
         title: "Yay...",
         text: `Export en cours de ${users ? users.length : 0} users`,
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -280,7 +280,7 @@ export const AdminUsers = () => {
         </StyledHeaderInner>
         <StyledSort>
           {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
-            <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+            <FButton type="dark" className="me-2" onClick={exportToAirtable}>
               {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
             </FButton>
           )}
@@ -340,14 +340,14 @@ export const AdminUsers = () => {
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
                         <Image
-                          className={styles.user_img + " mr-8"}
+                          className={styles.user_img + " me-2"}
                           src={secureUrl}
                           alt=""
                           width={40}
                           height={40}
                           objectFit="contain"
                         />
-                        <StructureName className="ml-4">{element.username}</StructureName>
+                        <StructureName className="ms-4">{element.username}</StructureName>
                       </RowContainer>
                     </div>
                   </td>
@@ -419,6 +419,10 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          toggleRespoModal={(structureId: ObjectId) => {
+            setSelectedStructureId(structureId);
+            setSelectFirstRespoModal(true);
+          }}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>

@@ -1,5 +1,24 @@
-import i18n from "i18next"
-import { initReactI18next } from "react-i18next"
+import React from "react";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import { TextEncoder, TextDecoder } from "util";
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
+jest.mock("query-string", () => {
+  return {
+    stringify: () => {}
+  };
+});
+
+// FIXME: temp fix for https://github.com/vercel/next.js/issues/43769
+jest.mock(
+  "next/link",
+  () =>
+    ({ children, ...rest }) =>
+      React.cloneElement(children, { ...rest })
+);
 
 jest.mock("moment", () => {
   // Here we are able to mock chain builder pattern
@@ -7,7 +26,7 @@ jest.mock("moment", () => {
     format: jest.fn(() => "12/07/1998"),
     startOf: jest.fn().mockReturnThis(),
     isValid: jest.fn().mockReturnValue(true),
-    diff: jest.fn().mockReturnValue(-5),
+    diff: jest.fn().mockReturnValue(-5)
   };
   // Here we are able to mock the constructor and to modify instance methods
   const fn = jest.fn((newMoment) => {
@@ -25,7 +44,7 @@ jest.mock("moment", () => {
     startOf: jest.fn().mockReturnThis(),
     isValid: jest.fn().mockReturnValue(true),
     diff: jest.fn().mockReturnValue(-5),
-    locale: jest.fn(),
+    locale: jest.fn()
   };
   // Here we are able to mock the constructor and to modify instance methods
   const fn = jest.fn((newMoment) => {
@@ -40,18 +59,17 @@ jest.mock("moment", () => {
 
 jest.mock("sweetalert2", () => ({
   __esModule: true, // this property makes it work
-  default: { fire: jest.fn().mockResolvedValue("test") },
+  default: { fire: jest.fn().mockResolvedValue("test") }
 }));
-
 
 // Mock translation
 export const t = (key, params) => {
   if (key === "key.with.params") {
-    return `key.with.params.${params.param}`
+    return `key.with.params.${params.param}`;
   }
 
-  return key
-}
+  return key;
+};
 i18n.use(initReactI18next).init({
   lng: "fr",
   fallbackLng: "fr",
@@ -62,21 +80,19 @@ i18n.use(initReactI18next).init({
       common: {}
     }
   }
-})
+});
 jest.mock("next-i18next", () => ({
   useTranslation: () => {
     return {
       t,
       i18n: {
         language: "fr",
-        changeLanguage: jest
-          .fn()
-          .mockImplementation((lang) => { })
+        changeLanguage: jest.fn().mockImplementation((lang) => {})
       }
-    }
+    };
   },
   withTranslation: () => (Component) => {
-    Component.defaultProps = { ...Component.defaultProps, t }
-    return Component
+    Component.defaultProps = { ...Component.defaultProps, t };
+    return Component;
   }
 }));

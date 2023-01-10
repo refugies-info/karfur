@@ -47,15 +47,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
   const arrayLines = new Array(12).fill("a");
   const arrayContent = new Array(5).fill("a");
 
-  const headers = [
-    "Type",
-    "Titre",
-    "Progression",
-    "Mots",
-    "Depuis",
-    "Statut",
-    "Dernière trad",
-  ];
+  const headers = ["Type", "Titre", "Progression", "Mots", "Depuis", "Statut", "Dernière trad"];
 
   return (
     <MainContainer>
@@ -66,12 +58,7 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           </SkeletonTheme>
         </Row>
         <Row>
-          <FButton
-            type="tuto"
-            onClick={props.toggleTutoModal}
-            name="video-outline"
-            className="mr-8"
-          >
+          <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
             Explications
           </FButton>
           <FButton type="dark" name="settings-2-outline">
@@ -81,31 +68,11 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
       </RowContainer>
       <FilterBarContainer>
         <Row>
-          <FilterButton
-            status="À traduire"
-            isSelected={false}
-            nbContent={"..."}
-            onClick={() => {}}
-          />
+          <FilterButton status="À traduire" isSelected={false} nbContent={"..."} onClick={() => {}} />
 
-          <FilterButton
-            status="Validée"
-            isSelected={false}
-            nbContent={"..."}
-            onClick={() => {}}
-          />
-          <TypeContenuFilterButton
-            isSelected={true}
-            name="Dispositifs"
-            onClick={() => {}}
-            nbContent={"..."}
-          />
-          <TypeContenuFilterButton
-            isSelected={false}
-            name="Démarches"
-            onClick={() => {}}
-            nbContent={"..."}
-          />
+          <FilterButton status="Validée" isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <TypeContenuFilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
+          <TypeContenuFilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
         </Row>
 
         <CustomSearchBar

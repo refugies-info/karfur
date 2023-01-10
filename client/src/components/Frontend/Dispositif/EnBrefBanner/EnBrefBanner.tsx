@@ -11,7 +11,7 @@ interface Props {
   isRTL: boolean;
 }
 
-const rowAlignCenter = {alignItems: "center"};
+const rowAlignCenter = { alignItems: "center" };
 
 const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
@@ -37,33 +37,18 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
     }
 
     if (ageRange === "Moins de ** ans") {
-      return (
-        t("Dispositif.Moins de", "Moins de") +
-        " " +
-        topValue +
-        " " +
-        t("Dispositif.ans", "ans")
-      );
+      return t("Dispositif.Moins de", "Moins de") + " " + topValue + " " + t("Dispositif.ans", "ans");
     }
 
-    return (
-      t("Dispositif.Plus de", "Plus de") +
-      " " +
-      bottomValue +
-      " " +
-      t("Dispositif.ans", "ans")
-    );
+    return t("Dispositif.Plus de", "Plus de") + " " + bottomValue + " " + t("Dispositif.ans", "ans");
   };
 
-  const rightSection = (props.menu || []).find(
-    (x: DispositifContent) => x.title === "C'est pour qui ?"
-  );
+  const rightSection = (props.menu || []).find((x: DispositifContent) => x.title === "C'est pour qui ?");
 
-  const childrenArray =
-    rightSection && rightSection.children ? rightSection.children : [];
+  const childrenArray = rightSection && rightSection.children ? rightSection.children : [];
   return (
     <Row style={rowAlignCenter}>
-      <b className="en-bref">{t("Dispositif.En bref", "En bref")} </b>
+      <b className="en-bref col text-nowrap">{t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
         if (!card) return;
         // selected card, not Important
@@ -77,54 +62,34 @@ const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
           // reformat text of cards age
           if (card.title === "Âge requis") {
             if (card.ageTitle) {
-              texte = getTextForAgeInfocard(
-                card.ageTitle,
-                card.bottomValue,
-                card.topValue
-              );
+              texte = getTextForAgeInfocard(card.ageTitle, card.bottomValue, card.topValue);
             } else {
-              texte = getTextForAgeInfocard(
-                card.contentTitle,
-                card.bottomValue,
-                card.topValue
-              );
+              texte = getTextForAgeInfocard(card.contentTitle, card.bottomValue, card.topValue);
             }
-          } else if (
-            card.title && [
-              "Niveau de français",
-              "Justificatif demandé",
-              "Public visé",
-            ].includes(card.title)
-          ) {
+          } else if (card.title && ["Niveau de français", "Justificatif demandé", "Public visé"].includes(card.title)) {
             // @ts-ignore
             texte =
-            card.contentTitle &&
-            // @ts-ignore
-            t("Dispositif." + card.contentTitle, card.contentTitle);
+              card.contentTitle &&
+              // @ts-ignore
+              t("Dispositif." + card.contentTitle, card.contentTitle);
           } else if (card.title === "Combien ça coûte ?") {
             // @ts-ignore
             texte = card.free
-            ? t("Dispositif.Gratuit", "Gratuit")
-            : card.price +
-            " € " +
-            // @ts-ignore
+              ? t("Dispositif.Gratuit", "Gratuit")
+              : card.price +
+                " € " +
+                // @ts-ignore
                 t("Dispositif." + card.contentTitle, card.contentTitle);
-          } else if (
-            card.title && ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)
-          ) {
+          } else if (card.title && ["Acte de naissance OFPRA", "Titre de séjour"].includes(card.title)) {
             // @ts-ignore
             texte = t("Dispositif." + card.title, card.title);
           }
           return (
-            <div className="tag-wrapper ml-15" key={key}>
-              <div className="tag-item">
+            <div className="tag-wrapper ms-4 col" key={key}>
+              <div className="tag-item  text-nowrap">
                 <a href={"#item-head-1"} className="no-decoration">
                   {infoCardIcon(card.titleIcon, "#FFFFFF")}
-                  <span
-                    className={!props.isRTL ? "text-span" : "text-span-rtl"}
-                  >
-                    {jsUcfirst(h2p(texte))}
-                  </span>
+                  <span className={!props.isRTL ? "text-span" : "text-span-rtl"}>{jsUcfirst(h2p(texte))}</span>
                 </a>
               </div>
             </div>

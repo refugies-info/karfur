@@ -66,10 +66,7 @@ const Warning = styled.div`
   margin-bottom: 8px;
 `;
 export const ChangeStructureModal = (props: Props) => {
-  const [
-    selectedStructure,
-    setSelectedStructure,
-  ] = useState<SimplifiedStructure | null>(null);
+  const [selectedStructure, setSelectedStructure] = useState<SimplifiedStructure | null>(null);
   const dispatch = useDispatch();
   const structures = useSelector(activeStructuresSelector);
   useEffect(() => {
@@ -78,9 +75,7 @@ export const ChangeStructureModal = (props: Props) => {
     };
     if (props.show && structures.length === 0) loadStructures();
   }, [dispatch, structures, props.show]);
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES));
   const selectItem = (item: any) => setSelectedStructure(item);
   const toggleModal = () => {
     setSelectedStructure(null);
@@ -92,15 +87,15 @@ export const ChangeStructureModal = (props: Props) => {
         query: {
           dispositifId: props.dispositifId,
           sponsorId: selectedStructure._id,
-          status: props.dispositifStatus,
-        },
+          status: props.dispositifStatus
+        }
       })
         .then(() => {
           Swal.fire({
             title: "Yay...",
             text: "Structure modifiée",
-            type: "success",
-            timer: 1500,
+            icon: "success",
+            timer: 1500
           });
           toggleModal();
           dispatch(fetchAllDispositifsActionsCreator());
@@ -109,8 +104,8 @@ export const ChangeStructureModal = (props: Props) => {
           Swal.fire({
             title: "Oh non",
             text: "Erreur lors de la modification",
-            type: "error",
-            timer: 1500,
+            icon: "error",
+            timer: 1500
           });
         });
     }
@@ -161,17 +156,10 @@ export const ChangeStructureModal = (props: Props) => {
         </div>
         <div>
           {selectedStructure && (
-            <Warning>
-              Au clic sur Valider, la structure sera modifiée dans le dispositif
-              ou la démarche.
-            </Warning>
+            <Warning>Au clic sur Valider, la structure sera modifiée dans le dispositif ou la démarche.</Warning>
           )}
           <ButtonContainer>
-            <FButton
-              type="light-action"
-              name="arrow-back-outline"
-              onClick={toggleModal}
-            >
+            <FButton type="light-action" name="arrow-back-outline" onClick={toggleModal}>
               Retour
             </FButton>
             <FButton

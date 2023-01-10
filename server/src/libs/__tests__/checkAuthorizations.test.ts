@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { checkUserIsAuthorizedToModifyDispositif } from "../checkAuthorizations";
+import { checkUserIsAuthorizedToModifyDispositif, checkUserIsAuthorizedToDeleteDispositif } from "../checkAuthorizations";
 
 describe("checkAuthorizations", () => {
   beforeEach(() => {
@@ -233,6 +233,106 @@ describe("checkAuthorizations", () => {
         userRolesNotAdmin
       );
       expect(result).toBe(true);
+    });
+  });
+
+  describe("checkUserIsAuthorizedToDeleteDispositif", () => {
+    const userRolesAdmin = [{ nom: "Admin" }];
+    const userRolesNotAdmin = [{ nom: "User" }];
+
+    it("should return true if user admin", () => {
+      const dispositif = {
+        creatorId: "otherUser",
+      };
+
+      const result = checkUserIsAuthorizedToDeleteDispositif(
+        dispositif,
+        "userId",
+        userRolesAdmin
+      );
+      expect(result).toBe(true);
+    });
+
+    it("should return true if user responsable of structure", () => {
+      const dispositif = {
+        mainSponsor: {
+          creatorId: "otherUser",
+          membres: [
+            { userId: "userId", roles: ["contributeur", "administrateur"] },
+            { userId: "userId2", roles: ["contributeur"] }
+          ],
+        },
+      };
+
+      const result = checkUserIsAuthorizedToDeleteDispositif(
+        dispositif,
+        "userId",
+        userRolesNotAdmin
+      );
+      expect(result).toBe(true);
+    });
+
+    it("should return true if user redacteur of structure and author", () => {
+      const dispositif = {
+        creatorId: "userId",
+        mainSponsor: {
+          membres: [
+            { userId: "userId", roles: ["contributeur"] },
+            { userId: "userId2", roles: ["contributeur"] }
+          ],
+        },
+      };
+
+      const result = checkUserIsAuthorizedToDeleteDispositif(
+        dispositif,
+        "userId",
+        userRolesNotAdmin
+      );
+      expect(result).toBe(true);
+    });
+
+    it("should throw if user not in structure", () => {
+      const dispositif = {
+        creatorId: "otherUser",
+        mainSponsor: {
+          membres: [
+            { userId: "userId1", roles: ["contributeur"] },
+            { userId: "userId2", roles: ["contributeur"] }
+          ],
+        },
+      };
+      try {
+        checkUserIsAuthorizedToDeleteDispositif(
+          dispositif,
+          "userId",
+          userRolesNotAdmin
+        );
+      } catch (error) {
+        expect(error.message).toBe("NOT_AUTHORIZED");
+      }
+      expect.assertions(1);
+    });
+
+    it("should throw if redacteur but not author", () => {
+      const dispositif = {
+        creatorId: "otherUser",
+        mainSponsor: {
+          membres: [
+            { userId: "userId", roles: ["contributeur"] },
+            { userId: "userId2", roles: ["contributeur"] }
+          ],
+        },
+      };
+      try {
+        checkUserIsAuthorizedToDeleteDispositif(
+          dispositif,
+          "userId",
+          userRolesNotAdmin
+        );
+      } catch (error) {
+        expect(error.message).toBe("NOT_AUTHORIZED");
+      }
+      expect.assertions(1);
     });
   });
 });
