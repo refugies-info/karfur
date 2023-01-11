@@ -5,7 +5,7 @@ import {
   checkIfUserIsAdminOrExpert,
 } from "../../../libs/checkAuthorizations";
 import logger = require("../../../logger");
-import { saveNeedInDB } from "../../../modules/needs/needs.repository";
+import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository";
 import { Request, getValidator } from "../../../modules/needs/needs.service";
 import { NeedDoc } from "../../../schema/schemaNeeds";
 
@@ -23,10 +23,17 @@ const saveNeed = async (
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
+    const oldNeed = await getNeedFromDB(req.params.id);
     //@ts-ignore
-    const need: Partial<NeedDoc> = {...req.body};
-    //@ts-ignore
-    if (req.body.fr) need.fr.updatedAt = Date.now()
+    const need: Partial<NeedDoc> = { ...req.body };
+
+    // edit french version
+    if (need.fr) {
+      const isFrenchTextEdited = (need.fr.text && need.fr.text !== oldNeed.fr.text) ||
+        (need.fr.subtitle && need.fr.subtitle !== oldNeed.fr.subtitle);
+      //@ts-ignore
+      need.fr.updatedAt = isFrenchTextEdited ? Date.now() : oldNeed.fr.updatedAt;
+    }
 
     const dbNeed = await saveNeedInDB(req.params.id, need);
 
@@ -45,6 +52,8 @@ const saveNeed = async (
         return res.status(401).json({ text: "Token invalide" });
       case "NOT_FROM_SITE":
         return res.status(405).json({ text: "Requête bloquée par API" });
+      case "NOT_AUTHORIZED":
+        return res.status(403).json({ text: "Modification interdite" });
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }
