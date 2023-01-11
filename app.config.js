@@ -107,7 +107,19 @@ export default {
       fr: "./src/translations/fr.json",
     },
     description: "",
-    plugins: ["./src/utils/withSimulatorExcludedArchitectures.js"],
+    plugins: [
+      "./src/utils/withSimulatorExcludedArchitectures.js",
+      [
+        "expo-build-properties",
+        {
+          ios: {
+            useFrameworks: "static",
+          },
+        },
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics",
+    ],
     android: {
       versionCode: 15,
       userInterfaceStyle: "light",

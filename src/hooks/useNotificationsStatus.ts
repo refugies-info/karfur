@@ -10,6 +10,7 @@ import {
 import { PermissionStatus } from "expo-modules-core";
 import { isDevice } from "expo-device";
 import { useAppState } from "@react-native-community/hooks";
+import crashlytics from "@react-native-firebase/crashlytics";
 
 import { updateAppUser } from "../utils/API";
 
@@ -36,9 +37,14 @@ export const useNotificationsStatus = (): [boolean, () => void, string] => {
         return Linking.openSettings();
       }
       if (expoStatus === PermissionStatus.GRANTED) {
-        const token = (await getExpoPushTokenAsync()).data;
+        const token = (
+          await getExpoPushTokenAsync({
+            experienceId: "@refugies-info/refugies-info-app",
+          })
+        ).data;
         if (token) {
           await updateAppUser({ expoPushToken: token });
+          crashlytics().setUserId(token);
         }
 
         if (Platform.OS === "android") {

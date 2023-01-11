@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import { styles } from "../../theme";
 import { useDispatch, useSelector } from "react-redux";
 import Constants from "expo-constants";
-import * as Analytics from "expo-firebase-analytics";
+import analytics from "@react-native-firebase/analytics";
 import {
   removeUserFrenchLevelActionCreator,
   removeUserAgeActionCreator,
@@ -88,22 +88,24 @@ export const ProfilScreen = ({
   };
 
   const reinitializeApp = () => {
-    Analytics.resetAnalyticsData().then(() => {
-      dispatch(removeSelectedLanguageActionCreator());
-      deleteUserData();
-      dispatch(removeUserHasNewFavoritesActionCreator());
-      dispatch(removeUserLocalizedWarningHiddenActionCreator());
-      dispatch(removeUserAllFavoritesActionCreator());
-      dispatch(removeHasUserSeenOnboardingActionCreator());
-      updateAppUser({
-        selectedLanguage: null,
-        city: null,
-        department: null,
-        age: null,
-        frenchLevel: null,
-        expoPushToken: null,
+    analytics()
+      .resetAnalyticsData()
+      .then(() => {
+        dispatch(removeSelectedLanguageActionCreator());
+        deleteUserData();
+        dispatch(removeUserHasNewFavoritesActionCreator());
+        dispatch(removeUserLocalizedWarningHiddenActionCreator());
+        dispatch(removeUserAllFavoritesActionCreator());
+        dispatch(removeHasUserSeenOnboardingActionCreator());
+        updateAppUser({
+          selectedLanguage: null,
+          city: null,
+          department: null,
+          age: null,
+          frenchLevel: null,
+          expoPushToken: null,
+        });
       });
-    });
   };
 
   const selectedAgeName: string =

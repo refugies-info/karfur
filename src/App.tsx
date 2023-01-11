@@ -6,6 +6,7 @@ import { View } from "react-native";
 import { QueryClientProvider, QueryClient } from "react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getExpoPushTokenAsync } from "expo-notifications";
+import crashlytics from "@react-native-firebase/crashlytics";
 
 import useCachedResources from "./hooks/useCachedResources";
 import { RootNavigator } from "./navigation";
@@ -33,11 +34,17 @@ const updateUserInfo = async () => {
     age,
     frenchLevel,
   };
-  const token = (await getExpoPushTokenAsync()).data;
+  const token = (
+    await getExpoPushTokenAsync({
+      experienceId: "@refugies-info/refugies-info-app",
+    })
+  ).data;
   if (token) {
     payload.expoPushToken = token;
   }
   updateAppUser(payload);
+  crashlytics().setUserId(token);
+  crashlytics().crash();
 };
 
 export default function App() {
