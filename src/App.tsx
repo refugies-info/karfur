@@ -44,7 +44,6 @@ const updateUserInfo = async () => {
   }
   updateAppUser(payload);
   crashlytics().setUserId(token);
-  crashlytics().crash();
 };
 
 export default function App() {
