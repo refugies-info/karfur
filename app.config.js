@@ -1,5 +1,9 @@
 import deepLinks from "./androidDeepLinks";
 
+const version = "1.2.0";
+const displayVersionNumber = "2023.01.1";
+const androidVersionCode = 16;
+
 export default {
   name: "Réfugiés.info",
   slug: "refugies-info-app",
@@ -86,7 +90,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
-    version: "1.0.16",
+    version,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
     scheme: "refugies",
@@ -121,7 +125,7 @@ export default {
       "@react-native-firebase/crashlytics",
     ],
     android: {
-      versionCode: 15,
+      versionCode: androidVersionCode,
       userInterfaceStyle: "light",
       adaptiveIcon: {
         foregroundImage: "./src/theme/images/app-icon-ri-adaptive.png",
@@ -154,7 +158,7 @@ export default {
       ],
     },
     ios: {
-      buildNumber: "1.1.2",
+      buildNumber: version,
       supportsTablet: false,
       userInterfaceStyle: "light",
       bundleIdentifier: "refugiesInfo",
@@ -176,7 +180,7 @@ export default {
       eas: {
         projectId: "985bc919-57f5-4851-9f2f-748af3408606",
       },
-      displayVersionNumber: "2022.12.1",
+      displayVersionNumber,
     },
     updates: {
       url: "https://u.expo.dev/985bc919-57f5-4851-9f2f-748af3408606",
