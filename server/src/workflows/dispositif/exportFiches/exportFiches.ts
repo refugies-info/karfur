@@ -1,8 +1,10 @@
 import logger from "../../../logger";
 import { Res, RequestFromClientWithBody, Need } from "../../../types/interface";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
+import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
+import { LangueDoc } from "../../../schema/schemaLangue";
 
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
@@ -10,10 +12,11 @@ var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
 );
 
 interface Result {
+  [translatedTitleKey: string]: any;
   "Titre informatif": string;
   "Titre marque": string;
   "Type de contenu": string[];
-  Lien: string;
+  "Lien": string;
   "Thème principal": string;
   "Thème secondaire 1": string | null;
   "Thème secondaire 2": string | null;
@@ -22,10 +25,18 @@ interface Result {
   "Public visé": string | null;
   "Niveau de français": string | null;
   "Combien ça coute": string | null;
-  Durée: string | null;
+  "Durée": string | null;
   "Nombre de vues": number;
   "Besoins": string[];
   "Date de dernière mise à jour": string;
+}
+
+const getTranslatedTitles = (fiche: any, activeLanguages: LangueDoc[]) => {
+  const translatedTitles: Record<string, string> = {};
+  for (const ln of activeLanguages) {
+    translatedTitles[`Titre informatif ${ln.i18nCode}`] = fiche.titreInformatif?.[ln.i18nCode] || ""
+  }
+  return translatedTitles;
 }
 
 const getAgeRequis = (infocards: any[]) => {
@@ -101,7 +112,7 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
   logger.info(
     `[exportFichesInAirtable] export ${fiches.length} fiches in airtable`
   );
-  base("Fiches").create(fiches, {typecast: true}, function (err: Error) {
+  base("Fiches").create(fiches, { typecast: true }, function (err: Error) {
     if (err) {
       logger.error(
         "[exportFichesInAirtable] error while exporting fiches to airtable",
@@ -119,14 +130,15 @@ const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
   });
 };
 
-const formatFiche = (fiche: any) => {
+const formatFiche = (fiche: any, activeLanguages: LangueDoc[]) => {
+  const translatedTitles = getTranslatedTitles(fiche, activeLanguages);
   turnToLocalizedTitles(fiche, "fr");
 
   const infocards =
     fiche.contenu &&
-    fiche.contenu[1] &&
-    fiche.contenu[1].children &&
-    fiche.contenu[1].children.length > 0
+      fiche.contenu[1] &&
+      fiche.contenu[1].children &&
+      fiche.contenu[1].children.length > 0
       ? fiche.contenu[1].children
       : [];
 
@@ -143,7 +155,7 @@ const formatFiche = (fiche: any) => {
     "Titre marque": fiche.titreMarque,
     "Type de contenu": [fiche.typeContenu],
     Lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
-    "Thème principal": fiche.theme.short.fr,
+    "Thème principal": fiche.theme?.short?.fr || "",
     "Thème secondaire 1": fiche.secondaryThemes?.[0]?.short.fr || "",
     "Thème secondaire 2": fiche.secondaryThemes?.[1]?.short.fr || "",
     "Zone d'action": zoneAction,
@@ -154,6 +166,7 @@ const formatFiche = (fiche: any) => {
     Durée: duree,
     "Nombre de vues": fiche.nbVues || 0,
     "Besoins": besoins,
+    ...translatedTitles,
     "Date de dernière mise à jour": fiche.updatedAt,
   };
 
@@ -176,13 +189,14 @@ export const exportFiches = async (
       },
       "needs theme secondaryThemes"
     );
+    const activeLanguages = (await getActiveLanguagesFromDB()).filter(ln => ln.i18nCode !== "fr");
 
     let result: { fields: Result }[] = [];
 
     // @ts-ignore
     fiches.forEach((fiche) => {
       try {
-        const formattedFiche = formatFiche(fiche);
+        const formattedFiche = formatFiche(fiche, activeLanguages);
         result.push(formattedFiche);
         if (result.length === 10) {
           exportFichesInAirtable(result);
