@@ -239,5 +239,6 @@
     "ukraine_popup_subtitle": "Portail de mobilisation et d’information",
     "theme": "thème",
     "need": "J'ai besoin de"
-  }
+  },
+  "Register": { "Faible": "Faible", "Fort": "Fort", "Moyen": "Moyen" }
 }

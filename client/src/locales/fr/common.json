@@ -339,9 +339,6 @@
     "Votre email": "Votre email",
     "Votre numéro de téléphone": "Votre numéro de téléphone",
     "Email infos": "Nécessaire pour réinitialiser votre mot de passe en cas d'oubli.",
-    "Faible": "Faible",
-    "Fort": "Fort",
-    "Moyen": "Moyen",
     "Mot de passe trop faible": "Oups, votre mot de passe est trop faible.",
     "Ceci n'est pas un email,": "Ceci n'est pas un email,",
     "vérifiez l'orthographe": "vérifiez l'orthographe.",
@@ -351,7 +348,12 @@
     "Me le rappeler par email": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "Nous vous enverrons un email d'invitation pour vous inscrire": "Nous vous enverrons un email d'invitation pour vous inscrire",
-    "Créez-vous un compte depuis votre ordinateur pour participer": "Créez-vous un compte depuis votre ordinateur pour participer"
+    "Créez-vous un compte depuis votre ordinateur pour participer": "Créez-vous un compte depuis votre ordinateur pour participer",
+    "criteria_special": "Un caractère spécial",
+    "criteria_number": "Un chiffre",
+    "criteria_minlength": "Au moins 7 caractères",
+    "strong_password": "Mot de passe fort",
+    "weak_password": "Mot de passe trop faible, il manque :"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

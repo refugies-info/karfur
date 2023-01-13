@@ -20,7 +20,6 @@ import PasswordField from "components/Pages/register/PasswordField";
 import FButton from "components/UI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
-import { computePasswordStrengthScore } from "lib/index";
 import { cls } from "lib/classname";
 import API from "utils/API";
 
@@ -133,15 +132,6 @@ const Reset = () => {
       return;
     }
 
-    if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
-      Swal.fire({
-        title: "Oops...",
-        text: "Le mot de passe est trop faible",
-        icon: "error",
-        timer: 1500
-      });
-      return;
-    }
     const user = {
       newPassword: newPassword,
       reset_password_token: resetPasswordToken,
