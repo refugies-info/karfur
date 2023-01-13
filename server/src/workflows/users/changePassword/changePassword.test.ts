@@ -154,7 +154,7 @@ describe("changePassword", () => {
       fromSite: true,
       body: {
         userId: "userId",
-        newPassword: "newPassword",
+        newPassword: "newPassword1&",
         currentPassword: "currentPassword",
       },
       userId: "userId",
@@ -198,7 +198,7 @@ describe("changePassword", () => {
       fromSite: true,
       body: {
         userId: "userId",
-        newPassword: "newPassword",
+        newPassword: "newPassword1&",
         currentPassword: "currentPassword",
       },
       userId: "userId",
