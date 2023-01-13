@@ -20,7 +20,7 @@ We are going to work with 2 environments, `staging` and `production`:
 
   - test app
   - linked to the prod backend (for user tests purposes)
-  - accessible via Expo Go with a link
+  - accessible via a development build (see https://docs.expo.dev/development/create-development-builds/)
 
 - `production`:
   - app used by real users
@@ -56,19 +56,17 @@ The environment variables are defined at 2 different places:
 
 ## Staging
 
-Deploy on staging to test features via Expo Go.
+Deploy on staging to test features via development build and store internal deployment (TestFlight and Android Play Store interne test).
 
 ```
-$ expo publish --release-channel staging
+$ eas build --profile development --platform [platform]
 ```
 
 It is also possible to build the app to test it on real devices (or on a simulator for iOS). For this, use the `preview` channel of eas.
 
 ```
-$ eas build -p android --profile preview
+$ eas build -p [platform] --profile preview
 ```
-
-Then, download the bundle on Expo Go.
 
 ## Production
 
@@ -77,7 +75,7 @@ Then, download the bundle on Expo Go.
 It is possible to publish an update which will be automatically downloaded when the app is launched.
 
 ```
-$ expo publish --release-channel production
+$ eas update --auto
 ```
 
 Don't forget to increment the **displayed version number**. See the [Version numbers](#version-numbers) section.
