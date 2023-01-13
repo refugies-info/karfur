@@ -113,6 +113,7 @@ export default {
     description: "",
     plugins: [
       "./src/utils/withSimulatorExcludedArchitectures.js",
+      "./build-scripts/withGoogleMapsApiKey.js",
       [
         "expo-build-properties",
         {
@@ -162,6 +163,7 @@ export default {
       supportsTablet: false,
       userInterfaceStyle: "light",
       bundleIdentifier: "refugiesInfo",
+      deploymentTarget: "13.0",
       config: {
         googleMapsApiKey: process.env.GOOGLE_MAPS_KEY_IOS,
         usesNonExemptEncryption: false,

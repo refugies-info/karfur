@@ -1,6 +1,10 @@
 import React, { useState, useMemo, useEffect } from "react";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import { Dimensions } from "react-native";
+import MapView, {
+  Marker,
+  PROVIDER_DEFAULT,
+  PROVIDER_GOOGLE,
+} from "react-native-maps";
+import { Dimensions, Platform } from "react-native";
 import BottomSheet, {
   BottomSheetView,
   useBottomSheetDynamicSnapPoints,
@@ -121,7 +125,9 @@ export const Map = (props: PropsType) => {
         onPress={hideMarkerDetails}
         onMapReady={() => fitAllMarkers(markers)}
         maxZoomLevel={maxZoom}
-        provider={PROVIDER_GOOGLE}
+        provider={
+          Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
+        }
       >
         {markers.map((marker, key) => {
           const lat =

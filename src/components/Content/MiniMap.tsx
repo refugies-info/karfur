@@ -1,7 +1,11 @@
 import * as React from "react";
 import styled from "styled-components/native";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import { Dimensions } from "react-native";
+import MapView, {
+  Marker,
+  PROVIDER_DEFAULT,
+  PROVIDER_GOOGLE,
+} from "react-native-maps";
+import { Dimensions, Platform } from "react-native";
 import { MapGoogle } from "../../types/interface";
 import { Icon } from "react-native-eva-icons";
 import { styles } from "../../theme";
@@ -45,7 +49,9 @@ export class MiniMap extends React.Component<PropsType, StateType> {
         <ContentContainer>{this.props.children}</ContentContainer>
         <MapViewContainer>
           <MapView
-            provider={PROVIDER_GOOGLE}
+            provider={
+              Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT
+            }
             style={{
               width: mapWidth,
               height: mapHeight,
