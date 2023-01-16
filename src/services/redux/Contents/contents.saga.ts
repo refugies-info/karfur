@@ -1,12 +1,17 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
+import crashlytics from "@react-native-firebase/crashlytics";
+
 import {
   startLoading,
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
 import { logger } from "../../../logger";
-import { setContentsActionCreator, setNbContentsActionCreator } from "./contents.actions";
+import {
+  setContentsActionCreator,
+  setNbContentsActionCreator,
+} from "./contents.actions";
 import { FETCH_CONTENTS } from "./contents.actionTypes";
 import { getContentsForApp, getNbContents } from "../../../utils/API";
 import {
@@ -35,6 +40,11 @@ export function* fetchContents(): SagaIterator {
         frenchLevel,
       });
 
+      if (!data || !data.data) {
+        logger.warn("[fetchContents] saga - no data fetched");
+        crashlytics().recordError(new Error("No content loaded"));
+      }
+
       if (data && data.data && data.data.data && selectedLanguage !== "fr") {
         yield put(
           setContentsActionCreator({
@@ -57,8 +67,8 @@ export function* fetchContents(): SagaIterator {
     }
 
     // Nb Content
-    let nbGlobalContent: number | null = null;
-    let nbLocalizedContent: number | null = null;
+    let nbGlobalContent: number | null = null;
+    let nbLocalizedContent: number | null = null;
     if (department) {
       const nbContent = yield call(getNbContents, { department });
       if (nbContent?.data?.data) {
@@ -67,7 +77,7 @@ export function* fetchContents(): SagaIterator {
       }
     }
     yield put(
-      setNbContentsActionCreator({ nbGlobalContent, nbLocalizedContent})
+      setNbContentsActionCreator({ nbGlobalContent, nbLocalizedContent })
     );
 
     yield put(finishLoading(LoadingStatusKey.FETCH_CONTENTS));
