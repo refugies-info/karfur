@@ -1,7 +1,7 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import logger from "../../../logger";
-import { computePasswordStrengthScore } from "../../../libs/computePasswordStrengthScore";
+import { isPasswordOk } from "../../../libs/validatePassword";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { login2FA } from "../../../modules/users/login2FA";
@@ -41,6 +41,8 @@ export const setNewPassword = async (
       throw new Error("USER_NOT_EXISTS");
     } else if (!user.email) {
       throw new Error("NO_EMAIL");
+    } else if (passwordHash.verify(newPassword, user.password)) {
+      throw new Error("USED_PASSWORD");
     }
 
     const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
@@ -48,7 +50,7 @@ export const setNewPassword = async (
       throw new Error("ADMIN_FORBIDDEN");
     }
 
-    if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
+    if (!isPasswordOk(newPassword)) {
       throw new Error("PASSWORD_TOO_WEAK");
     }
 

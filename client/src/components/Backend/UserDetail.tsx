@@ -1,7 +1,7 @@
 import { SimplifiedUser } from "types/interface";
 import React from "react";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import marioProfile from "assets/mario-profile.jpg";
@@ -65,7 +65,7 @@ export const UserDetail = (props: Props) => {
           alt="user picture"
           width={70}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
         <Text isSelected={props.isSelected}>{getText()}</Text>
       </RowContainer>

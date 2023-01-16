@@ -51,122 +51,25 @@ exports[`publier renders publier 1`] = `
         <div
           className="col-sm-12 col-lg-6"
         >
-          <span
+          <img
+            alt=""
+            data-nimg="1"
+            decoding="async"
+            height={40}
+            loading="lazy"
+            onError={[Function]}
+            onLoad={[Function]}
+            src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+            srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
             style={
               {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "inline-block",
-                "height": "initial",
-                "margin": 0,
+                "color": "transparent",
+                "height": "auto",
                 "maxWidth": "100%",
-                "opacity": 1,
-                "overflow": "hidden",
-                "padding": 0,
-                "position": "relative",
-                "width": "initial",
               }
             }
-          >
-            <span
-              style={
-                {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "padding": 0,
-                  "width": "initial",
-                }
-              }
-            >
-              <img
-                alt=""
-                aria-hidden={true}
-                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
-                style={
-                  {
-                    "background": "none",
-                    "border": 0,
-                    "display": "block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "padding": 0,
-                    "width": "initial",
-                  }
-                }
-              />
-            </span>
-            <img
-              alt=""
-              data-nimg="intrinsic"
-              decoding="async"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-              style={
-                {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": undefined,
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-            <noscript>
-              <img
-                alt=""
-                data-nimg="intrinsic"
-                decoding="async"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                style={
-                  {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": undefined,
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-            </noscript>
-          </span>
+            width={40}
+          />
         </div>
       </div>
     </div>
@@ -425,122 +328,24 @@ exports[`publier renders publier 1`] = `
           <div
             className="media center col"
           >
-            <span
+            <img
+              alt=""
+              className="image"
+              data-nimg="1"
+              decoding="async"
+              height={40}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
               style={
                 {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "inline-block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "padding": 0,
-                  "position": "relative",
-                  "width": "initial",
+                  "color": "transparent",
                 }
               }
-            >
-              <span
-                style={
-                  {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "padding": 0,
-                    "width": "initial",
-                  }
-                }
-              >
-                <img
-                  alt=""
-                  aria-hidden={true}
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2740%27%20height=%2740%27/%3e"
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                />
-              </span>
-              <img
-                alt=""
-                data-nimg="intrinsic"
-                decoding="async"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={
-                  {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": undefined,
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-              <noscript>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": undefined,
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-              </noscript>
-            </span>
+              width={40}
+            />
           </div>
         </div>
       </div>
@@ -592,122 +397,23 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="image"
                 >
-                  <span
+                  <img
+                    alt="Vincent Le Lann"
+                    data-nimg="1"
+                    decoding="async"
+                    height={64}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt="Vincent Le Lann"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt="Vincent Le Lann"
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": undefined,
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={64}
+                  />
                 </div>
                 <div
                   className="infos"
@@ -735,122 +441,23 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="image"
                 >
-                  <span
+                  <img
+                    alt="Rémi Crouzel"
+                    data-nimg="1"
+                    decoding="async"
+                    height={64}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt="Rémi Crouzel"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt="Rémi Crouzel"
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": undefined,
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={64}
+                  />
                 </div>
                 <div
                   className="infos"
@@ -878,122 +485,23 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="image"
                 >
-                  <span
+                  <img
+                    alt="Paola Salazar"
+                    data-nimg="1"
+                    decoding="async"
+                    height={64}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2764%27%20height=%2764%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt="Paola Salazar"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt="Paola Salazar"
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": undefined,
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={64}
+                  />
                 </div>
                 <div
                   className="infos"
@@ -1042,122 +550,24 @@ exports[`publier renders publier 1`] = `
               <div
                 className="header"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={56}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
+                      "objectFit": "contain",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={56}
+                />
               </div>
               <h3
                 className="title"
@@ -1234,122 +644,24 @@ exports[`publier renders publier 1`] = `
               <div
                 className="header"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={56}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
+                      "objectFit": "contain",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={56}
+                />
               </div>
               <h3
                 className="title"
@@ -1426,122 +738,24 @@ exports[`publier renders publier 1`] = `
               <div
                 className="header"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={56}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
+                      "objectFit": "contain",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": "contain",
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={56}
+                />
               </div>
               <h3
                 className="title"
@@ -1895,122 +1109,24 @@ exports[`publier renders publier 1`] = `
           <div
             className="media"
           >
-            <span
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height={550}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
               style={
                 {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "inline-block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "padding": 0,
-                  "position": "relative",
-                  "width": "initial",
+                  "color": "transparent",
+                  "objectFit": "contain",
                 }
               }
-            >
-              <span
-                style={
-                  {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "padding": 0,
-                    "width": "initial",
-                  }
-                }
-              >
-                <img
-                  alt=""
-                  aria-hidden={true}
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%2740%27/%3e"
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                />
-              </span>
-              <img
-                alt=""
-                data-nimg="intrinsic"
-                decoding="async"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={
-                  {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": "contain",
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-              <noscript>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": "contain",
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-              </noscript>
-            </span>
+              width={550}
+            />
           </div>
         </div>
         <div
@@ -2048,122 +1164,24 @@ exports[`publier renders publier 1`] = `
           <div
             className="media"
           >
-            <span
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height={415}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
               style={
                 {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "inline-block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "padding": 0,
-                  "position": "relative",
-                  "width": "initial",
+                  "color": "transparent",
+                  "objectFit": "contain",
                 }
               }
-            >
-              <span
-                style={
-                  {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "padding": 0,
-                    "width": "initial",
-                  }
-                }
-              >
-                <img
-                  alt=""
-                  aria-hidden={true}
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%27415%27/%3e"
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                />
-              </span>
-              <img
-                alt=""
-                data-nimg="intrinsic"
-                decoding="async"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={
-                  {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": "contain",
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-              <noscript>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": "contain",
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-              </noscript>
-            </span>
+              width={550}
+            />
           </div>
         </div>
         <div
@@ -2201,122 +1219,24 @@ exports[`publier renders publier 1`] = `
           <div
             className="media"
           >
-            <span
+            <img
+              alt=""
+              data-nimg="1"
+              decoding="async"
+              height={550}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
               style={
                 {
-                  "background": "none",
-                  "border": 0,
-                  "boxSizing": "border-box",
-                  "display": "inline-block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "padding": 0,
-                  "position": "relative",
-                  "width": "initial",
+                  "color": "transparent",
+                  "objectFit": "contain",
                 }
               }
-            >
-              <span
-                style={
-                  {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "padding": 0,
-                    "width": "initial",
-                  }
-                }
-              >
-                <img
-                  alt=""
-                  aria-hidden={true}
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27550%27%20height=%2740%27/%3e"
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                />
-              </span>
-              <img
-                alt=""
-                data-nimg="intrinsic"
-                decoding="async"
-                onError={[Function]}
-                onLoad={[Function]}
-                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                style={
-                  {
-                    "border": "none",
-                    "bottom": 0,
-                    "boxSizing": "border-box",
-                    "display": "block",
-                    "height": 0,
-                    "left": 0,
-                    "margin": "auto",
-                    "maxHeight": "100%",
-                    "maxWidth": "100%",
-                    "minHeight": "100%",
-                    "minWidth": "100%",
-                    "objectFit": "contain",
-                    "objectPosition": undefined,
-                    "padding": 0,
-                    "position": "absolute",
-                    "right": 0,
-                    "top": 0,
-                    "width": 0,
-                  }
-                }
-              />
-              <noscript>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  loading="lazy"
-                  src="/_next/image?url=%2Fimg.jpg&w=1200&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1200&q=75 2x"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": "contain",
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-              </noscript>
-            </span>
+              width={550}
+            />
           </div>
         </div>
       </div>
@@ -2354,122 +1274,24 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="header"
                 >
-                  <span
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={56}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
+                        "objectFit": "contain",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt=""
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": "contain",
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={56}
+                  />
                 </div>
                 <h3
                   className="title"
@@ -2518,122 +1340,24 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="header"
                 >
-                  <span
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={56}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
+                        "objectFit": "contain",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt=""
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": "contain",
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={56}
+                  />
                 </div>
                 <h3
                   className="title"
@@ -2682,122 +1406,24 @@ exports[`publier renders publier 1`] = `
                 <div
                   className="header"
                 >
-                  <span
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={56}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
                     style={
                       {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "inline-block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "overflow": "hidden",
-                        "padding": 0,
-                        "position": "relative",
-                        "width": "initial",
+                        "color": "transparent",
+                        "objectFit": "contain",
                       }
                     }
-                  >
-                    <span
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    >
-                      <img
-                        alt=""
-                        aria-hidden={true}
-                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2756%27%20height=%2756%27/%3e"
-                        style={
-                          {
-                            "background": "none",
-                            "border": 0,
-                            "display": "block",
-                            "height": "initial",
-                            "margin": 0,
-                            "maxWidth": "100%",
-                            "opacity": 1,
-                            "padding": 0,
-                            "width": "initial",
-                          }
-                        }
-                      />
-                    </span>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": "contain",
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                    <noscript>
-                      <img
-                        alt=""
-                        data-nimg="intrinsic"
-                        decoding="async"
-                        loading="lazy"
-                        src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                        srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                        style={
-                          {
-                            "border": "none",
-                            "bottom": 0,
-                            "boxSizing": "border-box",
-                            "display": "block",
-                            "height": 0,
-                            "left": 0,
-                            "margin": "auto",
-                            "maxHeight": "100%",
-                            "maxWidth": "100%",
-                            "minHeight": "100%",
-                            "minWidth": "100%",
-                            "objectFit": "contain",
-                            "objectPosition": undefined,
-                            "padding": 0,
-                            "position": "absolute",
-                            "right": 0,
-                            "top": 0,
-                            "width": 0,
-                          }
-                        }
-                      />
-                    </noscript>
-                  </span>
+                    width={56}
+                  />
                 </div>
                 <h3
                   className="title"

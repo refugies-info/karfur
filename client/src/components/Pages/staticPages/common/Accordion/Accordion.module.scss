@@ -83,6 +83,11 @@
   padding-left: u(4);
 }
 
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
 .video {
   max-width: 250px;
   margin: 0 auto u(6) auto;

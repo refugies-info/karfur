@@ -1,7 +1,7 @@
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useWindowSize from "hooks/useWindowSize";
 import { cls } from "lib/classname";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React, { useState } from "react";
 import { Button, Col, Collapse, Row } from "reactstrap";
 import AutoplayVideo from "../AutoplayVideo";
@@ -50,7 +50,9 @@ const Accordion = (props: Props) => {
   const getMedia = (type: "image" | "video" | "youtube", item: Item) => {
     switch (type) {
       case "image":
-        return <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} />;
+        return (
+          <Image src={item?.image} alt="" height={item.mediaHeight} width={item.mediaWidth} className={styles.image} />
+        );
       case "video":
         return (
           <AutoplayVideo

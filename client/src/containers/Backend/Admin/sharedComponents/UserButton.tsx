@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Link } from "react-router-dom";
 import { Responsable, SimplifiedCreator } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
@@ -28,7 +28,7 @@ export const UserButton = (props: {
             alt="creator image"
             width={20}
             height={20}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         )}
         {user && (

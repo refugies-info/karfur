@@ -20,7 +20,7 @@ import PasswordField from "components/Pages/register/PasswordField";
 import FButton from "components/UI/FButton/FButton";
 import LanguageModal from "components/Modals/LanguageModal/LanguageModal";
 import LanguageBtn from "components/UI/LanguageBtn/LanguageBtn";
-import { computePasswordStrengthScore } from "lib/index";
+import { cls } from "lib/classname";
 import API from "utils/API";
 
 import { colors } from "colors";
@@ -75,6 +75,7 @@ const Reset = () => {
   const [wrongAdminCodeError, setWrongAdminCodeError] = useState(false);
   const [newHasStructureWithoutPhoneOrEmail, setNewHasStructureWithoutPhoneOrEmail] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
+  const [samePasswordError, setSamePasswordError] = useState(false);
 
   const { t } = useTranslation();
   const router = useRouter();
@@ -120,6 +121,7 @@ const Reset = () => {
 
   const send = (e: any) => {
     e.preventDefault();
+    setSamePasswordError(false);
     if (newPassword.length === 0) {
       Swal.fire({
         title: "Oops...",
@@ -130,15 +132,6 @@ const Reset = () => {
       return;
     }
 
-    if ((computePasswordStrengthScore(newPassword) || {}).score < 1) {
-      Swal.fire({
-        title: "Oops...",
-        text: "Le mot de passe est trop faible",
-        icon: "error",
-        timer: 1500
-      });
-      return;
-    }
     const user = {
       newPassword: newPassword,
       reset_password_token: resetPasswordToken,
@@ -172,6 +165,8 @@ const Reset = () => {
           setNewHasStructureWithoutPhoneOrEmail(true);
           setEmail(e.response?.data?.email || "");
           setStructure(e.response?.data?.structure);
+        } else if (e.response.status === 400 && e.response.data.code === "USED_PASSWORD") {
+          setSamePasswordError(true);
         } else {
           setUnexpectedError(true);
         }
@@ -303,6 +298,12 @@ const Reset = () => {
           </StyledHeader>
           <StyledEnterValue>{getSubtitle()}</StyledEnterValue>
           <Form onSubmit={send}>{getFormTemplate()}</Form>
+
+          {samePasswordError && (
+            <div className={cls(styles.error_message, "fw-bold")}>
+              {t("Login.same_password_error", "Le mot de passe ne peut pas être identique à l'ancien mot de passe.")}
+            </div>
+          )}
 
           {step === 2 && (
             <Footer

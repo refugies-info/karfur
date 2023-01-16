@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MainContainer, StructurePictureContainer, StructureContainer } from "./SubComponents";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { TitleWithNumber } from "../../middleOfficeSharedComponents";
 import { Picture, UserStructureMembre } from "types/interface";
 import placeholder from "assets/no_results_alt.svg";
@@ -88,7 +88,7 @@ export const UserStructureDetails = (props: Props) => {
           alt={props.acronyme}
           width={235}
           height={115}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
         <StructureName>{props.name}</StructureName>
         {isMember && (

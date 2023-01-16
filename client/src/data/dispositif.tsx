@@ -446,6 +446,7 @@ const customConvertOption = {
     } else if (entity.type === "image" || entity.type === "IMAGE") {
       return (
         <div className="image-wrapper">
+          {/* TODO: use next/image when refactor */}
           <Image {...entity.data} alt={(entity.data || {}).alt} />
         </div>
       );

@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import styles from "scss/components/login.module.scss";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 interface Props {
   email: string;
@@ -67,7 +67,7 @@ const PhoneAndEmailFields = (props: Props) => {
                 alt={props.structure.nom}
                 width={40}
                 height={80}
-                objectFit="contain"
+                style={{ objectFit: "contain" }}
               />
             )}
             {props.structure.nom}

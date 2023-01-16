@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Structure, Picture } from "types/interface";
 import { StructureType } from "./StructureType";
 import { SocialsLink } from "./SocialsLink";
@@ -49,7 +49,7 @@ export const LeftAnnuaireDetail = (props: Props) => {
               className={styles.img}
               width={232}
               height={150}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
             />
           </div>
           {props.structure.structureTypes &&

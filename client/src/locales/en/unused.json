@@ -227,5 +227,6 @@
     "Déployez subheader": "Réfugiés.info is gradually being rolled out across France thanks to its ambassadors. Do you represent a local authority, the State or an association? Réfugiés.info will map and promote the various schemes in favour of integration in your area.",
     "theme": "theme",
     "need": "I need to"
-  }
+  },
+  "Register": { "Faible": "Weak", "Fort": "Strong", "Moyen": "Average" }
 }

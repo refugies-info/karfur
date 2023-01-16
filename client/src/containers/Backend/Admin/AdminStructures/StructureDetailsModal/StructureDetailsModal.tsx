@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Log } from "types/interface";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/fr";
@@ -179,7 +179,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
         isLoading={isLoading}
         leftHead={
           <>
-            <Image src={secureUrl || noStructure} alt="" width={140} height={60} objectFit="contain" />
+            <Image src={secureUrl || noStructure} alt="" width={140} height={60} style={{ objectFit: "contain" }} />
             <EditableH2
               onValidate={changeNom}
               title={`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}

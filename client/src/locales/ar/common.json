@@ -249,9 +249,6 @@
     "Renseignez votre adresse email": "أدخل عنوان بريدك الالكتروني",
     "Votre email": "بريدك الالكتروني",
     "Email infos": "بحاجة إلى إعادة تعيين كلمة مرورجديدة في حال نسيانها.",
-    "Faible": "ضعيف",
-    "Fort": "قوي",
-    "Moyen": "متوسط",
     "Mot de passe trop faible": "كلمة السر التي أدخلتها ضغيفة للغاية.",
     "Ceci n'est pas un email,": "هذا ليس بريد الكتروني",
     "vérifiez l'orthographe": "دقق الأخطاء الإملائية",
@@ -262,7 +259,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "سنرل لك ايميل الكتروني لتسجيلك",
     "Créez-vous un compte depuis votre ordinateur pour participer": "أنشأ حساباً لك, من خلال جهاز الكمبيوتر, للمشاركة"
   },
-  "UnauthorizedAccess": { "Accès refusé": "الوصول مرفوض", "Revenir à l'accueil": "العودة إلى الصفحة الرئيسية" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "الوصول مرفوض",
+    "Revenir à l'accueil": "العودة إلى الصفحة الرئيسية"
+  },
   "Dispositif": {
     "cliquez": "انقر فوق الـ \"؟\" لمعرفة المزيد",
     "informations_utiles": "هل وجدت معلومات مفيدة ؟",

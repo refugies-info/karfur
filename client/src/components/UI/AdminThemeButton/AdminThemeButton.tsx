@@ -1,6 +1,6 @@
 import { cls } from "lib/classname";
 import { ObjectId } from "mongodb";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 import { Theme } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";
