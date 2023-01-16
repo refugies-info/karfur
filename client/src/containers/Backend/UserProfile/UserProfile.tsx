@@ -125,6 +125,7 @@ export const UserProfile = (props: Props) => {
   const [isPictureUploading, setIsPictureUploading] = useState(false);
   const [notEmailError, setNotEmailError] = useState(false);
   const [notPhoneError, setNotPhoneError] = useState(false);
+  const [samePasswordError, setSamePasswordError] = useState(false);
   const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_USER));
   const errorSave = useSelector(errorSelector(LoadingStatusKey.SAVE_USER));
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -185,6 +186,7 @@ export const UserProfile = (props: Props) => {
   };
 
   const modifyPassword = async () => {
+    setSamePasswordError(false);
     try {
       if (!user) return;
       setIsChangePasswordLoading(true);
@@ -207,8 +209,11 @@ export const UserProfile = (props: Props) => {
       setNewPassword("");
       setIsModifyPasswordOpen(false);
       setIsChangePasswordLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setIsChangePasswordLoading(false);
+      if (error.response?.status === 400 && error.response?.data?.code === "USED_PASSWORD") {
+        setSamePasswordError(true);
+      }
     }
   };
   const handleFileInputChange = () => {
@@ -572,6 +577,14 @@ export const UserProfile = (props: Props) => {
                   </FButton>
                 )}
               </div>
+              {samePasswordError && (
+                <ErrorMessageContainer>
+                  {t(
+                    "Login.same_password_error",
+                    "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
+                  )}
+                </ErrorMessageContainer>
+              )}
             </>
           )}
         </ProfileContainer>
