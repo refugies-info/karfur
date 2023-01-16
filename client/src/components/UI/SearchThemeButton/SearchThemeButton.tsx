@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";

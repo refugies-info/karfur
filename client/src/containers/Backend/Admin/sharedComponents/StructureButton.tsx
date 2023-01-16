@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { SimplifiedMainSponsor, SimplifiedStructure } from "types/interface";
 import { StyledStatus } from "./SubComponents";
 import { cls } from "lib/classname";
@@ -26,7 +26,7 @@ export const StructureButton = (props: {
           alt={props.sponsor.nom}
           width={95}
           height={30}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
       ) : (
         <Image className={styles.sponsor_img} src={noStructure} alt="no structure" />

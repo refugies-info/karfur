@@ -8,10 +8,6 @@ import { saveUserActionCreator } from "services/User/user.actions";
 import Swal from "sweetalert2";
 import "jest-styled-components";
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work

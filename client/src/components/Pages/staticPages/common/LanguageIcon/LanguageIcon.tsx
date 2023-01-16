@@ -1,6 +1,5 @@
 import { cls } from "lib/classname";
-import Image from "next/legacy/image";
-import React, { ReactElement } from "react";
+import React from "react";
 import styles from "./LanguageIcon.module.scss";
 
 interface Props {

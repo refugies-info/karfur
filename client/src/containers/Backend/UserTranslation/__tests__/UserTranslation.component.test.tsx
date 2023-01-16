@@ -9,10 +9,6 @@ import API from "utils/API";
 import { useParams } from "react-router-dom";
 import "jest-styled-components";
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 // Mock history
 const push = jest.fn();

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Input, FormGroup, Label, Spinner } from "reactstrap";
 import { connect } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
@@ -542,7 +542,7 @@ class Sponsors extends Component<Props, State> {
                           alt={mainSponsor.nom}
                           width={160}
                           height={110}
-                          objectFit="contain"
+                          style={{ objectFit: "contain" }}
                         />
                       )}
                     </ImageLink>
@@ -616,7 +616,7 @@ class Sponsors extends Component<Props, State> {
                               alt={sponsor.nom}
                               width={160}
                               height={110}
-                              objectFit="contain"
+                              style={{ objectFit: "contain" }}
                             />
                           </ImageLink>
                         ) : (
@@ -628,7 +628,7 @@ class Sponsors extends Component<Props, State> {
                                 alt={sponsor.nom}
                                 width={160}
                                 height={110}
-                                objectFit="contain"
+                                style={{ objectFit: "contain" }}
                               />
                             )}
                           </ImageLink>
@@ -854,7 +854,7 @@ class Sponsors extends Component<Props, State> {
                   alt="logo de structure"
                   width={40}
                   height={40}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
               )}
               {selected && (
@@ -960,7 +960,7 @@ class Sponsors extends Component<Props, State> {
                   alt={""}
                   width={160}
                   height={110}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
                 <FButton className="position-relative" type="fill-dark" name="upload-outline">
                   <Input
@@ -1042,7 +1042,7 @@ class Sponsors extends Component<Props, State> {
                       src={mainSponsor.picture.secure_url}
                       className={styles.selection_logo}
                       alt="logo de structure"
-                      objectFit="contain"
+                      style={{ objectFit: "contain" }}
                       width={40}
                       height={40}
                     />
@@ -1070,7 +1070,7 @@ class Sponsors extends Component<Props, State> {
                         alt="logo de structure"
                         width={40}
                         height={40}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <span>
@@ -1097,7 +1097,7 @@ class Sponsors extends Component<Props, State> {
                         alt="logo de structure"
                         width={40}
                         height={40}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <span>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import { assetsOnServer } from "assets/assetsOnServer";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const ProblematicContentContainer = styled.div`
   display: flex;
@@ -43,18 +43,10 @@ const Statut = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <Image
-        src={assetsOnServer.quiSommesNous.statutRefugie}
-        alt="statut-refugie"
-        width={320}
-        height={220}
-      />
+      <Image src={assetsOnServer.quiSommesNous.statutRefugie} alt="statut-refugie" width={320} height={220} />
       <TextContainer>
         <ProblematicDetailTitle>
-          {t(
-            "QuiSommesNous.problem_1_header",
-            "Comprendre le statut de réfugié"
-          )}
+          {t("QuiSommesNous.problem_1_header", "Comprendre le statut de réfugié")}
         </ProblematicDetailTitle>
         <ProblematicDetailDescription>
           {t(
@@ -64,25 +56,17 @@ const Statut = () => {
         </ProblematicDetailDescription>
       </TextContainer>
     </ProblematicDetailContainer>
-  )
-}
+  );
+};
 
 const Information = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <Image
-        src={assetsOnServer.quiSommesNous.information}
-        alt="info"
-        width={320}
-        height={220}
-      />
+      <Image src={assetsOnServer.quiSommesNous.information} alt="info" width={320} height={220} />
       <TextContainer>
         <ProblematicDetailTitle>
-          {t(
-            "QuiSommesNous.problem_2_header",
-            "Une information cryptée, dispersée et périssable"
-          )}
+          {t("QuiSommesNous.problem_2_header", "Une information cryptée, dispersée et périssable")}
         </ProblematicDetailTitle>
         <ProblematicDetailDescription>
           {t(
@@ -92,26 +76,18 @@ const Information = () => {
         </ProblematicDetailDescription>
       </TextContainer>
     </ProblematicDetailContainer>
-  )
-}
+  );
+};
 
 const Accompagnement = () => {
   const { t } = useTranslation();
   return (
     <ProblematicDetailContainer>
-      <Image
-        src={assetsOnServer.quiSommesNous.accompagnement}
-        alt="accompagnement"
-        width={320}
-        height={160}
-      />
+      <Image src={assetsOnServer.quiSommesNous.accompagnement} alt="accompagnement" width={320} height={160} />
 
       <TextContainer>
         <ProblematicDetailTitle>
-          {t(
-            "QuiSommesNous.problem_3_header2",
-            "Éviter les ruptures d’accompagnement"
-          )}
+          {t("QuiSommesNous.problem_3_header2", "Éviter les ruptures d’accompagnement")}
         </ProblematicDetailTitle>
         <ProblematicDetailDescription>
           {t(
@@ -121,8 +97,8 @@ const Accompagnement = () => {
         </ProblematicDetailDescription>
       </TextContainer>
     </ProblematicDetailContainer>
-  )
-}
+  );
+};
 
 export const Problematic = () => (
   <ProblematicContentContainer>

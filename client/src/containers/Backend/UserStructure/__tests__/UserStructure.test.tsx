@@ -11,10 +11,6 @@ import {
 import Swal from "sweetalert2";
 import { colors } from "colors";
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 // need to mock react strap because issue with modal
 jest.mock("reactstrap", () => {

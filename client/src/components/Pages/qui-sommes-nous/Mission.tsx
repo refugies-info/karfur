@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FButton from "components/UI/FButton/FButton";
 import { assetsOnServer } from "assets/assetsOnServer";
 import { getPath } from "routes";

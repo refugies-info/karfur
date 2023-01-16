@@ -7,10 +7,6 @@ import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
 import "jest-styled-components";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 jest.mock("components/Modals/NewSearchModal/NewSearchModal", () => jest.fn().mockReturnValue(<></>));
 
 describe("recherche", () => {

@@ -3,7 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { Container } from "reactstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { queryDispositifs } from "lib/recherche/queryContents";
 import decodeQuery from "lib/recherche/decodeUrlQuery";
 import { fetchLanguesActionCreator, toggleLangueActionCreator } from "services/Langue/langue.actions";

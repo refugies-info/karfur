@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Spinner, Input } from "reactstrap";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
@@ -373,7 +373,7 @@ export const UserProfile = (props: Props) => {
             className={styles.user_img}
             width={160}
             height={160}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
           <UserName>{user.username}</UserName>
           <FButton type="dark" name="upload-outline" className="position-relative mb-4">
