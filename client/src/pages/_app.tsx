@@ -11,6 +11,8 @@ import { initGA, PageView } from "lib/tracking";
 import { PageOptions } from "types/interface";
 import "scss/index.scss";
 import { Provider } from "react-redux";
+import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -61,6 +63,24 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     // Bug router: https://github.com/vercel/next.js/issues/18127#issuecomment-950907739
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Loader
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (url.includes("recherche") || url.includes("advanced-search")) {
+        store.dispatch(startLoading(LoadingStatusKey.NAVIGATING));
+      }
+    };
+    const routeChanged = () => {
+      store.dispatch(finishLoading(LoadingStatusKey.NAVIGATING));
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeComplete", routeChanged);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeComplete", routeChanged);
+    };
+  }, [store, router.events]);
 
   return (
     <>

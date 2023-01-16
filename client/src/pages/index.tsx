@@ -25,10 +25,6 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { DispositifStatistics, SearchDispositif, StructuresStatistics, TranslationStatistics } from "types/interface";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
 import commonStyles from "scss/components/staticPages.module.scss";
-import { createStateContext } from "react-use";
-import AppLoader from "components/Layout/AppLoader";
-
-export const [useLoadingContext, LoadingContextProvider] = createStateContext(false);
 
 interface Props {
   contentStatistics: DispositifStatistics;
@@ -53,48 +49,44 @@ const Homepage = (props: Props) => {
   }, [dispatch]);
 
   return (
-    <LoadingContextProvider>
-      <AppLoader>
-        <div className={commonStyles.main}>
-          <SEO title="Accueil" description={t("Homepage.title")} />
+    <div className={commonStyles.main}>
+      <SEO title="Accueil" description={t("Homepage.title")} />
 
-          <Hero targetArrow="themes" />
+      <Hero targetArrow="themes" />
 
-          <AllThemes id="themes" />
+      <AllThemes id="themes" />
 
-          <MobileApp />
+      <MobileApp />
 
-          <NewContent
-            nbDemarches={props.contentStatistics.nbDemarches || 0}
-            nbDispositifs={props.contentStatistics.nbDispositifs || 0}
-            nbStructures={props.structuresStatistics.nbStructures || 0}
-            demarches={props.demarches}
-            dispositifs={props.dispositifs}
-          />
+      <NewContent
+        nbDemarches={props.contentStatistics.nbDemarches || 0}
+        nbDispositifs={props.contentStatistics.nbDispositifs || 0}
+        nbStructures={props.structuresStatistics.nbStructures || 0}
+        demarches={props.demarches}
+        dispositifs={props.dispositifs}
+      />
 
-          <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
+      <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
-          <FreeResources />
+      <FreeResources />
 
-          <HelpUs />
+      <HelpUs />
 
-          <MainFigures
-            nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
-            nbMercis={props.contentStatistics.nbMercis || 0}
-            nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
-          />
+      <MainFigures
+        nbVues={(props.contentStatistics.nbVues || 0) + (props.contentStatistics.nbVuesMobile || 0)}
+        nbMercis={props.contentStatistics.nbMercis || 0}
+        nbUpdatedRecently={props.contentStatistics.nbUpdatedRecently || 0}
+      />
 
-          <Community
-            nbRedactors={props.translationStatistics.nbRedactors || 0}
-            nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
-            nbCDA={props.structuresStatistics.nbCDA || 0}
-            nbTranslators={props.translationStatistics.nbTranslators || 0}
-          />
+      <Community
+        nbRedactors={props.translationStatistics.nbRedactors || 0}
+        nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
+        nbCDA={props.structuresStatistics.nbCDA || 0}
+        nbTranslators={props.translationStatistics.nbTranslators || 0}
+      />
 
-          <Infos />
-        </div>
-      </AppLoader>
-    </LoadingContextProvider>
+      <Infos />
+    </div>
   );
 };
 

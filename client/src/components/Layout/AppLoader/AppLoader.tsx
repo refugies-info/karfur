@@ -1,15 +1,17 @@
 import Image from "next/image";
 import loader_logo from "assets/loader_logo.png";
 import { ReactNode } from "react";
-import { useLoadingContext } from "pages";
 import styles from "./AppLoader.module.scss";
+import { useSelector } from "react-redux";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 interface AppLoaderProps {
   children: ReactNode;
 }
 
 const AppLoader = ({ children }: AppLoaderProps) => {
-  const [loading] = useLoadingContext();
+  const loading = useSelector(isLoadingSelector(LoadingStatusKey.NAVIGATING));
 
   return loading ? (
     <div className={styles.loader}>
