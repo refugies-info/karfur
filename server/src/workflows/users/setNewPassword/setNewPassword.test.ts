@@ -161,7 +161,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]
@@ -182,7 +182,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]
@@ -203,7 +203,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]

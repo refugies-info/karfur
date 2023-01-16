@@ -249,9 +249,6 @@
     "Renseignez votre adresse email": "Добавьте ваш email",
     "Votre email": "Ваш email",
     "Email infos": "Необходимо для восстановления вашего пароля в случае утери.",
-    "Faible": "Слабый",
-    "Fort": "Сильный",
-    "Moyen": "Средний",
     "Mot de passe trop faible": "Упс, пароль слишком легкий.",
     "Ceci n'est pas un email,": "Неверный email,",
     "vérifiez l'orthographe": "проверьте написание.",
@@ -262,7 +259,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "Мы пришлем вам подтверждение для регистрации по электронной почте",
     "Créez-vous un compte depuis votre ordinateur pour participer": "Для участия создайте учетную запись, зайдя с вашего компьютера"
   },
-  "UnauthorizedAccess": { "Accès refusé": "Доступ запрещен", "Revenir à l'accueil": "Вернуться на главную" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "Доступ запрещен",
+    "Revenir à l'accueil": "Вернуться на главную"
+  },
   "Dispositif": {
     "cliquez": "Нажмите на «?» чтобы узнать больше",
     "informations_utiles": "Нашли необходимую информацию?",
