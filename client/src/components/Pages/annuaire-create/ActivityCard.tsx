@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { ThemeButton } from "components/UI/ThemeButton/ThemeButton";
 import type { Theme } from "types/interface";
 import placeholder from "assets/placeholder_annuaire.png";
@@ -19,21 +19,17 @@ interface Props {
 }
 
 interface CardContainerProps {
-  isLectureMode: boolean
-  isSelected: boolean
-  lightColor: string
-  darkColor: string
+  isLectureMode: boolean;
+  isSelected: boolean;
+  lightColor: string;
+  darkColor: string;
 }
 const CardContainer = styled.div`
   width: 200px;
   height: ${(props: CardContainerProps) => (props.isLectureMode ? "260px" : "220px")};
   background: ${(props: CardContainerProps) => (props.isSelected ? props.lightColor : "#ffffff")};
   border-color: ${(props: CardContainerProps) =>
-    props.isSelected
-      ? props.isLectureMode
-        ? props.lightColor
-        : props.darkColor
-      : "#ffffff"};
+    props.isSelected ? (props.isLectureMode ? props.lightColor : props.darkColor) : "#ffffff"};
   color: ${(props: CardContainerProps) => props.darkColor};
 
   border-radius: 12px;
@@ -53,13 +49,11 @@ const CardContainer = styled.div`
   border-style: solid;
 
   &:hover {
-    background-color: ${(props: CardContainerProps) =>
-      props.isSelected ? props.lightColor : "#ffffff"};
+    background-color: ${(props: CardContainerProps) => (props.isSelected ? props.lightColor : "#ffffff")};
     color: ${(props: CardContainerProps) => props.darkColor};
     border-width: 3px;
     border-style: solid;
-    border-color: ${(props: CardContainerProps) =>
-      props.isLectureMode ? props.lightColor : props.darkColor};
+    border-color: ${(props: CardContainerProps) => (props.isLectureMode ? props.lightColor : props.darkColor)};
   }
 `;
 
@@ -95,28 +89,15 @@ export const ActivityCard = (props: Props) => {
       isLectureMode={props.isLectureMode}
     >
       <ImageContainer>
-        {!props.image && (
-          <ActivityImage
-            src={placeholder}
-            alt="placeholder"
-          />
-        )}
+        {!props.image && <ActivityImage src={placeholder} alt="placeholder" style={{ objectFit: "contain" }} />}
         <div>
           {props.image && (
-            <Image
-              src={props.image}
-              alt={props.activity}
-              width={144}
-              height={100}
-              objectFit="contain"
-            />
+            <Image src={props.image} alt={props.activity} width={144} height={100} style={{ objectFit: "contain" }} />
           )}
         </div>
       </ImageContainer>
       <Text>{props.activity}</Text>
-      {props.isLectureMode && props.theme && (
-        <ThemeButton isRTL={isRTL} theme={props.theme} />
-      )}
+      {props.isLectureMode && props.theme && <ThemeButton isRTL={isRTL} theme={props.theme} />}
     </CardContainer>
   );
 };

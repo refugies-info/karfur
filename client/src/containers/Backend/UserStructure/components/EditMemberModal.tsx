@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styled from "styled-components";
 import { UserStructureMembre } from "types/interface";
 import { ObjectId } from "mongodb";
@@ -87,7 +87,7 @@ const EditMemberModal = (props: Props) => {
           alt=""
           width={70}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
         <UserName>{props.selectedUser.username}</UserName>
       </RowContainer>

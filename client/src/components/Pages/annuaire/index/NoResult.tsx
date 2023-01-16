@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FButton from "components/UI/FButton/FButton";
 import NoResultsBackgroundImage from "assets/no_results.svg";
 import styles from "./NoResult.module.scss";

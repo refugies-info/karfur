@@ -221,6 +221,7 @@ export const NeedFormModal = (props: Props) => {
                 setImage(e);
               }}
               minHeight={220}
+              imageSize={100}
             />
           </div>
           <div className="mb-2">

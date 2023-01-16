@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Card, CardBody, Carousel, CarouselItem, Badge } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { reduceContributors } from "./function";

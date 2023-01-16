@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
@@ -103,7 +103,7 @@ const RecensezVotreAction = (props: Props) => {
               <HeroArrow target="who" />
             </Col>
             <Col sm="12" lg="6">
-              <Image src={MockupsRIMobile} alt="" />
+              <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
             </Col>
           </Row>
         </Container>

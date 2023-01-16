@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import qs from "query-string";
 import { getPath } from "routes";

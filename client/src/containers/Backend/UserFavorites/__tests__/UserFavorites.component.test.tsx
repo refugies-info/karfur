@@ -11,10 +11,6 @@ import routerMock from "next/router";
 import mockAxios from "jest-mock-axios";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 import "jest-styled-components";
 

@@ -6,7 +6,7 @@ import { Structure } from "types/interface";
 import PlaceholderLogo from "assets/Placeholder_logo.png";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const Title = styled.div`
   font-weight: bold;
@@ -139,10 +139,10 @@ export const Step1 = (props: Props) => {
               alt={props.structure ? props.structure.acronyme : ""}
               width={200}
               height={200}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
             />
           ) : (
-            <Image src={PlaceholderLogo} alt="defautl logo" width={200} height={200} objectFit="contain" />
+            <Image src={PlaceholderLogo} alt="defautl logo" width={200} height={200} style={{ objectFit: "contain" }} />
           )}
         </LogoWrapper>
         <RightLogoContainer>

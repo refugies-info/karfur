@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Modal, InputGroup, Spinner } from "reactstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
@@ -45,7 +45,7 @@ const ImgModal = (props: Props) => {
               alt=""
               width={160}
               height={110}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
             />
             <FButton className="position-relative" type="fill-dark" name="upload-outline">
               <Input

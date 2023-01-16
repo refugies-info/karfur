@@ -9,10 +9,6 @@ import { setupGoogleMock } from "__mocks__/react-google-autocomplete";
 jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 describe("homepage", () => {
   beforeEach(() => {

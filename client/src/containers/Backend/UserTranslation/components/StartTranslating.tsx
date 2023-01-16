@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { colors } from "colors";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FButton from "components/UI/FButton/FButton";
 import traductionIconBlanc from "assets/icon_traduction_blanc.svg";
 
@@ -62,7 +62,7 @@ export const StartTranslating = (props: Props) => {
         <WhiteContainerSubTitle>Aidez à traduire les contenus à votre rythme.</WhiteContainerSubTitle>
         <RowContainer>
           <FButton type="dark" className="me-2" onClick={props.toggleTraducteurModal}>
-            <Image src={traductionIconBlanc} alt="a" />
+            <Image src={traductionIconBlanc} width="21" height="21" alt="a" />
             Commencer à traduire
           </FButton>
           <FButton type="tuto" className="ms-2" name="video-outline" onClick={props.toggleTutoModal}>

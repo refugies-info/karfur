@@ -611,122 +611,22 @@ exports[`recherche renders home search 1`] = `
                           <span
                             className="icon"
                           >
-                            <span
+                            <img
+                              alt=""
+                              data-nimg="1"
+                              decoding="async"
+                              height={20}
+                              loading="lazy"
+                              onError={[Function]}
+                              onLoad={[Function]}
+                              src="/images/icon_office.svg"
                               style={
                                 {
-                                  "background": "none",
-                                  "border": 0,
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "initial",
-                                  "margin": 0,
-                                  "maxWidth": "100%",
-                                  "opacity": 1,
-                                  "overflow": "hidden",
-                                  "padding": 0,
-                                  "position": "relative",
-                                  "width": "initial",
+                                  "color": "transparent",
                                 }
                               }
-                            >
-                              <span
-                                style={
-                                  {
-                                    "background": "none",
-                                    "border": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": "initial",
-                                    "margin": 0,
-                                    "maxWidth": "100%",
-                                    "opacity": 1,
-                                    "padding": 0,
-                                    "width": "initial",
-                                  }
-                                }
-                              >
-                                <img
-                                  alt=""
-                                  aria-hidden={true}
-                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                                  style={
-                                    {
-                                      "background": "none",
-                                      "border": 0,
-                                      "display": "block",
-                                      "height": "initial",
-                                      "margin": 0,
-                                      "maxWidth": "100%",
-                                      "opacity": 1,
-                                      "padding": 0,
-                                      "width": "initial",
-                                    }
-                                  }
-                                />
-                              </span>
-                              <img
-                                alt=""
-                                data-nimg="intrinsic"
-                                decoding="async"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                style={
-                                  {
-                                    "border": "none",
-                                    "bottom": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": 0,
-                                    "left": 0,
-                                    "margin": "auto",
-                                    "maxHeight": "100%",
-                                    "maxWidth": "100%",
-                                    "minHeight": "100%",
-                                    "minWidth": "100%",
-                                    "objectFit": undefined,
-                                    "objectPosition": undefined,
-                                    "padding": 0,
-                                    "position": "absolute",
-                                    "right": 0,
-                                    "top": 0,
-                                    "width": 0,
-                                  }
-                                }
-                              />
-                              <noscript>
-                                <img
-                                  alt=""
-                                  data-nimg="intrinsic"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="/images/icon_office.svg"
-                                  srcSet="/images/icon_office.svg 1x, /images/icon_office.svg 2x"
-                                  style={
-                                    {
-                                      "border": "none",
-                                      "bottom": 0,
-                                      "boxSizing": "border-box",
-                                      "display": "block",
-                                      "height": 0,
-                                      "left": 0,
-                                      "margin": "auto",
-                                      "maxHeight": "100%",
-                                      "maxWidth": "100%",
-                                      "minHeight": "100%",
-                                      "minWidth": "100%",
-                                      "objectFit": undefined,
-                                      "objectPosition": undefined,
-                                      "padding": 0,
-                                      "position": "absolute",
-                                      "right": 0,
-                                      "top": 0,
-                                      "width": 0,
-                                    }
-                                  }
-                                />
-                              </noscript>
-                            </span>
+                              width={20}
+                            />
                           </span>
                           <span
                             className="name"
@@ -1521,122 +1421,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/admin.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/admin.svg"
-                      srcSet="/images/app/admin.svg 1x, /images/app/admin.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1655,122 +1455,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/francais.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/francais.svg"
-                      srcSet="/images/app/francais.svg 1x, /images/app/francais.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1789,122 +1489,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/metier.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/metier.svg"
-                      srcSet="/images/app/metier.svg 1x, /images/app/metier.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1923,122 +1523,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/travail.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/travail.svg"
-                      srcSet="/images/app/travail.svg 1x, /images/app/travail.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2057,122 +1557,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/logement.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/logement.svg"
-                      srcSet="/images/app/logement.svg 1x, /images/app/logement.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2191,122 +1591,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/sante.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/sante.svg"
-                      srcSet="/images/app/sante.svg 1x, /images/app/sante.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2325,122 +1625,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/transport.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/transport.svg"
-                      srcSet="/images/app/transport.svg 1x, /images/app/transport.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2459,122 +1659,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/rencontres.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/rencontres.svg"
-                      srcSet="/images/app/rencontres.svg 1x, /images/app/rencontres.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2593,122 +1693,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/etudes.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/etudes.svg"
-                      srcSet="/images/app/etudes.svg 1x, /images/app/etudes.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2727,122 +1727,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/benevolat.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/benevolat.svg"
-                      srcSet="/images/app/benevolat.svg 1x, /images/app/benevolat.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2861,122 +1761,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/loisirs.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/loisirs.svg"
-                      srcSet="/images/app/loisirs.svg 1x, /images/app/loisirs.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2995,122 +1795,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/culture.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/culture.svg"
-                      srcSet="/images/app/culture.svg 1x, /images/app/culture.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -3129,122 +1829,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
-                      srcSet="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -3272,126 +1872,24 @@ exports[`recherche renders home search 1`] = `
               className="type_card"
               onClick={[Function]}
             >
-              <div
+              <img
+                alt="Recherche.demarcheCardTitle"
                 className="image"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
+                data-nimg="1"
+                decoding="async"
+                height={120}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27120%27%20height=%27120%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt="Recherche.demarcheCardTitle"
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt="Recherche.demarcheCardTitle"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
-              </div>
+                }
+                width={120}
+              />
               <h3
                 className="h4 title"
                 dangerouslySetInnerHTML={
@@ -3451,126 +1949,24 @@ exports[`recherche renders home search 1`] = `
               className="type_card"
               onClick={[Function]}
             >
-              <div
+              <img
+                alt="Recherche.dispositifCardTitle"
                 className="image"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
+                data-nimg="1"
+                decoding="async"
+                height={120}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27120%27%20height=%27120%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt="Recherche.dispositifCardTitle"
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt="Recherche.dispositifCardTitle"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
-              </div>
+                }
+                width={120}
+              />
               <h3
                 className="h4 title"
                 dangerouslySetInnerHTML={
@@ -3844,122 +2240,23 @@ exports[`recherche renders home search 1`] = `
             <div
               className="image"
             >
-              <span
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height={332}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style={
                   {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "inline-block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "overflow": "hidden",
-                    "padding": 0,
-                    "position": "relative",
-                    "width": "initial",
+                    "color": "transparent",
                   }
                 }
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                >
-                  <img
-                    alt=""
-                    aria-hidden={true}
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27440%27%20height=%27332%27/%3e"
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  />
-                </span>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": undefined,
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-                <noscript>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                </noscript>
-              </span>
+                width={440}
+              />
             </div>
           </div>
         </div>
@@ -4522,122 +2819,22 @@ exports[`recherche renders search results 1`] = `
                           <span
                             className="icon"
                           >
-                            <span
+                            <img
+                              alt=""
+                              data-nimg="1"
+                              decoding="async"
+                              height={20}
+                              loading="lazy"
+                              onError={[Function]}
+                              onLoad={[Function]}
+                              src="/images/icon_elearning.svg"
                               style={
                                 {
-                                  "background": "none",
-                                  "border": 0,
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "initial",
-                                  "margin": 0,
-                                  "maxWidth": "100%",
-                                  "opacity": 1,
-                                  "overflow": "hidden",
-                                  "padding": 0,
-                                  "position": "relative",
-                                  "width": "initial",
+                                  "color": "transparent",
                                 }
                               }
-                            >
-                              <span
-                                style={
-                                  {
-                                    "background": "none",
-                                    "border": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": "initial",
-                                    "margin": 0,
-                                    "maxWidth": "100%",
-                                    "opacity": 1,
-                                    "padding": 0,
-                                    "width": "initial",
-                                  }
-                                }
-                              >
-                                <img
-                                  alt=""
-                                  aria-hidden={true}
-                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                                  style={
-                                    {
-                                      "background": "none",
-                                      "border": 0,
-                                      "display": "block",
-                                      "height": "initial",
-                                      "margin": 0,
-                                      "maxWidth": "100%",
-                                      "opacity": 1,
-                                      "padding": 0,
-                                      "width": "initial",
-                                    }
-                                  }
-                                />
-                              </span>
-                              <img
-                                alt=""
-                                data-nimg="intrinsic"
-                                decoding="async"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                style={
-                                  {
-                                    "border": "none",
-                                    "bottom": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": 0,
-                                    "left": 0,
-                                    "margin": "auto",
-                                    "maxHeight": "100%",
-                                    "maxWidth": "100%",
-                                    "minHeight": "100%",
-                                    "minWidth": "100%",
-                                    "objectFit": undefined,
-                                    "objectPosition": undefined,
-                                    "padding": 0,
-                                    "position": "absolute",
-                                    "right": 0,
-                                    "top": 0,
-                                    "width": 0,
-                                  }
-                                }
-                              />
-                              <noscript>
-                                <img
-                                  alt=""
-                                  data-nimg="intrinsic"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="/images/icon_elearning.svg"
-                                  srcSet="/images/icon_elearning.svg 1x, /images/icon_elearning.svg 2x"
-                                  style={
-                                    {
-                                      "border": "none",
-                                      "bottom": 0,
-                                      "boxSizing": "border-box",
-                                      "display": "block",
-                                      "height": 0,
-                                      "left": 0,
-                                      "margin": "auto",
-                                      "maxHeight": "100%",
-                                      "maxWidth": "100%",
-                                      "minHeight": "100%",
-                                      "minWidth": "100%",
-                                      "objectFit": undefined,
-                                      "objectPosition": undefined,
-                                      "padding": 0,
-                                      "position": "absolute",
-                                      "right": 0,
-                                      "top": 0,
-                                      "width": 0,
-                                    }
-                                  }
-                                />
-                              </noscript>
-                            </span>
+                              width={20}
+                            />
                           </span>
                           <span
                             className="name"
@@ -5900,122 +4097,23 @@ exports[`recherche renders search results 1`] = `
       <div
         className="image"
       >
-        <span
+        <img
+          alt="No results"
+          data-nimg="1"
+          decoding="async"
+          height={280}
+          loading="lazy"
+          onError={[Function]}
+          onLoad={[Function]}
+          src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+          srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
           style={
             {
-              "background": "none",
-              "border": 0,
-              "boxSizing": "border-box",
-              "display": "inline-block",
-              "height": "initial",
-              "margin": 0,
-              "maxWidth": "100%",
-              "opacity": 1,
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "width": "initial",
+              "color": "transparent",
             }
           }
-        >
-          <span
-            style={
-              {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": "initial",
-                "margin": 0,
-                "maxWidth": "100%",
-                "opacity": 1,
-                "padding": 0,
-                "width": "initial",
-              }
-            }
-          >
-            <img
-              alt=""
-              aria-hidden={true}
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27280%27/%3e"
-              style={
-                {
-                  "background": "none",
-                  "border": 0,
-                  "display": "block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "padding": 0,
-                  "width": "initial",
-                }
-              }
-            />
-          </span>
-          <img
-            alt="No results"
-            data-nimg="intrinsic"
-            decoding="async"
-            onError={[Function]}
-            onLoad={[Function]}
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={
-              {
-                "border": "none",
-                "bottom": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": 0,
-                "left": 0,
-                "margin": "auto",
-                "maxHeight": "100%",
-                "maxWidth": "100%",
-                "minHeight": "100%",
-                "minWidth": "100%",
-                "objectFit": undefined,
-                "objectPosition": undefined,
-                "padding": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "width": 0,
-              }
-            }
-          />
-          <noscript>
-            <img
-              alt="No results"
-              data-nimg="intrinsic"
-              decoding="async"
-              loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-              style={
-                {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": undefined,
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-          </noscript>
-        </span>
+          width={420}
+        />
       </div>
     </div>
   </div>
