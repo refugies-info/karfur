@@ -34,6 +34,7 @@ import { isFavoriteModalVisibleSelector } from "services/UserFavoritesInLocale/U
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { SubscribeNewsletterModal } from "components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import styles from "./Layout.module.scss";
+import AppLoader from "./AppLoader";
 
 interface Props {
   children: any;
@@ -173,9 +174,11 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       <Navbar />
-      <div className={styles.main}>
-        <main className={styles.content}>{props.children}</main>
-      </div>
+      <AppLoader>
+        <div className={styles.main}>
+          <main className={styles.content}>{props.children}</main>
+        </div>
+      </AppLoader>
       <Footer />
       <LanguageModal
         show={showLangModal}
