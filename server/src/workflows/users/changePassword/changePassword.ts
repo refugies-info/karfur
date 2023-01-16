@@ -1,5 +1,6 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
+import { celebrate, Joi, Segments } from "celebrate";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import logger from "../../../logger";
 import {
@@ -10,12 +11,21 @@ import { isPasswordOk } from "../../../libs/validatePassword";
 import passwordHash from "password-hash";
 import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 
+const validator = celebrate({
+  [Segments.BODY]: Joi.object({
+    userId: Joi.string(),
+    currentPassword: Joi.string(),
+    newPassword: Joi.string()
+  })
+});
+
+
 interface Query {
   userId: ObjectId;
   currentPassword: string;
   newPassword: string;
 }
-export const changePassword = async (
+const handler = async (
   req: RequestFromClientWithBody<Query>,
   res: Res
 ) => {
@@ -23,13 +33,6 @@ export const changePassword = async (
     logger.info("[changePassword] received");
     checkRequestIsFromSite(req.fromSite);
 
-    if (
-      !req.body.userId ||
-      !req.body.currentPassword ||
-      !req.body.newPassword
-    ) {
-      throw new Error("INVALID_REQUEST");
-    }
     const { userId, currentPassword, newPassword } = req.body;
     if (userId.toString() !== req.userId.toString()) {
       throw new Error("INVALID_TOKEN");
@@ -44,6 +47,10 @@ export const changePassword = async (
     // @ts-ignore
     if (!user.authenticate(currentPassword)) {
       throw new Error("INVALID_PASSWORD");
+    }
+
+    if (newPassword === currentPassword) {
+      throw new Error("USED_PASSWORD");
     }
 
     if (!isPasswordOk(newPassword)) {
@@ -76,6 +83,12 @@ export const changePassword = async (
         return res
           .status(401)
           .json({ text: "Le mot de passe est trop faible" });
+      case "USED_PASSWORD":
+        return res.status(400).json({
+          code: "USED_PASSWORD",
+          text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
+          data: "no-alert"
+        });
       case "INVALID_PASSWORD":
         return res.status(401).json({ text: "Mot de passe incorrect" });
       default:
@@ -83,3 +96,5 @@ export const changePassword = async (
     }
   }
 };
+
+export default [validator, handler];
