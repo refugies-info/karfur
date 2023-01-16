@@ -64,11 +64,13 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
-      {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="afterInteractive" />}
+      <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+
+      {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />}
       {options.supportModule && (
         <Script
           id="crisp-widget"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
             window.$crisp=[["safe", true]];
@@ -83,8 +85,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           }}
         />
       )}
-
-      <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
     </>
   );
 };
