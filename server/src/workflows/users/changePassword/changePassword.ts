@@ -6,7 +6,7 @@ import {
   getUserById,
   updateUserInDB,
 } from "../../../modules/users/users.repository";
-import { computePasswordStrengthScore } from "../../../libs/computePasswordStrengthScore";
+import { isPasswordOk } from "../../../libs/validatePassword";
 import passwordHash from "password-hash";
 import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 
@@ -46,7 +46,7 @@ export const changePassword = async (
       throw new Error("INVALID_PASSWORD");
     }
 
-    if (computePasswordStrengthScore(newPassword).score < 1) {
+    if (!isPasswordOk(newPassword)) {
       throw new Error("NEW_PASSWORD_TOO_WEAK");
     }
 

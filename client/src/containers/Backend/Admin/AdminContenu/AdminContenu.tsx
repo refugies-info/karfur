@@ -359,7 +359,7 @@ export const AdminContenu = () => {
           <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
         </StyledHeaderInner>
         <StyledSort>
-          {process.env.NEXT_PUBLIC_REACT_APP_ENV !== "production" && (
+          {process.env.NEXT_PUBLIC_REACT_APP_ENV === "production" && (
             <FButton type="dark" className="me-2" onClick={exportToAirtable}>
               {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
             </FButton>

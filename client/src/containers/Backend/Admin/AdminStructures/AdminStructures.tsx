@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
@@ -307,7 +307,7 @@ export const AdminStructures = () => {
                         alt=""
                         width={90}
                         height={35}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <StructureName>{element.nom}</StructureName>

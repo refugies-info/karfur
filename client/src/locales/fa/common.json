@@ -249,9 +249,6 @@
     "Renseignez votre adresse email": "آدرس ایمیل خود را وارد کنید",
     "Votre email": "ایمیل شما",
     "Email infos": "در صورت فراموش کردن رمز ورود ، لازم است",
-    "Faible": "ضعیف",
-    "Fort": "قوی",
-    "Moyen": "متوسط",
     "Mot de passe trop faible": "اوه ، گذرواژه شما خیلی ضعیف است.",
     "Ceci n'est pas un email,": "این یک ایمیل نیست ،",
     "vérifiez l'orthographe": "املا خود را بررسی کنید.",
@@ -262,7 +259,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "ما برای ثبت نام شما ایمیل ارسال می کنیم",
     "Créez-vous un compte depuis votre ordinateur pour participer": "برای شرکت در کامپیوتر خود یک حساب کاربری ایجاد کنید"
   },
-  "UnauthorizedAccess": { "Accès refusé": "دسترسی رد شد", "Revenir à l'accueil": "بازگشت به صفحه اصلی" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "دسترسی رد شد",
+    "Revenir à l'accueil": "بازگشت به صفحه اصلی"
+  },
   "Dispositif": {
     "cliquez": "برای دانستن بیشتر روی این نشان \"؟\" کلیک کنید",
     "informations_utiles": "اطلاعات مفیدی پیدا کردید؟",

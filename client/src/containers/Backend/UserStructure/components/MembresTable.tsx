@@ -1,6 +1,6 @@
 import { Table } from "reactstrap";
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { UserStructureMembre } from "../../../../types/interface";
 import { EditButtonWithoutNavigation, DeleteButton } from "../../Admin/sharedComponents/SubComponents";
 import marioProfile from "assets/mario-profile.jpg";
@@ -70,7 +70,14 @@ export const MembresTable = (props: Props) => (
           <tr key={key} className="membres-table">
             <td className="align-middle">
               <RowContainer>
-                <Image className="user-img me-2" src={secureUrl} alt="" width={70} height={40} objectFit="contain" />
+                <Image
+                  className="user-img me-2"
+                  src={secureUrl}
+                  alt=""
+                  width={70}
+                  height={40}
+                  style={{ objectFit: "contain" }}
+                />
                 <UserName isUser={isUser}>{element.username}</UserName>
               </RowContainer>
             </td>

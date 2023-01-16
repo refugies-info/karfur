@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
 import moment from "moment";
 import "moment/locale/fr";
@@ -222,7 +222,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
             alt=""
             width={140}
             height={60}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         </LogoWrapper>
         <RightLogoContainer>

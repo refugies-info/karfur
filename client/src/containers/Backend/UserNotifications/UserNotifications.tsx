@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,

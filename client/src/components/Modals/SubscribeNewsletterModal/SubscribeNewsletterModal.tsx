@@ -11,7 +11,7 @@ import { colors } from "colors";
 import { isMobile } from "react-device-detect";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from "scss/components/modals.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
@@ -144,7 +144,7 @@ export const SubscribeNewsletterModal = () => {
             <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIconContainer>
         )}
-        <Image src={newsletter} alt="image newsletter" />
+        <Image src={newsletter} alt="image newsletter" style={{ maxWidth: "100%", height: "auto" }} />
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")

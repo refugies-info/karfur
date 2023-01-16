@@ -12,7 +12,7 @@ import { escapeRegexCharacters, getSuggestionValue } from "lib/search";
 import { removeAccents } from "lib";
 
 import { colors } from "colors";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { SimplifiedStructure, SimplifiedUser } from "types/interface";
 
 type Suggestion = SimplifiedStructure | SimplifiedUser;
@@ -130,7 +130,7 @@ const SearchBar = (props: Props) => {
             alt="logo"
             width={40}
             height={40}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         )}
         <span className="name">

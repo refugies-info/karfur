@@ -7,10 +7,6 @@ import "jest-styled-components";
 jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 describe("publier", () => {
   beforeEach(() => {

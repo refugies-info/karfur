@@ -29,7 +29,10 @@ jest.mock("../../../modules/structure/structure.service", () => ({
 }));
 jest.mock("password-hash", () => ({
   __esModule: true, // this property makes it work
-  default: { generate: () => "hashedPassword" },
+  default: {
+    generate: () => "hashedPassword",
+    verify: (pass1: string, pass2: string) => pass1 === pass2
+  },
 }));
 
 describe("setNewPassword", () => {
@@ -89,6 +92,28 @@ describe("setNewPassword", () => {
     expect(res.status).toHaveBeenCalledWith(403);
     expect(res.json).toHaveBeenCalledWith({ text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi." });
   });
+  it("should get user and return 400 if password is the same as before", async () => {
+    User.findOne.mockReturnValueOnce({
+      email: "dev@refugies.info",
+      roles: [],
+      password: "userPassword"
+    });
+    const req = {
+      fromSite: true,
+      body: {
+        newPassword: "userPassword",
+        reset_password_token: "token"
+      },
+      roles: []
+    };
+    await setNewPassword(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      code: "USED_PASSWORD",
+      data: "no-alert",
+      text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
+    });
+  });
   it("should return 401 if admin", async () => {
     User.findOne.mockReturnValueOnce({
       email: "dev@refugies.info",
@@ -136,7 +161,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]
@@ -157,7 +182,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]
@@ -178,7 +203,7 @@ describe("setNewPassword", () => {
     const req = {
       fromSite: true,
       body: {
-        newPassword: "password",
+        newPassword: "password1&",
         reset_password_token: "token"
       },
       roles: [{ nom: "Admin", _id: "Admin" }]

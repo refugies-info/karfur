@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Event, Indicators, Log, SimplifiedUser } from "types/interface";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
 import "moment/locale/fr";
@@ -244,7 +244,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       isLoading={isLoading}
       leftHead={
         <>
-          <Image className={styles.user_img} src={secureUrl} alt="" width={50} height={50} objectFit="contain" />
+          <Image
+            className={styles.user_img}
+            src={secureUrl}
+            alt=""
+            width={50}
+            height={50}
+            style={{ objectFit: "contain" }}
+          />
           <h2>{userFromStore ? userFromStore.username : "utilisateur supprimé"}</h2>
         </>
       }

@@ -12,7 +12,7 @@ import {
   Content,
   StyledHeaderInner
 } from "../sharedComponents/StyledAdmin";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import { userHeaders, correspondingStatus } from "./data";
@@ -345,7 +345,7 @@ export const AdminUsers = () => {
                           alt=""
                           width={40}
                           height={40}
-                          objectFit="contain"
+                          style={{ objectFit: "contain" }}
                         />
                         <StructureName className="ms-4">{element.username}</StructureName>
                       </RowContainer>

@@ -8,10 +8,6 @@ import { saveUserActionCreator } from "services/User/user.actions";
 import Swal from "sweetalert2";
 import "jest-styled-components";
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
@@ -234,7 +230,7 @@ describe("UserProfile", () => {
 
     act(() => {
       component.root.findByProps({ id: "new-password" }).props.onChange({
-        target: { id: "new-password", value: "testNewPassword" }
+        target: { id: "new-password", value: "testNewPassword1&" }
       });
       component.root.findByProps({ id: "current-password" }).props.onChange({
         target: { id: "current-password", value: "current" }
@@ -249,7 +245,7 @@ describe("UserProfile", () => {
     expect(API.changePassword).toHaveBeenCalledWith({
       userId: "userId",
       currentPassword: "current",
-      newPassword: "testNewPassword"
+      newPassword: "testNewPassword1&"
     });
 
     await act(() => promise);

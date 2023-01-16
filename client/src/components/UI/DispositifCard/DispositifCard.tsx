@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SearchDispositif } from "types/interface";
@@ -100,7 +100,7 @@ const DispositifCard = (props: Props) => {
 
         <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
           {price?.price !== undefined && (
-            <div className="d-flex">
+            <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
               {price?.price === 0 ? (
                 <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
@@ -113,7 +113,7 @@ const DispositifCard = (props: Props) => {
           )}
 
           {duration?.contentTitle && (
-            <div className="d-flex mt-1">
+            <div className={cls(styles.info, "mt-1")}>
               <Image src={iconTime} width={16} height={16} alt="" />
               <div
                 className={cls(styles.ellipsis, "ms-2")}
@@ -136,7 +136,7 @@ const DispositifCard = (props: Props) => {
               alt={props.dispositif?.mainSponsor.nom}
               width={40}
               height={40}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
             />
           </span>
           <span

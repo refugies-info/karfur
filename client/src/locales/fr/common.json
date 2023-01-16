@@ -317,7 +317,8 @@
     "enter_phone_label": "Entrez votre numéro de téléphone mobile pour recevoir le code d’identification",
     "no_code_received": "Vous n'avez pas reçu le code à ce numéro ?",
     "phone_number_outdated": "Le numéro n’est plus valable ?",
-    "contact_admin_edit_number": "Contactez un administrateur pour le modifier."
+    "contact_admin_edit_number": "Contactez un administrateur pour le modifier.",
+    "same_password_error": "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
   },
   "Reset": {
     "Entrez votre nouveau mot de passe": "Entrez votre nouveau mot de passe",
@@ -338,9 +339,6 @@
     "Votre email": "Votre email",
     "Votre numéro de téléphone": "Votre numéro de téléphone",
     "Email infos": "Nécessaire pour réinitialiser votre mot de passe en cas d'oubli.",
-    "Faible": "Faible",
-    "Fort": "Fort",
-    "Moyen": "Moyen",
     "Mot de passe trop faible": "Oups, votre mot de passe est trop faible.",
     "Ceci n'est pas un email,": "Ceci n'est pas un email,",
     "vérifiez l'orthographe": "vérifiez l'orthographe.",
@@ -350,7 +348,12 @@
     "Me le rappeler par email": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "Nous vous enverrons un email d'invitation pour vous inscrire": "Nous vous enverrons un email d'invitation pour vous inscrire",
-    "Créez-vous un compte depuis votre ordinateur pour participer": "Créez-vous un compte depuis votre ordinateur pour participer"
+    "Créez-vous un compte depuis votre ordinateur pour participer": "Créez-vous un compte depuis votre ordinateur pour participer",
+    "criteria_special": "Un caractère spécial",
+    "criteria_number": "Un chiffre",
+    "criteria_minlength": "Au moins 7 caractères",
+    "strong_password": "Mot de passe fort",
+    "weak_password": "Mot de passe trop faible, il manque :"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
