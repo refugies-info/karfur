@@ -144,9 +144,6 @@ export const ContentsScreen = ({
       headerTitle={needName}
       HeaderContent={
         withProps({
-          themeName: theme?.name[currentLanguageI18nCode || "fr"] || "",
-          icon: theme?.icon,
-          navigation,
           needName,
         })(
           HeaderContentContentsScreen
