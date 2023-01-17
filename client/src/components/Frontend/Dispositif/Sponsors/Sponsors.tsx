@@ -12,11 +12,9 @@ import API from "utils/API";
 import { getPath } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
-import SearchBar from "components/UI/SearchBar/SearchBar";
 import { structure_definie } from "assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
-import { updateUserActionCreator } from "services/User/user.actions";
-import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { colors } from "colors";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
 import CustomModal from "./CustomModal";
@@ -31,6 +29,8 @@ import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.r
 import { isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
 import mobile from "scss/components/mobile.module.scss";
+import { SearchStructures } from "components/UI";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
@@ -212,8 +212,7 @@ interface Props {
   userStructure: Structure;
   structures: Structure[];
   isLoadingStructures: boolean;
-  updateUserActionCreator: any;
-  fetchActiveStructuresActionCreator: any;
+  fetchAllStructuresActionsCreator: any;
 }
 
 const emptyStructure = {
@@ -261,7 +260,7 @@ class Sponsors extends Component<Props, State> {
       this.props.structures.length === 0 &&
       !this.props.isLoadingStructures
     ) {
-      this.props.fetchActiveStructuresActionCreator();
+      this.props.fetchAllStructuresActionsCreator();
     }
 
     if (prevProps.mainSponsor && !this.props.mainSponsor) {
@@ -278,16 +277,17 @@ class Sponsors extends Component<Props, State> {
     }
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (nextProps.user && nextProps.userStructure) {
       const structure = { ...nextProps.userStructure, checked: false };
       this.setState({ mesStructures: [structure] });
     }
   }
+
   resetImg = () => {
     this.setState({ imgData: null });
   };
+
   toggleModal = (name?: string) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
@@ -295,10 +295,13 @@ class Sponsors extends Component<Props, State> {
         show: x.name === name ? !x.show : false
       }))
     }));
+
   toggleTooltip = () => this.setState((pS) => ({ tooltipOpen: !pS.tooltipOpen }));
+
   toggleIsMyStructureSelected = () => {
     this.setState({ isMyStructureSelected: !this.state.isMyStructureSelected });
   };
+
   handleFileInputChange = (event: any) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
@@ -338,31 +341,30 @@ class Sponsors extends Component<Props, State> {
       }
     });
   };
-  handleUserChange = (e: any) =>
-    this.props.updateUserActionCreator({
-      ...this.props.user,
-      [e.target.id]: e.target.value
-    });
 
   handleBelongsSChange = () => this.setState((pS) => ({ authorBelongs: !pS.authorBelongs }));
+
   handleStructChange = (id: string) =>
     this.setState((pS) => ({
       mesStructures: pS.mesStructures.map((x) => ({
         ...x,
         checked: x._id.toString() === id ? !x.checked : false
       })),
-      checked: false
+      checked: false,
+      selected: null
     }));
 
-  selectItem = (suggestion: Partial<Structure>) => {
-    this.setState({ selected: suggestion });
-    this.setState({
-      imgData: suggestion.picture || null,
-      link: suggestion.link || "",
-      nom: ""
-    });
-    //@ts-ignore
-    this.toggleModal(suggestion.createNew ? "creation" : "etVous");
+  selectItem = (structure: Partial<Structure> | null) => {
+    this.setState((pS) => ({
+      selected: structure,
+      imgData: structure?.picture || null,
+      link: structure?.link || "",
+      nom: "",
+      mesStructures: pS.mesStructures.map((x) => ({
+        ...x,
+        checked: false
+      }))
+    }));
   };
 
   createStructure = () => {
@@ -486,7 +488,6 @@ class Sponsors extends Component<Props, State> {
     const sponsorsWithPicture = sponsors.filter((sponsor) => !!sponsor.picture && !sponsor._id);
     const deduplicatedSponsors = sponsorsWithoutPicture.concat(uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom));
     const modal = { name: "responsabilite" };
-    const structuresArray = this.props.structures ? this.props.structures : [{ createNew: true }];
     const totalSponsor = this.createCarouselObject(mainSponsor, deduplicatedSponsors);
     const isRTL = ["ar", "ps", "fa"].includes(this.props.locale || "fr");
     return (
@@ -697,7 +698,7 @@ class Sponsors extends Component<Props, State> {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={modal}
-          keyValue={"0"}
+          keyValue="0"
           title="Responsabilité de la fiche"
           lowerLeftBtn={
             <FButton
@@ -717,11 +718,17 @@ class Sponsors extends Component<Props, State> {
                 type="validate"
                 name="checkmark-outline"
                 fill={colors.gray90}
-                disabled={(!checked || (!user.email && !user.phone)) && !mesStructures.some((x) => x.checked)}
+                disabled={
+                  (!checked || (!user.email && !user.phone)) && !mesStructures.some((x) => x.checked) && !selected
+                }
                 onClick={() => {
-                  this.validerRespo();
-                  this.toggleIsMyStructureSelected();
-                  this.toggleModal("envoye");
+                  if (selected) {
+                    this.toggleModal("etVous");
+                  } else {
+                    this.validerRespo();
+                    this.toggleIsMyStructureSelected();
+                    this.toggleModal("envoye");
+                  }
                 }}
                 className="ms-auto"
               >
@@ -744,17 +751,11 @@ class Sponsors extends Component<Props, State> {
           ) : (
             <div style={{ marginTop: 24 }} />
           )}
-          <SearchBar
-            structures
-            loupe
-            className="search-bar inner-addon right-addon mb-4 mt-2"
-            placeholder="Rechercher une structure..."
-            //@ts-ignore
-            array={structuresArray}
-            createNewCta="Créer une nouvelle structure"
-            selectItem={this.selectItem}
-            handleChangeValueEntered={this.handleChangeValueEntered}
-            toggleModal={this.toggleModal}
+          <SearchStructures
+            onChange={(structure) => this.selectItem(structure as Structure)}
+            onClickCreateStructure={() => this.toggleModal("creation")}
+            selectedStructure={this.state.selected}
+            structures={this.props.structures}
           />
 
           {mesStructures.length > 0 &&
@@ -1150,17 +1151,19 @@ class Sponsors extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
+  const structures = allStructuresSelector(state).filter(
+    (structure) => structure.status === "Actif" || structure.status === "En attente"
+  );
   return {
     user: state.user.user,
     userStructure: state.userStructure,
-    structures: state.activeStructures,
-    isLoadingStructures: isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)(state)
+    structures,
+    isLoadingStructures: isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)(state)
   };
 };
 
 const mapDispatchToProps = {
-  updateUserActionCreator,
-  fetchActiveStructuresActionCreator
+  fetchAllStructuresActionsCreator
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
