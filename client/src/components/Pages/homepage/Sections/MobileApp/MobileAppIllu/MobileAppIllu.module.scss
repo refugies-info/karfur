@@ -21,15 +21,21 @@
   top: 80px;
   z-index: 2;
   flex: 0 0 auto;
-  max-width: 202px;
+  max-width: 217px;
+
+  video {
+    max-width: 100%;
+    border-width: 12px;
+  }
 
   @include isTablet() {
     width: 140px;
     top: 50px;
-  }
 
-  video {
-    max-width: 100%;
+    video {
+      border-width: 6px;
+      border-radius: 18px !important;
+    }
   }
 }
 

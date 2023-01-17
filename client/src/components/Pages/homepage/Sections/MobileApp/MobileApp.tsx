@@ -57,7 +57,7 @@ const MobileApp = () => {
   return (
     <div id="application" className={cls(commonStyles.section, commonStyles.bg_blue)}>
       <Container className={cls(commonStyles.container)}>
-        <Row>
+        <Row className="align-items-center">
           <Col sm="12" lg={{ size: "6", order: 2 }}>
             <MobileAppIllu />
             <div className={styles.store}>

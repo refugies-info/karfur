@@ -28,7 +28,7 @@ const LanguageDropdown = (props: Props) => {
     <Dropdown isOpen={open} direction="down" toggle={() => setOpen((o) => !o)} className={cls(styles.dropdown)}>
       <DropdownToggle>
         <span className={styles.value}>
-          {`${t("Homepage.mobileAppInLanguage")} ${languageSelected?.langueLoc.toLowerCase() || "français"}`}
+          {`en ${languageSelected?.langueFr.toLowerCase() || "français"}`}
           <span
             className={cls(styles.flag, `fi fi-${languageSelected?.langueCode || "fr"}`)}
             title={languageSelected?.langueCode || "fr"}

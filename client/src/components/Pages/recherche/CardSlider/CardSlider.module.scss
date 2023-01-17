@@ -115,10 +115,8 @@ $fadeWidth_md: 50px;
 }
 
 .card {
-  @include isMobile() {
-    & > a {
-      height: 100%;
-    }
+  & > a {
+    height: 100%;
   }
 }
 
