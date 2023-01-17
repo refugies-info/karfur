@@ -1,20 +1,22 @@
 import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { StyledTextNormalBold } from "../StyledText";
 import { styles } from "../../theme";
 import { firstLetterUpperCase } from "../../libs";
 import { StreamlineIcon } from "../StreamlineIcon";
-import { useTranslationWithRTL } from "../../hooks/useTranslationWithRTL";
 import Highlight from "../Search/Highlight";
 import { ReadableText } from "../ReadableText";
 import { Picture } from "../../types/interface";
+import { LinearGradient } from "expo-linear-gradient";
+import { isArray } from "lodash";
 
 interface Props {
   name?: string;
-  backgroundColor: string;
+  backgroundColor: string | Array<any>;
   icon: Picture;
+  iconSize?: number;
   onPress: () => void;
   inline?: boolean;
   searchItem?: any;
@@ -22,11 +24,9 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-const StyledContainer = styled(RTLTouchableOpacity)<{
-  backgroundColor: string;
+const StyledContainer = styled(LinearGradient)<{
   inline?: boolean;
 }>`
-  background-color: ${({ backgroundColor }) => backgroundColor};
   ${({ inline, theme }) =>
     !inline
       ? `
@@ -35,49 +35,67 @@ const StyledContainer = styled(RTLTouchableOpacity)<{
       : `
   margin-right: ${theme.margin * 2}px;
   `}
-  padding: ${({ theme }) => theme.margin * 2}px;
+  padding-vertical: ${({ theme }) => theme.margin}px;
+  padding-horizontal: ${({ theme }) => theme.margin * 2}px;
   margin-vertical: ${({ theme }) => theme.margin}px;
   border-radius: ${({ theme }) => theme.radius * 2}px;
-  justify-content: space-between;
-  align-items: center;
   ${({ theme }) => theme.shadows.lg}
 `;
+
 const StyledText = styled(StyledTextNormalBold)`
-  color: ${styles.colors.white};
-  margin-left: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? styles.margin : 0}px;
-  margin-right: ${(props: { isRTL: boolean }) =>
-    props.isRTL ? 0 : styles.margin}px;
+  color: ${({ theme }) => theme.colors.white};
+  margin-left: ${({ theme }) => (theme.isRTL ? theme.margin : 0)}px;
+  margin-right: ${({ theme }) => (theme.isRTL ? 0 : theme.margin)}px;
   flex-shrink: 1;
 `;
-export const TagButton = (props: Props) => {
-  const { t, isRTL } = useTranslationWithRTL();
 
+export const TagButton = ({
+  backgroundColor,
+  icon,
+  iconSize = 20,
+  inline,
+  name,
+  onPress = () => null,
+  searchItem,
+  searchLanguageMatch,
+  style = {},
+}: Props) => {
+  const theme = useTheme();
   return (
     <StyledContainer
-      backgroundColor={props.backgroundColor}
-      inline={props.inline}
-      onPress={props.onPress}
-      accessibilityRole="button"
-      style={props.style || {}}
+      start={[0, 1]}
+      end={[1, 0]}
+      colors={
+        isArray(backgroundColor)
+          ? backgroundColor
+          : [backgroundColor, backgroundColor]
+      }
+      style={style}
+      inline={inline}
     >
-      <StyledText isRTL={isRTL}>
-        {props.searchItem ? (
-          <Highlight
-            hit={props.searchItem}
-            attribute={`name_${props.searchLanguageMatch || "fr"}`}
-            //@ts-ignore
-            capitalize={true}
-            //@ts-ignore
-            color={props.backgroundColor}
-            //@ts-ignore
-            colorNotHighlighted={styles.colors.white}
-          />
-        ) : (
-          <ReadableText>{firstLetterUpperCase(props.name || "")}</ReadableText>
-        )}
-      </StyledText>
-      {props.icon && <StreamlineIcon icon={props.icon} size={20} />}
+      <RTLTouchableOpacity
+        onPress={onPress}
+        accessibilityRole="button"
+        style={{ justifyContent: "space-between", alignItems: "center" }}
+      >
+        <StyledText>
+          {searchItem ? (
+            <Highlight
+              hit={searchItem}
+              attribute={`name_${searchLanguageMatch || "fr"}`}
+              //@ts-ignore
+              capitalize={true}
+              //@ts-ignore
+              color={backgroundColor}
+              //@ts-ignore
+              colorNotHighlighted={styles.colors.white}
+            />
+          ) : (
+            <ReadableText>{firstLetterUpperCase(name || "")}</ReadableText>
+          )}
+        </StyledText>
+        {icon && <StreamlineIcon icon={icon} size={iconSize} />}
+      </RTLTouchableOpacity>
     </StyledContainer>
   );
 };

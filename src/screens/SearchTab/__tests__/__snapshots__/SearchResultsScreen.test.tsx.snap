@@ -412,1050 +412,1374 @@ exports[`Search results screen should render correctly 1`] = `
         horizontal={true}
       >
         <View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#443023",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4282658851,
+                  4282658851,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Gérer mes papiers
+                <Text
+                  style={Object {}}
+                >
+                  Gérer mes papiers
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#3D2884",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4282198148,
+                  4282198148,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Apprendre le français
+                <Text
+                  style={Object {}}
+                >
+                  Apprendre le français
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#095411",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4278801425,
+                  4278801425,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Apprendre un métier
+                <Text
+                  style={Object {}}
+                >
+                  Apprendre un métier
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#055E5A",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4278541914,
+                  4278541914,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Trouver un travail
+                <Text
+                  style={Object {}}
+                >
+                  Trouver un travail
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#06508C",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4278603916,
+                  4278603916,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Me loger
+                <Text
+                  style={Object {}}
+                >
+                  Me loger
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#910940",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4287695168,
+                  4287695168,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Me soigner
+                <Text
+                  style={Object {}}
+                >
+                  Me soigner
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#CD5605",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4291646981,
+                  4291646981,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Me déplacer
+                <Text
+                  style={Object {}}
+                >
+                  Me déplacer
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#770649",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4285990473,
+                  4285990473,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Rencontrer des gens
+                <Text
+                  style={Object {}}
+                >
+                  Rencontrer des gens
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#204F01",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4280307457,
+                  4280307457,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Faire des études
+                <Text
+                  style={Object {}}
+                >
+                  Faire des études
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#073099",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4278661273,
+                  4278661273,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Aider une association
+                <Text
+                  style={Object {}}
+                >
+                  Aider une association
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#600566",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4284482918,
+                  4284482918,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Occuper mon temps libre
+                <Text
+                  style={Object {}}
+                >
+                  Occuper mon temps libre
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
-          <View
-            accessibilityRole="button"
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            style={
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            inline={true}
+            proxiedProperties={
               Object {
-                "alignItems": "center",
-                "backgroundColor": "#9E180A",
-                "borderRadius": 12,
-                "display": "flex",
-                "elevation": 6,
-                "flexDirection": "row",
-                "justifyContent": "space-between",
-                "marginRight": 16,
-                "marginVertical": 8,
-                "opacity": 1,
-                "paddingBottom": 16,
-                "paddingLeft": 16,
-                "paddingRight": 16,
-                "paddingTop": 16,
-                "shadowColor": "#212121",
-                "shadowOffset": Object {
-                  "height": 1,
-                  "width": 1,
-                },
-                "shadowOpacity": 0.16,
-                "shadowRadius": 8,
+                "colors": Array [
+                  4288550922,
+                  4288550922,
+                ],
+                "endPoint": Array [
+                  1,
+                  0,
+                ],
+                "locations": undefined,
+                "startPoint": Array [
+                  0,
+                  1,
+                ],
               }
             }
-          >
-            <Text
-              isRTL={false}
-              selectable={true}
-              style={
-                Array [
-                  Object {
-                    "color": "#FFFFFF",
-                    "flexShrink": 1,
-                    "fontFamily": "circularBold",
-                    "fontSize": 19,
-                    "lineHeight": 24,
-                    "marginLeft": 0,
-                    "marginRight": 8,
-                    "textAlign": "left",
+            style={
+              Array [
+                Object {
+                  "borderRadius": 12,
+                  "elevation": 6,
+                  "marginRight": 16,
+                  "marginVertical": 8,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 8,
+                  "shadowColor": "#212121",
+                  "shadowOffset": Object {
+                    "height": 1,
+                    "width": 1,
                   },
-                ]
+                  "shadowOpacity": 0.16,
+                  "shadowRadius": 8,
+                },
+                Object {
+                  "paddingVertical": 16,
+                },
+              ]
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                }
               }
             >
               <Text
-                style={Object {}}
+                isRTL={false}
+                selectable={true}
+                style={
+                  Array [
+                    Object {
+                      "color": "#FFFFFF",
+                      "flexShrink": 1,
+                      "fontFamily": "circularBold",
+                      "fontSize": 19,
+                      "lineHeight": 24,
+                      "marginLeft": 0,
+                      "marginRight": 8,
+                      "textAlign": "left",
+                    },
+                  ]
+                }
               >
-                Découvrir la culture
+                <Text
+                  style={Object {}}
+                >
+                  Découvrir la culture
+                </Text>
+                <View />
               </Text>
-              <View />
-            </Text>
-            <RNSVGSvgView
-              bbHeight={20}
-              bbWidth={20}
-              focusable={false}
-              height={20}
-              style={
-                Array [
-                  Object {
-                    "backgroundColor": "transparent",
-                    "borderWidth": 0,
-                  },
-                  Object {
-                    "flex": 0,
-                    "height": 20,
-                    "width": 20,
-                  },
-                ]
-              }
-              width={20}
-              xml="<svg></svg>"
-            >
-              <RNSVGGroup />
-            </RNSVGSvgView>
-          </View>
+              <RNSVGSvgView
+                bbHeight={20}
+                bbWidth={20}
+                focusable={false}
+                height={20}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 20,
+                      "width": 20,
+                    },
+                  ]
+                }
+                width={20}
+                xml="<svg></svg>"
+              >
+                <RNSVGGroup />
+              </RNSVGSvgView>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
         </View>
       </RCTScrollView>
     </View>

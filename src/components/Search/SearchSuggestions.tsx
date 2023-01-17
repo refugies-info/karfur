@@ -11,6 +11,7 @@ import { themesSelector } from "../../services/redux/Themes/themes.selectors";
 import { useSelector } from "react-redux";
 import { currentI18nCodeSelector } from "../../services/redux/User/user.selectors";
 import { SectionTitle } from "../typography";
+import { useTheme } from "styled-components/native";
 
 interface Props {
   contents: SimplifiedContent[];
@@ -21,6 +22,7 @@ const SearchSuggestions = (props: Props) => {
   const { t, isRTL } = useTranslationWithRTL();
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
+  const _theme = useTheme();
 
   return (
     <>
@@ -68,6 +70,7 @@ const SearchSuggestions = (props: Props) => {
             backgroundColor={theme.colors.color100}
             icon={theme.icon}
             inline={true}
+            style={{ paddingVertical: _theme.margin * 2 }}
             onPress={() => {
               props.navigation.navigate("NeedsScreen", {
                 theme: theme,
