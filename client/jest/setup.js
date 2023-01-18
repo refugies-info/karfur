@@ -13,12 +13,10 @@ jest.mock("query-string", () => {
 });
 
 // FIXME: temp fix for https://github.com/vercel/next.js/issues/43769
-jest.mock(
-  "next/link",
-  () =>
-    ({ children, ...rest }) =>
-      React.cloneElement(children, { ...rest })
-);
+import { createContext } from "react";
+jest.mock("next/dist/shared/lib/router-context.js", () => ({
+  RouterContext: createContext(true)
+}));
 
 jest.mock("moment", () => {
   // Here we are able to mock chain builder pattern
