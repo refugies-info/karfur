@@ -29,23 +29,31 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="container"
           >
-            <span
-              className="btn icon"
+            <a
+              className="btn"
+              href="/undefined#who"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+                    }
                   }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
+                  style={
+                    {
+                      "height": "24px",
+                      "lineHeight": "24px",
+                    }
                   }
-                }
-              />
-            </span>
+                />
+              </span>
+            </a>
           </div>
         </div>
         <div
@@ -83,37 +91,47 @@ exports[`traduire renders traduire 1`] = `
       <div>
         <a
           className="btn green"
-          href="#who"
-          legacyBehavior={true}
+          href="/undefined#who"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Translate.navbarItem1
         </a>
         <a
           className="btn orange"
-          href="#steps"
-          legacyBehavior={true}
+          href="/undefined#steps"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Translate.navbarItem2
         </a>
         <a
           className="btn purple"
-          href="#next"
-          legacyBehavior={true}
+          href="/undefined#next"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Translate.navbarItem3
         </a>
         <a
           className="btn red"
-          href="#faq"
-          legacyBehavior={true}
+          href="/undefined#faq"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Translate.navbarItem4
         </a>
       </div>
       <a
         className="btn blue"
-        href="#register"
-        legacyBehavior={true}
+        href="/undefined#register"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
       >
         <span
           className="icon"
@@ -399,8 +417,12 @@ exports[`traduire renders traduire 1`] = `
           <div
             className="col-sm-12 col-lg-4"
           >
-            <div
+            <a
               className="container"
+              href="/undefined#register"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <div
                 className="title"
@@ -420,13 +442,17 @@ exports[`traduire renders traduire 1`] = `
                   Translate.strong
                 </span>
               </p>
-            </div>
+            </a>
           </div>
           <div
             className="col-sm-12 col-lg-4"
           >
-            <div
+            <a
               className="container"
+              href="/undefined#register"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <div
                 className="title"
@@ -446,7 +472,7 @@ exports[`traduire renders traduire 1`] = `
                   Translate.medium
                 </span>
               </p>
-            </div>
+            </a>
           </div>
           <div
             className="col-sm-12 col-lg-4"
@@ -520,26 +546,35 @@ exports[`traduire renders traduire 1`] = `
           >
             Translate.stepsText1
           </p>
-          <span>
-            Translate.stepsCTA1
-          </span>
-          <span
-            className="icon icon"
+          <a
+            className="link color_orange"
+            href="/undefined#register"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
+            rel="noopener noreferrer"
           >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+            <span>
+              Translate.stepsCTA1
+            </span>
+            <span
+              className="icon icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  }
                 }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
+                style={
+                  {
+                    "height": "24px",
+                    "lineHeight": "24px",
+                  }
                 }
-              }
-            />
-          </span>
+              />
+            </span>
+          </a>
         </div>
         <div
           className="media"
@@ -550,6 +585,7 @@ exports[`traduire renders traduire 1`] = `
             loop={true}
             muted={true}
             playsInline=""
+            style={{}}
           >
             <source
               src="/video/publier-video-step1.mp4"
@@ -594,6 +630,7 @@ exports[`traduire renders traduire 1`] = `
             loop={true}
             muted={true}
             playsInline=""
+            style={{}}
           >
             <source
               src="/video/translate-video-step2.mp4"
@@ -659,6 +696,7 @@ exports[`traduire renders traduire 1`] = `
             loop={true}
             muted={true}
             playsInline=""
+            style={{}}
           >
             <source
               src="/video/translate-video-step3.mp4"
@@ -773,6 +811,7 @@ exports[`traduire renders traduire 1`] = `
               loop={true}
               muted={true}
               playsInline=""
+              style={{}}
             >
               <source
                 src="/video/translate-video-next.mp4"
@@ -840,26 +879,36 @@ exports[`traduire renders traduire 1`] = `
                 </div>
               </div>
               <div>
-                <span>
-                  Translate.helpTileCTA1
-                </span>
-                <span
-                  className="icon icon"
+                <a
+                  className="link color_red"
+                  href="https://help.refugies.info/fr/category/traduire-1dvep4w/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  <span>
+                    Translate.helpTileCTA1
+                  </span>
+                  <span
+                    className="icon icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
+                        }
                       }
-                    }
-                  />
-                </span>
+                    />
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -1165,26 +1214,36 @@ exports[`traduire renders traduire 1`] = `
               <div
                 className="cta"
               >
-                <span>
-                  Translate.faqAccordionCTA5
-                </span>
-                <span
-                  className="icon icon"
+                <a
+                  className="link color_blue"
+                  href="https://airtable.com/shrQxPHedgZ5PuXot"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  <span>
+                    Translate.faqAccordionCTA5
+                  </span>
+                  <span
+                    className="icon icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
+                        }
                       }
-                    }
-                  />
-                </span>
+                    />
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -1318,7 +1377,9 @@ exports[`traduire renders traduire 1`] = `
         <a
           className="link"
           href="/login"
-          legacyBehavior={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Register.Se connecter
         </a>

@@ -8,9 +8,14 @@
 .container {
   background: $white;
   padding: u(4);
-  color: $dark;
+  color: $dark !important;
   border-radius: $radius;
   margin-bottom: u(4);
+  display: block;
+
+  &:hover {
+    background: $gray40b !important;
+  }
 
   @include isTablet() {
     max-width: 180px;

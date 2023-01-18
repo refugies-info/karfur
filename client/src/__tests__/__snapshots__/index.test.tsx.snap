@@ -1432,23 +1432,31 @@ exports[`homepage renders homepage 1`] = `
     <div
       className="container center"
     >
-      <span
-        className="btn icon"
+      <a
+        className="btn"
+        href="/undefined#themes"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
       >
-        <i
-          dangerouslySetInnerHTML={
-            {
-              "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+        <span
+          className="icon"
+        >
+          <i
+            dangerouslySetInnerHTML={
+              {
+                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+              }
             }
-          }
-          style={
-            {
-              "height": "24px",
-              "lineHeight": "24px",
+            style={
+              {
+                "height": "24px",
+                "lineHeight": "24px",
+              }
             }
-          }
-        />
-      </span>
+          />
+        </span>
+      </a>
     </div>
     <div
       className="bottom_img"
@@ -1940,7 +1948,7 @@ exports[`homepage renders homepage 1`] = `
       className="container container"
     >
       <div
-        className="row"
+        className="align-items-center row"
       >
         <div
           className="col-sm-12 col-lg-6 order-lg-2"
@@ -1953,10 +1961,15 @@ exports[`homepage renders homepage 1`] = `
             >
               <video
                 className="video autoplay-video"
-                height={418}
+                height={442}
                 loop={true}
                 muted={true}
                 playsInline=""
+                style={
+                  {
+                    "borderRadius": 26,
+                  }
+                }
               >
                 <source
                   src="/video/home-app-video.mp4"
@@ -2177,7 +2190,7 @@ exports[`homepage renders homepage 1`] = `
                     <span
                       className="value"
                     >
-                      Homepage.mobileAppInLanguage français
+                      en français
                       <span
                         className="flag fi fi-fr"
                         id="fr"
@@ -2255,7 +2268,7 @@ exports[`homepage renders homepage 1`] = `
       className="container container"
     >
       <h2
-        className="title2 center"
+        className="title2"
       >
         Homepage.infoTypeTitle
       </h2>
@@ -2309,14 +2322,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "6392ff59bcd2075a379203a9",
-                  },
-                }
-              }
+              href="/procedure/6392ff59bcd2075a379203a9"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -2503,14 +2512,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "63972dcb98b670cc4bae76e6",
-                  },
-                }
-              }
+              href="/procedure/63972dcb98b670cc4bae76e6"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -2697,14 +2702,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "5e1c8c0e0742580052a33972",
-                  },
-                }
-              }
+              href="/procedure/5e1c8c0e0742580052a33972"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -2864,14 +2865,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "637781c6896812af208f3495",
-                  },
-                }
-              }
+              href="/procedure/637781c6896812af208f3495"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -2990,14 +2987,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "6123a82c6bf6bc00148a5176",
-                  },
-                }
-              }
+              href="/procedure/6123a82c6bf6bc00148a5176"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3150,14 +3143,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "5dd7c4b06f0ac0004c87c88d",
-                  },
-                }
-              }
+              href="/procedure/5dd7c4b06f0ac0004c87c88d"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3276,14 +3265,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "63528e00976acb4f7bcd37ad",
-                  },
-                }
-              }
+              href="/procedure/63528e00976acb4f7bcd37ad"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3443,14 +3428,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "63401d8783f485a025e88388",
-                  },
-                }
-              }
+              href="/procedure/63401d8783f485a025e88388"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3576,14 +3557,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "630337ddf2087e2b25ac7609",
-                  },
-                }
-              }
+              href="/procedure/630337ddf2087e2b25ac7609"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3702,14 +3679,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62f265d81119eede87fb1ae2",
-                  },
-                }
-              }
+              href="/procedure/62f265d81119eede87fb1ae2"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -3903,14 +3876,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62b9809b796009107a932cbc",
-                  },
-                }
-              }
+              href="/procedure/62b9809b796009107a932cbc"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4029,14 +3998,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62bab2e7b47f6b02fa9783f2",
-                  },
-                }
-              }
+              href="/procedure/62bab2e7b47f6b02fa9783f2"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4189,14 +4154,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62b5cc16092a73346b4a9a11",
-                  },
-                }
-              }
+              href="/procedure/62b5cc16092a73346b4a9a11"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4315,14 +4276,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62a897aceece9a373f34ee49",
-                  },
-                }
-              }
+              href="/procedure/62a897aceece9a373f34ee49"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4448,14 +4405,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c27 card demarche content"
-              href={
-                {
-                  "pathname": "/procedure/[id]",
-                  "query": {
-                    "id": "62a8ae34eece9a373f350351",
-                  },
-                }
-              }
+              href="/procedure/62a8ae34eece9a373f350351"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4621,14 +4574,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "6317279072a7091286cfaf24",
-                  },
-                }
-              }
+              href="/program/6317279072a7091286cfaf24"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -4914,14 +4863,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "638dcbbaf0b1a31177cf9602",
-                  },
-                }
-              }
+              href="/program/638dcbbaf0b1a31177cf9602"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -5241,14 +5186,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "638613c54730d143903ca9ca",
-                  },
-                }
-              }
+              href="/program/638613c54730d143903ca9ca"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -5471,14 +5412,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "63873a586fd089c3dad298f2",
-                  },
-                }
-              }
+              href="/program/63873a586fd089c3dad298f2"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -5764,14 +5701,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "635a71c8d43c4d1a3f25227f",
-                  },
-                }
-              }
+              href="/program/635a71c8d43c4d1a3f25227f"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -6091,14 +6024,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "6376470705f74970c5342371",
-                  },
-                }
-              }
+              href="/program/6376470705f74970c5342371"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -6321,14 +6250,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "634d28bd9d3bda3be5cfd979",
-                  },
-                }
-              }
+              href="/program/634d28bd9d3bda3be5cfd979"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -6614,14 +6539,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "6332c0e6a36f411314ba4ca3",
-                  },
-                }
-              }
+              href="/program/6332c0e6a36f411314ba4ca3"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -6844,14 +6765,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "636cd4572c725bfbf72d6302",
-                  },
-                }
-              }
+              href="/program/636cd4572c725bfbf72d6302"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -7171,14 +7088,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "63231e68d585c0849a9bb2b1",
-                  },
-                }
-              }
+              href="/program/63231e68d585c0849a9bb2b1"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -7466,14 +7379,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "634e7269313f6183f3510709",
-                  },
-                }
-              }
+              href="/program/634e7269313f6183f3510709"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -7793,14 +7702,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "634fba2814dbd7acb5c4f759",
-                  },
-                }
-              }
+              href="/program/634fba2814dbd7acb5c4f759"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -8023,14 +7928,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "6317495572a7091286cfbd68",
-                  },
-                }
-              }
+              href="/program/6317495572a7091286cfbd68"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -8350,14 +8251,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "6336f551bf68aaed7fe0f8b4",
-                  },
-                }
-              }
+              href="/program/6336f551bf68aaed7fe0f8b4"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -8580,14 +8477,10 @@ exports[`homepage renders homepage 1`] = `
           >
             <a
               className="c28 card dispositif content card"
-              href={
-                {
-                  "pathname": "/program/[id]",
-                  "query": {
-                    "id": "63623b16a2a5bf7006723347",
-                  },
-                }
-              }
+              href="/program/63623b16a2a5bf7006723347"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
               <button
                 className="btn favorite btn btn-secondary"
@@ -9097,6 +8990,7 @@ exports[`homepage renders homepage 1`] = `
             loop={true}
             muted={true}
             playsInline=""
+            style={{}}
             width={442}
           >
             <source
@@ -9133,52 +9027,68 @@ exports[`homepage renders homepage 1`] = `
           <div
             className="bottom_space"
           >
-            <span>
-              Homepage.resourcesCTA
-            </span>
-            <span
-              className="icon icon"
+            <a
+              className="link color_white"
+              href="https://kit.refugies.info/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+              <span>
+                Homepage.resourcesCTA
+              </span>
+              <span
+                className="icon icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                    }
                   }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
+                  style={
+                    {
+                      "height": "24px",
+                      "lineHeight": "24px",
+                    }
                   }
-                }
-              />
-            </span>
+                />
+              </span>
+            </a>
           </div>
         </div>
         <div
           className="col-sm-12 col-lg-6 order-lg-0"
         >
-          <img
-            alt="Homepage.resourcesTitle"
-            className="resources_image bottom_space"
-            data-nimg="1"
-            decoding="async"
-            height={272}
+          <a
             href="https://kit.refugies.info/"
-            loading="lazy"
-            onError={[Function]}
-            onLoad={[Function]}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
             rel="noopener noreferrer"
-            src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-            srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-            style={
-              {
-                "color": "transparent",
-              }
-            }
             target="_blank"
-            width={500}
-          />
+          >
+            <img
+              alt="Homepage.resourcesTitle"
+              className="resources_image bottom_space"
+              data-nimg="1"
+              decoding="async"
+              height={272}
+              loading="lazy"
+              onError={[Function]}
+              onLoad={[Function]}
+              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              style={
+                {
+                  "color": "transparent",
+                }
+              }
+              width={500}
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -9205,50 +9115,76 @@ exports[`homepage renders homepage 1`] = `
         <div
           className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
         >
-          <div
-            className="container shadow"
+          <a
+            href="/publish"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
-            <div>
-              <div
-                className="header"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={56}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={56}
-                />
-              </div>
-              <h3
-                className="title"
-              >
-                Homepage.helpUsCardTitle1
-              </h3>
-              <div
-                className="text"
-              >
+            <div
+              className="container shadow"
+            >
+              <div>
                 <div
-                  className="container purple"
+                  className="header"
                 >
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={56}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                    style={
+                      {
+                        "color": "transparent",
+                        "objectFit": "contain",
+                      }
+                    }
+                    width={56}
+                  />
+                </div>
+                <h3
+                  className="title"
+                >
+                  Homepage.helpUsCardTitle1
+                </h3>
+                <div
+                  className="text"
+                >
+                  <div
+                    className="container purple"
+                  >
+                    <p
+                      className="text"
+                    >
+                      Homepage.helpUsCardHelp1
+                    </p>
+                  </div>
+                  <p
+                    className="help_text"
+                  >
+                    Homepage.helpUsCardText1
+                  </p>
+                </div>
+              </div>
+              <div>
+                <span
+                  className="link color_purple"
+                >
+                  <span>
+                    Homepage.helpUsCardCTA1
+                  </span>
                   <span
-                    className="icon"
+                    className="icon icon"
                   >
                     <i
                       dangerouslySetInnerHTML={
                         {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="dark"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                         }
                       }
                       style={
@@ -9259,174 +9195,164 @@ exports[`homepage renders homepage 1`] = `
                       }
                     />
                   </span>
-                  <p
-                    className="text"
-                  >
-                    Homepage.helpUsCardHelp1
-                  </p>
-                </div>
-                <p
-                  className="help_text"
-                >
-                  Homepage.helpUsCardText1
-                </p>
+                </span>
               </div>
             </div>
-            <div>
-              <span
-                className="link color_purple"
-              >
-                <span>
-                  Homepage.helpUsCardCTA1
-                </span>
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
-                      }
-                    }
-                  />
-                </span>
-              </span>
-            </div>
-          </div>
+          </a>
         </div>
         <div
           className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
         >
-          <div
-            className="container shadow"
+          <a
+            href="/translate"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
-            <div>
-              <div
-                className="header"
-              >
+            <div
+              className="container shadow"
+            >
+              <div>
                 <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                  className="header"
                 >
-                  <span
-                    className="flag fi fi-ua"
-                    title="ua"
-                  />
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-ua"
+                      title="ua"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-ir"
+                      title="ir"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-sa"
+                      title="sa"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-gb"
+                      title="gb"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-af"
+                      title="af"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-ru"
+                      title="ru"
+                    />
+                  </div>
+                  <div
+                    className="container red"
+                    style={
+                      {
+                        "height": 40,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <span
+                      className="flag fi fi-er"
+                      title="er"
+                    />
+                  </div>
                 </div>
-                <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                <h3
+                  className="title"
                 >
-                  <span
-                    className="flag fi fi-ir"
-                    title="ir"
-                  />
-                </div>
+                  Homepage.helpUsCardTitle2
+                </h3>
                 <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
+                  className="text"
                 >
-                  <span
-                    className="flag fi fi-sa"
-                    title="sa"
-                  />
-                </div>
-                <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <span
-                    className="flag fi fi-gb"
-                    title="gb"
-                  />
-                </div>
-                <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <span
-                    className="flag fi fi-af"
-                    title="af"
-                  />
-                </div>
-                <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <span
-                    className="flag fi fi-ru"
-                    title="ru"
-                  />
-                </div>
-                <div
-                  className="container red"
-                  style={
-                    {
-                      "height": 40,
-                      "width": 40,
-                    }
-                  }
-                >
-                  <span
-                    className="flag fi fi-er"
-                    title="er"
-                  />
+                  <div
+                    className="container red"
+                  >
+                    <p
+                      className="text"
+                    >
+                      Homepage.helpUsCardHelp2
+                    </p>
+                  </div>
+                  <p
+                    className="help_text"
+                  >
+                    Homepage.helpUsCardText2
+                  </p>
                 </div>
               </div>
-              <h3
-                className="title"
-              >
-                Homepage.helpUsCardTitle2
-              </h3>
-              <div
-                className="text"
-              >
-                <div
-                  className="container red"
+              <div>
+                <span
+                  className="link color_red"
                 >
+                  <span>
+                    Homepage.helpUsCardCTA2
+                  </span>
                   <span
-                    className="icon"
+                    className="icon icon"
                   >
                     <i
                       dangerouslySetInnerHTML={
                         {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="dark"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                         }
                       }
                       style={
@@ -9437,94 +9363,86 @@ exports[`homepage renders homepage 1`] = `
                       }
                     />
                   </span>
-                  <p
-                    className="text"
-                  >
-                    Homepage.helpUsCardHelp2
-                  </p>
-                </div>
-                <p
-                  className="help_text"
-                >
-                  Homepage.helpUsCardText2
-                </p>
+                </span>
               </div>
             </div>
-            <div>
-              <span
-                className="link color_red"
-              >
-                <span>
-                  Homepage.helpUsCardCTA2
-                </span>
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
-                      }
-                    }
-                  />
-                </span>
-              </span>
-            </div>
-          </div>
+          </a>
         </div>
         <div
           className="mb-lg-0 mb-5 col-sm-12 col-lg-4"
         >
-          <div
-            className="container shadow"
+          <a
+            href="https://help.refugies.info/fr/article/commenter-une-fiche-rkuwpn/?bust=1670576881639"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <div>
-              <div
-                className="header"
-              >
-                <img
-                  alt=""
-                  data-nimg="1"
-                  decoding="async"
-                  height={56}
-                  loading="lazy"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
-                  srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
-                  style={
-                    {
-                      "color": "transparent",
-                      "objectFit": "contain",
-                    }
-                  }
-                  width={56}
-                />
-              </div>
-              <h3
-                className="title"
-              >
-                Homepage.helpUsCardTitle3
-              </h3>
-              <div
-                className="text"
-              >
+            <div
+              className="container shadow"
+            >
+              <div>
                 <div
-                  className="container orange"
+                  className="header"
                 >
+                  <img
+                    alt=""
+                    data-nimg="1"
+                    decoding="async"
+                    height={56}
+                    loading="lazy"
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    src="/_next/image?url=%2Fimg.jpg&w=128&q=75"
+                    srcSet="/_next/image?url=%2Fimg.jpg&w=64&q=75 1x, /_next/image?url=%2Fimg.jpg&w=128&q=75 2x"
+                    style={
+                      {
+                        "color": "transparent",
+                        "objectFit": "contain",
+                      }
+                    }
+                    width={56}
+                  />
+                </div>
+                <h3
+                  className="title"
+                >
+                  Homepage.helpUsCardTitle3
+                </h3>
+                <div
+                  className="text"
+                >
+                  <div
+                    className="container orange"
+                  >
+                    <p
+                      className="text"
+                    >
+                      Homepage.helpUsCardHelp3
+                    </p>
+                  </div>
+                  <p
+                    className="help_text"
+                  >
+                    Homepage.helpUsCardText3
+                  </p>
+                </div>
+              </div>
+              <div>
+                <span
+                  className="link color_orange"
+                >
+                  <span>
+                    Homepage.helpUsCardCTA3
+                  </span>
                   <span
-                    className="icon"
+                    className="icon icon"
                   >
                     <i
                       dangerouslySetInnerHTML={
                         {
-                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-question-mark-circle-outline" fill="dark"><g data-name="Layer 2"><g data-name="menu-arrow-circle"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6a3.5 3.5 0 0 0-3.5 3.5 1 1 0 0 0 2 0A1.5 1.5 0 1 1 12 11a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-1.16A3.49 3.49 0 0 0 12 6z"/><circle cx="12" cy="17" r="1"/></g></g></svg>",
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
                         }
                       }
                       style={
@@ -9535,46 +9453,10 @@ exports[`homepage renders homepage 1`] = `
                       }
                     />
                   </span>
-                  <p
-                    className="text"
-                  >
-                    Homepage.helpUsCardHelp3
-                  </p>
-                </div>
-                <p
-                  className="help_text"
-                >
-                  Homepage.helpUsCardText3
-                </p>
+                </span>
               </div>
             </div>
-            <div>
-              <span
-                className="link color_orange"
-              >
-                <span>
-                  Homepage.helpUsCardCTA3
-                </span>
-                <span
-                  className="icon icon"
-                >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
-                      }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
-                      }
-                    }
-                  />
-                </span>
-              </span>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -9658,192 +9540,208 @@ exports[`homepage renders homepage 1`] = `
       <div
         className="row"
       >
-        <div>
-          <div
-            className="image_container"
-          >
-            <img
-              alt="Homepage.communityCardTitle1"
-              data-nimg="1"
-              decoding="async"
-              height={80}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={176}
-            />
-            <span
-              className="count"
-            >
-              +
-              -3
-            </span>
-          </div>
-          <h3
-            className="title"
-          >
-            Homepage.communityCardTitle1
-          </h3>
-          <p
-            className="subtitle"
-          >
-            Homepage.communityCardSubtitle1
-          </p>
-        </div>
-        <div
-          className="footer"
+        <a
+          className="container link color_red"
+          href="/publish"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
-          <span
-            className="cta"
+          <div>
+            <div
+              className="image_container"
+            >
+              <img
+                alt="Homepage.communityCardTitle1"
+                data-nimg="1"
+                decoding="async"
+                height={80}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
+                  }
+                }
+                width={176}
+              />
+              <span
+                className="count"
+              >
+                +
+                -3
+              </span>
+            </div>
+            <h3
+              className="title"
+            >
+              Homepage.communityCardTitle1
+            </h3>
+            <p
+              className="subtitle"
+            >
+              Homepage.communityCardSubtitle1
+            </p>
+          </div>
+          <div
+            className="footer"
           >
             <span
-              className="link color_red"
+              className="cta"
             >
-              <span>
-                Homepage.communityCardCTA2
+              <span
+                className="link color_red"
+              >
+                <span>
+                  Homepage.communityCardCTA2
+                </span>
+                <span
+                  className="icon icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </span>
+            </span>
+            <span
+              className="badge"
+            >
               <span
                 className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit-outline" fill="red"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
                     }
                   }
                   style={
                     {
-                      "height": "24px",
-                      "lineHeight": "24px",
+                      "height": "20px",
+                      "lineHeight": "20px",
                     }
                   }
                 />
               </span>
-            </span>
-          </span>
-          <span
-            className="badge"
-          >
-            <span
-              className="icon icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit-outline" fill="red"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Homepage.communityCardBadge1
-          </span>
-        </div>
-        <div>
-          <div
-            className="image_container"
-          >
-            <img
-              alt="Homepage.communityCardTitle2"
-              data-nimg="1"
-              decoding="async"
-              height={80}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={176}
-            />
-            <span
-              className="count"
-            >
-              +
-              297
+              Homepage.communityCardBadge1
             </span>
           </div>
-          <h3
-            className="title"
-          >
-            Homepage.communityCardTitle2
-          </h3>
-          <p
-            className="subtitle"
-          >
-            Homepage.communityCardSubtitle2
-          </p>
-        </div>
-        <div
-          className="footer"
+        </a>
+        <a
+          className="container link color_red"
+          href="/publish"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
-          <span
-            className="cta"
+          <div>
+            <div
+              className="image_container"
+            >
+              <img
+                alt="Homepage.communityCardTitle2"
+                data-nimg="1"
+                decoding="async"
+                height={80}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
+                  }
+                }
+                width={176}
+              />
+              <span
+                className="count"
+              >
+                +
+                297
+              </span>
+            </div>
+            <h3
+              className="title"
+            >
+              Homepage.communityCardTitle2
+            </h3>
+            <p
+              className="subtitle"
+            >
+              Homepage.communityCardSubtitle2
+            </p>
+          </div>
+          <div
+            className="footer"
           >
             <span
-              className="link color_red"
+              className="cta"
             >
-              <span>
-                Homepage.communityCardCTA2
+              <span
+                className="link color_red"
+              >
+                <span>
+                  Homepage.communityCardCTA2
+                </span>
+                <span
+                  className="icon icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </span>
+            </span>
+            <span
+              className="badge"
+            >
               <span
                 className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit-outline" fill="red"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
                     }
                   }
                   style={
                     {
-                      "height": "24px",
-                      "lineHeight": "24px",
+                      "height": "20px",
+                      "lineHeight": "20px",
                     }
                   }
                 />
               </span>
+              Homepage.communityCardBadge1
             </span>
-          </span>
-          <span
-            className="badge"
-          >
-            <span
-              className="icon icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-edit-outline" fill="red"><g data-name="Layer 2"><g data-name="edit"><rect width="24" height="24" opacity="0"/><path d="M19.4 7.34L16.66 4.6A2 2 0 0 0 14 4.53l-9 9a2 2 0 0 0-.57 1.21L4 18.91a1 1 0 0 0 .29.8A1 1 0 0 0 5 20h.09l4.17-.38a2 2 0 0 0 1.21-.57l9-9a1.92 1.92 0 0 0-.07-2.71zM9.08 17.62l-3 .28.27-3L12 9.32l2.7 2.7zM16 10.68L13.32 8l1.95-2L18 8.73z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Homepage.communityCardBadge1
-          </span>
-        </div>
+          </div>
+        </a>
         <div
           className="container color_red"
         >
@@ -9913,99 +9811,107 @@ exports[`homepage renders homepage 1`] = `
             </span>
           </div>
         </div>
-        <div>
-          <div
-            className="image_container"
-          >
-            <img
-              alt="Homepage.communityCardTitle4"
-              data-nimg="1"
-              decoding="async"
-              height={80}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={176}
-            />
-            <span
-              className="count"
-            >
-              +
-              9
-            </span>
-          </div>
-          <h3
-            className="title"
-          >
-            Homepage.communityCardTitle4
-          </h3>
-          <p
-            className="subtitle"
-          >
-            Homepage.communityCardSubtitle4
-          </p>
-        </div>
-        <div
-          className="footer"
+        <a
+          className="container link color_green"
+          href="/translate"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
-          <span
-            className="cta"
+          <div>
+            <div
+              className="image_container"
+            >
+              <img
+                alt="Homepage.communityCardTitle4"
+                data-nimg="1"
+                decoding="async"
+                height={80}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
+                  }
+                }
+                width={176}
+              />
+              <span
+                className="count"
+              >
+                +
+                9
+              </span>
+            </div>
+            <h3
+              className="title"
+            >
+              Homepage.communityCardTitle4
+            </h3>
+            <p
+              className="subtitle"
+            >
+              Homepage.communityCardSubtitle4
+            </p>
+          </div>
+          <div
+            className="footer"
           >
             <span
-              className="link color_green"
+              className="cta"
             >
-              <span>
-                Toolbar.Traduire
+              <span
+                className="link color_green"
+              >
+                <span>
+                  Toolbar.Traduire
+                </span>
+                <span
+                  className="icon icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="green"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </span>
+            </span>
+            <span
+              className="badge"
+            >
               <span
                 className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="green"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-message-circle-outline" fill="green"><g data-name="Layer 2"><g data-name="message-circle"><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/><circle cx="8" cy="12" r="1"/><path d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"/><rect width="24" height="24" opacity="0"/></g></g></svg>",
                     }
                   }
                   style={
                     {
-                      "height": "24px",
-                      "lineHeight": "24px",
+                      "height": "20px",
+                      "lineHeight": "20px",
                     }
                   }
                 />
               </span>
+              Homepage.communityCardBadge4
             </span>
-          </span>
-          <span
-            className="badge"
-          >
-            <span
-              className="icon icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-message-circle-outline" fill="green"><g data-name="Layer 2"><g data-name="message-circle"><circle cx="12" cy="12" r="1"/><circle cx="16" cy="12" r="1"/><circle cx="8" cy="12" r="1"/><path d="M19.07 4.93a10 10 0 0 0-16.28 11 1.06 1.06 0 0 1 .09.64L2 20.8a1 1 0 0 0 .27.91A1 1 0 0 0 3 22h.2l4.28-.86a1.26 1.26 0 0 1 .64.09 10 10 0 0 0 11-16.28zm.83 8.36a8 8 0 0 1-11 6.08 3.26 3.26 0 0 0-1.25-.26 3.43 3.43 0 0 0-.56.05l-2.82.57.57-2.82a3.09 3.09 0 0 0-.21-1.81 8 8 0 0 1 6.08-11 8 8 0 0 1 9.19 9.19z"/><rect width="24" height="24" opacity="0"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Homepage.communityCardBadge4
-          </span>
-        </div>
+          </div>
+        </a>
         <div
           className="container color_green"
         >
@@ -10282,104 +10188,112 @@ exports[`homepage renders homepage 1`] = `
             </span>
           </div>
         </div>
-        <div>
-          <div
-            className="image_container"
-          >
-            <img
-              alt="Homepage.communityCardTitle9"
-              data-nimg="1"
-              decoding="async"
-              height={80}
-              loading="lazy"
-              onError={[Function]}
-              onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
-              style={
-                {
-                  "color": "transparent",
-                }
-              }
-              width={176}
-            />
-            <span
-              className="count"
-            >
-              +
-              9
-            </span>
-          </div>
-          <h3
-            className="title"
-          >
-            Homepage.communityCardTitle9
-          </h3>
-          <p
-            className="subtitle"
-          >
-            Homepage.communityCardSubtitle9
-          </p>
-        </div>
-        <div
-          className="footer"
+        <a
+          className="container link color_blue"
+          href="/who-are-we"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
-          <span
-            className="cta"
+          <div>
+            <div
+              className="image_container"
+            >
+              <img
+                alt="Homepage.communityCardTitle9"
+                data-nimg="1"
+                decoding="async"
+                height={80}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=384&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=384&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
+                  }
+                }
+                width={176}
+              />
+              <span
+                className="count"
+              >
+                +
+                9
+              </span>
+            </div>
+            <h3
+              className="title"
+            >
+              Homepage.communityCardTitle9
+            </h3>
+            <p
+              className="subtitle"
+            >
+              Homepage.communityCardSubtitle9
+            </p>
+          </div>
+          <div
+            className="footer"
           >
             <span
-              className="link color_blue"
+              className="cta"
             >
-              <span>
-                Qui sommes-nous ?
+              <span
+                className="link color_blue"
+              >
+                <span>
+                  Qui sommes-nous ?
+                </span>
+                <span
+                  className="icon icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
+                    }
+                  />
+                </span>
               </span>
+            </span>
+            <span
+              className="badge"
+            >
               <span
                 className="icon icon"
               >
                 <i
                   dangerouslySetInnerHTML={
                     {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="blue"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
                     }
                   }
                   style={
                     {
-                      "height": "24px",
-                      "lineHeight": "24px",
+                      "height": "20px",
+                      "lineHeight": "20px",
                     }
                   }
                 />
               </span>
+              Homepage.communityCardBadge9
             </span>
-          </span>
-          <span
-            className="badge"
-          >
-            <span
-              className="icon icon"
-            >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-person-outline" fill="blue"><g data-name="Layer 2"><g data-name="person"><rect width="24" height="24" opacity="0"/><path d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2 2 2 0 0 1 2-2z"/><path d="M12 13a7 7 0 0 0-7 7 1 1 0 0 0 2 0 5 5 0 0 1 10 0 1 1 0 0 0 2 0 7 7 0 0 0-7-7z"/></g></g></svg>",
-                  }
-                }
-                style={
-                  {
-                    "height": "20px",
-                    "lineHeight": "20px",
-                  }
-                }
-              />
-            </span>
-            Homepage.communityCardBadge9
-          </span>
-        </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
   <div
-    className="section infos pb-0"
+    className="section infos py-0"
   >
     <div
       className="container text-center container-fluid"
@@ -10398,21 +10312,21 @@ exports[`homepage renders homepage 1`] = `
               className="img"
               data-nimg="1"
               decoding="async"
-              height={416}
+              height={160}
               loading="lazy"
               onError={[Function]}
               onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
               style={
                 {
                   "color": "transparent",
                 }
               }
-              width={416}
+              width={246}
             />
             <h2
-              className="title2 top_space mb-0 text-center text-white"
+              className="title2 text-white"
             >
               Homepage.newsletterTitle
             </h2>
@@ -10496,21 +10410,21 @@ exports[`homepage renders homepage 1`] = `
               className="img"
               data-nimg="1"
               decoding="async"
-              height={416}
+              height={160}
               loading="lazy"
               onError={[Function]}
               onLoad={[Function]}
-              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
+              src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
+              srcSet="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
               style={
                 {
                   "color": "transparent",
                 }
               }
-              width={416}
+              width={246}
             />
             <h2
-              className="title2 top_space mb-0 text-center"
+              className="title2"
             >
               Homepage.trainingTitle
             </h2>
@@ -10522,26 +10436,36 @@ exports[`homepage renders homepage 1`] = `
             <div
               className="action"
             >
-              <span>
-                Homepage.trainingCTA
-              </span>
-              <span
-                className="icon icon"
+              <a
+                className="link color_blue"
+                href="https://kit.refugies.info/formation/"
+                onClick={[Function]}
+                onMouseEnter={[Function]}
+                onTouchStart={[Function]}
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <i
-                  dangerouslySetInnerHTML={
-                    {
-                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                <span>
+                  Homepage.trainingCTA
+                </span>
+                <span
+                  className="icon icon"
+                >
+                  <i
+                    dangerouslySetInnerHTML={
+                      {
+                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="blue"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
                     }
-                  }
-                  style={
-                    {
-                      "height": "24px",
-                      "lineHeight": "24px",
+                    style={
+                      {
+                        "height": "24px",
+                        "lineHeight": "24px",
+                      }
                     }
-                  }
-                />
-              </span>
+                  />
+                </span>
+              </a>
             </div>
           </div>
         </div>

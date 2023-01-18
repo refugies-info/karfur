@@ -29,23 +29,31 @@ exports[`publier renders publier 1`] = `
           <div
             className="container"
           >
-            <span
-              className="btn icon"
+            <a
+              className="btn"
+              href="/undefined#why"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+              <span
+                className="icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-downward-outline" fill="#0421b1"><g data-name="Layer 2"><g data-name="arrow-downward"><rect width="24" height="24" opacity="0"/><path d="M18.77 13.36a1 1 0 0 0-1.41-.13L13 16.86V5a1 1 0 0 0-2 0v11.86l-4.36-3.63a1 1 0 1 0-1.28 1.54l6 5 .15.09.13.07a1 1 0 0 0 .72 0l.13-.07.15-.09 6-5a1 1 0 0 0 .13-1.41z"/></g></g></svg>",
+                    }
                   }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
+                  style={
+                    {
+                      "height": "24px",
+                      "lineHeight": "24px",
+                    }
                   }
-                }
-              />
-            </span>
+                />
+              </span>
+            </a>
           </div>
         </div>
         <div
@@ -83,37 +91,47 @@ exports[`publier renders publier 1`] = `
       <div>
         <a
           className="btn green"
-          href="#why"
-          legacyBehavior={true}
+          href="/undefined#why"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem1
         </a>
         <a
           className="btn purple"
-          href="#required"
-          legacyBehavior={true}
+          href="/undefined#required"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem2
         </a>
         <a
           className="btn orange"
-          href="#steps"
-          legacyBehavior={true}
+          href="/undefined#steps"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem3
         </a>
         <a
           className="btn red"
-          href="#faq"
-          legacyBehavior={true}
+          href="/undefined#faq"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Publish.navbarItem4
         </a>
       </div>
       <a
         className="btn blue"
-        href="#register"
-        legacyBehavior={true}
+        href="/undefined#register"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onTouchStart={[Function]}
       >
         <span
           className="icon"
@@ -826,26 +844,36 @@ exports[`publier renders publier 1`] = `
       <div
         className="link"
       >
-        <span>
-          Publish.requiredCTA
-        </span>
-        <span
-          className="icon icon"
+        <a
+          className="link color_purple"
+          href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
+          rel="noopener noreferrer"
+          target="_blank"
         >
-          <i
-            dangerouslySetInnerHTML={
-              {
-                "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+          <span>
+            Publish.requiredCTA
+          </span>
+          <span
+            className="icon icon"
+          >
+            <i
+              dangerouslySetInnerHTML={
+                {
+                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="purple"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                }
               }
-            }
-            style={
-              {
-                "height": "24px",
-                "lineHeight": "24px",
+              style={
+                {
+                  "height": "24px",
+                  "lineHeight": "24px",
+                }
               }
-            }
-          />
-        </span>
+            />
+          </span>
+        </a>
       </div>
     </div>
   </div>
@@ -917,26 +945,35 @@ exports[`publier renders publier 1`] = `
             >
               Publish.stepsText1
             </p>
-            <span>
-              Publish.stepsCTA1
-            </span>
-            <span
-              className="icon icon"
+            <a
+              className="link color_orange"
+              href="/undefined#register"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              rel="noopener noreferrer"
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+              <span>
+                Publish.stepsCTA1
+              </span>
+              <span
+                className="icon icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                    }
                   }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
+                  style={
+                    {
+                      "height": "24px",
+                      "lineHeight": "24px",
+                    }
                   }
-                }
-              />
-            </span>
+                />
+              </span>
+            </a>
           </div>
           <div
             className="media"
@@ -947,6 +984,7 @@ exports[`publier renders publier 1`] = `
               loop={true}
               muted={true}
               playsInline=""
+              style={{}}
             >
               <source
                 src="/video/publier-video-step1.mp4"
@@ -986,26 +1024,36 @@ exports[`publier renders publier 1`] = `
             >
               Publish.stepsText2b
             </p>
-            <span>
-              Publish.stepsCTA2
-            </span>
-            <span
-              className="icon icon"
+            <a
+              className="link color_orange"
+              href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onTouchStart={[Function]}
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <i
-                dangerouslySetInnerHTML={
-                  {
-                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+              <span>
+                Publish.stepsCTA2
+              </span>
+              <span
+                className="icon icon"
+              >
+                <i
+                  dangerouslySetInnerHTML={
+                    {
+                      "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="orange"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                    }
                   }
-                }
-                style={
-                  {
-                    "height": "24px",
-                    "lineHeight": "24px",
+                  style={
+                    {
+                      "height": "24px",
+                      "lineHeight": "24px",
+                    }
                   }
-                }
-              />
-            </span>
+                />
+              </span>
+            </a>
           </div>
           <div
             className="media"
@@ -1016,6 +1064,7 @@ exports[`publier renders publier 1`] = `
               loop={true}
               muted={true}
               playsInline=""
+              style={{}}
             >
               <source
                 src="/video/publier-video-step2.mp4"
@@ -1060,6 +1109,7 @@ exports[`publier renders publier 1`] = `
               loop={true}
               muted={true}
               playsInline=""
+              style={{}}
               width={340}
             >
               <source
@@ -1307,26 +1357,36 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <div>
-                <span>
-                  Publish.helpTileCTA1
-                </span>
-                <span
-                  className="icon icon"
+                <a
+                  className="link color_red"
+                  href="https://airtable.com/shrrkFuyeG0BpKKT7"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  <span>
+                    Publish.helpTileCTA1
+                  </span>
+                  <span
+                    className="icon icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
+                        }
                       }
-                    }
-                  />
-                </span>
+                    />
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -1373,26 +1433,36 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
               <div>
-                <span>
-                  Publish.helpTileCTA2
-                </span>
-                <span
-                  className="icon icon"
+                <a
+                  className="link color_red"
+                  href="https://help.refugies.info/fr/"
+                  onClick={[Function]}
+                  onMouseEnter={[Function]}
+                  onTouchStart={[Function]}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  <i
-                    dangerouslySetInnerHTML={
-                      {
-                        "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  <span>
+                    Publish.helpTileCTA2
+                  </span>
+                  <span
+                    className="icon icon"
+                  >
+                    <i
+                      dangerouslySetInnerHTML={
+                        {
+                          "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                        }
                       }
-                    }
-                    style={
-                      {
-                        "height": "24px",
-                        "lineHeight": "24px",
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
+                        }
                       }
-                    }
-                  />
-                </span>
+                    />
+                  </span>
+                </a>
               </div>
             </div>
           </div>
@@ -1766,26 +1836,36 @@ exports[`publier renders publier 1`] = `
         <div
           className="link"
         >
-          <span>
-            Publish.faqCTA
-          </span>
-          <span
-            className="icon icon"
+          <a
+            className="link color_red"
+            href="https://help.refugies.info/fr/"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
+            rel="noopener noreferrer"
+            target="_blank"
           >
-            <i
-              dangerouslySetInnerHTML={
-                {
-                  "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+            <span>
+              Publish.faqCTA
+            </span>
+            <span
+              className="icon icon"
+            >
+              <i
+                dangerouslySetInnerHTML={
+                  {
+                    "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="red"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  }
                 }
-              }
-              style={
-                {
-                  "height": "24px",
-                  "lineHeight": "24px",
+                style={
+                  {
+                    "height": "24px",
+                    "lineHeight": "24px",
+                  }
                 }
-              }
-            />
-          </span>
+              />
+            </span>
+          </a>
         </div>
       </div>
     </div>
@@ -1916,7 +1996,9 @@ exports[`publier renders publier 1`] = `
         <a
           className="link"
           href="/login"
-          legacyBehavior={true}
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+          onTouchStart={[Function]}
         >
           Register.Se connecter
         </a>
