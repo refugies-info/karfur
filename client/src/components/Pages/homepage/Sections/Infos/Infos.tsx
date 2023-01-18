@@ -46,16 +46,14 @@ const Infos = () => {
   };
 
   return (
-    <div className={cls(commonStyles.section, styles.infos, "pb-0")}>
+    <div className={cls(commonStyles.section, styles.infos, "py-0")}>
       <Container fluid className={cls(commonStyles.container, "text-center")}>
         <Row>
           <Col sm="12" lg="6" className={commonStyles.bg_blue}>
             <div className={styles.infos_col}>
-              <Image src={NewsletterIllu} alt="" width={416} className={styles.img} />
-              <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center text-white")}>
-                {t("Homepage.newsletterTitle")}
-              </h2>
-              <p className={commonStyles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
+              <Image src={NewsletterIllu} alt="" width={246} height={160} className={styles.img} />
+              <h2 className={cls(styles.title2, "text-white")}>{t("Homepage.newsletterTitle")}</h2>
+              <p className={styles.subtitle}>{t("Homepage.newsletterSubtitle")}</p>
               <div className={styles.action}>
                 <div className={styles.newsletter}>
                   <Input
@@ -82,11 +80,9 @@ const Infos = () => {
           </Col>
           <Col sm="12" lg="6" className={commonStyles.bg_grey}>
             <div className={styles.infos_col}>
-              <Image src={FormationPhoto} alt="" width={416} className={styles.img} />
-              <h2 className={cls(commonStyles.title2, commonStyles.top_space, "mb-0 text-center")}>
-                {t("Homepage.trainingTitle")}
-              </h2>
-              <p className={commonStyles.subtitle}>{t("Homepage.trainingSubtitle")}</p>
+              <Image src={FormationPhoto} alt="" width={246} height={160} className={styles.img} />
+              <h2 className={cls(styles.title2)}>{t("Homepage.trainingTitle")}</h2>
+              <p className={styles.subtitle}>{t("Homepage.trainingSubtitle")}</p>
               <div className={styles.action}>
                 <InlineLink text={t("Homepage.trainingCTA")} link="https://kit.refugies.info/formation/" color="blue" />
               </div>

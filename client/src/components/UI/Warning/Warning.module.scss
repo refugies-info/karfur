@@ -25,10 +25,5 @@ $breakpoint: "lg-limit";
 
 .text {
   margin-bottom: 0;
-  margin-left: u(2);
-
-  @include rtl() {
-    margin-left: 0;
-    margin-right: u(2);
-  }
+  @include text("large");
 }

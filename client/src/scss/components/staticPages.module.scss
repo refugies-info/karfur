@@ -179,10 +179,13 @@ $breakpoint: "lg-limit";
 // Publier
 .video2 {
   :global(.autoplay-video) {
-    border-radius: $radius;
+    border-radius: 26px;
+    border-width: 12px;
 
     @include isTablet() {
-      width: 112px;
+      width: 124px;
+      border-width: 6px;
+      border-radius: 18px;
     }
   }
 }

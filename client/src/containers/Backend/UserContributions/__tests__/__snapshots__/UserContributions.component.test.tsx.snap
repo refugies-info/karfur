@@ -570,16 +570,23 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/dispositif/id1"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info1
-                    </b>
-                    <span>
-                      avec titreMarque1
-                    </span>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info1
+                      </b>
+                      <span>
+                        avec titreMarque1
+                      </span>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -1252,16 +1259,23 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/dispositif/id1"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info1
-                    </b>
-                    <span>
-                      avec titreMarque1
-                    </span>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info1
+                      </b>
+                      <span>
+                        avec titreMarque1
+                      </span>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -1430,13 +1444,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id2"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info2
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info2
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -1605,13 +1626,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id3"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info3
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info3
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -1780,13 +1808,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id4"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info4
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info4
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -1955,13 +1990,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id5"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info5
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info5
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -2130,13 +2172,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id6"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info6
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info6
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"
@@ -2311,13 +2360,20 @@ exports[`userContributions should render correctly when contributions 1`] = `
                 <td
                   className="align-middle"
                 >
-                  <div
-                    className="c9"
+                  <a
+                    href="/demarche/id7"
+                    onClick={[Function]}
+                    onMouseEnter={[Function]}
+                    onTouchStart={[Function]}
                   >
-                    <b>
-                      titre info7
-                    </b>
-                  </div>
+                    <div
+                      className="c9"
+                    >
+                      <b>
+                        titre info7
+                      </b>
+                    </div>
+                  </a>
                 </td>
                 <td
                   className="align-middle"

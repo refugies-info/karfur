@@ -1,6 +1,7 @@
 @import "src/scss/mixins/responsive";
 @import "src/scss/mixins/unit";
 @import "src/scss/mixins/rtl";
+@import "src/scss/mixins/text";
 
 .infos {
   overflow-x: hidden;
@@ -25,6 +26,17 @@
     max-width: 100%;
     height: auto;
   }
+}
+
+.title2 {
+  @include text("h5");
+  text-align: center;
+  margin-top: u(10);
+}
+
+.subtitle {
+  @include text("large");
+  margin-top: u(6);
 }
 
 .newsletter {

@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "reactstrap";
 import Link from "next/link";
 import { cls } from "lib/classname";
+import { smoothScroll } from "lib/smoothScroll";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./SecondaryNavbar.module.scss";
 
@@ -26,16 +27,23 @@ const SecondaryNavbar = (props: Props) => {
       <Container className={styles.inner}>
         <div>
           {props.leftLinks.map((link) => (
-            <Link legacyBehavior key={link.id} href={`#${link.id}`}>
-              <a className={cls(styles.btn, styles[link.color], isActive(link.id) && styles.active)}>{link.text}</a>
+            <Link
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={smoothScroll}
+              className={cls(styles.btn, styles[link.color], isActive(link.id) && styles.active)}
+            >
+              {link.text}
             </Link>
           ))}
         </div>
-        <Link legacyBehavior href={`#${props.rightLink.id}`}>
-          <a className={cls(styles.btn, styles[props.rightLink.color], isActive(props.rightLink.id) && styles.active)}>
-            <EVAIcon name="plus-circle-outline" size={20} />
-            {props.rightLink.text}
-          </a>
+        <Link
+          href={`#${props.rightLink.id}`}
+          onClick={smoothScroll}
+          className={cls(styles.btn, styles[props.rightLink.color], isActive(props.rightLink.id) && styles.active)}
+        >
+          <EVAIcon name="plus-circle-outline" size={20} />
+          {props.rightLink.text}
         </Link>
       </Container>
     </div>
