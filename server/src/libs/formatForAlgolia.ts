@@ -37,8 +37,8 @@ const getAllNeedTitles = (need: any, activeLanguages: LangueDoc[]) => {
   return titles;
 }
 
-const getAllThemeTitles = (theme: Theme, activeLanguages: LangueDoc[], property: "name"|"short") => {
-  const titles: Record<string,string> = {};
+const getAllThemeTitles = (theme: Theme, activeLanguages: LangueDoc[], property: "name" | "short") => {
+  const titles: Record<string, string> = {};
   for (const ln of activeLanguages) {
     if (theme[property][ln.i18nCode]) {
       const prefix = property === "name" ? "name" : "title";
@@ -70,6 +70,7 @@ export const formatForAlgolia = (
       sponsorUrl: dispositif?.mainSponsor?.picture?.secure_url,
       sponsorName: dispositif?.mainSponsor?.nom,
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
+      webOnly: dispositif.webOnly || false
     };
 
   } else if (type === "need") {

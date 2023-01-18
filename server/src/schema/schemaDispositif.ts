@@ -226,6 +226,10 @@ var dispositifSchema = new mongoose.Schema(
     themesSelectedByAuthor: {
       type: Boolean,
       required: false
+    },
+    webOnly: {
+      type: Boolean,
+      required: false
     }
   },
   // @ts-ignore
@@ -278,6 +282,7 @@ export interface DispositifDoc extends mongoose.Document {
   nbFavoritesMobile?: number;
   notificationsSent?: Record<string, boolean>;
   themesSelectedByAuthor?: boolean;
+  webOnly?: boolean;
 }
 
 export interface DispositifNotPopulateDoc extends DispositifDoc {

@@ -248,6 +248,11 @@ const API = {
   getDispositifsStatistics: (facets?: DispositifFacets[]): Promise<Response<DispositifStatistics>> => {
     return instance.get("/dispositifs/statistics", { params: { facets } });
   },
+  /* TODO: support all dispositif properties */
+  updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}`, query, { headers });
+  },
 
   // Mail
   sendAdminImprovementsMail: (query: any) => {

@@ -43,7 +43,7 @@ export const getDispositifArray = async (
 
 export const updateDispositifInDB = async (
   dispositifId: ObjectId | string,
-  modifiedDispositif:
+  modifiedDispositif: /* FIXME: Partial<Dispositif> ? */
     | { mainSponsor: ObjectId; status: string }
     | { status: string; publishedAt: number }
     | { status: string }
@@ -65,6 +65,7 @@ export const updateDispositifInDB = async (
     | { nbVuesMobile: number }
     | { nbFavoritesMobile: number }
     | { notificationsSent: {} }
+    | { webOnly: boolean }
 ): Promise<DispositifPopulatedThemesDoc> =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
     upsert: true,
