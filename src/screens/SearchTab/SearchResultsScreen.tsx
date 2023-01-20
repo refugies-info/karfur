@@ -71,15 +71,15 @@ export const SearchResultsScreen = ({
         searchClient={searchClient}
         indexName={Config.algoliaIndex}
         searchState={searchState}
-        onSearchStateChange={setSearchState}
-      >
+        onSearchStateChange={setSearchState}>
         <Configure
           restrictSearchableAttributes={searchableAttributes}
           queryLanguages={queryLanguages}
+          clickAnalytics
+          filters="webOnly:false"
         />
         <SearchBoxContainer
-          style={{ paddingTop: insets.top + styles.margin * 3 }}
-        >
+          style={{ paddingTop: insets.top + styles.margin * 3 }}>
           <SearchBox backCallback={() => navigation.navigate("SearchScreen")} />
         </SearchBoxContainer>
         {searchState.query !== "" ? (
@@ -99,8 +99,7 @@ export const SearchResultsScreen = ({
             contentContainerStyle={{
               paddingBottom: styles.margin * 5 + (insets.bottom || 0),
               paddingHorizontal: styles.margin * 3,
-            }}
-          >
+            }}>
             <SearchSuggestions
               contents={mostViewedContents}
               navigation={navigation}
