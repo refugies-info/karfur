@@ -81,6 +81,7 @@ export const formatForAlgolia = (
       theme: need.theme._id,
       typeContenu: "besoin",
       priority: 20,
+      webOnly: false
     }
   }
 
@@ -92,5 +93,6 @@ export const formatForAlgolia = (
     ...getAllThemeTitles(theme, activeLanguages, "short"),
     typeContenu: "theme",
     priority: 10,
+    webOnly: false
   }
 }

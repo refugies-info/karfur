@@ -70,7 +70,8 @@ describe("formatForAlgolia", () => {
       title_ar: undefined,
       theme: "themeId",
       typeContenu: "besoin",
-      priority: 20
+      priority: 20,
+      webOnly: false
     });
   });
   it("should format a theme", () => {
@@ -92,7 +93,8 @@ describe("formatForAlgolia", () => {
       name_ru: undefined,
       name_ar: undefined,
       typeContenu: "theme",
-      priority: 10
+      priority: 10,
+      webOnly: false
     });
   });
 });
