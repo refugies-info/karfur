@@ -44,6 +44,7 @@ interface Props {
   searchLanguageMatch?: string;
   style?: StyleProp<ViewStyle>;
   theme: Theme;
+  pressCallback?: () => void;
 }
 
 type NeedsScreenNavigationProp = StackNavigationProp<ExplorerParamList>;
@@ -59,12 +60,14 @@ export const NeedsSummary = ({
   searchLanguageMatch = "fr",
   style = {},
   theme,
+  pressCallback,
 }: Props) => {
   const navigation = useNavigation<NeedsScreenNavigationProp>();
   const goToContent = useCallback(() => {
     logEventInFirebase(FirebaseEvent.CLIC_NEED, {
       need: needTextFr,
     });
+    if (pressCallback) pressCallback();
 
     navigation.navigate("ContentsScreen", {
       theme: theme,
@@ -72,21 +75,19 @@ export const NeedsSummary = ({
       backScreen: backScreen,
     });
     return;
-  }, [needTextFr, theme, id, backScreen]);
+  }, [needTextFr, theme, id, backScreen, pressCallback]);
 
   return (
     <NeedContainer
       accessibilityRole="button"
       needTheme={theme}
       onPress={goToContent}
-      style={style}
-    >
+      style={style}>
       <Columns
         layout="1 auto"
         horizontalAlign="center"
         verticalAlign="center"
-        spacing={ColumnsSpacing.Large}
-      >
+        spacing={ColumnsSpacing.Large}>
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextSmallBold color={theme.colors.color100}>
             {searchItem ? (

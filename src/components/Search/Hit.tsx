@@ -50,8 +50,7 @@ const Hit = ({
         flex: 1,
         marginBottom: styles.margin * 2,
         paddingHorizontal: styles.margin * 3,
-      }}
-      onTouchEnd={sendAlgoliaEvent}>
+      }}>
       <SearchContentSummary
         navigation={navigation}
         item={hit}
@@ -60,6 +59,7 @@ const Hit = ({
         nbContents={
           hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null
         }
+        pressCallback={sendAlgoliaEvent}
       />
     </View>
   );

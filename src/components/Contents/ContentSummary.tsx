@@ -94,6 +94,7 @@ interface Props {
   actionLabel?: string;
   backScreen?: string;
   hasSponsorMatch?: boolean;
+  pressCallback?: () => void;
 }
 
 export const ContentSummary = (props: Props) => {
@@ -111,8 +112,7 @@ export const ContentSummary = (props: Props) => {
         onPress={props.actionPress}
         accessibilityRole="button"
         accessible={true}
-        accessibilityLabel={props.actionLabel}
-      >
+        accessibilityLabel={props.actionLabel}>
         <Icon
           name={props.actionIcon || ""}
           width={16}
@@ -130,6 +130,9 @@ export const ContentSummary = (props: Props) => {
         activeOpacity={0.8}
         accessibilityRole="button"
         onPress={() => {
+          logEventOnClick(props.contentId);
+          if (props.pressCallback) props.pressCallback();
+
           props.navigation.navigate("Explorer", {
             screen: "ContentScreen",
             params: {
@@ -139,9 +142,7 @@ export const ContentSummary = (props: Props) => {
               backScreen: props.backScreen,
             },
           });
-          logEventOnClick(props.contentId);
-        }}
-      >
+        }}>
         <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
           {props.sponsorUrl ? (
             <ImageContainer hasMatch={props.hasSponsorMatch}>
@@ -221,6 +222,9 @@ export const ContentSummary = (props: Props) => {
       activeOpacity={0.8}
       accessibilityRole="button"
       onPress={() => {
+        logEventOnClick(props.contentId);
+        if (props.pressCallback) props.pressCallback();
+
         props.navigation.navigate("Explorer", {
           screen: "ContentScreen",
           params: {
@@ -230,9 +234,7 @@ export const ContentSummary = (props: Props) => {
             backScreen: props.backScreen,
           },
         });
-        logEventOnClick(props.contentId);
-      }}
-    >
+      }}>
       <Columns layout="auto 1" RTLBehaviour verticalAlign="center">
         <ImageContainer lightColor={colors.color30}>
           <DemarcheImage

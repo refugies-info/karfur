@@ -13,6 +13,7 @@ interface Props {
   languageMatch: string;
   hasSponsorMatch: boolean;
   nbContents?: number | null;
+  pressCallback?: () => void;
 }
 
 export const SearchContentSummary = (props: Props) => {
@@ -36,6 +37,7 @@ export const SearchContentSummary = (props: Props) => {
         theme={theme}
         searchItem={props.item}
         backScreen="Search"
+        pressCallback={props.pressCallback}
       />
     );
   } else if (
@@ -55,6 +57,7 @@ export const SearchContentSummary = (props: Props) => {
         hasSponsorMatch={props.hasSponsorMatch}
         searchItem={props.item}
         backScreen="Search"
+        pressCallback={props.pressCallback}
       />
     );
   }
@@ -69,14 +72,15 @@ export const SearchContentSummary = (props: Props) => {
       searchItem={props.item}
       onPress={() => {
         logEventInFirebase(FirebaseEvent.CLIC_THEME, {
-          theme: props.item.name.fr,
+          theme: props.item.name_fr,
           view: "list",
         });
+        if (props.pressCallback) props.pressCallback();
 
         props.navigation.navigate("Explorer", {
           screen: "NeedsScreen",
           params: {
-            theme: props.item,
+            theme,
             backScreen: "Search",
           },
         });
