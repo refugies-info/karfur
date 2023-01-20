@@ -7,6 +7,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getExpoPushTokenAsync } from "expo-notifications";
 import crashlytics from "@react-native-firebase/crashlytics";
+import aa from "search-insights";
 
 import useCachedResources from "./hooks/useCachedResources";
 import { RootNavigator } from "./navigation";
@@ -17,6 +18,11 @@ import { ConnexionTest } from "./components/ConnexionTest";
 import { updateAppUser } from "./utils/API";
 
 const queryClient = new QueryClient();
+
+aa("init", {
+  appId: "L9HYT1676M",
+  apiKey: process.env.ALGOLIA_API_KEY || "",
+});
 
 const updateUserInfo = async () => {
   const [selectedLanguage, city, department, age, frenchLevel] =
@@ -44,6 +50,7 @@ const updateUserInfo = async () => {
   }
   updateAppUser(payload);
   crashlytics().setUserId(token);
+  aa("setUserToken", token.replace(/[\[\]]/g, "_")); // characters [] invalid for algolia
 };
 
 export default function App() {

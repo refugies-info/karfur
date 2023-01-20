@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View } from "react-native";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
 import { styles } from "../../theme";
-//@ts-ignore
+//@ts-ignore: not exported by algolia types
 import { connectHitInsights } from "react-instantsearch-native";
 import aa from "search-insights";
-
-aa("init", {
-  appId: "L9HYT1676M",
-  apiKey: process.env.ALGOLIA_API_KEY || "",
-});
 
 const getLanguageMatch = (hit: any, selectedLanguage: string) => {
   const props = Object.keys(hit._highlightResult);
@@ -38,32 +33,36 @@ const Hit = ({
   selectedLanguage,
   nbContents,
   insights,
-}: Props) => (
-  <View
-    key={hit.objectID}
-    style={{
-      flex: 1,
-      marginBottom: styles.margin * 2,
-      paddingHorizontal: styles.margin * 3,
-    }}
-    onTouchStart={() => {
-      insights("clickedObjectIDsAfterSearch", {
-        eventName: "Card clicked",
-        queryID: hit.__queryID,
-        positions: [hit.__position],
-        objectIDs: [hit.objectID],
-      });
-    }}>
-    <SearchContentSummary
-      navigation={navigation}
-      item={hit}
-      languageMatch={getLanguageMatch(hit, selectedLanguage || "fr")}
-      hasSponsorMatch={hasSponsorMatch(hit)}
-      nbContents={
-        hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null
-      }
-    />
-  </View>
-);
+}: Props) => {
+  const sendAlgoliaEvent = useCallback(() => {
+    insights("clickedObjectIDsAfterSearch", {
+      eventName: "Card clicked",
+      queryID: hit.__queryID,
+      positions: [hit.__position],
+      objectIDs: [hit.objectID],
+    });
+  }, [hit]);
+
+  return (
+    <View
+      key={hit.objectID}
+      style={{
+        flex: 1,
+        marginBottom: styles.margin * 2,
+        paddingHorizontal: styles.margin * 3,
+      }}
+      onTouchEnd={sendAlgoliaEvent}>
+      <SearchContentSummary
+        navigation={navigation}
+        item={hit}
+        languageMatch={getLanguageMatch(hit, selectedLanguage || "fr")}
+        hasSponsorMatch={hasSponsorMatch(hit)}
+        nbContents={
+          hit.typeContenu === "besoin" ? nbContents[hit.objectID] : null
+        }
+      />
+    </View>
+  );
+};
 
 export const HitWithInsights = connectHitInsights(aa)(Hit);
