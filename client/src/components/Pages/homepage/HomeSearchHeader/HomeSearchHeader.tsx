@@ -34,6 +34,8 @@ const HomeSearchHeader = (props: Props) => {
     addToQuery({ needs: [], themes: [] });
   }, [setThemeSearch, addToQuery]);
 
+  const resetThemeSearch = useCallback(() => setThemeSearch(""), []);
+
   // LOCATION
   const [locationSearch, setLocationSearch] = useState("");
   const onChangeDepartmentInput = useCallback((e: any) => setLocationSearch(e.target.value), []);
@@ -48,6 +50,7 @@ const HomeSearchHeader = (props: Props) => {
     locationSearch,
     resetLocationSearch,
     themeSearch,
+    resetThemeSearch,
     resetDepartment,
     resetTheme,
     resetSearch,
