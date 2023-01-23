@@ -197,6 +197,7 @@ export interface AlgoliaObject {
   theme?: ObjectId;
   secondaryThemes?: ObjectId[];
   needs?: ObjectId[];
-  typeContenu: "demarche"|"dispositif"|"besoin"|"theme";
+  typeContenu: "demarche" | "dispositif" | "besoin" | "theme";
   priority: number;
+  webOnly: boolean;
 }

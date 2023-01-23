@@ -137,6 +137,7 @@ export interface SimplifiedDispositif {
   nbMercis: number;
   nbVues: number;
   themesSelectedByAuthor?: boolean;
+  webOnly?: boolean;
 }
 
 export interface Role {
@@ -357,6 +358,7 @@ export interface IDispositif {
   timeSpent?: number;
   lastModificationDate?: number;
   publishedAt?: number;
+  webOnly?: boolean;
 }
 
 export interface UserStructureMembre {
@@ -554,13 +556,13 @@ export interface Log {
     id: ObjectId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-      | "ModalContenu"
-      | "ModalStructure"
-      | "ModalUser"
-      | "ModalReaction"
-      | "ModalImprovements"
-      | "ModalNeeds"
-      | "PageAnnuaire";
+    | "ModalContenu"
+    | "ModalStructure"
+    | "ModalUser"
+    | "ModalReaction"
+    | "ModalImprovements"
+    | "ModalNeeds"
+    | "PageAnnuaire";
   };
   created_at: Moment;
 }

@@ -46,6 +46,8 @@ const SearchHeader = (props: Props) => {
 
   // THEMES
   const [themeSearch, setThemeSearch] = useState("");
+  const resetThemeSearch = useCallback(() => setThemeSearch(""), []);
+
   const onChangeThemeInput = useCallback(
     (e: any) => {
       setThemeSearch(e.target.value);
@@ -135,6 +137,7 @@ const SearchHeader = (props: Props) => {
     locationSearch,
     resetLocationSearch,
     themeSearch,
+    resetThemeSearch,
     resetDepartment,
     resetTheme,
     resetSearch,

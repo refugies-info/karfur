@@ -21,6 +21,7 @@ import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispo
 import { getContentById } from "../workflows/dispositif/getContentById";
 import { getNbContents } from "../workflows/dispositif/getNbContents";
 import getStatistics from "../workflows/dispositif/getStatistics";
+import updateDispositif from "../workflows/dispositif/updateDispositif";
 
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
@@ -43,6 +44,8 @@ router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTa
 router.get("/getContentById", getContentById);
 router.get("/getNbContents", getNbContents);
 router.get("/statistics", getStatistics);
+router.patch("/:id", checkToken.check, updateDispositif);
+
 /* NOT USED
 router.post("/addNeedsFromAirtable", addNeedsFromAirtable);
 router.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
