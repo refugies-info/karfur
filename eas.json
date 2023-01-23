@@ -9,13 +9,20 @@
       "extends": "base",
       "channel": "production"
     },
-    "preview": {
+    "staging": {
       "extends": "base",
       "channel": "staging",
+      "env": {
+        "EXPO_APP_NAME": "Staging Réfugiés.info"
+      }
+    },
+    "preview": {
+      "extends": "base",
+      "channel": "preview",
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "EXPO_APP_NAME": "Staging Réfugiés.info"
+        "EXPO_APP_NAME": "Dev Réfugiés.info"
       }
     }
   },
