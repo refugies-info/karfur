@@ -25,6 +25,7 @@ interface Props {
   locationSearch: string;
   resetLocationSearch: () => void;
   themeSearch: string;
+  resetThemeSearch: () => void;
   resetDepartment: () => void;
   resetTheme: () => void;
   resetSearch: () => void;
@@ -42,6 +43,7 @@ const HomeSearchHeaderMobile = (props: Props) => {
     locationSearch,
     resetLocationSearch,
     themeSearch,
+    resetThemeSearch,
     resetDepartment,
     onChangeDepartmentInput,
     resetTheme,
@@ -120,6 +122,15 @@ const HomeSearchHeaderMobile = (props: Props) => {
                     value={locationSearch}
                     autoFocus
                   />
+                  {locationSearch && (
+                    <EVAIcon
+                      name="close-outline"
+                      fill="dark"
+                      size={20}
+                      className={commonStyles.empty}
+                      onClick={resetLocationSearch}
+                    />
+                  )}
                 </div>
               </div>
               <LocationDropdown
@@ -165,6 +176,15 @@ const HomeSearchHeaderMobile = (props: Props) => {
                     onChange={onChangeThemeInput}
                     value={themeSearch}
                   />
+                  {themeSearch && (
+                    <EVAIcon
+                      name="close-outline"
+                      fill="dark"
+                      size={20}
+                      className={commonStyles.empty}
+                      onClick={resetThemeSearch}
+                    />
+                  )}
                 </div>
               </div>
               <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
