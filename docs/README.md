@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- node version 12
+- node version 12+
 - package manager: yarn
 
 ## Installation
@@ -19,25 +19,25 @@ We are going to work with 2 environments, `staging` and `production`:
 - `staging`:
 
   - test app
-  - linked to the prod backend (for user tests purposes)
-  - accessible via a development build (see https://docs.expo.dev/development/create-development-builds/)
+  - linked to the staging backend (for user tests purposes)
+  - accessible via a development build (see https://docs.expo.dev/development/create-development-builds/) and internal stores (TestFlight + Play internal testing)
 
 - `production`:
   - app used by real users
   - linked to the prod backend
-  - accessible in the stores (and via internal distribution)
+  - accessible in the stores
 
 ## Variables
 
 The environment variables are defined at 2 different places:
 
-- For **development**, in `.env` file.  
-  If you change a variable here, rebuild the project after emptying the cache (`expo r -c`)
-- For **staging** and **production**:
+- For **development** and **staging**, in `.env` file.
+  If you change a variable here, rebuild the project after emptying the cache (`npx expo run:[ios/android]`)
+- For **production**:
   - in `src/libs/getEnvironment.ts` for non-sensitive variables.  
-    We need a unique place to define these variables so they are accessible after a build (`eas build`) and a publication (`expo submit`).  
+    We need a unique place to define these variables so they are accessible after a build (`eas build --platform all`) and a publication (`expo submit`).  
     See [expo documentation](https://docs.expo.dev/build-reference/variables/#can-i-share-environment-variables-defined-in).
-  - in Expo Go for sensitive variables (API keys, secrets ...)
+  - in Expo.dev (https://expo.dev/accounts/refugies-info/projects/refugies-info-app/secrets) for sensitive variables (API keys, secrets ...)
 
 # Workflow
 
@@ -50,13 +50,29 @@ The environment variables are defined at 2 different places:
    - For bug fixes or minor updates, [publish](#publish-changes) changes to update apps automatically.  
      On _iOS_, the update is downloaded before the app is launched.  
      On _Android_, it's downloaded in the background and installed the second time the app is opened.
-   - For config changes or major updates, create a [build](#build-app) and submit on the stores.
+   - For config changes or major updates (ie. change to native code), create a [build](#build-app) and submit on the stores.
 
 # Deploy
 
+We use and adapt this workflow : https://docs.expo.dev/eas-update/deployment-patterns/#persistent-staging-flow
+
+The main difference : we use `dev` branch as `staging`.
+
 ## Staging
 
-Deploy on staging to test features via development build and store internal deployment (TestFlight and Android Play Store interne test).
+Deploy on staging to test features via development build or store internal deployment (TestFlight and Android Play Store interne test).
+
+> Note: prefer use store internal deployment for non-technical users
+
+If there is **no** native code modified
+
+```
+$ eas update --auto
+```
+
+This command is run by Github CI on each push on dev.
+
+If there is native code modified
 
 ```
 $ eas build --profile development --platform [platform]
@@ -68,6 +84,12 @@ It is also possible to build the app to test it on real devices (or on a simulat
 $ eas build -p [platform] --profile preview
 ```
 
+And then, you need to deploy the build on the store and create an internal release :
+
+```
+$ eas submit [...]
+```
+
 ## Production
 
 ### Publish changes
@@ -77,6 +99,8 @@ It is possible to publish an update which will be automatically downloaded when 
 ```
 $ eas update --auto
 ```
+
+> This command run on each merge to `main` branch. (see .github/workflows/update_main.yml)
 
 Don't forget to increment the **displayed version number**. See the [Version numbers](#version-numbers) section.
 

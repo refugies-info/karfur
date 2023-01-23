@@ -15,7 +15,7 @@ if (Updates.releaseChannel === "staging") {
   Config.envName = "STAGING";
   Config.siteUrl = "https://staging.refugies.info";
   Config.dbUrl = "https://backend-stag-4rok5wopuq-ew.a.run.app";
-  Config.debugModeFirebase = false;
+  Config.debugModeFirebase = true;
   Config.algoliaIndex = "staging_refugies";
 } else if (Updates.releaseChannel === "production") {
   Config.envName = "PROD";
