@@ -92,6 +92,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
+  align-content: flex-end;
+  flex-grow: 1;
 
   @include isMobile() {
     height: auto;

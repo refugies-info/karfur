@@ -9,7 +9,6 @@ import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
-import { ObjectId } from "mongodb";
 import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
 import { statusCompare } from "lib/statusCompare";
@@ -72,10 +71,6 @@ const ResponsableContainer = styled.div`
   margin-bottom: 8px;
   border-color: ${colors.gray70};
 `;
-interface Props {
-  show: boolean;
-  toggleModal: () => void;
-}
 
 interface InitialStructure {
   picture: Picture | null;
@@ -87,6 +82,12 @@ interface InitialStructure {
   nom: string;
 }
 
+interface Props {
+  defaults: Partial<InitialStructure>;
+  show: boolean;
+  toggleModal: () => void;
+}
+
 export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) => {
   const initialStructure = {
     nom: "",
@@ -95,7 +96,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     status: "En attente",
     contact: "",
     phone_contact: "",
-    mail_contact: ""
+    mail_contact: "",
+    ...props.defaults
   };
   const [structure, setStructure] = useState<InitialStructure>(initialStructure);
   const [uploading, setUploading] = useState(false);

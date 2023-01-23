@@ -607,14 +607,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         >
           <a
             className="c8 card dispositif content card"
-            href={
-              {
-                "pathname": "/program/[id]",
-                "query": {
-                  "id": "id1",
-                },
-              }
-            }
+            href="/program/id1"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <button
               className="btn favorite btn btn-secondary"
@@ -809,14 +805,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         >
           <a
             className="c9 card dispositif content card"
-            href={
-              {
-                "pathname": "/program/[id]",
-                "query": {
-                  "id": "id2",
-                },
-              }
-            }
+            href="/program/id2"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <button
               className="btn favorite btn btn-secondary"
@@ -1011,14 +1003,10 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         >
           <a
             className="c10 card demarche content"
-            href={
-              {
-                "pathname": "/procedure/[id]",
-                "query": {
-                  "id": "id3",
-                },
-              }
-            }
+            href="/procedure/id3"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onTouchStart={[Function]}
           >
             <button
               className="btn favorite btn btn-secondary"

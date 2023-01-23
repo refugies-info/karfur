@@ -140,46 +140,58 @@
 }
 
 .input {
-  background: $gray30;
-  width: 100%;
-  padding: u(3) u(4);
-  border-radius: $radius;
-  display: flex;
-  align-items: center;
   position: relative;
   @include text("normal");
 
   & > span {
     position: absolute;
-    width: u(6);
-    height: u(6);
+    width: u(8);
+    height: u(8);
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 13px;
-    left: 10px;
+    top: u(2);
+    left: u(2);
 
     @include rtl() {
       left: inherit;
-      right: 10px;
+      right: u(2);
     }
   }
 
   & > input {
+    background: $gray30;
+    border-radius: $radius;
     width: 100%;
-    border: none;
+    border: 1px solid transparent;
     line-height: u(4);
-    outline: none;
-    background: transparent;
+    outline: none !important;
     padding-left: u(6);
+    padding: u(3) u(12);
 
     &::placeholder {
       color: $gray80;
     }
 
+    &:focus {
+      border-color: $bleuCharte;
+      background: $white;
+    }
+
     @include rtl() {
       padding-left: 0;
       padding-right: u(6);
+    }
+  }
+
+  .empty {
+    position: absolute;
+    left: inherit;
+    right: u(2);
+
+    @include rtl() {
+      right: inherit;
+      left: u(2);
     }
   }
 }

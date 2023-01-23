@@ -178,7 +178,7 @@ const RecensezVotreAction = (props: Props) => {
               {needKeys.map((needKey, i) => (
                 <Col key={i} sm="12" lg="4">
                   {translationNeeds[needKey].map((item, i) => (
-                    <LanguageCard key={i} languageId={item.languageId} need={needKey} />
+                    <LanguageCard href="#register" key={i} languageId={item.languageId} need={needKey} />
                   ))}
                 </Col>
               ))}

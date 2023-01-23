@@ -7,7 +7,7 @@ import { getAllUsers } from "../workflows/users/getAllUsers";
 import { updateUser } from "../workflows/users/updateUser";
 import { exportUsers } from "../workflows/users/exportUsers";
 import { login } from "../workflows/users/login";
-import { changePassword } from "../workflows/users/changePassword";
+import changePassword from "../workflows/users/changePassword";
 import { setNewPassword } from "../workflows/users/setNewPassword";
 import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInLocale";
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";

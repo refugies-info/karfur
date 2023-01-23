@@ -19,13 +19,13 @@ import { useRouter } from "next/router";
 import qs from "query-string";
 import styles from "./HomeSearchHeader.mobile.module.scss";
 import commonStyles from "scss/components/searchHeader.module.scss";
-import { useLoadingContext } from "pages";
 
 interface Props {
   // filterProps
   locationSearch: string;
   resetLocationSearch: () => void;
   themeSearch: string;
+  resetThemeSearch: () => void;
   resetDepartment: () => void;
   resetTheme: () => void;
   resetSearch: () => void;
@@ -38,12 +38,12 @@ const HomeSearchHeaderMobile = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const router = useRouter();
-  const [, setGlobalLoading] = useLoadingContext();
 
   const {
     locationSearch,
     resetLocationSearch,
     themeSearch,
+    resetThemeSearch,
     resetDepartment,
     onChangeDepartmentInput,
     resetTheme,
@@ -122,6 +122,15 @@ const HomeSearchHeaderMobile = (props: Props) => {
                     value={locationSearch}
                     autoFocus
                   />
+                  {locationSearch && (
+                    <EVAIcon
+                      name="close-outline"
+                      fill="dark"
+                      size={20}
+                      className={commonStyles.empty}
+                      onClick={resetLocationSearch}
+                    />
+                  )}
                 </div>
               </div>
               <LocationDropdown
@@ -167,6 +176,15 @@ const HomeSearchHeaderMobile = (props: Props) => {
                     onChange={onChangeThemeInput}
                     value={themeSearch}
                   />
+                  {themeSearch && (
+                    <EVAIcon
+                      name="close-outline"
+                      fill="dark"
+                      size={20}
+                      className={commonStyles.empty}
+                      onClick={resetThemeSearch}
+                    />
+                  )}
                 </div>
               </div>
               <ThemeDropdown search={themeSearch} mobile={true} isOpen={themesOpen} />
@@ -195,7 +213,6 @@ const HomeSearchHeaderMobile = (props: Props) => {
 
       <Button
         onClick={() => {
-          setGlobalLoading(true);
           router.push({
             pathname: getPath("/recherche", router.locale),
             query: qs.stringify({ ...query }, { arrayFormat: "comma" })

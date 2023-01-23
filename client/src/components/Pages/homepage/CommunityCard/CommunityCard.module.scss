@@ -177,6 +177,7 @@ $light_blue: #dae0fb;
 
 .footer {
   margin-top: u(8);
+  height: 28px; // prevent card height change
 
   @include isTablet() {
     margin-top: u(4);
