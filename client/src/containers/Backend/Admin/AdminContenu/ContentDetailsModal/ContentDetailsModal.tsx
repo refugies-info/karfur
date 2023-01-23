@@ -2,13 +2,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Row, Col } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import cloneDeep from "lodash/cloneDeep";
 import moment from "moment";
 import "moment/locale/fr";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
-import { Log } from "types/interface";
+import { Log, SimplifiedDispositif } from "types/interface";
 import { colors } from "colors";
 import { allDispositifsSelector, dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
@@ -75,15 +76,10 @@ export const ContentDetailsModal = (props: Props) => {
     }
   }, [dispositif, currentId, selectedDispositifId, updateLogs]);
 
-  const updateDispositifsStore = (
-    dispositifId: ObjectId,
-    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus",
-    value: string
-  ) => {
-    const dispositifs = [...allDispositifs];
-    const newDispositif = dispositifs.find((d) => d._id === dispositifId);
-    if (newDispositif) newDispositif[property] = value;
-    dispatch(setAllDispositifsActionsCreator(dispositifs));
+  const updateDispositifsStore = (dispositifId: ObjectId, data: Partial<SimplifiedDispositif>) => {
+    const dispositifs = cloneDeep(allDispositifs);
+    const newDispositifs = dispositifs.map((d) => (d._id === dispositifId ? { ...d, ...data } : d));
+    dispatch(setAllDispositifsActionsCreator(newDispositifs));
     updateLogs();
   };
 
@@ -115,7 +111,7 @@ export const ContentDetailsModal = (props: Props) => {
       } else {
         await API.updateDispositifAdminComments(queryDispositif);
       }
-      updateDispositifsStore(dispositif._id, property, newStatus);
+      updateDispositifsStore(dispositif._id, { [property]: newStatus });
     }
   };
   const saveAdminComments = async () => {
@@ -127,7 +123,7 @@ export const ContentDetailsModal = (props: Props) => {
       }
     });
     setAdminCommentsSaved(true);
-    updateDispositifsStore(dispositif._id, "adminComments", adminComments);
+    updateDispositifsStore(dispositif._id, { adminComments: adminComments });
   };
 
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
@@ -150,6 +146,12 @@ export const ContentDetailsModal = (props: Props) => {
     if (!res.value || !dispositif) return;
     await API.sendNotification(dispositif._id);
     updateLogs();
+  };
+
+  const toggleWebOnly = async () => {
+    if (!dispositif?._id) return;
+    await API.updateDispositif(dispositif._id, { webOnly: !dispositif.webOnly });
+    updateDispositifsStore(dispositif._id, { webOnly: !dispositif.webOnly });
   };
 
   const members = (structure?.membres || [])
@@ -176,7 +178,15 @@ export const ContentDetailsModal = (props: Props) => {
           </>
         }
         rightHead={
-          <>
+          <div className="d-flex flex-nowrap justify-content-end">
+            <FButton
+              className="me-2"
+              type={!dispositif.webOnly ? "default" : "validate"}
+              name={!dispositif.webOnly ? "square-outline" : "checkmark-square-2-outline"}
+              onClick={toggleWebOnly}
+            >
+              Web only
+            </FButton>
             {dispositif.status === "Actif" && dispositif.typeContenu === "demarche" && (
               <FButton className="me-2" type="dark" name="alert-triangle-outline" onClick={sendPushNotification}>
                 Push
@@ -203,7 +213,7 @@ export const ContentDetailsModal = (props: Props) => {
               Voir
             </FButton>
             <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
-          </>
+          </div>
         }
       >
         <>

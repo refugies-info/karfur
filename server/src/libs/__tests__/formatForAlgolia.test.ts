@@ -36,7 +36,8 @@ describe("formatForAlgolia", () => {
       typeContenu: "dispositif",
       sponsorUrl: "https://image.com/logo2.jpg",
       sponsorName: "Coallia",
-      priority: 30
+      priority: 30,
+      webOnly: false
     });
   });
   it("should format a demarche", () => {
@@ -47,12 +48,13 @@ describe("formatForAlgolia", () => {
       abstract_fr: "Connaître et comprendre les bases du droit du travail en France",
       theme: "themeId1",
       secondaryThemes: ["themeId2"],
-      needs: ["613721a409c5190dfa70d053","614d8fb095b9b700142ee846"],
+      needs: ["613721a409c5190dfa70d053", "614d8fb095b9b700142ee846"],
       nbVues: 383,
       typeContenu: "demarche",
       sponsorUrl: "https://image.com/logo.jpg",
       sponsorName: "France Terre d'Asile",
-      priority: 40
+      priority: 40,
+      webOnly: false
     });
   });
   it("should format a besoin", () => {
@@ -68,7 +70,8 @@ describe("formatForAlgolia", () => {
       title_ar: undefined,
       theme: "themeId",
       typeContenu: "besoin",
-      priority: 20
+      priority: 20,
+      webOnly: false
     });
   });
   it("should format a theme", () => {
@@ -90,7 +93,8 @@ describe("formatForAlgolia", () => {
       name_ru: undefined,
       name_ar: undefined,
       typeContenu: "theme",
-      priority: 10
+      priority: 10,
+      webOnly: false
     });
   });
 });
