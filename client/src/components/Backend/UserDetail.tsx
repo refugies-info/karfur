@@ -1,7 +1,7 @@
 import { SimplifiedUser } from "types/interface";
 import React from "react";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import marioProfile from "assets/mario-profile.jpg";
@@ -18,27 +18,26 @@ const UserDetailContainer = styled.div`
   margin-bottom: 10px;
   border-width: 1px;
   border-style: solid;
-  border-color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.gray90)};
+  border-color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.focus : colors.gray90)};
   border-radius: 12px;
   padding: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  background: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : "")};
+  background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.focus : "")};
   justify-content: space-between;
 
   &:hover {
-    background: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.focus : colors.grey2)};
-    border-color: ${(props: {isSelected: boolean}) =>
-      props.isSelected ? colors.focus : colors.grey2};
+    background: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.focus : colors.grey2)};
+    border-color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.focus : colors.grey2)};
   }
 `;
 
 const Text = styled.div`
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {isSelected: boolean}) => (props.isSelected ? colors.white : colors.gray90)};
+  color: ${(props: { isSelected: boolean }) => (props.isSelected ? colors.white : colors.gray90)};
 `;
 
 const RowContainer = styled.div`
@@ -49,9 +48,7 @@ const RowContainer = styled.div`
 
 export const UserDetail = (props: Props) => {
   const secureUrl =
-    props.user && props.user.picture && props.user.picture.secure_url
-      ? props.user.picture.secure_url
-      : marioProfile;
+    props.user && props.user.picture && props.user.picture.secure_url ? props.user.picture.secure_url : marioProfile;
 
   const getText = () => {
     if (props.user && props.user.email) {
@@ -60,18 +57,15 @@ export const UserDetail = (props: Props) => {
     return props.user.username;
   };
   return (
-    <UserDetailContainer
-      isSelected={props.isSelected}
-      onClick={() => props.onSelectItem(props.user)}
-    >
+    <UserDetailContainer isSelected={props.isSelected} onClick={() => props.onSelectItem(props.user)}>
       <RowContainer>
         <Image
-          className="user-img mr-8"
+          className="user-img me-2"
           src={secureUrl}
           alt="user picture"
           width={70}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
         <Text isSelected={props.isSelected}>{getText()}</Text>
       </RowContainer>

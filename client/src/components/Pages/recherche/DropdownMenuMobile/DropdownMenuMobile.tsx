@@ -37,7 +37,7 @@ const DropdownMenuMobile = (props: Props) => {
       {props.showFooter && (
         <div className={styles.footer}>
           <Button color="white" className={styles.reset} onClick={props.reset}>
-            <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="mr-2" />
+            <EVAIcon name="refresh-outline" fill={colors.bleuCharte} className="me-2" />
             {t("Recherche.resetButton", "Réinitialiser")}
           </Button>
           <Button color="primary" className={styles.btn_search} onClick={props.close}>

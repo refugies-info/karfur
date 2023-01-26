@@ -11,20 +11,17 @@ interface Props {
 }
 
 export const LanguageInput = (props: Props) => {
-
   // in version 1, only 1 language allowed ?
   const onLanguageChange = (language: string) => {
     if (props.selectedLanguages?.[0] === language) {
-      props.setSelectedLanguages([])
+      props.setSelectedLanguages([]);
     } else {
       props.setSelectedLanguages([language]);
     }
   };
   return (
     <div className={parentStyles.form_block}>
-      <label className={cls(parentStyles.label, "d-block mb-4")}>
-        Fiches traduites en...
-      </label>
+      <label className={cls(parentStyles.label, "d-block mb-4")}>Fiches traduites en...</label>
       <div>
         {props.languages.map((item, index: number) => (
           <FilterButton
@@ -34,7 +31,7 @@ export const LanguageInput = (props: Props) => {
               if (item._id) onLanguageChange(item.i18nCode);
             }}
             active={item._id && props.selectedLanguages.includes(item.i18nCode)}
-            className="mr-2 mb-2"
+            className="me-2 mb-2"
           >
             <LanguageText langueCode={item.langueCode} />
           </FilterButton>

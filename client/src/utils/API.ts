@@ -35,7 +35,7 @@ instance.interceptors.request.use(
   (request) => request,
   (error) => {
     Swal.fire({
-      type: "error",
+      icon: "error",
       title: "Oops...",
       text: (error.response.data || {}).text || "",
       footer: "<i>" + error.message + "</i>",
@@ -52,7 +52,7 @@ instance.interceptors.response.use(
     if (error.response && error.response.status < 500) {
       if (error.response.data.data !== "no-alert") {
         Swal.fire({
-          type: "error",
+          icon: "error",
           title: "Oops...",
           text: (error.response.data || {}).text || "",
           footer: "<i>" + error.message + "</i>",
@@ -247,6 +247,11 @@ const API = {
   },
   getDispositifsStatistics: (facets?: DispositifFacets[]): Promise<Response<DispositifStatistics>> => {
     return instance.get("/dispositifs/statistics", { params: { facets } });
+  },
+  /* TODO: support all dispositif properties */
+  updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {
+    const headers = getHeaders();
+    return instance.patch(`/dispositifs/${id}`, query, { headers });
   },
 
   // Mail
@@ -456,10 +461,6 @@ const API = {
     const headers = getHeaders();
     return instance.post("/miscellaneous/set_mail", query, { headers });
   },
-  send_sms: (query: { number: number; typeContenu: string; url: string; title: string }) => {
-    const headers = getHeaders();
-    return instance.post("/miscellaneous/send_sms", query, { headers });
-  },
 
   // Logs
   logs: (objectId: ObjectId) => {
@@ -497,6 +498,10 @@ const API = {
 
   // sms
   smsDownloadApp: (phone: string, locale: string) => instance.post("/sms/download-app", { phone, locale }),
+  smsContentLink: (query: { phone: string, title: string, url: string }) => {
+    const headers = getHeaders();
+    return instance.post("/sms/content-link", query, { headers });
+  },
 };
 
 export default API;

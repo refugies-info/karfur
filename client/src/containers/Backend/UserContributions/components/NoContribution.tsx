@@ -63,13 +63,13 @@ export const NoContribution = (props: {
         <SubTitle>Chacun peut apporter sa contribution pour enrichir le site.</SubTitle>
         <SubTitle>Lancez-vous !</SubTitle>
         <RowContainer>
-          <FButton onClick={props.toggleWriteModal} type="dark" name="file-add-outline" className="mr-10">
+          <FButton onClick={props.toggleWriteModal} type="dark" name="file-add-outline" className="me-2">
             Créer une nouvelle fiche
           </FButton>
           <FButton
             type="tuto"
             name="video-outline"
-            className="ml-10"
+            className="ms-2"
             onClick={() => {
               props.setTutoModalDisplayed("Mes fiches");
               props.toggleTutoModal();

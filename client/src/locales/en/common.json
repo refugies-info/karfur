@@ -249,9 +249,6 @@
     "Renseignez votre adresse email": "Enter your email address",
     "Votre email": "Your email",
     "Email infos": "Necessary to reset your password in case you forget it.",
-    "Faible": "Weak",
-    "Fort": "Strong",
-    "Moyen": "Average",
     "Mot de passe trop faible": "Oops, your password is too weak.",
     "Ceci n'est pas un email,": "This is not an email,",
     "vérifiez l'orthographe": "check your spelling.",
@@ -262,7 +259,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "We will send you an invitation email to register",
     "Créez-vous un compte depuis votre ordinateur pour participer": "Create an account from your computer to participate"
   },
-  "UnauthorizedAccess": { "Accès refusé": "Access denied", "Revenir à l'accueil": "Return to home" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "Access denied",
+    "Revenir à l'accueil": "Return to home"
+  },
   "Dispositif": {
     "cliquez": "Click \"?\" to learn more",
     "informations_utiles": "Have you found useful information?",

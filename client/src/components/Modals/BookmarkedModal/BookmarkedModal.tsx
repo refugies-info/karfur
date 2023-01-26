@@ -56,13 +56,13 @@ const BookmarkedModal = (props: Props) => {
           </>
         ) : (
           <>
-            <Link legacyBehavior href={getPath("/login", router.locale)} passHref>
+            <Link legacyBehavior href={getPath("/login", router.locale)} passHref prefetch={false}>
               <FButton type="login" name="log-in-outline" tag="a">
                 {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </Link>
-            <Link legacyBehavior href={getPath("/register", router.locale)} passHref>
-              <FButton type="signup" name="person-add-outline" className="mr-10" tag="a">
+            <Link legacyBehavior href={getPath("/register", router.locale)} passHref prefetch={false}>
+              <FButton type="signup" name="person-add-outline" className="me-2" tag="a">
                 {t("Toolbar.Inscription", "Inscription")}
               </FButton>
             </Link>

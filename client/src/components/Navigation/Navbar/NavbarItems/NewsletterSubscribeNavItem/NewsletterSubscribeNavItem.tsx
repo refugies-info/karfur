@@ -1,6 +1,6 @@
 import { NavItem } from "@dataesr/react-dsfr";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useDispatch } from "react-redux";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
 

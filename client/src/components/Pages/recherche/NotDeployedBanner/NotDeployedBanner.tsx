@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from "react";
 import { Button } from "reactstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import useWindowSize from "hooks/useWindowSize";
@@ -42,7 +42,7 @@ const NotDeployedBanner = (props: Props) => {
           <span className={styles.map_icon}>
             <Image src={iconMap} width={16} height={16} alt="" />
           </span>
-          <span className="ml-1">
+          <span className="ms-1">
             {props.departments.join(", ")}
             {t("Recherche.notDeployedTitle")}
           </span>
@@ -53,7 +53,7 @@ const NotDeployedBanner = (props: Props) => {
         <p className="mb-0">
           {t("Recherche.notDeployedText")}
           {!isMobile ? (
-            <Link legacyBehavior href={getPath("/publier", router.locale)}>
+            <Link legacyBehavior href={getPath("/publier", router.locale)} prefetch={false}>
               <a className={styles.link}>{t("Recherche.notDeployedWriteLink", "Rédiger une fiche")}</a>
             </Link>
           ) : (
@@ -66,7 +66,7 @@ const NotDeployedBanner = (props: Props) => {
       <div className={styles.actions}>
         <FButton type="white" className={styles.btn} onClick={props.hideBanner}>
           {t("Recherche.notDeployedOkLink", "J'ai compris")}
-          <EVAIcon name="close-outline" fill="dark" className="ml-2" />
+          <EVAIcon name="close-outline" fill="dark" className="ms-2" />
         </FButton>
       </div>
 

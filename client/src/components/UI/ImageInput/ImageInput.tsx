@@ -4,7 +4,7 @@ import API from "utils/API";
 import FButton from "../FButton";
 import emptyImage from "assets/empty-image.svg";
 import styles from "./ImageInput.module.scss";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Picture } from "types/interface";
 import { cls } from "lib/classname";
 
@@ -12,10 +12,10 @@ interface Props {
   onImageUploaded: (image: Picture) => void;
   image: Picture | undefined;
   minHeight?: number;
-  imageSize?: number;
+  imageSize: number;
   dimensionsHelp?: string;
-  labelNoBackground?: boolean
-  darkBackground?: boolean
+  labelNoBackground?: boolean;
+  darkBackground?: boolean;
 }
 
 const AdminThemeButton = (props: Props) => {
@@ -32,7 +32,7 @@ const AdminThemeButton = (props: Props) => {
       props.onImageUploaded({
         secure_url: imgData.secure_url,
         public_id: imgData.public_id,
-        imgId: imgData.imgId,
+        imgId: imgData.imgId
       });
       setUploading(false);
     });
@@ -47,12 +47,18 @@ const AdminThemeButton = (props: Props) => {
               className={styles.image_container}
               style={props.imageSize ? { width: props.imageSize, height: props.imageSize } : {}}
             >
-              {uploading &&
+              {uploading && (
                 <div className={styles.uploading}>
                   <Spinner color="white" />
                 </div>
-              }
-              <Image src={props.image?.secure_url || emptyImage} alt="" layout="fill" objectFit="contain" />
+              )}
+              <Image
+                src={props.image?.secure_url || emptyImage}
+                alt=""
+                width={props.imageSize}
+                height={props.imageSize}
+                style={{ objectFit: "contain" }}
+              />
             </div>
           </div>
         </Col>

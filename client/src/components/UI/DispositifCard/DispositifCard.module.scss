@@ -71,6 +71,12 @@
   }
 }
 
+.info {
+  display: flex;
+  align-items: center;
+  line-height: 18px;
+}
+
 .badges {
   margin-bottom: u(1);
   margin-right: u(1);
@@ -86,6 +92,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
+  align-content: flex-end;
+  flex-grow: 1;
 
   @include isMobile() {
     height: auto;
@@ -102,7 +110,7 @@
   height: 56px;
 
   .text {
-    font-size: .9rem;
+    font-size: 0.9rem;
     line-height: 1.2rem;
   }
 

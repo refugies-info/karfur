@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FButton from "components/UI/FButton/FButton";
 import { assetsOnServer } from "assets/assetsOnServer";
 
@@ -107,7 +107,7 @@ const ContributionEngagement = () => {
             "En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Réfugiés.info favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés"
           )}
         </ContributionDetailDescription>
-        <Link legacyBehavior href="/backend/user-dash-contrib" passHref>
+        <Link legacyBehavior href="/backend/user-dash-contrib" passHref prefetch={false}>
           <FButton type="fill-dark" tag="a">
             {t("Contribuer", "Contribuer")}
           </FButton>

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { cls } from "lib/classname";
 import { Event } from "lib/tracking";
 import { TypeOptions } from "data/searchFilters";

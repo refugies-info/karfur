@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styled from "styled-components";
 import { jsUcfirst } from "lib";
 import { cls } from "lib/classname";
@@ -41,7 +41,7 @@ const SearchThemeButton = (props: Props) => {
         window.scrollTo(0, 0);
       }}
     >
-      <span className="mr-4">{jsUcfirst(props.theme.short[locale] || "")}</span>
+      <span className="me-4">{jsUcfirst(props.theme.short[locale] || "")}</span>
       <div className={styles.image}>
         {props.theme?.appImage?.secure_url && (
           <span className={styles.image_inner}>

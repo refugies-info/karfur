@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "next-i18next";
 import FButton from "components/UI/FButton/FButton";
 import { partners } from "data/partners";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { assetsOnServer } from "assets/assetsOnServer";
 
 const MainContainer = styled.div`
@@ -60,10 +60,7 @@ export const Partners = () => {
         <div style={{ marginTop: "32px" }}>
           <a href={assetsOnServer.quiSommesNous.pdfAMI} download>
             <FButton type="fill-dark" name="download-outline">
-              {t(
-                "QuiSommesNous.telechargerAppel",
-                "Télécharger l’appel [PDF] "
-              )}
+              {t("QuiSommesNous.telechargerAppel", "Télécharger l’appel [PDF] ")}
             </FButton>
           </a>
         </div>
@@ -72,12 +69,7 @@ export const Partners = () => {
         {sortedPartners.map((partner, i) =>
           partner.logo ? (
             <ImageContainer key={i}>
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                layout="fill"
-                objectFit="contain"
-              />
+              <Image src={partner.logo} alt={partner.name} width={160} height={100} style={{ objectFit: "contain" }} />
             </ImageContainer>
           ) : null
         )}

@@ -49,7 +49,7 @@ const MentionsLegales = () => {
       <p>
         Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour plus d&apos;information
         consultez la page relative à{" "}
-        <Link legacyBehavior href={getPath("/politique-de-confidentialite", router.locale)}>
+        <Link legacyBehavior href={getPath("/politique-de-confidentialite", router.locale)} prefetch={false}>
           <a>
             <strong>notre politique de confidentialité</strong>
           </a>

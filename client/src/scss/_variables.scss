@@ -1,4 +1,6 @@
 @import "src/scss/colors";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 
 // Bootstrap
 // All variables here: https://github.com/twbs/bootstrap/blob/v4.6.1/scss/_variables.scss
@@ -11,8 +13,27 @@ $light: $gray20;
 $dark: $gray90;
 $primary: $bleuCharte;
 
-$theme-colors: (
-  "light-green":    $greenValidate,
+$custom-colors: (
+  "primary": $primary,
+  "light-green": $greenValidate
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
 );
 
 // Headings
@@ -35,12 +56,22 @@ $text-large: 18px;
 $spacer: 1rem;
 $spacers: (
   0: 0,
-  1: ($spacer * .25),
-  2: ($spacer * .5),
-  3: ($spacer * .75),
+  1: (
+    $spacer * 0.25
+  ),
+  2: (
+    $spacer * 0.5
+  ),
+  3: (
+    $spacer * 0.75
+  ),
   4: $spacer,
-  5: ($spacer * 1.25),
-  6: ($spacer * 1.5)
+  5: (
+    $spacer * 1.25
+  ),
+  6: (
+    $spacer * 1.5
+  )
 );
 
 // Custom

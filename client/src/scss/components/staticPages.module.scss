@@ -16,8 +16,8 @@ $breakpoint: "lg-limit";
   padding-right: 2px;
 
   @include isMobile() {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
@@ -179,10 +179,13 @@ $breakpoint: "lg-limit";
 // Publier
 .video2 {
   :global(.autoplay-video) {
-    border-radius: $radius;
+    border-radius: 26px;
+    border-width: 12px;
 
     @include isTablet() {
-      width: 112px;
+      width: 124px;
+      border-width: 6px;
+      border-radius: 18px;
     }
   }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { cls } from "lib/classname";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import styles from "./WriteContentCard.module.scss";
@@ -31,7 +31,7 @@ const WriteContentCard = (props: Props) => {
           <p className={styles.text}>{props.description}</p>
         </div>
         <div className={styles.time}>
-          <EVAIcon name="clock-outline" fill="#000000" size={16} className="mr-10" />
+          <EVAIcon name="clock-outline" fill="#000000" size={16} className="me-2" />
           {`~ ${props.duration} `}
           {t("minutes")}
         </div>

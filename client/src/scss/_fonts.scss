@@ -1,15 +1,13 @@
 @font-face {
   font-family: "Marianne";
-  src: local("Marianne-Bold"),
-    url(https://storage.googleapis.com/refugies-info-assets/fonts/Marianne/Marianne-Bold.woff) format("woff");
+  src: local("Marianne-Bold"), url(/fonts/Marianne-Bold.woff2) format("woff2");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Marianne";
-  src: local("Marianne-Regular"),
-    url(https://storage.googleapis.com/refugies-info-assets/fonts/Marianne/Marianne-Regular.woff) format("woff");
+  src: local("Marianne-Regular"), url(/fonts/Marianne-Regular.woff2) format("woff2");
   font-weight: normal;
   font-style: normal;
 }

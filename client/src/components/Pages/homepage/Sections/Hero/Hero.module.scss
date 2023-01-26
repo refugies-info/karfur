@@ -20,7 +20,7 @@ $searchHeight: 96px;
 
   @include isTablet() {
     padding-top: u(10);
-    min-height: 90vh;
+    height: 90vh;
   }
 
   h1 {

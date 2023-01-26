@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { changePassword } from "./changePassword";
+import changePassword from "./changePassword";
 import {
   getUserById,
   updateUserInDB,
@@ -30,39 +30,9 @@ describe("changePassword", () => {
   const res = mockResponse();
   it("should return 405 if not from site", async () => {
     const req = { fromSite: false };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(res.status).toHaveBeenCalledWith(405);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
-  });
-
-  it("should return 400 if invalid request", async () => {
-    const req = {
-      fromSite: true,
-      body: { newPassword: "newPassword", currentPassword: "currentPassword" },
-    };
-    await changePassword(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
-  });
-
-  it("should return 400 if invalid request", async () => {
-    const req = {
-      fromSite: true,
-      body: { userId: "userId", currentPassword: "currentPassword" },
-    };
-    await changePassword(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
-  });
-
-  it("should return 400 if invalid request", async () => {
-    const req = {
-      fromSite: true,
-      body: { userId: "userId", newPassword: "newPassword" },
-    };
-    await changePassword(req, res);
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
   });
 
   it("should return 401 if invalid token", async () => {
@@ -75,7 +45,7 @@ describe("changePassword", () => {
       },
       userId: "id",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
   });
@@ -90,7 +60,7 @@ describe("changePassword", () => {
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
@@ -106,7 +76,7 @@ describe("changePassword", () => {
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Utilisateur inconnu" });
@@ -123,10 +93,31 @@ describe("changePassword", () => {
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Mot de passe incorrect" });
+  });
+
+  it("should get user and return 400 if same password", async () => {
+    getUserById.mockResolvedValueOnce({ authenticate: () => true });
+    const req = {
+      fromSite: true,
+      body: {
+        userId: "userId",
+        newPassword: "currentPassword1&",
+        currentPassword: "currentPassword1&",
+      },
+      userId: "userId",
+    };
+    await changePassword[1](req, res);
+    expect(getUserById).toHaveBeenCalledWith("userId", {});
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      code: "USED_PASSWORD",
+      data: "no-alert",
+      text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
+    });
   });
 
   it("should get user and return 401 if password too weak", async () => {
@@ -140,7 +131,7 @@ describe("changePassword", () => {
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({
@@ -154,12 +145,12 @@ describe("changePassword", () => {
       fromSite: true,
       body: {
         userId: "userId",
-        newPassword: "newPassword",
+        newPassword: "newPassword1&",
         currentPassword: "currentPassword",
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       password: "hashedPassword",
@@ -182,7 +173,7 @@ describe("changePassword", () => {
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(updateUserInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
@@ -198,12 +189,12 @@ describe("changePassword", () => {
       fromSite: true,
       body: {
         userId: "userId",
-        newPassword: "newPassword",
+        newPassword: "newPassword1&",
         currentPassword: "currentPassword",
       },
       userId: "userId",
     };
-    await changePassword(req, res);
+    await changePassword[1](req, res);
     expect(getUserById).toHaveBeenCalledWith("userId", {});
     expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       password: "hashedPassword",

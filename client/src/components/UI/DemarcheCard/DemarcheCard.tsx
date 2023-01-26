@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getPath } from "routes";
@@ -60,6 +60,7 @@ const DemarcheCard = (props: Props) => {
         query: { id: props.demarche._id.toString() }
       }}
       passHref
+      prefetch={false}
     >
       <DemarcheLink
         className={cls(commonStyles.card, commonStyles.demarche, commonStyles.content)}

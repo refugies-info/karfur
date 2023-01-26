@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
 import { useInView } from "react-intersection-observer";
@@ -100,14 +100,14 @@ const RecensezVotreAction = (props: Props) => {
             </Col>
             {!isTablet && (
               <Col sm="12" lg="6">
-                <Image src={MockupsRI} alt="" />
+                <Image src={MockupsRI} alt="" style={{ maxWidth: "100%", height: "auto" }} />
               </Col>
             )}
           </Row>
         </Container>
         {isTablet && (
           <div className={styles.hero_image}>
-            <Image src={MockupsRIMobile} alt="" />
+            <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
           </div>
         )}
       </div>
@@ -141,7 +141,8 @@ const RecensezVotreAction = (props: Props) => {
                   title: t("Publish.whyAccordionTitle2"),
                   text: t("Publish.whyAccordionText2"),
                   video: "/video/publier-video-why2.mp4",
-                  mediaWidth: 203,
+                  mediaWidth: 217,
+                  mediaHeight: 442,
                   className: styles.video2
                 },
                 {

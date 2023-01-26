@@ -13,10 +13,6 @@ import { fetchSelectedStructureActionCreator } from "services/SelectedStructure/
 import { updateDispositifReactionActionCreator } from "services/ActiveDispositifs/activeDispositifs.actions";
 import Router from "next/router";
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 jest.mock("services/UserStructure/userStructure.actions", () => {
   const actions = jest.requireActual("services/UserStructure/userStructure.actions");

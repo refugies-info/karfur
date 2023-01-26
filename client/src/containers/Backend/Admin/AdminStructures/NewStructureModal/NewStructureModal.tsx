@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import FInput from "components/UI/FInput/FInput";
 import moment from "moment";
 import "moment/locale/fr";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
-import { ObjectId } from "mongodb";
 import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
 import { statusCompare } from "lib/statusCompare";
@@ -72,10 +71,6 @@ const ResponsableContainer = styled.div`
   margin-bottom: 8px;
   border-color: ${colors.gray70};
 `;
-interface Props {
-  show: boolean;
-  toggleModal: () => void;
-}
 
 interface InitialStructure {
   picture: Picture | null;
@@ -87,9 +82,13 @@ interface InitialStructure {
   nom: string;
 }
 
-export const NewStructureModal: React.FunctionComponent<Props> = (
-  props: Props
-) => {
+interface Props {
+  defaults: Partial<InitialStructure>;
+  show: boolean;
+  toggleModal: () => void;
+}
+
+export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) => {
   const initialStructure = {
     nom: "",
     responsable: null,
@@ -98,15 +97,12 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     contact: "",
     phone_contact: "",
     mail_contact: "",
+    ...props.defaults
   };
-  const [structure, setStructure] = useState<InitialStructure>(
-    initialStructure
-  );
+  const [structure, setStructure] = useState<InitialStructure>(initialStructure);
   const [uploading, setUploading] = useState(false);
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
-  );
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
 
   const activeUsers = useSelector(activeUsersSelector);
 
@@ -132,13 +128,13 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
             {
               userId: structure.responsable._id,
               roles: ["administrateur"],
-              added_at: new Date(),
-            },
+              added_at: new Date()
+            }
           ]
         : [];
       const structureToSave = {
         ...structure,
-        membres: membres,
+        membres: membres
       };
       delete structureToSave.responsable;
 
@@ -147,8 +143,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       Swal.fire({
         title: "Yay...",
         text: "Structure créée",
-        type: "success",
-        timer: 1500,
+        icon: "success",
+        timer: 1500
       });
       updateData();
       toggle();
@@ -156,8 +152,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       Swal.fire({
         title: "Oh non",
         text: "Erreur lors de la modification",
-        type: "error",
-        timer: 1500,
+        icon: "error",
+        timer: 1500
       });
       updateData();
       toggle();
@@ -183,8 +179,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
           picture: {
             secure_url: imgData.secure_url,
             public_id: imgData.public_id,
-            imgId: imgData.imgId,
-          },
+            imgId: imgData.imgId
+          }
         });
         setUploading(false);
         return;
@@ -203,20 +199,12 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     setStructure({ ...structure, [e.target.id]: e.target.value });
   };
 
-  const onSelectItem = (data: SimplifiedUser) =>
-    setStructure({ ...structure, responsable: data });
+  const onSelectItem = (data: SimplifiedUser) => setStructure({ ...structure, responsable: data });
 
-  const secureUrl =
-    structure && structure.picture && structure.picture.secure_url;
+  const secureUrl = structure && structure.picture && structure.picture.secure_url;
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-
-    >
+    <Modal isOpen={props.show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <Header>Création d'une nouvelle structure</Header>
       <InputContainer>
         <FInput
@@ -236,25 +224,15 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
             alt=""
             width={140}
             height={60}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         </LogoWrapper>
         <RightLogoContainer>
           <FButton className="position-relative" type="theme" name="upload-outline">
-            <Input
-              type="file"
-              id="picture"
-              name="structure"
-              accept="image/*"
-              onChange={handleFileInputChange}
-            />
-            {secureUrl ? (
-              <span>Choisir une autre image</span>
-            ) : (
-              <span>Ajouter un logo</span>
-            )}
+            <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
+            {secureUrl ? <span>Choisir une autre image</span> : <span>Ajouter un logo</span>}
 
-            {uploading && <Spinner color="success" className="ml-10" />}
+            {uploading && <Spinner color="success" className="ms-2" />}
           </FButton>
         </RightLogoContainer>
       </LogoContainer>
@@ -310,7 +288,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
                 key={element.storedStatus}
                 style={{
                   marginRight: "8px",
-                  marginBottom: "8px",
+                  marginBottom: "8px"
                 }}
                 onClick={() => modifyStatus(element.storedStatus)}
               >
@@ -327,16 +305,11 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       </RowContainer>
 
       <BottomRowContainer>
-        <FButton
-          className="mr-8"
-          type="white"
-          name="close-outline"
-          onClick={toggle}
-        >
+        <FButton className="me-2" type="white" name="close-outline" onClick={toggle}>
           Annuler
         </FButton>
         <FButton
-          className="mr-8"
+          className="me-2"
           type="validate"
           name="checkmark-outline"
           onClick={onValidate}

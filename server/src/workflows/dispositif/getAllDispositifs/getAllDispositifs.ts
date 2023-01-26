@@ -37,6 +37,7 @@ export interface DispositifMainInfo {
   creatorId: CreatorMainInfo;
   nbMercis: number
   nbVues: number
+  webOnly?: boolean;
 }
 
 export const getAllDispositifs = async (req: {}, res: Res) => {
@@ -66,7 +67,8 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       secondaryThemes: 1,
       merci: 1,
       nbVues: 1,
-      themesSelectedByAuthor: 1
+      themesSelectedByAuthor: 1,
+      webOnly: 1
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);

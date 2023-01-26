@@ -11,7 +11,7 @@ import { colors } from "colors";
 import { isMobile } from "react-device-detect";
 import FButton from "components/UI/FButton/FButton";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from "scss/components/modals.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showNewsletterModalSelector } from "services/Miscellaneous/miscellaneous.selector";
@@ -107,7 +107,7 @@ export const SubscribeNewsletterModal = () => {
       Swal.fire({
         title: "Oops...",
         text: "Aucun mail renseigné",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -121,7 +121,7 @@ export const SubscribeNewsletterModal = () => {
           Swal.fire({
             title: "Yay...",
             text: "Mail correctement enregistré !",
-            type: "success",
+            icon: "success",
             timer: 1500
           });
           setEmail("");
@@ -144,7 +144,7 @@ export const SubscribeNewsletterModal = () => {
             <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIconContainer>
         )}
-        <Image src={newsletter} alt="image newsletter" />
+        <Image src={newsletter} alt="image newsletter" style={{ maxWidth: "100%", height: "auto" }} />
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
@@ -183,7 +183,7 @@ export const SubscribeNewsletterModal = () => {
               name="checkmark-outline"
               disabled={!email}
               onClick={sendMail}
-              className="ml-8"
+              className="ms-2"
             >
               <div> {t("Envoyer", "Envoyer")}</div>
             </FButton>

@@ -1,5 +1,5 @@
 import logger from "../../logger";
-import { computePasswordStrengthScore } from "../../libs/computePasswordStrengthScore";
+import { isPasswordOk } from "../../libs/validatePassword";
 import { USER_STATUS_ACTIVE } from "../../schema/schemaUser";
 import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
@@ -12,7 +12,7 @@ export const register = async (
 ) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });
-    if ((computePasswordStrengthScore(user.password) || {}).score < 1) {
+    if (!isPasswordOk(user.password)) {
       logger.error("[Register] register failed, password too weak", {
         username: user.username,
       });

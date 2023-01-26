@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Col, Container, Row } from "reactstrap";
@@ -103,7 +103,7 @@ const RecensezVotreAction = (props: Props) => {
               <HeroArrow target="who" />
             </Col>
             <Col sm="12" lg="6">
-              <Image src={MockupsRIMobile} alt="" />
+              <Image src={MockupsRIMobile} alt="" style={{ maxWidth: "100%", height: "auto" }} />
             </Col>
           </Row>
         </Container>
@@ -178,7 +178,7 @@ const RecensezVotreAction = (props: Props) => {
               {needKeys.map((needKey, i) => (
                 <Col key={i} sm="12" lg="4">
                   {translationNeeds[needKey].map((item, i) => (
-                    <LanguageCard key={i} languageId={item.languageId} need={needKey} />
+                    <LanguageCard href="#register" key={i} languageId={item.languageId} need={needKey} />
                   ))}
                 </Col>
               ))}
@@ -253,7 +253,7 @@ const RecensezVotreAction = (props: Props) => {
                 <p className={cls(styles.p, styles.bottom_space)}>{t("Translate.nextText1")}</p>
                 <p className={styles.p}>{t("Translate.nextText2")}</p>
               </Col>
-              <Col lg="6" sm="12" className="text-right">
+              <Col lg="6" sm="12" className="text-end">
                 <AutoplayVideo src="/video/translate-video-next.mp4" height={320} />
               </Col>
             </Row>

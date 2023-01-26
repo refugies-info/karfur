@@ -1,40 +1,42 @@
-@import 'mixins/responsive';
-@import 'mixins/rtl';
-@import 'mixins/text';
-@import 'colors';
+@import "mixins/responsive";
+@import "mixins/rtl";
+@import "mixins/text";
+@import "colors";
 @import "src/scss/variables";
-
-$list: top bottom left right;
-
-html body{
-  @for $i from 8 through 16 {
-    @each $side in $list {
-      .m#{str-slice($side, 0, 1)}-#{$i} {
-        margin-#{$side}: 1px*$i;
-        @include media-max("phone-down") { &.rsz{margin-#{$side}: 1px*$i/2; }}
-      }
-    }
-    [dir="rtl"]{
-      .mr-#{$i} {
-        margin-left: 1px*$i;
-        margin-right: 0;
-        @include media-max("phone-down") { &.rsz{margin-left: 1px*$i/2; }}
-      }
-      .ml-#{$i} {
-        margin-right: 1px*$i;
-        margin-left: 0;
-        @include media-max("phone-down") { &.rsz{margin-right: 1px*$i/2; }}
-      }
-      .mb-#{$i} {
-        margin-bottom: 1px*$i;
-        @include media-max("phone-down") { &.rsz{margin-bottom: 1px*$i/2; }}
-      }
-    }
-  }
-}
 
 html {
   scroll-behavior: smooth;
+}
+
+// Titles
+main {
+  h1 {
+    @include text("h1");
+    @include media-max("sm-limit") {
+      font-size: 35px;
+    }
+  }
+  h2 {
+    @include text("h2");
+    @include media-max("sm-limit") {
+      font-size: 27px;
+    }
+  }
+  h3 {
+    @include text("h3");
+    @include media-max("sm-limit") {
+      font-size: 27px;
+    }
+  }
+  h4 {
+    @include text("h4");
+    @include media-max("sm-limit") {
+      font-size: 21px;
+    }
+  }
+  h5 {
+    @include text("h5");
+  }
 }
 
 html body {
@@ -46,40 +48,7 @@ html body {
     user-select: text;
   }
 
-  h1 {
-    font-weight: bold;
-    @include text("h1");
-    @include media-max("sm-limit") {
-      font-size: 35px;
-    }
-  }
-  h2 {
-    font-weight: 600;
-    @include text("h2");
-    @include media-max("sm-limit") {
-      font-size: 27px;
-    }
-  }
-  h3 {
-    font-weight: bold;
-    @include text("h2");
-    @include media-max("sm-limit") {
-      font-size: 27px;
-    }
-  }
-  h4 {
-    font-weight: normal;
-    @include text("h4");
-    @include media-max("sm-limit") {
-      font-size: 21px;
-    }
-  }
-  h5 {
-    @include media-max("sm-limit") {
-      font-size: 15px;
-    }
-  }
-
+  // Texts
   .texte-small {
     font-weight: normal;
     @include text("normal");
@@ -91,44 +60,19 @@ html body {
     @include text("very-small");
   }
 
-  .color-vert {
-    color: $validationHover;
-  }
-  .color-jaune {
-    color: $yellow;
-  }
-  .color-orange {
-    color: $orange;
-  }
-  .color-rouge {
-    color: $error;
-  }
-  .color-gray70 {
-    color: $gray70;
-  }
-  .color-focus {
-    color: $focus;
-  }
-
   .cursor-pointer {
     cursor: pointer;
   }
-  .full-width {
-    width: 100%;
-  }
 
+  // Links and buttons
   a {
-    text-decoration: none;
-    color: inherit;
+    &,
+    &[href],
     &:hover {
       text-decoration: none;
       color: inherit;
+      background-image: none;
     }
-  }
-  
-  a[href] {
-    text-decoration: none;
-    background-image: none;
   }
 
   :not([class^="fr-link"])[target="_blank"]::after {
@@ -140,6 +84,7 @@ html body {
     background: none;
     padding: 0;
     -webkit-appearance: unset;
+    appearance: unset;
 
     &:focus {
       outline: none;
@@ -154,60 +99,49 @@ html body {
     outline: none;
     box-shadow: none !important;
   }
-  .dropdown-menu.show {
-    border-radius: $radius;
-    border: none;
-    z-index: 2000000;
+
+  // Dropdowns
+  .dropdown-menu {
+    &.show {
+      border-radius: $radius;
+      border: none;
+      z-index: 2000000;
+
+      @include rtl() {
+        left: inherit !important;
+        right: 8px !important;
+      }
+    }
   }
+
+  // Avatar
   .profile-img-pin {
     height: 40px;
     width: 40px;
     border-radius: 50%;
   }
 
-  .bg-attention {
-    background: $attention;
-  }
-  .bg-attention2 {
-    background: $bgfocus;
-  }
-  .bg-validation {
-    background: $validation;
-  }
-  .bg-gray20 {
-    background: $gray20;
-  }
-  .bg-dark-gray20 {
-    background: $gray70;
-  }
-  .bg-standby {
-    background: $standby;
-  }
+  // Backgrounds
   .bg-focus {
     background: $focus;
   }
-  .bg-erreur {
-    background: $erreur;
-  }
-  .bg-error {
-    background: $error;
-  }
-  .bg-black {
-    background: $gray90;
-  }
 
+  // Aligns
   .flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
+  // Inputs
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  .flag-icon-sa {
+
+  // Flags
+  .fi.fi-sa {
     background-image: url(../assets/figma/sa_custom.svg);
   }
 }
@@ -217,10 +151,8 @@ html body {
   z-index: 2000 !important;
 }
 
-// Dropdown
-.dropdown-menu.show {
-  @include rtl() {
-    left: inherit !important;
-    right: 8px !important;
-  }
+// Bootstrap btn fix
+.btn-secondary,
+.btn-secondary:hover {
+  color: $dark;
 }

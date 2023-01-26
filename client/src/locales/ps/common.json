@@ -249,9 +249,6 @@
     "Renseignez votre adresse email": "خپل بریښنالیک ادرس داخل کړئ",
     "Votre email": "ستاسو بریښنالیک",
     "Email infos": "د هیریدو په صورت کې لازمه ده چې خپل پاس ورډ دوباره جوړ کړئ،",
-    "Faible": "ضعیفه",
-    "Fort": "قوې",
-    "Moyen": "درمیانه",
     "Mot de passe trop faible": "اوه! ستاسو پاس ورډ ډیر ضعیفه دی",
     "Ceci n'est pas un email,": "دا بریښنالیک نه دی",
     "vérifiez l'orthographe": "لیکدود چک کړئ",
@@ -262,7 +259,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "موږ به تاسو ته د راجسټریشن لپاره د بلنې بریښنالیک واستوو",
     "Créez-vous un compte depuis votre ordinateur pour participer": "د ګډون لپاره د خپل کمپیوټرله لارې یو اکونټ جوړ کړئ"
   },
-  "UnauthorizedAccess": { "Accès refusé": "لاسرسی رد شو", "Revenir à l'accueil": "اصلي صفحی ته بیرته راستنیدل" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "لاسرسی رد شو",
+    "Revenir à l'accueil": "اصلي صفحی ته بیرته راستنیدل"
+  },
   "Dispositif": {
     "cliquez": "په سوالیه نشان \"؟\" کلیک کړی د لازیاتو معلوماتو لپاره",
     "informations_utiles": "ایا تاسو ګټوراو مفید معلومات وموندل؟",

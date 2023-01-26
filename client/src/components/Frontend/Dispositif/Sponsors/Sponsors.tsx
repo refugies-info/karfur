@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Input, FormGroup, Label, Spinner } from "reactstrap";
 import { connect } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import styled from "styled-components";
@@ -12,11 +12,9 @@ import API from "utils/API";
 import { getPath } from "routes";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import FButton from "components/UI/FButton/FButton";
-import SearchBar from "components/UI/SearchBar/SearchBar";
 import { structure_definie } from "assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
-import { updateUserActionCreator } from "services/User/user.actions";
-import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { colors } from "colors";
 import { SponsorSection } from "./SponsorSection/SponsorSection";
 import CustomModal from "./CustomModal";
@@ -31,9 +29,12 @@ import { UiElementNodes } from "services/SelectedDispositif/selectedDispositif.r
 import { isValidPhone } from "lib/validateFields";
 import { cls } from "lib/classname";
 import mobile from "scss/components/mobile.module.scss";
+import { SearchStructures } from "components/UI";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 
 const SponsorContainer = styled.div`
   padding: 0px 0px 0px 16px;
+  width: auto !important;
   border-left: ${(props: { left?: boolean }) => (props.left ? "2px solid #FFFFFF" : null)};
 `;
 const SponsorListContainer = styled.div`
@@ -211,8 +212,7 @@ interface Props {
   userStructure: Structure;
   structures: Structure[];
   isLoadingStructures: boolean;
-  updateUserActionCreator: any;
-  fetchActiveStructuresActionCreator: any;
+  fetchAllStructuresActionsCreator: any;
 }
 
 const emptyStructure = {
@@ -260,7 +260,7 @@ class Sponsors extends Component<Props, State> {
       this.props.structures.length === 0 &&
       !this.props.isLoadingStructures
     ) {
-      this.props.fetchActiveStructuresActionCreator();
+      this.props.fetchAllStructuresActionsCreator();
     }
 
     if (prevProps.mainSponsor && !this.props.mainSponsor) {
@@ -277,16 +277,17 @@ class Sponsors extends Component<Props, State> {
     }
   }
 
-  // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps: Props) {
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
     if (nextProps.user && nextProps.userStructure) {
       const structure = { ...nextProps.userStructure, checked: false };
       this.setState({ mesStructures: [structure] });
     }
   }
+
   resetImg = () => {
     this.setState({ imgData: null });
   };
+
   toggleModal = (name?: string) =>
     this.setState((pS) => ({
       showModals: pS.showModals.map((x) => ({
@@ -294,10 +295,13 @@ class Sponsors extends Component<Props, State> {
         show: x.name === name ? !x.show : false
       }))
     }));
+
   toggleTooltip = () => this.setState((pS) => ({ tooltipOpen: !pS.tooltipOpen }));
+
   toggleIsMyStructureSelected = () => {
     this.setState({ isMyStructureSelected: !this.state.isMyStructureSelected });
   };
+
   handleFileInputChange = (event: any) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
@@ -337,31 +341,30 @@ class Sponsors extends Component<Props, State> {
       }
     });
   };
-  handleUserChange = (e: any) =>
-    this.props.updateUserActionCreator({
-      ...this.props.user,
-      [e.target.id]: e.target.value
-    });
 
   handleBelongsSChange = () => this.setState((pS) => ({ authorBelongs: !pS.authorBelongs }));
+
   handleStructChange = (id: string) =>
     this.setState((pS) => ({
       mesStructures: pS.mesStructures.map((x) => ({
         ...x,
         checked: x._id.toString() === id ? !x.checked : false
       })),
-      checked: false
+      checked: false,
+      selected: null
     }));
 
-  selectItem = (suggestion: Partial<Structure>) => {
-    this.setState({ selected: suggestion });
-    this.setState({
-      imgData: suggestion.picture || null,
-      link: suggestion.link || "",
-      nom: ""
-    });
-    //@ts-ignore
-    this.toggleModal(suggestion.createNew ? "creation" : "etVous");
+  selectItem = (structure: Partial<Structure> | null) => {
+    this.setState((pS) => ({
+      selected: structure,
+      imgData: structure?.picture || null,
+      link: structure?.link || "",
+      nom: "",
+      mesStructures: pS.mesStructures.map((x) => ({
+        ...x,
+        checked: false
+      }))
+    }));
   };
 
   createStructure = () => {
@@ -373,7 +376,7 @@ class Sponsors extends Component<Props, State> {
       Swal.fire({
         title: "Oh non!",
         text: "Certaines informations sont manquantes",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -473,7 +476,7 @@ class Sponsors extends Component<Props, State> {
     Swal.fire({
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
+      icon: "error",
       timer: 1500
     });
 
@@ -485,7 +488,6 @@ class Sponsors extends Component<Props, State> {
     const sponsorsWithPicture = sponsors.filter((sponsor) => !!sponsor.picture && !sponsor._id);
     const deduplicatedSponsors = sponsorsWithoutPicture.concat(uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom));
     const modal = { name: "responsabilite" };
-    const structuresArray = this.props.structures ? this.props.structures : [{ createNew: true }];
     const totalSponsor = this.createCarouselObject(mainSponsor, deduplicatedSponsors);
     const isRTL = ["ar", "ps", "fa"].includes(this.props.locale || "fr");
     return (
@@ -531,6 +533,7 @@ class Sponsors extends Component<Props, State> {
                       query: { id: mainSponsor._id.toString() }
                     }}
                     passHref
+                    prefetch={false}
                   >
                     <ImageLink target="_blank" rel="noopener noreferrer">
                       {mainSponsor?.picture?.secure_url && (
@@ -540,7 +543,7 @@ class Sponsors extends Component<Props, State> {
                           alt={mainSponsor.nom}
                           width={160}
                           height={110}
-                          objectFit="contain"
+                          style={{ objectFit: "contain" }}
                         />
                       )}
                     </ImageLink>
@@ -614,7 +617,7 @@ class Sponsors extends Component<Props, State> {
                               alt={sponsor.nom}
                               width={160}
                               height={110}
-                              objectFit="contain"
+                              style={{ objectFit: "contain" }}
                             />
                           </ImageLink>
                         ) : (
@@ -626,7 +629,7 @@ class Sponsors extends Component<Props, State> {
                                 alt={sponsor.nom}
                                 width={160}
                                 height={110}
-                                objectFit="contain"
+                                style={{ objectFit: "contain" }}
                               />
                             )}
                           </ImageLink>
@@ -695,7 +698,7 @@ class Sponsors extends Component<Props, State> {
           showModals={showModals}
           toggleModal={this.toggleModal}
           modal={modal}
-          keyValue={"0"}
+          keyValue="0"
           title="Responsabilité de la fiche"
           lowerLeftBtn={
             <FButton
@@ -708,20 +711,26 @@ class Sponsors extends Component<Props, State> {
           }
           lowerRightBtn={
             <div>
-              <FButton type="white" fill={colors.gray90} onClick={this.toggleModal} className="ml-auto mr-8">
+              <FButton type="white" fill={colors.gray90} onClick={this.toggleModal} className="ms-auto me-2">
                 Quitter
               </FButton>
               <FButton
                 type="validate"
                 name="checkmark-outline"
                 fill={colors.gray90}
-                disabled={(!checked || (!user.email && !user.phone)) && !mesStructures.some((x) => x.checked)}
+                disabled={
+                  (!checked || (!user.email && !user.phone)) && !mesStructures.some((x) => x.checked) && !selected
+                }
                 onClick={() => {
-                  this.validerRespo();
-                  this.toggleIsMyStructureSelected();
-                  this.toggleModal("envoye");
+                  if (selected) {
+                    this.toggleModal("etVous");
+                  } else {
+                    this.validerRespo();
+                    this.toggleIsMyStructureSelected();
+                    this.toggleModal("envoye");
+                  }
                 }}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -729,7 +738,7 @@ class Sponsors extends Component<Props, State> {
           }
         >
           {this.state.banner ? (
-            <div className={styles.warning + " bg-focus mt-16 mb-16"}>
+            <div className={styles.warning + " bg-focus mt-4 mb-4"}>
               <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div onClick={() => this.setState({ banner: false })} className={styles.close_icon}>
                 <EVAIcon name="close-outline" fill={colors.gray10} />
@@ -742,17 +751,11 @@ class Sponsors extends Component<Props, State> {
           ) : (
             <div style={{ marginTop: 24 }} />
           )}
-          <SearchBar
-            structures
-            loupe
-            className="search-bar inner-addon right-addon mb-16 mt-8"
-            placeholder="Rechercher une structure..."
-            //@ts-ignore
-            array={structuresArray}
-            createNewCta="Créer une nouvelle structure"
-            selectItem={this.selectItem}
-            handleChangeValueEntered={this.handleChangeValueEntered}
-            toggleModal={this.toggleModal}
+          <SearchStructures
+            onChange={(structure) => this.selectItem(structure as Structure)}
+            onClickCreateStructure={() => this.toggleModal("creation")}
+            selectedStructure={this.state.selected}
+            structures={this.props.structures}
           />
 
           {mesStructures.length > 0 &&
@@ -816,7 +819,7 @@ class Sponsors extends Component<Props, State> {
                   this.handleChangeValueEntered("");
                   this.resetImg();
                 }}
-                className="ml-auto mr-8"
+                className="ms-auto me-2"
                 name="arrow-back-outline"
               >
                 Retour
@@ -830,7 +833,7 @@ class Sponsors extends Component<Props, State> {
                   this.toggleModal("envoye");
                   this.setState({ imgData: null });
                 }}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -844,7 +847,7 @@ class Sponsors extends Component<Props, State> {
               </ConfirmationStructureTitleContainer>
             </p>
 
-            <div className={styles.selection_wrapper + " bg-white mb-10"}>
+            <div className={styles.selection_wrapper + " bg-white mb-2"}>
               {selected && selected?.picture?.secure_url && (
                 <Image
                   src={selected.picture.secure_url}
@@ -852,7 +855,7 @@ class Sponsors extends Component<Props, State> {
                   alt="logo de structure"
                   width={40}
                   height={40}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
               )}
               {selected && (
@@ -862,7 +865,7 @@ class Sponsors extends Component<Props, State> {
               )}
             </div>
           </ConfirmationStructureContainer>
-          <FormGroup check className={styles.author + " mb-10"}>
+          <FormGroup check className={styles.author + " mb-2"}>
             <Label check style={{ cursor: "pointer" }}>
               <Input type="checkbox" checked={this.state.authorBelongs} onChange={this.handleBelongsSChange} />{" "}
               <b>Oui et je veux devenir rédacteur de cette structure</b>
@@ -875,7 +878,7 @@ class Sponsors extends Component<Props, State> {
             </Label>
           </FormGroup>
           {this.state.banner ? (
-            <div className={styles.warning + " bg-focus mt-16 mb-16"}>
+            <div className={styles.warning + " bg-focus mt-4 mb-4"}>
               <EVAIcon name="info" fill={colors.gray10} className={styles.info_icon} />
               <div onClick={() => this.setState({ banner: false })} className={styles.close_icon}>
                 <EVAIcon name="close-outline" fill={colors.gray10} />
@@ -916,7 +919,7 @@ class Sponsors extends Component<Props, State> {
                   this.handleChangeValueEntered("");
                   this.resetImg();
                 }}
-                className="ml-auto mr-8"
+                className="ms-auto me-2"
               >
                 Retour
               </FButton>
@@ -932,7 +935,7 @@ class Sponsors extends Component<Props, State> {
                   this.state.phoneError
                 }
                 onClick={this.createStructure}
-                className="ml-auto"
+                className="ms-auto"
               >
                 Valider
               </FButton>
@@ -958,7 +961,7 @@ class Sponsors extends Component<Props, State> {
                   alt={""}
                   width={160}
                   height={110}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
                 <FButton className="position-relative" type="fill-dark" name="upload-outline">
                   <Input
@@ -970,7 +973,7 @@ class Sponsors extends Component<Props, State> {
                     onChange={this.handleFileInputChange}
                   />
                   <span>Choisir</span>
-                  {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
+                  {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
                 </FButton>
               </div>
             ) : (
@@ -984,7 +987,7 @@ class Sponsors extends Component<Props, State> {
                   onChange={this.handleFileInputChange}
                 />
                 <span>Choisir</span>
-                {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
+                {this.state.sponsorLoading && <Spinner size="sm" color="green" className="ms-2" />}
               </FButton>
             )}
           </div>
@@ -1007,7 +1010,7 @@ class Sponsors extends Component<Props, State> {
                 }
                 this.props.toggleDispositifValidateModal();
               }}
-              className="ml-auto"
+              className="ms-auto"
             >
               Je termine ma fiche
             </FButton>
@@ -1032,7 +1035,7 @@ class Sponsors extends Component<Props, State> {
 
             {isMyStructureSelected ? (
               <>
-                <h5 className="mb-10 green">Votre fiche va être transférée à la structure :</h5>
+                <h5 className="mb-2 green">Votre fiche va être transférée à la structure :</h5>
                 <MyStructureContainer>
                   {" "}
                   {mainSponsor?.picture?.secure_url && (
@@ -1040,7 +1043,7 @@ class Sponsors extends Component<Props, State> {
                       src={mainSponsor.picture.secure_url}
                       className={styles.selection_logo}
                       alt="logo de structure"
-                      objectFit="contain"
+                      style={{ objectFit: "contain" }}
                       width={40}
                       height={40}
                     />
@@ -1049,7 +1052,7 @@ class Sponsors extends Component<Props, State> {
                     {mainSponsor?.acronyme || ""} - {mainSponsor?.nom || ""}
                   </span>
                 </MyStructureContainer>
-                <div className="mb-10">
+                <div className="mb-2">
                   <b>
                     Les responsables de la structure vont prendre le relais. N’hésitez pas à les joindre directement si
                     vous les connaissez.
@@ -1059,8 +1062,8 @@ class Sponsors extends Component<Props, State> {
             ) : selected?.nom ? (
               authorBelongs ? (
                 <>
-                  <h5 className="mb-10">Votre demande est soumise aux reponsables de :</h5>
-                  <div className={styles.selection_wrapper + " mb-10"}>
+                  <h5 className="mb-2">Votre demande est soumise aux reponsables de :</h5>
+                  <div className={styles.selection_wrapper + " mb-2"}>
                     {selected?.picture?.secure_url && (
                       <Image
                         src={selected.picture.secure_url}
@@ -1068,7 +1071,7 @@ class Sponsors extends Component<Props, State> {
                         alt="logo de structure"
                         width={40}
                         height={40}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <span>
@@ -1085,7 +1088,7 @@ class Sponsors extends Component<Props, State> {
                 </>
               ) : (
                 <>
-                  <h5 className="mb-10 green">Votre fiche va être transférée à la structure :</h5>
+                  <h5 className="mb-2 green">Votre fiche va être transférée à la structure :</h5>
                   <MyStructureContainer>
                     {" "}
                     {mainSponsor?.picture?.secure_url && (
@@ -1095,7 +1098,7 @@ class Sponsors extends Component<Props, State> {
                         alt="logo de structure"
                         width={40}
                         height={40}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <span>
@@ -1112,8 +1115,8 @@ class Sponsors extends Component<Props, State> {
               )
             ) : (
               <>
-                <h5 className="mb-10">La structure est en cours de création</h5>
-                <div className="mb-10">
+                <h5 className="mb-2">La structure est en cours de création</h5>
+                <div className="mb-2">
                   <b>
                     Nous allons faire le nécessaire pour activer votre structure à partir des informations que vous avez
                     renseignées.
@@ -1148,17 +1151,19 @@ class Sponsors extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: RootState) => {
+  const structures = allStructuresSelector(state).filter(
+    (structure) => structure.status === "Actif" || structure.status === "En attente"
+  );
   return {
     user: state.user.user,
     userStructure: state.userStructure,
-    structures: state.activeStructures,
-    isLoadingStructures: isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)(state)
+    structures,
+    isLoadingStructures: isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)(state)
   };
 };
 
 const mapDispatchToProps = {
-  updateUserActionCreator,
-  fetchActiveStructuresActionCreator
+  fetchAllStructuresActionsCreator
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

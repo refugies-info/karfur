@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ListGroup,
-  ListGroupItem,
-  Spinner,
-  InputGroup,
-  Input,
-} from "reactstrap";
+import { ListGroup, ListGroupItem, Spinner, InputGroup, Input } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import ReactToPrint from "react-to-print";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
@@ -45,9 +39,7 @@ interface Props {
 
 const LeftSideDispositif = (props: Props) => {
   const { t } = useTranslation();
-  const [emailBody, setEmailBody] = useState(
-    "Voici le lien vers cette fiche : "
-  );
+  const [emailBody, setEmailBody] = useState("Voici le lien vers cette fiche : ");
 
   // when clicking on 'Voir le site'
   // if lecture mode : navigate to the link
@@ -57,8 +49,7 @@ const LeftSideDispositif = (props: Props) => {
     ? () =>
         props.content.externalLink &&
         window.open(
-          (props.content.externalLink.includes("http") ? "" : "http://") +
-            props.content.externalLink,
+          (props.content.externalLink.includes("http") ? "" : "http://") + props.content.externalLink,
           "_blank"
         )
     : props.toggleInputBtnClicked;
@@ -68,8 +59,7 @@ const LeftSideDispositif = (props: Props) => {
   }, []);
 
   const getTitle = (title: string): string => {
-    if (title === "La démarche par étapes")
-      return t("Dispositif.Comment faire ?", "Comment faire ?");
+    if (title === "La démarche par étapes") return t("Dispositif.Comment faire ?", "Comment faire ?");
 
     // @ts-ignore
     return t("Dispositif." + title, title);
@@ -84,20 +74,11 @@ const LeftSideDispositif = (props: Props) => {
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
       <ListGroup className={cls("list-group-flush", styles.list)}>
-        <Scrollspy
-          items={props.menu.map((_, key) => "item-" + key)}
-          currentClassName="active"
-          offset={-60}
-        >
+        <Scrollspy items={props.menu.map((_, key) => "item-" + key)} currentClassName="active" offset={-60}>
           {props.menu.map((item, key) => {
             return (
               <div key={key} className="list-item-wrapper">
-                <ListGroupItem
-                  action
-                  tag="a"
-                  data-toggle="list"
-                  href={"#item-head-" + key}
-                >
+                <ListGroupItem action tag="a" data-toggle="list" href={"#item-head-" + key}>
                   {/* {item.title && t("Dispositif." + item.title, item.title)} */}
                   {item.title && getTitle(item.title)}
                 </ListGroupItem>
@@ -111,11 +92,7 @@ const LeftSideDispositif = (props: Props) => {
           <div className="link-wrapper" id="input-btn">
             {props.inputBtnClicked ? (
               <InputGroup className="input-btn">
-                <EVAIcon
-                  className="link-icon"
-                  name="link-outline"
-                  fill={colors.gray70}
-                />
+                <EVAIcon className="link-icon" name="link-outline" fill={colors.gray70} />
                 <Input
                   value={props.content.externalLink}
                   onChange={props.handleChange}
@@ -130,10 +107,7 @@ const LeftSideDispositif = (props: Props) => {
                 />
               </InputGroup>
             ) : (
-              <div
-                style={{ display: "flex", flexDirection: "row" }}
-                onMouseEnter={() => props.updateUIArray(-2)}
-              >
+              <div style={{ display: "flex", flexDirection: "row" }} onMouseEnter={() => props.updateUIArray(-2)}>
                 {props.disableEdit && props.content.externalLink && (
                   <FButton
                     className="print_buttons_btn"
@@ -161,7 +135,7 @@ const LeftSideDispositif = (props: Props) => {
                   <FButton
                     type="tuto"
                     name={"play-circle-outline"}
-                    className="print_buttons_btn ml-8"
+                    className="print_buttons_btn ms-2"
                     onClick={() => props.toggleTutorielModal("WebsiteLink")}
                     wrap
                   />
@@ -180,9 +154,7 @@ const LeftSideDispositif = (props: Props) => {
               wrap
             >
               {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-              {props.showSpinner && (
-                <Spinner color="light" className="ml-8 small-spinner" />
-              )}
+              {props.showSpinner && <Spinner color="light" className="ms-2 small-spinner" />}
             </FButton>
             <FButton
               className="print_buttons_btn"
@@ -199,11 +171,7 @@ const LeftSideDispositif = (props: Props) => {
               type="light-action"
               onClick={() => {
                 Event("Share", "SMS", "from dispositif sidebar");
-                send_sms(
-                  "Veuillez renseigner votre numéro de téléphone",
-                  props.typeContenu,
-                  props.content.titreInformatif
-                )
+                send_sms("Veuillez renseigner votre numéro de téléphone", props.content.titreInformatif);
               }}
               name="smartphone-outline"
               wrap
@@ -212,24 +180,21 @@ const LeftSideDispositif = (props: Props) => {
             </FButton>
             <ReactToPrint
               onBeforeGetContent={() => {
-                Event("Share", "Print", "from dispositif sidebar")
+                Event("Share", "Print", "from dispositif sidebar");
                 props.createPdf();
 
                 // give enough time for the accordions to open before printing
                 return new Promise((resolve: any) => {
-                  setTimeout(() => { resolve() }, 500);
+                  setTimeout(() => {
+                    resolve();
+                  }, 500);
                 });
               }}
               onAfterPrint={() => {
                 props.closePdf();
               }}
               trigger={() => (
-                <FButton
-                  className="print_buttons_btn"
-                  type="light-action"
-                  name="printer-outline"
-                  wrap
-                >
+                <FButton className="print_buttons_btn" type="light-action" name="printer-outline" wrap>
                   {t("Dispositif.Imprimer", "Imprimer")}
                 </FButton>
               )}

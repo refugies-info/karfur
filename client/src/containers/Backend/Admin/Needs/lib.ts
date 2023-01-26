@@ -14,7 +14,7 @@ export const prepareDeleteContrib = (
   return Swal.fire({
     title: "Êtes-vous sûr ?",
     text: "La suppression d'un dispositif est irréversible",
-    type: "question",
+    icon: "question",
     showCancelButton: true,
     confirmButtonColor: colors.rouge,
     cancelButtonColor: colors.vert,
@@ -32,7 +32,7 @@ export const prepareDeleteContrib = (
           Swal.fire({
             title: "Yay...",
             text: "Suppression effectuée",
-            type: "success",
+            icon: "success",
             timer: 1500,
           });
           const dispositifs = [...allDispositifs];
@@ -44,7 +44,7 @@ export const prepareDeleteContrib = (
           Swal.fire({
             title: "Oh non!",
             text: "Something went wrong",
-            type: "error",
+            icon: "error",
             timer: 1500,
           });
         });

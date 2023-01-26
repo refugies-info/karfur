@@ -11,6 +11,12 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
       return res
         .status(401)
         .json({ text: "Mot de passe incorrect", data: "no-alert" });
+    case "USED_PASSWORD":
+      return res.status(400).json({
+        code: "USED_PASSWORD",
+        text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
+        data: "no-alert"
+      });
     case "NOT_FROM_SITE":
       return res
         .status(403)

@@ -28,19 +28,17 @@ export enum LoadingStatusKey {
   SAVE_THEME = "SAVE_THEME",
   CREATE_THEME = "CREATE_THEME",
   DELETE_THEME = "DELETE_THEME",
+  NAVIGATING = "NAVIGATING"
 }
 
-export const startLoading = (key: LoadingStatusKey) =>
-  action("LOADING_START", { key });
-export const finishLoading = (key: LoadingStatusKey) =>
-  action("LOADING_END", { key });
-export const setError = (key: LoadingStatusKey, error: string) =>
-  action("LOADING_ERROR", { key, error });
+export const startLoading = (key: LoadingStatusKey) => action("LOADING_START", { key });
+export const finishLoading = (key: LoadingStatusKey) => action("LOADING_END", { key });
+export const setError = (key: LoadingStatusKey, error: string) => action("LOADING_ERROR", { key, error });
 
 const actions = {
   startLoading,
   finishLoading,
-  setError,
+  setError
 };
 
 export type LoadingStatusActions = ActionType<typeof actions>;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from "../Sponsors.module.scss";
 import { Structure } from "types/interface";
 
@@ -84,7 +84,7 @@ export const SponsorSection = (props: Props) => {
                   alt={structure.nom}
                   width={160}
                   height={110}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
               </ImageLink>
               <SponsorTitle>{structure.nom}</SponsorTitle>
@@ -107,7 +107,7 @@ export const SponsorSection = (props: Props) => {
                   alt={structure.nom}
                   width={160}
                   height={110}
-                  objectFit="contain"
+                  style={{ objectFit: "contain" }}
                 />
               </ImageLink>
             ) : (
@@ -119,7 +119,7 @@ export const SponsorSection = (props: Props) => {
                     alt={structure.nom}
                     width={160}
                     height={110}
-                    objectFit="contain"
+                    style={{ objectFit: "contain" }}
                   />
                 )}
               </ImageLink>

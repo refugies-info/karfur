@@ -1,28 +1,23 @@
+import { cls } from "lib/classname";
 import React from "react";
 import styles from "./FSwitch.module.scss";
 
 interface Props {
-  checked: boolean
-  onClick?: any
-  large?: boolean
-  precontent?: string
-  content?: string
-  className?: string
+  checked: boolean;
+  onClick?: any;
+  large?: boolean;
+  precontent?: string;
+  content?: string;
+  className?: string;
 }
 
 const FSwitch = (props: Props) => {
   return (
-    <div className={`${styles.switch} ${props.large ? styles.large : ""}`}>
-      <span>{props.precontent}</span>
-      <label
-        className={
-          "form-check-label switch switch-outline-light switch-pill mr-10 " +
-          (props.precontent ? "ml-10 " : " ") +
-          (props.className || "")
-        }
-      >
+    <div className={cls(styles.switch, props.large && styles.large)}>
+      {props.precontent && <span className="me-2">{props.precontent}</span>}
+      <div className={"form-check form-switch"}>
         <input
-          className="form-check-input switch-input"
+          className="form-check-input"
           type="checkbox"
           role="switch"
           checked={props.checked}
@@ -30,9 +25,8 @@ const FSwitch = (props: Props) => {
           onClick={props.onClick}
           readOnly
         />
-        <span className="switch-slider" />
-      </label>
-      <span>{props.content}</span>
+        <label className={"form-check-label ms-2" + (props.className || "")}>{props.content}</label>
+      </div>
     </div>
   );
 };
