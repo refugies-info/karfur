@@ -33,9 +33,11 @@
 }
 .col_1 {
   width: 450px;
+  min-width: 450px;
 }
 .col_2 {
   width: 225px;
+  min-width: 225px;
   margin: 0 16px;
   display: flex;
   flex-direction: column;

@@ -95,15 +95,15 @@ export const OneNeedTranslationModal = (props: Props) => {
       ) : (
         <>
           <h1 className="h5 my-2">Traduction d'un besoin : </h1>
-          <p className="font-weight-bold mb-1">Une erreur est survenue</p>
+          <p className="fw-bold mb-1">Une erreur est survenue</p>
         </>
       )}
       <div className="d-flex justify-content-end mt-5">
-        <FButton className="mr-8" type="white" name="close-outline" onClick={props.toggle}>
+        <FButton className="me-2" type="white" name="close-outline" onClick={props.toggle}>
           Annuler
         </FButton>
         {!hasError && (
-          <FButton className="mr-8" type="validate" name="checkmark-outline" onClick={onSave} disabled={!text}>
+          <FButton className="me-2" type="validate" name="checkmark-outline" onClick={onSave} disabled={!text}>
             Enregistrer
           </FButton>
         )}

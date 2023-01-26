@@ -143,7 +143,7 @@ export const TranslationNeedsModal = (props: Props) => {
             justifyContent: "flex-end"
           }}
         >
-          <FButton className="mr-8" type="white" name="arrow-back-outline" onClick={props.toggle}>
+          <FButton className="me-2" type="white" name="arrow-back-outline" onClick={props.toggle}>
             Retour
           </FButton>
         </div>
@@ -208,7 +208,7 @@ export const TranslationNeedsModal = (props: Props) => {
         <FButton type="tuto" name={"play-circle-outline"} onClick={toggleTutorielModal}>
           Tutoriel
         </FButton>
-        <FButton className="mr-8" type="white" name="arrow-back-outline" onClick={props.toggle}>
+        <FButton className="me-2" type="white" name="arrow-back-outline" onClick={props.toggle}>
           Retour
         </FButton>
       </div>

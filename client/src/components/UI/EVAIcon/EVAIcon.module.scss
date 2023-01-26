@@ -1,0 +1,12 @@
+.icon {
+  display: inline-flex;
+  align-items: center;
+
+  & > i {
+    display: block;
+
+    & > svg {
+      vertical-align: top;
+    }
+  }
+}

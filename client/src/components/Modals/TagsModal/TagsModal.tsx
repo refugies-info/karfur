@@ -16,14 +16,8 @@ import ThemeIcon from "components/UI/ThemeIcon";
 
 const Step = ({ ...props }) => {
   return (
-    <div
-      className={styles.sphere}
-      style={{ backgroundColor: props.done ? "#4caf50" : "#212121" }}
-    >
-      <p
-        className={styles.title}
-        style={{color: "white"}}
-      >
+    <div className={styles.sphere} style={{ backgroundColor: props.done ? "#4caf50" : "#212121" }}>
+      <p className={styles.title} style={{ color: "white" }}>
         {props.children}
       </p>
     </div>
@@ -31,10 +25,10 @@ const Step = ({ ...props }) => {
 };
 
 interface SubProps {
-  title: string
-  subtitle: string
-  step: string
-  done: boolean
+  title: string;
+  subtitle: string;
+  step: string;
+  done: boolean;
 }
 const StyledSub = (props: SubProps) => {
   return (
@@ -53,7 +47,7 @@ interface Props {
   toggle: () => void;
   theme: Theme | undefined;
   secondaryThemes: Theme[];
-  validate: (theme: Theme|null, secondaryThemes: Theme[]) => void;
+  validate: (theme: Theme | null, secondaryThemes: Theme[]) => void;
   allThemes: Theme[];
   toggleTutorielModal: any;
   user: User | null;
@@ -61,9 +55,9 @@ interface Props {
 }
 
 const DispositifValidateModal = (props: Props) => {
-  const [theme1, setTheme1] = useState<Theme|null>(null);
-  const [theme2, setTheme2] = useState<Theme|null>(null);
-  const [theme3, setTheme3] = useState<Theme|null>(null);
+  const [theme1, setTheme1] = useState<Theme | null>(null);
+  const [theme2, setTheme2] = useState<Theme | null>(null);
+  const [theme3, setTheme3] = useState<Theme | null>(null);
   const [noTheme, setNoTheme] = useState(false);
   const router = useRouter();
 
@@ -79,7 +73,7 @@ const DispositifValidateModal = (props: Props) => {
       setTheme2(null);
       setTheme3(null);
       setNoTheme(false);
-    }
+    };
   }, [props.theme, props.secondaryThemes]);
 
   const selectTheme1 = (theme: Theme) => {
@@ -137,19 +131,19 @@ const DispositifValidateModal = (props: Props) => {
     API.updateDispositifTagsOrNeeds({
       query: {
         dispositifId: props.dispositifId,
-        ...(theme1 ? {theme: theme1._id} : {}),
-        secondaryThemes,
-      },
+        ...(theme1 ? { theme: theme1._id } : {}),
+        secondaryThemes
+      }
     });
     validateAndClose();
 
     Swal.fire({
       title: "Attention!",
       text: "Les nouveaux thèmes sont enregistrés. Attention à ne pas valider la fiche sinon toutes les traductions vont tomber !",
-      type: "warning",
+      icon: "warning",
       preConfirm: () => {
         router.push("/backend/admin");
-      },
+      }
     });
   };
 
@@ -160,24 +154,14 @@ const DispositifValidateModal = (props: Props) => {
     : false;
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
-      <ModalHeader
-        toggle={props.toggle}
-        className={styles.modal_header}
-      >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+      <ModalHeader toggle={props.toggle} className={styles.modal_header}>
         Choix des thèmes
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <StyledSub
           title={"Choisissez le thème principal de votre fiche"}
-          subtitle={
-            "Ce thème catégorise votre fiche pour le moteur de recherche"
-          }
+          subtitle={"Ce thème catégorise votre fiche pour le moteur de recherche"}
           step={"1"}
           done={theme1 ? true : false}
         />
@@ -188,35 +172,24 @@ const DispositifValidateModal = (props: Props) => {
               onClick={() => selectTheme1(theme)}
               className={
                 !theme1
-                  ? "d-inline-block mr-10 mt-10"
+                  ? "d-inline-block me-2 mt-2"
                   : theme1._id === theme._id
-                  ? "d-inline-block mr-10 mt-10"
-                  : "d-inline-block mr-10 mt-10 bg-dark-gris"
+                  ? "d-inline-block me-2 mt-2"
+                  : "d-inline-block me-2 mt-2"
               }
-              color={
-                theme1 && theme1._id === theme._id
-                  ? theme.colors.color100
-                  : "gray"
-              }
+              color={theme1 && theme1._id === theme._id ? theme.colors.color100 : "gray"}
               withMargins
               smallFont
             >
               <span className={styles.inner_btn}>
                 {theme.icon ? (
                   <div className={styles.icon}>
-                    <ThemeIcon
-                      theme={theme}
-                    />
+                    <ThemeIcon theme={theme} />
                   </div>
                 ) : null}
                 {theme.short.fr}
                 {theme1 && theme1._id === theme._id ? (
-                  <EVAIcon
-                    onClick={() => {}}
-                    name="close-outline"
-                    fill={"white"}
-                    className="sort-btn ml-2"
-                  />
+                  <EVAIcon onClick={() => {}} name="close-outline" fill={"white"} className="sort-btn ms-2" />
                 ) : null}
               </span>
             </FSearchBtn>
@@ -224,9 +197,7 @@ const DispositifValidateModal = (props: Props) => {
         })}
         <StyledSub
           title={"Choisissez jusqu’à deux thèmes supplémentaires"}
-          subtitle={
-            "Ces thèmes secondaires permettent de compléter le référencement"
-          }
+          subtitle={"Ces thèmes secondaires permettent de compléter le référencement"}
           step={"2"}
           done={theme2 || theme3 || noTheme ? true : false}
         />
@@ -234,9 +205,7 @@ const DispositifValidateModal = (props: Props) => {
           return (
             <FSearchBtn
               key={idx}
-              onClick={() =>
-                theme1 && theme._id === theme1._id ? null : selectTheme2(theme)
-              }
+              onClick={() => (theme1 && theme._id === theme1._id ? null : selectTheme2(theme))}
               color={
                 theme1 && theme._id === theme1._id
                   ? "gray"
@@ -264,20 +233,12 @@ const DispositifValidateModal = (props: Props) => {
               <span className={styles.inner_btn}>
                 {theme.icon ? (
                   <div className={styles.icon}>
-                    <ThemeIcon
-                      theme={theme}
-                    />
+                    <ThemeIcon theme={theme} />
                   </div>
                 ) : null}
                 {theme.short.fr}
-                {(theme2 && theme2._id === theme._id) ||
-                (theme3 && theme3._id === theme._id) ? (
-                  <EVAIcon
-                    onClick={() => {}}
-                    name="close-outline"
-                    fill={"white"}
-                    className="sort-btn ml-2"
-                  />
+                {(theme2 && theme2._id === theme._id) || (theme3 && theme3._id === theme._id) ? (
+                  <EVAIcon onClick={() => {}} name="close-outline" fill={"white"} className="sort-btn ms-2" />
                 ) : null}
               </span>
             </FSearchBtn>
@@ -285,15 +246,9 @@ const DispositifValidateModal = (props: Props) => {
         })}
         <div className={cls(styles.no_tag, noTheme && styles.enabled)}>
           <label className={checkStyles.checkbox}>
-            <input
-              onChange={handleCheckboxChange}
-              type="checkbox"
-              checked={noTheme}
-            />
+            <input onChange={handleCheckboxChange} type="checkbox" checked={noTheme} />
             <span className={cls(checkStyles.checkmark, styles.checkmark)}></span>
-            <p className={styles.label}>
-              Je ne souhaite pas ajouter de thèmes supplémentaires
-            </p>
+            <p className={styles.label}>Je ne souhaite pas ajouter de thèmes supplémentaires</p>
           </label>
         </div>
       </ModalBody>
@@ -327,7 +282,7 @@ const DispositifValidateModal = (props: Props) => {
               <FButton
                 type="tuto"
                 name={"play-circle-outline"}
-                className="ml-10"
+                className="ms-2"
                 onClick={() => props.toggleTutorielModal("Tags")}
               >
                 Tutoriel
@@ -337,13 +292,7 @@ const DispositifValidateModal = (props: Props) => {
         </div>
 
         <div style={{ justifyContent: "flex-end", display: "flex" }}>
-          <FButton
-            type="outline-black"
-            name="arrow-back"
-            fill={colors.gray90}
-            className="mr-10"
-            onClick={props.toggle}
-          >
+          <FButton type="outline-black" name="arrow-back" fill={colors.gray90} className="me-2" onClick={props.toggle}>
             Retour
           </FButton>
           <FButton

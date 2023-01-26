@@ -36,7 +36,7 @@ const EmbedHeader = (props: Props) => {
             <span className={styles.theme_icon}>
               <ThemeIcon theme={selectedTheme} size={18} />
             </span>
-            <span className="ml-2">{getThemeName(selectedTheme, router.locale, "short")}</span>
+            <span className="ms-2">{getThemeName(selectedTheme, router.locale, "short")}</span>
           </span>
         </>
       )}
@@ -51,12 +51,12 @@ const EmbedHeader = (props: Props) => {
           {" "}
           {t("Widget.inLanguage", "en")}{" "}
           <span className={styles.btn}>
-            <i
-              className={"flag-icon flag-icon-" + selectedLanguage.langueCode}
+            <span
+              className={"fi fi-" + selectedLanguage.langueCode}
               title={selectedLanguage.langueCode}
               id={selectedLanguage.langueCode}
             />
-            <span className={"language-name " + (isRTL ? "mr-2" : "ml-2")}>{selectedLanguage.langueFr}</span>
+            <span className={"language-name " + (isRTL ? "me-2" : "ms-2")}>{selectedLanguage.langueFr}</span>
           </span>
         </>
       )}

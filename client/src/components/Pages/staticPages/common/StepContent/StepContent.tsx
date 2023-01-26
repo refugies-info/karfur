@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { cls } from "lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import InlineLink from "../InlineLink";
@@ -64,7 +64,13 @@ const StepContent = (props: Props) => {
 
       <div className={styles.media}>
         {props.image && (
-          <Image src={props.image} alt="" width={props.width || 550} height={props.height} objectFit="contain" />
+          <Image
+            src={props.image}
+            alt=""
+            width={props.width || 550}
+            height={props.height}
+            style={{ objectFit: "contain" }}
+          />
         )}
         {props.video && <AutoplayVideo src={props.video} width={props.width} height={props.height || 320} />}
       </div>

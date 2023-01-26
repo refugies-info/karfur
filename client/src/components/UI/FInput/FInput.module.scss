@@ -4,18 +4,22 @@ $placeholderColor: $gray90;
 $borderRadius: 12px;
 
 .input {
-  .prepend {
+  .prepend,
+  .append {
+    border: none;
+    background: none;
+    padding: 0;
+    line-height: inherit;
+    font-size: inherit;
     position: absolute;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
+  }
+  .prepend {
     left: 15px;
   }
   .append {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
     right: 15px;
     cursor: pointer;
   }

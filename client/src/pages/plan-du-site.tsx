@@ -5,7 +5,7 @@ import SEO from "components/Seo";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const PlanDuSite = () => {
   const router = useRouter();
@@ -19,17 +19,19 @@ const PlanDuSite = () => {
           <Link href={getPath("/", router.locale)}>Accueil</Link>
         </li>
         <li>
-          <Link href={getPath("/recherche", router.locale)}>
+          <Link href={getPath("/recherche", router.locale)} prefetch={false}>
             {t("Toolbar.Trouver de l'information", "Trouver de l'information")}
           </Link>
         </li>
         <li>
-          <Link href={`${getPath("/publier", router.locale)}`}>
+          <Link href={getPath("/publier", router.locale)} prefetch={false}>
             {t("Toolbar.Publier une fiche", "Publier une fiche")}
           </Link>
         </li>
         <li>
-          <Link href={`${getPath("/traduire", router.locale)}`}>{t("Toolbar.Traduire", "Traduire")}</Link>
+          <Link href={getPath("/traduire", router.locale)} prefetch={false}>
+            {t("Toolbar.Traduire", "Traduire")}
+          </Link>
         </li>
         <li>
           {t("Toolbar.Parler de nous", "Parler de nous")}
@@ -66,10 +68,14 @@ const PlanDuSite = () => {
           <Link href="/#application">{t("MobileAppModal.Télécharger l'application")}</Link>
         </li>
         <li>
-          <Link href={getPath("/register", router.locale)}>{t("Toolbar.Inscription", "Inscription")}</Link>
+          <Link href={getPath("/register", router.locale)} prefetch={false}>
+            {t("Toolbar.Inscription", "Inscription")}
+          </Link>
         </li>
         <li>
-          <Link href={getPath("/login", router.locale)}>{t("Toolbar.Connexion", "Connexion")}</Link>
+          <Link href={getPath("/login", router.locale)} prefetch={false}>
+            {t("Toolbar.Connexion", "Connexion")}
+          </Link>
         </li>
       </ul>
     </div>

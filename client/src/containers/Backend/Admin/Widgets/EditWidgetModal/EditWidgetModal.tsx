@@ -22,16 +22,12 @@ interface Props {
 export const EditWidgetModal = (props: Props) => {
   const dispatch = useDispatch();
 
-  const [selectedThemes, setSelectedThemes] = useState<Theme[]>(
-    props.widget?.themes || []
+  const [selectedThemes, setSelectedThemes] = useState<Theme[]>(props.widget?.themes || []);
+  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(
+    props.widget?.typeContenu || ["demarche", "dispositif"]
   );
-  const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(props.widget?.typeContenu || ["demarche", "dispositif"]);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
-    props.widget?.languages || []
-  );
-  const [selectedDepartment, setSelectedDepartment] = useState(
-    props.widget?.department || ""
-  );
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(props.widget?.languages || []);
+  const [selectedDepartment, setSelectedDepartment] = useState(props.widget?.department || "");
   const [code, setCode] = useState(props.widget ? generateIframe(props.widget) : "");
   const [copyAndCloseAfterEdit, setCopyAndCloseAfterEdit] = useState(false);
 
@@ -51,24 +47,26 @@ export const EditWidgetModal = (props: Props) => {
 
   const editWidget = (e: any) => {
     e.preventDefault();
-    dispatch(saveWidgetActionCreator({
-      _id: props.widget?._id,
-      themes: selectedThemes,
-      typeContenu: selectedTypeContenu,
-      languages: selectedLanguages,
-      department: selectedDepartment,
-    }));
-  }
+    dispatch(
+      saveWidgetActionCreator({
+        _id: props.widget?._id,
+        themes: selectedThemes,
+        typeContenu: selectedTypeContenu,
+        languages: selectedLanguages,
+        department: selectedDepartment
+      })
+    );
+  };
 
   const editAndCopy = (e: any) => {
     setCopyAndCloseAfterEdit(true);
     editWidget(e);
-  }
+  };
 
   useEffect(() => {
     if (props.widget) {
       const generatedCode = generateIframe(props.widget);
-      setCode(generatedCode)
+      setCode(generatedCode);
 
       if (copyAndCloseAfterEdit) {
         copyToClipboard(generatedCode);
@@ -76,7 +74,7 @@ export const EditWidgetModal = (props: Props) => {
         setCopyAndCloseAfterEdit(false);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.widget]);
 
   const languages = useSelector(allLanguesSelector);
@@ -102,10 +100,7 @@ export const EditWidgetModal = (props: Props) => {
               setSelectedThemes={setSelectedThemes}
             />
 
-            <LocationInput
-              selectedDepartment={selectedDepartment}
-              setSelectedDepartment={setSelectedDepartment}
-            />
+            <LocationInput selectedDepartment={selectedDepartment} setSelectedDepartment={setSelectedDepartment} />
 
             <TypeContenuInput
               selectedTypeContenu={selectedTypeContenu}
@@ -115,7 +110,7 @@ export const EditWidgetModal = (props: Props) => {
             <LanguageInput
               selectedLanguages={selectedLanguages}
               setSelectedLanguages={setSelectedLanguages}
-              languages={languages.filter(ln => ln.i18nCode !== "fr")}
+              languages={languages.filter((ln) => ln.i18nCode !== "fr")}
             />
           </form>
         </Col>
@@ -134,7 +129,7 @@ export const EditWidgetModal = (props: Props) => {
               Annuler
             </FButton>
             <div>
-              <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget} className="mr-2">
+              <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget} className="me-2">
                 Sauvegarder
               </FButton>
               <FButton type="validate" name="copy-outline" disabled={!canSubmit} onClick={editAndCopy}>

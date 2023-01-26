@@ -15,7 +15,7 @@ import { logoDIAIR } from "assets";
 import Image from "next/image";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { toggleNewsletterModalAction } from "services/Miscellaneous/miscellaneous.actions";
@@ -42,15 +42,15 @@ const Footer = () => {
           <FooterLink asLink={<NextLink href={getPath("/recherche", router.locale, "?type=demarche")} />}>
             {t("Footer.Les fiches démarches", "Les fiches démarches")}
           </FooterLink>
-          <FooterLink asLink={<NextLink href={getPath("/annuaire", router.locale)} />}>
+          <FooterLink asLink={<NextLink href={getPath("/annuaire", router.locale)} prefetch={false} />}>
             {t("Footer.L’annuaire des acteurs", "L’annuaire des acteurs")}
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title={t("Footer.Participer", "Participer")}>
-          <FooterLink asLink={<NextLink href={getPath("/publier", router.locale)} />}>
+          <FooterLink asLink={<NextLink href={getPath("/publier", router.locale)} prefetch={false} />}>
             {t("Footer.Recenser mon action", "Recenser mon action")}
           </FooterLink>
-          <FooterLink asLink={<NextLink href={getPath("/traduire", router.locale)} />}>
+          <FooterLink asLink={<NextLink href={getPath("/traduire", router.locale)} prefetch={false} />}>
             {t("Footer.Aider à traduire", "Aider à traduire")}
           </FooterLink>
           <FooterLink asLink={<a href="https://avec.refugies.info/" target="_blank" />}>
@@ -87,7 +87,7 @@ const Footer = () => {
           </FooterLink>
         </FooterTopCategory>
         <FooterTopCategory title={t("Footer.A propos", "A propos")}>
-          <FooterLink asLink={<NextLink href={getPath("/qui-sommes-nous", router.locale)} />}>
+          <FooterLink asLink={<NextLink href={getPath("/qui-sommes-nous", router.locale)} prefetch={false} />}>
             {t("Footer.Le projet", "Le projet")}
           </FooterLink>
           <FooterLink href="https://accueil-integration-refugies.fr/" target="_blank">
@@ -142,16 +142,18 @@ const Footer = () => {
         </FooterBodyItem>
       </FooterBody>
       <FooterBottom>
-        <FooterLink asLink={<NextLink href={getPath("/plan-du-site", router.locale)} />}>
+        <FooterLink asLink={<NextLink href={getPath("/plan-du-site", router.locale)} prefetch={false} />}>
           {t("Footer.Plan du site", "Plan du site")}
         </FooterLink>
-        <FooterLink asLink={<NextLink href={getPath("/declaration-accessibilite", router.locale)} />}>
+        <FooterLink asLink={<NextLink href={getPath("/declaration-accessibilite", router.locale)} prefetch={false} />}>
           {t("Footer.accessibility_link", "Accessibilité : non conforme")}
         </FooterLink>
-        <FooterLink asLink={<NextLink href={getPath("/mentions-legales", router.locale)} />}>
+        <FooterLink asLink={<NextLink href={getPath("/mentions-legales", router.locale)} prefetch={false} />}>
           {t("Mentions légales", "Mentions légales")}
         </FooterLink>
-        <FooterLink asLink={<NextLink href={getPath("/politique-de-confidentialite", router.locale)} />}>
+        <FooterLink
+          asLink={<NextLink href={getPath("/politique-de-confidentialite", router.locale)} prefetch={false} />}
+        >
           {t("Politique de confidentialité", "Politique de confidentialité")}
         </FooterLink>
         <FooterLink href="/" onClick={() => window.__axeptioSDK.openCookies && window.__axeptioSDK.openCookies()}>

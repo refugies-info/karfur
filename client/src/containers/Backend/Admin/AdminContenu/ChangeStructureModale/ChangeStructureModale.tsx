@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
-import SearchBar from "components/UI/SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
-import { activeStructuresSelector } from "services/ActiveStructures/activeStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { SimplifiedStructure } from "types/interface";
+import { SimplifiedStructureForAdmin, Structure } from "types/interface";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
@@ -15,6 +12,11 @@ import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import styles from "./ChangeStructureModale.module.scss";
+import useToggle from "react-use/lib/useToggle";
+import { NewStructureModal } from "../../AdminStructures/NewStructureModal";
+import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { SearchStructures } from "components";
 
 interface Props {
   show: boolean;
@@ -39,23 +41,11 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
-const SelectedStructure = styled.div`
-  background: ${colors.white};
-  width: 100%;
-  padding: 8px;
-  border-radius: 12px;
-`;
-
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const ModifyLink = styled.div`
-  font-weight: bold;
-  margin-top: 12px;
-  cursor: pointer;
+  margin-top: 8px;
 `;
 
 const Warning = styled.div`
@@ -64,24 +54,23 @@ const Warning = styled.div`
   padding: 8px;
   border-radius: 12px;
   margin-bottom: 8px;
+  margin-top: 8px;
 `;
+
 export const ChangeStructureModal = (props: Props) => {
-  const [
-    selectedStructure,
-    setSelectedStructure,
-  ] = useState<SimplifiedStructure | null>(null);
+  const [showNewStructureModal, toggleNewStructureModal] = useToggle(false);
+  const [selectedStructure, setSelectedStructure] = useState<SimplifiedStructureForAdmin | Structure | null>(null);
   const dispatch = useDispatch();
-  const structures = useSelector(activeStructuresSelector);
+  const structures = useSelector(allStructuresSelector).filter(
+    (structure) => structure.status === "Actif" || structure.status === "En attente"
+  );
   useEffect(() => {
     const loadStructures = () => {
-      dispatch(fetchActiveStructuresActionCreator());
+      dispatch(fetchAllStructuresActionsCreator());
     };
     if (props.show && structures.length === 0) loadStructures();
   }, [dispatch, structures, props.show]);
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
-  );
-  const selectItem = (item: any) => setSelectedStructure(item);
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES));
   const toggleModal = () => {
     setSelectedStructure(null);
     props.toggle();
@@ -92,15 +81,15 @@ export const ChangeStructureModal = (props: Props) => {
         query: {
           dispositifId: props.dispositifId,
           sponsorId: selectedStructure._id,
-          status: props.dispositifStatus,
-        },
+          status: props.dispositifStatus
+        }
       })
         .then(() => {
           Swal.fire({
             title: "Yay...",
             text: "Structure modifiée",
-            type: "success",
-            timer: 1500,
+            icon: "success",
+            timer: 1500
           });
           toggleModal();
           dispatch(fetchAllDispositifsActionsCreator());
@@ -109,8 +98,8 @@ export const ChangeStructureModal = (props: Props) => {
           Swal.fire({
             title: "Oh non",
             text: "Erreur lors de la modification",
-            type: "error",
-            timer: 1500,
+            icon: "error",
+            timer: 1500
           });
         });
     }
@@ -131,60 +120,52 @@ export const ChangeStructureModal = (props: Props) => {
       </Modal>
     );
   return (
-    <Modal
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-      isOpen={props.show}
-      size="lg"
-      toggle={toggleModal}
-    >
-      <Content>
-        <div>
-          <Title>Choisissez la structure du contenu :</Title>
-          {!selectedStructure && (
-            <SearchBar
-              structures
-              className="search-bar inner-addon right-addon"
-              placeholder="Chercher"
-              array={structures}
-              selectItem={selectItem}
+    <>
+      <Modal
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+        isOpen={props.show}
+        size="lg"
+        toggle={toggleModal}
+      >
+        <Content>
+          <div>
+            <Title>Modifier la structure</Title>
+            <SearchStructures
+              onChange={setSelectedStructure}
+              onClickCreateStructure={toggleNewStructureModal}
+              selectedStructure={selectedStructure}
+              structures={structures}
             />
-          )}
-          {selectedStructure && (
-            <div>
-              <SelectedStructure>{selectedStructure.nom}</SelectedStructure>
-              <ModifyLink onClick={() => setSelectedStructure(null)}>
-                <u>Modifier</u>
-              </ModifyLink>
-            </div>
-          )}
-        </div>
-        <div>
-          {selectedStructure && (
-            <Warning>
-              Au clic sur Valider, la structure sera modifiée dans le dispositif
-              ou la démarche.
-            </Warning>
-          )}
-          <ButtonContainer>
-            <FButton
-              type="light-action"
-              name="arrow-back-outline"
-              onClick={toggleModal}
-            >
-              Retour
-            </FButton>
-            <FButton
-              type="validate"
-              name="checkmark-outline"
-              disabled={!selectedStructure}
-              onClick={validateStructureChange}
-            >
-              Valider
-            </FButton>
-          </ButtonContainer>
-        </div>
-      </Content>
-    </Modal>
+          </div>
+          <div>
+            {selectedStructure && (
+              <Warning>Au clic sur Valider, la structure sera modifiée dans le dispositif ou la démarche.</Warning>
+            )}
+            <ButtonContainer>
+              <FButton type="dark" name="plus-circle-outline" onClick={toggleNewStructureModal}>
+                Créer une nouvelle structure
+              </FButton>
+              <FButton type="light-action" name="close-outline" onClick={toggleModal}>
+                Annuler
+              </FButton>
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                disabled={!selectedStructure}
+                onClick={validateStructureChange}
+              >
+                Valider
+              </FButton>
+            </ButtonContainer>
+          </div>
+        </Content>
+      </Modal>
+      <NewStructureModal
+        defaults={{ status: "actif" }}
+        show={showNewStructureModal}
+        toggleModal={toggleNewStructureModal}
+      />
+    </>
   );
 };

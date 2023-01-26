@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { rendez_vous_ordinateur } from "assets/figma";
 import { FButtonMobile } from "components/UI/FButtonMobile/FButtonMobile";
 import { colors } from "colors";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from "scss/components/modals.module.scss";
 import { useTranslation } from "next-i18next";
 
@@ -39,19 +39,11 @@ export const GoToDesktopModal = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Modal
-      isOpen={props.show}
-      toggle={props.toggle}
-      className={styles.modal}
-      contentClassName={styles.modal_content}
-    >
+    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <MainContainer>
-        <Image src={rendez_vous_ordinateur} alt="image newsletter" />
+        <Image src={rendez_vous_ordinateur} alt="image newsletter" style={{ maxWidth: "100%", height: "auto" }} />
         <TitleContainer>
-          {t(
-            "Register.Rendez-vous sur votre ordinateur",
-            "Rendez-vous sur votre ordinateur"
-          )}
+          {t("Register.Rendez-vous sur votre ordinateur", "Rendez-vous sur votre ordinateur")}
         </TitleContainer>
         <TextContainer>
           {t(
@@ -84,4 +76,4 @@ export const GoToDesktopModal = (props: Props) => {
       </MainContainer>
     </Modal>
   );
-}
+};

@@ -11,6 +11,8 @@ import { initGA, PageView } from "lib/tracking";
 import { PageOptions } from "types/interface";
 import "scss/index.scss";
 import { Provider } from "react-redux";
+import { finishLoading, startLoading } from "services/LoadingStatus/loadingStatus.actions";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -62,13 +64,33 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Loader
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (url.includes("recherche") || url.includes("advanced-search")) {
+        store.dispatch(startLoading(LoadingStatusKey.NAVIGATING));
+      }
+    };
+    const routeChanged = () => {
+      store.dispatch(finishLoading(LoadingStatusKey.NAVIGATING));
+    };
+    router.events.on("routeChangeStart", handleRouteChange);
+    router.events.on("routeChangeComplete", routeChanged);
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+      router.events.off("routeChangeComplete", routeChanged);
+    };
+  }, [store, router.events]);
+
   return (
     <>
-      {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="afterInteractive" />}
+      <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+
+      {options.cookiesModule && <Script src="//static.axept.io/sdk.js" strategy="lazyOnload" />}
       {options.supportModule && (
         <Script
           id="crisp-widget"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
             window.$crisp=[["safe", true]];
@@ -83,8 +105,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           }}
         />
       )}
-
-      <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
     </>
   );
 };

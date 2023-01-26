@@ -4,7 +4,7 @@ import { Spinner } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { defaultStaticProps } from "lib/getDefaultStaticProps";
 import UnauthorizedAccess from "components/Navigation/UnauthorizedAccess/UnauthorizedAccess";
-import { userDetailsSelector } from "services/User/user.selectors";
+import { userSelector } from "services/User/user.selectors";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -23,15 +23,15 @@ const Redirect = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace(getPath("/login", router.locale))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    router.replace(getPath("/login", router.locale));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <></>
-}
+  return <></>;
+};
 
 const Backend = () => {
-  const user = useSelector(userDetailsSelector);
+  const user = useSelector(userSelector);
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
   const router = useRouter();
@@ -43,7 +43,7 @@ const Backend = () => {
     setMounted(true);
     history?.push(routerLocale + router.asPath);
     return () => setMounted(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -57,15 +57,10 @@ const Backend = () => {
     }
 
     // Restriction and role: CHECK
-    const roles = (user && user.roles) || [];
-    const hasAuthorizedRole =
-      roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
-    const hasRouteRestrictionHasStructure =
-      route.restriction.includes("hasStructure");
-    const hasUserStructure = (user?.structures || []).length > 0 ? true : false;
-    return (
-      hasAuthorizedRole || (hasRouteRestrictionHasStructure && hasUserStructure)
-    );
+    const roles = (user?.user && user.user.roles) || [];
+    const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
+    const hasRouteRestrictionHasStructure = route.restriction.includes("hasStructure");
+    return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
   };
 
   return (
@@ -76,8 +71,9 @@ const Backend = () => {
           <Spinner color="success" />
         </div>
       ) : (
-        isInBrowser() && mounted && (
-        user ? (
+        isInBrowser() &&
+        mounted &&
+        (user ? (
           <Router history={history || createBrowserHistory()}>
             <Switch>
               {backendRoutes.map((route, idx) =>
@@ -87,19 +83,17 @@ const Backend = () => {
                     path={routerLocale + route.path}
                     exact={route.exact}
                     render={() =>
-                      isAuthorized(route) ? (
-                        <route.component title={route.name} />
-                      ) : (
-                        <UnauthorizedAccess />
-                      )
+                      isAuthorized(route) ? <route.component title={route.name} /> : <UnauthorizedAccess />
                     }
                   />
                 ) : null
               )}
             </Switch>
           </Router>
-        ) : <Redirect />
-      ))}
+        ) : (
+          <Redirect />
+        ))
+      )}
     </>
   );
 };

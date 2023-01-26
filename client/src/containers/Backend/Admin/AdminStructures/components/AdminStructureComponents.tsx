@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Responsable } from "types/interface";
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import marioProfile from "assets/mario-profile.jpg";
 import FButton from "components/UI/FButton/FButton";
 import styles from "./AdminStructureComponents.module.scss";
@@ -28,9 +28,7 @@ interface Props {
 
 export const ResponsableComponent = (props: Props) => {
   const responsableSecureUrl =
-    props.responsable &&
-    props.responsable.picture &&
-    props.responsable.picture.secure_url
+    props.responsable && props.responsable.picture && props.responsable.picture.secure_url
       ? props.responsable.picture.secure_url
       : marioProfile;
 
@@ -39,12 +37,12 @@ export const ResponsableComponent = (props: Props) => {
       <RowContainer style={{ marginBottom: "8px" }}>
         {props.responsable && (
           <Image
-            className={styles.respo_img + " mr-8"}
+            className={styles.respo_img + " me-2"}
             src={responsableSecureUrl}
             alt=""
             width={40}
             height={40}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
         )}
         {props.responsable ? (
@@ -86,15 +84,15 @@ export const ResponsableComponent = (props: Props) => {
     <RowContainer>
       {props.responsable && (
         <Image
-          className={styles.respo_img + " mr-8"}
+          className={styles.respo_img + " me-2"}
           src={responsableSecureUrl}
           alt=""
           width={40}
           height={40}
-          objectFit="contain"
+          style={{ objectFit: "contain" }}
         />
       )}
-      <span className="ml-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
+      <span className="ms-4">{props.responsable ? props.responsable.username : "Aucun responsable"}</span>
     </RowContainer>
   );
 };

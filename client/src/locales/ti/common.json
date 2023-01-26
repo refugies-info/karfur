@@ -242,9 +242,6 @@
     "Renseignez votre adresse email": "ኢመልካ\\ኪ ምኻኑ ኣረጋግጽ\\ጺ",
     "Votre email": "ኢመይልካ\\ኪ",
     "Email infos": "ፓስ ወርድ ወይ ኮድ ናትካ'ኪ ምዓቃቡ ኣገዳሲ ኢዩ ኣብ ዝኾነ ግዜ ምስ ዝጠፍእ",
-    "Faible": "ብጣዕሚ ሓያል",
-    "Fort": "ሓያል፣",
-    "Moyen": "ደሓን",
     "Mot de passe trop faible": "ኦው ናትካ\\ኪ ኮድ ወይ ፓስ ወርድ ብጣዕሚ ድኹም ኢዩ",
     "Ceci n'est pas un email,": "እዚ ኢመይል ኣይኮነን",
     "vérifiez l'orthographe": "ኣብ ፊደል ኣረጋግጽ\\ጺ",
@@ -255,7 +252,10 @@
     "Nous vous enverrons un email d'invitation pour vous inscrire": "ንክትምዝገቡ\\ባ መታን መልእኽቲ ክንሰድልኩም\\ክን ኢና",
     "Créez-vous un compte depuis votre ordinateur pour participer": "ንምክፋል ኣብዚ መደብ ብናትኩም\\ክን ኮምፒተር ጌርኩም\\ክን ሓደ ሕሳብ\\ኣክዋንቲ ክፈቱ\\ታ ወይ ኣውጽኡ\\ኣ፤፣"
   },
-  "UnauthorizedAccess": { "Accès refusé": "ኣብ  ምንጻግ በጺሑ", "Revenir à l'accueil": "ናብ መቀበሊ ምምጻእ" },
+  "UnauthorizedAccess": {
+    "Accès refusé": "ኣብ  ምንጻግ በጺሑ",
+    "Revenir à l'accueil": "ናብ መቀበሊ ምምጻእ"
+  },
   "Dispositif": {
     "cliquez": "ኣብዚ ጠውቕ ንዝያዳ ሓቤሬታ",
     "informations_utiles": "ኣገዳሲ ዝኾነ ሓቤሬታት ረኺብኩም ዶ ?",

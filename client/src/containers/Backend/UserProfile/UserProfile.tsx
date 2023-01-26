@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
+import { Spinner, Input } from "reactstrap";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { User, Event } from "types/interface";
 import marioProfile from "assets/mario-profile.jpg";
@@ -9,11 +10,10 @@ import FButton from "components/UI/FButton/FButton";
 import FInput from "components/UI/FInput/FInput";
 import { PasswordField } from "./components/PasswordField";
 import { CodePhoneValidationModal } from "components/Modals/CodePhoneValidationModal/CodePhoneValidationModal";
-import { computePasswordStrengthScore } from "lib";
 import API from "utils/API";
 import Swal from "sweetalert2";
 import setAuthToken from "utils/setAuthToken";
-import { Spinner, Input } from "reactstrap";
+import { getPasswordStrength } from "lib/validatePassword";
 import { saveUserActionCreator, fetchUserActionCreator } from "services/User/user.actions";
 import { isLoadingSelector, errorSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { userStructureMembresSelector } from "services/UserStructure/userStructure.selectors";
@@ -118,13 +118,14 @@ export const UserProfile = (props: Props) => {
   const [isNewPasswordVisible, setIsNewPasswordVisible] = useState(false);
   const [isCurrentPasswordVisible, setIsCurrentPasswordVisible] = useState(false);
   const [isChangePasswordLoading, setIsChangePasswordLoading] = useState(false);
-  const [newPasswordScore, setNewPasswordScore] = useState(0);
+  const [newPasswordOk, setNewPasswordOk] = useState(false);
   const [isPseudoModifyDisabled, setIsPseudoModifyDisabled] = useState(true);
   const [isEmailModifyDisabled, setIsEmailModifyDisabled] = useState(true);
   const [isPhoneModifyDisabled, setIsPhoneModifyDisabled] = useState(true);
   const [isPictureUploading, setIsPictureUploading] = useState(false);
   const [notEmailError, setNotEmailError] = useState(false);
   const [notPhoneError, setNotPhoneError] = useState(false);
+  const [samePasswordError, setSamePasswordError] = useState(false);
   const isLoadingSave = useSelector(isLoadingSelector(LoadingStatusKey.SAVE_USER));
   const errorSave = useSelector(errorSelector(LoadingStatusKey.SAVE_USER));
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -176,8 +177,8 @@ export const UserProfile = (props: Props) => {
     }
 
     if (e.target.id === "new-password") {
-      const newPasswordScore = computePasswordStrengthScore(e.target.value).score;
-      setNewPasswordScore(newPasswordScore);
+      const newPasswordStrength = getPasswordStrength(e.target.value);
+      setNewPasswordOk(newPasswordStrength.isOk);
       setNewPassword(e.target.value);
       return;
     }
@@ -185,6 +186,7 @@ export const UserProfile = (props: Props) => {
   };
 
   const modifyPassword = async () => {
+    setSamePasswordError(false);
     try {
       if (!user) return;
       setIsChangePasswordLoading(true);
@@ -196,19 +198,22 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre mot de passe a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       // @ts-ignore
       localStorage.setItem("token", data.data.token);
       setAuthToken(data.data.token);
       setCurrentPassword("");
-      setNewPasswordScore(0);
+      setNewPasswordOk(false);
       setNewPassword("");
       setIsModifyPasswordOpen(false);
       setIsChangePasswordLoading(false);
-    } catch (error) {
+    } catch (error: any) {
       setIsChangePasswordLoading(false);
+      if (error.response?.status === 400 && error.response?.data?.code === "USED_PASSWORD") {
+        setSamePasswordError(true);
+      }
     }
   };
   const handleFileInputChange = () => {
@@ -252,7 +257,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre email a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
       setIsEmailModifyDisabled(true);
@@ -300,10 +305,11 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "Votre numéro de téléphone a bien été modifié",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoadingSave]);
 
   const onPseudoModificationValidate = async () => {
@@ -320,7 +326,7 @@ export const UserProfile = (props: Props) => {
       Swal.fire({
         title: "Oh non!",
         text: "Ce pseudo est déjà pris ",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
       return;
@@ -331,7 +337,7 @@ export const UserProfile = (props: Props) => {
     Swal.fire({
       title: "Yay...",
       text: "Votre pseudo a bien été modifié",
-      type: "success",
+      icon: "success",
       timer: 1500
     });
     setIsPseudoModifyDisabled(true);
@@ -372,12 +378,12 @@ export const UserProfile = (props: Props) => {
             className={styles.user_img}
             width={160}
             height={160}
-            objectFit="contain"
+            style={{ objectFit: "contain" }}
           />
           <UserName>{user.username}</UserName>
-          <FButton type="dark" name="upload-outline" className="position-relative mb-16">
+          <FButton type="dark" name="upload-outline" className="position-relative mb-4">
             <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
-            {isPictureUploading && <Spinner color="success" className="ml-10" />}
+            {isPictureUploading && <Spinner color="success" className="ms-2" />}
             {!isPictureUploading && t("UserProfile.Modifier ma photo", "Modifier ma photo")}
           </FButton>
           <DescriptionText>
@@ -404,7 +410,7 @@ export const UserProfile = (props: Props) => {
                   disabled={isPseudoModifyDisabled}
                   type="validate-light"
                   name="save-outline"
-                  className="ml-8"
+                  className="ms-2"
                   onClick={onPseudoModificationValidate}
                   data-test-id="test-save-pseudo"
                 >
@@ -439,7 +445,7 @@ export const UserProfile = (props: Props) => {
                   disabled={isEmailModifyDisabled}
                   type="validate-light"
                   name="save-outline"
-                  className="ml-8"
+                  className="ms-2"
                   onClick={onEmailModificationValidate}
                   data-test-id="test-save-email"
                 >
@@ -486,7 +492,7 @@ export const UserProfile = (props: Props) => {
                     disabled={isPhoneModifyDisabled}
                     type="validate-light"
                     name="save-outline"
-                    className="ml-8"
+                    className="ms-2"
                     onClick={onPhoneModificationValidate}
                     data-test-id="test-save-phone"
                   >
@@ -539,8 +545,6 @@ export const UserProfile = (props: Props) => {
                   onChange={onChange}
                   passwordVisible={isNewPasswordVisible}
                   onClick={toggleNewPasswordVisibility}
-                  t={t}
-                  passwordScore={newPasswordScore}
                 />
               </FInputContainer>
               <div
@@ -563,7 +567,7 @@ export const UserProfile = (props: Props) => {
                   </FButton>
                 ) : (
                   <FButton
-                    disabled={newPasswordScore < 1 || !currentPassword}
+                    disabled={!newPasswordOk || !currentPassword}
                     type="validate-light"
                     name="save-outline"
                     onClick={modifyPassword}
@@ -573,6 +577,14 @@ export const UserProfile = (props: Props) => {
                   </FButton>
                 )}
               </div>
+              {samePasswordError && (
+                <ErrorMessageContainer>
+                  {t(
+                    "Login.same_password_error",
+                    "Le mot de passe ne peut pas être identique à l'ancien mot de passe."
+                  )}
+                </ErrorMessageContainer>
+              )}
             </>
           )}
         </ProfileContainer>

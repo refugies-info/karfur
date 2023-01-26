@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import Link from "next/link";
 import FButton from "components/UI/FButton/FButton";
 import gif from "assets/annuaire/GIF-annuaire.gif";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from "./Step6.module.scss";
 import { getPath } from "routes";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ export const Step6 = (props: Props) => {
   return (
     <div className="step6">
       <div style={{ marginTop: "24px" }}>
-        <Image src={gif} width={700} height={344} alt="" objectFit="contain" />
+        <Image src={gif} width={700} height={344} alt="" style={{ objectFit: "contain" }} />
       </div>
       <div className={styles.title}>
         Vos informations sont désormais disponibles dans l’annuaire des acteurs de l’intégration.

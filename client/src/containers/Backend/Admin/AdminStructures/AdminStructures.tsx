@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
@@ -302,12 +302,12 @@ export const AdminStructures = () => {
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <Image
-                        className={styles.sponsor_img + " mr-8"}
+                        className={styles.sponsor_img + " me-2"}
                         src={(element.picture || {}).secure_url}
                         alt=""
                         width={90}
                         height={35}
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                       />
                     )}
                     <StructureName>{element.nom}</StructureName>
@@ -349,7 +349,11 @@ export const AdminStructures = () => {
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setSelectedContentIdAndToggleModal={setSelectedContentIdAndToggleModal}
       />
-      <NewStructureModal show={showNewStructureModal} toggleModal={toggleShowNewStructureModal} />
+      <NewStructureModal
+        defaults={{ status: "En attente" }}
+        show={showNewStructureModal}
+        toggleModal={toggleShowNewStructureModal}
+      />
 
       <SelectFirstResponsableModal
         show={showSelectFirstRespoModal}
@@ -370,6 +374,10 @@ export const AdminStructures = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
+          toggleRespoModal={(structureId: ObjectId) => {
+            setSelectedStructureId(structureId);
+            setSelectFirstRespoModal(true);
+          }}
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>

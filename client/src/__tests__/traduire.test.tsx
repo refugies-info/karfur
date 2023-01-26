@@ -6,10 +6,6 @@ import { act } from "react-test-renderer";
 import "jest-styled-components";
 
 jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/image", () => {
-  const Image = () => <></>;
-  return Image;
-});
 
 describe("traduire", () => {
   beforeEach(() => {

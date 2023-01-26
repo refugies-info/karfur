@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import {
-  UserLanguage,
-  IDispositifTranslation,
-  TranslationStatus,
-  ITypeContenu,
-} from "types/interface";
+import { UserLanguage, IDispositifTranslation, TranslationStatus, ITypeContenu } from "types/interface";
 import styled from "styled-components";
-import {
-  LanguageTitle,
-  FilterButton,
-  TypeContenuFilterButton,
-} from "./SubComponents";
+import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
 import { filterData } from "./functions";
 import FButton from "components/UI/FButton/FButton";
@@ -19,6 +10,7 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import { User } from "types/interface";
 import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
+import { Link } from "react-router-dom";
 
 interface Props {
   userTradLanguages: UserLanguage[];
@@ -72,35 +64,23 @@ const IndicatorText = styled.div`
   margin-right: 8px;
 `;
 
-const getInitialFilterStatus = (
-  isExpert: boolean,
-  data: IDispositifTranslation[]
-) => {
+const getInitialFilterStatus = (isExpert: boolean, data: IDispositifTranslation[]) => {
   if (!isExpert) return "À traduire";
-  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
-    .length;
+  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir").length;
   if (nbARevoir > 0) return "À revoir";
   return "En attente";
 };
 export const TranslationsAvancement = (props: Props) => {
   const [search, setSearch] = useState("");
   const routerLocale = useRouterLocale();
-  const initialStatusFilter = getInitialFilterStatus(
-    props.isExpert,
-    props.data
-  );
-  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
-    initialStatusFilter
-  );
-  const [typeContenuFilter, setTypeContenuFilter] = useState<
-    ITypeContenu | "all"
-  >("dispositif");
+  const initialStatusFilter = getInitialFilterStatus(props.isExpert, props.data);
+  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(initialStatusFilter);
+  const [typeContenuFilter, setTypeContenuFilter] = useState<ITypeContenu | "all">("dispositif");
 
-  const navigateToLanguage = (langue: string) => {
-    if (props.actualLanguage !== langue) {
-      return props.history.push(routerLocale + "/backend/user-translation/" + langue);
+  const navigateToLanguage = (e: any, langue: string) => {
+    if (props.actualLanguage === langue) {
+      e.preventDefault();
     }
-    return;
   };
 
   const onFilterClick = (status: TranslationStatus | "all") => {
@@ -114,15 +94,7 @@ export const TranslationsAvancement = (props: Props) => {
   };
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  const {
-    dataToDisplay,
-    nbARevoir,
-    nbATraduire,
-    nbAValider,
-    nbPubliees,
-    nbDispositifs,
-    nbDemarches,
-  } = filterData(
+  const { dataToDisplay, nbARevoir, nbATraduire, nbAValider, nbPubliees, nbDispositifs, nbDemarches } = filterData(
     props.data,
     statusFilter,
     props.isExpert,
@@ -135,45 +107,36 @@ export const TranslationsAvancement = (props: Props) => {
       <RowContainer>
         <Row>
           {props.userTradLanguages.map((langue) => (
-            <div
-              key={langue.i18nCode}
-              onClick={() => navigateToLanguage(langue.i18nCode)}
-              data-test-id={`test-langue-${langue._id}`}
-            >
-              <LanguageTitle
-                language={langue}
-                isSelected={langue.i18nCode === props.actualLanguage}
-                hasMultipleLanguages={props.userTradLanguages.length > 1}
-              />
+            <div key={langue.i18nCode}>
+              <Link
+                data-test-id={`test-langue-${langue._id}`}
+                onClick={(e) => navigateToLanguage(e, langue.i18nCode)}
+                to={routerLocale + "/backend/user-translation/" + langue.i18nCode}
+              >
+                <LanguageTitle
+                  language={langue}
+                  isSelected={langue.i18nCode === props.actualLanguage}
+                  hasMultipleLanguages={props.userTradLanguages.length > 1}
+                />
+              </Link>
             </div>
           ))}
         </Row>
         <Row>
-          <IndicatorText>
-            {`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}
-          </IndicatorText>
-          <FButton
-            type="tuto"
-            onClick={props.toggleTutoModal}
-            name="video-outline"
-            className="mr-8"
-          >
+          <IndicatorText>{`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}</IndicatorText>
+          <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
             Explications
           </FButton>
-          {props.isExpert &&
+          {props.isExpert && (
             <FButton
               type={props.isOneNeedNonTranslated ? "error" : "dark"}
               onClick={props.toggleNeedsModal}
-              className="mr-8"
+              className="me-2"
             >
               Besoins
             </FButton>
-          }
-          <FButton
-            type="dark"
-            onClick={props.toggleTraducteurModal}
-            name="settings-2-outline"
-          >
+          )}
+          <FButton type="dark" onClick={props.toggleTraducteurModal} name="settings-2-outline">
             Mes langues
           </FButton>
         </Row>

@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Tooltip,
-  Input,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Tooltip, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { DispositifContent, Theme } from "types/interface";
 import { jsUcfirstInfocards } from "./functions";
 import styled from "styled-components";
@@ -28,17 +21,9 @@ export const GeolocTooltipItem = (props: any) => {
         className={"bg-darkColor " + styles.active}
         style={{ backgroundColor: theme.colors.color100 }}
       >
-        {item.split(" ")[0].length > 1
-          ? item.split(" ")[0]
-          : "0" + item.split(" ")[0]}
+        {item.split(" ")[0].length > 1 ? item.split(" ")[0] : "0" + item.split(" ")[0]}
       </button>
-      <Tooltip
-        placement="top"
-        offset="0px, 8px"
-        isOpen={tooltipOpen}
-        target={"Tooltip-" + id}
-        toggle={toggle}
-      >
+      <Tooltip placement="top" isOpen={tooltipOpen} target={"Tooltip-" + id} toggle={toggle}>
         {item}
       </Tooltip>
     </>
@@ -68,15 +53,13 @@ export const AgeRequisEditionContentTitle = (
               <Input
                 type="number"
                 className={parentStyles.age_input}
-                style={{color: props.theme.colors.color100}}
+                style={{ color: props.theme.colors.color100 }}
                 value={
                   (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
                     ? props.subitem.bottomValue
                     : props.subitem.topValue
                 }
-                onClick={(e: { stopPropagation: () => void }) =>
-                  e.stopPropagation()
-                }
+                onClick={(e: { stopPropagation: () => void }) => e.stopPropagation()}
                 onMouseUp={() =>
                   (props.subitem || {}).isFakeContent &&
                   props.changeAge(
@@ -115,11 +98,7 @@ interface DropDownContentProps {
   theme: Theme;
 }
 export const DropDownContent = (props: DropDownContentProps) => (
-  <ButtonDropdown
-    isOpen={props.isOptionsOpen}
-    toggle={props.toggleOptions}
-    className={parentStyles.content_title}
-  >
+  <ButtonDropdown isOpen={props.isOptionsOpen} toggle={props.toggleOptions} className={parentStyles.content_title}>
     <DropdownToggle caret={!props.disableEdit}>
       {props.subitem.title === "Âge requis" ? (
         <AgeRequisEditionContentTitle
@@ -133,10 +112,7 @@ export const DropDownContent = (props: DropDownContentProps) => (
         <span>
           {props.subitem.contentTitle &&
             jsUcfirstInfocards(
-              props.t(
-                "Dispositif." + props.subitem.contentTitle,
-                props.subitem.contentTitle
-              ),
+              props.t("Dispositif." + props.subitem.contentTitle, props.subitem.contentTitle),
               props.cardTitle.title
             )}
         </span>
@@ -147,9 +123,7 @@ export const DropDownContent = (props: DropDownContentProps) => (
         return (
           //@ts-ignore
           <DropdownItem key={key} id={key}>
-            {props.cardTitle
-              ? jsUcfirstInfocards(option, props.cardTitle.title)
-              : ""}
+            {props.cardTitle ? jsUcfirstInfocards(option, props.cardTitle.title) : ""}
           </DropdownItem>
         );
       })}
@@ -164,14 +138,9 @@ interface FrenchCECRLevelProps {
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 
 export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
-  <div
-    className={styles.niveaux_wrapper}
-    style={{ color: props.theme.colors.color100 }}
-  >
+  <div className={styles.niveaux_wrapper} style={{ color: props.theme.colors.color100 }}>
     {niveaux
-      .filter((nv) =>
-        (props.subitem.niveaux || []).some((x: string) => x === nv)
-      )
+      .filter((nv) => (props.subitem.niveaux || []).some((x: string) => x === nv))
       .map((nv, key) => (
         <button
           key={key}
@@ -197,25 +166,18 @@ const TitleTextBody = styled.p`
   padding-bottom: 12px;
   padding-top: 10px;
   font-weight: 600;
-  margin-top: ${(props: {mt?: string}) => props.mt || 0};
+  margin-top: ${(props: { mt?: string }) => props.mt || 0};
 `;
 
 export const DepartmentsSelected = (props: DepartmentsSelectedProps) => (
-  <div
-    className={styles.niveaux_wrapper}
-    style={{ color: props.theme.colors.color100 }}
-  >
+  <div className={styles.niveaux_wrapper} style={{ color: props.theme.colors.color100 }}>
     {props.subitem.departments && props.subitem.departments.length > 1 ? (
-      props.subitem.departments.map((nv, key) => (
-        <GeolocTooltipItem key={key} item={nv} id={key} theme={props.theme} />
-      ))
+      props.subitem.departments.map((nv, key) => <GeolocTooltipItem key={key} item={nv} id={key} theme={props.theme} />)
     ) : props.subitem.departments &&
       props.subitem.departments.length === 1 &&
       (!props.disableEdit || props.subitem.departments[0] !== "All") ? (
       <TitleTextBody mt={"8px"}>
-        {props.subitem.departments[0] === "All"
-          ? "France entière"
-          : props.subitem.departments[0]}
+        {props.subitem.departments[0] === "All" ? "France entière" : props.subitem.departments[0]}
       </TitleTextBody>
     ) : null}
   </div>
@@ -234,9 +196,7 @@ const ButtonText = styled.p`
   line-height: 20px;
   margin: 0;
 `;
-export const AdminGeolocPublicationButton = (
-  props: AdminGeolocPublicationButtonProps
-) => {
+export const AdminGeolocPublicationButton = (props: AdminGeolocPublicationButtonProps) => {
   if (
     props.admin &&
     props.subitem.title === "Zone d'action" &&
@@ -248,10 +208,8 @@ export const AdminGeolocPublicationButton = (
       <FButton
         type="validate"
         name="checkmark"
-        className={"mt-10"}
-        onClick={() =>
-          props.onValidateGeoloc(props.dispositifId, props.subitem)
-        }
+        className={"mt-2"}
+        onClick={() => props.onValidateGeoloc(props.dispositifId, props.subitem)}
         disabled={props.subitem.departments.length === 0}
       >
         <ButtonText>Publier Geoloc</ButtonText>

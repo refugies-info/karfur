@@ -54,22 +54,10 @@ interface Props {
 
 export const AddButton = (props: {
   onClick: Function;
-  type:
-    | "site"
-    | "type"
-    | "second site"
-    | "second numéro"
-    | "numéro"
-    | "second email"
-    | "email";
+  type: "site" | "type" | "second site" | "second numéro" | "numéro" | "second email" | "email";
   disabled?: boolean;
 }) => (
-  <FButton
-    name="plus-circle-outline"
-    type="dark"
-    onClick={props.onClick}
-    disabled={props.disabled}
-  >
+  <FButton name="plus-circle-outline" type="dark" onClick={props.onClick} disabled={props.disabled}>
     {`Ajouter un ${props.type}`}
   </FButton>
 );
@@ -79,27 +67,16 @@ export const Step2 = (props: Props) => {
   const [show1WebsiteInput, setshow1WebsiteInput] = useState(false);
   const [show2WebsiteInput, setshow2WebsiteInput] = useState(false);
 
-  const websites =
-    props.structure && props.structure.websites ? props.structure.websites : [];
+  const websites = props.structure && props.structure.websites ? props.structure.websites : [];
 
   const toggleDropDown = () => setDropdownOpen((prevState) => !prevState);
-  const toggle1WebSiteInput = () =>
-    setshow1WebsiteInput((prevState) => !prevState);
+  const toggle1WebSiteInput = () => setshow1WebsiteInput((prevState) => !prevState);
 
-  const toggle2WebSiteInput = () =>
-    setshow2WebsiteInput((prevState) => !prevState);
+  const toggle2WebSiteInput = () => setshow2WebsiteInput((prevState) => !prevState);
 
-  const getWebsites = (
-    previousWebsites: string[],
-    id: string,
-    value: string
-  ) => {
+  const getWebsites = (previousWebsites: string[], id: string, value: string) => {
     if (id === "website0") {
-      if (
-        !previousWebsites ||
-        previousWebsites.length === 0 ||
-        !previousWebsites[1]
-      ) {
+      if (!previousWebsites || previousWebsites.length === 0 || !previousWebsites[1]) {
         return [value];
       }
       return [value, previousWebsites[1]];
@@ -130,18 +107,14 @@ export const Step2 = (props: Props) => {
   const removeDropdowElement = (element: string) => {
     const structureTypes =
       props.structure && props.structure.structureTypes
-        ? props.structure.structureTypes.filter(
-            (structureType) => structureType !== element
-          )
+        ? props.structure.structureTypes.filter((structureType) => structureType !== element)
         : [];
     props.setStructure({ ...props.structure, structureTypes });
     props.setHasModifications(true);
   };
 
   const availableStructureTypes = structureTypes.filter((structureType) =>
-    props.structure && props.structure.structureTypes
-      ? !props.structure.structureTypes.includes(structureType)
-      : true
+    props.structure && props.structure.structureTypes ? !props.structure.structureTypes.includes(structureType) : true
   );
 
   const getUpdatedWebsites = (websites: string[], index: number) =>
@@ -149,9 +122,7 @@ export const Step2 = (props: Props) => {
 
   const removeWebsite = (index: number) => {
     const updatedWebsites =
-      props.structure && props.structure.websites
-        ? getUpdatedWebsites(props.structure.websites, index)
-        : [];
+      props.structure && props.structure.websites ? getUpdatedWebsites(props.structure.websites, index) : [];
     props.setStructure({ ...props.structure, websites: updatedWebsites });
     setshow1WebsiteInput(false);
     setshow2WebsiteInput(false);
@@ -162,7 +133,7 @@ export const Step2 = (props: Props) => {
     props.setHasModifications(true);
     return props.setStructure({
       ...props.structure,
-      [e.target.id]: e.target.value,
+      [e.target.id]: e.target.value
     });
   };
   return (
@@ -170,74 +141,63 @@ export const Step2 = (props: Props) => {
       <Title>Type de structure</Title>
       <div
         style={{
-          marginBottom: "16px",
+          marginBottom: "16px"
         }}
       >
-        {props.structure &&
-          props.structure.structureTypes &&
-          props.structure.structureTypes.length > 0 && (
-            <>
+        {props.structure && props.structure.structureTypes && props.structure.structureTypes.length > 0 && (
+          <>
+            <SelectedContainer>
+              {props.structure.structureTypes[0]}
+              <div style={{ cursor: "pointer" }}>
+                <EVAIcon
+                  name="close"
+                  fill={"#ffffff"}
+                  className="ms-2"
+                  onClick={() =>
+                    removeDropdowElement(
+                      props.structure && props.structure.structureTypes ? props.structure.structureTypes[0] : ""
+                    )
+                  }
+                />
+              </div>
+            </SelectedContainer>
+            {props.structure.structureTypes.length === 1 ? (
+              <div>
+                <AddButton onClick={toggleDropDown} type="type" />
+                {dropdownOpen && (
+                  <CustomDropDown
+                    elementList={availableStructureTypes}
+                    onDropdownElementClick={onDropdownElementClick}
+                  />
+                )}
+              </div>
+            ) : (
               <SelectedContainer>
-                {props.structure.structureTypes[0]}
+                {props.structure.structureTypes[1]}
                 <div style={{ cursor: "pointer" }}>
                   <EVAIcon
                     name="close"
                     fill={"#ffffff"}
-                    className="ml-10"
+                    className="ms-2"
                     onClick={() =>
                       removeDropdowElement(
-                        props.structure && props.structure.structureTypes
-                          ? props.structure.structureTypes[0]
-                          : ""
+                        props.structure && props.structure.structureTypes ? props.structure.structureTypes[1] : ""
                       )
                     }
                   />
                 </div>
               </SelectedContainer>
-              {props.structure.structureTypes.length === 1 ? (
-                <div>
-                  <AddButton onClick={toggleDropDown} type="type" />
-                  {dropdownOpen && (
-                    <CustomDropDown
-                      elementList={availableStructureTypes}
-                      onDropdownElementClick={onDropdownElementClick}
-                    />
-                  )}
-                </div>
-              ) : (
-                <SelectedContainer>
-                  {props.structure.structureTypes[1]}
-                  <div style={{ cursor: "pointer" }}>
-                    <EVAIcon
-                      name="close"
-                      fill={"#ffffff"}
-                      className="ml-10"
-                      onClick={() =>
-                        removeDropdowElement(
-                          props.structure && props.structure.structureTypes
-                            ? props.structure.structureTypes[1]
-                            : ""
-                        )
-                      }
-                    />
-                  </div>
-                </SelectedContainer>
-              )}
-            </>
-          )}
-        {props.structure &&
-          (!props.structure.structureTypes ||
-            props.structure.structureTypes.length === 0) && (
-            <>
-              <AddButton onClick={toggleDropDown} type="type" />
-              {dropdownOpen && (
-                <CustomDropDown
-                  elementList={availableStructureTypes}
-                  onDropdownElementClick={onDropdownElementClick}
-                />
-              )}
-            </>
-          )}
+            )}
+          </>
+        )}
+        {props.structure && (!props.structure.structureTypes || props.structure.structureTypes.length === 0) && (
+          <>
+            <AddButton onClick={toggleDropDown} type="type" />
+            {dropdownOpen && (
+              <CustomDropDown elementList={availableStructureTypes} onDropdownElementClick={onDropdownElementClick} />
+            )}
+          </>
+        )}
       </div>
       <Title>Site internet de votre structure</Title>
       <div style={{ marginBottom: "16px" }}>
@@ -246,13 +206,13 @@ export const Step2 = (props: Props) => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "row"
               }}
             >
               <div
                 style={{
                   width: "300px",
-                  marginRight: "4px",
+                  marginRight: "4px"
                 }}
               >
                 <FInput
@@ -269,11 +229,7 @@ export const Step2 = (props: Props) => {
               </DeleteIconContainer>
             </div>
             {websites.length < 2 && !show2WebsiteInput && (
-              <AddButton
-                type="second site"
-                onClick={toggle2WebSiteInput}
-                disabled={!websites[0]}
-              />
+              <AddButton type="second site" onClick={toggle2WebSiteInput} disabled={!websites[0]} />
             )}
           </>
         )}
@@ -281,7 +237,7 @@ export const Step2 = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "row"
             }}
           >
             <div style={{ width: "300px", marginRight: "4px" }}>
@@ -299,15 +255,13 @@ export const Step2 = (props: Props) => {
             </DeleteIconContainer>
           </div>
         )}
-        {websites.length === 0 && !show1WebsiteInput && (
-          <AddButton type="site" onClick={toggle1WebSiteInput} />
-        )}
+        {websites.length === 0 && !show1WebsiteInput && <AddButton type="site" onClick={toggle1WebSiteInput} />}
       </div>
       <Title>Lien vers le profil Twitter</Title>
       <div
         style={{
           marginBottom: "16px",
-          width: "240px",
+          width: "240px"
         }}
       >
         <FInput
@@ -323,7 +277,7 @@ export const Step2 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "240px",
+          width: "240px"
         }}
       >
         <FInput
@@ -339,7 +293,7 @@ export const Step2 = (props: Props) => {
       <div
         style={{
           marginBottom: "16px",
-          width: "240px",
+          width: "240px"
         }}
       >
         <FInput

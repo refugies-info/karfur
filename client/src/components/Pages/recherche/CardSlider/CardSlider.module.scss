@@ -36,11 +36,11 @@ $fadeWidth_md: 50px;
     @include media-max("lg-limit") {
       flex-wrap: nowrap;
       overflow-x: scroll;
-      margin-left: -15px;
-      margin-right: -15px;
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-bottom: 15px;
+      margin-left: -12px;
+      margin-right: -12px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 12px;
     }
   }
 
@@ -56,11 +56,11 @@ $fadeWidth_md: 50px;
     @include media-max("lg-limit") {
       flex-wrap: nowrap;
       overflow-x: scroll;
-      margin-left: -15px;
-      margin-right: -15px;
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-bottom: 15px;
+      margin-left: -12px;
+      margin-right: -12px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 12px;
     }
   }
 
@@ -115,10 +115,8 @@ $fadeWidth_md: 50px;
 }
 
 .card {
-  @include isMobile() {
-    & > a {
-      height: 100%;
-    }
+  & > a {
+    height: 100%;
   }
 }
 

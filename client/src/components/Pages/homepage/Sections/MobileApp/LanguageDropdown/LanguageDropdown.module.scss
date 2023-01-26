@@ -43,7 +43,7 @@
   width: 20px;
   height: 15px;
   border-radius: 2px;
-  border: 1px solid $white;
+  outline: 1px solid $white;
   background-size: cover;
   @include mr-ltr(u(2));
   @include ml-ltr(u(2));
@@ -72,7 +72,7 @@
   &:focus {
     outline: none;
   }
-  i {
+  :global(.fi) {
     margin: 0 u(2) 0 0;
     @include rtl() {
       margin: 0 0 0 u(2);

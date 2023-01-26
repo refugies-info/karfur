@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { cls } from "lib/classname";
 import { Theme } from "types/interface";
@@ -41,7 +41,7 @@ const DispositifCardTitle = (props: Props) => {
         {isSecondaryCard && (
           <div className={styles.theme}>
             {props.themes?.map((theme, i) => (
-              <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="mr-2 mb-2" />
+              <ThemeBadge key={i} theme={theme} style={{ backgroundColor: "white" }} className="me-2 mb-2" />
             ))}
           </div>
         )}

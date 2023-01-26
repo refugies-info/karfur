@@ -3,7 +3,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import useRouterLocale from "hooks/useRouterLocale";
 import Link from "next/link";
 import { MouseEvent } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { getPath, PathNames } from "routes";
 import { userSelector } from "services/User/user.selectors";
@@ -23,11 +23,11 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
   const user = useSelector(userSelector);
   const { t } = useTranslation();
 
-  const isAdmin = user && !user.admin;
-  const hasStructure = user && !user.membreStruct;
+  const isAdmin = user && user.admin;
+  const hasStructure = user && user.hasStructure;
 
-  if (access === "admin" && isAdmin) return null;
-  if (access === "hasStructure" && hasStructure) return null;
+  if (access === "admin" && !isAdmin) return null;
+  if (access === "hasStructure" && !hasStructure) return null;
 
   const enable = window.location.pathname.endsWith(getPath(route, routerLocale));
 
@@ -45,7 +45,7 @@ const BackendNavItem = ({ access, iconName, route, title, titlekey, onClick }: B
       onClick={_onClick}
       asLink={
         <Link href={route}>
-          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="mr-10" />
+          <EVAIcon fill={enable ? "#000091" : "black"} name={iconName} className="me-2" />
           <span className="refugies-backend-header-menu-title">{_title}</span>
         </Link>
       }

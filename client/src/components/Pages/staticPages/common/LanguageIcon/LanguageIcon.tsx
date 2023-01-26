@@ -1,6 +1,5 @@
 import { cls } from "lib/classname";
-import Image from "next/legacy/image";
-import React, { ReactElement } from "react";
+import React from "react";
 import styles from "./LanguageIcon.module.scss";
 
 interface Props {
@@ -18,7 +17,7 @@ const LanguageIcon = (props: Props) => {
         height: props.size || 40
       }}
     >
-      <i className={cls(styles.flag, "flag-icon flag-icon-" + props.language)} title={props.language} />
+      <span className={cls(styles.flag, "fi fi-" + props.language)} title={props.language} />
     </div>
   );
 };

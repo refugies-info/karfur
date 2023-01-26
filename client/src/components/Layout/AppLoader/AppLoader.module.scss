@@ -1,0 +1,44 @@
+@import "src/scss/colors";
+@import "src/scss/mixins/text";
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.loader {
+  background: radial-gradient(150.13% 150.13% at 50% 50%, $bleuCharte 0%, #1b62d8 100%);
+  min-width: 100%;
+  width: 100%;
+  min-height: 100%;
+  height: 100vh;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+
+    img {
+      padding: 1rem;
+      transform: scale(1);
+      animation: pulse 2s infinite;
+    }
+
+    p {
+      color: white;
+      @include text("h5");
+      font-weight: bold;
+    }
+  }
+}

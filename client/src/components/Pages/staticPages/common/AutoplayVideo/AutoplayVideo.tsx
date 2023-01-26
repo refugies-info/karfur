@@ -8,6 +8,7 @@ interface Props {
   src: string | undefined;
   height: number;
   width?: number;
+  radius?: number;
   noShadow?: boolean;
 }
 
@@ -50,6 +51,7 @@ const AutoplayVideo = (props: Props) => {
       muted
       playsInline={isIOS}
       className={cls(styles.video, props.noShadow && styles.no_shadow, "autoplay-video")}
+      style={props.radius ? { borderRadius: props.radius } : {}}
     >
       <source src={props.src} type="video/mp4" />
     </video>

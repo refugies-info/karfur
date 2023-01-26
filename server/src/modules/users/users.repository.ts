@@ -1,5 +1,5 @@
-import { User, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
-import { ObjectId } from "mongoose";
+import { User, UserDoc, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
+import { FilterQuery, ObjectId } from "mongoose";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
@@ -8,6 +8,9 @@ export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
 
 export const getUsersById = async (ids: ObjectId[], neededFields: NeededFields) =>
   await User.find({ _id: { $in: ids } }, neededFields);
+
+export const findUsers = (filter: FilterQuery<UserDoc>, neededFields: Record<string, number> = {}) =>
+  User.find(filter, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: Record<string, number>, populate: string = "roles structures") =>
   await User.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(populate);
@@ -19,16 +22,34 @@ export const updateUserInDB = async (id: ObjectId, modifiedUser: any) =>
     new: true
   });
 
-export const removeRoleAndStructureInDB = async (roleId: ObjectId, userId: ObjectId, structureId: ObjectId) =>
-  await User.findByIdAndUpdate(
+export const addStructureForUsersInDB = (userIds: ObjectId[], structureId: ObjectId) =>
+  User.updateMany(
+    { _id: { $in: userIds } },
+    {
+      $addToSet: {
+        structures: structureId
+      }
+    }
+  );
+
+export const removeStructureOfAllUsersInDB = (structureId: ObjectId) =>
+  User.updateMany(
+    { structures: structureId },
+    {
+      $pull: {
+        structures: structureId
+      }
+    }
+  );
+
+export const removeStructureOfUserInDB = (userId: ObjectId, structureId: ObjectId) =>
+  User.updateOne(
     { _id: userId },
     {
       $pull: {
-        roles: roleId,
         structures: structureId
       }
-    },
-    { upsert: true }
+    }
   );
 
 export const getUserByUsernameFromDB = async (username: string) => await User.findOne({ username });

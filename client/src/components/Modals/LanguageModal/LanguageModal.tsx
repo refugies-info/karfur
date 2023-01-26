@@ -60,7 +60,7 @@ const LanguageModal = (props: Props) => {
               >
                 <Row>
                   <Col xs="1">
-                    <i className={`flag-icon flag-icon-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode}></i>
+                    <span className={`fi fi-${ln.langueCode}`} title={ln.langueCode} id={ln.langueCode}></span>
                   </Col>
                   <Col xs="5" className={styles.ln_col}>
                     <span>
@@ -98,7 +98,7 @@ const LanguageModal = (props: Props) => {
                   <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
                 </Col>
                 <Col xs="4" className={styles.button_col}>
-                  <Link legacyBehavior href={getPath("/traduire", router.locale)} passHref>
+                  <Link legacyBehavior href={getPath("/traduire", router.locale)} passHref prefetch={false}>
                     <FButton tag="a" onClick={props.toggle} type="outline">
                       {t("Homepage.btn_translate", "Je traduis")}
                     </FButton>

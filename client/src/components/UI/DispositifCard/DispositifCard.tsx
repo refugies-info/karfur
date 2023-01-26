@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { SearchDispositif } from "types/interface";
@@ -69,6 +69,7 @@ const DispositifCard = (props: Props) => {
         query: { id: props.dispositif._id.toString() }
       }}
       passHref
+      prefetch={false}
     >
       <DispositifLink
         className={cls(commonStyles.card, commonStyles.dispositif, commonStyles.content, styles.card)}
@@ -80,7 +81,7 @@ const DispositifCard = (props: Props) => {
         <FavoriteButton contentId={props.dispositif._id} className={commonStyles.favorite} />
         <div className={styles.location}>
           <Image src={iconMap} width={16} height={16} alt="" />
-          <span style={{ color: colors.color100 }} className="ml-1">
+          <span style={{ color: colors.color100 }} className="ms-1">
             {getDepartement()}
           </span>
         </div>
@@ -99,12 +100,12 @@ const DispositifCard = (props: Props) => {
 
         <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
           {price?.price !== undefined && (
-            <div className="d-flex">
+            <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
               {price?.price === 0 ? (
-                <div className="ml-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
+                <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
-                <div className="ml-2">
+                <div className="ms-2">
                   {price?.price}€ {price?.contentTitle}
                 </div>
               )}
@@ -112,10 +113,10 @@ const DispositifCard = (props: Props) => {
           )}
 
           {duration?.contentTitle && (
-            <div className="d-flex mt-1">
+            <div className={cls(styles.info, "mt-1")}>
               <Image src={iconTime} width={16} height={16} alt="" />
               <div
-                className={cls(styles.ellipsis, "ml-2")}
+                className={cls(styles.ellipsis, "ms-2")}
                 dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}
               ></div>
             </div>
@@ -135,11 +136,11 @@ const DispositifCard = (props: Props) => {
               alt={props.dispositif?.mainSponsor.nom}
               width={40}
               height={40}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
             />
           </span>
           <span
-            className={cls(styles.text, styles.max_lines, "ml-2")}
+            className={cls(styles.text, styles.max_lines, "ms-2")}
             style={{ color: colors.color100 }}
             dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque }}
           />

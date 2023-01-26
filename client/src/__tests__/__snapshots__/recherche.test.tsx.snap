@@ -441,7 +441,6 @@ exports[`recherche renders home search 1`] = `
             <button
               aria-expanded={false}
               aria-haspopup={true}
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -452,11 +451,19 @@ exports[`recherche renders home search 1`] = `
                 <span
                   className="icon"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-pin-outline" fill="black"><g data-name="Layer 2"><g data-name="pin"><rect width="24" height="24" opacity="0"/><path d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"/><path d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -481,7 +488,7 @@ exports[`recherche renders home search 1`] = `
             </button>
             <div
               aria-hidden={true}
-              className="dropdown-menu"
+              className="menu dropdown-menu"
               role="menu"
               tabIndex="-1"
             >
@@ -492,7 +499,6 @@ exports[`recherche renders home search 1`] = `
                   className="header no_results"
                 >
                   <button
-                    aria-label={null}
                     className="btn btn btn-secondary"
                     onClick={[Function]}
                     type="button"
@@ -500,11 +506,19 @@ exports[`recherche renders home search 1`] = `
                     <span
                       className="icon"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" class="eva eva-navigation-2-outline" fill="black"><g data-name="Layer 2"><g data-name="navigation-2"><rect width="24" height="24" opacity="0"/><path d="M13.67 22h-.06a1 1 0 0 1-.92-.8L11 13l-8.2-1.69a1 1 0 0 1-.12-1.93l16-5.33A1 1 0 0 1 20 5.32l-5.33 16a1 1 0 0 1-1 .68zm-6.8-11.9l5.19 1.06a1 1 0 0 1 .79.78l1.05 5.19 3.52-10.55z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "16px",
+                              "lineHeight": "16px",
                             }
                           }
                         />
@@ -523,7 +537,6 @@ exports[`recherche renders home search 1`] = `
             <button
               aria-expanded={false}
               aria-haspopup={true}
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -534,11 +547,19 @@ exports[`recherche renders home search 1`] = `
                 <span
                   className="icon"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-list-outline" fill="black"><g data-name="Layer 2"><g data-name="list"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><circle cx="4" cy="7" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="17" r="1"/><rect x="7" y="11" width="14" height="2" rx=".94" ry=".94"/><rect x="7" y="16" width="14" height="2" rx=".94" ry=".94"/><rect x="7" y="6" width="14" height="2" rx=".94" ry=".94"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -563,17 +584,8 @@ exports[`recherche renders home search 1`] = `
             </button>
             <div
               aria-hidden={true}
-              className="dropdown-menu"
+              className="menu dropdown-menu"
               role="menu"
-              style={
-                {
-                  "left": 0,
-                  "opacity": 0,
-                  "pointerEvents": "none",
-                  "position": "absolute",
-                  "top": 0,
-                }
-              }
               tabIndex="-1"
             >
               <div
@@ -599,122 +611,22 @@ exports[`recherche renders home search 1`] = `
                           <span
                             className="icon"
                           >
-                            <span
+                            <img
+                              alt=""
+                              data-nimg="1"
+                              decoding="async"
+                              height={20}
+                              loading="lazy"
+                              onError={[Function]}
+                              onLoad={[Function]}
+                              src="/images/icon_office.svg"
                               style={
                                 {
-                                  "background": "none",
-                                  "border": 0,
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "initial",
-                                  "margin": 0,
-                                  "maxWidth": "100%",
-                                  "opacity": 1,
-                                  "overflow": "hidden",
-                                  "padding": 0,
-                                  "position": "relative",
-                                  "width": "initial",
+                                  "color": "transparent",
                                 }
                               }
-                            >
-                              <span
-                                style={
-                                  {
-                                    "background": "none",
-                                    "border": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": "initial",
-                                    "margin": 0,
-                                    "maxWidth": "100%",
-                                    "opacity": 1,
-                                    "padding": 0,
-                                    "width": "initial",
-                                  }
-                                }
-                              >
-                                <img
-                                  alt=""
-                                  aria-hidden={true}
-                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                                  style={
-                                    {
-                                      "background": "none",
-                                      "border": 0,
-                                      "display": "block",
-                                      "height": "initial",
-                                      "margin": 0,
-                                      "maxWidth": "100%",
-                                      "opacity": 1,
-                                      "padding": 0,
-                                      "width": "initial",
-                                    }
-                                  }
-                                />
-                              </span>
-                              <img
-                                alt=""
-                                data-nimg="intrinsic"
-                                decoding="async"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                style={
-                                  {
-                                    "border": "none",
-                                    "bottom": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": 0,
-                                    "left": 0,
-                                    "margin": "auto",
-                                    "maxHeight": "100%",
-                                    "maxWidth": "100%",
-                                    "minHeight": "100%",
-                                    "minWidth": "100%",
-                                    "objectFit": undefined,
-                                    "objectPosition": undefined,
-                                    "padding": 0,
-                                    "position": "absolute",
-                                    "right": 0,
-                                    "top": 0,
-                                    "width": 0,
-                                  }
-                                }
-                              />
-                              <noscript>
-                                <img
-                                  alt=""
-                                  data-nimg="intrinsic"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="/images/icon_office.svg"
-                                  srcSet="/images/icon_office.svg 1x, /images/icon_office.svg 2x"
-                                  style={
-                                    {
-                                      "border": "none",
-                                      "bottom": 0,
-                                      "boxSizing": "border-box",
-                                      "display": "block",
-                                      "height": 0,
-                                      "left": 0,
-                                      "margin": "auto",
-                                      "maxHeight": "100%",
-                                      "maxWidth": "100%",
-                                      "minHeight": "100%",
-                                      "minWidth": "100%",
-                                      "objectFit": undefined,
-                                      "objectPosition": undefined,
-                                      "padding": 0,
-                                      "position": "absolute",
-                                      "right": 0,
-                                      "top": 0,
-                                      "width": 0,
-                                    }
-                                  }
-                                />
-                              </noscript>
-                            </span>
+                              width={20}
+                            />
                           </span>
                           <span
                             className="name"
@@ -729,12 +641,18 @@ exports[`recherche renders home search 1`] = `
                         </div>
                       </span>
                       <span
-                        className="ml-2"
+                        className="ms-2 icon"
                       >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-right-outline" fill="white"><g data-name="Layer 2"><g data-name="chevron-right"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -1360,11 +1278,19 @@ exports[`recherche renders home search 1`] = `
                       <span
                         className="check"
                       >
-                        <span>
+                        <span
+                          className="icon"
+                        >
                           <i
                             dangerouslySetInnerHTML={
                               {
                                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="#443023"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                              }
+                            }
+                            style={
+                              {
+                                "height": "20px",
+                                "lineHeight": "20px",
                               }
                             }
                           />
@@ -1374,11 +1300,19 @@ exports[`recherche renders home search 1`] = `
                         <span
                           className="all"
                         >
-                          <span>
+                          <span
+                            className="icon"
+                          >
                             <i
                               dangerouslySetInnerHTML={
                                 {
                                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-grid" fill="#443023"><g data-name="Layer 2"><g data-name="grid"><rect width="24" height="24" opacity="0"/><path d="M9 3H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M19 3h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M9 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/><path d="M19 13h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></g></g></svg>",
+                                }
+                              }
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
                                 }
                               }
                             />
@@ -1407,7 +1341,6 @@ exports[`recherche renders home search 1`] = `
             className="dropdown"
           >
             <button
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -1418,11 +1351,19 @@ exports[`recherche renders home search 1`] = `
                 <span
                   className="icon"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="black"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -1470,7 +1411,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Administratif
             </span>
@@ -1480,122 +1421,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/admin.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/admin.svg"
-                      srcSet="/images/app/admin.svg 1x, /images/app/admin.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1604,7 +1445,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Français
             </span>
@@ -1614,122 +1455,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/francais.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/francais.svg"
-                      srcSet="/images/app/francais.svg 1x, /images/app/francais.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1738,7 +1479,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Formation pro
             </span>
@@ -1748,122 +1489,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/metier.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/metier.svg"
-                      srcSet="/images/app/metier.svg 1x, /images/app/metier.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -1872,7 +1513,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Insertion pro
             </span>
@@ -1882,122 +1523,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/travail.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/travail.svg"
-                      srcSet="/images/app/travail.svg 1x, /images/app/travail.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2006,7 +1547,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Logement
             </span>
@@ -2016,122 +1557,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/logement.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/logement.svg"
-                      srcSet="/images/app/logement.svg 1x, /images/app/logement.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2140,7 +1581,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Santé
             </span>
@@ -2150,122 +1591,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/sante.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/sante.svg"
-                      srcSet="/images/app/sante.svg 1x, /images/app/sante.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2274,7 +1615,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Mobilité
             </span>
@@ -2284,122 +1625,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/transport.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/transport.svg"
-                      srcSet="/images/app/transport.svg 1x, /images/app/transport.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2408,7 +1649,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Rencontre
             </span>
@@ -2418,122 +1659,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/rencontres.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/rencontres.svg"
-                      srcSet="/images/app/rencontres.svg 1x, /images/app/rencontres.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2542,7 +1683,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Études
             </span>
@@ -2552,122 +1693,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/etudes.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/etudes.svg"
-                      srcSet="/images/app/etudes.svg 1x, /images/app/etudes.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2676,7 +1717,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Bénévolat
             </span>
@@ -2686,122 +1727,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/benevolat.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/benevolat.svg"
-                      srcSet="/images/app/benevolat.svg 1x, /images/app/benevolat.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2810,7 +1751,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Loisir
             </span>
@@ -2820,122 +1761,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/loisirs.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/loisirs.svg"
-                      srcSet="/images/app/loisirs.svg 1x, /images/app/loisirs.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -2944,7 +1785,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Culture
             </span>
@@ -2954,122 +1795,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="/images/app/culture.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/images/app/culture.svg"
-                      srcSet="/images/app/culture.svg 1x, /images/app/culture.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -3078,7 +1819,7 @@ exports[`recherche renders home search 1`] = `
             onClick={[Function]}
           >
             <span
-              className="mr-4"
+              className="me-4"
             >
               Famille
             </span>
@@ -3088,122 +1829,22 @@ exports[`recherche renders home search 1`] = `
               <span
                 className="image_inner"
               >
-                <span
+                <img
+                  alt=""
+                  data-nimg="1"
+                  decoding="async"
+                  height={90}
+                  loading="lazy"
+                  onError={[Function]}
+                  onLoad={[Function]}
+                  src="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
                   style={
                     {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
+                      "color": "transparent",
                     }
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2765%27%20height=%2790%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt=""
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg"
-                      srcSet="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 1x, https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
+                  width={65}
+                />
               </span>
             </div>
           </button>
@@ -3231,126 +1872,24 @@ exports[`recherche renders home search 1`] = `
               className="type_card"
               onClick={[Function]}
             >
-              <div
+              <img
+                alt="Recherche.demarcheCardTitle"
                 className="image"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
+                data-nimg="1"
+                decoding="async"
+                height={120}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27120%27%20height=%27120%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt="Recherche.demarcheCardTitle"
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt="Recherche.demarcheCardTitle"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
-              </div>
+                }
+                width={120}
+              />
               <h3
                 className="h4 title"
                 dangerouslySetInnerHTML={
@@ -3383,11 +1922,19 @@ exports[`recherche renders home search 1`] = `
                 className="btn"
               >
                 Recherche.seeAllDemarches
-                <span>
+                <span
+                  className="icon"
+                >
                   <i
                     dangerouslySetInnerHTML={
                       {
                         "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "20px",
+                        "lineHeight": "20px",
                       }
                     }
                   />
@@ -3402,126 +1949,24 @@ exports[`recherche renders home search 1`] = `
               className="type_card"
               onClick={[Function]}
             >
-              <div
+              <img
+                alt="Recherche.dispositifCardTitle"
                 className="image"
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "inline-block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "overflow": "hidden",
-                      "padding": 0,
-                      "position": "relative",
-                      "width": "initial",
-                    }
+                data-nimg="1"
+                decoding="async"
+                height={120}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
+                style={
+                  {
+                    "color": "transparent",
                   }
-                >
-                  <span
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  >
-                    <img
-                      alt=""
-                      aria-hidden={true}
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27120%27%20height=%27120%27/%3e"
-                      style={
-                        {
-                          "background": "none",
-                          "border": 0,
-                          "display": "block",
-                          "height": "initial",
-                          "margin": 0,
-                          "maxWidth": "100%",
-                          "opacity": 1,
-                          "padding": 0,
-                          "width": "initial",
-                        }
-                      }
-                    />
-                  </span>
-                  <img
-                    alt="Recherche.dispositifCardTitle"
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                  <noscript>
-                    <img
-                      alt="Recherche.dispositifCardTitle"
-                      data-nimg="intrinsic"
-                      decoding="async"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=256&q=75"
-                      srcSet="/_next/image?url=%2Fimg.jpg&w=128&q=75 1x, /_next/image?url=%2Fimg.jpg&w=256&q=75 2x"
-                      style={
-                        {
-                          "border": "none",
-                          "bottom": 0,
-                          "boxSizing": "border-box",
-                          "display": "block",
-                          "height": 0,
-                          "left": 0,
-                          "margin": "auto",
-                          "maxHeight": "100%",
-                          "maxWidth": "100%",
-                          "minHeight": "100%",
-                          "minWidth": "100%",
-                          "objectFit": undefined,
-                          "objectPosition": undefined,
-                          "padding": 0,
-                          "position": "absolute",
-                          "right": 0,
-                          "top": 0,
-                          "width": 0,
-                        }
-                      }
-                    />
-                  </noscript>
-                </span>
-              </div>
+                }
+                width={120}
+              />
               <h3
                 className="h4 title"
                 dangerouslySetInnerHTML={
@@ -3554,11 +1999,19 @@ exports[`recherche renders home search 1`] = `
                 className="btn"
               >
                 Recherche.seeAllDispositifs
-                <span>
+                <span
+                  className="icon"
+                >
                   <i
                     dangerouslySetInnerHTML={
                       {
                         "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "20px",
+                        "lineHeight": "20px",
                       }
                     }
                   />
@@ -3584,7 +2037,6 @@ exports[`recherche renders home search 1`] = `
             Recherche.titleNewDemarches
           </h2>
           <button
-            aria-label={null}
             className="btn btn-secondary"
             onClick={[Function]}
             type="button"
@@ -3596,16 +2048,23 @@ exports[`recherche renders home search 1`] = `
           className="container content-card-slider"
         >
           <button
-            aria-label={null}
             className="btn next btn btn-secondary"
             onClick={[Function]}
             type="button"
           >
-            <span>
+            <span
+              className="icon"
+            >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "40px",
+                    "lineHeight": "40px",
                   }
                 }
               />
@@ -3624,7 +2083,6 @@ exports[`recherche renders home search 1`] = `
             Recherche.titleNewDispositifs
           </h2>
           <button
-            aria-label={null}
             className="btn btn-secondary"
             onClick={[Function]}
             type="button"
@@ -3636,16 +2094,23 @@ exports[`recherche renders home search 1`] = `
           className="container content-card-slider"
         >
           <button
-            aria-label={null}
             className="btn next btn btn-secondary"
             onClick={[Function]}
             type="button"
           >
-            <span>
+            <span
+              className="icon"
+            >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" class="eva eva-arrow-forward-outline" fill="white"><g data-name="Layer 2"><g data-name="arrow-forward"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M5 13h11.86l-3.63 4.36a1 1 0 0 0 1.54 1.28l5-6a1.19 1.19 0 0 0 .09-.15c0-.05.05-.08.07-.13A1 1 0 0 0 20 12a1 1 0 0 0-.07-.36c0-.05-.05-.08-.07-.13a1.19 1.19 0 0 0-.09-.15l-5-6A1 1 0 0 0 14 5a1 1 0 0 0-.64.23 1 1 0 0 0-.13 1.41L16.86 11H5a1 1 0 0 0 0 2z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "40px",
+                    "lineHeight": "40px",
                   }
                 }
               />
@@ -3775,122 +2240,23 @@ exports[`recherche renders home search 1`] = `
             <div
               className="image"
             >
-              <span
+              <img
+                alt=""
+                data-nimg="1"
+                decoding="async"
+                height={332}
+                loading="lazy"
+                onError={[Function]}
+                onLoad={[Function]}
+                src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+                srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
                 style={
                   {
-                    "background": "none",
-                    "border": 0,
-                    "boxSizing": "border-box",
-                    "display": "inline-block",
-                    "height": "initial",
-                    "margin": 0,
-                    "maxWidth": "100%",
-                    "opacity": 1,
-                    "overflow": "hidden",
-                    "padding": 0,
-                    "position": "relative",
-                    "width": "initial",
+                    "color": "transparent",
                   }
                 }
-              >
-                <span
-                  style={
-                    {
-                      "background": "none",
-                      "border": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": "initial",
-                      "margin": 0,
-                      "maxWidth": "100%",
-                      "opacity": 1,
-                      "padding": 0,
-                      "width": "initial",
-                    }
-                  }
-                >
-                  <img
-                    alt=""
-                    aria-hidden={true}
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27440%27%20height=%27332%27/%3e"
-                    style={
-                      {
-                        "background": "none",
-                        "border": 0,
-                        "display": "block",
-                        "height": "initial",
-                        "margin": 0,
-                        "maxWidth": "100%",
-                        "opacity": 1,
-                        "padding": 0,
-                        "width": "initial",
-                      }
-                    }
-                  />
-                </span>
-                <img
-                  alt=""
-                  data-nimg="intrinsic"
-                  decoding="async"
-                  onError={[Function]}
-                  onLoad={[Function]}
-                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                  style={
-                    {
-                      "border": "none",
-                      "bottom": 0,
-                      "boxSizing": "border-box",
-                      "display": "block",
-                      "height": 0,
-                      "left": 0,
-                      "margin": "auto",
-                      "maxHeight": "100%",
-                      "maxWidth": "100%",
-                      "minHeight": "100%",
-                      "minWidth": "100%",
-                      "objectFit": undefined,
-                      "objectPosition": undefined,
-                      "padding": 0,
-                      "position": "absolute",
-                      "right": 0,
-                      "top": 0,
-                      "width": 0,
-                    }
-                  }
-                />
-                <noscript>
-                  <img
-                    alt=""
-                    data-nimg="intrinsic"
-                    decoding="async"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-                    srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-                    style={
-                      {
-                        "border": "none",
-                        "bottom": 0,
-                        "boxSizing": "border-box",
-                        "display": "block",
-                        "height": 0,
-                        "left": 0,
-                        "margin": "auto",
-                        "maxHeight": "100%",
-                        "maxWidth": "100%",
-                        "minHeight": "100%",
-                        "minWidth": "100%",
-                        "objectFit": undefined,
-                        "objectPosition": undefined,
-                        "padding": 0,
-                        "position": "absolute",
-                        "right": 0,
-                        "top": 0,
-                        "width": 0,
-                      }
-                    }
-                  />
-                </noscript>
-              </span>
+                width={440}
+              />
             </div>
           </div>
         </div>
@@ -4211,7 +2577,6 @@ exports[`recherche renders search results 1`] = `
             <button
               aria-expanded={false}
               aria-haspopup={true}
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -4222,11 +2587,19 @@ exports[`recherche renders search results 1`] = `
                 <span
                   className="icon"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-pin-outline" fill="black"><g data-name="Layer 2"><g data-name="pin"><rect width="24" height="24" opacity="0"/><path d="M12 2a8 8 0 0 0-8 7.92c0 5.48 7.05 11.58 7.35 11.84a1 1 0 0 0 1.3 0C13 21.5 20 15.4 20 9.92A8 8 0 0 0 12 2zm0 17.65c-1.67-1.59-6-6-6-9.73a6 6 0 0 1 12 0c0 3.7-4.33 8.14-6 9.73z"/><path d="M12 6a3.5 3.5 0 1 0 3.5 3.5A3.5 3.5 0 0 0 12 6zm0 5a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 12 11z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -4251,7 +2624,7 @@ exports[`recherche renders search results 1`] = `
             </button>
             <div
               aria-hidden={true}
-              className="dropdown-menu"
+              className="menu dropdown-menu"
               role="menu"
               tabIndex="-1"
             >
@@ -4262,7 +2635,6 @@ exports[`recherche renders search results 1`] = `
                   className="header no_results"
                 >
                   <button
-                    aria-label={null}
                     className="btn btn btn-secondary"
                     onClick={[Function]}
                     type="button"
@@ -4270,11 +2642,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="icon"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24" class="eva eva-navigation-2-outline" fill="black"><g data-name="Layer 2"><g data-name="navigation-2"><rect width="24" height="24" opacity="0"/><path d="M13.67 22h-.06a1 1 0 0 1-.92-.8L11 13l-8.2-1.69a1 1 0 0 1-.12-1.93l16-5.33A1 1 0 0 1 20 5.32l-5.33 16a1 1 0 0 1-1 .68zm-6.8-11.9l5.19 1.06a1 1 0 0 1 .79.78l1.05 5.19 3.52-10.55z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "16px",
+                              "lineHeight": "16px",
                             }
                           }
                         />
@@ -4293,7 +2673,6 @@ exports[`recherche renders search results 1`] = `
             <button
               aria-expanded={false}
               aria-haspopup={true}
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -4304,11 +2683,19 @@ exports[`recherche renders search results 1`] = `
                 <span
                   className="icon active"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-list-outline" fill="white"><g data-name="Layer 2"><g data-name="list"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><circle cx="4" cy="7" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="17" r="1"/><rect x="7" y="11" width="14" height="2" rx=".94" ry=".94"/><rect x="7" y="16" width="14" height="2" rx=".94" ry=".94"/><rect x="7" y="6" width="14" height="2" rx=".94" ry=".94"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -4332,12 +2719,19 @@ exports[`recherche renders search results 1`] = `
                     className="empty_btn"
                   >
                     <span
+                      className="icon"
                       onClick={[Function]}
                     >
                       <i
                         dangerouslySetInnerHTML={
                           {
                             "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-close-outline" fill="dark"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>",
+                          }
+                        }
+                        style={
+                          {
+                            "height": "20px",
+                            "lineHeight": "20px",
                           }
                         }
                       />
@@ -4348,17 +2742,8 @@ exports[`recherche renders search results 1`] = `
             </button>
             <div
               aria-hidden={true}
-              className="dropdown-menu"
+              className="menu dropdown-menu"
               role="menu"
-              style={
-                {
-                  "left": 0,
-                  "opacity": 0,
-                  "pointerEvents": "none",
-                  "position": "absolute",
-                  "top": 0,
-                }
-              }
               tabIndex="-1"
             >
               <div
@@ -4434,122 +2819,22 @@ exports[`recherche renders search results 1`] = `
                           <span
                             className="icon"
                           >
-                            <span
+                            <img
+                              alt=""
+                              data-nimg="1"
+                              decoding="async"
+                              height={20}
+                              loading="lazy"
+                              onError={[Function]}
+                              onLoad={[Function]}
+                              src="/images/icon_elearning.svg"
                               style={
                                 {
-                                  "background": "none",
-                                  "border": 0,
-                                  "boxSizing": "border-box",
-                                  "display": "inline-block",
-                                  "height": "initial",
-                                  "margin": 0,
-                                  "maxWidth": "100%",
-                                  "opacity": 1,
-                                  "overflow": "hidden",
-                                  "padding": 0,
-                                  "position": "relative",
-                                  "width": "initial",
+                                  "color": "transparent",
                                 }
                               }
-                            >
-                              <span
-                                style={
-                                  {
-                                    "background": "none",
-                                    "border": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": "initial",
-                                    "margin": 0,
-                                    "maxWidth": "100%",
-                                    "opacity": 1,
-                                    "padding": 0,
-                                    "width": "initial",
-                                  }
-                                }
-                              >
-                                <img
-                                  alt=""
-                                  aria-hidden={true}
-                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2720%27%20height=%2720%27/%3e"
-                                  style={
-                                    {
-                                      "background": "none",
-                                      "border": 0,
-                                      "display": "block",
-                                      "height": "initial",
-                                      "margin": 0,
-                                      "maxWidth": "100%",
-                                      "opacity": 1,
-                                      "padding": 0,
-                                      "width": "initial",
-                                    }
-                                  }
-                                />
-                              </span>
-                              <img
-                                alt=""
-                                data-nimg="intrinsic"
-                                decoding="async"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                style={
-                                  {
-                                    "border": "none",
-                                    "bottom": 0,
-                                    "boxSizing": "border-box",
-                                    "display": "block",
-                                    "height": 0,
-                                    "left": 0,
-                                    "margin": "auto",
-                                    "maxHeight": "100%",
-                                    "maxWidth": "100%",
-                                    "minHeight": "100%",
-                                    "minWidth": "100%",
-                                    "objectFit": undefined,
-                                    "objectPosition": undefined,
-                                    "padding": 0,
-                                    "position": "absolute",
-                                    "right": 0,
-                                    "top": 0,
-                                    "width": 0,
-                                  }
-                                }
-                              />
-                              <noscript>
-                                <img
-                                  alt=""
-                                  data-nimg="intrinsic"
-                                  decoding="async"
-                                  loading="lazy"
-                                  src="/images/icon_elearning.svg"
-                                  srcSet="/images/icon_elearning.svg 1x, /images/icon_elearning.svg 2x"
-                                  style={
-                                    {
-                                      "border": "none",
-                                      "bottom": 0,
-                                      "boxSizing": "border-box",
-                                      "display": "block",
-                                      "height": 0,
-                                      "left": 0,
-                                      "margin": "auto",
-                                      "maxHeight": "100%",
-                                      "maxWidth": "100%",
-                                      "minHeight": "100%",
-                                      "minWidth": "100%",
-                                      "objectFit": undefined,
-                                      "objectPosition": undefined,
-                                      "padding": 0,
-                                      "position": "absolute",
-                                      "right": 0,
-                                      "top": 0,
-                                      "width": 0,
-                                    }
-                                  }
-                                />
-                              </noscript>
-                            </span>
+                              width={20}
+                            />
                           </span>
                           <span
                             className="name"
@@ -4565,12 +2850,18 @@ exports[`recherche renders search results 1`] = `
                         0
                       </span>
                       <span
-                        className="ml-2"
+                        className="ms-2 icon"
                       >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-right-outline" fill="white"><g data-name="Layer 2"><g data-name="chevron-right"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M10.5 17a1 1 0 0 1-.71-.29 1 1 0 0 1 0-1.42L13.1 12 9.92 8.69a1 1 0 0 1 0-1.41 1 1 0 0 1 1.42 0l3.86 4a1 1 0 0 1 0 1.4l-4 4a1 1 0 0 1-.7.32z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5146,11 +3437,19 @@ exports[`recherche renders search results 1`] = `
                       <span
                         className="check"
                       >
-                        <span>
+                        <span
+                          className="icon"
+                        >
                           <i
                             dangerouslySetInnerHTML={
                               {
                                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-square-2" fill="#3D2884"><g data-name="Layer 2"><g data-name="checkmark-square-2"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M18 3H6a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3zm-1.7 6.61l-4.57 6a1 1 0 0 1-.79.39 1 1 0 0 1-.79-.38l-2.44-3.11a1 1 0 0 1 1.58-1.23l1.63 2.08 3.78-5a1 1 0 1 1 1.6 1.22z"/></g></g></svg>",
+                              }
+                            }
+                            style={
+                              {
+                                "height": "20px",
+                                "lineHeight": "20px",
                               }
                             }
                           />
@@ -5160,11 +3459,19 @@ exports[`recherche renders search results 1`] = `
                         <span
                           className="all"
                         >
-                          <span>
+                          <span
+                            className="icon"
+                          >
                             <i
                               dangerouslySetInnerHTML={
                                 {
                                   "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-grid" fill="#3D2884"><g data-name="Layer 2"><g data-name="grid"><rect width="24" height="24" opacity="0"/><path d="M9 3H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M19 3h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><path d="M9 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/><path d="M19 13h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2z"/></g></g></svg>",
+                                }
+                              }
+                              style={
+                                {
+                                  "height": "20px",
+                                  "lineHeight": "20px",
                                 }
                               }
                             />
@@ -5193,7 +3500,6 @@ exports[`recherche renders search results 1`] = `
             className="dropdown"
           >
             <button
-              aria-label={null}
               className="btn btn-secondary"
               onClick={[Function]}
               type="button"
@@ -5204,11 +3510,19 @@ exports[`recherche renders search results 1`] = `
                 <span
                   className="icon"
                 >
-                  <span>
+                  <span
+                    className="icon"
+                  >
                     <i
                       dangerouslySetInnerHTML={
                         {
                           "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" class="eva eva-search-outline" fill="black"><g data-name="Layer 2"><g data-name="search"><rect width="24" height="24" opacity="0"/><path d="M20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8 7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42zM5 11a6 6 0 1 1 6 6 6 6 0 0 1-6-6z"/></g></g></svg>",
+                        }
+                      }
+                      style={
+                        {
+                          "height": "24px",
+                          "lineHeight": "24px",
                         }
                       }
                     />
@@ -5246,7 +3560,6 @@ exports[`recherche renders search results 1`] = `
               <button
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-label={null}
                 className="btn btn-secondary"
                 onClick={[Function]}
                 type="button"
@@ -5257,12 +3570,18 @@ exports[`recherche renders search results 1`] = `
                   Recherche.filterAge
                 </span>
                 <span
-                  className="icon"
+                  className="icon icon"
                 >
                   <i
                     dangerouslySetInnerHTML={
                       {
                         "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down-outline" fill="gray"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "20px",
+                        "lineHeight": "20px",
                       }
                     }
                   />
@@ -5291,11 +3610,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5323,11 +3650,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5355,11 +3690,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5379,7 +3722,6 @@ exports[`recherche renders search results 1`] = `
               <button
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-label={null}
                 className="btn btn-secondary"
                 onClick={[Function]}
                 type="button"
@@ -5390,12 +3732,18 @@ exports[`recherche renders search results 1`] = `
                   Recherche.filterFrenchLevel
                 </span>
                 <span
-                  className="icon"
+                  className="icon icon"
                 >
                   <i
                     dangerouslySetInnerHTML={
                       {
                         "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down-outline" fill="gray"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "20px",
+                        "lineHeight": "20px",
                       }
                     }
                   />
@@ -5424,11 +3772,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5456,11 +3812,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5488,11 +3852,19 @@ exports[`recherche renders search results 1`] = `
                     <span
                       className="check"
                     >
-                      <span>
+                      <span
+                        className="icon"
+                      >
                         <i
                           dangerouslySetInnerHTML={
                             {
                               "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-square-outline" fill="black"><g data-name="Layer 2"><g data-name="square"><rect width="24" height="24" opacity="0"/><path d="M18 21H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3zM6 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1z"/></g></g></svg>",
+                            }
+                          }
+                          style={
+                            {
+                              "height": "20px",
+                              "lineHeight": "20px",
                             }
                           }
                         />
@@ -5512,7 +3884,6 @@ exports[`recherche renders search results 1`] = `
               <button
                 aria-expanded={false}
                 aria-haspopup={true}
-                aria-label={null}
                 className="btn btn-secondary"
                 onClick={[Function]}
                 type="button"
@@ -5523,12 +3894,18 @@ exports[`recherche renders search results 1`] = `
                   Recherche.filterLanguage
                 </span>
                 <span
-                  className="icon"
+                  className="icon icon"
                 >
                   <i
                     dangerouslySetInnerHTML={
                       {
                         "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-chevron-down-outline" fill="gray"><g data-name="Layer 2"><g data-name="chevron-down"><rect width="24" height="24" opacity="0"/><path d="M12 15.5a1 1 0 0 1-.71-.29l-4-4a1 1 0 1 1 1.42-1.42L12 13.1l3.3-3.18a1 1 0 1 1 1.38 1.44l-4 3.86a1 1 0 0 1-.68.28z"/></g></g></svg>",
+                      }
+                    }
+                    style={
+                      {
+                        "height": "20px",
+                        "lineHeight": "20px",
                       }
                     }
                   />
@@ -5543,18 +3920,23 @@ exports[`recherche renders search results 1`] = `
             </div>
           </div>
           <button
-            aria-label={null}
             className="reset btn btn-secondary"
             onClick={[Function]}
             type="button"
           >
             <span
-              className="mr-2"
+              className="me-2 icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-refresh-outline" fill="white"><g data-name="Layer 2"><g data-name="refresh"><rect width="24" height="24" opacity="0"/><path d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -5574,7 +3956,6 @@ exports[`recherche renders search results 1`] = `
           className="types"
         >
           <button
-            aria-label={null}
             className="btn selected btn btn-secondary"
             onClick={[Function]}
             type="button"
@@ -5584,7 +3965,6 @@ exports[`recherche renders search results 1`] = `
             (0)
           </button>
           <button
-            aria-label={null}
             className="btn btn btn-secondary"
             onClick={[Function]}
             type="button"
@@ -5594,7 +3974,6 @@ exports[`recherche renders search results 1`] = `
             (0)
           </button>
           <button
-            aria-label={null}
             className="btn btn btn-secondary"
             onClick={[Function]}
             type="button"
@@ -5611,18 +3990,23 @@ exports[`recherche renders search results 1`] = `
           <button
             aria-expanded={false}
             aria-haspopup={true}
-            aria-label={null}
             className="dropdown btn btn-secondary"
             onClick={[Function]}
             type="button"
           >
             <span
-              className="icon"
+              className="icon icon"
             >
               <i
                 dangerouslySetInnerHTML={
                   {
                     "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-swap-outline" fill="black"><g data-name="Layer 2"><g data-name="swap"><rect width="24" height="24" transform="rotate(-90 12 12)" opacity="0"/><path d="M4 9h13l-1.6 1.2a1 1 0 0 0-.2 1.4 1 1 0 0 0 .8.4 1 1 0 0 0 .6-.2l4-3a1 1 0 0 0 0-1.59l-3.86-3a1 1 0 0 0-1.23 1.58L17.08 7H4a1 1 0 0 0 0 2z"/><path d="M20 16H7l1.6-1.2a1 1 0 0 0-1.2-1.6l-4 3a1 1 0 0 0 0 1.59l3.86 3a1 1 0 0 0 .61.21 1 1 0 0 0 .79-.39 1 1 0 0 0-.17-1.4L6.92 18H20a1 1 0 0 0 0-2z"/></g></g></svg>",
+                  }
+                }
+                style={
+                  {
+                    "height": "20px",
+                    "lineHeight": "20px",
                   }
                 }
               />
@@ -5643,11 +4027,19 @@ exports[`recherche renders search results 1`] = `
               type="button"
             >
               Filters.sortDate
-              <span>
+              <span
+                className="icon"
+              >
                 <i
                   dangerouslySetInnerHTML={
                     {
                       "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-checkmark-outline" fill="white"><g data-name="Layer 2"><g data-name="checkmark"><rect width="24" height="24" opacity="0"/><path d="M9.86 18a1 1 0 0 1-.73-.32l-4.86-5.17a1 1 0 1 1 1.46-1.37l4.12 4.39 8.41-9.2a1 1 0 1 1 1.48 1.34l-9.14 10a1 1 0 0 1-.73.33z"/></g></g></svg>",
+                    }
+                  }
+                  style={
+                    {
+                      "height": "20px",
+                      "lineHeight": "20px",
                     }
                   }
                 />
@@ -5684,12 +4076,18 @@ exports[`recherche renders search results 1`] = `
         onClick={[Function]}
       >
         <span
-          className="mr-10"
+          className="me-2 icon"
         >
           <i
             dangerouslySetInnerHTML={
               {
                 "__html": "<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" class="eva eva-refresh-outline" fill="#fff"><g data-name="Layer 2"><g data-name="refresh"><rect width="24" height="24" opacity="0"/><path d="M20.3 13.43a1 1 0 0 0-1.25.65A7.14 7.14 0 0 1 12.18 19 7.1 7.1 0 0 1 5 12a7.1 7.1 0 0 1 7.18-7 7.26 7.26 0 0 1 4.65 1.67l-2.17-.36a1 1 0 0 0-1.15.83 1 1 0 0 0 .83 1.15l4.24.7h.17a1 1 0 0 0 .34-.06.33.33 0 0 0 .1-.06.78.78 0 0 0 .2-.11l.09-.11c0-.05.09-.09.13-.15s0-.1.05-.14a1.34 1.34 0 0 0 .07-.18l.75-4a1 1 0 0 0-2-.38l-.27 1.45A9.21 9.21 0 0 0 12.18 3 9.1 9.1 0 0 0 3 12a9.1 9.1 0 0 0 9.18 9A9.12 9.12 0 0 0 21 14.68a1 1 0 0 0-.7-1.25z"/></g></g></svg>",
+              }
+            }
+            style={
+              {
+                "height": "20px",
+                "lineHeight": "20px",
               }
             }
           />
@@ -5699,122 +4097,23 @@ exports[`recherche renders search results 1`] = `
       <div
         className="image"
       >
-        <span
+        <img
+          alt="No results"
+          data-nimg="1"
+          decoding="async"
+          height={280}
+          loading="lazy"
+          onError={[Function]}
+          onLoad={[Function]}
+          src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
+          srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
           style={
             {
-              "background": "none",
-              "border": 0,
-              "boxSizing": "border-box",
-              "display": "inline-block",
-              "height": "initial",
-              "margin": 0,
-              "maxWidth": "100%",
-              "opacity": 1,
-              "overflow": "hidden",
-              "padding": 0,
-              "position": "relative",
-              "width": "initial",
+              "color": "transparent",
             }
           }
-        >
-          <span
-            style={
-              {
-                "background": "none",
-                "border": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": "initial",
-                "margin": 0,
-                "maxWidth": "100%",
-                "opacity": 1,
-                "padding": 0,
-                "width": "initial",
-              }
-            }
-          >
-            <img
-              alt=""
-              aria-hidden={true}
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27420%27%20height=%27280%27/%3e"
-              style={
-                {
-                  "background": "none",
-                  "border": 0,
-                  "display": "block",
-                  "height": "initial",
-                  "margin": 0,
-                  "maxWidth": "100%",
-                  "opacity": 1,
-                  "padding": 0,
-                  "width": "initial",
-                }
-              }
-            />
-          </span>
-          <img
-            alt="No results"
-            data-nimg="intrinsic"
-            decoding="async"
-            onError={[Function]}
-            onLoad={[Function]}
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style={
-              {
-                "border": "none",
-                "bottom": 0,
-                "boxSizing": "border-box",
-                "display": "block",
-                "height": 0,
-                "left": 0,
-                "margin": "auto",
-                "maxHeight": "100%",
-                "maxWidth": "100%",
-                "minHeight": "100%",
-                "minWidth": "100%",
-                "objectFit": undefined,
-                "objectPosition": undefined,
-                "padding": 0,
-                "position": "absolute",
-                "right": 0,
-                "top": 0,
-                "width": 0,
-              }
-            }
-          />
-          <noscript>
-            <img
-              alt="No results"
-              data-nimg="intrinsic"
-              decoding="async"
-              loading="lazy"
-              src="/_next/image?url=%2Fimg.jpg&w=1080&q=75"
-              srcSet="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=1080&q=75 2x"
-              style={
-                {
-                  "border": "none",
-                  "bottom": 0,
-                  "boxSizing": "border-box",
-                  "display": "block",
-                  "height": 0,
-                  "left": 0,
-                  "margin": "auto",
-                  "maxHeight": "100%",
-                  "maxWidth": "100%",
-                  "minHeight": "100%",
-                  "minWidth": "100%",
-                  "objectFit": undefined,
-                  "objectPosition": undefined,
-                  "padding": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": 0,
-                  "width": 0,
-                }
-              }
-            />
-          </noscript>
-        </span>
+          width={420}
+        />
       </div>
     </div>
   </div>

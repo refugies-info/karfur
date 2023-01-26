@@ -125,7 +125,7 @@ export const Needs = () => {
           <StyledTitle>Catégories</StyledTitle>
         </StyledHeaderInner>
         <StyledSort>
-          <FButton type="dark" name="plus-circle-outline" onClick={addTheme} className="mr-2">
+          <FButton type="dark" name="plus-circle-outline" onClick={addTheme} className="me-2">
             Ajouter un thème
           </FButton>
           <FButton type="dark" name="plus-circle-outline" onClick={addNeed}>

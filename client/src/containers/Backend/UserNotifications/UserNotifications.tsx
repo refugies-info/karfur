@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
@@ -130,14 +130,14 @@ const UserNotifications = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "La réaction a bien été supprimée",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de la suppression",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -163,14 +163,14 @@ const UserNotifications = (props: Props) => {
       Swal.fire({
         title: "Yay...",
         text: "La réaction a été marquée comme lue",
-        type: "success",
+        icon: "success",
         timer: 1500
       });
     } catch (error) {
       Swal.fire({
         title: "Oops",
         text: "Erreur lors de l'enregistrement",
-        type: "error",
+        icon: "error",
         timer: 1500
       });
     }
@@ -190,7 +190,7 @@ const UserNotifications = (props: Props) => {
     Swal.fire({
       title: "Yay...",
       text: "La notification a été supprimée",
-      type: "success",
+      icon: "success",
       timer: 1500
     });
   };

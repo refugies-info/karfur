@@ -9,18 +9,17 @@
 .container {
   background: $white;
   border-radius: $radius;
-  position: absolute;
   width: 380px;
   box-shadow: 0 0 40px 0 #00000040;
   overflow: hidden;
   z-index: 3;
   padding: u(4);
   margin-top: u(1);
+  position: relative;
 
   @include isMobile() {
     width: 100%;
     box-shadow: none;
-    position: relative;
     margin: 0;
   }
 }
@@ -51,6 +50,7 @@
   margin-right: u(1);
   margin-bottom: u(1);
   display: inline-flex;
+  align-items: center;
   @include text("normal");
 
   @include rtl() {
@@ -60,7 +60,7 @@
   }
 
   &:hover {
-    background-color: darken($bleuCharte, 5);
+    background-color: darken($bleuCharte, 5) !important;
     color: white;
   }
   &:active,

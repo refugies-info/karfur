@@ -30,7 +30,7 @@ const getThemes = (dispositif: SimplifiedDispositif | null) => {
 
 const getNeed = (needId: ObjectId, allNeeds: Need[]) => {
   return allNeeds.find((n) => n._id === needId);
-}
+};
 
 export const NeedsChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
@@ -49,7 +49,8 @@ export const NeedsChoiceModal = (props: Props) => {
 
   const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
 
-  useEffect(() => { // load initial data
+  useEffect(() => {
+    // load initial data
     if (dispositif) {
       if (dispositif.needs && dispositif.needs.length > 0) {
         setSelectedNeeds(dispositif.needs);
@@ -59,38 +60,43 @@ export const NeedsChoiceModal = (props: Props) => {
     }
   }, [dispositif]);
 
-  const addTheme = (needId: ObjectId) => { // add theme based on need
+  const addTheme = (needId: ObjectId) => {
+    // add theme based on need
     const needTheme = getNeed(needId, allNeeds)?.theme._id;
     if (needTheme) {
-      setSelectedThemes(themes => [...new Set([...themes, needTheme])]);
+      setSelectedThemes((themes) => [...new Set([...themes, needTheme])]);
     }
-  }
-  const removeTheme = (needId: ObjectId, newNeeds: ObjectId[]) => { // remove theme based on need
+  };
+  const removeTheme = (needId: ObjectId, newNeeds: ObjectId[]) => {
+    // remove theme based on need
     const needTheme = getNeed(needId, allNeeds)?.theme._id;
-    const stillHasTheme = newNeeds.find(currentNeedId => {
+    const stillHasTheme = newNeeds.find((currentNeedId) => {
       const currentNeedTheme = getNeed(currentNeedId, allNeeds)?.theme._id;
       return currentNeedTheme === needTheme;
-    })
+    });
     if (needTheme && !stillHasTheme) {
-      setSelectedThemes(themes => themes.filter(t => t !== needTheme));
+      setSelectedThemes((themes) => themes.filter((t) => t !== needTheme));
     }
-  }
+  };
 
   const selectNeed = (needId: ObjectId) => {
-    if (selectedNeeds.includes(needId)) { // remove need
+    if (selectedNeeds.includes(needId)) {
+      // remove need
       setSelectedNeeds((s) => {
         const newNeeds = s.filter((need) => need !== needId);
         removeTheme(needId, newNeeds);
         return newNeeds;
       });
-    } else { // add need
+    } else {
+      // add need
       setSelectedNeeds((s) => [...s, needId]);
       addTheme(needId);
     }
   };
 
   const selectTheme = (themeId: ObjectId) => {
-    if (selectedThemes.includes(themeId)) { // remove theme
+    if (selectedThemes.includes(themeId)) {
+      // remove theme
       setSelectedThemes((t) => t.filter((theme) => theme !== themeId));
 
       // remove needs associated to this theme
@@ -110,14 +116,16 @@ export const NeedsChoiceModal = (props: Props) => {
     }
   };
 
-  useEffect(() => { // if theme removed from selected, remove it from primary
+  useEffect(() => {
+    // if theme removed from selected, remove it from primary
     if (primaryTheme && !selectedThemes.includes(primaryTheme) && !selectedThemesByAuthor?.includes(primaryTheme)) {
       setPrimaryTheme(undefined);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedThemes]);
 
-  useEffect(() => { // handle errors
+  useEffect(() => {
+    // handle errors
     const hasThemeWithoutNeed = () => {
       const allSelectedThemes = [...selectedThemes, ...(selectedThemesByAuthor || [])];
       const allSelectedNeeds = selectedNeeds.map((needId) => allNeeds.find((n) => n._id === needId));
@@ -126,9 +134,7 @@ export const NeedsChoiceModal = (props: Props) => {
       });
     };
 
-    const allSelectedThemes = [...new Set(
-      [...selectedThemes, ...(selectedThemesByAuthor || [])]
-    )];
+    const allSelectedThemes = [...new Set([...selectedThemes, ...(selectedThemesByAuthor || [])])];
     if (!primaryTheme) {
       setErrorMessage("Choisissez un thème principal avec le bouton radio.");
     } else if (allSelectedThemes.length === 0) {
@@ -185,12 +191,12 @@ export const NeedsChoiceModal = (props: Props) => {
         leftHead={
           <h2>
             Attribuer des besoins à la fiche :&nbsp;
-            <span className="font-weight-normal">{dispositif.titreInformatif}</span>
+            <span className="fw-normal">{dispositif.titreInformatif}</span>
           </h2>
         }
         rightHead={
           <div>
-            <FButton type="white" name="close-outline" className="mr-2" onClick={props.toggleModal}>
+            <FButton type="white" name="close-outline" className="me-2" onClick={props.toggleModal}>
               Annuler
             </FButton>
             <FButton type="validate" name="checkmark-outline" onClick={onValidate} disabled={!!errorMessage}>
@@ -199,7 +205,7 @@ export const NeedsChoiceModal = (props: Props) => {
           </div>
         }
       >
-        <p className="text-right text-danger mb-0 mt-1">{errorMessage}</p>
+        <p className="text-end text-danger mb-0 mt-1">{errorMessage}</p>
         <Row className="mt-4">
           <Col>
             <h3 className={styles.subtitle}>Thèmes</h3>
@@ -210,7 +216,7 @@ export const NeedsChoiceModal = (props: Props) => {
                     type="radio"
                     name="theme"
                     value={theme._id.toString()}
-                    className="mr-2"
+                    className="me-2"
                     disabled={!isThemeSelected(theme._id)}
                     checked={primaryTheme === theme._id}
                     onChange={() => setPrimaryTheme(theme._id)}

@@ -7,14 +7,14 @@ import { Theme } from "types/interface";
 import ThemeIcon from "components/UI/ThemeIcon";
 
 const CheckContainer = styled.div`
-  background: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
+  background: ${(props: { missingElement: boolean }) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
   border-radius: 12px;
   padding: 18px;
   justify-content: space-between;
   flex-direction: column;
   margin-bottom: 16px;
   display: flex;
-  cursor: ${(props: {missingElement: boolean}) => (props.missingElement ? "pointer" : "default")};
+  cursor: ${(props: { missingElement: boolean }) => (props.missingElement ? "pointer" : "default")};
 `;
 
 const Row = styled.div`
@@ -28,7 +28,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: ${(props: {missingElement: boolean}) => (props.missingElement ? "#FF9800" : "#4caf50")};
+  color: ${(props: { missingElement: boolean }) => (props.missingElement ? "#FF9800" : "#4caf50")};
 `;
 
 const TitleMockup = styled.div`
@@ -36,19 +36,15 @@ const TitleMockup = styled.div`
   font-size: 22px;
   margin-bottom: 11px;
   line-height: 27px;
-  color: ${(props: {typeContenu?: string, color?: string}) =>
+  color: ${(props: { typeContenu?: string; color?: string }) =>
     props.typeContenu === "demarche" && props.color ? props.color : "black"};
 `;
 
 const TextMockup = styled.div`
   font-size: 16px;
   line-height: 20px;
-  color: ${(props: {textlength: number, typeContenu?: string, color?: string}) =>
-    props.textlength > 110
-      ? "red"
-      : props.typeContenu === "demarche" && props.color
-      ? props.color
-      : ""};
+  color: ${(props: { textlength: number; typeContenu?: string; color?: string }) =>
+    props.textlength > 110 ? "red" : props.typeContenu === "demarche" && props.color ? props.color : ""};
 `;
 
 const TagNameContainer = styled.div`
@@ -61,15 +57,14 @@ const CardContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  height: ${(props: {typeContenu?: string}) =>
-    props.typeContenu === "dispositif" ? "198px" : "248px"};
+  height: ${(props: { typeContenu?: string }) => (props.typeContenu === "dispositif" ? "198px" : "248px")};
   min-width: 252px;
   max-width: 252px;
   overflow: auto;
 `;
 
 const TagContainer = styled.div`
-  background-color: ${(props: {color: string}) => props.color};
+  background-color: ${(props: { color: string }) => props.color};
   height: 50px;
   min-width: 248px;
   border-radius: 0 0 12px 12px;
@@ -90,9 +85,9 @@ const EmptyTextContainer = styled.div`
 `;
 
 interface MockupCardContainerProps {
-  typeContenu?: string
-  lightColor: string
-  color?: string
+  typeContenu?: string;
+  lightColor: string;
+  color?: string;
 }
 const MockupCardContainer = styled.div`
   height: 248px;
@@ -125,17 +120,17 @@ const onCheckContainerClick = (section: string, toggleModal: any, missingElement
   return toggleModal(true);
 };
 interface Props {
-  section: section
-  missingElement: any
-  toggleModal?: any
-  addItem?: any
-  geolocInfoCard?: any
-  theme?: Theme
-  abstract?: string
-  onChange?: any
-  titreInformatif?: string
-  titreMarque?: string
-  typeContenu?: string
+  section: section;
+  missingElement: any;
+  toggleModal?: any;
+  addItem?: any;
+  geolocInfoCard?: any;
+  theme?: Theme;
+  abstract?: string;
+  onChange?: any;
+  titreInformatif?: string;
+  titreMarque?: string;
+  typeContenu?: string;
 }
 
 const Check = (props: Props) => {
@@ -146,21 +141,15 @@ const Check = (props: Props) => {
         if (!props.geolocInfoCard && props.section === "geoloc") {
           props.addItem(1, "card", "Zone d'action");
         }
-        onCheckContainerClick(
-          props.section,
-          props.toggleModal,
-          props.missingElement
-        );
+        onCheckContainerClick(props.section, props.toggleModal, props.missingElement);
       }}
     >
       <Row>
-        <Title missingElement={props.missingElement}>
-          {getTitle(props.section)}
-        </Title>
+        <Title missingElement={props.missingElement}>{getTitle(props.section)}</Title>
         <Title missingElement={props.missingElement}>
           {props.missingElement ? "Manquant" : "Ok"}
           <EVAIcon
-            className={"ml-8"}
+            className={"ms-2"}
             name={props.missingElement ? "alert-triangle" : "checkmark-circle-2"}
             fill={props.missingElement ? "#FF9800" : "#4caf50"}
           />
@@ -183,11 +172,7 @@ const Check = (props: Props) => {
               placeholder="Résumez ici votre dispositif..."
             />
             <div style={{ marginTop: "100px" }}>
-              <EVAIcon
-                name={"chevron-right-outline"}
-                size="xlarge"
-                fill={colors.gray90}
-              />
+              <EVAIcon name={"chevron-right-outline"} size="xlarge" fill={colors.gray90} />
             </div>
             <MockupCardContainer
               color={props.theme?.colors.color100 || "#000"}
@@ -195,10 +180,7 @@ const Check = (props: Props) => {
               typeContenu={props.typeContenu}
             >
               <CardContainer typeContenu={props.typeContenu}>
-                <TitleMockup
-                  color={props.theme?.colors.color100 || "#000"}
-                  typeContenu={props.typeContenu}
-                >
+                <TitleMockup color={props.theme?.colors.color100 || "#000"} typeContenu={props.typeContenu}>
                   {props.titreInformatif}
                 </TitleMockup>
                 <TextMockup
@@ -206,18 +188,14 @@ const Check = (props: Props) => {
                   typeContenu={props.typeContenu}
                   textlength={props.abstract?.length || 0}
                 >
-                  {!props.abstract && (
-                    <EmptyTextContainer></EmptyTextContainer>
-                  )}
+                  {!props.abstract && <EmptyTextContainer></EmptyTextContainer>}
                   {props.abstract && props.abstract.length > 0 ? props.abstract : ""}
                 </TextMockup>
               </CardContainer>
               {props.theme && props.typeContenu === "dispositif" && (
                 <TagContainer color={props.theme?.colors.color100 || "#000"}>
                   <TagContainerContent>
-                    <ThemeIcon
-                      theme={props.theme}
-                    />
+                    <ThemeIcon theme={props.theme} />
                     <TagNameContainer> {props.titreMarque}</TagNameContainer>
                   </TagContainerContent>
                 </TagContainer>
@@ -227,25 +205,18 @@ const Check = (props: Props) => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "row"
             }}
           >
-            <div
-              className={
-                "decompte" +
-                ((props.abstract || "").length > 110 ? " text-danger" : "")
-              }
-            >
-              {(props.abstract || "").length < 110
-                ? 110 - (props.abstract || "").length
-                : "110"}{" "}
-              sur 110 caractères restants
+            <div className={"decompte" + ((props.abstract || "").length > 110 ? " text-danger" : "")}>
+              {(props.abstract || "").length < 110 ? 110 - (props.abstract || "").length : "110"} sur 110 caractères
+              restants
             </div>
           </div>
         </>
       ) : null}
     </CheckContainer>
   );
-}
+};
 
 export default Check;

@@ -18,13 +18,11 @@ const AudioBtn = (props: Props) => {
   if (props.enabled) {
     return (
       <button
-        className={
-          styles.audio_btn + " mr-10 " + (props.ttsActive ? styles.pressed : "")
-        }
+        className={styles.audio_btn + " me-2 " + (props.ttsActive ? styles.pressed : "")}
         onClick={props.toggleAudio}
       >
         {props.ttsLoading ? (
-          <Spinner color="light" className="ml-15" />
+          <Spinner color="light" className="ms-4" />
         ) : (
           <EVAIcon
             name={"volume-up" + (props.ttsActive ? "" : "-outline")}

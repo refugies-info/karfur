@@ -1,6 +1,6 @@
 import { cls } from "lib/classname";
 import { ObjectId } from "mongodb";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 import { Theme } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";
@@ -28,13 +28,13 @@ const AdminThemeButton = (props: Props) => (
     }}
   >
     <div className={styles.image}>
-      {props.theme?.appImage?.secure_url &&
+      {props.theme?.appImage?.secure_url && (
         <Image src={props.theme.appImage.secure_url} width={36} height={50} alt="" />
-      }
+      )}
     </div>
-    <span className="ml-2">{props.theme.name.fr}</span>
+    <span className="ms-2">{props.theme.name.fr}</span>
 
-    <span className="ml-auto">
+    <span className="ms-auto">
       {props.selected && (
         <>
           <span className={styles.hoverHidden}>
@@ -57,7 +57,7 @@ const AdminThemeButton = (props: Props) => (
           </span>
         </>
       )}
-      {props.editButton &&
+      {props.editButton && (
         <span className={styles.edit}>
           <EVAIcon
             name="edit-outline"
@@ -65,12 +65,12 @@ const AdminThemeButton = (props: Props) => (
             size={16}
             onClick={(e: any) => {
               e.stopPropagation();
-              if(props.onClickEdit) props.onClickEdit();
+              if (props.onClickEdit) props.onClickEdit();
             }}
           />
         </span>
-      }
-      {props.opened && <EVAIcon name="arrow-forward" fill="white" size={20} className="ml-2" />}
+      )}
+      {props.opened && <EVAIcon name="arrow-forward" fill="white" size={20} className="ms-2" />}
     </span>
   </button>
 );

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import {
   fetchUserContributionsActionCreator,
@@ -9,11 +8,11 @@ import {
 import { userContributionsSelector } from "services/UserContributions/userContributions.selectors";
 import {
   userStructureDisposAssociesSelector,
-  userStructureNameSelector,
   userStructureSelector
 } from "services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { userDetailsSelector } from "services/User/user.selectors";
 import { formatContributions } from "./functions";
 import { NoContribution } from "./components/NoContribution";
 import { FrameModal } from "components/Modals";
@@ -61,11 +60,9 @@ const UserContributions = (props: Props) => {
   const toggleTutoModal = () => setShowTutoModal(!showTutoModal);
 
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const userContributions = useSelector(userContributionsSelector);
   const userStructureContributions = useSelector(userStructureDisposAssociesSelector);
-  const userStructureName = useSelector(userStructureNameSelector);
   const isLoadingUserContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   const isLoadingUserStructureContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
@@ -89,9 +86,8 @@ const UserContributions = (props: Props) => {
     window.scrollTo(0, 0);
   }, [dispatch]);
 
-  const contributions = formatContributions(userContributions, userStructureContributions, userStructureName);
-
-  const onContributionRowClick = (burl: string) => router.push(burl);
+  const user = useSelector(userDetailsSelector);
+  const contributions = formatContributions(userContributions, userStructureContributions, userStructure, user?._id);
 
   const deleteDispositif = (event: any, dispositifId: ObjectId, isAuthorizedToDelete: boolean) => {
     event.stopPropagation();
@@ -101,7 +97,7 @@ const UserContributions = (props: Props) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
-      type: "question",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
@@ -113,7 +109,7 @@ const UserContributions = (props: Props) => {
         Swal.fire({
           title: "Yay...",
           text: "Le dispositif a été supprimé",
-          type: "success",
+          icon: "success",
           timer: 1500
         });
       }
@@ -168,7 +164,7 @@ const UserContributions = (props: Props) => {
               <FButton
                 type="tuto"
                 name="video-outline"
-                className="mr-8"
+                className="me-2"
                 onClick={() => {
                   setTutoModalDisplayed("Mes fiches");
                   toggleTutoModal();
@@ -186,7 +182,6 @@ const UserContributions = (props: Props) => {
               contributions={contributions}
               toggleTutoModal={toggleTutoModal}
               setTutoModalDisplayed={setTutoModalDisplayed}
-              onContributionRowClick={onContributionRowClick}
               deleteDispositif={deleteDispositif}
             />
           </WhiteContainer>

@@ -43,15 +43,15 @@ export const getDispositifArray = async (
 
 export const updateDispositifInDB = async (
   dispositifId: ObjectId | string,
-  modifiedDispositif:
+  modifiedDispositif: /* FIXME: Partial<Dispositif> ? */
     | { mainSponsor: ObjectId; status: string }
     | { status: string; publishedAt: number }
     | { status: string }
     | {
-        adminComments: string;
-        adminProgressionStatus: string;
-        adminPercentageProgressionStatus: string;
-      }
+      adminComments: string;
+      adminProgressionStatus: string;
+      adminPercentageProgressionStatus: string;
+    }
     | { audienceAge: AudienceAge[] }
     | { audienceAge: AudienceAge[]; contenu: any }
     | { nbVues: number }
@@ -65,6 +65,7 @@ export const updateDispositifInDB = async (
     | { nbVuesMobile: number }
     | { nbFavoritesMobile: number }
     | { notificationsSent: {} }
+    | { webOnly: boolean }
 ): Promise<DispositifPopulatedThemesDoc> =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
     upsert: true,
@@ -203,3 +204,12 @@ export const getNbUpdatedRecently = async (date: Date) => {
     lastModificationDate: { $gte: date, $exists: true }
   });
 };
+
+export const getCountDispositifs = async (query: any) => Dispositif.count(query);
+
+export const deleteNeedFromDispositifs = async (needId: string) => {
+  return Dispositif.updateMany(
+    { needs: needId },
+    { $pull: { needs: needId } }
+  )
+}
