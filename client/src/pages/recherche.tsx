@@ -84,8 +84,8 @@ const Recherche = () => {
     // update url
     const updateUrl = () => {
       const locale = router.locale;
-      const oldQueryString = qs.stringify(router.query, { arrayFormat: "comma" });
-      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma" });
+      const oldQueryString = router.asPath.split("?")[1] || "";
+      const newQueryString = qs.stringify({ ...query }, { arrayFormat: "comma", sort: (a, b) => a.localeCompare(b) });
       if (oldQueryString !== newQueryString) {
         router.push(
           {
@@ -103,8 +103,7 @@ const Recherche = () => {
       updateUrl();
       dispatch(setSearchResultsActionCreator(res));
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, dispositifs]);
+  }, [query, dispositifs, dispatch, router, languei18nCode]);
 
   // check if department deployed
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
