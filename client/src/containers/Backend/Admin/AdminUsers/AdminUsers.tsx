@@ -164,7 +164,7 @@ export const AdminUsers = () => {
                 .replace(/[\u0300-\u036f]/g, "")
                 .toLowerCase()
                 .includes(removeAccents(search.toLowerCase()))) ||
-            user.email.includes(search)
+            user.email?.includes(search)
         )
       : users;
 
