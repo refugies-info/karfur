@@ -6,8 +6,8 @@ type lnCode = string;
 type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
 type priceDetails = "une fois" | "à chaque fois" | "par heure" | "par semaine" | "par mois" | "par an";
-type publicType = "réfugié" | "tout public";
-type justificatifType = "diplome" | "titre sejour" | "acte naissance";
+type publicType = "refugee" | "all";
+type justificatifType = "diplome" | "titre sejour" | "domicile";
 type contentType = "dispositif" | "demarche";
 
 interface InfoSection {
@@ -59,8 +59,8 @@ interface Poi {
 
 interface Sponsor {
   name: string;
-  logo: string;
-  link: string;
+  logo: string | null;
+  link: string | null;
 }
 
 interface Suggestion {
@@ -69,7 +69,7 @@ interface Suggestion {
   read: boolean
   suggestion: string
   suggestionId: Uuid
-  section: keyof DispositifContent | keyof DemarcheContent
+  section: keyof DispositifContent | keyof DemarcheContent | "metadatas"
 }
 
 interface Merci {
