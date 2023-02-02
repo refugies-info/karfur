@@ -7,7 +7,8 @@ const dbPath = "mongodb://127.0.0.1:27017/heroku_wbj38s57?serverSelectionTimeout
 const client = new MongoClient(dbPath);
 const dbName = "heroku_wbj38s57";
 
-const getLocalizedContent = (content, ln) => {
+const getLocalizedContent = (content, ln, root = false) => {
+  if (root) return content || "";
   if (ln === "fr") return content?.fr || content || "";
   return content?.[ln] || "";
 };
@@ -21,11 +22,15 @@ const turnJSONtoHTML = (content) => {
 
 /* Remove corrupted dispositifs */
 const removeDispositifs = async (dispositifsColl) => {
-  await dispositifsColl.deleteMany({ status: { $exists: false } });
+  console.log("Suppression de dispositifs...");
+  const count1 = await dispositifsColl.deleteMany({ status: "Supprimé" });
+  const count2 = await dispositifsColl.deleteMany({ status: { $exists: false } });
+  console.log("  Dispositifs supprimés :", count1.deletedCount + count2.deletedCount);
 };
 
 /* List all fields to remove from a dispositif */
 const removeOldFields = async (dispositifsColl) => {
+  console.log("Suppression des champs inutilisés...");
   await dispositifsColl.updateMany(
     { status: { $ne: "Supprimé" } },
     {
@@ -89,15 +94,17 @@ const formatSuggestion = (suggestion, typeContenu) => {
   };
 };
 
-const getInfoSections = (children, ln) => {
+const getInfoSections = (children, ln, root) => {
   const infosections = {};
 
-  for (const section of children) {
-    const uuid = uuidv4();
-    infosections[uuid] = {
-      title: getLocalizedContent(section.title, ln),
-      content: turnJSONtoHTML(getLocalizedContent(section.content, ln))
-    };
+  if (children) {
+    for (const section of children) {
+      const uuid = uuidv4();
+      infosections[uuid] = {
+        title: getLocalizedContent(section.title, ln, root),
+        content: turnJSONtoHTML(getLocalizedContent(section.content, ln, root))
+      };
+    }
   }
 
   return infosections;
@@ -149,9 +156,18 @@ const getMarkers = (children) => {
   });
 };
 
-const getMetadatas = (content) => {
+const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
+
+const getMetadatas = (content, id) => {
   const metas = {};
   const translatedMetas = {};
+
+  const titles = (content?.children || []).map((c) => c.title);
+  savedMetadatasIndex[id] = {};
+
+  if (titles.indexOf("Durée") >= 0) savedMetadatasIndex[id].duration = titles.indexOf("Durée");
+  if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
+
   for (const metadata of content.children) {
     switch (metadata.title) {
       case "Zone d'action":
@@ -191,7 +207,7 @@ const getMetadatas = (content) => {
         translatedMetas.important = metadata.contentTitle;
         break;
       default:
-        console.warn("meta non ajoutée", metadata.title);
+        console.warn("  Meta non ajoutée", metadata.title);
     }
   }
 
@@ -218,11 +234,33 @@ const getSponsors = (dispositif) => {
         link: sponsor.link || null
       });
     } else {
-      console.warn("sponsor not added", sponsor);
+      console.warn("  Sponsor non ajouté", sponsor);
     }
   }
 
   return sponsors;
+};
+
+const getContent = (dispositif, ln, root) => {
+  const contentLn = {
+    content: {
+      titreInformatif: getLocalizedContent(dispositif.titreInformatif, ln, root),
+      titreMarque: getLocalizedContent(dispositif.titreMarque, ln, root),
+      abstract: getLocalizedContent(dispositif.abstract, ln, root),
+      what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root))
+    },
+    metadatas: {}
+  };
+
+  if (dispositif.typeContenu === "dispositif") {
+    contentLn.content.why = getInfoSections(dispositif.contenu?.[2]?.children, ln, root);
+    contentLn.content.how = getInfoSections(dispositif.contenu?.[3]?.children, ln, root);
+  } else if (dispositif.typeContenu === "demarche") {
+    contentLn.content.how = getInfoSections(dispositif.contenu?.[2]?.children, ln, root);
+    contentLn.content.next = getInfoSections(dispositif.contenu?.[3]?.children, ln, root);
+  }
+
+  return contentLn;
 };
 
 const getMultilangContent = (dispositif, translatedMetas) => {
@@ -230,29 +268,13 @@ const getMultilangContent = (dispositif, translatedMetas) => {
 
   for (const ln of ["fr", "en", "ps", "fa", "ti", "ru", "uk", "ar"]) {
     if (dispositif.avancement[ln] === 1 || (ln === "fr" && dispositif.avancement === 1)) {
-      translations[ln] = {
-        content: {
-          titreInformatif: getLocalizedContent(dispositif.titreInformatif, ln),
-          titreMarque: getLocalizedContent(dispositif.titreMarque, ln),
-          abstract: getLocalizedContent(dispositif.abstract, ln),
-          what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, [ln]))
-        },
-        metadatas: {}
-      };
-
-      if (dispositif.typeContenu === "dispositif") {
-        translations[ln].content.why = getInfoSections(dispositif.contenu?.[2]?.children, ln);
-        translations[ln].content.how = getInfoSections(dispositif.contenu?.[3]?.children, ln);
-      } else if (dispositif.typeContenu === "demarche") {
-        translations[ln].content.how = getInfoSections(dispositif.contenu?.[2]?.children, ln);
-        translations[ln].content.next = getInfoSections(dispositif.contenu?.[3]?.children, ln);
-      }
+      translations[ln] = getContent(dispositif, ln, false);
 
       if (translatedMetas.duration) {
-        translations[ln].metadatas.duration = getLocalizedContent(translatedMetas.duration, ln);
+        translations[ln].metadatas.duration = getLocalizedContent(translatedMetas.duration, ln, false);
       }
       if (translatedMetas.important) {
-        translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln);
+        translations[ln].metadatas.important = getLocalizedContent(translatedMetas.important, ln, false);
       }
     }
   }
@@ -263,7 +285,7 @@ const getMultilangContent = (dispositif, translatedMetas) => {
 /* Add new fields to dispositif */
 const getNewDispositif = (dispositif) => {
   if (!dispositif.status) return null; // some dispositifs seems not complete and not displayed
-  const metadatas = getMetadatas(dispositif.contenu?.[1]);
+  const metadatas = getMetadatas(dispositif.contenu?.[1], dispositif._id);
   const newDispositif = {
     translations: {
       ...getMultilangContent(dispositif, metadatas.translatedMetas)
@@ -287,16 +309,280 @@ const getNewDispositif = (dispositif) => {
   return { ...dispositif, ...newDispositif };
 };
 
+const deletedDispositifsRequest = [
+  {
+    $match: {
+      type: "dispositif"
+    }
+  },
+  {
+    $lookup: {
+      from: "dispositifs",
+      localField: "articleId",
+      foreignField: "_id",
+      as: "dispositifs"
+    }
+  },
+  { $project: { articleId: 1, dispositifs: 1 } },
+  {
+    $match: {
+      "dispositifs.status": "Supprimé"
+    }
+  }
+];
+
+const removeCorruptedTrads = async (traductionsColl) => {
+  console.log("Suppression de traductions ...");
+
+  // langues not supported
+  const languageNotSupported = await traductionsColl.deleteMany({
+    type: "dispositif",
+    langueCible: { $nin: ["en", "ps", "fa", "ti", "ru", "uk", "ar"] }
+  });
+  console.log("  Trads avec langues non supportées :", languageNotSupported.deletedCount);
+
+  // type == string
+  const typeString = await traductionsColl.deleteMany({ type: { $ne: "dispositif" } });
+  console.log("  Trads avec type string :", typeString.deletedCount);
+
+  // deleted dispositifs
+  const deletedDispositifs = await traductionsColl.aggregate(deletedDispositifsRequest).toArray();
+  const deleted0 = await traductionsColl.deleteMany({ articleId: { $in: deletedDispositifs.map((d) => d.articleId) } });
+  console.log("  Trads liées à des dispositifs supprimées :", deleted0.deletedCount);
+
+  // "a traduire" && isExpert
+  const aTraduireExpert = await traductionsColl.deleteMany({
+    type: "dispositif",
+    status: "À traduire",
+    isExpert: true
+  });
+  console.log("  Trads 'À traduire' et isExpert :", aTraduireExpert.deletedCount);
+
+  // "a revoir" && !isExpert
+  const aRevoirNotExpert = await traductionsColl.deleteMany({
+    type: "dispositif",
+    status: "À revoir",
+    isExpert: { $exists: false }
+  });
+  console.log("  Trads 'À revoir' et !isExpert :", aRevoirNotExpert.deletedCount);
+
+  // "Validée" && !isExpert
+  const valideNotExpert = await traductionsColl
+    .find(
+      {
+        type: "dispositif",
+        status: "Validée",
+        isExpert: { $exists: false }
+      },
+      { articleId: 1, langueCible: 1, validatorId: 1 }
+    )
+    .toArray();
+  let i = 0;
+  for (const trad of valideNotExpert) {
+    const count = await traductionsColl.count({
+      articleId: trad.articleId,
+      langueCible: trad.langueCible,
+      isExpert: true
+    });
+    if (count > 0) {
+      const deleted = await traductionsColl.deleteOne({ _id: trad._id });
+      i = i + deleted.deletedCount;
+    }
+  }
+  console.log("  Trads 'Validée', !isExpert et la trad existe en isExpert ", i);
+
+  // "Validée" && isExpert && avancement < 1
+  const valideNotCompleteExpert = await traductionsColl.deleteMany({
+    type: "dispositif",
+    status: "Validée",
+    isExpert: true,
+    avancement: { $lt: 1 }
+  });
+  console.log("  Trad 'Validée', isExpert mais incomplète", valideNotCompleteExpert.deletedCount);
+};
+
+let contentValidatedAndNotCopied = 0;
+const getTranslatedText = (trad) => {
+  if (trad.status === "Validée") {
+    const translated = trad.dispositifs?.[0]?.translations[trad.langueCible];
+    if (!translated) {
+      // TODO: getContent and copy in dispositif
+      // console.warn("translation not available", trad._id, trad.articleId);
+      contentValidatedAndNotCopied++;
+    } else {
+      return translated;
+    }
+  }
+  if (!trad.dispositifs?.[0]) {
+    // should not happen
+    console.warn("  Dispositif supprimé ?", trad.articleId);
+    return {};
+  }
+  const content = getContent(
+    { ...trad.translatedText, typeContenu: trad.dispositifs?.[0].typeContenu },
+    trad.langueCible,
+    true
+  );
+
+  // get metadatas from index
+  if (savedMetadatasIndex[trad.articleId]?.duration !== undefined) {
+    const value =
+      trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId].duration]?.contentTitle;
+    if (value) content.metadatas.duration = value;
+  }
+  if (savedMetadatasIndex[trad.articleId]?.important !== undefined) {
+    const value =
+      trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId].important]?.contentTitle;
+    if (value) content.metadatas.important = value;
+  }
+
+  return content;
+};
+
+const migrateTrads = async (traductionsColl) => {
+  console.log("Migration des traductions...");
+  const allTrads = await traductionsColl
+    .aggregate([
+      {
+        $lookup: {
+          from: "dispositifs",
+          localField: "articleId",
+          foreignField: "_id",
+          as: "dispositifs"
+        }
+      }
+    ])
+    .toArray();
+
+  let toReviewGenerated = 0;
+  let bugExpert = 0;
+  for (const trad of allTrads) {
+    const bugValideeIsExpert = trad.status === "Validée" && !trad.isExpert;
+    if (bugValideeIsExpert) bugExpert++;
+
+    const newTrad = {
+      dispositifId: trad.articleId,
+      userId: trad.userId,
+      language: trad.langueCible,
+      translated: getTranslatedText(trad),
+      timeSpent: trad.timeSpent,
+      type: trad.isExpert || bugValideeIsExpert ? "validation" : "suggestion",
+      avancement: trad.avancement,
+      created_at: trad.created_at,
+      updatedAt: trad.updatedAt
+    };
+
+    if (bugValideeIsExpert) newTrad.userId = trad.validatorId;
+    if (trad.status === "À revoir") {
+      newTrad.toReview = [];
+      toReviewGenerated++;
+    }
+    // TODO: toReview
+
+    await traductionsColl.replaceOne({ _id: trad._id }, newTrad);
+  }
+
+  console.log(
+    "  ",
+    contentValidatedAndNotCopied,
+    " contenus validés mais pas dans le dispositifs. Ils ont été copiés."
+  );
+  console.log("  ", toReviewGenerated, " toReview générés");
+  console.log("  ", bugExpert, " validée mais pas isExpert. On les passe en isExpert et on garde le validatorId.");
+};
+
+const checkDispositifsWithoutTrads = async (dispositifsColl) => {
+  const withoutTrads = await dispositifsColl
+    .aggregate([
+      {
+        $match: {
+          status: {
+            $ne: "Supprimé"
+          }
+        }
+      },
+      {
+        $lookup: {
+          from: "traductions",
+          localField: "_id",
+          foreignField: "dispositifId",
+          as: "traductions"
+        }
+      },
+      {
+        $match: {
+          "traductions.0": {
+            $exists: false
+          },
+          "translations.1": {
+            $exists: true
+          }
+        }
+      }
+    ])
+    .toArray();
+
+  if (withoutTrads.length > 0) {
+    console.error("  À CHECKER ! ", withoutTrads.length, "dispositifs sans traduction validée.");
+  }
+};
+
+const checkSuggestionsAlreadyValidated = async (traductionsColl) => {
+  const suggestions = await traductionsColl
+    .aggregate([
+      {
+        $match: {
+          type: "suggestion"
+        }
+      },
+      {
+        $lookup: {
+          from: "dispositifs",
+          localField: "dispositifId",
+          foreignField: "_id",
+          as: "dispositifs"
+        }
+      },
+      {
+        $project: {
+          "language": 1,
+          "dispositifId": 1,
+          "dispositifs.translations": 1
+        }
+      },
+      {
+        $match: {
+          "dispositifs.status": {
+            $ne: "Supprimé"
+          }
+        }
+      }
+    ])
+    .toArray();
+
+  for (const trad of suggestions) {
+    if (trad.dispositifs?.[0].translations[trad.language]) {
+      console.error(
+        "  À CHECKER ! Suggestion avec une trad déjà validée existante. Dispositif:",
+        trad.dispositifId,
+        "en",
+        trad.language
+      );
+    }
+  }
+};
+
 /* Start script */
 async function main() {
   await client.connect();
-  console.log("Connected successfully to server");
+  console.log("Démarrage ...");
   const db = client.db(dbName);
 
   const dispositifsColl = db.collection("dispositifs");
   const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
 
   // update dispositifs one by one
+  console.log("Mise à jour du schéma 'dispositifs' ...");
   for (const dispositif of dispositifs) {
     const newDispositif = getNewDispositif(dispositif);
     if (newDispositif) {
@@ -304,11 +590,22 @@ async function main() {
     }
   }
 
-  // and remove all unused fields
+  // remove all unused dispositifs fields
   await removeOldFields(dispositifsColl);
 
-  // and remove all unused fields
+  const traductionsColl = db.collection("traductions");
+  await removeCorruptedTrads(traductionsColl);
+  await migrateTrads(traductionsColl);
+
+  // remove all unused dispositifs
   await removeDispositifs(dispositifsColl);
+
+  console.log("Dernières vérifications...");
+  await checkDispositifsWithoutTrads(dispositifsColl);
+  await checkSuggestionsAlreadyValidated(traductionsColl);
+  console.log("Vérifications terminées");
+
+  console.log("C'est tout bon !");
 }
 
 main()
