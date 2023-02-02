@@ -25,6 +25,7 @@ cloudinary.config({
 const app = express();
 // Database
 mongoose.set("debug", false);
+mongoose.set("strictQuery", true);
 const db_path = MONGODB_URI;
 mongoose
   .connect(db_path)

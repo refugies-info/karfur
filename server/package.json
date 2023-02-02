@@ -22,6 +22,7 @@
     "@google/maps": "^1.0.2",
     "@sendgrid/mail": "^7.4.2",
     "@sendinblue/client": "^3.2.2",
+    "@typegoose/typegoose": "^10.1.0",
     "airtable": "^0.7.2",
     "algoliasearch": "^4.11.0",
     "celebrate": "^15.0.1",
