@@ -55,7 +55,8 @@ const removeOldFields = async (dispositifsColl) => {
         titreMarque: "",
         internal_action: "",
         traductions: "",
-        contenu: ""
+        contenu: "",
+        contact: ""
       }
     }
   );
@@ -94,17 +95,25 @@ const formatSuggestion = (suggestion, typeContenu) => {
   };
 };
 
-const getInfoSections = (children, ln, root) => {
+const savedUuids = {};
+
+const getInfoSections = (children, ln, root, id, type) => {
   const infosections = {};
 
   if (children) {
-    for (const section of children) {
-      const uuid = uuidv4();
+    for (const [i, section] of Object.entries(children)) {
+      const uuid = savedUuids[id + type]?.[i] || uuidv4(); // use uuid if it exists in another language
+
       infosections[uuid] = {
         title: getLocalizedContent(section.title, ln, root),
         content: turnJSONtoHTML(getLocalizedContent(section.content, ln, root))
       };
     }
+  }
+
+  if (!savedUuids[id + type]) {
+    // save uuid if we set if for the 1rst time for this dispositif
+    savedUuids[id + type] = Object.keys(infosections);
   }
 
   return infosections;
@@ -156,6 +165,25 @@ const getMarkers = (children) => {
   });
 };
 
+const getFrenchLevel = (metadata) => {
+  if (metadata.niveaux.length > 0) return metadata.niveaux;
+
+  const value = metadata.contentTitle?.fr || metadata.contentTitle;
+  switch (value) {
+    case "Débutant":
+      return ["A1", "A2"];
+    case "Intermédiaire":
+      return ["A1", "A2", "B1", "B2"];
+    case "Avancé":
+      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+    case "Tous les niveaux":
+      return ["A1", "A2", "B1", "B2", "C1", "C2"];
+    default:
+      console.warn("  frenchLevel non ajouté. Valeur :", metadata.contentTitle);
+      return "";
+  }
+};
+
 const savedMetadatasIndex = {}; // save index of translated meta to find it in translations then
 
 const getMetadatas = (content, id) => {
@@ -169,7 +197,8 @@ const getMetadatas = (content, id) => {
   if (titles.indexOf("Important !") >= 0) savedMetadatasIndex[id].important = titles.indexOf("Important !");
 
   for (const metadata of content.children) {
-    switch (metadata.title) {
+    const title = metadata.title?.fr || metadata.title;
+    switch (title) {
       case "Zone d'action":
         metas.location = metadata.departments;
         break;
@@ -180,7 +209,7 @@ const getMetadatas = (content, id) => {
         };
         break;
       case "Niveau de français":
-        // TODO : est-ce qu'on garde les 2 types de niveaux ? Si oui -> adapter les types
+        metas.frenchLevel = getFrenchLevel(metadata);
         break;
       case "Âge requis":
         metas.age = {
@@ -207,7 +236,7 @@ const getMetadatas = (content, id) => {
         translatedMetas.important = metadata.contentTitle;
         break;
       default:
-        console.warn("  Meta non ajoutée", metadata.title);
+        console.warn("  À CHECKER ! Meta non ajoutée", metadata.title, id);
     }
   }
 
@@ -234,7 +263,7 @@ const getSponsors = (dispositif) => {
         link: sponsor.link || null
       });
     } else {
-      console.warn("  Sponsor non ajouté", sponsor);
+      console.warn("  À CHECKER ! Sponsor non ajouté", sponsor);
     }
   }
 
@@ -253,11 +282,11 @@ const getContent = (dispositif, ln, root) => {
   };
 
   if (dispositif.typeContenu === "dispositif") {
-    contentLn.content.why = getInfoSections(dispositif.contenu?.[2]?.children, ln, root);
-    contentLn.content.how = getInfoSections(dispositif.contenu?.[3]?.children, ln, root);
+    contentLn.content.why = getInfoSections(dispositif.contenu?.[2]?.children, ln, root, dispositif._id, "why");
+    contentLn.content.how = getInfoSections(dispositif.contenu?.[3]?.children, ln, root, dispositif._id, "how");
   } else if (dispositif.typeContenu === "demarche") {
-    contentLn.content.how = getInfoSections(dispositif.contenu?.[2]?.children, ln, root);
-    contentLn.content.next = getInfoSections(dispositif.contenu?.[3]?.children, ln, root);
+    contentLn.content.how = getInfoSections(dispositif.contenu?.[2]?.children, ln, root, dispositif._id, "how");
+    contentLn.content.next = getInfoSections(dispositif.contenu?.[3]?.children, ln, root, dispositif._id, "next");
   }
 
   return contentLn;
@@ -265,7 +294,6 @@ const getContent = (dispositif, ln, root) => {
 
 const getMultilangContent = (dispositif, translatedMetas) => {
   const translations = {};
-
   for (const ln of ["fr", "en", "ps", "fa", "ti", "ru", "uk", "ar"]) {
     if (dispositif.avancement[ln] === 1 || (ln === "fr" && dispositif.avancement === 1)) {
       translations[ln] = getContent(dispositif, ln, false);
@@ -331,42 +359,67 @@ const deletedDispositifsRequest = [
   }
 ];
 
+const missingDispositifsRequest = [
+  {
+    $lookup: {
+      from: "dispositifs",
+      localField: "articleId",
+      foreignField: "_id",
+      as: "dispositifs"
+    }
+  },
+  {
+    $match: {
+      "dispositifs.0": {
+        $exists: false
+      }
+    }
+  }
+];
+
 const removeCorruptedTrads = async (traductionsColl) => {
   console.log("Suppression de traductions ...");
 
-  // langues not supported
+  //--- langues not supported
   const languageNotSupported = await traductionsColl.deleteMany({
     type: "dispositif",
     langueCible: { $nin: ["en", "ps", "fa", "ti", "ru", "uk", "ar"] }
   });
   console.log("  Trads avec langues non supportées :", languageNotSupported.deletedCount);
 
-  // type == string
+  //--- type == string
   const typeString = await traductionsColl.deleteMany({ type: { $ne: "dispositif" } });
   console.log("  Trads avec type string :", typeString.deletedCount);
 
-  // deleted dispositifs
+  //--- deleted dispositifs
   const deletedDispositifs = await traductionsColl.aggregate(deletedDispositifsRequest).toArray();
   const deleted0 = await traductionsColl.deleteMany({ articleId: { $in: deletedDispositifs.map((d) => d.articleId) } });
   console.log("  Trads liées à des dispositifs supprimées :", deleted0.deletedCount);
 
-  // "a traduire" && isExpert
+  //--- missing dispositifs
+  const missingDispositifs = await traductionsColl.aggregate(missingDispositifsRequest).toArray();
+  const deleted1 = await traductionsColl.deleteMany({ _id: { $in: missingDispositifs.map((d) => d._id) } });
+  console.log("  Trads liées à des dispositifs qui n'existent pas :", deleted1.deletedCount);
+
+  //--- "a traduire" && isExpert
   const aTraduireExpert = await traductionsColl.deleteMany({
     type: "dispositif",
     status: "À traduire",
     isExpert: true
   });
+  /* à supprimer, il y en a peu, ce sont des erreurs */
   console.log("  Trads 'À traduire' et isExpert :", aTraduireExpert.deletedCount);
 
-  // "a revoir" && !isExpert
+  //--- "a revoir" && !isExpert
   const aRevoirNotExpert = await traductionsColl.deleteMany({
     type: "dispositif",
     status: "À revoir",
     isExpert: { $exists: false }
   });
+  /* rôle probablement changé sur les utilisateurs. Il y en a peu, à supprimer */
   console.log("  Trads 'À revoir' et !isExpert :", aRevoirNotExpert.deletedCount);
 
-  // "Validée" && !isExpert
+  //--- "Validée" && !isExpert
   const valideNotExpert = await traductionsColl
     .find(
       {
@@ -389,57 +442,114 @@ const removeCorruptedTrads = async (traductionsColl) => {
       i = i + deleted.deletedCount;
     }
   }
+  /* si la trad est aussi dispo en isExpert, on la supprime. Sinon, on la passe en isExpert au moment de la migration */
   console.log("  Trads 'Validée', !isExpert et la trad existe en isExpert ", i);
 
-  // "Validée" && isExpert && avancement < 1
+  //--- "Validée" && isExpert && avancement < 1
   const valideNotCompleteExpert = await traductionsColl.deleteMany({
     type: "dispositif",
     status: "Validée",
     isExpert: true,
     avancement: { $lt: 1 }
   });
+  /* une autre trad isExpert complète existe. On supprime celle-ci */
   console.log("  Trad 'Validée', isExpert mais incomplète", valideNotCompleteExpert.deletedCount);
 };
 
+const getInfosectionReview = (trad, newContent, section, contenuKey) => {
+  const res = [];
+  let i = 0;
+  if (!newContent.content[section]) return [];
+  for (const key of Object.keys(newContent.content[section])) {
+    if (trad.translatedText.contenu[contenuKey]?.children[i].titleModified) res.push(`${section}.${key}.title`);
+    if (trad.translatedText.contenu[contenuKey]?.children[i].contentModified) res.push(`${section}.${key}.content`);
+    i++;
+  }
+
+  return res;
+};
+
+const toReview = {};
+const findToReview = (trad, newContent, typeContenu) => {
+  const res = [];
+  const translated = trad.translatedText;
+  if (translated.titreInformatifModified) res.push("titreInformatif");
+  if (translated.titreMarqueModified) res.push("titreMarque");
+  if (translated.abstractModified) res.push("abstract");
+
+  if (translated.contenu[0].contentModified) res.push("what");
+  if (typeContenu === "dispositif") {
+    res.push(...getInfosectionReview(trad, newContent, "why", 2), ...getInfosectionReview(trad, newContent, "how", 3));
+  } else if (typeContenu === "demarche") {
+    res.push(...getInfosectionReview(trad, newContent, "how", 2), ...getInfosectionReview(trad, newContent, "next", 3));
+  }
+
+  if (savedMetadatasIndex[trad.articleId]?.important) {
+    if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.important]?.contentTitleModified)
+      res.push("metadatas.important");
+  }
+  if (savedMetadatasIndex[trad.articleId]?.duration) {
+    if (translated.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId]?.duration]?.contentTitleModified)
+      res.push("metadatas.duration");
+  }
+
+  return res;
+};
+
+const getContentFromTrad = (trad) => {
+  const dispositifId = trad.articleId;
+  const typeContenu = trad.dispositifs?.[0].typeContenu;
+  const content = getContent(
+    { ...trad.translatedText, typeContenu: typeContenu, _id: dispositifId },
+    trad.langueCible,
+    true
+  );
+
+  // get metadatas from index
+  if (savedMetadatasIndex[dispositifId]?.duration !== undefined) {
+    const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].duration]?.contentTitle;
+    if (value) content.metadatas.duration = value;
+  }
+  if (savedMetadatasIndex[dispositifId]?.important !== undefined) {
+    const value = trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[dispositifId].important]?.contentTitle;
+    if (value) content.metadatas.important = value;
+  }
+
+  if (trad.status === "À revoir") {
+    toReview[dispositifId] = findToReview(trad, content, typeContenu);
+  }
+
+  return content;
+};
+
 let contentValidatedAndNotCopied = 0;
-const getTranslatedText = (trad) => {
+const getTranslatedText = async (trad, dispositifsColl) => {
+  // si la trad est validée
   if (trad.status === "Validée") {
+    // on garde le contenu déjà copié dans le dispositif
     const translated = trad.dispositifs?.[0]?.translations[trad.langueCible];
-    if (!translated) {
-      // TODO: getContent and copy in dispositif
-      // console.warn("translation not available", trad._id, trad.articleId);
+
+    // si pas dispo -> bug
+    if (trad.dispositifs?.[0] && !translated) {
+      const content = getContentFromTrad(trad); // on génère le contenu de la trad
+      const key = `translations.${trad.langueCible}`;
+      await dispositifsColl.updateOne({ _id: trad.articleId }, { $set: { [key]: content } }); // et on le copie dans le dispositif
       contentValidatedAndNotCopied++;
-    } else {
-      return translated;
+      return content;
     }
+    return translated;
   }
   if (!trad.dispositifs?.[0]) {
     // should not happen
     console.warn("  Dispositif supprimé ?", trad.articleId);
     return {};
   }
-  const content = getContent(
-    { ...trad.translatedText, typeContenu: trad.dispositifs?.[0].typeContenu },
-    trad.langueCible,
-    true
-  );
 
-  // get metadatas from index
-  if (savedMetadatasIndex[trad.articleId]?.duration !== undefined) {
-    const value =
-      trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId].duration]?.contentTitle;
-    if (value) content.metadatas.duration = value;
-  }
-  if (savedMetadatasIndex[trad.articleId]?.important !== undefined) {
-    const value =
-      trad.translatedText.contenu[1]?.children?.[savedMetadatasIndex[trad.articleId].important]?.contentTitle;
-    if (value) content.metadatas.important = value;
-  }
-
-  return content;
+  // si trad non validée, on génère son contenu
+  return getContentFromTrad(trad);
 };
 
-const migrateTrads = async (traductionsColl) => {
+const migrateTrads = async (traductionsColl, dispositifsColl) => {
   console.log("Migration des traductions...");
   const allTrads = await traductionsColl
     .aggregate([
@@ -464,7 +574,7 @@ const migrateTrads = async (traductionsColl) => {
       dispositifId: trad.articleId,
       userId: trad.userId,
       language: trad.langueCible,
-      translated: getTranslatedText(trad),
+      translated: await getTranslatedText(trad, dispositifsColl),
       timeSpent: trad.timeSpent,
       type: trad.isExpert || bugValideeIsExpert ? "validation" : "suggestion",
       avancement: trad.avancement,
@@ -474,10 +584,13 @@ const migrateTrads = async (traductionsColl) => {
 
     if (bugValideeIsExpert) newTrad.userId = trad.validatorId;
     if (trad.status === "À revoir") {
-      newTrad.toReview = [];
-      toReviewGenerated++;
+      if (toReview[trad.articleId]) {
+        newTrad.toReview = toReview[trad.articleId];
+        toReviewGenerated++;
+      } else {
+        console.warn("  À CHECKER ! Trad à revoir et toReview pas généré");
+      }
     }
-    // TODO: toReview
 
     await traductionsColl.replaceOne({ _id: trad._id }, newTrad);
   }
@@ -491,6 +604,7 @@ const migrateTrads = async (traductionsColl) => {
   console.log("  ", bugExpert, " validée mais pas isExpert. On les passe en isExpert et on garde le validatorId.");
 };
 
+/* Tous les dispositifs doivent avoir au moins 1 trad type validation */
 const checkDispositifsWithoutTrads = async (dispositifsColl) => {
   const withoutTrads = await dispositifsColl
     .aggregate([
@@ -527,6 +641,7 @@ const checkDispositifsWithoutTrads = async (dispositifsColl) => {
   }
 };
 
+/* Il ne doit pas exister de suggestion dans une langue si la version validée existe */
 const checkSuggestionsAlreadyValidated = async (traductionsColl) => {
   const suggestions = await traductionsColl
     .aggregate([
@@ -579,10 +694,11 @@ async function main() {
   const db = client.db(dbName);
 
   const dispositifsColl = db.collection("dispositifs");
-  const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
+  const traductionsColl = db.collection("traductions");
 
   // update dispositifs one by one
   console.log("Mise à jour du schéma 'dispositifs' ...");
+  const dispositifs = await dispositifsColl.find({ status: { $ne: "Supprimé" } }).toArray();
   for (const dispositif of dispositifs) {
     const newDispositif = getNewDispositif(dispositif);
     if (newDispositif) {
@@ -593,9 +709,8 @@ async function main() {
   // remove all unused dispositifs fields
   await removeOldFields(dispositifsColl);
 
-  const traductionsColl = db.collection("traductions");
   await removeCorruptedTrads(traductionsColl);
-  await migrateTrads(traductionsColl);
+  await migrateTrads(traductionsColl, dispositifsColl);
 
   // remove all unused dispositifs
   await removeDispositifs(dispositifsColl);
