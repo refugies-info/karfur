@@ -1,28 +1,26 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClient, Res } from "../../../types/interface";
 import {
   updateDispositifInDB,
-  getDispositifByIdWithMainSponsor,
+  getDispositifByIdWithMainSponsor
 } from "../../../modules/dispositif/dispositif.repository";
 import { publishDispositif } from "../../../modules/dispositif/dispositif.service";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import {
   checkRequestIsFromSite,
   checkIfUserIsAdmin,
-  checkUserIsAuthorizedToDeleteDispositif,
+  checkUserIsAuthorizedToDeleteDispositif
 } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
+import { Dispositif, DispositifId } from "src/typegoose";
 
 interface QueryUpdate {
-  dispositifId: ObjectId;
-  status: string;
+  dispositifId: DispositifId;
+  status: Dispositif["status"];
 }
-export const updateDispositifStatus = async (
-  req: RequestFromClient<QueryUpdate>,
-  res: Res
-) => {
+
+export const updateDispositifStatus = async (req: RequestFromClient<QueryUpdate>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -34,11 +32,10 @@ export const updateDispositifStatus = async (
     logger.info("[updateDispositifStatus]", { dispositifId, status });
     let newDispositif;
 
-    await log(dispositifId, status, req.userId)
+    await log(dispositifId, status, req.userId);
 
     if (status === "Actif") {
-      // @ts-ignore : populate roles
-      checkIfUserIsAdmin(req.user.roles);
+      checkIfUserIsAdmin(req.user);
       await publishDispositif(dispositifId, req.userId);
 
       return res.status(200).json({ text: "OK" });
@@ -53,23 +50,15 @@ export const updateDispositifStatus = async (
         contenu: 1
       };
 
-      const dispositif = await getDispositifByIdWithMainSponsor(
-        dispositifId,
-        neededFields
-      );
-      checkUserIsAuthorizedToDeleteDispositif(
-        dispositif,
-        req.userId,
-        // @ts-ignore : populate roles
-        req.user.roles
-      );
+      const dispositif = await getDispositifByIdWithMainSponsor(dispositifId, neededFields);
+      checkUserIsAuthorizedToDeleteDispositif(dispositif, req.userId);
 
       await addOrUpdateDispositifInContenusAirtable(
-        dispositif.titreInformatif,
-        dispositif.titreMarque,
+        dispositif.translations.fr.content.titreInformatif,
+        dispositif.translations.fr.content.titreMarque,
         dispositif._id,
         [],
-        dispositif.typeContenu,
+        dispositif.type,
         null,
         getDispositifDepartments(dispositif),
         true

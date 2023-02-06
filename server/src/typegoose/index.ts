@@ -1,20 +1,20 @@
 import { getModelForClass } from "@typegoose/typegoose";
 import { AdminOptions } from "./AdminOptions";
-import { AppUser } from "./AppUser";
-import { Dispositif } from "./Dispositif";
+import { AppUser, NotificationsSettings } from "./AppUser";
+import { Dispositif, DispositifId } from "./Dispositif";
 import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
-import { Langue } from "./Langue";
+import { Langue, LangueId } from "./Langue";
 import { Log } from "./Log";
 import { MailEvent } from "./MailEvent";
-import { Need } from "./Need";
+import { Need, NeedId } from "./Need";
 import { Notification } from "./Notification";
 import { Role } from "./Role";
-import { Structure } from "./Structure";
-import { Theme } from "./Theme";
-import { Traductions } from "./Traductions";
-import { User } from "./User";
+import { Structure, StructureId } from "./Structure";
+import { Theme, ThemeId } from "./Theme";
+import { Traductions, TraductionId } from "./Traductions";
+import { User, UserId } from "./User";
 import { Widget } from "./Widget";
 
 export const AdminOptionsModel = getModelForClass(AdminOptions);
@@ -39,18 +39,28 @@ export {
   AdminOptions,
   AppUser,
   Dispositif,
+  DispositifId,
   Error,
   Image,
   Indicator,
   Langue,
+  LangueId,
   Log,
   MailEvent,
   Need,
+  NeedId,
   Notification,
+  NotificationsSettings,
   Role,
   Structure,
+  StructureId,
   Theme,
+  ThemeId,
   Traductions,
+  TraductionId,
   User,
+  UserId,
   Widget
 };
+
+export * from "./generics";

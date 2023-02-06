@@ -1,5 +1,4 @@
-import { DocumentType, modelOptions, prop, Ref } from "@typegoose/typegoose";
-import { Base } from "@typegoose/typegoose/lib/defaultClasses";
+import { DocumentType, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import passwordHash from "password-hash";
 import jwt from "jwt-simple";
 
@@ -8,7 +7,7 @@ import { ImageSchema } from "./generics";
 import { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
-import { Types } from "mongoose";
+import { Base } from "./Base";
 
 let config: { secret?: string } = {};
 if (process.env.NODE_ENV === "dev") {
@@ -19,28 +18,22 @@ export const USER_STATUS_ACTIVE = "Actif";
 export const USER_STATUS_DELETED = "Exclu";
 type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
 
-@modelOptions({ schemaOptions: { timestamps: { createdAt: "created_at" } } })
-export class User implements Base<Types.ObjectId> {
-  @prop()
-  public _id: Types.ObjectId;
-
-  @prop()
-  public id: string;
-
+@modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
+export class User extends Base {
   @prop({ unique: true, required: true, lowercase: true, trim: true })
-  public username!: String;
+  public username!: string;
 
   @prop({ required: true })
-  public password!: String;
+  public password!: string;
 
   @prop({ lowercase: true, trim: true })
-  public email?: String;
+  public email?: string;
 
   @prop()
-  public phone?: String;
+  public phone?: string;
 
   @prop()
-  public description: String;
+  public description: string;
 
   @prop()
   public picture?: ImageSchema;
@@ -77,7 +70,7 @@ export class User implements Base<Types.ObjectId> {
   public cookies?: Object;
 
   @prop({ ref: () => Structure })
-  public structures: Ref<Structure>[];
+  public structures?: Ref<Structure>[];
 
   @prop()
   public last_connected?: Date;
@@ -93,6 +86,9 @@ export class User implements Base<Types.ObjectId> {
 
   @prop()
   public adminComments?: String;
+
+  @prop()
+  public created_at?: Date;
 
   public authenticate(this: DocumentType<User>, password: string) {
     return passwordHash.verify(password, this.password.toString());
@@ -110,4 +106,62 @@ export class User implements Base<Types.ObjectId> {
       process.env.NODE_ENV === "dev" ? config.secret : process.env.SECRET
     );
   }
+
+  public hasRole(roleName: string): boolean {
+    return isDocumentArray(this.roles) && this.roles.some((role: Role) => role.nom === roleName);
+  }
+
+  /**
+   * Retourne les rôles Admin et ExpertTrad si ils existent dans la liste
+   *
+   * @param roles
+   * @returns roles
+   */
+  public getPlateformeRoles(): string[] {
+    if (!isDocumentArray(this.roles)) {
+      throw new Error("roles must be populated");
+    }
+
+    return this.roles && this.roles.length > 0
+      ? this.roles
+          .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
+          .map((role) => role.nom.toString())
+      : [];
+  }
+
+  /**
+   * Retourne les structures si elles ont été "populated"
+   * @returns structures
+   */
+  public getStructures(): Structure[] {
+    if (!this.structures) return [];
+
+    if (!isDocumentArray(this.structures)) {
+      throw new Error("structures must be populated");
+    }
+
+    return this.structures;
+  }
+
+  /**
+   * Retourne les langues sélectionnées si elles ont été "populated"
+   * @returns structures
+   */
+  public getSelectedLanguages(): Langue[] {
+    if (!this.selectedLanguages) return [];
+
+    if (!isDocumentArray(this.selectedLanguages)) {
+      throw new Error("selectedLanguages must be populated");
+    }
+
+    return this.selectedLanguages;
+  }
+
+  public getSelectedLanguagesButFrench(): Langue[] {
+    return isDocumentArray(this.selectedLanguages)
+      ? this.selectedLanguages.filter((language) => language.langueCode !== "fr")
+      : [];
+  }
 }
+
+export type UserId = User["_id"] | User["id"];

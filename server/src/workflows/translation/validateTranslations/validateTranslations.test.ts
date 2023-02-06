@@ -50,9 +50,9 @@ jest.mock("modules/mail/sendPublishedTradMailToStructure", () => ({
   sendPublishedTradMailToStructure: jest.fn()
 }));
 
-jest.mock("schema/schemaError", () => ({
-  ErrorDB: {
-    save: jest.fn()
+jest.mock("src/typegoose/Error", () => ({
+  ErrorModel: {
+    create: jest.fn()
   }
 }));
 

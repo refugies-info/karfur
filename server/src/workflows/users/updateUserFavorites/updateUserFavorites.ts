@@ -1,18 +1,14 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { ObjectId } from "mongoose";
 import { updateUserInDB } from "../../../modules/users/users.repository";
 
 interface Query {
-  dispositifId?: ObjectId;
+  dispositifId?: string;
   type: "remove" | "remove-all";
 }
 
-export const updateUserFavorites = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+export const updateUserFavorites = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -32,18 +28,16 @@ export const updateUserFavorites = async (
       return res.status(200).json({ text: "OK" });
     }
 
-    const actualFavorites =
-      user.cookies &&
-        user.cookies.dispositifsPinned &&
-        user.cookies.dispositifsPinned.length > 0
-        ? user.cookies.dispositifsPinned
+    const actualFavorites: { _id: string }[] =
+      // @ts-ignore FIXME
+      user.cookies && user.cookies.dispositifsPinned && user.cookies.dispositifsPinned.length > 0
+        ? // @ts-ignore FIXME
+          user.cookies.dispositifsPinned
         : [];
-    const updatedFavorites = actualFavorites.filter(
-      (fav) => dispositifId && fav._id !== dispositifId
-    );
+    const updatedFavorites = actualFavorites.filter((fav) => dispositifId && fav._id !== dispositifId);
 
     await updateUserInDB(user._id, {
-      cookies: { dispositifsPinned: updatedFavorites },
+      cookies: { dispositifsPinned: updatedFavorites }
     });
     return res.status(200).json({ text: "OK" });
   } catch (error) {

@@ -1,13 +1,10 @@
-import { IDispositif } from "../../../types/interface";
 import logger from "../../../logger";
 import { Request, Response } from "express";
 import { getDispositifArray } from "../../../modules/dispositif/dispositif.repository";
 import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
-import {
-  turnToLocalized,
-  turnJSONtoHTML,
-} from "../../../controllers/dispositif/functions";
+import { turnToLocalized, turnJSONtoHTML } from "../../../controllers/dispositif/functions";
 import { celebrate, Joi, Segments } from "celebrate";
+import { Dispositif } from "src/typegoose";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
@@ -34,33 +31,33 @@ export const handler = async (req: Request, res: Response) => {
 
     const adaptedDispositifArray = removeUselessContent(dispositifArray);
     const array: string[] = [];
-    array.forEach.call(adaptedDispositifArray, (dispositif: IDispositif) => {
+    array.forEach.call(adaptedDispositifArray, (dispositif: Dispositif) => {
       turnToLocalized(dispositif, locale);
-      turnJSONtoHTML(dispositif.contenu);
+      // FIXME turnJSONtoHTML(dispositif.contenu);
     });
 
     res.status(200).json({
       text: "Succès",
-      data: adaptedDispositifArray,
+      data: adaptedDispositifArray
     });
   } catch (error) {
     logger.error("[getDispositifs] error while getting dispositifs", {
-      error: error.message,
+      error: error.message
     });
     switch (error) {
       case 500:
         res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
         break;
       case 404:
         res.status(404).json({
-          text: "Pas de résultat",
+          text: "Pas de résultat"
         });
         break;
       default:
         res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
     }
   }

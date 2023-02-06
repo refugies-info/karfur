@@ -1,37 +1,29 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 
-import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdmin,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite, checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import logger = require("../../../logger");
 import { createNeedInDB } from "../../../modules/needs/needs.repository";
 import { Request, getValidator } from "../../../modules/needs/needs.service";
-import { NeedDoc } from "../../../schema/schemaNeeds";
+import { Need } from "src/typegoose";
 
 const validator = getValidator("post");
 
-const createNeed = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const createNeed = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[createNeed] received", req.body);
     checkRequestIsFromSite(req.fromSite);
-    // @ts-ignore : populate roles
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     const need = req.body;
 
-    const needDB: Partial<NeedDoc> = {
+    const needDB: Partial<Need> = {
       fr: {
         text: need.fr.text,
         subtitle: need.fr.subtitle,
-        //@ts-ignore
-        updatedAt: Date.now()
+        updatedAt: new Date()
       },
-      image: need.image || null,
-      theme: need.theme,
+      // image: need.image,
+      theme: need.theme.toString(),
       adminComments: need.adminComments || "",
       position: 0
     };
@@ -39,11 +31,11 @@ const createNeed = async (
     await createNeedInDB(needDB);
 
     return res.status(200).json({
-      text: "OK",
+      text: "OK"
     });
   } catch (error) {
     logger.error("[createNeed] error", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "INVALID_REQUEST":

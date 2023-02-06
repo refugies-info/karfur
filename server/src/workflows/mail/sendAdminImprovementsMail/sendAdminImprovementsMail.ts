@@ -1,19 +1,16 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { sendAdminImprovementsMailService } from "../../../modules/mail/mail.service";
-import {
-  checkIfUserIsAdmin,
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { log } from "./log";
+import { DispositifId, UserId } from "src/typegoose";
 
 interface Query {
-  dispositifId: ObjectId;
+  dispositifId: DispositifId;
   users: {
     username: string;
-    _id: ObjectId;
+    _id: UserId;
     email: string;
   }[];
   titreInformatif: string;
@@ -21,16 +18,12 @@ interface Query {
   sections: string[];
   message: string;
 }
-export const sendAdminImprovementsMail = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+export const sendAdminImprovementsMail = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     logger.info("[sendAdminImprovementsMail] received with data", {
-      data: req.body,
+      data: req.body
     });
-    // @ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
     checkRequestIsFromSite(req.fromSite);
     const data = req.body;
 
@@ -39,7 +32,7 @@ export const sendAdminImprovementsMail = async (
       qui: data.sections.includes("C'est pour qui ?"),
       interessant: data.sections.includes("Pourquoi c'est intéressant ?"),
       engagement: data.sections.includes("Comment je m'engage ?"),
-      carte: data.sections.includes("Carte interactive"),
+      carte: data.sections.includes("Carte interactive")
     };
 
     await asyncForEach(data.users, async (user) => {

@@ -1,16 +1,11 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
-import { isThemeActive } from "../../../modules/themes/themes.service";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 
-export interface Request {
-}
+export interface Request {}
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[getThemes] received");
 
@@ -19,7 +14,7 @@ const handler = async (
 
     return res.status(200).json({
       text: "Succès",
-      data: themes.map(t => ({...t.toObject(), active: isThemeActive(t, activeLanguages)})),
+      data: themes.map((t) => ({ ...t.toObject(), active: t.isActive(activeLanguages) }))
     });
   } catch (error) {
     logger.error("[getThemes] error", { error: error.message });

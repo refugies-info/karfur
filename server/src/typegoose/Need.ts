@@ -1,26 +1,30 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
-import { Theme } from "./Theme";
+import { Base } from "./Base";
+import { Theme, ThemeId } from "./Theme";
 
-export interface NeedTranslation {
-  text: String;
-  subtitle: String;
-  updatedAt: Date;
+export class NeedTranslation {
+  @prop()
+  public text: String;
+  @prop()
+  public subtitle: String;
+  @prop()
+  public updatedAt?: Date;
 }
 
-@modelOptions({ schemaOptions: { timestamps: { createdAt: "created_at" } } })
-export class Need {
+@modelOptions({ schemaOptions: { collection: "needs", timestamps: { createdAt: "created_at" } } })
+export class Need extends Base {
   @prop()
   public tagName?: String;
 
   @prop({ ref: () => Theme })
-  public theme!: Ref<Theme>;
+  public theme!: Ref<Theme, ThemeId>;
 
   @prop()
   adminComments?: String;
 
   @prop({ default: 0 })
-  public nbVues!: Number;
+  public nbVues!: number;
 
   @prop({
     type: Number,
@@ -52,3 +56,5 @@ export class Need {
   @prop()
   public uk!: NeedTranslation;
 }
+
+export type NeedId = Need["_id"] | Need["id"];

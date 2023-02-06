@@ -1,11 +1,14 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
-import { lnCode, RichText, Uuid } from "./generics";
-import { Need } from "./Need";
+import { MustBePopulatedError } from "src/errors";
+import { Base } from "./Base";
+import { Languages, lnCode, RichText, Uuid } from "./generics";
+import { Need, NeedId } from "./Need";
 
-import { Structure } from "./Structure";
-import { Theme } from "./Theme";
-import { User } from "./User";
+import { Structure, StructureId } from "./Structure";
+import { Theme, ThemeId } from "./Theme";
+import { User, UserId } from "./User";
 
 type frenchLevel = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 type ageType = "lessThan" | "moreThan" | "between";
@@ -25,11 +28,11 @@ class Sponsor {
 
 class Content {
   @prop()
-  titreInformatif: String;
+  titreInformatif: string;
   @prop()
-  titreMarque: String;
+  titreMarque: string;
   @prop()
-  abstract: String;
+  abstract: string;
 }
 
 class InfoSection {
@@ -148,26 +151,31 @@ class Poi {
 
 // COLLECTION
 @modelOptions({
-  //   schemaOptions: {
-  //     toJSON: { virtuals: true },
-  //     toObject: { virtuals: true }
-  //   }
-  schemaOptions: { timestamps: { createdAt: "created_at" } }
+  schemaOptions: {
+    collection: "dispositifs",
+    timestamps: { createdAt: "created_at" },
+    toJSON: { getters: true, virtuals: true },
+    toObject: { virtuals: true }
+  }
 })
-export class Dispositif {
+export class Dispositif extends Base {
   @prop({ required: true })
   public type: contentType;
   @prop({ required: true })
-  public status: "actif" | "brouillon"; // TODO: clean type
+  public status: "Actif" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire" | "Supprimé"; // TODO: clean type
+  @prop()
+  created_at?: Date;
+  @prop()
+  updatedAt?: Date;
 
   @prop({ ref: () => Structure })
-  public mainSponsor?: Ref<Structure>;
+  public mainSponsor?: Ref<Structure, StructureId>;
   @prop({ ref: () => Theme })
-  public theme?: Ref<Theme>;
+  public theme?: Ref<Theme, ThemeId>;
   @prop({ ref: () => Theme })
-  public secondaryThemes?: Ref<Theme>[];
+  public secondaryThemes?: Ref<Theme, ThemeId>[];
   @prop({ ref: () => Need })
-  public needs: Ref<Need>[];
+  public needs: Ref<Need, NeedId>[];
   @prop({ type: () => Sponsor, ref: () => Structure })
   public sponsors?: (Ref<Structure> | Sponsor)[];
 
@@ -179,13 +187,13 @@ export class Dispositif {
   @prop()
   public lastAdminUpdate?: Date;
   @prop()
-  public lastModificationAuthor: ObjectId;
+  public lastModificationAuthor: UserId;
   @prop()
   public lastModificationDate?: Date;
   @prop()
   public publishedAt?: Date;
   @prop()
-  public publishedAtAuthor?: ObjectId;
+  public publishedAtAuthor?: UserId;
 
   @prop({ default: 0 })
   public nbFavoritesMobile!: number;
@@ -197,11 +205,11 @@ export class Dispositif {
   public nbMots!: number;
 
   @prop()
-  public adminComments?: String;
+  public adminComments?: string;
   @prop()
-  public adminPercentageProgressionStatus?: String;
+  public adminPercentageProgressionStatus?: string;
   @prop()
-  public adminProgressionStatus?: String;
+  public adminProgressionStatus?: string;
 
   @prop()
   public draftReminderMailSentDate?: Date;
@@ -228,4 +236,75 @@ export class Dispositif {
   public metadatas: Metadatas;
   @prop()
   public map: Poi[];
+
+  public getMainSponsor(): Structure {
+    if (!this.mainSponsor || !isDocument(this.mainSponsor)) {
+      throw new MustBePopulatedError("mainSponsor");
+    }
+
+    return this.mainSponsor;
+  }
+
+  public getDepartements() {
+    return this.metadatas.location || [];
+  }
+
+  public getTheme(): Theme | null {
+    if (!this.theme) return null;
+    if (!isDocument(this.theme)) {
+      throw new MustBePopulatedError("theme");
+    }
+    return this.theme;
+  }
+
+  public getSecondaryThemes(): Theme[] {
+    if (!this.secondaryThemes) return [];
+    if (!isDocumentArray(this.secondaryThemes)) {
+      throw new MustBePopulatedError("secondaryThemes");
+    }
+    return this.secondaryThemes;
+  }
+
+  public getCreator(): User | null {
+    if (!this.creatorId) return null;
+    if (!isDocument(this.creatorId)) {
+      throw new MustBePopulatedError("creatorId");
+    }
+    return this.creatorId;
+  }
+
+  public isDispositif(): boolean {
+    return this.type === "dispositif";
+  }
+
+  public isDemarche(): boolean {
+    return this.type === "demarche";
+  }
+
+  public isTranslatedIn(ln: Languages) {
+    return has(this.translations, ln);
+  }
+
+  /**
+   * Cette fonction permet de récupérer un élément traduit depuis TranslationContent
+   * dans la langue que vous voulez. Le path permet de cibler l'élément.
+   *
+   * @param path le chemin dans l'objet TranslationContent que vous voulez récupérer
+   * @param ln la langue dans laquelle vous souhaitez récupérer la traduction
+   * @param defaultLanguage le language dans lequel renvoyer la traduction si ln n'existe pas
+   * @returns élément traduit
+   *
+   * @see TranslationContent
+   */
+  public getTranslated(path: string, ln: Languages | string = "fr", defaultLanguage: string = "fr"): any {
+    return this.isTranslatedIn(ln as Languages)
+      ? get(this.translations, `${ln}.${path}`)
+      : get(this.translations, `${defaultLanguage}.${path}`);
+  }
+
+  public toJSON() {
+    return JSON.stringify(this);
+  }
 }
+
+export type DispositifId = Dispositif["_id"] | Dispositif["id"];

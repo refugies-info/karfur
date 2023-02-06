@@ -1,10 +1,9 @@
-import { ObjectId } from "mongoose";
 import logger from "../../logger";
 import { getStructureFromDB } from "./structure.repository";
-import { Membre } from "../../types/interface";
-import { StructureDoc } from "../../schema/schemaStructure";
+import { Structure, User, UserId } from "src/typegoose";
+import { Membre, StructureId } from "src/typegoose/Structure";
 
-const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
+const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
   if (!membres) return false;
   const membreInStructure = membres.filter((membre) => {
     return membre.userId && membre.userId.toString() === userId.toString();
@@ -12,63 +11,40 @@ const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
 
   if (membreInStructure.length === 0) return false;
   const roles = membreInStructure[0].roles;
-  if (roles.includes("administrateur") || roles.includes("contributeur"))
-    return true;
-
-  return false;
+  return roles.includes("administrateur") || roles.includes("contributeur");
 };
 
-export const checkIfUserIsAuthorizedToModifyStructure = async (
-  structureId: ObjectId,
-  requestUserId: ObjectId,
-  requestUserRoles: { nom: string }[]
-) => {
+export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: StructureId, currentUser: User) => {
   logger.info("[checkIfUserIsAuthorizedToModifyStructure] received", {
-    id: structureId,
+    id: structureId
   });
   const fetchedStructure = await getStructureFromDB(structureId, false, {
-    membres: 1,
+    membres: 1
   });
   if (!fetchedStructure) {
-    logger.info(
-      "[checkIfUserIsAuthorizedToModifyStructure] no structure with this id",
-      {
-        id: structureId,
-      }
-    );
+    logger.info("[checkIfUserIsAuthorizedToModifyStructure] no structure with this id", {
+      id: structureId
+    });
 
     throw new Error("NO_STRUCTURE_WITH_THIS_ID");
   }
 
-  // user is admin for the platform
-  const isAdmin = (requestUserRoles || []).some((x) => x.nom === "Admin");
-
   // user is administrateur or contributeur of the structure
-  const isUserRespoOrContribBoolean = isUserRespoOrContrib(
-    fetchedStructure.membres,
-    requestUserId
-  );
+  const isUserRespoOrContribBoolean = isUserRespoOrContrib(fetchedStructure.membres, currentUser._id);
 
-  if (!isAdmin && !isUserRespoOrContribBoolean) {
-    logger.info(
-      "[checkIfUserIsAuthorizedToModifyStructure] user not authorized",
-      {
-        id: structureId,
-      }
-    );
+  if (!currentUser.hasRole("Admin") && !isUserRespoOrContribBoolean) {
+    logger.info("[checkIfUserIsAuthorizedToModifyStructure] user not authorized", {
+      id: structureId
+    });
     throw new Error("USER_NOT_AUTHORIZED");
   }
   return true;
 };
 
-export const getStructureMembers = async (structureId: ObjectId) => {
+export const getStructureMembers = async (structureId: StructureId) => {
   try {
     const structureNeededFields = { membres: 1 };
-    const structure = await getStructureFromDB(
-      structureId,
-      false,
-      structureNeededFields
-    );
+    const structure = await getStructureFromDB(structureId, false, structureNeededFields);
 
     if (!structure || !structure.membres || structure.membres.length === 0) {
       return [];
@@ -79,7 +55,16 @@ export const getStructureMembers = async (structureId: ObjectId) => {
   }
 };
 
-export const userRespoStructureId = async (structures: ObjectId[], userId: ObjectId) => {
+/**
+ * Cette fonction renvoie l'identifiant de la première structure
+ * de laquelle l'utlisateur est administrateur.
+ * Si il n'est administrateur d'aucune structure, la fonction renvoie null
+ *
+ * @param structures
+ * @param userId
+ * @returns
+ */
+export const userRespoStructureId = async (structures: StructureId[], userId: UserId): Promise<StructureId | null> => {
   for (let structureId of structures) {
     const membres = await getStructureMembers(structureId);
     if (!membres) continue;
@@ -97,14 +82,14 @@ export const userRespoStructureId = async (structures: ObjectId[], userId: Objec
   return null;
 };
 
-export const findAllRespo = (structures: StructureDoc[]) => {
-  const userIds: ObjectId[] = [];
+export const findAllRespo = (structures: Structure[]) => {
+  const userIds: UserId[] = [];
 
   for (const structure of structures) {
     if (!structure.membres) continue;
     const admins = structure.membres
-      .filter((m: any) => m.roles.includes("administrateur"))
-      .map(m => m.userId);
+      .filter((m: Membre) => m.roles.includes("administrateur"))
+      .map((m) => m.userId.toString());
     userIds.push(...admins);
   }
 

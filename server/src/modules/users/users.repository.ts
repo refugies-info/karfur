@@ -1,29 +1,29 @@
-import { User, UserDoc, USER_STATUS_ACTIVE } from "../../schema/schemaUser";
-import { FilterQuery, ObjectId } from "mongoose";
+import { FilterQuery, Types } from "mongoose";
+import { StructureId, User, UserModel } from "src/typegoose";
+import { UserId, USER_STATUS_ACTIVE } from "src/typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
-export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
-  await User.findOne({ _id: id }, neededFields);
+export const getUserById = async (id: UserId, neededFields: NeededFields) =>
+  await UserModel.findOne({ _id: id }, neededFields);
 
-export const getUsersById = async (ids: ObjectId[], neededFields: NeededFields) =>
-  await User.find({ _id: { $in: ids } }, neededFields);
+export const getUsersById = async (ids: UserId[], neededFields: NeededFields) =>
+  await UserModel.find({ _id: { $in: ids } }, neededFields);
 
-export const findUsers = (filter: FilterQuery<UserDoc>, neededFields: Record<string, number> = {}) =>
-  User.find(filter, neededFields);
+export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string, number> = {}) =>
+  UserModel.find(filter, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: Record<string, number>, populate: string = "roles structures") =>
-  await User.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(populate);
+  await UserModel.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(populate);
 
-export const updateUserInDB = async (id: ObjectId, modifiedUser: any) =>
-  await User.findOneAndUpdate({ _id: id }, modifiedUser, {
+export const updateUserInDB = async (id: UserId, modifiedUser: any) =>
+  await UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
-    // @ts-ignore
     new: true
   });
 
-export const addStructureForUsersInDB = (userIds: ObjectId[], structureId: ObjectId) =>
-  User.updateMany(
+export const addStructureForUsersInDB = (userIds: UserId[], structureId: StructureId) =>
+  UserModel.updateMany(
     { _id: { $in: userIds } },
     {
       $addToSet: {
@@ -32,8 +32,8 @@ export const addStructureForUsersInDB = (userIds: ObjectId[], structureId: Objec
     }
   );
 
-export const removeStructureOfAllUsersInDB = (structureId: ObjectId) =>
-  User.updateMany(
+export const removeStructureOfAllUsersInDB = (structureId: StructureId) =>
+  UserModel.updateMany(
     { structures: structureId },
     {
       $pull: {
@@ -42,8 +42,8 @@ export const removeStructureOfAllUsersInDB = (structureId: ObjectId) =>
     }
   );
 
-export const removeStructureOfUserInDB = (userId: ObjectId, structureId: ObjectId) =>
-  User.updateOne(
+export const removeStructureOfUserInDB = (userId: UserId, structureId: StructureId) =>
+  UserModel.updateOne(
     { _id: userId },
     {
       $pull: {
@@ -52,23 +52,21 @@ export const removeStructureOfUserInDB = (userId: ObjectId, structureId: ObjectI
     }
   );
 
-export const getUserByUsernameFromDB = async (username: string) => await User.findOne({ username });
+export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
 
-export const createUser = async (user: {
+export const createUser = (user: {
   username: string;
   password: string;
-  roles: ObjectId[];
+  roles: Types.ObjectId[];
   status: string;
   last_connected: Date;
-  // @ts-ignore
-}) => await User.create(user);
+}): Promise<User> => UserModel.create(user);
 
-export const addRoleAndContribToUser = (userId: ObjectId, roleId: ObjectId, contribId: ObjectId) =>
-  User.findByIdAndUpdate(
+export const addRoleAndContribToUser = (userId: Types.ObjectId, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
+  UserModel.findByIdAndUpdate(
     { _id: userId },
     {
       $addToSet: { roles: roleId, contributions: contribId }
     },
-    // @ts-ignore
     { new: true }
   );

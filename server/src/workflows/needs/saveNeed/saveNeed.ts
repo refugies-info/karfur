@@ -1,38 +1,30 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 
-import {
-  checkRequestIsFromSite,
-  checkIfUserIsAdminOrExpert,
-} from "../../../libs/checkAuthorizations";
-import logger = require("../../../logger");
+import { checkRequestIsFromSite, checkIfUserIsAdminOrExpert } from "../../../libs/checkAuthorizations";
 import { getNeedFromDB, saveNeedInDB } from "../../../modules/needs/needs.repository";
 import { Request, getValidator } from "../../../modules/needs/needs.service";
-import { NeedDoc } from "../../../schema/schemaNeeds";
+import logger from "src/logger";
+import { Need } from "src/typegoose";
 
 const validator = getValidator("patch");
 
-const saveNeed = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const saveNeed = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[saveNeed] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    // @ts-ignore : populate roles
-    checkIfUserIsAdminOrExpert(req.user.roles);
+    checkIfUserIsAdminOrExpert(req.user);
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
     const oldNeed = await getNeedFromDB(req.params.id);
-    //@ts-ignore
-    const need: Partial<NeedDoc> = { ...req.body };
+    const need: Partial<Need> = { ...req.body };
 
     // edit french version
     if (need.fr) {
-      const isFrenchTextEdited = (need.fr.text && need.fr.text !== oldNeed.fr.text) ||
+      const isFrenchTextEdited =
+        (need.fr.text && need.fr.text !== oldNeed.fr.text) ||
         (need.fr.subtitle && need.fr.subtitle !== oldNeed.fr.subtitle);
-      //@ts-ignore
-      need.fr.updatedAt = isFrenchTextEdited ? Date.now() : oldNeed.fr.updatedAt;
+      need.fr.updatedAt = isFrenchTextEdited ? new Date() : oldNeed.fr.updatedAt;
     }
 
     const dbNeed = await saveNeedInDB(req.params.id, need);
@@ -43,7 +35,7 @@ const saveNeed = async (
     });
   } catch (error) {
     logger.error("[saveNeed] error", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "INVALID_REQUEST":

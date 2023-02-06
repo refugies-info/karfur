@@ -1,9 +1,10 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { collection: "Mail", timestamps: { createdAt: "created_at" } } })
-export class MailEvent {
+@modelOptions({ schemaOptions: { collection: "mails", timestamps: { createdAt: "created_at" } } })
+export class MailEvent extends Base {
   @prop({ required: true })
   public templateName!: String;
 

@@ -1,33 +1,25 @@
-import { ObjectId } from "mongoose";
-import { ThemeDoc } from "../../schema/schemaTheme";
-import { NeedDoc, Need } from "../../schema/schemaNeeds";
+import { Need, NeedId, NeedModel, Theme } from "src/typegoose";
 
-export const createNeedInDB = async (need: Partial<NeedDoc>) =>
-  await new Need(need).save();
+export const createNeedInDB = async (need: Partial<Need>) => await new NeedModel(need).save();
 
-export const getNeedsFromDB = async () => Need.find().populate<{ theme: ThemeDoc }>("theme");
+export const getNeedsFromDB = async () => NeedModel.find().populate<{ theme: Theme }>("theme");
 
-export const getNeedFromDB = async (id: ObjectId) => Need.findOne({ _id: id });
+export const getNeedFromDB = async (id: NeedId) => NeedModel.findOne({ _id: id });
 
-export const saveNeedInDB = async (needId: ObjectId, need: Partial<NeedDoc>) => {
-  return Need.findOneAndUpdate(
-    { _id: needId },
-    need,
-    { upsert: true, new: true }
-  );
-}
+export const saveNeedInDB = async (needId: NeedId, need: Partial<Need>) => {
+  return NeedModel.findOneAndUpdate({ _id: needId }, need, { upsert: true, new: true });
+};
 
-export const deleteNeedById = async (needId: ObjectId) => {
-  return Need.deleteOne({ _id: needId });
-}
+export const deleteNeedById = async (needId: NeedId) => {
+  return NeedModel.deleteOne({ _id: needId });
+};
 
-export const updatePositions = async (needIds: ObjectId[]) => {
+export const updatePositions = async (needIds: NeedId[]) => {
   return Promise.all(
-    needIds.map((needId, i) => Need.findOneAndUpdate(
-      { _id: needId },
-      { position: i },
-      { upsert: true, new: true }
-    ).populate<{ theme: ThemeDoc }>("theme"))
-  )
-}
-
+    needIds.map((needId, i) =>
+      NeedModel.findOneAndUpdate({ _id: needId }, { position: i }, { upsert: true, new: true }).populate<{
+        theme: Theme;
+      }>("theme")
+    )
+  );
+};

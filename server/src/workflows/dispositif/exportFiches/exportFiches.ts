@@ -4,12 +4,10 @@ import { getDispositifArray } from "../../../modules/dispositif/dispositif.repos
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { LangueDoc } from "../../../schema/schemaLangue";
+import { Langue } from "src/typegoose";
 
 var Airtable = require("airtable");
-var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
-  process.env.AIRTABLE_BASE_USERS
-);
+var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(process.env.AIRTABLE_BASE_USERS);
 
 interface Result {
   [translatedTitleKey: string]: any;
@@ -31,13 +29,13 @@ interface Result {
   "Date de dernière mise à jour": string;
 }
 
-const getTranslatedTitles = (fiche: any, activeLanguages: LangueDoc[]) => {
+const getTranslatedTitles = (fiche: any, activeLanguages: Langue[]) => {
   const translatedTitles: Record<string, string> = {};
   for (const ln of activeLanguages) {
-    translatedTitles[`Titre informatif ${ln.i18nCode}`] = fiche.titreInformatif?.[ln.i18nCode] || ""
+    translatedTitles[`Titre informatif ${ln.i18nCode}`] = fiche.titreInformatif?.[ln.i18nCode] || "";
   }
   return translatedTitles;
-}
+};
 
 const getAgeRequis = (infocards: any[]) => {
   const ageRequisIC =
@@ -46,14 +44,10 @@ const getAgeRequis = (infocards: any[]) => {
       : null;
   if (!ageRequisIC) return "";
 
-  if (ageRequisIC.contentTitle === "Plus de ** ans")
-    return "Plus de " + ageRequisIC.bottomValue + " ans";
-  if (ageRequisIC.contentTitle === "Moins de ** ans")
-    return "Moins de " + ageRequisIC.topValue + " ans";
+  if (ageRequisIC.contentTitle === "Plus de ** ans") return "Plus de " + ageRequisIC.bottomValue + " ans";
+  if (ageRequisIC.contentTitle === "Moins de ** ans") return "Moins de " + ageRequisIC.topValue + " ans";
 
-  return (
-    "De " + ageRequisIC.bottomValue + " à " + ageRequisIC.topValue + " ans"
-  );
+  return "De " + ageRequisIC.bottomValue + " à " + ageRequisIC.topValue + " ans";
 };
 
 const getPublicVise = (infocards: any[]) => {
@@ -103,42 +97,31 @@ const getZoneAction = (infocards: any[]) => {
     infocards.filter((card) => card.title === "Zone d'action").length > 0
       ? infocards.filter((card) => card.title === "Zone d'action")[0]
       : null;
-  if (!zoneIC || !zoneIC.departments || zoneIC.departments.length === 0)
-    return "";
+  if (!zoneIC || !zoneIC.departments || zoneIC.departments.length === 0) return "";
   return zoneIC.departments.join(" / ");
 };
 
 const exportFichesInAirtable = (fiches: { fields: Result }[]) => {
-  logger.info(
-    `[exportFichesInAirtable] export ${fiches.length} fiches in airtable`
-  );
+  logger.info(`[exportFichesInAirtable] export ${fiches.length} fiches in airtable`);
   base("Fiches").create(fiches, { typecast: true }, function (err: Error) {
     if (err) {
-      logger.error(
-        "[exportFichesInAirtable] error while exporting fiches to airtable",
-        {
-          fichesId: fiches.map((fiche) => fiche.fields.Lien),
-          error: err,
-        }
-      );
+      logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
+        fichesId: fiches.map((fiche) => fiche.fields.Lien),
+        error: err
+      });
       return;
     }
 
-    logger.info(
-      `[exportFichesInAirtable] successfully exported ${fiches.length}`
-    );
+    logger.info(`[exportFichesInAirtable] successfully exported ${fiches.length}`);
   });
 };
 
-const formatFiche = (fiche: any, activeLanguages: LangueDoc[]) => {
+const formatFiche = (fiche: any, activeLanguages: Langue[]) => {
   const translatedTitles = getTranslatedTitles(fiche, activeLanguages);
   turnToLocalizedTitles(fiche, "fr");
 
   const infocards =
-    fiche.contenu &&
-      fiche.contenu[1] &&
-      fiche.contenu[1].children &&
-      fiche.contenu[1].children.length > 0
+    fiche.contenu && fiche.contenu[1] && fiche.contenu[1].children && fiche.contenu[1].children.length > 0
       ? fiche.contenu[1].children
       : [];
 
@@ -154,7 +137,7 @@ const formatFiche = (fiche: any, activeLanguages: LangueDoc[]) => {
     "Titre informatif": fiche.titreInformatif,
     "Titre marque": fiche.titreMarque,
     "Type de contenu": [fiche.typeContenu],
-    Lien: "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
+    "Lien": "https://refugies.info/" + fiche.typeContenu + "/" + fiche._id,
     "Thème principal": fiche.theme?.short?.fr || "",
     "Thème secondaire 1": fiche.secondaryThemes?.[0]?.short.fr || "",
     "Thème secondaire 2": fiche.secondaryThemes?.[1]?.short.fr || "",
@@ -163,19 +146,16 @@ const formatFiche = (fiche: any, activeLanguages: LangueDoc[]) => {
     "Public visé": publicVise,
     "Niveau de français": niveauFrancais,
     "Combien ça coute": prix,
-    Durée: duree,
+    "Durée": duree,
     "Nombre de vues": fiche.nbVues || 0,
     "Besoins": besoins,
     ...translatedTitles,
-    "Date de dernière mise à jour": fiche.updatedAt,
+    "Date de dernière mise à jour": fiche.updatedAt
   };
 
   return { fields: formattedResult };
 };
-export const exportFiches = async (
-  req: RequestFromClientWithBody<{}>,
-  res: Res
-) => {
+export const exportFiches = async (req: RequestFromClientWithBody<{}>, res: Res) => {
   try {
     logger.info("[exportFiches] received");
 
@@ -189,7 +169,7 @@ export const exportFiches = async (
       },
       "needs theme secondaryThemes"
     );
-    const activeLanguages = (await getActiveLanguagesFromDB()).filter(ln => ln.i18nCode !== "fr");
+    const activeLanguages = (await getActiveLanguagesFromDB()).filter((ln) => ln.i18nCode !== "fr");
 
     let result: { fields: Result }[] = [];
 
@@ -206,7 +186,7 @@ export const exportFiches = async (
       } catch (error) {
         logger.error("error with fiche", {
           _id: fiche._id,
-          error: error.message,
+          error: error.message
         });
       }
     });

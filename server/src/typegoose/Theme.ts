@@ -1,6 +1,8 @@
-import { prop } from "@typegoose/typegoose";
+import { modelOptions, prop } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
+import { Base } from "./Base";
 import { ImageSchema } from "./generics";
+import { Langue } from "./Langue";
 
 class ThemeColors {
   color100!: String;
@@ -10,12 +12,13 @@ class ThemeColors {
   color30!: String;
 }
 
-export class Theme {
+@modelOptions({ schemaOptions: { collection: "themes" } })
+export class Theme extends Base {
   @prop()
-  public name: Record<string, String>;
+  public name: Record<string, string>;
 
   @prop()
-  public short: Record<string, String>;
+  public short: Record<string, string>;
 
   @prop()
   public colors: ThemeColors;
@@ -42,8 +45,34 @@ export class Theme {
   public shareImage: ImageSchema;
 
   @prop()
-  public notificationEmoji!: String;
+  public notificationEmoji!: string;
 
   @prop()
-  public adminComments?: String;
+  public adminComments?: string;
+
+  public isActive(activeLanguages: Langue[]) {
+    // titles
+    for (const ln of activeLanguages) {
+      if (!this.name[ln.i18nCode] || !this.short[ln.i18nCode]) return false;
+    }
+
+    if (
+      // colors
+      !this.colors.color100 ||
+      !this.colors.color80 ||
+      !this.colors.color60 ||
+      !this.colors.color40 ||
+      !this.colors.color30 ||
+      // images
+      !this.icon.secure_url ||
+      !this.banner.secure_url ||
+      !this.appImage.secure_url ||
+      !this.shareImage.secure_url ||
+      !this.notificationEmoji
+    )
+      return false;
+    return true;
+  }
 }
+
+export type ThemeId = Theme["_id"] | Theme["id"];

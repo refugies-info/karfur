@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClient, Res } from "../../../types/interface";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
@@ -9,13 +8,15 @@ import { addStructureForUsers, removeStructureOfUser } from "../../../modules/us
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
+import { StructureId, UserId } from "src/typegoose";
 
 interface Query {
-  membreId: ObjectId;
-  structureId: ObjectId;
+  membreId: UserId;
+  structureId: StructureId;
   action: "delete" | "modify" | "create";
   role?: string;
 }
+
 export const modifyUserRoleInStructure = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
@@ -32,12 +33,7 @@ export const modifyUserRoleInStructure = async (req: RequestFromClient<Query>, r
       membreId
     });
 
-    await checkIfUserIsAuthorizedToModifyStructure(
-      structureId,
-      req.userId,
-      // @ts-ignore : populate roles
-      req.user.roles
-    );
+    await checkIfUserIsAuthorizedToModifyStructure(structureId, req.user);
 
     logger.info("[modifyUserRoleInStructure] updating stucture", {
       structureId

@@ -1,29 +1,46 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { Schema } from "mongoose";
+import { Base } from "./Base";
 
-@modelOptions({ schemaOptions: { timestamps: true } })
-export class AppUser {
+export class NotificationsSettings {
+  @prop()
+  public global!: boolean;
+
+  @prop()
+  local!: boolean;
+
+  @prop()
+  demarches!: boolean;
+
+  @prop()
+  themes!: {
+    [key: string]: boolean;
+  };
+}
+
+@modelOptions({ schemaOptions: { collection: "appusers", timestamps: true } })
+export class AppUser extends Base {
   @prop({ unique: true, required: true })
-  public uid!: String;
+  public uid!: string;
 
   @prop()
-  public city?: String;
+  public city?: string;
 
   @prop()
-  public department?: String;
+  public department?: string;
 
   @prop()
-  public selectedLanguage?: String;
+  public selectedLanguage?: string;
 
   @prop()
-  public age?: String;
+  public age?: string;
 
   @prop()
-  public frenchLevel?: String;
+  public frenchLevel?: string;
 
   @prop()
-  public expoPushToken?: String;
+  public expoPushToken?: string;
 
   @prop({ type: Schema.Types.Mixed })
-  public notificationsSettings?: any;
+  public notificationsSettings?: NotificationsSettings;
 }

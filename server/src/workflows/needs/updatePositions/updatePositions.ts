@@ -3,10 +3,9 @@ import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { updatePositions } from "../../../modules/needs/needs.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { NeedId } from "src/typegoose";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
@@ -15,18 +14,14 @@ const validator = celebrate({
 });
 
 export interface Request {
-  orderedNeedIds: ObjectId[]
+  orderedNeedIds: NeedId[];
 }
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[updatePositions] received");
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     const data = await updatePositions(req.body.orderedNeedIds);
 

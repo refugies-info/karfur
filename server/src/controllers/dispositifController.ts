@@ -1,7 +1,6 @@
 import express from "express";
-const router = express.Router();
-const dispositif = require("./dispositif/lib.js");
-const checkToken = require("./account/checkToken");
+import * as dispositif from "./dispositif/lib";
+import * as checkToken from "./account/checkToken";
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
 import getDispositifs from "../workflows/dispositif/getDispositifs";
@@ -23,37 +22,37 @@ import { getNbContents } from "../workflows/dispositif/getNbContents";
 import getStatistics from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
 
+const router = express.Router();
+
+// @ts-ignore FIXME
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
 router.post("/get_dispositif", dispositif.get_dispositif);
 router.post("/count_dispositifs", dispositif.count_dispositifs);
 router.post("/getDispositifs", getDispositifs);
 router.get("/getAllDispositifs", getAllDispositifs);
+// @ts-ignore FIXME
 router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
+// @ts-ignore FIXME
 router.post("/modifyDispositifMainSponsor", checkToken.check, modifyDispositifMainSponsor);
+// @ts-ignore FIXME
 router.post("/updateDispositifAdminComments", checkToken.check, updateDispositifAdminComments);
 router.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
 router.post("/updateNbVuesOrFavoritesOnContent", updateNbVuesOrFavoritesOnContent);
+// @ts-ignore FIXME
 router.post("/updateDispositifReactions", checkToken.getId, updateDispositifReactions);
 router.get("/getUserContributions", checkToken.check, getUserContributions);
+// @ts-ignore FIXME
 router.get("/getDispositifsWithTranslationAvancement", checkToken.check, getDispositifsWithTranslationAvancement);
 router.post("/exportFiches", exportFiches);
 router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisation);
 router.get("/getContentsForApp", getContentsForApp);
+// @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 router.get("/getContentById", getContentById);
 router.get("/getNbContents", getNbContents);
 router.get("/statistics", getStatistics);
+// @ts-ignore FIXME
 router.patch("/:id", checkToken.check, updateDispositif);
-
-/* NOT USED
-router.post("/addNeedsFromAirtable", addNeedsFromAirtable);
-router.post("/fixAudienceAgeOnContents", fixAudienceAgeOnContents);
-router.post(
-  "/get_dispo_progression",
-  checkToken.check,
-  dispositif.get_dispo_progression
-);
-*/
 
 module.exports = router;
