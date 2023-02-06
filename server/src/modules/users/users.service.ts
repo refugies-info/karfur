@@ -6,12 +6,12 @@ import {
   addStructureForUsersInDB,
   removeStructureOfUserInDB
 } from "./users.repository";
-import { ObjectId } from "mongoose";
-import { UserDoc, USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { asyncForEach } from "../../libs/asyncForEach";
-import { UserForMailing } from "../../types/interface";
+import { User } from "src/typegoose";
+import { UserId, USER_STATUS_DELETED } from "src/typegoose/User";
+import { Membre, StructureId } from "src/typegoose/Structure";
 
-export const addStructureForUsers = async (userIds: ObjectId[], structureId: ObjectId) => {
+export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
   return addStructureForUsersInDB(userIds, structureId).catch((error) => {
     logger.error("[addStructure] error while updating role", {
@@ -21,7 +21,7 @@ export const addStructureForUsers = async (userIds: ObjectId[], structureId: Obj
   });
 };
 
-export const removeStructureOfAllUsers = async (structureId: ObjectId) => {
+export const removeStructureOfAllUsers = async (structureId: StructureId) => {
   logger.info("[removeStructureOfUser] delete structure for all users", { structureId });
   return removeStructureOfAllUsersInDB(structureId).catch((error) => {
     logger.error("[removeStructureOfUser] error while updating role", {
@@ -31,7 +31,7 @@ export const removeStructureOfAllUsers = async (structureId: ObjectId) => {
   });
 };
 
-export const removeStructureOfUser = async (userId: ObjectId, structureId: ObjectId) => {
+export const removeStructureOfUser = async (userId: UserId, structureId: StructureId) => {
   logger.info("[removeStructureOfUser] delete structure for user", { userId, structureId });
   return removeStructureOfUserInDB(userId, structureId).catch((error) => {
     logger.error("[removeStructureOfUser] error while updating role", {
@@ -41,14 +41,11 @@ export const removeStructureOfUser = async (userId: ObjectId, structureId: Objec
   });
 };
 
-export const proceedWithLogin = async (user: UserDoc) => {
-  const userToSave = { last_connected: new Date() };
-  return await updateUserInDB(user._id, userToSave);
-};
+export const proceedWithLogin = (user: User) => updateUserInDB(user._id, { last_connected: new Date() });
 
-export const getUsersFromStructureMembres = async (structureMembres: { userId: ObjectId }[]) => {
+export const getUsersFromStructureMembres = async (structureMembres: Membre[]): Promise<User[]> => {
   logger.info("[getUsersFromStructureMembres] received");
-  let result: UserForMailing[] = [];
+  let result: User[] = [];
   try {
     const userNeededFields = {
       username: 1,
@@ -59,14 +56,10 @@ export const getUsersFromStructureMembres = async (structureMembres: { userId: O
       if (!membre.userId) return;
 
       try {
-        const membreFromDB = await getUserById(membre.userId, userNeededFields);
+        const membreFromDB = await getUserById(membre.userId.toString(), userNeededFields);
         if (membreFromDB.status === USER_STATUS_DELETED) return;
         if (!membreFromDB.email) return;
-        result.push({
-          username: membreFromDB.username,
-          _id: membreFromDB._id,
-          email: membreFromDB.email
-        });
+        result.push(membreFromDB);
       } catch (e) {
         logger.error("[getUsersFromStructureMembres] error while getting user", e);
       }

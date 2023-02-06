@@ -2,9 +2,7 @@ import { Res } from "../../../types/interface.js";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
 import { getUsersById } from "../../../modules/users/users.repository";
-import { ObjectId } from "mongoose";
-import { StructureDoc } from "../../../schema/schemaStructure.js";
-import { DispositifDoc } from "../../../schema/schemaDispositif.js";
+import { Dispositif, DispositifId, Structure, User, UserId } from "src/typegoose";
 
 export const getAllStructures = async (req: {}, res: Res) => {
   try {
@@ -26,26 +24,19 @@ export const getAllStructures = async (req: {}, res: Res) => {
     logger.info("[getAllStructures] structures fetched");
 
     const simplifiedStructures = structures.map((structure) => {
-      // @ts-ignore
-      const jsonStructure: StructureDoc = structure.toJSON();
+      const jsonStructure = structure.toJSON() as Structure;
       const nbMembres = jsonStructure.membres?.length || 0;
       const responsablesArray = jsonStructure.membres
         ? jsonStructure.membres.filter((user) => user.roles && user.userId && user.roles.includes("administrateur"))
         : [];
       const responsableId = responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
-      const dispositifsIds: ObjectId[] = jsonStructure.dispositifsAssocies.map(
-        (dispositif: ObjectId | DispositifDoc) => (dispositif as DispositifDoc)._id
+      const dispositifsIds: DispositifId[] = jsonStructure.dispositifsAssocies.map(
+        (dispositif: DispositifId | Dispositif) => (dispositif as Dispositif)._id
       );
 
-      // @ts-ignore
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter((dispo: any) => {
-        return (
-          //@ts-ignore
-          dispo.status &&
-          // @ts-ignore
-          !["Supprimé", "Brouillon"].includes(dispo.status)
-        );
+        return dispo.status && !["Supprimé", "Brouillon"].includes(dispo.status);
       });
       const nbFiches = dispositifsAssocies.length;
 
@@ -62,8 +53,8 @@ export const getAllStructures = async (req: {}, res: Res) => {
     const data: any = [];
     const responsablesIDs = simplifiedStructures.map((structure) => structure.responsable).filter((_) => !!_);
     if (responsablesIDs.length) {
-      const responsables = await getUsersById(responsablesIDs, neededFieldsUser).then((users) =>
-        users.reduce((acc: { [key: string]: any }, user) => ({ ...acc, [user._id.toString()]: user }), {})
+      const responsables: Record<string, User> = await getUsersById(responsablesIDs as UserId[], neededFieldsUser).then(
+        (users) => users.reduce((acc: { [key: string]: any }, user) => ({ ...acc, [user._id.toString()]: user }), {})
       );
 
       simplifiedStructures.map((structure) => {
@@ -77,7 +68,6 @@ export const getAllStructures = async (req: {}, res: Res) => {
       simplifiedStructures.map((structure) => data.push({ ...structure, responsable: null }));
     }
 
-    // @ts-ignore
     return res.status(200).json({ data });
   } catch (error) {
     logger.error("[getAllStructures] error while getting structures", {

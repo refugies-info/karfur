@@ -1,15 +1,15 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({ schemaOptions: { collection: "notifications", timestamps: true } })
 export class Notification {
   @prop({ required: true })
-  public uid!: String;
+  public uid!: string;
 
   @prop({ required: true, default: false })
-  public seen!: Boolean;
+  public seen!: boolean;
 
   @prop({ required: true })
-  public title!: String;
+  public title!: string;
 
   @prop({ required: true })
   public data!: Object;

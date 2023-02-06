@@ -2,7 +2,7 @@ import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { Theme } from "./Theme";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { collection: "Widgets", timestamps: { createdAt: "created_at" } } })
+@modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
 export class Widget {
   @prop({ required: true })
   public name!: String;

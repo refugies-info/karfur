@@ -3,22 +3,15 @@ import logger from "../../../logger";
 import { getDispositifByIdWithMainSponsor } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 
-import { ObjectId } from "mongoose";
-import { DispositifPopulatedMainSponsorDoc } from "../../../schema/schemaDispositif";
-import {
-  turnToLocalized,
-  turnJSONtoHTML,
-} from "../../../controllers/dispositif/functions";
+import { turnToLocalized, turnJSONtoHTML } from "../../../controllers/dispositif/functions";
+import { DispositifId } from "src/typegoose";
 
 interface Query {
   locale: string;
-  contentId: ObjectId;
+  contentId: DispositifId;
 }
 
-export const getContentById = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
+export const getContentById = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -30,7 +23,7 @@ export const getContentById = async (
 
     logger.info("[getContentById] called", {
       locale,
-      contentId,
+      contentId
     });
 
     const neededFields = {
@@ -44,32 +37,28 @@ export const getContentById = async (
       externalLink: 1,
       lastModificationDate: 1,
       nbVuesMobile: 1,
-      nbFavoritesMobile: 1,
+      nbFavoritesMobile: 1
     };
 
-    // @ts-ignore
-    const content: DispositifPopulatedMainSponsorDoc = await getDispositifByIdWithMainSponsor(
-      contentId,
-      neededFields
-    );
+    const content = await getDispositifByIdWithMainSponsor(contentId, neededFields);
 
-    const sponsor = content.mainSponsor
-      ? { picture: content.mainSponsor.picture, nom: content.mainSponsor.nom }
-      : null;
+    const mainSponsor = content.getMainSponsor();
+    const sponsor = mainSponsor ? { picture: mainSponsor.picture, nom: mainSponsor.nom } : null;
 
-    // @ts-ignore
+    // @ts-ignore FIXME
     content.mainSponsor = sponsor;
 
-    turnToLocalized(content, locale);
-    turnJSONtoHTML(content.contenu);
+    logger.error("REFACTOR TODO");
+    // TODO turnToLocalized(content, locale);
+    // FIXME turnJSONtoHTML(content.contenu);
 
     res.status(200).json({
       text: "Succès",
-      data: content,
+      data: content
     });
   } catch (error) {
     logger.error("[getContentById] error while getting dispositif", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "INVALID_REQUEST":
@@ -78,7 +67,7 @@ export const getContentById = async (
         return res.status(405).json({ text: "Requête bloquée par API" });
       default:
         return res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
     }
   }

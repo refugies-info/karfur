@@ -1,16 +1,17 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { timestamps: { createdAt: "created_at" } } })
-export class Langue {
+@modelOptions({ schemaOptions: { collection: "langues", timestamps: { createdAt: "created_at" } } })
+export class Langue extends Base {
   @prop({ unique: true, required: true })
-  public langueFr!: String;
+  public langueFr!: string;
 
   @prop()
-  public langueLoc?: String;
+  public langueLoc?: string;
 
   @prop()
-  public langueCode?: String;
+  public langueCode?: string;
 
   // FIXME : toujours utilisé ?
   @prop()
@@ -23,10 +24,10 @@ export class Langue {
 
   // FIXME meilleur typage à faire + toujours utile ?
   @prop()
-  public status?: String;
+  public status?: string;
 
   @prop({ required: true, unique: true })
-  public i18nCode!: String;
+  public i18nCode!: string;
 
   @prop({ default: 0 })
   public avancement: Number;
@@ -36,6 +37,8 @@ export class Langue {
 
   // FIXME dépendance circulaire
   // Utiliser => https://typegoose.github.io/typegoose/docs/api/virtuals/#why-is-my-virtual-not-included-in-the-output ?
-  @prop({ default: [] })
-  public participants?: Ref<User>;
+  @prop({ default: [], ref: () => User })
+  public participants?: Ref<User>[];
 }
+
+export type LangueId = Langue["_id"] | Langue["id"];

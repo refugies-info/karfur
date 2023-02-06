@@ -1,29 +1,23 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { updateTheme } from "../../../modules/themes/themes.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { ThemeDoc } from "../../../schema/schemaTheme";
-import { Request, getValidator, isThemeActive } from "../../../modules/themes/themes.service";
+import { Request, getValidator } from "../../../modules/themes/themes.service";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
+import { Theme } from "src/typegoose";
 
 const validator = getValidator("patch");
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[patchTheme] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
-    const theme: Partial<ThemeDoc> = {
+    const theme: Partial<Theme> = {
       name: req.body.name,
       short: req.body.short,
       colors: req.body.colors,
@@ -42,7 +36,7 @@ const handler = async (
 
     return res.status(200).json({
       text: "Succès",
-      data: {...dbTheme.toObject(), active: isThemeActive(dbTheme, activeLanguages)},
+      data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
     });
   } catch (error) {
     logger.error("[patchTheme] error", { error: error.message });

@@ -1,46 +1,13 @@
 import logger from "../../../logger";
-import { Res, Picture } from "../../../types/interface";
+import { Request, Res } from "../../../types/interface";
 import { getDispositifsFromDB } from "../../../modules/dispositif/dispositif.repository";
-import { adaptDispositifMainSponsorAndCreatorId, countDispositifMercis } from "../../../modules/dispositif/dispositif.adapter";
+import {
+  adaptDispositifMainSponsorAndCreatorId,
+  countDispositifMercis
+} from "../../../modules/dispositif/dispositif.adapter";
 import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
-import { ObjectId } from "mongoose";
 
-interface SponsorMainInfo {
-  _id: ObjectId;
-  nom: string;
-  status: string;
-  picture: Picture;
-}
-
-interface CreatorMainInfo {
-  username: string;
-  picture: Picture;
-  _id: ObjectId;
-  email: string;
-}
-export interface DispositifMainInfo {
-  titreInformatif: string | Record<string, string>;
-  titreMarque?: string | Record<string, string>;
-  updatedAt: number;
-  status: string;
-  typeContenu: string;
-  created_at: number;
-  publishedAt?: number;
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-  lastAdminUpdate?: number;
-  draftReminderMailSentDate?: number;
-  draftSecondReminderMailSentDate?: number;
-  lastModificationDate?: number;
-  mainSponsor?: SponsorMainInfo;
-  creatorId: CreatorMainInfo;
-  nbMercis: number
-  nbVues: number
-  webOnly?: boolean;
-}
-
-export const getAllDispositifs = async (req: {}, res: Res) => {
+export const getAllDispositifs = async (req: Request, res: Res) => {
   try {
     logger.info("[getAllDispositifs] called");
 
@@ -71,42 +38,37 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       webOnly: 1
     };
 
-    const dispositifs = await getDispositifsFromDB(neededFields);
+    // const dispositifs = await getDispositifsFromDB(neededFields);
 
-    // @ts-ignore
-    const adaptedDispositifs: DispositifMainInfo[] =
-      adaptDispositifMainSponsorAndCreatorId(dispositifs);
+    // const adaptedDispositifs = adaptDispositifMainSponsorAndCreatorId(dispositifs);
+    // FIXME const dispositifsResult = countDispositifMercis(adaptedDispositifs);
 
-    // @ts-ignore
-    const dispositifsResult: DispositifMainInfo[] =
-      countDispositifMercis(adaptedDispositifs);
+    // const array: string[] = [];
 
-    const array: string[] = [];
-
-    array.forEach.call(dispositifsResult, (dispositif: DispositifMainInfo) => {
-      turnToLocalizedTitles(dispositif, "fr");
-    });
+    // array.forEach.call(dispositifsResult, (dispositif: DispositifMainInfo) => {
+    //   turnToLocalizedTitles(dispositif, "fr");
+    // });
 
     res.status(200).json({
       text: "Succès",
-      data: dispositifsResult,
+      data: [] // dispositifsResult
     });
   } catch (error) {
     logger.error("[getAllDispositifs] error while getting dispositifs", error);
     switch (error) {
       case 500:
         res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
         break;
       case 404:
         res.status(404).json({
-          text: "Pas de résultat",
+          text: "Pas de résultat"
         });
         break;
       default:
         res.status(500).json({
-          text: "Erreur interne",
+          text: "Erreur interne"
         });
     }
   }

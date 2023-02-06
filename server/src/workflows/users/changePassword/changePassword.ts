@@ -1,15 +1,11 @@
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { ObjectId } from "mongoose";
 import { celebrate, Joi, Segments } from "celebrate";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import logger from "../../../logger";
-import {
-  getUserById,
-  updateUserInDB,
-} from "../../../modules/users/users.repository";
+import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { isPasswordOk } from "../../../libs/validatePassword";
 import passwordHash from "password-hash";
-import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
+import { UserId, USER_STATUS_DELETED } from "src/typegoose/User";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
@@ -19,16 +15,13 @@ const validator = celebrate({
   })
 });
 
-
 interface Query {
-  userId: ObjectId;
+  userId: UserId;
   currentPassword: string;
   newPassword: string;
 }
-const handler = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+
+const handler = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     logger.info("[changePassword] received");
     checkRequestIsFromSite(req.fromSite);
@@ -44,7 +37,6 @@ const handler = async (
       throw new Error("USER_NOT_EXISTS");
     }
 
-    // @ts-ignore
     if (!user.authenticate(currentPassword)) {
       throw new Error("INVALID_PASSWORD");
     }
@@ -60,13 +52,12 @@ const handler = async (
     const newPasswordHashed = passwordHash.generate(newPassword);
 
     const updatedUser = await updateUserInDB(userId, {
-      password: newPasswordHashed,
+      password: newPasswordHashed
     });
 
     return res.status(200).json({
-      // @ts-ignore
       token: updatedUser.getToken(),
-      text: "Authentification réussi",
+      text: "Authentification réussi"
     });
   } catch (error) {
     logger.error("[changePassword] error", { error: error.message });
@@ -80,9 +71,7 @@ const handler = async (
       case "USER_NOT_EXISTS":
         return res.status(500).json({ text: "Utilisateur inconnu" });
       case "NEW_PASSWORD_TOO_WEAK":
-        return res
-          .status(401)
-          .json({ text: "Le mot de passe est trop faible" });
+        return res.status(401).json({ text: "Le mot de passe est trop faible" });
       case "USED_PASSWORD":
         return res.status(400).json({
           code: "USED_PASSWORD",

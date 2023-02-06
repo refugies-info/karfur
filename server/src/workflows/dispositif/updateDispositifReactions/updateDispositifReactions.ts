@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import { Moment } from "moment";
 import uniqid from "uniqid";
 import logger from "../../../logger";
@@ -10,9 +9,10 @@ import {
 } from "../../../modules/dispositif/dispositif.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
+import { DispositifId } from "src/typegoose";
 
 interface Request {
-  dispositifId: ObjectId;
+  dispositifId: DispositifId;
   fieldName: "suggestions" | "merci";
   keyValue?: number;
   subkey?: number;
@@ -23,23 +23,14 @@ interface Request {
   suggestionId?: string;
 }
 
-export const updateDispositifReactions = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const updateDispositifReactions = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
       throw new Error("INVALID_REQUEST");
     }
     logger.info("[updateDispositifReactions] received", { body: req.body });
-    let {
-      dispositifId,
-      fieldName,
-      suggestionId,
-      type,
-      ...suggestion
-    } = req.body;
+    let { dispositifId, fieldName, suggestionId, type, ...suggestion } = req.body;
 
     if (type !== "remove" && type !== "add" && type !== "read") {
       throw new Error("INCORRECT_TYPE");
@@ -49,20 +40,21 @@ export const updateDispositifReactions = async (
 
     if (type === "remove") {
       await updateDispositifInDB(dispositifId, {
-        $pull: { [fieldName]: { suggestionId } },
+        $pull: { [fieldName]: { suggestionId } }
       });
       return res.status(200).json({
-        text: "Succès",
+        text: "Succès"
       });
     }
 
     if (type === "read") {
       await modifyReadSuggestionInDispositif(dispositifId, suggestionId);
       return res.status(200).json({
-        text: "Succès",
+        text: "Succès"
       });
     }
 
+    // FIXME pas de code mongo dans le code métier
     if (type === "add") {
       const update = {
         $push: {
@@ -70,18 +62,17 @@ export const updateDispositifReactions = async (
             ...(req.userId && { userId: req.userId }),
             ...(req.user && {
               username: req.user.username,
-              picture: req.user.picture,
+              picture: req.user.picture
             }),
             ...suggestion,
             createdAt: new Date(),
-            suggestionId: uniqid("feedback_"),
-          },
-        },
+            suggestionId: uniqid("feedback_")
+          }
+        }
       };
-      // @ts-ignore
       await updateDispositifInDB(dispositifId, update);
       return res.status(200).json({
-        text: "Succès",
+        text: "Succès"
       });
     }
   } catch (error) {

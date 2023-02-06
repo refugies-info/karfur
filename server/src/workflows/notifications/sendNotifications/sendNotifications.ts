@@ -1,12 +1,12 @@
 import { celebrate, Joi, Segments } from "celebrate";
 import { Response } from "express";
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { log } from "./log";
 
 import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
 import { RequestFromClientWithBody } from "../../../types/interface";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { DispositifId } from "src/typegoose";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
@@ -15,17 +15,13 @@ const validator = celebrate({
 });
 
 interface Request {
-  demarcheId: ObjectId;
+  demarcheId: DispositifId;
 }
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Response
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Response) => {
   try {
     logger.info("[sendNotifications] received");
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
     const { demarcheId } = req.body;
 
     await sendNotificationsForDemarche(demarcheId);
@@ -43,7 +39,6 @@ const handler = async (
         return res.status(500).json({ text: "Erreur interne" });
     }
   }
-
 };
 
 export default [validator, handler];

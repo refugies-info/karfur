@@ -4,26 +4,26 @@ import { getActiveContents } from "../../../modules/dispositif/dispositif.reposi
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
-  getActiveContents: jest.fn(),
+  getActiveContents: jest.fn()
 }));
 
 jest.mock("../../../modules/traductions/traductions.repository", () => ({
-  getTraductionsByLanguage: jest.fn(),
+  getTraductionsByLanguage: jest.fn()
 }));
 
-jest.mock("../../../schema/schemaDispositif", () => ({
-  Dispositif: {
-    find: jest.fn(),
+jest.mock("../../../typegoose/Dispositif", () => ({
+  DispositifModel: {
+    find: jest.fn()
   }
 }));
 jest.mock("../../../schema/schemaTraduction", () => ({
   Traduction: {
-    find: jest.fn(),
+    find: jest.fn()
   }
 }));
-jest.mock("../../../schema/schemaError", () => ({
+jest.mock("src/typegoose/Error", () => ({
   Error: {
-    save: jest.fn(),
+    save: jest.fn()
   }
 }));
 
@@ -69,14 +69,14 @@ describe("getDispositifsWithTranslationAvancement", () => {
     titreMarque: 1,
     nbMots: 1,
     created_at: 1,
-    typeContenu: 1,
+    typeContenu: 1
   };
   const traductionFields = {
     articleId: 1,
     avancement: 1,
     status: 1,
     updatedAt: 1,
-    userId: 1,
+    userId: 1
   };
 
   // no corresponding trad
@@ -86,7 +86,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     nbMots: 200,
     created_at: "01/01/2021",
     typeContenu: "dispositif",
-    _id: "id1",
+    _id: "id1"
   };
 
   const result1 = {
@@ -94,7 +94,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     lastTradUpdatedAt: null,
     avancementTrad: 0,
     avancementExpert: 0,
-    tradStatus: "À traduire",
+    tradStatus: "À traduire"
   };
 
   // 1 corresponding trad, not userId
@@ -104,7 +104,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     nbMots: 400,
     created_at: "02/02/2022",
     typeContenu: "demarche",
-    _id: "id2",
+    _id: "id2"
   };
 
   const result2 = {
@@ -112,7 +112,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     lastTradUpdatedAt: 18,
     avancementTrad: 1,
     avancementExpert: 0,
-    tradStatus: "Validée",
+    tradStatus: "Validée"
   };
 
   const tradC2 = {
@@ -120,7 +120,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 1,
     status: "Validée",
     updatedAt: 18,
-    userId: "userId1",
+    userId: "userId1"
   };
 
   // 2 corresponding trad, one userId
@@ -130,7 +130,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     nbMots: 400,
     created_at: "03/03/303",
     typeContenu: "demarche",
-    _id: "id3",
+    _id: "id3"
   };
 
   const tradC3 = {
@@ -138,7 +138,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 0.8,
     status: "À revoir",
     updatedAt: 78,
-    userId: "userId1",
+    userId: "userId1"
   };
 
   const tradC4 = {
@@ -146,7 +146,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 0.6,
     status: "En attente",
     updatedAt: 17,
-    userId: "userId",
+    userId: "userId"
   };
 
   const result3 = {
@@ -154,7 +154,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     lastTradUpdatedAt: 78,
     avancementTrad: 0.8,
     avancementExpert: 0.6,
-    tradStatus: "À revoir",
+    tradStatus: "À revoir"
   };
 
   // 2 corresponding trad, one userId
@@ -164,7 +164,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     nbMots: 400,
     created_at: "03/03/303",
     typeContenu: "demarche",
-    _id: "id4",
+    _id: "id4"
   };
 
   const tradC6 = {
@@ -172,7 +172,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 0.8,
     status: "En attente",
     updatedAt: 78,
-    userId: "userId1",
+    userId: "userId1"
   };
 
   const tradC5 = {
@@ -180,7 +180,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     avancement: 0.6,
     status: "À traduire",
     updatedAt: 17,
-    userId: "userId",
+    userId: "userId"
   };
 
   const result4 = {
@@ -188,7 +188,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     lastTradUpdatedAt: 78,
     avancementTrad: 0.8,
     avancementExpert: 0.6,
-    tradStatus: "En attente",
+    tradStatus: "En attente"
   };
 
   const traductions = [tradC2, tradC4, tradC3, tradC4, tradC5, tradC6];
@@ -201,10 +201,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
     await getDispositifsWithTranslationAvancement(req, res);
     expect(getActiveContents).toHaveBeenCalledWith(neededFields);
 
-    expect(getTraductionsByLanguage).toHaveBeenCalledWith(
-      "en",
-      traductionFields
-    );
+    expect(getTraductionsByLanguage).toHaveBeenCalledWith("en", traductionFields);
     const results = [result1, result2, result3, result4];
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ data: results });

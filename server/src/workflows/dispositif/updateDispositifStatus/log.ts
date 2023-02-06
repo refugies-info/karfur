@@ -1,15 +1,6 @@
-import { ObjectId } from "mongoose";
+import { DispositifId, UserId } from "src/typegoose";
 import { addLog } from "../../../modules/logs/logs.service";
 
-export const log = async (
-  dispositifId: ObjectId,
-  status: string,
-  authorId: ObjectId,
-) => {
-  await addLog(
-    dispositifId,
-    "Dispositif",
-    "Statut modifié : " + status,
-    { author: authorId }
-  );
-}
+export const log = async (dispositifId: DispositifId, status: string, authorId: UserId) => {
+  await addLog(dispositifId, "Dispositif", "Statut modifié : " + status, { author: authorId });
+};

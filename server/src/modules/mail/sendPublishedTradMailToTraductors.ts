@@ -1,11 +1,11 @@
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { getUserById } from "../users/users.repository";
-import { ObjectId } from "mongoose";
 import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
-import { USER_STATUS_DELETED } from "../../schema/schemaUser";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
+import { USER_STATUS_DELETED } from "src/typegoose/User";
+import { DispositifId } from "src/typegoose";
 
 export const sendPublishedTradMailToTraductors = async (
   traductorIdsList: string[],
@@ -13,10 +13,10 @@ export const sendPublishedTradMailToTraductors = async (
   typeContenu: "dispositif" | "demarche",
   titreInformatif: string | Record<string, string>,
   titreMarque: string | undefined | Record<string, string>,
-  dispositifId: ObjectId
+  dispositifId: DispositifId
 ) => {
   logger.info("[sendPublishedTradMailToTraductors] received for language", {
-    locale,
+    locale
   });
   try {
     const titreInformatifFormatted = getTitreInfoOrMarque(titreInformatif);
@@ -29,10 +29,9 @@ export const sendPublishedTradMailToTraductors = async (
         const userNeededFields = {
           username: 1,
           email: 1,
-          status: 1,
+          status: 1
         };
 
-        // @ts-ignore
         const membreFromDB = await getUserById(tradId, userNeededFields);
         if (membreFromDB.status !== USER_STATUS_DELETED && membreFromDB.email) {
           await sendPublishedTradMailToTraductorsService({
@@ -44,16 +43,13 @@ export const sendPublishedTradMailToTraductors = async (
             email: membreFromDB.email,
             pseudo: membreFromDB.username,
             langue,
-            isDispositif: typeContenu === "dispositif",
+            isDispositif: typeContenu === "dispositif"
           });
         }
       } catch (error) {
-        logger.info(
-          "[sendPublishedTradMailToTraductors] error while sending mail to user",
-          {
-            userId: tradId,
-          }
-        );
+        logger.info("[sendPublishedTradMailToTraductors] error while sending mail to user", {
+          userId: tradId
+        });
       }
     });
   } catch (e) {

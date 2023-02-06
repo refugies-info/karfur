@@ -1,19 +1,17 @@
-import { IDispositif, RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
 import { removeUselessContent } from "../../../modules/dispositif/dispositif.adapter";
+import { Dispositif } from "src/typegoose";
 
 interface Query {
   locale: string;
 }
 
-export const getUserFavoritesInLocale = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
+export const getUserFavoritesInLocale = async (req: RequestFromClient<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.query.locale) {
@@ -23,11 +21,11 @@ export const getUserFavoritesInLocale = async (
     logger.info("[getUserFavoritesInLocale] received");
 
     const user = req.user;
-    const favorites =
-      user.cookies &&
-      user.cookies.dispositifsPinned &&
-      user.cookies.dispositifsPinned.length > 0
-        ? user.cookies.dispositifsPinned
+    const favorites: { _id: string }[] =
+      // @ts-ignore FIXME
+      user.cookies && user.cookies.dispositifsPinned && user.cookies.dispositifsPinned.length > 0
+        ? // @ts-ignore FIXME
+          user.cookies.dispositifsPinned
         : [];
 
     if (favorites.length === 0) {
@@ -51,16 +49,16 @@ export const getUserFavoritesInLocale = async (
 
     const locale = req.query.locale;
 
-    const dispositifs: IDispositif[] = [];
+    const dispositifs: Dispositif[] = [];
 
     await asyncForEach(favorites, async (favorite) => {
       const dispositif = await getDispositifById(favorite._id, neededFields, "mainSponsor");
       if (dispositif.status !== "Actif") return;
-      dispositifs.push({...dispositif.toJSON()});
+      dispositifs.push(dispositif);
     });
 
-    const result = removeUselessContent(dispositifs)
-      .map((res) => turnToLocalized(res, locale));
+    // @ts-ignore FIXME
+    const result = removeUselessContent(dispositifs).map((res) => turnToLocalized(res, locale));
 
     return res.status(200).json({ data: result });
   } catch (error) {

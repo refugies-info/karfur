@@ -8,9 +8,9 @@ import LoginError from "../../../modules/users/LoginError";
 import { proceedWithLogin } from "../../../modules/users/users.service";
 import { userRespoStructureId } from "../../../modules/structure/structure.service";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { USER_STATUS_DELETED } from "../../../schema/schemaUser";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
+import { USER_STATUS_DELETED } from "src/typegoose/User";
 
 interface User {
   username: string;
@@ -30,7 +30,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     checkRequestIsFromSite(req.fromSite);
 
     logger.info("[Login] login attempt", {
-      username: req.body && req.body.username,
+      username: req.body && req.body.username
     });
 
     const user = await getUserByUsernameFromDB(req.body.username);
@@ -46,27 +46,26 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
       return res.status(200).json({
         text: "Succès",
         token,
-        data: user,
+        data: user
       });
     }
 
-    // @ts-ignore : no authenticate on user Model from mongodb
     if (!user.authenticate(req.body.password)) {
       logger.error("[Login] incorrect password", {
-        username: req.body && req.body.username,
+        username: req.body && req.body.username
       });
 
       throw new LoginError("INVALID_PASSWORD");
     }
 
     logger.info("[Login] password correct for user", {
-      username: req.body && req.body.username,
+      username: req.body && req.body.username
     });
 
     // check if user is admin
     const adminRoleId = req.roles.find((x) => x.nom === "Admin")._id.toString();
     const userIsAdmin = (user.roles || []).some((x) => x && x.toString() === adminRoleId);
-    const userStructureId = await userRespoStructureId(user.structures || [], user._id);
+    const userStructureId = await userRespoStructureId(user.structures.map((s) => s._id) || [], user._id);
 
     if (userIsAdmin || userStructureId) {
       await login2FA(req.body, user, userIsAdmin ? "admin" : userStructureId);
@@ -74,9 +73,8 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     await proceedWithLogin(user);
     await logLogin(user._id);
     return res.status(200).json({
-      // @ts-ignore
       token: user.getToken(),
-      text: "Authentification réussi",
+      text: "Authentification réussi"
     });
   } catch (error) {
     return loginExceptionsManager(error, res);

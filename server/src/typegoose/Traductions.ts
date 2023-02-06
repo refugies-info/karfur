@@ -1,9 +1,10 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { timestamps: { createdAt: "created_at" } } })
-export class Traductions {
+@modelOptions({ schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } } })
+export class Traductions extends Base {
   @prop({ required: true })
   public langueCible!: String;
 
@@ -62,3 +63,5 @@ export class Traductions {
   @prop()
   public updatedAt: Number;
 }
+
+export type TraductionId = Traductions["_id"] | Traductions["id"];

@@ -1,18 +1,11 @@
-import { ObjectId } from "mongoose";
-import { Theme, ThemeDoc } from "../../schema/schemaTheme";
+import { Theme, ThemeId, ThemeModel } from "src/typegoose";
 
-export const getAllThemes = async () => {
-  return Theme.find()
-}
+export const getAllThemes = () => ThemeModel.find();
 
-export const createTheme = async (theme: ThemeDoc) => {
-  return new Theme(theme).save()
-}
+export const createTheme = (theme: Omit<Theme, "isActive">) => ThemeModel.create(theme);
 
-export const updateTheme = async (themeId: ObjectId, theme: Partial<ThemeDoc>) => {
-  return Theme.findOneAndUpdate({ _id: themeId }, theme, { upsert: true, new: true })
-}
+export const updateTheme = async (themeId: ThemeId, theme: Partial<Theme>) => {
+  return ThemeModel.findOneAndUpdate({ _id: themeId }, theme, { upsert: true, new: true });
+};
 
-export const deleteThemeById = async (themeId: ObjectId) => {
-  return Theme.deleteOne({ _id: themeId });
-}
+export const deleteThemeById = async (themeId: ThemeId) => ThemeModel.deleteOne({ _id: themeId });
