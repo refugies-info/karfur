@@ -1,12 +1,14 @@
 import express from "express";
-const router = express.Router();
-const traduction = require("./traduction/lib.js");
-const checkToken = require("./account/checkToken");
+import * as traduction from "./traduction/lib";
+import * as checkToken from "./account/checkToken";
 import { validateTranslations } from "../workflows/translation/validateTranslations";
 import getStatistics from "../workflows/translation/getStatistics";
 
+const router = express.Router();
+
 router.post("/add_tradForReview", checkToken.getId, checkToken.getRoles, traduction.add_tradForReview);
 router.post("/get_tradForReview", checkToken.check, traduction.get_tradForReview);
+// @ts-ignore FIXME
 router.post("/validateTranslations", checkToken.check, validateTranslations);
 router.post("/update_tradForReview", checkToken.check, traduction.update_tradForReview);
 router.post("/get_progression", checkToken.check, traduction.get_progression);

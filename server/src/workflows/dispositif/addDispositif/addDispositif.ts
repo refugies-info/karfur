@@ -1,14 +1,13 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { turnHTMLtoJSON } from "../../../controllers/dispositif/functions";
+// import { turnHTMLtoJSON } from "../../../controllers/dispositif/functions";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import {
   getDispositifByIdWithMainSponsor,
   updateDispositifInDB,
   createDispositifInDB
 } from "../../../modules/dispositif/dispositif.repository";
-import { updateTraductions } from "../../../modules/traductions/updateTraductions";
+// import { updateTraductions } from "../../../modules/traductions/updateTraductions";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
 import { updateLanguagesAvancement } from "../../../modules/langues/langues.service";
 import {
@@ -16,37 +15,34 @@ import {
   updateAssociatedDispositifsInStructure
 } from "../../../modules/structure/structure.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { computePossibleNeeds } from "../../../modules/needs/needs.service";
+// import { computePossibleNeeds } from "../../../modules/needs/needs.service";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { checkUserIsAuthorizedToModifyDispositif, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { DispositifPopulatedThemesDoc } from "../../../schema/schemaDispositif";
-import { UserDoc } from "../../../schema/schemaUser";
-import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
-import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
-import { ThemeDoc } from "../../../schema/schemaTheme";
+import { Dispositif, Structure, Theme, User } from "src/typegoose";
+import { isDocument } from "@typegoose/typegoose";
 
 export interface Request {
   titreInformatif: string;
-  dispositifId: ObjectId;
+  dispositifId: string;
   status: string;
   contenu: any;
   nbMots: number;
   typeContenu: "dispositif" | "demarche";
-  mainSponsor: ObjectId;
+  mainSponsor: Dispositif["mainSponsor"];
   titreMarque: string;
-  theme?: ThemeDoc;
-  secondaryThemes?: ThemeDoc[];
-  needs?: ObjectId[];
+  theme?: Theme;
+  secondaryThemes?: Theme[];
+  needs?: string[];
   saveType: "auto" | "validate" | "save";
 }
 
 export const getNewStatus = (
   dispositif: Request | null,
-  structure: StructureDoc | null,
-  user: UserDoc | null,
+  structure: Structure | null,
+  user: User | null,
   saveType: "auto" | "validate" | "save"
-) => {
+): Dispositif["status"] => {
   // keep draft if already draft
   if (dispositif.status === "Brouillon" && saveType !== "validate") {
     return "Brouillon";
@@ -68,7 +64,7 @@ export const getNewStatus = (
       "Accepté structure" // = Accepté
     ].includes(dispositif.status)
   ) {
-    return dispositif.status;
+    return dispositif.status as Dispositif["status"];
 
     // is admin or contrib of current structure, or admin
   } else if (structure && user) {
@@ -81,7 +77,7 @@ export const getNewStatus = (
       }
       return "En attente";
     }
-    return dispositif.status;
+    return dispositif.status as Dispositif["status"];
   }
   return "En attente non prioritaire"; // = Sans structure
 };
@@ -102,45 +98,38 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       throw new Error("INVALID_REQUEST");
     }
 
-    let dispositif = req.body;
-    let structure: StructureDoc | null = null;
+    // @ts-ignore FIXME
+    const dispositif: Dispositif = { ...req.body };
+    let structure: Structure | null = null;
     if (dispositif.mainSponsor) {
       structure = await getStructureFromDB(
-        //@ts-ignore
-        dispositif.mainSponsor?._id || dispositif.mainSponsor,
+        isDocument(dispositif.mainSponsor) ? dispositif.mainSponsor?._id : dispositif.mainSponsor,
         false,
         { membres: 1 }
       );
     }
     dispositif.status = getNewStatus(
       // set new status
-      dispositif,
+      req.body,
       structure,
       req.user,
-      dispositif.saveType
+      req.body.saveType
     );
 
-    delete dispositif.saveType;
-
     logger.info("[addDispositif] received a dispositif", {
-      dispositifId: dispositif.dispositifId
+      dispositifId: req.body.dispositifId
     });
 
-    let dispResult: DispositifPopulatedThemesDoc;
+    let dispResult: Dispositif;
 
-    if (dispositif.contenu) {
-      // transform dispositif.contenu in json
-      dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
-    }
+    // if (dispositif.contenu) {
+    //   // transform dispositif.contenu in json
+    //   dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
+    // }
 
-    if (dispositif.dispositifId) {
-      const originalDispositif = await getDispositifByIdWithMainSponsor(dispositif.dispositifId, "all");
-      checkUserIsAuthorizedToModifyDispositif(
-        originalDispositif,
-        req.userId,
-        // @ts-ignore : populate roles
-        req.user.roles
-      );
+    if (req.body.dispositifId) {
+      const originalDispositif = await getDispositifByIdWithMainSponsor(req.body.dispositifId, "all");
+      checkUserIsAuthorizedToModifyDispositif(originalDispositif, req.user);
 
       // Prevent auto validation
       if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
@@ -148,55 +137,42 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       logger.info("[addDispositif] updating a dispositif", {
-        dispositifId: dispositif.dispositifId
+        dispositifId: req.body.dispositifId
       });
 
-      if (originalDispositif.needs) {
-        // if a need of the content has a theme that is not a theme of the content we remove the need
-        const newNeeds = await computePossibleNeeds(originalDispositif.needs, [
-          dispositif.theme._id,
-          ...dispositif.secondaryThemes.map((t) => t._id)
-        ]);
-        dispositif.needs = newNeeds;
-      }
+      // if (originalDispositif.needs) {
+      //   // if a need of the content has a theme that is not a theme of the content we remove the need
+      //   const newNeeds = await computePossibleNeeds(originalDispositif.needs, [
+      //     dispositif.theme._id,
+      //     ...dispositif.secondaryThemes.map((t) => t._id)
+      //   ]);
+      //   dispositif.needs = newNeeds;
+      // }
 
-      if (dispositif.contenu) {
-        // @ts-ignore
-        await updateTraductions(originalDispositif, dispositif, req.userId);
-
-        // @ts-ignore
-        dispositif.avancement =
-          // @ts-ignore
-          originalDispositif.avancement.fr || originalDispositif.avancement;
-      }
+      // if (dispositif.contenu) {
+      // await updateTraductions(originalDispositif, dispositif, req.userId);
+      // }
 
       if (dispositif.status === "Actif" && originalDispositif.status !== "Actif") {
-        // @ts-ignore
-        dispositif.publishedAt = Date.now();
-        // @ts-ignore
+        dispositif.publishedAt = new Date();
         dispositif.publishedAtAuthor = req.userId;
       }
-      // @ts-ignore
       dispositif.lastModificationAuthor = req.userId;
 
       // format themes to keep ids only
-      const themesList = [dispositif.theme, ...dispositif.secondaryThemes].map((t) => t.short.fr);
-      // @ts-ignore
-      dispositif.theme = dispositif.theme._id;
-      // @ts-ignore
-      dispositif.secondaryThemes = dispositif.secondaryThemes.map((t) => t._id);
+      // TODO const themesList = [dispositif.theme, ...dispositif.secondaryThemes].map((t) => t.short.fr);
 
-      // @ts-ignore
+      // dispositif.secondaryThemes = dispositif.secondaryThemes.map((t) => t._id);
+
       const isAdmin = req.user.roles.find((x: any) => x.nom === "Admin");
       if (isAdmin) {
-        // @ts-ignore
         dispositif.themesSelectedByAuthor = false;
       }
 
       //now I need to save the dispositif and the translation
-      dispResult = await updateDispositifInDB(dispositif.dispositifId, dispositif);
+      dispResult = await updateDispositifInDB(req.body.dispositifId, dispositif);
 
-      //@ts-ignore
+      //@ts-ignore FIXME
       await log(dispositif, originalDispositif, req.user._id);
 
       // when publish or modify a dispositif, update table in airtable to follow the traduction
@@ -206,13 +182,13 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
         });
         try {
           await addOrUpdateDispositifInContenusAirtable(
-            dispResult.titreInformatif,
-            dispResult.titreMarque,
+            dispResult.translations.fr.content.titreInformatif,
+            dispResult.translations.fr.content.titreMarque,
             dispResult._id,
-            themesList,
-            dispResult.typeContenu,
+            [], //themesList,
+            dispResult.type,
             null,
-            getDispositifDepartments(dispResult),
+            dispResult.getDepartements(),
             false
           );
         } catch (error) {
@@ -229,7 +205,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       if (
-        dispositif.typeContenu === "dispositif" &&
+        dispositif.type === "dispositif" &&
         originalDispositif.status !== "En attente" &&
         dispositif.status === "En attente" &&
         dispositif.mainSponsor
@@ -237,13 +213,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 
-          await sendMailToStructureMembersWhenDispositifEnAttente(
-            dispositif.mainSponsor,
-            dispositif.dispositifId,
-            dispositif.titreInformatif,
-            dispositif.titreMarque,
-            dispositif.typeContenu
-          );
+          await sendMailToStructureMembersWhenDispositifEnAttente(dispositif);
         } catch (error) {
           logger.error("[addDispositif] error while sending mail to structure when new fiche en attente", {
             error: error.message
@@ -252,20 +222,20 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
     } else {
       logger.info("[addDispositif] creating a new dispositif", {
-        title: dispositif.titreInformatif
+        title: dispositif.translations.fr.content.titreInformatif
       });
       if (dispositif.status === "Actif") {
         throw new Error("NOT_AUTHORIZED");
       }
-      // @ts-ignore
+
       dispositif.creatorId = req.userId;
-      // @ts-ignore
+
       dispositif.lastModificationAuthor = req.userId;
-      // @ts-ignore
-      dispositif.theme = dispositif.theme?._id;
-      // @ts-ignore
-      dispositif.secondaryThemes = (dispositif.secondaryThemes || []).map((t) => t._id);
-      // @ts-ignore
+
+      // dispositif.theme = dispositif.theme?._id;
+
+      // dispositif.secondaryThemes = (dispositif.secondaryThemes || []).map((t) => t._id);
+
       dispositif.themesSelectedByAuthor = true;
 
       // @ts-ignore
@@ -273,17 +243,11 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
 
       const contribRole = await getRoleByName("Contrib");
       await addRoleAndContribToUser(req.userId, contribRole._id, dispResult._id);
-      if (dispositif.typeContenu === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
+      if (dispositif.type === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 
-          await sendMailToStructureMembersWhenDispositifEnAttente(
-            dispositif.mainSponsor,
-            dispResult._id,
-            dispositif.titreInformatif,
-            dispositif.titreMarque,
-            dispositif.typeContenu
-          );
+          await sendMailToStructureMembersWhenDispositifEnAttente(dispositif);
           // send mail FicheEnAttenteTo
         } catch (error) {
           logger.error("[addDispositif] error while sending mail to structure when new fiche en attente", {
@@ -294,18 +258,12 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
     }
 
     //J'associe la structure principale à ce dispositif
-    // @ts-ignore
     if (dispResult.mainSponsor) {
       try {
-        await updateAssociatedDispositifsInStructure(
-          dispResult._id,
-          // @ts-ignore
-          dispResult.mainSponsor
-        );
+        await updateAssociatedDispositifsInStructure(dispResult._id, dispResult.mainSponsor.toString());
       } catch (error) {
         logger.error("[updateAssociatedDispositifsInStructure] error whil updating structures", {
           dispositifId: dispResult._id,
-          // @ts-ignore
           sponsorId: dispResult.mainSponsor
         });
       }

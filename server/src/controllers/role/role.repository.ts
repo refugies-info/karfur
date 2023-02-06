@@ -1,5 +1,3 @@
-// @ts-nocheck
-const Role = require("../../schema/schemaRole.js");
+import { RoleModel } from "src/typegoose";
 
-export const getRoleByName = async (name: string) =>
-  await Role.findOne({ nom: name });
+export const getRoleByName = async (name: string) => await RoleModel.findOne({ nom: name });

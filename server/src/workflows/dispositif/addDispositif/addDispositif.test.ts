@@ -16,8 +16,6 @@ import {
 import { getRoleByName } from "../../../controllers/role/role.repository";
 import { addRoleAndContribToUser } from "../../../modules/users/users.repository";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "../../../modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
-import { getExpertTraductionByLanguage } from "../../../modules/traductions/traductions.repository";
-import { log } from "./log";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getDispositifByIdWithMainSponsor: jest.fn(),
@@ -60,18 +58,18 @@ jest.mock("../../../controllers/role/role.repository", () => ({
 jest.mock("../../../modules/users/users.repository", () => ({
   addRoleAndContribToUser: jest.fn()
 }));
-jest.mock("../../../schema/schemaError", () => ({
-  Error: {
-    save: jest.fn()
+jest.mock("../../../typegoose/Error", () => ({
+  ErrorModel: {
+    create: jest.fn()
   }
 }));
-jest.mock("../../../schema/schemaDispositif", () => ({
-  Dispositif: {
+jest.mock("../../../typegoose/Dispositif", () => ({
+  DispositifModel: {
     find: jest.fn(),
     findOneAndUpdate: jest.fn()
   }
 }));
-jest.mock("../../../schema/schemaLangue", () => ({
+jest.mock("src/typegoose/Langue", () => ({
   Langue: {
     find: jest.fn()
   }

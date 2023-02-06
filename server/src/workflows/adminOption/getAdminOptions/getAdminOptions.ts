@@ -1,35 +1,26 @@
 import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
+import { Request, Res } from "../../../types/interface";
 import { getAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
-    key: Joi.string(),
+    key: Joi.string()
   })
 });
 
-export interface Request {
-}
-
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: Request, res: Res) => {
   try {
     logger.info("[getAdminOptions] received");
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     const adminOption = await getAdminOption(req.params.key);
     return res.status(200).json({
       text: "Succès",
-      data: adminOption,
+      data: adminOption
     });
   } catch (error) {
     logger.error("[getAdminOptions] error", { error: error.message });
@@ -44,4 +35,4 @@ const handler = async (
   }
 };
 
-export default [validator, handler]
+export default [validator, handler];

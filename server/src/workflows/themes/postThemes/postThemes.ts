@@ -3,26 +3,25 @@ import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { Theme, ThemeDoc } from "../../../schema/schemaTheme";
-import { Request, getValidator, isThemeActive } from "../../../modules/themes/themes.service";
+import { Request, getValidator } from "../../../modules/themes/themes.service";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 import { map } from "lodash/fp";
-import { AppUserType } from "../../../schema/schemaAppUser";
+import { AppUser, Theme } from "src/typegoose";
 
-export const hasOneNotificationEnabled = (user: AppUserType) =>
+export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.demarches ||
   user.notificationsSettings.global ||
   user.notificationsSettings.local ||
   Object.values(user.notificationsSettings.themes).reduce((acc, cur) => acc || cur, false);
 
-export const addThemeInNotificationSettingsForUser = (theme: ThemeDoc) => (user: AppUserType) =>
+export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: AppUser) =>
   updateNotificationsSettings(user.uid, {
     ...user.notificationsSettings,
     themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) }
   });
 
-const updateUsersNotificationsSettings = async (theme: ThemeDoc) =>
+const updateUsersNotificationsSettings = async (theme: Theme) =>
   getAllAppUsers().then(map(addThemeInNotificationSettingsForUser(theme)));
 
 const validator = getValidator("post");
@@ -31,10 +30,9 @@ const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[postThemes] received", req.body);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
-    const theme = new Theme({
+    const dbTheme = await createTheme({
       name: req.body.name,
       short: req.body.short,
       colors: req.body.colors,
@@ -46,15 +44,13 @@ const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
       shareImage: req.body.shareImage,
       notificationEmoji: req.body.notificationEmoji
     });
-
-    const dbTheme = await createTheme(theme);
     const activeLanguages = await getActiveLanguagesFromDB();
 
     await updateUsersNotificationsSettings(dbTheme);
 
     return res.status(200).json({
       text: "Succès",
-      data: { ...dbTheme.toObject(), active: isThemeActive(dbTheme, activeLanguages) }
+      data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
     });
   } catch (error) {
     logger.error("[postThemes] error", { error: error.message });

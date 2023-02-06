@@ -1,34 +1,30 @@
 // @ts-nocheck
-import { Dispositif } from "../../../schema/schemaDispositif";
+import { DispositifModel } from "../../../typegoose/Dispositif";
 import {
   getDispositifsFromDB,
   updateDispositifInDB,
   getDispositifArray,
-  getActiveDispositifsFromDBWithoutPopulate,
+  getActiveDispositifsFromDBWithoutPopulate
 } from "../dispositif.repository";
 
-jest.mock("../../../schema/schemaDispositif", () => ({
-  Dispositif: {
+jest.mock("../../../typegoose/Dispositif", () => ({
+  DispositifModel: {
     find: jest.fn(),
-    findOneAndUpdate: jest.fn(),
+    findOneAndUpdate: jest.fn()
   }
 }));
 
 const dispositifsList = [{ id: "id1" }, { id: "id2" }];
 describe("getDispositifsFromDB", () => {
   it("should call Dispositif", async () => {
-    Dispositif.find.mockReturnValueOnce({
+    DispositifModel.find.mockReturnValueOnce({
       populate: jest.fn().mockReturnValueOnce({
-        populate: jest.fn().mockResolvedValue(dispositifsList),
+        populate: jest.fn().mockResolvedValue(dispositifsList)
       })
     });
     const neededFields = { status: 1, typeContenu: 1 };
     const res = await getDispositifsFromDB(neededFields);
-    expect(Dispositif.find).toHaveBeenCalledWith({}, neededFields);
-    /* TODO : fix mock error
-    expect(Dispositif.find().populate).toHaveBeenCalledWith(
-      "mainSponsor creatorId"
-    ); */
+    expect(DispositifModel.find).toHaveBeenCalledWith({}, neededFields);
 
     expect(res).toEqual(dispositifsList);
   });
@@ -36,21 +32,20 @@ describe("getDispositifsFromDB", () => {
 
 describe("updateDispositifStatus", () => {
   it("should call Dispositif", async () => {
-    Dispositif.findOneAndUpdate.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue({ id: "id1" }),
+    DispositifModel.findOneAndUpdate.mockReturnValueOnce({
+      populate: jest.fn().mockResolvedValue({ id: "id1" })
     });
 
     const res = await updateDispositifInDB("id1", {
       status: "Actif",
-      publishedAt: "01/01/01",
+      publishedAt: "01/01/01"
     });
-    expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
+    expect(DispositifModel.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "id1" },
       { status: "Actif", publishedAt: "01/01/01" },
       {
         upsert: true,
-        // @ts-ignore
-        new: true,
+        new: true
       }
     );
     expect(res).toEqual({ id: "id1" });
@@ -73,14 +68,14 @@ describe("getDispositifArray", () => {
     nbMots: 1,
     nbVues: 1,
     audienceAge: 1,
-    niveauFrancais: 1,
+    niveauFrancais: 1
   };
   it("should call Dispositif when query has no audience age", async () => {
-    Dispositif.find.mockReturnValueOnce({
+    DispositifModel.find.mockReturnValueOnce({
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList),
+            populate: jest.fn().mockResolvedValue(dispositifsList)
           })
         })
       })
@@ -89,15 +84,15 @@ describe("getDispositifArray", () => {
 
     const res = await getDispositifArray(query);
 
-    expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
+    expect(DispositifModel.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
   it("should call Dispositif with extra fields", async () => {
-    Dispositif.find.mockReturnValueOnce({
+    DispositifModel.find.mockReturnValueOnce({
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList),
+            populate: jest.fn().mockResolvedValue(dispositifsList)
           })
         })
       })
@@ -107,7 +102,7 @@ describe("getDispositifArray", () => {
 
     const res = await getDispositifArray(query, { updatedAt: 1 });
 
-    expect(Dispositif.find).toHaveBeenCalledWith(query, {
+    expect(DispositifModel.find).toHaveBeenCalledWith(query, {
       ...neededFields,
       updatedAt: 1
     });
@@ -115,67 +110,66 @@ describe("getDispositifArray", () => {
   });
 
   it("should call Dispositif when query has bottom audience age", async () => {
-    Dispositif.find.mockReturnValueOnce({
+    DispositifModel.find.mockReturnValueOnce({
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList),
+            populate: jest.fn().mockResolvedValue(dispositifsList)
           })
         })
       })
     });
 
-    const query = { status: "Actif", "audienceAge.bottomValue": 25 };
+    const query = { "status": "Actif", "audienceAge.bottomValue": 25 };
 
     const res = await getDispositifArray(query);
 
-    expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
+    expect(DispositifModel.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
 
   it("should call Dispositif when query has bottom audience age", async () => {
-    Dispositif.find.mockReturnValueOnce({
+    DispositifModel.find.mockReturnValueOnce({
       sort: jest.fn().mockReturnValueOnce({
         limit: jest.fn().mockReturnValueOnce({
           lean: jest.fn().mockReturnValueOnce({
-            populate: jest.fn().mockResolvedValue(dispositifsList),
+            populate: jest.fn().mockResolvedValue(dispositifsList)
           })
         })
       })
     });
 
     const query = {
-      status: "Actif",
+      "status": "Actif",
       "audienceAge.bottomValue": 25,
-      "audienceAge.topValue": 50,
+      "audienceAge.topValue": 50
     };
 
     const res = await getDispositifArray(query);
 
-    expect(Dispositif.find).toHaveBeenCalledWith(query, neededFields);
+    expect(DispositifModel.find).toHaveBeenCalledWith(query, neededFields);
     expect(res).toEqual(dispositifsList);
   });
 });
 
 describe("updateDispositifInDB", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
-    Dispositif.findOneAndUpdate.mockReturnValueOnce({
-      populate: jest.fn().mockResolvedValue(null),
+    DispositifModel.findOneAndUpdate.mockReturnValueOnce({
+      populate: jest.fn().mockResolvedValue(null)
     });
     await updateDispositifInDB("dispositifId", {
       mainSponsor: "sponsorId",
-      status: "Actif",
+      status: "Actif"
     });
-    expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
+    expect(DispositifModel.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "dispositifId" },
       {
         mainSponsor: "sponsorId",
-        status: "Actif",
+        status: "Actif"
       },
       {
         upsert: true,
-        // @ts-ignore
-        new: true,
+        new: true
       }
     );
   });
@@ -184,12 +178,12 @@ describe("updateDispositifInDB", () => {
 describe("getActiveDispositifsFromDBWithoutPopulate", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
     await getActiveDispositifsFromDBWithoutPopulate({
-      contenu: 1,
+      contenu: 1
     });
-    expect(Dispositif.find).toHaveBeenCalledWith(
+    expect(DispositifModel.find).toHaveBeenCalledWith(
       { status: "Actif", typeContenu: "dispositif" },
       {
-        contenu: 1,
+        contenu: 1
       }
     );
   });

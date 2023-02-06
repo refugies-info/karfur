@@ -1,43 +1,34 @@
-import { RequestFromClient, Res, IDispositif, Picture } from "../../../types/interface";
-import { ObjectId } from "mongoose";
+import { RequestFromClient, Res } from "../../../types/interface";
 import { castToBoolean } from "../../../libs/castToBoolean";
 import logger from "../../../logger";
 import { getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { getUserById } from "../../../modules/users/users.repository";
-import { StructureDoc } from "../../../schema/schemaStructure";
-import { Moment } from "moment";
 import { availableLanguagesWithFr } from "../../../libs/getFormattedLocale";
+import { Dispositif, Structure } from "src/typegoose";
+import { Membre } from "src/typegoose/Structure";
 
 interface Query {
-  id: ObjectId;
+  id: string;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
   withMembres: string;
 }
-interface Membre {
-  _id: ObjectId;
-  username: string;
-  roles: string[];
-  picture?: Picture;
-  added_at?: Moment;
-  userId: ObjectId;
-}
 
-const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
+const adaptDispositifsAssocies = (dispositifs: Dispositif[]) =>
   dispositifs.map((dispositif) => ({
-    titreInformatif: dispositif.titreInformatif,
-    titreMarque: dispositif.titreMarque,
+    titreInformatif: dispositif.translations.fr.content.titreInformatif,
+    titreMarque: dispositif.translations.fr.content.titreMarque,
     _id: dispositif._id,
     theme: dispositif.theme,
     secondaryThemes: dispositif.secondaryThemes,
-    abstract: dispositif.abstract,
+    abstract: dispositif.translations.fr.content.abstract,
     status: dispositif.status,
     suggestions: dispositif.suggestions,
-    contenu: dispositif.contenu,
+    contenu: dispositif.translations.fr,
     mainSponsor: dispositif.mainSponsor,
-    typeContenu: dispositif.typeContenu,
+    typeContenu: dispositif.type,
     created_at: dispositif.created_at,
     nbVues: dispositif.nbVues || 0,
     nbMercis: dispositif.merci ? dispositif.merci.length : 0
@@ -45,11 +36,11 @@ const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
 
 const addDisposAssociesIfNeeded = (
   withLocalizedDispositifsBoolean: boolean,
-  structure: StructureDoc,
+  structure: Structure,
   localeOfLocalizedDispositifsAssocies: string
 ) => {
   if (withLocalizedDispositifsBoolean) {
-    const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
+    const dispositifsAssocies = structure.getDispositifsAssocies();
     const array: string[] = [];
 
     array.forEach.call(dispositifsAssocies, (dispositif: any) => {
@@ -57,14 +48,14 @@ const addDisposAssociesIfNeeded = (
     });
     const simplifiedDispositifsAssocies = adaptDispositifsAssocies(dispositifsAssocies);
     return {
-      ...structure.toJSON(),
+      ...structure,
       dispositifsAssocies: simplifiedDispositifsAssocies
     };
   }
-  return { ...structure.toJSON() };
+  return structure;
 };
 
-const addMembresIfNeeded = async (withMembresBoolean: boolean, structure: StructureDoc) => {
+const addMembresIfNeeded = async (withMembresBoolean: boolean, structure: Structure) => {
   if (withMembresBoolean) {
     const structureMembres = structure.membres || [];
     let membresArray: Membre[] = [];
@@ -72,7 +63,7 @@ const addMembresIfNeeded = async (withMembresBoolean: boolean, structure: Struct
       try {
         if (!membre.userId) return;
         const neededFields = { username: 1, picture: 1, last_connected: 1 };
-        const populateMembre = await getUserById(membre.userId, neededFields);
+        const populateMembre = await getUserById(membre.userId.toString(), neededFields);
         membresArray.push({
           ...populateMembre.toJSON({ flattenMaps: false }),
           roles: membre.roles,
@@ -127,11 +118,9 @@ export const getStructureById = async (req: RequestFromClient<Query>, res: Res) 
       localeOfLocalizedDispositifsAssocies
     );
 
-    // @ts-ignore
-    const isAdmin = !!(req.user ? req.user.roles.find((x) => x.nom === "Admin") : false);
+    const isAdmin = !!(req.user ? req.user.hasRole("Admin") : false);
     const isMember = !!(req.userId
-      ? // @ts-ignore
-        (structureWithDisposAssocies.membres || []).find((m) => {
+      ? (structureWithDisposAssocies.membres || []).find((m) => {
           if (!m.userId) return false;
           return m.userId.toString() === req.userId.toString();
         })
@@ -140,7 +129,7 @@ export const getStructureById = async (req: RequestFromClient<Query>, res: Res) 
 
     const structureWithMembres = await addMembresIfNeeded(
       shouldIncludeMembers,
-      // @ts-ignore
+      // @ts-ignore FIXME
       structureWithDisposAssocies
     );
 

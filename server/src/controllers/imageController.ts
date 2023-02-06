@@ -1,7 +1,8 @@
 import express from "express";
-const router = express.Router();
-const image = require("./image/lib.js");
+import { set_image } from "./image/lib";
 
-router.post("/set_image", image.set_image);
+const router = express.Router();
+
+router.post("/set_image", set_image);
 
 module.exports = router;

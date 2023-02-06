@@ -1,6 +1,6 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
 
-@modelOptions({ schemaOptions: { timestamps: { createdAt: "created_at" } } })
+@modelOptions({ schemaOptions: { collection: "images", timestamps: { createdAt: "created_at" } } })
 export class Image {
   @prop({ trim: true, unique: true, required: true })
   public public_id!: String;

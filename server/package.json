@@ -63,6 +63,7 @@
     "@types/lodash": "^4.14.165",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^14.0.0",
+    "@types/nodemailer": "^6.4.7",
     "@types/password-hash": "^1.2.20",
     "@types/uniqid": "^5.3.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",

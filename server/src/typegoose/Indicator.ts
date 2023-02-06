@@ -4,7 +4,7 @@ import { Dispositif } from "./Dispositif";
 import { Languages } from "./generics";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({ schemaOptions: { collection: "indicators", timestamps: true } })
 export class Indicator {
   @prop({ type: String, required: true })
   public language!: Languages;

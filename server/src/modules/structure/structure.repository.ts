@@ -1,30 +1,29 @@
-import { Structure, StructureDoc } from "../../schema/schemaStructure";
-import { ObjectId } from "mongoose";
 import logger from "../../logger";
 import { asyncForEach } from "../../libs/asyncForEach";
+import { DispositifId, Structure, StructureId, StructureModel, UserId } from "src/typegoose";
 
 export const getStructureFromDB = async (
-  id: ObjectId,
+  id: StructureId,
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
-): Promise<StructureDoc> => {
+): Promise<Structure> => {
   try {
     if (withDispositifsAssocies) {
       if (fields === "all") {
-        return await Structure.findOne({ _id: id }).populate({
+        return await StructureModel.findOne({ _id: id }).populate({
           path: "dispositifsAssocies",
           populate: { path: "theme secondaryThemes mainSponsor" }
         });
       }
-      return await Structure.findOne({ _id: id }, fields).populate({
+      return await StructureModel.findOne({ _id: id }, fields).populate({
         path: "dispositifsAssocies",
         populate: { path: "theme secondaryThemes mainSponsor" }
       });
     }
     if (fields === "all") {
-      return await Structure.findOne({ _id: id });
+      return await StructureModel.findOne({ _id: id });
     }
-    return await Structure.findOne({ _id: id }, fields);
+    return await StructureModel.findOne({ _id: id }, fields);
   } catch (e) {
     logger.error("[getStructureFromDB] error", e);
   }
@@ -62,29 +61,28 @@ export const getStructuresFromDB = async (
   logger.info("[getStructuresFromDB] start");
   if (!withDispositifsAssocies) {
     logger.info("[getStructuresFromDB] without dispositifs associes");
-    return await Structure.find(query, neededFields);
+    return await StructureModel.find(query, neededFields);
   }
   logger.info("[getStructuresFromDB] with dispositifs associes");
-  return await Structure.find(query, neededFields)
+  return await StructureModel.find(query, neededFields)
     .populate("dispositifsAssocies", "_id status")
     .populate("createur", "username email picture");
 };
 
-export const updateAssociatedDispositifsInStructure = async (dispositifId: ObjectId, structureId: ObjectId) => {
+export const updateAssociatedDispositifsInStructure = async (dispositifId: DispositifId, structureId: StructureId) => {
   logger.info("[updateAssociatedDispositifsInStructure] updating", {
     dispositifId,
     structureId
   });
 
   // we add if not the case the dispositif to the correct structure
-  await Structure.findByIdAndUpdate(
+  await StructureModel.findByIdAndUpdate(
     { _id: structureId },
     { $addToSet: { dispositifsAssocies: dispositifId } },
-    // @ts-ignore
     { new: true }
   );
 
-  const structureArrayWithDispoAssocie = await Structure.find({
+  const structureArrayWithDispoAssocie = await StructureModel.find({
     dispositifsAssocies: dispositifId
   });
 
@@ -98,10 +96,9 @@ export const updateAssociatedDispositifsInStructure = async (dispositifId: Objec
       structure: structure._id,
       dispositifId
     });
-    await Structure.findByIdAndUpdate(
+    await StructureModel.findByIdAndUpdate(
       { _id: structure._id },
       { $pull: { dispositifsAssocies: dispositifId } },
-      // @ts-ignore
       { new: true }
     );
     return;
@@ -111,40 +108,38 @@ export const updateAssociatedDispositifsInStructure = async (dispositifId: Objec
   return;
 };
 
-export const createStructureInDB = async (structure: StructureDoc) => await new Structure(structure).save();
+export const createStructureInDB = (structure: Structure) => StructureModel.create(structure);
 
-export const updateStructureInDB = async (structureId: ObjectId, structure: Partial<StructureDoc>) => {
-  return Structure.findOneAndUpdate(
+export const updateStructureInDB = async (structureId: StructureId, structure: Partial<Structure>) => {
+  return StructureModel.findOneAndUpdate(
     {
       _id: structureId
     },
     structure,
-    // @ts-ignore
     { upsert: true, new: true }
   );
 };
 
 export const updateStructureMember = async (
-  membreId: ObjectId,
+  membreId: UserId,
   structure: {
-    _id: ObjectId;
+    _id: StructureId;
     $set?: Object;
     $pull?: Object;
     $addToSet?: Object;
   }
 ) =>
-  await Structure.findOneAndUpdate(
+  await StructureModel.findOneAndUpdate(
     {
       _id: structure._id,
       ...(membreId && { "membres.userId": membreId })
     },
-    // @ts-ignore
     structure,
     { upsert: true, new: true }
   );
 
-export const removeMemberFromStructure = async (structureId: ObjectId, userId: ObjectId) => {
-  return Structure.findOneAndUpdate(
+export const removeMemberFromStructure = async (structureId: StructureId, userId: UserId) => {
+  return StructureModel.findOneAndUpdate(
     { _id: structureId },
     {
       $pull: {
@@ -155,5 +150,5 @@ export const removeMemberFromStructure = async (structureId: ObjectId, userId: O
 };
 
 export const getNbStructures = async () => {
-  return Structure.countDocuments({ status: "Actif" });
+  return StructureModel.countDocuments({ status: "Actif" });
 };

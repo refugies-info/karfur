@@ -1,31 +1,47 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import { Moment } from "moment";
-import { UserDoc } from "../schema/schemaUser";
+import { NeedId, Role, ThemeId, User } from "src/typegoose";
+import { Request as ExpressRequest, Response } from "express";
 
-export interface RequestFromClient<Query> {
+export type Modify<T, R> = Omit<T, keyof R> & R;
+
+declare global {
+  namespace Express {
+    export interface Request {
+      fromSite?: boolean;
+      fromPostman?: boolean;
+      roles?: Role[];
+      user?: User;
+      userId?: typeof User._id;
+    }
+  }
+}
+
+export interface Request extends ExpressRequest {}
+export interface Res extends Response {}
+
+interface Config {
+  secret?: string;
+}
+
+export interface RequestFromClient<Query> extends Request {
   body?: {
     query: Query;
     sort: Record<string, any>;
     populate?: string;
     locale?: string;
   };
-  fromSite: boolean;
-  fromPostman: boolean;
   query?: Query;
-  userId?: ObjectId;
-  user?: UserDoc;
-  roles?: { nom: string; _id: ObjectId }[];
 }
 
-export interface RequestFromClientWithBody<Query> {
+export interface RequestFromClientWithBody<Query> extends Request {
   body: Query;
-  fromSite: boolean;
-  fromPostman: boolean;
   query?: Query;
-  userId?: ObjectId;
-  user?: UserDoc;
-  roles: { nom: string; _id: ObjectId }[];
-  params?: any
+  params?: any;
+}
+
+export interface RequestFromClientWithFiles extends Request {
+  files: any;
 }
 
 export interface AudienceAge {
@@ -61,9 +77,6 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
-export interface Res {
-  status: Function;
-}
 export interface Picture {
   imgId: string | null;
   public_id: string | null;
@@ -82,23 +95,21 @@ export interface OpeningHours {
   precisions?: string;
 }
 
-export type IDispositif = any;
-
 export interface Membre {
-  userId: ObjectId;
+  userId: Types.ObjectId;
   roles: string[];
 }
 export interface IStructure {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   membres: Membre[];
   acronyme: string;
-  administrateur: ObjectId;
+  administrateur: Types.ObjectId;
   adresse: string;
   authorBelongs: boolean;
   contact: string;
   created_at: Moment;
-  createur: ObjectId;
-  dispositifsAssocies: ObjectId[];
+  createur: Types.ObjectId;
+  dispositifsAssocies: Types.ObjectId[];
   link: string;
   mail_contact: string;
   mail_generique: string;
@@ -124,27 +135,12 @@ export interface IStructure {
   toJSON?: () => IStructure;
 }
 
-export interface IMailEvent {
-  username?: string;
-  email: string;
-  templateName: string;
-  userId?: ObjectId;
-  dispositifId?: ObjectId;
-  langue?: string;
-}
-
 export interface SelectedLanguage {
   langueFr: string;
   langueLoc: string;
   langueCode: string;
   i18nCode: string;
-  _id: ObjectId;
-}
-
-export interface UserForMailing {
-  username: string;
-  _id: ObjectId;
-  email: string;
+  _id: Types.ObjectId;
 }
 
 export interface NeedDetail {
@@ -160,13 +156,13 @@ export interface Need {
   ps?: NeedDetail;
   fa?: NeedDetail;
   uk?: NeedDetail;
-  _id: ObjectId;
+  _id: Types.ObjectId;
   created_at: Moment;
   updatedAt: Moment;
 }
 
 export interface AlgoliaObject {
-  objectID: ObjectId | string;
+  objectID: Types.ObjectId | string;
   title_fr: string;
   title_ru?: string;
   title_en?: string;
@@ -194,9 +190,9 @@ export interface AlgoliaObject {
   sponsorName?: string;
   sponsorUrl?: string;
   nbVues?: number;
-  theme?: ObjectId;
-  secondaryThemes?: ObjectId[];
-  needs?: ObjectId[];
+  theme?: ThemeId;
+  secondaryThemes?: ThemeId[];
+  needs?: NeedId[];
   typeContenu: "demarche" | "dispositif" | "besoin" | "theme";
   priority: number;
   webOnly: boolean;

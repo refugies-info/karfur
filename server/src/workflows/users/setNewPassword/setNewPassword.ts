@@ -7,7 +7,7 @@ import { proceedWithLogin } from "../../../modules/users/users.service";
 import { login2FA } from "../../../modules/users/login2FA";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import passwordHash from "password-hash";
-import { User } from "./../../../schema/schemaUser";
+import { UserModel } from "src/typegoose";
 
 interface Query {
   newPassword: string;
@@ -16,25 +16,20 @@ interface Query {
   email?: string;
   phone?: string;
 }
-export const setNewPassword = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+
+export const setNewPassword = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     logger.info("[setNewPassword] received");
     checkRequestIsFromSite(req.fromSite);
     const { newPassword, reset_password_token } = req.body;
 
-    if (
-      !newPassword ||
-      !reset_password_token
-    ) {
+    if (!newPassword || !reset_password_token) {
       throw new Error("INVALID_REQUEST");
     }
 
-    const user = await User.findOne({
+    const user = await UserModel.findOne({
       reset_password_token,
-      reset_password_expires: { $gt: Date.now() },
+      reset_password_expires: { $gt: Date.now() }
     });
 
     if (!user) {
@@ -54,15 +49,22 @@ export const setNewPassword = async (
       throw new Error("PASSWORD_TOO_WEAK");
     }
 
-    const userStructureId = await userRespoStructureId(user.structures || [], user._id);
+    const userStructureId = await userRespoStructureId(
+      user.structures.map((structure) => structure._id) || [],
+      user._id
+    );
     if (userStructureId) {
-      await login2FA({
-        username: user.username,
-        password: newPassword,
-        code: req.body.code,
-        email: req.body.email,
-        phone: req.body.phone,
-      }, user, userStructureId);
+      await login2FA(
+        {
+          username: user.username,
+          password: newPassword,
+          code: req.body.code,
+          email: req.body.email,
+          phone: req.body.phone
+        },
+        user,
+        userStructureId
+      );
     }
     await proceedWithLogin(user);
     user.password = passwordHash.generate(newPassword);
@@ -71,9 +73,8 @@ export const setNewPassword = async (
     await user.save();
 
     return res.status(200).json({
-      // @ts-ignore
       token: user.getToken(),
-      text: "Authentification réussie",
+      text: "Authentification réussie"
     });
   } catch (error) {
     return loginExceptionsManager(error, res);

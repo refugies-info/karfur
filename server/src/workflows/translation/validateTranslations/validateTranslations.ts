@@ -1,4 +1,3 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { addOrUpdateDispositifInContenusAirtable } from "../../../controllers/miscellaneous/airtable";
@@ -11,28 +10,25 @@ import { sendPublishedTradMailToStructure } from "../../../modules/mail/sendPubl
 import { sendPublishedTradMailToTraductors } from "../../../modules/mail/sendPublishedTradMailToTraductors";
 import { checkRequestIsFromSite, checkIfUserIsAdminOrExpert } from "../../../libs/checkAuthorizations";
 import { asyncForEach } from "../../../libs/asyncForEach";
-import { DispositifNotPopulateDoc } from "../../../schema/schemaDispositif";
-import { TraductionDoc } from "../../../schema/schemaTraduction";
-import ErrorDB from "../../../schema/schemaError";
 import { log } from "./log";
-import { getDispositifDepartments } from "../../../libs/getDispositifDepartments";
 import { sendNotificationsForDispositif } from "../../../modules/notifications/notifications.service";
+import { Dispositif, DispositifId, ErrorModel, Languages, TraductionId, Traductions } from "src/typegoose";
 
 interface Query {
-  articleId: ObjectId;
+  articleId: DispositifId;
   translatedText: Object;
-  traductions: TraductionDoc[];
-  locale: string;
-  _id: ObjectId;
+  traductions: Traductions[]; // FIXME type API
+  locale: Languages;
+  _id: TraductionId;
 }
+
 export const validateTranslations = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.body || !req.body.articleId || !req.body.translatedText) {
       throw new Error("INVALID_REQUEST");
     }
-    // @ts-ignore : populate roles
-    checkIfUserIsAdminOrExpert(req.user.roles);
+    checkIfUserIsAdminOrExpert(req.user);
 
     logger.info("[validateTranslations] received");
     try {
@@ -54,8 +50,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
       // We delete all translations that are not from experts, since now we only need one official validated version
       await deleteTradsInDB(body.articleId, body.locale);
 
-      // @ts-ignore
-      const dispositifFromDB: DispositifNotPopulateDoc = await getDispositifByIdWithAllFields(body.articleId);
+      const dispositifFromDB: Dispositif = await getDispositifByIdWithAllFields(body.articleId);
 
       // !IMPORTANT We insert the validated translation in the dispositif
       const { insertedDispositif, traductorIdsList } = await insertInDispositif(body, body.locale, dispositifFromDB);
@@ -69,9 +64,9 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
           "",
           insertedDispositif.id,
           [],
-          insertedDispositif.typeContenu,
+          insertedDispositif.type,
           body.locale,
-          getDispositifDepartments(insertedDispositif),
+          insertedDispositif.getDepartements(),
           false
         );
       } catch (error) {
@@ -95,7 +90,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         });
       }
 
-      if (insertedDispositif.typeContenu === "dispositif") {
+      if (insertedDispositif.type === "dispositif") {
         try {
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
@@ -113,9 +108,9 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         await sendPublishedTradMailToTraductors(
           traductorNotExpertIdsList,
           body.locale,
-          dispositifFromDB.typeContenu,
-          dispositifFromDB.titreInformatif,
-          dispositifFromDB.titreMarque,
+          dispositifFromDB.type,
+          dispositifFromDB.translations.fr.content.titreInformatif,
+          dispositifFromDB.translations.fr.content.titreMarque,
           dispositifFromDB._id
         );
       } catch (error) {
@@ -129,14 +124,14 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
       });
     } catch (err) {
       logger.error("[validateTranslations] error in validating, saving error to db", { error: err.message });
-      new ErrorDB({
+      await ErrorModel.create({
         name: "validateTradModifications",
         userId: req.userId,
         dataObject: {
           body: req.body
         },
         error: err
-      }).save();
+      });
 
       throw err;
     }

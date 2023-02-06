@@ -7,29 +7,25 @@ import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkA
 /* TODO: support all dispositif properties */
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
-    webOnly: Joi.boolean(),
+    webOnly: Joi.boolean()
   }),
   [Segments.PARAMS]: Joi.object({
-    id: Joi.string(),
+    id: Joi.string()
   })
 });
 
 interface Query {
   webOnly: boolean;
 }
-const handler = async (
-  req: RequestFromClientWithBody<Query>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     logger.info("[updateDispositif] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     const editedDispositif = {
       webOnly: req.body.webOnly,
-      lastAdminUpdate: Date.now(),
+      lastAdminUpdate: new Date()
     };
 
     await updateDispositifInDB(req.params.id, editedDispositif);
@@ -37,7 +33,7 @@ const handler = async (
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositif] error", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "NOT_FROM_SITE":

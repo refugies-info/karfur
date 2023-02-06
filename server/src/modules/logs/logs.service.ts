@@ -1,20 +1,27 @@
-import { ObjectId } from "mongoose";
+import { DispositifId, LangueId, StructureId, UserId } from "src/typegoose";
 import { Log } from "../../schema/schemaLog";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
-  author?: ObjectId;
-  dynamicId?: ObjectId;
+  author?: UserId;
+  dynamicId?: UserId | DispositifId | StructureId | LangueId;
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
-    id: ObjectId;
+    id: UserId | DispositifId | StructureId;
     model_link: "User" | "Dispositif" | "Structure";
-    next: "ModalContenu" | "ModalStructure" | "ModalUser" | "ModalReaction" | "ModalImprovements" | "ModalNeeds" | "PageAnnuaire";
-  }
-}
+    next:
+      | "ModalContenu"
+      | "ModalStructure"
+      | "ModalUser"
+      | "ModalReaction"
+      | "ModalImprovements"
+      | "ModalNeeds"
+      | "PageAnnuaire";
+  };
+};
 
 export const addLog = (
-  id: string | ObjectId,
+  id: UserId | DispositifId | StructureId,
   type: "User" | "Dispositif" | "Structure",
   text: string,
   options?: optionsType
@@ -26,4 +33,4 @@ export const addLog = (
     ...(options || {})
   });
   return createLog(log);
-}
+};

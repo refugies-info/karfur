@@ -2,12 +2,12 @@ import logger from "../../../logger";
 import { Res, RequestFromClient } from "../../../types/interface";
 import { updateStructureInDB, getStructureFromDB } from "../../../modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../../../modules/structure/structure.service";
-import { StructureDoc } from "../../../schema/schemaStructure";
 import { log } from "./log";
 import { addStructureForUsers, removeStructureOfAllUsers } from "../../../modules/users/users.service";
+import { Structure } from "src/typegoose";
 
 // route called when modify structure but not its members (use another route for this)
-export const updateStructure = async (req: RequestFromClient<Partial<StructureDoc>>, res: Res) => {
+export const updateStructure = async (req: RequestFromClient<Partial<Structure>>, res: Res) => {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.query) {
@@ -20,12 +20,7 @@ export const updateStructure = async (req: RequestFromClient<Partial<StructureDo
         id: structure._id
       });
 
-      await checkIfUserIsAuthorizedToModifyStructure(
-        structure._id,
-        req.userId,
-        // @ts-ignore : populate roles
-        req.user.roles
-      );
+      await checkIfUserIsAuthorizedToModifyStructure(structure._id, req.user);
 
       logger.info("[modifyStructure] updating stucture", {
         structureId: structure._id
@@ -55,7 +50,7 @@ export const updateStructure = async (req: RequestFromClient<Partial<StructureDo
          * @see updateRoleAndStructureOfResponsable
          */
         await addStructureForUsers(
-          updatedStructure.membres.map((membre) => membre.userId),
+          updatedStructure.membres.map((membre) => membre.userId.toString()),
           structure._id
         );
       }

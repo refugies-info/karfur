@@ -2,7 +2,7 @@
 import deleteTheme from "./deleteTheme";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
 import { checkIfUserIsAdmin, checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { AppUser } from "../../../schema/schemaAppUser";
+import { AppUserModel } from "../../../typegoose/AppUser";
 
 jest.mock("../../../modules/themes/themes.repository", () => ({
   deleteThemeById: jest.fn()
@@ -16,8 +16,8 @@ jest.mock("../../../schema/schemaTheme", () => ({
   Theme: jest.fn().mockImplementation((w) => w)
 }));
 
-jest.mock("../../../schema/schemaAppUser", () => ({
-  AppUser: { updateMany: jest.fn() }
+jest.mock("../../../typegoose/AppUser", () => ({
+  AppUserModel: { updateMany: jest.fn() }
 }));
 
 type MockResponse = { json: any; status: any };
@@ -64,7 +64,7 @@ describe("deleteTheme", () => {
     };
     await deleteTheme[1](req, res);
     expect(deleteThemeById).toHaveBeenCalledWith("themeId");
-    expect(AppUser.updateMany).toHaveBeenCalledWith({}, { $unset: { "notificationsSettings.themes.themeId": 1 } });
+    expect(AppUserModel.updateMany).toHaveBeenCalledWith({}, { $unset: { "notificationsSettings.themes.themeId": 1 } });
     expect(res.status).toHaveBeenCalledWith(200);
   });
 });

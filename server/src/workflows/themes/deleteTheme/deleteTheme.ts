@@ -4,7 +4,7 @@ import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { AppUser } from "../../../schema/schemaAppUser";
+import { AppUserModel } from "src/typegoose";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
@@ -12,17 +12,16 @@ const validator = celebrate({
   })
 });
 
-export interface Request { }
+export interface Request {}
 
 const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[deleteTheme] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     await deleteThemeById(req.params.id);
-    await AppUser.updateMany({}, { $unset: { [`notificationsSettings.themes.${req.params.id}`]: 1 } });
+    await AppUserModel.updateMany({}, { $unset: { [`notificationsSettings.themes.${req.params.id}`]: 1 } });
 
     return res.status(200).json({
       text: "Succès"

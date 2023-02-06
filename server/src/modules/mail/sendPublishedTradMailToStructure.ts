@@ -1,54 +1,39 @@
-import { DispositifNotPopulateDoc } from "../../schema/schemaDispositif";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
-import { getTitreInfoOrMarque } from "../dispositif/dispositif.adapter";
 import { getFormattedLocale } from "../../libs/getFormattedLocale";
 import { asyncForEach } from "../../libs/asyncForEach";
 import logger from "../../logger";
 import { sendPublishedTradMailToStructureService } from "./mail.service";
+import { Dispositif } from "src/typegoose";
 
-export const sendPublishedTradMailToStructure = async (
-  dispositif: DispositifNotPopulateDoc,
-  locale: string
-) => {
+export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, locale: string) => {
   try {
     logger.info("[sendPublishedTradMailToStructureService] received");
-    const structureMembres = await getStructureMembers(dispositif.mainSponsor);
-    const membresToSendMail = await getUsersFromStructureMembres(
-      structureMembres
-    );
+    const structureMembres = await getStructureMembers(dispositif.mainSponsor.toString());
+    const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
-    const titreInformatif = getTitreInfoOrMarque(dispositif.titreInformatif);
-    const titreMarque = getTitreInfoOrMarque(dispositif.titreMarque);
     const langue = getFormattedLocale(locale);
 
     await asyncForEach(membresToSendMail, async (membre) => {
-      logger.info(
-        "[sendPublishedTradMailToStructureService] send mail to membre",
-        {
-          membreId: membre._id,
-        }
-      );
+      logger.info("[sendPublishedTradMailToStructureService] send mail to membre", {
+        membreId: membre._id
+      });
       try {
         await sendPublishedTradMailToStructureService({
           pseudo: membre.username,
-          titreInformatif: titreInformatif,
-          titreMarque: titreMarque,
-          lien:
-            "https://refugies.info/" +
-            dispositif.typeContenu +
-            "/" +
-            dispositif._id,
+          titreInformatif: dispositif.translations.fr.content.titreInformatif,
+          titreMarque: dispositif.translations.fr.content.titreMarque,
+          lien: "https://refugies.info/" + dispositif.type + "/" + dispositif._id,
           email: membre.email,
           dispositifId: dispositif._id,
           userId: membre._id,
-          langue,
+          langue
         });
       } catch (e) {
-        logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e)
+        logger.error("[sendPublishedTradMailToStructureService] Error while sending mail", e);
       }
     });
   } catch (e) {
-    logger.error("[sendPublishedTradMailToStructureService] Error ", e)
+    logger.error("[sendPublishedTradMailToStructureService] Error ", e);
   }
 };

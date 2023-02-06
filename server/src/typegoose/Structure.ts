@@ -1,11 +1,13 @@
-import { prop, Ref } from "@typegoose/typegoose";
+import { isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { MustBePopulatedError } from "src/errors";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { ImageSchema } from "./generics";
-import { User } from "./User";
+import { User, UserId } from "./User";
 
-class Membre {
+export class Membre {
   @prop({ required: true })
-  public userId!: Ref<User>;
+  public userId!: Ref<User, UserId>;
   @prop({ required: true, type: () => [String] })
   public roles!: String[];
   @prop({ required: true })
@@ -34,7 +36,8 @@ class OpeningHours {
   public precisions?: String;
 }
 
-export class Structure {
+@modelOptions({ schemaOptions: { collection: "structures", timestamps: { createdAt: "created_at" } } })
+export class Structure extends Base {
   @prop({ type: () => [Membre] })
   public membres?: Membre[];
 
@@ -59,7 +62,7 @@ export class Structure {
   @prop()
   public mail_generique?: String;
   @prop({ required: true })
-  public nom!: String;
+  public nom!: string;
   @prop()
   public phone_contact?: String;
   @prop()
@@ -107,4 +110,14 @@ export class Structure {
   public adminProgressionStatus?: String;
   @prop()
   public adminPercentageProgressionStatus: String;
+
+  public getDispositifsAssocies(): Dispositif[] {
+    if (!this.dispositifsAssocies) return [];
+    if (!isDocumentArray(this.dispositifsAssocies)) {
+      throw new MustBePopulatedError("dispositifsAssocies");
+    }
+    return this.dispositifsAssocies;
+  }
 }
+
+export type StructureId = Structure["_id"] | Structure["id"];

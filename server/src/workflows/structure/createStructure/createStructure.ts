@@ -29,14 +29,14 @@ export const createStructure = async (req: RequestFromClient<ReceivedStructure>,
         status: structure.status || "En attente"
       };
 
-      // @ts-ignore
+      // @ts-ignore FIXME
       const newStructure = await createStructureInDB(structureToSave);
       await log(newStructure._id, req.userId);
 
       const structureId = newStructure._id;
       if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre
-        await addStructureForUsers([newStructure.membres[0].userId], structureId);
+        await addStructureForUsers([newStructure.membres[0].userId.toString()], structureId);
       }
       logger.info("[createStructure] successfully created structure with id", {
         structureId

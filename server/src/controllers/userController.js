@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-const account = require("./account/lib.js");
+const account = require("./account/lib");
 const checkToken = require("./account/checkToken");
 import { getFiguresOnUsers } from "../workflows/users/getFiguresOnUsers";
 import { getAllUsers } from "../workflows/users/getAllUsers";
@@ -28,9 +28,5 @@ router.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 router.get("/getUserFavoritesInLocale", checkToken.check, getUserFavoritesInLocale);
 router.post("/updateUserFavorites", checkToken.check, updateUserFavorites);
 router.delete("/:id", checkToken.check, checkToken.getRoles, deleteUser);
-
-/* NOT USED
-router.get("/findBuggedUsers", findBuggedUsers);
-*/
 
 module.exports = router;

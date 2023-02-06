@@ -1,42 +1,40 @@
 import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { getAdminOption, createAdminOption, updateAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
 import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+  getAdminOption,
+  createAdminOption,
+  updateAdminOption
+} from "../../../modules/adminOptions/adminOptions.repository";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { AdminOption } from "../../../schema/schemaAdminOption";
+import { AdminOptionsModel } from "src/typegoose";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
-    key: Joi.string(),
+    key: Joi.string()
   }),
   [Segments.BODY]: Joi.object().keys({
-    value: Joi.any(),
+    value: Joi.any()
   })
 });
 
 export interface Request {
-  value: any
+  value: any;
 }
 
-export const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[postAdminOptions] received", req.body);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     let updatedAdminOption = null;
     const adminOption = await getAdminOption(req.params.key);
     if (adminOption) {
       updatedAdminOption = await updateAdminOption(req.params.key, req.body.value);
     } else {
-      const newOption = new AdminOption({
+      const newOption = new AdminOptionsModel({
         key: req.params.key,
         value: req.body.value
       });
@@ -45,7 +43,7 @@ export const handler = async (
 
     return res.status(200).json({
       text: "Succès",
-      data: updatedAdminOption,
+      data: updatedAdminOption
     });
   } catch (error) {
     logger.error("[postAdminOptions] error", { error: error.message });

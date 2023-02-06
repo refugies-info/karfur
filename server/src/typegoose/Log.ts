@@ -22,7 +22,7 @@ class LogLink {
     | "PageAnnuaire";
 }
 
-@modelOptions({ schemaOptions: { collection: "Logs", timestamps: { createdAt: "created_at" } } })
+@modelOptions({ schemaOptions: { collection: "logs", timestamps: { createdAt: "created_at" } } })
 export class Log {
   @prop({ required: true, refPath: "model_object" })
   public objectId!: Ref<User | Dispositif | Structure>;

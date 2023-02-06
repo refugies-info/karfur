@@ -1,28 +1,17 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import logger from "../../../logger";
-import {
-  RequestFromClient,
-  Res,
-  Picture,
-  SelectedLanguage,
-} from "../../../types/interface";
+import { RequestFromClient, Res, Picture, SelectedLanguage } from "../../../types/interface";
 import { getRoleByName } from "../../../controllers/role/role.repository";
-import {
-  getUserById,
-  updateUserInDB,
-} from "../../../modules/users/users.repository";
+import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { sendResetPhoneNumberMail } from "../../../modules/mail/mail.service";
-import {
-  requestSMSLogin,
-  verifyCode
-} from "../../../modules/users/login2FA";
+import { requestSMSLogin, verifyCode } from "../../../modules/users/login2FA";
 import formatPhoneNumber from "../../../libs/formatPhoneNumber";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { loginExceptionsManager } from "../login/login.exceptions.manager";
 import { log } from "./log";
 
 export interface User {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   roles: string[];
   email?: string;
   phone?: string;
@@ -48,7 +37,8 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     logger.info("[updateUser] call received", { user, action });
     const userFromDB = await getUserById(user._id, { username: 1, phone: 1, email: 1, roles: 1 });
 
-    if (user.phone) { // format phone
+    if (user.phone) {
+      // format phone
       user.phone = formatPhoneNumber(user.phone);
     }
 
@@ -63,10 +53,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
       const actualRoles = userFromDB.roles;
 
       let newRoles = actualRoles.filter(
-        (role) =>
-          role &&
-          role.toString() !== adminRole._id.toString() &&
-          role.toString() !== expertRole._id.toString()
+        (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString()
       );
 
       // add role admin
@@ -78,10 +65,16 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         newRoles.push(expertRole._id);
       }
 
-      await updateUserInDB(user._id, { email: user.email, phone: user.phone, roles: newRoles, adminComments: user.adminComments });
+      await updateUserInDB(user._id, {
+        email: user.email,
+        phone: user.phone,
+        roles: newRoles,
+        adminComments: user.adminComments
+      });
       user.username = userFromDB.username; // populate username for log
 
-      if (userFromDB.phone !== user.phone) { // if phone changed, send mail
+      if (userFromDB.phone !== user.phone) {
+        // if phone changed, send mail
         await sendResetPhoneNumberMail(userFromDB.username, user.email);
       }
     }
@@ -104,7 +97,8 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
             const newRoles = actualRoles.concat(traducteurRole._id);
             await updateUserInDB(user._id, { ...user, roles: newRoles });
           }
-        } else if (user.phone) { // update phone number with 2FA
+        } else if (user.phone) {
+          // update phone number with 2FA
           try {
             if (!user.code) await requestSMSLogin(user.phone);
             await verifyCode(user.phone, user.code);
@@ -130,11 +124,11 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     await log(user, userFromDB, req.user._id);
 
     return res.status(200).json({
-      text: "OK",
+      text: "OK"
     });
   } catch (error) {
     logger.error("[updateUser] error", {
-      error: error.message,
+      error: error.message
     });
     switch (error.message) {
       case "INVALID_REQUEST":

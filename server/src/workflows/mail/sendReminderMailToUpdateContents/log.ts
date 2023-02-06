@@ -1,12 +1,6 @@
-import { ObjectId } from "mongoose";
+import { DispositifId } from "src/typegoose";
 import { addLog } from "../../../modules/logs/logs.service";
 
-export const log = async (
-  dispositifId: ObjectId,
-) => {
-  await addLog(
-    dispositifId,
-    "Dispositif",
-    "Relance pour mise à jour (90 jours)"
-  );
-}
+export const log = async (dispositifId: DispositifId) => {
+  await addLog(dispositifId, "Dispositif", "Relance pour mise à jour (90 jours)");
+};

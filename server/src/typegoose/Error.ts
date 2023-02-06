@@ -1,7 +1,7 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { User } from "./User";
 
-@modelOptions({ schemaOptions: { timestamps: true } })
+@modelOptions({ schemaOptions: { collection: "errors", timestamps: true } })
 export class Error {
   @prop()
   public name: String;
