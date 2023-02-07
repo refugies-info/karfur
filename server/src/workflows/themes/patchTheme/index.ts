@@ -1,2 +1,1 @@
-import patchTheme from "./patchTheme";
-export default patchTheme;
+export { patchTheme, Theme } from "./patchTheme";

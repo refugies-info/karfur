@@ -53,7 +53,7 @@ export class Theme extends Base {
   public isActive(activeLanguages: Langue[]) {
     // titles
     for (const ln of activeLanguages) {
-      if (!this.name[ln.i18nCode] || !this.short[ln.i18nCode]) return false;
+      if (!this.name?.[ln.i18nCode] || !this.short?.[ln.i18nCode]) return false;
     }
 
     if (
