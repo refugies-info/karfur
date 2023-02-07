@@ -69,6 +69,7 @@ app.use(function (_, res, next) {
 });
 
 //Checking request origin
+// TODO: delete
 app.use(function (req, _, next) {
   //@ts-ignore
   req.fromPostman = req.headers["postman-secret"] === process.env.POSTMAN_SECRET;

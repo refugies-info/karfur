@@ -3,9 +3,9 @@ import { ResponseWithData } from "../../../types/interface";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
-import { map } from "lodash/fp";
-import { AppUser, Theme as ThemeDB } from "src/typegoose";
-import { ThemeParams } from "src/controllers/themeController";
+import map from "lodash/fp/map";
+import { AppUser, Theme as ThemeDB } from "../../../typegoose";
+import { ThemeParams } from "../../../controllers/themeController";
 
 interface Image {
   secure_url: string;
@@ -53,7 +53,6 @@ const updateUsersNotificationsSettings = async (theme: ThemeDB) =>
 
 export const postThemes = async (theme: ThemeParams): Promise<ResponseWithData<Theme>> => {
   logger.info("[postThemes] received", theme);
-  // checkRequestIsFromSite(req.fromSite);
 
   const dbTheme = await createTheme(theme);
   const activeLanguages = await getActiveLanguagesFromDB();
