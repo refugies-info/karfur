@@ -56,7 +56,10 @@ export class ThemeController extends Controller {
     return getThemes();
   }
 
-  @Security("jwt", ["admin"])
+  @Security({
+    fromSite: [],
+    jwt: ["admin"]
+  })
   @Post("/")
   public async post(
     @Body() body: ThemeParams
@@ -64,7 +67,10 @@ export class ThemeController extends Controller {
     return postThemes(body);
   }
 
-  @Security("jwt", ["admin"])
+  @Security({
+    fromSite: [],
+    jwt: ["admin"]
+  })
   @Patch("{id}")
   public async patch(
     @Path() id: string,
@@ -73,7 +79,10 @@ export class ThemeController extends Controller {
     return patchTheme(id, body);
   }
 
-  @Security("jwt", ["admin"])
+  @Security({
+    fromSite: [],
+    jwt: ["admin"]
+  })
   @Delete("{id}")
   public async delete(
     @Path() id: string
