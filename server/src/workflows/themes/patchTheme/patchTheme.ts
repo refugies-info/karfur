@@ -1,13 +1,12 @@
+import merge from "lodash/fp/merge";
+import { DocumentType } from "@typegoose/typegoose";
 import logger from "../../../logger";
 import { getTheme, updateTheme } from "../../../modules/themes/themes.repository";
-// import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Theme as ThemeDB } from "src/typegoose";
-import { ThemeParams } from "src/controllers/themeController";
-import { ResponseWithData } from "src/types/interface";
-import { NotFoundError } from "src/errors";
-import { merge } from "lodash/fp";
-import { DocumentType } from "@typegoose/typegoose";
+import { Theme as ThemeDB } from "../../../typegoose";
+import { ThemeParams } from "../../../controllers/themeController";
+import { ResponseWithData } from "../../../types/interface";
+import { NotFoundError } from "../../../errors";
 
 interface Image {
   secure_url: string;
@@ -39,7 +38,6 @@ export interface Theme {
 
 export const patchTheme = async (id: string, theme: Partial<ThemeParams>): Promise<ResponseWithData<Theme>> => {
   logger.info("[patchTheme] received", id);
-  // checkRequestIsFromSite(req.fromSite);
 
   const oldTheme = await getTheme(id);
   if (!oldTheme) throw new NotFoundError("Theme not found");
