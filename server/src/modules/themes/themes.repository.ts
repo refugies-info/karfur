@@ -1,5 +1,7 @@
 import { Theme, ThemeId, ThemeModel } from "src/typegoose";
 
+export const getTheme = (id: ThemeId) => ThemeModel.findOne({ _id: id });
+
 export const getAllThemes = () => ThemeModel.find();
 
 export const createTheme = (theme: Omit<Theme, "isActive">) => ThemeModel.create(theme);

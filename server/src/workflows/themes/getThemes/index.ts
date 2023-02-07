@@ -1,2 +1,2 @@
-import getThemes from "./getThemes";
-export default getThemes;
+export { getThemes, Theme } from "./getThemes";
+

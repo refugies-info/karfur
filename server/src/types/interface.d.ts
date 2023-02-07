@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { Moment } from "moment";
 import { NeedId, Role, ThemeId, User } from "src/typegoose";
-import { Request as ExpressRequest, Response } from "express";
+import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -17,8 +17,18 @@ declare global {
   }
 }
 
-export interface Request extends ExpressRequest {}
-export interface Res extends Response {}
+export interface Request extends ExpressRequest { }
+export interface Res extends ExpressResponse { }
+
+
+type ResponseText = "success" | "error";
+export interface Response {
+  text: ResponseText;
+}
+export interface ResponseWithData<Data> {
+  text: ResponseText;
+  data: Data;
+}
 
 interface Config {
   secret?: string;

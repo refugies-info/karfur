@@ -9,3 +9,7 @@ export class MustBePopulatedError extends Error {
     super(`${property} must be populated`);
   }
 }
+
+export class AuthenticationError extends Error { }
+
+export class NotFoundError extends Error { }
