@@ -1,2 +1,1 @@
-import postThemes from "./postThemes";
-export default postThemes;
+export { postThemes, Theme } from "./postThemes";

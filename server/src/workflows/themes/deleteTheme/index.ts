@@ -1,2 +1,2 @@
-import deleteTheme from "./deleteTheme";
-export default deleteTheme;
+export { deleteTheme } from "./deleteTheme";
+

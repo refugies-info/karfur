@@ -1,32 +1,44 @@
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
+import { ResponseWithData } from "../../../types/interface";
 
-export interface Request {}
+interface Image {
+  secure_url: string;
+  public_id: string;
+  imgId: string;
+}
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[getThemes] received");
+export interface Theme {
+  name: Record<string, string>;
+  short: Record<string, string>;
+  colors: {
+    color100: string;
+    color80: string;
+    color60: string;
+    color40: string;
+    color30: string;
+  };
+  position: number;
+  icon: Image;
+  banner: Image;
+  appBanner: Image;
+  appImage: Image;
+  shareImage: Image;
+  notificationEmoji: string;
+  active: boolean;
+  adminComments?: string;
+}
 
-    const themes = await getAllThemes();
-    const activeLanguages = await getActiveLanguagesFromDB();
+export const getThemes = async (): Promise<ResponseWithData<Theme[]>> => {
+  logger.info("[getThemes] received");
 
-    return res.status(200).json({
-      text: "Succès",
-      data: themes.map((t) => ({ ...t.toObject(), active: t.isActive(activeLanguages) }))
-    });
-  } catch (error) {
-    logger.error("[getThemes] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  const themes = await getAllThemes();
+  const activeLanguages = await getActiveLanguagesFromDB();
+
+  return {
+    text: "success",
+    data: themes.map((t) => ({ ...t.toObject(), active: t.isActive(activeLanguages) }))
   }
 };
 
-export default [handler];
