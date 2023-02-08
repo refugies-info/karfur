@@ -3,7 +3,7 @@ import logger from "../../../logger";
 import { deleteThemeById } from "../../../modules/themes/themes.repository";
 import { Response } from "../../../types/interface";
 
-export const deleteTheme = async (id: string): Promise<Response> => {
+export const deleteTheme = async (id: string): Response => {
   logger.info("[deleteTheme] received", id);
 
   await deleteThemeById(id);

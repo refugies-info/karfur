@@ -1,11 +1,6 @@
 "use strict";
 require("dotenv").config();
-import express, {
-  Response as ExResponse,
-  Request as ExRequest,
-  NextFunction,
-} from "express";
-import { ValidateError } from "tsoa";
+import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import cloudinary from "cloudinary";
@@ -14,9 +9,8 @@ import path from "path";
 import compression from "compression";
 import { errors } from "celebrate";
 import { RegisterRoutes } from "../dist/routes";
-
 import logger from "./logger";
-import { AuthenticationError, NotFoundError } from "./errors";
+import { serverErrorHandler } from "./errors";
 
 const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
@@ -124,38 +118,9 @@ app.use("/notifications", notificationsController);
 app.use("/options", adminOptionController);
 app.use("/sms", smsController);
 
-app.use(errors()); // Joi middleware for validation errors
+app.use(errors()); // TODO: delete and use tsoa instead
 
-app.use(function errorHandler(
-  err: unknown,
-  req: ExRequest,
-  res: ExResponse,
-  next: NextFunction
-): ExResponse | void {
-  if (err instanceof ValidateError) {
-    return res.status(422).json({
-      message: "Validation Failed",
-      details: err?.fields,
-    });
-  }
-  if (err instanceof AuthenticationError) {
-    return res.status(403).json({
-      message: err.message,
-    });
-  }
-  if (err instanceof NotFoundError) {
-    return res.status(404).json({
-      message: err.message,
-    });
-  }
-  if (err instanceof Error) {
-    return res.status(500).json({
-      message: err.message || "Internal Server Error",
-    });
-  }
-
-  next();
-});
+app.use(serverErrorHandler);
 
 var port = process.env.PORT;
 app.get("*", (_req, res) => {

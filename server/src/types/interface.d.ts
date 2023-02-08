@@ -8,9 +8,9 @@ export type Modify<T, R> = Omit<T, keyof R> & R;
 declare global {
   namespace Express {
     export interface Request {
-      fromSite?: boolean;
-      fromPostman?: boolean;
-      roles?: Role[];
+      fromSite?: boolean; // TODO: delete
+      fromPostman?: boolean; // TODO: delete
+      roles?: Role[]; // TODO: delete? (get it in the workflow)
       user?: User;
       userId?: typeof User._id;
     }
@@ -22,13 +22,16 @@ export interface Res extends ExpressResponse { }
 
 
 type ResponseText = "success" | "error";
-export interface Response {
+interface APIResponse {
   text: ResponseText;
+  code?: string;
 }
-export interface ResponseWithData<Data> {
-  text: ResponseText;
+interface APIResponseWithData<Data> extends APIResponse {
   data: Data;
 }
+
+export type Response = Promise<APIResponse>;
+export type ResponseWithData<Data> = Promise<APIResponseWithData<Data>>;
 
 interface Config {
   secret?: string;
@@ -87,6 +90,15 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
+export interface TranslatedText extends Record<string, string> { }
+
+export interface ThemeColors {
+  color100: string;
+  color80: string;
+  color60: string;
+  color40: string;
+  color30: string;
+}
 export interface Picture {
   imgId: string | null;
   public_id: string | null;

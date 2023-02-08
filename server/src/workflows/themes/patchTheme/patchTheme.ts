@@ -5,38 +5,26 @@ import { getTheme, updateTheme } from "../../../modules/themes/themes.repository
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { Theme as ThemeDB } from "../../../typegoose";
 import { ThemeParams } from "../../../controllers/themeController";
-import { ResponseWithData } from "../../../types/interface";
+import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
 import { NotFoundError } from "../../../errors";
-
-interface Image {
-  secure_url: string;
-  public_id: string;
-  imgId: string;
-}
 
 export interface Theme {
   _id: string;
-  name: Record<string, string>;
-  short: Record<string, string>;
-  colors: {
-    color100: string;
-    color80: string;
-    color60: string;
-    color40: string;
-    color30: string;
-  };
+  name: TranslatedText;
+  short: TranslatedText;
+  colors: ThemeColors;
   position: number;
-  icon: Image;
-  banner: Image;
-  appBanner: Image;
-  appImage: Image;
-  shareImage: Image;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;
 }
 
-export const patchTheme = async (id: string, theme: Partial<ThemeParams>): Promise<ResponseWithData<Theme>> => {
+export const patchTheme = async (id: string, theme: Partial<ThemeParams>): ResponseWithData<Theme> => {
   logger.info("[patchTheme] received", id);
 
   const oldTheme = await getTheme(id);
