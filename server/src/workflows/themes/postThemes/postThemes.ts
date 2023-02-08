@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
+import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
 import { createTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
@@ -7,29 +7,17 @@ import map from "lodash/fp/map";
 import { AppUser, Theme as ThemeDB } from "../../../typegoose";
 import { ThemeParams } from "../../../controllers/themeController";
 
-interface Image {
-  secure_url: string;
-  public_id: string;
-  imgId: string;
-}
-
 export interface Theme {
   _id: string;
-  name: Record<string, string>;
-  short: Record<string, string>;
-  colors: {
-    color100: string;
-    color80: string;
-    color60: string;
-    color40: string;
-    color30: string;
-  };
+  name: TranslatedText;
+  short: TranslatedText;
+  colors: ThemeColors;
   position: number;
-  icon: Image;
-  banner: Image;
-  appBanner: Image;
-  appImage: Image;
-  shareImage: Image;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
   active: boolean;
   adminComments?: string;
@@ -51,7 +39,7 @@ const updateUsersNotificationsSettings = async (theme: ThemeDB) =>
   getAllAppUsers().then(map(addThemeInNotificationSettingsForUser(theme)));
 
 
-export const postThemes = async (theme: ThemeParams): Promise<ResponseWithData<Theme>> => {
+export const postThemes = async (theme: ThemeParams): ResponseWithData<Theme> => {
   logger.info("[postThemes] received", theme);
 
   const dbTheme = await createTheme(theme);
