@@ -3,7 +3,7 @@ import { get, has } from "lodash";
 import { ObjectId } from "mongoose";
 import { MustBePopulatedError } from "src/errors";
 import { Base } from "./Base";
-import { Languages, lnCode, RichText, Uuid } from "./generics";
+import { Languages, RichText, Uuid } from "./generics";
 import { Need, NeedId } from "./Need";
 
 import { Structure, StructureId } from "./Structure";
@@ -221,7 +221,7 @@ export class Dispositif extends Base {
   @prop()
   public themesSelectedByAuthor: boolean;
   @prop()
-  public notificationsSent: Record<lnCode, boolean>;
+  public notificationsSent: Record<Languages, boolean>;
 
   @prop()
   public suggestions: Suggestion[];
@@ -231,7 +231,7 @@ export class Dispositif extends Base {
   public webOnly: Boolean;
 
   @prop()
-  public translations!: Record<lnCode, TranslationContent>;
+  public translations!: Record<Languages, TranslationContent>;
   @prop()
   public metadatas: Metadatas;
   @prop()
