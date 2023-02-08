@@ -18,15 +18,15 @@ import API from "utils/API";
 import { Indicators, UserLanguage } from "types/interface";
 import { TranslationNeedsModal } from "./components/TranslationNeedsModal";
 import { OneNeedTranslationModal } from "./components/OneNeedTranslationModal";
-import { ObjectId } from "mongodb";
 import { needsSelector } from "services/Needs/needs.selectors";
 import styles from "./UserTranslation.module.scss";
 import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
 import { useRouter } from "next/router";
+import { ObjectId } from "mongodb"; // FIXME
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
-const getLangueName = (langueId: ObjectId | null, userTradLanguages: UserLanguage[]) => {
+const getLangueName = (langueId: string | null, userTradLanguages: UserLanguage[]) => {
   if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
 
   const langueArray = userTradLanguages.filter((langue) => langue._id === langueId);
@@ -66,8 +66,7 @@ const UserTranslation = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //@ts-ignore
-  const langueInUrl = useParams()?.id;
+  const langueInUrl = useParams<{ id: string }>()?.id;
 
   const userTradLanguages = useSelector(userSelectedLanguageSelector);
   const userFirstTradLanguage = userTradLanguages.length > 0 ? userTradLanguages[0].i18nCode : null;
@@ -87,7 +86,6 @@ const UserTranslation = (props: Props) => {
   const getLangueId = () => {
     if (!userTradLanguages || userTradLanguages.length === 0) return null;
     const langueArray = userTradLanguages.filter((langue) => langue.i18nCode === langueInUrl);
-    // @ts-ignore
     if (langueArray.length > 0) return langueArray[0]._id;
     return null;
   };

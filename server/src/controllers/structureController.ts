@@ -18,11 +18,5 @@ router.post("/createStructure", checkToken.check, createStructure);
 router.post("/updateStructure", checkToken.check, updateStructure);
 router.post("/modifyUserRoleInStructure", checkToken.check, modifyUserRoleInStructure);
 router.get("/statistics", getStatistics);
-/* NOT USED
-router.post("/modifyMembreRoleInStructures", modifyMembreRoleInStructures);
-router.post(
-  "/targetErrosOnDispositifsAssociesInStructures",
-  targetErrosOnDispositifsAssociesInStructures
-); */
 
 module.exports = router;

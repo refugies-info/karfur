@@ -2,6 +2,8 @@
 import { getDispositifsWithTranslationAvancement } from "./getDispositifsWithTranslationAvancement";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
+import { Dispositif, Id } from "../../../typegoose";
+import { omit } from "lodash";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
   getActiveContents: jest.fn()
@@ -29,9 +31,7 @@ jest.mock("src/typegoose/Error", () => ({
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
+  const res: MockResponse = { status: jest.fn().mockReturnThis(), json: jest.fn().mockReturnThis() };
   return res;
 };
 
@@ -65,11 +65,10 @@ describe("getDispositifsWithTranslationAvancement", () => {
     expect(res.status).toHaveBeenCalledWith(400);
   });
   const neededFields = {
-    titreInformatif: 1,
-    titreMarque: 1,
     nbMots: 1,
     created_at: 1,
-    typeContenu: 1
+    type: 1,
+    translations: 1
   };
   const traductionFields = {
     articleId: 1,
@@ -81,16 +80,24 @@ describe("getDispositifsWithTranslationAvancement", () => {
 
   // no corresponding trad
   const content1 = {
-    titreInformatif: "t1",
-    titreMarque: "TM1",
     nbMots: 200,
     created_at: "01/01/2021",
-    typeContenu: "dispositif",
-    _id: "id1"
+    type: "dispositif",
+    _id: "id1",
+    translations: {
+      fr: {
+        content: {
+          titreInformatif: "t1",
+          titreMarque: "TM1"
+        }
+      }
+    }
   };
 
   const result1 = {
-    ...content1,
+    ...omit(content1, "translations"),
+    titreInformatif: "t1",
+    titreMarque: "TM1",
     lastTradUpdatedAt: null,
     avancementTrad: 0,
     avancementExpert: 0,
@@ -98,17 +105,25 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   // 1 corresponding trad, not userId
-  const content2 = {
-    titreInformatif: "t2",
-    titreMarque: "TM2",
+  const content2: Partial<Dispositif> = {
     nbMots: 400,
-    created_at: "02/02/2022",
-    typeContenu: "demarche",
-    _id: "id2"
+    created_at: new Date("02/02/2022"),
+    type: "demarche",
+    _id: "id2",
+    translations: {
+      fr: {
+        content: {
+          titreInformatif: "t2",
+          titreMarque: "TM2"
+        }
+      }
+    }
   };
 
   const result2 = {
-    ...content2,
+    ...omit(content2, "translations"),
+    titreInformatif: "t2",
+    titreMarque: "TM2",
     lastTradUpdatedAt: 18,
     avancementTrad: 1,
     avancementExpert: 0,
@@ -125,12 +140,18 @@ describe("getDispositifsWithTranslationAvancement", () => {
 
   // 2 corresponding trad, one userId
   const content3 = {
-    titreInformatif: "t3",
-    titreMarque: "TM3",
     nbMots: 400,
     created_at: "03/03/303",
-    typeContenu: "demarche",
-    _id: "id3"
+    type: "demarche",
+    _id: "id3",
+    translations: {
+      fr: {
+        content: {
+          titreInformatif: "t3",
+          titreMarque: "TM3"
+        }
+      }
+    }
   };
 
   const tradC3 = {
@@ -150,7 +171,9 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result3 = {
-    ...content3,
+    ...omit(content3, "translations"),
+    titreInformatif: "t3",
+    titreMarque: "TM3",
     lastTradUpdatedAt: 78,
     avancementTrad: 0.8,
     avancementExpert: 0.6,
@@ -159,12 +182,18 @@ describe("getDispositifsWithTranslationAvancement", () => {
 
   // 2 corresponding trad, one userId
   const content4 = {
-    titreInformatif: "t4",
-    titreMarque: "TM4",
     nbMots: 400,
     created_at: "03/03/303",
-    typeContenu: "demarche",
-    _id: "id4"
+    type: "demarche",
+    _id: "id4",
+    translations: {
+      fr: {
+        content: {
+          titreInformatif: "t4",
+          titreMarque: "TM4"
+        }
+      }
+    }
   };
 
   const tradC6 = {
@@ -184,7 +213,9 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result4 = {
-    ...content4,
+    ...omit(content4, "translations"),
+    titreInformatif: "t4",
+    titreMarque: "TM4",
     lastTradUpdatedAt: 78,
     avancementTrad: 0.8,
     avancementExpert: 0.6,

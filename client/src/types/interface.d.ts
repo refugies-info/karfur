@@ -161,7 +161,7 @@ export interface UserLanguage {
   langueLoc: string;
   langueCode: string;
   i18nCode: string;
-  _id: ObjectId;
+  _id: string;
 }
 
 export interface DispositifPinned {
@@ -448,7 +448,7 @@ export interface IDispositifTranslation {
   titreMarque: string;
   nbMots: number;
   created_at: number;
-  typeContenu: "dispositif" | "demarche";
+  type: "dispositif" | "demarche";
   lastTradUpdatedAt: number | null;
   avancementTrad: number;
   avancementExpert: number;
@@ -556,13 +556,13 @@ export interface Log {
     id: ObjectId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-    | "ModalContenu"
-    | "ModalStructure"
-    | "ModalUser"
-    | "ModalReaction"
-    | "ModalImprovements"
-    | "ModalNeeds"
-    | "PageAnnuaire";
+      | "ModalContenu"
+      | "ModalStructure"
+      | "ModalUser"
+      | "ModalReaction"
+      | "ModalImprovements"
+      | "ModalNeeds"
+      | "PageAnnuaire";
   };
   created_at: Moment;
 }

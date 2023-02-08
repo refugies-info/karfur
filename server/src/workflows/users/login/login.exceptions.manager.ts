@@ -8,9 +8,7 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
     case "INVALID_REQUEST":
       return res.status(400).json({ text: "Requête invalide" });
     case "INVALID_PASSWORD":
-      return res
-        .status(401)
-        .json({ text: "Mot de passe incorrect", data: "no-alert" });
+      return res.status(401).json({ text: "Mot de passe incorrect", data: "no-alert" });
     case "USED_PASSWORD":
       return res.status(400).json({
         code: "USED_PASSWORD",
@@ -18,9 +16,7 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
         data: "no-alert"
       });
     case "NOT_FROM_SITE":
-      return res
-        .status(403)
-        .json({ text: "Création d'utilisateur ou login impossible par API" });
+      return res.status(403).json({ text: "Création d'utilisateur ou login impossible par API" });
     case "PASSWORD_TOO_WEAK":
       return res.status(401).json({ text: "Le mot de passe est trop faible" });
     case "INTERNAL":
@@ -28,11 +24,11 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
     case "WRONG_CODE":
       return res.status(402).json({
         text: "Erreur à la vérification du code",
-        data: "no-alert",
+        data: "no-alert"
       });
     case "ERROR_WHILE_SENDING_ADMIN_CODE":
       return res.status(404).json({
-        text: "Erreur à l'envoi du code à ce numéro",
+        text: "Erreur à l'envoi du code à ce numéro"
       });
     case "NO_CONTACT":
       return res.status(502).json({
@@ -46,17 +42,21 @@ export const loginExceptionsManager = (error: LoginError, res: Res) => {
       });
     case "USER_DELETED":
       return res.status(405).json({
-        text: "Utilisateur supprimé",
+        text: "Utilisateur supprimé"
       });
     case "ADMIN_FORBIDDEN":
-      return res.status(401).json({ text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site" });
+      return res.status(401).json({
+        text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
+      });
     case "NO_EMAIL":
-      return res.status(403).json({ text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi." });
+      return res.status(403).json({
+        text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi."
+      });
     case "USER_NOT_EXISTS":
       return res.status(500).json({ text: "Utilisateur inconnu" });
     default:
       res.status(500).json({
-        text: "Erreur interne",
+        text: "Erreur interne"
       });
   }
 };

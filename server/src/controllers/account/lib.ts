@@ -7,6 +7,7 @@ import logger from "../../logger";
 import { sendResetPasswordMail } from "../../modules/mail/mail.service";
 import formatPhoneNumber from "../../libs/formatPhoneNumber";
 import { Langue, LangueModel, Role, User, UserModel } from "src/typegoose";
+import { pick } from "lodash";
 
 const transporter = nodemailer.createTransport({
   host: "pro2.mail.ovh.net",
@@ -270,7 +271,17 @@ function get_users(req: Request, res: Response) {
 function get_user_info(req: Request, res: Response) {
   res.status(200).json({
     text: "Succès",
-    data: { ...req.user, selectedLanguages: req.user.getSelectedLanguagesButFrench() }
+    data: pick(req.user.toObject(), [
+      "structures",
+      "_id",
+      "roles",
+      "traductionsFaites",
+      "contributions",
+      "username",
+      "status",
+      "email",
+      "selectedLanguages"
+    ])
   });
 }
 

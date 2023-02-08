@@ -1,6 +1,6 @@
-import { TraductionDoc } from "../../schema/schemaTraduction";
+import { Traductions } from "src/typegoose";
 
-export const getTradStatus = (tradArray: TraductionDoc[]) => {
+export const getTradStatus = (tradArray: Traductions[]) => {
   const isPublished = !!tradArray.find((trad) => trad.status === "Validée");
   if (isPublished) return "Validée";
 

@@ -6,7 +6,7 @@ import { User } from "./User";
 @modelOptions({ schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } } })
 export class Traductions extends Base {
   @prop({ required: true })
-  public langueCible!: String;
+  public langueCible!: string;
 
   @prop({ required: true })
   public translatedText!: Object;
@@ -28,40 +28,40 @@ export class Traductions extends Base {
   public articleId!: Ref<Dispositif>;
 
   @prop()
-  public status: String;
+  public status: string;
 
   @prop()
   public path: Object;
 
   @prop()
-  public rightId: String;
+  public rightId: string;
 
   @prop()
-  public timeSpent: Number;
+  public timeSpent: number;
 
   @prop()
-  public nbMots: Number;
+  public nbMots: number;
 
   @prop()
-  public jsonId: String;
+  public jsonId: string;
 
   @prop()
-  public avancement: Number;
+  public avancement: number;
 
   @prop()
-  public type: String;
+  public type: string;
 
   @prop()
-  public title: String;
+  public title: string;
 
   @prop()
-  public score: Number;
+  public score: number;
 
   @prop()
   public isExpert: Boolean;
 
   @prop()
-  public updatedAt: Number;
+  public updatedAt: number;
 }
 
 export type TraductionId = Traductions["_id"] | Traductions["id"];

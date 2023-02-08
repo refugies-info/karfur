@@ -13,7 +13,6 @@ import styled from "styled-components";
 import { colors } from "colors";
 import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-// import { ObjectId } from "mongodb";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
 

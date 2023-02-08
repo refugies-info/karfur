@@ -1,9 +1,10 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { Theme } from "./Theme";
 import { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
-export class Widget {
+export class Widget extends Base {
   @prop({ required: true })
   public name!: String;
 
@@ -25,3 +26,5 @@ export class Widget {
   @prop({ required: true })
   public author!: Ref<User>;
 }
+
+export type WidgetId = Widget["_id"] | Widget["id"];

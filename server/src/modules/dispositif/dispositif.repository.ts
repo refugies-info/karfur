@@ -5,29 +5,27 @@ export const getDispositifsFromDB = async (needFields: Object): Promise<Disposit
     .populate("mainSponsor creatorId theme secondaryThemes")
     .populate("lastModificationAuthor publishedAtAuthor", "username");
 
+type DispositifKeys = keyof Dispositif;
+
 export const getDispositifArray = async (
   query: any,
-  extraFields: any = {},
+  extraFields: Partial<Record<DispositifKeys, number>> = {},
   populate: string = "",
   limit: number = 0,
   sort: any = {}
 ): Promise<Dispositif[]> => {
-  const neededFields = {
-    titreInformatif: 1,
-    titreMarque: 1,
-    abstract: 1,
-    contenu: 1,
+  const neededFields: Partial<Record<DispositifKeys, number>> = {
+    translations: 1,
     theme: 1,
     secondaryThemes: 1,
     created_at: 1,
     publishedAt: 1,
-    typeContenu: 1,
-    avancement: 1,
+    type: 1,
+    // avancement: 1,
     status: 1,
     nbMots: 1,
     nbVues: 1,
-    audienceAge: 1,
-    niveauFrancais: 1,
+    metadatas: 1,
     ...extraFields
   };
 
@@ -110,7 +108,7 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
   ).populate("mainSponsor");
 
 export const getActiveContents = async (neededFields: Record<string, number>) =>
-  await DispositifModel.find({ status: "Actif" }, neededFields);
+  DispositifModel.find({ status: "Actif" }, neededFields);
 
 export const getActiveContentsFiltered = async (neededFields: Record<string, number>, query: any) =>
   await DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");

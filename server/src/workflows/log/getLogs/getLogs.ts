@@ -1,32 +1,26 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { findLogs } from "../../../modules/logs/logs.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { LogId } from "src/typegoose";
 
 export interface Request {
-  id: ObjectId;
+  id: LogId;
 }
 
-export const getLogs = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const getLogs = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[getLogs] received with id", req?.query?.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles)
+    checkIfUserIsAdmin(req.user);
 
     if (!req.query.id) throw new Error("INVALID_REQUEST");
 
     const logs = await findLogs(req.query.id);
     return res.status(200).json({
       text: "Succès",
-      data: logs,
+      data: logs
     });
   } catch (error) {
     logger.error("[getLogs] error", { error: error.message });

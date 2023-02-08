@@ -1,9 +1,13 @@
 import { RequestFromClient, Res } from "../../types/interface";
-import { Traduction } from "../../schema/schemaTraduction";
-import { DispositifModel, Langue, LangueModel } from "src/typegoose";
+import { DispositifModel, Langue, LangueModel, TraductionsModel } from "src/typegoose";
 
 // TODO type correctly Query
-interface Query {}
+interface Query {
+  query: any;
+  sort: any;
+  populate: any;
+}
+
 async function get_langues(req: RequestFromClient<Query>, res: Res) {
   var { query, sort, populate } = req.body;
   if (populate) {
@@ -11,10 +15,8 @@ async function get_langues(req: RequestFromClient<Query>, res: Res) {
       //On n'autorise pas les populate en API externe
       populate = "";
     } else if (populate.constructor === Object) {
-      // @ts-ignore
       populate.select = "-password";
     } else {
-      // @ts-ignore
       populate = { path: populate, select: "-password" };
     }
   } else {
@@ -26,7 +28,7 @@ async function get_langues(req: RequestFromClient<Query>, res: Res) {
     if (findLangue.length > 0) {
       for (var i = 0; i < findLangue.length; i++) {
         var langue = findLangue[i];
-        var pubTrads = await Traduction.distinct("articleId", {
+        var pubTrads = await TraductionsModel.distinct("articleId", {
           langueCible: langue.i18nCode,
           status: "Validée"
         });

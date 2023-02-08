@@ -1,16 +1,14 @@
-// @ts-nocheck FIXME
-import { RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res, Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { getTradStatus } from "../../../modules/traductions/traductions.service";
 import { availableLanguages } from "../../../libs/getFormattedLocale";
-import { DispositifId } from "src/typegoose";
+import { DispositifId, Languages } from "src/typegoose";
 
 interface Query {
-  locale: string;
+  locale: Languages;
 }
 
 interface Result {
@@ -18,16 +16,19 @@ interface Result {
   titreInformatif: string;
   titreMarque: string;
   nbMots: number;
-  created_at: number;
-  typeContenu: "dispositif" | "demarche";
+  created_at: Date;
+  type: "dispositif" | "demarche";
   lastTradUpdatedAt: number | null;
   avancementTrad: number;
   avancementExpert: number;
   tradStatus: string;
 }
 
-export const getDispositifsWithTranslationAvancement = async (req: RequestFromClient<Query>, res: Res) => {
-  logger.error("TODO REFACTOR");
+export const getDispositifsWithTranslationAvancement = async (
+  req: RequestFromClient<Query>,
+  res: Res
+  // res: Response<Result[]>
+) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -39,11 +40,10 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
     logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
 
     const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
       nbMots: 1,
       created_at: 1,
-      typeContenu: 1
+      type: 1,
+      translations: 1
     };
     const activeDispositifs = await getActiveContents(neededFields);
 
@@ -63,18 +63,17 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
       const correspondingTrads = traductions.filter(
         (trad) => trad.articleId && dispositif._id && trad.articleId.toString() === dispositif._id.toString()
       );
-      turnToLocalizedTitles(dispositif, "fr");
       const dispositifData = {
         _id: dispositif._id,
-        titreInformatif: dispositif.titreInformatif,
-        titreMarque: dispositif.titreMarque,
+        titreInformatif: dispositif.translations.fr.content.titreInformatif,
+        titreMarque: dispositif.translations.fr.content.titreMarque,
         nbMots: dispositif.nbMots,
         created_at: dispositif.created_at,
-        typeContenu: dispositif.typeContenu
+        type: dispositif.type
       };
+      console.log(dispositifData);
 
       if (correspondingTrads.length === 0) {
-        // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized FIXME
         return results.push({
           ...dispositifData,
           lastTradUpdatedAt: null,
@@ -97,7 +96,6 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
 
       const tradStatus = getTradStatus(correspondingTrads);
 
-      // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized
       return results.push({
         ...dispositifData,
         lastTradUpdatedAt,

@@ -1,28 +1,21 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 
-export interface Request {
-}
+export interface Request {}
 
-export const getWidgets = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const getWidgets = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[getWidgets] received");
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles)
+    checkIfUserIsAdmin(req.user);
 
     const widgets = await getAllWidgets();
     return res.status(200).json({
       text: "Succès",
-      data: widgets,
+      data: widgets
     });
   } catch (error) {
     logger.error("[getWidgets] error", { error: error.message });
