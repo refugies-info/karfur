@@ -1,5 +1,5 @@
-import { DispositifId, LangueId, StructureId, UserId } from "src/typegoose";
-import { Log } from "../../schema/schemaLog";
+import { Types } from "mongoose";
+import { DispositifId, LangueId, Log, StructureId, UserId } from "src/typegoose";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
@@ -26,11 +26,12 @@ export const addLog = (
   text: string,
   options?: optionsType
 ) => {
-  const log = new Log({
-    objectId: id,
+  // @ts-ignore FIXME
+  const log: Log = {
+    objectId: new Types.ObjectId(id),
     model_object: type,
     text,
     ...(options || {})
-  });
+  };
   return createLog(log);
 };

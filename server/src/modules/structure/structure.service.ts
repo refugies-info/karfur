@@ -32,7 +32,7 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: Stru
   // user is administrateur or contributeur of the structure
   const isUserRespoOrContribBoolean = isUserRespoOrContrib(fetchedStructure.membres, currentUser._id);
 
-  if (!currentUser.hasRole("Admin") && !isUserRespoOrContribBoolean) {
+  if (!currentUser.isAdmin() && !isUserRespoOrContribBoolean) {
     logger.info("[checkIfUserIsAuthorizedToModifyStructure] user not authorized", {
       id: structureId
     });

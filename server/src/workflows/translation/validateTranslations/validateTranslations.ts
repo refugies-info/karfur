@@ -64,7 +64,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
           "",
           insertedDispositif.id,
           [],
-          insertedDispositif.type,
+          insertedDispositif.typeContenu,
           body.locale,
           insertedDispositif.getDepartements(),
           false
@@ -90,7 +90,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         });
       }
 
-      if (insertedDispositif.type === "dispositif") {
+      if (insertedDispositif.typeContenu === "dispositif") {
         try {
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
@@ -108,7 +108,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         await sendPublishedTradMailToTraductors(
           traductorNotExpertIdsList,
           body.locale,
-          dispositifFromDB.type,
+          dispositifFromDB.typeContenu,
           dispositifFromDB.translations.fr.content.titreInformatif,
           dispositifFromDB.translations.fr.content.titreMarque,
           dispositifFromDB._id

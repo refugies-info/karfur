@@ -1,4 +1,4 @@
-import { Dispositif, DispositifId, StructureId, UserId } from "src/typegoose";
+import { Dispositif, DispositifId, Id, StructureId, UserId } from "src/typegoose";
 import logger from "../../../logger";
 import { addLog } from "../../../modules/logs/logs.service";
 
@@ -15,7 +15,7 @@ export const log = async (
         "Structure",
         "Fiche supprimée de cette structure et nouvelle structure attribuée : {{dynamic}}",
         {
-          dynamicId: sponsorId,
+          dynamicId: new Id(sponsorId),
           model_dynamic: "Structure",
           link: {
             id: dispositifId,

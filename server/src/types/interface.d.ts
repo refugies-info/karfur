@@ -1,7 +1,8 @@
 import { Types } from "mongoose";
 import { Moment } from "moment";
-import { NeedId, Role, ThemeId, User } from "src/typegoose";
+import { Languages, NeedId, Role, ThemeId, User } from "src/typegoose";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
+import { DocumentType } from "@typegoose/typegoose";
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -11,15 +12,20 @@ declare global {
       fromSite?: boolean; // TODO: delete
       fromPostman?: boolean; // TODO: delete
       roles?: Role[]; // TODO: delete? (get it in the workflow)
-      user?: User;
+      user?: DocumentType<User>;
       userId?: typeof User._id;
     }
   }
 }
 
-export interface Request extends ExpressRequest { }
-export interface Res extends ExpressResponse { }
+/**
+ *  @see https://stackoverflow.com/questions/55479658/how-to-create-a-type-excluding-instance-methods-from-a-class-in-typescript
+ */
+export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]>;
 
+export interface Request extends ExpressRequest {}
+export interface Res extends ExpressResponse {}
+// export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";
 interface APIResponse {
@@ -41,8 +47,9 @@ export interface RequestFromClient<Query> extends Request {
   body?: {
     query: Query;
     sort: Record<string, any>;
-    populate?: string;
-    locale?: string;
+    populate?: string | any;
+    locale?: Languages;
+    limit?: number;
   };
   query?: Query;
 }
@@ -90,7 +97,7 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
-export interface TranslatedText extends Record<string, string> { }
+export interface TranslatedText extends Record<string, string> {}
 
 export interface ThemeColors {
   color100: string;

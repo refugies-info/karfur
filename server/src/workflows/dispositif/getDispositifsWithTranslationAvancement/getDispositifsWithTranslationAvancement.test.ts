@@ -11,8 +11,8 @@ jest.mock("../../../modules/traductions/traductions.repository", () => ({
   getTraductionsByLanguage: jest.fn()
 }));
 
-jest.mock("../../../typegoose/Dispositif", () => ({
-  DispositifModel: {
+jest.mock("../../../schema/schemaDispositif", () => ({
+  Dispositif: {
     find: jest.fn()
   }
 }));
@@ -21,7 +21,7 @@ jest.mock("../../../schema/schemaTraduction", () => ({
     find: jest.fn()
   }
 }));
-jest.mock("src/typegoose/Error", () => ({
+jest.mock("../../../schema/schemaError", () => ({
   Error: {
     save: jest.fn()
   }

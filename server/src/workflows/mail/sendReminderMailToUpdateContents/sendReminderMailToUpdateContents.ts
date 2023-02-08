@@ -54,7 +54,7 @@ export const sendReminderMailToUpdateContents = async (req: RequestFromClient<{ 
                           dispositif.titreInformatif,
                           user._id,
                           dispositif._id,
-                          "https://refugies.info/" + dispositif.type + "/" + dispositif._id
+                          "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id
                         );
 
                         await updateDispositifInDB(dispositif._id, {

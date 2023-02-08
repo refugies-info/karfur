@@ -38,7 +38,7 @@ export const updateDispositifTagsOrNeeds = async (req: RequestFromClient<QueryUp
       }
     }
 
-    const isAdmin = req.user.hasRole("Admin");
+    const isAdmin = req.user.isAdmin();
     const newDispositif = {
       theme,
       secondaryThemes,

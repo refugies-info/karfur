@@ -75,19 +75,19 @@ export class Structure extends Base {
   @prop({ type: () => ImageSchema })
   public picture?: ImageSchema;
   @prop({ default: [], type: () => [String] })
-  public structureTypes?: String[];
+  public structureTypes?: string[];
   @prop({ default: [], type: () => [String] })
-  public websites?: String[];
+  public websites?: string[];
   @prop()
-  public facebook?: String;
+  public facebook?: string;
   @prop()
-  public linkedin?: String;
+  public linkedin?: string;
   @prop()
-  public twitter?: String;
+  public twitter?: string;
   @prop({ default: [], type: () => [String] })
   public activities?: String[];
   @prop({ default: [], type: () => [String] })
-  public departments?: String[];
+  public departments?: string[];
   @prop({ default: [], type: () => [String] })
   public phonesPublic?: String[];
   @prop({ default: [], type: () => [String] })

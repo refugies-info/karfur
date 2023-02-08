@@ -7,60 +7,43 @@ import {
   AvailableLanguageI18nCode
 } from "types/interface";
 
-const filterDataExpert = (
-  data: IDispositifTranslation[],
-  isExpert: boolean
-) => {
+const filterDataExpert = (data: IDispositifTranslation[], isExpert: boolean) => {
   if (isExpert) return data;
-  return data.filter((trad) =>
-    ["À traduire", "Validée"].includes(trad.tradStatus)
-  );
+  return data.filter((trad) => ["À traduire", "Validée"].includes(trad.tradStatus));
 };
 
 const getTradAmount = (data: IDispositifTranslation[]) => {
-  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir")
-    .length;
-  const nbATraduire = data.filter((trad) => trad.tradStatus === "À traduire")
-    .length;
-  const nbAValider = data.filter((trad) => trad.tradStatus === "En attente")
-    .length;
-  const nbPubliees = data.filter((trad) => trad.tradStatus === "Validée")
-    .length;
+  const nbARevoir = data.filter((trad) => trad.tradStatus === "À revoir").length;
+  const nbATraduire = data.filter((trad) => trad.tradStatus === "À traduire").length;
+  const nbAValider = data.filter((trad) => trad.tradStatus === "En attente").length;
+  const nbPubliees = data.filter((trad) => trad.tradStatus === "Validée").length;
 
   return {
     nbARevoir,
     nbATraduire,
     nbAValider,
-    nbPubliees,
+    nbPubliees
   };
 };
 
 const getNbTradByTypeContenu = (data: IDispositifTranslation[]) => {
-  const nbDispositifs = data.filter((trad) => trad.typeContenu === "dispositif")
-    .length;
-  const nbDemarches = data.filter((trad) => trad.typeContenu === "demarche")
-    .length;
+  const nbDispositifs = data.filter((trad) => trad.type === "dispositif").length;
+  const nbDemarches = data.filter((trad) => trad.type === "demarche").length;
 
   return {
     nbDispositifs,
-    nbDemarches,
+    nbDemarches
   };
 };
 
-const filterDataOnStatus = (
-  data: IDispositifTranslation[],
-  filterStatus: TranslationStatus | "all"
-) => {
+const filterDataOnStatus = (data: IDispositifTranslation[], filterStatus: TranslationStatus | "all") => {
   if (filterStatus === "all") return data;
   return data.filter((trad) => trad.tradStatus === filterStatus);
 };
 
-const filterDataOnTypeContenu = (
-  data: IDispositifTranslation[],
-  typeContenuFilter: ITypeContenu | "all"
-) => {
+const filterDataOnTypeContenu = (data: IDispositifTranslation[], typeContenuFilter: ITypeContenu | "all") => {
   if (typeContenuFilter === "all") return data;
-  return data.filter((trad) => trad.typeContenu === typeContenuFilter);
+  return data.filter((trad) => trad.type === typeContenuFilter);
 };
 
 const filterDataBySearch = (data: IDispositifTranslation[], search: string) => {
@@ -100,23 +83,13 @@ export const filterData = (
 
   const dataFilteredBySearch = filterDataBySearch(dataFilteredExpert, search);
 
-  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(
-    dataFilteredBySearch
-  );
+  const { nbARevoir, nbATraduire, nbAValider, nbPubliees } = getTradAmount(dataFilteredBySearch);
 
-  const dataFilteredStatus = filterDataOnStatus(
-    dataFilteredBySearch,
-    filterStatus
-  );
+  const dataFilteredStatus = filterDataOnStatus(dataFilteredBySearch, filterStatus);
 
-  const { nbDemarches, nbDispositifs } = getNbTradByTypeContenu(
-    dataFilteredStatus
-  );
+  const { nbDemarches, nbDispositifs } = getNbTradByTypeContenu(dataFilteredStatus);
 
-  const dataFilteredOnTypeContenu = filterDataOnTypeContenu(
-    dataFilteredStatus,
-    typeContenuFilter
-  );
+  const dataFilteredOnTypeContenu = filterDataOnTypeContenu(dataFilteredStatus, typeContenuFilter);
 
   return {
     dataToDisplay: dataFilteredOnTypeContenu,
@@ -125,7 +98,7 @@ export const filterData = (
     nbAValider,
     nbPubliees,
     nbDispositifs,
-    nbDemarches,
+    nbDemarches
   };
 };
 
@@ -147,22 +120,14 @@ export const sortData = (
     // @ts-ignore
     const valueB = b[sortedHeader.order];
     if (
-      sortedHeader.order === "typeContenu" ||
+      sortedHeader.order === "type" ||
       sortedHeader.order === "titreInformatif" ||
       sortedHeader.order === "tradStatus"
     ) {
-      const valueAWithoutAccent = valueA
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+      const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-      const valueBWithoutAccent = valueB
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-      return compare(
-        valueAWithoutAccent,
-        valueBWithoutAccent,
-        sortedHeader.sens
-      );
+      const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      return compare(valueAWithoutAccent, valueBWithoutAccent, sortedHeader.sens);
     }
 
     return compare(valueA, valueB, sortedHeader.sens);
@@ -171,20 +136,19 @@ export const sortData = (
 };
 
 const isNotTranslated = (need: Need, ln: AvailableLanguageI18nCode) => {
-  return !need[ln]?.text || ( // no title translated
-    need.fr.subtitle && !need[ln]?.subtitle) // or no subtitle if defined in french
-}
+  return (
+    !need[ln]?.text || // no title translated
+    (need.fr.subtitle && !need[ln]?.subtitle)
+  ); // or no subtitle if defined in french
+};
 
 const isTranslationOutdated = (need: Need, ln: AvailableLanguageI18nCode) => {
   const translationUpdatedAt = need[ln]?.updatedAt;
   if (!need.fr.updatedAt || !translationUpdatedAt) return true;
-  return need.fr.updatedAt > translationUpdatedAt
-}
+  return need.fr.updatedAt > translationUpdatedAt;
+};
 
-export const getStatusColorAndText = (
-  need: Need,
-  langueI18nCode: AvailableLanguageI18nCode
-) => {
+export const getStatusColorAndText = (need: Need, langueI18nCode: AvailableLanguageI18nCode) => {
   if (!langueI18nCode) {
     return { statusColor: colors.darkGrey, statusText: "Erreur" };
   }

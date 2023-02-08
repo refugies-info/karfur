@@ -1,43 +1,37 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { createWidget } from "../../../modules/widgets/widgets.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { Widget } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "../../../schema/schemaTheme";
-
+import { Theme, Widget } from "src/typegoose";
 export interface Request {
   name: string;
-  themes: ThemeDoc[];
+  themes: Theme[];
   typeContenu: ("dispositif" | "demarche")[];
   languages: string[];
   department: string;
 }
 
-export const postWidgets = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const postWidgets = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[postWidgets] received", req.body);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     if (
       !req.body.name ||
-      !req.body.themes || req.body.themes.length === 0 ||
-      !req.body.typeContenu || req.body.typeContenu.length === 0
-    ) throw new Error("INVALID_REQUEST");
+      !req.body.themes ||
+      req.body.themes.length === 0 ||
+      !req.body.typeContenu ||
+      req.body.typeContenu.length === 0
+    )
+      throw new Error("INVALID_REQUEST");
 
-    const widget = new Widget({
-      name: req.body.name,
-      themes: req.body.themes.map(t => t._id),
-      typeContenu: req.body.typeContenu,
-      author: req.userId
-    });
+    const widget = new Widget();
+    widget.name = req.body.name;
+    widget.themes = req.body.themes.map((t) => t._id);
+    widget.typeContenu = req.body.typeContenu;
+    widget.author = req.userId;
 
     if (req.body.languages?.length) {
       widget.languages = req.body.languages;
@@ -49,7 +43,7 @@ export const postWidgets = async (
 
     return res.status(200).json({
       text: "Succès",
-      data: dbWidget,
+      data: dbWidget
     });
   } catch (error) {
     logger.error("[postWidgets] error", { error: error.message });

@@ -18,7 +18,6 @@ import { exportDispositifsGeolocalisation } from "../workflows/dispositif/export
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
-import { getNbContents } from "../workflows/dispositif/getNbContents";
 import getStatistics from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
 
@@ -31,6 +30,7 @@ router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif)
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
 router.post("/get_dispositif", dispositif.get_dispositif);
 router.post("/count_dispositifs", dispositif.count_dispositifs);
+// @ts-ignore FIXME
 router.post("/getDispositifs", getDispositifs);
 router.get("/getAllDispositifs", getAllDispositifs);
 // @ts-ignore FIXME
@@ -52,7 +52,6 @@ router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 router.get("/getContentById", getContentById);
-router.get("/getNbContents", getNbContents);
 router.get("/statistics", getStatistics);
 // @ts-ignore FIXME
 router.patch("/:id", checkToken.check, updateDispositif);

@@ -1,33 +1,35 @@
-// @ts-nocheck FIXME
-import { RequestFromClient, Res } from "../../../types/interface";
+import { RequestFromClient, Res, Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
-import { turnToLocalizedTitles } from "../../../controllers/dispositif/functions";
 import { getTradStatus } from "../../../modules/traductions/traductions.service";
 import { availableLanguages } from "../../../libs/getFormattedLocale";
-import { DispositifId } from "src/typegoose";
+import { DispositifId, Languages } from "src/typegoose";
 
 interface Query {
-  locale: string;
+  locale: Languages;
 }
 
-interface Result {
+interface GetDispositifsWithTranslationAvancementResponse {
   _id: DispositifId;
   titreInformatif: string;
   titreMarque: string;
   nbMots: number;
-  created_at: number;
-  typeContenu: "dispositif" | "demarche";
+  created_at: Date;
+  type: "dispositif" | "demarche";
   lastTradUpdatedAt: number | null;
   avancementTrad: number;
   avancementExpert: number;
   tradStatus: string;
 }
 
-export const getDispositifsWithTranslationAvancement = async (req: RequestFromClient<Query>, res: Res) => {
-  logger.error("TODO REFACTOR");
+export const getDispositifsWithTranslationAvancement = async (
+  req: RequestFromClient<Query>,
+  res: Res
+  // res: Response<Result[]>
+  // res: Response<GetDispositifsWithTranslationAvancementResponse[]>
+) => {
   try {
     checkRequestIsFromSite(req.fromSite);
 
@@ -38,43 +40,38 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
     const locale = req.query.locale;
     logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
 
-    const neededFields = {
-      titreInformatif: 1,
-      titreMarque: 1,
-      nbMots: 1,
+    const activeDispositifs = await getActiveContents({
       created_at: 1,
+      nbMots: 1,
+      translations: 1,
       typeContenu: 1
-    };
-    const activeDispositifs = await getActiveContents(neededFields);
+    });
 
-    const traductionFields = {
-      articleId: 1,
+    const traductions = await getTraductionsByLanguage(locale, {
       avancement: 1,
-      status: 1,
+      dispositifId: 1,
+      translated: 1,
       updatedAt: 1,
-      userId: 1
-    };
+      userId: 1,
+      type: 1
+    });
 
-    const traductions = await getTraductionsByLanguage(locale, traductionFields);
-
-    let results: Result[] = [];
+    let results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
     activeDispositifs.forEach((dispositif) => {
       const correspondingTrads = traductions.filter(
-        (trad) => trad.articleId && dispositif._id && trad.articleId.toString() === dispositif._id.toString()
+        (trad) => trad.dispositifId && dispositif._id && trad.dispositifId.toString() === dispositif._id.toString()
       );
-      turnToLocalizedTitles(dispositif, "fr");
       const dispositifData = {
         _id: dispositif._id,
-        titreInformatif: dispositif.titreInformatif,
-        titreMarque: dispositif.titreMarque,
+        titreInformatif: dispositif.translations.fr.content.titreInformatif,
+        titreMarque: dispositif.translations.fr.content.titreMarque,
         nbMots: dispositif.nbMots,
         created_at: dispositif.created_at,
-        typeContenu: dispositif.typeContenu
+        type: dispositif.typeContenu
       };
 
       if (correspondingTrads.length === 0) {
-        // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized FIXME
         return results.push({
           ...dispositifData,
           lastTradUpdatedAt: null,
@@ -83,21 +80,20 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
           tradStatus: "À traduire"
         });
       }
-      const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt || 0));
+      const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0));
       const avancementTrad = Math.max(0, ...correspondingTrads.map((z) => z.avancement || -1));
 
       const avancementExpert = Math.max(
         0,
         ...correspondingTrads
           .filter((y) => {
-            return y.userId.toString() === req.userId.toString();
+            return y.type === "validation";
           })
           .map((z) => z.avancement || -1)
       );
 
-      const tradStatus = getTradStatus(correspondingTrads);
+      const tradStatus = getTradStatus(dispositif, correspondingTrads);
 
-      // @ts-ignore : titreInformatif and titreMarque are string after turnToLocalized
       return results.push({
         ...dispositifData,
         lastTradUpdatedAt,
@@ -111,6 +107,7 @@ export const getDispositifsWithTranslationAvancement = async (req: RequestFromCl
 
     res.status(200).json({ data: results });
   } catch (error) {
+    console.error(error);
     logger.error("[getDispositifsWithTranslationAvancement] error", {
       error: error.message
     });

@@ -1,9 +1,21 @@
-import { Res } from "../../../types/interface";
+import { Response } from "../../../types/interface";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../modules/structure/structure.repository";
-import { StructureSimplifiedWithLoc } from "../../../schema/schemaStructure";
+import { ImageSchema, StructureId } from "src/typegoose";
 
-export const getActiveStructures = async (req: {}, res: Res) => {
+interface ActiveStructure {
+  _id: StructureId;
+  nom: string;
+  acronyme?: string;
+  picture?: ImageSchema;
+  structureTypes?: string[];
+  departments?: string[];
+  disposAssociesLocalisation?: string[];
+}
+
+export type GetActiveStructuresResponse = ActiveStructure[];
+
+export const getActiveStructures = async (req: {}, res: Response<GetActiveStructuresResponse>) => {
   try {
     logger.info("[getActiveStructures] get structures ");
     const structures = await getStructuresFromDB(
@@ -19,20 +31,18 @@ export const getActiveStructures = async (req: {}, res: Res) => {
     );
     logger.info("[getActiveStructures] structures fetched");
 
-    let newStructures: StructureSimplifiedWithLoc[] = [];
+    let newStructures: ActiveStructure[] = [];
     structures.map((item) => {
-      let newStructure = {
+      let newStructure: ActiveStructure = {
         _id: item._id,
         nom: item.nom,
         acronyme: item.acronyme,
         picture: item.picture,
         structureTypes: item.structureTypes,
         departments: item.departments,
-        //@ts-ignore
         disposAssociesLocalisation: []
       };
       if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
-        //@ts-ignore
         item.dispositifsAssocies.map((el: any) => {
           if (el.contenu && el.contenu[1] && el.contenu[1].children && el.contenu[1].children.length) {
             const geolocInfocard = el.contenu[1].children.find((infocard: any) => infocard.title === "Zone d'action");
@@ -46,7 +56,6 @@ export const getActiveStructures = async (req: {}, res: Res) => {
           }
         });
       }
-      //@ts-ignore
       newStructures.push(newStructure);
     });
 

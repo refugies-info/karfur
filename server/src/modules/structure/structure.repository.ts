@@ -6,28 +6,23 @@ export const getStructureFromDB = async (
   id: StructureId,
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
-): Promise<Structure> => {
-  try {
-    if (withDispositifsAssocies) {
-      if (fields === "all") {
-        return await StructureModel.findOne({ _id: id }).populate({
-          path: "dispositifsAssocies",
-          populate: { path: "theme secondaryThemes mainSponsor" }
-        });
-      }
-      return await StructureModel.findOne({ _id: id }, fields).populate({
-        path: "dispositifsAssocies",
-        populate: { path: "theme secondaryThemes mainSponsor" }
-      });
-    }
-    if (fields === "all") {
-      return await StructureModel.findOne({ _id: id });
-    }
-    return await StructureModel.findOne({ _id: id }, fields);
-  } catch (e) {
-    logger.error("[getStructureFromDB] error", e);
-  }
-};
+): Promise<Structure> =>
+  StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
+    .then((structure) =>
+      withDispositifsAssocies
+        ? structure.populate({
+            path: "dispositifsAssocies",
+            populate: { path: "theme secondaryThemes mainSponsor" }
+          })
+        : structure
+    )
+    .then((structure) => structure.toObject() as Structure)
+    .catch((e) => {
+      logger.error("[getStructureFromDB] error", e);
+      throw e;
+    });
+
+export const getStructure = getStructureFromDB;
 
 type Query = { status: "Actif" } | {};
 type NeededFields =

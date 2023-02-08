@@ -1,4 +1,5 @@
 import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { Langue } from "./Langue";
 import { Structure } from "./Structure";
@@ -23,7 +24,7 @@ class LogLink {
 }
 
 @modelOptions({ schemaOptions: { collection: "logs", timestamps: { createdAt: "created_at" } } })
-export class Log {
+export class Log extends Base {
   @prop({ required: true, refPath: "model_object" })
   public objectId!: Ref<User | Dispositif | Structure>;
 
@@ -46,8 +47,10 @@ export class Log {
       return !!this.dynamicId;
     }
   })
-  public model_dynamic: "User" | "Dispositif" | "Structure" | "Langue";
+  public model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
 
   @prop({ type: () => LogLink })
   public link?: LogLink;
 }
+
+export type LogId = Log["_id"];

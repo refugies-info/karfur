@@ -6,7 +6,7 @@ import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
 import { Langue, LangueId } from "./Langue";
-import { Log } from "./Log";
+import { Log, LogId } from "./Log";
 import { MailEvent } from "./MailEvent";
 import { Need, NeedId } from "./Need";
 import { Notification } from "./Notification";
@@ -15,7 +15,7 @@ import { Structure, StructureId } from "./Structure";
 import { Theme, ThemeId } from "./Theme";
 import { Traductions, TraductionId } from "./Traductions";
 import { User, UserId } from "./User";
-import { Widget } from "./Widget";
+import { Widget, WidgetId } from "./Widget";
 
 export const AdminOptionsModel = getModelForClass(AdminOptions);
 export const AppUserModel = getModelForClass(AppUser);
@@ -46,6 +46,7 @@ export {
   Langue,
   LangueId,
   Log,
+  LogId,
   MailEvent,
   Need,
   NeedId,
@@ -60,7 +61,8 @@ export {
   TraductionId,
   User,
   UserId,
-  Widget
+  Widget,
+  WidgetId
 };
 
 export * from "./generics";

@@ -1,14 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { RoleModel, UserId, UserModel } from "src/typegoose";
-import { Config } from "src/types/interface";
 
 import jwt from "jwt-simple";
 import logger from "../../logger";
-
-let config: Config = {};
-if (process.env.NODE_ENV === "dev") {
-  config = require("../../config/config");
-}
 
 export interface CustomRequest extends Request {
   userId?: UserId;
@@ -23,13 +17,13 @@ const check = (req: Request, res: Response, next: NextFunction) => {
   if (!token || token === null || token === undefined || token === "undefined")
     return res.status(403).send({ auth: false, message: "No token found." });
 
-  let decoded = jwt.decode(token, process.env.NODE_ENV === "dev" ? config.secret : process.env.SECRET);
+  let decoded = jwt.decode(token, process.env.SECRET);
 
   if (!decoded || decoded === null || decoded === undefined || decoded === "undefined")
     return res.status(404).send({ auth: false, message: "No user found." });
 
   UserModel.findById(decoded._id)
-    .populate("roles")
+    .populate("roles selectedLanguages")
     .then((user) => {
       if (!user) return res.status(404).send({ auth: false, message: "No user found." });
       req.userId = user._id;
@@ -49,7 +43,7 @@ const getId = (req: Request, res: Response, next: NextFunction) => {
 
   req.userId = undefined;
   if (token !== null && token !== undefined && token !== "undefined") {
-    let decoded = jwt.decode(token, process.env.NODE_ENV === "dev" ? config.secret : process.env.SECRET);
+    let decoded = jwt.decode(token, process.env.SECRET);
     if (decoded) {
       UserModel.findById(decoded._id)
         .populate("roles")

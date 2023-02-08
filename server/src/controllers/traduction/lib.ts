@@ -1,12 +1,10 @@
-import { IndicatorModel, Traductions, TraductionsModel, UserModel } from "src/typegoose";
-import { Request, Res } from "src/types/interface";
+import { getDispositifById } from "src/modules/dispositif/dispositif.repository";
+import { DispositifId, Id, IndicatorModel, Languages, Traductions, TraductionsModel } from "src/typegoose";
+import { TranslationContent } from "src/typegoose/Dispositif";
+import { Request, RequestFromClient, RequestFromClientWithBody, Res, Response } from "src/types/interface";
 
-var sanitizeHtml = require("sanitize-html");
-var himalaya = require("himalaya");
-var h2p = require("html2plaintext");
 const axios = require("axios");
-const sanitizeOptions = require("../../libs/data");
-const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
+const { turnHTMLtoJSON } = require("../dispositif/functions");
 const mongoose = require("mongoose");
 
 const logger = require("../../logger");
@@ -33,136 +31,132 @@ const _errorHandler = (error: Error | number, res: Res) => {
   }
 };
 
-//we add a translation document, everytime a title or paragraph is translated
+interface AddTraductionForReviewRequest {
+  locale: Languages;
+  timeSpent: number;
+  dispositifId: DispositifId;
+  translated: Partial<TranslationContent>;
+}
 
-async function add_tradForReview(req: Request, res: Res) {
+//we add a translation document, everytime a title or paragraph is translated
+async function add_tradForReview(req: RequestFromClientWithBody<AddTraductionForReviewRequest>, res: Res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
-  if (!req.body || !req.body.langueCible || !req.body.translatedText) {
+  if (!req.body || !req.body.locale) {
     return res.status(400).json({ text: "Requête invalide" });
   }
   let traduction = req.body;
-  const { wordsCount, timeSpent, langueCible, articleId } = traduction;
+  const { timeSpent, locale, dispositifId, translated } = traduction;
+
+  const dispositif = await getDispositifById(dispositifId);
+
+  const _traduction = new Traductions();
+  _traduction.dispositifId = new Id(dispositifId);
+  _traduction.language = locale;
+  _traduction.timeSpent = timeSpent;
+  _traduction.translated = translated;
+  _traduction.type = req.user.isExpert() ? "validation" : "suggestion";
+  _traduction.userId = req.user._id;
+
+  _traduction.avancement = Traductions.computeAvancement(dispositif, _traduction); // TODO
+  if (req.user.isExpert()) _traduction.validatorId = req.user._id;
+
+  const wordsCount = _traduction.countWords();
+
   //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
   await IndicatorModel.create({
     userId: req.userId,
-    dispositifId: articleId,
-    language: langueCible,
+    dispositifId,
+    language: locale,
     timeSpent,
     wordsCount
   });
 
-  //we assign a status depending on wheter the translator is expert or not, and whether the translation has been completed at 100% or not
-  if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
-    traduction.status = "En attente";
-    await TraductionsModel.updateMany(
-      {
-        articleId: traduction.articleId,
-        langueCible: traduction.langueCible
-      },
-      { status: "En attente" },
-      { upsert: false }
-    );
-  }
-  if (!traduction.isExpert) {
-    if (traduction.avancement < 1 && traduction.status !== "À revoir") {
-      traduction.status = "À traduire";
-    }
-  }
-  let nbMotsTitres = 0;
-  let nbMotsBody = 0;
+  // // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
+  // if (traduction._id) {
+  //   promise = TraductionsModel.findOneAndUpdate({ _id: traduction._id }, traduction, {
+  //     upsert: true,
+  //     new: true
+  //   });
+  // } else {
+  //   promise = TraductionsModel.create(traduction);
+  // }
 
-  JSON.parse(JSON.stringify(traduction.translatedText));
-  //On transforme le html en JSON après l'avoir nettoyé
-  if (traduction.translatedText.contenu) {
-    //le cas des dispositifs
-    traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
-  } else {
-    let html = traduction.translatedText.body || traduction.translatedText;
-    let safeHTML = sanitizeHtml(html, sanitizeOptions); //On nettoie le html
-    if (traduction.initialText.body && traduction.initialText.body === h2p(traduction.initialText.body)) {
-      //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
-      safeHTML = h2p(html);
-    }
+  /* TODO
+   * - Ajouter la "traductionFaites" au user (? faire une jointure plutôt)
+   *    - Pourquoi cela existe ??
+   * - Ajouter le rôle traducteur ?!? => à faire au moment où il ajoute une langue plutôt non ? Encore mieux => la calculer
+   *
+   */
 
-    if (!traduction.isStructure) {
-      let jsonBody = himalaya.parse(safeHTML, {
-        ...himalaya.parseDefaults,
-        includePositions: true
-      });
-      traduction.translatedText = traduction.translatedText.body
-        ? { ...traduction.translatedText, body: jsonBody }
-        : jsonBody;
-    } else {
-      traduction = {
-        ...traduction,
-        jsonId: traduction.articleId,
-        articleId: traduction.id
-      };
-      delete traduction.id;
-    }
-    nbMotsBody = h2p(safeHTML).split(/\s+/).length || 0;
+  return res.status(200).json({ text: "TODO finish implementation", data: _traduction });
+  // //we assign a status depending on wheter the translator is expert or not, and whether the translation has been completed at 100% or not
+  // if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
+  //   traduction.status = "En attente";
+  //   await TraductionsModel.updateMany(
+  //     {
+  //       articleId: dispositifId,
+  //       locale: traduction.locale
+  //     },
+  //     { status: "En attente" },
+  //     { upsert: false }
+  //   );
+  // }
+  // if (!req.user.isExpert()) {
+  //   if (traduction.avancement < 1 && traduction.status !== "À revoir") {
+  //     traduction.status = "À traduire";
+  //   }
+  // }
 
-    if (traduction.initialText && traduction.initialText.body && !traduction.isStructure) {
-      traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, sanitizeOptions), {
-        ...himalaya.parseDefaults,
-        includePositions: true
-      });
-    }
-    if (traduction.initialText && traduction.initialText.title) {
-      traduction.initialText.title = h2p(traduction.initialText.title);
-    }
-    if (traduction.translatedText.title) {
-      traduction.translatedText.title = h2p(traduction.translatedText.title);
-      nbMotsTitres = traduction.translatedText.title.split(/\s+/).length || 0;
-    }
-    traduction.nbMots = nbMotsBody + nbMotsTitres;
-  }
-
-  traduction.userId = req.userId;
-  let promise;
-  // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
-  if (traduction._id) {
-    promise = TraductionsModel.findOneAndUpdate({ _id: traduction._id }, traduction, {
-      upsert: true,
-      new: true
-    });
-  } else {
-    promise = TraductionsModel.create(traduction);
-  }
-  promise
-    .then(async (data) => {
-      try {
-        if (req.userId) {
-          await UserModel.findByIdAndUpdate(
-            { _id: req.userId },
-            {
-              $addToSet: {
-                traductionsFaites: data._id,
-                roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})._id
-              }
-            },
-            { new: true }
-          );
-        }
-      } catch (e) {
-        logger.error("[addTradForReview] error", e);
-      }
-      res.status(200).json({
-        text: "Succès",
-        data: data
-      });
-      //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
-    })
-    .catch(() => {
-      res.status(500).json({ text: "Erreur interne" });
-    });
+  // let promise;
+  // // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
+  // if (traduction._id) {
+  //   promise = TraductionsModel.findOneAndUpdate({ _id: traduction._id }, traduction, {
+  //     upsert: true,
+  //     new: true
+  //   });
+  // } else {
+  //   promise = TraductionsModel.create(traduction);
+  // }
+  // promise
+  //   .then(async (data) => {
+  //     try {
+  //       if (req.userId) {
+  //         await UserModel.findByIdAndUpdate(
+  //           { _id: req.userId },
+  //           {
+  //             $addToSet: {
+  //               traductionsFaites: data._id,
+  //               roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})._id
+  //             }
+  //           },
+  //           { new: true }
+  //         );
+  //       }
+  //     } catch (e) {
+  //       logger.error("[addTradForReview] error", e);
+  //     }
+  //     res.status(200).json({
+  //       text: "Succès",
+  //       data: data
+  //     });
+  //     //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
+  //   })
+  //   .catch(() => {
+  //     res.status(500).json({ text: "Erreur interne" });
+  //   });
 }
 
+interface GetTraductionForReviewRequest {}
+type GetTraductionForReviewResponse = Traductions[];
+
 //We retrieve the list of translations
-function get_tradForReview(req: Request, res: Res) {
-  let { query, sort, populate, random, locale } = req.body;
+function get_tradForReview(
+  req: RequestFromClient<GetTraductionForReviewRequest>,
+  res: Response<GetTraductionForReviewResponse>
+) {
+  let { query, sort, populate } = req.body;
   if (!req.fromSite) {
     //On n'autorise pas les populate en API externe
     populate = "";
@@ -173,36 +167,11 @@ function get_tradForReview(req: Request, res: Res) {
   } else {
     populate = "";
   }
-  if (query.articleId && typeof query.articleId === "string" && query.articleId.includes("struct_")) {
-    res.status(404).json({ text: "Pas de données", data: [] });
-    return false;
-  }
 
-  let promise;
-  if (random) {
-    promise = TraductionsModel.aggregate([
-      {
-        $match: {
-          status: "En attente",
-          type: "string",
-          langueCible: locale,
-          avancement: 1
-        }
-      },
-      { $sample: { size: 1 } }
-    ]);
-  } else {
-    promise = TraductionsModel.find(query).sort(sort).populate(populate);
-  }
-
-  promise
+  TraductionsModel.find(query)
+    .sort(sort)
+    .populate(populate)
     .then((results) => {
-      [].forEach.call(results, (result: Traductions) => {
-        if (result && result.type === "dispositif" && result.translatedText) {
-          // @ts-ignore FIXME
-          turnJSONtoHTML(result.translatedText.contenu);
-        }
-      });
       res.status(200).json({
         text: "Succès",
         data: results
@@ -220,7 +189,7 @@ function get_tradForReview(req: Request, res: Res) {
 async function update_tradForReview(req: Request, res: Res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!(req.user.hasRole("ExpertTrad") || req.user.hasRole("Admin") || req.user.hasRole("Trad"))) {
+  } else if (!(req.user.hasRole("ExpertTrad") || req.user.isAdmin() || req.user.hasRole("Trad"))) {
     return res.status(400).json({ text: "Requête invalide" });
   }
   let translation = req.body;
@@ -372,7 +341,7 @@ async function delete_trads(req: Request, res: Res) {
       return res.status(405).json({ text: "Requête bloquée par API" });
     } else if (!req.body) {
       return res.status(400).json({ text: "Requête invalide" });
-    } else if (!req.user.hasRole("Admin")) {
+    } else if (!req.user.isAdmin()) {
       logger.info("[delete_trads] user in not admin", { user: req.user.roles });
       return res.status(400).json({ text: "Requête invalide" });
     }
