@@ -6,21 +6,22 @@ export const getDispositifsFromDB = async (needFields: Object): Promise<Disposit
     .populate("lastModificationAuthor publishedAtAuthor", "username");
 
 type DispositifKeys = keyof Dispositif;
+type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
 export const getDispositifArray = async (
   query: any,
-  extraFields: Partial<Record<DispositifKeys, number>> = {},
+  extraFields: DispositifFieldsRequest = {},
   populate: string = "",
   limit: number = 0,
   sort: any = {}
 ): Promise<Dispositif[]> => {
-  const neededFields: Partial<Record<DispositifKeys, number>> = {
+  const neededFields: DispositifFieldsRequest = {
     translations: 1,
     theme: 1,
     secondaryThemes: 1,
     created_at: 1,
     publishedAt: 1,
-    type: 1,
+    typeContenu: 1,
     // avancement: 1,
     status: 1,
     nbMots: 1,
@@ -76,16 +77,16 @@ export const modifyReadSuggestionInDispositif = async (dispositifId: DispositifI
 
 export const getDispositifById = async (
   id: DispositifId,
-  neededFields: Record<string, number>,
+  neededFields: DispositifFieldsRequest,
   populate: string = ""
 ) => await DispositifModel.findOne({ _id: id }, neededFields).populate(populate);
 
-export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: Record<string, number>) =>
+export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
 
 export const getDispositifByIdWithMainSponsor = async (
   id: DispositifId,
-  neededFields: Record<string, number> | "all"
+  neededFields: DispositifFieldsRequest | "all"
 ) => {
   if (neededFields === "all") {
     return await DispositifModel.findOne({ _id: id }).populate("mainSponsor theme secondaryThemes");
@@ -107,10 +108,10 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
     }
   ).populate("mainSponsor");
 
-export const getActiveContents = async (neededFields: Record<string, number>) =>
+export const getActiveContents = async (neededFields: DispositifFieldsRequest) =>
   DispositifModel.find({ status: "Actif" }, neededFields);
 
-export const getActiveContentsFiltered = async (neededFields: Record<string, number>, query: any) =>
+export const getActiveContentsFiltered = async (neededFields: DispositifFieldsRequest, query: any) =>
   await DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) => DispositifModel.findOne({ _id: id });

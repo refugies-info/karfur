@@ -18,7 +18,6 @@ import { exportDispositifsGeolocalisation } from "../workflows/dispositif/export
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById } from "../workflows/dispositif/getContentById";
-import { getNbContents } from "../workflows/dispositif/getNbContents";
 import getStatistics from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
 
@@ -53,7 +52,6 @@ router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 router.get("/getContentById", getContentById);
-router.get("/getNbContents", getNbContents);
 router.get("/statistics", getStatistics);
 // @ts-ignore FIXME
 router.patch("/:id", checkToken.check, updateDispositif);

@@ -58,7 +58,7 @@ export const updateDispositifStatus = async (req: RequestFromClient<QueryUpdate>
         dispositif.translations.fr.content.titreMarque,
         dispositif._id,
         [],
-        dispositif.type,
+        dispositif.typeContenu,
         null,
         getDispositifDepartments(dispositif),
         true

@@ -39,13 +39,12 @@ export const getDispositifsWithTranslationAvancement = async (
     const locale = req.query.locale;
     logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
 
-    const neededFields = {
+    const activeDispositifs = await getActiveContents({
       nbMots: 1,
       created_at: 1,
-      type: 1,
+      typeContenu: 1,
       translations: 1
-    };
-    const activeDispositifs = await getActiveContents(neededFields);
+    });
 
     const traductionFields = {
       articleId: 1,
@@ -69,7 +68,7 @@ export const getDispositifsWithTranslationAvancement = async (
         titreMarque: dispositif.translations.fr.content.titreMarque,
         nbMots: dispositif.nbMots,
         created_at: dispositif.created_at,
-        type: dispositif.type
+        type: dispositif.typeContenu
       };
       console.log(dispositifData);
 

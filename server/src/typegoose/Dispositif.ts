@@ -160,7 +160,7 @@ class Poi {
 })
 export class Dispositif extends Base {
   @prop({ required: true })
-  public type: contentType;
+  public typeContenu: contentType;
   @prop({ required: true })
   public status: "Actif" | "Brouillon" | "En attente" | "En attente admin" | "En attente non prioritaire" | "Supprimé"; // TODO: clean type
   @prop()
@@ -274,11 +274,11 @@ export class Dispositif extends Base {
   }
 
   public isDispositif(): boolean {
-    return this.type === "dispositif";
+    return this.typeContenu === "dispositif";
   }
 
   public isDemarche(): boolean {
-    return this.type === "demarche";
+    return this.typeContenu === "demarche";
   }
 
   public isTranslatedIn(ln: Languages) {

@@ -66,17 +66,15 @@ export const sendNotificationsForDispositif = async (dispositifId: DispositifId,
         dispositifId,
         {
           status: 1,
-          titreMarque: 1,
+          translations: 1,
           typeContenu: 1,
-          titreInformatif: 1,
-          contenu: 1,
           theme: 1,
           notificationsSent: 1
         },
         "theme"
       );
 
-      if (!dispositif || dispositif.type !== "dispositif") {
+      if (!dispositif || dispositif.typeContenu !== "dispositif") {
         logger.error(`[sendNotificationsForDispositif] dispositif ${dispositifId} not found`);
         return;
       }
@@ -162,11 +160,9 @@ export const sendNotificationsForDemarche = async (demarcheId: DispositifId) => 
         {
           status: 1,
           typeContenu: 1,
-          titreInformatif: 1,
-          contenu: 1,
           theme: 1,
-          notificationsSent: 1,
-          avancement: 1
+          notificationsSent: 1
+          // FIXME avancement: 1
         },
         "theme"
       );

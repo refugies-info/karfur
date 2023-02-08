@@ -2,7 +2,7 @@
 import { getDispositifsWithTranslationAvancement } from "./getDispositifsWithTranslationAvancement";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "../../../modules/traductions/traductions.repository";
-import { Dispositif, Id } from "../../../typegoose";
+import { Dispositif } from "../../../typegoose";
 import { omit } from "lodash";
 
 jest.mock("../../../modules/dispositif/dispositif.repository", () => ({
@@ -67,7 +67,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
   const neededFields = {
     nbMots: 1,
     created_at: 1,
-    type: 1,
+    typeContenu: 1,
     translations: 1
   };
   const traductionFields = {
@@ -82,7 +82,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
   const content1 = {
     nbMots: 200,
     created_at: "01/01/2021",
-    type: "dispositif",
+    typeContenu: "dispositif",
     _id: "id1",
     translations: {
       fr: {
@@ -95,7 +95,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result1 = {
-    ...omit(content1, "translations"),
+    ...omit(content1, ["translations", "typeContenu"]),
+    type: content1.typeContenu,
     titreInformatif: "t1",
     titreMarque: "TM1",
     lastTradUpdatedAt: null,
@@ -108,7 +109,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
   const content2: Partial<Dispositif> = {
     nbMots: 400,
     created_at: new Date("02/02/2022"),
-    type: "demarche",
+    typeContenu: "demarche",
     _id: "id2",
     translations: {
       fr: {
@@ -121,7 +122,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result2 = {
-    ...omit(content2, "translations"),
+    ...omit(content2, ["translations", "typeContenu"]),
+    type: content2.typeContenu,
     titreInformatif: "t2",
     titreMarque: "TM2",
     lastTradUpdatedAt: 18,
@@ -142,7 +144,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
   const content3 = {
     nbMots: 400,
     created_at: "03/03/303",
-    type: "demarche",
+    typeContenu: "demarche",
     _id: "id3",
     translations: {
       fr: {
@@ -171,7 +173,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result3 = {
-    ...omit(content3, "translations"),
+    ...omit(content3, ["translations", "typeContenu"]),
+    type: content3.typeContenu,
     titreInformatif: "t3",
     titreMarque: "TM3",
     lastTradUpdatedAt: 78,
@@ -184,7 +187,7 @@ describe("getDispositifsWithTranslationAvancement", () => {
   const content4 = {
     nbMots: 400,
     created_at: "03/03/303",
-    type: "demarche",
+    typeContenu: "demarche",
     _id: "id4",
     translations: {
       fr: {
@@ -213,7 +216,8 @@ describe("getDispositifsWithTranslationAvancement", () => {
   };
 
   const result4 = {
-    ...omit(content4, "translations"),
+    ...omit(content4, ["translations", "typeContenu"]),
+    type: content4.typeContenu,
     titreInformatif: "t4",
     titreMarque: "TM4",
     lastTradUpdatedAt: 78,

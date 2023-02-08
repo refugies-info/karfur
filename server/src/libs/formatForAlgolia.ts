@@ -50,10 +50,10 @@ export const formatForAlgolia = (
       secondaryThemes: (dispositif.secondaryThemes || []).map((t) => t.toString()),
       needs: dispositif.needs,
       nbVues: dispositif.nbVues,
-      typeContenu: dispositif.type,
+      typeContenu: dispositif.typeContenu,
       sponsorUrl: mainSponsor?.picture?.secure_url,
       sponsorName: mainSponsor?.nom,
-      priority: dispositif.type === "dispositif" ? 30 : 40,
+      priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false
     };
   } else if (type === "need") {

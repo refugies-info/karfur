@@ -1,1 +1,0 @@
-export { getNbContents } from "./getNbContents";

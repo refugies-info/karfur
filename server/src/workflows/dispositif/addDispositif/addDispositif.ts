@@ -186,7 +186,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
             dispResult.translations.fr.content.titreMarque,
             dispResult._id,
             [], //themesList,
-            dispResult.type,
+            dispResult.typeContenu,
             null,
             dispResult.getDepartements(),
             false
@@ -205,7 +205,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
       }
 
       if (
-        dispositif.type === "dispositif" &&
+        dispositif.typeContenu === "dispositif" &&
         originalDispositif.status !== "En attente" &&
         dispositif.status === "En attente" &&
         dispositif.mainSponsor
@@ -243,7 +243,7 @@ export const addDispositif = async (req: RequestFromClientWithBody<Request>, res
 
       const contribRole = await getRoleByName("Contrib");
       await addRoleAndContribToUser(req.userId, contribRole._id, dispResult._id);
-      if (dispositif.type === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
+      if (dispositif.typeContenu === "dispositif" && dispositif.status === "En attente" && dispositif.mainSponsor) {
         try {
           logger.info("[addDispositif] send mail to structure member when new dispositif en attente");
 

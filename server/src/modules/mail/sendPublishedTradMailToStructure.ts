@@ -23,7 +23,7 @@ export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, l
           pseudo: membre.username,
           titreInformatif: dispositif.translations.fr.content.titreInformatif,
           titreMarque: dispositif.translations.fr.content.titreMarque,
-          lien: "https://refugies.info/" + dispositif.type + "/" + dispositif._id,
+          lien: "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id,
           email: membre.email,
           dispositifId: dispositif._id,
           userId: membre._id,

@@ -8,7 +8,7 @@ export const sendMailToStructureMembersWhenDispositifEnAttente = async (disposit
   logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] received");
   const structureMembres = await getStructureMembers(dispositif.mainSponsor.toString());
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
-  const lien = "https://refugies.info/" + dispositif.type + "/" + dispositif._id.toString();
+  const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
 
   return Promise.all(
     membresToSendMail.map((membre) => {
