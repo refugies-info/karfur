@@ -9,11 +9,6 @@ import { Role } from "./Role";
 import { Structure } from "./Structure";
 import { Base } from "./Base";
 
-let config: { secret?: string } = {};
-if (process.env.NODE_ENV === "dev") {
-  config = require("../config/config");
-}
-
 export const USER_STATUS_ACTIVE = "Actif";
 export const USER_STATUS_DELETED = "Exclu";
 type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
@@ -95,6 +90,7 @@ export class User extends Base {
   }
 
   public getToken(this: DocumentType<User>) {
+    if (!process.env.SECRET) throw new Error("You need to setup à SECRET envvar for jwt");
     return jwt.encode(
       {
         _id: this._id,
@@ -102,13 +98,20 @@ export class User extends Base {
         password: this.password,
         email: this.email
       },
-
-      process.env.NODE_ENV === "dev" ? config.secret : process.env.SECRET
+      process.env.SECRET
     );
   }
 
   public hasRole(roleName: string): boolean {
     return isDocumentArray(this.roles) && this.roles.some((role: Role) => role.nom === roleName);
+  }
+
+  public isAdmin(): boolean {
+    return this.hasRole("Admin");
+  }
+
+  public isExpert(): boolean {
+    return this.hasRole("ExpertTrad");
   }
 
   /**

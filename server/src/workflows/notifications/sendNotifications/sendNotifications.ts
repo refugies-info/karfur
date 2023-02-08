@@ -4,7 +4,7 @@ import logger from "../../../logger";
 import { log } from "./log";
 
 import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
-import { RequestFromClientWithBody } from "../../../types/interface";
+import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { DispositifId } from "src/typegoose";
 
@@ -18,7 +18,7 @@ interface Request {
   demarcheId: DispositifId;
 }
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Response) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[sendNotifications] received");
     checkIfUserIsAdmin(req.user);

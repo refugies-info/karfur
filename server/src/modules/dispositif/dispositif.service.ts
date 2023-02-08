@@ -28,7 +28,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
       newDispo.translations.fr.content.titreMarque,
       newDispo._id,
       themesList,
-      newDispo.type,
+      newDispo.typeContenu,
       null,
       newDispo.getDepartements(),
       false

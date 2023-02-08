@@ -1,37 +1,30 @@
 import logger from "../../../logger";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { updateWidget } from "../../../modules/widgets/widgets.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { WidgetDoc } from "../../../schema/schemaWidget";
-import { ThemeDoc } from "../../../schema/schemaTheme";
+import { Theme, Widget } from "src/typegoose";
 
 export interface Request {
   name: string;
-  themes: ThemeDoc[];
+  themes: Theme[];
   typeContenu: ("dispositif" | "demarche")[];
   languages: string[];
   department: string;
 }
 
-export const patchWidget = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+export const patchWidget = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[patchWidget] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     if (!req.params.id) throw new Error("INVALID_REQUEST");
 
-    const widget: Partial<WidgetDoc> = {
+    const widget: Partial<Widget> = {
       author: req.userId,
       typeContenu: req.body.typeContenu,
-      themes: req.body.themes.map(t => t._id),
+      themes: req.body.themes.map((t) => t._id),
       languages: req.body.languages,
       department: req.body.department
     };
@@ -40,7 +33,7 @@ export const patchWidget = async (
 
     return res.status(200).json({
       text: "Succès",
-      data: dbWidget,
+      data: dbWidget
     });
   } catch (error) {
     logger.error("[patchWidget] error", { error: error.message });

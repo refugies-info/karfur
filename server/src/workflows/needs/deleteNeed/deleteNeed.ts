@@ -2,29 +2,23 @@ import logger from "../../../logger";
 import { celebrate, Joi, Segments } from "celebrate";
 import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { deleteNeedById } from "../../../modules/needs/needs.repository";
-import {
-  checkRequestIsFromSite,
-} from "../../../libs/checkAuthorizations";
+import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { getCountDispositifs, deleteNeedFromDispositifs } from "../../../modules/dispositif/dispositif.repository";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
-    id: Joi.string(),
+    id: Joi.string()
   })
 });
 
-export interface Request { }
+export interface Request {}
 
-const handler = async (
-  req: RequestFromClientWithBody<Request>,
-  res: Res
-) => {
+const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
   try {
     logger.info("[deleteNeed] received", req.params.id);
     checkRequestIsFromSite(req.fromSite);
-    //@ts-ignore
-    checkIfUserIsAdmin(req.user.roles);
+    checkIfUserIsAdmin(req.user);
 
     // prevent from deleting if active dispositifs associated
     const activeDispositifs = await getCountDispositifs({
@@ -41,7 +35,7 @@ const handler = async (
     await deleteNeedById(req.params.id);
 
     return res.status(200).json({
-      text: "Succès",
+      text: "Succès"
     });
   } catch (error) {
     logger.error("[deleteNeed] error", { error: error.message });

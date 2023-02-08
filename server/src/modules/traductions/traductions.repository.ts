@@ -1,6 +1,9 @@
-import { DispositifId, TraductionId, TraductionsModel, UserId } from "src/typegoose";
+import { DispositifId, TraductionId, Traductions, TraductionsModel, UserId } from "src/typegoose";
 
-export const getTraductionsByLanguage = (langue: string, neededFields: Record<string, number>) =>
+type TraductionsKeys = keyof Traductions;
+type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
+
+export const getTraductionsByLanguage = (langue: string, neededFields: TraductionsFieldsRequest) =>
   TraductionsModel.find({ langueCible: langue }, neededFields);
 
 export const validateTradInDB = (tradId: TraductionId, validatorId: UserId) =>

@@ -111,7 +111,7 @@ export const getAllUsers = async (req: any, res: Res) => {
 
     // Check authorizations
     const currentUser = users.find((u) => u._id.toString() === req.user._id.toString());
-    const isAdmin = currentUser && currentUser.hasRole("Admin");
+    const isAdmin = currentUser && currentUser.isAdmin();
     const hasStructure = currentUser && currentUser.structures && currentUser.structures?.length > 0;
     if (!isAdmin && !hasStructure) throw new Error("NOT_AUTHORIZED");
 

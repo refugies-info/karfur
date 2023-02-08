@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Get,
-  Route,
-  Query,
-  Security
-} from "tsoa";
+import { Controller, Get, Route, Query, Security } from "tsoa";
 
 /* TODO: update workflows */
 import { getLogs, GetLogResponse } from "../workflows/log/getLogs";
@@ -17,9 +11,7 @@ export class LogController extends Controller {
     jwt: ["admin"]
   })
   @Get("/")
-  public async get(
-    @Query() id: string
-  ): ResponseWithData<GetLogResponse[]> {
+  public async get(@Query() id: string): ResponseWithData<GetLogResponse[]> {
     return getLogs(id);
   }
 }

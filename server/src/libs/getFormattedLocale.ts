@@ -1,52 +1,49 @@
+import { Languages } from "src/typegoose";
+
 const activatedLanguages = [
   {
     code: "en",
     short: "Anglais",
-    full: "anglais",
+    full: "anglais"
   },
   {
     code: "ar",
     short: "Arabe",
-    full: "arabe",
+    full: "arabe"
   },
   {
     code: "ru",
     short: "Russe",
-    full: "russe",
+    full: "russe"
   },
   {
     code: "ti",
     short: "Tigrynia",
-    full: "tigrinya",
+    full: "tigrinya"
   },
   {
     code: "ps",
     short: "Pachto",
-    full: "pachto",
+    full: "pachto"
   },
   {
     code: "fa",
     short: "Persan",
-    full: "persan/dari",
+    full: "persan/dari"
   },
   {
     code: "uk",
     short: "Ukrainien",
-    full: "ukrainien",
-  },
-]
+    full: "ukrainien"
+  }
+];
 
-export const availableLanguages = activatedLanguages.map(ln => ln.code);
+export const availableLanguages: Languages[] = activatedLanguages.map((ln) => ln.code as Languages);
 
-export const availableLanguagesWithFr = ["fr", ...activatedLanguages.map(ln => ln.code)]
+export const availableLanguagesWithFr = ["fr", ...activatedLanguages.map((ln) => ln.code)];
 
-export const getFormattedLocale = (
-  locale: string,
-  key: "short" | "full" = "full"
-) => {
-  const selectedLocale = activatedLanguages.find(
-    activatedLanguage => locale === activatedLanguage.code
-  );
+export const getFormattedLocale = (locale: string, key: "short" | "full" = "full") => {
+  const selectedLocale = activatedLanguages.find((activatedLanguage) => locale === activatedLanguage.code);
   if (!selectedLocale) return "locale not found";
   return selectedLocale[key];
 };
