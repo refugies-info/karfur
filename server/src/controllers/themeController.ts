@@ -14,13 +14,7 @@ import { getThemes, Theme as GetTheme } from "../workflows/themes/getThemes";
 import { postThemes, Theme as PostTheme } from "../workflows/themes/postThemes";
 import { patchTheme, Theme as PatchTheme } from "../workflows/themes/patchTheme";
 import { deleteTheme } from "../workflows/themes/deleteTheme";
-import { Response, ResponseWithData } from "../types/interface";
-
-interface Image {
-  secure_url: string;
-  public_id: string;
-  imgId: string;
-}
+import { Picture, Response, ResponseWithData, ThemeColors } from "../types/interface";
 
 export interface ThemeParams {
   name: {
@@ -31,19 +25,13 @@ export interface ThemeParams {
     fr: string;
     [key: string]: string
   }
-  colors: {
-    color100: string;
-    color80: string;
-    color60: string;
-    color40: string;
-    color30: string;
-  };
+  colors: ThemeColors;
   position: number;
-  icon: Image;
-  banner: Image;
-  appBanner: Image;
-  appImage: Image;
-  shareImage: Image;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
   notificationEmoji: string;
   adminComments: string;
 }
@@ -52,7 +40,7 @@ export interface ThemeParams {
 export class ThemeController extends Controller {
 
   @Get("/")
-  public async get(): Promise<ResponseWithData<GetTheme[]>> {
+  public async get(): ResponseWithData<GetTheme[]> {
     return getThemes();
   }
 
@@ -63,7 +51,7 @@ export class ThemeController extends Controller {
   @Post("/")
   public async post(
     @Body() body: ThemeParams
-  ): Promise<ResponseWithData<PostTheme>> {
+  ): ResponseWithData<PostTheme> {
     return postThemes(body);
   }
 
@@ -75,7 +63,7 @@ export class ThemeController extends Controller {
   public async patch(
     @Path() id: string,
     @Body() body: Partial<ThemeParams>
-  ): Promise<ResponseWithData<PatchTheme>> {
+  ): ResponseWithData<PatchTheme> {
     return patchTheme(id, body);
   }
 
@@ -86,7 +74,7 @@ export class ThemeController extends Controller {
   @Delete("{id}")
   public async delete(
     @Path() id: string
-  ): Promise<Response> {
+  ): Response {
     return deleteTheme(id);
   }
 }
