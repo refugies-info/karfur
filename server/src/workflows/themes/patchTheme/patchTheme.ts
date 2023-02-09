@@ -1,56 +1,42 @@
+import merge from "lodash/fp/merge";
+import { DocumentType } from "@typegoose/typegoose";
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { updateTheme } from "../../../modules/themes/themes.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { Request, getValidator } from "../../../modules/themes/themes.service";
+import { getTheme, updateTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Theme } from "src/typegoose";
+import { Theme } from "../../../typegoose";
+import { ThemeRequest } from "../../../controllers/themeController";
+import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
+import { NotFoundError } from "../../../errors";
 
-const validator = getValidator("patch");
+export interface PatchThemeResponse {
+  _id: string;
+  name: TranslatedText;
+  short: TranslatedText;
+  colors: ThemeColors;
+  position: number;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
+  notificationEmoji: string;
+  active: boolean;
+  adminComments?: string;
+}
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[patchTheme] received", req.params.id);
-    checkRequestIsFromSite(req.fromSite);
-    checkIfUserIsAdmin(req.user);
+export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> => {
+  logger.info("[patchTheme] received", id);
 
-    if (!req.params.id) throw new Error("INVALID_REQUEST");
+  const oldTheme = await getTheme(id);
+  if (!oldTheme) throw new NotFoundError("Theme not found");
 
-    const theme: Partial<Theme> = {
-      name: req.body.name,
-      short: req.body.short,
-      colors: req.body.colors,
-      position: req.body.position,
-      icon: req.body.icon,
-      banner: req.body.banner,
-      appBanner: req.body.appBanner,
-      appImage: req.body.appImage,
-      shareImage: req.body.shareImage,
-      notificationEmoji: req.body.notificationEmoji,
-      adminComments: req.body.adminComments
-    };
+  let oldThemeObject: DocumentType<Theme> = oldTheme.toObject()
+  const dbTheme = await updateTheme(id, merge(oldThemeObject, theme));
+  const activeLanguages = await getActiveLanguagesFromDB();
 
-    const dbTheme = await updateTheme(req.params.id, theme);
-    const activeLanguages = await getActiveLanguagesFromDB();
-
-    return res.status(200).json({
-      text: "Succès",
-      data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
-    });
-  } catch (error) {
-    logger.error("[patchTheme] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Création interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
-  }
+  return {
+    text: "success",
+    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) }
+  };
 };
 
-export default [validator, handler];

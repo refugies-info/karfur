@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+// TODO: delete
 // Requires request and request-promise for HTTP requests
 // e.g. npm install request request-promise
 const rp = require("request-promise");
@@ -12,11 +12,10 @@ let subscriptionKey, accessToken;
 function getAccessToken(subscriptionKey) {
   const options = {
     method: "POST",
-    uri:
-      " https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
+    uri: " https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken",
     headers: {
-      "Ocp-Apim-Subscription-Key": subscriptionKey,
-    },
+      "Ocp-Apim-Subscription-Key": subscriptionKey
+    }
   };
   return rp(options);
 }
@@ -46,14 +45,14 @@ function textToSpeech(accessToken, text, locale = "fr-fr") {
     baseUrl: "https://francecentral.tts.speech.microsoft.com/",
     url: "cognitiveservices/v1",
     headers: {
-      Authorization: "Bearer " + accessToken,
+      "Authorization": "Bearer " + accessToken,
       "cache-control": "no-cache",
       "User-Agent": "MicrosoftTTS",
       "X-Microsoft-OutputFormat": "riff-24khz-16bit-mono-pcm",
-      "Content-Type": "application/ssml+xml",
+      "Content-Type": "application/ssml+xml"
     },
     encoding: "latin1",
-    body: body,
+    body: body
   };
   return options;
 }
@@ -77,13 +76,13 @@ async function get_tts(req, res) {
       if (error) {
         return res.status(500).json({
           text: "Erreur interne",
-          data: error,
+          data: error
         });
       } // Print the error if one occurred
       if (response && response.statusCode === 200) {
         res.status(200).json({
           text: "Succès",
-          data: body,
+          data: body
         });
       }
     });

@@ -1,6 +1,7 @@
 import { Dispositif, Structure, User } from "src/typegoose";
 import logger from "../logger";
 
+// TODO: delete
 export const checkIfUserIsAdmin = (user: User) => {
   // user is admin for the platform
   const isAdmin = user.hasRole("Admin");
@@ -9,7 +10,7 @@ export const checkIfUserIsAdmin = (user: User) => {
 
   return;
 };
-
+// TODO: delete
 export const checkIfUserIsAdminOrExpert = (user: User) => {
   // user is admin for the platform
   const isAdmin = user.hasRole("Admin");
@@ -19,19 +20,19 @@ export const checkIfUserIsAdminOrExpert = (user: User) => {
 
   return;
 };
-
+// TODO: delete
 export const checkRequestIsFromSite = (fromSite: boolean) => {
   if (!fromSite) throw new Error("NOT_FROM_SITE");
 
   return;
 };
-
+// TODO: delete
 export const checkRequestIsFromPostman = (fromPostman: boolean) => {
   if (!fromPostman) throw new Error("NOT_AUTHORIZED");
 
   return;
 };
-
+// TODO: delete
 export const checkCronAuthorization = (cronToken: string) => {
   if (!cronToken || process.env.CRON_TOKEN !== cronToken) {
     throw new Error("NOT_AUTHORIZED");

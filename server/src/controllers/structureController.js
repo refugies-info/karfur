@@ -9,6 +9,8 @@ import { updateStructure } from "../workflows/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../workflows/structure/modifyUserRoleInStructure";
 import getStatistics from "../workflows/structure/getStatistics";
 
+/* TODO: use tsoa */
+
 router.get("/getStructureById", checkToken.getId, checkToken.getRoles, getStructureById);
 router.get("/getActiveStructures", getActiveStructures);
 router.get("/getAllStructures", getAllStructures);

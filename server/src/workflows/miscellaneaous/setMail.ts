@@ -1,3 +1,4 @@
+// TODO: move to /mail
 import { celebrate, Joi, Segments } from "celebrate";
 import * as SibApiV3Sdk from "@sendinblue/client";
 import { RequestFromClientWithBody, Res } from "../../types/interface";
