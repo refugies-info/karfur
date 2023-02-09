@@ -6,6 +6,8 @@ import getStatistics from "../workflows/translation/getStatistics";
 
 const router = express.Router();
 
+/* TODO: use tsoa */
+
 router.post("/add_tradForReview", checkToken.getId, checkToken.getRoles, traduction.add_tradForReview);
 router.post("/get_tradForReview", checkToken.check, traduction.get_tradForReview);
 // @ts-ignore FIXME
