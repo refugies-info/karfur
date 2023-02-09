@@ -1,63 +1,37 @@
 import logger from "../../../logger";
-import { celebrate, Joi, Segments } from "celebrate";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import {
   getAdminOption,
   createAdminOption,
   updateAdminOption
 } from "../../../modules/adminOptions/adminOptions.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { AdminOptionsModel } from "src/typegoose";
+import { AdminOptions, AdminOptionsModel } from "../../../typegoose";
+import { AdminOptionRequest } from "../../../controllers/adminOptionController";
+import { ResponseWithData } from "../../../types/interface";
 
-const validator = celebrate({
-  [Segments.PARAMS]: Joi.object().keys({
-    key: Joi.string()
-  }),
-  [Segments.BODY]: Joi.object().keys({
-    value: Joi.any()
-  })
-});
-
-export interface Request {
+export interface PostAdminOptionResponse {
+  key: string;
   value: any;
 }
 
-export const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[postAdminOptions] received", req.body);
-    checkRequestIsFromSite(req.fromSite);
-    checkIfUserIsAdmin(req.user);
+export const postAdminOptions = async (key: string, body: AdminOptionRequest): ResponseWithData<PostAdminOptionResponse> => {
+  logger.info("[postAdminOptions] received", body);
 
-    let updatedAdminOption = null;
-    const adminOption = await getAdminOption(req.params.key);
-    if (adminOption) {
-      updatedAdminOption = await updateAdminOption(req.params.key, req.body.value);
-    } else {
-      const newOption = new AdminOptionsModel({
-        key: req.params.key,
-        value: req.body.value
-      });
-      updatedAdminOption = await createAdminOption(newOption);
-    }
-
-    return res.status(200).json({
-      text: "Succès",
-      data: updatedAdminOption
+  let updatedAdminOption = null;
+  const adminOption = await getAdminOption(key);
+  if (adminOption) {
+    updatedAdminOption = await updateAdminOption(key, body.value);
+  } else {
+    const newOption = new AdminOptionsModel({
+      key: key,
+      value: body.value
     });
-  } catch (error) {
-    logger.error("[postAdminOptions] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Création interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+    updatedAdminOption = await createAdminOption(newOption);
+  }
+
+  return {
+    text: "success",
+    data: updatedAdminOption.toObject<AdminOptions>()
   }
 };
 
-export default [validator, handler];
+
