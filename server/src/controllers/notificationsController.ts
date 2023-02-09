@@ -9,7 +9,7 @@ import {
 } from "tsoa";
 
 /* TODO: update workflows */
-import { getNotifications, Notification as GetNotification } from "../workflows/notifications/getNotifications";
+import { getNotifications, GetNotificationResponse } from "../workflows/notifications/getNotifications";
 import { markAsSeen } from "../workflows/notifications/markAsSeen";
 import { sendNotifications } from "../workflows/notifications/sendNotifications";
 import { Response, ResponseWithData } from "../types/interface";
@@ -24,7 +24,7 @@ export class NotificationController extends Controller {
   @Get("/")
   public async get(
     @Header("x-app-uid") appUid: string
-  ): ResponseWithData<GetNotification[]> {
+  ): ResponseWithData<GetNotificationResponse[]> {
     return getNotifications(appUid);
   }
 

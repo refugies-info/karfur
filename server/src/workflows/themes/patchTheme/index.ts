@@ -1,1 +1,1 @@
-export { patchTheme, Theme } from "./patchTheme";
+export * from "./patchTheme";

@@ -6,10 +6,10 @@ import {
   Security
 } from "tsoa";
 
-import { getTts, Tts } from "../workflows/tts/getTts";
+import { getTts, GetTtsResponse } from "../workflows/tts/getTts";
 import { ResponseWithData } from "../types/interface";
 
-export interface TtsParams {
+export interface TtsRequest {
   text: string;
   locale: string;
 }
@@ -21,8 +21,8 @@ export class TtsController extends Controller {
   })
   @Post("/")
   public async get(
-    @Body() body: TtsParams
-  ): ResponseWithData<Tts> {
+    @Body() body: TtsRequest
+  ): ResponseWithData<GetTtsResponse> {
     return getTts(body);
   }
 }

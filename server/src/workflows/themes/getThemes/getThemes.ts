@@ -4,7 +4,7 @@ import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repos
 import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
 
 
-export interface Theme {
+export interface GetThemeResponse {
   name: TranslatedText;
   short: TranslatedText;
   colors: ThemeColors;
@@ -19,7 +19,7 @@ export interface Theme {
   adminComments?: string;
 }
 
-export const getThemes = async (): ResponseWithData<Theme[]> => {
+export const getThemes = async (): ResponseWithData<GetThemeResponse[]> => {
   logger.info("[getThemes] received");
 
   const themes = await getAllThemes();
