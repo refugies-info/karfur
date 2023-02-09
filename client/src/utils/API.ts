@@ -453,7 +453,7 @@ const API = {
   getLanguages: () => instance.get("/langues/getLanguages"),
 
   // Misc
-  set_image: (query: any) => {
+  set_image: (query: any) => { // TODO: moved to /images
     const headers = getHeaders();
     return instance.post("/images/set_image", query, { headers });
   },

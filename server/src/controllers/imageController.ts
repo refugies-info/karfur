@@ -1,10 +1,25 @@
-import express from "express";
-import { set_image } from "./image/lib";
+import { ResponseWithData } from "../types/interface";
+import { postImages, PostImageResponse } from "../workflows/images/postImages";
+import {
+  Controller,
+  Post,
+  Route,
+  Security,
+  Request
+} from "tsoa";
+import * as express from "express";
 
-const router = express.Router();
 
-/* TODO: use tsoa */
+@Route("images")
+export class ImageController extends Controller {
 
-router.post("/set_image", set_image);
-
-module.exports = router;
+  @Security({
+    fromSite: [],
+  })
+  @Post("/")
+  public async post(
+    @Request() request: express.Request
+  ): ResponseWithData<PostImageResponse> {
+    return postImages(request.files);
+  }
+}
