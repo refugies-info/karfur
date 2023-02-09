@@ -11,16 +11,15 @@ export const postNeeds = async (body: NeedRequest): Response => {
     fr: {
       text: body.fr.text,
       subtitle: body.fr.subtitle,
-      updatedAt: new Date()
+      updatedAt: new Date(),
     },
     // image: body.image,
     theme: body.theme.toString(),
     adminComments: body.adminComments || "",
-    position: 0
+    position: 0,
   };
 
   await createNeedInDB(needDB);
 
-  return { text: "success" }
+  return { text: "success" };
 };
-

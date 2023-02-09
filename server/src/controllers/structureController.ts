@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Route,
-  Request,
-  Query,
-  Security,
-  Path,
-  Queries
-} from "tsoa";
+import { Controller, Get, Route, Request, Query, Security, Path, Queries } from "tsoa";
 import express, { Request as ExRequest } from "express";
 const router = express.Router();
 const checkToken = require("./account/checkToken");
@@ -30,12 +21,11 @@ export { router };
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 export interface GetStructureStatisticsRequest {
-  facets?: StructureFacets[]
+  facets?: StructureFacets[];
 }
 
 @Route("structures")
 export class StructureController extends Controller {
-
   @Security({
     jwt: ["admin"],
   })
@@ -51,7 +41,7 @@ export class StructureController extends Controller {
 
   @Get("/statistics")
   public async getStructuresStatistics(
-    @Queries() query: GetStructureStatisticsRequest
+    @Queries() query: GetStructureStatisticsRequest,
   ): ResponseWithData<GetStructureStatisticsResponse> {
     return getStatistics(query);
   }
@@ -63,9 +53,8 @@ export class StructureController extends Controller {
   public async getStructure(
     @Path() id: string,
     @Query() locale: string,
-    @Request() request: ExRequest
+    @Request() request: ExRequest,
   ): ResponseWithData<GetStructureResponse> {
     return getStructureById(id, locale, request.userData);
   }
 }
-

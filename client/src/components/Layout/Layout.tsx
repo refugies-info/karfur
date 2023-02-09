@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
-  toggleLangueActionCreator
+  toggleLangueActionCreator,
 } from "services/Langue/langue.actions";
 import { fetchUserActionCreator } from "services/User/user.actions";
 
@@ -59,10 +59,10 @@ const Layout = (props: Props) => {
       .replace(
         {
           pathname: getPath(pathname as PathNames, lng),
-          query
+          query,
         },
         undefined,
-        { locale: lng }
+        { locale: lng },
       )
       .then(() => {
         setLanguageLoaded(true);

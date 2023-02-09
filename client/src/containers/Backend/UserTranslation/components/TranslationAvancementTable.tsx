@@ -47,7 +47,7 @@ const headers = [
   { name: "Mots", order: "nbMots" },
   { name: "Depuis", order: "created_at" },
   { name: "Statut", order: "tradStatus" },
-  { name: "Dernière trad", order: "lastTradUpdatedAt" }
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
 
 const headersExpert = [
@@ -58,12 +58,12 @@ const headersExpert = [
   { name: "Mots", order: "nbMots" },
   { name: "Depuis", order: "created_at" },
   { name: "Statut", order: "tradStatus" },
-  { name: "Dernière trad", order: "lastTradUpdatedAt" }
+  { name: "Dernière trad", order: "lastTradUpdatedAt" },
 ];
 const defaultSortedHeader = {
   name: "none",
   sens: "none",
-  order: "none"
+  order: "none",
 };
 export const TranslationAvancementTable = (props: Props) => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
@@ -88,7 +88,7 @@ export const TranslationAvancementTable = (props: Props) => {
       setSortedHeader({
         name: element.name,
         sens: "up",
-        order: element.order
+        order: element.order,
       });
     }
   };
@@ -104,12 +104,12 @@ export const TranslationAvancementTable = (props: Props) => {
       confirmButtonColor: colors.rouge,
       cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, les supprimer",
-      cancelButtonText: "Annuler"
+      cancelButtonText: "Annuler",
     }).then((result: any) => {
       if (result.value) {
         API.delete_trads({
           articleId: element._id,
-          langueCible: props.languei18nCode
+          langueCible: props.languei18nCode,
         })
           .then(() => {
             dispatch(fetchDispositifsWithTranslationsStatusActionCreator(props.languei18nCode));
@@ -117,7 +117,7 @@ export const TranslationAvancementTable = (props: Props) => {
               title: "Yay...",
               text: "Suppression effectuée",
               icon: "success",
-              timer: 1500
+              timer: 1500,
             });
           })
           .catch(() => {
@@ -125,7 +125,7 @@ export const TranslationAvancementTable = (props: Props) => {
               title: "Oh non!",
               text: "Something went wrong",
               icon: "error",
-              timer: 1500
+              timer: 1500,
             });
           });
       }
@@ -171,7 +171,7 @@ export const TranslationAvancementTable = (props: Props) => {
             return (
               <tr key={key} className={styles.line}>
                 <td className={styles.first + " align-middle"}>
-                  <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
+                  <TypeContenu type={element.type || "dispositif"} isDetailedVue={false} />
                 </td>
                 <td className="align-middle">
                   <div style={{ maxWidth: "350px" }}>
@@ -184,8 +184,8 @@ export const TranslationAvancementTable = (props: Props) => {
                           "/backend" +
                           (props.isExpert ? "/validation" : "/traduction") +
                           "/" +
-                          (element.typeContenu || "dispositif"),
-                        search: `?language=${props.langueId}&dispositif=${element._id}`
+                          (element.type || "dispositif"),
+                        search: `?language=${props.langueId}&dispositif=${element._id}`,
                       }}
                     >
                       <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />

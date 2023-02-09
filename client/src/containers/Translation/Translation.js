@@ -8,12 +8,11 @@ import produce from "immer";
 
 import API from "../../utils/API";
 import Dispositif from "components/Content/Dispositif";
-// import { menu } from "data/dispositif";
-import { fetchTranslationsActionCreator, addTradActionCreator } from "../../services/Translation/translation.actions";
+import { addTradActionCreator } from "../../services/Translation/translation.actions";
 import { withRouter } from "react-router-dom";
 import {
   fetchSelectedDispositifActionCreator,
-  setSelectedDispositifActionCreator
+  setSelectedDispositifActionCreator,
 } from "services/SelectedDispositif/selectedDispositif.actions";
 import isInBrowser from "lib/isInBrowser";
 
@@ -36,7 +35,7 @@ export class TranslationHOC extends Component {
     // value: "",
     francais: {
       title: "",
-      body: ""
+      body: "",
     },
     texte_traduit: "",
     texte_a_traduire: "",
@@ -54,7 +53,7 @@ export class TranslationHOC extends Component {
 
     translated: {
       body: "",
-      title: ""
+      title: "",
     },
     itemId: "",
     isExpert: false,
@@ -62,10 +61,10 @@ export class TranslationHOC extends Component {
     langue: {},
     traduction: {
       initialText: { contenu: new Array(menu.length).fill(false) },
-      translatedText: { contenu: new Array(menu.length).fill(false) }
+      translatedText: { contenu: new Array(menu.length).fill(false) },
     },
     traductionsFaites: [],
-    autosuggest: false
+    autosuggest: false,
   };
 
   componentDidMount() {
@@ -89,13 +88,13 @@ export class TranslationHOC extends Component {
             isExpert && traductions.find((trad) => trad.userId._id === userId)
               ? get(
                   traductions.find((trad) => trad.userId._id === userId),
-                  ["translatedText"]
+                  ["translatedText"],
                 )
               : traduction
               ? traduction.translatedText
-              : get(traductions, "0.translatedText", {})
+              : get(traductions, "0.translatedText", {}),
         },
-        autosuggest: false
+        autosuggest: false,
       });
     }
 
@@ -103,7 +102,7 @@ export class TranslationHOC extends Component {
       this.setState(
         produce((draft) => {
           draft.traduction._id = this.props.translation._id;
-        })
+        }),
       );
     }
   }
@@ -125,8 +124,8 @@ export class TranslationHOC extends Component {
       this.setState({
         nbMotsRestants: Math.max(
           0,
-          h2p(nextState.francais.body).split(/\s+/).length - h2p(nextState.translated.body).split(/\s+/).length
-        )
+          h2p(nextState.francais.body).split(/\s+/).length - h2p(nextState.translated.body).split(/\s+/).length,
+        ),
       });
     }
   }
@@ -143,12 +142,12 @@ export class TranslationHOC extends Component {
         : "string";
     this.props.fetchSelectedDispositif({
       selectedDispositifId: itemId,
-      locale: "fr"
+      locale: "fr",
     });
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if (itemId && type === "dispositif") {
       //...(!isExpert && userId && {userId})
-      this.props.fetchTranslations(itemId, locale);
+      // this.props.fetchTranslations(itemId, locale);
     }
   };
 
@@ -160,7 +159,7 @@ export class TranslationHOC extends Component {
     this._isMounted && this.setState({ langue });
     return {
       locale: langue.i18nCode,
-      langueBackupId: get(langue, "langueBackupId.i18nCode")
+      langueBackupId: get(langue, "langueBackupId.i18nCode"),
     };
   };
 
@@ -170,7 +169,7 @@ export class TranslationHOC extends Component {
   translate = (text, target, item, toEditor = false) => {
     this.setState({
       translated: { ...this.state.translated, [item]: "" },
-      autosuggest: true
+      autosuggest: true,
     });
     API.get_translation({ q: text, target: target })
       .then((data) => {
@@ -188,8 +187,8 @@ export class TranslationHOC extends Component {
             this.setState({
               translated: {
                 ...this.state.translated,
-                [item]: value
-              }
+                [item]: value,
+              },
             });
         }
       })
@@ -206,8 +205,8 @@ export class TranslationHOC extends Component {
             this.setState({
               translated: {
                 ...this.state.translated,
-                [item]: value
-              }
+                [item]: value,
+              },
             });
         }
       });
@@ -220,9 +219,9 @@ export class TranslationHOC extends Component {
     this.setState({
       translated: {
         ...this.state.translated,
-        [target]: value
+        [target]: value,
       },
-      autosuggest: false
+      autosuggest: false,
     });
   };
 
@@ -230,9 +229,9 @@ export class TranslationHOC extends Component {
     this.setState({
       translated: {
         ...this.state.translated,
-        [target]: editorState
+        [target]: editorState,
       },
-      autosuggest: false
+      autosuggest: false,
     });
   };
 
@@ -258,7 +257,7 @@ export class TranslationHOC extends Component {
         i++;
       } while (le_text.slice(0, 1) !== " " && le_text !== "" && le_text);
       this.setState((prevState) => ({
-        texte_a_traduire: prevState.texte_a_traduire.substring(i + 1)
+        texte_a_traduire: prevState.texte_a_traduire.substring(i + 1),
       }));
     } else if (
       letter_pressed &&
@@ -266,7 +265,7 @@ export class TranslationHOC extends Component {
         (letter_pressed === " " && this.state.texte_a_traduire.slice(0, 1) === " "))
     ) {
       this.setState((prevState) => ({
-        texte_a_traduire: prevState.texte_a_traduire.substring(1)
+        texte_a_traduire: prevState.texte_a_traduire.substring(1),
       }));
     }
     this.setState({
@@ -277,8 +276,8 @@ export class TranslationHOC extends Component {
           h2p(event.target.value) +
           (this.state.translated.body.length > event.target.value.length
             ? this.state.translated.body.substring(event.target.value.length)
-            : "")
-      }
+            : ""),
+      },
     });
     letter_pressed = null;
   };
@@ -300,12 +299,12 @@ export class TranslationHOC extends Component {
       avancement: this.state.avancement,
       type: this.state.type,
       ...(this.state.path.length > 0 && { path: this.state.path }),
-      ...(this.state.id && { id: this.state.id })
+      ...(this.state.id && { id: this.state.id }),
     };
     if (this.state.isExpert) {
       traduction = {
         ...traduction,
-        isExpert: true
+        isExpert: true,
       };
     }
     traduction = { ...traduction, ...tradData };
@@ -321,7 +320,7 @@ export class TranslationHOC extends Component {
         title: "Yay...",
         text: "La traduction a bien été enregistrée",
         icon: "success",
-        timer: 1000
+        timer: 1000,
       });
       this._isMounted && this.setState({ disableBtn: false });
       this._isMounted && this.onSkip();
@@ -338,14 +337,14 @@ export class TranslationHOC extends Component {
     event.stopPropagation();
     this.setState({
       isComplete: event.target.checked,
-      avancement: event.target.checked ? 1 : 0.495
+      avancement: event.target.checked ? 1 : 0.495,
     });
   };
 
   handleCheckboxClicked = () => {
     this.setState((prevState) => ({
       isComplete: !prevState.isComplete,
-      avancement: !prevState.isComplete ? 1 : 0.495
+      avancement: !prevState.isComplete ? 1 : 0.495,
     }));
   };
 
@@ -361,7 +360,7 @@ export class TranslationHOC extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       icon: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -401,15 +400,15 @@ const mapStateToProps = (state) => {
     isExpert: state.user.expertTrad,
     translations: state.translation.translations,
     translation: state.translation.translation,
-    selectedDispositif: state.selectedDispositif
+    selectedDispositif: state.selectedDispositif,
   };
 };
 
 const mapDispatchToProps = {
-  fetchTranslations: fetchTranslationsActionCreator,
+  // fetchTranslations: fetchTranslationsActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   setSelectedDispositif: setSelectedDispositifActionCreator,
-  addTranslation: addTradActionCreator
+  addTranslation: addTradActionCreator,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TranslationHOC));

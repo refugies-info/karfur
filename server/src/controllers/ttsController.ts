@@ -1,10 +1,4 @@
-import {
-  Controller,
-  Post,
-  Route,
-  Body,
-  Security
-} from "tsoa";
+import { Controller, Post, Route, Body, Security } from "tsoa";
 
 import { getTts } from "../workflows/tts/getTts";
 import { ResponseWithData } from "../types/interface";
@@ -20,9 +14,7 @@ export class TtsController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async post(
-    @Body() body: TtsRequest
-  ): ResponseWithData<any> {
+  public async post(@Body() body: TtsRequest): ResponseWithData<any> {
     return getTts(body);
   }
 }

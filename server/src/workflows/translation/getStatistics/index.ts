@@ -1,2 +1,1 @@
-import getStatistics from "./getStatistics";
-export default getStatistics;
+export { default } from "./getStatistics";

@@ -22,7 +22,7 @@ interface Query {
   _id: TraductionId;
 }
 
-export const validateTranslations = async (req: RequestFromClientWithBody<Query>, res: Res) => {
+const validateTranslations = async (req: RequestFromClientWithBody<Query>, res: Res) => {
   try {
     checkRequestIsFromSite(req.fromSite);
     if (!req.body || !req.body.articleId || !req.body.translatedText) {
@@ -36,13 +36,13 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
 
       if (!body.traductions.length) {
         logger.info("[validateTranslations] validate the trad", {
-          _id: body._id
+          _id: body._id,
         });
         await validateTradInDB(body._id, req.userId);
       } else {
         await asyncForEach(body.traductions, async (trad) => {
           logger.info("[validateTranslations] validate trad", {
-            _id: trad._id
+            _id: trad._id,
           });
           await validateTradInDB(trad._id, req.userId);
         });
@@ -67,11 +67,11 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
           insertedDispositif.typeContenu,
           body.locale,
           insertedDispositif.getDepartements(),
-          false
+          false,
         );
       } catch (error) {
         logger.error("[validateTranslations] error while updating contenu in airtable", {
-          error
+          error,
         });
       }
 
@@ -86,7 +86,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         await updateLanguagesAvancement();
       } catch (error) {
         logger.error("[validateTranslations] error while updating avancement", {
-          error
+          error,
         });
       }
 
@@ -95,7 +95,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
           await sendPublishedTradMailToStructure(dispositifFromDB, body.locale);
         } catch (error) {
           logger.error("[validateTranslations] error while sending mails to structure members", {
-            error: error.message
+            error: error.message,
           });
         }
       }
@@ -103,7 +103,7 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
       try {
         // we do not want to send a mail to the expert
         const traductorNotExpertIdsList = traductorIdsList.filter(
-          (tradId: string) => tradId && tradId.toString() !== req.userId.toString()
+          (tradId: string) => tradId && tradId.toString() !== req.userId.toString(),
         );
         await sendPublishedTradMailToTraductors(
           traductorNotExpertIdsList,
@@ -111,16 +111,16 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
           dispositifFromDB.typeContenu,
           dispositifFromDB.translations.fr.content.titreInformatif,
           dispositifFromDB.translations.fr.content.titreMarque,
-          dispositifFromDB._id
+          dispositifFromDB._id,
         );
       } catch (error) {
         logger.error("[validateTranslations] error while sending mails to traductors", {
-          error: error.message
+          error: error.message,
         });
       }
 
       return res.status(200).json({
-        text: "Succès"
+        text: "Succès",
       });
     } catch (err) {
       logger.error("[validateTranslations] error in validating, saving error to db", { error: err.message });
@@ -128,9 +128,9 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
         name: "validateTradModifications",
         userId: req.userId,
         dataObject: {
-          body: req.body
+          body: req.body,
         },
-        error: err
+        error: err,
       });
 
       throw err;
@@ -149,3 +149,5 @@ export const validateTranslations = async (req: RequestFromClientWithBody<Query>
     }
   }
 };
+
+export default validateTranslations;

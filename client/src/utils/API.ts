@@ -4,13 +4,7 @@ import setAuthToken from "./setAuthToken";
 import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
-import {
-  APIResponse,
-  NbDispositifsByRegion,
-  TranslationFacets,
-  TranslationStatistics,
-  User,
-} from "types/interface";
+import { APIResponse, NbDispositifsByRegion, TranslationFacets, TranslationStatistics, User } from "types/interface";
 import { ObjectId } from "mongodb";
 import {
   Id,
@@ -64,7 +58,7 @@ import {
   GetAllUsersResponse,
   UpdateDispositifPropertiesRequest,
   UpdateDispositifRequest,
-  CreateDispositifRequest
+  CreateDispositifRequest,
 } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
@@ -74,7 +68,7 @@ type Response<T = any> = AxiosResponse<{ text: string; data: T }>;
 //@ts-ignore
 axios.withCredentials = true;
 const instance = axios.create({
-  baseURL: burl || ""
+  baseURL: burl || "",
 });
 
 instance.interceptors.request.use(
@@ -85,11 +79,11 @@ instance.interceptors.request.use(
       title: "Oops...",
       text: (error.response.data || {}).text || "",
       footer: "<i>" + error.message + "</i>",
-      timer: 1500
+      timer: 1500,
     });
 
     return Promise.reject(error);
-  }
+  },
 );
 
 instance.interceptors.response.use(
@@ -102,14 +96,14 @@ instance.interceptors.response.use(
           title: "Oops...",
           text: (error.response.data || {}).text || "",
           footer: "<i>" + error.message + "</i>",
-          timer: 1500
+          timer: 1500,
         });
       }
     } else if (axios.isCancel(error)) {
       logger.error("Error: ", { error: error.message });
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 const CancelToken = axios.CancelToken;
@@ -118,7 +112,7 @@ let cancel: Canceler;
 const getHeaders = () => {
   const headers: any = {
     "Content-Type": "application/json",
-    "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || ""
+    "site-secret": process.env.NEXT_PUBLIC_REACT_APP_SITE_SECRET || "",
   };
 
   const token = isInBrowser() ? localStorage.getItem("token") : undefined;
@@ -136,25 +130,25 @@ const API = {
   checkUserExists: (query: { username: string }) => {
     const headers = getHeaders();
     return instance.post("/user/checkUserExists", query, {
-      headers
+      headers,
     });
   },
   changePassword: (query: { userId: string | ObjectId; currentPassword: string; newPassword: string }) => {
     const headers = getHeaders();
     return instance.post("/user/changePassword", query, {
-      headers
+      headers,
     });
   },
   reset_password: (query: { username: string }) => {
     const headers = getHeaders();
     return instance.post("/user/reset_password", query, {
-      headers
+      headers,
     });
   },
   set_new_password: (query: { newPassword: string; reset_password_token: string }) => {
     const headers = getHeaders();
     return instance.post("/user/set_new_password", query, {
-      headers
+      headers,
     });
   },
   isAuth: () => {
@@ -178,7 +172,7 @@ const API = {
   updateUser: (query: any) => {
     const headers = getHeaders();
     return instance.post("/user/updateUser", query, {
-      headers
+      headers,
     });
   },
   deleteUser: (query: Id) => {
@@ -227,7 +221,7 @@ const API = {
   updateDispositifReactions: (query: any) => {
     const headers = getHeaders();
     return instance.post("/dispositifs/updateDispositifReactions", query, {
-      headers
+      headers,
     });
   },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest) => {
@@ -237,7 +231,7 @@ const API = {
   updateDispositifTagsOrNeeds: (query: any) => {
     const headers = getHeaders();
     return instance.post("/dispositifs/updateDispositifTagsOrNeeds", query, {
-      headers
+      headers,
     });
   },
   updateDispositifMainSponsor: (id: string, body: MainSponsorRequest) => {
@@ -257,7 +251,7 @@ const API = {
   },
   getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse[]>> => {
     const headers = getHeaders();
-    return instance.get("/dispositifs/all", { headers })
+    return instance.get("/dispositifs/all", { headers });
   },
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
@@ -287,13 +281,13 @@ const API = {
   sendAdminImprovementsMail: (body: ImprovementsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
     return instance.post("/mail/sendAdminImprovementsMail", body, {
-      headers
+      headers,
     });
   },
   sendSubscriptionReminderMail: (body: SubscriptionRequest) => {
     const headers = getHeaders();
     return instance.post("/mail/sendSubscriptionReminderMail", body, {
-      headers
+      headers,
     });
   },
   contacts: (body: AddContactRequest) => {
@@ -305,19 +299,19 @@ const API = {
   createStructure: (query: any) => {
     const headers = getHeaders();
     return instance.post("/structures/createStructure", query, {
-      headers
+      headers,
     });
   },
   updateStructure: (query: any) => {
     const headers = getHeaders();
     return instance.post("/structures/updateStructure", query, {
-      headers
+      headers,
     });
   },
   modifyUserRoleInStructure: (query: any) => {
     const headers = getHeaders();
     return instance.post("/structures/modifyUserRoleInStructure", query, {
-      headers
+      headers,
     });
   },
   getStructureById: (id: string, locale: string): Promise<APIResponse<GetStructureResponse>> => {
@@ -329,9 +323,11 @@ const API = {
   },
   getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse[]>> => {
     const headers = getHeaders();
-    return instance.get("/structures/all", { headers })
+    return instance.get("/structures/all", { headers });
   },
-  getStructuresStatistics: (query: GetStructureStatisticsRequest): Promise<APIResponse<GetStructureStatisticsResponse>> => {
+  getStructuresStatistics: (
+    query: GetStructureStatisticsRequest,
+  ): Promise<APIResponse<GetStructureStatisticsResponse>> => {
     return instance.get("/structures/statistics", { params: query });
   },
 
@@ -406,46 +402,66 @@ const API = {
   },
 
   // Trads
+
+  saveTraduction: (query: { dispositifId: string; timeSpent: number; translated: any /*TODO*/; language: string }) => {
+    const headers = getHeaders();
+    return instance.post("/traduction", query, {
+      headers,
+    });
+  },
+
   add_tradForReview: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/add_tradForReview", query, {
-      headers
+      headers,
+    });
+  },
+  getTraductionsForReview: ({ dispositif, language }: { dispositif: string; language: string }) => {
+    const headers = getHeaders();
+    return instance.get(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, {
+      headers,
+    });
+  },
+  getDefaultTraductionForDispositif: ({ dispositif }: { dispositif: string }) => {
+    const headers = getHeaders();
+    return instance.get(`/traduction?dispositif=${dispositif}`, {
+      headers,
     });
   },
   get_tradForReview: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/get_tradForReview", query, {
-      headers
+      headers,
     });
   },
   validateTranslations: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/validateTranslations", query, {
-      headers
+      headers,
     });
   },
   delete_trads: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/delete_trads", query, {
-      headers
+      headers,
     });
   },
   get_progression: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/get_progression", query, {
-      headers
+      headers,
     });
   },
   update_tradForReview: (query: any) => {
     const headers = getHeaders();
     return instance.post("/traduction/update_tradForReview", query, {
-      headers
+      headers,
     });
   },
   get_translation: (query = {}) => {
     const headers = getHeaders();
-    return instance.post("/translate/get_translation", query, {
-      headers
+    return instance.post("/traduction/translate", query, {
+      headers,
     });
   },
   getTranslationStatistics: (facets?: TranslationFacets[]): Promise<Response<TranslationStatistics>> => {
@@ -454,7 +470,7 @@ const API = {
 
   // langues
   getLanguages: (): Promise<APIResponse<GetLanguagesResponse>> => {
-    return instance.get("/langues")
+    return instance.get("/langues");
   },
 
   // Misc
@@ -491,7 +507,7 @@ const API = {
       headers,
       cancelToken: new CancelToken(function executor(c) {
         cancel = c;
-      })
+      }),
     });
   },
   cancel_tts_subscription: () => cancel && cancel(),

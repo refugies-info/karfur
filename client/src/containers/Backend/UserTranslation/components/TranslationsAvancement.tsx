@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserLanguage, IDispositifTranslation, TranslationStatus, ITypeContenu } from "types/interface";
+import { IDispositifTranslation, TranslationStatus, ITypeContenu } from "types/interface";
 import styled from "styled-components";
 import { LanguageTitle, FilterButton, TypeContenuFilterButton } from "./SubComponents";
 import { TranslationAvancementTable } from "./TranslationAvancementTable";
@@ -8,12 +8,11 @@ import FButton from "components/UI/FButton/FButton";
 import { colors } from "colors";
 import CustomSearchBar from "components/UI/CustomSeachBar";
 import { User } from "types/interface";
-import { useRouter } from "next/router";
 import useRouterLocale from "hooks/useRouterLocale";
 import { Link } from "react-router-dom";
+import { useLanguages } from "hooks";
 
 interface Props {
-  userTradLanguages: UserLanguage[];
   history: any;
   actualLanguage: string;
   isExpert: boolean;
@@ -71,10 +70,13 @@ const getInitialFilterStatus = (isExpert: boolean, data: IDispositifTranslation[
   return "En attente";
 };
 export const TranslationsAvancement = (props: Props) => {
-  const [search, setSearch] = useState("");
   const routerLocale = useRouterLocale();
-  const initialStatusFilter = getInitialFilterStatus(props.isExpert, props.data);
-  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(initialStatusFilter);
+  const { getLanguage, userTradLanguages } = useLanguages();
+
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<TranslationStatus | "all">(
+    getInitialFilterStatus(props.isExpert, props.data),
+  );
   const [typeContenuFilter, setTypeContenuFilter] = useState<ITypeContenu | "all">("dispositif");
 
   const navigateToLanguage = (e: any, langue: string) => {
@@ -99,24 +101,24 @@ export const TranslationsAvancement = (props: Props) => {
     statusFilter,
     props.isExpert,
     typeContenuFilter,
-    search
+    search,
   );
 
   return (
     <MainContainer>
       <RowContainer>
         <Row>
-          {props.userTradLanguages.map((langue) => (
-            <div key={langue.i18nCode}>
+          {userTradLanguages.map((langue) => (
+            <div key={langue}>
               <Link
-                data-test-id={`test-langue-${langue._id}`}
-                onClick={(e) => navigateToLanguage(e, langue.i18nCode)}
-                to={routerLocale + "/backend/user-translation/" + langue.i18nCode}
+                data-test-id={`test-langue-${langue}`}
+                onClick={(e) => navigateToLanguage(e, getLanguage(langue).i18nCode)}
+                to={routerLocale + "/backend/user-translation/" + getLanguage(langue).i18nCode}
               >
                 <LanguageTitle
-                  language={langue}
-                  isSelected={langue.i18nCode === props.actualLanguage}
-                  hasMultipleLanguages={props.userTradLanguages.length > 1}
+                  language={getLanguage(langue)}
+                  isSelected={getLanguage(langue).i18nCode === props.actualLanguage}
+                  hasMultipleLanguages={userTradLanguages.length > 1}
                 />
               </Link>
             </div>
@@ -185,13 +187,7 @@ export const TranslationsAvancement = (props: Props) => {
           />
         </Row>
 
-        <CustomSearchBar
-          value={search}
-          // @ts-ignore
-          onChange={handleChange}
-          placeholder="Rechercher..."
-          withMargin={false}
-        />
+        <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
       </FilterBarContainer>
       <TranslationAvancementTable
         isExpert={props.isExpert}

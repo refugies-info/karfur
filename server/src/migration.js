@@ -62,16 +62,16 @@ const removeOldFields = async (dispositifsColl) => {
         internal_action: "",
         traductions: "",
         contenu: "",
-        contact: ""
-      }
-    }
+        contact: "",
+      },
+    },
   );
 };
 
 const formatMerci = (merci) => {
   return {
     createdAt: new Date(merci.createdAt),
-    userId: new ObjectId(merci.userId) || null
+    userId: new ObjectId(merci.userId) || null,
   };
 };
 
@@ -97,7 +97,7 @@ const formatSuggestion = (suggestion, typeContenu) => {
     read: suggestion.read === null ? true : suggestion.read,
     suggestion: suggestion.suggestion,
     suggestionId: suggestion.suggestionId,
-    section: getSuggestionSection(suggestion.keyValue, typeContenu)
+    section: getSuggestionSection(suggestion.keyValue, typeContenu),
   };
 };
 
@@ -112,7 +112,7 @@ const getInfoSections = (children, ln, root, id, type) => {
 
       infosections[uuid] = {
         title: getLocalizedContent(section.title, ln, root),
-        text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root))
+        text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root)),
       };
     }
   }
@@ -160,7 +160,7 @@ const getMarkers = (children) => {
       address: m.address,
       city: m.vicinity,
       lat: m.latitude,
-      lng: m.longitude
+      lng: m.longitude,
     };
 
     if (m.description) marker.description = m.description;
@@ -211,7 +211,7 @@ const getMetadatas = (content, id) => {
       case "Combien ça coûte ?":
         metas.price = {
           value: parseInt(metadata.price),
-          details: metadata.price === 0 || !metadata.contentTitle ? null : metadata.contentTitle
+          details: metadata.price === 0 || !metadata.contentTitle ? null : metadata.contentTitle,
         };
         break;
       case "Niveau de français":
@@ -220,7 +220,7 @@ const getMetadatas = (content, id) => {
       case "Âge requis":
         metas.age = {
           type: getAgeType(metadata.contentTitle?.fr || metadata.contentTitle),
-          ages: [parseInt(metadata.bottomValue), parseInt(metadata.topValue)]
+          ages: [parseInt(metadata.bottomValue), parseInt(metadata.topValue)],
         };
         break;
       case "Public visé":
@@ -266,7 +266,7 @@ const getSponsors = (dispositif) => {
       sponsors.push({
         name: sponsor.nom || sponsor.alt || "",
         logo: sponsor.picture || null,
-        link: sponsor.link || null
+        link: sponsor.link || null,
       });
     } else {
       console.warn("  À CHECKER ! Sponsor non ajouté", sponsor);
@@ -282,9 +282,9 @@ const getContent = (dispositif, ln, root) => {
       titreInformatif: getLocalizedContent(dispositif.titreInformatif, ln, root),
       titreMarque: getLocalizedContent(dispositif.titreMarque, ln, root),
       abstract: getLocalizedContent(dispositif.abstract, ln, root),
-      what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root))
+      what: turnJSONtoHTML(getLocalizedContent(dispositif.contenu?.[0]?.content, ln, root)),
     },
-    metadatas: {}
+    metadatas: {},
   };
 
   if (dispositif.typeContenu === "dispositif") {
@@ -322,7 +322,7 @@ const getNewDispositif = (dispositif) => {
   const metadatas = getMetadatas(dispositif.contenu?.[1], dispositif._id);
   const newDispositif = {
     translations: {
-      ...getMultilangContent(dispositif, metadatas.translatedMetas)
+      ...getMultilangContent(dispositif, metadatas.translatedMetas),
     },
     map: getMarkers(dispositif.contenu?.[3].children),
     sponsors: getSponsors(dispositif),
@@ -337,7 +337,7 @@ const getNewDispositif = (dispositif) => {
     webOnly: dispositif.webOnly || false,
     merci: (dispositif.merci || []).map((d) => formatMerci(d)),
     suggestions: (dispositif.suggestions || []).map((s) => formatSuggestion(s, dispositif.typeContenu)),
-    metadatas: metadatas.metas
+    metadatas: metadatas.metas,
   };
 
   return { ...dispositif, ...newDispositif };
@@ -346,23 +346,23 @@ const getNewDispositif = (dispositif) => {
 const deletedDispositifsRequest = [
   {
     $match: {
-      type: "dispositif"
-    }
+      type: "dispositif",
+    },
   },
   {
     $lookup: {
       from: "dispositifs",
       localField: "articleId",
       foreignField: "_id",
-      as: "dispositifs"
-    }
+      as: "dispositifs",
+    },
   },
   { $project: { articleId: 1, dispositifs: 1 } },
   {
     $match: {
-      "dispositifs.status": "Supprimé"
-    }
-  }
+      "dispositifs.status": "Supprimé",
+    },
+  },
 ];
 
 const missingDispositifsRequest = [
@@ -371,16 +371,16 @@ const missingDispositifsRequest = [
       from: "dispositifs",
       localField: "articleId",
       foreignField: "_id",
-      as: "dispositifs"
-    }
+      as: "dispositifs",
+    },
   },
   {
     $match: {
       "dispositifs.0": {
-        $exists: false
-      }
-    }
-  }
+        $exists: false,
+      },
+    },
+  },
 ];
 
 const removeCorruptedTrads = async (traductionsColl) => {
@@ -389,7 +389,7 @@ const removeCorruptedTrads = async (traductionsColl) => {
   //--- langues not supported
   const languageNotSupported = await traductionsColl.deleteMany({
     type: "dispositif",
-    langueCible: { $nin: ["en", "ps", "fa", "ti", "ru", "uk", "ar"] }
+    langueCible: { $nin: ["en", "ps", "fa", "ti", "ru", "uk", "ar"] },
   });
   console.log("  Trads avec langues non supportées :", languageNotSupported.deletedCount);
 
@@ -411,7 +411,7 @@ const removeCorruptedTrads = async (traductionsColl) => {
   const aTraduireExpert = await traductionsColl.deleteMany({
     type: "dispositif",
     status: "À traduire",
-    isExpert: true
+    isExpert: true,
   });
   /* à supprimer, il y en a peu, ce sont des erreurs */
   console.log("  Trads 'À traduire' et isExpert :", aTraduireExpert.deletedCount);
@@ -420,7 +420,7 @@ const removeCorruptedTrads = async (traductionsColl) => {
   const aRevoirNotExpert = await traductionsColl.deleteMany({
     type: "dispositif",
     status: "À revoir",
-    isExpert: { $exists: false }
+    isExpert: { $exists: false },
   });
   /* rôle probablement changé sur les utilisateurs. Il y en a peu, à supprimer */
   console.log("  Trads 'À revoir' et !isExpert :", aRevoirNotExpert.deletedCount);
@@ -431,9 +431,9 @@ const removeCorruptedTrads = async (traductionsColl) => {
       {
         type: "dispositif",
         status: "Validée",
-        isExpert: { $exists: false }
+        isExpert: { $exists: false },
       },
-      { articleId: 1, langueCible: 1, validatorId: 1 }
+      { articleId: 1, langueCible: 1, validatorId: 1 },
     )
     .toArray();
   let i = 0;
@@ -441,7 +441,7 @@ const removeCorruptedTrads = async (traductionsColl) => {
     const count = await traductionsColl.count({
       articleId: trad.articleId,
       langueCible: trad.langueCible,
-      isExpert: true
+      isExpert: true,
     });
     if (count > 0) {
       const deleted = await traductionsColl.deleteOne({ _id: trad._id });
@@ -456,7 +456,7 @@ const removeCorruptedTrads = async (traductionsColl) => {
     type: "dispositif",
     status: "Validée",
     isExpert: true,
-    avancement: { $lt: 1 }
+    avancement: { $lt: 1 },
   });
   /* une autre trad isExpert complète existe. On supprime celle-ci */
   console.log("  Trad 'Validée', isExpert mais incomplète", valideNotCompleteExpert.deletedCount);
@@ -508,7 +508,7 @@ const getContentFromTrad = (trad) => {
   const content = getContent(
     { ...trad.translatedText, typeContenu: typeContenu, _id: dispositifId },
     trad.langueCible,
-    true
+    true,
   );
 
   // get metadatas from index
@@ -564,9 +564,9 @@ const migrateTrads = async (traductionsColl, dispositifsColl) => {
           from: "dispositifs",
           localField: "articleId",
           foreignField: "_id",
-          as: "dispositifs"
-        }
-      }
+          as: "dispositifs",
+        },
+      },
     ])
     .toArray();
 
@@ -585,7 +585,7 @@ const migrateTrads = async (traductionsColl, dispositifsColl) => {
       type: trad.isExpert || bugValideeIsExpert ? "validation" : "suggestion",
       avancement: trad.avancement,
       created_at: trad.created_at,
-      updatedAt: trad.updatedAt
+      updatedAt: trad.updatedAt,
     };
 
     if (bugValideeIsExpert) newTrad.userId = trad.validatorId;
@@ -604,7 +604,7 @@ const migrateTrads = async (traductionsColl, dispositifsColl) => {
   console.log(
     "  ",
     contentValidatedAndNotCopied,
-    " contenus validés mais pas dans le dispositifs. Ils ont été copiés."
+    " contenus validés mais pas dans le dispositifs. Ils ont été copiés.",
   );
   console.log("  ", toReviewGenerated, " toReview générés");
   console.log("  ", bugExpert, " validée mais pas isExpert. On les passe en isExpert et on garde le validatorId.");
@@ -617,28 +617,28 @@ const checkDispositifsWithoutTrads = async (dispositifsColl) => {
       {
         $match: {
           status: {
-            $ne: "Supprimé"
-          }
-        }
+            $ne: "Supprimé",
+          },
+        },
       },
       {
         $lookup: {
           from: "traductions",
           localField: "_id",
           foreignField: "dispositifId",
-          as: "traductions"
-        }
+          as: "traductions",
+        },
       },
       {
         $match: {
           "traductions.0": {
-            $exists: false
+            $exists: false,
           },
           "translations.1": {
-            $exists: true
-          }
-        }
-      }
+            $exists: true,
+          },
+        },
+      },
     ])
     .toArray();
 
@@ -653,31 +653,31 @@ const checkSuggestionsAlreadyValidated = async (traductionsColl) => {
     .aggregate([
       {
         $match: {
-          type: "suggestion"
-        }
+          type: "suggestion",
+        },
       },
       {
         $lookup: {
           from: "dispositifs",
           localField: "dispositifId",
           foreignField: "_id",
-          as: "dispositifs"
-        }
+          as: "dispositifs",
+        },
       },
       {
         $project: {
           "language": 1,
           "dispositifId": 1,
-          "dispositifs.translations": 1
-        }
+          "dispositifs.translations": 1,
+        },
       },
       {
         $match: {
           "dispositifs.status": {
-            $ne: "Supprimé"
-          }
-        }
-      }
+            $ne: "Supprimé",
+          },
+        },
+      },
     ])
     .toArray();
 
@@ -687,7 +687,7 @@ const checkSuggestionsAlreadyValidated = async (traductionsColl) => {
         "  À CHECKER ! Suggestion avec une trad déjà validée existante. Dispositif:",
         trad.dispositifId,
         "en",
-        trad.language
+        trad.language,
       );
     }
   }

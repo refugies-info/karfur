@@ -14,7 +14,6 @@ export interface GetActiveStructuresResponse {
 }
 
 export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
-
   logger.info("[getActiveStructures] get structures ");
   const structures = await getStructuresWithDispos(
     { status: "Actif" },
@@ -23,8 +22,8 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       acronyme: 1,
       picture: 1,
       structureTypes: 1,
-      departments: 1
-    }
+      departments: 1,
+    },
   );
   logger.info("[getActiveStructures] structures fetched");
 
@@ -37,12 +36,14 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       picture: item.picture,
       structureTypes: item.structureTypes,
       departments: item.departments,
-      disposAssociesLocalisation: []
+      disposAssociesLocalisation: [],
     };
     if (item.dispositifsAssocies && item.dispositifsAssocies.length) {
       item.dispositifsAssocies.map((el: any) => {
         if (el.contenu && el.contenu[1] && el.contenu[1].children && el.contenu[1].children.length) {
-          const geolocInfocard = el.contenu[1].children.find((infocard: any) => infocard.title === "Zone d'action"); /* TODO: update with metadatas */
+          const geolocInfocard = el.contenu[1].children.find(
+            (infocard: any) => infocard.title === "Zone d'action",
+          ); /* TODO: update with metadatas */
           if (geolocInfocard && geolocInfocard.departments) {
             for (var i = 0; i < geolocInfocard.departments.length; i++) {
               if (!newStructure.disposAssociesLocalisation.includes(geolocInfocard.departments[i])) {

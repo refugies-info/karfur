@@ -1,1 +1,1 @@
-export { validateTranslations } from "./validateTranslations";
+export { default } from "./validateTranslations";

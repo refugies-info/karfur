@@ -76,18 +76,19 @@ const getMembers = async (structure: Structure) => {
           roles: membre.roles,
           added_at: membre.added_at,
           userId: membre.userId.toString(),
-          mainRole: "" // TODO: what here?
-        }
+          mainRole: "", // TODO: what here?
+        };
         return res;
-      }))
-  )
+      }),
+    ),
+  );
   return members;
 };
 
 export const getStructureById = async (
   id: string,
   locale: string,
-  user: User
+  user: User,
 ): ResponseWithData<GetStructureResponse> => {
   logger.info("[getStructureById] get structure with id", { id, locale });
 
@@ -98,29 +99,29 @@ export const getStructureById = async (
   const isAdmin = !!(user ? user.isAdmin() : false);
   const isMember = !!(user._id
     ? (structure.membres || []).find((m) => {
-      if (!m.userId) return false;
-      return m.userId.toString() === user._id.toString();
-    })
+        if (!m.userId) return false;
+        return m.userId.toString() === user._id.toString();
+      })
     : false);
-  const shouldIncludeMembers = (isAdmin || isMember);
+  const shouldIncludeMembers = isAdmin || isMember;
   const structureMembers = shouldIncludeMembers ? await getMembers(structure) : [];
 
   // dispositifs
   const selectedLocale = (locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = {
     status: "Actif",
-    mainSponsor: structure._id
+    mainSponsor: structure._id,
   };
 
   const structureDispositifs = await getSimpleDispositifs(dbQuery, selectedLocale);
   const result = {
     ...omit(structure, ["membres", "dispositifsAssocies"]),
     membres: structureMembers,
-    dispositifsAssocies: structureDispositifs
-  }
+    dispositifsAssocies: structureDispositifs,
+  };
 
   return {
     text: "success",
-    data: result
+    data: result,
   };
 };

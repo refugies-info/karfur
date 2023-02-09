@@ -16,6 +16,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import styles from "./TranslationLanguagesChoiceModal.module.scss";
 import useRouterLocale from "hooks/useRouterLocale";
 import { GetLanguagesResponse } from "api-types";
+import { useLanguages } from "hooks";
 
 const Header = styled.div`
   font-weight: bold;
@@ -83,7 +84,7 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
     <div
       style={{
         display: "flex",
-        flexDirection: "row"
+        flexDirection: "row",
       }}
     >
       <div className="me-2">
@@ -100,9 +101,9 @@ const LangueItem = (props: { langue: GetLanguagesResponse; isSelected: boolean; 
 );
 
 const TranslationLanguagesChoiceModalComponent = (props: Props) => {
-  const [selectedLangues, setSelectedLangues] = useState<UserLanguage[]>([]);
+  const [selectedLangues, setSelectedLangues] = useState<UserLanguage["_id"][]>([]);
 
-  const langues = useSelector(allLanguesSelector);
+  const { langues } = useLanguages();
   const user = useSelector(userSelector);
   const isLoadingLangues = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_LANGUES));
   const isLoadingUser = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
@@ -116,7 +117,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     if (selectedLanguages && selectedLanguages.length > 0) {
       setSelectedLangues(selectedLanguages);
     }
-  }, [isLoading, user]);
+  }, [isLoadingUser, user]);
 
   if (isLoading)
     return (
@@ -144,10 +145,10 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
     );
 
   const handleCheck = (langue: GetLanguagesResponse) => {
-    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue._id === langue._id);
+    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue === langue._id);
 
     if (isLangueSelected) {
-      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue._id !== langue._id));
+      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue !== langue._id));
     }
 
     if (!isLangueSelected) {
@@ -156,7 +157,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
         i18nCode: langue.i18nCode,
         langueCode: langue.langueCode || "",
         langueFr: langue.langueFr,
-        langueLoc: langue.langueLoc || ""
+        langueLoc: langue.langueLoc || "",
       };
       setSelectedLangues([...selectedLangues, newSelectedLangue]);
     }
@@ -170,15 +171,17 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
       saveUserActionCreator({
         user: {
           selectedLanguages: selectedLangues,
-          _id: user.user._id
+          _id: user.user._id,
         },
-        type: "modify-my-details"
-      })
+        type: "modify-my-details",
+      }),
     );
 
     props.toggle();
-    return props.history.push(routerLocale + "/backend/user-translation/" + selectedLangues[0].i18nCode);
+    const firstLangue = langues.find((langue) => langue._id === selectedLangues[0]);
+    return props.history.push(routerLocale + "/backend/user-translation/" + firstLangue?.i18nCode);
   };
+
   return (
     <Modal
       isOpen={props.show}
@@ -194,7 +197,7 @@ const TranslationLanguagesChoiceModalComponent = (props: Props) => {
           .filter((langue) => langue.i18nCode !== "fr")
           .map((langue) => {
             const isLangueSelected =
-              selectedLangues.filter((selectedLangue) => selectedLangue._id === langue._id).length > 0;
+              selectedLangues.filter((selectedLangue) => selectedLangue === langue._id).length > 0;
             return (
               <LangueItem
                 langue={langue}

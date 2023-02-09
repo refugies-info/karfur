@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Route,
-  Security,
-  Request
-} from "tsoa";
+import { Controller, Post, Body, Route, Security, Request } from "tsoa";
 import * as express from "express";
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
 import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminderMailToUpdateContents";
@@ -37,17 +30,8 @@ export interface AddContactRequest {
 
 @Route("mail")
 export class MailController extends Controller {
-
   @Security({
-    fromCron: []
-  })
-  @Post("sendDraftReminderMail")
-  public draftReminderMail(): Response {
-    return sendDraftReminderMail();
-  }
-
-  @Security({
-    fromCron: []
+    fromCron: [],
   })
   @Post("sendReminderMailToUpdateContents")
   public reminderMailToUpdateContents(): Response {
@@ -56,13 +40,10 @@ export class MailController extends Controller {
 
   @Security({
     fromSite: [],
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Post("sendAdminImprovementsMail")
-  public adminImprovementsMail(
-    @Body() body: ImprovementsRequest,
-    @Request() request: express.Request
-  ): Response {
+  public adminImprovementsMail(@Body() body: ImprovementsRequest, @Request() request: express.Request): Response {
     return sendAdminImprovementsMail(body, request.userId);
   }
 
@@ -70,9 +51,7 @@ export class MailController extends Controller {
     fromSite: [],
   })
   @Post("sendSubscriptionReminderMail")
-  public subscriptionReminderMail(
-    @Body() body: SubscriptionRequest
-  ): Response {
+  public subscriptionReminderMail(@Body() body: SubscriptionRequest): Response {
     return sendSubscriptionReminderMail(body);
   }
 
@@ -80,9 +59,7 @@ export class MailController extends Controller {
     fromSite: [],
   })
   @Post("contacts")
-  public addContact(
-    @Body() body: AddContactRequest
-  ): Response {
+  public addContact(@Body() body: AddContactRequest): Response {
     return addContact(body);
   }
 }
