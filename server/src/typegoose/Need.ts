@@ -5,9 +5,9 @@ import { Theme, ThemeId } from "./Theme";
 
 export class NeedTranslation {
   @prop()
-  public text: String;
+  public text: string;
   @prop()
-  public subtitle: String;
+  public subtitle: string;
   @prop()
   public updatedAt?: Date;
 }
@@ -15,13 +15,13 @@ export class NeedTranslation {
 @modelOptions({ schemaOptions: { collection: "needs", timestamps: { createdAt: "created_at" } } })
 export class Need extends Base {
   @prop()
-  public tagName?: String;
+  public tagName?: string;
 
   @prop({ ref: () => Theme })
   public theme!: Ref<Theme, ThemeId>;
 
   @prop()
-  adminComments?: String;
+  adminComments?: string;
 
   @prop({ default: 0 })
   public nbVues!: number;
@@ -30,7 +30,7 @@ export class Need extends Base {
     type: Number,
     validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" }
   })
-  public position?: Number;
+  public position?: number;
 
   // FIXME : is this used anymore ? no record in DB
   //   @prop()
