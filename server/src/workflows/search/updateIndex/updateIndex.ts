@@ -1,4 +1,4 @@
-import { RequestFromClient, Res, AlgoliaObject } from "../../../types/interface";
+import { AlgoliaObject, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getActiveContentsFiltered } from "../../../modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
@@ -8,7 +8,10 @@ import { getAllAlgoliaObjects } from "../../../connectors/algolia/updateAlgoliaD
 import { formatForAlgolia } from "../../../libs/formatForAlgolia";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
 
-interface Query {
+export interface UpdateIndexResponse {
+  added: number;
+  deleted: number;
+  updated: number;
 }
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
@@ -28,7 +31,6 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     neededFields,
     { status: "Actif" }
   );
-  //@ts-ignore
   return contentsArray.map((content) => formatForAlgolia(content, [], "dispositif"));
 }
 
@@ -45,34 +47,22 @@ const getThemesForAlgolia = async (): Promise<AlgoliaObject[]> => {
   return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme"));
 }
 
-// REQUEST
-export const updateIndex = async (
-  req: RequestFromClient<Query>,
-  res: Res
-) => {
-  try {
-    logger.info("[updateIndex] received");
+export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {
+  logger.info("[updateIndex] received");
+  const themes = await getThemesForAlgolia();
+  const needs = await getNeedsForAlgolia();
+  const dispositifs = await getDispositifsForAlgolia();
+  const localContents = [
+    ...themes,
+    ...needs,
+    ...dispositifs
+  ];
 
-    const themes = await getThemesForAlgolia();
-    const needs = await getNeedsForAlgolia();
-    const dispositifs = await getDispositifsForAlgolia();
-    const localContents = [
-      ...themes,
-      ...needs,
-      ...dispositifs
-    ];
+  const algoliaContents = await getAllAlgoliaObjects();
+  const result = await updateAlgoliaIndex(localContents, algoliaContents);
 
-    const algoliaContents = await getAllAlgoliaObjects();
-    const result = await updateAlgoliaIndex(localContents, algoliaContents);
-
-    res.status(200).json({
-      text: "Succès",
-      result
-    });
-  } catch (error) {
-    logger.error("[updateIndex] error", {
-      error: error.message,
-    });
-    res.status(500).json({ text: "KO" });
+  return {
+    text: "success",
+    data: result
   }
 };

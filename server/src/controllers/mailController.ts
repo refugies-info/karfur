@@ -3,15 +3,15 @@ import {
   Post,
   Body,
   Route,
-  Security
+  Security,
+  Request
 } from "tsoa";
-
-/* TODO: update workflows */
+import * as express from "express";
 import { sendDraftReminderMail } from "../workflows/mail/sendDraftReminderMail";
 import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminderMailToUpdateContents";
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
 import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
-import setMail from "../workflows/miscellaneaous/setMail";
+import { addContact } from "../workflows/mail/addContact";
 import { Response } from "../types/interface";
 import { DispositifId, UserId } from "../typegoose";
 
@@ -26,6 +26,14 @@ export interface ImprovementsRequest {
   titreMarque: string;
   sections: string[];
   message: string;
+}
+
+export interface SubscriptionRequest {
+  email: string;
+}
+
+export interface AddContactRequest {
+  email: string;
 }
 
 @Route("mail")
@@ -53,9 +61,10 @@ export class NeedController extends Controller {
   })
   @Post("sendAdminImprovementsMail")
   public adminImprovementsMail(
-    @Body() body: ImprovementsRequest
+    @Body() body: ImprovementsRequest,
+    @Request() request: express.Request
   ): Response {
-    return sendAdminImprovementsMail(body);
+    return sendAdminImprovementsMail(body, request.userId);
   }
 
   @Security({
@@ -63,7 +72,7 @@ export class NeedController extends Controller {
   })
   @Post("sendSubscriptionReminderMail")
   public subscriptionReminderMail(
-    @Body() body: { email: string }
+    @Body() body: SubscriptionRequest
   ): Response {
     return sendSubscriptionReminderMail(body);
   }
@@ -71,10 +80,10 @@ export class NeedController extends Controller {
   @Security({
     fromSite: [],
   })
-  @Post("contacts") // TODO: moved from misceallaneous/set_mail
+  @Post("contacts")
   public addContact(
-    @Body() body: { email: string }
+    @Body() body: AddContactRequest
   ): Response {
-    return setMail(body);
+    return addContact(body);
   }
 }

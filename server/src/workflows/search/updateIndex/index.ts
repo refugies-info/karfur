@@ -1,1 +1,1 @@
-export { updateIndex } from "./updateIndex";
+export * from "./updateIndex";

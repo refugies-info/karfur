@@ -459,6 +459,7 @@ const API = {
   },
   set_mail: (query: { mail: string }) => {
     const headers = getHeaders();
+    // TODO: moved to mail/contacts, parameter email
     return instance.post("/miscellaneous/set_mail", query, { headers });
   },
 
