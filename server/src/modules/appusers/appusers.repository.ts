@@ -32,7 +32,8 @@ export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]
   const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
   if (appUser) {
-    return AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+    await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true, new: true });
+    return AppUserModel.findOne({ uid: payload.uid }); // fix wrong type after updateOne
   }
 
   const themes: Record<string, boolean> = {};
