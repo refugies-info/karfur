@@ -78,45 +78,19 @@ RegisterRoutes(app);
 const userController = require(__dirname + "/controllers/userController");
 const translateController = require(__dirname + "/controllers/translateController");
 const languesController = require(__dirname + "/controllers/languesController");
-const roleController = require(__dirname + "/controllers/roleController");
 const imageController = require(__dirname + "/controllers/imageController");
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
 const structureController = require(__dirname + "/controllers/structureController");
-const ttsController = require(__dirname + "/controllers/ttsController");
-const miscellaneousController = require(__dirname + "/controllers/miscellaneousController");
-const indicatorController = require(__dirname + "/controllers/indicatorController");
-const mailController = require(__dirname + "/controllers/mailController");
-const needsController = require(__dirname + "/controllers/needsController");
-const searchController = require(__dirname + "/controllers/searchController");
-const widgetController = require(__dirname + "/controllers/widgetController");
-const logController = require(__dirname + "/controllers/logController");
-const appuserController = require(__dirname + "/controllers/appusersController");
-const notificationsController = require(__dirname + "/controllers/notificationsController");
-const adminOptionController = require(__dirname + "/controllers/adminOptionController");
-const smsController = require(__dirname + "/controllers/smsController");
 
 app.enable("strict routing");
 app.use("/user", userController);
 app.use("/translate", translateController);
 app.use("/langues", languesController);
-app.use("/roles", roleController);
 app.use("/images", imageController);
 app.use("/traduction", traductionController);
 app.use("/dispositifs", dispositifController);
 app.use("/structures", structureController);
-app.use("/tts", ttsController);
-app.use("/miscellaneous", miscellaneousController);
-app.use("/indicator", indicatorController);
-app.use("/mail", mailController);
-app.use("/needs", needsController);
-app.use("/search", searchController);
-app.use("/logs", logController);
-app.use("/widgets", widgetController);
-app.use("/appuser", appuserController);
-app.use("/notifications", notificationsController);
-app.use("/options", adminOptionController);
-app.use("/sms", smsController);
 
 app.use(errors()); // TODO: delete and use tsoa instead
 

@@ -24,6 +24,8 @@ import updateDispositif from "../workflows/dispositif/updateDispositif";
 
 const router = express.Router();
 
+/* TODO: use tsoa */
+
 // @ts-ignore FIXME
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
