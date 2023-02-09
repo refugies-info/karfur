@@ -21,6 +21,8 @@ export class AuthenticationError extends Error { }
 
 export class NotFoundError extends Error { }
 
+export class InvalidRequestError extends Error { }
+
 /**
  * Returns the right error code depending on the type of the error
  * @param err
@@ -48,6 +50,11 @@ export const serverErrorHandler = (
   }
   if (err instanceof NotFoundError) {
     return res.status(404).json({
+      message: err.message,
+    });
+  }
+  if (err instanceof InvalidRequestError) {
+    return res.status(400).json({
       message: err.message,
     });
   }

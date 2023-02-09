@@ -1,47 +1,30 @@
-import { ObjectId } from "mongoose";
 import logger from "../../../logger";
-import { celebrate, Joi, Segments } from "celebrate";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { updatePositions } from "../../../modules/needs/needs.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { NeedId } from "src/typegoose";
+import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
+import { UpdatePositionsRequest } from "../../../controllers/needController";
+import { NeedTranslation, ResponseWithData, Theme } from "../../../types/interface";
 
-const validator = celebrate({
-  [Segments.BODY]: Joi.object({
-    orderedNeedIds: Joi.array().items(Joi.string())
-  })
-});
-
-export interface Request {
-  orderedNeedIds: NeedId[];
+export interface UpdatePositionsNeedResponse {
+  theme: Theme;
+  adminComments?: string;
+  nbVues: number;
+  position?: number;
+  fr: NeedTranslation;
+  ar: NeedTranslation;
+  en: NeedTranslation;
+  ru: NeedTranslation;
+  fa: NeedTranslation;
+  ti: NeedTranslation;
+  ps: NeedTranslation;
+  uk: NeedTranslation;
 }
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[updatePositions] received");
-    checkRequestIsFromSite(req.fromSite);
-    checkIfUserIsAdmin(req.user);
+export const updatePositions = async (body: UpdatePositionsRequest): ResponseWithData<UpdatePositionsNeedResponse[]> => {
+  logger.info("[updatePositions] received");
 
-    const data = await updatePositions(req.body.orderedNeedIds);
+  const data = await updatePositionsInDb(body.orderedNeedIds);
 
-    return res.status(200).json({
-      text: "Succès",
-      data
-    });
-  } catch (error) {
-    logger.error("[updatePositions] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Création interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  return {
+    text: "success",
+    data
   }
-};
-
-export default [validator, handler];
+}

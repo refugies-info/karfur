@@ -5,11 +5,11 @@ import { ImageSchema } from "./generics";
 import { Langue } from "./Langue";
 
 class ThemeColors {
-  color100!: String;
-  color80!: String;
-  color60!: String;
-  color40!: String;
-  color30!: String;
+  color100!: string;
+  color80!: string;
+  color60!: string;
+  color40!: string;
+  color30!: string;
 }
 
 @modelOptions({ schemaOptions: { collection: "themes" } })
@@ -27,7 +27,7 @@ export class Theme extends Base {
     type: Number,
     validate: { validator: (v: any) => isInteger(v) && v >= 0, message: "position must be an positive integer" }
   })
-  public position!: Number;
+  public position!: number;
 
   @prop()
   public icon: ImageSchema;

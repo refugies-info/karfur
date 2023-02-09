@@ -1,21 +1,31 @@
-import { Res } from "../../../types/interface";
-
+import { NeedTranslation, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
+import { Theme } from "src/typegoose";
 
-export const getNeeds = async (req: {}, res: Res) => {
-  try {
-    logger.info("[getNeeds] get needs");
+export interface GetNeedResponse {
+  theme: Theme;
+  adminComments?: string;
+  nbVues: number;
+  position?: number;
+  fr: NeedTranslation;
+  ar: NeedTranslation;
+  en: NeedTranslation;
+  ru: NeedTranslation;
+  fa: NeedTranslation;
+  ti: NeedTranslation;
+  ps: NeedTranslation;
+  uk: NeedTranslation;
+}
 
-    const needs = await getNeedsFromDB();
+export const getNeeds = async (): ResponseWithData<GetNeedResponse[]> => {
+  logger.info("[getNeeds] get needs");
+  const needs = await getNeedsFromDB();
 
-    return res.status(200).json({ data: needs });
-  } catch (error) {
-    logger.error("[getNeeds] error", { error: error.message });
-    return res.status(500).json({
-      text: "Erreur interne",
-    });
-  }
+  return {
+    text: "success",
+    data: needs
+  };
 };
 
 export default [getNeeds];
