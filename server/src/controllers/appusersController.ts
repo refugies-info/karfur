@@ -9,11 +9,11 @@ import {
 
 /* TODO: update workflows */
 import { updateAppUser } from "../workflows/appusers/updateAppUser";
-import { getNotificationsSettings, NotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
-import { updateNotificationsSettings, NotificationsSettings } from "../workflows/appusers/updateNotificationsSettings";
+import { getNotificationsSettings, GetNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
+import { updateNotificationsSettings, PostNotificationsSettings } from "../workflows/appusers/updateNotificationsSettings";
 import { Response, ResponseWithData } from "../types/interface";
 
-export interface AppUserParams {
+export interface AppUserRequest {
   city?: string;
   department?: string;
   selectedLanguage?: string;
@@ -22,7 +22,7 @@ export interface AppUserParams {
   expoPushToken?: string;
 }
 
-export interface NotificationSettingsParams {
+export interface NotificationSettingsRequest {
   global: boolean;
   local: boolean;
   demarches: boolean;
@@ -35,22 +35,22 @@ export class AdminOptionController extends Controller {
   @Post("/")
   public async post(
     @Header("x-app-uid") appUid: string,
-    @Body() body: AppUserParams
+    @Body() body: AppUserRequest
   ): Response {
     return updateAppUser(appUid, body);
   }
   @Get("/notification_settings") /* TODO: udpate case */
   public async notificationSettings(
     @Header("x-app-uid") appUid: string
-  ): ResponseWithData<NotificationsSettings[]> {
+  ): ResponseWithData<GetNotificationsSettings[]> {
     return getNotificationsSettings(appUid);
   }
 
   @Post("/notification_settings") /* TODO: udpate case */
   public async get(
     @Header("x-app-uid") appUid: string,
-    @Body() body: NotificationSettingsParams
-  ): ResponseWithData<NotificationsSettings[]> {
+    @Body() body: NotificationSettingsRequest
+  ): ResponseWithData<PostNotificationsSettings[]> {
     return updateNotificationsSettings(appUid, body);
   }
 }

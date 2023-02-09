@@ -11,13 +11,13 @@ import {
 } from "tsoa";
 
 /* TODO: update workflows */
-import { getWidgets, Widget as GetWidget } from "../workflows/Widgets/getWidgets";
-import { postWidgets, Widget as PostWidget } from "../workflows/Widgets/postWidgets";
-import { patchWidget, Widget as PatchWidget } from "../workflows/Widgets/patchWidget";
+import { getWidgets, GetWidgetResponse } from "../workflows/Widgets/getWidgets";
+import { postWidgets, PostWidgetResponse } from "../workflows/Widgets/postWidgets";
+import { patchWidget, PatchWidgetResponse } from "../workflows/Widgets/patchWidget";
 import { deleteWidget } from "../workflows/Widgets/deleteWidget";
 import { Response, ResponseWithData } from "../types/interface";
 
-export interface WidgetParams {
+export interface WidgetRequest {
   name: string;
   themes: { _id: string }[];
   typeContenu: ("dispositif" | "demarche")[];
@@ -33,7 +33,7 @@ export class WidgetController extends Controller {
     jwt: ["admin"]
   })
   @Get("/")
-  public async get(): ResponseWithData<GetWidget[]> {
+  public async get(): ResponseWithData<GetWidgetResponse[]> {
     return getWidgets();
   }
 
@@ -43,8 +43,8 @@ export class WidgetController extends Controller {
   })
   @Post("/")
   public async post(
-    @Body() body: WidgetParams
-  ): ResponseWithData<PostWidget> {
+    @Body() body: WidgetRequest
+  ): ResponseWithData<PostWidgetResponse> {
     return postWidgets(body);
   }
 
@@ -55,8 +55,8 @@ export class WidgetController extends Controller {
   @Patch("{id}")
   public async patch(
     @Path() id: string,
-    @Body() body: Partial<WidgetParams>
-  ): ResponseWithData<PatchWidget> {
+    @Body() body: Partial<WidgetRequest>
+  ): ResponseWithData<PatchWidgetResponse> {
     return patchWidget(id, body);
   }
 

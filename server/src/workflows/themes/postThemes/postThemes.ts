@@ -4,10 +4,10 @@ import { createTheme } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
 import { getAllAppUsers, updateNotificationsSettings } from "../../../modules/appusers/appusers.repository";
 import map from "lodash/fp/map";
-import { AppUser, Theme as ThemeDB } from "../../../typegoose";
-import { ThemeParams } from "../../../controllers/themeController";
+import { AppUser, Theme } from "../../../typegoose";
+import { ThemeRequest } from "../../../controllers/themeController";
 
-export interface Theme {
+export interface PostThemeResponse {
   _id: string;
   name: TranslatedText;
   short: TranslatedText;
@@ -29,17 +29,17 @@ export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.local ||
   Object.values(user.notificationsSettings.themes).reduce((acc, cur) => acc || cur, false);
 
-export const addThemeInNotificationSettingsForUser = (theme: ThemeDB) => (user: AppUser) =>
+export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: AppUser) =>
   updateNotificationsSettings(user.uid, {
     ...user.notificationsSettings,
     themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) }
   });
 
-const updateUsersNotificationsSettings = async (theme: ThemeDB) =>
+const updateUsersNotificationsSettings = async (theme: Theme) =>
   getAllAppUsers().then(map(addThemeInNotificationSettingsForUser(theme)));
 
 
-export const postThemes = async (theme: ThemeParams): ResponseWithData<Theme> => {
+export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThemeResponse> => {
   logger.info("[postThemes] received", theme);
 
   const dbTheme = await createTheme(theme);

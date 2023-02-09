@@ -10,13 +10,13 @@ import {
   Security
 } from "tsoa";
 
-import { getThemes, Theme as GetTheme } from "../workflows/themes/getThemes";
-import { postThemes, Theme as PostTheme } from "../workflows/themes/postThemes";
-import { patchTheme, Theme as PatchTheme } from "../workflows/themes/patchTheme";
+import { getThemes, GetThemeResponse } from "../workflows/themes/getThemes";
+import { postThemes, PostThemeResponse } from "../workflows/themes/postThemes";
+import { patchTheme, PatchThemeResponse } from "../workflows/themes/patchTheme";
 import { deleteTheme } from "../workflows/themes/deleteTheme";
 import { Picture, Response, ResponseWithData, ThemeColors } from "../types/interface";
 
-export interface ThemeParams {
+export interface ThemeRequest {
   name: {
     fr: string;
     [key: string]: string
@@ -40,7 +40,7 @@ export interface ThemeParams {
 export class ThemeController extends Controller {
 
   @Get("/")
-  public async get(): ResponseWithData<GetTheme[]> {
+  public async get(): ResponseWithData<GetThemeResponse[]> {
     return getThemes();
   }
 
@@ -50,8 +50,8 @@ export class ThemeController extends Controller {
   })
   @Post("/")
   public async post(
-    @Body() body: ThemeParams
-  ): ResponseWithData<PostTheme> {
+    @Body() body: ThemeRequest
+  ): ResponseWithData<PostThemeResponse> {
     return postThemes(body);
   }
 
@@ -62,8 +62,8 @@ export class ThemeController extends Controller {
   @Patch("{id}")
   public async patch(
     @Path() id: string,
-    @Body() body: Partial<ThemeParams>
-  ): ResponseWithData<PatchTheme> {
+    @Body() body: Partial<ThemeRequest>
+  ): ResponseWithData<PatchThemeResponse> {
     return patchTheme(id, body);
   }
 
