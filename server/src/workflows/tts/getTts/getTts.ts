@@ -2,13 +2,10 @@ import fetch from "node-fetch";
 import xmlbuilder from "xmlbuilder";
 import logger from "../../../logger";
 import { ResponseWithData } from "../../../types/interface";
-import { TtsParams } from "../../../controllers/ttsController";
+import { TtsRequest } from "../../../controllers/ttsController";
 import { AuthenticationError } from "../../../errors";
 import voices from "../../../controllers/tts/voices";
 
-export interface Tts {
-
-}
 /* TODO: test */
 const getAccessToken = async (subscriptionKey: string) => {
   const response = await fetch("https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken", {
@@ -18,8 +15,8 @@ const getAccessToken = async (subscriptionKey: string) => {
   return response.json();
 }
 
-/* TODO: test */
-export const getTts = async (body: TtsParams): ResponseWithData<Tts> => {
+
+export const getTts = async (body: TtsRequest): ResponseWithData<any> => { // TODO: test and type
   logger.info("[getTts] received", body);
 
   const subscriptionKey = process.env.TTS_KEY_1;

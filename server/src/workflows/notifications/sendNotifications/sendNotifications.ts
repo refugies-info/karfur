@@ -1,44 +1,16 @@
-import { celebrate, Joi, Segments } from "celebrate";
-import { Response } from "express";
 import logger from "../../../logger";
 import { log } from "./log";
-
 import { sendNotificationsForDemarche } from "../../../modules/notifications/notifications.service";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { DispositifId } from "src/typegoose";
+import { Response } from "../../../types/interface";
+import { SendNotificationsRequest } from "src/controllers/notificationsController";
 
-const validator = celebrate({
-  [Segments.BODY]: Joi.object({
-    demarcheId: Joi.string().required()
-  })
-});
 
-interface Request {
-  demarcheId: DispositifId;
-}
+export const sendNotifications = async (body: SendNotificationsRequest, userId: string): Response => {
+  logger.info("[sendNotifications] received");
 
-const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[sendNotifications] received");
-    checkIfUserIsAdmin(req.user);
-    const { demarcheId } = req.body;
+  await sendNotificationsForDemarche(body.demarcheId);
+  await log(body.demarcheId, userId);
 
-    await sendNotificationsForDemarche(demarcheId);
-    await log(demarcheId, req.userId);
-
-    res.status(200).json({
-      status: "Succès"
-    });
-  } catch (e) {
-    logger.error("[sendNotifications] error", { error: e.message });
-    switch (e.message) {
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
-  }
+  return { text: "success" }
 };
 
-export default [validator, handler];
