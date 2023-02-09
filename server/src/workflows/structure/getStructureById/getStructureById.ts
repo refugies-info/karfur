@@ -70,7 +70,7 @@ export const getStructureById = async (req: RequestFromClient<Query>, res: Respo
       throw new Error("No structure");
     }
 
-    const isAdmin = !!(req.user ? req.user.hasRole("Admin") : false);
+    const isAdmin = !!(req.user ? req.user.isAdmin() : false);
     const isMember = !!(req.userId
       ? (structure.membres || []).find((m) => {
           if (!m.userId) return false;

@@ -11,7 +11,7 @@ interface Query {
   locale: Languages;
 }
 
-interface Result {
+interface GetDispositifsWithTranslationAvancementResponse {
   _id: DispositifId;
   titreInformatif: string;
   titreMarque: string;
@@ -28,6 +28,7 @@ export const getDispositifsWithTranslationAvancement = async (
   req: RequestFromClient<Query>,
   res: Res
   // res: Response<Result[]>
+  // res: Response<GetDispositifsWithTranslationAvancementResponse[]>
 ) => {
   try {
     checkRequestIsFromSite(req.fromSite);
@@ -40,27 +41,26 @@ export const getDispositifsWithTranslationAvancement = async (
     logger.info("[getDispositifsWithTranslationAvancement] received with locale", { locale });
 
     const activeDispositifs = await getActiveContents({
-      nbMots: 1,
       created_at: 1,
-      typeContenu: 1,
-      translations: 1
+      nbMots: 1,
+      translations: 1,
+      typeContenu: 1
     });
 
-    const traductionFields = {
-      articleId: 1,
+    const traductions = await getTraductionsByLanguage(locale, {
       avancement: 1,
-      status: 1,
+      dispositifId: 1,
+      translated: 1,
       updatedAt: 1,
-      userId: 1
-    };
+      userId: 1,
+      type: 1
+    });
 
-    const traductions = await getTraductionsByLanguage(locale, traductionFields);
-
-    let results: Result[] = [];
+    let results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
     activeDispositifs.forEach((dispositif) => {
       const correspondingTrads = traductions.filter(
-        (trad) => trad.articleId && dispositif._id && trad.articleId.toString() === dispositif._id.toString()
+        (trad) => trad.dispositifId && dispositif._id && trad.dispositifId.toString() === dispositif._id.toString()
       );
       const dispositifData = {
         _id: dispositif._id,
@@ -70,7 +70,6 @@ export const getDispositifsWithTranslationAvancement = async (
         created_at: dispositif.created_at,
         type: dispositif.typeContenu
       };
-      console.log(dispositifData);
 
       if (correspondingTrads.length === 0) {
         return results.push({
@@ -81,19 +80,19 @@ export const getDispositifsWithTranslationAvancement = async (
           tradStatus: "À traduire"
         });
       }
-      const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt || 0));
+      const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0));
       const avancementTrad = Math.max(0, ...correspondingTrads.map((z) => z.avancement || -1));
 
       const avancementExpert = Math.max(
         0,
         ...correspondingTrads
           .filter((y) => {
-            return y.userId.toString() === req.userId.toString();
+            return y.type === "validation";
           })
           .map((z) => z.avancement || -1)
       );
 
-      const tradStatus = getTradStatus(correspondingTrads);
+      const tradStatus = getTradStatus(dispositif, correspondingTrads);
 
       return results.push({
         ...dispositifData,
@@ -108,6 +107,7 @@ export const getDispositifsWithTranslationAvancement = async (
 
     res.status(200).json({ data: results });
   } catch (error) {
+    console.error(error);
     logger.error("[getDispositifsWithTranslationAvancement] error", {
       error: error.message
     });

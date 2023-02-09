@@ -43,7 +43,7 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
     }
 
     if (action === "modify-with-roles") {
-      const isRequestorAdmin = req.user.hasRole("Admin");
+      const isRequestorAdmin = req.user.isAdmin();
       if (!isRequestorAdmin) {
         throw new Error("USER_NOT_AUTHORIZED");
       }

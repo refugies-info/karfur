@@ -17,7 +17,7 @@ type publicType = "refugee" | "all";
 type justificatifType = "diplome" | "titre sejour" | "domicile";
 type contentType = "dispositif" | "demarche";
 
-class Sponsor {
+export class Sponsor {
   @prop()
   name: String;
   @prop()
@@ -35,15 +35,15 @@ class Content {
   abstract: string;
 }
 
-class InfoSection {
+export class InfoSection {
   @prop()
-  title: String;
+  title: string;
   @prop()
   text: RichText;
 }
-type InfoSections = Record<Uuid, InfoSection>;
+export type InfoSections = Record<Uuid, InfoSection>;
 
-class DispositifContent extends Content {
+export class DispositifContent extends Content {
   @prop()
   what: RichText;
   @prop()
@@ -51,7 +51,7 @@ class DispositifContent extends Content {
   @prop()
   how: InfoSections;
 }
-class DemarcheContent extends Content {
+export class DemarcheContent extends Content {
   @prop()
   what: RichText;
   @prop()
@@ -60,7 +60,7 @@ class DemarcheContent extends Content {
   next: InfoSections;
 }
 
-class Suggestion {
+export class Suggestion {
   @prop()
   created_at: Date;
   @prop()
@@ -75,39 +75,39 @@ class Suggestion {
   section: keyof DispositifContent | keyof DemarcheContent;
 }
 
-class Merci {
+export class Merci {
   @prop()
   created_at: Date;
   @prop()
   userId?: ObjectId;
 }
 
-class TranslationContent {
+export class TranslationContent {
   @prop()
   public content!: DispositifContent | DemarcheContent;
 
   @prop()
-  public metadata!: {
+  public metadatas!: {
     important?: string;
     duration?: string;
   };
 }
 
-class Age {
+export class Age {
   @prop({ type: String })
   public type!: ageType;
   @prop()
   public ages: Number[];
 }
 
-class Price {
+export class Price {
   @prop()
   public value: Number;
   @prop()
   public details?: priceDetails;
 }
 
-class Metadatas {
+export class Metadatas {
   @prop()
   public location?: string[];
   @prop()
@@ -130,7 +130,7 @@ class Metadatas {
   public justificatif?: justificatifType;
 }
 
-class Poi {
+export class Poi {
   @prop()
   public title!: String;
   @prop()

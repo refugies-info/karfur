@@ -4,7 +4,7 @@ import logger from "../logger";
 // TODO: delete
 export const checkIfUserIsAdmin = (user: User) => {
   // user is admin for the platform
-  const isAdmin = user.hasRole("Admin");
+  const isAdmin = user.isAdmin();
 
   if (!isAdmin) throw new Error("NOT_AUTHORIZED");
 
@@ -13,7 +13,7 @@ export const checkIfUserIsAdmin = (user: User) => {
 // TODO: delete
 export const checkIfUserIsAdminOrExpert = (user: User) => {
   // user is admin for the platform
-  const isAdmin = user.hasRole("Admin");
+  const isAdmin = user.isAdmin();
   const isExpert = user.hasRole("ExpertTrad");
 
   if (!isAdmin && !isExpert) throw new Error("NOT_AUTHORIZED");
@@ -43,7 +43,7 @@ export const checkCronAuthorization = (cronToken: string) => {
 // Dispositif edition
 const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User) => {
   logger.info("[isUserAuthorizedToModifyDispositif] received");
-  if (user.hasRole("Admin")) {
+  if (user.isAdmin()) {
     logger.info("[isUserAuthorizedToModifyDispositif] user is admin");
     return true;
   }
@@ -88,7 +88,7 @@ export const checkUserIsAuthorizedToModifyDispositif = (dispositif: Dispositif, 
 const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) => {
   logger.info("[isUserAuthorizedToDeleteDispositif] received");
   // user is admin
-  const isAdmin = user.hasRole("Admin");
+  const isAdmin = user.isAdmin();
   if (isAdmin) {
     logger.info("[isUserAuthorizedToDeleteDispositif] user is admin");
     return true;

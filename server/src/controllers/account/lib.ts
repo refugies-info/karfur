@@ -125,7 +125,7 @@ async function set_user_info(req: Request, res: Response) {
     }
 
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
-    if (!req.user.hasRole("Admin") && !req.user._id.equals(user._id)) {
+    if (!req.user.isAdmin() && !req.user._id.equals(user._id)) {
       res.status(401).json({ text: "Token invalide" });
       return false;
     }
@@ -190,7 +190,7 @@ function reset_password(req: Request, res: Response) {
         });
       }
 
-      if (user.hasRole("Admin")) {
+      if (user.isAdmin()) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
           text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
@@ -231,11 +231,7 @@ function get_users(req: Request, res: Response) {
     populate = "";
   }
 
-  const select = req.user?.hasRole("Admin")
-    ? undefined
-    : req.fromSite
-    ? "username roles last_connected email"
-    : "username";
+  const select = req.user?.isAdmin() ? undefined : req.fromSite ? "username roles last_connected email" : "username";
 
   UserModel.find(query)
     .sort(sort)
@@ -269,6 +265,7 @@ function get_users(req: Request, res: Response) {
 }
 
 function get_user_info(req: Request, res: Response) {
+  console.log(req.user);
   res.status(200).json({
     text: "Succès",
     data: pick(req.user.toObject(), [

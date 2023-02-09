@@ -106,6 +106,14 @@ export class User extends Base {
     return isDocumentArray(this.roles) && this.roles.some((role: Role) => role.nom === roleName);
   }
 
+  public isAdmin(): boolean {
+    return this.hasRole("Admin");
+  }
+
+  public isExpert(): boolean {
+    return this.hasRole("ExpertTrad");
+  }
+
   /**
    * Retourne les rôles Admin et ExpertTrad si ils existent dans la liste
    *

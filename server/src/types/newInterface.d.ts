@@ -37,8 +37,8 @@ interface Metadatas {
   location?: string[];
   frenchLevel?: frenchLevel[];
   important?: string;
-  age?: { type: ageType, ages: number[] },
-  price?: { value: number, details: priceDetails | null },
+  age?: { type: ageType; ages: number[] };
+  price?: { value: number; details: priceDetails | null };
   duration?: string;
   public?: publicType;
   titreSejourRequired?: boolean;
@@ -64,17 +64,17 @@ interface Sponsor {
 }
 
 interface Suggestion {
-  created_at: Date
-  userId: ObjectId | null
-  read: boolean
-  suggestion: string
-  suggestionId: Uuid
-  section: keyof DispositifContent | keyof DemarcheContent | "metadatas"
+  created_at: Date;
+  userId: ObjectId | null;
+  read: boolean;
+  suggestion: string;
+  suggestionId: Uuid;
+  section: keyof DispositifContent | keyof DemarcheContent | "metadatas";
 }
 
 interface Merci {
-  created_at: Date
-  userId: ObjectId | null
+  created_at: Date;
+  userId: ObjectId | null;
 }
 
 interface TranslationContent {
@@ -82,7 +82,7 @@ interface TranslationContent {
   metadata: {
     important?: string;
     duration?: string;
-  }
+  };
 }
 
 // COLLECTION
@@ -132,20 +132,4 @@ interface Dispositif {
   suggestions: Suggestion[];
   merci: Merci[];
   webOnly: boolean;
-}
-
-
-// COLLECTION
-interface TranslationSuggestion {
-  dispositifId: ObjectId;
-  userId: ObjectId;
-  language: lnCode;
-  translated: Partial<TranslationContent>;
-  timeSpent: number; // comment on le calcule ?
-  type: "suggestion" | "validation"; // TODO: clean type
-  avancement: number;
-  toReview?: string[];
-
-  created_at: Date;
-  updatedAt: Date;
 }

@@ -77,9 +77,9 @@ export const modifyReadSuggestionInDispositif = async (dispositifId: DispositifI
 
 export const getDispositifById = async (
   id: DispositifId,
-  neededFields: DispositifFieldsRequest,
+  neededFields: DispositifFieldsRequest = {},
   populate: string = ""
-) => await DispositifModel.findOne({ _id: id }, neededFields).populate(populate);
+): Promise<Dispositif> => DispositifModel.findOne({ _id: id }, neededFields).populate(populate);
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
