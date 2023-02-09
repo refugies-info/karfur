@@ -6,10 +6,10 @@ import { User } from "./User";
 @modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
 export class Widget extends Base {
   @prop({ required: true })
-  public name!: String;
+  public name!: string;
 
   @prop({ required: true, type: () => [String] })
-  public tags!: String[];
+  public tags!: string[];
 
   @prop({ required: true, ref: () => Theme })
   public themes!: Ref<Theme>[];
@@ -18,10 +18,10 @@ export class Widget extends Base {
   public typeContenu: ("dispositif" | "demarche")[];
 
   @prop()
-  public department: String;
+  public department: string;
 
   @prop({ type: () => [String] })
-  public languages: String[];
+  public languages: string[];
 
   @prop({ required: true })
   public author!: Ref<User>;
