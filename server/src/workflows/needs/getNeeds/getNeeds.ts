@@ -1,7 +1,6 @@
-import { NeedTranslation, ResponseWithData } from "../../../types/interface";
+import { NeedTranslation, ResponseWithData, Theme } from "../../../types/interface";
 import logger from "../../../logger";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
-import { Theme } from "src/typegoose";
 
 export interface GetNeedResponse {
   theme: Theme;

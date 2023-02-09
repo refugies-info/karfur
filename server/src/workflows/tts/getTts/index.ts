@@ -1,1 +1,1 @@
-export { getTts, Tts } from "./getTts";
+export * from "./getTts";
