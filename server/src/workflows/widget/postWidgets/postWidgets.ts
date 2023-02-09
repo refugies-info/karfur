@@ -38,6 +38,6 @@ export const postWidgets = async (body: WidgetRequest, userId: string): Response
   return {
     text: "success",
     //@ts-ignore FIXME: include created_at
-    data: dbWidget
-  }
+    data: dbWidget,
+  };
 };

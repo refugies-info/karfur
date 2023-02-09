@@ -1,5 +1,6 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
 import { isEmpty, isString } from "lodash";
+import { MustBePopulatedError } from "src/errors";
 import { Base } from "./Base";
 import {
   DemarcheContent,
@@ -7,7 +8,7 @@ import {
   DispositifContent,
   InfoSection,
   InfoSections,
-  TranslationContent
+  TranslationContent,
 } from "./Dispositif";
 import { Languages } from "./generics";
 import { User } from "./User";
@@ -17,7 +18,7 @@ export enum TraductionsStatus {
   VALIDATED,
   TO_REVIEW,
   PENDING,
-  TO_TRANSLATE
+  TO_TRANSLATE,
 }
 
 /**
@@ -36,7 +37,7 @@ const countWordsForRecord = (records: Record<any, string>): number =>
 const countWordsForInfoSections = (infoSections: InfoSections): number =>
   Object.values(infoSections || {}).reduce(
     (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
-    0
+    0,
   );
 
 @modelOptions({ schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } } })
@@ -108,6 +109,13 @@ export class Traductions extends Base {
 
     // if type === "suggestion"
     return this.avancement === 1 ? TraductionsStatus.PENDING : TraductionsStatus.TO_TRANSLATE;
+  }
+
+  public getUser(): User {
+    if (!isDocument(this.userId)) {
+      throw new MustBePopulatedError("userId");
+    }
+    return this.userId;
   }
 
   public static computeAvancement(dispositif: Dispositif, translation: Traductions): number {

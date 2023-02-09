@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Patch,
-  Body,
-  Delete,
-  Route,
-  Path,
-  Security
-} from "tsoa";
+import { Controller, Get, Post, Patch, Body, Delete, Route, Path, Security } from "tsoa";
 
 import { getThemes, GetThemeResponse } from "../workflows/themes/getThemes";
 import { postThemes, PostThemeResponse } from "../workflows/themes/postThemes";
@@ -32,7 +22,6 @@ export interface ThemeRequest {
 
 @Route("themes")
 export class ThemeController extends Controller {
-
   @Get("/")
   public async get(): ResponseWithData<GetThemeResponse[]> {
     return getThemes();
@@ -40,35 +29,28 @@ export class ThemeController extends Controller {
 
   @Security({
     fromSite: [],
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Post("/")
-  public async post(
-    @Body() body: ThemeRequest
-  ): ResponseWithData<PostThemeResponse> {
+  public async post(@Body() body: ThemeRequest): ResponseWithData<PostThemeResponse> {
     return postThemes(body);
   }
 
   @Security({
     fromSite: [],
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Patch("{id}")
-  public async patch(
-    @Path() id: string,
-    @Body() body: Partial<ThemeRequest>
-  ): ResponseWithData<PatchThemeResponse> {
+  public async patch(@Path() id: string, @Body() body: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> {
     return patchTheme(id, body);
   }
 
   @Security({
     fromSite: [],
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Delete("{id}")
-  public async delete(
-    @Path() id: string
-  ): Response {
+  public async delete(@Path() id: string): Response {
     return deleteTheme(id);
   }
 }

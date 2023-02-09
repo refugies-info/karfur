@@ -1,8 +1,4 @@
-import {
-  Controller,
-  Get,
-  Route
-} from "tsoa";
+import { Controller, Get, Route } from "tsoa";
 
 import { updateIndex, UpdateIndexResponse } from "../workflows/search/updateIndex";
 import { ResponseWithData } from "../types/interface";

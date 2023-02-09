@@ -26,7 +26,7 @@ export class Sponsor {
   link: String;
 }
 
-class Content {
+export class Content {
   @prop()
   titreInformatif: string;
   @prop()
@@ -41,13 +41,14 @@ export class InfoSection {
   @prop()
   text: RichText;
 }
-export type InfoSections = Record<Uuid, InfoSection>;
+export type InfoSections = { [key: Uuid]: InfoSection };
+// export type InfoSections = Record<Uuid, InfoSection>;
 
 export class DispositifContent extends Content {
   @prop()
   what: RichText;
   @prop()
-  why: InfoSections;
+  why: { [key: string]: InfoSection };
   @prop()
   how: InfoSections;
 }
@@ -155,8 +156,8 @@ export class Poi {
     collection: "dispositifs",
     timestamps: { createdAt: "created_at" },
     toJSON: { getters: true, virtuals: true },
-    toObject: { virtuals: true }
-  }
+    toObject: { virtuals: true },
+  },
 })
 export class Dispositif extends Base {
   @prop({ required: true })

@@ -19,13 +19,15 @@ export interface UpdatePositionsNeedResponse {
   uk: NeedTranslation;
 }
 
-export const updatePositions = async (body: UpdatePositionsRequest): ResponseWithData<UpdatePositionsNeedResponse[]> => {
+export const updatePositions = async (
+  body: UpdatePositionsRequest,
+): ResponseWithData<UpdatePositionsNeedResponse[]> => {
   logger.info("[updatePositions] received");
 
   const data = await updatePositionsInDb(body.orderedNeedIds);
 
   return {
     text: "success",
-    data
-  }
-}
+    data,
+  };
+};

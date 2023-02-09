@@ -1,16 +1,16 @@
-import { DispositifId, LangueId, TraductionId, Traductions, TraductionsModel, UserId } from "src/typegoose";
+import { DispositifId, Languages, TraductionId, Traductions, TraductionsModel, UserId } from "src/typegoose";
 
 type TraductionsKeys = keyof Traductions;
 type TraductionsFieldsRequest = Partial<Record<TraductionsKeys, number>>;
 
-export const getTraductionsByLanguage = (langue: string, neededFields: TraductionsFieldsRequest) =>
-  TraductionsModel.find({ langueCible: langue }, neededFields);
+export const getTraductionsByLanguage = (language: string, neededFields: TraductionsFieldsRequest) =>
+  TraductionsModel.find({ language }, neededFields);
 
 export const getTraductionsByLanguageAndDispositif = (
-  langueCible: LangueId,
+  language: Languages,
   dispositifId: DispositifId,
   neededFields: TraductionsFieldsRequest = {},
-) => TraductionsModel.find({ langueCible, dispositifId }, neededFields);
+) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
 
 export const validateTradInDB = (tradId: TraductionId, validatorId: UserId) =>
   TraductionsModel.findOneAndUpdate({ _id: tradId }, { status: "Validée", validatorId }, { upsert: true, new: true });
@@ -33,8 +33,8 @@ export const getExpertTraductionByLanguage = (articleId: DispositifId, langueCib
     { sort: { updatedAt: -1 } },
   );
 
-export const updateTradsWithARevoir = (articleId: DispositifId, langueCible: string, avancement: number) =>
-  TraductionsModel.updateMany({ articleId, langueCible }, { status: "À revoir", avancement }, { upsert: false });
+export const updateTradsWithARevoir = (articleId: DispositifId, language: string, avancement: number) =>
+  TraductionsModel.updateMany({ articleId, language }, { status: "À revoir", avancement }, { upsert: false });
 
 export const updateTradInDB = (_id: TraductionId, trad: any) =>
   TraductionsModel.findOneAndUpdate({ _id }, trad, {
@@ -42,9 +42,9 @@ export const updateTradInDB = (_id: TraductionId, trad: any) =>
     new: true,
   });
 
-export const getPublishedTradIds = (languei18nCode: string) =>
+export const getPublishedTradIds = (language: string) =>
   TraductionsModel.distinct("articleId", {
-    langueCible: languei18nCode,
+    language,
     status: "Validée",
   });
 

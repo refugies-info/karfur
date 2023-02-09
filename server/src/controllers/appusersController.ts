@@ -1,11 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Route,
-  Header,
-} from "tsoa";
+import { Controller, Get, Post, Body, Route, Header } from "tsoa";
 
 import { PostAppUserResponse, updateAppUser } from "../workflows/appusers/updateAppUser";
 import { getNotificationsSettings, GetNotificationsSettings } from "../workflows/appusers/getNotificationsSettings";
@@ -38,26 +31,23 @@ export type Uid = string;
 
 @Route("appuser")
 export class AppUsersController extends Controller {
-
   @Post("/")
   public async post(
     @Header("x-app-uid") appUid: Uid,
-    @Body() body: AppUserRequest
+    @Body() body: AppUserRequest,
   ): ResponseWithData<PostAppUserResponse> {
     return updateAppUser(appUid, body);
   }
 
-  @Get("/notification_settings") /* TODO: udpate case */
-  public async notificationSettings(
-    @Header("x-app-uid") appUid: Uid
+  @Get("/notification_settings") /* TODO: udpate case */ public async notificationSettings(
+    @Header("x-app-uid") appUid: Uid,
   ): ResponseWithData<GetNotificationsSettings> {
     return getNotificationsSettings(appUid);
   }
 
-  @Post("/notification_settings") /* TODO: udpate case */
-  public async update(
+  @Post("/notification_settings") /* TODO: udpate case */ public async update(
     @Header("x-app-uid") appUid: Uid,
-    @Body() body: NotificationSettingsRequest
+    @Body() body: NotificationSettingsRequest,
   ): ResponseWithData<PostNotificationsSettings> {
     return postNotificationsSettings(appUid, body);
   }

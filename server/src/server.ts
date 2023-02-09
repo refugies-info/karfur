@@ -20,7 +20,7 @@ logger.info(NODE_ENV + " environment");
 cloudinary.config({
   cloud_name: CLOUD_NAME,
   api_key: API_KEY,
-  api_secret: API_SECRET
+  api_secret: API_SECRET,
 });
 
 const app = express();
@@ -44,8 +44,8 @@ app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({
     limit: "50mb",
-    extended: true
-  })
+    extended: true,
+  }),
 );
 app.use(formData.parse());
 app.use(cors());
@@ -55,7 +55,7 @@ app.use(function (_, res, next) {
   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "*" // process.env.FRONT_SITE_URL
+    "*", // process.env.FRONT_SITE_URL
   );
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -76,14 +76,12 @@ app.use(function (req, _, next) {
 RegisterRoutes(app);
 
 const userController = require(__dirname + "/controllers/userController");
-const translateController = require(__dirname + "/controllers/translateController");
 const traductionController = require(__dirname + "/controllers/traductionController");
 const dispositifController = require(__dirname + "/controllers/dispositifController");
 const structureController = require(__dirname + "/controllers/structureController");
 
 app.enable("strict routing");
 app.use("/user", userController.router);
-app.use("/translate", translateController);
 app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController.router);
 app.use("/structures", structureController.router);

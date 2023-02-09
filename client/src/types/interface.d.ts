@@ -4,9 +4,9 @@ import { AxiosResponse } from "axios";
 import { GetDispositifResponse, GetDispositifsResponse, Id } from "api-types";
 
 export type APIResponse<T = {}> = AxiosResponse<{
-  text: "success" | "error",
-  data: T
-}>
+  text: "success" | "error";
+  data: T;
+}>;
 
 export interface Event {
   target: { id: string; value: string };
@@ -31,7 +31,6 @@ export interface Role {
   nomPublique: string;
 }
 
-
 export interface UserLanguage {
   langueFr: string;
   langueLoc: string;
@@ -55,7 +54,7 @@ export interface User {
   objectifMots?: number;
   picture?: Picture;
   roles?: Role[];
-  selectedLanguages?: UserLanguage[];
+  selectedLanguages?: string[];
   notifyObjectifs?: boolean;
   objectifTempsContrib?: number;
   objectifMotsContrib?: number;
@@ -103,7 +102,7 @@ export interface Translation {
 
 export type TranslationStatus = "À traduire" | "En attente" | "Validée" | "À revoir";
 export interface IDispositifTranslation {
-  _id: ObjectId;
+  _id: string;
   titreInformatif: string;
   titreMarque: string;
   nbMots: number;

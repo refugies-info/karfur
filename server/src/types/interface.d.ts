@@ -24,11 +24,19 @@ declare global {
  *  @see https://stackoverflow.com/questions/55479658/how-to-create-a-type-excluding-instance-methods-from-a-class-in-typescript
  */
 export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]>;
+// https://stackoverflow.com/questions/41980195/recursive-partialt-in-typescript
+type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? RecursivePartial<U>[]
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P];
+};
 
-export interface Request extends ExpressRequest { }
+export interface Request extends ExpressRequest {}
 // Exposed to avoid Request name conflict
-export interface IRequest extends Request { }
-export interface Res extends ExpressResponse { }
+export interface IRequest extends Request {}
+export interface Res extends ExpressResponse {}
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";
@@ -131,7 +139,7 @@ export interface Metadatas {
   price?: {
     value: number;
     details?: priceDetails;
-  }
+  };
   duration?: string;
   public?: publicType;
   titreSejourRequired?: boolean;

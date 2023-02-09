@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { userSelectedLanguageSelector, userSelector } from "services/User/user.selectors";
+import { userSelector } from "services/User/user.selectors";
 import { fetchDispositifsWithTranslationsStatusActionCreator } from "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
@@ -24,25 +24,20 @@ import { activatedLanguages } from "data/activatedLanguages";
 import useRouterLocale from "hooks/useRouterLocale";
 import { useRouter } from "next/router";
 import { ObjectId } from "mongodb"; // FIXME
+import { useLanguages } from "hooks";
 
 const availableLanguages = activatedLanguages.map((l) => l.i18nCode).filter((ln) => ln !== "fr");
-const getLangueName = (langueId: string | null, userTradLanguages: UserLanguage[]) => {
-  if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
-
-  const langueArray = userTradLanguages.filter((langue) => langue._id === langueId);
-  if (langueArray.length > 0)
-    return {
-      langueSelectedFr: langueArray[0].langueFr,
-      langueI18nCode: langueArray[0].i18nCode
-    };
-  return { langueSelectedFr: null, langueI18nCode: null };
-};
 
 interface Props {
   title: string;
 }
 
 const UserTranslation = (props: Props) => {
+  const dispatch = useDispatch();
+  const langueInUrl = useParams<{ id: string }>()?.id;
+  const { getLanguage, userTradLanguages } = useLanguages();
+  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
+
   const [showOneNeedTranslationModal, setShowOneNeedTranslationModal] = useState(false);
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
   const [showNeedsModal, setShowNeedsModal] = useState(false);
@@ -66,13 +61,24 @@ const UserTranslation = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const langueInUrl = useParams<{ id: string }>()?.id;
+  const getLangueName = useCallback(
+    (langueId: string | null, userTradLanguages: UserLanguage["_id"][]) => {
+      if (!langueId) return { langueSelectedFr: null, langueI18nCode: null };
 
-  const userTradLanguages = useSelector(userSelectedLanguageSelector);
-  const userFirstTradLanguage = userTradLanguages.length > 0 ? userTradLanguages[0].i18nCode : null;
-  const dispatch = useDispatch();
+      const langue = userTradLanguages.find((langue) => langue === langueId);
+      if (langue) {
+        const language = getLanguage(langue);
+        return {
+          langueSelectedFr: language.langueFr,
+          langueI18nCode: language.i18nCode,
+        };
+      }
+      return { langueSelectedFr: null, langueI18nCode: null };
+    },
+    [getLanguage],
+  );
 
-  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
+  const userFirstTradLanguage = userTradLanguages.length > 0 ? userTradLanguages[0] : null;
 
   const user = useSelector(userSelector);
   let history = useHistory();
@@ -85,9 +91,8 @@ const UserTranslation = (props: Props) => {
 
   const getLangueId = () => {
     if (!userTradLanguages || userTradLanguages.length === 0) return null;
-    const langueArray = userTradLanguages.filter((langue) => langue.i18nCode === langueInUrl);
-    if (langueArray.length > 0) return langueArray[0]._id;
-    return null;
+    const langue = userTradLanguages.find((langue) => getLanguage(langue).i18nCode === langueInUrl);
+    return langue || null;
   };
 
   const needs = useSelector(needsSelector);
@@ -96,7 +101,7 @@ const UserTranslation = (props: Props) => {
     window.scrollTo(0, 0);
 
     if (userFirstTradLanguage && !langueInUrl) {
-      return history.push(routerLocale + "/backend/user-translation/" + userFirstTradLanguage);
+      return history.push(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
     }
 
     if (langueInUrl && !userFirstTradLanguage) {
@@ -110,7 +115,7 @@ const UserTranslation = (props: Props) => {
       if (user && user.user) {
         try {
           const data = await API.get_progression({
-            userId: user.user._id
+            userId: user.user._id,
           });
           setIndicators(data.data);
         } catch (e) {}
@@ -118,7 +123,7 @@ const UserTranslation = (props: Props) => {
     };
 
     if (langueInUrl) {
-      dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
+      if (!isLoadingDispositifs) dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
       loadIndicators();
     }
   }, [langueInUrl, userFirstTradLanguage, isLoadingUser, user]);
@@ -138,8 +143,8 @@ const UserTranslation = (props: Props) => {
 
   const isOneNeedNonTranslated =
     needs.filter((need) => {
-      // @ts-ignore
-      if (!need[langueI18nCode] || !need[langueI18nCode].text) {
+      // @ts-ignore FIXME
+      if (langueI18nCode !== null && (!need[langueI18nCode] || !need[langueI18nCode].text)) {
         return true;
       }
       return false;
@@ -156,7 +161,7 @@ const UserTranslation = (props: Props) => {
         (user.expertTrad ? "/validation" : "/traduction") +
         "/" +
         (elementToTranslate.typeContenu || "dispositif"),
-      search: `?language=${langueId}&dispositif=${elementToTranslate._id}`
+      search: `?language=${langueId}&dispositif=${elementToTranslate._id}`,
     });
   };
 
@@ -169,7 +174,7 @@ const UserTranslation = (props: Props) => {
           flex: 1,
           backgroundColor: colors.gray20,
           marginTop: "-95px",
-          paddingTop: "100px"
+          paddingTop: "100px",
         }}
       >
         <div className={styles.container}>
@@ -187,7 +192,7 @@ const UserTranslation = (props: Props) => {
           flex: 1,
           backgroundColor: colors.gray20,
           marginTop: "-95px",
-          paddingTop: "100px"
+          paddingTop: "100px",
         }}
       >
         <div className={styles.container}>
@@ -209,12 +214,11 @@ const UserTranslation = (props: Props) => {
         flex: 1,
         backgroundColor: colors.gray20,
         marginTop: "-95px",
-        paddingTop: "100px"
+        paddingTop: "100px",
       }}
     >
       <div className={styles.container}>
         <TranslationsAvancement
-          userTradLanguages={userTradLanguages}
           history={history}
           actualLanguage={langueInUrl}
           isExpert={user.expertTrad}
