@@ -37,7 +37,7 @@ export interface AddContactRequest {
 }
 
 @Route("mail")
-export class NeedController extends Controller {
+export class MailController extends Controller {
 
   @Security({
     fromCron: []
