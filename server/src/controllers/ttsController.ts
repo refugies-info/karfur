@@ -6,7 +6,7 @@ import {
   Security
 } from "tsoa";
 
-import { getTts, GetTtsResponse } from "../workflows/tts/getTts";
+import { getTts } from "../workflows/tts/getTts";
 import { ResponseWithData } from "../types/interface";
 
 export interface TtsRequest {
@@ -22,7 +22,7 @@ export class TtsController extends Controller {
   @Post("/")
   public async get(
     @Body() body: TtsRequest
-  ): ResponseWithData<GetTtsResponse> {
+  ): ResponseWithData<any> { // TODO: test and type
     return getTts(body);
   }
 }
