@@ -1,38 +1,34 @@
 import logger from "../../../logger";
-import { RequestFromClientWithBody, Res } from "../../../types/interface";
 import { findLogs } from "../../../modules/logs/logs.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
-import { LogId } from "src/typegoose";
+import { ResponseWithData } from "../../../types/interface";
 
-export interface Request {
-  id: LogId;
+export interface GetLogResponse {
+  objectId: any; // FIXME: how to type an ObjectID here?
+  model_object: "User" | "Dispositif" | "Structure";
+  text: string;
+  author: string;
+  dynamicId?: string;
+  model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
+  link?: {
+    id: any; // FIXME: how to type an ObjectID here?
+    model_link: "User" | "Dispositif" | "Structure";
+    next:
+    | "ModalContenu"
+    | "ModalStructure"
+    | "ModalUser"
+    | "ModalReaction"
+    | "ModalImprovements"
+    | "ModalNeeds"
+    | "PageAnnuaire";
+  }
 }
 
-export const getLogs = async (req: RequestFromClientWithBody<Request>, res: Res) => {
-  try {
-    logger.info("[getLogs] received with id", req?.query?.id);
-    checkRequestIsFromSite(req.fromSite);
-    checkIfUserIsAdmin(req.user);
+export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> => {
+  logger.info("[getLogs] received with id", id);
+  const logs = await findLogs(id);
 
-    if (!req.query.id) throw new Error("INVALID_REQUEST");
-
-    const logs = await findLogs(req.query.id);
-    return res.status(200).json({
-      text: "Succès",
-      data: logs
-    });
-  } catch (error) {
-    logger.error("[getLogs] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "INVALID_REQUEST":
-        return res.status(400).json({ text: "Requête invalide" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
-  }
-};
+  return {
+    text: "success",
+    data: logs
+  };
+}
