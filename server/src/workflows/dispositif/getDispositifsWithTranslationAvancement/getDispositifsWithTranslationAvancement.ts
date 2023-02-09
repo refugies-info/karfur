@@ -1,4 +1,4 @@
-import { RequestFromClient, Res, Response } from "../../../types/interface";
+import { RequestFromClient, Res } from "../../../types/interface";
 import logger from "../../../logger";
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { getActiveContents } from "../../../modules/dispositif/dispositif.repository";
@@ -26,7 +26,7 @@ interface GetDispositifsWithTranslationAvancementResponse {
 
 export const getDispositifsWithTranslationAvancement = async (
   req: RequestFromClient<Query>,
-  res: Res
+  res: Res,
   // res: Response<Result[]>
   // res: Response<GetDispositifsWithTranslationAvancementResponse[]>
 ) => {
@@ -44,7 +44,7 @@ export const getDispositifsWithTranslationAvancement = async (
       created_at: 1,
       nbMots: 1,
       translations: 1,
-      typeContenu: 1
+      typeContenu: 1,
     });
 
     const traductions = await getTraductionsByLanguage(locale, {
@@ -53,14 +53,14 @@ export const getDispositifsWithTranslationAvancement = async (
       translated: 1,
       updatedAt: 1,
       userId: 1,
-      type: 1
+      type: 1,
     });
 
     let results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
     activeDispositifs.forEach((dispositif) => {
       const correspondingTrads = traductions.filter(
-        (trad) => trad.dispositifId && dispositif._id && trad.dispositifId.toString() === dispositif._id.toString()
+        (trad) => trad.dispositifId && dispositif._id && trad.dispositifId.toString() === dispositif._id.toString(),
       );
       const dispositifData = {
         _id: dispositif._id,
@@ -68,7 +68,7 @@ export const getDispositifsWithTranslationAvancement = async (
         titreMarque: dispositif.translations.fr.content.titreMarque,
         nbMots: dispositif.nbMots,
         created_at: dispositif.created_at,
-        type: dispositif.typeContenu
+        type: dispositif.typeContenu,
       };
 
       if (correspondingTrads.length === 0) {
@@ -77,7 +77,7 @@ export const getDispositifsWithTranslationAvancement = async (
           lastTradUpdatedAt: null,
           avancementTrad: 0,
           avancementExpert: 0,
-          tradStatus: "À traduire"
+          tradStatus: "À traduire",
         });
       }
       const lastTradUpdatedAt = Math.max(0, ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0));
@@ -89,7 +89,7 @@ export const getDispositifsWithTranslationAvancement = async (
           .filter((y) => {
             return y.type === "validation";
           })
-          .map((z) => z.avancement || -1)
+          .map((z) => z.avancement || -1),
       );
 
       const tradStatus = getTradStatus(dispositif, correspondingTrads);
@@ -99,7 +99,7 @@ export const getDispositifsWithTranslationAvancement = async (
         lastTradUpdatedAt,
         avancementTrad,
         avancementExpert,
-        tradStatus
+        tradStatus,
       });
     });
 
@@ -107,9 +107,8 @@ export const getDispositifsWithTranslationAvancement = async (
 
     res.status(200).json({ data: results });
   } catch (error) {
-    console.error(error);
     logger.error("[getDispositifsWithTranslationAvancement] error", {
-      error: error.message
+      error: error.message,
     });
 
     switch (error.message) {

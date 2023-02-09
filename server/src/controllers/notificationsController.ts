@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Route,
-  Security,
-  Header,
-  Request
-} from "tsoa";
+import { Controller, Get, Post, Body, Route, Security, Header, Request } from "tsoa";
 import * as express from "express";
 import { getNotifications, GetNotificationResponse } from "../workflows/notifications/getNotifications";
 import { markAsSeen } from "../workflows/notifications/markAsSeen";
@@ -30,30 +21,21 @@ export interface SendNotificationsRequest {
 
 @Route("notifications")
 export class NotificationController extends Controller {
-
   @Get("/")
-  public async get(
-    @Header("x-app-uid") appUid: Uid
-  ): ResponseWithData<GetNotificationResponse> {
+  public async get(@Header("x-app-uid") appUid: Uid): ResponseWithData<GetNotificationResponse> {
     return getNotifications(appUid);
   }
 
   @Post("/seen")
-  public async seen(
-    @Header("x-app-uid") appUid: Uid,
-    @Body() body: MarkAsSeenRequest
-  ): Response {
+  public async seen(@Header("x-app-uid") appUid: Uid, @Body() body: MarkAsSeenRequest): Response {
     return markAsSeen(appUid, body);
   }
 
   @Security({
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Post("/send")
-  public async send(
-    @Body() body: SendNotificationsRequest,
-    @Request() request: express.Request
-  ): Response {
+  public async send(@Body() body: SendNotificationsRequest, @Request() request: express.Request): Response {
     return sendNotifications(body, request.userId);
   }
 }

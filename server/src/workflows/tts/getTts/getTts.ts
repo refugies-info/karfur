@@ -12,13 +12,13 @@ const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fet
 const getAccessToken = async (subscriptionKey: string) => {
   const response = await fetch("https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken", {
     method: "POST",
-    headers: { "Ocp-Apim-Subscription-Key": subscriptionKey, }
+    headers: { "Ocp-Apim-Subscription-Key": subscriptionKey },
   });
   return response.json();
-}
+};
 
-
-export const getTts = async (body: TtsRequest): ResponseWithData<any> => { // TODO: test and type
+export const getTts = async (body: TtsRequest): ResponseWithData<any> => {
+  // TODO: test and type
   logger.info("[getTts] received", body);
 
   const subscriptionKey = process.env.TTS_KEY_1;
@@ -47,24 +47,23 @@ export const getTts = async (body: TtsRequest): ResponseWithData<any> => { // TO
   const options = {
     method: "POST",
     headers: {
-      Authorization: "Bearer " + accessToken,
+      "Authorization": "Bearer " + accessToken,
       "cache-control": "no-cache",
       "User-Agent": "MicrosoftTTS",
       "X-Microsoft-OutputFormat": "riff-24khz-16bit-mono-pcm",
       "Content-Type": "application/ssml+xml",
     },
     encoding: "latin1",
-    body: xml_body.toString()// Convert the XML into a string to send in the TTS request.
+    body: xml_body.toString(), // Convert the XML into a string to send in the TTS request.
   };
 
   try {
     const response = await fetch("https://francecentral.tts.speech.microsoft.com/cognitiveservices/v1", options);
     return {
       text: "success",
-      data: response
-    }
+      data: response,
+    };
   } catch (e) {
-    throw new Error(e.message)
+    throw new Error(e.message);
   }
 };
-

@@ -1,21 +1,14 @@
 import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
 import API from "../../utils/API";
-import {
-  FETCH_USER_STRUCTURE,
-  UPDATE_USER_STRUCTURE,
-} from "./userStructure.actionTypes";
+import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "./userStructure.actions";
 import { logger } from "../../logger";
-import {
-  startLoading,
-  LoadingStatusKey,
-  finishLoading,
-} from "../LoadingStatus/loadingStatus.actions";
+import { startLoading, LoadingStatusKey, finishLoading } from "../LoadingStatus/loadingStatus.actions";
 import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import Router from "next/router";
@@ -24,9 +17,7 @@ import { APIResponse } from "types/interface";
 import { GetStructureResponse } from "api-types";
 import { UserState } from "services/User/user.reducer";
 
-export function* fetchUserStructure(
-  action: ReturnType<typeof fetchUserStructureActionCreator>
-): SagaIterator {
+export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
@@ -37,14 +28,9 @@ export function* fetchUserStructure(
     const user: UserState = yield select(userSelector);
     const userId = user.userId;
     const structureMembers = data.data.data ? data.data.data.membres : [];
-    const userInStructure = structureMembers.filter(
-      (member) => member.userId === userId
-    );
-    const userRoles =
-      userInStructure.length > 0 ? userInStructure[0].roles : [];
-    const isUserContribOrAdmin =
-      userRoles.includes("administrateur") ||
-      userRoles.includes("contributeur");
+    const userInStructure = structureMembers.filter((member) => member.userId === userId);
+    const userRoles = userInStructure.length > 0 ? userInStructure[0].roles : [];
+    const isUserContribOrAdmin = userRoles.includes("administrateur") || userRoles.includes("contributeur");
 
     yield put(setUserRoleInStructureActionCreator(userRoles));
     if (shouldRedirect && !isUserContribOrAdmin) {
@@ -60,9 +46,7 @@ export function* fetchUserStructure(
   }
 }
 
-export function* updateUserStructure(
-  action: ReturnType<typeof updateUserStructureActionCreator>
-): SagaIterator {
+export function* updateUserStructure(action: ReturnType<typeof updateUserStructureActionCreator>): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
     logger.info("[updateUserStructure] updating user structure", {
@@ -117,7 +101,7 @@ export function* updateUserStructure(
       fetchUserStructureActionCreator({
         structureId: structureId,
         shouldRedirect: true,
-      })
+      }),
     );
     logger.info("[updateUserStructure] successfully updated user structure");
     yield put(finishLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));

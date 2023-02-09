@@ -1,7 +1,9 @@
 {
   "entryFile": "src/server.ts",
   "noImplicitAdditionalProperties": "throw-on-extras",
-  "controllerPathGlobs": ["src/controllers/*Controller.ts"],
+  "controllerPathGlobs": [
+    "src/controllers/*Controller.ts"
+  ],
   "spec": {
     "outputDirectory": "dist",
     "specVersion": 3,
@@ -20,5 +22,11 @@
   "routes": {
     "routesDir": "dist",
     "authenticationModule": "./src/authentication.ts"
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "include": [
+      "src"
+    ]
   }
 }

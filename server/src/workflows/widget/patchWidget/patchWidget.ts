@@ -16,7 +16,11 @@ export interface PatchWidgetResponse {
   created_at: Date;
 }
 
-export const patchWidget = async (id: string, body: Partial<WidgetRequest>, userId: string): ResponseWithData<PatchWidgetResponse> => {
+export const patchWidget = async (
+  id: string,
+  body: Partial<WidgetRequest>,
+  userId: string,
+): ResponseWithData<PatchWidgetResponse> => {
   logger.info("[patchWidget] received", id);
 
   const widget: Partial<Widget> = {
@@ -26,7 +30,7 @@ export const patchWidget = async (id: string, body: Partial<WidgetRequest>, user
     //@ts-ignore
     themes: body.themes, // FIXME ref types
     languages: body.languages,
-    department: body.department
+    department: body.department,
   };
 
   const dbWidget = await updateWidget(id, widget);
@@ -34,6 +38,6 @@ export const patchWidget = async (id: string, body: Partial<WidgetRequest>, user
   return {
     text: "success",
     //@ts-ignore FIXME: include created_at
-    data: dbWidget
-  }
+    data: dbWidget,
+  };
 };

@@ -6,12 +6,10 @@ import { ResponseWithData } from "../types/interface";
 export class LogController extends Controller {
   @Security({
     fromSite: [],
-    jwt: ["admin"]
+    jwt: ["admin"],
   })
   @Get("/")
-  public async get(
-    @Query() id: string
-  ): ResponseWithData<GetLogResponse[]> {
+  public async get(@Query() id: string): ResponseWithData<GetLogResponse[]> {
     return getLogs(id);
   }
 }

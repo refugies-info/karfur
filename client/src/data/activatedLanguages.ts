@@ -10,6 +10,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "fr",
     avancement: 1,
     avancementTrad: 0,
+    _id: "a",
   },
   {
     _id: "",
@@ -19,6 +20,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "uk",
     avancement: 1,
     avancementTrad: 0,
+    _id: "b",
   },
   {
     _id: "",
@@ -28,6 +30,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "ps",
     avancement: 1,
     avancementTrad: 0,
+    _id: "c",
   },
   {
     _id: "",
@@ -37,6 +40,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "en",
     avancement: 1,
     avancementTrad: 0,
+    _id: "d",
   },
   {
     _id: "",
@@ -46,6 +50,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "fa",
     avancement: 1,
     avancementTrad: 0,
+    _id: "e",
   },
   {
     _id: "",
@@ -55,6 +60,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "ti",
     avancement: 1,
     avancementTrad: 0,
+    _id: "f",
   },
   {
     _id: "",
@@ -64,6 +70,7 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "ru",
     avancement: 1,
     avancementTrad: 0,
+    _id: "i",
   },
   {
     _id: "",
@@ -73,7 +80,8 @@ export const activatedLanguages: GetLanguagesResponse[] = [
     i18nCode: "ar",
     avancement: 1,
     avancementTrad: 0,
+    _id: "j",
   },
-]
+];
 
 export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk"];
