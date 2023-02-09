@@ -1,5 +1,5 @@
 import logger from "../../../logger";
-import { RequestFromClient, Res } from "../../../types/interface";
+import { Response } from "../../../types/interface";
 import { getDraftDispositifs, updateDispositifInDB } from "../../../modules/dispositif/dispositif.repository";
 import {
   sendOneDraftReminderMailService,
@@ -10,7 +10,6 @@ import {
   formatDispositifsByCreator,
   FormattedDispositif
 } from "../../../modules/dispositif/dispositif.adapter";
-import { checkCronAuthorization } from "../../../libs/checkAuthorizations";
 import { log } from "./log";
 
 const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "first" | "second") => {
@@ -29,11 +28,11 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
       const updatedDispositif =
         reminder === "first"
           ? {
-              draftReminderMailSentDate: new Date()
-            }
+            draftReminderMailSentDate: new Date()
+          }
           : {
-              draftSecondReminderMailSentDate: new Date()
-            };
+            draftSecondReminderMailSentDate: new Date()
+          };
       await updateDispositifInDB(dispositifId, updatedDispositif);
       await log(dispositifId, reminder);
       return;
@@ -47,11 +46,11 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
       const updatedDispositif =
         reminder === "first"
           ? {
-              draftReminderMailSentDate: new Date()
-            }
+            draftReminderMailSentDate: new Date()
+          }
           : {
-              draftSecondReminderMailSentDate: new Date()
-            };
+            draftSecondReminderMailSentDate: new Date()
+          };
       await updateDispositifInDB(dispositif._id, updatedDispositif);
       await log(dispositif._id, reminder);
     });
@@ -63,57 +62,45 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
   }
 };
 
-export const sendDraftReminderMail = async (req: RequestFromClient<{ cronToken: string }>, res: Res) => {
-  try {
-    logger.info("[sendDraftReminderMail] received");
+export const sendDraftReminderMail = async (): Response => {
+  logger.info("[sendDraftReminderMail] received");
 
-    checkCronAuthorization(req.body.query && req.body.query.cronToken);
+  const dispositifs = await getDraftDispositifs();
+  logger.info(`[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`);
 
-    const dispositifs = await getDraftDispositifs();
-    logger.info(`[sendDraftReminderMail] ${dispositifs.length} dispositifs in Brouillon`);
+  const nbDaysBeforeFirstReminder = 8;
+  const dispositifsFirstReminder = filterDispositifsForDraftReminders(
+    dispositifs,
+    nbDaysBeforeFirstReminder,
+    "draftReminderMailSentDate"
+  );
 
-    const nbDaysBeforeFirstReminder = 8;
-    const dispositifsFirstReminder = filterDispositifsForDraftReminders(
-      dispositifs,
-      nbDaysBeforeFirstReminder,
-      "draftReminderMailSentDate"
-    );
+  const nbDaysBeforeSecondReminder = 30;
+  const dispositifsSecondReminder = filterDispositifsForDraftReminders(
+    dispositifs,
+    nbDaysBeforeSecondReminder,
+    "draftSecondReminderMailSentDate"
+  ).filter(
+    (dispo) =>
+      !dispositifsFirstReminder.find(
+        // if dispo in 2 lists, send only first
+        (d) => d._id.toString() === dispo._id.toString()
+      )
+  );
 
-    const nbDaysBeforeSecondReminder = 30;
-    const dispositifsSecondReminder = filterDispositifsForDraftReminders(
-      dispositifs,
-      nbDaysBeforeSecondReminder,
-      "draftSecondReminderMailSentDate"
-    ).filter(
-      (dispo) =>
-        !dispositifsFirstReminder.find(
-          // if dispo in 2 lists, send only first
-          (d) => d._id.toString() === dispo._id.toString()
-        )
-    );
+  logger.info(
+    `[sendDraftReminderMail] send ${dispositifsFirstReminder.length} 1rst reminders and ${dispositifsSecondReminder.length} 2nd reminders`
+  );
 
-    logger.info(
-      `[sendDraftReminderMail] send ${dispositifsFirstReminder.length} 1rst reminders and ${dispositifsSecondReminder.length} 2nd reminders`
-    );
-
-    const formattedRecipientsFirstReminder = formatDispositifsByCreator(dispositifsFirstReminder);
-    for (const recipient of formattedRecipientsFirstReminder) {
-      await sendReminderEmails(recipient, "first");
-    }
-
-    const formattedRecipientsSecondReminder = formatDispositifsByCreator(dispositifsSecondReminder);
-    for (const recipient of formattedRecipientsSecondReminder) {
-      await sendReminderEmails(recipient, "second");
-    }
-
-    return res.status(200).json({ text: "OK" });
-  } catch (error) {
-    logger.error("[sendDraftReminderMail] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_AUTHORIZED":
-        return res.status(404).json({ text: "Non authorisé" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  const formattedRecipientsFirstReminder = formatDispositifsByCreator(dispositifsFirstReminder);
+  for (const recipient of formattedRecipientsFirstReminder) {
+    await sendReminderEmails(recipient, "first");
   }
+
+  const formattedRecipientsSecondReminder = formatDispositifsByCreator(dispositifsSecondReminder);
+  for (const recipient of formattedRecipientsSecondReminder) {
+    await sendReminderEmails(recipient, "second");
+  }
+
+  return { text: "success" }
 };
