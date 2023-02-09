@@ -10,13 +10,12 @@ import {
   Security
 } from "tsoa";
 
-/* TODO: update workflows */
-import { getNeeds, GetNeedResponse } from "../workflows/Needs/getNeeds";
-import { postNeeds, PostNeedResponse } from "../workflows/Needs/postNeeds";
-import { patchNeed, PatchNeedResponse } from "../workflows/Needs/patchNeed";
-import { deleteNeed } from "../workflows/Needs/deleteNeed";
-import { addView } from "../workflows/Needs/addView";
-import { updatePositions } from "../workflows/Needs/updatePositions";
+import { getNeeds, GetNeedResponse } from "../workflows/needs/getNeeds";
+import { postNeeds } from "../workflows/needs/postNeeds";
+import { patchNeed, PatchNeedResponse } from "../workflows/needs/patchNeed";
+import { deleteNeed } from "../workflows/needs/deleteNeed";
+import { addView } from "../workflows/needs/addView";
+import { updatePositions, UpdatePositionsNeedResponse } from "../workflows/needs/updatePositions";
 import { Picture, Response, ResponseWithData } from "../types/interface";
 
 export interface NeedRequest {
@@ -27,6 +26,10 @@ export interface NeedRequest {
   theme: string;
   image?: Picture;
   adminComments: string;
+}
+
+export interface UpdatePositionsRequest {
+  orderedNeedIds: string[];
 }
 
 @Route("needs")
@@ -44,7 +47,7 @@ export class NeedController extends Controller {
   @Post("/")
   public async post(
     @Body() body: NeedRequest
-  ): ResponseWithData<PostNeedResponse> {
+  ): Response {
     return postNeeds(body);
   }
 
@@ -84,8 +87,8 @@ export class NeedController extends Controller {
   })
   @Post("positions")
   public async positions(
-    @Body() orderedNeedIds: string[]
-  ): ResponseWithData<GetNeedResponse[]> {
-    return updatePositions(orderedNeedIds);
+    @Body() body: UpdatePositionsRequest
+  ): ResponseWithData<UpdatePositionsNeedResponse[]> {
+    return updatePositions(body);
   }
 }

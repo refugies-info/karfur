@@ -23,8 +23,8 @@ declare global {
  */
 export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]>;
 
-export interface Request extends ExpressRequest {}
-export interface Res extends ExpressResponse {}
+export interface Request extends ExpressRequest { }
+export interface Res extends ExpressResponse { }
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";
@@ -97,7 +97,14 @@ export interface DispositifContent {
   noContent?: boolean;
 }
 
-export interface TranslatedText extends Record<string, string> {}
+export interface Picture {
+  imgId: string | null;
+  public_id: string | null;
+  secure_url: string | null;
+}
+
+// Themes
+export interface TranslatedText extends Record<string, string> { }
 
 export interface ThemeColors {
   color100: string;
@@ -106,11 +113,28 @@ export interface ThemeColors {
   color40: string;
   color30: string;
 }
-export interface Picture {
-  imgId: string | null;
-  public_id: string | null;
-  secure_url: string | null;
+
+export interface Theme {
+  name: TranslatedText;
+  short: TranslatedText;
+  colors: ThemeColors;
+  position: number;
+  icon: Picture;
+  banner: Picture;
+  appBanner: Picture;
+  appImage: Picture;
+  shareImage: Picture;
+  notificationEmoji: string;
+  adminComments?: string;
 }
+
+// Need
+interface NeedTranslation {
+  text: string;
+  subtitle: string;
+  updatedAt?: Date;
+}
+
 export interface DetailedOpeningHours {
   day: string;
   from0?: string;
