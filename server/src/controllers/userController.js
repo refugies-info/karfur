@@ -13,6 +13,8 @@ import { getUserFavoritesInLocale } from "../workflows/users/getUserFavoritesInL
 import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 import deleteUser from "../workflows/users/deleteUser/deleteUser";
 
+/* TODO: use tsoa */
+
 router.post("/login", checkToken.getId, checkToken.getRoles, login);
 router.post("/checkUserExists", account.checkUserExists);
 router.post("/set_user_info", checkToken.check, checkToken.getRoles, account.set_user_info);

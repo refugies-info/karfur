@@ -1,3 +1,4 @@
+// TODO: delete
 var Airtable = require("airtable");
 var base = new Airtable({
   apiKey:
@@ -49,26 +50,26 @@ const addOrUpdateDispositifInContenusAirtable = async (
       "! Traduits ?": formattedAvancement,
       "! Départements": departments
     };
-  if (id) {
-    logger.info("[addOrUpdateDispositifInContenusAirtable] updating a line", { title });
-    await base("CONTENUS").update(
-      [{ id, fields }], { typecast: true }
-    );
-  } else {
-    logger.info("[addOrUpdateDispositifInContenusAirtable] adding a new line", { title });
-    await base("CONTENUS").create(
-      [{
-        fields: {
-          ...fields,
-          "! À traduire ?": true,
-          "! Priorité": ["Normale"],
-          "! Réfugiés.info": link,
-          "! Type de contenus":
-            type === "demarche" ? ["Démarche"] : ["Dispositif"],
-        }
-      }], { typecast: true }
-    );
-  }
+    if (id) {
+      logger.info("[addOrUpdateDispositifInContenusAirtable] updating a line", { title });
+      await base("CONTENUS").update(
+        [{ id, fields }], { typecast: true }
+      );
+    } else {
+      logger.info("[addOrUpdateDispositifInContenusAirtable] adding a new line", { title });
+      await base("CONTENUS").create(
+        [{
+          fields: {
+            ...fields,
+            "! À traduire ?": true,
+            "! Priorité": ["Normale"],
+            "! Réfugiés.info": link,
+            "! Type de contenus":
+              type === "demarche" ? ["Démarche"] : ["Dispositif"],
+          }
+        }], { typecast: true }
+      );
+    }
   } catch (e) {
     logger.error("[addOrUpdateDispositifInContenusAirtable] error while adding a new line", e)
   }
