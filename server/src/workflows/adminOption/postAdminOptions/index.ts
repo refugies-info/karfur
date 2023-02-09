@@ -1,2 +1,1 @@
-import postAdminOptions from "./postAdminOptions";
-export default postAdminOptions;
+export * from "./postAdminOptions";

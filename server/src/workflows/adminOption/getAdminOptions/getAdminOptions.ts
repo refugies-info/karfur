@@ -1,38 +1,22 @@
 import logger from "../../../logger";
-import { celebrate, Joi, Segments } from "celebrate";
-import { Request, Res } from "../../../types/interface";
+import { ResponseWithData } from "../../../types/interface";
 import { getAdminOption } from "../../../modules/adminOptions/adminOptions.repository";
-import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
-import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
+import { NotFoundError } from "../../../errors";
+import { AdminOptions } from "../../../typegoose";
 
-const validator = celebrate({
-  [Segments.PARAMS]: Joi.object().keys({
-    key: Joi.string()
-  })
-});
+export interface GetAdminOptionResponse {
+  key: string;
+  value: any;
+}
 
-const handler = async (req: Request, res: Res) => {
-  try {
-    logger.info("[getAdminOptions] received");
-    checkRequestIsFromSite(req.fromSite);
-    checkIfUserIsAdmin(req.user);
+export const getAdminOptions = async (key: string): ResponseWithData<GetAdminOptionResponse> => {
+  logger.info("[getAdminOptions] received");
 
-    const adminOption = await getAdminOption(req.params.key);
-    return res.status(200).json({
-      text: "Succès",
-      data: adminOption
-    });
-  } catch (error) {
-    logger.error("[getAdminOptions] error", { error: error.message });
-    switch (error.message) {
-      case "NOT_FROM_SITE":
-        return res.status(405).json({ text: "Requête bloquée par API" });
-      case "NOT_AUTHORIZED":
-        return res.status(403).json({ text: "Lecture interdite" });
-      default:
-        return res.status(500).json({ text: "Erreur interne" });
-    }
+  const adminOption = await getAdminOption(key);
+  if (!adminOption) throw new NotFoundError("Option noud found");
+
+  return {
+    text: "success",
+    data: adminOption.toObject<AdminOptions>()
   }
-};
-
-export default [validator, handler];
+}
