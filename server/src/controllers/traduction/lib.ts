@@ -154,7 +154,8 @@ type GetTraductionForReviewResponse = Traductions[];
 //We retrieve the list of translations
 function get_tradForReview(
   req: RequestFromClient<GetTraductionForReviewRequest>,
-  res: Response<GetTraductionForReviewResponse>
+  // res: Response<GetTraductionForReviewResponse>
+  res: Res
 ) {
   let { query, sort, populate } = req.body;
   if (!req.fromSite) {

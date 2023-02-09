@@ -4,14 +4,14 @@ import passwordHash from "password-hash";
 import { createUser } from "./users.repository";
 import { sendWelcomeMail } from "../mail/mail.service";
 import { Role } from "src/typegoose";
-import { USER_STATUS_ACTIVE } from "src/typegoose/User";
+import { UserStatus } from "src/typegoose/User";
 
 export const register = async (user: { username: string; password: string; email?: string }, userRole: Role) => {
   try {
     logger.info("[Register] register attempt", { username: user.username });
     if (!isPasswordOk(user.password)) {
       logger.error("[Register] register failed, password too weak", {
-        username: user.username
+        username: user.username,
       });
       throw new Error("PASSWORD_TOO_WEAK");
     }
@@ -22,9 +22,9 @@ export const register = async (user: { username: string; password: string; email
       username: user.username,
       password: hashedPassword,
       roles,
-      status: USER_STATUS_ACTIVE,
+      status: UserStatus.USER_STATUS_ACTIVE,
       last_connected: new Date(),
-      email: user.email
+      email: user.email,
     };
     const savedUser = await createUser(userToSave);
 
@@ -33,7 +33,7 @@ export const register = async (user: { username: string; password: string; email
     }
 
     logger.info("[Register] successfully registered a new user", {
-      username: user.username
+      username: user.username,
     });
 
     // @ts-ignore
@@ -41,7 +41,7 @@ export const register = async (user: { username: string; password: string; email
   } catch (error) {
     logger.error("[Register] register failed, unexpected error", {
       username: user.username,
-      error: error.message
+      error: error.message,
     });
 
     if (error.message === "PASSWORD_TOO_WEAK") {

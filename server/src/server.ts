@@ -83,10 +83,10 @@ const dispositifController = require(__dirname + "/controllers/dispositifControl
 const structureController = require(__dirname + "/controllers/structureController");
 
 app.enable("strict routing");
-app.use("/user", userController);
+app.use("/user", userController.router);
 app.use("/translate", translateController);
 app.use("/langues", languesController);
-app.use("/traduction", traductionController);
+app.use("/traduction", traductionController.router);
 app.use("/dispositifs", dispositifController);
 app.use("/structures", structureController);
 

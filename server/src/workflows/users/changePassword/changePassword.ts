@@ -5,14 +5,14 @@ import logger from "../../../logger";
 import { getUserById, updateUserInDB } from "../../../modules/users/users.repository";
 import { isPasswordOk } from "../../../libs/validatePassword";
 import passwordHash from "password-hash";
-import { UserId, USER_STATUS_DELETED } from "src/typegoose/User";
+import { UserId, UserStatus } from "src/typegoose/User";
 
 const validator = celebrate({
   [Segments.BODY]: Joi.object({
     userId: Joi.string(),
     currentPassword: Joi.string(),
-    newPassword: Joi.string()
-  })
+    newPassword: Joi.string(),
+  }),
 });
 
 interface Query {
@@ -33,7 +33,7 @@ const handler = async (req: RequestFromClientWithBody<Query>, res: Res) => {
 
     const user = await getUserById(userId, {});
 
-    if (!user || user.status === USER_STATUS_DELETED) {
+    if (!user || user.status === UserStatus.USER_STATUS_DELETED) {
       throw new Error("USER_NOT_EXISTS");
     }
 
@@ -52,12 +52,12 @@ const handler = async (req: RequestFromClientWithBody<Query>, res: Res) => {
     const newPasswordHashed = passwordHash.generate(newPassword);
 
     const updatedUser = await updateUserInDB(userId, {
-      password: newPasswordHashed
+      password: newPasswordHashed,
     });
 
     return res.status(200).json({
       token: updatedUser.getToken(),
-      text: "Authentification réussi"
+      text: "Authentification réussi",
     });
   } catch (error) {
     logger.error("[changePassword] error", { error: error.message });
@@ -76,7 +76,7 @@ const handler = async (req: RequestFromClientWithBody<Query>, res: Res) => {
         return res.status(400).json({
           code: "USED_PASSWORD",
           text: "Le mot de passe ne peut pas être identique à l'ancien mot de passe.",
-          data: "no-alert"
+          data: "no-alert",
         });
       case "INVALID_PASSWORD":
         return res.status(401).json({ text: "Mot de passe incorrect" });

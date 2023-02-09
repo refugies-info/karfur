@@ -1,6 +1,6 @@
 import { FilterQuery, Types } from "mongoose";
-import { StructureId, User, UserModel } from "src/typegoose";
-import { UserId, USER_STATUS_ACTIVE } from "src/typegoose/User";
+import { LangueId, StructureId, User, UserModel } from "src/typegoose";
+import { UserId, UserStatus } from "src/typegoose/User";
 
 type NeededFields = { username: number; picture: number } | { roles: 1; structures: 1 } | { roles: 1 } | {};
 
@@ -13,22 +13,25 @@ export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string
   UserModel.find(filter, neededFields);
 
 export const getAllUsersFromDB = async (neededFields: Record<string, number>, populate: string = "roles structures") =>
-  UserModel.find({ status: USER_STATUS_ACTIVE }, neededFields).populate(populate);
+  UserModel.find({ status: UserStatus.USER_STATUS_ACTIVE }, neededFields).populate(populate);
 
 export const updateUserInDB = async (id: UserId, modifiedUser: any) =>
   UserModel.findOneAndUpdate({ _id: id }, modifiedUser, {
     upsert: true,
-    new: true
+    new: true,
   });
+
+export const saveSelectedLanguages = (id: UserId, selectedLanguages: LangueId[]) =>
+  UserModel.findByIdAndUpdate(id, { $set: { selectedLanguages } });
 
 export const addStructureForUsersInDB = (userIds: UserId[], structureId: StructureId) =>
   UserModel.updateMany(
     { _id: { $in: userIds } },
     {
       $addToSet: {
-        structures: structureId
-      }
-    }
+        structures: structureId,
+      },
+    },
   );
 
 export const removeStructureOfAllUsersInDB = (structureId: StructureId) =>
@@ -36,9 +39,9 @@ export const removeStructureOfAllUsersInDB = (structureId: StructureId) =>
     { structures: structureId },
     {
       $pull: {
-        structures: structureId
-      }
-    }
+        structures: structureId,
+      },
+    },
   );
 
 export const removeStructureOfUserInDB = (userId: UserId, structureId: StructureId) =>
@@ -46,9 +49,9 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
     { _id: userId },
     {
       $pull: {
-        structures: structureId
-      }
-    }
+        structures: structureId,
+      },
+    },
   );
 
 export const getUserByUsernameFromDB = (username: string) => UserModel.findOne({ username });
@@ -65,7 +68,7 @@ export const addRoleAndContribToUser = (userId: Types.ObjectId, roleId: Types.Ob
   UserModel.findByIdAndUpdate(
     { _id: userId },
     {
-      $addToSet: { roles: roleId, contributions: contribId }
+      $addToSet: { roles: roleId, contributions: contribId },
     },
-    { new: true }
+    { new: true },
   );

@@ -1,9 +1,5 @@
 import { ValidateError } from "tsoa";
-import {
-  Response,
-  Request,
-  NextFunction,
-} from "express";
+import { Response, Request, NextFunction } from "express";
 
 export class RefactorTodoError extends Error {
   constructor() {
@@ -17,9 +13,9 @@ export class MustBePopulatedError extends Error {
   }
 }
 
-export class AuthenticationError extends Error { }
+export class AuthenticationError extends Error {}
 
-export class NotFoundError extends Error { }
+export class NotFoundError extends Error {}
 
 export class InvalidRequestError extends Error {
   code: string | undefined;
@@ -38,12 +34,9 @@ export class InvalidRequestError extends Error {
  * @param next
  * @returns
  */
-export const serverErrorHandler = (
-  err: unknown,
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Response | void => {
+export const serverErrorHandler = (err: unknown, req: Request, res: Response, next: NextFunction): Response | void => {
+  // eslint-disable-next-line no-console
+  console.error("serverErrorHandler", err);
   if (err instanceof ValidateError) {
     return res.status(422).json({
       message: "Validation Failed",
@@ -73,4 +66,4 @@ export const serverErrorHandler = (
   }
 
   next();
-}
+};

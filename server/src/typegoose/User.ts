@@ -9,9 +9,11 @@ import { Role } from "./Role";
 import { Structure } from "./Structure";
 import { Base } from "./Base";
 
-export const USER_STATUS_ACTIVE = "Actif";
-export const USER_STATUS_DELETED = "Exclu";
-type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
+export enum UserStatus {
+  USER_STATUS_ACTIVE = "Actif",
+  USER_STATUS_DELETED = "Exclu",
+}
+// export type UserStatus = typeof USER_STATUS_ACTIVE | typeof USER_STATUS_DELETED;
 
 @modelOptions({ schemaOptions: { collection: "users", timestamps: { createdAt: "created_at" } } })
 export class User extends Base {
@@ -96,9 +98,9 @@ export class User extends Base {
         _id: this._id,
         username: this.username,
         password: this.password,
-        email: this.email
+        email: this.email,
       },
-      process.env.SECRET
+      process.env.SECRET,
     );
   }
 

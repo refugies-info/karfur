@@ -7,15 +7,14 @@ import logger from "../../logger";
 import { sendResetPasswordMail } from "../../modules/mail/mail.service";
 import formatPhoneNumber from "../../libs/formatPhoneNumber";
 import { Langue, LangueModel, Role, User, UserModel } from "src/typegoose";
-import { pick } from "lodash";
 
 const transporter = nodemailer.createTransport({
   host: "pro2.mail.ovh.net",
   port: 587,
   auth: {
     user: "nour@refugies.info",
-    pass: process.env.OVH_PASS
-  }
+    pass: process.env.OVH_PASS,
+  },
 });
 
 // front url to reset password
@@ -87,7 +86,7 @@ const _checkAndNotifyAdmin = async function (user: User, roles: Role[], requesti
       from: "nour@refugies.info",
       to: "diairagir@gmail.com",
       subject: "Nouvel administrateur Réfugiés.info - " + user.username,
-      html
+      html,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -134,7 +133,7 @@ async function set_user_info(req: Request, res: Response) {
 
     // keep only needed properties
     let userToSave: any = {
-      _id: user._id
+      _id: user._id,
     };
     if (user.email) userToSave.email = user.email;
     if (user.phone) userToSave.phone = formatPhoneNumber(user.phone);
@@ -146,10 +145,10 @@ async function set_user_info(req: Request, res: Response) {
 
     const result = await UserModel.findByIdAndUpdate(
       {
-        _id: user._id
+        _id: user._id,
       },
       userToSave,
-      { new: true }
+      { new: true },
     );
 
     //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
@@ -160,7 +159,7 @@ async function set_user_info(req: Request, res: Response) {
     }
     return res.status(200).json({
       data: result,
-      text: "Mise à jour réussie"
+      text: "Mise à jour réussie",
     });
   } catch (e) {
     logger.error("[set_user_info] error", e);
@@ -178,7 +177,7 @@ function reset_password(req: Request, res: Response) {
   }
 
   return UserModel.findOne({
-    username
+    username,
   })
     .then((user) => {
       if (!user) {
@@ -186,14 +185,14 @@ function reset_password(req: Request, res: Response) {
       } else if (!user.email) {
         return res.status(403).json({
           text: "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
-          data: "no-alert"
+          data: "no-alert",
         });
       }
 
       if (user.isAdmin()) {
         //L'admin ne peut pas le faire comme ça
         return res.status(401).json({
-          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
+          text: "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
       crypto.randomBytes(20, async function (errb, buffer) {
@@ -203,7 +202,7 @@ function reset_password(req: Request, res: Response) {
         const token = buffer.toString("hex");
         await UserModel.updateOne({
           reset_password_token: token,
-          reset_password_expires: Date.now() + 1 * 60 * 60 * 1000
+          reset_password_expires: Date.now() + 1 * 60 * 60 * 1000,
         }).exec();
         const newUrl = url + "reset?token=" + token;
 
@@ -246,40 +245,22 @@ function get_users(req: Request, res: Response) {
       });
       res.status(200).json({
         text: "Succès",
-        data: result
+        data: result,
       });
     })
     .catch((error) => {
       switch (error) {
         case 404:
           res.status(404).json({
-            text: "Pas de résultats"
+            text: "Pas de résultats",
           });
           break;
         default:
           res.status(500).json({
-            text: "Erreur interne"
+            text: "Erreur interne",
           });
       }
     });
 }
 
-function get_user_info(req: Request, res: Response) {
-  console.log(req.user);
-  res.status(200).json({
-    text: "Succès",
-    data: pick(req.user.toObject(), [
-      "structures",
-      "_id",
-      "roles",
-      "traductionsFaites",
-      "contributions",
-      "username",
-      "status",
-      "email",
-      "selectedLanguages"
-    ])
-  });
-}
-
-export { checkUserExists, set_user_info, get_users, get_user_info, reset_password };
+export { checkUserExists, set_user_info, get_users, reset_password };

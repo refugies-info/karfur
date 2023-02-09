@@ -10,7 +10,7 @@ import { userRespoStructureId } from "../../../modules/structure/structure.servi
 import { checkRequestIsFromSite } from "../../../libs/checkAuthorizations";
 import { loginExceptionsManager } from "./login.exceptions.manager";
 import { logRegister, logLogin } from "./log";
-import { USER_STATUS_DELETED } from "src/typegoose/User";
+import { UserStatus } from "src/typegoose/User";
 
 interface User {
   username: string;
@@ -30,12 +30,12 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     checkRequestIsFromSite(req.fromSite);
 
     logger.info("[Login] login attempt", {
-      username: req.body && req.body.username
+      username: req.body && req.body.username,
     });
 
     const user = await getUserByUsernameFromDB(req.body.username);
 
-    if (user && user.status === USER_STATUS_DELETED) {
+    if (user && user.status === UserStatus.USER_STATUS_DELETED) {
       throw new LoginError("USER_DELETED");
     }
 
@@ -46,20 +46,20 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
       return res.status(200).json({
         text: "Succès",
         token,
-        data: user
+        data: user,
       });
     }
 
     if (!user.authenticate(req.body.password)) {
       logger.error("[Login] incorrect password", {
-        username: req.body && req.body.username
+        username: req.body && req.body.username,
       });
 
       throw new LoginError("INVALID_PASSWORD");
     }
 
     logger.info("[Login] password correct for user", {
-      username: req.body && req.body.username
+      username: req.body && req.body.username,
     });
 
     // check if user is admin
@@ -74,7 +74,7 @@ export const login = async (req: RequestFromClientWithBody<User>, res: Res) => {
     await logLogin(user._id);
     return res.status(200).json({
       token: user.getToken(),
-      text: "Authentification réussi"
+      text: "Authentification réussi",
     });
   } catch (error) {
     return loginExceptionsManager(error, res);
