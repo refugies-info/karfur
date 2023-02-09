@@ -7,15 +7,17 @@ import {
   Delete,
   Route,
   Path,
-  Security
+  Security,
+  Request
 } from "tsoa";
-
-/* TODO: update workflows */
-import { getWidgets, GetWidgetResponse } from "../workflows/Widgets/getWidgets";
-import { postWidgets, PostWidgetResponse } from "../workflows/Widgets/postWidgets";
-import { patchWidget, PatchWidgetResponse } from "../workflows/Widgets/patchWidget";
-import { deleteWidget } from "../workflows/Widgets/deleteWidget";
+import * as express from "express";
+import { getWidgets, GetWidgetResponse } from "../workflows/widget/getWidgets";
+import { postWidgets, PostWidgetResponse } from "../workflows/widget/postWidgets";
+import { patchWidget, PatchWidgetResponse } from "../workflows/widget/patchWidget";
+import { deleteWidget } from "../workflows/widget/deleteWidget";
 import { Response, ResponseWithData } from "../types/interface";
+
+/* TODO: themes no longer populated by API for widgets. Update front */
 
 export interface WidgetRequest {
   name: string;
@@ -43,9 +45,10 @@ export class WidgetController extends Controller {
   })
   @Post("/")
   public async post(
-    @Body() body: WidgetRequest
+    @Body() body: WidgetRequest,
+    @Request() request: express.Request
   ): ResponseWithData<PostWidgetResponse> {
-    return postWidgets(body);
+    return postWidgets(body, request.userId);
   }
 
   @Security({
@@ -55,9 +58,10 @@ export class WidgetController extends Controller {
   @Patch("{id}")
   public async patch(
     @Path() id: string,
-    @Body() body: Partial<WidgetRequest>
+    @Body() body: Partial<WidgetRequest>,
+    @Request() request: express.Request
   ): ResponseWithData<PatchWidgetResponse> {
-    return patchWidget(id, body);
+    return patchWidget(id, body, request.userId);
   }
 
   @Security({

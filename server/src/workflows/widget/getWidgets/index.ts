@@ -1,1 +1,1 @@
-export { getWidgets } from "./getWidgets";
+export * from "./getWidgets";
