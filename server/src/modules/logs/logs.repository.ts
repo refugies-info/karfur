@@ -1,10 +1,10 @@
-import { Log, LogId, LogModel } from "src/typegoose";
+import { Log, LogModel } from "src/typegoose";
 
-export const findLogs = async (id: LogId) => {
+export const findLogs = async (id: string) => {
   return LogModel.find({ objectId: id })
-    .populate("dynamicId", "nom username titreInformatif langueFr")
-    .populate("author", "username")
-    .sort({ created_at: -1 });
+    .populate<{ dynamicId: string }>("dynamicId", "nom username titreInformatif langueFr")
+    .populate<{ author: string }>("author", "username")
+    .sort({ created_at: -1 })
 };
 
 export const createLog = async (log: Log) => {
