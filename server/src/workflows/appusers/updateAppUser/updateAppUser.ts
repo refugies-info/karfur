@@ -1,40 +1,39 @@
-import { celebrate, Joi, Segments } from "celebrate";
-import { Request, Response } from "express";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
 import { updateOrCreateAppUser } from "../../../modules/appusers/appusers.repository";
 import logger from "../../../logger";
+import { AppUserRequest } from "../../../controllers/appusersController";
+import { ResponseWithData } from "../../../types/interface";
 
+export interface PostAppUserResponse {
+  uid: string;
+  city?: string;
+  department?: string;
+  selectedLanguage?: string;
+  age?: string;
+  frenchLevel?: string;
+  expoPushToken?: string;
+  notificationsSettings?: {
+    global: boolean;
+    local: boolean;
+    demarches: boolean;
+    themes: {
+      [key: string]: boolean;
+    }
+  }
+}
 
-const validator = celebrate({
-  [Segments.HEADERS]: Joi.object({
-    "x-app-uid": Joi.string()
-      .required()
-      .regex(/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i)
-  }).unknown(),
-  [Segments.BODY]: Joi.object().keys({
-    city: Joi.string().allow(null),
-    department: Joi.string().allow(null),
-    selectedLanguage: Joi.string().allow(null),
-    age: Joi.string().allow(null),
-    frenchLevel: Joi.string().allow(null),
-    expoPushToken: Joi.string().allow(null)
-  })
-});
-
-const handler = async (req: Request, res: Response) => {
+export const updateAppUser = async (appUid: string, body: AppUserRequest): ResponseWithData<PostAppUserResponse> => {
   logger.info("[updateAppUser] received");
 
   const themes = await getAllThemes();
-
-  const uid = req.headers["x-app-uid"];
   const updated = await updateOrCreateAppUser({
-    ...req.body,
-    uid
-  }, themes.map(t => t._id.toString()));
+    ...body,
+    uid: appUid
+  }, themes.map(t => t.id));
 
-  res.status(200).json({
-    updated
-  });
+  return {
+    text: "success",
+    data: updated
+  }
 };
 
-export default [validator, handler];
