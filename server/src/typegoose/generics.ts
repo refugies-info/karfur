@@ -3,13 +3,13 @@ import { Types } from "mongoose";
 
 export class ImageSchema {
   @prop()
-  secure_url!: String;
+  secure_url!: string;
 
   @prop()
-  public_id!: String;
+  public_id!: string;
 
   @prop()
-  imgId!: String;
+  imgId!: string;
 }
 
 export type RichText = string;
@@ -36,4 +36,4 @@ export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru";
 //   }
 // }
 
-export class Id extends Types.ObjectId {}
+export class Id extends Types.ObjectId { }

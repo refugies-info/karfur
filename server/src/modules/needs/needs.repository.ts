@@ -7,7 +7,7 @@ export const getNeedsFromDB = async () => NeedModel.find().populate<{ theme: The
 export const getNeedFromDB = async (id: NeedId) => NeedModel.findOne({ _id: id });
 
 export const saveNeedInDB = async (needId: NeedId, need: Partial<Need>) => {
-  return NeedModel.findOneAndUpdate({ _id: needId }, need, { upsert: true, new: true });
+  return NeedModel.findOneAndUpdate({ _id: needId }, need, { upsert: true, new: true }).populate<{ theme: Theme }>("theme");
 };
 
 export const deleteNeedById = async (needId: NeedId) => {

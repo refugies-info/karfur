@@ -1,2 +1,1 @@
-import deleteNeed from "./deleteNeed";
-export default deleteNeed;
+export * from "./deleteNeed";

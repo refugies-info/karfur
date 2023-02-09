@@ -1,1 +1,1 @@
-export { retrieveNeedsFromAirtable } from "./retrieveNeedsFromAirtable";
+export * from "./retrieveNeedsFromAirtable";
