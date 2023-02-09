@@ -1,1 +1,1 @@
-export { postThemes, Theme } from "./postThemes";
+export * from "./postThemes";

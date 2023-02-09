@@ -15,7 +15,7 @@ import setMail from "../workflows/miscellaneaous/setMail";
 import { Response } from "../types/interface";
 import { DispositifId, UserId } from "../typegoose";
 
-export interface ImprovementsParams {
+export interface ImprovementsRequest {
   dispositifId: DispositifId;
   users: {
     username: string;
@@ -53,7 +53,7 @@ export class NeedController extends Controller {
   })
   @Post("sendAdminImprovementsMail")
   public adminImprovementsMail(
-    @Body() body: ImprovementsParams
+    @Body() body: ImprovementsRequest
   ): Response {
     return sendAdminImprovementsMail(body);
   }

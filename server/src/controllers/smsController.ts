@@ -12,12 +12,22 @@ import { contentLink } from "../workflows/sms/contentLink";
 
 import { Response } from "../types/interface";
 
+export interface DownloadAppRequest {
+  phone: string;
+  locale: string;
+}
+
+export interface ContentLinkRequest {
+  phone: string;
+  title: string;
+  url: string;
+}
 
 @Route("sms")
 export class SmsController extends Controller {
   @Post("/download-app")
   public async downloadApp(
-    @Body() body: { phone: string, locale: string }
+    @Body() body: DownloadAppRequest
   ): Response {
     return downloadApp(body);
   }
@@ -27,7 +37,7 @@ export class SmsController extends Controller {
   })
   @Post("/content-link")
   public async contentLink(
-    @Body() body: { phone: string, title: string, url: string }
+    @Body() body: ContentLinkRequest
   ): Response {
     return contentLink(body);
   }

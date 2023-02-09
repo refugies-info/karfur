@@ -1,2 +1,2 @@
-export { getThemes, Theme } from "./getThemes";
+export * from "./getThemes";
 

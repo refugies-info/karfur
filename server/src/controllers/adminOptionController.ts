@@ -9,8 +9,8 @@ import {
 } from "tsoa";
 
 /* TODO: update workflows */
-import { getAdminOptions, AdminOption as GetAdminOption } from "../workflows/adminOption/getAdminOptions";
-import { postAdminOptions, AdminOption as PostAdminOption } from "../workflows/adminOption/postAdminOptions";
+import { getAdminOptions, GetAdminOptionResponse } from "../workflows/adminOption/getAdminOptions";
+import { postAdminOptions, PostAdminOptionResponse } from "../workflows/adminOption/postAdminOptions";
 import { ResponseWithData } from "../types/interface";
 
 @Route("options")
@@ -23,7 +23,7 @@ export class AdminOptionController extends Controller {
   @Get("{key}")
   public async get(
     @Path() key: string,
-  ): ResponseWithData<GetAdminOption[]> {
+  ): ResponseWithData<GetAdminOptionResponse[]> {
     return getAdminOptions(key);
   }
 
@@ -35,7 +35,7 @@ export class AdminOptionController extends Controller {
   public async post(
     @Path() key: string,
     @Body() body: { value: any }
-  ): ResponseWithData<PostAdminOption> {
+  ): ResponseWithData<PostAdminOptionResponse> {
     return postAdminOptions(key, body);
   }
 }

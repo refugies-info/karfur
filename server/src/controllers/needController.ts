@@ -11,15 +11,15 @@ import {
 } from "tsoa";
 
 /* TODO: update workflows */
-import { getNeeds, Need as GetNeed } from "../workflows/Needs/getNeeds";
-import { postNeeds, Need as PostNeed } from "../workflows/Needs/postNeeds";
-import { patchNeed, Need as PatchNeed } from "../workflows/Needs/patchNeed";
+import { getNeeds, GetNeedResponse } from "../workflows/Needs/getNeeds";
+import { postNeeds, PostNeedResponse } from "../workflows/Needs/postNeeds";
+import { patchNeed, PatchNeedResponse } from "../workflows/Needs/patchNeed";
 import { deleteNeed } from "../workflows/Needs/deleteNeed";
 import { addView } from "../workflows/Needs/addView";
 import { updatePositions } from "../workflows/Needs/updatePositions";
 import { Picture, Response, ResponseWithData } from "../types/interface";
 
-export interface NeedParams {
+export interface NeedRequest {
   fr: {
     text: string;
     subtitle: string;
@@ -33,7 +33,7 @@ export interface NeedParams {
 export class NeedController extends Controller {
 
   @Get("/")
-  public async get(): ResponseWithData<GetNeed[]> {
+  public async get(): ResponseWithData<GetNeedResponse[]> {
     return getNeeds();
   }
 
@@ -43,8 +43,8 @@ export class NeedController extends Controller {
   })
   @Post("/")
   public async post(
-    @Body() body: NeedParams
-  ): ResponseWithData<PostNeed> {
+    @Body() body: NeedRequest
+  ): ResponseWithData<PostNeedResponse> {
     return postNeeds(body);
   }
 
@@ -55,8 +55,8 @@ export class NeedController extends Controller {
   @Patch("{id}")
   public async patch(
     @Path() id: string,
-    @Body() body: Partial<NeedParams>
-  ): ResponseWithData<PatchNeed> {
+    @Body() body: Partial<NeedRequest>
+  ): ResponseWithData<PatchNeedResponse> {
     return patchNeed(id, body);
   }
 
@@ -85,7 +85,7 @@ export class NeedController extends Controller {
   @Post("positions")
   public async positions(
     @Body() orderedNeedIds: string[]
-  ): ResponseWithData<GetNeed[]> {
+  ): ResponseWithData<GetNeedResponse[]> {
     return updatePositions(orderedNeedIds);
   }
 }
