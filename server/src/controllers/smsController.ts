@@ -6,7 +6,6 @@ import {
   Security
 } from "tsoa";
 
-/* TODO: update workflows */
 import { downloadApp } from "../workflows/sms/downloadApp";
 import { contentLink } from "../workflows/sms/contentLink";
 
