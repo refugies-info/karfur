@@ -1,1 +1,1 @@
-export { sendAdminImprovementsMail } from "./sendAdminImprovementsMail";
+export * from "./sendAdminImprovementsMail";

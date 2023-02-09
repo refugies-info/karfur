@@ -21,7 +21,14 @@ export class AuthenticationError extends Error { }
 
 export class NotFoundError extends Error { }
 
-export class InvalidRequestError extends Error { }
+export class InvalidRequestError extends Error {
+  code: string | undefined;
+
+  constructor(message: string, code?: string) {
+    super(message);
+    this.code = code;
+  }
+}
 
 /**
  * Returns the right error code depending on the type of the error
@@ -56,6 +63,7 @@ export const serverErrorHandler = (
   if (err instanceof InvalidRequestError) {
     return res.status(400).json({
       message: err.message,
+      code: err.code
     });
   }
   if (err instanceof Error) {
