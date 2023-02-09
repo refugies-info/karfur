@@ -4,18 +4,18 @@ import {
   updateUserInDB,
   removeStructureOfAllUsersInDB,
   addStructureForUsersInDB,
-  removeStructureOfUserInDB
+  removeStructureOfUserInDB,
 } from "./users.repository";
 import { asyncForEach } from "../../libs/asyncForEach";
 import { User } from "src/typegoose";
-import { UserId, USER_STATUS_DELETED } from "src/typegoose/User";
+import { UserId, UserStatus } from "src/typegoose/User";
 import { Membre, StructureId } from "src/typegoose/Structure";
 
 export const addStructureForUsers = async (userIds: UserId[], structureId: StructureId) => {
   logger.info("[addStructure] add structure for membres", { userIds, structureId });
   return addStructureForUsersInDB(userIds, structureId).catch((error) => {
     logger.error("[addStructure] error while updating role", {
-      error
+      error,
     });
     throw error;
   });
@@ -25,7 +25,7 @@ export const removeStructureOfAllUsers = async (structureId: StructureId) => {
   logger.info("[removeStructureOfUser] delete structure for all users", { structureId });
   return removeStructureOfAllUsersInDB(structureId).catch((error) => {
     logger.error("[removeStructureOfUser] error while updating role", {
-      error
+      error,
     });
     throw error;
   });
@@ -35,7 +35,7 @@ export const removeStructureOfUser = async (userId: UserId, structureId: Structu
   logger.info("[removeStructureOfUser] delete structure for user", { userId, structureId });
   return removeStructureOfUserInDB(userId, structureId).catch((error) => {
     logger.error("[removeStructureOfUser] error while updating role", {
-      error
+      error,
     });
     throw error;
   });
@@ -50,14 +50,14 @@ export const getUsersFromStructureMembres = async (structureMembres: Membre[]): 
     const userNeededFields = {
       username: 1,
       email: 1,
-      status: 1
+      status: 1,
     };
     await asyncForEach(structureMembres, async (membre) => {
       if (!membre.userId) return;
 
       try {
         const membreFromDB = await getUserById(membre.userId.toString(), userNeededFields);
-        if (membreFromDB.status === USER_STATUS_DELETED) return;
+        if (membreFromDB.status === UserStatus.USER_STATUS_DELETED) return;
         if (!membreFromDB.email) return;
         result.push(membreFromDB);
       } catch (e) {

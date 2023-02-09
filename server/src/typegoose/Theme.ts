@@ -5,10 +5,15 @@ import { ImageSchema } from "./generics";
 import { Langue } from "./Langue";
 
 class ThemeColors {
+  @prop()
   color100!: string;
+  @prop()
   color80!: string;
+  @prop()
   color60!: string;
+  @prop()
   color40!: string;
+  @prop()
   color30!: string;
 }
 
@@ -69,8 +74,9 @@ export class Theme extends Base {
       !this.appImage.secure_url ||
       !this.shareImage.secure_url ||
       !this.notificationEmoji
-    )
+    ) {
       return false;
+    }
     return true;
   }
 }

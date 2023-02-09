@@ -2,25 +2,25 @@ import { getUserById } from "../users/users.repository";
 import logger from "../../logger";
 import {
   sendPublishedFicheMailToStructureMembersService,
-  sendPublishedFicheMailToCreatorService
+  sendPublishedFicheMailToCreatorService,
 } from "./mail.service";
-import { User, USER_STATUS_DELETED } from "src/typegoose/User";
+import { User, UserStatus } from "src/typegoose/User";
 import { Dispositif } from "src/typegoose";
 
 export const sendPublishedMailToCreator = async (
   newDispo: Dispositif,
   titreInformatif: string,
   titreMarque: string,
-  lien: string
+  lien: string,
 ) => {
   const userNeededFields = {
     username: 1,
     email: 1,
-    status: 1
+    status: 1,
   };
 
   const creator = await getUserById(newDispo.creatorId._id, userNeededFields);
-  if (creator.status === USER_STATUS_DELETED) return;
+  if (creator.status === UserStatus.USER_STATUS_DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");
 
@@ -31,7 +31,7 @@ export const sendPublishedMailToCreator = async (
       lien,
       email: creator.email,
       dispositifId: newDispo._id,
-      userId: creator._id
+      userId: creator._id,
     });
   }
 };
@@ -41,11 +41,11 @@ export const sendPublishedMailToStructureMembers = async (
   titreInformatif: string,
   titreMarque: string,
   lien: string,
-  dispositifId: Dispositif["_id"]
+  dispositifId: Dispositif["_id"],
 ) =>
   membres.map((membre) => {
     logger.info("[sendPublishedMailToStructureMembers] send mail to membre", {
-      membreId: membre._id
+      membreId: membre._id,
     });
     return sendPublishedFicheMailToStructureMembersService({
       pseudo: membre.username,
@@ -55,6 +55,6 @@ export const sendPublishedMailToStructureMembers = async (
 
       email: membre.email,
       dispositifId,
-      userId: membre._id
+      userId: membre._id,
     });
   });

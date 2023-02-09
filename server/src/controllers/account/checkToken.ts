@@ -8,9 +8,22 @@ export interface CustomRequest extends Request {
   userId?: UserId;
 }
 
+/**
+ * @deprecated
+ * @param req
+ * @returns
+ */
 const getTokenFromRequest = (req: Request): string =>
   (req.headers["authorization"] || req.headers["x-access-token"]) as string;
 
+/**
+ *
+ * @deprecated
+ * @param req
+ * @param res
+ * @param next
+ * @returns
+ */
 const check = (req: Request, res: Response, next: NextFunction) => {
   let token = getTokenFromRequest(req);
 
@@ -33,11 +46,17 @@ const check = (req: Request, res: Response, next: NextFunction) => {
     .catch(() => {
       return res.status(500).send({
         auth: false,
-        message: "There was a problem finding the user."
+        message: "There was a problem finding the user.",
       });
     });
 };
 
+/**
+ * @deprecated
+ * @param req
+ * @param res
+ * @param next
+ */
 const getId = (req: Request, res: Response, next: NextFunction) => {
   let token = getTokenFromRequest(req);
 
@@ -61,6 +80,12 @@ const getId = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+/**
+ * @deprecated
+ * @param req
+ * @param res
+ * @param next
+ */
 const getRoles = (req: Request, res: Response, next: NextFunction) => {
   RoleModel.find({}).exec(function (err, roles) {
     if (err) {

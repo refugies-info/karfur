@@ -7,13 +7,13 @@ import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 import { removeMemberFromStructure } from "../../../modules/structure/structure.repository";
 import { generateRandomId } from "../../../libs/generateRandomId";
 import { sendAccountDeletedMailService } from "../../../modules/mail/mail.service";
-import { USER_STATUS_DELETED } from "src/typegoose/User";
+import { UserStatus } from "src/typegoose/User";
 import { Request } from "express";
 
 const validator = celebrate({
   [Segments.PARAMS]: Joi.object({
-    id: Joi.string()
-  })
+    id: Joi.string(),
+  }),
 });
 
 const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
@@ -40,7 +40,7 @@ const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
       cookies: null,
       reset_password_token: "",
       structures: [],
-      status: USER_STATUS_DELETED
+      status: UserStatus.USER_STATUS_DELETED,
     });
 
     if (email) {
@@ -48,7 +48,7 @@ const handler = async (req: RequestFromClientWithBody<Request>, res: Res) => {
     }
 
     return res.status(200).json({
-      text: "Succès"
+      text: "Succès",
     });
   } catch (error) {
     logger.error("[deleteUser] error", { error: error.message });
