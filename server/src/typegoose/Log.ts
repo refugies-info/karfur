@@ -29,10 +29,10 @@ export class Log extends Base {
   public objectId!: Ref<User | Dispositif | Structure>;
 
   @prop({ required: true, enum: ["User", "Dispositif", "Structure"] })
-  public model_object!: String;
+  public model_object!: "User" | "Dispositif" | "Structure";
 
   @prop({ required: true })
-  public text!: String;
+  public text!: string;
 
   @prop({ ref: () => User })
   public author?: Ref<User>;
