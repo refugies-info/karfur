@@ -1,1 +1,1 @@
-export { getActiveStructures } from "./getActiveStructures";
+export * from "./getActiveStructures";
