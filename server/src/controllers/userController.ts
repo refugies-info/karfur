@@ -17,7 +17,7 @@ import deleteUser from "../workflows/users/deleteUser/deleteUser";
 import { LangueId } from "../typegoose";
 import { setSelectedLanguages } from "../workflows";
 import { IRequest, ResponseWithData } from "../types/interface";
-import { UserStatus } from "src/typegoose/User";
+// import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
 const router = express.Router();
@@ -59,7 +59,7 @@ export interface GetUserInfoResponse {
   email: string;
   roles: { _id: string; nom: string; nomPublic: string };
   selectedLanguages: string[];
-  status: UserStatus;
+  status: "Actif" | "Exclu"; // FIXME : UserStatus does not work with tsoa
   structures: string[];
   traductionsFaites: string[];
   username: string;
