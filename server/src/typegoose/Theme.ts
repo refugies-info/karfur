@@ -1,5 +1,6 @@
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
+import { ExcludeMethods } from "../types/interface";
 import { Base } from "./Base";
 import { ImageSchema } from "./generics";
 import { Langue } from "./Langue";
@@ -81,4 +82,4 @@ export class Theme extends Base {
   }
 }
 
-export type ThemeId = Theme["_id"] | Theme["id"];
+export type ThemeId = ExcludeMethods<Theme["_id"] | Theme["id"]>;
