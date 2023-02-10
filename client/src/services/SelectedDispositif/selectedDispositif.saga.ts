@@ -27,21 +27,15 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data = yield call(API.get_dispositif, {
-        query: { _id: selectedDispositifId },
-        sort: {},
-        populate: "creatorId mainSponsor participants theme secondaryThemes",
-        locale,
-      });
+      const data = yield call(API.getDispositif, selectedDispositifId, locale);
 
-      const dispositif = data.data.data[0];
-      yield put(setSelectedDispositifActionCreator(dispositif, true));
-/*       if (!dispositif || !dispositif._id) {
-        yield call(Router.push, "/");
+      const dispositif = data.data.data;
+      if (dispositif) {
+        yield put(setSelectedDispositifActionCreator(dispositif, true));
       }
- */
-      const user = yield select(userSelector);
 
+      /* TODO : handle server side
+      const user = yield select(userSelector);
       if (
         dispositif.status !== "Actif" &&
         !user.admin &&
@@ -52,7 +46,7 @@ export function* fetchSelectedDispositif(
           yield call(Router.push, "/login");
         }
         // yield call(Router.push, "/");
-      }
+      } */
     }
 
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
