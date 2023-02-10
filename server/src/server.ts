@@ -87,7 +87,7 @@ app.use("/user", userController.router);
 app.use("/translate", translateController);
 app.use("/langues", languesController);
 app.use("/traduction", traductionController.router);
-app.use("/dispositifs", dispositifController);
+app.use("/dispositifs", dispositifController.router);
 app.use("/structures", structureController.router);
 
 app.use(errors()); // TODO: delete and use tsoa instead

@@ -8,7 +8,7 @@ export const allThemesSelector = (state: RootState): Theme[] => [...state.themes
 
 export const themeSelector = (themeId: ObjectId | null) => (state: RootState) => {
   if (!themeId) return null;
-  const filteredState = state.themes.activeThemes.filter((theme) => theme._id === themeId);
+  const theme = state.themes.activeThemes.find((theme) => theme._id === themeId);
 
-  return filteredState.length > 0 ? filteredState[0] : null;
+  return theme || null;
 };

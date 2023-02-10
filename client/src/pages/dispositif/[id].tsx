@@ -1,4 +1,4 @@
-import Dispositif from "components/Frontend/Dispositif/Dispositif"
+import NewDispositif from "components/Frontend/Dispositif/NewDispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -8,12 +8,12 @@ import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
 
 interface Props {
-  history: string[]
+  history: string[];
 }
 
-const DispositifPage = (props: Props) => <Dispositif type="detail" typeContenu="dispositif" history={props.history} />
+const DispositifPage = (props: Props) => <NewDispositif />;
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ query, locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
@@ -21,25 +21,22 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ q
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
-    store.dispatch(fetchUserActionCreator());
+    // store.dispatch(fetchUserActionCreator());
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
 
   // 404
-  if (
-    !store.getState().selectedDispositif ||
-    store.getState().selectedDispositif.typeContenu !== "dispositif"
-  ) {
-    return { notFound: true }
+  if (!store.getState().selectedDispositif || store.getState().selectedDispositif.typeContenu !== "dispositif") {
+    return { notFound: true };
   }
 
   // 200
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-    },
-  }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+    }
+  };
 });
 
 export default DispositifPage;

@@ -186,11 +186,9 @@ const API = {
       headers
     });
   },
-  get_dispositif: (params = {}) => {
+  getDispositif: (id: string, locale: string) => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/get_dispositif", params, {
-      headers
-    });
+    return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
   count_dispositifs: (query: any): Promise<AxiosResponse<number>> => {
     const headers = getHeaders();
