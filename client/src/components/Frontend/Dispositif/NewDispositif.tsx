@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 import SEO from "components/Seo";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
-import { Metadatas, Accordions, Map, Header, Sponsors } from "components/Pages/dispositif";
+import { Metadatas, Accordions, Map, Header, Sponsors, Contributors } from "components/Pages/dispositif";
 
 interface Props {}
 
@@ -16,7 +16,7 @@ const NewDispositif = (props: Props) => {
   if (!dispositif) return <p>Erreur</p>;
 
   return (
-    <Container>
+    <Container className="mx-auto">
       <SEO
         title={dispositif.titreMarque || dispositif.titreInformatif || ""}
         description={dispositif.abstract || ""}
@@ -38,7 +38,7 @@ const NewDispositif = (props: Props) => {
       )}
       <Map markers={dispositif.map} />
       Mercis: {dispositif.merci.length}
-      Participants: {dispositif.participants.length}
+      <Contributors contributors={dispositif.participants} />
       <Sponsors mainSponsor={dispositif.mainSponsor} sponsors={dispositif.sponsors} />
     </Container>
   );

@@ -115,9 +115,11 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
   if (!dispositif) throw new NotFoundError("Dispositif not found")
   const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
 
+  const dispositifObject = dispositif.toObject();
   const response: GetDispositifResponse = {
-    ...dispositif.translations[dataLanguage].content,
-    ...pick(dispositif, ["typeContenu", "status", "mainSponsor", "theme", "secondaryThemes", "needs", "sponsors", "participants", "merci", "metadatas", "map"])
+    ...dispositifObject.translations[dataLanguage].content,
+    metadatas: { ...dispositifObject.metadatas, ...dispositifObject.translations[dataLanguage].metadatas },
+    ...pick(dispositif, ["typeContenu", "status", "mainSponsor", "theme", "secondaryThemes", "needs", "sponsors", "participants", "merci", "map"])
   };
 
   return { text: "success", data: response }
