@@ -1,11 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import moment from "moment";
 import SEO from "components/Seo";
 import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 import { secondaryThemesSelector, themeSelector } from "services/Themes/themes.selectors";
-moment.locale("fr");
+import { Metadatas, Accordions, Map, Header, Sponsors } from "components/Pages/dispositif";
 
 interface Props {}
 
@@ -14,7 +13,7 @@ const NewDispositif = (props: Props) => {
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
 
-  if (!dispositif) return <p>Vide</p>;
+  if (!dispositif) return <p>Erreur</p>;
 
   return (
     <Container>
@@ -23,69 +22,24 @@ const NewDispositif = (props: Props) => {
         description={dispositif.abstract || ""}
         image={theme?.shareImage.secure_url}
       />
-      <h1>
-        <span>{dispositif.titreInformatif}</span>
-        <span>{dispositif.titreMarque}</span>
-      </h1>
-      <p>Theme: {theme?.name.fr}</p>
-      <p>
-        Secondary Themes:
-        {secondaryThemes.map((theme) => (
-          <span key={theme._id.toString()}>{theme?.name.fr} /</span>
-        ))}
-      </p>
+      <Header dispositif={dispositif} theme={theme} secondaryThemes={secondaryThemes} />
       <div dangerouslySetInnerHTML={{ __html: dispositif.what }}></div>
-      {/* METADATAS */}
-      {dispositif.metadatas.location && (
+      <Metadatas metadatas={dispositif.metadatas} />
+      {dispositif.typeContenu === "dispositif" ? (
         <div>
-          {dispositif.metadatas.location.map((loc) => (
-            <span key={loc}>{loc}</span>
-          ))}
+          <Accordions content={dispositif.why} />
+          <Accordions content={dispositif.how} />
+        </div>
+      ) : (
+        <div>
+          <Accordions content={dispositif.how} />
+          <Accordions content={dispositif.next} />
         </div>
       )}
-      {dispositif.metadatas.frenchLevel && (
-        <div>
-          {dispositif.metadatas.frenchLevel.map((level) => (
-            <span key={level}>{level}</span>
-          ))}
-        </div>
-      )}
-      {dispositif.metadatas.important && <div>{dispositif.metadatas.important}</div>}
-      {/* {dispositif.metadatas.age && <div>{dispositif.metadatas.important}</div>} */}
-      {dispositif.metadatas.price && <div>{dispositif.metadatas.price.value}</div>}
-      {dispositif.metadatas.public && <div>{dispositif.metadatas.public}</div>}
-      {dispositif.metadatas.duration && <div>{dispositif.metadatas.duration}</div>}
-      {dispositif.why &&
-        Object.values(dispositif.why).map((section: any, i) => (
-          <div key={i}>
-            <h2>{section.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: section.text }}></div>
-          </div>
-        ))}
-      {dispositif.how &&
-        Object.values(dispositif.how).map((section, i) => (
-          <div key={i}>
-            <h2>{section.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: section.text }}></div>
-          </div>
-        ))}
-      {dispositif.next &&
-        Object.values(dispositif.next).map((section, i) => (
-          <div key={i}>
-            <h2>{section.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: section.text }}></div>
-          </div>
-        ))}
-      {dispositif.map &&
-        dispositif.map.map((poi, i) => (
-          <div key={i}>
-            {poi.lat}, {poi.lng}
-          </div>
-        ))}
+      <Map markers={dispositif.map} />
       Mercis: {dispositif.merci.length}
       Participants: {dispositif.participants.length}
-      <h2>Proposé par</h2>
-      <div>{dispositif.mainSponsor?.nom}</div>
+      <Sponsors mainSponsor={dispositif.mainSponsor} sponsors={dispositif.sponsors} />
     </Container>
   );
 };
