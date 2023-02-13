@@ -34,6 +34,25 @@ interface Poi {
   phone?: string;
 }
 
+interface Metadatas {
+  location?: string[];
+  frenchLevel?: frenchLevel[];
+  important?: string;
+  age?: {
+    type: ageType;
+    ages: number[];
+  };
+  price?: {
+    value: number;
+    details?: priceDetails;
+  }
+  duration?: string;
+  public?: publicType;
+  titreSejourRequired?: boolean;
+  acteNaissanceRequired?: boolean;
+  justificatif?: justificatifType;
+}
+
 export type InfoSections = Record<string, InfoSection>;
 
 export type GetDispositifResponse = {
@@ -58,24 +77,7 @@ export type GetDispositifResponse = {
   }[];
   suggestions: any;
   merci: { created_at: Date, userId?: any }[];
-  metadatas: {
-    location?: string[];
-    frenchLevel?: frenchLevel[];
-    important?: string;
-    age?: {
-      type: ageType;
-      ages: number[];
-    };
-    price?: {
-      value: number;
-      details?: priceDetails;
-    }
-    duration?: string;
-    public?: publicType;
-    titreSejourRequired?: boolean;
-    acteNaissanceRequired?: boolean;
-    justificatif?: justificatifType;
-  };
+  metadatas: Metadatas;
   map: Poi[];
 };
 
