@@ -1,7 +1,7 @@
 import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import merge from "lodash/merge";
-import { GetDispositifResponse } from "types/newInterface";
+import { GetDispositifResponse } from "api-types";
 
 
 export type SelectedDispositifState = GetDispositifResponse;

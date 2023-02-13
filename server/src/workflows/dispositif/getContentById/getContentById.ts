@@ -55,7 +55,7 @@ export type GetDispositifResponse = {
     _id: any;
     username: string;
     picture: Picture;
-  };
+  }[];
   suggestions: any;
   merci: { created_at: Date, userId?: any }[];
   metadatas: {
