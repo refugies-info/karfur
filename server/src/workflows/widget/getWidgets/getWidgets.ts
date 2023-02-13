@@ -1,9 +1,7 @@
 import logger from "../../../logger";
-import { ExcludeMethods, ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
-import { Types } from "mongoose";
 
-type Id = ExcludeMethods<Types.ObjectId | string>;
 export interface GetWidgetResponse {
   name: string;
   tags: string[];

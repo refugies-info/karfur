@@ -1,3 +1,4 @@
+import { Id } from "../server/src/types/interface";
 import {
   GetDispositifResponse,
   InfoSections
@@ -5,6 +6,7 @@ import {
 
 export type {
   // generics
+  Id,
   InfoSections,
 
   // responses

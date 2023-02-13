@@ -1,9 +1,9 @@
-import { Picture, ResponseWithData } from "../../../types/interface";
+import { Id, Picture, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import { Languages } from "../../../typegoose";
-import { omit } from "lodash";
+import pick from "lodash/pick";
 import { ageType, frenchLevel, justificatifType, priceDetails, publicType } from "../../../types/newInterface";
 
 interface InfoSection {
@@ -18,8 +18,14 @@ interface Sponsor {
 }
 
 interface SponsorDB {
-  _id: any;
+  _id: Id;
   nom: string;
+  picture: Picture;
+}
+
+interface User {
+  _id: Id;
+  username: string;
   picture: Picture;
 }
 
@@ -66,17 +72,12 @@ export type GetDispositifResponse = {
   typeContenu: string;
   status: string;
   mainSponsor?: SponsorDB
-  theme?: any;
-  secondaryThemes?: any[];
-  needs: any;
+  theme?: Id;
+  secondaryThemes?: Id[];
+  needs: Id[];
   sponsors?: (Sponsor | SponsorDB)[];
-  participants: {
-    _id: any;
-    username: string;
-    picture: Picture;
-  }[];
-  suggestions: any;
-  merci: { created_at: Date, userId?: any }[];
+  participants: User[];
+  merci: { created_at: Date, userId?: Id }[];
   metadatas: Metadatas;
   map: Poi[];
 };
@@ -102,19 +103,21 @@ export const getContentById = async (id: string, locale: Languages): ResponseWit
     map: 1
   }
 
-  const dispositif = await getDispositifById(id, fields, [
+  const dispositif = await (await getDispositifById(id, fields)).populate<{
+    mainSponsor: SponsorDB,
+    sponsors: (SponsorDB | Sponsor)[],
+    participants: User[]
+  }>([
     { path: "mainSponsor", select: "_id nom picture" },
     { path: "sponsors", select: "_id nom picture" },
-    { path: "participants", select: "username picture" }
+    { path: "participants", select: "_id username picture" }
   ]);
   if (!dispositif) throw new NotFoundError("Dispositif not found")
-
   const dataLanguage = dispositif.isTranslatedIn(locale) ? locale : "fr";
 
-  //@ts-ignore FIXME : toObject returns a full document -> wrong types
   const response: GetDispositifResponse = {
-    ...(dispositif.translations[dataLanguage].content),
-    ...omit(dispositif.toObject(), ["translations"]),
+    ...dispositif.translations[dataLanguage].content,
+    ...pick(dispositif, ["typeContenu", "status", "mainSponsor", "theme", "secondaryThemes", "needs", "sponsors", "participants", "merci", "metadatas", "map"])
   };
 
   return { text: "success", data: response }
