@@ -20,6 +20,7 @@ import {
   Widget
 } from "types/interface";
 import { ObjectId } from "mongodb";
+import { APIResponse, GetDispositifResponse } from "types/newInterface";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -186,7 +187,7 @@ const API = {
       headers
     });
   },
-  getDispositif: (id: string, locale: string) => {
+  getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
     const headers = getHeaders();
     return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
