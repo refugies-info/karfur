@@ -79,7 +79,7 @@ export const getDispositifById = async (
   id: DispositifId,
   neededFields: DispositifFieldsRequest = {},
   populate: string = ""
-) => DispositifModel.findOne({ _id: id }, neededFields).populate(populate);
+) => DispositifModel.findById(id, neededFields).populate(populate);
 
 export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) =>
   await DispositifModel.find({ creatorId, status: { $ne: "Supprimé" } }, neededFields).populate("mainSponsor");
