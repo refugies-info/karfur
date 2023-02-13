@@ -23,10 +23,10 @@ declare global {
  */
 export type ExcludeMethods<T> = Pick<T, { [K in keyof T]: T[K] extends Function ? never : K }[keyof T]>;
 
-export interface Request extends ExpressRequest {}
+export interface Request extends ExpressRequest { }
 // Exposed to avoid Request name conflict
-export interface IRequest extends Request {}
-export interface Res extends ExpressResponse {}
+export interface IRequest extends Request { }
+export interface Res extends ExpressResponse { }
 // export interface Response<CustomResponse = any> extends ExpressResponse<{ text?: string; data?: CustomResponse }> {}
 
 type ResponseText = "success" | "error";
@@ -65,6 +65,8 @@ export interface RequestFromClientWithBody<Query> extends Request {
 export interface RequestFromClientWithFiles extends Request {
   files: any;
 }
+
+export type Id = ExcludeMethods<Types.ObjectId | string>;
 
 export interface AudienceAge {
   contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
@@ -106,7 +108,7 @@ export interface Picture {
 }
 
 // Themes
-export interface TranslatedText extends Record<string, string> {}
+export interface TranslatedText extends Record<string, string> { }
 
 export interface ThemeColors {
   color100: string;
