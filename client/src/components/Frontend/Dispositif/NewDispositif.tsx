@@ -27,13 +27,13 @@ const NewDispositif = (props: Props) => {
       <Metadatas metadatas={dispositif.metadatas} />
       {dispositif.typeContenu === "dispositif" ? (
         <div>
-          <Accordions content={dispositif.why} />
-          <Accordions content={dispositif.how} />
+          <Accordions content={dispositif.why} sectionKey="why" />
+          <Accordions content={dispositif.how} sectionKey="how" />
         </div>
       ) : (
         <div>
-          <Accordions content={dispositif.how} />
-          <Accordions content={dispositif.next} />
+          <Accordions content={dispositif.how} sectionKey="how" />
+          <Accordions content={dispositif.next} sectionKey="next" />
         </div>
       )}
       <Map markers={dispositif.map} />
