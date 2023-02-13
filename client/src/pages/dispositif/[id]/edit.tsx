@@ -6,12 +6,32 @@ import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositi
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import { useForm, FormProvider } from "react-hook-form";
+import { logger } from "logger";
+import PageContext from "utils/pageContext";
+import { useSelector } from "react-redux";
+import { selectedDispositifSelector } from "services/SelectedDispositif/selectedDispositif.selector";
 
 interface Props {
   history: string[];
 }
 
-const DispositifPage = (props: Props) => <NewDispositif />;
+const DispositifPage = (props: Props) => {
+  const dispositif = useSelector(selectedDispositifSelector);
+  const methods = useForm({ defaultValues: dispositif });
+  const onSubmit = (data: any) => logger.info(data);
+
+  return (
+    <PageContext.Provider value={{ mode: "edit" }}>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <NewDispositif />
+          <button type="submit">Enregistrer</button>
+        </form>
+      </FormProvider>
+    </PageContext.Provider>
+  );
+};
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
   if (query.id) {
@@ -27,7 +47,9 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 
   // 404
-  if (!store.getState().selectedDispositif || store.getState().selectedDispositif.typeContenu !== "dispositif") {
+  const dispositif = store.getState().selectedDispositif;
+  if (!dispositif || dispositif.typeContenu !== "dispositif") {
+    /* TODO: check authorization */
     return { notFound: true };
   }
 

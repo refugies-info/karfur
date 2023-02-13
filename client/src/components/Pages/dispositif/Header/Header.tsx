@@ -1,6 +1,7 @@
-import { GetDispositifResponse } from "api-types";
 import React from "react";
+import { GetDispositifResponse } from "api-types";
 import { Theme } from "types/interface";
+import TextInput from "../TextInput";
 
 interface Props {
   dispositif: GetDispositifResponse;
@@ -12,7 +13,8 @@ const Accordions = (props: Props) => {
   return (
     <header>
       <h1>
-        <span>{props.dispositif.titreInformatif}</span> avec <span>{props.dispositif.titreMarque}</span>
+        <TextInput id="titreInformatif" value={props.dispositif.titreInformatif} /> avec{" "}
+        <TextInput id="titreMarque" value={props.dispositif.titreMarque} />
       </h1>
       <p>
         {props.theme?.name.fr}
