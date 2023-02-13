@@ -12,7 +12,8 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { APIResponse, GetDispositifResponse } from "types/newInterface";
+import { GetDispositifResponse } from "api-types";
+import { APIResponse } from "types/interface";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>

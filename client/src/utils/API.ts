@@ -6,6 +6,7 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   AdminOption,
+  APIResponse,
   DispositifFacets,
   DispositifStatistics,
   IDispositif,
@@ -20,7 +21,7 @@ import {
   Widget
 } from "types/interface";
 import { ObjectId } from "mongodb";
-import { APIResponse, GetDispositifResponse } from "types/newInterface";
+import { GetDispositifResponse } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
