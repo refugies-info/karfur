@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put, select } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import API from "utils/API";
 import { logger } from "logger";
 import {
@@ -7,14 +7,12 @@ import {
   setSelectedDispositifActionCreator,
 } from "./selectedDispositif.actions";
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
-import Router from "next/router";
-import { userSelector } from "../User/user.selectors";
-import isEmpty from "lodash/isEmpty";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { APIResponse, GetDispositifResponse } from "types/newInterface";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>
@@ -27,9 +25,9 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data = yield call(API.getDispositif, selectedDispositifId, locale);
+      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale);
 
-      const dispositif = data.data.data;
+      const dispositif: GetDispositifResponse = data.data.data;
       if (dispositif) {
         yield put(setSelectedDispositifActionCreator(dispositif, true));
       }

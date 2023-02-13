@@ -12,3 +12,12 @@ export const themeSelector = (themeId: ObjectId | null) => (state: RootState) =>
 
   return theme || null;
 };
+
+export const secondaryThemesSelector = (themeIds: ObjectId[] | undefined) => (state: RootState): Theme[] => {
+  if (!themeIds) return [];
+  const themes = themeIds
+    .map(themeId => state.themes.activeThemes.find((theme) => theme._id === themeId))
+    .filter(t => t !== undefined) as Theme[];
+
+  return themes;
+};

@@ -1,34 +1,11 @@
 import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
-import get from "lodash/get";
-import { DispositifContent, IDispositif } from "../../types/interface";
+import merge from "lodash/merge";
+import { GetDispositifResponse } from "types/newInterface";
 
 
-export type UiElementNodes = "isHover"
-  | "accordion"
-  | "cardDropdown"
-  | "addDropdown"
-  | "varianteSelected";
-export interface UiElement {
-  isHover: boolean;
-  accordion: boolean;
-  cardDropdown: boolean;
-  addDropdown: boolean;
-  varianteSelected: boolean;
-  children?: UiElement[];
-}
+export type SelectedDispositifState = GetDispositifResponse;
 
-export type SelectedDispositifState = IDispositif & {
-  uiArray: UiElement[];
-};
-
-const uiElement = {
-  isHover: false,
-  accordion: false,
-  cardDropdown: false,
-  addDropdown: false,
-  varianteSelected: false,
-};
 const initialSelectedDispositifState = null;
 
 export const selectedDispositifReducer = createReducer<
@@ -39,59 +16,8 @@ export const selectedDispositifReducer = createReducer<
     return {
       ...(action.payload.reset ? {} : state),
       ...action.payload.value,
-      // @ts-ignore
-      uiArray: get(action.payload.value, "contenu", []).map(
-        (x: DispositifContent) => {
-          return {
-            ...uiElement,
-            ...(x.children && {
-              children: new Array(x.children.length).fill({
-                ...uiElement,
-                accordion: !!action.payload.openAccordions ||
-                  action.payload.value.status === "Accepté structure",
-              }),
-            }),
-          };
-        }
-      ),
     }
   },
-  // @ts-ignore
-  UPDATE_UI_ARRAY: (state, action) =>
-    ({...state,
-      uiArray:
-        state &&
-        state.uiArray &&
-        state.uiArray.map((x: any, idx: any) => {
-          return {
-            ...x,
-            ...((action.payload.subkey === null &&
-              idx === action.payload.key && {
-                [action.payload.node]: action.payload.value,
-              }) ||
-              (action.payload.updateOthers && {
-                [action.payload.node]: false,
-              })),
-            ...(x.children && {
-              children: x.children.map((y: any, subidx: any) => {
-                return {
-                  ...y,
-                  ...((subidx === action.payload.subkey &&
-                    idx === action.payload.key && {
-                      [action.payload.node]: action.payload.value,
-                    }) ||
-                    (action.payload.updateOthers && {
-                      [action.payload.node]: false,
-                    })),
-                };
-              }),
-            }),
-          };
-        }),
-  }),
-  //@ts-ignore
-  SET_UI_ARRAY: (state, action) => ({...state, uiArray: action.payload }),
-  //@ts-ignore
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
-    ({ ...state, ...action.payload }),
+    merge({ ...state, ...action.payload }),
 });
