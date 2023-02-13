@@ -1,5 +1,7 @@
 import { GetDispositifResponse } from "api-types";
 import React from "react";
+import Card from "./Card";
+import { getAge, getMetadataTitle, getPrice, getPublic } from "./functions";
 
 interface Props {
   metadatas: GetDispositifResponse["metadatas"];
@@ -8,31 +10,22 @@ interface Props {
 const Metadatas = ({ metadatas }: Props) => {
   return (
     <div>
-      {metadatas.location && (
-        <div>
-          {metadatas.location.map((loc) => (
-            <span key={loc}>{loc}</span>
-          ))}
-        </div>
+      <p className="h2">C'est pour qui ?</p>
+      {metadatas.location && <Card title={getMetadataTitle("location")} text={metadatas.location.join(", ")} />}
+
+      {metadatas.frenchLevel && metadatas.frenchLevel.length > 0 && (
+        <Card title={getMetadataTitle("frenchLevel")} text={metadatas.frenchLevel.join(", ")} />
       )}
 
-      {metadatas.frenchLevel && (
-        <div>
-          {metadatas.frenchLevel.map((level) => (
-            <span key={level}>{level}</span>
-          ))}
-        </div>
-      )}
+      {metadatas.important && <Card title={getMetadataTitle("important")} text={metadatas.important} />}
 
-      {metadatas.important && <div>{metadatas.important}</div>}
+      {metadatas.age && <Card title={getMetadataTitle("age")} text={getAge(metadatas.age)} />}
 
-      {/* {metadatas.age && <div>{metadatas.important}</div>} */}
+      {metadatas.price && <Card title={getMetadataTitle("price")} text={getPrice(metadatas.price)} />}
 
-      {metadatas.price && <div>{metadatas.price.value}</div>}
+      {metadatas.public && <Card title={getMetadataTitle("public")} text={getPublic(metadatas.public)} />}
 
-      {metadatas.public && <div>{metadatas.public}</div>}
-
-      {metadatas.duration && <div>{metadatas.duration}</div>}
+      {metadatas.duration && <Card title={getMetadataTitle("duration")} text={metadatas.duration} />}
     </div>
   );
 };

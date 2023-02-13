@@ -1,4 +1,4 @@
-import Dispositif from "components/Frontend/Dispositif/Dispositif"
+import NewDispositif from "components/Frontend/Dispositif/NewDispositif";
 import { wrapper } from "services/configureStore";
 import { END } from "redux-saga";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -6,14 +6,21 @@ import { fetchSelectedDispositifActionCreator } from "services/SelectedDispositi
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { getLanguageFromLocale } from "lib/getLanguageFromLocale";
 import { fetchThemesActionCreator } from "services/Themes/themes.actions";
+import PageContext from "utils/pageContext";
 
 interface Props {
-  history: string[]
+  history: string[];
 }
 
-const DispositifPage = (props: Props) => <Dispositif type="detail" typeContenu="demarche" history={props.history} />
+const DemarchePage = (props: Props) => {
+  return (
+    <PageContext.Provider value={{ mode: "view" }}>
+      <NewDispositif />
+    </PageContext.Provider>
+  );
+};
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({ query, locale }) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
   if (query.id) {
     const action = fetchSelectedDispositifActionCreator({
       selectedDispositifId: query.id as string,
@@ -21,25 +28,24 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({ q
     });
     store.dispatch(action);
     store.dispatch(fetchThemesActionCreator());
-    store.dispatch(fetchUserActionCreator());
+    // store.dispatch(fetchUserActionCreator());
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   }
 
   // 404
-  if (
-    !store.getState().selectedDispositif ||
-    store.getState().selectedDispositif.typeContenu !== "demarche"
-  ) {
-    return { notFound: true }
+  const dispositif = store.getState().selectedDispositif;
+  if (!dispositif || dispositif.typeContenu !== "demarche") {
+    /* TODO: check authorization */
+    return { notFound: true };
   }
 
   // 200
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
-    },
-  }
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"]))
+    }
+  };
 });
 
-export default DispositifPage;
+export default DemarchePage;

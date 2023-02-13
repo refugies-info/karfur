@@ -13,8 +13,12 @@ const Accordions = (props: Props) => {
   return (
     <header>
       <h1>
-        <TextInput id="titreInformatif" value={props.dispositif.titreInformatif} /> avec{" "}
-        <TextInput id="titreMarque" value={props.dispositif.titreMarque} />
+        <TextInput id="titreInformatif" value={props.dispositif.titreInformatif} />
+        {props.dispositif.typeContenu === "dispositif" && (
+          <>
+            avec <TextInput id="titreMarque" value={props.dispositif.titreMarque} />
+          </>
+        )}
       </h1>
       <p>
         {props.theme?.name.fr}
