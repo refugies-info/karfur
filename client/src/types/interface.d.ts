@@ -1,9 +1,11 @@
 import { ObjectId } from "mongodb";
 import { Moment } from "moment";
+import { AxiosResponse } from "axios";
 
-export interface RequestReturn<Y> {
-  data: { data: Y };
-}
+export type APIResponse<T> = AxiosResponse<{
+  text: "success" | "error",
+  data: T
+}>
 
 export interface Event {
   target: { id: string; value: string };
@@ -556,13 +558,13 @@ export interface Log {
     id: ObjectId;
     model_link: "User" | "Dispositif" | "Structure";
     next:
-      | "ModalContenu"
-      | "ModalStructure"
-      | "ModalUser"
-      | "ModalReaction"
-      | "ModalImprovements"
-      | "ModalNeeds"
-      | "PageAnnuaire";
+    | "ModalContenu"
+    | "ModalStructure"
+    | "ModalUser"
+    | "ModalReaction"
+    | "ModalImprovements"
+    | "ModalNeeds"
+    | "PageAnnuaire";
   };
   created_at: Moment;
 }

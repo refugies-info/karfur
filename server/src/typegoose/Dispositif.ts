@@ -97,12 +97,12 @@ export class Age {
   @prop({ type: String })
   public type!: ageType;
   @prop()
-  public ages: Number[];
+  public ages: number[];
 }
 
 export class Price {
   @prop()
-  public value: Number;
+  public value: number;
   @prop()
   public details?: priceDetails;
 }
@@ -132,21 +132,21 @@ export class Metadatas {
 
 export class Poi {
   @prop()
-  public title!: String;
+  public title!: string;
   @prop()
-  public address!: String;
+  public address!: string;
   @prop()
-  public city!: String;
+  public city!: string;
   @prop()
-  public lat!: Number;
+  public lat!: number;
   @prop()
-  public lng!: Number;
+  public lng!: number;
   @prop()
-  public description?: String;
+  public description?: string;
   @prop()
-  public email?: String;
+  public email?: string;
   @prop()
-  public phone?: String;
+  public phone?: string;
 }
 
 // COLLECTION

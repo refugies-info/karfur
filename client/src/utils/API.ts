@@ -6,6 +6,7 @@ import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
   AdminOption,
+  APIResponse,
   DispositifFacets,
   DispositifStatistics,
   IDispositif,
@@ -20,6 +21,7 @@ import {
   Widget
 } from "types/interface";
 import { ObjectId } from "mongodb";
+import { GetDispositifResponse } from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -186,11 +188,9 @@ const API = {
       headers
     });
   },
-  get_dispositif: (params = {}) => {
+  getDispositif: (id: string, locale: string): Promise<APIResponse<GetDispositifResponse>> => {
     const headers = getHeaders();
-    return instance.post("/dispositifs/get_dispositif", params, {
-      headers
-    });
+    return instance.get(`/dispositifs/${id}?locale=${locale}`, { headers });
   },
   count_dispositifs: (query: any): Promise<AxiosResponse<number>> => {
     const headers = getHeaders();

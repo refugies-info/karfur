@@ -1,11 +1,11 @@
 import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import { getAllWidgets } from "../../../modules/widgets/widgets.repository";
 
 export interface GetWidgetResponse {
   name: string;
   tags: string[];
-  themes: any[]; // FIXME : type objectId
+  themes: Id[];
   typeContenu: ("dispositif" | "demarche")[];
   department: string;
   languages: string[];

@@ -106,7 +106,7 @@ const getInfoSections = (children, ln, root, id, type) => {
 
       infosections[uuid] = {
         title: getLocalizedContent(section.title, ln, root),
-        content: turnJSONtoHTML(getLocalizedContent(section.content, ln, root))
+        text: turnJSONtoHTML(getLocalizedContent(section.content, ln, root))
       };
     }
   }
@@ -462,7 +462,7 @@ const getInfosectionReview = (trad, newContent, section, contenuKey) => {
   if (!newContent.content[section]) return [];
   for (const key of Object.keys(newContent.content[section])) {
     if (trad.translatedText.contenu[contenuKey]?.children[i].titleModified) res.push(`${section}.${key}.title`);
-    if (trad.translatedText.contenu[contenuKey]?.children[i].contentModified) res.push(`${section}.${key}.content`);
+    if (trad.translatedText.contenu[contenuKey]?.children[i].contentModified) res.push(`${section}.${key}.text`);
     i++;
   }
 

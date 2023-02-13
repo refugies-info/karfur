@@ -1,0 +1,9 @@
+{
+  "name": "api-types",
+  "version": "1.0.0",
+  "description": "Types defined in the API to be used by the frontend",
+  "main": "types.ts",
+  "scripts": {},
+  "author": "",
+  "license": "ISC"
+}

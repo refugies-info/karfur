@@ -1,3 +1,12 @@
+import {
+  Controller,
+  Get,
+  Route,
+  Path,
+  Query,
+  Security
+} from "tsoa";
+
 import express from "express";
 import * as dispositif from "./dispositif/lib";
 import * as checkToken from "./account/checkToken";
@@ -17,9 +26,11 @@ import { addDispositif } from "../workflows/dispositif/addDispositif";
 import { exportDispositifsGeolocalisation } from "../workflows/dispositif/exportDispositifsGeolocalisation";
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
-import { getContentById } from "../workflows/dispositif/getContentById";
+import { getContentById, GetDispositifResponse } from "../workflows/dispositif/getContentById";
 import getStatistics from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
+import { ResponseWithData } from "../types/interface";
+import { Languages } from "../typegoose";
 
 const router = express.Router();
 
@@ -51,9 +62,26 @@ router.post("/exportDispositifsGeolocalisation", exportDispositifsGeolocalisatio
 router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
-router.get("/getContentById", getContentById);
+// router.get("/getContentById", getContentById);
 router.get("/statistics", getStatistics);
 // @ts-ignore FIXME
 router.patch("/:id", checkToken.check, updateDispositif);
 
-module.exports = router;
+export { router };
+
+@Route("dispositifs")
+export class DispositifController extends Controller {
+
+  @Security({
+    fromSite: [],
+  })
+  @Get("/{id}") // TODO: moved from getContentById?contentId (app)
+  public async getById(
+    @Path() id: string,
+    @Query() locale: Languages
+  ): ResponseWithData<GetDispositifResponse> {
+    return getContentById(id, locale);
+  }
+}
+
+

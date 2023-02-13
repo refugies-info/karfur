@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, call, put, select } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import API from "utils/API";
 import { logger } from "logger";
 import {
@@ -7,14 +7,13 @@ import {
   setSelectedDispositifActionCreator,
 } from "./selectedDispositif.actions";
 import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
-import Router from "next/router";
-import { userSelector } from "../User/user.selectors";
-import isEmpty from "lodash/isEmpty";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { GetDispositifResponse } from "api-types";
+import { APIResponse } from "types/interface";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>
@@ -27,21 +26,15 @@ export function* fetchSelectedDispositif(
       { id: selectedDispositifId, locale }
     );
     if (selectedDispositifId) {
-      const data = yield call(API.get_dispositif, {
-        query: { _id: selectedDispositifId },
-        sort: {},
-        populate: "creatorId mainSponsor participants theme secondaryThemes",
-        locale,
-      });
+      const data: APIResponse<GetDispositifResponse> = yield call(API.getDispositif, selectedDispositifId, locale);
 
-      const dispositif = data.data.data[0];
-      yield put(setSelectedDispositifActionCreator(dispositif, true));
-/*       if (!dispositif || !dispositif._id) {
-        yield call(Router.push, "/");
+      const dispositif: GetDispositifResponse = data.data.data;
+      if (dispositif) {
+        yield put(setSelectedDispositifActionCreator(dispositif, true));
       }
- */
-      const user = yield select(userSelector);
 
+      /* TODO : handle server side
+      const user = yield select(userSelector);
       if (
         dispositif.status !== "Actif" &&
         !user.admin &&
@@ -52,7 +45,7 @@ export function* fetchSelectedDispositif(
           yield call(Router.push, "/login");
         }
         // yield call(Router.push, "/");
-      }
+      } */
     }
 
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
