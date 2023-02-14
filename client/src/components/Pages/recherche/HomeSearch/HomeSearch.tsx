@@ -1,6 +1,5 @@
 import React, { memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ObjectId } from "mongodb";
 import { Row, Col, Container, Button } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -17,6 +16,7 @@ import illuLocation from "assets/recherche/illu-location.png";
 import HomeTypeCard from "../HomeTypeCard";
 import CardSlider from "../CardSlider";
 import styles from "./HomeSearch.module.scss";
+import { Id } from "api-types";
 
 export const HOME_MAX_SHOWN_DISPOSITIFS = 15;
 export const HOME_MAX_SHOWN_DEMARCHES = 15;
@@ -64,7 +64,7 @@ const HomeSearch = () => {
   const demarches = useMemo(() => filteredResult.demarches.slice(0, HOME_MAX_SHOWN_DEMARCHES), [filteredResult]);
   const dispositifs = useMemo(() => filteredResult.dispositifs.slice(0, HOME_MAX_SHOWN_DISPOSITIFS), [filteredResult]);
 
-  const selectTheme = (themeId: ObjectId) => {
+  const selectTheme = (themeId: Id) => {
     dispatch(addToQueryActionCreator({ themes: [themeId] }));
     Event("USE_SEARCH", "use home search", "click theme");
   };

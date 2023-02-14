@@ -1,9 +1,10 @@
 import logger from "../../../logger";
 import { updatePositions as updatePositionsInDb } from "../../../modules/needs/needs.repository";
 import { UpdatePositionsRequest } from "../../../controllers/needController";
-import { NeedTranslation, ResponseWithData, Theme } from "../../../types/interface";
+import { NeedTranslation, ResponseWithData, Theme, Id } from "../../../types/interface";
 
 export interface UpdatePositionsNeedResponse {
+  _id: Id;
   theme: Theme;
   adminComments?: string;
   nbVues: number;

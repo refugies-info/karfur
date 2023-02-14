@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React from "react";
 import { cardTitlesDispositif } from "data/dispositif";
 import { DispositifContent, Theme } from "types/interface";
@@ -17,7 +18,7 @@ const TitleTextBody = styled.p`
   padding-bottom: 12px;
   padding-top: 10px;
   font-weight: 600;
-  margin-top: ${(props: {mt?: string}) => props.mt || 0};
+  margin-top: ${(props: { mt?: string }) => props.mt || 0};
 `;
 
 const ButtonTextBody = styled.p`
@@ -40,15 +41,13 @@ interface Props {
   typeContenu: "dispositif" | "demarche";
   visibleOnMobile?: boolean;
   toggleGeolocModal: (arg: boolean) => void;
-  handleMenuChange: (ev: any, value?: any) => any
+  handleMenuChange: (ev: any, value?: any) => any;
   emptyPlaceholder: (e: any) => void;
   theme: Theme;
 }
 
 export const CardBodyContent = (props: Props) => {
-  let cardTitle = cardTitlesDispositif.find(
-    (x) => x.title === props.subitem.title
-  );
+  let cardTitle = cardTitlesDispositif.find((x) => x.title === props.subitem.title);
 
   // edition mode of cards with options
   // Public visé, Age requis, Niveau de français
@@ -100,8 +99,7 @@ export const CardBodyContent = (props: Props) => {
         <TitleTextBody>
           {props.subitem.departments && props.subitem.departments.length > 1
             ? props.t("Dispositif.Départements", "Départements")
-            : props.subitem.departments &&
-              props.subitem.departments[0] === "All"
+            : props.subitem.departments && props.subitem.departments[0] === "All"
             ? props.t("Dispositif.France entière", "France entière")
             : props.t("Dispositif.Département", "Département")}
         </TitleTextBody>
@@ -126,25 +124,14 @@ export const CardBodyContent = (props: Props) => {
     }
   }
 
-  if (
-    props.subitem.title && ["Titre de séjour", "Acte de naissance OFPRA"].includes(props.subitem.title)
-  ) {
-    return (
-      <div>
-        {props.t("Dispositif." + props.subitem.title, props.subitem.title)}
-      </div>
-    );
+  if (props.subitem.title && ["Titre de séjour", "Acte de naissance OFPRA"].includes(props.subitem.title)) {
+    return <div>{props.t("Dispositif." + props.subitem.title, props.subitem.title)}</div>;
   }
 
   let texte;
   if (props.subitem.title === "Âge requis") {
     if (props.subitem.ageTitle) {
-      texte = getTextForAgeInfocard(
-        props.subitem.ageTitle,
-        props.subitem.bottomValue,
-        props.subitem.topValue,
-        props.t
-      );
+      texte = getTextForAgeInfocard(props.subitem.ageTitle, props.subitem.bottomValue, props.subitem.topValue, props.t);
     } else {
       texte = getTextForAgeInfocard(
         props.subitem.contentTitle,
@@ -156,18 +143,10 @@ export const CardBodyContent = (props: Props) => {
   } else if (props.subitem.title === "Combien ça coûte ?") {
     texte = props.subitem.free
       ? props.t("Dispositif.gratuit", "gratuit")
-      : props.subitem.price +
-        " € " +
-        props.t(
-          "Dispositif." + props.subitem.contentTitle,
-          props.subitem.contentTitle
-        );
+      : props.subitem.price + " € " + props.t("Dispositif." + props.subitem.contentTitle, props.subitem.contentTitle);
   } else if (cardTitle && cardTitle.options) {
     texte = jsUcfirstInfocards(
-      props.t(
-        "Dispositif." + props.subitem.contentTitle,
-        props.subitem.contentTitle
-      ),
+      props.t("Dispositif." + props.subitem.contentTitle, props.subitem.contentTitle),
       cardTitle.title
     );
   } else {

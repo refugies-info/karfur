@@ -36,7 +36,7 @@ export interface NotificationSettingsRequest {
  */
 export type Uid = string;
 
-@Route("options")
+@Route("appuser")
 export class AppUsersController extends Controller {
 
   @Post("/")

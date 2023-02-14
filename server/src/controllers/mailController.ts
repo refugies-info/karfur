@@ -12,14 +12,13 @@ import { sendReminderMailToUpdateContents } from "../workflows/mail/sendReminder
 import { sendAdminImprovementsMail } from "../workflows/mail/sendAdminImprovementsMail";
 import { sendSubscriptionReminderMail } from "../workflows/mail/sendSubscriptionReminderMail";
 import { addContact } from "../workflows/mail/addContact";
-import { Response } from "../types/interface";
-import { DispositifId, UserId } from "../typegoose";
+import { Response, Id } from "../types/interface";
 
 export interface ImprovementsRequest {
-  dispositifId: DispositifId;
+  dispositifId: Id;
   users: {
     username: string;
-    _id: UserId;
+    _id: Id;
     email: string;
   }[];
   titreInformatif: string;

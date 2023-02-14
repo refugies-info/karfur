@@ -1,17 +1,19 @@
 import logger from "../../../logger";
-import { ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 import { createWidget } from "../../../modules/widgets/widgets.repository";
-import { Widget } from "src/typegoose";
-import { WidgetRequest } from "src/controllers/widgetController";
+import { Widget } from "../../../typegoose";
+import { WidgetRequest } from "../../../controllers/widgetController";
 
 export interface PostWidgetResponse {
+  _id: Id;
   name: string;
   tags: string[];
-  themes: any[]; // FIXME : type objectId
+  themes: Id[];
   typeContenu: ("dispositif" | "demarche")[];
   department: string;
   languages: string[];
-  author: string;
+  author: { username: string };
+  created_at: Date;
 }
 
 export const postWidgets = async (body: WidgetRequest, userId: string): ResponseWithData<PostWidgetResponse> => {
@@ -20,7 +22,7 @@ export const postWidgets = async (body: WidgetRequest, userId: string): Response
   const widget = new Widget();
   widget.name = body.name;
   //@ts-ignore
-  widget.themes = body.themes.map((t) => t._id); // FIXME ref types
+  widget.themes = body.themes; // FIXME ref types
   widget.typeContenu = body.typeContenu;
   //@ts-ignore
   widget.author = userId; // FIXME ref types
@@ -35,6 +37,7 @@ export const postWidgets = async (body: WidgetRequest, userId: string): Response
 
   return {
     text: "success",
+    //@ts-ignore FIXME: include created_at
     data: dbWidget
   }
 };

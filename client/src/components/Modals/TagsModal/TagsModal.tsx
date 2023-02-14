@@ -10,9 +10,9 @@ import API from "utils/API";
 import { cls } from "lib/classname";
 import styles from "./TagsModal.module.scss";
 import checkStyles from "scss/components/checkbox.module.scss";
-import { Theme, User } from "types/interface";
-import { ObjectId } from "mongodb";
+import { User } from "types/interface";
 import ThemeIcon from "components/UI/ThemeIcon";
+import { GetThemeResponse, Id } from "api-types";
 
 const Step = ({ ...props }) => {
   return (
@@ -45,19 +45,19 @@ const StyledSub = (props: SubProps) => {
 interface Props {
   show: boolean;
   toggle: () => void;
-  theme: Theme | undefined;
-  secondaryThemes: Theme[];
-  validate: (theme: Theme | null, secondaryThemes: Theme[]) => void;
-  allThemes: Theme[];
+  theme: GetThemeResponse | undefined;
+  secondaryThemes: GetThemeResponse[];
+  validate: (theme: GetThemeResponse | null, secondaryThemes: GetThemeResponse[]) => void;
+  allThemes: GetThemeResponse[];
   toggleTutorielModal: any;
   user: User | null;
   dispositifId: string;
 }
 
 const DispositifValidateModal = (props: Props) => {
-  const [theme1, setTheme1] = useState<Theme | null>(null);
-  const [theme2, setTheme2] = useState<Theme | null>(null);
-  const [theme3, setTheme3] = useState<Theme | null>(null);
+  const [theme1, setTheme1] = useState<GetThemeResponse | null>(null);
+  const [theme2, setTheme2] = useState<GetThemeResponse | null>(null);
+  const [theme3, setTheme3] = useState<GetThemeResponse | null>(null);
   const [noTheme, setNoTheme] = useState(false);
   const router = useRouter();
 
@@ -76,7 +76,7 @@ const DispositifValidateModal = (props: Props) => {
     };
   }, [props.theme, props.secondaryThemes]);
 
-  const selectTheme1 = (theme: Theme) => {
+  const selectTheme1 = (theme: GetThemeResponse) => {
     if (theme1 && theme1._id === theme._id) {
       setTheme1(null);
     } else {
@@ -89,7 +89,7 @@ const DispositifValidateModal = (props: Props) => {
     //this.toggle();
   };
 
-  const selectTheme2 = (theme: Theme) => {
+  const selectTheme2 = (theme: GetThemeResponse) => {
     if (theme2 && theme._id === theme2._id) {
       setTheme2(null);
     } else if (theme3 && theme._id === theme3._id) {
@@ -124,7 +124,7 @@ const DispositifValidateModal = (props: Props) => {
   };
 
   const validateThemes = () => {
-    const secondaryThemes: ObjectId[] = [];
+    const secondaryThemes: Id[] = [];
     if (theme2) secondaryThemes.push(theme2._id);
     if (theme3) secondaryThemes.push(theme3._id);
 

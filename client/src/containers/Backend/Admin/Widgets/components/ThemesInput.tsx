@@ -1,26 +1,26 @@
+import { GetThemeResponse, Id } from "api-types";
 import FilterButton from "components/UI/FilterButton";
 import TagName from "components/UI/TagName";
 import { cls } from "lib/classname";
 import { useSelector } from "react-redux";
 import { themesSelector } from "services/Themes/themes.selectors";
-import { Theme } from "types/interface";
 import parentStyles from "../Widgets.module.scss";
 
 interface Props {
-  selectedThemes: Theme[];
-  setSelectedThemes: (callback: (themes: Theme[]) => void) => void;
+  selectedThemes: Id[];
+  setSelectedThemes: (callback: (themes: Id[]) => void) => void;
 }
 
 export const ThemesInput = (props: Props) => {
   const themes = useSelector(themesSelector);
 
-  const onTagsChange = (theme: Theme) => {
-    if (props.selectedThemes.find((t) => t._id === theme._id)) {
+  const onTagsChange = (themeId: Id) => {
+    if (props.selectedThemes.find((id) => id === themeId)) {
       // remove
-      props.setSelectedThemes((themes: Theme[]) => themes.filter((t) => t._id !== theme._id));
+      props.setSelectedThemes((themes: Id[]) => themes.filter((id) => id !== themeId));
     } else {
       // add
-      props.setSelectedThemes((themes: Theme[]) => [...themes, theme]);
+      props.setSelectedThemes((themes: Id[]) => [...themes, themeId]);
     }
   };
 
@@ -30,11 +30,11 @@ export const ThemesInput = (props: Props) => {
       {themes.map((theme) => (
         <FilterButton
           key={theme.short.fr}
-          active={props.selectedThemes.find((t) => t._id === theme._id)}
+          active={props.selectedThemes.find((id) => id === theme._id)}
           color={theme.colors.color100}
           onClick={(e: any) => {
             e.preventDefault();
-            onTagsChange(theme);
+            onTagsChange(theme._id);
           }}
           className="me-2 mb-2"
         >
@@ -48,7 +48,7 @@ export const ThemesInput = (props: Props) => {
           if (props.selectedThemes.length === themes.length) {
             props.setSelectedThemes(() => []);
           } else {
-            props.setSelectedThemes(() => themes);
+            props.setSelectedThemes(() => themes.map((t) => t._id));
           }
         }}
         className="me-2 mb-2"

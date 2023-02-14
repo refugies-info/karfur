@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Log } from "types/interface";
 import Image from "next/image";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import moment from "moment";
@@ -30,6 +29,7 @@ import { colors } from "colors";
 import { useRouter } from "next/router";
 import { fetchActiveStructuresActionCreator } from "services/ActiveStructures/activeStructures.actions";
 import { useToggle } from "react-use";
+import { GetLogResponse, Id } from "api-types";
 
 moment.locale("fr");
 
@@ -59,9 +59,9 @@ interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
   toggleRespoModal: () => void;
-  selectedStructureId: ObjectId | null;
-  setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
-  setSelectedContentIdAndToggleModal: (element: ObjectId | null, status: string | null) => void;
+  selectedStructureId: Id | null;
+  setSelectedUserIdAndToggleModal: (userId: Id | null) => void;
+  setSelectedContentIdAndToggleModal: (element: Id | null, status: string | null) => void;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: Props) => {
@@ -73,8 +73,8 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (props: P
   const structure = useSelector(structureSelector(props.selectedStructureId));
   const [adminComments, setAdminComments] = useState<string>(structure?.adminComments || "");
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [currentId, setCurrentId] = useState<Id | null>(null);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
 
   const allStructures = useSelector(allStructuresSelector);
   const allDispositifs = useSelector(allDispositifsSelector);

@@ -1,15 +1,15 @@
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import API from "../../../../utils/API";
-import { ObjectId } from "mongodb";
 import { Language, SimplifiedDispositif } from "types/interface";
+import { Id } from "api-types";
 
 // TODO: move function
 export const prepareDeleteContrib = (
   allDispositifs: SimplifiedDispositif[],
   setAllDispositifsActionsCreator: any,
   dispatch: any,
-  dispositifId: ObjectId | null
+  dispositifId: Id | null
 ) => {
   return Swal.fire({
     title: "Êtes-vous sûr ?",

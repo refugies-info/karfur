@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { END } from "redux-saga";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { debounce } from "lodash";
@@ -35,11 +34,12 @@ import HomeSearch from "components/Pages/recherche/HomeSearch";
 import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
 import { getPath } from "routes";
 import styles from "scss/pages/recherche.module.scss";
+import { Id } from "api-types";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
-  needs?: string | ObjectId[];
-  themes?: string | ObjectId[];
+  needs?: string | Id[];
+  themes?: string | Id[];
   age?: string | AgeOptions[];
   frenchLevel?: string | FrenchOptions[];
   language?: string | string[];

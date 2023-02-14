@@ -1,7 +1,7 @@
 import API from "utils/API";
 
 let audio: HTMLAudioElement | null;
-if(typeof Audio !== "undefined") { // for browsers
+if (typeof Audio !== "undefined") { // for browsers
   audio = new Audio();
 }
 
@@ -11,15 +11,15 @@ const readAudio = function (
   callback: any = null,
   inDispositif: boolean = false,
   isActive: boolean = true,
-  startLoader: any = () => {}
+  startLoader: any = () => { }
 ) {
   if (!text || text === "null") return;
   !inDispositif && startLoader(true);
   API.cancel_tts_subscription();
-  return API.get_tts({ text, locale })
+  return API.getTts({ text, locale })
     .then((data) => {
       if (!audio) return;
-      let audioData = data.data.data;
+      const audioData = data.data.data;
       audio.pause();
       audio.currentTime = 0;
 
@@ -40,7 +40,7 @@ const readAudio = function (
         //On ne le joue que si l'audio est toujours activé
         if (isActive || inDispositif) {
           audio.load();
-          audio.play().catch(() => {});
+          audio.play().catch(() => { });
         }
         !inDispositif && startLoader(false);
         return true;
@@ -49,7 +49,7 @@ const readAudio = function (
         return false;
       }
     })
-    .catch(() => {});
+    .catch(() => { });
 };
 
 const stopAudio = function () {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Event, Indicators, Log, SimplifiedUser } from "types/interface";
+import { Event, Indicators, SimplifiedUser } from "types/interface";
 import Image from "next/image";
 import { Spinner, Row, Col } from "reactstrap";
 import moment from "moment";
@@ -24,14 +24,15 @@ import { NotesInput } from "../../sharedComponents/NotesInput";
 import { LogList } from "../../Logs/LogList";
 import { StructureButton } from "../../sharedComponents/StructureButton";
 import { isValidEmail, isValidPhone } from "lib/validateFields";
+import { GetLogResponse, Id } from "api-types";
 
 moment.locale("fr");
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedUserId: ObjectId | null;
-  setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
+  selectedUserId: Id | null;
+  setSelectedStructureIdAndToggleModal: (structureId: Id | null) => void;
 }
 
 export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) => {
@@ -41,14 +42,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [emailError, setEmailError] = useState<string>("");
   const [roles, setRoles] = useState<string[]>([]);
   const [indicators, setIndicators] = useState<null | Indicators>(null);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(props.selectedUserId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
   const userFromStore = useSelector(userSelector(selectedUserId));
   const [adminComments, setAdminComments] = useState<string>(userFromStore?.adminComments || "");
   const [infosSaved, setInfosSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [currentId, setCurrentId] = useState<Id | null>(null);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
 
   const dispatch = useDispatch();
   const updateLogs = useCallback(() => {

@@ -1,16 +1,22 @@
 import logger from "../../../logger";
 import { findLogs } from "../../../modules/logs/logs.repository";
-import { ResponseWithData } from "../../../types/interface";
+import { Id, ResponseWithData } from "../../../types/interface";
 
 export interface GetLogResponse {
-  objectId: any; // FIXME: how to type an ObjectID here?
+  _id: Id;
+  objectId: Id;
   model_object: "User" | "Dispositif" | "Structure";
   text: string;
-  author: string;
-  dynamicId?: string;
+  author: { username: string };
+  dynamicId?: {
+    nom?: string
+    username?: string
+    titreInformatif?: string
+    langueFr?: string
+  };
   model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
   link?: {
-    id: any; // FIXME: how to type an ObjectID here?
+    id: Id;
     model_link: "User" | "Dispositif" | "Structure";
     next:
     | "ModalContenu"
@@ -21,6 +27,7 @@ export interface GetLogResponse {
     | "ModalNeeds"
     | "PageAnnuaire";
   }
+  created_at: Date
 }
 
 export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> => {
@@ -29,6 +36,7 @@ export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> =>
 
   return {
     text: "success",
+    //@ts-ignore FIXME : created_at not available
     data: logs
   };
 }

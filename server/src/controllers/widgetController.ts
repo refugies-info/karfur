@@ -15,13 +15,11 @@ import { getWidgets, GetWidgetResponse } from "../workflows/widget/getWidgets";
 import { postWidgets, PostWidgetResponse } from "../workflows/widget/postWidgets";
 import { patchWidget, PatchWidgetResponse } from "../workflows/widget/patchWidget";
 import { deleteWidget } from "../workflows/widget/deleteWidget";
-import { Response, ResponseWithData } from "../types/interface";
-
-/* TODO: themes no longer populated by API for widgets. Update front */
+import { Id, Response, ResponseWithData } from "../types/interface";
 
 export interface WidgetRequest {
   name: string;
-  themes: { _id: string }[];
+  themes: Id[];
   typeContenu: ("dispositif" | "demarche")[];
   languages?: string[];
   department?: string;

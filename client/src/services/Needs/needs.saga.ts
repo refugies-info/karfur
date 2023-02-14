@@ -17,15 +17,16 @@ import {
   orderNeedsActionCreator
 } from "./needs.actions";
 import { needsSelector } from "./needs.selectors";
-import { Need } from "types/interface";
+import { APIResponse } from "types/interface";
+import { GetNeedResponse, UpdatePositionsNeedResponse } from "api-types";
 
 export function* fetchNeeds(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_NEEDS));
     logger.info("[fetchNeeds] start fetching needs");
-    const data = yield call(API.getNeeds);
+    const data: APIResponse<GetNeedResponse[]> = yield call(API.getNeeds);
 
-    const needs = data && data.data && data.data.data ? data.data.data : [];
+    const needs = data.data?.data || [];
     yield put(setNeedsActionCreator(needs));
 
     yield put(finishLoading(LoadingStatusKey.FETCH_NEEDS));
@@ -43,10 +44,10 @@ export function* saveNeed(
 ): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
-    const newNeed = action.payload;
+    const newNeed = action.payload.value;
+    const id = action.payload.id;
     logger.info("[saveNeed] start saving need");
-    //@ts-ignore
-    yield call(API.patchNeed, newNeed);
+    yield call(API.patchNeed, id, newNeed);
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
   } catch (error) {
@@ -65,10 +66,11 @@ export function* orderNeeds(
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     logger.info("[saveNeed] start saving need order");
-    const data = yield call(API.orderNeeds, action.payload);
-    if (data.data.data) {
-      const newNeeds: Need[] = [...(yield select(needsSelector))];
-      for (const newNeed of data.data.data) {
+    const data: APIResponse<UpdatePositionsNeedResponse[]> = yield call(API.orderNeeds, action.payload);
+    const res = data.data.data;
+    if (res) {
+      const newNeeds: GetNeedResponse[] = [...(yield select(needsSelector))];
+      for (const newNeed of res) {
         const editedNeedIndex = newNeeds.findIndex(n => n._id === newNeed._id);
         newNeeds[editedNeedIndex] = newNeed;
       }
@@ -92,7 +94,6 @@ export function* createNeed(
     yield put(startLoading(LoadingStatusKey.SAVE_NEED));
     const newNeed = action.payload;
     logger.info("[createNeed] start creating need");
-    //@ts-ignore
     yield call(API.postNeeds, newNeed);
     yield put(fetchNeedsActionCreator());
     yield put(finishLoading(LoadingStatusKey.SAVE_NEED));
@@ -114,7 +115,7 @@ export function* deleteNeed(
     logger.info("[deleteNeed] start deleting need");
     yield call(API.deleteNeed, action.payload);
 
-    const needs: Need[] = [...(yield select(needsSelector))];
+    const needs: GetNeedResponse[] = [...(yield select(needsSelector))];
     yield put(setNeedsActionCreator(needs.filter(n => n._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));

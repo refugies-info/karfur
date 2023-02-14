@@ -32,7 +32,7 @@ const MobileAppSmsForm = () => {
     setPhoneError("");
     e.preventDefault();
     if (isValidPhone(phone)) {
-      API.smsDownloadApp(phone, languageSelected?.i18nCode || "fr")
+      API.smsDownloadApp({ phone, locale: languageSelected?.i18nCode || "fr" })
         .then(() => {
           Swal.fire({
             title: "Yay...",

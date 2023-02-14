@@ -20,9 +20,9 @@ export class TtsController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async get(
+  public async post(
     @Body() body: TtsRequest
-  ): ResponseWithData<any> { // TODO: test and type
+  ): ResponseWithData<any> {
     return getTts(body);
   }
 }

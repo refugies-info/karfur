@@ -1,3 +1,4 @@
+import { Id } from "api-types";
 import { ObjectId } from "mongodb";
 import { NextRouter } from "next/router";
 import { ContentStatusType, StructureStatusType, UserStatusType } from "types/interface";
@@ -16,9 +17,9 @@ type AdminUrlParams = {
 export const getAdminUrlParams = (
   tab: TabQuery,
   filter: Status,
-  selectedUserId: string | ObjectId | undefined | null,
-  selectedDispositifId: string | ObjectId | undefined | null,
-  selectedStructureId: string | ObjectId | undefined | null,
+  selectedUserId: string | Id | undefined | null,
+  selectedDispositifId: string | Id | undefined | null,
+  selectedStructureId: string | Id | undefined | null,
 ) => {
   const urlParams: AdminUrlParams = {};
 
@@ -100,7 +101,7 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
 
     if (initialTab && initialTab === currentTab) {
       const filterQuery = savedQuery.get("filter") ?
-      decodeURI(savedQuery.get("filter") as string) as Status : undefined;
+        decodeURI(savedQuery.get("filter") as string) as Status : undefined;
 
       return {
         filter: filterQuery,

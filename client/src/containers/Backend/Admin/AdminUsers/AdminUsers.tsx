@@ -4,7 +4,6 @@ import moment from "moment";
 import "moment/locale/fr";
 import { useDispatch } from "react-redux";
 import {
-  SearchBarContainer,
   StyledHeader,
   StyledTitle,
   FigureContainer,
@@ -32,7 +31,6 @@ import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceMo
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
 import { removeAccents } from "lib";
-import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -45,6 +43,7 @@ import styles from "./AdminUsers.module.scss";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { Id } from "api-types";
 
 moment.locale("fr");
 
@@ -72,9 +71,9 @@ export const AdminUsers = () => {
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
@@ -116,12 +115,12 @@ export const AdminUsers = () => {
 
   const toggleContentDetailsModal = () => setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, status: string | null = null) => {
     setSelectedContentId(element ? element : null);
     if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
@@ -134,7 +133,7 @@ export const AdminUsers = () => {
 
   const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
@@ -419,7 +418,7 @@ export const AdminUsers = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
-          toggleRespoModal={(structureId: ObjectId) => {
+          toggleRespoModal={(structureId: Id) => {
             setSelectedStructureId(structureId);
             setSelectFirstRespoModal(true);
           }}

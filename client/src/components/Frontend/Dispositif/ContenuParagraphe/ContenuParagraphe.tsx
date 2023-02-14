@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { useEffect, useState } from "react";
 import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";

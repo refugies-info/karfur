@@ -44,8 +44,7 @@ export const OneNeedTranslationModal = (props: Props) => {
   const onSave = () => {
     if (props.selectedNeedId && props.langueI18nCode) {
       dispatch(
-        saveNeedActionCreator({
-          _id: props.selectedNeedId,
+        saveNeedActionCreator(props.selectedNeedId, {
           [props.langueI18nCode]: {
             text,
             subtitle,

@@ -1,8 +1,9 @@
-import { NeedTranslation, ResponseWithData, Theme } from "../../../types/interface";
+import { Id, NeedTranslation, Picture, ResponseWithData, Theme } from "../../../types/interface";
 import logger from "../../../logger";
 import { getNeedsFromDB } from "../../../modules/needs/needs.repository";
 
 export interface GetNeedResponse {
+  _id: Id;
   theme: Theme;
   adminComments?: string;
   nbVues: number;
@@ -15,6 +16,7 @@ export interface GetNeedResponse {
   ti: NeedTranslation;
   ps: NeedTranslation;
   uk: NeedTranslation;
+  image?: Picture
 }
 
 export const getNeeds = async (): ResponseWithData<GetNeedResponse[]> => {

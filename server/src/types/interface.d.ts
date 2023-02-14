@@ -108,7 +108,7 @@ export interface Picture {
 }
 
 // Themes
-export interface TranslatedText extends Record<string, string> { }
+export type TranslatedText = Record<string, string>;
 
 export interface ThemeColors {
   color100: string;
@@ -119,6 +119,7 @@ export interface ThemeColors {
 }
 
 export interface Theme {
+  _id: Id;
   name: TranslatedText;
   short: TranslatedText;
   colors: ThemeColors;

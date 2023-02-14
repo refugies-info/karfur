@@ -223,7 +223,7 @@ export const UserProfile = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then((data_res: any) => {
+    API.postImage(formData).then((data_res) => {
       const imgData = data_res.data.data;
       dispatch(
         saveUserActionCreator({

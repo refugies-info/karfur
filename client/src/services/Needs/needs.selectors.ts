@@ -1,10 +1,9 @@
 import { RootState } from "../rootReducer";
-import { Need } from "../../types/interface";
-import { ObjectId } from "mongodb";
+import { GetNeedResponse, Id } from "api-types";
 
-export const needsSelector = (state: RootState): Need[] => state.needs;
+export const needsSelector = (state: RootState): GetNeedResponse[] => state.needs;
 
-export const needSelector = (needId: ObjectId | null) => (state: RootState) => {
+export const needSelector = (needId: Id | null) => (state: RootState) => {
   if (!needId) return null;
   const filteredState = state.needs.filter((need) => need._id === needId);
 

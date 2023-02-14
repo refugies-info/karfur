@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { Theme } from "types/interface";
 import useThemeIcon from "hooks/useThemeIcon";
 import { cls } from "lib/classname";
 import styles from "./ThemeIcon.module.scss";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
-  theme: Theme | undefined | null;
+  theme: GetThemeResponse | undefined | null;
   size?: number;
   color?: string;
 }
@@ -33,7 +33,7 @@ const ThemeIcon = (props: Props) => {
     );
   }
 
-  return <Image src={props.theme.icon.secure_url} width={size} height={size} alt="" />;
+  return <Image src={props.theme?.icon?.secure_url || ""} width={size} height={size} alt="" />;
 };
 
 export default ThemeIcon;

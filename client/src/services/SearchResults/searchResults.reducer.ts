@@ -1,5 +1,5 @@
+import { Id } from "api-types";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
-import { ObjectId } from "mongodb";
 import { SearchDispositif } from "types/interface";
 import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";
@@ -19,8 +19,8 @@ export type Results = {
 export type SearchQuery = {
   search: string;
   departments: string[];
-  themes: ObjectId[];
-  needs: ObjectId[];
+  themes: Id[];
+  needs: Id[];
   age: AgeOptions[];
   frenchLevel: FrenchOptions[];
   language: string[];

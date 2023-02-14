@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React from "react";
 import { Button } from "reactstrap";
 import FSearchBtn from "components/UI/FSearchBtn/FSearchBtn";

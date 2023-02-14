@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Language, Picture, Theme } from "types/interface";
+import { Language, Picture } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,14 +22,15 @@ import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { toArray } from "lodash";
 // import { isThemeTitleOk } from "./lib";
 import { allThemesSelector } from "services/Themes/themes.selectors";
+import { GetThemeResponse, ThemeRequest } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedTheme: Theme | null; // if null, creation. Else, edition
+  selectedTheme: GetThemeResponse | null; // if null, creation. Else, edition
 }
 
-const EMPTY_COLORS: Theme["colors"] = {
+const EMPTY_COLORS: GetThemeResponse["colors"] = {
   color100: "#000000",
   color80: "#000000",
   color60: "#000000",
@@ -39,16 +40,12 @@ const EMPTY_COLORS: Theme["colors"] = {
 
 type colorKey = "color100" | "color80" | "color60" | "color40" | "color30";
 const COLOR_KEYS: colorKey[] = ["color100", "color80", "color60", "color40", "color30"];
-type title = {
-  [key: string]: string;
-  fr: string;
-};
 
 export const ThemeFormModal = (props: Props) => {
-  const [short, setShort] = useState<title | undefined>(props.selectedTheme?.short || undefined);
-  const [name, setName] = useState<title | undefined>(props.selectedTheme?.name || undefined);
+  const [short, setShort] = useState(props.selectedTheme?.short || { fr: "" });
+  const [name, setName] = useState(props.selectedTheme?.name || { fr: "" });
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
-  const [colors, setColors] = useState<Theme["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
+  const [colors, setColors] = useState<GetThemeResponse["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
   const [notes, setNotes] = useState("");
   const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
   const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
@@ -75,15 +72,15 @@ export const ThemeFormModal = (props: Props) => {
       setName(props.selectedTheme.name);
       setEmoji(props.selectedTheme.notificationEmoji);
       setColors(props.selectedTheme.colors);
-      setNotes(props.selectedTheme.adminComments);
+      setNotes(props.selectedTheme.adminComments || "");
       setBanner(props.selectedTheme.banner);
       setAppBanner(props.selectedTheme.appBanner);
       setAppImage(props.selectedTheme.appImage);
       setShareImage(props.selectedTheme.shareImage);
       setIcon(props.selectedTheme.icon);
     } else {
-      setShort(undefined);
-      setName(undefined);
+      setShort({ fr: "" });
+      setName({ fr: "" });
       setEmoji("");
       setColors(EMPTY_COLORS);
       setNotes("");
@@ -97,34 +94,37 @@ export const ThemeFormModal = (props: Props) => {
 
   const themes = useSelector(allThemesSelector);
   const onSave = () => {
-    const theme: Partial<Theme> = {
-      short,
-      name,
-      notificationEmoji: emoji,
-      colors,
-      banner,
-      appBanner,
-      appImage,
-      shareImage,
-      icon
-    };
+    // edition
     if (props.selectedTheme) {
-      // edition
-      dispatch(
-        saveThemeActionCreator({
-          _id: props.selectedTheme._id,
-          ...theme,
-          adminComments: notes
-        })
-      );
+      const updatedTheme: Partial<ThemeRequest> = {
+        short,
+        name,
+        notificationEmoji: emoji,
+        colors,
+        banner,
+        appBanner,
+        appImage,
+        shareImage,
+        icon,
+        adminComments: notes || ""
+      };
+      dispatch(saveThemeActionCreator(props.selectedTheme._id, updatedTheme));
     } else {
       // creation
-      dispatch(
-        createThemeActionCreator({
-          ...theme,
-          position: themes.length + 1
-        })
-      );
+      const newTheme: ThemeRequest = {
+        short,
+        name,
+        notificationEmoji: emoji,
+        colors,
+        banner,
+        appBanner,
+        appImage,
+        shareImage,
+        icon,
+        adminComments: notes || "",
+        position: themes.length + 1
+      };
+      dispatch(createThemeActionCreator(newTheme));
     }
     props.toggleModal();
   };

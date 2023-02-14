@@ -22,7 +22,7 @@ export const StructureButton = (props: {
       {props.sponsor?.picture?.secure_url ? (
         <Image
           className={styles.sponsor_img}
-          src={(props.sponsor.picture || {}).secure_url}
+          src={(props.sponsor.picture || {}).secure_url || ""}
           alt={props.sponsor.nom}
           width={95}
           height={30}

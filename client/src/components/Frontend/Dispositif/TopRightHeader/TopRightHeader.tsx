@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React from "react";
 import { useSelector } from "react-redux";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";

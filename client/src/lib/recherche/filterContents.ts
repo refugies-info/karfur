@@ -1,9 +1,9 @@
 import { AgeOptions, FrenchOptions } from "data/searchFilters";
 import { SearchDispositif } from "types/interface";
-import { ObjectId } from "mongodb";
 import { getDispositifInfos } from "../getDispositifInfos";
+import { Id } from "api-types";
 
-export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: ObjectId[], needs: ObjectId[], withSecondaryTheme: boolean) => {
+export const filterByThemeOrNeed = (dispositif: SearchDispositif, themesSelected: Id[], needs: Id[], withSecondaryTheme: boolean) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
   if (dispositif.needs) {
     for (const need of dispositif.needs) { // return true if dispositif has need

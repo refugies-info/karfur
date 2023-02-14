@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import { useTranslation } from "next-i18next";
