@@ -1,15 +1,15 @@
+import { GetThemeResponse, Id } from "api-types";
 import { cls } from "lib/classname";
 import { ObjectId } from "mongodb";
 import Image from "next/image";
 import React from "react";
-import { Theme } from "types/interface";
 import EVAIcon from "../EVAIcon/EVAIcon";
 import styles from "./AdminThemeButton.module.scss";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   onPress: () => void;
-  onSelectTheme: (id: ObjectId) => void;
+  onSelectTheme: (id: Id) => void;
   onClickEdit?: () => void;
   selected: boolean;
   opened: boolean;

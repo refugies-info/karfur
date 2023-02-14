@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { Component } from "react";
 import { Row, Input, FormGroup, Label, Spinner } from "reactstrap";
 import { connect } from "react-redux";
@@ -307,7 +308,7 @@ class Sponsors extends Component<Props, State> {
     const formData = new FormData();
     formData.append("0", event.target.files[0]);
 
-    API.set_image(formData).then((data_res) => {
+    API.postImage(formData).then((data_res) => {
       const imgData = data_res.data.data;
       this.setState({
         imgData: {

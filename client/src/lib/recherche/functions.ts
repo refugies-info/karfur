@@ -1,32 +1,32 @@
+import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
 import { getDispositifInfos } from "lib/getDispositifInfos";
-import { ObjectId } from "mongodb";
-import { Need, SearchDispositif, Theme } from "types/interface";
+import { SearchDispositif } from "types/interface";
 
 /**
  * Get themes to display based on query filters
- * @param allThemes - Theme[]
- * @param allNeeds - Need[]
- * @param selectedThemes - ObjectId[]
- * @param selectedNeeds - ObjectId[]
- * @returns Theme[]
+ * @param allThemes - GetThemeResponse[]
+ * @param allNeeds - GetNeedResponse[]
+ * @param selectedThemes - Id[]
+ * @param selectedNeeds - Id[]
+ * @returns GetThemeResponse[]
  */
 export const getThemesDisplayed = (
-  allThemes: Theme[],
-  allNeeds: Need[],
-  selectedThemes: ObjectId[],
-  selectedNeeds: ObjectId[]
+  allThemes: GetThemeResponse[],
+  allNeeds: GetNeedResponse[],
+  selectedThemes: Id[],
+  selectedNeeds: Id[]
 ) => {
-  const needs = selectedNeeds.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as Need[];
+  const needs = selectedNeeds.map((need) => allNeeds.find((n) => n._id === need)).filter((n) => !!n) as GetNeedResponse[];
 
   // get all themes displayed
-  const newThemesDisplayed: Theme[] = [];
+  const newThemesDisplayed: GetThemeResponse[] = [];
   for (const theme of selectedThemes) {
     const themeToAdd = allThemes.find((t) => t._id === theme);
     if (themeToAdd) newThemesDisplayed.push(themeToAdd);
   }
   for (const need of needs) {
     if (need.theme && !newThemesDisplayed.find((t) => t._id === need.theme._id)) {
-      newThemesDisplayed.push(need.theme);
+      newThemesDisplayed.push({ ...need.theme, active: true });
     }
   }
   return newThemesDisplayed;

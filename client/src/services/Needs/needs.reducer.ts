@@ -1,8 +1,8 @@
 import { createReducer } from "typesafe-actions";
-import { Need } from "../../types/interface";
 import { NeedsActions } from "./needs.actions";
+import { GetNeedResponse } from "api-types";
 
-export type NeedsState = Need[];
+export type NeedsState = GetNeedResponse[];
 
 const initialNeedsState: NeedsState = [];
 

@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import {
   GET_NEEDS,
   SET_NEEDS,
@@ -8,23 +7,23 @@ import {
   ORDER_NEEDS
 } from "./needs.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Need } from "../../types/interface";
+import { Id, GetNeedResponse, NeedRequest, UpdatePositionsRequest } from "api-types";
 
 export const fetchNeedsActionCreator = () => action(GET_NEEDS);
 
-export const setNeedsActionCreator = (value: Need[]) =>
+export const setNeedsActionCreator = (value: GetNeedResponse[]) =>
   action(SET_NEEDS, value);
 
-export const saveNeedActionCreator = (value: Partial<Need>) =>
-  action(SAVE_NEED, value);
+export const saveNeedActionCreator = (id: Id, value: Partial<NeedRequest>) =>
+  action(SAVE_NEED, { id, value });
 
-export const createNeedActionCreator = (value: Partial<Need>) =>
+export const createNeedActionCreator = (value: NeedRequest) =>
   action(CREATE_NEED, value);
 
-export const deleteNeedActionCreator = (value: ObjectId) =>
+export const deleteNeedActionCreator = (value: Id) =>
   action(DELETE_NEED, value);
 
-export const orderNeedsActionCreator = (value: ObjectId[]) =>
+export const orderNeedsActionCreator = (value: UpdatePositionsRequest) =>
   action(ORDER_NEEDS, value);
 
 const actions = {

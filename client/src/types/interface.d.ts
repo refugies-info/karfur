@@ -1,8 +1,9 @@
 import { ObjectId } from "mongodb";
 import { Moment } from "moment";
 import { AxiosResponse } from "axios";
+import { Id } from "api-types";
 
-export type APIResponse<T> = AxiosResponse<{
+export type APIResponse<T = {}> = AxiosResponse<{
   text: "success" | "error",
   data: T
 }>
@@ -18,9 +19,9 @@ export interface Indicator {
 }
 
 export interface Picture {
-  imgId: string;
-  public_id: string;
-  secure_url: string;
+  imgId: string | null;
+  public_id: string | null;
+  secure_url: string | null;
 }
 
 type iconName = "house" | "search" | "message" | "menu" | "tag" | "";
@@ -133,7 +134,7 @@ export interface SimplifiedDispositif {
     _id: ObjectId;
     username: string;
   };
-  needs?: ObjectId[];
+  needs?: Id[];
   theme: Theme;
   secondaryThemes: Theme[];
   nbMercis: number;
@@ -466,30 +467,6 @@ export type Indicators = {
 
 export type ITypeContenu = "dispositif" | "demarche";
 
-export interface NeedDetail {
-  text: string;
-  subtitle: string;
-  updatedAt?: Moment;
-}
-export interface Need {
-  fr: NeedDetail;
-  ar?: NeedDetail;
-  en?: NeedDetail;
-  ti?: NeedDetail;
-  ru?: NeedDetail;
-  ps?: NeedDetail;
-  fa?: NeedDetail;
-  uk?: NeedDetail;
-  _id: ObjectId;
-  theme: Theme;
-  adminComments: string;
-  image: Picture;
-  nbVues?: number;
-  position?: number;
-  created_at: Moment;
-  updatedAt: Moment;
-}
-
 export interface RegionFigures {
   region: string;
   nbDispositifs: number;
@@ -537,54 +514,7 @@ export interface TranslationStatistics {
 
 export type AvailableLanguageI18nCode = "fr" | "en" | "ps" | "ar" | "ti" | "ru" | "uk" | "fa";
 
-export interface Log {
-  _id: ObjectId;
-  objectId: ObjectId;
-  model_object: "User" | "Dispositif" | "Structure";
-  text: string;
-  author?: {
-    _id: ObjectId;
-    username: string;
-  };
-  dynamicId?: {
-    _id: ObjectId;
-    nom?: string;
-    titreInformatif?: string;
-    username?: string;
-    langueFr?: string;
-  };
-  model_dynamic?: "User" | "Dispositif" | "Structure" | "Langue";
-  link?: {
-    id: ObjectId;
-    model_link: "User" | "Dispositif" | "Structure";
-    next:
-    | "ModalContenu"
-    | "ModalStructure"
-    | "ModalUser"
-    | "ModalReaction"
-    | "ModalImprovements"
-    | "ModalNeeds"
-    | "PageAnnuaire";
-  };
-  created_at: Moment;
-}
-
 export type ContentType = "dispositif" | "demarche";
-
-export interface Widget {
-  _id: ObjectId;
-  name: string;
-  tags: string[];
-  themes: Theme[];
-  typeContenu: ContentType[];
-  department?: string;
-  languages?: string[];
-  author: {
-    _id: ObjectId;
-    username: string;
-  };
-  created_at: Moment;
-}
 
 export interface AdminOption {
   _id: ObjectId;

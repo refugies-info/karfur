@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, Table } from "reactstrap";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { ObjectId } from "mongodb";
-import { Need } from "types/interface";
 import { needsSelector } from "services/Needs/needs.selectors";
 import { TagButton } from "../../Admin/Needs/TagButton";
 import { fetchNeedsActionCreator } from "services/Needs/needs.actions";
@@ -14,12 +12,13 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import FrameModal from "components/Modals/FrameModal/FrameModal";
 import { getStatusColorAndText } from "./functions";
 import styles from "./TranslationNeedsModal.module.scss";
+import { GetNeedResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
   toggleOneNeedTranslationModal: () => void;
-  setSelectedNeedId: (arg: ObjectId) => void;
+  setSelectedNeedId: (arg: Id) => void;
   langueSelectedFr: null | string;
   langueI18nCode: null | string;
 }
@@ -77,7 +76,7 @@ export const TranslationNeedsModal = (props: Props) => {
     return 1;
   });
 
-  const onNeedClick = (need: Need) => {
+  const onNeedClick = (need: GetNeedResponse) => {
     props.setSelectedNeedId(need._id);
     props.toggleOneNeedTranslationModal();
   };
@@ -186,7 +185,7 @@ export const TranslationNeedsModal = (props: Props) => {
                 </td>
                 <td className="align-middle">
                   <div style={{ marginLeft: -4, width: 130 }}>
-                    <TagButton theme={need.theme} isSelected={true} />
+                    <TagButton theme={{ ...need.theme, active: true }} isSelected={true} />
                   </div>
                 </td>
                 <td className="align-middle">{translatedNeed}</td>

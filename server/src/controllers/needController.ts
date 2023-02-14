@@ -23,7 +23,7 @@ export interface NeedRequest {
     text: string;
     subtitle: string;
   },
-  theme: string;
+  theme?: string;
   image?: Picture;
   adminComments: string;
 }

@@ -1,10 +1,10 @@
 import qs from "query-string";
-import { Widget } from "types/interface";
 import { getBaseUrl } from "lib/getBaseUrl";
 import type { UrlSearchQuery } from "pages/recherche";
+import { GetWidgetResponse } from "api-types";
 
-export const generateIframe = (widget: Widget) => {
-  const query: UrlSearchQuery = {type: "all"};
+export const generateIframe = (widget: GetWidgetResponse) => {
+  const query: UrlSearchQuery = { type: "all" };
   if (widget.department) query.departments = [widget.department];
   if (widget.typeContenu.length === 1) { // works only with 2 types of content
     query.type = widget.typeContenu[0];
@@ -13,7 +13,7 @@ export const generateIframe = (widget: Widget) => {
     query.language = widget.languages[0];
   }
   if (widget.themes) {
-    query.themes = widget.themes.map(t => t._id)
+    query.themes = widget.themes
   }
   const queryString = qs.stringify(query, { arrayFormat: "comma" });
 

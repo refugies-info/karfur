@@ -22,6 +22,7 @@ import NeedsList from "./NeedsList";
 import { getInitialTheme } from "./functions";
 import styles from "./ThemeDropdown.module.scss";
 import ThemeButton from "./ThemeButton";
+import { Id } from "api-types";
 
 interface Props {
   search: string;
@@ -53,13 +54,13 @@ const ThemeDropdown = (props: Props) => {
   const initialTheme = getInitialTheme(needs, sortedThemes, query.needs, query.themes, props.mobile);
   const languei18nCode = useSelector(languei18nSelector);
 
-  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(initialTheme);
+  const [themeSelected, setThemeSelected] = useState<Id | null>(initialTheme);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const [nbDispositifsByNeed, setNbDispositifsByNeed] = useState<Record<string, number>>({});
   const [nbDispositifsByTheme, setNbDispositifsByTheme] = useState<Record<string, number>>({});
 
   const onClickTheme = useCallback(
-    (themeId: ObjectId) => {
+    (themeId: Id) => {
       setThemeSelected((old) => {
         if (old === themeId) return null;
         return themeId;
@@ -139,7 +140,7 @@ const ThemeDropdown = (props: Props) => {
       .sort((a, b) => ((a.position || 0) > (b.position || 0) ? 1 : -1));
   }, [themeSelected, needs, props.search, locale]);
 
-  const isThemeDisabled = (themeId: ObjectId) => {
+  const isThemeDisabled = (themeId: Id) => {
     const nbDispositifs = nbDispositifsByTheme[themeId.toString()];
     return !nbDispositifs || nbDispositifs === 0;
   };

@@ -10,7 +10,6 @@ import { allStructuresSelector } from "services/AllStructures/allStructures.sele
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
-import { Log } from "types/interface";
 import API from "utils/API";
 import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
@@ -19,17 +18,18 @@ import { UserButton } from "../../sharedComponents/UserButton";
 import { getUsersToSendMail, getFormattedStatus, getTitle } from "./functions";
 import modalStyles from "../../sharedComponents/DetailsModal.module.scss";
 import styles from "./ImprovementsMailModal.module.scss";
+import { GetLogResponse, Id, ImprovementsRequest } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedDispositifId: ObjectId | null;
+  selectedDispositifId: Id | null;
 }
 
 export const ImprovementsMailModal = (props: Props) => {
   const { selectedDispositifId } = props;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
   const [message, setMessage] = useState<string>("");
 
   const handleChange = (event: any) => {
@@ -44,7 +44,7 @@ export const ImprovementsMailModal = (props: Props) => {
         setLogs(
           res.data.data
             // keep only improvement logs
-            .filter((log: Log) => log?.link?.next === "ModalImprovements")
+            .filter((log: GetLogResponse) => log?.link?.next === "ModalImprovements")
         );
       });
     }
@@ -121,17 +121,17 @@ export const ImprovementsMailModal = (props: Props) => {
   };
 
   const sendMail = () => {
-    const data = {
+    const data: ImprovementsRequest = {
       dispositifId: dispositif._id,
       users: usersToDisplay
         .filter((user) => user.email)
         .map((user) => ({
           username: user.username,
           _id: user._id,
-          email: user.email
+          email: user.email || ""
         })),
       titreInformatif: dispositif.titreInformatif,
-      titreMarque: dispositif.titreMarque,
+      titreMarque: dispositif.titreMarque || "",
       sections: selectedCategories,
       message
     };

@@ -1,10 +1,9 @@
 import { RootState } from "../rootReducer";
-import { Theme } from "../../types/interface";
-import { Id } from "api-types";
+import { GetThemeResponse, Id } from "api-types";
 
-export const themesSelector = (state: RootState): Theme[] => state.themes.activeThemes;
+export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
 
-export const allThemesSelector = (state: RootState): Theme[] => [...state.themes.activeThemes, ...state.themes.inactiveThemes];
+export const allThemesSelector = (state: RootState): GetThemeResponse[] => [...state.themes.activeThemes, ...state.themes.inactiveThemes];
 
 export const themeSelector = (themeId: Id | undefined) => (state: RootState) => {
   if (!themeId) return null;
@@ -13,11 +12,11 @@ export const themeSelector = (themeId: Id | undefined) => (state: RootState) => 
   return theme || null;
 };
 
-export const secondaryThemesSelector = (themeIds: Id[] | undefined) => (state: RootState): Theme[] => {
+export const secondaryThemesSelector = (themeIds: Id[] | undefined) => (state: RootState): GetThemeResponse[] => {
   if (!themeIds) return [];
   const themes = themeIds
     .map(themeId => state.themes.activeThemes.find((theme) => theme._id === themeId))
-    .filter(t => t !== undefined) as Theme[];
+    .filter(t => t !== undefined) as GetThemeResponse[];
 
   return themes;
 };

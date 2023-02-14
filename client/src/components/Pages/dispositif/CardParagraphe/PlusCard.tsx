@@ -1,12 +1,13 @@
+//@ts-nocheck TODO: delete
 import { cardTitlesDispositif, cardTitlesDemarche } from "data/dispositif";
 import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
 import { Theme } from "types/interface";
-import parentStyles from "./CardParagraphe.module.scss"
-import styles from "./PlusCard.module.scss"
+import parentStyles from "./CardParagraphe.module.scss";
+import styles from "./PlusCard.module.scss";
 
 interface PlusCardProps {
-  addItem: (key: any, type?: string, subkey?: string|null) => void
+  addItem: (key: any, type?: string, subkey?: string | null) => void;
   keyValue: number;
   cards: string[];
   typeContenu: "dispositif" | "demarche";
@@ -14,21 +15,13 @@ interface PlusCardProps {
 }
 
 export const PlusCard = (props: PlusCardProps) => {
-  const cardTitles =
-    props.typeContenu === "dispositif"
-      ? cardTitlesDispositif
-      : cardTitlesDemarche;
-  const availablecardTitlesDispositif = cardTitles.filter(
-    (x) => !props.cards.includes(x.title)
-  );
-  const nextTitle =
-    availablecardTitlesDispositif.length > 0
-      ? availablecardTitlesDispositif[0].title
-      : "";
+  const cardTitles = props.typeContenu === "dispositif" ? cardTitlesDispositif : cardTitlesDemarche;
+  const availablecardTitlesDispositif = cardTitles.filter((x) => !props.cards.includes(x.title));
+  const nextTitle = availablecardTitlesDispositif.length > 0 ? availablecardTitlesDispositif[0].title : "";
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className={parentStyles.card_col}>
       <Card
-        className={styles.add_card+ " "+parentStyles.card}
+        className={styles.add_card + " " + parentStyles.card}
         onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
       >
         <CardHeader

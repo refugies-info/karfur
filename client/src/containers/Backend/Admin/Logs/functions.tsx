@@ -1,19 +1,14 @@
-import { Log } from "types/interface";
+import { GetLogResponse } from "api-types";
 
-const getText = (log: Log) => {
+const getText = (log: GetLogResponse) => {
   if (!log.dynamicId) return log.text;
 
-  const dynamicValue = log.dynamicId.nom || log.dynamicId.titreInformatif || log.dynamicId.username || log.dynamicId.langueFr || "";
-  return log.text.replace("{{dynamic}}", `<strong>${dynamicValue}</strong>`)
-}
+  const dynamicValue =
+    log.dynamicId.nom || log.dynamicId.titreInformatif || log.dynamicId.username || log.dynamicId.langueFr || "";
+  return log.text.replace("{{dynamic}}", `<strong>${dynamicValue}</strong>`);
+};
 
-export const getLogText = (log: Log) => {
+export const getLogText = (log: GetLogResponse) => {
   const text = getText(log);
-  return (
-    <div
-      dangerouslySetInnerHTML={
-        { __html: text }
-      }
-    ></div>
-  )
-}
+  return <div dangerouslySetInnerHTML={{ __html: text }}></div>;
+};

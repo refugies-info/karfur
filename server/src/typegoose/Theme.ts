@@ -35,19 +35,19 @@ export class Theme extends Base {
   public position!: number;
 
   @prop()
-  public icon: ImageSchema;
+  public icon?: ImageSchema;
 
   @prop()
-  public banner: ImageSchema;
+  public banner?: ImageSchema;
 
   @prop()
-  public appBanner: ImageSchema;
+  public appBanner?: ImageSchema;
 
   @prop()
-  public appImage: ImageSchema;
+  public appImage?: ImageSchema;
 
   @prop()
-  public shareImage: ImageSchema;
+  public shareImage?: ImageSchema;
 
   @prop()
   public notificationEmoji!: string;

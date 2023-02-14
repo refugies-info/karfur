@@ -1,12 +1,13 @@
 import { RootState } from "../rootReducer";
 import { SimplifiedStructureForAdmin } from "../../types/interface";
 import { ObjectId } from "mongodb";
+import { Id } from "api-types";
 
 export const allStructuresSelector = (
   state: RootState
 ): SimplifiedStructureForAdmin[] => state.allStructures;
 
-export const structureSelector = (structureId: ObjectId | null) => (
+export const structureSelector = (structureId: Id | null) => (
   state: RootState
 ) => {
   if (!structureId) return null;

@@ -9,7 +9,7 @@ import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import FButton from "components/UI/FButton/FButton";
 import { correspondingStatus, progressionData, publicationData } from "../data";
-import { Log, SimplifiedDispositif } from "types/interface";
+import { SimplifiedDispositif } from "types/interface";
 import { colors } from "colors";
 import { allDispositifsSelector, dispositifSelector } from "services/AllDispositifs/allDispositifs.selector";
 import API from "utils/API";
@@ -28,18 +28,19 @@ import { LogList } from "../../Logs/LogList";
 import styles from "./ContentDetailsModal.module.scss";
 import { StatusRow } from "../../sharedComponents/StatusRow";
 import { NotesInput } from "../../sharedComponents/NotesInput";
+import { GetLogResponse, Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  toggleRespoModal: (structureId: ObjectId) => void;
-  selectedDispositifId: ObjectId | null;
+  toggleRespoModal: (structureId: Id) => void;
+  selectedDispositifId: Id | null;
   onDeleteClick: () => Promise<void>;
   setShowChangeStructureModal: (arg: boolean) => void;
   toggleImprovementsMailModal: () => void;
   toggleNeedsChoiceModal: () => void;
-  setSelectedUserIdAndToggleModal: (userId: ObjectId | null) => void;
-  setSelectedStructureIdAndToggleModal: (structureId: ObjectId | null) => void;
+  setSelectedUserIdAndToggleModal: (userId: Id | null) => void;
+  setSelectedStructureIdAndToggleModal: (structureId: Id | null) => void;
 }
 moment.locale("fr");
 
@@ -52,8 +53,8 @@ export const ContentDetailsModal = (props: Props) => {
   const dispositif = useSelector(dispositifSelector(selectedDispositifId));
   const [adminComments, setAdminComments] = useState<string>(dispositif?.adminComments || "");
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
-  const [currentId, setCurrentId] = useState<ObjectId | null>(null);
-  const [logs, setLogs] = useState<Log[]>([]);
+  const [currentId, setCurrentId] = useState<Id | null>(null);
+  const [logs, setLogs] = useState<GetLogResponse[]>([]);
 
   const structure = useSelector(structureSelector(dispositif?.mainSponsor?._id || null));
   const allDispositifs = useSelector(allDispositifsSelector);
@@ -144,7 +145,7 @@ export const ContentDetailsModal = (props: Props) => {
     });
 
     if (!res.value || !dispositif) return;
-    await API.sendNotification(dispositif._id);
+    await API.sendNotification({ demarcheId: dispositif._id.toString() });
     updateLogs();
   };
 

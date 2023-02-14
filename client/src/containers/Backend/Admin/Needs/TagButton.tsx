@@ -1,12 +1,12 @@
 import React from "react";
-import { Theme } from "types/interface";
 import styles from "./TagButton.module.scss";
 import { cls } from "lib/classname";
 import { jsUcfirst } from "lib";
+import { GetThemeResponse } from "api-types";
 
 // TODO: replace by FilterButton or FButton
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   isSelected: boolean;
   onClick?: () => void;
 }
@@ -21,11 +21,7 @@ export const TagButton = (props: Props) => {
   return (
     <button
       onClick={onTagClick}
-      className={cls(
-        styles.btn,
-        !!props.isSelected && styles.selected,
-        !!props.onClick && styles.clickable
-      )}
+      className={cls(styles.btn, !!props.isSelected && styles.selected, !!props.onClick && styles.clickable)}
       style={{ backgroundColor: props.theme.colors.color100 }}
     >
       <div>{jsUcfirst(props.theme.short.fr)}</div>

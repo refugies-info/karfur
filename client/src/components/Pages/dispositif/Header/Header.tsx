@@ -1,12 +1,11 @@
 import React from "react";
-import { GetDispositifResponse } from "api-types";
-import { Theme } from "types/interface";
+import { GetDispositifResponse, GetThemeResponse } from "api-types";
 import TextInput from "../TextInput";
 
 interface Props {
   dispositif: GetDispositifResponse;
-  theme: Theme | null;
-  secondaryThemes: Theme[];
+  theme: GetThemeResponse | null;
+  secondaryThemes: GetThemeResponse[];
 }
 
 const Accordions = (props: Props) => {

@@ -6,7 +6,7 @@ import { getPath, PathNames } from "routes";
 interface Props {
   description?: string;
   title?: string;
-  image?: string;
+  image?: string | null;
 }
 
 const defaultTitle = "Réfugiés.info";

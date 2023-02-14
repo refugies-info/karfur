@@ -2,17 +2,13 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Row, Col } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { ObjectId } from "mongodb";
 import isInBrowser from "lib/isInBrowser";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { widgetSelector, widgetsSelector } from "services/Widgets/widgets.selectors";
 import FButton from "components/UI/FButton";
 import FInput from "components/UI/FInput/FInput";
-import {
-  createWidgetActionCreator,
-  fetchWidgetsActionCreator,
-} from "services/Widgets/widgets.actions";
+import { createWidgetActionCreator, fetchWidgetsActionCreator } from "services/Widgets/widgets.actions";
 import { allLanguesSelector } from "services/Langue/langue.selectors";
 import { FigureContainer, StyledHeader, StyledHeaderInner, StyledTitle } from "../sharedComponents/StyledAdmin";
 import { WidgetLine } from "./components/WidgetLine";
@@ -22,7 +18,8 @@ import { TypeContenuInput } from "./components/TypeContenuInput";
 import { LanguageInput } from "./components/LanguageInput";
 import { EditWidgetModal } from "./EditWidgetModal/EditWidgetModal";
 import styles from "./Widgets.module.scss";
-import { ContentType, Theme } from "types/interface";
+import { ContentType } from "types/interface";
+import { GetThemeResponse, Id } from "api-types";
 
 let NotificationContainer: any = null;
 if (isInBrowser()) {
@@ -30,10 +27,9 @@ if (isInBrowser()) {
   NotificationContainer = ReactNotifications.NotificationContainer;
 }
 
-
 export const Widgets = () => {
   const [name, setName] = useState("");
-  const [selectedThemes, setSelectedThemes] = useState<Theme[]>([]);
+  const [selectedThemes, setSelectedThemes] = useState<Id[]>([]);
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(["demarche", "dispositif"]);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState("");
@@ -42,9 +38,7 @@ export const Widgets = () => {
 
   const dispatch = useDispatch();
 
-  const isFetching = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_WIDGETS)
-  );
+  const isFetching = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_WIDGETS));
   const isCreatingInDb = useSelector(isLoadingSelector(LoadingStatusKey.CREATE_WIDGET));
   const widgets = useSelector(widgetsSelector);
   const languages = useSelector(allLanguesSelector);
@@ -69,26 +63,26 @@ export const Widgets = () => {
         themes: selectedThemes,
         typeContenu: selectedTypeContenu,
         languages: selectedLanguages,
-        department: selectedDepartment,
+        department: selectedDepartment
       })
     );
     resetForm();
   };
 
-  const [selectedWidgetId, setSelectedWidgetId] = useState<ObjectId | null>(null);
-  const selectedWidget = useSelector(widgetSelector(selectedWidgetId))
-  const toggleModal = (widgetId: ObjectId | null) => {
+  const [selectedWidgetId, setSelectedWidgetId] = useState<Id | null>(null);
+  const selectedWidget = useSelector(widgetSelector(selectedWidgetId));
+  const toggleModal = (widgetId: Id | null) => {
     setSelectedWidgetId(widgetId);
     setShowEditModal(!!widgetId);
-  }
+  };
 
   useEffect(() => {
     // if creation in db has ended
     if (!isCreatingInDb && isCreating) {
       setIsCreating(false);
-      toggleModal(widgets[0]._id) // open widget modal
+      toggleModal(widgets[0]._id); // open widget modal
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isCreatingInDb]);
 
   const canSubmit = !!name && selectedTypeContenu.length > 0 && selectedThemes.length > 0;
@@ -118,10 +112,7 @@ export const Widgets = () => {
                 setSelectedThemes={setSelectedThemes}
               />
 
-              <LocationInput
-                selectedDepartment={selectedDepartment}
-                setSelectedDepartment={setSelectedDepartment}
-              />
+              <LocationInput selectedDepartment={selectedDepartment} setSelectedDepartment={setSelectedDepartment} />
 
               <TypeContenuInput
                 selectedTypeContenu={selectedTypeContenu}
@@ -131,7 +122,7 @@ export const Widgets = () => {
               <LanguageInput
                 selectedLanguages={selectedLanguages}
                 setSelectedLanguages={setSelectedLanguages}
-                languages={languages.filter(ln => ln.i18nCode !== "fr")}
+                languages={languages.filter((ln) => ln.i18nCode !== "fr")}
               />
 
               <div className={styles.buttons}>
@@ -157,36 +148,22 @@ export const Widgets = () => {
             </form>
           </Col>
           <Col>
-            {isFetching ?
+            {isFetching ? (
               <SkeletonTheme baseColor="#CDCDCD">
-                <Skeleton
-                  width="100%"
-                  height={72}
-                  count={3}
-                  className="mb-4"
-                  style={{borderRadius: 12}}
-                />
-              </SkeletonTheme> :
+                <Skeleton width="100%" height={72} count={3} className="mb-4" style={{ borderRadius: 12 }} />
+              </SkeletonTheme>
+            ) : (
               (widgets || []).map((widget) => (
-                <WidgetLine
-                  key={widget._id.toString()}
-                  widget={widget}
-                  onClick={toggleModal}
-                />
-              ))}
+                <WidgetLine key={widget._id.toString()} widget={widget} onClick={toggleModal} />
+              ))
+            )}
           </Col>
         </Row>
       </div>
 
-      <EditWidgetModal
-        show={showEditModal}
-        toggle={() => toggleModal(null)}
-        widget={selectedWidget}
-      />
+      <EditWidgetModal show={showEditModal} toggle={() => toggleModal(null)} widget={selectedWidget} />
 
-      {isInBrowser() && NotificationContainer !== null &&
-        <NotificationContainer />
-      }
+      {isInBrowser() && NotificationContainer !== null && <NotificationContainer />}
     </div>
   );
 };

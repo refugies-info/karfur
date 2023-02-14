@@ -20,7 +20,7 @@ export const send_sms = (title: string, titreInformatif: string) =>
         url: window.location.href,
         title: titreInformatif
       })
-        .then((response: { status: number; statusText: string; data: any }) => {
+        .then((response) => {
           if (response.status !== 200) {
             throw new Error(response.statusText);
           }
@@ -50,8 +50,8 @@ export const sharingOptions = (type: string, titreInformatif: string, titreMarqu
 
     return navigator
       .share({ title, text })
-      .then(() => {})
-      .catch(() => {});
+      .then(() => { })
+      .catch(() => { });
   }
   return null;
 };

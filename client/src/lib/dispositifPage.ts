@@ -1,4 +1,4 @@
-import { DispositifContent, IDispositif, User, Theme } from "types/interface";
+import { DispositifContent, IDispositif, User } from "types/interface";
 import API from "utils/API";
 import {
   contenu,
@@ -19,7 +19,7 @@ import {
 import h2p from "html2plaintext";
 import { colors } from "colors";
 import { ObjectId } from "mongodb";
-import { Moment } from "moment";
+import { GetThemeResponse } from "api-types";
 
 let htmlToDraft: any = null;
 if (isInBrowser()) {
@@ -220,7 +220,7 @@ export const handleContentClickInComponent = (
   return null;
 };
 
-export const getMainTheme = (dispositif: IDispositif | null): Theme => {
+export const getMainTheme = (dispositif: IDispositif | null): GetThemeResponse => {
   const emptyImage = {
     secure_url: "",
     public_id: "",
@@ -230,7 +230,7 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
     dispositif.theme :
     {
       _id: {} as ObjectId,
-      name: {fr: ""},
+      name: { fr: "" },
       short: { fr: "" },
       colors: {
         color100: colors.gray90,
@@ -248,7 +248,7 @@ export const getMainTheme = (dispositif: IDispositif | null): Theme => {
       notificationEmoji: "",
       adminComments: "",
       active: true
-  };
+    };
 }
 
 export const isPinned = (dispositif: IDispositif | null, user: User | null) => {

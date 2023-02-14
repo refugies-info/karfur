@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { useEffect, useRef, useState } from "react";
 import ContentEditable from "react-contenteditable";
 import dynamic from "next/dynamic";
@@ -46,7 +47,7 @@ function uploadImageCallBack(file: any) {
     const formData = new FormData();
     //@ts-ignore
     formData.append(0, file);
-    API.set_image(formData)
+    API.postImage(formData)
       .then((data_res) => {
         let response = data_res.data.data;
         response.link = response.secure_url;

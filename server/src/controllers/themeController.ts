@@ -14,24 +14,18 @@ import { getThemes, GetThemeResponse } from "../workflows/themes/getThemes";
 import { postThemes, PostThemeResponse } from "../workflows/themes/postThemes";
 import { patchTheme, PatchThemeResponse } from "../workflows/themes/patchTheme";
 import { deleteTheme } from "../workflows/themes/deleteTheme";
-import { Picture, Response, ResponseWithData, ThemeColors } from "../types/interface";
+import { Picture, Response, ResponseWithData, ThemeColors, TranslatedText } from "../types/interface";
 
 export interface ThemeRequest {
-  name: {
-    fr: string;
-    [key: string]: string
-  }
-  short: {
-    fr: string;
-    [key: string]: string
-  }
+  name: TranslatedText;
+  short: TranslatedText;
   colors: ThemeColors;
   position: number;
-  icon: Picture;
-  banner: Picture;
-  appBanner: Picture;
-  appImage: Picture;
-  shareImage: Picture;
+  icon?: Picture;
+  banner?: Picture;
+  appBanner?: Picture;
+  appImage?: Picture;
+  shareImage?: Picture;
   notificationEmoji: string;
   adminComments: string;
 }

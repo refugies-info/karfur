@@ -2,15 +2,15 @@ import React from "react";
 import { Container } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
-import { ObjectId } from "mongodb";
 import { sortThemes } from "lib/sortThemes";
 import { themesSelector } from "services/Themes/themes.selectors";
 import SearchThemeButton from "components/UI/SearchThemeButton";
 import styles from "./ThemesGrid.module.scss";
+import { Id } from "api-types";
 
 interface Props {
   className?: string;
-  onClickTheme: (themeId: ObjectId) => void;
+  onClickTheme: (themeId: Id) => void;
 }
 
 const ThemesGrid = (props: Props) => {
