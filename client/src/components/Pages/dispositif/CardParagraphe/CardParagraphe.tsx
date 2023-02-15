@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { useState } from "react";
 import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";

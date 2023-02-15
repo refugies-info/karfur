@@ -1,6 +1,5 @@
+import { GetDispositifsResponse, Id } from "api-types";
 import { AgeOptions, FrenchOptions, SortOptions, TypeOptions } from "data/searchFilters";
-import { ObjectId } from "mongodb";
-import { SearchDispositif } from "types/interface";
 import { createReducer } from "typesafe-actions";
 import { SearchResultsActions } from "./searchResults.actions";
 
@@ -11,16 +10,16 @@ export type InputFocused = {
 };
 
 export type Results = {
-  dispositifs: SearchDispositif[];
-  demarches: SearchDispositif[];
-  dispositifsSecondaryTheme: SearchDispositif[];
+  dispositifs: GetDispositifsResponse[];
+  demarches: GetDispositifsResponse[];
+  dispositifsSecondaryTheme: GetDispositifsResponse[];
 };
 
 export type SearchQuery = {
   search: string;
   departments: string[];
-  themes: ObjectId[];
-  needs: ObjectId[];
+  themes: Id[];
+  needs: Id[];
   age: AgeOptions[];
   frenchLevel: FrenchOptions[];
   language: string[];

@@ -3,11 +3,11 @@ import { UrlSearchQuery } from "pages/recherche";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { ObjectId } from "mongodb";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
-import { Theme } from "types/interface";
+import { GetThemeResponse } from "api-types";
 
 export const decodeQuery = (
   routerQuery: any,
-  allThemes: Theme[] // for backward compatibility
+  allThemes: GetThemeResponse[] // for backward compatibility
 ): SearchQuery => {
   const {
     departments, needs, themes, age, frenchLevel, language, sort, type, search

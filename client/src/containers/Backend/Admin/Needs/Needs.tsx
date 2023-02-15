@@ -9,7 +9,6 @@ import { allThemesSelector } from "services/Themes/themes.selectors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
 import AdminThemeButton from "components/UI/AdminThemeButton";
 import AdminNeedButton from "components/UI/AdminNeedButton";
-import { Need, Theme } from "types/interface";
 import { NeedFormModal } from "./NeedFormModal";
 import { LoadingNeeds } from "./LoadingNeeds";
 import styles from "./Needs.module.scss";
@@ -29,6 +28,7 @@ import {
   StyledSort,
   StyledTitle
 } from "../sharedComponents/StyledAdmin";
+import { GetNeedResponse, GetThemeResponse, Id } from "api-types";
 
 let NotificationContainer: any = null;
 let NotificationManager: any = null;
@@ -40,28 +40,28 @@ if (isInBrowser()) {
 
 type ItemType = {
   id: string;
-} & Need;
+} & GetNeedResponse;
 
 export const Needs = () => {
-  const [selectedNeed, setSelectedNeed] = useState<null | Need>(null);
+  const [selectedNeed, setSelectedNeed] = useState<null | GetNeedResponse>(null);
   const [showNeedFormModal, setShowNeedFormModal] = useState(false);
-  const [selectedTheme, setSelectedTheme] = useState<null | Theme>(null);
+  const [selectedTheme, setSelectedTheme] = useState<null | GetThemeResponse>(null);
   const [showThemeFormModal, setShowThemeFormModal] = useState(false);
   const allNeeds = useSelector(needsSelector);
   const themes = useSelector(allThemesSelector).sort((a, b) => (a.position < b.position ? -1 : 1));
   const dispositifs = useSelector(allDispositifsSelector);
 
-  const [currentTheme, setCurrentTheme] = useState<ObjectId | null>(null);
-  const [currentNeed, setCurrentNeed] = useState<ObjectId | null>(null);
+  const [currentTheme, setCurrentTheme] = useState<Id | null>(null);
+  const [currentNeed, setCurrentNeed] = useState<Id | null>(null);
 
-  const [selectedDispositifModal, setSelectedDispositifModal] = useState<ObjectId | null>(null);
+  const [selectedDispositifModal, setSelectedDispositifModal] = useState<Id | null>(null);
 
   const [displayedNeeds, setDisplayedNeeds] = useState<ItemType[]>([]);
   const [positionsToSave, setPositionsToSave] = useState(false);
 
   const dispatch = useDispatch();
 
-  const editNeed = (need: Need) => {
+  const editNeed = (need: GetNeedResponse) => {
     setSelectedNeed(need);
     setShowNeedFormModal(true);
   };
@@ -69,7 +69,7 @@ export const Needs = () => {
     setSelectedNeed(null);
     setShowNeedFormModal(true);
   };
-  const editTheme = (theme: Theme) => {
+  const editTheme = (theme: GetThemeResponse) => {
     setSelectedTheme(theme);
     setShowThemeFormModal(true);
   };
@@ -84,7 +84,7 @@ export const Needs = () => {
   const isLoading = isLoadingFetchThemes || isLoadingFetchNeeds;
 
   useEffect(() => {
-    const newNeeds = [
+    const newNeeds: ItemType[] = [
       ...allNeeds
         .filter((need) => currentTheme && need.theme._id === currentTheme)
         .map((need) => ({ id: need._id.toString(), ...need }))
@@ -102,7 +102,7 @@ export const Needs = () => {
 
   useEffect(() => {
     if (positionsToSave) {
-      dispatch(orderNeedsActionCreator(displayedNeeds.map((n) => n._id)));
+      dispatch(orderNeedsActionCreator({ orderedNeedIds: displayedNeeds.map((n) => n._id.toString()) }));
       setPositionsToSave(false);
       NotificationManager.success("L'ordre des besoins a été enregistré", "Enregistré !", 5000);
     }

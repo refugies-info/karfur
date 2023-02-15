@@ -4,7 +4,8 @@ import {
   Route,
   Path,
   Query,
-  Security
+  Security,
+  Queries
 } from "tsoa";
 
 import express from "express";
@@ -12,8 +13,8 @@ import * as dispositif from "./dispositif/lib";
 import * as checkToken from "./account/checkToken";
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
-import getDispositifs from "../workflows/dispositif/getDispositifs";
-import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
+import { getDispositifs, GetDispositifsResponse } from "../workflows/dispositif/getDispositifs";
+import { getAllDispositifs, GetAllDispositifsResponse } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
@@ -27,7 +28,7 @@ import { exportDispositifsGeolocalisation } from "../workflows/dispositif/export
 import { getContentsForApp } from "../workflows/dispositif/getContentsForApp";
 import { updateDispositifTagsOrNeeds } from "../workflows/dispositif/updateDispositifTagsOrNeeds";
 import { getContentById, GetDispositifResponse } from "../workflows/dispositif/getContentById";
-import getStatistics from "../workflows/dispositif/getStatistics";
+import { getStatistics, GetStatisticsResponse } from "../workflows/dispositif/getStatistics";
 import updateDispositif from "../workflows/dispositif/updateDispositif";
 import { ResponseWithData } from "../types/interface";
 import { Languages } from "../typegoose";
@@ -39,11 +40,7 @@ const router = express.Router();
 // @ts-ignore FIXME
 router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif);
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
-router.post("/get_dispositif", dispositif.get_dispositif);
 router.post("/count_dispositifs", dispositif.count_dispositifs);
-// @ts-ignore FIXME
-router.post("/getDispositifs", getDispositifs);
-router.get("/getAllDispositifs", getAllDispositifs);
 // @ts-ignore FIXME
 router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
 // @ts-ignore FIXME
@@ -63,15 +60,48 @@ router.get("/getContentsForApp", getContentsForApp);
 // @ts-ignore FIXME
 router.post("/updateDispositifTagsOrNeeds", checkToken.check, updateDispositifTagsOrNeeds);
 // router.get("/getContentById", getContentById);
-router.get("/statistics", getStatistics);
 // @ts-ignore FIXME
 router.patch("/:id", checkToken.check, updateDispositif);
 
 export { router };
 
+type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
+
+export interface GetDispositifsRequest {
+  type?: "dispositif" | "demarche"; // TODO: type
+  locale: string
+  limit?: number
+  sort?: string
+}
+export interface GetStatisticsRequest {
+  facets?: Facets[]
+}
+
 @Route("dispositifs")
 export class DispositifController extends Controller {
+  @Get("/")
+  public async get(
+    @Queries() query: GetDispositifsRequest
+  ): ResponseWithData<GetDispositifsResponse[]> {
+    return getDispositifs(query);
+  }
 
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/all")
+  public async getAll(): ResponseWithData<GetAllDispositifsResponse[]> {
+    return getAllDispositifs();
+  }
+
+  @Get("/statistics")
+  public async getStatistics(
+    @Queries() query: GetStatisticsRequest
+  ): ResponseWithData<GetStatisticsResponse> {
+    return getStatistics(query);
+  }
+
+  // keep in last position to make sure /xyz routes are catched before
   @Security({
     fromSite: [],
   })

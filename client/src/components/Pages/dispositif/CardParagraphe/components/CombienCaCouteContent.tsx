@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React from "react";
 import FSwitch from "components/UI/FSwitch/FSwitch";
 import { DispositifContent, Theme } from "types/interface";

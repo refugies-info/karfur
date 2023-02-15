@@ -15,13 +15,14 @@ import {
   deleteWidgetActionCreator
 } from "./widgets.actions";
 import { widgetsSelector } from "./widgets.selectors";
-import { Widget } from "types/interface";
+import { APIResponse } from "types/interface";
+import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "api-types";
 
 export function* fetchWidgets(): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_WIDGETS));
     logger.info("[fetchWidgets] start fetching widgets");
-    const data = yield call(API.getWidgets);
+    const data: APIResponse<GetWidgetResponse[]> = yield call(API.getWidgets);
 
     const widgets = data?.data?.data || [];
     yield put(setWidgetsActionCreator(widgets));
@@ -42,14 +43,16 @@ export function* saveWidget(
 ): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.SAVE_WIDGET));
-    const newWidget = action.payload;
+    const newWidget = action.payload.value;
+    const id = action.payload.id;
     logger.info("[saveWidget] start saving widget");
 
-    const data = yield call(API.patchWidget, newWidget);
-    if (data.data.data) {
-      const newWidgets: Widget[] = [...(yield select(widgetsSelector))];
-      const editedWidgetIndex = newWidgets.findIndex(w => w._id === action.payload._id);
-      newWidgets[editedWidgetIndex] = data.data.data;
+    const data: APIResponse<PatchWidgetResponse> = yield call(API.patchWidget, id, newWidget);
+    const res = data.data.data;
+    if (res) {
+      const newWidgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
+      const editedWidgetIndex = newWidgets.findIndex(w => w._id === id);
+      newWidgets[editedWidgetIndex] = res;
       yield put(setWidgetsActionCreator(newWidgets));
     }
 
@@ -71,8 +74,8 @@ export function* createWidget(
     const newWidget = action.payload;
     logger.info("[createWidget] start creating widget");
 
-    const data = yield call(API.postWidgets, newWidget);
-    const widgets: Widget[] = [...(yield select(widgetsSelector))];
+    const data: APIResponse<PostWidgetResponse> = yield call(API.postWidgets, newWidget);
+    const widgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
     yield put(setWidgetsActionCreator([data.data.data, ...widgets]));
 
     yield put(finishLoading(LoadingStatusKey.CREATE_WIDGET));
@@ -93,7 +96,7 @@ export function* deleteWidget(
     logger.info("[deleteWidget] start deleting widget");
     yield call(API.deleteWidget, action.payload);
 
-    const widgets: Widget[] = [...(yield select(widgetsSelector))];
+    const widgets: GetWidgetResponse[] = [...(yield select(widgetsSelector))];
     yield put(setWidgetsActionCreator(widgets.filter(w => w._id !== action.payload)));
 
     yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));

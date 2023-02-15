@@ -16,7 +16,7 @@ import { updateUserFavorites } from "../workflows/users/updateUserFavorites";
 import deleteUser from "../workflows/users/deleteUser/deleteUser";
 import { LangueId } from "../typegoose";
 import { setSelectedLanguages } from "../workflows";
-import { IRequest, ResponseWithData } from "../types/interface";
+import { Id, IRequest, ResponseWithData } from "../types/interface";
 // import { UserStatus } from "../typegoose/User";
 
 /* TODO: use tsoa */
@@ -54,7 +54,7 @@ export interface SelectedLanguagesRequest {
 // >;
 
 export interface GetUserInfoResponse {
-  _id: string;
+  _id: Id;
   contributions: string[];
   email: string;
   roles: { _id: string; nom: string; nomPublic: string };
@@ -73,7 +73,7 @@ export class UserController extends Controller {
     return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({ text: "success" }));
   }
 
-  @Get("/get_user_info")
+  @Get("/get_user_info") // TODO: change name
   @Security("jwt")
   public async getUserInfo(@Request() request: IRequest): ResponseWithData<GetUserInfoResponse> {
     return {

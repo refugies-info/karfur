@@ -5,6 +5,7 @@ import EVAIcon from "components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 import { Theme } from "types/interface";
 import ThemeIcon from "components/UI/ThemeIcon";
+import { GetThemeResponse } from "api-types";
 
 const CheckContainer = styled.div`
   background: ${(props: { missingElement: boolean }) => (props.missingElement ? "#FFE2B8" : "#def7c2")};
@@ -125,7 +126,7 @@ interface Props {
   toggleModal?: any;
   addItem?: any;
   geolocInfoCard?: any;
-  theme?: Theme;
+  theme?: GetThemeResponse;
   abstract?: string;
   onChange?: any;
   titreInformatif?: string;

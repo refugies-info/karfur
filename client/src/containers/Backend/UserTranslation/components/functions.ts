@@ -1,9 +1,9 @@
+import { GetNeedResponse } from "api-types";
 import { colors } from "colors";
 import {
   TranslationStatus,
   IDispositifTranslation,
   ITypeContenu,
-  Need,
   AvailableLanguageI18nCode
 } from "types/interface";
 
@@ -135,20 +135,20 @@ export const sortData = (
   return dispositifsToDisplay;
 };
 
-const isNotTranslated = (need: Need, ln: AvailableLanguageI18nCode) => {
+const isNotTranslated = (need: GetNeedResponse, ln: AvailableLanguageI18nCode) => {
   return (
     !need[ln]?.text || // no title translated
     (need.fr.subtitle && !need[ln]?.subtitle)
   ); // or no subtitle if defined in french
 };
 
-const isTranslationOutdated = (need: Need, ln: AvailableLanguageI18nCode) => {
+const isTranslationOutdated = (need: GetNeedResponse, ln: AvailableLanguageI18nCode) => {
   const translationUpdatedAt = need[ln]?.updatedAt;
   if (!need.fr.updatedAt || !translationUpdatedAt) return true;
   return need.fr.updatedAt > translationUpdatedAt;
 };
 
-export const getStatusColorAndText = (need: Need, langueI18nCode: AvailableLanguageI18nCode) => {
+export const getStatusColorAndText = (need: GetNeedResponse, langueI18nCode: AvailableLanguageI18nCode) => {
   if (!langueI18nCode) {
     return { statusColor: colors.darkGrey, statusText: "Erreur" };
   }

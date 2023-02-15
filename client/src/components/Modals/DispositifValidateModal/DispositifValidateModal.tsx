@@ -3,7 +3,8 @@ import { Modal, ModalHeader, ModalFooter } from "reactstrap";
 import FButton from "components/UI/FButton/FButton";
 import Check from "./components/Check";
 import styles from "./DispositifValidateModal.module.scss";
-import { Structure, Theme } from "types/interface";
+import { Structure } from "types/interface";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
   show: boolean;
@@ -16,7 +17,7 @@ interface Props {
   status: string | undefined;
   saveDispositif: (saveAndEdit: boolean, saveType: "auto" | "save" | "validate") => void;
   toggleTutorielModal: any;
-  theme: Theme | undefined;
+  theme: GetThemeResponse | undefined;
   mainSponsor: Structure | undefined;
   menu: any;
   toggleThemesModal: any;

@@ -20,7 +20,6 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
-  SearchBarContainer,
   StyledHeaderInner
 } from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
@@ -58,6 +57,7 @@ import { ObjectId } from "mongodb";
 import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
+import { Id } from "api-types";
 
 moment.locale("fr");
 
@@ -65,7 +65,7 @@ const normalize = (value: string) => {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
 
-const getDispositif = (dispositifs: SimplifiedDispositif[], id: ObjectId | null) => {
+const getDispositif = (dispositifs: SimplifiedDispositif[], id: Id | null) => {
   if (!id) return null;
   return dispositifs.find((d) => d._id && d._id.toString() === id.toString()) || null;
 };
@@ -98,9 +98,9 @@ export const AdminContenu = () => {
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [showWriteModal, setShowWriteModal] = useState(false);
 
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
 
   const [isExportLoading, setIsExportLoading] = useState(false);
 
@@ -116,12 +116,12 @@ export const AdminContenu = () => {
 
   const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
 
-  const setSelectedDispositifAndToggleModal = (id: ObjectId | null) => {
+  const setSelectedDispositifAndToggleModal = (id: Id | null) => {
     setSelectedContentId(id);
     toggleDetailsModal();
   };
@@ -274,11 +274,11 @@ export const AdminContenu = () => {
 
   const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, _status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, _status: string | null = null) => {
     setSelectedDispositifAndToggleModal(element || null);
   };
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
@@ -488,7 +488,7 @@ export const AdminContenu = () => {
       <ContentDetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-        toggleRespoModal={(structureId: ObjectId) => {
+        toggleRespoModal={(structureId: Id) => {
           setSelectedStructureId(structureId);
           setSelectFirstRespoModal(true);
         }}

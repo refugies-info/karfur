@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { END } from "redux-saga";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { ObjectId } from "mongodb";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { debounce } from "lodash";
@@ -27,7 +26,6 @@ import { isHomeSearchVisible } from "lib/recherche/isHomeSearchVisible";
 import { getDepartmentsNotDeployed } from "lib/recherche/functions";
 import { generateLightResults } from "lib/recherche/generateLightResults";
 import isInBrowser from "lib/isInBrowser";
-import { SearchDispositif } from "types/interface";
 import SEO from "components/Seo";
 import SearchResults from "components/Pages/recherche/SearchResults";
 import SearchHeader from "components/Pages/recherche/SearchHeader";
@@ -35,11 +33,12 @@ import HomeSearch from "components/Pages/recherche/HomeSearch";
 import NewSearchModal from "components/Modals/NewSearchModal/NewSearchModal";
 import { getPath } from "routes";
 import styles from "scss/pages/recherche.module.scss";
+import { GetDispositifsResponse, Id } from "api-types";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
-  needs?: string | ObjectId[];
-  themes?: string | ObjectId[];
+  needs?: string | Id[];
+  themes?: string | Id[];
   age?: string | AgeOptions[];
   frenchLevel?: string | FrenchOptions[];
   language?: string | string[];
@@ -51,7 +50,7 @@ export type UrlSearchQuery = {
 const MODAL_STORAGE_KEY = "hideNewModal";
 
 const debouncedQuery = debounce(
-  (query: SearchQuery, dispositifs: SearchDispositif[], locale: string, callback: (res: Results) => void) => {
+  (query: SearchQuery, dispositifs: GetDispositifsResponse[], locale: string, callback: (res: Results) => void) => {
     return queryDispositifsWithAlgolia(query, dispositifs, locale).then((res: Results) => callback(res));
   },
   500

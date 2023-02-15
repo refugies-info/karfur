@@ -20,7 +20,6 @@ import {
   Content,
   FigureContainer,
   StyledSort,
-  SearchBarContainer,
   StyledHeaderInner
 } from "../sharedComponents/StyledAdmin";
 import { TabHeader, StyledStatus, FilterButton } from "../sharedComponents/SubComponents";
@@ -34,7 +33,6 @@ import FButton from "components/UI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
-import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import styles from "./AdminStructures.module.scss";
@@ -42,6 +40,7 @@ import { statusCompare } from "lib/statusCompare";
 import { getAdminUrlParams, getInitialFilters } from "lib/getAdminUrlParams";
 import { removeAccents } from "lib";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { Id } from "api-types";
 
 moment.locale("fr");
 
@@ -71,9 +70,9 @@ export const AdminStructures = () => {
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
 
-  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<ObjectId | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<ObjectId | null>(initialFilters.selectedDispositifId);
+  const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
@@ -120,7 +119,7 @@ export const AdminStructures = () => {
     toggleShowNewStructureModal();
   };
 
-  const setSelectedStructureIdAndToggleModal = (structureId: ObjectId | null) => {
+  const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
     toggleStructureDetailsModal();
   };
@@ -153,11 +152,11 @@ export const AdminStructures = () => {
 
   const toggleContentDetailsModal = () => setShowContentDetailsModal(!showContentDetailsModal);
 
-  const setSelectedUserIdAndToggleModal = (userId: ObjectId | null) => {
+  const setSelectedUserIdAndToggleModal = (userId: Id | null) => {
     setSelectedUserId(userId);
     toggleUserDetailsModal();
   };
-  const setSelectedContentIdAndToggleModal = (element: ObjectId | null, status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (element: Id | null, status: string | null = null) => {
     setSelectedContentId(element ? element : null);
     if (status) setSelectedContentStatus(status);
     toggleContentDetailsModal();
@@ -303,7 +302,7 @@ export const AdminStructures = () => {
                     {element.picture && element.picture.secure_url && (
                       <Image
                         className={styles.sponsor_img + " me-2"}
-                        src={(element.picture || {}).secure_url}
+                        src={(element.picture || {}).secure_url || ""}
                         alt=""
                         width={90}
                         height={35}
@@ -374,7 +373,7 @@ export const AdminStructures = () => {
           show={showContentDetailsModal}
           setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
           toggleModal={() => setSelectedContentIdAndToggleModal(null)}
-          toggleRespoModal={(structureId: ObjectId) => {
+          toggleRespoModal={(structureId: Id) => {
             setSelectedStructureId(structureId);
             setSelectFirstRespoModal(true);
           }}

@@ -1,21 +1,21 @@
-import { ObjectId } from "mongodb";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import { DispositifPinned, User } from "types/interface";
+import { User } from "types/interface";
 import API from "utils/API";
 import { userDetailsSelector } from "services/User/user.selectors";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUserActionCreator } from "services/User/user.actions";
 import { toggleUserFavoritesModalActionCreator } from "services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
+import { Id } from "api-types";
 
-const isContentFavorite = (userDetails: User | null, id: ObjectId) => {
+const isContentFavorite = (userDetails: User | null, id: Id) => {
   if ((userDetails?.cookies?.dispositifsPinned || []).length === 0) return false;
   return !!userDetails?.cookies?.dispositifsPinned
     ?.filter(c => c)
     .map(c => c._id).includes(id.toString());
 }
 
-const useFavorites = (contentId: ObjectId) => {
+const useFavorites = (contentId: Id) => {
   const userDetails = useSelector(userDetailsSelector);
   const dispatch = useDispatch();
 

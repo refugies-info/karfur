@@ -5,12 +5,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { SearchDispositif } from "types/interface";
 import { getPath } from "routes";
 import { jsUcfirst, jsLcfirst } from "lib";
 import { cls } from "lib/classname";
 import { getTheme, getThemes } from "lib/getTheme";
-import { getDispositifInfos } from "lib/getDispositifInfos";
 import { themesSelector } from "services/Themes/themes.selectors";
 import ThemeBadge from "components/UI/ThemeBadge";
 import FavoriteButton from "components/UI/FavoriteButton";
@@ -20,6 +18,7 @@ import iconEuro from "assets/recherche/icon-euro.svg";
 import defaultStructureImage from "assets/recherche/default-structure-image.svg";
 import commonStyles from "scss/components/contentCard.module.scss";
 import styles from "./DispositifCard.module.scss";
+import { GetDispositifsResponse } from "api-types";
 
 type DispositifLinkProps = {
   background: string;
@@ -34,7 +33,7 @@ const DispositifLink = styled.a<DispositifLinkProps>`
 `;
 
 interface Props {
-  dispositif: SearchDispositif;
+  dispositif: GetDispositifsResponse;
   selectedDepartment?: string;
   targetBlank?: boolean;
 }
@@ -47,18 +46,16 @@ const DispositifCard = (props: Props) => {
   const colors = theme.colors;
   const dispositifThemes = [theme, ...getThemes(props.dispositif.secondaryThemes || [], themes)];
 
-  const location = getDispositifInfos(props.dispositif, "location");
-  const duration = getDispositifInfos(props.dispositif, "duration");
-  const price = getDispositifInfos(props.dispositif, "price");
+  const duration = props.dispositif.metadatas.duration;
+  const price = props.dispositif.metadatas.price;
 
   const getDepartement = () => {
-    if (!location || !location.departments) return null;
-    if (location.departments.length === 1 && location.departments[0] === "All")
-      return jsUcfirst(t("Recherche.france", "toute la France"));
+    const location = props.dispositif.metadatas.location;
+    if (!location) return null;
+    if (location.length === 1 && location[0] === "All") return jsUcfirst(t("Recherche.france", "toute la France"));
     if (props.selectedDepartment) return props.selectedDepartment;
-    if (location.departments.length > 1)
-      return `${location.departments.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
-    return location.departments[0];
+    if (location.length > 1) return `${location.length} ${jsLcfirst(t("Dispositif.Départements", "Départements"))}`;
+    return location[0];
   };
 
   return (
@@ -89,36 +86,33 @@ const DispositifCard = (props: Props) => {
         <h3
           className={styles.title}
           style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif }}
+          dangerouslySetInnerHTML={{ __html: props.dispositif.titreInformatif || "" }}
         />
 
         <div
           className={cls(styles.text, styles.max_lines, styles.abstract)}
           style={{ color: colors.color100 }}
-          dangerouslySetInnerHTML={{ __html: props.dispositif.abstract }}
+          dangerouslySetInnerHTML={{ __html: props.dispositif.abstract || "" }}
         />
 
         <div className={cls(styles.infos, styles.text, "my-3")} style={{ color: colors.color100 }}>
-          {price?.price !== undefined && (
+          {price !== undefined && (
             <div className={cls(styles.info)}>
               <Image src={iconEuro} width={16} height={16} alt="" />
-              {price?.price === 0 ? (
+              {price?.value === 0 ? (
                 <div className="ms-2">{t("Dispositif.Gratuit", "Gratuit")}</div>
               ) : (
                 <div className="ms-2">
-                  {price?.price}€ {price?.contentTitle}
+                  {price?.value}€ {price?.details}
                 </div>
               )}
             </div>
           )}
 
-          {duration?.contentTitle && (
+          {duration && (
             <div className={cls(styles.info, "mt-1")}>
               <Image src={iconTime} width={16} height={16} alt="" />
-              <div
-                className={cls(styles.ellipsis, "ms-2")}
-                dangerouslySetInnerHTML={{ __html: duration?.contentTitle || "" }}
-              ></div>
+              <div className={cls(styles.ellipsis, "ms-2")} dangerouslySetInnerHTML={{ __html: duration || "" }}></div>
             </div>
           )}
         </div>
@@ -133,7 +127,7 @@ const DispositifCard = (props: Props) => {
           <span className={styles.picture}>
             <Image
               src={props.dispositif?.mainSponsor?.picture?.secure_url || defaultStructureImage}
-              alt={props.dispositif?.mainSponsor.nom}
+              alt={props.dispositif?.mainSponsor?.nom || ""}
               width={40}
               height={40}
               style={{ objectFit: "contain" }}
@@ -142,7 +136,7 @@ const DispositifCard = (props: Props) => {
           <span
             className={cls(styles.text, styles.max_lines, "ms-2")}
             style={{ color: colors.color100 }}
-            dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque }}
+            dangerouslySetInnerHTML={{ __html: props.dispositif?.titreMarque || "" }}
           />
         </div>
       </DispositifLink>

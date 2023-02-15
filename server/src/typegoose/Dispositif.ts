@@ -228,7 +228,7 @@ export class Dispositif extends Base {
   @prop()
   public merci: Merci[];
   @prop()
-  public webOnly: Boolean;
+  public webOnly: boolean;
 
   @prop()
   public translations!: Record<Languages, TranslationContent>;

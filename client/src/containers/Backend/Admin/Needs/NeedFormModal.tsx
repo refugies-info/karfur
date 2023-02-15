@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Need, Picture } from "types/interface";
+import { Picture } from "types/interface";
 import FInput from "components/UI/FInput/FInput";
 import FButton from "components/UI/FButton/FButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,11 +16,12 @@ import FilterButton from "components/UI/FilterButton";
 import Swal from "sweetalert2";
 import { colors } from "colors";
 import { allDispositifsSelector } from "services/AllDispositifs/allDispositifs.selector";
+import { GetNeedResponse, Id, NeedRequest } from "api-types";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedNeed: Need | null; // if null, creation. Else, edition
+  selectedNeed: GetNeedResponse | null; // if null, creation. Else, edition
 }
 
 const TITLE_MAX_CHAR = 100;
@@ -29,7 +30,7 @@ export const NeedFormModal = (props: Props) => {
   const [name, setName] = useState(props.selectedNeed?.fr.text || "");
   const [subtitle, setSubtitle] = useState("");
   const [notes, setNotes] = useState("");
-  const [themeSelected, setThemeSelected] = useState<ObjectId | null>(null);
+  const [themeSelected, setThemeSelected] = useState<Id | null>(null);
   const [image, setImage] = useState<Picture | undefined>(undefined);
 
   const themes = useSelector(themesSelector);
@@ -55,9 +56,9 @@ export const NeedFormModal = (props: Props) => {
     if (props.selectedNeed) {
       setName(props.selectedNeed.fr.text);
       setSubtitle(props.selectedNeed.fr.subtitle || "");
-      setNotes(props.selectedNeed.adminComments);
+      setNotes(props.selectedNeed.adminComments || "");
       setThemeSelected(props.selectedNeed.theme._id);
-      setImage(props.selectedNeed.image || undefined);
+      setImage(props.selectedNeed.image);
     } else {
       setName("");
       setSubtitle("");
@@ -68,32 +69,21 @@ export const NeedFormModal = (props: Props) => {
   }, [props.selectedNeed]);
 
   const onSave = () => {
-    const need: Partial<Need> = {
+    const need: NeedRequest = {
       fr: {
         text: name,
         subtitle: subtitle
       },
-      //@ts-ignore
-      theme: themeSelected || undefined,
-      image: image || undefined
+      theme: themeSelected?.toString() || undefined,
+      image: image || undefined,
+      adminComments: notes
     };
     if (props.selectedNeed) {
       // edition
-      dispatch(
-        saveNeedActionCreator({
-          _id: props.selectedNeed._id,
-          ...need,
-          adminComments: notes
-        })
-      );
+      dispatch(saveNeedActionCreator(props.selectedNeed._id, need));
     } else {
       // creation
-      dispatch(
-        createNeedActionCreator({
-          ...need,
-          adminComments: notes
-        })
-      );
+      dispatch(createNeedActionCreator(need));
     }
     props.toggleModal();
   };

@@ -27,7 +27,7 @@ const AdminThemeButton = (props: Props) => {
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then((data_res: any) => {
+    API.postImage(formData).then((data_res) => {
       const imgData = data_res.data.data;
       props.onImageUploaded({
         secure_url: imgData.secure_url,

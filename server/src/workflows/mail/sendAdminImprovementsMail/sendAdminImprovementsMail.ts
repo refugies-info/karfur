@@ -18,7 +18,9 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
 
   await asyncForEach(body.users, async (user) => {
     await sendAdminImprovementsMailService({
-      dispositifId: body.dispositifId,
+      //@ts-ignore
+      dispositifId: body.dispositifId, /* TODO: fix id types */
+      //@ts-ignore
       userId: user._id,
       titreInformatif: body.titreInformatif,
       titreMarque: body.titreMarque,
@@ -36,6 +38,7 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
     users: body.users
   };
 
+  //@ts-ignore
   await log(body.dispositifId, userId, options);
 
   return { text: "success" };

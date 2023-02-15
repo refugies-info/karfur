@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { Log } from "types/interface";
 import { LogLine } from "./LogLine";
 import styles from "./LogList.module.scss";
-import { ObjectId } from "mongodb";
+import { GetLogResponse, Id } from "api-types";
 
-type GroupedLogs = { [key: string]: Log[] };
+type GroupedLogs = { [key: string]: GetLogResponse[] };
 
 interface Props {
-  logs: Log[]
-  openUserModal?: (user: ObjectId | null) => void
-  openContentModal?: (element: ObjectId | null, status: string | null) => void
-  openStructureModal?: (element: ObjectId | null) => void
-  openAnnuaire?: (id: ObjectId) => void
-  openImprovementsModal?: () => void
-  openNeedsModal?: () => void
+  logs: GetLogResponse[];
+  openUserModal?: (user: Id | null) => void;
+  openContentModal?: (element: Id | null, status: string | null) => void;
+  openStructureModal?: (element: Id | null) => void;
+  openAnnuaire?: (id: Id) => void;
+  openImprovementsModal?: () => void;
+  openNeedsModal?: () => void;
 }
 
 export const LogList = (props: Props) => {

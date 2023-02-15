@@ -1,12 +1,12 @@
 import React from "react";
-import { Theme } from "types/interface";
 import useLocale from "hooks/useLocale";
 import styles from "./ThemeBadge.module.scss";
 import ThemeIcon from "../ThemeIcon";
 import { cls } from "lib/classname";
+import { GetThemeResponse } from "api-types";
 
 interface Props {
-  theme: Theme;
+  theme: GetThemeResponse;
   style?: any;
   className?: any;
 }

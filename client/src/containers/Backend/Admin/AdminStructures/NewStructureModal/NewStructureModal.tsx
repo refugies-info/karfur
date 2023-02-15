@@ -167,25 +167,19 @@ export const NewStructureModal: React.FunctionComponent<Props> = (props: Props) 
     // @ts-ignore
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then(
-      (data_res: {
-        data: {
-          data: { secure_url: string; public_id: string; imgId: string };
-        };
-      }) => {
-        const imgData = data_res.data.data;
-        setStructure({
-          ...structure,
-          picture: {
-            secure_url: imgData.secure_url,
-            public_id: imgData.public_id,
-            imgId: imgData.imgId
-          }
-        });
-        setUploading(false);
-        return;
-      }
-    );
+    API.postImage(formData).then((data_res) => {
+      const imgData = data_res.data.data;
+      setStructure({
+        ...structure,
+        picture: {
+          secure_url: imgData.secure_url,
+          public_id: imgData.public_id,
+          imgId: imgData.imgId
+        }
+      });
+      setUploading(false);
+      return;
+    });
   };
 
   const modifyStatus = (status: string) => {

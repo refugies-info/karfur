@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { Languages, NeedId, Role, ThemeId, User } from "src/typegoose";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { DocumentType } from "@typegoose/typegoose";
+import { ageType, frenchLevel, justificatifType, priceDetails, publicType } from "./newInterface";
 
 export type Modify<T, R> = Omit<T, keyof R> & R;
 
@@ -74,6 +75,25 @@ export interface AudienceAge {
   topValue: number | string;
 }
 
+export interface Metadatas {
+  location?: string[];
+  frenchLevel?: frenchLevel[];
+  important?: string;
+  age?: {
+    type: ageType;
+    ages: number[];
+  };
+  price?: {
+    value: number;
+    details?: priceDetails;
+  }
+  duration?: string;
+  public?: publicType;
+  titreSejourRequired?: boolean;
+  acteNaissanceRequired?: boolean;
+  justificatif?: justificatifType;
+}
+
 export interface DispositifContent {
   type: string;
   title: string;
@@ -108,7 +128,7 @@ export interface Picture {
 }
 
 // Themes
-export interface TranslatedText extends Record<string, string> { }
+export type TranslatedText = Record<string, string>;
 
 export interface ThemeColors {
   color100: string;
@@ -119,6 +139,7 @@ export interface ThemeColors {
 }
 
 export interface Theme {
+  _id: Id;
   name: TranslatedText;
   short: TranslatedText;
   colors: ThemeColors;

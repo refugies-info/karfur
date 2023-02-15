@@ -1,8 +1,7 @@
-import { ObjectId } from "mongodb";
-import { Theme } from "types/interface";
+import { GetThemeResponse, Id } from "api-types";
 
-const defaultTheme: Theme = {
-  _id: "id" as unknown as ObjectId,
+const defaultTheme: GetThemeResponse = {
+  _id: "id",
   name: {
     fr: "",
     en: "",
@@ -61,10 +60,11 @@ const defaultTheme: Theme = {
   active: true,
 }
 
-export const getTheme = (id: ObjectId, allThemes: Theme[]) => {
+export const getTheme = (id: Id | undefined, allThemes: GetThemeResponse[]) => {
+  if (!id) return defaultTheme;
   return allThemes.find(theme => theme._id === id) || defaultTheme;
 }
 
-export const getThemes = (ids: ObjectId[], allThemes: Theme[]) => {
+export const getThemes = (ids: Id[], allThemes: GetThemeResponse[]) => {
   return ids.map(id => allThemes.find(theme => theme._id === id) || defaultTheme);
 }

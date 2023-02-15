@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
+import { SubscriptionRequest } from "api-types";
 import { Modal } from "reactstrap";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
@@ -105,7 +106,8 @@ export const ReceiveInvitationMailModal = (props: Props) => {
     const regex = /^\S+@\S+\.\S+$/;
     const isEmail = !!email.match(regex);
     if (isEmail) {
-      API.sendSubscriptionReminderMail({ email })
+      const body: SubscriptionRequest = { email };
+      API.sendSubscriptionReminderMail(body)
         .then(() => {
           Swal.fire({
             title: "Yay...",

@@ -1,4 +1,5 @@
-import { Need, NeedId, NeedModel, Theme } from "src/typegoose";
+import { Need, NeedId, NeedModel } from "../../typegoose";
+import { Theme } from "../../types/interface";
 
 export const createNeedInDB = async (need: Partial<Need>) => await new NeedModel(need).save();
 

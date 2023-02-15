@@ -1,10 +1,9 @@
-import { Id, Picture, ResponseWithData } from "../../../types/interface";
+import { Id, Metadatas, Picture, ResponseWithData } from "../../../types/interface";
 import logger from "../../../logger";
 import { getDispositifById } from "../../../modules/dispositif/dispositif.repository";
 import { NotFoundError } from "../../../errors";
 import { Languages } from "../../../typegoose";
 import pick from "lodash/pick";
-import { ageType, frenchLevel, justificatifType, priceDetails, publicType } from "../../../types/newInterface";
 
 interface InfoSection {
   title: string;
@@ -38,25 +37,6 @@ interface Poi {
   description?: string;
   email?: string;
   phone?: string;
-}
-
-interface Metadatas {
-  location?: string[];
-  frenchLevel?: frenchLevel[];
-  important?: string;
-  age?: {
-    type: ageType;
-    ages: number[];
-  };
-  price?: {
-    value: number;
-    details?: priceDetails;
-  }
-  duration?: string;
-  public?: publicType;
-  titreSejourRequired?: boolean;
-  acteNaissanceRequired?: boolean;
-  justificatif?: justificatifType;
 }
 
 export type InfoSections = Record<string, InfoSection>;

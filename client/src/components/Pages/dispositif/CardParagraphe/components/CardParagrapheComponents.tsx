@@ -1,3 +1,4 @@
+//@ts-nocheck TODO: delete
 import React, { useState } from "react";
 import { Tooltip, Input, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { DispositifContent, Theme } from "types/interface";

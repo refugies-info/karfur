@@ -1,10 +1,11 @@
 import logger from "../../../logger";
 import { getAllThemes } from "../../../modules/themes/themes.repository";
 import { getActiveLanguagesFromDB } from "../../../modules/langues/langues.repository";
-import { Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
+import { Id, Picture, ResponseWithData, ThemeColors, TranslatedText } from "../../../types/interface";
 
 
 export interface GetThemeResponse {
+  _id: Id;
   name: TranslatedText;
   short: TranslatedText;
   colors: ThemeColors;

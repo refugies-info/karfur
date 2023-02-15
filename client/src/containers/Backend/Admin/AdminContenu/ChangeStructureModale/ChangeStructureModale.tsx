@@ -8,7 +8,6 @@ import { SimplifiedStructureForAdmin, Structure } from "types/interface";
 import { colors } from "colors";
 import FButton from "components/UI/FButton/FButton";
 import API from "utils/API";
-import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "services/AllDispositifs/allDispositifs.actions";
 import styles from "./ChangeStructureModale.module.scss";
@@ -17,11 +16,12 @@ import { NewStructureModal } from "../../AdminStructures/NewStructureModal";
 import { allStructuresSelector } from "services/AllStructures/allStructures.selector";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { SearchStructures } from "components";
+import { Id } from "api-types";
 
 interface Props {
   show: boolean;
   toggle: () => void;
-  dispositifId: ObjectId | null;
+  dispositifId: Id | null;
   dispositifStatus: string | null;
 }
 

@@ -16,6 +16,7 @@ import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions"
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { colors } from "colors";
 import styles from "./SelectFirstResponsableModal.module.scss";
+import { Id } from "api-types";
 
 const ModifyLink = styled.div`
   font-weight: bold;
@@ -52,7 +53,7 @@ const Warning = styled.div`
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedStructureId: ObjectId | null;
+  selectedStructureId: Id | null;
 }
 export const SelectFirstResponsableModal = (props: Props) => {
   const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);

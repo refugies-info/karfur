@@ -5,23 +5,51 @@ import Swal from "sweetalert2";
 import { logger } from "../logger";
 import isInBrowser from "lib/isInBrowser";
 import {
-  AdminOption,
   APIResponse,
-  DispositifFacets,
-  DispositifStatistics,
   IDispositif,
   NbDispositifsByRegion,
-  Need,
   StructureFacets,
   StructuresStatistics,
-  Theme,
   TranslationFacets,
   TranslationStatistics,
   User,
-  Widget
 } from "types/interface";
 import { ObjectId } from "mongodb";
-import { GetDispositifResponse } from "api-types";
+import {
+  Id,
+  PostAdminOptionResponse,
+  GetAdminOptionResponse,
+  GetDispositifResponse,
+  AdminOptionRequest,
+  PostImageResponse,
+  GetLogResponse,
+  ImprovementsRequest,
+  SubscriptionRequest,
+  AddContactRequest,
+  GetNeedResponse,
+  PatchNeedResponse,
+  UpdatePositionsNeedResponse,
+  NeedRequest,
+  UpdatePositionsRequest,
+  GetThemeResponse,
+  PostThemeResponse,
+  ThemeRequest,
+  GetWidgetResponse,
+  PostWidgetResponse,
+  PatchWidgetResponse,
+  WidgetRequest,
+  DownloadAppRequest,
+  ContentLinkRequest,
+  SendNotificationsRequest,
+  TtsRequest,
+  GetUserInfoResponse,
+  GetStatisticsRequest,
+  GetStatisticsResponse,
+  GetDispositifsRequest,
+  GetDispositifsResponse,
+  GetAllStructuresResponse,
+  GetAllDispositifsResponse
+} from "api-types";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
@@ -127,15 +155,9 @@ const API = {
     const headers = getHeaders();
     return instance.post("/user/set_user_info", user, { headers });
   },
-  get_user_info: () => {
+  getUser: (): Promise<APIResponse<GetUserInfoResponse>> => {
     const headers = getHeaders();
-    return instance.post(
-      "/user/get_user_info",
-      {},
-      {
-        headers
-      }
-    );
+    return instance.get("/user/get_user_info", { headers });
   },
   updateUser: (query: any) => {
     const headers = getHeaders();
@@ -232,10 +254,13 @@ const API = {
     const headers = getHeaders();
     return instance.get(`/dispositifs/getDispositifsWithTranslationAvancement?locale=${locale}`, { headers });
   },
-  getDispositifs: (params: any) => {
-    return instance.post("/dispositifs/getDispositifs", params);
+  getDispositifs: (query: GetDispositifsRequest): Promise<APIResponse<GetDispositifsResponse[]>> => {
+    return instance.get("/dispositifs", { params: query });
   },
-  getAllDispositifs: () => instance.get("/dispositifs/getAllDispositifs"),
+  getAllDispositifs: (): Promise<APIResponse<GetAllDispositifsResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/dispositifs/all", { headers })
+  },
   getNbDispositifsByRegion: (): Promise<Response<NbDispositifsByRegion>> => {
     return instance.get("/dispositifs/getNbDispositifsByRegion");
   },
@@ -245,8 +270,9 @@ const API = {
       headers
     });
   },
-  getDispositifsStatistics: (facets?: DispositifFacets[]): Promise<Response<DispositifStatistics>> => {
-    return instance.get("/dispositifs/statistics", { params: { facets } });
+  getDispositifsStatistics: (query: GetStatisticsRequest): Promise<APIResponse<GetStatisticsResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/dispositifs/statistics", { params: query, headers });
   },
   /* TODO: support all dispositif properties */
   updateDispositif: (id: ObjectId, query: { webOnly: boolean }) => {
@@ -255,17 +281,21 @@ const API = {
   },
 
   // Mail
-  sendAdminImprovementsMail: (query: any) => {
+  sendAdminImprovementsMail: (body: ImprovementsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/mail/sendAdminImprovementsMail", query, {
+    return instance.post("/mail/sendAdminImprovementsMail", body, {
       headers
     });
   },
-  sendSubscriptionReminderMail: (query: any) => {
+  sendSubscriptionReminderMail: (body: SubscriptionRequest) => {
     const headers = getHeaders();
-    return instance.post("/mail/sendSubscriptionReminderMail", query, {
+    return instance.post("/mail/sendSubscriptionReminderMail", body, {
       headers
     });
+  },
+  contacts: (body: AddContactRequest) => {
+    const headers = getHeaders();
+    return instance.post("/mail/contacts", body, { headers });
   },
 
   // Structure
@@ -307,79 +337,66 @@ const API = {
   getActiveStructures: () => {
     return instance.get("/structures/getActiveStructures");
   },
-  getAllStructures: () => instance.get("/structures/getAllStructures"),
+  getAllStructures: (): Promise<APIResponse<GetAllStructuresResponse>> => {
+    const headers = getHeaders();
+    return instance.get("/structures/all", { headers })
+  },
   getStructuresStatistics: (facets?: StructureFacets[]): Promise<Response<StructuresStatistics>> => {
     return instance.get("/structures/statistics", { params: { facets } });
   },
 
   // Needs
-  getNeeds: () => {
+  getNeeds: (): Promise<APIResponse<GetNeedResponse>> => {
     return instance.get("/needs");
   },
-  postNeeds: (query: Partial<Need>) => {
+  postNeeds: (body: NeedRequest) => {
     const headers = getHeaders();
-    return instance.post("/needs", query, {
-      headers
-    });
+    return instance.post("/needs", body, { headers });
   },
-  patchNeed: (query: Partial<Need>) => {
+  patchNeed: (id: Id, body: Partial<NeedRequest>): Promise<APIResponse<PatchNeedResponse>> => {
     const headers = getHeaders();
-    const newNeed = { ...query };
-    delete newNeed._id;
-    return instance.patch(`/needs/${query._id}`, newNeed, {
-      headers
-    });
+    return instance.patch(`/needs/${id}`, body, { headers });
   },
-  orderNeeds: (query: ObjectId[]) => {
+  orderNeeds: (body: UpdatePositionsRequest): Promise<APIResponse<UpdatePositionsNeedResponse[]>> => {
     const headers = getHeaders();
-    return instance.post("/needs/positions", { orderedNeedIds: query }, { headers });
+    return instance.post("/needs/positions", body, { headers });
   },
-  deleteNeed: (query: ObjectId) => {
+  deleteNeed: (query: Id) => {
     const headers = getHeaders();
     return instance.delete(`/needs/${query}`, { headers });
   },
 
   // Themes
-  getThemes: () => {
+  getThemes: (): Promise<APIResponse<GetThemeResponse[]>> => {
     return instance.get("/themes");
   },
-  postThemes: (query: Partial<Theme>) => {
+  postThemes: (body: ThemeRequest): Promise<APIResponse<PostThemeResponse>> => {
     const headers = getHeaders();
-    return instance.post("/themes", query, {
-      headers
-    });
+    return instance.post("/themes", body, { headers });
   },
-  patchTheme: (query: Partial<Theme>) => {
+  patchTheme: (id: Id, body: Partial<ThemeRequest>) => {
     const headers = getHeaders();
-    const newTheme = { ...query };
-    delete newTheme._id;
-    return instance.patch(`/themes/${query._id}`, newTheme, {
-      headers
-    });
+    return instance.patch(`/themes/${id}`, body, { headers });
   },
-  deleteTheme: (query: ObjectId) => {
+  deleteTheme: (query: Id) => {
     const headers = getHeaders();
     return instance.delete(`/themes/${query}`, { headers });
   },
 
   // Widgets
-  getWidgets: () => {
+  getWidgets: (): Promise<APIResponse<GetWidgetResponse>> => {
     const headers = getHeaders();
     return instance.get("/widgets", { headers });
   },
-  postWidgets: (query: Partial<Widget>) => {
+  postWidgets: (body: WidgetRequest): Promise<APIResponse<PostWidgetResponse>> => {
     const headers = getHeaders();
-    return instance.post("/widgets", query, {
-      headers
-    });
+    return instance.post("/widgets", body, { headers });
   },
-  patchWidget: (query: Partial<Widget>) => {
+  patchWidget: (id: Id, body: Partial<WidgetRequest>): Promise<APIResponse<PatchWidgetResponse>> => {
     const headers = getHeaders();
-    return instance.patch(`/widgets/${query._id}`, query, {
-      headers
-    });
+    return instance.patch(`/widgets/${id}`, body, { headers });
   },
-  deleteWidget: (query: ObjectId) => {
+  deleteWidget: (query: Id) => {
     const headers = getHeaders();
     return instance.delete(`/widgets/${query}`, { headers });
   },
@@ -453,42 +470,36 @@ const API = {
   getLanguages: () => instance.get("/langues/getLanguages"),
 
   // Misc
-  set_image: (query: any) => { // TODO: moved to /images
+  postImage: (query: any): Promise<APIResponse<PostImageResponse>> => {
     const headers = getHeaders();
-    return instance.post("/images/set_image", query, { headers });
+    return instance.post("/images", query, { headers });
   },
-  set_mail: (query: { mail: string }) => {
-    const headers = getHeaders();
-    // TODO: moved to mail/contacts, parameter email
-    return instance.post("/miscellaneous/set_mail", query, { headers });
-  },
-
   // Logs
-  logs: (objectId: ObjectId) => {
+  logs: (objectId: Id): Promise<APIResponse<GetLogResponse[]>> => {
     const headers = getHeaders();
     return instance.get(`/logs?id=${objectId}`, { headers });
   },
 
   // Notifications
-  sendNotification: (demarcheId: string | ObjectId): Promise<Response<AdminOption>> => {
+  sendNotification: (body: SendNotificationsRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/notifications/send", { demarcheId }, { headers });
+    return instance.post("/notifications/send", body, { headers });
   },
 
   // AdminOptions
-  getAdminOption: (key: string): Promise<Response<AdminOption>> => {
+  getAdminOption: (key: string): Promise<APIResponse<GetAdminOptionResponse>> => {
     const headers = getHeaders();
     return instance.get(`/options/${key}`, { headers });
   },
-  setAdminOption: (key: string, value: any): Promise<Response<AdminOption>> => {
+  setAdminOption: (key: string, body: AdminOptionRequest): Promise<APIResponse<PostAdminOptionResponse>> => {
     const headers = getHeaders();
-    return instance.post(`/options/${key}`, { value }, { headers });
+    return instance.post(`/options/${key}`, body, { headers });
   },
 
   // tts
-  get_tts: (query: { text: string; locale: string }) => {
+  getTts: (body: TtsRequest): Promise<APIResponse<any>> => {
     const headers = getHeaders();
-    return instance.post("/tts/get_tts", query, {
+    return instance.post("/tts", body, {
       headers,
       cancelToken: new CancelToken(function executor(c) {
         cancel = c;
@@ -498,10 +509,10 @@ const API = {
   cancel_tts_subscription: () => cancel && cancel(),
 
   // sms
-  smsDownloadApp: (phone: string, locale: string) => instance.post("/sms/download-app", { phone, locale }),
-  smsContentLink: (query: { phone: string, title: string, url: string }) => {
+  smsDownloadApp: (body: DownloadAppRequest) => instance.post("/sms/download-app", body),
+  smsContentLink: (body: ContentLinkRequest): Promise<APIResponse> => {
     const headers = getHeaders();
-    return instance.post("/sms/content-link", query, { headers });
+    return instance.post("/sms/content-link", body, { headers });
   },
 };
 

@@ -1,5 +1,4 @@
 import algoliasearch from "algoliasearch";
-import { SearchDispositif } from "types/interface";
 import { SearchQuery } from "services/SearchResults/searchResults.reducer";
 import { Results } from "services/SearchResults/searchResults.reducer";
 import {
@@ -11,6 +10,7 @@ import {
 } from "./filterContents";
 import { sortDispositifs } from "./sortContents";
 import { getSearchableAttributes, Hit } from "./getAlgoliaSearchableAttributes";
+import { GetDispositifsResponse } from "api-types";
 
 const searchClient = algoliasearch("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const indexName = (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") ?
@@ -28,9 +28,9 @@ const index = searchClient.initIndex(indexName || "");
  */
 const filterDispositifs = (
   query: SearchQuery,
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   secondaryThemes: boolean
-): SearchDispositif[] => {
+): GetDispositifsResponse[] => {
   return [...dispositifs]
     .filter(dispositif => filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes))
     .filter(dispositif => filterByLocations(dispositif, query.departments))
@@ -41,13 +41,13 @@ const filterDispositifs = (
 }
 
 let searchCache = "";
-let searchCacheResults: SearchDispositif[] = [];
+let searchCacheResults: GetDispositifsResponse[] = [];
 const queryOnAlgolia = async (
   search: string,
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   locale: string
 ) => {
-  let filteredDispositifsByAlgolia: SearchDispositif[] = [...dispositifs];
+  let filteredDispositifsByAlgolia: GetDispositifsResponse[] = [...dispositifs];
   if (search) {
     if (search !== searchCache) { // new search
       searchCache = search; // keep search in cache to prevent useless algolia searchs
@@ -62,7 +62,7 @@ const queryOnAlgolia = async (
       filteredDispositifsByAlgolia = hits.map(hit => {
         const dispositif = dispositifs.find(d => d._id.toString() === hit.id);
         // deep clone object to make sure cards components re-renders
-        const newDispositif: SearchDispositif | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
+        const newDispositif: GetDispositifsResponse | undefined = dispositif ? JSON.parse(JSON.stringify(dispositif)) : undefined;
         if (newDispositif) {
           newDispositif.abstract = hit.highlight[`abstract_${locale}`]?.value || newDispositif.abstract;
           newDispositif.titreInformatif = hit.highlight[`title_${locale}`]?.value || newDispositif.titreInformatif;
@@ -70,7 +70,7 @@ const queryOnAlgolia = async (
           // newDispositif.mainSponsor.nom = hit.highlight.sponsorName.value;
         }
         return newDispositif;
-      }).filter(d => !!d) as SearchDispositif[];
+      }).filter(d => !!d) as GetDispositifsResponse[];
       searchCacheResults = filteredDispositifsByAlgolia;
     } else { // same search
       filteredDispositifsByAlgolia = [...searchCacheResults];
@@ -87,13 +87,13 @@ const queryOnAlgolia = async (
  */
 export const queryDispositifs = (
   query: SearchQuery,
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
 ): Results => {
   const results = filterDispositifs(query, dispositifs, false);
 
   // dispositifs which have theme in secondary themes
-  let dispositifsSecondaryTheme: SearchDispositif[] = [];
-  let demarchesSecondaryTheme: SearchDispositif[] = [];
+  let dispositifsSecondaryTheme: GetDispositifsResponse[] = [];
+  let demarchesSecondaryTheme: GetDispositifsResponse[] = [];
   if (query.themes.length > 0) {
     const remainingDispositifs = [...dispositifs] // remove dispositifs already selected
       .filter(dispositif => !results.map(d => d._id).includes(dispositif._id));
@@ -119,7 +119,7 @@ export const queryDispositifs = (
  */
 export const queryDispositifsWithAlgolia = async (
   query: SearchQuery,
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   locale: string
 ): Promise<Results> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
@@ -136,9 +136,9 @@ export const queryDispositifsWithAlgolia = async (
  */
 export const queryDispositifsWithoutThemes = async (
   query: SearchQuery,
-  dispositifs: SearchDispositif[],
+  dispositifs: GetDispositifsResponse[],
   locale: string
-): Promise<SearchDispositif[]> => {
+): Promise<GetDispositifsResponse[]> => {
   const filteredDispositifsByAlgolia = await queryOnAlgolia(query.search, dispositifs, locale);
   return [...filteredDispositifsByAlgolia]
     .filter(dispositif => filterByLocations(dispositif, query.departments))
