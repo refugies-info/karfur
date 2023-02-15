@@ -10,6 +10,7 @@ import { GetDispositifsRequest, GetStatisticsRequest } from "../server/src/contr
 import { GetDispositifResponse, InfoSections } from "../server/src/workflows/dispositif/getContentById";
 import { GetDispositifsResponse } from "../server/src/workflows/dispositif/getDispositifs";
 import { GetStatisticsResponse } from "../server/src/workflows/dispositif/getStatistics";
+import { GetAllDispositifsResponse } from "../server/src/workflows/dispositif/getAllDispositifs";
 
 // images
 import { PostImageResponse } from "../server/src/workflows/images/postImages";
@@ -40,6 +41,9 @@ import { SendNotificationsRequest } from "../server/src/controllers/notification
 import {
   DownloadAppRequest, ContentLinkRequest
 } from "../server/src/controllers/smsController";
+
+// structures
+import { GetAllStructuresResponse } from "../server/src/workflows/structure/getAllStructures";
 
 // themes
 import { ThemeRequest } from "../server/src/controllers/themeController";
@@ -76,6 +80,7 @@ export type {
   GetDispositifResponse,
   GetDispositifsResponse,
   GetStatisticsResponse,
+  GetAllDispositifsResponse,
 
   // images
   PostImageResponse,
@@ -101,6 +106,9 @@ export type {
   // sms
   DownloadAppRequest,
   ContentLinkRequest,
+
+  // structures
+  GetAllStructuresResponse,
 
   // themes
   ThemeRequest,

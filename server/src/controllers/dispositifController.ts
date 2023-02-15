@@ -14,7 +14,7 @@ import * as checkToken from "./account/checkToken";
 
 import { updateNbVuesOrFavoritesOnContent } from "../workflows/dispositif/updateNbVuesOrFavoritesOnContent";
 import { getDispositifs, GetDispositifsResponse } from "../workflows/dispositif/getDispositifs";
-import { getAllDispositifs } from "../workflows/dispositif/getAllDispositifs";
+import { getAllDispositifs, GetAllDispositifsResponse } from "../workflows/dispositif/getAllDispositifs";
 import { updateDispositifStatus } from "../workflows/dispositif/updateDispositifStatus";
 import { modifyDispositifMainSponsor } from "../workflows/dispositif/modifyDispositifMainSponsor";
 import { updateDispositifAdminComments } from "../workflows/dispositif/updateDispositifAdminComments";
@@ -42,8 +42,6 @@ router.post("/addDispositif", checkToken.getId, checkToken.check, addDispositif)
 router.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
 router.post("/get_dispositif", dispositif.get_dispositif);
 router.post("/count_dispositifs", dispositif.count_dispositifs);
-// @ts-ignore FIXME
-router.get("/getAllDispositifs", getAllDispositifs);
 // @ts-ignore FIXME
 router.post("/updateDispositifStatus", checkToken.check, updateDispositifStatus);
 // @ts-ignore FIXME
@@ -87,6 +85,14 @@ export class DispositifController extends Controller {
     @Queries() query: GetDispositifsRequest
   ): ResponseWithData<GetDispositifsResponse[]> {
     return getDispositifs(query);
+  }
+
+  @Security({
+    jwt: ["admin"],
+  })
+  @Get("/all")
+  public async getAll(): ResponseWithData<GetAllDispositifsResponse[]> {
+    return getAllDispositifs();
   }
 
   @Get("/statistics")
